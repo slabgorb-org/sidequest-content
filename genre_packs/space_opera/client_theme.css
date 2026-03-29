@@ -1,0 +1,66 @@
+/* Space Opera — starfield depth, holographic readouts, bridge console glow */
+
+:root {
+  --primary: #4A90D9;
+  --secondary: #2C5F8A;
+  --accent: #E8A838;
+  --background: #0D1117;
+  --surface: #161B22;
+  --text: #C9D1D9;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/genre/assets/fonts/Rajdhani-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    /* Nebula glow — blue-shifted center */
+    radial-gradient(ellipse at 50% 40%, rgba(74, 144, 217, 0.03) 0%, transparent 60%),
+    /* Starfield vignette */
+    radial-gradient(ellipse at center, transparent 40%, rgba(5, 5, 10, 0.5) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#narrative {
+  position: relative;
+  z-index: 1;
+}
+
+/* Body text — console readout glow */
+.narration-block p {
+  text-shadow: 0 0 25px rgba(74, 144, 217, 0.03);
+}
+
+/* Drop cap — holographic shimmer */
+.drop-cap-block img {
+  filter: drop-shadow(0 0 6px rgba(232, 168, 56, 0.3)) saturate(1.2);
+}
+
+/* Dinkus — stellar markers */
+.dinkus {
+  color: var(--accent);
+  letter-spacing: 0.8em;
+  opacity: 0.6;
+}
+
+/* Pull quote — ship's log entry, genre font */
+.pull-quote {
+  border-left: 3px solid var(--primary);
+  color: var(--primary);
+  font-family: 'Rajdhani', 'Exo 2', sans-serif;
+  font-style: normal;
+  font-size: 1.05em;
+  letter-spacing: 0.03em;
+}
+
+.session-opener {
+  border-bottom: 1px solid var(--accent);
+  text-shadow: 0 0 12px rgba(74, 144, 217, 0.15);
+}
