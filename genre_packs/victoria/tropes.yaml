@@ -1,0 +1,361 @@
+- id: the_secret_in_the_east_wing
+  name: The Secret in the East Wing
+  description: >-
+    A part of the house is locked, forbidden, or simply never discussed.
+    The servants avoid it. The master changes the subject. Something is
+    in there — a person, a past, a truth that the household is built on
+    concealing.
+  category: mystery
+  triggers:
+    - exploring the house after dark
+    - asking servants about locked rooms
+    - hearing unexplained sounds
+  narrative_hints:
+    - a door that is always locked, with a key no one admits to having
+    - a servant who will not go past a certain corridor after dark
+    - a portrait removed from the wall, leaving a lighter rectangle on the wallpaper
+  tension_level: 0.5
+  resolution_hints:
+    - find the key and open the room
+    - persuade a servant to tell what they know
+    - discover the truth through old letters or legal documents
+    - confront the master directly
+  tags: [gothic, house, secret]
+  escalation:
+    - at: 0.2
+      event: >-
+        You hear sounds at night — footsteps above, or a voice that could
+        be wind. The servants exchange glances when you mention it.
+      npcs_involved: [The Housekeeper]
+      stakes: Something is in the house that shouldn't be.
+    - at: 0.4
+      event: >-
+        A servant is caught carrying a tray to the locked wing. They refuse
+        to say for whom. The housekeeper intervenes with cold authority.
+      npcs_involved: [The Housekeeper, The Master of the House]
+      stakes: Someone is being kept hidden. The household is complicit.
+    - at: 0.6
+      event: >-
+        You find a letter — or a diary page, or a legal document — that
+        references a person the household claims does not exist.
+      npcs_involved: [The Master of the House]
+      stakes: A life is concealed. The reasons may be compassionate or monstrous.
+    - at: 0.8
+      event: >-
+        The locked door is found open. Someone has been inside — or
+        has gotten out. The household is in quiet, controlled panic.
+      npcs_involved: [The Housekeeper, The Master of the House]
+      stakes: The secret is escaping containment. Discovery is imminent.
+    - at: 1.0
+      event: >-
+        The truth emerges — in a drawing room, at a dinner, in a moment
+        that cannot be taken back. Everyone now knows what was hidden.
+        The question is what happens next.
+      npcs_involved: [The Master of the House, The Gossip]
+      stakes: The household's foundation has cracked. Scandal or redemption.
+  passive_progression:
+    rate_per_turn: 0.003
+    rate_per_day: 0.01
+    accelerators:
+      - exploring at night
+      - questioning servants
+      - locked door
+      - strange sounds
+    decelerators:
+      - avoiding the wing
+      - accepting explanations
+      - leaving the house
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: scandal_brewing
+  name: Scandal Brewing
+  description: >-
+    Someone's reputation is about to be destroyed. A secret — an affair,
+    a debt, a birth, a crime — is working its way toward daylight. The
+    question is whether it can be suppressed, who is spreading it, and
+    who benefits from its release.
+  category: political
+  triggers:
+    - indiscreet behaviour at a social event
+    - discovery of compromising letters
+    - a rival with a grudge and information
+  narrative_hints:
+    - whispers that stop when you enter a room
+    - an anonymous letter delivered to the wrong person
+    - a gossip columnist asking pointed questions
+  tension_level: 0.6
+  resolution_hints:
+    - find and suppress the source before it spreads
+    - get ahead of the scandal with a controlled revelation
+    - blackmail the blackmailer
+    - sacrifice standing to protect someone else
+  tags: [social, reputation, exposure]
+  escalation:
+    - at: 0.2
+      event: >-
+        A whisper at a dinner party. Someone knows something, or claims
+        to. The victim receives a knowing look from an unexpected quarter.
+      npcs_involved: [The Gossip]
+      stakes: A rumour is forming. It may die — or it may not.
+    - at: 0.4
+      event: >-
+        The rumour has a shape now. Specific details circulate — names,
+        dates, places. Someone is feeding the fire deliberately.
+      npcs_involved: [The Gossip, The Young Heir]
+      stakes: Standing begins to erode. Invitations are withdrawn.
+    - at: 0.6
+      event: >-
+        A letter arrives — anonymous, detailed, threatening. The writer
+        wants something. If they don't get it, the next letter goes to
+        the newspapers.
+      npcs_involved: [The Gossip]
+      stakes: Blackmail. The price of silence is rising.
+    - at: 0.8
+      event: >-
+        The story appears in print — veiled enough for deniability, clear
+        enough that everyone knows. Doors begin to close.
+      npcs_involved: [The Gossip, The Inspector]
+      stakes: Public knowledge. Standing drops sharply.
+    - at: 1.0
+      event: >-
+        The full truth is published. There is no deniability, no recovery
+        through the usual channels. The affected party must face the
+        consequences or flee.
+      npcs_involved: [The Gossip, The Inspector, The Master of the House]
+      stakes: Social death or dramatic reinvention. Nothing will be the same.
+  passive_progression:
+    rate_per_turn: 0.005
+    rate_per_day: 0.02
+    accelerators:
+      - indiscretion
+      - public appearance
+      - letter
+      - gossip
+      - newspaper
+    decelerators:
+      - bribe
+      - favour
+      - counter-rumour
+      - retreat to country
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: unsuitable_attachment
+  name: An Unsuitable Attachment
+  description: >-
+    Two people who should not be together are drawn to each other despite
+    every barrier society can raise. Class, prior obligation, scandal,
+    family opposition — the obstacles are real and the consequences of
+    defiance are severe. The question is whether love is worth ruin.
+  category: romance
+  triggers:
+    - repeated encounters with someone above or below your station
+    - a private conversation that goes too long
+    - a gesture that breaks propriety
+  narrative_hints:
+    - a glance held across a crowded room
+    - a letter that should not have been written
+    - a meeting in the garden that was not accidental
+  tension_level: 0.4
+  resolution_hints:
+    - defy convention and accept the consequences
+    - sacrifice the attachment for duty
+    - find a way to make it acceptable — a revelation, a fortune, a title
+    - lose the person and carry the regret
+  tags: [romance, class, desire, propriety]
+  escalation:
+    - at: 0.2
+      event: >-
+        An encounter that lingers — a conversation by the fire, a walk
+        that takes an unusual route, a book lent with a passage marked.
+        Nothing has been said, but something has been understood.
+      npcs_involved: []
+      stakes: An attraction is forming. It may be mutual.
+    - at: 0.4
+      event: >-
+        A private moment — unchaperoned, unplanned, electric. Words are
+        spoken that cannot be unsaid. Someone saw, or nearly saw.
+      npcs_involved: [The Gossip]
+      stakes: The attachment is real. Concealment becomes necessary.
+    - at: 0.6
+      event: >-
+        An obstacle forces a choice — a rival suitor with better
+        credentials, a family demand, an offer that requires leaving.
+        The attachment is tested against practical reality.
+      npcs_involved: [The Master of the House, The Gossip]
+      stakes: The attachment must survive opposition or break.
+    - at: 0.8
+      event: >-
+        Discovery. Someone who matters now knows — a parent, a guardian,
+        a rival. The response is swift: threats, ultimatums, arrangements
+        made without consent.
+      npcs_involved: [The Master of the House]
+      stakes: The attachment is under direct attack. Compliance or defiance.
+    - at: 1.0
+      event: >-
+        The moment of decision. Stay or go. Conform or defy. The rain
+        is falling, the carriage is waiting, and the choice made now
+        defines everything that follows.
+      npcs_involved: [The Master of the House, The Gossip]
+      stakes: A life is chosen. There is no going back.
+  passive_progression:
+    rate_per_turn: 0.004
+    rate_per_day: 0.015
+    accelerators:
+      - private meeting
+      - letter
+      - touch
+      - confession
+      - gift
+    decelerators:
+      - separation
+      - duty
+      - cold response
+      - public propriety
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+
+- id: inheritance_contested
+  name: The Contested Inheritance
+  description: >-
+    A will, a title, or a fortune is in dispute. Documents may be forged,
+    witnesses bribed, and relatives who haven't spoken in years are
+    suddenly very attentive. The law is a labyrinth, and the lawyers are
+    the minotaurs.
+  category: conflict
+  triggers:
+    - a death in a prominent family
+    - discovery of a second will
+    - a previously unknown relative appearing
+  narrative_hints:
+    - a solicitor arriving unannounced with urgent business
+    - family members who haven't visited in years suddenly appearing
+    - a document that contradicts what everyone believed
+  tension_level: 0.5
+  resolution_hints:
+    - find the authentic will and prove it
+    - expose the forgery
+    - negotiate a settlement before it reaches Chancery
+    - discover that the true heir changes everything
+  tags: [legal, family, money, power]
+  escalation:
+    - at: 0.2
+      event: >-
+        The solicitor's letter arrives. The terms of the will are not
+        what anyone expected. Someone has been favoured; someone has been
+        cut out.
+      npcs_involved: [The Young Heir]
+      stakes: A fortune is in play. Expectations have been upended.
+    - at: 0.4
+      event: >-
+        A second document surfaces — a codicil, a prior will, a letter
+        of intent. Its authenticity is disputed. Solicitors are retained.
+      npcs_involved: [The Young Heir, The Industrialist]
+      stakes: The legal claim is contested. Both sides are spending money.
+    - at: 0.6
+      event: >-
+        Someone appears — a relative, a claimant, a person whose existence
+        changes the legal picture entirely. They may be genuine or an
+        impostor. Proving which is everything.
+      npcs_involved: [The Young Heir, The Inspector]
+      stakes: Identity itself is in question. The inheritance hangs on proof.
+    - at: 0.8
+      event: >-
+        Evidence is stolen, destroyed, or hidden. Someone is willing to
+        commit crimes to control the outcome. The dispute has moved
+        beyond the courtroom.
+      npcs_involved: [The Inspector, The Industrialist]
+      stakes: The legal battle has become dangerous. Someone will be ruined.
+    - at: 1.0
+      event: >-
+        The case reaches its conclusion — in a courtroom, a drawing room,
+        or a confrontation that makes the courts irrelevant. The truth
+        about the family is laid bare.
+      npcs_involved: [The Young Heir, The Inspector, The Master of the House]
+      stakes: A fortune and a family's identity are decided. Permanently.
+  passive_progression:
+    rate_per_turn: 0.003
+    rate_per_day: 0.01
+    accelerators:
+      - document
+      - solicitor
+      - claimant
+      - courtroom
+      - family gathering
+    decelerators:
+      - settlement
+      - delay
+      - distraction
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
+
+- id: the_outsider_arrives
+  name: The Outsider Arrives
+  description: >-
+    A stranger comes to the district — a new governess, a distant cousin,
+    a doctor from London, an explorer returned from abroad. They disrupt
+    the established order simply by being present. Everyone watches them.
+    Everyone has an opinion. Someone is afraid of what they might discover.
+  category: catalyst
+  triggers:
+    - a new character arriving at the house or village
+    - an invitation extended to someone unexpected
+    - a letter of introduction from someone distant
+  narrative_hints:
+    - servants speculating about the newcomer
+    - existing residents positioning themselves as friend or rival
+    - the outsider noticing things the household has stopped seeing
+  tension_level: 0.3
+  resolution_hints:
+    - the outsider integrates and changes the community
+    - the outsider is driven out by what they discover
+    - the outsider becomes the catalyst for a larger reckoning
+    - the outsider was not who they claimed to be
+  tags: [arrival, disruption, change, identity]
+  escalation:
+    - at: 0.2
+      event: >-
+        The outsider arrives. First impressions form — favourable with
+        some, suspicious with others. The household adjusts.
+      npcs_involved: [The Housekeeper, The Gossip]
+      stakes: A new variable has entered the equation.
+    - at: 0.4
+      event: >-
+        The outsider notices something wrong — a discrepancy, a tension,
+        a secret that the household has normalized. They ask the wrong
+        question at dinner.
+      npcs_involved: [The Master of the House]
+      stakes: The outsider's presence is becoming uncomfortable for someone.
+    - at: 0.6
+      event: >-
+        Alliances form. Some members of the household draw closer to the
+        outsider; others move to limit their access and influence.
+      npcs_involved: [The Gossip, The Housekeeper]
+      stakes: The outsider is changing the balance of power.
+    - at: 0.8
+      event: >-
+        An attempt to remove the outsider — dismissal, scandal, a forced
+        departure. Someone wants them gone before they learn more.
+      npcs_involved: [The Master of the House, The Housekeeper]
+      stakes: The outsider's position is under direct threat.
+    - at: 1.0
+      event: >-
+        The outsider's presence forces a truth into the open. Whether
+        they stay or go, the household will never return to what it was.
+      npcs_involved: [The Master of the House, The Gossip]
+      stakes: Permanent change. The old order is broken.
+  passive_progression:
+    rate_per_turn: 0.005
+    rate_per_day: 0.02
+    accelerators:
+      - conversation
+      - discovery
+      - kindness
+      - confrontation
+    decelerators:
+      - withdrawal
+      - compliance
+      - silence
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
