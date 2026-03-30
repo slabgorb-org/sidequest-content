@@ -1,0 +1,98 @@
+stat_generation: point_buy
+point_buy_budget: 27
+magic_level: none
+
+ability_score_names:
+  - Angst
+  - Pride
+  - Humour
+  - Nerve
+  - Cunning
+  - Passion
+
+allowed_classes:
+  - Governess
+  - Detective
+  - Society
+  - Doctor
+  - Industrialist
+  - Explorer
+  - Clergyman
+
+allowed_races:
+  - Gentry
+  - Trade
+  - Servant
+  - Clergy
+  - Bohemian
+  - Colonial
+
+hp_formula: "class_base + (nerve_mod * level)"
+
+stat_display_fields:
+  - hp
+  - max_hp
+  - standing
+
+class_hp_bases:
+  Governess: 6
+  Detective: 8
+  Society: 6
+  Doctor: 8
+  Industrialist: 10
+  Explorer: 10
+  Clergyman: 6
+
+default_class: Governess
+default_race: Gentry
+default_hp: 6
+default_ac: 10
+default_location: "The entrance hall of a great house, rain streaking the tall windows"
+default_time_of_day: evening
+
+custom_rules:
+  lethality: low
+  injury_system: none
+  rest_variant: standard
+  encumbrance: none
+
+  standing_system: >-
+    Standing tracks social position from 0 (ruined) to 5 (toast of the season).
+    Actions that display virtue, breeding, accomplishment, or connection raise
+    Standing. Scandal, impropriety, association with the wrong people, or public
+    failure lower it. High Standing opens doors — invitations, introductions,
+    favorable terms. Low Standing closes them — cut direct, whispered warnings,
+    doors that no longer answer. Standing can change overnight. A single
+    revelation at the wrong dinner party can undo years of careful cultivation.
+
+  scandal_system: >-
+    Reckless actions, discovered secrets, and social missteps generate Scandal.
+    Scandal erodes Standing. Some NPCs trade in Scandal as currency — the
+    gossip columnist, the blackmailer, the rival who smiles too sweetly.
+    Scandal can be suppressed through influence, favors, or counter-scandal,
+    but it never truly disappears. The Narrator tracks Scandal independently
+    from Standing — a character can have high Standing AND mounting Scandal,
+    living on borrowed time.
+
+  the_occult: >-
+    Controlled by the Gothic tone axis. At low: séances are parlor tricks,
+    mesmerists are charlatans, ghost stories are for children. At high:
+    mesmerism works, the house has a presence, the moors remember the dead,
+    and some books should never have been opened. Even at maximum, the
+    supernatural is dread and atmosphere, never a toolbox. No one casts
+    spells. Things happen that cannot be explained, and the not-knowing
+    is the point.
+
+  propriety: >-
+    Victorian society runs on rules that are never written down but everyone
+    knows. Who speaks first, who sits where, what can be said in mixed
+    company, what a glance means, what an uninvited visit implies. Breaking
+    propriety is a weapon — sometimes deliberate, sometimes devastating by
+    accident. The Narrator uses propriety as environmental hazard: the wrong
+    word at dinner is as dangerous as a knife in an alley.
+
+encounter_base_tension:
+  random: 0.05
+  ambush: 0.15
+  boss: 0.30
+  final: 0.40
