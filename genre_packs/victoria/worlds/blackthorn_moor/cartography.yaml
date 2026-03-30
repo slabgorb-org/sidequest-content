@@ -1,0 +1,112 @@
+world_name: Blackthorn Moor
+starting_region: blackthorn_hall
+map_style: "Victorian estate survey map in brown ink on cream paper, precise hand-drawn buildings, cross-hatched moorland, copper-plate lettering"
+map_resolution: [1024, 1024]
+
+regions:
+  blackthorn_hall:
+    name: Blackthorn Hall
+    description: >-
+      A handsome stone house of the last century, well-maintained but heavy
+      with history. Three storeys, east and west wings, a walled garden, and
+      stables. The study where Sir Edmund died faces the moors. The drawing
+      room faces the valley. The servants' quarters are below stairs and in
+      the attic. Every room has a fireplace and most of them are lit.
+    origin: origins
+    adjacent: [grounds, thornkirk, moors]
+
+  grounds:
+    name: The Grounds
+    description: >-
+      Formal gardens giving way to rougher parkland. A walled kitchen garden,
+      a gravel drive that circles a stone fountain, a copse of beech trees
+      where someone has worn a path by walking the same route every evening.
+      The stables house four horses and a carriage. A path leads down to the
+      village.
+    adjacent: [blackthorn_hall, thornkirk, moors]
+
+  thornkirk:
+    name: Thornkirk Village
+    description: >-
+      A cluster of stone cottages around a Norman church with a square tower.
+      The Blackthorn Arms pub serves adequate ale and excellent gossip. A
+      post office doubles as a general store. The vicarage sits behind the
+      churchyard. Everyone can see who arrives at the railway station from
+      the church steps.
+    origin: origins
+    adjacent: [blackthorn_hall, grounds, millbridge, railway_station, churchyard]
+
+  millbridge:
+    name: Millbridge
+    description: >-
+      The industrial town in the valley — three cotton mills with tall
+      chimneys, terraced workers' housing climbing the hillside, a high
+      street with a draper, a chemist, and a solicitor's office. The air
+      tastes of coal smoke. The Blackthorn mills employ half the town.
+      The other half wishes they did.
+    adjacent: [thornkirk, railway_station]
+
+  railway_station:
+    name: Thornkirk Station
+    description: >-
+      A single platform with a waiting room, a ticket office, and a bench
+      that faces the moors. Three trains a day to Leeds. The last one
+      leaves at six. The stationmaster knows every face that arrives and
+      departs, and he talks to his wife, who talks to everyone.
+    adjacent: [thornkirk, millbridge]
+
+  moors:
+    name: The Moors
+    description: >-
+      Miles of open moorland stretching to the ridge. Heather, bracken,
+      peat bog, and sky. Sheep paths cross the landscape in lines that
+      make sense only to sheep. A few standing stones on the ridge that
+      predate everything. The wind never stops. In clear weather you can
+      see three counties. In fog you cannot see your own feet.
+    adjacent: [blackthorn_hall, grounds, thornkirk]
+
+  churchyard:
+    name: The Churchyard
+    description: >-
+      Behind St. Michael's, the Blackthorn family plot occupies the best
+      ground — south-facing, sheltered by the church wall. Sir Edmund's
+      grave is fresh, the earth still dark. The older stones are weathered
+      to illegibility. The sexton keeps the paths clear and the gate oiled.
+    adjacent: [thornkirk]
+
+routes:
+  - from_id: blackthorn_hall
+    to_id: thornkirk
+    name: "The Hall Lane"
+    distance: short
+    description: "A private lane through parkland, hedged in hawthorn. Ten minutes on foot, five by carriage."
+  - from_id: blackthorn_hall
+    to_id: moors
+    name: "The Moor Gate"
+    distance: short
+    description: "A gate in the garden wall opens directly onto the moor. Sir Edmund used it every evening."
+  - from_id: thornkirk
+    to_id: millbridge
+    name: "The Valley Road"
+    distance: medium
+    description: "Downhill into smoke and industry. The air changes halfway."
+  - from_id: thornkirk
+    to_id: railway_station
+    name: "Station Road"
+    distance: short
+    description: "A straight lane south of the village. You can hear the trains from the pub."
+  - from_id: blackthorn_hall
+    to_id: grounds
+    name: "The Gravel Drive"
+    distance: short
+    description: "Circles the fountain and passes the stables."
+  - from_id: grounds
+    to_id: moors
+    name: "The Beech Walk"
+    distance: short
+    description: "Through the copse and out the far gate onto open moorland."
+  - from_id: thornkirk
+    to_id: churchyard
+    name: "The Lychgate"
+    distance: short
+    description: "Through the covered gate into St. Michael's churchyard."
