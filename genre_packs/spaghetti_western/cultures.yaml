@@ -1,0 +1,88 @@
+# Spaghetti Western — Genre-Level Cultures
+# These define the default naming system for the "classic" spaghetti western
+# setting (Mexican-American border, 1860s-1880s). World packs like ronin_road
+# extend or replace these with setting-appropriate cultures.
+
+- name: Frontera
+  description: "Mexican-Spanish border culture — warm vowels, patronymics, saints' names"
+  slots:
+    given_name:
+      corpora:
+        - corpus: spanish.txt
+          weight: 1.0
+      lookback: 3
+    family_name:
+      corpora:
+        - corpus: spanish.txt
+          weight: 1.0
+      lookback: 2
+    place_noun:
+      word_list: [arroyo, mesa, cañón, cruz, fuente, hacienda, llano, paso, pozo, puente, sierra, valle]
+    adjective:
+      word_list: [viejo, rojo, seco, muerto, negro, blanco, santo, perdido, quieto, hondo]
+    saint:
+      word_list: [San Miguel, Santa Rosa, San Pedro, Santa Fe, San Cristóbal, Santa María, San Jacinto]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{given_name} de {family_name}"
+    - "{given_name} {family_name} {family_name}"
+  place_patterns:
+    - "{saint} del {place_noun}"
+    - "{adjective} {place_noun}"
+    - "{place_noun} de los {adjective}s"
+    - "{given_name}'s {place_noun}"
+
+- name: Gringo
+  description: "Anglo-American frontier culture — clipped surnames, nicknames, place-based identity"
+  slots:
+    given_name:
+      corpora:
+        - corpus: english.txt
+          weight: 1.0
+      lookback: 2
+    family_name:
+      corpora:
+        - corpus: english.txt
+          weight: 0.7
+        - corpus: irish.txt
+          weight: 0.3
+      lookback: 2
+    place_noun:
+      word_list: [gulch, ridge, creek, flats, springs, crossing, bend, bluff, fork, hollow, pass, butte]
+    adjective:
+      word_list: [dead, dry, red, broken, burnt, bitter, lost, rattlesnake, devil, coyote, copper, bone]
+    nickname:
+      word_list: [Slim, Shorty, Doc, Kid, Blackjack, Dusty, One-Eye, Lefty, Lucky, Deadeye, Whiskey, Preacher]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{nickname} {family_name}"
+    - "{given_name} \"{nickname}\" {family_name}"
+  place_patterns:
+    - "{adjective} {place_noun}"
+    - "{family_name}'s {place_noun}"
+    - "{nickname}'s {place_noun}"
+    - "{adjective} {place_noun}"
+
+- name: Nativo
+  description: "Indigenous frontier culture — nature-rooted names, descriptive epithets"
+  slots:
+    given_name:
+      corpora:
+        - corpus: navajo.txt
+          weight: 0.6
+        - corpus: apache.txt
+          weight: 0.4
+      lookback: 3
+    epithet:
+      word_list: [Walks-Far, Sees-the-Wind, Stone-Hand, Crow-Speaker, Red-Sky, Still-Water, Iron-Root, Shadow-Runner, Sun-Eater, Dust-Born]
+    place_noun:
+      word_list: [canyon, mesa, spring, wash, butte, bluff, cave, ledge, basin, peak]
+    adjective:
+      word_list: [singing, sleeping, red, black, white, thunder, eagle, coyote, ancient, hidden]
+  person_patterns:
+    - "{given_name}"
+    - "{given_name} {epithet}"
+    - "{epithet}"
+  place_patterns:
+    - "{adjective} {place_noun}"
+    - "{place_noun} of the {adjective}"
