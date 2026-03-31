@@ -1,0 +1,142 @@
+definitions:
+  - id: occult
+    name: Occult
+    description: >-
+      Whether the heresy is real. At low values, witchcraft is hysteria,
+      visions are ergot poisoning, and the only demons are human. At high
+      values, the accused herbalist can actually curse, the saint's relic
+      bleeds on command, and the tribunal is right to be afraid — they're
+      just afraid of the wrong things.
+    poles:
+      - rationalist
+      - supernatural
+    default: 0.2
+
+  - id: satire
+    name: Satire
+    description: >-
+      How absurd the institution is. At low values, the tribunal is
+      terrifying and competent — a machine that grinds people to dust with
+      procedural precision. At high values, the judges are petty, the
+      theology is contradictory, the informant turned you in over a land
+      dispute, and the whole thing would be hilarious if they couldn't
+      actually kill you.
+    poles:
+      - grave
+      - farcical
+    default: 0.3
+
+  - id: scope
+    name: Scope
+    description: >-
+      How wide the conspiracy reaches. At the personal pole, you're one
+      person accused by one neighbor — intimate, claustrophobic, village-scale.
+      At the institutional pole, the tribunal is a political weapon wielded
+      by factions, and your case is a pawn in a larger game between popes,
+      kings, or rival orders.
+    poles:
+      - personal
+      - institutional
+    default: 0.4
+
+modifiers:
+  occult:
+    rationalist: >-
+      Every supernatural claim has a mundane explanation. Spectral evidence
+      is delusion or manipulation. Visions come from fasting, illness, or
+      deliberate fraud. The accused "witch" is a herbalist or a scapegoat.
+      Maintain this consistently — the horror is entirely human. The
+      institution persecutes based on evidence that does not exist, and
+      that is worse than any demon.
+    supernatural: >-
+      The supernatural is real, rare, and dangerous. The herbalist's poultice
+      does heal unnaturally fast. The monk's prayer does stop the bleeding.
+      Someone in the village did speak to something in the woods. But the
+      tribunal's methods are still wrong — they catch the innocent and miss
+      the genuine. The irony is that real power hides easily from institutions
+      that look for the wrong signs. Use sparingly. The moment the supernatural
+      becomes routine, the tribunal becomes reasonable.
+  satire:
+    grave: >-
+      The tribunal is a horror. Proceedings are meticulous, records are kept,
+      and every cruelty is documented in neat handwriting. The judges believe
+      they are doing God's work. There is no irony in the room. The accused
+      faces a system that is completely sincere in its conviction that burning
+      people alive is an act of mercy. Play this straight — the terror is in
+      the banality.
+    farcical: >-
+      The tribunal is absurd and everyone except the judges knows it. The
+      charges are petty, contradictory, or transparently motivated by personal
+      grudges. The chief inquisitor mispronounces the Latin. A witness
+      contradicts herself three times and nobody notices. The theology cited
+      doesn't exist. And yet — they have the authority. They will convict.
+      The comedy and the horror are the same thing. Play the absurdity
+      completely straight. Nobody on the bench thinks this is funny.
+  scope:
+    personal: >-
+      This is about one person and the people who know them. The accuser is a
+      neighbor, a rival, a spurned lover. The evidence is personal grudge
+      dressed as theology. The courtroom is small. Everyone knows everyone.
+      The betrayal is intimate. Keep the world tight — the village, the
+      parish, the monastery. The institution is a blunt instrument wielded
+      by someone with a private motive.
+    institutional: >-
+      The tribunal is a political operation. Your case is one of dozens. The
+      real target may be your patron, your order, your family's property.
+      Factions within the church or state use accusations as chess moves.
+      The inquisitor has quotas. The bishop needs a public burning to
+      consolidate authority. Your guilt or innocence is irrelevant to the
+      people making decisions. Expand the scope — multiple tribunals,
+      correspondence between cities, papal bulls, royal warrants.
+
+presets:
+  - name: Crucible
+    description: >-
+      Pure Salem. Village-scale hysteria, no actual witchcraft, deadly
+      serious. Neighbor against neighbor, children as witnesses, the
+      terror of a community eating itself.
+    values:
+      occult: 0.0
+      satire: 0.1
+      scope: 0.1
+
+  - name: Eco
+    description: >-
+      The Name of the Rose. Monastery intrigue, intellectual theology,
+      the occult might be real, and the library is the most dangerous
+      room. Murder as doctrinal argument.
+    values:
+      occult: 0.5
+      satire: 0.2
+      scope: 0.5
+
+  - name: Strangelove
+    description: >-
+      Full Kubrick. The institution is a nightmare and a joke
+      simultaneously. The charges are absurd, the judges are petty, and
+      they can still kill you. Comedy of terrors.
+    values:
+      occult: 0.1
+      satire: 0.9
+      scope: 0.6
+
+  - name: Inquisitor
+    description: >-
+      Grand Inquisitor mode. You ARE the tribunal. Institutional scope,
+      political chess, the question is whether you can stomach what the
+      system requires — or whether you'll break it from within.
+    values:
+      occult: 0.3
+      satire: 0.1
+      scope: 0.9
+
+  - name: Balanced
+    description: >-
+      The genre's default — some dread, some absurdity, mid-scale
+      conspiracy. The tribunal is frightening but flawed. The occult
+      is ambiguous. Your case matters to someone powerful, but you
+      don't know who.
+    values:
+      occult: 0.3
+      satire: 0.3
+      scope: 0.4
