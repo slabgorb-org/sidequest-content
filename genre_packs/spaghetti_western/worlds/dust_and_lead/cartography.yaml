@@ -1,8 +1,16 @@
 # Dust and Lead — World Cartography
 # The Sangre Territory: ~100 miles east-west, ~80 miles north-south
 
+world_name: Dust and Lead
+starting_region: sangre_del_paso
+map_style: >-
+  Weathered parchment survey map of the American Southwest, hand-drawn
+  topographic lines in sepia ink, terrain rendered in crosshatch shading,
+  place names in copperplate script with Spanish and English mixed,
+  compass rose in the corner, scale bar in miles
+
 regions:
-  - id: sangre_del_paso
+  sangre_del_paso:
     name: Sangre del Paso
     terrain: town
     type: border_town
@@ -19,7 +27,7 @@ regions:
     water: river
     danger_level: moderate
 
-  - id: quieto_valle
+  quieto_valle:
     name: Quieto Valle
     terrain: river_valley
     description: >-
@@ -34,7 +42,7 @@ regions:
     water: river
     danger_level: low
 
-  - id: seco_llano
+  seco_llano:
     name: Seco Llano
     terrain: desert
     description: >-
@@ -48,8 +56,8 @@ regions:
     water: none
     danger_level: high
 
-  - id: viejo_canon
-    name: Viejo Cañón
+  viejo_canon:
+    name: "Viejo Cañón"
     terrain: canyon
     description: >-
       A maze of sandstone canyons cutting northwest from the river into
@@ -64,7 +72,7 @@ regions:
     water: rare
     danger_level: very_high
 
-  - id: sierra_perdida
+  sierra_perdida:
     name: Sierra Perdida
     terrain: mountain_pass
     description: >-
@@ -79,7 +87,7 @@ regions:
     water: seasonal
     danger_level: high
 
-  - id: ghost_ridge
+  ghost_ridge:
     name: Ghost Ridge
     terrain: canyon
     description: >-
@@ -95,7 +103,7 @@ regions:
     water: none
     danger_level: extreme
 
-  - id: rojo_mesa
+  rojo_mesa:
     name: Rojo Mesa
     terrain: mesa
     description: >-
@@ -110,7 +118,7 @@ regions:
     water: none
     danger_level: high
 
-  - id: santo_puente
+  santo_puente:
     name: Santo Puente
     terrain: town
     type: railroad_town
@@ -128,8 +136,8 @@ regions:
     water: well
     danger_level: moderate
 
-  - id: fort_resolucion
-    name: Fort Resolución
+  fort_resolucion:
+    name: "Fort Resolución"
     terrain: town
     type: ranch
     description: >-
@@ -148,9 +156,8 @@ regions:
     danger_level: low
 
 routes:
-  - id: river_road
-    name: The River Road
-    type: road
+  - name: The River Road
+    id: river_road
     description: >-
       The main road following the Sangre River from Santo Puente west
       to Sangre del Paso. The most traveled route in the territory —
@@ -160,9 +167,8 @@ routes:
     speed_modifier: 2.0
     bandit_risk: high
 
-  - id: canyon_trail
-    name: The Canyon Trail
-    type: trail
+  - name: The Canyon Trail
+    id: canyon_trail
     description: >-
       A winding trail through Viejo Cañón connecting Sangre del Paso
       to the Sierra Perdida mine. Narrow, slow, and perfect for ambush.
@@ -172,9 +178,8 @@ routes:
     speed_modifier: 0.8
     bandit_risk: very_high
 
-  - id: smugglers_crossing
-    name: Smuggler's Crossing
-    type: smuggler_path
+  - name: Smuggler's Crossing
+    id: smugglers_crossing
     description: >-
       An unmarked ford across the Sangre River three miles downstream
       from town, hidden by a bend and a stand of cottonwoods. Los Cuervos
@@ -184,9 +189,8 @@ routes:
     speed_modifier: 0.5
     bandit_risk: moderate
 
-  - id: ghost_ridge_passage
-    name: Ghost Ridge Passage
-    type: smuggler_path
+  - name: Ghost Ridge Passage
+    id: ghost_ridge_passage
     description: >-
       The fast route through the deepest part of Viejo Cañón, passing
       over Ghost Ridge. Cuts two days off the canyon trail but requires
@@ -196,9 +200,8 @@ routes:
     speed_modifier: 0.6
     bandit_risk: low
 
-  - id: desert_crossing
-    name: The Desert Crossing
-    type: trail
+  - name: The Desert Crossing
+    id: desert_crossing
     description: >-
       A barely-marked trail across Seco Llano from Sangre del Paso south
       toward the Mexican interior. Three water holes if you know where to
@@ -208,9 +211,8 @@ routes:
     speed_modifier: 0.7
     bandit_risk: moderate
 
-  - id: mine_road
-    name: The Mine Road
-    type: road
+  - name: The Mine Road
+    id: mine_road
     description: >-
       A graded wagon road from Quieto Valle up the switchbacks to the
       Sierra Perdida mine. Built by the Consolidated, maintained by the
