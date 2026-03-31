@@ -1,0 +1,221 @@
+# Dust and Lead — World Cartography
+# The Sangre Territory: ~100 miles east-west, ~80 miles north-south
+
+regions:
+  - id: sangre_del_paso
+    name: Sangre del Paso
+    terrain: town
+    type: border_town
+    description: >-
+      The territory's only real town, built where the Sangre River
+      narrows enough to ford. Adobe and timber buildings line a wide
+      dirt main street. The courthouse and jail at one end, the saloon
+      and general store at the other, and the church bell tower visible
+      from everywhere. Population: three hundred souls, give or take
+      whoever rode in this week. Every faction has eyes here.
+    population: 300
+    factions: [sangre_rangers, the_families, the_consolidated, los_cuervos]
+    adjacent: [quieto_valle, seco_llano, viejo_canon]
+    water: river
+    danger_level: moderate
+
+  - id: quieto_valle
+    name: Quieto Valle
+    terrain: river_valley
+    description: >-
+      The green ribbon along the Sangre River north of town. Cottonwood
+      groves, irrigated fields, and scattered ranch houses connected by
+      dirt tracks. The Reyes ranch — largest in the territory — anchors
+      the eastern end. The Harwick homestead sits on the western end,
+      directly in the railroad's proposed right-of-way. Water disputes
+      are settled by who gets to the acequia first.
+    factions: [the_families]
+    adjacent: [sangre_del_paso, santo_puente, sierra_perdida]
+    water: river
+    danger_level: low
+
+  - id: seco_llano
+    name: Seco Llano
+    terrain: desert
+    description: >-
+      Flat, featureless Chihuahuan desert south of the river stretching
+      to the Mexican interior. Mesquite scrub, creosote bush, and heat
+      shimmer as far as the eye can see. Los Cuervos cross here at night
+      with stolen cattle. The Rangers patrol here during the day and find
+      nothing. A man on foot without water is dead in eighteen hours.
+    factions: [los_cuervos]
+    adjacent: [sangre_del_paso, viejo_canon, rojo_mesa]
+    water: none
+    danger_level: high
+
+  - id: viejo_canon
+    name: Viejo Cañón
+    terrain: canyon
+    description: >-
+      A maze of sandstone canyons cutting northwest from the river into
+      the foothills of the Sierra Perdida. Narrow passages between walls
+      three hundred feet high, side canyons that dead-end without warning,
+      and echoes that make a single rifle shot sound like a volley. The
+      Apache know every passage. The Army has been trying to map it for
+      three years. Ghost Ridge is in here somewhere. So are Los Cuervos'
+      emergency camps.
+    factions: [los_cuervos]
+    adjacent: [sangre_del_paso, seco_llano, sierra_perdida, ghost_ridge]
+    water: rare
+    danger_level: very_high
+
+  - id: sierra_perdida
+    name: Sierra Perdida
+    terrain: mountain_pass
+    description: >-
+      A rugged mountain range west of the territory, rising five thousand
+      feet above the desert floor. Pine forests at the peaks, bare rock
+      below. The Consolidated Sierra Mine bites into the eastern face at
+      the head of a switchback trail wide enough for one ore wagon. The
+      Apache call these mountains sacred. The Consolidated calls them
+      profitable. Both are right.
+    factions: [the_consolidated]
+    adjacent: [quieto_valle, viejo_canon]
+    water: seasonal
+    danger_level: high
+
+  - id: ghost_ridge
+    name: Ghost Ridge
+    terrain: canyon
+    description: >-
+      A high shelf of rock deep inside Viejo Cañón, accessible by a
+      single trail that can be defended by two people. The site of the
+      1862 massacre. The Apache consider it a place of the dead. Bones
+      and bullet casings surface after hard rains. Nobody lives here.
+      Nobody camps here willingly. But the trail through Ghost Ridge
+      is the fastest route between the canyons and the Sierra Perdida —
+      the route Los Cuervos use when the Rangers are watching the road.
+    factions: []
+    adjacent: [viejo_canon]
+    water: none
+    danger_level: extreme
+
+  - id: rojo_mesa
+    name: Rojo Mesa
+    terrain: mesa
+    description: >-
+      A flat-topped mesa of red sandstone rising two hundred feet above
+      the desert south of the river. Visible for twenty miles in every
+      direction. The Apache use it as a signal point — smoke by day,
+      fire by night. Whoever holds Rojo Mesa can see every rider crossing
+      Seco Llano. The Army wants to put a heliograph station on top.
+      The Apache have other ideas.
+    factions: []
+    adjacent: [seco_llano]
+    water: none
+    danger_level: high
+
+  - id: santo_puente
+    name: Santo Puente
+    terrain: town
+    type: railroad_town
+    description: >-
+      End of the line — literally. The railroad tracks stop here, sixty
+      miles east of Sangre del Paso. A raw, new town built in eighteen
+      months around the railhead: company offices, worker barracks, a
+      general store that charges eastern prices, and a tent saloon that
+      never closes. Chinese workers, Irish gangers, and company engineers
+      share the same dust. The mission — the oldest building for a hundred
+      miles — watches from its hill as the future arrives by rail.
+    population: 500
+    factions: [the_consolidated, the_families]
+    adjacent: [quieto_valle]
+    water: well
+    danger_level: moderate
+
+  - id: fort_resolucion
+    name: Fort Resolución
+    terrain: town
+    type: ranch
+    description: >-
+      A US Army post on the eastern mouth of Viejo Cañón, garrisoned by
+      two companies of the 10th Cavalry — the Buffalo Soldiers. Stone
+      walls, a parade ground, a stable for sixty horses, and a flagpole
+      that is the tallest thing for miles. The soldiers patrol the canyons,
+      escort silver shipments, and chase Apache raiders they rarely catch.
+      Sergeant Major Isaiah Boone runs the post in everything but name.
+      The officers rotate in from the east and are rarely seen outside
+      the fort.
+    population: 120
+    factions: [sangre_rangers]
+    adjacent: [viejo_canon, seco_llano]
+    water: well
+    danger_level: low
+
+routes:
+  - id: river_road
+    name: The River Road
+    type: road
+    description: >-
+      The main road following the Sangre River from Santo Puente west
+      to Sangre del Paso. The most traveled route in the territory —
+      stagecoaches, ore wagons, and cattle drives use it daily. Also
+      the most watched: every faction keeps eyes on the River Road.
+    connects: [santo_puente, quieto_valle, sangre_del_paso]
+    speed_modifier: 2.0
+    bandit_risk: high
+
+  - id: canyon_trail
+    name: The Canyon Trail
+    type: trail
+    description: >-
+      A winding trail through Viejo Cañón connecting Sangre del Paso
+      to the Sierra Perdida mine. Narrow, slow, and perfect for ambush.
+      The Consolidated uses it for silver shipments with armed escort.
+      Los Cuervos use it for everything else.
+    connects: [sangre_del_paso, viejo_canon, sierra_perdida]
+    speed_modifier: 0.8
+    bandit_risk: very_high
+
+  - id: smugglers_crossing
+    name: Smuggler's Crossing
+    type: smuggler_path
+    description: >-
+      An unmarked ford across the Sangre River three miles downstream
+      from town, hidden by a bend and a stand of cottonwoods. Los Cuervos
+      cross here at night. The Rangers know about it. Los Cuervos know
+      the Rangers know. The game continues.
+    connects: [sangre_del_paso, seco_llano]
+    speed_modifier: 0.5
+    bandit_risk: moderate
+
+  - id: ghost_ridge_passage
+    name: Ghost Ridge Passage
+    type: smuggler_path
+    description: >-
+      The fast route through the deepest part of Viejo Cañón, passing
+      over Ghost Ridge. Cuts two days off the canyon trail but requires
+      climbing, knowledge of the route, and the nerve to camp where the
+      massacre happened. The Apache use it freely. Everyone else avoids it.
+    connects: [viejo_canon, ghost_ridge, sierra_perdida]
+    speed_modifier: 0.6
+    bandit_risk: low
+
+  - id: desert_crossing
+    name: The Desert Crossing
+    type: trail
+    description: >-
+      A barely-marked trail across Seco Llano from Sangre del Paso south
+      toward the Mexican interior. Three water holes if you know where to
+      look. Zero if you don't. Used by Los Cuervos, smugglers, and people
+      who do not want to be found.
+    connects: [sangre_del_paso, seco_llano, rojo_mesa]
+    speed_modifier: 0.7
+    bandit_risk: moderate
+
+  - id: mine_road
+    name: The Mine Road
+    type: road
+    description: >-
+      A graded wagon road from Quieto Valle up the switchbacks to the
+      Sierra Perdida mine. Built by the Consolidated, maintained by the
+      Consolidated, and patrolled by Consolidated security. One wagon
+      wide. The ore comes down this road. The payroll goes up it.
+    connects: [quieto_valle, sierra_perdida]
+    speed_modifier: 1.5
+    bandit_risk: high
