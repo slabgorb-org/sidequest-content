@@ -1,0 +1,193 @@
+# Spaghetti Western — Tone Alignment Axes
+# These axes control the narrative tone of the game session.
+# Values range from 0.0 (first pole) to 1.0 (second pole).
+
+definitions:
+  - id: comedy
+    name: Comedy
+    description: >-
+      How much humor pervades the narrative. At the low end, every word
+      carries weight and violence is ugly. At the high end, brawls are
+      slapstick, rogues are lovable, and a punch to the jaw is played
+      for laughs.
+    poles:
+      - serious
+      - comedic
+    default: 0.15
+
+  - id: gravity
+    name: Gravity
+    description: >-
+      The weight of consequences. Low gravity means wounds heal fast,
+      death is rare, and setbacks are temporary. High gravity means
+      bullets kill, betrayal has a long memory, and the desert does
+      not forgive mistakes.
+    poles:
+      - light
+      - heavy
+    default: 0.75
+
+  - id: outlook
+    name: Outlook
+    description: >-
+      Can the good guys win? At the bleak end, corruption always wins,
+      revenge begets revenge, and the best you can hope for is survival.
+      At the hopeful end, protecting the innocent matters, redemption
+      arcs land, and sometimes the stranger leaves the town better
+      than he found it.
+    poles:
+      - bleak
+      - hopeful
+    default: 0.3
+
+  - id: mythic
+    name: Mythic
+    description: >-
+      The line between gritty realism and operatic stylization. At the
+      gritty end, people sweat, bleed, and die in the dirt. At the
+      operatic end, the standoff is a sacred ritual, the landscape is
+      a cathedral, and violence has the cadence of ceremony.
+    poles:
+      - gritty
+      - operatic
+    default: 0.6
+
+  - id: loyalty
+    name: Loyalty
+    description: >-
+      How the genre handles companionship. At the lone wolf end,
+      trust is a liability and the protagonist works alone. At the
+      alliance end, unlikely partnerships form — grudging, fragile,
+      but real enough to bleed for.
+    poles:
+      - lone_wolf
+      - unlikely_alliance
+    default: 0.4
+
+modifiers:
+  comedy:
+    serious: >-
+      Play it straight. No quips during standoffs. Violence is ugly and
+      described without flinching. Humor, if it appears, is gallows humor
+      that makes the darkness darker, never lighter. Silence is a valid
+      response to most questions.
+    comedic: >-
+      Lean into the absurd. Brawls knock people through furniture. Con
+      artists fast-talk marks with increasingly outrageous lies. Characters
+      bicker like old married couples. Physical comedy is welcome. The
+      narrator voice can be wry, even affectionate.
+
+  gravity:
+    light: >-
+      Wounds are flesh wounds. Getting knocked out means waking up with a
+      headache, not brain damage. Money lost turns up again. NPCs forgive
+      grudges over a drink. Death is off the table for player characters
+      and vanishingly rare for anyone else.
+    heavy: >-
+      Bullets kill. Every gunfight could be the last. Wounds get infected
+      in the desert heat. Betrayal earns a blood feud that outlives the
+      betrayer. Resources are scarce — water, ammunition, trust. Describe
+      the cost of violence without looking away.
+
+  outlook:
+    bleak: >-
+      The town was rotten before you got here and it will be rotten after
+      you leave. Corruption is structural, not personal — killing one bad
+      man changes nothing. Frame moral choices as lose-lose. Hope is a
+      luxury the frontier cannot afford. The best endings are bittersweet
+      at most.
+    hopeful: >-
+      The stranger can make a difference. Protecting the village matters.
+      The widow rebuilds. The orphan grows up strong. Frame moral choices
+      so that doing the right thing costs something but is worth the price.
+      Redemption is rare but possible, and when it comes, let it land.
+
+  mythic:
+    gritty: >-
+      Sweat, dust, flies, the smell of horse and unwashed bodies. Combat
+      is messy and fast — no slow-motion, no dramatic pauses. People die
+      mid-sentence. Describe the mundane details of hardship: blisters,
+      bad water, sleepless nights. The world is indifferent to drama.
+    operatic: >-
+      The standoff stretches time. Close-ups on eyes, hands, holsters.
+      The wind picks up at the moment of truth. Music swells (describe
+      it). The landscape frames every confrontation as if the desert
+      itself is watching. Violence, when it comes, is sudden and final
+      and somehow beautiful. Every death means something.
+
+  loyalty:
+    lone_wolf: >-
+      The protagonist needs no one and trusts no one. Companions are
+      liabilities or temporary tools. NPCs who get close get hurt or
+      betray you — it is only a matter of time. Self-reliance is the
+      only virtue that survives contact with the frontier.
+    unlikely_alliance: >-
+      Grudging partnerships form between people who have every reason
+      to distrust each other. The outlaw and the marshal. The bounty
+      hunter and the target. They bicker, threaten, and save each
+      other's lives. Trust builds slowly and is tested constantly,
+      but when it holds, it holds hard.
+
+presets:
+  - name: Leone
+    description: >-
+      Sergio Leone's operatic vision — the Dollars Trilogy, Once Upon
+      a Time in the West. Grand, mythic, morally grey. The standoff
+      is a sacrament. Violence is beautiful and terrible.
+    values:
+      comedy: 0.2
+      gravity: 0.7
+      outlook: 0.3
+      mythic: 0.9
+      loyalty: 0.4
+
+  - name: Corbucci
+    description: >-
+      Sergio Corbucci's bleaker, more political westerns — Django,
+      The Great Silence. Tragic endings are not just possible but
+      likely. The system is corrupt beyond repair. Even the heroes
+      lose.
+    values:
+      comedy: 0.1
+      gravity: 0.9
+      outlook: 0.1
+      mythic: 0.5
+      loyalty: 0.5
+
+  - name: Kurosawa
+    description: >-
+      Akira Kurosawa's samurai films — Yojimbo, Seven Samurai,
+      Sanjuro. Dry humor under the gravity. Honor exists but the
+      honorable suffer. Protecting the weak is costly but not
+      meaningless. Alliances matter.
+    values:
+      comedy: 0.35
+      gravity: 0.7
+      outlook: 0.45
+      mythic: 0.7
+      loyalty: 0.7
+
+  - name: Trinity
+    description: >-
+      The Terence Hill and Bud Spencer comedies — They Call Me
+      Trinity, My Name Is Nobody. Slapstick brawls, lovable rogues,
+      bumbling villains. Nobody really gets hurt. The frontier is
+      a playground.
+    values:
+      comedy: 0.85
+      gravity: 0.2
+      outlook: 0.7
+      mythic: 0.3
+      loyalty: 0.8
+
+  - name: Balanced
+    description: >-
+      A middle ground suitable for most tables. Morally grey but not
+      hopeless. Violence has consequences but the world offers second
+      chances. Moments of humor break the tension without undercutting it.
+    values:
+      comedy: 0.25
+      gravity: 0.6
+      outlook: 0.4
+      mythic: 0.6
+      loyalty: 0.5

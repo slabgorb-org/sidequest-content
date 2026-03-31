@@ -1,0 +1,207 @@
+# Spaghetti Western — Affinity Progression
+# Affinities represent the player's evolving relationship with the
+# core tensions of the genre. They unlock narrative and mechanical
+# options as the character deepens.
+
+affinities:
+  - name: The Gun
+    description: >-
+      Mastery of violence — not just speed and aim, but the psychology
+      of the kill. The standoff, the ambush, the cold mathematics of
+      who draws first and who falls.
+    triggers:
+      - standoff
+      - gunfight
+      - duel
+      - draw
+      - kill
+      - weapon
+    tier_thresholds: [10, 25, 50, 100]
+    unlocks:
+      novice:
+        name: Steady Hand
+        description: "The basics — you can hit what you aim at under pressure."
+        abilities:
+          - name: Quick Draw
+            experience: "Your hand finds the grip before your mind decides to reach."
+            limits: "DRAW check with advantage in standoffs."
+      journeyman:
+        name: Dead Eye
+        description: "You see the fight before it starts — angles, cover, escape routes."
+        abilities:
+          - name: Called Shot
+            experience: "You choose where the bullet goes. Hand, leg, hat — each sends a different message."
+            limits: "Targeted attacks at -2 to hit but with narrative control of the wound."
+          - name: Covering Fire
+            experience: "Your shots control the space. Nobody moves where you don't want them."
+            limits: "Suppress an area — targets must make NERVE check to cross it."
+      expert:
+        name: Legendary Shot
+        description: "Your reputation with a weapon precedes you by a hundred miles."
+        abilities:
+          - name: Intimidating Draw
+            experience: "You don't have to fire. The motion alone makes people reconsider."
+            limits: "PRESENCE check to end a confrontation by drawing without firing."
+          - name: Two Guns
+            experience: "Both hands work. Both barrels speak."
+            limits: "Attack two targets in the same round at -1 to each."
+      master:
+        name: The Fastest
+        description: "There is no one faster. The question is whether speed is enough."
+        abilities:
+          - name: The Perfect Draw
+            experience: "Time stops. You see everything. The hand moves. It is over."
+            limits: "Once per session — automatic initiative, automatic hit, maximum damage."
+
+  - name: The Road
+    description: >-
+      Survival in the frontier — tracking, navigation, reading the
+      land and the weather, knowing when to ride and when to dig in.
+      The territory respects those who learn its language.
+    triggers:
+      - travel
+      - track
+      - camp
+      - ride
+      - navigate
+      - survive
+      - desert
+      - wilderness
+    tier_thresholds: [10, 25, 50, 100]
+    unlocks:
+      novice:
+        name: Trail Sense
+        description: "You can read a trail and you know which water is safe."
+        abilities:
+          - name: Pathfinder
+            experience: "Shortcuts reveal themselves. Ambush points announce themselves."
+            limits: "Advantage on navigation and tracking checks."
+      journeyman:
+        name: Desert Wisdom
+        description: "The land speaks to you — weather, water, danger, shelter."
+        abilities:
+          - name: Hard to Follow
+            experience: "Your trail disappears behind you like it was never there."
+            limits: "Pursuers have disadvantage on tracking checks against you."
+          - name: Read the Land
+            experience: "You can tell who passed here, when, and whether they were running."
+            limits: "CUNNING check to extract detailed information from terrain."
+      expert:
+        name: Ghost Rider
+        description: "You move through the territory like you were born in the saddle."
+        abilities:
+          - name: Vanish
+            experience: "The desert swallows you whole. When you want to disappear, you do."
+            limits: "Once per day, become unfindable for one scene."
+          - name: Ambush
+            experience: "You choose the ground. You choose the moment. They never see it coming."
+            limits: "Automatic surprise round when attacking from concealment in wilderness."
+      master:
+        name: One With the Land
+        description: "The territory is not your enemy. It is your weapon."
+        abilities:
+          - name: Territory Mastery
+            experience: "You know every canyon, every spring, every dead-end gully. The land fights for you."
+            limits: "Once per session — the environment intervenes in your favor (flash flood, dust storm, cliff edge)."
+
+  - name: The Deal
+    description: >-
+      The currency of the frontier is not just gold — it is leverage,
+      information, and the ability to read a person's price. The Deal
+      is about getting what you want without drawing a gun.
+    triggers:
+      - negotiate
+      - bribe
+      - trade
+      - bluff
+      - persuade
+      - deal
+      - gamble
+      - information
+    tier_thresholds: [10, 25, 50, 100]
+    unlocks:
+      novice:
+        name: Horse Trader
+        description: "You can haggle and you can spot a lie — most of the time."
+        abilities:
+          - name: Read the Room
+            experience: "You know who is desperate and who is pretending."
+            limits: "CUNNING check to identify the person most likely to deal."
+      journeyman:
+        name: Silver Tongue
+        description: "People tell you things they shouldn't. Deals bend in your favor."
+        abilities:
+          - name: Double Deal
+            experience: "You can promise the same thing to two people and make both believe it."
+            limits: "PRESENCE check to maintain contradictory alliances until revealed."
+          - name: Ear to the Ground
+            experience: "Rumors, secrets, who owes who — the information finds you."
+            limits: "Once per town, learn one significant secret automatically."
+      expert:
+        name: Power Broker
+        description: "You don't just make deals — you make the deals that make other deals possible."
+        abilities:
+          - name: Leverage
+            experience: "You have something on everyone. The question is when to use it."
+            limits: "Once per session, force an NPC to cooperate by revealing knowledge of their secret."
+          - name: Network
+            experience: "A friend in every town. A debt in every pocket."
+            limits: "In any settlement, you know someone. Roll LUCK to determine if they are friendly."
+      master:
+        name: The Fixer
+        description: "You are the person people come to when the system fails. Which is always."
+        abilities:
+          - name: Make an Offer They Can't Refuse
+            experience: "You understand the price of everything and can name the figure that ends any standoff."
+            limits: "Once per session — end a non-combat confrontation by identifying and meeting the NPC's true need."
+
+  - name: The Code
+    description: >-
+      Honor in a dishonorable world. Not law — something older and
+      more personal. A set of rules the character follows when nobody
+      is watching, when there is no reward for decency, when the smart
+      move and the right move diverge.
+    triggers:
+      - protect
+      - honor
+      - mercy
+      - sacrifice
+      - promise
+      - defend the weak
+      - keep your word
+    tier_thresholds: [10, 25, 50, 100]
+    unlocks:
+      novice:
+        name: A Man's Word
+        description: "You keep your promises. People are beginning to notice."
+        abilities:
+          - name: Trustworthy
+            experience: "Your word is good. In a world of liars, that is a weapon."
+            limits: "Advantage on PRESENCE checks when making honest promises."
+      journeyman:
+        name: Protector
+        description: "You stand between the vulnerable and the powerful. It costs you."
+        abilities:
+          - name: Stand Your Ground
+            experience: "When you choose to protect someone, you do not break."
+            limits: "Advantage on NERVE and GRIT checks when defending someone weaker."
+          - name: Reputation for Fairness
+            experience: "Merchants, settlers, and the desperate seek you out."
+            limits: "Positive faction bonus with Merchants & Settlers."
+      expert:
+        name: The Shield
+        description: "Your code is known. Even enemies respect it — or fear its implications."
+        abilities:
+          - name: Inspire
+            experience: "People fight harder when you are beside them. Not from charisma — from trust."
+            limits: "Allies within earshot gain +2 to NERVE checks."
+          - name: Mercy's Edge
+            experience: "You can spare an enemy and make it mean something."
+            limits: "Spared enemies may become future allies. PRESENCE check to plant the seed."
+      master:
+        name: Legend
+        description: "Your name means something. Not feared — trusted. In this world, that is rarer than gold."
+        abilities:
+          - name: The Right Thing
+            experience: "When you choose to act on principle, the world bends — just a little."
+            limits: "Once per session — recover 2 LUCK when you sacrifice personal gain to protect someone else."

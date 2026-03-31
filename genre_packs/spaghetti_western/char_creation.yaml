@@ -1,0 +1,212 @@
+# Character creation scenes — Spaghetti Western genre pack
+# 5 scenes: origins, crucible, reputation, the_ride, confirmation
+
+- id: origins
+  title: Where Did You Come From?
+  narration: |
+    The fire has burned down to orange coals. Outside the cantina, the wind pushes dust against the shutters in a steady hiss. The bottle between you is nearly empty — mescal, rough enough to clean a wound, which is probably its primary use out here.
+
+    The old man across the table studies you through the smoke of a hand-rolled cigarette. He has the kind of face that collects shadows. He has been asking questions all evening — not because he is curious but because he is deciding something.
+
+    "Everyone out here came from somewhere," he says. "And everyone out here left somewhere behind. Which was it for you?"
+  choices:
+    - label: The Territory
+      description: >-
+        You grew up out here, where the horizon is the only wall and
+        the land teaches harder lessons than any schoolhouse. You know
+        the trails, the water, the people who survive and the ones
+        who don't.
+      mechanical_effects:
+        race_hint: Frontier Born
+        background: Territorial
+    - label: Back East
+      description: >-
+        You came from civilization — gas lamps, printed newspapers,
+        laws that people actually follow. Something drove you west.
+        Education is an asset; naivety is a liability you are still
+        shedding.
+      mechanical_effects:
+        race_hint: City Exile
+        background: Educated
+    - label: Across the Border
+      description: >-
+        You have lived on both sides of lines that other people drew.
+        You speak more than one language, belong to more than one world,
+        and are trusted fully by none of them.
+      mechanical_effects:
+        race_hint: Border Crosser
+        background: Bilingual
+    - label: The War
+      description: >-
+        You came from a battlefield. Which side, which war — it stopped
+        mattering somewhere between the first charge and the last retreat.
+        What you brought with you is the knowledge that civilization is a
+        story people tell each other between killings.
+      mechanical_effects:
+        race_hint: War Survivor
+        background: Veteran
+  allows_freeform: true
+
+- id: crucible
+  title: What Made You Dangerous?
+  narration: |
+    The old man nods slowly — not surprised, not sympathetic. He has heard every origin story the frontier produces. He refills your glass without being asked.
+
+    "Out here, everyone is dangerous or everyone is dead." He turns his glass on the scarred wood of the table, watching the liquid catch the firelight. "Some are born to it. Some are taught. Some just wake up one morning and discover that the thing they feared most is the thing they are best at."
+
+    He meets your eyes. "What was it for you?"
+  choices:
+    - label: The Gun
+      description: >-
+        You have a gift for violence — fast hands, steady nerve, the
+        ability to see a fight three moves ahead. Whether it is a
+        revolver, a rifle, or a blade, the weapon is an extension of
+        your will.
+      mechanical_effects:
+        class_hint: Gunslinger
+        personality_trait: Lethal
+    - label: The Hunt
+      description: >-
+        You learned to track and find. People, animals, fugitives — it
+        does not matter. Patience is your weapon. The territory is your
+        map. Everyone leaves a trail.
+      mechanical_effects:
+        class_hint: Bounty Hunter
+        personality_trait: Patient
+    - label: The Take
+      description: >-
+        You learned that the world does not give — it only has things
+        that can be taken. Theft, robbery, rustling — you found your
+        talent outside the law and the law never caught up.
+      mechanical_effects:
+        class_hint: Outlaw
+        personality_trait: Reckless
+    - label: The Road
+      description: >-
+        You survived by moving. Never staying long enough to owe anyone,
+        never settling long enough to lose anything. The road itself
+        became your skill — reading strangers, finding shelter, knowing
+        when to run.
+      mechanical_effects:
+        class_hint: Drifter
+        personality_trait: Adaptable
+    - label: The Table
+      description: >-
+        Cards, dice, confidence games — you learned to read people
+        before you learned to read books. Every conversation is a hand
+        being played. Every room is a pot to be won.
+      mechanical_effects:
+        class_hint: Gambler
+        personality_trait: Perceptive
+    - label: The Badge
+      description: >-
+        Someone pinned authority on you — or you pinned it on yourself.
+        The law out here is whatever the person with the badge says it
+        is, and you discovered you have opinions about justice that a
+        gun can enforce.
+      mechanical_effects:
+        class_hint: Marshal
+        personality_trait: Authoritative
+  allows_freeform: true
+
+- id: reputation
+  title: What Do People Say About You?
+  narration: |
+    The old man pushes back his chair. From inside his coat he produces a folded piece of paper — a wanted poster, or a handbill, or a letter of introduction. Hard to tell in the dim light. He smooths it on the table between you.
+
+    "Word travels," he says. "Even out here — especially out here. A man's name arrives before he does. By the time you ride into a town, they already know something about you."
+
+    He taps the paper. "What do they know?"
+  choices:
+    - label: The stories are worse than the truth
+      description: >-
+        Your reputation has outrun your reality. People expect a monster,
+        a legend, a force of nature. The real you is smaller than the
+        myth, but the myth opens doors — and closes others.
+      mechanical_effects:
+        personality_trait: Mythologized
+        reputation_bonus: intimidation
+    - label: Nobody knows my name
+      description: >-
+        You are a ghost. No wanted posters, no war stories, no debts
+        and no credit. Every town is a fresh start — and every person
+        you meet has to take you at face value.
+      mechanical_effects:
+        personality_trait: Anonymous
+        reputation_bonus: stealth
+    - label: I am owed favors
+      description: >-
+        You have done things for people — saved lives, covered debts,
+        kept secrets. The frontier remembers its debts, and yours are
+        scattered across the territory like hidden water.
+      mechanical_effects:
+        personality_trait: Connected
+        reputation_bonus: network
+    - label: There is a price on my head
+      description: >-
+        Someone wants you found. Maybe the law, maybe a family, maybe
+        someone you wronged. The bounty follows you like a shadow, and
+        every bounty hunter in the territory knows the number.
+      mechanical_effects:
+        personality_trait: Hunted
+        reputation_bonus: notoriety
+  allows_freeform: true
+
+- id: the_ride
+  title: Why Are You Here?
+  narration: |
+    The old man folds the paper and returns it to his coat. He finishes his drink in one pull, sets the glass down with the finality of a gavel, and stands.
+
+    "Last question," he says from the doorway, his silhouette framed against a sky full of hard white stars. "Every drifter, every killer, every fool who rides into this territory has a reason. A debt, a name, a number, a grave they are looking for."
+
+    The wind picks up. Somewhere a shutter bangs.
+
+    "What is yours?"
+  choices:
+    - label: Revenge
+      description: >-
+        Someone took something that cannot be replaced. A person, a
+        life, a future. You are here to find them and balance the
+        ledger in the only currency the frontier accepts.
+      mechanical_effects:
+        goals: Vengeance
+        emotional_state: Cold
+    - label: Gold
+      description: >-
+        Somewhere in this territory there is a fortune — buried, stolen,
+        promised, or simply waiting for someone bold enough to take it.
+        You are here because poverty is a death sentence and wealth is
+        the only freedom.
+      mechanical_effects:
+        goals: Wealth
+        emotional_state: Hungry
+    - label: A fresh start
+      description: >-
+        You are running from something — a crime, a failure, a life that
+        closed around you like a fist. The frontier is the last place
+        where a person can become someone new.
+      mechanical_effects:
+        goals: Redemption
+        emotional_state: Guarded
+    - label: Someone needs finding
+      description: >-
+        A name. A face. Someone who disappeared into the territory and
+        did not come back. Whether you are bringing them home or bringing
+        them to justice, the search is all that matters.
+      mechanical_effects:
+        goals: The Search
+        emotional_state: Driven
+  allows_freeform: true
+
+- id: confirmation
+  title: The Road Ahead
+  narration: |
+    The old man is gone. You are alone in the cantina with the dying fire and the empty bottle and the sound of your own breathing.
+
+    Outside, your horse waits at the rail. The road forks south toward the border towns and north toward the high country. East is where you came from. West is where the maps stop making promises.
+
+    You stand. You check your weapon. You step into the night.
+
+    The territory does not care who you are. But it is about to find out.
+  choices: []
+  allows_freeform: false
