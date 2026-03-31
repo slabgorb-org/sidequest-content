@@ -1,0 +1,154 @@
+- id: the_bonfire
+  name: The Bonfire of the Vanities
+  description: >-
+    The central spectacle of Savonarola's Florence. A pyramid of condemned
+    objects — art, books, mirrors, wigs, cosmetics, dice, musical instruments —
+    built in the Piazza della Signoria and set alight during Carnival.
+    Attendance is expected. Contribution is noted. What you choose to
+    surrender, hide, or rescue defines your allegiances.
+  category: spectacle
+  triggers:
+    - the boy brigades begin door-to-door collection
+    - construction of the pyre platform begins in the piazza
+    - Savonarola announces the date from the pulpit
+  narrative_hints:
+    - the growing pile in the piazza, covered with tarps between collections
+    - artists' workshops with empty frames and paint-stripped walls
+    - a child carrying a lute they took from someone's house, not understanding what it is
+  tension_level: 0.6
+  resolution_hints:
+    - surrender something publicly to maintain cover
+    - smuggle a masterpiece out through the Oltrarno
+    - sabotage the bonfire (extremely dangerous)
+    - attend and bear witness — sometimes survival is the act of resistance
+  tags: [spectacle, conformity, art, loss]
+  escalation:
+    - at: 0.2
+      event: >-
+        The collection begins. Boy brigades knock on doors with lists.
+        Most people hand over small things — a mirror, a deck of cards,
+        an old wig. The cost feels bearable. The principle doesn't.
+      npcs_involved: [The Boy Captain]
+      stakes: Compliance is easy. It's also a precedent.
+    - at: 0.4
+      event: >-
+        The demands escalate. A painter is asked to surrender canvases.
+        A bookseller is asked to open his inventory. The pile in the piazza
+        grows. Someone recognizes a Botticelli in the stack.
+      npcs_involved: [The Hidden Painter, The Boy Captain]
+      stakes: Real art is being destroyed. Hiding becomes harder.
+    - at: 0.6
+      event: >-
+        Savonarola preaches that the bonfire is a sacrifice to God — that
+        Florence is being purified as Abraham was asked to sacrifice Isaac.
+        The crowd weeps. Some bring their most precious possessions
+        voluntarily. The fervor is genuine and contagious.
+      npcs_involved: [The Friar's Shadow]
+      stakes: Mass conviction vs. private doubt. The crowd's faith is real.
+    - at: 0.8
+      event: >-
+        A Venetian art dealer arrives offering to buy the entire pyre for
+        a fortune. Savonarola refuses publicly. The Arrabbiati whisper that
+        the money could have fed the poor for a year. The bonfire is now
+        a political act, not just a spiritual one.
+      npcs_involved: [The Medici Ghost, The Compagnacci Captain]
+      stakes: The refusal proves the point — this is about power, not salvation.
+    - at: 1.0
+      event: >-
+        The fire. The piazza is packed. The heat is immense. Smoke rises
+        over Brunelleschi's dome. What burns is gone forever. What the player
+        saved, surrendered, or smuggled out — that is the story.
+      npcs_involved: [All present NPCs]
+      stakes: Irrevocable. The art of Florence is thinner tonight than it was this morning.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.025
+    accelerators:
+      - boy brigade patrols
+      - Savonarola sermons
+      - new confiscation orders
+    decelerators:
+      - Arrabbiati disruptions
+      - papal threats
+      - rain
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: the_friars_fall
+  name: The Friar's Fall
+  description: >-
+    Savonarola's power is not permanent. The excommunication, the failed
+    trial by fire, the turning of public opinion — the arc of his fall
+    mirrors the arc of the game. As the friar weakens, the factions
+    reposition. The player must navigate a power vacuum that is opening
+    in real time.
+  category: political
+  triggers:
+    - news of papal excommunication reaches Florence
+    - a sermon draws a smaller crowd than expected
+    - the Signoria begins debating whether to enforce the excommunication
+  narrative_hints:
+    - fewer people at San Marco on Sunday
+    - Piagnoni patrols that look more nervous than righteous
+    - the Arrabbiati growing bolder, louder, less cautious
+  tension_level: 0.5
+  resolution_hints:
+    - support Savonarola and share his fate
+    - join the Arrabbiati and help bring him down
+    - play both sides and survive the transition
+    - try to save the friar from himself
+  tags: [political, power, transition]
+  escalation:
+    - at: 0.2
+      event: >-
+        The excommunication arrives. Savonarola ignores it from the pulpit.
+        His supporters cheer. But some faces in the congregation look
+        troubled. Excommunication is not nothing.
+      npcs_involved: [The Friar's Shadow, The Vatican's Hand]
+      stakes: The friar has defied Rome. This can only end one way.
+    - at: 0.4
+      event: >-
+        The Signoria, sensing the wind, begins distancing itself.
+        A law proposed by the Piagnoni fails to pass for the first time.
+        The Compagnacci disrupt a sermon openly and nobody stops them.
+      npcs_involved: [The Compagnacci Captain]
+      stakes: The institutions that enabled the friar are reconsidering.
+    - at: 0.6
+      event: >-
+        The trial by fire is proposed. A Franciscan challenges Savonarola
+        to walk through flames. The friar's allies accept on his behalf.
+        The city holds its breath. Then it rains, and the trial is
+        cancelled. The crowd that came to see a miracle goes home angry.
+      npcs_involved: [The Friar's Shadow]
+      stakes: Faith without miracles. The doubt is now public.
+    - at: 0.8
+      event: >-
+        The mob turns. San Marco is besieged. The Piagnoni who were
+        terrifying last week are barricading doors. Savonarola is inside.
+        The Signoria has sent soldiers, but whose side they're on depends
+        on which captain leads them.
+      npcs_involved: [The Compagnacci Captain, The Friar's Shadow]
+      stakes: The friar's protectors become his prison guards.
+    - at: 1.0
+      event: >-
+        Savonarola is arrested, tried, and burned on the Piazza della
+        Signoria. The same spot. The same crowd. Some of the same people
+        who wept at the Bonfire of the Vanities weep now — for him.
+        The ashes go into the Arno. The Medici will be back within the
+        year. Nothing has changed. Everything has changed.
+      npcs_involved: [All NPCs]
+      stakes: The revolution is over. The question is what it cost you.
+  passive_progression:
+    rate_per_turn: 0.005
+    rate_per_day: 0.015
+    accelerators:
+      - papal pressure
+      - Arrabbiati actions
+      - public doubt
+      - Signoria distancing
+    decelerators:
+      - Savonarola's preaching
+      - Piagnoni loyalty
+      - miracles (if occult axis is high)
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03

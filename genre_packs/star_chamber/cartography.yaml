@@ -1,0 +1,67 @@
+world_name: Star Chamber (Genre Default)
+starting_region: town_center
+map_style: "Hand-drawn Renaissance-era city map in warm sepia ink on aged parchment, bird's-eye perspective, hand-lettered place names in period script, buildings shown in elevation, streets in plan view"
+map_resolution: [1024, 1024]
+
+# Genre-level regions are templates. Worlds override with specifics.
+# These provide the narrator with default location archetypes.
+
+regions:
+  town_center:
+    name: The Town Center
+    description: >-
+      The public square — market, announcements, sermons, and burnings.
+      Where the community performs its identity. Attendance at public
+      events is noted. Absence more so.
+    origin: origins
+    adjacent: [cathedral_quarter, market_district, government_quarter, residential]
+
+  cathedral_quarter:
+    name: The Cathedral Quarter
+    description: >-
+      The church and its surroundings — the institution's spiritual center.
+      Monasteries, convents, clergy residences, and the church itself.
+      The bell tower marks time. The confessional collects secrets.
+    adjacent: [town_center, government_quarter]
+
+  government_quarter:
+    name: The Government Quarter
+    description: >-
+      Courthouses, archives, clerks' offices, the tribunal chamber itself.
+      Paper flows here. Names are recorded. The machinery of judgment
+      operates behind heavy doors.
+    adjacent: [town_center, cathedral_quarter, prison]
+
+  market_district:
+    name: The Market District
+    description: >-
+      Commerce, gossip, and the informal intelligence network. Merchants
+      trade goods and information. The tavern is where alliances form and
+      informants listen. The printing press, if one exists, operates
+      nearby — or beneath.
+    adjacent: [town_center, residential, outskirts]
+
+  residential:
+    name: The Residential Quarter
+    description: >-
+      Where people live. The boy brigades patrol here. Doors are knocked
+      on at dawn. Neighbors observe neighbors. The line between
+      community and surveillance is invisible.
+    adjacent: [town_center, market_district, outskirts]
+
+  prison:
+    name: The Prison
+    description: >-
+      Where the accused wait. Stone, iron, and the sound of other
+      prisoners. The guards are either indifferent or sympathetic, and
+      sympathy can be leveraged. Escape is theoretically possible.
+      Practically, it confirms guilt.
+    adjacent: [government_quarter]
+
+  outskirts:
+    name: The Outskirts
+    description: >-
+      Beyond the walls or at the edge of town. Where the underground
+      operates — hidden presses, safe houses, escape routes. Farther
+      from the tribunal's immediate reach, but not from its informants.
+    adjacent: [market_district, residential]

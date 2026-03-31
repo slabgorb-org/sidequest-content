@@ -1,0 +1,81 @@
+system: point_buy
+budget: 27
+
+stats:
+  - name: Conviction
+    description: >-
+      Strength of belief and will. Resists coercion, withstands interrogation,
+      and holds the line under pressure. High Conviction makes you harder to
+      break — and harder to compromise with.
+  - name: Rhetoric
+    description: >-
+      The art of argument. Cross-examine witnesses, defend yourself before the
+      tribunal, persuade the undecided. Words are the primary weapon in Star
+      Chamber. Every other stat keeps you alive; this one keeps you free.
+  - name: Cunning
+    description: >-
+      Deception, stealth, and the ability to hide in plain sight. Avoid
+      informants, smuggle banned materials, feed false information to the
+      tribunal. The opposite of Conviction — where Conviction is sincere,
+      Cunning is strategic.
+  - name: Perception
+    description: >-
+      Noticing what others miss. Identify informants, spot contradictions in
+      testimony, read the room during a tribunal session. The skill of the
+      detective and the paranoid — in Star Chamber, they're the same person.
+  - name: Authority
+    description: >-
+      Institutional weight. Command obedience, open doors, compel testimony.
+      High Authority means the system recognizes you — which is power until
+      the system turns on you.
+  - name: Charm
+    description: >-
+      Personal magnetism and social grace. Build alliances, earn trust,
+      befriend witnesses, navigate faction politics. Charm gets people to
+      talk to you. What they say depends on what you ask.
+
+class_descriptions:
+  Scholar:
+    description: "A student of dangerous texts. Your crime is curiosity."
+    starting_bonus: "+2 Rhetoric"
+    signature_item: "A book that shouldn't exist in this city"
+  Clergy:
+    description: "A person of the cloth, caught between institution and conscience."
+    starting_bonus: "+2 Authority"
+    signature_item: "A breviary with notes in the margins that could be read two ways"
+  Magistrate:
+    description: "An officer of the court. You know how the machine works — from inside."
+    starting_bonus: "+2 Authority"
+    signature_item: "A seal that opens government archives"
+  Merchant:
+    description: "Money is power, and power makes you a target."
+    starting_bonus: "+2 Charm"
+    signature_item: "A ledger with entries that implicate important people"
+  Reformer:
+    description: "You believe the institution can be fixed. This makes you dangerous to everyone."
+    starting_bonus: "+2 Conviction"
+    signature_item: "A pamphlet you wrote under a false name"
+  Herbalist:
+    description: "Healer, midwife, apothecary. The line between medicine and witchcraft is drawn by your accusers."
+    starting_bonus: "+2 Perception"
+    signature_item: "A bundle of herbs that cure fevers and damn reputations"
+
+race_descriptions:
+  Gentry:
+    description: "Property, name, and standing. All of which can be seized."
+  Townsperson:
+    description: "The backbone of the community. Anonymous until named."
+  Minor Clergy:
+    description: "Low rank in the church. Close enough to see the machinery. Not important enough to operate it."
+  Servant:
+    description: "Invisible. Which means you see everything."
+  Foreign:
+    description: "An outsider. Suspicion is default. Anonymity is the compensation."
+
+hooks:
+  - type: MOTIVATION
+    prompt: "What belief, possession, or person would you risk the tribunal to protect?"
+  - type: SECRET
+    prompt: "What have you done, hidden, or said that the tribunal must never learn?"
+  - type: CONNECTION
+    prompt: "Who in this city do you trust — and what would it cost them to be seen with you?"
