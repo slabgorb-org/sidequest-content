@@ -1,0 +1,84 @@
+mood_tracks:
+  calm:
+    - name: "Cloister Morning"
+      description: "Gregorian plainchant echoes through stone corridors. Dawn light through leaded glass."
+  exploration:
+    - name: "The Streets of Florence"
+      description: "Lute and recorder over a walking bassline. Market sounds. Bells in the distance."
+  tension:
+    - name: "The Ledger"
+      description: "Solo cello, low and sustained. A quill scratching. The sound of names being written down."
+  combat:
+    - name: "Riot"
+      description: "Percussion and shouting. Chaos in narrow streets. Glass breaking. Running feet."
+  mystery:
+    - name: "The Hidden Room"
+      description: "Ambient organ drone. Candlelight flicker rendered as subtle tremolo. Pages turning."
+  sorrow:
+    - name: "Ashes on the Arno"
+      description: "Solo soprano voice, unaccompanied. A lament. The river carries what was burned."
+  triumph:
+    - name: "Acquittal"
+      description: "Cathedral organ, major key. Bells. The sound of a door opening into sunlight."
+
+mood_aliases:
+  tribunal: tension
+  interrogation: tension
+  bonfire: sorrow
+  sermon: mystery
+  market: exploration
+  procession: calm
+  escape: combat
+  celebration: triumph
+  prayer: calm
+
+mood_keywords:
+  tribunal:
+    - tribunal
+    - trial
+    - judges
+    - testimony
+    - conviction
+    - accused
+  interrogation:
+    - interrogation
+    - questioning
+    - pressure
+    - confession
+    - witness
+  bonfire:
+    - bonfire
+    - burning
+    - pyre
+    - flames
+    - ashes
+    - vanities
+  sermon:
+    - sermon
+    - preaching
+    - pulpit
+    - congregation
+    - prophecy
+  market:
+    - market
+    - merchants
+    - trading
+    - streets
+    - tavern
+
+sfx:
+  - id: bell_toll
+    description: "A single cathedral bell. Marks time, summons, and sentence."
+    triggers: [tribunal_start, execution, dawn]
+  - id: door_lock
+    description: "Iron key in a heavy lock. The sound of options closing."
+    triggers: [arrest, imprisonment, sealed_room]
+  - id: quill_scratch
+    description: "A pen writing on parchment. Someone is recording what you said."
+    triggers: [testimony_recorded, accusation_filed]
+  - id: crowd_murmur
+    description: "The low hum of a gathered crowd. Could turn to cheering or jeering."
+    triggers: [tribunal_audience, bonfire_gathering, sermon]
+  - id: fire_crackle
+    description: "Wood burning. Could be a hearth. Could be a pyre."
+    triggers: [bonfire, execution, hearth_scene]
