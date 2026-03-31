@@ -58,8 +58,12 @@
       npcs_involved: [The Scavenger, The Warlord's Lieutenant]
       stakes: The ruin's legacy — salvation or catastrophe — is decided now.
   passive_progression:
-    interval_turns: 8
-    increment: 0.1
+    rate_per_turn: 0.0125
+    rate_per_day: 0.03
+    accelerators: [ruin, vault, ancient, technology, artifact]
+    decelerators: [retreat, hide, seal, leave]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
 
 - id: mutation_tide
   name: Mutation Tide
@@ -120,8 +124,12 @@
       npcs_involved: [The Changed One, The Healer]
       stakes: End the tide or become part of it.
   passive_progression:
-    interval_turns: 10
-    increment: 0.08
+    rate_per_turn: 0.008
+    rate_per_day: 0.02
+    accelerators: [mutation, contamination, glow, radiation, change]
+    decelerators: [purify, filter, shelter, distance]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
 
 - id: dead_signal
   name: Dead Signal
@@ -182,5 +190,9 @@
       npcs_involved: [The Signal Chaser, The Scholar]
       stakes: The Ancient network is live. The world just changed.
   passive_progression:
-    interval_turns: 7
-    increment: 0.12
+    rate_per_turn: 0.017
+    rate_per_day: 0.04
+    accelerators: [signal, broadcast, radio, frequency, ancient, transmit]
+    decelerators: [ignore, destroy radio, silence, jam]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
