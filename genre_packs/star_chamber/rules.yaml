@@ -1,37 +1,31 @@
 stat_generation: point_buy
 point_buy_budget: 27
 magic_level: none
-
 ability_score_names:
-  - Conviction
-  - Rhetoric
-  - Cunning
-  - Perception
-  - Authority
-  - Charm
-
+- Conviction
+- Rhetoric
+- Cunning
+- Perception
+- Authority
+- Charm
 allowed_classes:
-  - Scholar
-  - Clergy
-  - Magistrate
-  - Merchant
-  - Reformer
-  - Herbalist
-
+- Scholar
+- Clergy
+- Magistrate
+- Merchant
+- Reformer
+- Herbalist
 allowed_races:
-  - Gentry
-  - Townsperson
-  - Minor Clergy
-  - Servant
-  - Foreign
-
-hp_formula: "class_base + (conviction_mod * level)"
-
+- Gentry
+- Townsperson
+- Minor Clergy
+- Servant
+- Foreign
+hp_formula: class_base + (conviction_mod * level)
 stat_display_fields:
-  - hp
-  - max_hp
-  - suspicion
-
+- hp
+- max_hp
+- suspicion
 class_hp_bases:
   Scholar: 6
   Clergy: 6
@@ -39,275 +33,258 @@ class_hp_bases:
   Merchant: 8
   Reformer: 6
   Herbalist: 6
-
 default_class: Scholar
 default_race: Townsperson
 default_hp: 6
 default_ac: 10
-default_location: "A narrow street in the shadow of the cathedral, the air sharp with woodsmoke and fear"
+default_location: A narrow street in the shadow of the cathedral, the air sharp with
+  woodsmoke and fear
 default_time_of_day: evening
-
 custom_rules:
   lethality: low
   injury_system: none
   rest_variant: standard
   encumbrance: none
-
-  the_tribunal: >-
-    The tribunal is the central mechanic. It is not combat — it is a
-    structured encounter where the player answers questions, and every
-    prior action in the game feeds the evidence against them. The tribunal
-    tracks conviction as a metric: testimony increases it, successful
-    cross-examination decreases it. Conviction reaching the high threshold
-    means condemnation. Reaching the low threshold means acquittal. The
-    player may also confess or recant, each with its own consequences.
-    The tribunal is the endgame. Getting into one means the game is
-    approaching its climax.
-
-  suspicion_system: >-
-    Suspicion is an involuntary resource that accumulates based on player
-    actions and informant reports. The player never sees a number — only
-    narrative signals. Visiting banned locations, speaking to known
-    dissidents, possessing forbidden texts, or being reported by informants
-    raises suspicion. Laying low allows slight natural decay. Threshold
-    events produce permanent KnownFacts: at low suspicion, "someone is
-    asking about you." At high suspicion, "a summons arrives." At maximum,
-    "guards at the door." These facts feed the tribunal's evidence dossier.
-
-  testimony_system: >-
-    NPC testimony is the primary evidence mechanic. Testimony is generated
-    through interrogation encounters, informant reports, and voluntary
-    witness statements. Each piece of testimony becomes a KnownFact in
-    LoreStore — permanent, narrator-accessible, and available as evidence
-    in tribunal encounters. Contradictory testimony creates opportunities
-    for cross-examination. The player can also seek testimony in their
-    own defense by finding witnesses willing to speak for them — which
-    requires trust, and trust requires not having raised their suspicion.
-
-  informant_network: >-
-    Some NPCs report to the tribunal. The player does not know which ones.
-    The assignment matrix randomizes informant identity per playthrough.
-    An NPC's archetype does not determine whether they are an informant —
-    the friendly baker, the sympathetic clerk, the fellow accused may all
-    be reporting. Informants observe player actions and generate testimony
-    KnownFacts during autonomous action phases. The only defense against
-    informants is discretion — or identifying them through careful
-    observation and social maneuvering.
-
-  the_occult: >-
-    Controlled by the Occult axis. At low: every supernatural claim is
-    hysteria, fraud, or ergot poisoning. The tribunal persecutes based on
-    evidence that does not exist, and that is the horror. At high: the
-    herbalist's poultice does heal unnaturally fast, someone did speak to
-    something in the woods, and the tribunal is right to be afraid — but
-    their methods still catch the innocent and miss the genuine. Even at
-    maximum, the supernatural is rare and unsettling, never a toolbox.
-
-  combat: >-
-    Combat exists but is never the point. Getting into a fight in Star
-    Chamber means you have already lost — violence draws attention,
-    attention raises suspicion, and suspicion feeds the tribunal. A
-    desperate brawl in an alley to avoid arrest is a failure state, not
-    a victory condition. The Narrator should treat combat as a last resort
-    with severe consequences: witnesses, injuries that can't be hidden,
-    and the certainty that someone will talk.
-
+  the_tribunal: "The tribunal is the central mechanic. It is not combat \u2014 it\
+    \ is a structured encounter where the player answers questions, and every prior\
+    \ action in the game feeds the evidence against them. The tribunal tracks conviction\
+    \ as a metric: testimony increases it, successful cross-examination decreases\
+    \ it. Conviction reaching the high threshold means condemnation. Reaching the\
+    \ low threshold means acquittal. The player may also confess or recant, each with\
+    \ its own consequences. The tribunal is the endgame. Getting into one means the\
+    \ game is approaching its climax."
+  suspicion_system: "Suspicion is an involuntary resource that accumulates based on\
+    \ player actions and informant reports. The player never sees a number \u2014\
+    \ only narrative signals. Visiting banned locations, speaking to known dissidents,\
+    \ possessing forbidden texts, or being reported by informants raises suspicion.\
+    \ Laying low allows slight natural decay. Threshold events produce permanent KnownFacts:\
+    \ at low suspicion, \"someone is asking about you.\" At high suspicion, \"a summons\
+    \ arrives.\" At maximum, \"guards at the door.\" These facts feed the tribunal's\
+    \ evidence dossier."
+  testimony_system: "NPC testimony is the primary evidence mechanic. Testimony is\
+    \ generated through interrogation encounters, informant reports, and voluntary\
+    \ witness statements. Each piece of testimony becomes a KnownFact in LoreStore\
+    \ \u2014 permanent, narrator-accessible, and available as evidence in tribunal\
+    \ encounters. Contradictory testimony creates opportunities for cross-examination.\
+    \ The player can also seek testimony in their own defense by finding witnesses\
+    \ willing to speak for them \u2014 which requires trust, and trust requires not\
+    \ having raised their suspicion."
+  informant_network: "Some NPCs report to the tribunal. The player does not know which\
+    \ ones. The assignment matrix randomizes informant identity per playthrough. An\
+    \ NPC's archetype does not determine whether they are an informant \u2014 the\
+    \ friendly baker, the sympathetic clerk, the fellow accused may all be reporting.\
+    \ Informants observe player actions and generate testimony KnownFacts during autonomous\
+    \ action phases. The only defense against informants is discretion \u2014 or identifying\
+    \ them through careful observation and social maneuvering."
+  the_occult: "Controlled by the Occult axis. At low: every supernatural claim is\
+    \ hysteria, fraud, or ergot poisoning. The tribunal persecutes based on evidence\
+    \ that does not exist, and that is the horror. At high: the herbalist's poultice\
+    \ does heal unnaturally fast, someone did speak to something in the woods, and\
+    \ the tribunal is right to be afraid \u2014 but their methods still catch the\
+    \ innocent and miss the genuine. Even at maximum, the supernatural is rare and\
+    \ unsettling, never a toolbox."
+  combat: "Combat exists but is never the point. Getting into a fight in Star Chamber\
+    \ means you have already lost \u2014 violence draws attention, attention raises\
+    \ suspicion, and suspicion feeds the tribunal. A desperate brawl in an alley to\
+    \ avoid arrest is a failure state, not a victory condition. The Narrator should\
+    \ treat combat as a last resort with severe consequences: witnesses, injuries\
+    \ that can't be hidden, and the certainty that someone will talk."
 encounter_base_tension:
   random: 0.05
-  interrogation: 0.30
-  tribunal: 0.50
-  ambush: 0.20
-  final: 0.60
-
-# ── Confrontation Declarations (Epic 16) ────────────────────
-# These are the YAML-declared encounter types for the
-# StructuredEncounter engine. They won't function until
-# Epic 16 ships, but they're specced here for completeness.
-
+  interrogation: 0.3
+  tribunal: 0.5
+  ambush: 0.2
+  final: 0.6
 confrontations:
-  - type: inquisition
-    label: "Tribunal"
-    category: social
-    metric:
-      name: conviction
-      direction: bidirectional
-      starting: 0
-      threshold_high: 10
-      threshold_low: -5
-    beats:
-      - id: testimony
-        label: "Testimony"
-        metric_delta: 2
-        stat_check: PERCEPTION
-        reveals: witness_credibility
-      - id: cross_examine
-        label: "Cross-Examine"
-        metric_delta: -1
-        stat_check: RHETORIC
-        risk: "Angering the tribunal — +2 conviction if failed"
-      - id: confess
-        label: "Confess"
-        resolution: true
-        consequence: mercy_or_death
-      - id: recant
-        label: "Recant"
-        metric_delta: -3
-        cost: reputation_destroyed
-      - id: invoke_authority
-        label: "Appeal to Higher Power"
-        metric_delta: -2
-        requires: ally_in_court
-      - id: silence
-        label: "Refuse to Answer"
-        metric_delta: 1
-        stat_check: CONVICTION
-        reveals: nothing
-        narrator_hint: "Silence unsettles the judges. They expected fear."
-    escalates_to: null
-    mood: tribunal
-    cinematography:
-      camera_override: static_medium
-      sentence_range: [3, 6]
-
-  - type: interrogation
-    label: "Interrogation"
-    category: social
-    metric:
-      name: cooperation
-      direction: ascending
-      starting: 0
-      threshold_high: 8
-    beats:
-      - id: pressure
-        label: "Apply Pressure"
-        metric_delta: 2
-        stat_check: AUTHORITY
-      - id: befriend
-        label: "Appeal to Conscience"
-        metric_delta: 1
-        stat_check: CHARM
-        risk: "NPC sees through it — trust drops"
-      - id: threaten
-        label: "Threaten"
-        metric_delta: 3
-        cost: suspicion_plus_1
-      - id: bribe
-        label: "Offer Incentive"
-        metric_delta: 2
-        requires: resource_to_offer
-      - id: reason
-        label: "Appeal to Reason"
-        metric_delta: 1
-        stat_check: RHETORIC
-        narrator_hint: "Logic against fear. Sometimes it works."
-    escalates_to: null
-    mood: interrogation
-
-  - type: escape
-    label: "Escape"
-    category: action
-    metric:
-      name: pursuit
-      direction: descending
-      starting: 8
-      threshold_low: 0
-      threshold_high: 12
-    beats:
-      - id: flee
-        label: "Run"
-        metric_delta: -2
-        stat_check: null
-      - id: hide
-        label: "Hide"
-        metric_delta: -3
-        stat_check: CUNNING
-        risk: "Discovered — +3 pursuit"
-      - id: blend
-        label: "Blend Into Crowd"
-        metric_delta: -2
-        stat_check: CHARM
-      - id: fight_guard
-        label: "Fight Through"
-        metric_delta: -1
-        cost: suspicion_plus_2
-        narrator_hint: "Violence guarantees they remember your face."
-    escalates_to: combat
-    mood: tension
-
-# ── Resource Declarations (Epic 16) ─────────────────────────
-
-resources:
-  - name: suspicion
-    label: "Suspicion"
-    min: 0
-    max: 10
+- type: inquisition
+  label: Tribunal
+  category: social
+  metric:
+    name: conviction
+    direction: bidirectional
     starting: 0
-    voluntary: false
-    decay_per_turn: -0.1
-    thresholds:
-      - at: 3
-        event_id: suspicion_noticed
-        narrator_hint: "Someone is asking about you. Nothing official. Yet."
-        direction: crossing_up
-      - at: 5
-        event_id: suspicion_watched
-        narrator_hint: "An informant has been assigned. Your movements are noted."
-        direction: crossing_up
-      - at: 7
-        event_id: suspicion_summoned
-        narrator_hint: "A summons arrives. The tribunal requests your presence."
-        direction: crossing_up
-      - at: 10
-        event_id: suspicion_arrest
-        narrator_hint: "Guards at the door. It's too late to run."
-        direction: crossing_up
-
-  - name: standing
-    label: "Standing"
-    min: 0
-    max: 5
-    starting: 3
-    voluntary: false
-    decay_per_turn: 0
-    thresholds:
-      - at: 1
-        event_id: standing_pariah
-        narrator_hint: "Neighbors cross the street. The baker won't sell to you."
-        direction: crossing_down
-      - at: 0
-        event_id: standing_outcast
-        narrator_hint: "You are no one. Doors close. Eyes turn away. Even your accuser pities you."
-        direction: crossing_down
-      - at: 5
-        event_id: standing_untouchable
-        narrator_hint: "Your name carries weight. Even the tribunal pauses before naming you."
-        direction: crossing_up
-
-# ── Reputation Factions ─────────────────────────────────────
-
+    threshold_high: 10
+    threshold_low: -5
+  beats:
+  - id: testimony
+    label: Testimony
+    metric_delta: 2
+    stat_check: PERCEPTION
+    reveals: witness_credibility
+  - id: cross_examine
+    label: Cross-Examine
+    metric_delta: -1
+    stat_check: RHETORIC
+    risk: "Angering the tribunal \u2014 +2 conviction if failed"
+  - id: confess
+    label: Confess
+    resolution: true
+    consequence: mercy_or_death
+    metric_delta: 0
+    stat_check: CONVICTION
+  - id: recant
+    label: Recant
+    metric_delta: -3
+    cost: reputation_destroyed
+    stat_check: AUTHORITY
+  - id: invoke_authority
+    label: Appeal to Higher Power
+    metric_delta: -2
+    requires: ally_in_court
+    stat_check: AUTHORITY
+  - id: silence
+    label: Refuse to Answer
+    metric_delta: 1
+    stat_check: CONVICTION
+    reveals: nothing
+    narrator_hint: Silence unsettles the judges. They expected fear.
+  escalates_to: null
+  mood: tribunal
+  cinematography:
+    camera_override: static_medium
+    sentence_range:
+    - 3
+    - 6
+- type: interrogation
+  label: Interrogation
+  category: social
+  metric:
+    name: cooperation
+    direction: ascending
+    starting: 0
+    threshold_high: 8
+  beats:
+  - id: pressure
+    label: Apply Pressure
+    metric_delta: 2
+    stat_check: AUTHORITY
+  - id: befriend
+    label: Appeal to Conscience
+    metric_delta: 1
+    stat_check: CHARM
+    risk: "NPC sees through it \u2014 trust drops"
+  - id: threaten
+    label: Threaten
+    metric_delta: 3
+    cost: suspicion_plus_1
+    stat_check: AUTHORITY
+  - id: bribe
+    label: Offer Incentive
+    metric_delta: 2
+    requires: resource_to_offer
+    stat_check: CHARM
+  - id: reason
+    label: Appeal to Reason
+    metric_delta: 1
+    stat_check: RHETORIC
+    narrator_hint: Logic against fear. Sometimes it works.
+  escalates_to: null
+  mood: interrogation
+- type: escape
+  label: Escape
+  category: movement
+  metric:
+    name: pursuit
+    direction: descending
+    starting: 8
+    threshold_low: 0
+    threshold_high: 12
+  beats:
+  - id: flee
+    label: Run
+    metric_delta: -2
+    stat_check: CONVICTION
+  - id: hide
+    label: Hide
+    metric_delta: -3
+    stat_check: CUNNING
+    risk: "Discovered \u2014 +3 pursuit"
+  - id: blend
+    label: Blend Into Crowd
+    metric_delta: -2
+    stat_check: CHARM
+  - id: fight_guard
+    label: Fight Through
+    metric_delta: -1
+    cost: suspicion_plus_2
+    narrator_hint: Violence guarantees they remember your face.
+    stat_check: AUTHORITY
+  escalates_to: combat
+  mood: tension
+resources:
+- name: suspicion
+  label: Suspicion
+  min: 0
+  max: 10
+  starting: 0
+  voluntary: false
+  decay_per_turn: -0.1
+  thresholds:
+  - at: 3
+    event_id: suspicion_noticed
+    narrator_hint: Someone is asking about you. Nothing official. Yet.
+    direction: crossing_up
+  - at: 5
+    event_id: suspicion_watched
+    narrator_hint: An informant has been assigned. Your movements are noted.
+    direction: crossing_up
+  - at: 7
+    event_id: suspicion_summoned
+    narrator_hint: A summons arrives. The tribunal requests your presence.
+    direction: crossing_up
+  - at: 10
+    event_id: suspicion_arrest
+    narrator_hint: Guards at the door. It's too late to run.
+    direction: crossing_up
+- name: standing
+  label: Standing
+  min: 0
+  max: 5
+  starting: 3
+  voluntary: false
+  decay_per_turn: 0
+  thresholds:
+  - at: 1
+    event_id: standing_pariah
+    narrator_hint: Neighbors cross the street. The baker won't sell to you.
+    direction: crossing_down
+  - at: 0
+    event_id: standing_outcast
+    narrator_hint: You are no one. Doors close. Eyes turn away. Even your accuser
+      pities you.
+    direction: crossing_down
+  - at: 5
+    event_id: standing_untouchable
+    narrator_hint: Your name carries weight. Even the tribunal pauses before naming
+      you.
+    direction: crossing_up
 reputation_factions:
-  - id: tribunal
-    name: The Tribunal
-    description: "The judges, inquisitors, and their apparatus. Respect procedure and orthodoxy."
-  - id: reformers
-    name: The Reformers
-    description: "Those who believe the institution can change. Idealists, intellectuals, and the dangerously hopeful."
-  - id: establishment
-    name: The Establishment
-    description: "The secular power — merchants, gentry, the people who own things. They use the tribunal when convenient."
-  - id: underground
-    name: The Underground
-    description: "Banned printers, smuggled texts, hidden congregations. The network you can't admit knowing."
-  - id: common_folk
-    name: The Common Folk
-    description: "Townspeople, farmers, servants. They keep their heads down and survive. Their testimony can save or damn you."
-
+- id: tribunal
+  name: The Tribunal
+  description: The judges, inquisitors, and their apparatus. Respect procedure and
+    orthodoxy.
+- id: reformers
+  name: The Reformers
+  description: Those who believe the institution can change. Idealists, intellectuals,
+    and the dangerously hopeful.
+- id: establishment
+  name: The Establishment
+  description: "The secular power \u2014 merchants, gentry, the people who own things.\
+    \ They use the tribunal when convenient."
+- id: underground
+  name: The Underground
+  description: Banned printers, smuggled texts, hidden congregations. The network
+    you can't admit knowing.
+- id: common_folk
+  name: The Common Folk
+  description: Townspeople, farmers, servants. They keep their heads down and survive.
+    Their testimony can save or damn you.
 reputation_effects:
   high:
-    - "NPCs of this faction offer shelter, information, and warnings"
-    - "Favorable testimony if called as witnesses"
+  - NPCs of this faction offer shelter, information, and warnings
+  - Favorable testimony if called as witnesses
   neutral:
-    - "Standard interactions. No favors, no hostility."
+  - Standard interactions. No favors, no hostility.
   low:
-    - "NPCs are suspicious, uncooperative, or actively hostile"
-    - "May volunteer testimony against you to the tribunal"
+  - NPCs are suspicious, uncooperative, or actively hostile
+  - May volunteer testimony against you to the tribunal

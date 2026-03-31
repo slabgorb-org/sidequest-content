@@ -1,63 +1,49 @@
-# Power tiers in Star Chamber are institutional, not physical.
-# Power is measured by what the system allows you to do — and what it can do to you.
-
 tiers:
-  - level: 1
-    name: "Nobody"
-    description: >-
-      Invisible to the institution. No name in any ledger. No standing,
-      no property, no connections worth investigating. The safest and
-      most powerless position. Servants, beggars, transients.
-    mechanical_effects:
-      - "Cannot be formally accused (too unimportant)"
-      - "Cannot access tribunal records or government buildings"
-      - "NPCs of authority ignore you by default"
+  - level_range: [1, 2]
+    label: "Nobody"
+    player: >-
+      You are invisible to the institution. No name in any ledger, no standing,
+      no property, no connections worth investigating. The safest and most
+      powerless position.
+    npc: >-
+      A servant, beggar, or transient. Ignored by people of consequence.
+      Cannot formally accuse; their word carries minimal weight.
 
-  - level: 2
-    name: "Known"
-    description: >-
-      You have a name, a trade, a place in the community. The tribunal
-      could find you if it wanted to. Your neighbors would recognize
-      you in a lineup. This is where most people live — visible enough
-      to function, visible enough to be vulnerable.
-    mechanical_effects:
-      - "Can be accused and summoned"
-      - "Can access public spaces and markets"
-      - "Testimony against you carries standard weight"
+  - level_range: [3, 4]
+    label: "Known"
+    player: >-
+      You have a name, a trade, a place in the community. You could be found
+      if the tribunal wanted to. Your neighbors would recognize you. Visible
+      enough to function, visible enough to be vulnerable.
+    npc: >-
+      An ordinary townsperson or minor tradesperson. Testimony against someone
+      carries standard weight. Can be summoned, but not pursued aggressively.
 
-  - level: 3
-    name: "Connected"
-    description: >-
-      You know people. People know you. Your name opens some doors and
-      closes others. A letter of introduction from you means something.
-      An accusation against you would be noticed — which is both
-      protection and target.
-    mechanical_effects:
-      - "Can request audiences with minor officials"
-      - "Faction reputation effects are stronger"
-      - "Accusation requires stronger evidence (but still happens)"
+  - level_range: [5, 6]
+    label: "Connected"
+    player: >-
+      You know people worth knowing. Your name opens some doors and closes
+      others. A letter of introduction from you means something. An accusation
+      would be noticed — which is both protection and target.
+    npc: >-
+      A merchant, minor clergy, or local notable. Their accusation requires
+      genuine evidence. Can request audiences with officials. Faction
+      reputation effects are stronger.
 
-  - level: 4
-    name: "Person of Consequence"
-    description: >-
-      Your accusation or acquittal would be political news. Judges
-      consider the implications before acting. You have allies in the
-      institution — or enemies powerful enough to care. Most gentry,
-      senior clergy, wealthy merchants.
-    mechanical_effects:
-      - "Can compel testimony from lower-tier NPCs"
-      - "Tribunal proceedings attract public attention"
-      - "Accusations against you require institutional backing"
+  - level_range: [7, 8]
+    label: "Person of Consequence"
+    player: >-
+      Your accusation or acquittal would be political news. Judges consider
+      the implications before acting. You have allies in the institution
+      — or enemies powerful enough to care.
+    npc: >-
+      Gentry, senior clergy, or wealthy merchant. Their word carries weight.
+      Can compel testimony from lower-tier NPCs. Accusations against them
+      require institutional backing.
 
-  - level: 5
-    name: "The Institution Itself"
-    description: >-
-      You ARE the system. Judge, bishop, governor, or inquisitor-general.
-      You can accuse, try, and condemn — and the only people who can
-      stop you are others at this tier. The Inquisitor preset starts
-      the player here. The horror is what the system requires of you.
-    mechanical_effects:
-      - "Can initiate tribunal proceedings"
-      - "Can access all records and archives"
-      - "Suspicion does not apply — you ARE the suspicion"
-      - "Available only in 'Inquisitor' axis preset"
+  - level_range: [9, 10]
+    label: "The Institution Itself"
+    player: >-
+      You ARE the system. Judge, bishop, governor, inquisitor-general. You can
+      accuse, try, condemn. The only people who can stop you are others at this
+      tier. The horror is what the system requires of you.

@@ -1,84 +1,86 @@
 mood_tracks:
-  calm:
-    - name: "Cloister Morning"
-      description: "Gregorian plainchant echoes through stone corridors. Dawn light through leaded glass."
-  exploration:
-    - name: "The Streets of Florence"
-      description: "Lute and recorder over a walking bassline. Market sounds. Bells in the distance."
-  tension:
-    - name: "The Ledger"
-      description: "Solo cello, low and sustained. A quill scratching. The sound of names being written down."
-  combat:
-    - name: "Riot"
-      description: "Percussion and shouting. Chaos in narrow streets. Glass breaking. Running feet."
-  mystery:
-    - name: "The Hidden Room"
-      description: "Ambient organ drone. Candlelight flicker rendered as subtle tremolo. Pages turning."
-  sorrow:
-    - name: "Ashes on the Arno"
-      description: "Solo soprano voice, unaccompanied. A lament. The river carries what was burned."
-  triumph:
-    - name: "Acquittal"
-      description: "Cathedral organ, major key. Bells. The sound of a door opening into sunlight."
-
-mood_aliases:
-  tribunal: tension
-  interrogation: tension
-  bonfire: sorrow
-  sermon: mystery
-  market: exploration
-  procession: calm
-  escape: combat
-  celebration: triumph
-  prayer: calm
-
-mood_keywords:
   tribunal:
-    - tribunal
-    - trial
-    - judges
-    - testimony
-    - conviction
-    - accused
+    - path: audio/music/tribunal.ogg
+      title: "Judgment Day"
+      bpm: 60
   interrogation:
-    - interrogation
-    - questioning
-    - pressure
-    - confession
-    - witness
-  bonfire:
-    - bonfire
-    - burning
-    - pyre
-    - flames
-    - ashes
-    - vanities
-  sermon:
-    - sermon
-    - preaching
-    - pulpit
-    - congregation
-    - prophecy
-  market:
-    - market
-    - merchants
-    - trading
-    - streets
-    - tavern
+    - path: audio/music/interrogation.ogg
+      title: "Questions in the Dark"
+      bpm: 70
+  investigation:
+    - path: audio/music/investigation.ogg
+      title: "Gathering Clues"
+      bpm: 80
+  escape:
+    - path: audio/music/escape.ogg
+      title: "Flight"
+      bpm: 120
+  tension:
+    - path: audio/music/tension.ogg
+      title: "Suspicion Rising"
+      bpm: 95
+  calm:
+    - path: audio/music/calm.ogg
+      title: "Quiet Moment"
+      bpm: 55
+  defeat:
+    - path: audio/music/defeat.ogg
+      title: "Condemned"
+      bpm: 40
 
-sfx:
-  - id: bell_toll
-    description: "A single cathedral bell. Marks time, summons, and sentence."
-    triggers: [tribunal_start, execution, dawn]
-  - id: door_lock
-    description: "Iron key in a heavy lock. The sound of options closing."
-    triggers: [arrest, imprisonment, sealed_room]
-  - id: quill_scratch
-    description: "A pen writing on parchment. Someone is recording what you said."
-    triggers: [testimony_recorded, accusation_filed]
-  - id: crowd_murmur
-    description: "The low hum of a gathered crowd. Could turn to cheering or jeering."
-    triggers: [tribunal_audience, bonfire_gathering, sermon]
-  - id: fire_crackle
-    description: "Wood burning. Could be a hearth. Could be a pyre."
-    triggers: [bonfire, execution, hearth_scene]
+sfx_library:
+  gavel:
+    - audio/sfx/gavel.ogg
+  chains:
+    - audio/sfx/chains.ogg
+  torch:
+    - audio/sfx/torch.ogg
+  footsteps:
+    - audio/sfx/footsteps.ogg
+    - audio/sfx/footsteps_2.ogg
+  door:
+    - audio/sfx/door_lock.ogg
+    - audio/sfx/door_open.ogg
+  whispers:
+    - audio/sfx/whispers.ogg
+  quill:
+    - audio/sfx/quill_scratch.ogg
+  page_turn:
+    - audio/sfx/page_turn.ogg
+
+creature_voice_presets:
+  tribunal_judge:
+    creature_type: tribunal_judge
+    description: "Formal, authoritative voice of institutional power"
+    pitch: 0.9
+    rate: 0.85
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.6
+  nervous_witness:
+    creature_type: nervous_witness
+    description: "Uncertain, trembling voice of fear"
+    pitch: 1.1
+    rate: 1.05
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.4
+  inquisitor:
+    creature_type: inquisitor
+    description: "Cold, measured voice of authority"
+    pitch: 0.8
+    rate: 0.8
+    effects:
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 2000
+
+mixer:
+  music_volume: 0.35
+  sfx_volume: 0.6
+  voice_volume: 1.0
+  duck_music_for_voice: true
+  duck_amount_db: -10.0
+  crossfade_default_ms: 2000
