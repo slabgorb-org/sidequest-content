@@ -1,0 +1,102 @@
+# Caverns & Claudes — Audio Configuration
+# Silence is the default. Sound means danger.
+
+moods:
+  - id: silence
+    name: Silence
+    description: >-
+      The default state. No music. Only ambient sound — dripping water,
+      distant echoes, the hiss of the torch. Silence IS the soundtrack.
+    tracks: []
+    ambient:
+      - dripping_water
+      - distant_echo
+      - torch_hiss
+    volume: 0.3
+
+  - id: exploration
+    name: Exploration
+    description: >-
+      Quiet, sparse instrumentation. A single low drone or plucked string.
+      Present only during extended mapping sequences. Fades to silence
+      between rooms.
+    tracks:
+      - exploration_drone
+    ambient:
+      - footsteps_stone
+      - dripping_water
+      - torch_hiss
+    volume: 0.2
+
+  - id: tension
+    name: Tension
+    description: >-
+      Keeper awareness is rising. Low, rhythmic pulses. Something between
+      a heartbeat and grinding stone. Builds slowly, never resolves.
+    tracks:
+      - keeper_pulse
+    ambient:
+      - stone_grinding
+      - distant_movement
+    volume: 0.4
+
+  - id: combat
+    name: Combat
+    description: >-
+      Sharp, percussive, short. Combat in C&C is brief and brutal — the
+      music should match. Drums and metallic strikes, cutting off abruptly
+      when the fight ends.
+    tracks:
+      - combat_percussion
+    ambient:
+      - blade_ring
+      - impact
+    volume: 0.6
+
+  - id: extraction
+    name: Extraction
+    description: >-
+      The party is heading for the exit with treasure. Urgent, driving
+      rhythm. The tempo of running footsteps on stone. Does not resolve —
+      cuts to silence when the party reaches daylight.
+    tracks:
+      - extraction_run
+    ambient:
+      - running_footsteps
+      - heavy_breathing
+      - rattling_coins
+    volume: 0.5
+
+  - id: keeper_monologue
+    name: Keeper Speaks
+    description: >-
+      The Keeper addresses the party. All ambient sound drops to silence.
+      A single sustained low note. The Keeper's voice is the only sound.
+    tracks:
+      - keeper_drone
+    ambient: []
+    volume: 0.3
+
+sfx:
+  - id: door_open
+    description: Heavy stone or iron door grinding open
+  - id: door_slam
+    description: Door slamming shut behind the party
+  - id: trap_trigger
+    description: Click of a pressure plate or tripwire
+  - id: torch_sputter
+    description: Torch guttering, about to go out
+  - id: torch_out
+    description: Final hiss of a torch dying
+  - id: coin_clink
+    description: Gold coins shifting in a sack
+  - id: morale_break
+    description: Hireling dropping their burden and running
+  - id: keeper_rumble
+    description: Deep vibration through the stone — the Keeper notices
+
+mixer:
+  master_volume: 0.5
+  music_duck_on_narration: true
+  ambient_always_on: true
+  sfx_interrupt: true

@@ -1,0 +1,237 @@
+affinities:
+  - name: "Delver"
+    description: "Dungeon knowledge — finding secrets, detecting traps, reading the architecture of hostile spaces"
+    triggers:
+      - "exploring new rooms"
+      - "finding secret doors or passages"
+      - "mapping the dungeon"
+      - "detecting or disarming traps"
+    tier_thresholds: [100, 500, 2000]
+    unlocks:
+      tier_1:
+        name: "Crawler"
+        description: "You have crawled through enough dark corridors that the stone has started to speak to you."
+        abilities:
+          - name: "Stonewise"
+            experience: >
+              Your hand finds the seam before your eyes do. A change in the grain of the
+              stone, a draft where there shouldn't be one, a hollow sound beneath your
+              knuckles. The dungeon hides its secrets in plain sight for those who have
+              learned to read the walls like text.
+            limits: >
+              Works only when you have time to search. In combat or flight, the stone
+              is just stone again. Exhaustion dulls the sense — after three resource
+              ticks without rest, you miss things.
+          - name: "Trap Sense"
+            experience: >
+              Something in the air changes. A tension, like the room is holding its
+              breath. You cannot explain it to the others. You simply stop, and point,
+              and say "not that flagstone." You are right more often than you are wrong.
+            limits: >
+              Only detects mechanical traps. Magical hazards, Keeper-driven room shifts,
+              and living obstacles do not trigger this instinct. False positives increase
+              as Keeper awareness rises.
+      tier_2:
+        name: "Pathfinder"
+        description: "You see the dungeon not as rooms and corridors but as a system of flows — air, water, sound, intention."
+        abilities:
+          - name: "Shortcut"
+            experience: >
+              Two rooms that seem distant are actually close — a thin wall, a blocked
+              vent, an old passage sealed with rubble that takes ten minutes and a
+              crowbar to clear. You see connections others miss because you think in
+              three dimensions.
+            limits: >
+              Requires at least partial knowledge of adjacent rooms. Cannot shortcut
+              through Keeper-sealed barriers. The passage found is always tight,
+              dangerous, or both.
+          - name: "Dead Reckoning"
+            experience: >
+              Even without a map, even in perfect darkness, you know roughly where you
+              are relative to the entrance. The turns and descents are catalogued
+              somewhere below conscious thought. You cannot get lost, only delayed.
+            limits: >
+              Fails on dungeon levels that the Keeper has reshuffled. Non-Euclidean
+              architecture (at high Keeper awareness) scrambles the sense entirely.
+
+  - name: "Plunderer"
+    description: "Treasure sense — appraising loot, efficient extraction, knowing what to grab and what to leave"
+    triggers:
+      - "extracting treasure from the dungeon"
+      - "appraising items"
+      - "managing encumbrance efficiently"
+      - "successful extraction runs"
+    tier_thresholds: [200, 1000, 5000]
+    unlocks:
+      tier_1:
+        name: "Scavenger"
+        description: "You have carried enough gold through hostile darkness to know what is worth the weight."
+        abilities:
+          - name: "Quick Appraisal"
+            experience: >
+              A glance is enough. The way light catches a gemstone, the weight of a
+              coin in your palm, the patina on a bronze idol — you know within a
+              margin whether something is worth dying over. The answer is usually no.
+            limits: >
+              Magical items resist appraisal. Cursed objects often look more valuable
+              than they are. Works on sight and touch — you have to handle it.
+          - name: "Efficient Packing"
+            experience: >
+              You arrange the loot like a puzzle — heavy things low, fragile things
+              padded, nothing shifting when you run. Others carry half what you carry
+              at twice the noise. It is not a skill anyone teaches. You learn it from
+              the first time a loose goblet clinks against a shield and every monster
+              in the corridor turns to look.
+            limits: >
+              Requires a moment of calm to rearrange. In the middle of an extraction
+              run, you pack fast and sloppy like everyone else.
+      tier_2:
+        name: "Extractor"
+        description: "You do not merely find treasure — you remove it. The dungeon gives up its gold to you like a patient bleeding out."
+        abilities:
+          - name: "Treasure Magnet"
+            experience: >
+              You notice what others walk past. The loose brick that hides a coin
+              cache. The corpse whose pockets nobody checked. The decorative fitting
+              that unscrews and is solid silver. The dungeon is full of wealth that
+              most people are too frightened or too hurried to claim.
+            limits: >
+              Increases Keeper awareness slightly — the dungeon notices when its
+              furnishings go missing. Distracting to use in dangerous situations;
+              your eyes go to the gold before they go to the threat.
+
+  - name: "Survivor"
+    description: "Endurance — resisting resource drain, maintaining morale, keeping the party alive longer"
+    triggers:
+      - "enduring resource tick effects"
+      - "surviving near-death situations"
+      - "managing party resources efficiently"
+      - "resting effectively in hostile territory"
+    tier_thresholds: [100, 500, 2000]
+    unlocks:
+      tier_1:
+        name: "Calloused"
+        description: "The dungeon has worn you smooth. What terrifies others is just Tuesday for you."
+        abilities:
+          - name: "Iron Stomach"
+            experience: >
+              You eat things that would make others retch. Dungeon mushrooms, ration
+              bars that expired two expeditions ago, the meat of creatures best not
+              named. Your gut has adapted. It had to.
+            limits: >
+              Does not protect against poison. Does not make the food taste better.
+              Other party members may lose morale watching you eat.
+          - name: "Torch Miser"
+            experience: >
+              You learned to nurse a torch the way a desert traveler nurses a
+              waterskin. Angle it so the pitch drips back onto itself. Shield it
+              from drafts with your body. Burn it lower than anyone else dares.
+              Your torches last longer because you treat them like the lifeline they are.
+            limits: >
+              Reduced light radius. Others at the edges of your torchlight see less
+              and get more nervous. Hireling morale may suffer from the dimness.
+      tier_2:
+        name: "Endurer"
+        description: "You have outlasted things that were trying to kill you simply by refusing to stop moving."
+        abilities:
+          - name: "Second March"
+            experience: >
+              When the others say they cannot go on, you distribute the weight, check
+              the route, and keep the line moving. Not through inspiration — through
+              the flat, quiet certainty that stopping here is worse than continuing.
+            limits: >
+              Delays exhaustion, does not prevent it. The debt comes due eventually,
+              all at once, usually at the worst possible moment.
+
+  - name: "Breaker"
+    description: "Violence and force — combat effectiveness, breaking barriers, intimidation"
+    triggers:
+      - "melee combat"
+      - "breaking doors or barriers"
+      - "intimidating dungeon creatures"
+      - "defending the party during extraction"
+    tier_thresholds: [100, 500, 2000]
+    unlocks:
+      tier_1:
+        name: "Blooded"
+        description: "You have hit things and been hit. The novelty has worn off. What remains is technique."
+        abilities:
+          - name: "Vicious Strike"
+            experience: >
+              You do not fight with grace. You fight with the brutal economy of
+              someone who knows that every swing costs energy you cannot replace.
+              When you hit, you hit to end it. One strike, placed where it counts.
+            limits: >
+              Committed attack — if you miss, you are open. Against multiple
+              opponents, the focus on one target leaves you exposed to others.
+          - name: "Shield Wall"
+            experience: >
+              You wedge yourself into the corridor and become a door. Behind you,
+              the others are safe. In front of you, nothing passes. It is not
+              heroism. It is geometry.
+            limits: >
+              Only works in confined spaces — corridors, doorways. In open rooms
+              you can be flanked. Exhausting to maintain; each round costs more
+              than the last.
+      tier_2:
+        name: "Wrecker"
+        description: "Doors, barricades, and creatures that stand in your way have the same structural weaknesses."
+        abilities:
+          - name: "Breach"
+            experience: >
+              You read a door the way a mason reads a wall — you see where the grain
+              runs, where the hinges are weakest, where one strike will buckle the
+              whole frame. It works on doors. It works on shields. It works on
+              ribcages.
+            limits: >
+              Loud. Very loud. Each breach adds to Keeper awareness. The dungeon
+              always knows when you break something.
+
+  - name: "Schemer"
+    description: "Cunning and manipulation — bribing creatures, lowering Keeper awareness, exploiting dungeon politics"
+    triggers:
+      - "bribing or negotiating with dungeon creatures"
+      - "lowering Keeper awareness through stealth or deception"
+      - "exploiting faction conflicts within the dungeon"
+      - "avoiding combat through cleverness"
+    tier_thresholds: [100, 500, 2000]
+    unlocks:
+      tier_1:
+        name: "Whisperer"
+        description: "Not everything in the dungeon wants to kill you. Some things can be reasoned with, bribed, or misdirected."
+        abilities:
+          - name: "Creature Parley"
+            experience: >
+              You learn to read the body language of things that should not have
+              body language. The goblin that hesitates before charging. The
+              skeleton that pauses at a doorway. The ooze that flows around your
+              boots instead of over them. Something in you speaks a language
+              older than words, and sometimes the dungeon's creatures listen.
+            limits: >
+              Only works on creatures with some intelligence. Mindless things
+              and Keeper-puppeted entities cannot be parlayed with. Failure
+              is interpreted as weakness — the creature attacks with more
+              conviction.
+          - name: "Quiet Feet"
+            experience: >
+              You learned to move without sound not from training but from
+              terror. The soft placement of each foot, the controlled breathing,
+              the way you distribute weight to avoid the loose flagstone. Keeper
+              awareness ticks slower when you lead the party.
+            limits: >
+              Slows the party down. Others who follow you are not as quiet.
+              Hirelings in particular are terrible at this.
+      tier_2:
+        name: "Manipulator"
+        description: "The dungeon has politics. Factions within factions. You have learned to pull the strings."
+        abilities:
+          - name: "False Trail"
+            experience: >
+              You leave signs that suggest the party went a different way —
+              a dropped torch here, footprints in dust there, a door left
+              conspicuously ajar. The dungeon's creatures follow the trail
+              you laid instead of the one you took.
+            limits: >
+              Only fools unintelligent creatures. The Keeper itself is never
+              fooled — awareness continues to track your actual position.
+              Costs a resource (oil, chalk, rations as bait).
