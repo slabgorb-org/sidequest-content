@@ -1,0 +1,125 @@
+definitions:
+  - id: gothic
+    name: Gothic
+    description: >-
+      How much supernatural reality exists beneath the surface. At low values,
+      every chill is a draft and every noise is the house settling. At high
+      values, the ghost is real, the curse works, and some rooms should stay
+      locked.
+    poles:
+      - rational
+      - supernatural
+    default: 0.3
+
+  - id: romance
+    name: Romance
+    description: >-
+      How central the love story is. At the restrained pole, feelings are
+      implied, duty wins, and a lingering glance is the most anyone dares.
+      At the passionate pole, love is the engine — desire overrules propriety,
+      hearts break loudly, and the question is always who loves whom.
+    poles:
+      - restrained
+      - passionate
+    default: 0.5
+
+  - id: intrigue
+    name: Intrigue
+    description: >-
+      Whether the mystery leans toward social maneuvering or criminal
+      investigation. At the social pole, the battleground is the drawing room —
+      reputation, alliances, who is invited and who is cut. At the criminal
+      pole, bodies appear, evidence is hidden, and someone is lying to the
+      police.
+    poles:
+      - social
+      - criminal
+    default: 0.4
+
+modifiers:
+  gothic:
+    rational: >-
+      Every mystery has a mundane explanation. The ghost is grief. The curse is
+      coincidence. The locked room has a key someone is hiding. Maintain this
+      consistently — the world is material, knowable, and governed by human
+      nature alone. Atmosphere can be eerie, but the answer is always human.
+    supernatural: >-
+      The supernatural is real and terrible. The house remembers violence done
+      within its walls. The portrait's eyes follow you because something looks
+      through them. Mesmerism works — not as parlor trick but as genuine
+      violation of will. Use sparingly for maximum dread. The supernatural
+      should feel transgressive, ancient, and wrong — never routine, never
+      a tool. Characters who encounter it are changed.
+  romance:
+    restrained: >-
+      Feelings exist but are never spoken plainly. A touch of hands is
+      electric. A letter is agonized over for days. Duty, family expectation,
+      and propriety hold desire in check. The tension is in what cannot be
+      said. Relationships develop through glances, small kindnesses, and
+      arguments that are really about something else entirely.
+    passionate: >-
+      Love drives the plot. Characters make terrible decisions because they
+      cannot help themselves. Confessions happen in storms, on moors, in
+      rooms where they should not be alone. Desire collides with duty and
+      wins — or loses spectacularly. The emotional stakes are always as
+      high as the narrative ones. Hearts break. People are ruined for love.
+      It is worth it, or it isn't, and that is the question.
+  intrigue:
+    social: >-
+      The battlefield is the drawing room. Weapons are invitations withheld,
+      rumors planted, alliances shifted. A word at the right dinner party
+      can elevate or destroy. The villain operates through society — a
+      strategic marriage, a whispered accusation, a door that no longer
+      opens. Standing and Scandal are the primary stakes.
+    criminal: >-
+      Someone is dead, missing, or threatened, and the law is either
+      incompetent or complicit. Investigation drives the plot — clues,
+      witnesses, evidence hidden or destroyed. The criminal underworld
+      exists beneath the respectable surface: opium dens, body-snatchers,
+      forgers, blackmailers. Scotland Yard may help or hinder.
+
+presets:
+  - name: Brontë
+    description: >-
+      Moody manors, burning passion, dark secrets. The moors are alive
+      and the house has a history. Someone broods magnificently.
+    values:
+      gothic: 0.7
+      romance: 0.8
+      intrigue: 0.3
+
+  - name: Bridgerton
+    description: >-
+      The social season as battlefield. Wit, beauty, and strategic
+      marriages. Low stakes physically, devastating stakes socially.
+    values:
+      gothic: 0.1
+      romance: 0.9
+      intrigue: 0.2
+
+  - name: Holmes
+    description: >-
+      Fog, deduction, criminal London. The game is afoot. Romance is
+      irrelevant; the puzzle is everything.
+    values:
+      gothic: 0.1
+      romance: 0.1
+      intrigue: 0.9
+
+  - name: Collins
+    description: >-
+      Identity and conspiracy. The woman in white, the asylum, the
+      forged will. Who is this person really? Suspense over spectacle.
+    values:
+      gothic: 0.5
+      romance: 0.5
+      intrigue: 0.7
+
+  - name: Balanced
+    description: >-
+      A bit of everything — the genre's default. Gothic atmosphere,
+      simmering romance, and a mystery that could go either way.
+    values:
+      gothic: 0.3
+      romance: 0.5
+      intrigue: 0.4

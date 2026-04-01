@@ -1,0 +1,78 @@
+# Voice preset configuration for victoria genre pack
+#
+# Maps narrator and NPC archetypes to Kokoro/Piper TTS voices with
+# post-processing effects. Victorian England calls for British voices
+# with class distinction audible in delivery.
+#
+# Available voices (cached locally):
+#   en_GB-alan-medium   — British male (narrator default)
+#   en_US-lessac-high   — clear neutral (fallback)
+#   en_US-amy-medium    — female American (fallback)
+
+# ── Narrator ──────────────────────────────────────────────────
+narrator:
+  model: en_GB-alan-medium
+  pitch: 1.0
+  rate: 0.90
+  effects:
+    - type: compressor
+      params:
+        threshold_db: -18
+    - type: reverb
+      params:
+        room_size: 0.20
+
+# ── NPC Archetype Voices ──────────────────────────────────────
+characters:
+  # The Master of the House — deep, controlled, occasional intensity
+  The Master of the House:
+    model: en_GB-alan-medium
+    pitch: 0.85
+    rate: 0.85
+    effects:
+      - type: compressor
+        params:
+          threshold_db: -15
+      - type: reverb
+        params:
+          room_size: 0.25
+
+  # The Gossip — bright, quick, conspiratorial
+  The Gossip:
+    model: en_US-amy-medium
+    pitch: 1.15
+    rate: 1.10
+    effects:
+      - type: compressor
+        params:
+          threshold_db: -20
+
+  # The Housekeeper — clipped, formal, unyielding
+  The Housekeeper:
+    model: en_US-lessac-high
+    pitch: 0.95
+    rate: 0.90
+    effects:
+      - type: compressor
+        params:
+          threshold_db: -18
+
+  # The Inspector — measured, deliberate, deceptively mild
+  The Inspector:
+    model: en_GB-alan-medium
+    pitch: 0.95
+    rate: 0.85
+    effects:
+      - type: compressor
+        params:
+          threshold_db: -20
+
+# ── Fallback ──────────────────────────────────────────────────
+fallback:
+  model: en_GB-alan-medium
+  pitch: 1.0
+  rate: 0.95
+  effects:
+    - type: compressor
+      params:
+        threshold_db: -20

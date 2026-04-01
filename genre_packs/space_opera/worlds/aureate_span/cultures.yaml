@@ -1,0 +1,165 @@
+- name: Span Aristocracy
+  description: >-
+    The human upper class of the Aureate Span — courtiers, artists,
+    duelists, and aesthetes who live by the Doctrine of Radiance. Names
+    are melodramatic and multi-syllabic, drawn from Romance and Latin
+    roots with a baroque flair. Titles are earned through artistic
+    achievement or arena victory, not birth. A name like "Solenne
+    Veradaine, Champion Resplendent" tells you everything: where they
+    live, that they fight, and that they won beautifully.
+  slots:
+    given_name:
+      corpora:
+        - corpus: latin.txt
+          weight: 0.5
+        - corpus: spanish.txt
+          weight: 0.5
+      lookback: 3
+    family_name:
+      corpora:
+        - corpus: latin.txt
+          weight: 0.7
+        - corpus: spanish.txt
+          weight: 0.3
+      lookback: 3
+    title:
+      word_list: [Resplendent, Aureate, Luminant, Radiant, Prismatic, Incandescent, Illustrious, Effulgent]
+    place_noun:
+      word_list: [salon, gallery, terrace, atrium, belvedere, rotunda, arcade, loggia]
+    adjective:
+      word_list: [golden, radiant, luminous, prismatic, gilded, brilliant, solar, blazing]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{given_name} {family_name}, {title}"
+    - "{given_name} the {title}"
+  place_patterns:
+    - "{family_name} {place_noun}"
+    - "The {adjective} {place_noun}"
+    - "{given_name}'s {place_noun}"
+
+- name: Vaal-Kesh
+  description: >-
+    Amphibious traders with chromatophore skin that shifts color with
+    mood and intent. Their names are liquid — soft consonants, long
+    vowels, syllables that flow like the tidal pools of their homeworld.
+    They don't use family names; instead, a Vaal-Kesh carries a
+    trade-name that describes their specialty. "Mivaan of the Blue
+    Tincture" means Mivaan makes dyes. "Kelossa of the Quiet Drop"
+    means Kelossa makes poisons, and isn't that the same thing.
+  slots:
+    given_name:
+      corpora:
+        - corpus: polynesian.txt
+          weight: 0.6
+        - corpus: finnish.txt
+          weight: 0.4
+      lookback: 2
+    trade_name:
+      word_list: [Tincture, Essence, Distillation, Infusion, Precipitate, Elixir, Vapor, Philter]
+    modifier:
+      word_list: [Blue, Quiet, Slow, Deep, Warm, Bright, Salt, Amber]
+    place_noun:
+      word_list: [pool, basin, spring, cistern, grotto, well, channel, estuary]
+    adjective:
+      word_list: [tidal, still, brackish, warm, deep, clear, flowing, dark]
+  person_patterns:
+    - "{given_name}"
+    - "{given_name} of the {modifier} {trade_name}"
+  place_patterns:
+    - "The {modifier} {place_noun}"
+    - "{given_name}'s {place_noun}"
+    - "{adjective} {place_noun}"
+
+- name: Crystalline Choir
+  description: >-
+    Silicon-based entities that communicate through harmonic resonance.
+    Their names are frequencies translated into human-pronounceable
+    syllables — sharp consonants and ringing vowels that approximate
+    the pitches they actually use. A Choir member's name is also a
+    musical note; saying it correctly is a courtesy, humming it is
+    a compliment, and singing it wrong is an insult that can shatter
+    your teeth.
+  slots:
+    given_name:
+      corpora:
+        - corpus: finnish.txt
+          weight: 0.5
+        - corpus: japanese.txt
+          weight: 0.5
+      lookback: 2
+    harmonic:
+      word_list: [Resonant, Harmonic, Tonal, Chordal, Overtone, Keynote, Dissonant, Sympathetic]
+    place_noun:
+      word_list: [chamber, bell, spire, arch, vault, dome, column, nave]
+    adjective:
+      word_list: [ringing, clear, deep, high, true, bright, hollow, sustained]
+  person_patterns:
+    - "{given_name}"
+    - "{given_name} {harmonic}"
+  place_patterns:
+    - "The {adjective} {place_noun}"
+    - "{given_name}'s {place_noun}"
+
+- name: Makhani
+  description: >-
+    Insectoid hive-beings with amber-resin architecture and a
+    religion built around stellar death. Their names are
+    untranslatable click-patterns rendered into human speech as
+    harsh, percussive syllables. Individual Makhani are identified
+    by function within the hive; the closest human equivalent would
+    be if your name was your job title followed by a serial number,
+    but somehow dignified.
+  slots:
+    given_name:
+      corpora:
+        - corpus: georgian.txt
+          weight: 0.7
+        - corpus: russian.txt
+          weight: 0.3
+      lookback: 2
+    caste:
+      word_list: [Tender, Keeper, Listener, Builder, Speaker, Watcher, Singer, Shaper]
+    place_noun:
+      word_list: [chamber, cell, gallery, tunnel, vault, comb, spire, nest]
+    adjective:
+      word_list: [warm, deep, old, vast, amber, sealed, humming, sacred]
+  person_patterns:
+    - "{given_name}"
+    - "{given_name} {caste}"
+    - "The {caste} {given_name}"
+  place_patterns:
+    - "The {adjective} {place_noun}"
+    - "{caste}'s {place_noun}"
+
+- name: Cinder Collective
+  description: >-
+    The Underlevel resistance — humans, Vaal-Kesh defectors, and
+    a few rogue Makhani workers who've broken from the hive. Their
+    names are deliberately unglamorous, a rejection of the Doctrine
+    of Radiance. They use short, blunt names — often occupational
+    or geographic — and refuse titles. A Cinder might be called
+    "Breck" or "Tav" or "Nine-South" (their Underspine section
+    number). The aesthetic is anti-aesthetic. That's the point.
+  slots:
+    given_name:
+      corpora:
+        - corpus: english.txt
+          weight: 0.5
+        - corpus: russian.txt
+          weight: 0.5
+      lookback: 2
+    section:
+      word_list: [North, South, Deep, Ring, Pipe, Vent, Grid, Core]
+    number:
+      word_list: [One, Two, Three, Four, Five, Six, Seven, Eight, Nine]
+    place_noun:
+      word_list: [den, cache, squat, shop, hole, bay, stack, junction]
+    adjective:
+      word_list: [rust, cold, dark, low, dry, bare, burnt, sharp]
+  person_patterns:
+    - "{given_name}"
+    - "{number}-{section}"
+    - "{given_name} {number}-{section}"
+  place_patterns:
+    - "The {adjective} {place_noun}"
+    - "{number}-{section} {place_noun}"

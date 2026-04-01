@@ -1,0 +1,256 @@
+- id: origins
+  title: Where Do You Come From?
+  narration: |
+    The drawing room is quiet save for the fire. Rain streaks the tall windows,
+    and the clock on the mantelpiece marks the hour with a sound like a small
+    judgement. You have been shown in by a servant who did not meet your eye.
+
+    The house is grand — or was, once. The wallpaper speaks of better decades.
+    A portrait above the fireplace watches you with the fixed disapproval of
+    someone long dead.
+
+    A voice from the wing chair by the fire. You hadn't noticed anyone sitting
+    there.
+
+    "Do sit down. You look as though you've come a long way." A pause. The
+    fire pops. "Who are your people?"
+  choices:
+    - label: Good Family
+      description: >-
+        Your name opens doors. Your family has land, a pew in the parish
+        church, and expectations that weigh more than any inheritance. You
+        were raised to behave, to marry well, and to never discuss money.
+      mechanical_effects:
+        race_hint: Gentry
+        background: County
+    - label: Trade
+      description: >-
+        Your father — or perhaps your mother — built something. Mills,
+        shops, shipping. The money is new and the gentry can smell it.
+        You have more wealth than breeding, and breeding is what matters.
+      mechanical_effects:
+        race_hint: Trade
+        background: New Money
+    - label: In Service
+      description: >-
+        You know the great houses from the inside — the back stairs, the
+        servants' hall, the cold kitchen at five in the morning. You know
+        every secret of the family you serve. They have never once asked
+        your Christian name.
+      mechanical_effects:
+        race_hint: Servant
+        background: Domestic
+    - label: The Church
+      description: >-
+        You were raised in the shadow of a steeple. Faith, duty, and the
+        parish register — you know who was baptised, who was buried, and
+        who was married in haste. The vicarage is modest but the position
+        is not.
+      mechanical_effects:
+        race_hint: Clergy
+        background: Parsonage
+    - label: The Margins
+      description: >-
+        Artists, writers, radicals, foreigners — you belong to the world
+        that polite society pretends doesn't exist. You have seen more
+        of life than anyone in this drawing room, and it shows in ways
+        that make them uncomfortable.
+      mechanical_effects:
+        race_hint: Bohemian
+        background: Unconventional
+    - label: From Abroad
+      description: >-
+        India, the Caribbean, Africa, the Orient — you have lived in places
+        these people can barely imagine. You came back with stories, scars,
+        and a restlessness that England's small rooms cannot contain.
+      mechanical_effects:
+        race_hint: Colonial
+        background: Returned
+  allows_freeform: true
+
+- id: crucible
+  title: What Is Your Nature?
+  narration: |
+    The figure in the chair leans forward. Firelight catches a face that is
+    difficult to read — neither old nor young, neither kind nor cruel.
+
+    "Everyone who walks through that door has a quality. Something that
+    defines them before they speak a word." The eyes study you with
+    uncomfortable precision.
+
+    "What is yours?"
+  choices:
+    - label: I Notice Everything
+      description: >-
+        The stain on the glove. The letter half-hidden in the desk. The
+        way someone's smile doesn't reach their eyes. You see what others
+        miss, and what you see keeps you up at night.
+      mechanical_effects:
+        class_hint: Detective
+        personality_trait: observant
+    - label: I Endure
+      description: >-
+        You have survived things that would have broken someone with fewer
+        resources or less stubbornness. You do what must be done, bear
+        what must be borne, and keep your counsel.
+      mechanical_effects:
+        class_hint: Governess
+        personality_trait: resilient
+    - label: I Command a Room
+      description: >-
+        When you enter, people notice. When you speak, they listen. You
+        have an instinct for power — who has it, who wants it, and how
+        to make sure it's you.
+      mechanical_effects:
+        class_hint: Society
+        personality_trait: commanding
+    - label: I Heal
+      description: >-
+        The body and its ailments. The mind and its troubles. You have
+        studied suffering and learned to ease it, and in doing so you
+        have seen every class of person at their most honest.
+      mechanical_effects:
+        class_hint: Doctor
+        personality_trait: compassionate
+    - label: I Build
+      description: >-
+        Mills, enterprises, fortunes. You see opportunity where others
+        see risk, and you have the nerve to act on it. The old families
+        may sneer, but the future belongs to you.
+      mechanical_effects:
+        class_hint: Industrialist
+        personality_trait: ambitious
+    - label: I Seek
+      description: >-
+        There is always something beyond the next hill, the next border,
+        the next locked door. You cannot leave a mystery unsolved or a
+        horizon unexplored. It has cost you, and it will cost you again.
+      mechanical_effects:
+        class_hint: Explorer
+        personality_trait: restless
+    - label: I Counsel
+      description: >-
+        People tell you things. In the vestry, in the garden, in letters
+        they should have burned. You carry the weight of other people's
+        secrets, and it has given you a particular understanding of
+        human nature.
+      mechanical_effects:
+        class_hint: Clergyman
+        personality_trait: perceptive
+  allows_freeform: true
+
+- id: connection
+  title: What Haunts You?
+  narration: |
+    The fire has burned lower. The room feels smaller. Your host rises and
+    moves to the window, looking out at the rain as though expecting someone.
+
+    "No one comes to a house like this without a reason." The voice is
+    quieter now. "There is always something — someone lost, something
+    owed, a door that should have stayed shut."
+
+    A long silence. Then, without turning: "What haunts you?"
+  choices:
+    - label: A Secret
+      description: >-
+        You know something — about yourself, about someone powerful, about
+        something that happened in a room no one talks about. The knowledge
+        is a weight you carry every day. If it surfaces, lives will change.
+        Possibly yours.
+      mechanical_effects:
+        relationship: keeper_of_secrets
+        personality_trait: guarded
+    - label: A Loss
+      description: >-
+        Someone you loved. Gone — dead, vanished, or simply lost to the
+        vast indifference of the world. Their absence is the shape of
+        your days. You catch yourself listening for their step on the stair.
+      mechanical_effects:
+        relationship: the_bereaved
+        personality_trait: melancholy
+    - label: A Debt
+      description: >-
+        Someone did you a kindness you can never repay — or a cruelty
+        you can never forget. Either way, there is an account that must
+        be settled, and the ledger keeps you awake.
+      mechanical_effects:
+        relationship: the_obligated
+        personality_trait: driven
+    - label: A Rival
+      description: >-
+        There is someone who has what you want, or wants what you have.
+        You have been circling each other for years — in society, in
+        business, in love. One of you will break first.
+      mechanical_effects:
+        relationship: the_rival
+        personality_trait: competitive
+  allows_freeform: true
+
+- id: drive
+  title: Then Why Are You Here?
+  narration: |
+    Your host turns from the window. The rain has worsened. There will be
+    no leaving tonight — not in this weather, not on these roads. You are
+    committed now, to this house and whatever it contains.
+
+    "I have a talent for reading people. Occupational necessity." A thin
+    smile. "You didn't come here by accident. Nobody does."
+
+    The clock strikes again. The fire finds something new to burn.
+
+    "Why are you here? What do you want?"
+  choices:
+    - label: The Truth
+      description: >-
+        Something is wrong in this place — in this house, this family,
+        this parish. You can feel it in the silences and the locked doors.
+        You intend to find out what it is, whatever the cost.
+      mechanical_effects:
+        goals: uncover_the_truth
+        emotional_state: determined
+    - label: A Position
+      description: >-
+        You need a place in the world — a post, a marriage, a living,
+        a practice. You have come here because this is where the
+        opportunity is, and you intend to seize it with both hands.
+      mechanical_effects:
+        goals: secure_a_position
+        emotional_state: purposeful
+    - label: Escape
+      description: >-
+        You are running from something — a scandal, a marriage, a
+        reputation, a version of yourself you cannot bear. This house
+        is far enough from everything. Perhaps here you can begin again.
+      mechanical_effects:
+        goals: start_over
+        emotional_state: wary
+    - label: Someone
+      description: >-
+        There is a person in this place you need to find — a lost
+        relation, a vanished friend, a name in a letter that should
+        never have been sent. You will not leave until you have answers.
+      mechanical_effects:
+        goals: find_someone
+        emotional_state: desperate
+  allows_freeform: true
+
+- id: confirmation
+  title: The Story Begins
+  narration: |
+    Your host nods slowly, as though a suspicion has been confirmed. They
+    move to a bell pull by the fireplace and give it a single tug.
+
+    "You'll stay the night. The east wing has been made up — it's perfectly
+    comfortable, despite what the servants say." A pause, weighted with
+    something unsaid. "I should mention — we keep early hours here. And
+    {name}?"
+
+    They meet your eyes for the first time without pretence.
+
+    "Do try to ignore any sounds in the night. Old houses settle."
+
+    A servant appears at the door with a candle. The hallway beyond is
+    long and dark, and {name} — a {race} {class} with more questions
+    than answers — follows the flickering light into the house.
+  choices: []
+  allows_freeform: false
