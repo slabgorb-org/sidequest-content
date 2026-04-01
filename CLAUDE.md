@@ -103,7 +103,6 @@ Before designing or modifying a subsystem, check the relevant ADR:
 | Multiplayer | 028 (perception rewriter), 029 (guest NPC players), 030 (scenario packs) |
 | Telemetry | 031 (game watcher semantic telemetry) |
 | Media | 032 (genre LoRA style training), 034 (portrait identity consistency) |
-
 ## Spoiler Protection
 
 - **Fully spoilable:** `mutant_wasteland/flickering_reach` only
