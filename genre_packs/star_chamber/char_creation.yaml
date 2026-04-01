@@ -1,81 +1,112 @@
-system: point_buy
-budget: 27
+- id: class_selection
+  title: "Choose Your Class"
+  narration: >-
+    Your standing before the tribunal depends on what you were before you were accused.
+    Scholar, Clergy, Magistrate, Merchant, Reformer, or Herbalist — each carries its own
+    dangers and advantages. The tribunal has already decided who you are. Now you must
+    decide whether to fight that verdict or accept it and plan escape.
+  choices:
+    - label: Scholar
+      description: "A student of dangerous texts. Your crime is curiosity."
+      mechanical_effects:
+        stat_mods:
+          Rhetoric: 2
+        starting_inventory:
+          - "A book that shouldn't exist in this city"
+    - label: Clergy
+      description: "A person of the cloth, caught between institution and conscience."
+      mechanical_effects:
+        stat_mods:
+          Authority: 2
+        starting_inventory:
+          - "A breviary with notes in the margins"
+    - label: Magistrate
+      description: "An officer of the court. You know how the machine works — from inside."
+      mechanical_effects:
+        stat_mods:
+          Authority: 2
+        starting_inventory:
+          - "A seal that opens government archives"
+    - label: Merchant
+      description: "Money is power, and power makes you a target."
+      mechanical_effects:
+        stat_mods:
+          Charm: 2
+        starting_inventory:
+          - "A ledger with dangerous entries"
+    - label: Reformer
+      description: "You believe the institution can be fixed. This makes you dangerous."
+      mechanical_effects:
+        stat_mods:
+          Conviction: 2
+        starting_inventory:
+          - "A pamphlet you wrote under a false name"
+    - label: Herbalist
+      description: "Healer, midwife, apothecary. The line between medicine and witchcraft is blurred."
+      mechanical_effects:
+        stat_mods:
+          Perception: 2
+        starting_inventory:
+          - "A bundle of herbs with dual uses"
 
-stats:
-  - name: Conviction
-    description: >-
-      Strength of belief and will. Resists coercion, withstands interrogation,
-      and holds the line under pressure. High Conviction makes you harder to
-      break — and harder to compromise with.
-  - name: Rhetoric
-    description: >-
-      The art of argument. Cross-examine witnesses, defend yourself before the
-      tribunal, persuade the undecided. Words are the primary weapon in Star
-      Chamber. Every other stat keeps you alive; this one keeps you free.
-  - name: Cunning
-    description: >-
-      Deception, stealth, and the ability to hide in plain sight. Avoid
-      informants, smuggle banned materials, feed false information to the
-      tribunal. The opposite of Conviction — where Conviction is sincere,
-      Cunning is strategic.
-  - name: Perception
-    description: >-
-      Noticing what others miss. Identify informants, spot contradictions in
-      testimony, read the room during a tribunal session. The skill of the
-      detective and the paranoid — in Star Chamber, they're the same person.
-  - name: Authority
-    description: >-
-      Institutional weight. Command obedience, open doors, compel testimony.
-      High Authority means the system recognizes you — which is power until
-      the system turns on you.
-  - name: Charm
-    description: >-
-      Personal magnetism and social grace. Build alliances, earn trust,
-      befriend witnesses, navigate faction politics. Charm gets people to
-      talk to you. What they say depends on what you ask.
+- id: race_selection
+  title: "Choose Your Origin"
+  narration: >-
+    Where you stand in the social order affects how the tribunal sees you.
+    Are you Gentry with standing to lose? A Townsperson, visible yet unremarkable?
+    Minor Clergy with inside knowledge? A Servant, invisible until named?
+    Or a Foreign outsider, automatically suspect?
+  choices:
+    - label: Gentry
+      description: "Property, name, and standing. All can be seized."
+      mechanical_effects:
+        stat_mods:
+          Authority: 1
+        starting_inventory:
+          - "Proof of land ownership"
+    - label: Townsperson
+      description: "The backbone of the community. Anonymous until named."
+      mechanical_effects:
+        stat_mods: {}
+        starting_inventory: []
+    - label: Minor Clergy
+      description: "Low rank in the church. Close enough to see the machinery."
+      mechanical_effects:
+        stat_mods:
+          Conviction: 1
+        starting_inventory:
+          - "A prayer book with margin notes"
+    - label: Servant
+      description: "Invisible. Which means you see everything."
+      mechanical_effects:
+        stat_mods:
+          Cunning: 1
+        starting_inventory: []
+    - label: Foreign
+      description: "An outsider. Suspicion is default."
+      mechanical_effects:
+        stat_mods:
+          Perception: 1
+        starting_inventory: []
 
-class_descriptions:
-  Scholar:
-    description: "A student of dangerous texts. Your crime is curiosity."
-    starting_bonus: "+2 Rhetoric"
-    signature_item: "A book that shouldn't exist in this city"
-  Clergy:
-    description: "A person of the cloth, caught between institution and conscience."
-    starting_bonus: "+2 Authority"
-    signature_item: "A breviary with notes in the margins that could be read two ways"
-  Magistrate:
-    description: "An officer of the court. You know how the machine works — from inside."
-    starting_bonus: "+2 Authority"
-    signature_item: "A seal that opens government archives"
-  Merchant:
-    description: "Money is power, and power makes you a target."
-    starting_bonus: "+2 Charm"
-    signature_item: "A ledger with entries that implicate important people"
-  Reformer:
-    description: "You believe the institution can be fixed. This makes you dangerous to everyone."
-    starting_bonus: "+2 Conviction"
-    signature_item: "A pamphlet you wrote under a false name"
-  Herbalist:
-    description: "Healer, midwife, apothecary. The line between medicine and witchcraft is drawn by your accusers."
-    starting_bonus: "+2 Perception"
-    signature_item: "A bundle of herbs that cure fevers and damn reputations"
+- id: stat_allocation
+  title: "Allocate Your Convictions"
+  narration: >-
+    You have 27 points to distribute among your core stats: Conviction, Rhetoric,
+    Cunning, Perception, Authority, and Charm. No stat can exceed 18 or fall below 3.
+    These numbers won't save you — but they determine how you fail.
+  choices: []
+  allows_freeform: true
 
-race_descriptions:
-  Gentry:
-    description: "Property, name, and standing. All of which can be seized."
-  Townsperson:
-    description: "The backbone of the community. Anonymous until named."
-  Minor Clergy:
-    description: "Low rank in the church. Close enough to see the machinery. Not important enough to operate it."
-  Servant:
-    description: "Invisible. Which means you see everything."
-  Foreign:
-    description: "An outsider. Suspicion is default. Anonymity is the compensation."
-
-hooks:
-  - type: MOTIVATION
-    prompt: "What belief, possession, or person would you risk the tribunal to protect?"
-  - type: SECRET
-    prompt: "What have you done, hidden, or said that the tribunal must never learn?"
-  - type: CONNECTION
-    prompt: "Who in this city do you trust — and what would it cost them to be seen with you?"
+- id: confirmation
+  title: "Accept This Identity"
+  narration: >-
+    You stand in the chamber. The tribunal waits. The evidence against you is mounting.
+    Confess? Fight? Appeal? Flee? That choice comes when the tribunal convenes.
+    For now, you are who you are.
+  choices:
+    - label: "Begin the trial"
+      description: "Face what comes"
+      mechanical_effects:
+        stat_mods: {}
+        starting_inventory: []
