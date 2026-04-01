@@ -1,0 +1,221 @@
+# World-specific tropes — extends genre tropes for the Blackthorn mystery
+
+- id: the_death_of_sir_edmund
+  name: The Death of Sir Edmund
+  description: >-
+    The central mystery. Sir Edmund Blackthorn died in his study on the night
+    of October the fourteenth. The death certificate says heart failure. The
+    evidence says otherwise. Someone in this house knows what happened.
+  category: mystery
+  triggers:
+    - examining the study
+    - questioning the doctor
+    - finding physical evidence
+    - contradictions in the household's account
+  narrative_hints:
+    - the brandy glass on the desk, untouched
+    - a window that was open when it shouldn't have been
+    - the fire burning too hot for the time of night
+    - Dr. Ashworth's reluctance to discuss the specifics
+  tension_level: 0.3
+  resolution_hints:
+    - piece together the timeline of the evening from multiple witnesses
+    - find the physical evidence that contradicts the official account
+    - confront the person Mrs. Poole saw entering the study
+    - force the reading of the will, which changes everyone's motive
+  tags: [mystery, central, death, investigation]
+  escalation:
+    - at: 0.2
+      event: >-
+        Small inconsistencies surface. The timeline doesn't quite fit.
+        Someone mentions a detail that contradicts someone else's account,
+        and both notice.
+      npcs_involved: [Dr. Ashworth, Mrs. Poole]
+      stakes: The official story has cracks. Someone is watching to see if you notice.
+    - at: 0.4
+      event: >-
+        Physical evidence appears — a stain, a missing object, a door that
+        was locked and is now open. The household's coordinated story begins
+        to fray at the edges.
+      npcs_involved: [Miss Fairfax, Mrs. Poole]
+      stakes: The investigation has substance now. Someone will try to redirect it.
+    - at: 0.6
+      event: >-
+        A witness breaks. Someone tells you something they swore they
+        wouldn't — not everything, but enough to change the picture entirely.
+        Another person in the house notices they've talked.
+      npcs_involved: [Dr. Ashworth, Reverend Stanbury]
+      stakes: The truth is within reach. The danger to you is growing.
+    - at: 0.8
+      event: >-
+        Evidence is destroyed or hidden. An attempt is made to discredit
+        you, remove you from the house, or reframe the investigation. Someone
+        is desperate enough to act openly.
+      npcs_involved: [Captain Hale, Lady Blackthorn]
+      stakes: The killer knows you're close. The next move is theirs.
+    - at: 1.0
+      event: >-
+        The truth emerges — in the drawing room, with everyone present,
+        in a moment that cannot be undone. The question is not just who
+        did it, but why, and what the household will do with the answer.
+      npcs_involved: [Lady Blackthorn, Mr. Graves, Dr. Ashworth]
+      stakes: Justice, mercy, or silence. The choice defines everything.
+  passive_progression:
+    rate_per_turn: 0.003
+    rate_per_day: 0.015
+    accelerators:
+      - evidence
+      - interrogation
+      - study
+      - contradiction
+      - witness
+    decelerators:
+      - accepting explanations
+      - socialising
+      - avoiding the study
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+
+- id: the_contested_will
+  name: The Contested Will
+  description: >-
+    Sir Edmund's will is in the solicitor's locked case and no one knows
+    its contents. The reading has been postponed twice. Everyone in the
+    house has a stake in the outcome. The will may contain the motive
+    for murder.
+  category: conflict
+  triggers:
+    - the solicitor's arrival
+    - questions about the inheritance
+    - discovery that the will was recently changed
+  narrative_hints:
+    - Mr. Graves's locked document case
+    - Captain Hale's barely concealed anxiety
+    - Lady Blackthorn's studied indifference to the topic
+    - Rose's name coming up in unexpected contexts
+  tension_level: 0.4
+  resolution_hints:
+    - pressure the solicitor to read the will early
+    - discover what changed in the new will
+    - find the previous version and compare
+    - let the reading happen and watch the reactions
+  tags: [legal, inheritance, motive, revelation]
+  escalation:
+    - at: 0.2
+      event: >-
+        The solicitor announces the reading will take place tomorrow. The
+        household's behaviour shifts — alliances form, conversations happen
+        behind closed doors.
+      npcs_involved: [Mr. Graves, Captain Hale]
+      stakes: The countdown has begun. Everyone is positioning.
+    - at: 0.4
+      event: >-
+        Someone attempts to speak privately with the solicitor. Another
+        person attempts to access the document case. Both are refused.
+      npcs_involved: [Mr. Graves, Lady Blackthorn, Captain Hale]
+      stakes: The will's contents are clearly explosive. Multiple people are afraid.
+    - at: 0.6
+      event: >-
+        A piece of information leaks — a clause, a name, a condition.
+        Not enough to know the full picture, but enough to change
+        everyone's calculations.
+      npcs_involved: [Mr. Graves]
+      stakes: The partial revelation accelerates the crisis.
+    - at: 0.8
+      event: >-
+        An attempt is made to destroy or alter the will. The solicitor
+        takes precautions. Trust collapses entirely.
+      npcs_involved: [Mr. Graves, Captain Hale]
+      stakes: Someone is willing to commit a crime to control the outcome.
+    - at: 1.0
+      event: >-
+        The will is read. Rose is named as Sir Edmund's natural daughter
+        and primary heir. The room goes very quiet. Then it doesn't.
+      npcs_involved: [Mr. Graves, Rose Blackthorn, Lady Blackthorn, Captain Hale]
+      stakes: Everything changes. Every relationship in the house is redefined.
+  passive_progression:
+    rate_per_turn: 0.004
+    rate_per_day: 0.02
+    accelerators:
+      - will
+      - solicitor
+      - inheritance
+      - document
+      - reading
+    decelerators:
+      - distraction
+      - delay
+      - other investigations
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
+
+- id: the_burned_letter
+  name: The Burned Letter
+  description: >-
+    Miss Fairfax found a half-burned letter in the study fireplace the
+    morning after Sir Edmund's death. She kept it. The surviving fragment
+    is cryptic but suggests Sir Edmund knew he was in danger. Finding the
+    rest — or the sender — could break the case open.
+  category: mystery
+  triggers:
+    - befriending Miss Fairfax
+    - examining the study fireplace
+    - asking about Sir Edmund's correspondence
+  narrative_hints:
+    - ash in the fireplace that was unusually thorough
+    - Miss Fairfax's careful omissions when describing the morning after
+    - Sir Edmund's habit of burning letters immediately after reading them
+  tension_level: 0.5
+  resolution_hints:
+    - earn Miss Fairfax's trust and see the fragment
+    - identify the handwriting or the paper
+    - find the sender through the post office records
+    - reconstruct the letter's contents from context
+  tags: [evidence, trust, correspondence, clue]
+  escalation:
+    - at: 0.2
+      event: >-
+        Miss Fairfax mentions, almost casually, that the study fireplace
+        was unusually hot the morning after. She watches your reaction.
+      npcs_involved: [Miss Fairfax]
+      stakes: She's testing whether you can be trusted.
+    - at: 0.4
+      event: >-
+        Miss Fairfax shows you the fragment. A few words survive: a name,
+        a warning, a date. Not enough alone, but a thread to pull.
+      npcs_involved: [Miss Fairfax]
+      stakes: You have physical evidence. Someone will want it.
+    - at: 0.6
+      event: >-
+        The fragment connects to something else — a name in the parish
+        register, a transaction in the mill's books, a person who
+        shouldn't have been in the county.
+      npcs_involved: [Miss Fairfax, Reverend Stanbury]
+      stakes: The letter points to someone specific. The net is tightening.
+    - at: 0.8
+      event: >-
+        Someone discovers that Miss Fairfax has the fragment. Her position
+        in the household is threatened. Protecting her and the evidence
+        becomes urgent.
+      npcs_involved: [Miss Fairfax, Mrs. Poole, Lady Blackthorn]
+      stakes: The evidence and the witness are both in danger.
+    - at: 1.0
+      event: >-
+        The letter's full contents are reconstructed or the sender is
+        found. The final piece of the puzzle falls into place.
+      npcs_involved: [Miss Fairfax, Mr. Graves]
+      stakes: The truth is assembled. The question is what to do with it.
+  passive_progression:
+    rate_per_turn: 0.002
+    rate_per_day: 0.01
+    accelerators:
+      - trust
+      - evidence
+      - letter
+      - fireplace
+      - correspondence
+    decelerators:
+      - alienating Miss Fairfax
+      - ignoring the study
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03

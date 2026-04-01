@@ -1,0 +1,414 @@
+- id: stranger_rides_in
+  name: A Stranger Rides In
+  description: >-
+    A lone figure appears on the horizon and rides into town. Everyone
+    watches. Nobody speaks first. The existing power structure begins
+    to shift the moment the stranger dismounts, because every faction
+    sees an opportunity or a threat.
+  category: arrival
+  triggers:
+    - arrive in town
+    - new settlement
+    - stranger enters
+  narrative_hints:
+    - shutters close as the stranger walks the main street
+    - the saloon goes quiet for three beats too long
+    - a child runs to tell someone important
+  tension_level: 0.3
+  resolution_hints:
+    - align with one faction against another
+    - play both sides and profit from the chaos
+    - solve the town's problem and ride on
+  tags: [classic, arrival, faction]
+  escalation:
+    - at: 0.2
+      event: >-
+        The local power broker sends someone to size up the stranger —
+        a casual conversation that is anything but casual.
+      npcs_involved: [The Card Sharp]
+      stakes: First impressions set the terms. Reveal too much and you lose leverage.
+    - at: 0.4
+      event: >-
+        A second faction makes contact, offering a job or a warning.
+        The stranger is now a piece on the board whether they like it or not.
+      npcs_involved: [The Desperate Bandit]
+      stakes: Refusing both sides is itself a choice with consequences.
+    - at: 0.6
+      event: >-
+        Someone tests the stranger — a provocation in the saloon, a
+        rigged card game, a midnight visit with a knife.
+      npcs_involved: [The Hired Gun]
+      stakes: How the stranger responds defines their reputation in town.
+    - at: 0.8
+      event: >-
+        Both factions realize the stranger cannot be controlled. They
+        begin to coordinate against the common threat.
+      npcs_involved: [The Corrupt Sheriff, The Desperate Bandit]
+      stakes: The stranger is now hunted by everyone with power.
+    - at: 1.0
+      event: >-
+        Full confrontation. The town's rotten structure collapses into
+        open violence. The stranger is at the center of it.
+      npcs_involved: [The Corrupt Sheriff, The Hired Gun]
+      stakes: Survival. The town will be different after today.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.03
+    accelerators:
+      - provoke
+      - challenge
+      - reveal identity
+      - take a side
+    decelerators:
+      - lay low
+      - leave town
+      - bribe
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: the_standoff
+  name: The Standoff
+  description: >-
+    Two or more enemies meet in the open, hands near weapons, and time
+    stops. The standoff is the genre's sacred ritual — the moment where
+    skill, nerve, and fate converge. Everything before was prologue.
+    Everything after is consequence.
+  category: confrontation
+  triggers:
+    - challenge to duel
+    - face-to-face with enemy
+    - honor demands satisfaction
+  narrative_hints:
+    - the wind dies
+    - a clock ticks somewhere
+    - extreme close-up on eyes, hands, holsters
+  tension_level: 0.8
+  resolution_hints:
+    - draw and fire — someone dies
+    - one combatant breaks nerve and backs down
+    - an interruption delays the reckoning
+  tags: [classic, combat, ritual]
+  escalation:
+    - at: 0.2
+      event: >-
+        Words are exchanged. The challenge is issued — directly or through
+        implication. Bystanders clear the street.
+      npcs_involved: []
+      stakes: Once the challenge is spoken, backing down costs reputation.
+    - at: 0.5
+      event: >-
+        The combatants take position. Time stretches. The sizing-up begins —
+        every twitch of a hand, every shift of weight, is information.
+      npcs_involved: []
+      stakes: NERVE is being tested. The first one to flinch loses the advantage.
+    - at: 0.8
+      event: >-
+        The moment of draw. Hands move. The world holds its breath.
+      npcs_involved: []
+      stakes: Life and death, decided in less than a second.
+    - at: 1.0
+      event: >-
+        Gunsmoke clears. One stands. One falls. The town exhales.
+      npcs_involved: []
+      stakes: The survivor's reputation is permanently altered.
+  passive_progression:
+    rate_per_turn: 0.10
+    rate_per_day: 0.0
+    accelerators:
+      - insult
+      - draw weapon
+      - threaten
+    decelerators:
+      - back down
+      - offer terms
+      - walk away
+    accelerator_bonus: 0.10
+    decelerator_penalty: 0.05
+
+- id: gold_fever
+  name: Gold Fever
+  description: >-
+    Word of treasure — buried gold, a payroll shipment, a hidden mine,
+    a fortune in stolen goods. The rumor spreads like fire and draws
+    every opportunist in the territory. Alliances form and dissolve
+    around the promise of wealth. Trust evaporates. The gold becomes
+    the lens through which every relationship is refracted.
+  category: pursuit
+  triggers:
+    - mention of treasure
+    - discovery of map
+    - rumor of gold
+    - hidden fortune
+  narrative_hints:
+    - strangers appear in town asking careful questions
+    - old partnerships fracture over the possibility of wealth
+    - someone is killed for a scrap of information
+  tension_level: 0.5
+  resolution_hints:
+    - find the gold and keep it
+    - find the gold and discover it was never worth the blood
+    - the gold was a myth all along — but the damage is real
+    - the gold exists but claiming it means betraying a partner
+  tags: [classic, greed, pursuit, betrayal]
+  escalation:
+    - at: 0.2
+      event: >-
+        A rumor surfaces — a dying man's confession, a fragment of map,
+        a coded letter. The first whispers of something valuable hidden
+        in the territory.
+      npcs_involved: [The Card Sharp]
+      stakes: Information is the first commodity. Who knows what, and who are they telling?
+    - at: 0.4
+      event: >-
+        Multiple parties are now pursuing the same prize. An uneasy
+        alliance of convenience forms — share the risk, split the take.
+      npcs_involved: [The Desperate Bandit, The Bounty Collector]
+      stakes: The alliance is already fragile. Everyone is calculating their double-cross.
+    - at: 0.6
+      event: >-
+        The first betrayal. Someone acts on their own — steals the map,
+        sells information to a rival, or simply disappears in the night.
+      npcs_involved: [The Desperate Bandit]
+      stakes: Trust is broken. The pursuit becomes a race between former allies.
+    - at: 0.8
+      event: >-
+        The gold is close. The final obstacle is not distance or enemies
+        but the people you traveled with. The math is simple — fewer
+        shares means more gold.
+      npcs_involved: [The Man With No Name]
+      stakes: Betrayal or loyalty. This is where character is revealed.
+    - at: 1.0
+      event: >-
+        The gold is found — or the place where it was supposed to be.
+        Whatever remains of the party faces the final reckoning.
+      npcs_involved: []
+      stakes: Was it worth it? The answer defines everyone who survived.
+  passive_progression:
+    rate_per_turn: 0.015
+    rate_per_day: 0.025
+    accelerators:
+      - gold
+      - treasure
+      - map
+      - fortune
+      - rich
+    decelerators:
+      - abandon search
+      - burn the map
+      - share information freely
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: the_reckoning
+  name: The Reckoning
+  description: >-
+    An old wrong demands payment. Someone has come for revenge — patient,
+    focused, implacable. The target may not even remember the original
+    sin, but the avenger has carried it across years and miles. The
+    reckoning is not a fight. It is a sentence.
+  category: vengeance
+  triggers:
+    - mention of past wrong
+    - return of old enemy
+    - revenge vow
+    - old debts
+  narrative_hints:
+    - a stranger asks questions about someone's past
+    - old names surface that make people nervous
+    - someone receives a token or message from long ago
+  tension_level: 0.6
+  resolution_hints:
+    - the avenger finds the target and justice is served
+    - the avenger discovers the truth is more complicated than the grudge
+    - the target has changed — revenge loses its clarity
+    - the avenger becomes the monster they sought to destroy
+  tags: [classic, revenge, personal, moral]
+  escalation:
+    - at: 0.2
+      event: >-
+        Signs of the avenger's approach — questions asked in neighboring
+        towns, a trail of people who talked too much and regretted it.
+      npcs_involved: []
+      stakes: The target does not yet know they are hunted.
+    - at: 0.4
+      event: >-
+        The avenger arrives. They do not act immediately. They watch.
+        They learn the target's routines, allies, weaknesses.
+      npcs_involved: [The Man With No Name]
+      stakes: The noose tightens. People around the target sense something wrong.
+    - at: 0.6
+      event: >-
+        First contact. The avenger reveals themselves — or reveals just
+        enough to make the target afraid.
+      npcs_involved: []
+      stakes: The target now knows. Do they run, fight, or try to make amends?
+    - at: 0.8
+      event: >-
+        The target's defenses crumble. Allies are neutralized, escape
+        routes closed. The reckoning is imminent.
+      npcs_involved: [The Hired Gun]
+      stakes: The target is cornered. Only intervention can change the outcome.
+    - at: 1.0
+      event: >-
+        Face to face. The original wrong is spoken aloud. The avenger
+        decides: mercy or death.
+      npcs_involved: []
+      stakes: The avenger's soul. Killing may satisfy justice but it will not satisfy the grief.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.03
+    accelerators:
+      - revenge
+      - justice
+      - old debts
+      - past
+    decelerators:
+      - forgive
+      - flee
+      - misdirect the avenger
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+
+- id: railroad_coming
+  name: The Railroad Is Coming
+  description: >-
+    Progress has a schedule and it does not negotiate. The railroad
+    represents capital, modernity, and power that dwarfs any local
+    faction. It needs land, labor, and a clear right-of-way — and
+    it will acquire all three by purchase, coercion, or force. Every
+    person in its path must choose: profit, resist, or get out of
+    the way.
+  category: conflict
+  triggers:
+    - railroad
+    - land dispute
+    - eminent domain
+    - progress
+    - development
+  narrative_hints:
+    - surveyors appear on disputed land
+    - land prices spike or crash depending on the route
+    - hired muscle arrives in town with no local ties
+  tension_level: 0.5
+  resolution_hints:
+    - negotiate a fair deal for the displaced
+    - expose the railroad's crimes and force accountability
+    - take the railroad's money and live with it
+    - burn the railroad out and accept the consequences
+  tags: [political, progress, faction, land]
+  escalation:
+    - at: 0.2
+      event: >-
+        Surveyors appear on the outskirts, driving stakes and measuring
+        distances. They are polite, professional, and backed by lawyers
+        nobody in town can afford.
+      npcs_involved: []
+      stakes: The first stakes in the ground are literal. The metaphorical ones follow.
+    - at: 0.4
+      event: >-
+        A representative arrives with buyout offers. Generous for those
+        who cooperate. Conspicuously absent for those who don't.
+      npcs_involved: [The Card Sharp]
+      stakes: Early cooperation means good money. Holdouts watch their neighbors get paid.
+    - at: 0.6
+      event: >-
+        The holdouts face pressure. Cattle fences cut. Water rights
+        contested. A mysterious fire. The railroad's patience has
+        limits.
+      npcs_involved: [The Hired Gun]
+      stakes: Resistance is becoming costly. The railroad plays dirty when it needs to.
+    - at: 0.8
+      event: >-
+        Open violence. Hired guns move against the remaining resistance.
+        The sheriff looks the other way — or pins on a railroad badge.
+      npcs_involved: [The Corrupt Sheriff, The Hired Gun]
+      stakes: The last holdouts fight or flee. The railroad does not stop.
+    - at: 1.0
+      event: >-
+        The tracks are laid or they are not. The town is transformed
+        or destroyed. Progress has arrived — and left its boot prints
+        on everyone who stood in the way.
+      npcs_involved: []
+      stakes: The shape of the future. Nothing in the territory will be the same.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.04
+    accelerators:
+      - railroad
+      - progress
+      - land
+      - development
+    decelerators:
+      - sabotage
+      - legal challenge
+      - bribe official
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
+
+- id: bounty_on_your_head
+  name: Bounty on Your Head
+  description: >-
+    Someone has put a price on the party or an ally. Every bounty
+    hunter, desperate farmer, and opportunist in the territory is now
+    a potential threat. Trust narrows to nothing. The open road becomes
+    a gauntlet.
+  category: pursuit
+  triggers:
+    - bounty placed
+    - wanted poster
+    - price on head
+  narrative_hints:
+    - wanted posters appear nailed to posts and walls
+    - strangers study you a beat too long in the saloon
+    - someone you trusted asks careful questions about your plans
+  tension_level: 0.6
+  resolution_hints:
+    - find and confront the person who placed the bounty
+    - earn enough money to buy off the bounty
+    - fake your own death
+    - kill enough bounty hunters that nobody else takes the contract
+  tags: [pursuit, survival, reputation]
+  escalation:
+    - at: 0.2
+      event: >-
+        The first poster appears. The price is modest — enough to
+        interest amateurs, not professionals. Yet.
+      npcs_involved: []
+      stakes: Inconvenience, not danger. But the clock is ticking.
+    - at: 0.4
+      event: >-
+        The price goes up. A professional bounty hunter arrives in
+        the territory, asking questions, studying trails.
+      npcs_involved: [The Bounty Collector]
+      stakes: A professional changes the calculus. Running is harder than fighting.
+    - at: 0.6
+      event: >-
+        An ambush. Someone the party trusted — a merchant, an innkeeper,
+        a fellow traveler — tries to collect.
+      npcs_involved: []
+      stakes: Trust is shattered. Anyone could be hunting you.
+    - at: 0.8
+      event: >-
+        Multiple hunters converge. The territory is closing in. Safe
+        havens are compromised.
+      npcs_involved: [The Bounty Collector, The Hired Gun]
+      stakes: Nowhere to rest. Every town is a trap.
+    - at: 1.0
+      event: >-
+        Cornered. The final confrontation with the best hunter on
+        the trail — or with the person who placed the bounty.
+      npcs_involved: [The Bounty Collector]
+      stakes: Freedom or capture. The bounty ends one way or another.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.03
+    accelerators:
+      - bounty
+      - wanted
+      - recognized
+    decelerators:
+      - disguise
+      - flee territory
+      - pay off
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.04

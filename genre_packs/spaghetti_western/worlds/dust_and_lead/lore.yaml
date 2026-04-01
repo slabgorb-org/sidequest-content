@@ -1,0 +1,147 @@
+# Dust and Lead — World Lore
+# Replaces genre-level lore with setting-specific detail.
+
+world_truth: >-
+  The Sangre Territory is a place where three civilizations collide and
+  none of them wins cleanly. The Mexican families who built the ranches
+  and missions were here first. The Anglo settlers who brought the law
+  and the railroad came second. The Apache who held the canyons and
+  mountains were here before either and will not leave quietly. Each
+  group has legitimate grievances. None has clean hands. The territory
+  is not a frontier — it is a collision zone.
+
+the_land: >-
+  One hundred miles of Chihuahuan desert bisected by the Sangre River
+  and bounded by mountains to the west and open prairie to the east.
+  Summer temperatures exceed 110 degrees. Rain falls rarely and
+  violently. The river is the only reliable water for fifty miles in
+  any direction, which is why everyone who matters controls a piece
+  of its bank. Away from the river, the land is beautiful and lethal
+  — red rock canyons, white salt flats, mesquite scrub that goes on
+  forever, and a sky so wide it makes people feel small enough to act
+  recklessly.
+
+the_border: >-
+  The border is the Sangre River. On the north side: American law,
+  such as it is. On the south side: Mexican sovereignty, such as it
+  is. In practice, both sides are governed by whoever has the most
+  guns in the immediate vicinity. Cattle, contraband, and fugitives
+  cross freely. The Rangers patrol the north bank. The Rurales patrol
+  the south. Neither can cross without causing an international
+  incident, which creates a narrow strip of effective lawlessness
+  along the river that everyone exploits.
+
+the_railroad: >-
+  The Consolidated Mining & Rail Company is pushing tracks westward
+  from Santo Puente toward Sangre del Paso. The railroad represents
+  modernity, capital, and a power that dwarfs anything local. It needs
+  right-of-way through ranch land, water rights along the river, and
+  labor willing to work in killing heat. It has lawyers, hired guns,
+  and a territorial governor who owes his appointment to the company's
+  eastern investors. The railroad is not evil. It is simply larger
+  than any person or community in its path, and it does not slow down.
+
+the_silver: >-
+  The Consolidated Sierra Mine produces silver steadily from a vein
+  in the Sierra Perdida. The mine employs desperate men at poor wages
+  and guards its output with private security that answers to the
+  company, not the territory. Los Cuervos raid the silver shipments.
+  The Apache consider the mountain sacred. The mine is a wound in the
+  landscape that produces wealth for people who live a thousand miles
+  east and misery for everyone within rifle range of its entrance.
+
+the_faith: >-
+  The Mission of Santo Puente is the oldest permanent structure in the
+  territory — adobe walls built by Franciscans a century before the
+  border existed. Father Mateo tends a congregation that spans every
+  faction: Mexican families at morning mass, Anglo miners at evening
+  confession, and occasionally an Apache scout who sits in the last
+  pew and says nothing. The mission is neutral ground. Even Los Cuervos
+  respect it. Even the Consolidated does not build within its shadow.
+  How long this holds depends on how desperate things get.
+
+factions:
+  - name: Los Cuervos
+    reputation_id: outlaws
+    description: >-
+      Cross-border outlaws flying the crow banner. Rustlers, smugglers,
+      and — depending on who you ask — freedom fighters. Founded after
+      the hanging of three innocent vaqueros, they raid Anglo cattle
+      operations and Consolidated silver shipments with equal enthusiasm.
+      Their current leader, Capitán Cuervo, styles himself a revolutionary.
+      His men are loyal because he shares the take. The Mexican families
+      tolerate them because they remember why the Cuervos exist.
+    leader: Capitán Cuervo
+    base: South of the river, in the canyons
+    goals:
+      - Raid Consolidated assets
+      - Protect Mexican interests (and profit from the protection)
+      - Avoid the Rangers long enough to spend the silver
+
+  - name: The Sangre Rangers
+    reputation_id: law
+    description: >-
+      Three men with tin stars and repeating rifles responsible for
+      enforcing territorial law across a thousand square miles. Captain
+      Abel Stone is honest. Deputy Harlan Dent is compromised. Deputy
+      Rosa Vega is new enough to still believe in the job. They are
+      outgunned by every faction and outmaneuvered by the Consolidated's
+      lawyers. Their authority is real on paper and conditional in practice.
+    leader: Captain Abel Stone
+    base: Sangre del Paso courthouse
+    goals:
+      - Maintain order (or the appearance of it)
+      - Stop Los Cuervos raids
+      - Stay alive long enough to collect a pension
+
+  - name: The Families
+    reputation_id: merchants
+    description: >-
+      Mexican ranching families who predate the border and Anglo
+      homesteaders who arrived after — united by geography and the
+      shared experience of being small in a territory that rewards
+      big. The Reyes family is the oldest and most respected. The
+      Harwick homesteaders are the newest and most vulnerable. They
+      do not always trust each other, but they trust the Consolidated
+      and Los Cuervos even less.
+    leader: Señora Alma Reyes (informal)
+    base: Scattered ranches along the river
+    goals:
+      - Keep their land
+      - Keep their water rights
+      - Survive whoever wins the territory
+
+  - name: The Contractors
+    reputation_id: guns_for_hire
+    description: >-
+      Bounty hunters, mercenaries, and hired security operating in
+      the territory. Some work for the Consolidated. Some work for
+      whoever pays. Solomon Cole is the most feared — a bounty hunter
+      whose ledger is never wrong and whose prey is never seen again.
+      The Contractors have no loyalty except to the contract. This
+      makes them useful and terrifying in equal measure.
+    leader: Solomon Cole (first among equals)
+    base: No fixed base — they go where the money is
+    goals:
+      - Collect bounties
+      - Secure Consolidated assets (for a fee)
+      - Stay neutral enough to work for everyone
+
+  - name: The Consolidated
+    reputation_id: power_brokers
+    description: >-
+      The Consolidated Mining & Rail Company. Eastern money, territorial
+      ambition, and the patience to buy what it cannot take and take what
+      it cannot buy. Their man in the territory is Superintendent
+      Josephus Ward — a polite, methodical administrator who treats
+      land acquisition the way a surgeon treats amputation: regrettable,
+      necessary, and best done quickly. The railroad and the mine are
+      the same entity. The territorial governor is effectively their
+      employee.
+    leader: Superintendent Josephus Ward
+    base: Santo Puente railhead offices
+    goals:
+      - Complete the railroad to Sangre del Paso
+      - Secure water and land rights along the route
+      - Maximize silver output from the Sierra Perdida mine
+      - Eliminate obstacles (legal, political, or otherwise)
