@@ -1,0 +1,212 @@
+- id: the_keeper_stirs
+  name: The Keeper Stirs
+  description: >-
+    The dungeon's intelligence responds to intrusion. As Keeper awareness
+    rises, the dungeon becomes actively hostile — doors lock, traps reset,
+    and the Keeper's voice echoes through the stone.
+  category: tension
+  triggers:
+    - keeper awareness threshold reached
+    - loud combat in the dungeon
+    - breaking doors or barriers
+    - removing treasure from guarded rooms
+  narrative_hints:
+    - a distant grinding sound, like stone teeth
+    - torchlight flickers without a draft
+    - the walls feel closer than they did a moment ago
+  tension_level: 0.6
+  resolution_hints:
+    - reduce awareness through stealth and quiet movement
+    - leave the dungeon and return when the Keeper settles
+    - push deeper before the Keeper fully awakens
+  tags: [keeper, dungeon, tension, escalation]
+  escalation:
+    - at: 0.2
+      event: >-
+        A sound reverberates through the corridors — not a collapse, but
+        something deliberate. A door that was open is now closed. A passage
+        that was clear now has footprints that were not there before.
+      npcs_involved: []
+      stakes: The dungeon is aware of intruders. Wandering monster frequency increases.
+    - at: 0.4
+      event: >-
+        Words appear on a wall in a language that shifts as you read it.
+        The Keeper speaks — a taunt, a warning, or a riddle. The temperature
+        drops. Something in the dark ahead is waiting.
+      npcs_involved: []
+      stakes: Traps begin resetting. Previously cleared rooms may contain new hazards.
+    - at: 0.6
+      event: >-
+        Doors throughout the dungeon slam shut and lock. The room the party
+        is in begins to change — walls shift, exits rearrange. The Keeper
+        is no longer observing. It is acting.
+      npcs_involved: []
+      stakes: Navigation becomes unreliable. The automapper may show paths that no longer exist.
+    - at: 0.8
+      event: >-
+        The Keeper manifests directly — not as a creature, but as the dungeon
+        itself turning hostile. The floor tilts. Torches are blown out by
+        an impossible wind. The walls breathe.
+      npcs_involved: []
+      stakes: Resource drain accelerates. Every room transition costs double ticks.
+    - at: 1.0
+      event: >-
+        The dungeon is fully awake and fully hostile. Every room is a trap.
+        Every corridor is watched. The only option is extraction — immediate,
+        desperate, and costly.
+      npcs_involved: []
+      stakes: Total hostility. The party must flee or die.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.0
+    accelerators:
+      - combat
+      - breach
+      - loud
+
+- id: extraction_panic
+  name: Extraction Panic
+  description: >-
+    The party has treasure and is heading for the exit. The dungeon knows.
+    Rooms that were empty on the way in are occupied on the way out.
+    The Keeper wants its gold back.
+  category: conflict
+  triggers:
+    - party turns back toward exit with treasure
+    - encumbrance is high
+    - keeper awareness is elevated
+  narrative_hints:
+    - sounds of movement from rooms you already cleared
+    - the route back seems longer than the route in
+    - your torch gutters at the worst possible moment
+  tension_level: 0.8
+  resolution_hints:
+    - drop treasure to move faster
+    - find an alternate exit
+    - fight through the restocked rooms
+  tags: [extraction, treasure, tension, resource]
+  escalation:
+    - at: 0.3
+      event: >-
+        A room you cleared on the way in now has fresh occupants — creatures
+        that were not here before, drawn by the scent of plunder or directed
+        by the Keeper.
+      npcs_involved: []
+      stakes: Combat costs resources the party cannot afford to spend.
+    - at: 0.6
+      event: >-
+        A passage collapses behind the party, forcing a detour through
+        unexplored rooms. The detour costs torches and rations the party
+        did not budget for.
+      npcs_involved: []
+      stakes: Resource emergency. The party may run out of light before reaching the exit.
+    - at: 1.0
+      event: >-
+        The mouth of the dungeon is in sight but something stands between
+        the party and daylight. A final guardian, a sealed door, or a
+        chasm that was not there before. One last cost.
+      npcs_involved: []
+      stakes: All or nothing. The treasure makes it out or nobody does.
+  passive_progression:
+    rate_per_turn: 0.05
+    rate_per_day: 0.0
+    accelerators:
+      - treasure
+      - encumbered
+      - slow
+
+- id: hireling_mutiny
+  name: Hireling Mutiny
+  description: >-
+    The hired help is losing faith. Morale breaks cascade from one
+    hireling to the next until the torchbearer drops the torch and
+    the porter drops the gold and everyone runs.
+  category: betrayal
+  triggers:
+    - hireling casualty
+    - rations depleted
+    - torches running low
+    - high keeper awareness
+  narrative_hints:
+    - the torchbearer's hands are shaking
+    - the sellsword is counting exits, not enemies
+    - the porter has shifted the sack to make it easier to drop
+  tension_level: 0.5
+  resolution_hints:
+    - pay hazard bonuses to restore morale
+    - reduce party risk by retreating
+    - let the deserter go and press on shorthanded
+  tags: [hireling, morale, resource, betrayal]
+  escalation:
+    - at: 0.3
+      event: >-
+        A hireling refuses an order — won't enter a room, won't carry a
+        specific item, won't take point. Not desertion yet, but the cracks
+        are showing.
+      npcs_involved: []
+      stakes: Party effectiveness reduced. Tasks go undone.
+    - at: 0.6
+      event: >-
+        A hireling deserts. Drops their burden and bolts for the exit,
+        taking their torch with them. The remaining hirelings watch in
+        silence, calculating.
+      npcs_involved: []
+      stakes: Lost carrying capacity, lost light source, morale hit to remaining hirelings.
+    - at: 1.0
+      event: >-
+        Full mutiny. The remaining hirelings refuse to continue and demand
+        immediate extraction. If refused, they take what they can carry and
+        leave — including, possibly, some of the party's treasure.
+      npcs_involved: []
+      stakes: The party is alone in the dark with too much gold and not enough hands.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.0
+    accelerators:
+      - casualty
+      - hungry
+      - dark
+      - fear
+
+- id: the_deeper_dark
+  name: The Deeper Dark
+  description: >-
+    Descending to a new dungeon level. The air changes. The stone changes.
+    The rules change. Whatever the Keeper is, it is more of it down here.
+  category: discovery
+  triggers:
+    - descending stairs or chute to new level
+    - finding a vertical connection
+    - reaching a depth threshold
+  narrative_hints:
+    - the air is colder and smells of minerals you cannot name
+    - the stonework changes — older, stranger, less human
+    - sounds from above are swallowed completely
+  tension_level: 0.7
+  resolution_hints:
+    - map the new level carefully before committing
+    - establish a fallback point near the stairs
+    - retreat to the surface to resupply before pressing deeper
+  tags: [depth, discovery, escalation, keeper]
+  escalation:
+    - at: 0.5
+      event: >-
+        The new level operates under different rules. Resource ticks are
+        faster. The Keeper's presence is stronger — awareness accumulates
+        more quickly. The treasure is richer but the rooms are worse.
+      npcs_involved: []
+      stakes: The economy shifts. Greater risk, greater reward.
+    - at: 1.0
+      event: >-
+        The deepest level. The Keeper is not a distant presence here — it
+        is the walls, the floor, the air. Every room is a direct expression
+        of the Keeper's obsession. The treasure here is extraordinary. So
+        is the cost of reaching it.
+      npcs_involved: []
+      stakes: Maximum danger. The dungeon at its most hostile and its most rewarding.
+  passive_progression:
+    rate_per_turn: 0.0
+    rate_per_day: 0.0
+    accelerators:
+      - descent
+      - depth

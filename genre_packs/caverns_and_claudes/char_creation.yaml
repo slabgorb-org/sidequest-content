@@ -1,0 +1,69 @@
+# Character creation — Caverns & Claudes
+# Anti-backstory. You are nobody until you survive.
+# 3 scenes: roll stats, roll equipment, enter the dungeon.
+
+- id: the_roll
+  title: "3d6. In Order."
+  narration: |
+    You sit at a scarred table in a lamplit room that smells of tallow and old
+    sweat. A man with no fingers on his left hand pushes six bone dice across
+    the wood toward you.
+
+    "Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma," he
+    says, tapping the table once for each word. "Roll them in order. No
+    switching. No rerolling. The bones don't care what you wanted to be."
+
+    He watches you roll. He does not comment on the results.
+  choices: []
+  allows_freeform: false
+  mechanical_effects:
+    stat_generation: roll_3d6_strict
+
+- id: pronouns
+  title: "Who Are You?"
+  narration: >-
+    The man with no fingers looks you over once, recording something in a
+    water-stained ledger. "For the tally," he says. "In case you don't
+    come back."
+  allows_freeform: true
+  choices:
+    - label: "she/her"
+      description: "She."
+      mechanical_effects:
+        pronoun_hint: "she/her"
+    - label: "he/him"
+      description: "He."
+      mechanical_effects:
+        pronoun_hint: "he/him"
+    - label: "they/them"
+      description: "They."
+      mechanical_effects:
+        pronoun_hint: "they/them"
+
+- id: the_kit
+  title: "What You Have"
+  narration: |
+    The man reaches beneath the table and drops a canvas sack in front of you.
+    It lands with a dull thud. "Standard kit," he says. "Torch, rope, and
+    whatever else was left from the last one who didn't make it back."
+
+    He slides a scrap of parchment across the table. It lists what is in the
+    sack. Some of it is useful. Some of it is not. All of it is yours now.
+  choices: []
+  allows_freeform: false
+  mechanical_effects:
+    equipment_generation: random_table
+
+- id: the_mouth
+  title: "The Dungeon Waits"
+  narration: |
+    Dawn. The mouth of the dungeon is a crack in the hillside, edged with
+    moss and old tooth-marks in the stone. Cold air breathes outward, carrying
+    the smell of wet rock and something older.
+
+    Behind you, the town is already forgetting your name. Ahead, the dark
+    waits with the patience of something that has swallowed better than you.
+
+    You have a torch, ten feet of rope, and no backstory.
+  choices: []
+  allows_freeform: false
