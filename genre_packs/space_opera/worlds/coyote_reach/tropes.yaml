@@ -1,0 +1,175 @@
+# Coyote Reach world tropes — frontier system, one way in, one way out.
+
+- id: hegemonic_crackdown
+  name: The Governor's Gambit
+  description: >-
+    Governor Vaskov has received new orders — or claims to. The Hegemony
+    wants compliance, real compliance, and Vaskov finally has the teeth
+    to enforce it. Customs inspections, licensing fees, and a patrol
+    cruiser that's started actually patrolling.
+  category: conflict
+  triggers:
+    - encountering Hegemonic customs enforcement
+    - Vaskov issuing new regulations
+    - the patrol cruiser appearing where it shouldn't
+  narrative_hints:
+    - customs station at the jump point actually scanning cargo
+    - frontier miners grumbling about licensing fees
+    - Turning Hub raising docking prices to cover new tariffs
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        Vaskov impounds a frontier mining ship for unlicensed
+        extraction. The miners say they've been mining that claim
+        for thirty years. Vaskov says they've been stealing for
+        thirty years. The distinction matters to lawyers, not miners.
+      npcs_involved: [Governor Vaskov]
+      stakes: Hegemonic law vs frontier custom. The first test.
+    - at: 0.5
+      event: >-
+        Clan Moana-Teru threatens to close Turning Hub to Hegemonic
+        vessels. Vaskov threatens to blockade the jump point. Neither
+        can afford to follow through. Both are waiting to see who
+        blinks.
+      npcs_involved: [Governor Vaskov, The Clan Elder]
+      stakes: The system's two powers in direct confrontation.
+    - at: 0.75
+      event: >-
+        The Tsveri, who have been silent, send an emissary. They have
+        an opinion about who governs the system. It's unexpected. It
+        changes the math for everyone.
+      npcs_involved: [Governor Vaskov, The Clan Elder, The Tsveri Emissary]
+      stakes: A third faction tips the balance.
+    - at: 1.0
+      event: >-
+        A Hegemonic reinforcement fleet is detected at the jump point.
+        Or it's a bluff. Or it's something else entirely. Coyote Reach
+        must decide — submit, resist, or negotiate from a position
+        that nobody's tested.
+      npcs_involved: [Governor Vaskov, The Clan Elder]
+      stakes: The system's independence — real or an illusion the Hegemony tolerated.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.025
+    accelerators: [hegemony, vaskov, customs, law, patrol, compliance]
+    decelerators: [negotiate, bribe, evade, distance]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: deep_root_stirs
+  name: The Deep Root Stirs
+  description: >-
+    The Tsveri's mountain range — the Deep Root — is exhibiting
+    unusual activity. Vibrations, lights in the peaks, and the
+    Tsveri are asking humans to stay farther away than usual. They
+    won't explain why. They never explain.
+  category: mystery
+  triggers:
+    - unusual seismic activity near the Deep Root
+    - Tsveri behavior changes or territorial expansion
+    - miners encountering Tsveri materials or warnings
+  narrative_hints:
+    - tremors felt at frontier settlements near the range
+    - lights visible in the mountain passes at night
+    - Tsveri trade goods becoming scarce
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        A frontier mining survey detects unusual readings from the
+        Deep Root — energy signatures that don't match any known
+        geological process. The Tsveri politely ask them to stop
+        scanning. The miners want to know what they're sitting next to.
+      npcs_involved: [The Tsveri Emissary]
+      stakes: The frontier's most patient neighbors are asking for space.
+    - at: 0.5
+      event: >-
+        A miner ignores the warning and enters Tsveri territory.
+        They come back unharmed but profoundly changed — won't
+        talk about what they saw, quit mining, started building
+        something in their quarters out of materials nobody recognizes.
+      npcs_involved: [The Tsveri Emissary]
+      stakes: Something in the Deep Root changes people.
+    - at: 0.75
+      event: >-
+        The Deep Root opens. Not a cave — a door, ancient and
+        deliberate, in a mountain that has been sealed since before
+        the Tsveri remember. The Tsveri don't know what's inside.
+        They're afraid. The Tsveri are never afraid.
+      npcs_involved: [The Tsveri Emissary]
+      stakes: Whatever the Tsveri have been guarding is awake.
+    - at: 1.0
+      event: >-
+        What emerges from the Deep Root isn't hostile, but it
+        isn't friendly either. It's old — older than the Tsveri,
+        older than the system. It has a request. The request is
+        reasonable. The implications are not.
+      npcs_involved: [The Tsveri Emissary]
+      stakes: First contact with something that was here before anyone.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.02
+    accelerators: [tsveri, mountain, root, deep, tremor, ancient]
+    decelerators: [distance, respect, withdraw, ignore]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: ore_rush
+  name: The Claim War
+  description: >-
+    A prospector has struck something in the asteroid belt —
+    not just ore, but a deposit rich enough to change the system's
+    economics. Every faction wants it. The law says it belongs to
+    whoever filed first. The frontier says it belongs to whoever
+    can hold it.
+  category: conflict
+  triggers:
+    - discovering a valuable asteroid claim
+    - claim disputes between miners
+    - factions competing for resource access
+  narrative_hints:
+    - miners rushing to the belt in ships that shouldn't fly
+    - Turning Hub suddenly crowded with prospectors
+    - Governor Vaskov's customs station taking an interest in mining manifests
+  tension_level: 0.4
+  escalation:
+    - at: 0.25
+      event: >-
+        The claim is filed. Three other miners say they were there
+        first. Vaskov's office says paperwork determines ownership.
+        The frontier says guns do. The original prospector is hiding
+        at Turning Hub.
+      npcs_involved: [The Prospector]
+      stakes: One claim, multiple claimants, no clear law.
+    - at: 0.5
+      event: >-
+        Clan Moana-Teru offers to "secure" the claim in exchange
+        for a percentage. The miners call it extortion. The Clan
+        calls it services rendered. Vaskov calls it an opportunity
+        to enforce mining regulations nobody knew existed.
+      npcs_involved: [The Prospector, The Clan Elder, Governor Vaskov]
+      stakes: Three factions converging on one rock.
+    - at: 0.75
+      event: >-
+        Armed ships are orbiting the asteroid. Shots have been
+        fired — "warning shots" that hit things. The ore is still
+        in the rock. Everyone is too busy threatening each other
+        to mine it.
+      npcs_involved: [The Prospector, The Clan Elder]
+      stakes: The claim war is becoming a real war.
+    - at: 1.0
+      event: >-
+        Someone starts mining under fire. The asteroid is more
+        than ore — there's something inside it, something manufactured,
+        something that predates the system's settlement. The claim
+        war just became a first-contact situation.
+      npcs_involved: [The Prospector, Governor Vaskov, The Clan Elder]
+      stakes: What's in the rock is worth more than the rock.
+  passive_progression:
+    rate_per_turn: 0.015
+    rate_per_day: 0.04
+    accelerators: [claim, ore, mine, asteroid, prospector, rush]
+    decelerators: [negotiate, share, withdraw, patrol]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
