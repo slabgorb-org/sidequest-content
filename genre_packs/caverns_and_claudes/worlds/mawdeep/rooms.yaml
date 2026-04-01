@@ -711,10 +711,10 @@ rooms:
         type: door
         direction: north
         description: Back through the bone door to the Stomach
-      - to: full_belly
+      - to: maw_chamber
         type: door
         direction: south
-        description: A door that is a single flat bone. Warm. Thrumming.
+        description: A door of fused ribcage. Something large breathes beyond it.
     contents:
       treasure: []
       hazards:
@@ -726,6 +726,71 @@ rooms:
           damage: "1d4 burn from wall contact"
       creatures: []
     keeper_awareness_modifier: 1
+
+  - id: maw_chamber
+    name: "The Maw"
+    level: level_2
+    type: epitome
+    size: large
+    description: >-
+      A domed chamber where the ceiling is lost in shadow and the
+      floor is a bowl of fused bone and stone. The bioluminescence
+      pulses fast here — a heartbeat. In the center, something massive
+      crouches. It is made of everything the Glutton has eaten and
+      failed to digest — armor plates fused to stone, weapons jutting
+      from a torso of compacted rubble, a skull assembled from a dozen
+      smaller skulls. It breathes. It watches with eyes that are
+      gemstones set in sockets of mortar. The Glutton's lieutenant.
+      Its favorite thing.
+    exits:
+      - to: marrow_hall
+        type: door
+        direction: north
+        description: Back through the ribcage door to Marrow Hall
+      - to: full_belly
+        type: door
+        direction: south
+        description: Behind the Maw — a bone door to the treasure hoard. Sealed until the Maw falls.
+    contents:
+      treasure:
+        - description: "The Maw's body itself — gemstone eyes, a gold-inlaid breastplate fused to its chest, silver-capped bones"
+          value: 200
+          weight: 12.0
+          notes: "Harvesting requires dismantling the corpse. Heavy, noisy, time-consuming. Keeper awareness +5."
+      hazards:
+        - id: sealed_exit
+          description: >-
+            The door to the Full Belly is sealed with a membrane of
+            fused bone while the Maw lives. It opens when the Maw
+            is destroyed. The Keeper does not want you past this point.
+          type: gate
+          damage: 0
+      creatures:
+        - id: the_maw
+          description: >-
+            The Glutton's lieutenant — a composite horror assembled from
+            the digested remains of everything the dungeon has consumed.
+            Armor, bone, stone, and weapon fragments fused into a
+            hulking biped. It does not speak. It does not negotiate.
+            It guards the Full Belly because the Glutton shaped it to.
+            When destroyed, the Glutton will eventually grow another.
+          threat: boss
+          morale: 10
+          epitome: true
+          respawn: >-
+            After the Maw is destroyed, the Glutton assembles a new one
+            over 2-3 delves. Each incarnation is different — built from
+            whatever the dungeon has consumed since the last one fell.
+            The new Maw may have different weapons, different armor,
+            different weaknesses. The room and the role are constant.
+            The creature is not.
+    keeper_awareness_modifier: 3
+    notes: >-
+      Epitome room. The Maw is the boss fight — a set piece confrontation.
+      Defeating it opens the Full Belly. The Maw respawns between delves
+      with a new form built from recently digested material. This is the
+      repeatable loop: fight the Maw, loot the Full Belly, extract, resupply,
+      return to find a new Maw waiting.
 
   - id: full_belly
     name: "The Full Belly"
@@ -743,10 +808,10 @@ rooms:
       The walls breathe. The ceiling pulses. The Glutton is not just
       close here. This is the Glutton. You are standing inside it.
     exits:
-      - to: marrow_hall
+      - to: maw_chamber
         type: door
         direction: north
-        description: The bone door back to Marrow Hall — your only way out
+        description: Back through the bone door to the Maw's chamber — your only way out
     contents:
       treasure:
         - description: "A king's ransom in loose gold coins covering the floor"
