@@ -1,0 +1,176 @@
+# Shattered Reach world tropes — petty lords, broken alliances, and the Iron Accord.
+
+- id: iron_accord_fraying
+  name: The Iron Accord Frays
+  description: >-
+    The fragile peace brokered by the Merchant Consortium is cracking.
+    Border lords are testing each other, trade tolls are rising, and
+    the Consortium's private guards are stretched thin. One spark and
+    the Reach burns again.
+  category: conflict
+  triggers:
+    - border skirmishes between petty lords
+    - trade route disruptions or toll disputes
+    - the Consortium issuing ultimatums
+  narrative_hints:
+    - increased patrols on trade roads
+    - merchants hiring extra guards
+    - refugees from border villages
+  tension_level: 0.6
+  escalation:
+    - at: 0.25
+      event: >-
+        A border lord seizes a Consortium toll bridge and declares
+        free passage. The Consortium cuts off trade to his territory.
+        Two villages are caught in between with winter coming.
+      npcs_involved: [The Border Lord]
+      stakes: A local dispute that tests the Accord's enforcement.
+    - at: 0.5
+      event: >-
+        Three more lords declare solidarity. The Consortium dispatches
+        its best negotiator with a caravan of gifts and a company of
+        guards. The Ashen Veil declares the dispute a test of faith
+        and sends inquisitors.
+      npcs_involved: [The Border Lord, The Inquisitor]
+      stakes: What started as a toll dispute is becoming a coalition.
+    - at: 0.75
+      event: >-
+        Duchess Maren Aldric offers to mediate — which means she smells
+        opportunity. The Crown Remnant army begins moving toward the
+        border region. Nobody believes it's for peacekeeping.
+      npcs_involved: [Duchess Maren Aldric, The Border Lord]
+      stakes: Every faction is positioning. The Accord may not survive.
+    - at: 1.0
+      event: >-
+        The Accord breaks. The Consortium withdraws its guarantee.
+        The border lords choose sides. The Reach stands where it
+        stood three generations ago — on the edge of a war nobody
+        can win and everyone will lose.
+      npcs_involved: [Duchess Maren Aldric, The Border Lord, The Inquisitor]
+      stakes: Peace or war. Again.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.025
+    accelerators: [accord, border, lord, dispute, toll, war]
+    decelerators: [negotiate, peace, trade, compromise]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: ashen_veil_purge
+  name: The Ashen Purge
+  description: >-
+    The Order of the Ashen Veil has identified a nest of hedge witches
+    operating in the borderlands. Their inquisitors are burning their
+    way through villages, and the people are caught between genuine
+    fear of magic and genuine fear of the people sworn to protect them
+    from it.
+  category: conflict
+  triggers:
+    - encountering Ashen Veil inquisitors
+    - discovering hidden magical practitioners
+    - villages reporting witch-burnings
+  narrative_hints:
+    - smoke on the horizon from burning cottages
+    - villagers hiding strangers in root cellars
+    - inquisitors asking pointed questions at taverns
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        An inquisitor arrives in a village and accuses the herbalist
+        of witchcraft. The evidence is a jar of glowing moss. The
+        herbalist says it's just moss. The inquisitor says that's
+        what they all say.
+      npcs_involved: [The Inquisitor]
+      stakes: An innocent person's life hangs on the definition of magic.
+    - at: 0.5
+      event: >-
+        The purge spreads. Three villages have been "cleansed." The
+        Thornfield Freeholders are harboring refugees and daring the
+        Veil to come take them. The Consortium is silent — they don't
+        want the trade disruption but they don't want the Veil's
+        attention either.
+      npcs_involved: [The Inquisitor]
+      stakes: The Freeholders are drawing a line. The Veil will cross it.
+    - at: 0.75
+      event: >-
+        One of the accused actually IS a practitioner — and they've
+        been helping the village for years. Crops grow, children
+        survive winter, the well never dries. The village must choose:
+        hand them over or fight the Veil.
+      npcs_involved: [The Inquisitor, The Herbalist]
+      stakes: The messy truth — magic is real, dangerous, and useful.
+    - at: 1.0
+      event: >-
+        The practitioner makes a stand. Magic that the village has
+        benefited from for years is now unleashed in defense. The
+        Veil was right that magic exists. The village was right that
+        it helped. Neither side is wrong and someone is going to die.
+      npcs_involved: [The Inquisitor, The Herbalist]
+      stakes: What the Reach decides about magic — fear it or use it.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.03
+    accelerators: [inquisitor, veil, witch, magic, purge, burn]
+    decelerators: [hide, flee, negotiate, distance]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: aldric_claim
+  name: The Aldric Claim
+  description: >-
+    Duchess Maren Aldric has produced what she claims is proof of her
+    bloodline's unbroken succession. If legitimate, it makes her the
+    rightful queen of the Reach. The Crown Remnant is mobilizing.
+    Everyone else is trying to decide if this is salvation or the
+    start of the next war.
+  category: conflict
+  triggers:
+    - hearing about the Aldric succession claim
+    - encountering Crown Remnant recruiters
+    - lords choosing sides
+  narrative_hints:
+    - Aldric banners appearing in towns that were neutral
+    - Consortium caravans rerouting away from Remnant territory
+    - tavern arguments about whether a queen would be better or worse
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        The Duchess sends envoys to every major settlement with copies
+        of the succession document. The Consortium's archivists say
+        it might be genuine. The Veil says the gods alone choose
+        rulers. The border lords say nothing, which is louder.
+      npcs_involved: [Duchess Maren Aldric]
+      stakes: A claim that could unite or divide the Reach further.
+    - at: 0.5
+      event: >-
+        The first lord swears allegiance. Then two more. The Consortium
+        offers the Duchess a trade deal that's actually a bribe. She
+        declines publicly. The Freeholders declare they'll never kneel
+        to any crown. Lines are being drawn.
+      npcs_involved: [Duchess Maren Aldric]
+      stakes: The Reach is choosing sides. Neutrality is running out.
+    - at: 0.75
+      event: >-
+        Someone produces a counter-claim — another Aldric descendant,
+        or evidence the document is forged. The Duchess's coalition
+        wavers. She needs a champion to prove her legitimacy by arms,
+        by investigation, or by diplomacy.
+      npcs_involved: [Duchess Maren Aldric]
+      stakes: The claim stands or falls. The Reach's future with it.
+    - at: 1.0
+      event: >-
+        The truth about the succession is revealed — and it's
+        complicated enough that every faction can claim victory
+        or grievance. The Reach must decide not who the rightful
+        ruler is, but whether it wants a ruler at all.
+      npcs_involved: [Duchess Maren Aldric]
+      stakes: Crown or coalition. The Reach chooses its future.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.02
+    accelerators: [aldric, queen, crown, succession, claim, rally]
+    decelerators: [reject, freeholder, independence, ignore]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03

@@ -1,0 +1,175 @@
+# Dust and Lead world tropes — border territory, railroad, three cultures colliding.
+
+- id: railroad_comes
+  name: The Railroad Comes
+  description: >-
+    Consolidated Mining & Rail is pushing tracks toward Sangre del Paso.
+    They need land, water rights, and labor. They have lawyers, hired
+    guns, and a governor in their pocket. The ranchers, the townfolk,
+    and the Apache all have reasons to stop it — and reasons not to.
+  category: conflict
+  triggers:
+    - encountering railroad surveyors or construction crews
+    - ranchers receiving right-of-way demands
+    - hired guns arriving in town working for the company
+  narrative_hints:
+    - survey stakes appearing on ranch land
+    - company lawyers buying drinks in the saloon
+    - Apache scouts watching the survey crews from the ridgeline
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        A rancher finds survey stakes on his land. The company
+        lawyer says eminent domain. The rancher says over his dead
+        body. The lawyer makes a note and moves to the next property.
+      npcs_involved: [The Company Man]
+      stakes: Progress vs property. The first confrontation.
+    - at: 0.5
+      event: >-
+        The company hires a crew of gunmen to "protect the survey
+        team." The ranchers form a committee. The marshal says he
+        can't take sides. The Apache say the route crosses sacred
+        ground. Nobody is listening to anyone.
+      npcs_involved: [The Company Man, The Rancher]
+      stakes: Three sides, no compromise, and men with guns.
+    - at: 0.75
+      event: >-
+        Someone dynamites a section of laid track. The company
+        blames the ranchers. The ranchers blame the Apache. The
+        Apache say nothing. The governor sends Rangers. The
+        territory is one provocation from open war.
+      npcs_involved: [The Company Man, The Rancher]
+      stakes: Sabotage escalates to military response.
+    - at: 1.0
+      event: >-
+        The company makes its final offer — sell or be condemned.
+        The ranchers make their final stand. The Apache decide
+        whose fight this is. The railroad will come or it won't,
+        and the territory will never be the same either way.
+      npcs_involved: [The Company Man, The Rancher]
+      stakes: The territory's future — modern or free.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.03
+    accelerators: [railroad, track, survey, company, progress, eminent]
+    decelerators: [sabotage, delay, negotiate, resist]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: border_war
+  name: Blood on the River
+  description: >-
+    Something is crossing the Sangre River at night — cattle, guns,
+    or people. The Rangers can't cross south. The Rurales can't cross
+    north. The strip of lawlessness along the river is getting wider
+    and more profitable for anyone willing to work it.
+  category: conflict
+  triggers:
+    - encountering smuggling operations at the river
+    - Rangers or Rurales requesting help
+    - cross-border raids or reprisals
+  narrative_hints:
+    - fresh tracks leading to the river and not coming back
+    - Mexican ranchers missing cattle
+    - American merchants with suspiciously good prices on goods
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        A rancher on the north bank loses thirty head overnight.
+        The tracks lead to the river. The Rangers investigate to
+        the water's edge, then stop. Across the river, someone
+        is already branding.
+      npcs_involved: [The Ranger Captain]
+      stakes: Theft that can't be prosecuted across a border.
+    - at: 0.5
+      event: >-
+        A Rurales patrol crosses north, claiming hot pursuit. The
+        Rangers call it an incursion. Shots are exchanged. Nobody
+        dies, but the incident becomes the excuse everyone was
+        looking for.
+      npcs_involved: [The Ranger Captain]
+      stakes: A border incident that could become an international one.
+    - at: 0.75
+      event: >-
+        The smuggling operation is bigger than anyone thought —
+        not cattle, but guns heading south and gold heading north.
+        Someone powerful on both sides is profiting. Exposing
+        them means crossing the river in more ways than one.
+      npcs_involved: [The Ranger Captain]
+      stakes: The smuggling ring has protectors on both sides of the border.
+    - at: 1.0
+      event: >-
+        The truth surfaces — the territorial governor is involved.
+        The evidence is on the wrong side of the river. Getting
+        it means breaking the law to enforce it. The border doesn't
+        care about justice. Justice has to care about the border.
+      npcs_involved: [The Ranger Captain]
+      stakes: Justice or sovereignty. Can't have both.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.025
+    accelerators: [border, river, smuggle, crossing, cattle, raid]
+    decelerators: [patrol, negotiate, treaty, peace]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: apache_silence
+  name: The Apache Silence
+  description: >-
+    The Apache have gone quiet. No trade, no raids, no contact. The
+    canyon passes they control are empty. Something is happening in
+    the mountains, and nobody outside knows what. The silence is
+    louder than gunfire.
+  category: mystery
+  triggers:
+    - Apache trade or contact ceasing
+    - canyon passes found empty or blocked
+    - signs of unusual activity in the mountains
+  narrative_hints:
+    - Apache trading posts abandoned
+    - smoke signals from deeper in the mountains than usual
+    - scouts reporting trails that lead to dead ends
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        A trader who supplies the Apache settlements returns with
+        his goods unsold. Nobody was there. The camps were empty
+        but orderly — not abandoned in panic, but moved deliberately.
+        He found a single word scratched into a rock he can't translate.
+      npcs_involved: [The Trader]
+      stakes: An entire people have moved without explanation.
+    - at: 0.5
+      event: >-
+        The Army sends a patrol into the mountains. They come back
+        missing two men and won't say what happened. The commander
+        files a report the territorial government classifies. The
+        ranchers near the mountains start sleeping with loaded guns.
+      npcs_involved: [The Trader]
+      stakes: Whatever is in those mountains spooked the Army.
+    - at: 0.75
+      event: >-
+        An Apache runner arrives in town — the first contact in
+        weeks. They carry a message: the mountain is speaking. Not
+        metaphor. They need someone from outside to witness what
+        they've found, because no one will believe them otherwise.
+      npcs_involved: [The Apache Runner]
+      stakes: The Apache need help. They never need help.
+    - at: 1.0
+      event: >-
+        What's in the mountain predates the Apache, the Spanish,
+        and perhaps the continent. The Apache knew it was there
+        and have been guarding it for centuries. Now it's active,
+        and the decision about what to do with it belongs to
+        everyone — or no one.
+      npcs_involved: [The Apache Runner]
+      stakes: A discovery that rewrites the territory's history.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.02
+    accelerators: [apache, mountain, canyon, silence, ancient, hidden]
+    decelerators: [distance, ignore, trade, normal]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03

@@ -1,0 +1,173 @@
+# Aureate Span world tropes — decadent megastation orbiting a dying star.
+
+- id: solar_decay
+  name: The Star Dies Faster
+  description: >-
+    Solenne's red giant phase is accelerating. The magnetic tethers
+    holding the Aureate Span in the corona are straining. The
+    Imperatrix insists on spectacle. The engineers insist on evacuation
+    planning. The station's beauty was always borrowed time.
+  category: mystery
+  triggers:
+    - unusual solar activity or shield fluctuations
+    - engineers raising alarms about tether integrity
+    - the Imperatrix dismissing concerns publicly
+  narrative_hints:
+    - the viewing galleries showing brighter flares than usual
+    - station temperature rising in the lower decks
+    - Vaal-Kesh chemists stockpiling radiation treatments
+  tension_level: 0.6
+  escalation:
+    - at: 0.25
+      event: >-
+        A tether fails — briefly, repaired in hours, but the station
+        lurched. The lower decks felt it. The Promenade didn't. The
+        Imperatrix hosts a gala to demonstrate confidence. Attendance
+        is mandatory.
+      npcs_involved: [Imperatrix Celestine VII]
+      stakes: The station's infrastructure is showing its age.
+    - at: 0.5
+      event: >-
+        The Crystalline Choir stops singing in the Resonance Quarter.
+        They say the star's harmonics have changed. The station's
+        structural maintenance — which they provide — is on pause
+        until they understand the new frequencies.
+      npcs_involved: [Imperatrix Celestine VII, The Choir Speaker]
+      stakes: The station's builders have stopped building.
+    - at: 0.75
+      event: >-
+        A solar flare breaches the outer shield. One section
+        decompresses. The Makhani, who watch the star with religious
+        devotion, declare it is entering a new phase. The Imperatrix
+        orders the shields reinforced. The engineers say they can't.
+      npcs_involved: [Imperatrix Celestine VII]
+      stakes: The station may not survive what's coming.
+    - at: 1.0
+      event: >-
+        The star pulses. Every light on the Span flickers. The tethers
+        scream. The Imperatrix must choose: maintain the Doctrine of
+        Radiance and go down with the monument, or order evacuation
+        and admit that beauty doesn't last.
+      npcs_involved: [Imperatrix Celestine VII, The Choir Speaker]
+      stakes: The Aureate Span — monument or coffin.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.03
+    accelerators: [star, solar, flare, tether, shield, decay]
+    decelerators: [repair, reinforce, stabilize, evacuate]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: vaal_kesh_monopoly
+  name: The Vaal-Kesh Squeeze
+  description: >-
+    The Vaal-Kesh control the Underspine markets — pharmaceuticals,
+    recreational substances, and the radiation treatments everyone
+    on the Span needs. They're raising prices. The Imperatrix is
+    too proud to negotiate. The population is too dependent to refuse.
+  category: conflict
+  triggers:
+    - encountering Vaal-Kesh price increases
+    - the Imperatrix issuing decrees about the Underspine
+    - black market alternatives appearing
+  narrative_hints:
+    - Underspine shops with new prices posted
+    - station residents queuing for radiation treatments
+    - Solarium Guards patrolling Vaal-Kesh territory with visible discomfort
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        Radiation treatment costs double overnight. The Vaal-Kesh
+        ambassador explains supply chain issues in a tone that doesn't
+        try to be convincing. A black market appears in the lower decks.
+      npcs_involved: [The Vaal-Kesh Ambassador]
+      stakes: A monopoly flexing. Dependence revealed.
+    - at: 0.5
+      event: >-
+        The Imperatrix sends the Solarium Guard to "inspect" Vaal-Kesh
+        warehouses. The Vaal-Kesh close the Underspine in protest.
+        The station's recreational economy collapses in a day. People
+        need their treatments.
+      npcs_involved: [Imperatrix Celestine VII, The Vaal-Kesh Ambassador]
+      stakes: Economic warfare on a station that can't afford it.
+    - at: 0.75
+      event: >-
+        Someone finds an alternative — a Makhani bio-treatment that
+        works but requires cooperation from creatures who worship the
+        star and have opinions about commerce. The Vaal-Kesh threaten
+        to leave the Span entirely.
+      npcs_involved: [The Vaal-Kesh Ambassador]
+      stakes: Breaking the monopoly means changing the station's alliances.
+    - at: 1.0
+      event: >-
+        The Vaal-Kesh make their final offer: exclusive trade rights
+        or they take their ships and their chemistry and leave. The
+        Span without the Vaal-Kesh is a station without medicine,
+        without the Underspine, without half its culture. The cost
+        of independence is survival.
+      npcs_involved: [Imperatrix Celestine VII, The Vaal-Kesh Ambassador]
+      stakes: The Span's identity — independent or dependent.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.03
+    accelerators: [vaal, price, medicine, treatment, underspine, monopoly]
+    decelerators: [negotiate, trade, alternative, diplomacy]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: corona_games
+  name: The Corona Games
+  description: >-
+    The gladiatorial games in the Corona Arena are the Imperatrix's
+    primary instrument of control — spectacle as governance. But the
+    current champion is becoming more popular than the ruler, and the
+    games are evolving from entertainment into something political.
+  category: conflict
+  triggers:
+    - attending or hearing about the Corona Games
+    - a champion gaining dangerous popularity
+    - the Imperatrix using the games for political purposes
+  narrative_hints:
+    - arena crowds chanting a champion's name
+    - the Imperatrix increasing the stakes of the games
+    - gladiators being recruited as bodyguards by faction leaders
+  tension_level: 0.4
+  escalation:
+    - at: 0.25
+      event: >-
+        The reigning champion refuses to fight a match the Imperatrix
+        ordered. The crowd supports the refusal. The Imperatrix smiles
+        and says nothing, which is how she starts wars.
+      npcs_involved: [Imperatrix Celestine VII, The Champion]
+      stakes: Spectacle vs authority. The arena tests its leash.
+    - at: 0.5
+      event: >-
+        The Imperatrix introduces alien beasts from the Makhani pens
+        into the games. The crowd loves it. The Champion calls it
+        barbarism. The Makhani call it sacrilege. The ratings soar.
+      npcs_involved: [Imperatrix Celestine VII, The Champion]
+      stakes: The games are escalating beyond entertainment.
+    - at: 0.75
+      event: >-
+        The Champion announces a challenge — not in the arena, but
+        to the Doctrine of Radiance itself. The Imperatrix can accept
+        and risk losing, or refuse and prove the doctrine is afraid
+        of scrutiny.
+      npcs_involved: [Imperatrix Celestine VII, The Champion]
+      stakes: A gladiator is challenging the philosophy of governance.
+    - at: 1.0
+      event: >-
+        The final match. The Imperatrix has stacked it — impossible
+        odds, rigged conditions. The Champion fights anyway. The
+        station watches. The outcome decides whether spectacle
+        serves the ruler or the people.
+      npcs_involved: [Imperatrix Celestine VII, The Champion]
+      stakes: Who owns the arena owns the Span.
+  passive_progression:
+    rate_per_turn: 0.015
+    rate_per_day: 0.04
+    accelerators: [arena, champion, games, gladiator, corona, spectacle]
+    decelerators: [cancel, boycott, negotiate, distraction]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03

@@ -1,0 +1,65 @@
+# Dust and Lead — World-Specific Cultures
+# Extends genre-level Frontera/Gringo with Sangre Territory specifics.
+# Adds Apache naming and local place-name vocabulary.
+
+- name: Sangre Frontera
+  description: "Mexican families rooted in the territory for generations — mission names, rancho identity"
+  slots:
+    given_name:
+      names_file: frontera_given.txt
+    family_name:
+      names_file: frontera_surnames.txt
+    place_noun:
+      word_list: [rancho, misión, vado, ojo, cañada, acequia, camposanto, jacal, presidio, remuda]
+    adjective:
+      word_list: [sangre, perdido, quemado, viejo, bravo, salado, chico, largo, prieto, llorón]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{given_name} de la {family_name}"
+    - "Don {given_name} {family_name}"
+    - "Doña {given_name} {family_name}"
+  place_patterns:
+    - "Rancho {family_name}"
+    - "Misión de {adjective} {place_noun}"
+    - "{place_noun} del {adjective}"
+
+- name: Sangre Anglo
+  description: "Anglo settlers, lawmen, and company men — hard consonants, functional names"
+  slots:
+    given_name:
+      names_file: frontier_given.txt
+    family_name:
+      names_file: frontier_surnames.txt
+    place_noun:
+      word_list: [gulch, creek, crossing, flat, springs, station, junction, depot, siding, claims]
+    adjective:
+      word_list: [dead, dry, rattlesnake, copper, devil, bone, alkali, bitter, hangman, shotgun]
+    title:
+      word_list: [Captain, Judge, Doc, Colonel, Reverend, Major, Professor]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{title} {family_name}"
+    - "{given_name} '{adjective}' {family_name}"
+  place_patterns:
+    - "{family_name}'s {place_noun}"
+    - "{adjective} {place_noun}"
+    - "{title}'s {place_noun}"
+
+- name: Ndé
+  description: "Apache people of the Sangre mountains — descriptive names in English rendering, clan identity"
+  slots:
+    given_name:
+      word_list: [Nayeli, Cochise, Geronimo, Lozen, Mangas, Victorio, Dasoda, Gouyen, Juh, Nahle, Taza, Dilth]
+    descriptor:
+      word_list: [Stalks-The-Wind, Sees-Far, Red-Stone, Quiet-Water, Burns-Bright, Cloud-Walker, Iron-Hand, Swift-Arrow, Dawn-Singer, Night-Runner]
+    place_noun:
+      word_list: [canyon, spring, ridge, pass, mesa, cave, summit, shelter, overlook, crossing]
+    adjective:
+      word_list: [hidden, red, silent, high, deep, ancient, watching, sacred, burning, singing]
+  person_patterns:
+    - "{given_name}"
+    - "{given_name} {descriptor}"
+    - "{descriptor}"
+  place_patterns:
+    - "The {adjective} {place_noun}"
+    - "{descriptor}'s {place_noun}"
