@@ -1,0 +1,109 @@
+# Caverns & Claudes — Tone Alignment Axes
+# The serious/gonzo axis is the defining dial. Gravity is always high.
+# Per-dungeon override via Keeper personality.
+
+definitions:
+  - id: comedy
+    name: Serious / Gonzo
+    description: >-
+      The defining tone axis. At the serious end, the dungeon is a grim
+      gauntlet — violence is ugly, resources are precious, and every torch
+      that gutters out is a small death. At the gonzo end, the dungeon is
+      a funhouse of absurdist encounters, anachronistic weirdness, and
+      dungeons that defy logic gleefully. A wizard's skeleton might be
+      wearing a Hawaiian shirt. A pit trap might lead to a perfectly
+      appointed tea room.
+    poles:
+      - serious
+      - gonzo
+    default: 0.3
+
+  - id: gravity
+    name: Gravity
+    description: >-
+      The weight of consequences. Always high in C&C — death is real,
+      resources are finite, and the dungeon does not care about your
+      feelings. The dial moves between "you might die if you're careless"
+      and "you will die if you blink."
+    poles:
+      - dangerous
+      - lethal
+    default: 0.8
+
+  - id: outlook
+    name: Outlook
+    description: >-
+      Whether the dungeon can be beaten or merely survived. At the low
+      end, the Keeper always wins eventually — you're just buying time.
+      At the high end, clever play and accumulated treasure represent
+      genuine triumph over the hostile dark.
+    poles:
+      - nihilistic
+      - triumphant
+    default: 0.4
+
+modifiers:
+  comedy:
+    serious: >-
+      Keep the tone grounded and bleak. Pain is described plainly.
+      Absurdity is accidental, not intentional. The dungeon is a tomb,
+      not a theme park. NPCs speak with the flat affect of people who
+      have seen too much darkness.
+    gonzo: >-
+      Lean into the absurd. Dungeons contain anachronisms, impossible
+      architecture, and encounters that would be funny if they weren't
+      also lethal. The Keeper has a sense of humor — dark, theatrical,
+      or just plain weird. Describe the ridiculous with the same gravity
+      as the deadly.
+
+  gravity:
+    dangerous: >-
+      Death is possible but not inevitable. Careful play is rewarded.
+      Resources are tight but manageable. Hirelings die; PCs can survive
+      with good decisions. The dungeon is hostile but fair.
+    lethal: >-
+      Death is the default outcome. Every room is a potential TPK.
+      Resources are desperate. Hirelings are disposable. The dungeon is
+      not fair — it is a predator, and you are prey that happens to be
+      carrying torches.
+
+  outlook:
+    nihilistic: >-
+      The Keeper cannot be defeated, only temporarily inconvenienced.
+      Treasure is bait. Escape is the best victory. Frame every success
+      as borrowed time. The dungeon is patient and infinite.
+    triumphant: >-
+      The dungeon can be beaten. Treasure extraction is genuine progress.
+      Accumulated wealth and experience represent real power over the
+      darkness. The Keeper can be outwitted, outplanned, and ultimately
+      overcome. Frame victories as earned, not lucky.
+
+presets:
+  - name: Tomb of Horrors
+    description: >-
+      Pure grim gauntlet. The dungeon exists to kill you, and it is
+      very good at its job. No humor, no mercy, no hope.
+    values:
+      comedy: 0.1
+      gravity: 0.95
+      outlook: 0.1
+
+  - name: Dungeon Crawl Classics
+    description: >-
+      Gonzo but deadly. Wizards explode, peasants die in droves, and
+      the dungeon is a carnival of lethal weirdness. You will laugh
+      and then your character will die.
+    values:
+      comedy: 0.7
+      gravity: 0.7
+      outlook: 0.5
+
+  - name: Classic B/X
+    description: >-
+      The default. Careful resource management, calculated risk, and
+      the quiet satisfaction of extracting treasure from a hostile
+      underworld. Grim but fair.
+    values:
+      comedy: 0.3
+      gravity: 0.8
+      outlook: 0.4
