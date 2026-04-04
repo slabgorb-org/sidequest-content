@@ -143,3 +143,40 @@ luck_rules:
       - "Survive a standoff without drawing"
       - "Complete a bounty alive"
       - "Win a high-stakes gamble"
+
+# ── Confrontations ──────────────────────────────────────────
+confrontations:
+  - type: standoff
+    label: "Standoff"
+    category: pre_combat
+    metric:
+      name: tension
+      direction: ascending
+      starting: 0
+      threshold_high: 10
+    beats:
+      - id: size_up
+        label: "Size Up"
+        metric_delta: 2
+        stat_check: CUNNING
+        reveals: opponent_detail
+      - id: bluff
+        label: "Bluff"
+        metric_delta: 3
+        stat_check: NERVE
+        risk: "opponent may call it — immediate draw"
+      - id: flinch
+        label: "Flinch"
+        metric_delta: -1
+        stat_check: NERVE
+      - id: draw
+        label: "Draw"
+        metric_delta: 0
+        stat_check: DRAW
+        resolution: true
+    secondary_stats:
+      - name: focus
+        source_stat: NERVE
+        spendable: true
+    escalates_to: combat
+    mood: standoff
