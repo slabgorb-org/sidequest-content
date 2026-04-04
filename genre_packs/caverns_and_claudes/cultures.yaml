@@ -3,57 +3,63 @@
 # Dungeon names are kennings. Keeper names are titles.
 # Hireling names are forgettable. Treasure is descriptive.
 
-cultures:
-  - id: surface_folk
-    name: Surface Folk
-    description: >-
-      The ordinary people of the towns and villages that cling to the
-      edges of dungeon country. Practical names, no pretension.
-    naming:
-      given_names:
-        male: [Aldric, Bram, Cob, Durn, Edric, Falk, Griff, Hale, Ivo, Joss, Kern, Lud, Morden, Noll, Osric, Penn, Rolf, Sven, Tam, Wulf]
-        female: [Agna, Britt, Calla, Dagna, Elka, Fenna, Greta, Hild, Inga, Jula, Kess, Lira, Maren, Nessa, Ora, Petra, Runa, Sigri, Tova, Wynn]
-        neutral: [Ash, Beck, Clay, Dale, Flint, Glen, Hart, Kit, Moss, Pike, Reed, Sage, Stone, Thatch, Vale, Wren]
-      surnames:
-        patterns:
-          - "{trade}er"
-          - "{material}{object}"
-          - "of {place}"
-        trades: [Bak, Brew, Cart, Ditch, Forg, Mill, Plow, Tan, Thatch, Weld]
-        materials: [Black, Iron, Stone, Ash, Oak, Copper, Salt, Peat]
-        objects: [hand, jaw, helm, gate, well, bridge, wall, ford]
-        places: [the Downs, the Fens, Millhaven, Stonereach, the Mudflats]
-    hireling_names:
-      description: >-
-        Short, forgettable, expendable. You won't remember them after
-        they fall into the pit.
-      pool: [Bort, Clem, Dob, Fen, Grist, Hob, Jek, Kel, Lob, Midge, Nub, Ork, Pim, Rog, Snit, Tork, Vetch, Wort, Yam, Zeb]
+- name: Surface Folk
+  summary: Practical townspeople and expendable hirelings of dungeon country
+  description: >-
+    The ordinary people of the towns and villages that cling to the
+    edges of dungeon country. Practical names, no pretension.
+  slots:
+    given_name:
+      word_list: [Aldric, Bram, Cob, Durn, Edric, Falk, Griff, Hale, Ivo, Joss, Kern, Lud, Morden, Noll, Osric, Penn, Rolf, Sven, Tam, Wulf, Agna, Britt, Calla, Dagna, Elka, Fenna, Greta, Hild, Inga, Jula, Kess, Lira, Maren, Nessa, Ora, Petra, Runa, Sigri, Tova, Wynn, Ash, Beck, Clay, Dale, Flint, Glen, Hart, Kit, Moss, Pike, Reed, Sage, Stone, Thatch, Vale, Wren]
+    surname:
+      word_list: [Blackhand, Ironjaw, Stonehelm, Ashgate, Oakwell, Copperbridge, Saltwall, Peatford, Baker, Brewer, Carter, Ditcher, Forger, Miller, Plower, Tanner, Thatcher, Welder]
+    hireling_name:
+      word_list: [Bort, Clem, Dob, Fen, Grist, Hob, Jek, Kel, Lob, Midge, Nub, Ork, Pim, Rog, Snit, Tork, Vetch, Wort, Yam, Zeb]
+  person_patterns:
+    - "{given_name} {surname}"
+    - "{hireling_name}"
+  place_patterns:
+    - "{surname} Square"
+    - "The {given_name}'s Rest"
 
-  - id: keeper_titles
-    name: Keeper Titles
-    description: >-
-      Dungeon Keepers are known by title, not name. The title reflects
-      their obsession, their method, their madness.
-    naming:
-      patterns:
-        - "The {noun} of {abstract}"
-        - "The {adjective} {noun}"
-        - "{name} the {adjective}"
-      nouns: [Collector, Warden, Glutton, Architect, Mirror, Butcher, Librarian, Gardener, Clockmaker, Weaver]
-      abstracts: [Whispers, Bones, Silence, Echoes, Teeth, Doors, Shadows, Hunger, Glass, Rust]
-      adjectives: [Hollow, Patient, Gilded, Eyeless, Bloated, Crystalline, Weeping, Iron, Ravenous, Still]
-      names: [Molgrath, Veskri, Tharn, Ossua, Kreveld, Durmach, Silthen, Nekhra]
+- name: Keeper Titles
+  summary: Dungeon Keeper epithets reflecting obsession and madness
+  description: >-
+    Dungeon Keepers are known by title, not name. The title reflects
+    their obsession, their method, their madness.
+  slots:
+    noun:
+      word_list: [Collector, Warden, Glutton, Architect, Mirror, Butcher, Librarian, Gardener, Clockmaker, Weaver]
+    abstract:
+      word_list: [Whispers, Bones, Silence, Echoes, Teeth, Doors, Shadows, Hunger, Glass, Rust]
+    adjective:
+      word_list: [Hollow, Patient, Gilded, Eyeless, Bloated, Crystalline, Weeping, Iron, Ravenous, Still]
+    keeper_name:
+      word_list: [Molgrath, Veskri, Tharn, Ossua, Kreveld, Durmach, Silthen, Nekhra]
+  person_patterns:
+    - "The {noun} of {abstract}"
+    - "The {adjective} {noun}"
+    - "{keeper_name} the {adjective}"
+  place_patterns:
+    - "The {adjective} {abstract}"
+    - "{keeper_name}'s {noun}"
 
-  - id: dungeon_kennings
-    name: Dungeon Names
-    description: >-
-      Compound kennings in the Germanic tradition. The name should
-      sound like a place you do not want to go.
-    naming:
-      patterns:
-        - "{prefix}{suffix}"
-        - "The {adjective} {noun}"
-      prefixes: [Grim, Maw, Torch, Bone, Rot, Wail, Dread, Gut, Fang, Gloom, Char, Rust, Blight, Scream, Bile]
-      suffixes: [hold, deep, maw, pit, crypt, hollow, well, throat, tomb, den, vault, barrow, chasm, root, gut]
-      adjectives: [Wailing, Eyeless, Drowned, Shattered, Starving, Frozen, Bleeding, Endless]
-      nouns: [Descent, Labyrinth, Oubliette, Ossuary, Gullet, Warren, Catacomb, Undercroft]
+- name: Dungeon Names
+  summary: Germanic compound kennings for hostile underground places
+  description: >-
+    Compound kennings in the Germanic tradition. The name should
+    sound like a place you do not want to go.
+  slots:
+    prefix:
+      word_list: [Grim, Maw, Torch, Bone, Rot, Wail, Dread, Gut, Fang, Gloom, Char, Rust, Blight, Scream, Bile]
+    suffix:
+      word_list: [hold, deep, maw, pit, crypt, hollow, well, throat, tomb, den, vault, barrow, chasm, root, gut]
+    adjective:
+      word_list: [Wailing, Eyeless, Drowned, Shattered, Starving, Frozen, Bleeding, Endless]
+    noun:
+      word_list: [Descent, Labyrinth, Oubliette, Ossuary, Gullet, Warren, Catacomb, Undercroft]
+  person_patterns:
+    - "{prefix}{suffix}"
+  place_patterns:
+    - "{prefix}{suffix}"
+    - "The {adjective} {noun}"
