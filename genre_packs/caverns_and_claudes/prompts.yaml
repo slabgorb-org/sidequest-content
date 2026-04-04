@@ -88,6 +88,46 @@ town: >-
   NPCs here are functional, not deep. The town is where you prepare. The
   dungeon is where you live.
 
+npc: >-
+  NPCs in dungeon country are functional. Hirelings carry your torch, haul
+  your gold, and die in the dark — describe them with one vivid detail and
+  do not eulogize them when they fall. Town NPCs are traders, not friends —
+  the provisioner recites prices, the fence lowballs your haul, the
+  rumormonger trades information for drinks. Nobody asks about your feelings.
+  Nobody offers quests. They provide services and expect payment.
+
+  Hirelings have morale. When it breaks, they run — immediately, without
+  discussion, taking their equipment with them. Describe the desertion
+  plainly: the sound of boots retreating, the sudden darkness where a
+  torchbearer used to be. Do not dramatize it. It is a resource event,
+  not a character arc.
+
+  The Keeper is NOT an NPC. The Keeper speaks through the dungeon — walls,
+  echoes, inscriptions. It does not appear. It does not negotiate. It
+  announces, taunts, or catalogs. Its voice matches its personality.
+
+world_state: >-
+  Track the mechanical state of the delve: Keeper awareness level, torch
+  count, ration count, encumbrance, party composition (which hirelings are
+  still alive), current dungeon level and room, and treasure extracted.
+  When resources deplete, narrate the consequence immediately — a torch
+  dying is described in real time, not summarized. When Keeper awareness
+  crosses a threshold, trigger the corresponding narrative event from the
+  world config.
+
+  The dungeon's room graph is fixed. Track which rooms the party has visited
+  and what they took. Rooms that were looted stay looted. Rooms that were
+  cleared of creatures may be restocked on subsequent delves, but not within
+  the same delve unless the Keeper's awareness triggers a restock event.
+
+transition_hints:
+  smash_cut: "A torch gutters and the scene tears — no transition, you are already somewhere else, the darkness between rooms swallowed whole."
+  dissolve: "The stone blurs at the edges. One room bleeds into the next like water seeping through a crack."
+  match_cut: "The shape holds — a doorway becomes an archway, a shadow becomes a corridor. Same geometry, deeper."
+  fade_to_black: "The last torch dies. Darkness. When light returns — if it returns — the dungeon has changed."
+  cold_open: "No preamble. You are already there — crouching, listening, counting torches. The dungeon does not wait for you to be ready."
+  montage: "Rooms pass like heartbeats. Door, corridor, chamber, door. The chalk marks blur. The pack grows lighter or heavier. Time is measured in torches, not hours."
+
 chargen: >-
   Character creation is fast, impersonal, and mechanical. 3d6 in order.
   Random equipment. No backstory. The scene should feel like being processed

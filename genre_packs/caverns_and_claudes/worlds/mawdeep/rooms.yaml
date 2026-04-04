@@ -1,844 +1,309 @@
-# Mawdeep — Room Graph
+# Mawdeep — Room Graph (RoomDef format)
 # 18 rooms across 2 levels. Jaquayed layout with loops and one-way drops.
-# The Glutton Below shapes every room — organic textures, warmth, constriction.
+# Rich room content (treasure, hazards, creatures) lives in room_details.yaml
+# and is injected via world history/legends raw data.
 #
-# LEVEL 1: The Gullet (rooms 1-10)
-#   Wide, deceptively calm. The Glutton is tasting.
-#
-# LEVEL 2: The Belly (rooms 11-18)
-#   Narrow, warm, damp. The Glutton is digesting.
-#
-# Map topology (simplified):
-#
-#   LEVEL 1:
-#                    [1 Mouth]
-#                    /       \
-#           [2 Throat]     [3 Antechamber]
-#              |      \     /      |
-#        [4 Cistern]  [5 Junction] [6 Gallery]
-#              |         |    \        |
-#        [7 Pantry]  [8 Hall]  [9 Chute →L2]
-#              \       /
-#           [10 Stair →L2]
-#
-#   LEVEL 2:
-#           [11 Landing] ← from Stair
-#              |       \
-#        [12 Gullet]  [13 Acid Pool]
-#              |           |
-#        [14 Vault]   [15 Warren] ← from Chute
-#              \       /
-#           [16 Stomach]
-#              |
-#        [17 Marrow Hall]
-#              |
-#        [18 The Full Belly]
+# This file defines topology only — the room graph navigation engine needs
+# id, name, room_type, exits, and keeper_awareness_modifier.
 
-levels:
-  - id: level_1
-    name: "The Gullet"
-    description: >-
-      The upper level. Wide corridors, high ceilings. The stone is cool
-      and dry near the entrance, growing warmer and damper as you descend.
-      The Glutton is patient here. It lets you come.
-    resource_tick_rate: 4    # Every 4 room transitions
-    keeper_awareness_modifier: 1.0
+# === LEVEL 1: THE GULLET ===
 
-  - id: level_2
-    name: "The Belly"
-    description: >-
-      The lower level. Corridors narrow. Ceilings drop. The stone is warm
-      and slick with moisture that smells faintly of acid. The air is thick.
-      Torches gutter. The Glutton is close.
-    resource_tick_rate: 3    # Every 3 room transitions — faster drain
-    keeper_awareness_modifier: 1.5
+- id: mouth
+  name: "The Mouth"
+  room_type: entrance
+  size: [3, 3]
+  keeper_awareness_modifier: 0.8
+  description: >-
+    Sixty feet across. Stone lips worn smooth. Cold air breathes outward
+    in a slow, rhythmic pulse. The floor slopes gently downward. Chalk
+    marks from previous parties cover the walls near the entrance.
+    Daylight reaches about thirty feet in before the dark swallows it.
+  exits:
+    - type: corridor
+      target: throat
+    - type: corridor
+      target: antechamber
 
-rooms:
-  # === LEVEL 1: THE GULLET ===
+- id: throat
+  name: "The Throat"
+  room_type: normal
+  size: [2, 1]
+  keeper_awareness_modifier: 0.9
+  description: >-
+    A descending passage wide enough for three abreast. The walls have
+    a ribbed texture — horizontal ridges of stone that look disturbingly
+    like cartilage. The air is warmer here.
+  exits:
+    - type: corridor
+      target: mouth
+    - type: door
+      target: cistern
+    - type: corridor
+      target: junction
 
-  - id: mouth
-    name: "The Mouth"
-    level: level_1
-    type: entrance
-    size: large
-    description: >-
-      Sixty feet across. Stone lips worn smooth. Cold air breathes outward
-      in a slow, rhythmic pulse. The floor slopes gently downward. Chalk
-      marks from previous parties cover the walls near the entrance — most
-      are incomplete. Daylight reaches about thirty feet in before the
-      dark swallows it.
-    exits:
-      - to: throat
-        type: corridor
-        direction: west
-        description: A wide passage sloping downward, the stone darkening
-      - to: antechamber
-        type: corridor
-        direction: east
-        description: A narrower passage curving right, the walls glistening
-    contents:
-      treasure: []
-      hazards: []
-      creatures: []
-    keeper_awareness_modifier: 0
-    notes: "Safe. The Glutton lets you enter freely."
+- id: antechamber
+  name: "The Antechamber"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 0.9
+  description: >-
+    A roughly circular room. The floor is covered in a fine grit —
+    ground bone mixed with stone dust. A pile of abandoned equipment
+    sits against the far wall.
+  exits:
+    - type: corridor
+      target: mouth
+    - type: corridor
+      target: junction
+    - type: corridor
+      target: gallery
 
-  - id: throat
-    name: "The Throat"
-    level: level_1
-    type: corridor
-    size: medium
-    description: >-
-      A descending passage wide enough for three abreast. The walls have
-      a ribbed texture — horizontal ridges of stone that look disturbingly
-      like cartilage. The air is warmer here. Your torchlight catches
-      moisture on the ceiling.
-    exits:
-      - to: mouth
-        type: corridor
-        direction: east
-        description: Back toward the entrance and daylight
-      - to: cistern
-        type: door
-        direction: south
-        description: An iron door, hinges crusted with something yellow
-      - to: junction
-        type: corridor
-        direction: west
-        description: The passage continues downward, widening
-    contents:
-      treasure: []
-      hazards:
-        - id: throat_ridges
-          description: >-
-            The ribbed walls narrow slightly as you pass through. Not enough
-            to trap — just enough to make you aware that they could.
-          type: atmospheric
-          damage: 0
-      creatures: []
-    keeper_awareness_modifier: 0
+- id: cistern
+  name: "The Cistern"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 0.9
+  description: >-
+    A domed room with a sunken pool in the center. The water is black,
+    still, and warm to the touch. It smells faintly sweet — the sweetness
+    of something decomposing.
+  exits:
+    - type: door
+      target: throat
+    - type: corridor
+      target: pantry
 
-  - id: antechamber
-    name: "The Antechamber"
-    level: level_1
-    type: chamber
-    size: medium
-    description: >-
-      A roughly circular room. The floor is covered in a fine grit that
-      crunches underfoot — ground bone, you realize, mixed with stone dust.
-      Three archways lead deeper. A pile of abandoned equipment sits against
-      the far wall — packs, a broken lantern, a single boot.
-    exits:
-      - to: mouth
-        type: corridor
-        direction: west
-        description: Back to the entrance
-      - to: junction
-        type: corridor
-        direction: south
-        description: A sloping passage joining a larger corridor
-      - to: gallery
-        type: archway
-        direction: east
-        description: A wide arch into a long room, your torchlight reflecting off something
-    contents:
-      treasure:
-        - description: "Abandoned pack containing 12 copper pieces and a half-used torch"
-          value: 12
-          weight: 1.0
-      hazards: []
-      creatures: []
-    keeper_awareness_modifier: 0
+- id: junction
+  name: "The Junction"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A crossroads where three passages meet under a high vaulted ceiling.
+    The stone is cracked and the cracks are filled with something amber
+    and translucent. A faint vibration comes through the floor — rhythmic,
+    slow, like breathing.
+  exits:
+    - type: corridor
+      target: throat
+    - type: corridor
+      target: antechamber
+    - type: corridor
+      target: hall
+    - type: corridor
+      target: chute
 
-  - id: cistern
-    name: "The Cistern"
-    level: level_1
-    type: chamber
-    size: medium
-    description: >-
-      A domed room with a sunken pool in the center. The water is black,
-      still, and warm to the touch. It smells faintly sweet — not pleasant
-      sweet, but the sweetness of something decomposing. A stone lip
-      surrounds the pool at knee height. Your reflection does not look
-      quite right.
-    exits:
-      - to: throat
-        type: door
-        direction: north
-        description: Back through the iron door to the Throat
-      - to: pantry
-        type: corridor
-        direction: south
-        description: A low passage, you'll need to duck
-    contents:
-      treasure:
-        - description: "A silver chain at the bottom of the pool, visible in torchlight"
-          value: 30
-          weight: 0.2
-          notes: "Reaching in requires submerging arm to the shoulder. The water stains skin yellowish for days."
-      hazards:
-        - id: cistern_water
-          description: >-
-            The water spoils any rations or waterskin dipped into it.
-            Drinking it directly causes nausea for 1d4 room transitions.
-          type: resource_drain
-          damage: 0
-      creatures: []
-    keeper_awareness_modifier: 0
+- id: gallery
+  name: "The Gallery of the Eaten"
+  room_type: treasure
+  size: [3, 2]
+  keeper_awareness_modifier: 1.1
+  description: >-
+    A long rectangular room. The walls are lined with alcoves, each
+    containing objects — a rusted sword, a child's doll, a merchant's
+    scale. Personal effects of the swallowed. Hundreds of them.
+  exits:
+    - type: corridor
+      target: antechamber
+    - type: door
+      target: hall
 
-  - id: junction
-    name: "The Junction"
-    level: level_1
-    type: hub
-    size: large
-    description: >-
-      A crossroads where three passages meet under a high vaulted ceiling.
-      The stone here is cracked and the cracks are filled with something
-      amber and translucent, like hardened sap. The air is noticeably
-      warmer. A faint vibration comes through the floor — rhythmic, slow,
-      like breathing.
-    exits:
-      - to: throat
-        type: corridor
-        direction: east
-        description: Back up toward the Throat
-      - to: antechamber
-        type: corridor
-        direction: north
-        description: Passage climbing toward the Antechamber
-      - to: hall
-        type: corridor
-        direction: south
-        description: A wide passage descending, the walls narrowing slightly
-      - to: chute
-        type: corridor
-        direction: west
-        description: A passage that slopes steeply downward into darkness
-    contents:
-      treasure: []
-      hazards: []
-      creatures:
-        - id: junction_rats
-          description: >-
-            A colony of pale, bloated rats with no eyes. They scatter from
-            the torchlight but do not flee far. They are feeding on the
-            amber substance in the cracks.
-          threat: low
-          morale: 2
-    keeper_awareness_modifier: 0
+- id: pantry
+  name: "The Pantry"
+  room_type: normal
+  size: [1, 1]
+  keeper_awareness_modifier: 0.9
+  description: >-
+    A low-ceilinged room that smells of rot and vinegar. Wooden shelves
+    stocked with supplies that should not exist this deep — all spoiled.
+  exits:
+    - type: corridor
+      target: cistern
+    - type: door
+      target: stairs_down
 
-  - id: gallery
-    name: "The Gallery of the Eaten"
-    level: level_1
-    type: chamber
-    size: large
-    description: >-
-      A long rectangular room. The walls are lined with alcoves, each
-      containing objects — a rusted sword, a child's doll, a merchant's
-      scale, a holy symbol. Personal effects of the swallowed. Hundreds
-      of them, arranged with a care that suggests curation rather than
-      chance. The Glutton collects what it eats.
-    exits:
-      - to: antechamber
-        type: archway
-        direction: west
-        description: Back through the arch to the Antechamber
-      - to: hall
-        type: door
-        direction: south
-        description: A heavy door with stone teeth along the frame
-    contents:
-      treasure:
-        - description: "A merchant's scale of fine brass, still functional"
-          value: 45
-          weight: 1.5
-        - description: "A silver holy symbol of an unknown faith"
-          value: 25
-          weight: 0.3
-        - description: "A jeweled hatpin, garnet set in copper"
-          value: 60
-          weight: 0.1
-      hazards:
-        - id: teeth_door
-          description: >-
-            The door to the Hall has stone teeth along the frame. At Keeper
-            awareness 10+, the teeth grind slowly closed when someone
-            passes through. Move fast.
-          type: trap
-          damage: "1d6 if caught (awareness 10+)"
-      creatures: []
-    keeper_awareness_modifier: 1
-    notes: "Taking items here increases Keeper awareness by +1 per item."
+- id: hall
+  name: "The Swallowing Hall"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A vast hall with a domed ceiling. The floor is a mosaic of fragments
+    of buildings and roads. This is where Edgeholm went. A stone well
+    in the center descends into darkness.
+  exits:
+    - type: corridor
+      target: junction
+    - type: door
+      target: gallery
+    - type: corridor
+      target: stairs_down
 
-  - id: pantry
-    name: "The Pantry"
-    level: level_1
-    type: chamber
-    size: small
-    description: >-
-      A low-ceilinged room that smells of rot and vinegar. Wooden shelves
-      line the walls, stocked with supplies that should not exist this
-      deep — rations, waterskins, torches. All are spoiled. The rations
-      are green. The water is yellow. The torches are damp and will not
-      light. This is where the Glutton keeps what it takes from you.
-    exits:
-      - to: cistern
-        type: corridor
-        direction: north
-        description: The low passage back to the Cistern
-      - to: stairs_down
-        type: door
-        direction: south
-        description: A warped wooden door, warm to the touch
-    contents:
-      treasure:
-        - description: "Behind the spoiled supplies — a leather pouch containing 35 gold pieces"
-          value: 35
-          weight: 0.7
-          notes: "Searching the shelves requires a thorough check. The smell is awful."
-      hazards:
-        - id: spoiled_supplies
-          description: >-
-            The rations and water here look almost edible. They are not.
-            Consuming them causes vomiting and a resource tick.
-          type: resource_drain
-          damage: 0
-      creatures: []
-    keeper_awareness_modifier: 0
+- id: chute
+  name: "The Chute"
+  room_type: normal
+  size: [1, 1]
+  keeper_awareness_modifier: 1.1
+  description: >-
+    A steep, smooth-walled passage angled at forty-five degrees.
+    The stone is slick with moisture. Once you start sliding, you
+    cannot stop. ONE WAY to Level 2.
+  exits:
+    - type: corridor
+      target: junction
+    - type: chute_down
+      target: warren
 
-  - id: hall
-    name: "The Swallowing Hall"
-    level: level_1
-    type: chamber
-    size: large
-    description: >-
-      A vast hall with a domed ceiling lost in shadow above the
-      torchlight. The floor is a mosaic of different stones — fragments
-      of buildings, roads, foundations. This is where Edgeholm went.
-      The Glutton swallowed a village and paved its stomach with the
-      rubble. A stone well in the center descends into darkness.
-    exits:
-      - to: junction
-        type: corridor
-        direction: north
-        description: Back up to the Junction
-      - to: gallery
-        type: door
-        direction: north
-        description: Through the teeth-door to the Gallery
-      - to: stairs_down
-        type: corridor
-        direction: south
-        description: A passage sloping steeply down toward the stairs
-    contents:
-      treasure:
-        - description: "Edgeholm cobblestones with copper coins embedded in the mortar"
-          value: 20
-          weight: 5.0
-          notes: "Heavy. Prying them loose is noisy. Keeper awareness +2."
-        - description: "A bronze bell from the Edgeholm chapel, cracked but valuable"
-          value: 80
-          weight: 8.0
-          notes: "Extremely heavy. Requires a porter or two people."
-      hazards:
-        - id: the_well
-          description: >-
-            The well descends to Level 2. It is a one-way drop — 30 feet
-            straight down into the Acid Pool chamber. Rope can make it
-            survivable. Without rope, it is 3d6 falling damage into
-            ankle-deep acid.
-          type: vertical_connection
-          damage: "3d6 fall + acid without rope"
-      creatures:
-        - id: hall_scavengers
-          description: >-
-            Three pale humanoid things that were once delvers. Emaciated,
-            jawless, crawling on all fours. They eat the amber substance
-            growing in the cracks. Not hostile unless cornered, but
-            deeply unsettling. They flinch from torchlight.
-          threat: low
-          morale: 1
-    keeper_awareness_modifier: 0
+- id: stairs_down
+  name: "The Stairs"
+  room_type: normal
+  size: [1, 2]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A carved staircase descending into warmth. The steps are uneven —
+    some six inches, some eighteen. The walls are damp.
+  exits:
+    - type: door
+      target: pantry
+    - type: corridor
+      target: hall
+    - type: corridor
+      target: landing
 
-  - id: chute
-    name: "The Chute"
-    level: level_1
-    type: passage
-    size: small
-    description: >-
-      A steep, smooth-walled passage angled at forty-five degrees.
-      The stone is slick with moisture. Once you start sliding, you
-      cannot stop. This is a one-way passage to Level 2.
-    exits:
-      - to: junction
-        type: corridor
-        direction: east
-        description: Back to the Junction — you can still turn around
-      - to: warren
-        type: chute_down
-        direction: down
-        description: "ONE WAY. A slick descent into the Warren on Level 2. No return."
-    contents:
-      treasure: []
-      hazards:
-        - id: one_way_chute
-          description: >-
-            Once entered, there is no climbing back. The surface is too
-            smooth and too steep. The slide deposits you in the Warren
-            on Level 2, bruised but alive. Loose items may scatter.
-          type: one_way
-          damage: "1d4 bruising"
-      creatures: []
-    keeper_awareness_modifier: 1
-    notes: "One-way to Level 2. No return route from this entrance."
+# === LEVEL 2: THE BELLY ===
 
-  - id: stairs_down
-    name: "The Stairs"
-    level: level_1
-    type: passage
-    size: medium
-    description: >-
-      A carved staircase descending into warmth. The steps are uneven —
-      some are six inches, some are eighteen, as though the stone is
-      shifting over time. The walls are damp. At the bottom, a faint
-      orange glow that is not torchlight.
-    exits:
-      - to: pantry
-        type: door
-        direction: north
-        description: The warped door back to the Pantry
-      - to: hall
-        type: corridor
-        direction: north
-        description: Back up to the Swallowing Hall
-      - to: landing
-        type: stairs_down
-        direction: down
-        description: Down the uneven stairs to Level 2
-    contents:
-      treasure: []
-      hazards:
-        - id: uneven_stairs
-          description: >-
-            The irregular step height makes descent treacherous. A DEX
-            check or move slowly. Failure means a stumble — dropped
-            torch, spilled pack, or a twisted ankle.
-          type: terrain
-          damage: "torch dropped or 1d4 ankle"
-      creatures: []
-    keeper_awareness_modifier: 0
+- id: landing
+  name: "The Landing"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    The foot of the stairs. The walls are smooth, curved, and faintly
+    warm. An orange bioluminescence pulses in the veins of the stone.
+    Your torch feels less bright here.
+  exits:
+    - type: corridor
+      target: stairs_down
+    - type: corridor
+      target: gullet_passage
+    - type: corridor
+      target: acid_pool
 
-  # === LEVEL 2: THE BELLY ===
+- id: gullet_passage
+  name: "The Gullet"
+  room_type: normal
+  size: [1, 2]
+  keeper_awareness_modifier: 1.3
+  description: >-
+    A corridor that narrows as you proceed. The ribbed walls flex
+    slightly when pressed. The ceiling drops until you are crouching.
+  exits:
+    - type: corridor
+      target: landing
+    - type: door
+      target: vault
 
-  - id: landing
-    name: "The Landing"
-    level: level_2
-    type: hub
-    size: medium
-    description: >-
-      The foot of the stairs opens into a room where the stone changes.
-      The walls are smooth, curved, and faintly warm. The texture is
-      wrong — not rough like quarried rock but smooth like something
-      worn by constant contact. An orange bioluminescence pulses in
-      the veins of the stone, providing just enough light to see shapes
-      but not details. Your torch feels less bright here.
-    exits:
-      - to: stairs_down
-        type: stairs_up
-        direction: up
-        description: The uneven stairs back to Level 1
-      - to: gullet_passage
-        type: corridor
-        direction: south
-        description: A narrowing corridor, the walls almost close enough to touch
-      - to: acid_pool
-        type: corridor
-        direction: east
-        description: A passage where the floor glistens wetly
-    contents:
-      treasure: []
-      hazards:
-        - id: dimming
-          description: >-
-            Torches burn 50% faster on Level 2. The damp, warm air
-            consumes them. Lanterns are unaffected.
-          type: resource_drain
-          damage: 0
-      creatures: []
-    keeper_awareness_modifier: 0
+- id: acid_pool
+  name: "The Acid Pool"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    A room dominated by a shallow pool of clear liquid that steams
+    gently. The liquid is warm and smells of bile. Gear from fallen
+    delvers dots the pool's edge, half-dissolved.
+  exits:
+    - type: corridor
+      target: landing
+    - type: corridor
+      target: warren
 
-  - id: gullet_passage
-    name: "The Gullet"
-    level: level_2
-    type: corridor
-    size: small
-    description: >-
-      A corridor that narrows as you proceed. The walls are warm and
-      slick. The ribbed texture from the Throat is here too, but
-      more pronounced — the ridges are inches deep, and they flex
-      slightly when you press against them. The ceiling drops until
-      you are crouching. Something ahead reflects your torchlight
-      with a golden glint.
-    exits:
-      - to: landing
-        type: corridor
-        direction: north
-        description: Back to the Landing — the passage widens with relief
-      - to: vault
-        type: door
-        direction: south
-        description: A round opening in the wall, like a sphincter in stone
-    contents:
-      treasure: []
-      hazards:
-        - id: constriction
-          description: >-
-            The corridor contracts when Keeper awareness is 15+.
-            Movement requires a STR check. Failure means stuck for
-            one round — a resource tick triggers automatically.
-          type: trap
-          damage: "resource tick, possible stuck"
-      creatures: []
-    keeper_awareness_modifier: 1
+- id: warren
+  name: "The Warren"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    A tangle of narrow passages connecting small, round chambers.
+    The walls pulse with orange light. Navigation is disorienting.
+  exits:
+    - type: corridor
+      target: acid_pool
+    - type: corridor
+      target: stomach
 
-  - id: acid_pool
-    name: "The Acid Pool"
-    level: level_2
-    type: chamber
-    size: medium
-    description: >-
-      A room dominated by a shallow pool of clear liquid that steams
-      gently. The liquid is warm and smells of bile. The far wall has
-      a shaft going straight up — this is where the well from the
-      Swallowing Hall terminates. Gear from fallen delvers dots the
-      pool's edge, half-dissolved.
-    exits:
-      - to: landing
-        type: corridor
-        direction: west
-        description: Back to the Landing
-      - to: warren
-        type: corridor
-        direction: south
-        description: A twisting passage into a maze of small rooms
-    contents:
-      treasure:
-        - description: "A gold-plated helm at the pool's edge, partially dissolved but still valuable"
-          value: 40
-          weight: 1.5
-        - description: "A waterproof scroll case containing a Scroll of Light"
-          value: 50
-          weight: 0.2
-          notes: "The case protected it. The scroll is intact."
-      hazards:
-        - id: acid
-          description: >-
-            The pool dissolves organic material slowly — leather and
-            cloth in hours, flesh in minutes of immersion. Metal
-            corrodes over days. Wading through is possible but
-            damages boots and any leather gear.
-          type: hazard
-          damage: "gear damage, 1d4 per round of immersion"
-        - id: well_shaft
-          description: >-
-            The vertical shaft from Level 1's well. Anyone falling
-            without rope lands in the acid pool. 3d6 fall + acid.
-          type: vertical_connection
-          damage: "3d6 fall + acid"
-      creatures: []
-    keeper_awareness_modifier: 0
+- id: vault
+  name: "The Vault of Teeth"
+  room_type: treasure
+  size: [2, 2]
+  keeper_awareness_modifier: 1.4
+  description: >-
+    A domed room studded with stone teeth. Among the teeth: treasure.
+    Coins, gems, and jewelry embedded in the stone. Extracting anything
+    requires prying it free from the Glutton's grip.
+  exits:
+    - type: door
+      target: gullet_passage
+    - type: corridor
+      target: stomach
 
-  - id: warren
-    name: "The Warren"
-    level: level_2
-    type: maze
-    size: large
-    description: >-
-      A tangle of narrow passages connecting small, round chambers —
-      each barely large enough for two people. The walls pulse with
-      orange light. The chute from Level 1 deposits you here in a
-      heap. Navigation is disorienting — the passages curve and
-      branch unpredictably.
-    exits:
-      - to: acid_pool
-        type: corridor
-        direction: north
-        description: A passage that straightens and widens toward the Acid Pool
-      - to: stomach
-        type: corridor
-        direction: south
-        description: The largest passage leads deeper, the air growing thicker
-    contents:
-      treasure:
-        - description: "Scattered coins from a broken pouch — 22 gold pieces among the rubble"
-          value: 22
-          weight: 0.4
-      hazards:
-        - id: disorientation
-          description: >-
-            Without chalk or mapping, the warren loops. A WIS check to
-            navigate correctly. Failure means an extra room transition
-            (resource tick) as you double back.
-          type: maze
-          damage: "extra resource tick"
-      creatures:
-        - id: warren_crawlers
-          description: >-
-            Pale, eyeless things the size of large dogs. They are not
-            aggressive — they are waiting. When a delver falls or
-            weakens, they close in. Scavengers, not predators.
-          threat: medium
-          morale: 3
-    keeper_awareness_modifier: 0
-    notes: "Chute from Level 1 deposits here."
+- id: stomach
+  name: "The Stomach"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 1.3
+  description: >-
+    The largest room on Level 2. The floor is soft. Your boots sink.
+    The walls undulate slowly. The orange bioluminescence pulses in a
+    rhythm that matches nothing you can identify. This is where the
+    Glutton digests.
+  exits:
+    - type: corridor
+      target: warren
+    - type: corridor
+      target: vault
+    - type: door
+      target: marrow_hall
 
-  - id: vault
-    name: "The Vault of Teeth"
-    level: level_2
-    type: chamber
-    size: medium
-    description: >-
-      A domed room. The walls are studded with stone teeth — not
-      decorative, but the real teeth of the dungeon, grown from the
-      rock like stalactites. Among the teeth: treasure. Coins, gems,
-      and jewelry are embedded in the stone as though the dungeon is
-      growing around them. Extracting anything requires prying it
-      free from the Glutton's grip.
-    exits:
-      - to: gullet_passage
-        type: door
-        direction: north
-        description: Back through the sphincter door to the Gullet
-      - to: stomach
-        type: corridor
-        direction: east
-        description: A passage where the floor is soft and yielding
-    contents:
-      treasure:
-        - description: "A ruby the size of a thumbnail, embedded in a stone tooth"
-          value: 150
-          weight: 0.1
-          notes: "Prying it free takes time and noise. Keeper awareness +3."
-        - description: "A handful of gold coins fused into the wall"
-          value: 40
-          weight: 0.8
-          notes: "Requires crowbar. Keeper awareness +1."
-        - description: "A silver dagger with a bone handle, wedged between teeth"
-          value: 35
-          weight: 0.5
-          notes: "Can be used as a weapon if freed."
-      hazards:
-        - id: teeth_bite
-          description: >-
-            At Keeper awareness 15+, the teeth slowly close when
-            treasure is removed. Anyone in the room takes 1d6 as
-            the walls contract.
-          type: trap
-          damage: "1d6 crushing"
-      creatures: []
-    keeper_awareness_modifier: 2
-    notes: "High-value room. Extraction is loud and raises awareness significantly."
+- id: marrow_hall
+  name: "Marrow Hall"
+  room_type: normal
+  size: [1, 2]
+  keeper_awareness_modifier: 1.4
+  description: >-
+    A short passage lined with exposed bone — actual bone grown into
+    the walls. Femurs, ribs, skulls. The heat radiates from the bone.
+  exits:
+    - type: door
+      target: stomach
+    - type: door
+      target: maw_chamber
 
-  - id: stomach
-    name: "The Stomach"
-    level: level_2
-    type: chamber
-    size: large
-    description: >-
-      The largest room on Level 2. The floor is soft — not mud, not
-      flesh, but something between. Your boots sink half an inch with
-      every step. The walls undulate slowly, almost imperceptibly.
-      The orange bioluminescence is brightest here, pulsing in a
-      rhythm that matches nothing you can identify. The air is thick
-      and warm and smells of stomach acid and old gold. This is where
-      the Glutton digests.
-    exits:
-      - to: warren
-        type: corridor
-        direction: north
-        description: Back through the Warren — the passage firms up
-      - to: vault
-        type: corridor
-        direction: west
-        description: Back toward the Vault of Teeth
-      - to: marrow_hall
-        type: door
-        direction: south
-        description: A low door of fused bone. Beyond it, heat.
-    contents:
-      treasure:
-        - description: "A half-digested treasure chest, its contents spilling onto the soft floor"
-          value: 120
-          weight: 6.0
-          notes: "Contains mixed coins, a gold chain, and a corroded but valuable short sword."
-      hazards:
-        - id: soft_floor
-          description: >-
-            The floor drains energy. Movement costs double encumbrance.
-            Standing still for more than a minute, you begin to sink.
-          type: terrain
-          damage: "movement penalty, sinking risk"
-        - id: digestion
-          description: >-
-            At Keeper awareness 20, the Stomach is actively digesting.
-            Every round in this room costs 1 HP as the air itself
-            burns lungs and exposed skin.
-          type: hazard
-          damage: "1 HP per round at awareness 20+"
-      creatures:
-        - id: stomach_mass
-          description: >-
-            Something in the center of the room. A mound of partially
-            digested material — stone, metal, bone, cloth — fused into
-            a single mass the size of a cart. It does not move. It does
-            not need to. The room itself is the threat.
-          threat: none
-          morale: null
-    keeper_awareness_modifier: 1
+- id: maw_chamber
+  name: "The Maw"
+  room_type: boss
+  size: [3, 3]
+  keeper_awareness_modifier: 1.5
+  description: >-
+    A domed chamber. In the center, something massive crouches — made
+    of everything the Glutton has eaten and failed to digest. It breathes.
+    It watches with gemstone eyes. The Glutton's lieutenant.
+  exits:
+    - type: door
+      target: marrow_hall
+    - type: door
+      target: full_belly
+      is_locked: true
 
-  - id: marrow_hall
-    name: "Marrow Hall"
-    level: level_2
-    type: corridor
-    size: small
-    description: >-
-      A short passage lined with exposed bone — not stone carved to
-      look like bone, but actual bone grown into the walls. Femurs,
-      ribs, skulls. Some are animal. Some are not. The Glutton does
-      not waste what it eats. The heat radiates from the bone itself.
-    exits:
-      - to: stomach
-        type: door
-        direction: north
-        description: Back through the bone door to the Stomach
-      - to: maw_chamber
-        type: door
-        direction: south
-        description: A door of fused ribcage. Something large breathes beyond it.
-    contents:
-      treasure: []
-      hazards:
-        - id: bone_heat
-          description: >-
-            Touching the walls burns. Leaning against them in
-            exhaustion is a mistake delvers make once.
-          type: hazard
-          damage: "1d4 burn from wall contact"
-      creatures: []
-    keeper_awareness_modifier: 1
-
-  - id: maw_chamber
-    name: "The Maw"
-    level: level_2
-    type: epitome
-    size: large
-    description: >-
-      A domed chamber where the ceiling is lost in shadow and the
-      floor is a bowl of fused bone and stone. The bioluminescence
-      pulses fast here — a heartbeat. In the center, something massive
-      crouches. It is made of everything the Glutton has eaten and
-      failed to digest — armor plates fused to stone, weapons jutting
-      from a torso of compacted rubble, a skull assembled from a dozen
-      smaller skulls. It breathes. It watches with eyes that are
-      gemstones set in sockets of mortar. The Glutton's lieutenant.
-      Its favorite thing.
-    exits:
-      - to: marrow_hall
-        type: door
-        direction: north
-        description: Back through the ribcage door to Marrow Hall
-      - to: full_belly
-        type: door
-        direction: south
-        description: Behind the Maw — a bone door to the treasure hoard. Sealed until the Maw falls.
-    contents:
-      treasure:
-        - description: "The Maw's body itself — gemstone eyes, a gold-inlaid breastplate fused to its chest, silver-capped bones"
-          value: 200
-          weight: 12.0
-          notes: "Harvesting requires dismantling the corpse. Heavy, noisy, time-consuming. Keeper awareness +5."
-      hazards:
-        - id: sealed_exit
-          description: >-
-            The door to the Full Belly is sealed with a membrane of
-            fused bone while the Maw lives. It opens when the Maw
-            is destroyed. The Keeper does not want you past this point.
-          type: gate
-          damage: 0
-      creatures:
-        - id: the_maw
-          description: >-
-            The Glutton's lieutenant — a composite horror assembled from
-            the digested remains of everything the dungeon has consumed.
-            Armor, bone, stone, and weapon fragments fused into a
-            hulking biped. It does not speak. It does not negotiate.
-            It guards the Full Belly because the Glutton shaped it to.
-            When destroyed, the Glutton will eventually grow another.
-          threat: boss
-          morale: 10
-          epitome: true
-          respawn: >-
-            After the Maw is destroyed, the Glutton assembles a new one
-            over 2-3 delves. Each incarnation is different — built from
-            whatever the dungeon has consumed since the last one fell.
-            The new Maw may have different weapons, different armor,
-            different weaknesses. The room and the role are constant.
-            The creature is not.
-    keeper_awareness_modifier: 3
-    notes: >-
-      Epitome room. The Maw is the boss fight — a set piece confrontation.
-      Defeating it opens the Full Belly. The Maw respawns between delves
-      with a new form built from recently digested material. This is the
-      repeatable loop: fight the Maw, loot the Full Belly, extract, resupply,
-      return to find a new Maw waiting.
-
-  - id: full_belly
-    name: "The Full Belly"
-    level: level_2
-    type: chamber
-    size: large
-    description: >-
-      The deepest room. Vast and warm and golden. The bioluminescence
-      here is so bright you could read by it. The floor is a carpet
-      of treasure — coins, gems, jewelry, weapons, armor, trade goods,
-      personal effects, the accumulated wealth of generations of
-      swallowed caravans, villages, and delvers. It is beautiful.
-      It is the most dangerous room in the dungeon.
-
-      The walls breathe. The ceiling pulses. The Glutton is not just
-      close here. This is the Glutton. You are standing inside it.
-    exits:
-      - to: maw_chamber
-        type: door
-        direction: north
-        description: Back through the bone door to the Maw's chamber — your only way out
-    contents:
-      treasure:
-        - description: "A king's ransom in loose gold coins covering the floor"
-          value: 500
-          weight: 25.0
-          notes: "Take what you can carry. The weight is the trap."
-        - description: "A crown of white gold set with opals"
-          value: 300
-          weight: 0.5
-          notes: "Sitting on a velvet cushion like an offering."
-        - description: "The Edgeholm treasury strongbox, still locked"
-          value: 200
-          weight: 15.0
-          notes: "Requires crowbar or key (the key is lost). Contains Edgeholm's town savings."
-      hazards:
-        - id: the_glutton_itself
-          description: >-
-            The room IS the Glutton. Keeper awareness increases by 1
-            per round spent here regardless of actions. At awareness 20,
-            the single exit begins closing. You have 3 rounds to leave
-            before the bone door seals permanently.
-          type: keeper
-          damage: "awareness +1 per round, exit seals at awareness 20"
-      creatures: []
-    keeper_awareness_modifier: 3
-    notes: >-
-      The ultimate risk/reward room. Massive treasure, but every second
-      spent here brings the dungeon closer to sealing you in. The
-      extraction run from here is the most intense experience in the
-      dungeon.
+- id: full_belly
+  name: "The Full Belly"
+  room_type: treasure
+  size: [3, 3]
+  keeper_awareness_modifier: 1.5
+  description: >-
+    The deepest room. Vast and warm and golden. The floor is a carpet
+    of treasure. It is beautiful. It is the most dangerous room in
+    the dungeon. The walls breathe. You are standing inside the Glutton.
+  exits:
+    - type: door
+      target: maw_chamber

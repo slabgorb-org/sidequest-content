@@ -1,79 +1,200 @@
-# Voice presets for Caverns & Claudes
-# Minimal — most NPCs are hirelings who die before their voice matters
+# Voice preset configuration for Caverns & Claudes
+#
+# Dungeon narrator should be understated — let the silence carry weight.
+# NPC voices are functional: hirelings are nervous or flat, town NPCs
+# are transactional. The Keeper's voice is the dungeon itself.
+#
+# Available voices (cached locally):
+#   en_US-lessac-high   — clear, neutral American (narrator default)
+#   en_US-ryan-high     — deeper male American
+#   en_US-amy-medium    — female American
+#   en_GB-alan-medium   — British male
+#   en_US-lessac-medium — lighter fallback
 
-presets:
-  - id: torchbearer_voice
-    name: Torchbearer
-    description: Nervous, whispering, breath catching on every word
-    kokoro:
-      voice: bf_emma
-      speed: 1.1
-    style_notes: >-
-      Speaks in short, clipped sentences. Whispers even when whispering
-      is not necessary. Voice trembles on descriptive passages. Swallows
-      the ends of words.
+# ── Narrator ──────────────────────────────────────────────────
+# Slow, deliberate, dry. The narrator speaks like someone reading
+# from a ledger of the dead. No warmth, no drama — just facts
+# about the dark place you are in. Heavy reverb for underground.
+narrator:
+  model: en_US-lessac-high
+  pitch: 0.95
+  rate: 0.85
+  effects:
+    - type: reverb
+      params:
+        room_size: 0.7
+    - type: lowpass_filter
+      params:
+        cutoff_frequency_hz: 4500
+    - type: compressor
+      params:
+        threshold_db: -20
 
-  - id: porter_voice
-    name: Porter
-    description: Low, flat, monosyllabic
-    kokoro:
-      voice: bm_george
-      speed: 0.85
-    style_notes: >-
-      Answers in one or two words. Long pauses between sentences. No
-      inflection. The vocal equivalent of a shrug.
+# ── NPC Archetype Voices ─────────────────────���────────────────
+characters:
+  # Torchbearer — nervous, whispering, breath catching on every word
+  Torchbearer:
+    model: en_US-lessac-high
+    pitch: 1.1
+    rate: 1.15
+    effects:
+      - type: highpass_filter
+        params:
+          cutoff_frequency_hz: 250
+      - type: reverb
+        params:
+          room_size: 0.5
+      - type: gain
+        params:
+          gain_db: -3
 
-  - id: sellsword_voice
-    name: Sellsword
-    description: Gruff, bored, transactional
-    kokoro:
-      voice: bm_lewis
-      speed: 1.0
-    style_notes: >-
-      States prices and conditions flatly. Occasionally sardonic. Never
-      raises voice except in combat, where it becomes a bark.
+  # Porter — low, flat, monosyllabic
+  Porter:
+    model: en_US-ryan-high
+    pitch: 0.8
+    rate: 0.8
+    effects:
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 4000
+      - type: compressor
+        params:
+          threshold_db: -15
 
-  - id: fence_voice
-    name: Fence
-    description: Oily, conspiratorial, drops to a whisper unpredictably
-    kokoro:
-      voice: bm_daniel
-      speed: 1.15
-    style_notes: >-
-      Leans into sibilants. Volume drops mid-sentence. Laughs nervously
-      at nothing. Every offer sounds like it might be your last.
+  # Sellsword — gruff, bored, transactional
+  Sellsword:
+    model: en_US-ryan-high
+    pitch: 0.9
+    rate: 1.0
+    effects:
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 5000
+      - type: gain
+        params:
+          gain_db: 1
 
-  - id: rumormonger_voice
-    name: Rumormonger
-    description: Tavern raconteur, theatrical whisper, dramatic pauses
-    kokoro:
-      voice: bm_george
-      speed: 0.95
-    style_notes: >-
-      Speaks like every sentence is the climax of a story. Dramatic
-      pauses before dungeon names. Drops to a hush for the dangerous
-      parts. Clearly enjoying being the center of attention.
+  # Fence — oily, conspiratorial, drops to a whisper unpredictably
+  Fence:
+    model: en_US-lessac-high
+    pitch: 1.15
+    rate: 1.2
+    effects:
+      - type: highpass_filter
+        params:
+          cutoff_frequency_hz: 250
+      - type: compressor
+        params:
+          threshold_db: -12
+      - type: gain
+        params:
+          gain_db: -1
 
-  - id: provisioner_voice
-    name: Provisioner
-    description: Businesslike, flat affect, recites from memory
-    kokoro:
-      voice: bf_emma
-      speed: 0.9
-    style_notes: >-
-      Recites inventory and prices without looking up. No small talk.
-      Occasionally pauses to scratch a name off the tally wall. The
-      silence says more than words would.
+  # Rumormonger — theatrical whisper, dramatic pauses
+  Rumormonger:
+    model: en_GB-alan-medium
+    pitch: 0.95
+    rate: 0.9
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.3
+      - type: compressor
+        params:
+          threshold_db: -18
 
-  - id: keeper_voice
-    name: Keeper
-    description: Varies by Keeper personality — set per dungeon
-    kokoro:
-      voice: bm_lewis
-      speed: 0.75
-    style_notes: >-
-      The default Keeper voice is slow, resonant, and inhuman. Words
-      arrive with the cadence of stone grinding. Individual dungeons
-      override this with a voice matching the Keeper's personality —
-      a vain Keeper speaks theatrically, a hungry Keeper speaks in
-      wet gasps, a collector speaks in precise cataloguing tones.
+  # Provisioner — businesslike, flat affect, recites from memory
+  Provisioner:
+    model: en_US-amy-medium
+    pitch: 0.95
+    rate: 0.9
+    effects:
+      - type: compressor
+        params:
+          threshold_db: -16
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 5500
+
+  # Keeper — the dungeon itself speaking. Deep, wet, inhuman.
+  Keeper:
+    model: en_US-ryan-high
+    pitch: 0.65
+    rate: 0.7
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.9
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 800
+      - type: compressor
+        params:
+          threshold_db: -25
+      - type: gain
+        params:
+          gain_db: 3
+
+# ── Effects Presets ───────────────────────────────────────────
+effects_presets:
+  # Surface / town — minimal processing, daylight clarity
+  surface:
+    effects:
+      - type: highpass_filter
+        params:
+          cutoff_frequency_hz: 120
+      - type: gain
+        params:
+          gain_db: 1
+
+  # Level 1 — moderate reverb, dampened but breathable
+  gullet:
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.6
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 4000
+      - type: gain
+        params:
+          gain_db: -1
+
+  # Level 2 — heavy reverb, muffled, oppressive
+  belly:
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.85
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 2500
+      - type: gain
+        params:
+          gain_db: -3
+
+  # Tavern — warm, compressed, intimate
+  tavern:
+    effects:
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 5000
+      - type: compressor
+        params:
+          threshold_db: -14
+      - type: reverb
+        params:
+          room_size: 0.2
+
+  # Whisper — for hirelings who are terrified
+  whisper:
+    effects:
+      - type: highpass_filter
+        params:
+          cutoff_frequency_hz: 300
+      - type: compressor
+        params:
+          threshold_db: -10
+      - type: gain
+        params:
+          gain_db: -5
