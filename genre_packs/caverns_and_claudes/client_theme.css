@@ -1,0 +1,140 @@
+/* Caverns & Claudes — graph paper, torchlight, crosshatch, claustrophobic ink */
+
+:root {
+  --primary: #E8A83E;
+  --secondary: #4A3B2A;
+  --accent: #8B0000;
+  --background: #1A1A1A;
+  --surface: #2A2318;
+  --text: #D4C5A9;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Courier+Prime:wght@400;700&display=swap');
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    /* Graph paper grid — subtle squares like a dungeon map */
+    repeating-linear-gradient(
+      0deg,
+      rgba(58, 51, 42, 0.35) 0px,
+      rgba(58, 51, 42, 0.35) 1px,
+      transparent 1px,
+      transparent 24px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(58, 51, 42, 0.35) 0px,
+      rgba(58, 51, 42, 0.35) 1px,
+      transparent 1px,
+      transparent 24px
+    ),
+    /* Torchlight vignette — amber center fading to near-black */
+    radial-gradient(ellipse at 50% 35%, rgba(232, 168, 62, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at center, transparent 30%, rgba(10, 10, 8, 0.7) 100%);
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E#n");
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#narrative {
+  position: relative;
+  z-index: 1;
+}
+
+/* Body text — ink on parchment, slightly worn */
+.narration-block p {
+  font-family: 'IM Fell English', 'Georgia', serif;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+
+/* Drop cap — torchlit ink, warm amber glow */
+.drop-cap-block img {
+  filter: drop-shadow(2px 2px 4px rgba(232, 168, 62, 0.35)) contrast(1.05);
+}
+
+/* Dinkus — crosshatch style, dried blood red */
+.dinkus {
+  color: var(--accent);
+  letter-spacing: 0.5em;
+  opacity: 0.7;
+  font-weight: bold;
+}
+
+/* Pull quote — dungeon keeper's voice, genre font */
+.pull-quote {
+  border-left: 3px solid var(--primary);
+  color: var(--primary);
+  font-family: 'IM Fell English', 'Georgia', serif;
+  font-style: italic;
+  font-size: 1.1em;
+  letter-spacing: 0.03em;
+  opacity: 0.9;
+}
+
+/* Session opener — crosshatch border, torchlight amber rule */
+.session-opener {
+  border-bottom: 2px solid var(--primary);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 3px,
+      rgba(232, 168, 62, 0.05) 3px,
+      rgba(232, 168, 62, 0.05) 4px
+    );
+}
+
+/* Crosshatch card borders — ink hatching effect */
+.card, .panel {
+  border: 1px solid rgba(196, 184, 154, 0.25);
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0px,
+      transparent 4px,
+      rgba(196, 184, 154, 0.04) 4px,
+      rgba(196, 184, 154, 0.04) 5px
+    );
+}
+
+/* Map overlay — graph paper grid on map panels */
+.map-container {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(196, 184, 154, 0.12) 0px,
+      rgba(196, 184, 154, 0.12) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(196, 184, 154, 0.12) 0px,
+      rgba(196, 184, 154, 0.12) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+}
+
+/* Danger states — dark red pulse for hazard moments */
+.danger-state {
+  box-shadow: inset 0 0 20px rgba(139, 0, 0, 0.15);
+}
+
+/* Keeper awareness indicator — torchlight flicker animation */
+@keyframes torchflicker {
+  0%, 100% { opacity: 0.85; }
+  25% { opacity: 0.9; }
+  50% { opacity: 0.75; }
+  75% { opacity: 0.95; }
+}
+
+.keeper-indicator {
+  animation: torchflicker 3s ease-in-out infinite;
+  color: var(--primary);
+}

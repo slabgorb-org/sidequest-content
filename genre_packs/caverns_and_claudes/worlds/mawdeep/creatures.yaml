@@ -1,0 +1,389 @@
+# Mawdeep — Creature Bestiary
+# Extracted from room definitions. The Glutton shapes everything that lives here.
+# Nothing in Mawdeep is natural. Everything is adapted to the dark, the damp,
+# and the hunger of the dungeon itself.
+
+creatures:
+
+  # === TIER 1: NUISANCE ===
+
+  - id: pale_rat
+    name: Pale Rat
+    description: >-
+      Eyeless, bloated, and albino. These rats have adapted to total darkness
+      and feed on the amber resin that grows in the cracks of the dungeon's
+      stone. They scatter from torchlight but never far — they know the dark
+      will return. Their bites are septic. Their numbers are inexhaustible.
+    threat_level: 1
+    morale: cowardly
+    hp: 2
+    max_hp: 2
+    ac: 10
+    damage: "1 (bite, septic)"
+    abilities:
+      - name: Swarm
+        description: >-
+          In groups of six or more, pale rats attack as a swarm — a single
+          attack roll at +2 dealing 1d4 damage. Torchlight scatters the
+          swarm for one round.
+      - name: Resin-Fed
+        description: >-
+          Pale rats subsist on the amber resin in the dungeon's cracks.
+          They do not need food from the surface. They are part of the
+          dungeon's ecology — or its digestion.
+    loot:
+      - description: "Nothing. Rat pelts are worthless and stink of bile."
+    tags: [level_1, swarm, vermin, glutton_fauna]
+    rooms: [junction]
+    notes: >-
+      Colony in the Junction. Not a serious threat to an armed party, but
+      they drain resources if engaged — torches used to scatter them,
+      rations contaminated by their presence, wounds that fester.
+
+  - id: bone_beetle
+    name: Bone Beetle
+    description: >-
+      Fist-sized beetles with shells made of calcite — actual bone mineral,
+      grown from the dungeon's walls. They eat organic matter and excrete
+      calcium deposits. The clicking of their mandibles echoes in the dark.
+      Individually harmless. In the dozens that infest the Pantry's shelves,
+      they strip a leather pack in minutes.
+    threat_level: 1
+    morale: cowardly
+    hp: 1
+    max_hp: 1
+    ac: 12
+    damage: "1 (mandibles, gear damage)"
+    abilities:
+      - name: Devour Gear
+        description: >-
+          Bone beetles target organic equipment — leather, rope, cloth,
+          rations. A swarm of beetles on a dropped pack destroys one
+          item per round. They ignore metal and stone.
+      - name: Calcite Shell
+        description: >-
+          Their shells are hard mineral. Crushing them underfoot is
+          noisy — each beetle crunches loudly. Clearing a room of
+          beetles raises Keeper awareness by +1.
+    loot:
+      - description: "Calcite shell fragments. Worthless but crunchy."
+    tags: [level_1, swarm, vermin, glutton_fauna]
+    rooms: [pantry, throat]
+    notes: >-
+      Equipment hazard, not a combat encounter. The beetles exist to
+      punish carelessness — unattended packs, dropped rations, leather
+      left on the ground.
+
+  # === TIER 2: THREAT ===
+
+  - id: crawling_scavenger
+    name: Crawling Scavenger
+    description: >-
+      Once human. Once delvers, probably. Emaciated figures that crawl on
+      all fours, jawless, their mouths fused into a permanent gape. They
+      feed on the amber resin growing in the dungeon's cracks, licking it
+      from the stone with elongated tongues. Their eyes have not adapted
+      to the dark — they are simply gone, the sockets smooth and sealed.
+      They flinch from torchlight. They are not hostile unless cornered,
+      but they are deeply, profoundly unsettling.
+    threat_level: 2
+    morale: cowardly
+    hp: 6
+    max_hp: 6
+    ac: 11
+    damage: "1d4 (claw scratch)"
+    abilities:
+      - name: Cornered Frenzy
+        description: >-
+          If trapped or cornered, scavengers attack with desperate,
+          flailing claws. +2 to hit, 1d4+1 damage. Three scavengers
+          in frenzy can overwhelm an unarmored target.
+      - name: Resin Addiction
+        description: >-
+          Scavengers are drawn to amber resin. Dropping a piece of
+          resin-crusted stone distracts them for 1d4 rounds while
+          they fight over it.
+      - name: Unsettling Presence
+        description: >-
+          Hirelings seeing scavengers for the first time must make a
+          morale check. Not from danger — from the recognition of what
+          the dungeon does to people who stay too long.
+    loot:
+      - description: "Tattered remnants of delving gear — a corroded belt buckle (2 CP), a broken compass"
+        value: 1
+      - description: "Occasionally, a scavenger still wears a ring or amulet from its former life"
+        value: 15
+        chance: 0.2
+    tags: [level_1, undead_adjacent, glutton_fauna, unsettling]
+    rooms: [hall]
+    notes: >-
+      Three in the Swallowing Hall. They are a moral horror, not a
+      combat challenge. The party should wonder if this is what happens
+      to delvers who run out of torches.
+
+  - id: warren_crawler
+    name: Warren Crawler
+    description: >-
+      Pale, eyeless quadrupeds the size of large dogs, with elongated limbs
+      and flattened bodies adapted to the narrow passages of the Warren.
+      Their skin is translucent — you can see the dark shapes of their
+      organs pulsing beneath. They are scavengers by nature but predators
+      by opportunity. They do not attack the strong. They wait for the
+      weak.
+    threat_level: 2
+    morale: steady
+    hp: 8
+    max_hp: 8
+    ac: 12
+    damage: "1d6 (bite, crushing jaws)"
+    abilities:
+      - name: Patient Predator
+        description: >-
+          Warren crawlers do not initiate combat against healthy,
+          lit, and armed targets. They follow at the edge of torchlight,
+          waiting. When a party member is wounded, encumbered, or
+          separated, they strike.
+      - name: Pack Tactics
+        description: >-
+          Two or more crawlers attacking the same target gain +1 to hit
+          each. Three crawlers can drag a prone target into the dark
+          in a single round.
+      - name: Squeeze
+        description: >-
+          Crawlers can compress their bodies to fit through gaps as
+          narrow as eight inches. No door or barricade stops them
+          unless it is sealed airtight.
+    loot:
+      - description: "Contents of the crawler's gut — occasionally coins or small items from previous victims"
+        value: 5
+        chance: 0.3
+    tags: [level_2, predator, pack, glutton_fauna]
+    rooms: [warren]
+    notes: >-
+      The Warren's native predators. They embody the dungeon's patience —
+      they never attack the strong, only the weak and the dying. A healthy
+      party walks past them. A wounded party does not.
+
+  - id: gullet_polyp
+    name: Gullet Polyp
+    description: >-
+      A growth on the walls of the Gullet passage — a fleshy protrusion
+      the color of raw liver, the size of a human head, that extends on
+      a muscular stalk when vibrations approach. It is part of the dungeon.
+      It is the dungeon tasting what passes through. Its touch numbs flesh
+      and its secretions dissolve leather.
+    threat_level: 2
+    morale: fearless
+    hp: 4
+    max_hp: 4
+    ac: 8
+    damage: "1d4 (acid touch) + gear damage"
+    abilities:
+      - name: Ambush Growth
+        description: >-
+          Polyps are indistinguishable from the ribbed walls until they
+          extend. A careful examination (WIS check) reveals them before
+          they strike. Otherwise, the first party member through a
+          polyp-infested section takes an automatic hit.
+      - name: Acid Secretion
+        description: >-
+          Contact with a polyp coats the affected area in digestive
+          acid. Leather armor loses 1 AC permanently. Cloth dissolves.
+          Metal is unaffected.
+      - name: Regeneration
+        description: >-
+          Severed polyps regrow between delves. They cannot be
+          permanently cleared. The dungeon grows them back.
+    loot:
+      - description: "Nothing. They are part of the walls."
+    tags: [level_2, hazard_creature, glutton_organ, sessile]
+    rooms: [gullet_passage]
+    notes: >-
+      Not a traditional creature — more like a dungeon organ. They exist
+      to tax the party's gear on the way to the Vault. Fire kills them
+      instantly but wastes torch-time.
+
+  # === TIER 3: DANGEROUS ===
+
+  - id: amber_hulk
+    name: Amber Hulk
+    description: >-
+      A humanoid figure encased in hardened amber resin — the same
+      substance that fills the cracks in the dungeon's walls. Beneath
+      the amber, the shape of a human body is visible: a delver,
+      preserved and puppeted. The amber moves with a grinding, cracking
+      sound. It is slow but enormously strong. The Glutton has found a
+      use for the dead it cannot fully digest.
+    threat_level: 3
+    morale: fearless
+    hp: 18
+    max_hp: 18
+    ac: 16
+    damage: "1d8+2 (amber fist, crushing)"
+    abilities:
+      - name: Amber Shell
+        description: >-
+          The resin coating absorbs blunt damage — clubs, maces, and
+          fists deal half damage. Piercing weapons crack the shell.
+          Fire softens it, reducing AC by 2 for 1d4 rounds.
+      - name: Engulf
+        description: >-
+          On a critical hit, the amber hulk attempts to pull the
+          target into its mass. STR save or be partially engulfed —
+          restrained, taking 1d4 acid damage per round as the resin
+          begins to digest. Allies can hack the target free (10 HP
+          of damage to the resin).
+      - name: Glutton's Puppet
+        description: >-
+          The amber hulk does not think. It follows the Keeper's will.
+          At Keeper awareness 15+, amber hulks patrol corridors they
+          normally ignore. At awareness 20, they actively hunt.
+    loot:
+      - description: "Cracking the amber shell reveals the original delver's gear — corroded but sometimes valuable"
+        value: 30
+        chance: 0.5
+      - description: "Amber resin chunks (alchemically valuable on the surface)"
+        value: 20
+        weight: 2.0
+    tags: [level_1, level_2, construct, glutton_puppet, slow]
+    rooms: [hall, landing, stomach]
+    notes: >-
+      The dungeon's enforcers. They appear in rooms when Keeper awareness
+      is high — wandering monsters that are literally made from previous
+      delvers. Fighting one is loud and slow and wastes resources the
+      party cannot spare.
+
+  - id: marrow_worm
+    name: Marrow Worm
+    description: >-
+      A segmented worm six feet long, translucent and pulsing with
+      orange bioluminescence. It lives in the bone-lined walls of
+      Marrow Hall, burrowing through calcified remains to feed on
+      the marrow within. Its bite injects a numbing enzyme that
+      dissolves bone — the victim does not feel the damage until
+      the limb stops working.
+    threat_level: 3
+    morale: steady
+    hp: 12
+    max_hp: 12
+    ac: 11
+    damage: "1d6+1 (bite, bone-dissolving enzyme)"
+    abilities:
+      - name: Numbing Bite
+        description: >-
+          The worm's bite is painless. The victim does not know they
+          have been bitten until 1d4 rounds later when the affected
+          limb weakens. CON save or the limb is useless for 1 hour.
+          Successive bites on the same limb cause permanent damage.
+      - name: Wall Ambush
+        description: >-
+          Marrow worms emerge from the bone walls without warning.
+          They attack anyone who leans against or touches the walls
+          of Marrow Hall — which is easy to do, because the corridor
+          is narrow.
+      - name: Heat Sense
+        description: >-
+          The worms sense body heat. Dousing a torch does not hide you
+          from them. Cold iron or ice repels them temporarily.
+    loot:
+      - description: "Worm enzyme glands — an alchemist in Gristwell pays well for them"
+        value: 15
+        weight: 0.1
+      - description: "Bioluminescent segments glow for 1d4 hours after the worm dies — dim but free light"
+        value: 5
+        weight: 0.1
+    tags: [level_2, ambush, glutton_fauna, bone]
+    rooms: [marrow_hall]
+    notes: >-
+      The danger of Marrow Hall. The corridor is narrow, the walls are
+      bone, and the worms are in the bone. Touching the walls is
+      unavoidable in armor. Fire clears a section temporarily.
+
+  # === TIER 4: BOSS ===
+
+  - id: the_maw
+    name: The Maw
+    description: >-
+      The Glutton's lieutenant. A composite horror assembled from the
+      digested remains of everything the dungeon has consumed — armor
+      plates fused to stone, weapons jutting from a torso of compacted
+      rubble, a skull assembled from a dozen smaller skulls. It breathes.
+      It watches with eyes that are gemstones set in sockets of mortar.
+      It does not speak. It does not negotiate. It guards the Full Belly
+      because the Glutton shaped it to. When destroyed, the Glutton will
+      eventually grow another.
+    threat_level: 4
+    morale: fearless
+    hp: 40
+    max_hp: 40
+    ac: 17
+    damage: "2d6+3 (composite weapon limbs)"
+    abilities:
+      - name: Composite Form
+        description: >-
+          The Maw's body is made of stone, metal, and bone. It has no
+          single weakness. Slashing weapons chip it. Piercing weapons
+          lodge in it. Blunt weapons crack it. All damage types work,
+          but none work exceptionally well. Resistance to the first 2
+          points of all damage.
+      - name: Weapon Limbs
+        description: >-
+          The Maw's arms end in fused weapon fragments — a sword blade
+          on one, a mace head on the other. It alternates between
+          slashing (1d8+3) and crushing (2d6+3) attacks depending on
+          which arm it swings.
+      - name: Absorb
+        description: >-
+          When the Maw takes 10+ damage in a single hit, it may absorb
+          a piece of the attacker's weapon. The weapon takes 1 point of
+          permanent damage (cumulative). A weapon reduced to 0 durability
+          shatters and becomes part of the Maw, healing it for 1d6 HP.
+      - name: Gemstone Gaze
+        description: >-
+          The Maw's gem-eyes pulse with bioluminescence. Any creature
+          meeting its gaze must save vs. paralysis or be rooted for one
+          round. Looking away imposes -2 to attack rolls against it.
+          Smashing an eye (called shot, -4 to hit, 8 HP) removes this
+          ability permanently for the current incarnation.
+      - name: Regeneration (Slow)
+        description: >-
+          The Maw heals 1 HP per round as the dungeon feeds material
+          into it through the floor. Standing on stone or bone, it
+          cannot be starved. Lifting it off the ground (impractical)
+          or fighting it on metal flooring (impossible in Mawdeep)
+          would stop the regeneration.
+      - name: Death Rattle
+        description: >-
+          When the Maw is destroyed, the dungeon screams — a vibration
+          through every wall on Level 2. Keeper awareness drops by 5
+          (the Glutton is stunned by the loss). The bone door to the
+          Full Belly unseals. The party has a window before the Glutton
+          recovers.
+    loot:
+      - description: "Gemstone eyes — two flawless gems worth 75 GP each"
+        value: 150
+        weight: 0.2
+      - description: "Gold-inlaid breastplate fragment, pried from the torso"
+        value: 80
+        weight: 4.0
+      - description: "Silver-capped bone club — a functional weapon salvaged from its limbs"
+        value: 35
+        weight: 3.0
+      - description: "Assorted metal fragments and coins fused into its body"
+        value: 40
+        weight: 6.0
+    tags: [level_2, boss, epitome, glutton_construct, unique]
+    rooms: [maw_chamber]
+    respawn: >-
+      The Glutton assembles a new Maw over 2-3 delves. Each incarnation
+      is different — built from whatever the dungeon has consumed since
+      the last one fell. The new Maw may have different weapons, different
+      armor, different weaknesses. The stats above are a baseline. The
+      narrator should vary the form and abilities with each incarnation
+      to prevent the fight from becoming routine.
+    notes: >-
+      The set-piece boss. The repeatable loop: fight the Maw, loot the
+      Full Belly, extract, resupply, return to find a new Maw waiting.
+      The Maw should feel like a real fight — not unfair, but expensive.
+      Victory costs torches, rations, HP, and weapon durability. The
+      question is never "can we kill it" but "can we afford to."
