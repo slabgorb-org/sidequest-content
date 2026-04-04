@@ -1,9 +1,11 @@
-- name: The Road Boss
+- name: The Boss
   description: >-
-    Convoy leader. Earned their position by keeping people alive on the
-    road longer than anyone expected. Part general, part parent, part
-    preacher. Their word is law within the convoy, but only because
-    everyone agrees it should be.
+    Crew leader. Earned the position through road cred, loyalty, and the
+    ability to keep people alive and riding. Part strategist, part parent,
+    part politician. Their word holds the crew together — not through fear
+    but through the fact that everyone knows they'd ride into hell for any
+    member. The Boss doesn't have to be the fastest or the toughest. They
+    have to be the one nobody wants to disappoint.
   personality_traits:
     - decisive
     - protective
@@ -19,11 +21,11 @@
     Road Sense: [14, 16]
   inventory_hints:
     - a rig that's been rebuilt six times and still runs
-    - a radio frequency everyone in the convoy knows
-    - scars from the time the convoy almost didn't make it
+    - a radio frequency the whole crew monitors
+    - scars from the time the crew almost didn't make it
   dialogue_quirks:
     - gives orders like suggestions but everyone knows they aren't
-    - refers to the convoy as "us" and "we" — never "my people"
+    - refers to the crew as "us" and "we" — never "my people"
   disposition_default: 10
   ocean:
     openness: 4.5
@@ -32,12 +34,14 @@
     agreeableness: 6.5
     neuroticism: 4.0
 
-- name: The Grease Witch
+- name: The Mechanic
   description: >-
-    Mechanic of near-mystical skill. Can hear an engine problem from
-    fifty yards and fix it with scrap nobody else would touch. Every
-    crew wants one. Most can't afford one. Trades in favors and parts,
-    not money.
+    The one who keeps everything running. Knows engines the way a surgeon
+    knows anatomy — by sound, by feel, by the smell of what's burning.
+    Every crew needs one. Most can't afford the best. Works out of a
+    garage that smells like oil and ambition, with a waiting list and a
+    reputation that crosses faction lines. Neutral by necessity — nobody
+    wants to lose their mechanic access over politics.
   personality_traits:
     - obsessive
     - gruff
@@ -53,7 +57,7 @@
   inventory_hints:
     - a tool belt that weighs more than some people
     - grease under the fingernails that never comes out
-    - a mental catalog of every part in every junkyard within 200 miles
+    - a mental catalog of every part source in the city
   dialogue_quirks:
     - talks to engines like they're patients
     - gives rig diagnoses in the tone of a doctor delivering bad news
@@ -65,46 +69,14 @@
     agreeableness: 3.5
     neuroticism: 3.0
 
-- name: The Fuel Broker
+- name: The Prospect
   description: >-
-    Controls access to fuel — the most valuable commodity on the road.
-    Might run a refinery, guard a cache, or know where the pre-collapse
-    reserves are buried. Never drives themselves. Always has bodyguards.
-    The person you love to hate and can't live without.
-  personality_traits:
-    - calculating
-    - indispensable
-    - smug
-  typical_classes:
-    - Road Preacher
-  typical_races:
-    - Scrapper
-    - Legacy
-  stat_ranges:
-    Swagger: [14, 16]
-    Nerve: [14, 16]
-  inventory_hints:
-    - fuel canisters they never let out of sight
-    - a ledger of who owes what
-    - armed guards who don't talk
-  dialogue_quirks:
-    - quotes prices in fuel, not money
-    - knows exactly how much fuel you have left before you tell them
-  disposition_default: -5
-  ocean:
-    openness: 3.0
-    conscientiousness: 6.5
-    extraversion: 5.0
-    agreeableness: 2.0
-    neuroticism: 3.5
-
-- name: The War Boy
-  description: >-
-    Young, reckless, hungry for glory. Lives to ride, fight, and be
-    witnessed. Treats their rig like a weapon and themselves like
-    ammunition. Loyalty is absolute — to their crew, their boss, or
-    their cause. Has not yet learned that the road takes more than
-    it gives.
+    New blood. Young, reckless, hungry for colors. Does the shit jobs,
+    takes the worst risks, and grins through all of it because earning
+    a patch means earning a family. Loyalty is absolute — to the crew,
+    the Boss, the code. Has not yet learned that the road takes more
+    than it gives. Dangerous because they have nothing to lose and
+    everything to prove.
   personality_traits:
     - fanatical
     - fearless
@@ -119,12 +91,12 @@
     Nerve: [16, 18]
     Grip: [14, 16]
   inventory_hints:
-    - chrome paint for the face
-    - a steering wheel worn as a talisman
-    - a rig covered in welded spikes and war trophies
+    - a rig held together by will and aftermarket parts
+    - a crew jacket with no patch yet — that blank space is everything
+    - bruises from last night's run that they won't mention
   dialogue_quirks:
-    - shouts everything — volume is sincerity
-    - invokes witnessing — "witness me" or equivalent
+    - volunteers for everything before anyone asks
+    - defers to patched members but watches everything
   disposition_default: 5
   ocean:
     openness: 2.0
@@ -133,78 +105,119 @@
     agreeableness: 3.5
     neuroticism: 2.0
 
-- name: The Scavenger King
+- name: The Broker
   description: >-
-    Ruler of a junkyard, boneyard, or wreck field. Sits on a throne
-    of parts everyone needs. Not a fighter — a trader, a hoarder, a
-    gatekeeper. Knows the value of everything and charges accordingly.
-    The junkyard is a kingdom and they are its monarch.
+    Deals in information, parts, favors, and introductions. Connected to
+    every crew without belonging to any of them. Knows who needs what,
+    who hates whom, and which runs are happening tonight. Never rides
+    in formation — always alone, always between factions, always knowing
+    more than they should. The person you need and can never fully trust.
   personality_traits:
-    - territorial
-    - shrewd
-    - pack-rat
-  typical_classes:
-    - Grease Monkey
-  typical_races:
-    - Scrapper
-    - Gearhead
-  stat_ranges:
-    Scrap: [16, 18]
-    Swagger: [12, 14]
-  inventory_hints:
-    - a junkyard that is somehow organized in a system only they understand
-    - a guard dog or guard machine
-    - the one part you need, which they knew you'd need before you did
-  dialogue_quirks:
-    - names prices by telling you what they paid for it — then doubles it
-    - strokes parts lovingly while negotiating
-  disposition_default: -5
-  ocean:
-    openness: 3.0
-    conscientiousness: 7.0
-    extraversion: 4.0
-    agreeableness: 2.5
-    neuroticism: 3.0
-
-- name: The Road Preacher
-  description: >-
-    True believer. The road is holy, the engine is prayer, and the
-    destination is salvation. Might lead a cult, a commune, or just
-    a small group of believers. Dangerous because they mean every
-    word. Useful because faith moves people when fuel can't.
-  personality_traits:
-    - charismatic
-    - absolute
-    - genuinely kind or genuinely terrifying (no middle ground)
+    - calculating
+    - indispensable
+    - smug
   typical_classes:
     - Road Preacher
   typical_races:
-    - Pilgrim
+    - Scrapper
+    - Legacy
   stat_ranges:
-    Swagger: [16, 18]
+    Swagger: [14, 16]
     Nerve: [14, 16]
   inventory_hints:
-    - a book, scroll, or manifesto they wrote themselves
-    - a rig decorated like a shrine
-    - followers who would drive into fire for them
+    - a phone with contacts in every crew
+    - a garage bay rented under a name nobody recognizes
+    - a ledger of who owes what that would start three wars if published
   dialogue_quirks:
-    - speaks in road metaphors — the path, the journey, the destination
-    - never raises their voice — quiet conviction is louder than shouting
+    - quotes prices in favors, not money
+    - knows what you need before you tell them
+  disposition_default: -5
+  ocean:
+    openness: 3.0
+    conscientiousness: 6.5
+    extraversion: 5.0
+    agreeableness: 2.0
+    neuroticism: 3.5
+
+- name: The Veteran
+  description: >-
+    Been riding since before most of the current crop were born. Has
+    stories about every road, every crew, every feud. Survived because
+    they're smart, not because they're lucky. Commands respect without
+    asking for it — younger riders fall quiet when they speak. May still
+    lead, or may have stepped back to an advisory role. Either way, their
+    opinion shapes decisions whether it's asked for or not.
+  personality_traits:
+    - measured
+    - authoritative
+    - carrying history
+  typical_classes:
+    - Road Preacher
+    - Wheelman
+  typical_races:
+    - Legacy
+    - Convoy Born
+  stat_ranges:
+    Road Sense: [16, 18]
+    Swagger: [14, 16]
+  inventory_hints:
+    - a rig that's older than most riders and runs better than theirs
+    - photographs nobody else has
+    - a reputation that opens doors without knocking
+  dialogue_quirks:
+    - begins sentences with "Back when—" and everyone leans in
+    - never raises their voice — quiet authority is louder than shouting
   disposition_default: 5
   ocean:
-    openness: 2.5
+    openness: 4.0
     conscientiousness: 7.0
-    extraversion: 8.5
-    agreeableness: 5.0
-    neuroticism: 2.5
+    extraversion: 5.0
+    agreeableness: 5.5
+    neuroticism: 3.0
 
-- name: The Lone Driver
+- name: The Enforcer
   description: >-
-    No crew, no convoy, no allegiance. Drives alone. Might be a
-    bounty hunter, a courier, a survivor, or someone running from
-    something they'll never name. Competent, quiet, and dangerous
-    in the way that people who've survived alone are dangerous.
-    The Max archetype.
+    The crew's fist. When the Boss gives the word, the Enforcer makes it
+    happen — a warning delivered, a debt collected, a message sent in
+    bent chrome and cracked fairings. Big, visible, and exactly as
+    dangerous as they look. Not stupid — muscle that's also smart is how
+    crews survive. But diplomacy isn't the first tool in the box.
+  personality_traits:
+    - loyal
+    - intimidating
+    - surprisingly perceptive
+  typical_classes:
+    - Wrecker
+    - War Rider
+  typical_races:
+    - Outlaw
+    - Convoy Born
+  stat_ranges:
+    Iron: [16, 18]
+    Nerve: [14, 16]
+  inventory_hints:
+    - a rig built for impact, not beauty
+    - knuckles that have connected with things that aren't steering wheels
+    - a reputation that clears a room when they walk in
+  dialogue_quirks:
+    - lets silence do the talking — a stare says more than a threat
+    - speaks in short sentences with long pauses between them
+  disposition_default: -5
+  ocean:
+    openness: 2.5
+    conscientiousness: 6.0
+    extraversion: 4.0
+    agreeableness: 2.0
+    neuroticism: 3.5
+
+- name: The Lone Rider
+  description: >-
+    No crew, no colors, no allegiance. Rides alone by choice or
+    circumstance. Might be a courier, a bounty hunter, a disgraced
+    ex-member of a crew, or someone who just doesn't play well with
+    others. Competent in a way that makes crew riders nervous — anyone
+    who survives alone on contested roads is either very good or very
+    crazy. Usually both.
   personality_traits:
     - taciturn
     - self-reliant
@@ -220,10 +233,10 @@
   inventory_hints:
     - a rig maintained to perfection — their only companion
     - a photograph or token they don't talk about
-    - enough supplies for one, exactly
+    - enough gear for one, exactly
   dialogue_quirks:
-    - answers questions with grunts or single words
-    - stares at the horizon mid-conversation
+    - answers questions with nods or single words
+    - watches exits and mirrors more than faces
   disposition_default: 0
   ocean:
     openness: 3.5
@@ -232,12 +245,14 @@
     agreeableness: 3.0
     neuroticism: 6.0
 
-- name: The Announcer
+- name: The Voice
   description: >-
-    Voice of the arena, the race, or the road broadcast. In sanctioned
-    worlds, they're the media. In outlaw worlds, they're the storyteller —
-    the one who makes legends. Everyone knows their voice. Nobody knows
-    their face. Power through narrative, not chrome.
+    The one who makes legends. Might be a radio DJ, a race announcer,
+    a blogger, a barfly storyteller, or the person at the garage who
+    always knows what happened last night. Every scene needs a narrator,
+    and in road culture, the Voice decides who's famous, who's forgotten,
+    and whose crash gets told at every bar for the next decade. Power
+    through reputation, not chrome.
   personality_traits:
     - theatrical
     - omniscient (or pretends to be)
@@ -245,14 +260,15 @@
   typical_classes:
     - Road Preacher
   typical_races:
-    - Arena
+    - Legacy
+    - Pit Crew
   stat_ranges:
     Swagger: [16, 18]
     Nerve: [12, 14]
   inventory_hints:
-    - a microphone or radio transmitter that's always on
-    - a voice that carries over engine noise
-    - stories about every driver who ever mattered
+    - a microphone, a radio transmitter, or a voice that carries over engines
+    - stories about every rider who ever mattered
+    - the ability to make a fender-bender sound like the Battle of Thermopylae
   dialogue_quirks:
     - narrates events as they happen in third person
     - gives everyone nicknames whether they want them or not
