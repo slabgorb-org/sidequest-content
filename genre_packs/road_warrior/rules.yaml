@@ -53,7 +53,7 @@ race_label: Background
 class_label: Role
 default_hp: 8
 default_ac: 10
-default_location: "Behind the wheel of a beat-up rig on a long straight road"
+default_location: "In a garage with the hood up, radio on, crew somewhere nearby"
 default_time_of_day: dawn
 
 custom_rules:
@@ -113,11 +113,13 @@ custom_rules:
     You're meat on the road.
 
   fuel_system: >-
-    Fuel is tracked as a resource. Every significant journey, chase, or
-    pursuit costs fuel. When fuel hits zero the rig is dead weight —
-    still provides cover (Rig HP remains) but no speed, no escape.
-    Scavenging, trading, and raiding are the ways to refuel. The world
-    determines how scarce fuel is — the genre just says it always matters.
+    Fuel is tracked during chases and long runs — not as a survival
+    resource but as a tactical one. Running low mid-chase means hard
+    decisions. Running dry means your rig is dead weight — still
+    provides cover (Rig HP remains) but no speed, no escape. In normal
+    play, fuel is available at gas stations like anywhere else. The
+    drama isn't "can I find fuel" — it's "can I afford to burn fuel
+    on this chase and still make it across town."
 
   chase_system: >-
     Chases are structured as beat sequences, not single rolls. Each chase
@@ -154,4 +156,44 @@ encounter_base_tension:
   chase: 0.40
   boss: 0.45
   final: 0.50
+
+# ── Confrontations ──────────────────────────────────────────
+confrontations:
+  - type: negotiation
+    label: "Wasteland Bargain"
+    category: social
+    metric:
+      name: leverage
+      direction: bidirectional
+      starting: 5
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: persuade
+        label: "Make Your Case"
+        metric_delta: 2
+        stat_check: Swagger
+        effect: "opponent considers your argument"
+        narrator_hint: "Show the NPC weighing the player's words."
+      - id: threaten
+        label: "Threaten"
+        metric_delta: 3
+        stat_check: Iron
+        risk: "faction reputation -1 if it fails"
+        consequence: "NPC becomes hostile on critical failure"
+        narrator_hint: "Rev the engine. Let them hear what's coming."
+      - id: concede_point
+        label: "Concede a Point"
+        metric_delta: -1
+        stat_check: Swagger
+        effect: "opponent disposition +5, reveals their real goal"
+        narrator_hint: "Strategic retreat. Player gives ground to gain information."
+      - id: walk_away
+        label: "Walk Away"
+        metric_delta: 0
+        stat_check: Iron
+        resolution: true
+        consequence: "deal collapses, reputation intact"
+        narrator_hint: "Player fires up the rig and leaves. No deal."
+    mood: tension
 

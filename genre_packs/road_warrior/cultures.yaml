@@ -1,15 +1,15 @@
-# Road Warrior cultures are road tribes and crew types.
+# Road Warrior cultures are crew types and road backgrounds.
+# These are generic fallbacks — worlds should override with
+# their own faction-specific cultures and conlang systems.
 # Names blend road handles, rig nicknames, and crew traditions.
-# Every driver has a road name. Every rig has a name. Places are
-# named for what they do (The Fuel Stop, The Pit, The Straightaway)
-# or who controls them (Vex's Crossing, The Deacon's Mile).
+# Every rider has a road name. Every rig has a name.
 
-- name: Convoy
+- name: Convoy Born
+  summary: "Crew families — raised in the culture"
   description: >-
-    Road families. Born on the move, raised in the cab. Convoys name
-    their children for the road — landmarks, weather, engine sounds.
-    Family names are the convoy's name. Rigs are inherited and named
-    like family members.
+    Born into a crew. Raised in garages, grew up at meets, learned to
+    ride before they learned to drive. Crew names are family names.
+    Road names are earned young and stick forever.
   slots:
     given_name:
       word_list:
@@ -35,22 +35,22 @@
         - Zenith
     family_name:
       word_list:
-        - Roadborn
+        - Cruz
         - Ironside
-        - Dustwalker
-        - Burnout
-        - Longhaul
+        - Nakamura
+        - Kovacs
         - Redline
+        - Santos
         - Blacktop
-        - Gravel
-        - Axlebreak
-        - Turnpike
+        - Okafor
+        - Chen
+        - Petrov
     title:
-      word_list: [Boss, Lead, Elder, First, Road Captain, Convoy Chief]
+      word_list: [Boss, Lead, Elder, First, Captain, Chief]
     place_noun:
-      word_list: [crossing, mile, stretch, fork, depot, yard, run, pass, straightaway, junction]
+      word_list: [garage, corner, lot, block, strip, yard, alley, crossing]
     adjective:
-      word_list: [rust, iron, black, red, burnt, broken, long, dead, dust, chrome]
+      word_list: [old, iron, black, red, chrome, broken, long, neon]
   person_patterns:
     - "{given_name} {family_name}"
     - "{title} {given_name}"
@@ -61,6 +61,7 @@
     - "{family_name} {place_noun}"
 
 - name: Pit Crew
+  summary: "Mechanics, engineers, and builders"
   description: >-
     Mechanics, engineers, and builders. Pit Crew names are earned —
     nicknames based on what you're good at or what you survived.
@@ -110,10 +111,11 @@
     - "The {adjective} {place_noun}"
 
 - name: Outlaw
+  summary: "Runners, smugglers, and road criminals"
   description: >-
-    Runners, smugglers, and road bandits. Outlaws use handles — short,
+    Runners, smugglers, and road criminals. Outlaws use handles — short,
     sharp, memorable. Your handle IS your identity. Real names are
-    secrets or forgotten. Rig names are threats or jokes.
+    secrets or forgotten.
   slots:
     given_name:
       word_list:
@@ -141,15 +143,15 @@
         - Breaker
         - Chaser
         - Stalker
-        - Reaper
-        - Howler
         - Rattler
+        - Howler
+        - Cutter
     title:
       word_list: [The, Old, Mad, Dead, Last, One-Eyed, No-Name]
     place_noun:
-      word_list: [den, hideout, cache, strip, turf, hole, roost, blind]
+      word_list: [den, hideout, alley, strip, turf, hole, corner, blind]
     adjective:
-      word_list: [bloody, burned, hollow, wrecked, stolen, cursed, nameless, forgotten]
+      word_list: [bloody, burned, hollow, wrecked, stolen, cursed, nameless, dark]
   person_patterns:
     - "{given_name}"
     - "{title} {given_name}"
@@ -158,101 +160,148 @@
     - "The {adjective} {place_noun}"
     - "{given_name}'s {place_noun}"
 
-- name: Arena
+- name: Gearhead
+  summary: "Came to the culture through the machine"
   description: >-
-    Sanctioned racers, blood sport gladiators, and sponsored drivers.
-    Arena names are stage names — dramatic, memorable, built for a
-    crowd. Sponsors may rename you. Your rig's name is your brand.
+    Not born into a crew — drawn in by the machines. Gearheads are
+    the technical obsessives, the ones who came for the engines and
+    stayed for the culture. Names are often borrowed from parts,
+    tools, or the sound an engine makes when it's perfect.
   slots:
     given_name:
       word_list:
         - Apex
-        - Blitz
-        - Crash
-        - Domino
-        - Eclipse
-        - Fury
-        - Grinder
-        - Hammer
-        - Inferno
-        - Killswitch
-        - Lightning
-        - Mayhem
+        - Cam
+        - Rev
+        - Boost
+        - Dyno
         - Nitro
-        - Overdrive
-        - Pileup
+        - Torque
+        - Intake
+        - Bore
+        - Turbo
+        - Shift
+        - Stroke
+        - Valve
+        - Timing
+        - Throttle
     family_name:
       word_list:
-        - Supreme
-        - Unchained
-        - Undefeated
-        - Immortal
-        - Legendary
-        - Invincible
-        - Infamous
-        - Unstoppable
-        - Merciless
-        - Relentless
+        - Works
+        - Customs
+        - Speed
+        - Motor
+        - Racing
+        - Performance
+        - Machine
+        - Engineering
+        - Tuning
+        - Fabrication
     title:
-      word_list: [Champion, Challenger, Contender, Reigning, Defending, The Mighty, The Infamous]
+      word_list: [Top, Head, Chief, Master, Senior]
     place_noun:
-      word_list: [arena, circuit, ring, track, bowl, dome, gauntlet, thunderdome]
+      word_list: [shop, works, garage, dyno, track, bench, pit, bay]
     adjective:
-      word_list: [grand, bloody, iron, death, thunder, savage, neon, screaming]
+      word_list: [fast, tuned, bored, stroked, ported, polished, balanced, blueprinted]
   person_patterns:
-    - "{given_name} the {family_name}"
-    - "{title} {given_name}"
     - "{given_name}"
+    - "{given_name} {family_name}"
+    - "{title} {given_name}"
+  place_patterns:
+    - "{given_name}'s {place_noun}"
+    - "The {adjective} {place_noun}"
+    - "{family_name} {place_noun}"
+
+- name: Scrapper
+  summary: "Self-made riders who built their way in"
+  description: >-
+    Nobody gave them anything. Found the frame in a yard, the engine
+    in a listing, the will in themselves. Scrappers earned every mile.
+    Their names are what sticks — whatever someone called them the
+    first time they showed up and it just stayed.
+  slots:
+    given_name:
+      word_list:
+        - Patch
+        - Stitch
+        - Scrap
+        - Wire
+        - Salvage
+        - Junk
+        - Rust
+        - Scratch
+        - Dent
+        - Duct
+        - Bolt
+        - Weld
+        - Hammer
+        - Nail
+        - Hack
+    family_name:
+      word_list:
+        - Yard
+        - Parts
+        - Salvage
+        - Junk
+        - Found
+        - Built
+        - Made
+        - Earned
+        - Pulled
+        - Dragged
+    title:
+      word_list: [Old, Young, Little, Big, Lucky, Scrappy]
+    place_noun:
+      word_list: [yard, lot, heap, pile, shed, barn, ditch, curb]
+    adjective:
+      word_list: [rusty, bent, patched, welded, found, stolen, rebuilt, salvaged]
+  person_patterns:
+    - "{given_name}"
+    - "{title} {given_name}"
+    - "{given_name} {family_name}"
   place_patterns:
     - "The {adjective} {place_noun}"
     - "{given_name}'s {place_noun}"
 
-- name: Pilgrim
+- name: Legacy
+  summary: "Inherited status, reputation, or a rig"
   description: >-
-    Road mystics, preachers, and wanderers who follow the road as
-    a calling. Pilgrims take road names that sound like prophecy —
-    destinations they're seeking or visions they've had. They name
-    places like shrines.
+    Came into the culture carrying someone else's name. A parent's
+    rig, a dead rider's patch, an old Boss's reputation. Legacy
+    riders are judged before they open their mouths — the question
+    is always whether they're living up to or hiding from the name.
   slots:
     given_name:
       word_list:
-        - Horizon
-        - Wayward
-        - Pilgrim
-        - Sermon
-        - Vigil
-        - Dusk
-        - Dawn
-        - Solstice
-        - Vesper
-        - Requiem
-        - Parish
-        - Covenant
-        - Psalm
-        - Canon
-        - Litany
+        - Junior
+        - Ghost
+        - Echo
+        - Shadow
+        - Heir
+        - Second
+        - Next
+        - Young
+        - New
+        - Little
+        - Minor
+        - Last
+        - Late
+        - Namesake
+        - Son
     family_name:
       word_list:
-        - Seeker
-        - Walker
-        - Witness
-        - Keeper
-        - Wanderer
-        - Believer
-        - Listener
-        - Watcher
-        - Dreamer
-        - Wayfinder
+        - the name they inherited
+        - the crew they were born into
     title:
-      word_list: [Deacon, Sister, Brother, Father, Mother, The Reverend, Saint]
+      word_list: [Young, Junior, Little, The Next, The Other, The New]
     place_noun:
-      word_list: [shrine, chapel, waystation, altar, marker, cairn, monument, mile]
+      word_list: [garage, corner, house, seat, territory, route, run, mile]
     adjective:
-      word_list: [sacred, hallowed, silent, eternal, blessed, promised, forsaken, last]
+      word_list: [old, original, first, last, same, new, other, true]
   person_patterns:
-    - "{title} {given_name}"
-    - "{given_name} the {family_name}"
     - "{given_name}"
+    - "{title} {given_name}"
+    - "Young {given_name}"
   place_patterns:
     - "The {adjective} {place_noun}"
-    - "{title} {given_name}'s {place_noun}"
+    - "{given_name}'s {place_noun}"
