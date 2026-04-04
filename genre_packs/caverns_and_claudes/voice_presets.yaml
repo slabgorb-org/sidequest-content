@@ -1,79 +1,75 @@
 # Voice presets for Caverns & Claudes
 # Minimal — most NPCs are hirelings who die before their voice matters
 
-presets:
-  - id: torchbearer_voice
-    name: Torchbearer
-    description: Nervous, whispering, breath catching on every word
-    kokoro:
-      voice: bf_emma
-      speed: 1.1
-    style_notes: >-
-      Speaks in short, clipped sentences. Whispers even when whispering
-      is not necessary. Voice trembles on descriptive passages. Swallows
-      the ends of words.
+narrator:
+  model: en_US-lessac-high
+  pitch: 1.0
+  rate: 0.9
+  effects:
+    - type: reverb
+      params:
+        room_size: 0.35
+    - type: compressor
+      params:
+        threshold_db: -20
 
-  - id: porter_voice
-    name: Porter
-    description: Low, flat, monosyllabic
-    kokoro:
-      voice: bm_george
-      speed: 0.85
-    style_notes: >-
-      Answers in one or two words. Long pauses between sentences. No
-      inflection. The vocal equivalent of a shrug.
-
-  - id: sellsword_voice
-    name: Sellsword
-    description: Gruff, bored, transactional
-    kokoro:
-      voice: bm_lewis
-      speed: 1.0
-    style_notes: >-
-      States prices and conditions flatly. Occasionally sardonic. Never
-      raises voice except in combat, where it becomes a bark.
-
-  - id: fence_voice
-    name: Fence
-    description: Oily, conspiratorial, drops to a whisper unpredictably
-    kokoro:
-      voice: bm_daniel
-      speed: 1.15
-    style_notes: >-
-      Leans into sibilants. Volume drops mid-sentence. Laughs nervously
-      at nothing. Every offer sounds like it might be your last.
-
-  - id: rumormonger_voice
-    name: Rumormonger
-    description: Tavern raconteur, theatrical whisper, dramatic pauses
-    kokoro:
-      voice: bm_george
-      speed: 0.95
-    style_notes: >-
-      Speaks like every sentence is the climax of a story. Dramatic
-      pauses before dungeon names. Drops to a hush for the dangerous
-      parts. Clearly enjoying being the center of attention.
-
-  - id: provisioner_voice
-    name: Provisioner
-    description: Businesslike, flat affect, recites from memory
-    kokoro:
-      voice: bf_emma
-      speed: 0.9
-    style_notes: >-
-      Recites inventory and prices without looking up. No small talk.
-      Occasionally pauses to scratch a name off the tally wall. The
-      silence says more than words would.
-
-  - id: keeper_voice
-    name: Keeper
-    description: Varies by Keeper personality — set per dungeon
-    kokoro:
-      voice: bm_lewis
-      speed: 0.75
-    style_notes: >-
-      The default Keeper voice is slow, resonant, and inhuman. Words
-      arrive with the cadence of stone grinding. Individual dungeons
-      override this with a voice matching the Keeper's personality —
-      a vain Keeper speaks theatrically, a hungry Keeper speaks in
-      wet gasps, a collector speaks in precise cataloguing tones.
+characters:
+  torchbearer:
+    model: bf_emma
+    pitch: 1.1
+    rate: 1.1
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.25
+  porter:
+    model: bm_george
+    pitch: 0.9
+    rate: 0.85
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.25
+  sellsword:
+    model: bm_lewis
+    pitch: 1.0
+    rate: 1.0
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.25
+  fence:
+    model: bm_daniel
+    pitch: 1.0
+    rate: 1.15
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.15
+  rumormonger:
+    model: bm_george
+    pitch: 1.0
+    rate: 0.95
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.3
+  provisioner:
+    model: bf_emma
+    pitch: 1.0
+    rate: 0.9
+    effects:
+      - type: compressor
+        params:
+          threshold_db: -18
+  keeper:
+    model: bm_lewis
+    pitch: 0.75
+    rate: 0.75
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.7
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 800

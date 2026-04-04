@@ -1,130 +1,124 @@
 # Caverns & Claudes — Audio Configuration
 # Silence is the default. Sound means danger.
 
-moods:
-  - id: silence
-    name: Silence
-    description: >-
-      The default state. No music. Only ambient sound — dripping water,
-      distant echoes, the hiss of the torch. Silence IS the soundtrack.
-    tracks: []
-    ambient:
-      - dripping_water
-      - distant_echo
-      - torch_hiss
-    volume: 0.3
+mood_tracks:
+  silence: []
+  exploration:
+    - path: audio/music/exploration.ogg
+      title: "Stone Drone"
+      bpm: 60
+  tension:
+    - path: audio/music/tension.ogg
+      title: "Keeper Pulse"
+      bpm: 70
+  combat:
+    - path: audio/music/combat.ogg
+      title: "Iron and Stone"
+      bpm: 140
+  extraction:
+    - path: audio/music/extraction.ogg
+      title: "Run for Daylight"
+      bpm: 160
+  keeper_monologue:
+    - path: audio/music/keeper_monologue.ogg
+      title: "The Glutton Speaks"
+      bpm: 40
+  rest:
+    - path: audio/music/rest.ogg
+      title: "Campfire Underground"
+      bpm: 50
+  town:
+    - path: audio/music/town.ogg
+      title: "Gristwell Morning"
+      bpm: 80
 
-  - id: exploration
-    name: Exploration
-    description: >-
-      Quiet, sparse instrumentation. A single low drone or plucked string.
-      Present only during extended mapping sequences. Fades to silence
-      between rooms.
-    tracks:
-      - exploration_drone
-    ambient:
-      - footsteps_stone
-      - dripping_water
-      - torch_hiss
-    volume: 0.2
+sfx_library:
+  doors:
+    - audio/sfx/door_open.ogg
+    - audio/sfx/door_slam.ogg
+  traps:
+    - audio/sfx/trap_trigger.ogg
+  torch:
+    - audio/sfx/torch_sputter.ogg
+    - audio/sfx/torch_out.ogg
+  loot:
+    - audio/sfx/coin_clink.ogg
+  morale:
+    - audio/sfx/morale_break.ogg
+  keeper:
+    - audio/sfx/keeper_rumble.ogg
 
-  - id: tension
-    name: Tension
-    description: >-
-      Keeper awareness is rising. Low, rhythmic pulses. Something between
-      a heartbeat and grinding stone. Builds slowly, never resolves.
-    tracks:
-      - keeper_pulse
-    ambient:
-      - stone_grinding
-      - distant_movement
-    volume: 0.4
-
-  - id: combat
-    name: Combat
-    description: >-
-      Sharp, percussive, short. Combat in C&C is brief and brutal — the
-      music should match. Drums and metallic strikes, cutting off abruptly
-      when the fight ends.
-    tracks:
-      - combat_percussion
-    ambient:
-      - blade_ring
-      - impact
-    volume: 0.6
-
-  - id: extraction
-    name: Extraction
-    description: >-
-      The party is heading for the exit with treasure. Urgent, driving
-      rhythm. The tempo of running footsteps on stone. Does not resolve —
-      cuts to silence when the party reaches daylight.
-    tracks:
-      - extraction_run
-    ambient:
-      - running_footsteps
-      - heavy_breathing
-      - rattling_coins
-    volume: 0.5
-
-  - id: keeper_monologue
-    name: Keeper Speaks
-    description: >-
-      The Keeper addresses the party. All ambient sound drops to silence.
-      A single sustained low note. The Keeper's voice is the only sound.
-    tracks:
-      - keeper_drone
-    ambient: []
-    volume: 0.3
-
-  - id: rest
-    name: Rest
-    description: >-
-      A campfire in a safe room. Quiet crackling, the hiss of a waterskin
-      being opened, the scratch of chalk on stone as someone updates
-      the map. The Glutton is distant. For now.
-    tracks:
-      - rest_campfire
-    ambient:
-      - fire_crackle
-      - distant_drip
-    volume: 0.2
-
-  - id: town
-    name: Gristwell
-    description: >-
-      The surface. Daylight. The sounds of a town that exists to service
-      the dungeon — hammers on iron, the creak of the hiring board,
-      Old Kettle's voice carrying from The Sinkhole. Safe, but only
-      because the Mouth is closed until morning.
-    tracks:
-      - town_market
-    ambient:
-      - crowd_murmur
-      - smithing
-      - wind
-    volume: 0.3
-
-sfx:
-  - id: door_open
-    description: Heavy stone or iron door grinding open
-  - id: door_slam
-    description: Door slamming shut behind the party
-  - id: trap_trigger
-    description: Click of a pressure plate or tripwire
-  - id: torch_sputter
-    description: Torch guttering, about to go out
-  - id: torch_out
-    description: Final hiss of a torch dying
-  - id: coin_clink
-    description: Gold coins shifting in a sack
-  - id: morale_break
-    description: Hireling dropping their burden and running
-  - id: keeper_rumble
-    description: Deep vibration through the stone — the Keeper notices
+creature_voice_presets:
+  pale_rat:
+    creature_type: pale_rat
+    description: "High-pitched chittering, barely audible"
+    pitch: 1.8
+    rate: 1.4
+    effects: []
+  crawling_scavenger:
+    creature_type: crawling_scavenger
+    description: "Wet clicking mandibles, low hiss"
+    pitch: 0.7
+    rate: 0.8
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.6
+  the_maw:
+    creature_type: the_maw
+    description: "Deep rumbling growl from the walls themselves"
+    pitch: 0.3
+    rate: 0.5
+    effects:
+      - type: reverb
+        params:
+          room_size: 0.9
+      - type: lowpass_filter
+        params:
+          cutoff_frequency_hz: 400.0
 
 mixer:
-  master_volume: 0.5
-  music_duck_on_narration: true
-  ambient_always_on: true
-  sfx_interrupt: true
+  music_volume: 0.3
+  sfx_volume: 0.7
+  voice_volume: 1.0
+  duck_music_for_voice: true
+  duck_amount_db: -15.0
+  crossfade_default_ms: 2000
+
+themes:
+  - name: exploration
+    mood: exploration
+    base_prompt: ""
+    variations:
+      - type: ambient
+        path: audio/music/exploration.ogg
+  - name: tension
+    mood: tension
+    base_prompt: ""
+    variations:
+      - type: tension_build
+        path: audio/music/tension.ogg
+  - name: combat
+    mood: combat
+    base_prompt: ""
+    variations:
+      - type: full
+        path: audio/music/combat.ogg
+  - name: extraction
+    mood: extraction
+    base_prompt: ""
+    variations:
+      - type: full
+        path: audio/music/extraction.ogg
+  - name: keeper
+    mood: keeper_monologue
+    base_prompt: ""
+    variations:
+      - type: ambient
+        path: audio/music/keeper_monologue.ogg
+  - name: town
+    mood: town
+    base_prompt: ""
+    variations:
+      - type: full
+        path: audio/music/town.ogg
