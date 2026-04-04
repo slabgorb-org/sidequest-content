@@ -106,3 +106,76 @@ encounter_base_tension:
   boss: 0.30
   final: 0.40
 
+# ── Confrontations ──────────────────────────────────────────
+confrontations:
+  - type: negotiation
+    label: "Polite Negotiation"
+    category: social
+    metric:
+      name: leverage
+      direction: bidirectional
+      starting: 5
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: persuade
+        label: "Appeal to Reason"
+        metric_delta: 2
+        stat_check: Cunning
+        effect: "opponent considers your argument"
+        narrator_hint: "Show the NPC weighing the player's words."
+      - id: threaten
+        label: "Veiled Threat"
+        metric_delta: 3
+        stat_check: Nerve
+        risk: "faction reputation -1 if it fails"
+        consequence: "NPC becomes hostile on critical failure"
+        narrator_hint: "A polite suggestion with steel beneath. Propriety barely maintained."
+      - id: concede_point
+        label: "Concede a Point"
+        metric_delta: -1
+        stat_check: Cunning
+        effect: "opponent disposition +5, reveals their real goal"
+        narrator_hint: "Strategic retreat. Player gives ground to gain information."
+      - id: walk_away
+        label: "Take One's Leave"
+        metric_delta: 0
+        stat_check: Nerve
+        resolution: true
+        consequence: "deal collapses, reputation intact"
+        narrator_hint: "Player excuses themselves. The matter is dropped — for now."
+    mood: tension
+  - type: trial
+    label: "Trial by Tribunal"
+    category: social
+    metric:
+      name: conviction
+      direction: ascending
+      starting: 0
+      threshold_high: 8
+    beats:
+      - id: cross_examine
+        label: "Cross-Examine"
+        metric_delta: 2
+        stat_check: Cunning
+        effect: "witness credibility damaged"
+        narrator_hint: "Pick apart the testimony. Find contradictions."
+      - id: present_argument
+        label: "Present Argument"
+        metric_delta: 2
+        stat_check: Passion
+        narrator_hint: "Address the tribunal directly. Be persuasive."
+      - id: object
+        label: "Object"
+        metric_delta: 1
+        stat_check: Cunning
+        risk: "overruled — lose credibility if frivolous"
+        narrator_hint: "Challenge procedure or evidence. Must be substantive."
+      - id: yield
+        label: "Yield the Floor"
+        metric_delta: -1
+        stat_check: Passion
+        effect: "opponent speaks — may reveal weakness"
+        narrator_hint: "Strategic silence. Let them overplay their hand."
+    mood: tension
+

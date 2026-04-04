@@ -180,3 +180,95 @@ confrontations:
         spendable: true
     escalates_to: combat
     mood: standoff
+  - type: negotiation
+    label: "Tense Negotiation"
+    category: social
+    metric:
+      name: leverage
+      direction: bidirectional
+      starting: 5
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: persuade
+        label: "Make Your Case"
+        metric_delta: 2
+        stat_check: PRESENCE
+        effect: "opponent considers your argument"
+        narrator_hint: "Show the NPC weighing the player's words."
+      - id: threaten
+        label: "Threaten"
+        metric_delta: 3
+        stat_check: NERVE
+        risk: "faction reputation -1 if it fails"
+        consequence: "NPC becomes hostile on critical failure"
+        narrator_hint: "Escalate tension. The threat should feel dangerous."
+      - id: concede_point
+        label: "Concede a Point"
+        metric_delta: -1
+        stat_check: PRESENCE
+        effect: "opponent disposition +5, reveals their real goal"
+        narrator_hint: "Strategic retreat. Player gives ground to gain information."
+      - id: walk_away
+        label: "Walk Away"
+        metric_delta: 0
+        stat_check: NERVE
+        resolution: true
+        consequence: "deal collapses, reputation intact"
+        narrator_hint: "Player leaves the table. No deal."
+    mood: tension
+  - type: poker
+    label: "Poker"
+    category: social
+    metric:
+      name: edge
+      direction: bidirectional
+      starting: 0
+      threshold_high: 8
+      threshold_low: -8
+    beats:
+      - id: bet
+        label: "Bet"
+        metric_delta: 1
+        stat_check: NERVE
+        risk: "bad hand — lose 2 edge on fail"
+        narrator_hint: "Push chips forward. Confidence or bluff?"
+      - id: raise
+        label: "Raise"
+        metric_delta: 3
+        stat_check: CUNNING
+        risk: "overplayed — lose 3 edge if called and weak"
+        narrator_hint: "Escalate the stakes. Make them sweat."
+      - id: bluff
+        label: "Bluff"
+        metric_delta: 2
+        stat_check: CUNNING
+        risk: "called bluff — lose 4 edge, table reads you"
+        reveals: opponent_tell
+        narrator_hint: "Stone face. Sell the lie."
+      - id: call
+        label: "Call"
+        metric_delta: 0
+        stat_check: CUNNING
+        reveals: hand_strength
+        narrator_hint: "Match the bet. See what they've got."
+      - id: fold
+        label: "Fold"
+        metric_delta: -1
+        stat_check: NERVE
+        narrator_hint: "Live to play another hand."
+      - id: read_table
+        label: "Read the Table"
+        metric_delta: 0
+        stat_check: CUNNING
+        reveals: opponent_tell
+        narrator_hint: "Watch their eyes. Everyone's got a tell."
+      - id: cheat
+        label: "Cheat"
+        metric_delta: 4
+        stat_check: DRAW
+        risk: "caught cheating — loss of all edge, possible gunfight"
+        consequence: "if caught, opponent draws on you — standoff escalation"
+        narrator_hint: "Palm a card. Bottom deal. The Card Shark's specialty."
+        requires: "Card Shark archetype or class ability"
+    mood: saloon
