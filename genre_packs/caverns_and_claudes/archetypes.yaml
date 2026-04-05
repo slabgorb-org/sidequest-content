@@ -1,3 +1,173 @@
+# ═══════════════════════════════════════════════════════════
+# CREATURE ARCHETYPES — hostile dungeon inhabitants
+# Used by encountergen when creatures.yaml is unavailable.
+# ═══════════════════════════════════════════════════════════
+
+- name: Dungeon Vermin
+  description: >-
+    Pale, bloated things that scuttle in the dark. Eyeless rats,
+    beetles with calcite shells, centipedes longer than a forearm.
+    They are the dungeon's immune system — drawn to warmth, light,
+    and organic matter. Individually trivial. In numbers, they eat
+    your rope, your rations, and your nerves.
+  personality_traits:
+    - swarming
+    - relentless
+    - instinct-driven
+  typical_classes: []
+  typical_races: []
+  stat_ranges:
+    dexterity: [12, 16]
+    constitution: [6, 10]
+  catalog_items: []
+  inventory_hints:
+    - nothing of value
+  dialogue_quirks:
+    - does not speak
+  disposition_default: -20
+  ocean:
+    openness: 1.0
+    conscientiousness: 1.0
+    extraversion: 2.0
+    agreeableness: 1.0
+    neuroticism: 8.0
+  role: creature
+  morale: 2
+
+- name: Animated Corpse
+  description: >-
+    A dead delver that did not stay dead. The dungeon keeps what
+    it kills. The body moves with the jerking gait of something
+    pulled on strings — the limbs remember walking but the mind
+    that directed them is gone. It wears the remnants of its last
+    expedition. It carries the weapons it died holding.
+  personality_traits:
+    - mindless
+    - relentless
+    - silent
+  typical_classes: []
+  typical_races: []
+  stat_ranges:
+    strength: [12, 16]
+    constitution: [14, 18]
+  catalog_items: []
+  inventory_hints:
+    - corroded weapon from a previous life
+    - tattered armor
+  dialogue_quirks:
+    - does not speak
+  disposition_default: -30
+  ocean:
+    openness: 0.0
+    conscientiousness: 0.0
+    extraversion: 0.0
+    agreeableness: 0.0
+    neuroticism: 0.0
+  role: creature
+  morale: 10
+
+- name: Keeper's Construct
+  description: >-
+    A thing built by the dungeon's intelligence — shaped from stone,
+    bone, or separated qualities. It patrols fixed routes and guards
+    fixed thresholds. It does not think. It does not negotiate. It
+    is architecture that hits back.
+  personality_traits:
+    - mechanical
+    - territorial
+    - implacable
+  typical_classes: []
+  typical_races: []
+  stat_ranges:
+    strength: [16, 18]
+    constitution: [16, 18]
+  catalog_items: []
+  inventory_hints:
+    - nothing — it is the dungeon's property
+  dialogue_quirks:
+    - does not speak
+  disposition_default: -30
+  ocean:
+    openness: 0.0
+    conscientiousness: 10.0
+    extraversion: 0.0
+    agreeableness: 0.0
+    neuroticism: 0.0
+  role: creature
+  morale: 10
+
+- name: Corrupted Delver
+  description: >-
+    A former adventurer who went too deep and did not come back
+    whole. The dungeon changed them — took their reason, their
+    warmth, their name. They haunt the middle levels, wearing
+    armor that no longer fits a body that no longer has the right
+    shape. They attack on sight. They cannot be reasoned with.
+    They are what happens when you run out of torches.
+  personality_traits:
+    - feral
+    - desperate
+    - broken
+  typical_classes: []
+  typical_races: []
+  stat_ranges:
+    strength: [10, 16]
+    dexterity: [10, 14]
+    constitution: [8, 14]
+  catalog_items:
+    - sword_short
+  inventory_hints:
+    - ruined delving gear
+    - a torch that burned out long ago
+  dialogue_quirks:
+    - mutters fragments of words that might once have been speech
+    - screams when wounded
+  disposition_default: -25
+  ocean:
+    openness: 1.0
+    conscientiousness: 1.0
+    extraversion: 2.0
+    agreeableness: 0.0
+    neuroticism: 10.0
+  role: creature
+  morale: 4
+
+- name: Dungeon Predator
+  description: >-
+    A thing adapted to the dark. Not vermin — a real predator, the
+    size of a large dog or bigger. It hunts by vibration, by heat,
+    by the smell of torchsmoke. It is patient. It follows at the
+    edge of the light and waits for someone to fall behind. The
+    dungeon breeds these the way a body breeds white blood cells.
+  personality_traits:
+    - patient
+    - cunning
+    - territorial
+  typical_classes: []
+  typical_races: []
+  stat_ranges:
+    strength: [14, 18]
+    dexterity: [14, 18]
+    constitution: [12, 16]
+  catalog_items: []
+  inventory_hints:
+    - nothing — gut contents may contain previous victims' gear
+  dialogue_quirks:
+    - does not speak
+  disposition_default: -20
+  ocean:
+    openness: 2.0
+    conscientiousness: 3.0
+    extraversion: 2.0
+    agreeableness: 0.0
+    neuroticism: 5.0
+  role: creature
+  morale: 6
+
+# ═══════════════════════════════════════════════════════════
+# NPC ARCHETYPES — town and hireling roles
+# ═══════════════════════════════════════════════════════════
+
 - name: Torchbearer
   description: >-
     A nervous youth hired to carry the light. Grips the torch with
