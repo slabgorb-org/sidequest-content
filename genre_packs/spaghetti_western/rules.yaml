@@ -58,6 +58,22 @@ stat_display_fields:
   - ac
   - luck
 
+resources:
+  - name: luck
+    label: Luck
+    min: 0.0
+    max: 6.0
+    starting: 3.0
+    voluntary: true
+    decay_per_turn: 0.0
+    thresholds:
+      - at: 1.0
+        event_id: luck_critical
+        narrator_hint: "Luck is nearly spent — one bad break from disaster."
+      - at: 0.0
+        event_id: luck_depleted
+        narrator_hint: "Out of luck entirely. Everything depends on grit and skill."
+
 encounter_base_tension:
   random: 0.15
   ambush: 0.35
