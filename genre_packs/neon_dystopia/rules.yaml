@@ -144,4 +144,46 @@ confrontations:
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player jacks out of the conversation. No deal."
     mood: tension
+  - type: net_combat
+    label: "Net Combat"
+    category: combat
+    metric:
+      name: trace
+      direction: ascending
+      starting: 0
+      threshold_high: 10
+    beats:
+      - id: breach
+        label: "Breach Node"
+        metric_delta: 2
+        stat_check: Net
+        effect: "crack open the next layer of ICE"
+        narrator_hint: "Describe the virtual architecture crumbling as the runner punches through."
+      - id: bypass_ice
+        label: "Bypass ICE"
+        metric_delta: 3
+        stat_check: Net
+        risk: "trace spike — trace jumps by 2 on failure"
+        narrator_hint: "Elegant or brute-force, the runner slips past intrusion countermeasures."
+      - id: spoof
+        label: "Spoof Identity"
+        metric_delta: 1
+        stat_check: Tech
+        effect: "reset trace by 1"
+        narrator_hint: "Mask your signal. Buy time before the hounds find you."
+      - id: jack_out
+        label: "Jack Out"
+        metric_delta: 0
+        stat_check: Reflex
+        resolution: true
+        consequence: "escape the net — lose any data not yet extracted"
+        narrator_hint: "Yank the cable. Reality slams back. Did you get what you came for?"
+    secondary_stats:
+      - name: programs
+        source_stat: Net
+        spendable: false
+      - name: firewall
+        source_stat: Tech
+        spendable: false
+    mood: tension
 

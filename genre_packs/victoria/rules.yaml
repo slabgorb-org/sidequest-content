@@ -178,4 +178,43 @@ confrontations:
         effect: "opponent speaks — may reveal weakness"
         narrator_hint: "Strategic silence. Let them overplay their hand."
     mood: tension
+  - type: auction
+    label: "Auction"
+    category: social
+    metric:
+      name: bid
+      direction: ascending
+      starting: 0
+      threshold_high: 8
+    beats:
+      - id: raise
+        label: "Raise the Bid"
+        metric_delta: 2
+        stat_check: Cunning
+        effect: "push the price higher — pressure opponents to fold"
+        narrator_hint: "A discreet signal to the auctioneer. The bid climbs."
+      - id: bluff
+        label: "Bluff"
+        metric_delta: 3
+        stat_check: Nerve
+        risk: "called out — lose credibility and 2 bid points"
+        narrator_hint: "Feign deeper pockets than you possess. Convince them you'll go higher."
+      - id: read_room
+        label: "Read the Room"
+        metric_delta: 0
+        stat_check: Cunning
+        reveals: opponent_intent
+        narrator_hint: "Study the other bidders. Who is bluffing? Who is desperate?"
+      - id: withdraw
+        label: "Withdraw"
+        metric_delta: 0
+        stat_check: Nerve
+        resolution: true
+        consequence: "bow out gracefully — reputation intact, item lost"
+        narrator_hint: "A subtle shake of the head. The bid is yours no longer."
+    secondary_stats:
+      - name: purse
+        source_stat: Cunning
+        spendable: true
+    mood: tension
 
