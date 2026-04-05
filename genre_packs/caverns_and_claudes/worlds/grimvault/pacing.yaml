@@ -1,0 +1,55 @@
+# Grimvault — Narrative Pacing Configuration
+# Controls sentence delivery, render thresholds, and escalation timing.
+# Grimvault is slower and more deliberate than Mawdeep — the horror
+# is clinical precision, not visceral intensity.
+
+drama_thresholds:
+  sentence_delivery_threshold: 0.3
+  render_threshold: 0.5
+  escalation_threshold: 0.7
+  climax_threshold: 0.9
+
+pacing_profile:
+  default_tempo: deliberate
+  tempo_overrides:
+    - context: exploration
+      tempo: slow
+      notes: >-
+        Grimvault exploration should feel measured. Describe rooms
+        precisely. Let the absence of qualities register gradually.
+        Do not rush the realization that something is missing.
+    - context: combat
+      tempo: moderate
+      notes: >-
+        Combat in Grimvault is not frantic — it is disorienting.
+        Silence stalkers remove the soundscape. Husk walkers are
+        slow but relentless. Describe the wrongness, not the speed.
+    - context: extraction
+      tempo: fast
+      notes: >-
+        Extraction ramps up. The vault becomes active. Rooms that
+        were passive are now processing. The precision that was
+        unsettling is now menacing. Short sentences. Fewer adjectives.
+    - context: boss
+      tempo: moderate
+      notes: >-
+        The Catalogue fight is a puzzle, not a brawl. Pace like a
+        problem being solved under pressure. Each separated quality
+        returned is a step forward. Each quality taken is a step back.
+
+narration_style:
+  default: >-
+    Precise and understated. Describe what is absent, not what is
+    present. Let the reader notice the missing qualities themselves.
+    Clinical vocabulary — assess, catalog, separate, process, file.
+    The vault is not malicious, it is thorough. Narrate accordingly.
+  level_1: >-
+    The Workshop feels almost normal — clean, organized, functional.
+    The wrongness is subtle. A room that is too quiet. Dust that
+    does not settle. Colors that are slightly off. Build unease
+    through precision, not through horror.
+  level_2: >-
+    The Collection drops the pretense of normality. Qualities are
+    visibly separated — pools of warmth, patches of color, zones
+    of silence. Describe the impossible physics plainly. The more
+    matter-of-fact the narration, the more disturbing the effect.
