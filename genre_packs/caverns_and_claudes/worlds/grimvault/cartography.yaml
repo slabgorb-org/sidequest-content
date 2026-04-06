@@ -1,0 +1,136 @@
+world_name: Grimvault
+starting_region: ashgate_square
+navigation_mode: room_graph
+
+regions:
+  ashgate_square:
+    name: Ashgate Square
+    summary: Ridge-top town center with provisioner, tavern, and assayer hall
+    description: >-
+      A clean, quiet square paved with pale limestone. The buildings
+      are well-maintained but muted — paint fades faster here than
+      it should. The provisioner's shop has a new sign every season.
+      The Assayer Hall dominates the north side, its doors always
+      open. A fountain in the center runs clear water that tastes
+      of nothing at all.
+    terrain: settlement
+    adjacent:
+      - ledger_row
+      - grimvault_approach
+    landmarks:
+      - name: "Durn's Provisions"
+        type: shop
+        description: >-
+          Torches, rope, rations, chalk, and lead-lined equipment
+          for vault work. A sign in the window reads: Standard
+          torches burn 4 hours. Lead-lined burn 6. Both prices
+          displayed without commentary.
+      - name: "The Spillway"
+        type: tavern
+        description: >-
+          Built over a natural spring that emerges from the ridge.
+          The water runs through a channel in the floor. The ale is
+          brewed on-site and is the only thing in Ashgate that
+          still tastes like itself — the brewer adds extra hops to
+          compensate for proximity to the vault. Durmach's Chair
+          sits in the corner. Nobody uses it.
+      - name: "Assayer Hall"
+        type: guild_hall
+        description: >-
+          Maps cover every wall. Separation logs fill shelves from
+          floor to ceiling. A large slate board lists current vault
+          conditions — rooms recently entered, qualities recently
+          taken, estimated Keeper awareness levels. Updated daily
+          by returning parties.
+    settlements: []
+    rivers: []
+
+  ledger_row:
+    name: Ledger Row
+    summary: Merchant quarter with specialty traders in separated materials
+    description: >-
+      A narrow street behind the square where the Ledger conducts
+      its trade. Three shops and a counting house. The goods on
+      display are strange — bolts of cloth in no color, metal
+      ingots that weigh nothing, bottles of extracted silence sold
+      as sleeping aids.
+    terrain: settlement
+    adjacent:
+      - ashgate_square
+    landmarks:
+      - name: "Agna's Scale"
+        type: shop
+        description: >-
+          The Ledger master's assessment office. A vault-standard
+          scale sits on the counter — brass pans balanced with
+          weights that measure properties beyond mass. Agna
+          Ironjaw sits behind it, abacus clicking.
+      - name: "The Quiet Trader"
+        type: shop
+        description: >-
+          Specialty goods for downriver buyers. Colorless mourning
+          cloth, soundless wind chimes, weightless ballast stones.
+          Each item tagged with provenance — which room it came
+          from, which quality was removed, and on which delve.
+    settlements: []
+    rivers: []
+
+  grimvault_approach:
+    name: The Approach
+    summary: Path across the Quiet Field to the vault's rectangular entrance
+    description: >-
+      A stone path leading from the edge of town across the Quiet
+      Field to the vault entrance. The field is two hundred paces
+      wide. By the time you reach the middle, your footsteps make
+      no sound. By the time you reach the entrance, your torch
+      burns a shade paler than it should. The entrance itself is
+      a rectangle — ten feet wide, eight feet tall, cut into the
+      ridge face with edges sharp enough to cast a shadow. No
+      chisel marks. No tool marks of any kind.
+    terrain: dungeon_entrance
+    adjacent:
+      - ashgate_square
+    landmarks:
+      - name: "The Threshold Stone"
+        type: entrance
+        description: >-
+          A flat stone set into the ground at the vault's entrance.
+          Delvers check their gear here. The stone is always cool
+          to the touch regardless of weather. Falk Stonehelm
+          carved measurement marks into its edge for calibrating
+          equipment before descent.
+      - name: "The Recovery Bench"
+        type: shrine
+        description: >-
+          A wooden bench thirty paces from the entrance where Wren
+          Peatford meets returning delvers. She checks their senses
+          before they walk back to town — counts fingers, names
+          colors, asks them to hum a tune. Some cannot.
+    settlements: []
+    rivers: []
+
+routes:
+  - name: Ledger Row
+    description: Behind the square, down three steps to the merchant quarter
+    from_id: ashgate_square
+    to_id: ledger_row
+    distance: short
+    danger: none
+  - name: Ledger Row Return
+    description: Back up to the square from the counting houses
+    from_id: ledger_row
+    to_id: ashgate_square
+    distance: short
+    danger: none
+  - name: The Quiet Path
+    description: Across the Quiet Field — sound fades with every step
+    from_id: ashgate_square
+    to_id: grimvault_approach
+    distance: medium
+    danger: none
+  - name: The Quiet Path Return
+    description: Back across the field — sound returns gradually, never quite all the way
+    from_id: grimvault_approach
+    to_id: ashgate_square
+    distance: medium
+    danger: none

@@ -1,10 +1,6 @@
-# Mawdeep — Room Graph (RoomDef format)
+# Mawdeep — Room Graph
 # 18 rooms across 2 levels. Jaquayed layout with loops and one-way drops.
-# Rich room content (treasure, hazards, creatures) lives in room_details.yaml
-# and is injected via world history/legends raw data.
-#
-# This file defines topology only — the room graph navigation engine needs
-# id, name, room_type, exits, and keeper_awareness_modifier.
+# The Glutton Below shapes every room — organic textures, warmth, constriction.
 
 # === LEVEL 1: THE GULLET ===
 
@@ -28,16 +24,18 @@
   name: "The Throat"
   room_type: normal
   size: [2, 1]
-  keeper_awareness_modifier: 0.9
+  keeper_awareness_modifier: 1.0
   description: >-
     A descending passage wide enough for three abreast. The walls have
     a ribbed texture — horizontal ridges of stone that look disturbingly
-    like cartilage. The air is warmer here.
+    like cartilage. The air is warmer here. Your torchlight catches
+    moisture on the ceiling.
   exits:
     - type: corridor
       target: mouth
     - type: door
       target: cistern
+      is_locked: false
     - type: corridor
       target: junction
 
@@ -45,11 +43,11 @@
   name: "The Antechamber"
   room_type: normal
   size: [2, 2]
-  keeper_awareness_modifier: 0.9
+  keeper_awareness_modifier: 1.0
   description: >-
-    A roughly circular room. The floor is covered in a fine grit —
-    ground bone mixed with stone dust. A pile of abandoned equipment
-    sits against the far wall.
+    A roughly circular room. The floor is covered in a fine grit that
+    crunches underfoot — ground bone mixed with stone dust. Three archways
+    lead deeper. A pile of abandoned equipment sits against the far wall.
   exits:
     - type: corridor
       target: mouth
@@ -62,14 +60,16 @@
   name: "The Cistern"
   room_type: normal
   size: [2, 2]
-  keeper_awareness_modifier: 0.9
+  keeper_awareness_modifier: 1.0
   description: >-
     A domed room with a sunken pool in the center. The water is black,
-    still, and warm to the touch. It smells faintly sweet — the sweetness
-    of something decomposing.
+    still, and warm to the touch. It smells faintly sweet — not pleasant
+    sweet, but the sweetness of something decomposing. Your reflection
+    does not look quite right.
   exits:
     - type: door
       target: throat
+      is_locked: false
     - type: corridor
       target: pantry
 
@@ -80,9 +80,9 @@
   keeper_awareness_modifier: 1.0
   description: >-
     A crossroads where three passages meet under a high vaulted ceiling.
-    The stone is cracked and the cracks are filled with something amber
-    and translucent. A faint vibration comes through the floor — rhythmic,
-    slow, like breathing.
+    The stone here is cracked and the cracks are filled with something
+    amber and translucent, like hardened sap. The air is noticeably
+    warmer. A faint vibration comes through the floor.
   exits:
     - type: corridor
       target: throat
@@ -101,26 +101,30 @@
   description: >-
     A long rectangular room. The walls are lined with alcoves, each
     containing objects — a rusted sword, a child's doll, a merchant's
-    scale. Personal effects of the swallowed. Hundreds of them.
+    scale, a holy symbol. Personal effects of the swallowed. Hundreds
+    of them, arranged with a care that suggests curation.
   exits:
     - type: corridor
       target: antechamber
     - type: door
       target: hall
+      is_locked: false
 
 - id: pantry
   name: "The Pantry"
   room_type: normal
-  size: [1, 1]
-  keeper_awareness_modifier: 0.9
+  size: [2, 1]
+  keeper_awareness_modifier: 1.0
   description: >-
     A low-ceilinged room that smells of rot and vinegar. Wooden shelves
-    stocked with supplies that should not exist this deep — all spoiled.
+    line the walls, stocked with supplies that should not exist this
+    deep — rations, waterskins, torches. All are spoiled.
   exits:
     - type: corridor
       target: cistern
     - type: door
       target: stairs_down
+      is_locked: false
 
 - id: hall
   name: "The Swallowing Hall"
@@ -128,14 +132,16 @@
   size: [3, 3]
   keeper_awareness_modifier: 1.0
   description: >-
-    A vast hall with a domed ceiling. The floor is a mosaic of fragments
-    of buildings and roads. This is where Edgeholm went. A stone well
-    in the center descends into darkness.
+    A vast hall with a domed ceiling lost in shadow above the torchlight.
+    The floor is a mosaic of different stones — fragments of buildings,
+    roads, foundations. This is where Edgeholm went. A stone well in
+    the center descends into darkness.
   exits:
     - type: corridor
       target: junction
     - type: door
       target: gallery
+      is_locked: false
     - type: corridor
       target: stairs_down
 
@@ -145,9 +151,9 @@
   size: [1, 1]
   keeper_awareness_modifier: 1.1
   description: >-
-    A steep, smooth-walled passage angled at forty-five degrees.
-    The stone is slick with moisture. Once you start sliding, you
-    cannot stop. ONE WAY to Level 2.
+    A steep, smooth-walled passage angled at forty-five degrees. The
+    stone is slick with moisture. Once you start sliding, you cannot
+    stop. This is a one-way passage to Level 2.
   exits:
     - type: corridor
       target: junction
@@ -161,10 +167,12 @@
   keeper_awareness_modifier: 1.0
   description: >-
     A carved staircase descending into warmth. The steps are uneven —
-    some six inches, some eighteen. The walls are damp.
+    some are six inches, some are eighteen, as though the stone is
+    shifting over time. The walls are damp.
   exits:
     - type: door
       target: pantry
+      is_locked: false
     - type: corridor
       target: hall
     - type: corridor
@@ -178,9 +186,10 @@
   size: [2, 2]
   keeper_awareness_modifier: 1.2
   description: >-
-    The foot of the stairs. The walls are smooth, curved, and faintly
-    warm. An orange bioluminescence pulses in the veins of the stone.
-    Your torch feels less bright here.
+    The foot of the stairs opens into a room where the stone changes.
+    The walls are smooth, curved, and faintly warm. An orange
+    bioluminescence pulses in the veins of the stone, providing just
+    enough light to see shapes but not details.
   exits:
     - type: corridor
       target: stairs_down
@@ -195,13 +204,16 @@
   size: [1, 2]
   keeper_awareness_modifier: 1.3
   description: >-
-    A corridor that narrows as you proceed. The ribbed walls flex
-    slightly when pressed. The ceiling drops until you are crouching.
+    A corridor that narrows as you proceed. The walls are warm and
+    slick. The ribbed texture from the Throat is more pronounced here.
+    The ceiling drops until you are crouching. Something ahead reflects
+    your torchlight with a golden glint.
   exits:
     - type: corridor
       target: landing
     - type: door
       target: vault
+      is_locked: false
 
 - id: acid_pool
   name: "The Acid Pool"
@@ -210,8 +222,9 @@
   keeper_awareness_modifier: 1.2
   description: >-
     A room dominated by a shallow pool of clear liquid that steams
-    gently. The liquid is warm and smells of bile. Gear from fallen
-    delvers dots the pool's edge, half-dissolved.
+    gently. The liquid is warm and smells of bile. The far wall has
+    a shaft going straight up — this is where the well from the
+    Swallowing Hall terminates.
   exits:
     - type: corridor
       target: landing
@@ -224,8 +237,10 @@
   size: [3, 3]
   keeper_awareness_modifier: 1.2
   description: >-
-    A tangle of narrow passages connecting small, round chambers.
-    The walls pulse with orange light. Navigation is disorienting.
+    A tangle of narrow passages connecting small, round chambers —
+    each barely large enough for two people. The walls pulse with
+    orange light. Navigation is disorienting — the passages curve
+    and branch unpredictably.
   exits:
     - type: corridor
       target: acid_pool
@@ -238,12 +253,14 @@
   size: [2, 2]
   keeper_awareness_modifier: 1.4
   description: >-
-    A domed room studded with stone teeth. Among the teeth: treasure.
-    Coins, gems, and jewelry embedded in the stone. Extracting anything
-    requires prying it free from the Glutton's grip.
+    A domed room. The walls are studded with stone teeth — not
+    decorative, but the real teeth of the dungeon, grown from the
+    rock like stalactites. Among the teeth: treasure. Coins, gems,
+    and jewelry are embedded in the stone.
   exits:
     - type: door
       target: gullet_passage
+      is_locked: false
     - type: corridor
       target: stomach
 
@@ -253,9 +270,10 @@
   size: [3, 3]
   keeper_awareness_modifier: 1.3
   description: >-
-    The largest room on Level 2. The floor is soft. Your boots sink.
-    The walls undulate slowly. The orange bioluminescence pulses in a
-    rhythm that matches nothing you can identify. This is where the
+    The largest room on Level 2. The floor is soft — not mud, not
+    flesh, but something between. Your boots sink half an inch with
+    every step. The walls undulate slowly, almost imperceptibly. The
+    orange bioluminescence is brightest here. This is where the
     Glutton digests.
   exits:
     - type: corridor
@@ -264,6 +282,7 @@
       target: vault
     - type: door
       target: marrow_hall
+      is_locked: false
 
 - id: marrow_hall
   name: "Marrow Hall"
@@ -271,13 +290,16 @@
   size: [1, 2]
   keeper_awareness_modifier: 1.4
   description: >-
-    A short passage lined with exposed bone — actual bone grown into
-    the walls. Femurs, ribs, skulls. The heat radiates from the bone.
+    A short passage lined with exposed bone — not stone carved to
+    look like bone, but actual bone grown into the walls. Femurs,
+    ribs, skulls. The heat radiates from the bone itself.
   exits:
     - type: door
       target: stomach
+      is_locked: false
     - type: door
       target: maw_chamber
+      is_locked: false
 
 - id: maw_chamber
   name: "The Maw"
@@ -285,12 +307,15 @@
   size: [3, 3]
   keeper_awareness_modifier: 1.5
   description: >-
-    A domed chamber. In the center, something massive crouches — made
-    of everything the Glutton has eaten and failed to digest. It breathes.
-    It watches with gemstone eyes. The Glutton's lieutenant.
+    A domed chamber where the ceiling is lost in shadow and the floor
+    is a bowl of fused bone and stone. The bioluminescence pulses fast
+    here — a heartbeat. In the center, something massive crouches. It
+    is made of everything the Glutton has eaten and failed to digest.
+    The Glutton's lieutenant. Its favorite thing.
   exits:
     - type: door
       target: marrow_hall
+      is_locked: false
     - type: door
       target: full_belly
       is_locked: true
@@ -301,9 +326,12 @@
   size: [3, 3]
   keeper_awareness_modifier: 1.5
   description: >-
-    The deepest room. Vast and warm and golden. The floor is a carpet
-    of treasure. It is beautiful. It is the most dangerous room in
-    the dungeon. The walls breathe. You are standing inside the Glutton.
+    The deepest room. Vast and warm and golden. The bioluminescence
+    here is so bright you could read by it. The floor is a carpet
+    of treasure — coins, gems, jewelry, weapons, armor, the accumulated
+    wealth of generations of swallowed caravans, villages, and delvers.
+    The walls breathe. You are standing inside the Glutton.
   exits:
     - type: door
       target: maw_chamber
+      is_locked: false
