@@ -120,3 +120,69 @@ encounter_base_tension:
   ambush: 0.30
   boss: 0.40
   final: 0.50
+
+confrontations:
+- type: combat
+  label: Firefight
+  category: combat
+  metric:
+    name: hp
+    direction: descending
+    starting: 0
+    threshold_low: 0
+  beats:
+  - id: shoot
+    label: Shoot
+    metric_delta: -10
+    stat_check: Physique
+    narrator_hint: Blaster bolts sear the corridor. Sparks off bulkheads.
+  - id: take_cover
+    label: Take Cover
+    metric_delta: 0
+    stat_check: Resolve
+    effect: "Reduce incoming damage behind cargo or hull"
+  - id: overload
+    label: Overload Weapon
+    metric_delta: -15
+    stat_check: Physique
+    risk: "Weapon jams — skip next turn on failure"
+    narrator_hint: Crank the power cell past safe limits.
+  - id: retreat
+    label: Fall Back
+    metric_delta: 0
+    stat_check: Reflex
+    resolution: true
+    consequence: "Combat ends — seal a bulkhead, reach the airlock"
+  mood: combat
+- type: chase
+  label: Spaceflight Pursuit
+  category: movement
+  metric:
+    name: separation
+    direction: ascending
+    starting: 3
+    threshold_high: 10
+    threshold_low: 0
+  beats:
+  - id: burn
+    label: Full Burn
+    metric_delta: 2
+    stat_check: Reflex
+    narrator_hint: Engines flare blue-white. The hull groans under acceleration.
+  - id: asteroid_thread
+    label: Thread the Field
+    metric_delta: 3
+    stat_check: Cunning
+    risk: "Impact — take hull damage on failure"
+  - id: ecm
+    label: ECM Decoys
+    metric_delta: 1
+    stat_check: Cunning
+    effect: "Deploy countermeasures to confuse pursuit sensors"
+  - id: microjump
+    label: Microjump
+    metric_delta: 0
+    stat_check: Reflex
+    resolution: true
+    consequence: "Chase ends — short hyperspace hop, gone"
+  mood: tension

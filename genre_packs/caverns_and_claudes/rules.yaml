@@ -54,3 +54,71 @@ encounter_base_tension:
   ambush: 0.40
   boss: 0.50
   final: 0.60
+
+confrontations:
+- type: combat
+  label: Dungeon Combat
+  category: combat
+  metric:
+    name: hp
+    direction: descending
+    starting: 0
+    threshold_low: 0
+  beats:
+  - id: attack
+    label: Attack
+    metric_delta: -8
+    stat_check: STR
+    narrator_hint: Steel rings off stone. Torchlight flickers across the blow.
+  - id: defend
+    label: Defend
+    metric_delta: 0
+    stat_check: CON
+    effect: "Reduce incoming damage this round"
+  - id: shield_bash
+    label: Shield Bash
+    metric_delta: -5
+    stat_check: STR
+    effect: "Stun the target briefly"
+    narrator_hint: Slam forward in the narrow corridor — nowhere to dodge.
+  - id: flee
+    label: Flee
+    metric_delta: 0
+    stat_check: DEX
+    resolution: true
+    risk: "Opportunity attack — take damage on failure"
+    consequence: "Combat ends — retreat deeper into the dungeon"
+  mood: combat
+- type: chase
+  label: Corridor Pursuit
+  category: movement
+  metric:
+    name: separation
+    direction: ascending
+    starting: 3
+    threshold_high: 10
+    threshold_low: 0
+  beats:
+  - id: sprint
+    label: Sprint
+    metric_delta: 2
+    stat_check: DEX
+    narrator_hint: Boots echo off stone as the quarry bolts down the passage.
+  - id: duck_through
+    label: Duck Through
+    metric_delta: 3
+    stat_check: INT
+    risk: "Wrong turn — dead end, lose 2 separation"
+    narrator_hint: Squeeze through a side passage too narrow for pursuers.
+  - id: barricade
+    label: Barricade
+    metric_delta: 1
+    stat_check: INT
+    effect: "Topple debris to slow pursuit"
+  - id: douse_torch
+    label: Douse Torch
+    metric_delta: 0
+    stat_check: DEX
+    resolution: true
+    consequence: "Chase ends in darkness — quarry vanishes"
+  mood: tension
