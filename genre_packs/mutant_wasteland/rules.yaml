@@ -39,3 +39,69 @@ class_hp_bases:
   Synth: 12
   Beastkin: 10
   Tinker: 6
+
+confrontations:
+- type: combat
+  label: Wasteland Brawl
+  category: combat
+  metric:
+    name: hp
+    direction: descending
+    starting: 0
+    threshold_low: 0
+  beats:
+  - id: attack
+    label: Attack
+    metric_delta: -10
+    stat_check: Brawn
+    narrator_hint: Brutal, improvised, desperate — scrap metal and mutant claws.
+  - id: hunker
+    label: Hunker Down
+    metric_delta: 0
+    stat_check: Toughness
+    effect: "Reduce incoming damage behind cover"
+  - id: mutant_surge
+    label: Mutant Surge
+    metric_delta: -15
+    stat_check: Brawn
+    risk: "Mutation backlash — take self-damage on failure"
+    narrator_hint: The mutation flares — extra limbs, acid spit, bone spurs.
+  - id: retreat
+    label: Retreat
+    metric_delta: 0
+    stat_check: Reflexes
+    resolution: true
+    consequence: "Combat ends — scramble into the ruins"
+  mood: combat
+- type: chase
+  label: Wasteland Pursuit
+  category: movement
+  metric:
+    name: separation
+    direction: ascending
+    starting: 3
+    threshold_high: 10
+    threshold_low: 0
+  beats:
+  - id: scramble
+    label: Scramble
+    metric_delta: 2
+    stat_check: Reflexes
+    narrator_hint: Vault rubble, dodge through collapsed buildings.
+  - id: shortcut
+    label: Shortcut
+    metric_delta: 3
+    stat_check: Wits
+    risk: "Irradiated zone — take damage on failure"
+  - id: distraction
+    label: Distraction
+    metric_delta: 1
+    stat_check: Wits
+    effect: "Trigger a wasteland hazard behind you"
+  - id: burrow
+    label: Go Underground
+    metric_delta: 0
+    stat_check: Reflexes
+    resolution: true
+    consequence: "Chase ends — vanish into the tunnels"
+  mood: tension

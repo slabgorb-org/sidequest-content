@@ -106,3 +106,66 @@ encounter_base_tension:
   boss: 0.30
   final: 0.40
 
+confrontations:
+- type: social_duel
+  label: Duel of Wits
+  category: social
+  metric:
+    name: composure
+    direction: descending
+    starting: 10
+    threshold_low: 0
+  beats:
+  - id: riposte
+    label: Verbal Riposte
+    metric_delta: -3
+    stat_check: Cunning
+    narrator_hint: A cutting remark, perfectly timed. The room goes quiet.
+  - id: appeal_propriety
+    label: Appeal to Propriety
+    metric_delta: -2
+    stat_check: Cunning
+    effect: "Invoke social convention to embarrass the opponent"
+  - id: composure
+    label: Maintain Composure
+    metric_delta: 0
+    stat_check: Nerve
+    effect: "Recover poise — resist the next barb"
+  - id: concede
+    label: Concede Gracefully
+    metric_delta: 0
+    stat_check: Humour
+    resolution: true
+    consequence: "Duel ends — withdraw with dignity intact"
+  mood: mystery
+- type: scandal
+  label: Scandal Eruption
+  category: social
+  metric:
+    name: exposure
+    direction: ascending
+    starting: 0
+    threshold_high: 8
+  beats:
+  - id: deflect
+    label: Deflect Rumour
+    metric_delta: -2
+    stat_check: Cunning
+    narrator_hint: Redirect attention — another scandal, a convenient distraction.
+  - id: counter_accusation
+    label: Counter-Accusation
+    metric_delta: -3
+    stat_check: Pride
+    risk: "Backfire — your own secrets surface if failed"
+  - id: confide
+    label: Confide in Ally
+    metric_delta: -1
+    stat_check: Cunning
+    effect: "Gain an advocate who speaks on your behalf"
+  - id: weather_it
+    label: Weather the Storm
+    metric_delta: 0
+    stat_check: Nerve
+    resolution: true
+    consequence: "Scandal passes — Standing may have shifted"
+  mood: mystery
