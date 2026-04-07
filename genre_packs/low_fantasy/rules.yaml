@@ -76,3 +76,71 @@ encounter_base_tension:
   ambush: 0.30
   boss: 0.40
   final: 0.50
+
+confrontations:
+- type: combat
+  label: Combat
+  category: combat
+  metric:
+    name: hp
+    direction: descending
+    starting: 0
+    threshold_low: 0
+  beats:
+  - id: attack
+    label: Attack
+    metric_delta: -8
+    stat_check: STR
+    narrator_hint: Describe the blow connecting or missing based on the check result.
+  - id: defend
+    label: Defend
+    metric_delta: 0
+    stat_check: CON
+    effect: "Reduce incoming damage this round"
+    narrator_hint: The character braces, parries, or raises a shield.
+  - id: heavy_strike
+    label: Heavy Strike
+    metric_delta: -15
+    stat_check: STR
+    risk: "Leaves the attacker exposed — take double damage on failure"
+    narrator_hint: A committed overhead swing or lunging thrust.
+  - id: disengage
+    label: Disengage
+    metric_delta: 0
+    stat_check: DEX
+    resolution: true
+    consequence: "Combat ends — the character flees or the enemy retreats"
+  mood: combat
+- type: chase
+  label: Chase
+  category: movement
+  metric:
+    name: separation
+    direction: ascending
+    starting: 3
+    threshold_high: 10
+    threshold_low: 0
+  beats:
+  - id: sprint
+    label: Sprint
+    metric_delta: 2
+    stat_check: DEX
+    narrator_hint: Flat-out running through streets or wilderness.
+  - id: maneuver
+    label: Maneuver
+    metric_delta: 1
+    stat_check: WIS
+    effect: "Use terrain to gain distance"
+  - id: shortcut
+    label: Shortcut
+    metric_delta: 3
+    stat_check: WIS
+    risk: "Dead end — lose 2 separation on failure"
+    narrator_hint: Duck through an alley, vault a fence, cut across a field.
+  - id: hide
+    label: Hide
+    metric_delta: 0
+    stat_check: DEX
+    resolution: true
+    consequence: "Chase ends — the quarry vanishes"
+  mood: tension

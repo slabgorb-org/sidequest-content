@@ -157,3 +157,68 @@ encounter_base_tension:
   boss: 0.45
   final: 0.50
 
+confrontations:
+- type: combat
+  label: Vehicular Combat
+  category: combat
+  metric:
+    name: hp
+    direction: descending
+    starting: 0
+    threshold_low: 0
+  beats:
+  - id: ram
+    label: Ram
+    metric_delta: -12
+    stat_check: Grip
+    narrator_hint: Steel on steel at speed. Sparks, crumpled panels, the shriek of metal.
+  - id: sideswipe
+    label: Sideswipe
+    metric_delta: -8
+    stat_check: Grip
+    effect: "Force target to swerve"
+  - id: evasive
+    label: Evasive Maneuver
+    metric_delta: 0
+    stat_check: Iron
+    effect: "Reduce incoming rig damage this round"
+  - id: disengage
+    label: Peel Off
+    metric_delta: 0
+    stat_check: Road Sense
+    resolution: true
+    consequence: "Combat ends — break away from the pack"
+  mood: combat
+- type: chase
+  label: Road Chase
+  category: movement
+  metric:
+    name: separation
+    direction: ascending
+    starting: 3
+    threshold_high: 10
+    threshold_low: 0
+  beats:
+  - id: floor_it
+    label: Floor It
+    metric_delta: 2
+    stat_check: Road Sense
+    narrator_hint: Engine screams, dust plume stretches behind.
+  - id: terrain_cut
+    label: Terrain Cut
+    metric_delta: 3
+    stat_check: Scrap
+    risk: "Rollover — take rig damage on failure"
+    narrator_hint: Leave the road. Cut across hardpan, jump a wash.
+  - id: smoke_screen
+    label: Smoke Screen
+    metric_delta: 1
+    stat_check: Scrap
+    effect: "Oil burn or dust cloud blinds pursuit"
+  - id: engine_kill
+    label: Kill the Engine
+    metric_delta: 0
+    stat_check: Road Sense
+    resolution: true
+    consequence: "Chase ends — coast to a stop in the dust, hidden"
+  mood: tension

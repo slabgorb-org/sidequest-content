@@ -89,3 +89,67 @@ encounter_base_tension:
   boss: 0.35
   final: 0.45
 
+confrontations:
+- type: combat
+  label: Gunfight
+  category: combat
+  metric:
+    name: hp
+    direction: descending
+    starting: 0
+    threshold_low: 0
+  beats:
+  - id: shoot
+    label: Shoot
+    metric_delta: -10
+    stat_check: Brawn
+    narrator_hint: Revolver bark in a dark alley. Cordite and rain.
+  - id: take_cover
+    label: Take Cover
+    metric_delta: 0
+    stat_check: Grit
+    effect: "Duck behind a car, a dumpster, a bar"
+  - id: brawl
+    label: Brawl
+    metric_delta: -8
+    stat_check: Brawn
+    narrator_hint: Close quarters — fists, bottles, chair legs.
+  - id: flee
+    label: Flee
+    metric_delta: 0
+    stat_check: Finesse
+    resolution: true
+    consequence: "Combat ends — disappear into the rain"
+  mood: combat
+- type: chase
+  label: Car Chase
+  category: movement
+  metric:
+    name: separation
+    direction: ascending
+    starting: 3
+    threshold_high: 10
+    threshold_low: 0
+  beats:
+  - id: floor_it
+    label: Floor It
+    metric_delta: 2
+    stat_check: Finesse
+    narrator_hint: Tires scream on wet asphalt. Headlights sweep the rain.
+  - id: sidestreet
+    label: Side Street
+    metric_delta: 3
+    stat_check: Savvy
+    risk: "Dead end — lose 2 separation"
+  - id: weave
+    label: Weave Through Traffic
+    metric_delta: 1
+    stat_check: Savvy
+    effect: "Use civilian cars as cover"
+  - id: ditch_the_car
+    label: Ditch the Car
+    metric_delta: 0
+    stat_check: Finesse
+    resolution: true
+    consequence: "Chase ends — abandon the vehicle and vanish on foot"
+  mood: tension

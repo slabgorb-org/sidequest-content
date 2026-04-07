@@ -95,3 +95,69 @@ encounter_base_tension:
   boss: 0.40
   final: 0.50
 
+confrontations:
+- type: combat
+  label: Street Combat
+  category: combat
+  metric:
+    name: hp
+    direction: descending
+    starting: 0
+    threshold_low: 0
+  beats:
+  - id: shoot
+    label: Shoot
+    metric_delta: -10
+    stat_check: Body
+    narrator_hint: Muzzle flash in neon rain. Describe the chrome and the concrete.
+  - id: take_cover
+    label: Take Cover
+    metric_delta: 0
+    stat_check: Reflex
+    effect: "Reduce incoming damage behind urban debris"
+  - id: netrun
+    label: Netrun Strike
+    metric_delta: -12
+    stat_check: Body
+    risk: "ICE counterattack — take neural damage on failure"
+    narrator_hint: Jack in mid-firefight. Fry their implants from cyberspace.
+  - id: disengage
+    label: Disengage
+    metric_delta: 0
+    stat_check: Cool
+    resolution: true
+    consequence: "Combat ends — vanish into the crowd or the net"
+  mood: combat
+- type: chase
+  label: Urban Pursuit
+  category: movement
+  metric:
+    name: separation
+    direction: ascending
+    starting: 3
+    threshold_high: 10
+    threshold_low: 0
+  beats:
+  - id: sprint
+    label: Sprint
+    metric_delta: 2
+    stat_check: Cool
+    narrator_hint: Weave through market stalls, dodge between crawling traffic.
+  - id: hack_path
+    label: Hack Environment
+    metric_delta: 3
+    stat_check: Tech
+    risk: "System lockout — lose 2 separation"
+    narrator_hint: Slam a door shut remotely, reroute an elevator, kill the lights.
+  - id: crowd_blend
+    label: Crowd Blend
+    metric_delta: 1
+    stat_check: Tech
+    effect: "Disappear into the press of bodies"
+  - id: go_dark
+    label: Go Dark
+    metric_delta: 0
+    stat_check: Cool
+    resolution: true
+    consequence: "Chase ends — off the grid"
+  mood: tension
