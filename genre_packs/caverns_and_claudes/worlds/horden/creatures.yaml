@@ -1,0 +1,351 @@
+# Horden — Creature Bestiary
+# The Hoarder's fauna: things trapped in the accumulation.
+# Nothing here was made. Everything got stuck. The hoard has
+# its own ecology — vermin that eat treasure, predators that
+# are treasure, and one poor soul who never stopped counting.
+
+creatures:
+
+  # === TIER 1: NUISANCE ===
+
+  - id: tarnish_mite
+    name: Tarnish Mite
+    description: >-
+      Pinhead-sized insects with copper-green shells that feed on
+      the shine of metal. They leave trails of verdigris and dull
+      patina wherever they crawl. A single mite is invisible. A
+      colony turns a gold coin green overnight. They infest packs,
+      pockets, and coin purses — anywhere metal touches metal in
+      the dark. Treasure they have been on is worth less because
+      the shine is the first thing a buyer checks.
+    threat_level: 1
+    morale: cowardly
+    hp: 1
+    max_hp: 1
+    ac: 10
+    damage: "0 (treasure degradation)"
+    abilities:
+      - name: Tarnish Feed
+        description: >-
+          Feeds on the luster of metal surfaces. Infested coins lose
+          their shine and appear older, reducing resale value by half.
+          Does not destroy the metal — a smith can restore it, but
+          that costs more than the coin is worth. Torchlight drives
+          them off temporarily.
+      - name: Colony Spread
+        description: >-
+          Transfers between metal objects in contact. An infested
+          coin purse infests every coin inside it within one rest.
+          The only prevention is separating metals with cloth or
+          leather wrapping.
+    loot:
+      - description: "Nothing. The mites are too small to harvest."
+    tags: [outer_ring, swarm, vermin, hoard_fauna]
+    rooms: [coin_drift, scrap_hall, tarnish_hall]
+    notes: >-
+      Economic threat, not physical. The mites attack treasure
+      value, which in a treasure-as-XP system means they attack
+      experience points. Keep your coins wrapped.
+
+  - id: ledger_worm
+    name: Ledger Worm
+    description: >-
+      Fat, pale grubs the length of a finger that eat ink. They
+      nest in paper, parchment, and vellum — anywhere ink meets
+      fiber. A map left near ledger worms goes blank. A scroll
+      becomes clean parchment. They leave the paper intact and
+      consume only the markings. Their castings are tiny pellets
+      of compressed ink that stain anything they touch permanently.
+    threat_level: 1
+    morale: cowardly
+    hp: 1
+    max_hp: 1
+    ac: 9
+    damage: "0 (document destruction)"
+    abilities:
+      - name: Ink Feed
+        description: >-
+          Consumes ink, charcoal, and pigment from any document
+          surface. A map exposed for one turn loses its newest
+          markings. Two turns, the labels. Three turns, blank
+          parchment. Does not eat carved or chiseled marks — only
+          applied pigment.
+      - name: Ink Pellets
+        description: >-
+          Castings are dense pellets of compressed ink. Step on one
+          and it stains your boot permanently — useful for nothing,
+          impossible to remove. Annoying, not dangerous.
+    loot:
+      - description: "Ink pellets — worthless but indelible."
+    tags: [outer_ring, swarm, vermin, hoard_fauna]
+    rooms: [moth_gallery, bolt_room, appraisal_niche]
+    notes: >-
+      Targets maps and notes. The party's documentation is the
+      real target. Losing your map in the middle ring is
+      potentially fatal.
+
+  # === TIER 2: HAZARD ===
+
+  - id: stack_lurker
+    name: Stack Lurker
+    description: >-
+      A predator that is indistinguishable from a pile of treasure.
+      It builds itself from coins, jewelry, and scrap metal,
+      arranging the pieces with its pale, multi-jointed limbs
+      until it looks exactly like every other heap in the room.
+      It waits — days, weeks, however long it takes — until a
+      hand reaches into the pile. Then it has teeth. The teeth
+      are coins, turned edge-on and driven by a jaw that is mostly
+      spring steel and hunger.
+    threat_level: 2
+    morale: cautious
+    hp: 8
+    max_hp: 8
+    ac: 14
+    damage: "1d6 (bite — coin-edge teeth, ragged wounds)"
+    abilities:
+      - name: Treasure Mimicry
+        description: >-
+          Indistinguishable from a normal treasure pile until it
+          attacks or is disturbed by physical contact. Poking with
+          a pole triggers it. Visual inspection does not — the
+          camouflage is perfect. Can only be detected by noticing
+          that the pile breathes, which requires watching it for
+          a full turn without moving.
+      - name: Scatter
+        description: >-
+          When hit, the lurker explodes into its component coins
+          and metal. It reforms two rooms away within an hour.
+          The scattered coins are real treasure but tarnish-mite
+          infested.
+    loot:
+      - description: "Scattered coins (3d6 GP worth, tarnish-mite infested)"
+        value: 10
+        chance: 1.0
+    tags: [outer_ring, middle_ring, ambush, predator, hoard_fauna]
+    rooms: [coin_drift, trophy_wall, tarnish_hall, gem_bower]
+    notes: >-
+      The classic mimic, reimagined as a practical ambush predator
+      that builds its disguise from the environment. The real
+      danger is reaching into treasure piles without checking.
+      Pole-first exploration is the counter.
+
+  - id: rust_ghost
+    name: Rust Ghost
+    description: >-
+      The corroded remnant of an armored warrior who died in the
+      hoard and never stopped walking. The armor has fused with
+      the bones — iron and calcium married by centuries of
+      oxidation. It moves slowly, each step grinding, shedding
+      flakes of rust. It carries the weight it could not put
+      down in life. The pack on its back is full of treasure,
+      welded shut by corrosion. It does not attack unless you
+      try to take the pack.
+    threat_level: 2
+    morale: fearless
+    hp: 10
+    max_hp: 10
+    ac: 15
+    damage: "1d6+1 (corroded fist — rust infection on wound)"
+    abilities:
+      - name: Immovable Burden
+        description: >-
+          The rust ghost carries a pack weighing more than most
+          delvers can lift. It cannot put it down. It cannot be
+          knocked prone — the weight anchors it. Pushing or
+          tripping effects fail automatically.
+      - name: Rust Touch
+        description: >-
+          Metal struck by the rust ghost corrodes rapidly. A hit
+          on a shield degrades it by one AC point until repaired.
+          A hit on armor does the same. Wooden and leather items
+          are unaffected.
+      - name: Territorial
+        description: >-
+          Does not pursue. Stands in its area and guards its pack.
+          Walk past without touching its treasure and it watches
+          you go. Reach for the pack and it swings.
+    loot:
+      - description: "Rust ghost pack — sealed by corrosion, requires a smith to open (50 GP contents)"
+        value: 50
+        chance: 0.4
+      - description: "Corroded iron scraps (2 GP to a collector)"
+        value: 2
+        chance: 0.6
+    tags: [middle_ring, undead, guardian, hoard_fauna]
+    rooms: [rust_gallery, goat_path, tarnish_hall]
+    notes: >-
+      Avoidable if the party does not try to loot its pack. The
+      pack is extremely valuable but requires town resources to
+      open. The rust touch is the real threat — armor degradation
+      in a dungeon with no smith is expensive.
+
+  # === TIER 3: THREAT ===
+
+  - id: the_appraiser
+    name: "The Appraiser"
+    description: >-
+      A former delver. You can tell because it still wears boots
+      and carries a pack — though the pack is open and empty now,
+      the straps cutting into shoulders that forgot how to shrug
+      them off. Its eyes are open and focused. Its lips move
+      constantly. It is counting. It counts everything it sees —
+      your torches, your rations, your coins, your teeth, your
+      breaths. When it finishes counting your inventory, it
+      whispers the total to the walls. Then the Hoarder knows
+      exactly what you are carrying.
+    threat_level: 3
+    morale: fearless
+    hp: 14
+    max_hp: 14
+    ac: 12
+    damage: "1d4 (grasping hands — tries to hold you still while it counts)"
+    abilities:
+      - name: Inventory Scan
+        description: >-
+          Follows the party at a distance, counting their
+          possessions. Takes three turns to complete a full count.
+          If uninterrupted for three turns, the Hoarder's awareness
+          increases by 5 immediately — it now knows exactly what
+          the party carries and where every item is.
+      - name: Whisper Report
+        description: >-
+          After completing a count, whispers the inventory to the
+          dungeon walls. The awareness spike is immediate and
+          cannot be undone by stealth — the count is filed.
+      - name: Grasping Count
+        description: >-
+          In melee, grabs and holds a target while continuing to
+          count their possessions. The grip is not strong but it
+          is persistent — breaking free requires a STR check. It
+          does not try to hurt. It tries to hold you still long
+          enough to finish counting.
+    loot:
+      - description: "The Appraiser's empty pack — good condition, worth 3 GP"
+        value: 3
+        chance: 0.5
+      - description: "A tally stick with precise notches (5 GP to the Counters, worthless otherwise)"
+        value: 5
+        chance: 0.3
+    tags: [middle_ring, inner_sanctum, tracker, hoard_fauna]
+    rooms: [counting_hall, goat_path, tarnish_hall]
+    notes: >-
+      The Appraiser is the Hoarder's sensor. Killing it is easy.
+      Preventing the count is hard — it follows quietly, and in
+      the cluttered middle ring, it blends with the shadows between
+      stacks. The three-turn timer creates tension: do you spend
+      a turn hunting it, or push forward and accept the awareness
+      spike?
+
+  - id: coin_golem
+    name: Coin Golem
+    description: >-
+      A humanoid shape assembled from thousands of coins held
+      together by nothing visible. It stands in the transition
+      between rings — the toll gate, the weight lock — and
+      activates when the Hoarder's awareness is high. It does
+      not guard treasure. It guards exits. Its body is the
+      treasure, and every hit scatters coins that must be
+      recollected. Hitting it is profitable. Surviving the hit
+      back is the problem.
+    threat_level: 3
+    morale: fearless
+    hp: 18
+    max_hp: 18
+    ac: 16
+    damage: "1d8+2 (coin-mass slam — heavy, blunt, coins embed in flesh)"
+    abilities:
+      - name: Coin Shell
+        description: >-
+          Each successful hit on the golem scatters 1d6 GP worth
+          of coins. At half HP, it is visibly smaller. At zero HP,
+          it collapses into a pile of coins worth its remaining
+          value. But every coin scattered is a coin the Hoarder
+          notices missing — each hit increases awareness by 1.
+      - name: Exit Guard
+        description: >-
+          Only activates when Keeper awareness is 10 or higher.
+          Positions itself at chokepoints between rings. Does not
+          pursue beyond its assigned passage.
+      - name: Reassemble
+        description: >-
+          If not fully destroyed, pulls scattered coins back
+          together over one hour. Coins picked up by delvers
+          are replaced from the dungeon's reserves — it is
+          always the same size when it reforms.
+    loot:
+      - description: "Coin golem remnants — a pile of mixed coins (total value equals remaining HP in GP)"
+        value: 18
+        chance: 1.0
+    tags: [middle_ring, guardian, keeper_construct, hoard_fauna]
+    rooms: [toll_gate, weight_lock, antechamber]
+    notes: >-
+      The tactical dilemma: hitting it is profitable (coins scatter)
+      but each hit raises awareness. Fighting it is literally a
+      test of greed — do you keep hitting for more coins, or stop
+      when you have enough and run?
+
+  # === TIER 4: BOSS ===
+
+  - id: the_ledger
+    name: "The Ledger"
+    description: >-
+      The master inventory of Horden made manifest. A book the size
+      of a door, bound in leather that pulses with warmth, pages
+      that turn themselves and are never blank. It does not fight
+      the way a creature fights — it reclaims. It opens, and every
+      item in your inventory that appears on its pages flies from
+      your hands, your pack, your pockets, and returns to its
+      catalogued position in the dungeon. Fighting the Ledger means
+      carrying things it has not yet catalogued — new items, items
+      from outside, things the Hoarder does not know about. Your
+      own belongings, brought from the surface, are your only
+      weapons.
+    threat_level: 4
+    morale: fearless
+    hp: 30
+    max_hp: 30
+    ac: 14
+    damage: "2d6 (reclamation — strips items from inventory, each hit removes highest-value item)"
+    abilities:
+      - name: Reclamation Pulse
+        description: >-
+          Each turn, the Ledger emits a pulse. Every item in the
+          party's inventory that exists in the Hoarder's catalogue
+          (anything picked up inside Horden) is pulled toward the
+          Ledger. STR check to hold on, per item. Items that fly
+          free return to their catalogued position in the dungeon.
+          Items brought from outside are not affected — the Ledger
+          does not know about them.
+      - name: Page Turn
+        description: >-
+          The Ledger can be damaged by tearing pages. Each torn page
+          reduces its HP by 3 and permanently removes the items on
+          that page from the catalogue — those items can no longer
+          be reclaimed. But the pages are tough, requiring a blade
+          and a free hand.
+      - name: New Entry
+        description: >-
+          When the Ledger detects an uncatalogued item (something
+          from outside the dungeon), it pauses reclamation to
+          catalogue it. This takes one full turn during which the
+          Ledger is vulnerable and not pulsing. The tactical key:
+          feed it new items to create attack windows.
+    loot:
+      - description: "Ledger pages — parchment cataloguing specific items (100 GP to scholars)"
+        value: 100
+        chance: 1.0
+      - description: "Ledger binding — warm leather that resists cutting (40 GP to a tanner)"
+        value: 40
+        chance: 0.7
+    tags: [inner_sanctum, boss, keeper_construct, hoard_fauna]
+    rooms: [counting_house]
+    notes: >-
+      The boss is a puzzle. Brute force does not work — the Ledger
+      reclaims dungeon items faster than you can swing them. The
+      solution is to bring items from outside (surface gear, personal
+      belongings) and use the New Entry pause to tear pages. Parties
+      that looted heavily on the way in are WEAKER against the boss
+      because they are carrying catalogued items. Parties that
+      carried little are stronger. The dungeon rewards restraint
+      and punishes greed — at the end, when it matters most.
