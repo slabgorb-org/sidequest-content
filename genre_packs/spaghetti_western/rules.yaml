@@ -209,3 +209,109 @@ confrontations:
     resolution: true
     consequence: "Chase ends — dismount, hide among the rocks"
   mood: tension
+- type: standoff
+  label: Showdown at High Noon
+  category: pre_combat
+  metric:
+    name: nerve
+    direction: descending
+    starting: 100
+    threshold_low: 0
+  beats:
+  - id: stare_down
+    label: Stare Down
+    metric_delta: -15
+    stat_check: NERVE
+    narrator_hint: Eyes narrow. A bead of sweat runs down a temple. The clock tower ticks.
+  - id: sizing_up
+    label: Size Up
+    metric_delta: -10
+    stat_check: CUNNING
+    effect: "Read the opponent — reveal their DRAW score"
+    narrator_hint: Feet shift. Weight settles. Hands drift closer to iron.
+  - id: taunt
+    label: Taunt
+    metric_delta: -20
+    stat_check: PRESENCE
+    risk: "Enrages opponent — they draw early, escalates to combat"
+    narrator_hint: Words cut deeper than bullets. Make them doubt.
+  - id: draw_first
+    label: Draw First
+    metric_delta: 0
+    stat_check: DRAW
+    resolution: true
+    consequence: "Standoff ends — first shot fired, escalates to combat"
+  escalates_to: combat
+  mood: tension
+- type: card_game
+  label: High Stakes Poker
+  category: social
+  metric:
+    name: pot
+    direction: ascending
+    starting: 0
+    threshold_high: 100
+  beats:
+  - id: raise
+    label: Raise
+    metric_delta: 15
+    stat_check: CUNNING
+    narrator_hint: Chips click. Eyes flick to the cards, then back.
+  - id: bluff
+    label: Bluff
+    metric_delta: 20
+    stat_check: PRESENCE
+    risk: "Called — lose double the bet if they see through it"
+    narrator_hint: A face like stone. Not a tell in sight. Or is that the tell?
+  - id: read
+    label: Read the Table
+    metric_delta: 5
+    stat_check: CUNNING
+    effect: "Reveal one opponent's hand strength"
+    narrator_hint: The way he stacks his chips. The way she holds her cards. Everyone talks.
+  - id: cheat
+    label: Cheat
+    metric_delta: 25
+    stat_check: CUNNING
+    risk: "Caught — standoff or gunfight if they notice"
+    narrator_hint: The marked deck slides. The bottom deal is clean. Almost clean.
+  - id: fold
+    label: Fold
+    metric_delta: 0
+    stat_check: NERVE
+    resolution: true
+    consequence: "Walk away from the table with what you've got"
+  mood: tension
+- type: negotiation
+  label: Parley
+  category: social
+  metric:
+    name: leverage
+    direction: ascending
+    starting: 50
+    threshold_high: 100
+    threshold_low: 0
+  beats:
+  - id: offer
+    label: Make an Offer
+    metric_delta: 10
+    stat_check: PRESENCE
+    narrator_hint: Name your price. Everything out here has one.
+  - id: threaten
+    label: Threaten
+    metric_delta: 15
+    stat_check: GRIT
+    risk: "Refused — lose 10 leverage, they dig in"
+    narrator_hint: The hand rests on the holster. Not a draw. A reminder.
+  - id: sweeten
+    label: Sweeten the Deal
+    metric_delta: 10
+    stat_check: CUNNING
+    effect: "Add information, a favor, or a cut of the take"
+  - id: walk_away
+    label: Walk Away
+    metric_delta: 0
+    stat_check: NERVE
+    resolution: true
+    consequence: "Negotiation ends — no deal, no hard feelings. Maybe."
+  mood: tension
