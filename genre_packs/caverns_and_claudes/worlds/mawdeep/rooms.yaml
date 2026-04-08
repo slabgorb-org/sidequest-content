@@ -1,6 +1,7 @@
 # Mawdeep — Room Graph
-# 18 rooms across 2 levels. Jaquayed layout with loops and one-way drops.
+# 19 rooms across 2 levels. Jaquayed layout with loops and one-way drops.
 # The Glutton Below shapes every room — organic textures, warmth, constriction.
+# tactical_scale: 4 for all rooms (grid = size * 4 cells)
 
 # === LEVEL 1: THE GULLET ===
 
@@ -19,6 +20,20 @@
       target: throat
     - type: corridor
       target: antechamber
+  tactical_scale: 4
+  grid: |
+    ############
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #...........
+    #...........
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #####..#####
 
 - id: throat
   name: "The Throat"
@@ -38,6 +53,12 @@
       is_locked: false
     - type: corridor
       target: junction
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #.......
+    #.......
+    ###..###
 
 - id: antechamber
   name: "The Antechamber"
@@ -55,6 +76,16 @@
       target: junction
     - type: corridor
       target: gallery
+  tactical_scale: 4
+  grid: |
+    _##..##_
+    #......#
+    #......#
+    #.......
+    #.......
+    #......#
+    #......#
+    _##..##_
 
 - id: cistern
   name: "The Cistern"
@@ -72,6 +103,16 @@
       is_locked: false
     - type: corridor
       target: pantry
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #......#
+    #..~~..#
+    #..~~..#
+    #..~~..#
+    #......#
+    #......#
+    ###..###
 
 - id: junction
   name: "The Junction"
@@ -92,6 +133,22 @@
       target: hall
     - type: corridor
       target: chute
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..V....V..#
+    #..........#
+    #..........#
+    ............
+    ............
+    #..........#
+    #..........#
+    #..V....V..#
+    #..........#
+    #####..#####
+  legend:
+    V: { type: atmosphere, label: "Amber-filled crack in the stone" }
 
 - id: gallery
   name: "The Gallery of the Eaten"
@@ -109,6 +166,18 @@
     - type: door
       target: hall
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #A........A#
+    #..........#
+    #A..........
+    #...........
+    #A........A#
+    #..........#
+    ############
+  legend:
+    A: { type: atmosphere, label: "Alcove with relics of the eaten" }
 
 - id: pantry
   name: "The Pantry"
@@ -125,6 +194,12 @@
     - type: door
       target: stairs_down
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #......#
+    #......#
+    ###..###
 
 - id: hall
   name: "The Swallowing Hall"
@@ -144,6 +219,22 @@
       is_locked: false
     - type: corridor
       target: stairs_down
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..........#
+    #..........#
+    #....WW....#
+    #....WW.....
+    #...........
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #####..#####
+  legend:
+    W: { type: interactable, label: "Stone well descending into darkness" }
 
 - id: chute
   name: "The Chute"
@@ -159,6 +250,12 @@
       target: junction
     - type: chute_down
       target: warren
+  tactical_scale: 4
+  grid: |
+    #..#
+    #..#
+    #..#
+    #..#
 
 - id: stairs_down
   name: "The Stairs"
@@ -177,6 +274,16 @@
       target: hall
     - type: corridor
       target: landing
+  tactical_scale: 4
+  grid: |
+    #..#
+    #..#
+    #..#
+    #...
+    #...
+    #..#
+    #..#
+    #..#
 
 # === LEVEL 2: THE BELLY ===
 
@@ -197,6 +304,16 @@
       target: gullet_passage
     - type: corridor
       target: acid_pool
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #......#
+    #......#
+    #.......
+    #.......
+    #......#
+    #......#
+    ###..###
 
 - id: gullet_passage
   name: "The Gullet"
@@ -214,6 +331,16 @@
     - type: door
       target: vault
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    #..#
+    #..#
+    #,,#
+    #,,#
+    #,,#
+    #,,#
+    #..#
+    #..#
 
 - id: acid_pool
   name: "The Acid Pool"
@@ -230,6 +357,16 @@
       target: landing
     - type: corridor
       target: warren
+  tactical_scale: 4
+  grid: |
+    _##..##_
+    #......#
+    #..~~..#
+    #.~~~~.#
+    #.~~~~.#
+    #..~~..#
+    #......#
+    _##..##_
 
 - id: warren
   name: "The Warren"
@@ -246,6 +383,20 @@
       target: acid_pool
     - type: corridor
       target: stomach
+  tactical_scale: 4
+  grid: |
+    _####..####_
+    #..........#
+    #..#....#..#
+    #..#....#..#
+    #..........#
+    #....##....#
+    #....##....#
+    #..........#
+    #..#....#..#
+    #..#....#..#
+    #..........#
+    _####..####_
 
 - id: vault
   name: "The Vault of Teeth"
@@ -263,6 +414,18 @@
       is_locked: false
     - type: corridor
       target: stomach
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #......#
+    #.T..T.#
+    #......#
+    #......#
+    #.T..T.#
+    #......#
+    ###..###
+  legend:
+    T: { type: atmosphere, label: "Stone tooth studded with gems" }
 
 - id: stomach
   name: "The Stomach"
@@ -283,6 +446,20 @@
     - type: door
       target: marrow_hall
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..,,,,,,..#
+    #.,,,,,,,,.#
+    #.,,,,,,,,.#
+    #.,,,,,,,,,.
+    #.,,,,,,,,,.
+    #.,,,,,,,,.#
+    #.,,,,,,,,.#
+    #..,,,,,,..#
+    #..........#
+    #####..#####
 
 - id: marrow_hall
   name: "Marrow Hall"
@@ -300,6 +477,18 @@
     - type: door
       target: maw_chamber
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    #..#
+    #B.#
+    #.B#
+    #B.#
+    #.B#
+    #B.#
+    #.B#
+    #..#
+  legend:
+    B: { type: atmosphere, label: "Exposed bone grown into the wall" }
 
 - id: maw_chamber
   name: "The Maw"
@@ -319,6 +508,22 @@
     - type: door
       target: full_belly
       is_locked: true
+  tactical_scale: 4
+  grid: |
+    _####..####_
+    #..........#
+    #..........#
+    #..........#
+    #....MM....#
+    #....MM....#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    _####..####_
+  legend:
+    M: { type: hazard, label: "The Glutton's lieutenant crouches here" }
 
 - id: full_belly
   name: "The Full Belly"
@@ -335,3 +540,19 @@
     - type: door
       target: maw_chamber
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    _####..####_
+    #..........#
+    #..........#
+    #.T......T.#
+    #..........#
+    #..........#
+    #....TT....#
+    #..........#
+    #..........#
+    #.T......T.#
+    #..........#
+    _##########_
+  legend:
+    T: { type: atmosphere, label: "Mound of treasure embedded in living stone" }
