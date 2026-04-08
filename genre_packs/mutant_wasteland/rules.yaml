@@ -79,3 +79,45 @@ confrontations:
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player turns their back on the deal. Walking away."
     mood: tension
+
+  - type: combat
+    label: "Wasteland Brawl"
+    category: combat
+    metric:
+      name: hp
+      direction: descending
+      starting: 12
+      threshold_low: 0
+    beats:
+      - id: attack
+        label: "Attack"
+        metric_delta: -3
+        stat_check: Brawn
+        effect: "deal damage to the target"
+        narrator_hint: "Describe the blow connecting — gritty, physical, consequential."
+      - id: defend
+        label: "Defend"
+        metric_delta: -1
+        stat_check: Toughness
+        effect: "reduce incoming damage, hold position"
+        narrator_hint: "Player braces or blocks. Show the impact absorbed."
+      - id: flank
+        label: "Flank"
+        metric_delta: -4
+        stat_check: Reflexes
+        risk: "exposed if it fails — take extra damage"
+        narrator_hint: "Risky repositioning for a better angle of attack."
+      - id: mutant_ability
+        label: "Use Mutation"
+        metric_delta: -5
+        stat_check: Instinct
+        risk: "mutation instability — side effect on failure"
+        narrator_hint: "The mutation manifests visibly. Show the cost as well as the power."
+      - id: flee
+        label: "Flee"
+        metric_delta: 0
+        stat_check: Reflexes
+        resolution: true
+        consequence: "escape combat, possible pursuit"
+        narrator_hint: "Player breaks contact and runs. Not every fight needs a winner."
+    mood: combat
