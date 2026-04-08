@@ -1,6 +1,7 @@
 # Grimvault — Room Graph
-# 18 rooms across 2 levels. Linear processing flow with branching side-paths.
+# 17 rooms across 2 levels. Linear processing flow with branching side-paths.
 # The Patient Butcher's workshop: rooms have functions, not just contents.
+# tactical_scale: 4 for all rooms (grid = size * 4 cells)
 
 # === LEVEL 1: THE WORKSHOP ===
 
@@ -19,6 +20,18 @@
   exits:
     - type: corridor
       target: receiving
+  tactical_scale: 4
+  grid: |
+    ############
+    #..........#
+    #..........#
+    #.L.........
+    #...........
+    #..........#
+    #..........#
+    ############
+  legend:
+    L: { type: interactable, label: "Stone lectern near the entrance" }
 
 - id: receiving
   name: "The Receiving Hall"
@@ -40,6 +53,22 @@
       is_locked: false
     - type: corridor
       target: cold_store
+  tactical_scale: 4
+  grid: |
+    ############
+    #N........N#
+    #..........#
+    ..........N#
+    ..........N#
+    #N........N#
+    #N........N#
+    #..........#
+    #N..........
+    #N..........
+    #..........#
+    #####..#####
+  legend:
+    N: { type: atmosphere, label: "Stone niche with catalogued object" }
 
 - id: sorting_floor
   name: "The Sorting Floor"
@@ -65,6 +94,23 @@
     - type: door
       target: calibration_room
       is_locked: true
+  tactical_scale: 4
+  grid: |
+    #######..#######
+    #..............#
+    #..T..T..T..T..#
+    #.G..........G.#
+    ...............#
+    ...............#
+    #.G..........G.#
+    #...............
+    #...............
+    #.G..........G.#
+    #..T..T..T..T..#
+    #######..#######
+  legend:
+    T: { type: cover, label: "Stone processing table with shallow depression" }
+    G: { type: hazard, label: "Drainage channel cut into the floor" }
 
 - id: separation_chamber_west
   name: "West Separation Chamber"
@@ -84,6 +130,16 @@
     - type: secret
       target: quiet_archive
       discovered: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #......#
+    #......#
+    ........
+    ........
+    #......#
+    #......#
+    ########
 
 - id: separation_chamber_east
   name: "East Separation Chamber"
@@ -102,6 +158,16 @@
     - type: door
       target: holding_cells
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #......#
+    #......#
+    ........
+    ........
+    #......#
+    #......#
+    ########
 
 - id: cold_store
   name: "The Cold Store"
@@ -121,6 +187,20 @@
     - type: door
       target: waste_chute
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #......#
+    #......#
+    #......#
+    #......#
+    ........
+    ........
+    #......#
+    #......#
+    #......#
+    #......#
+    ###..###
 
 - id: waste_chute
   name: "The Waste Chute"
@@ -139,6 +219,12 @@
       is_locked: false
     - type: chute_down
       target: residue_well
+  tactical_scale: 4
+  grid: |
+    #..#
+    #..#
+    #..#
+    #..#
 
 - id: calibration_room
   name: "The Calibration Room"
@@ -159,6 +245,18 @@
       is_locked: true
     - type: corridor
       target: descent
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #......#
+    #......#
+    #..L...#
+    #......#
+    #......#
+    #......#
+    ###..###
+  legend:
+    L: { type: interactable, label: "Stone pedestal holding a sphere of polished stone" }
 
 - id: quiet_archive
   name: "The Quiet Archive"
@@ -177,6 +275,18 @@
     - type: secret
       target: separation_chamber_west
       discovered: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #N....N#
+    #......#
+    #N......
+    #.......
+    #N....N#
+    #......#
+    ########
+  legend:
+    N: { type: atmosphere, label: "Wax-sealed stone box of captured sound" }
 
 - id: holding_cells
   name: "The Holding Cells"
@@ -196,6 +306,16 @@
       is_locked: false
     - type: corridor
       target: descent
+  tactical_scale: 4
+  grid: |
+    ############
+    #.#.#.#....#
+    #.#.#.#....#
+    ............
+    ............
+    #.#.#.#....#
+    #.#.#.#....#
+    ############
 
 - id: descent
   name: "The Descent"
@@ -215,6 +335,12 @@
       target: holding_cells
     - type: chute_down
       target: intake
+  tactical_scale: 4
+  grid: |
+    #..##..#
+    #......#
+    #......#
+    ###..###
 
 # === LEVEL 2: THE COLLECTION ===
 
@@ -239,6 +365,16 @@
     - type: door
       target: specimen_gallery
       is_locked: false
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..........#
+    #...........
+    #...........
+    #..........#
+    #..........#
+    #####..#####
 
 - id: refinement_hall
   name: "The Refinement Hall"
@@ -262,6 +398,24 @@
       is_locked: true
     - type: corridor
       target: residue_well
+  tactical_scale: 4
+  grid: |
+    ################
+    #..............#
+    #..............#
+    #...#......#...#
+    #..............#
+    ...............#
+    ...............#
+    #..............#
+    #..............#
+    #...#......#....
+    #...............
+    #..............#
+    #...#......#...#
+    #..............#
+    #..............#
+    #######..#######
 
 - id: specimen_gallery
   name: "The Specimen Gallery"
@@ -282,6 +436,20 @@
     - type: secret
       target: the_index
       discovered: false
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    ...........#
+    ...........#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    ############
 
 - id: the_index
   name: "The Index"
@@ -299,6 +467,22 @@
     - type: secret
       target: specimen_gallery
       discovered: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #L....L#
+    #......#
+    #L....L#
+    #......#
+    #L......
+    #.......
+    #L....L#
+    #......#
+    #L....L#
+    #......#
+    ########
+  legend:
+    L: { type: interactable, label: "Stone tablet bearing the Butcher's notation" }
 
 - id: residue_well
   name: "The Residue Well"
@@ -318,6 +502,18 @@
       target: refinement_hall
     - type: chute_up
       target: waste_chute
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #......#
+    #......#
+    .......#
+    .......#
+    #......#
+    #..GG..#
+    ########
+  legend:
+    G: { type: hazard, label: "Pool of quality-stripped residue" }
 
 - id: the_press
   name: "The Press"
@@ -337,3 +533,19 @@
     - type: door
       target: refinement_hall
       is_locked: true
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #....LL....#
+    #....LL....#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    ############
+  legend:
+    L: { type: interactable, label: "The separation mechanism — stone and not-stone" }
