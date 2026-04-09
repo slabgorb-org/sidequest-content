@@ -249,12 +249,14 @@ confrontations:
         stat_check: NERVE
         risk: "bad hand — lose 2 edge on fail"
         narrator_hint: "Push chips forward. Confidence or bluff?"
+        gold_delta: -5
       - id: raise
         label: "Raise"
         metric_delta: 3
         stat_check: CUNNING
         risk: "overplayed — lose 3 edge if called and weak"
         narrator_hint: "Escalate the stakes. Make them sweat."
+        gold_delta: -15
       - id: bluff
         label: "Bluff"
         metric_delta: 2
@@ -262,12 +264,14 @@ confrontations:
         risk: "called bluff — lose 4 edge, table reads you"
         reveals: opponent_tell
         narrator_hint: "Stone face. Sell the lie."
+        gold_delta: -10
       - id: call
         label: "Call"
         metric_delta: 0
         stat_check: CUNNING
         reveals: hand_strength
         narrator_hint: "Match the bet. See what they've got."
+        gold_delta: -5
       - id: fold
         label: "Fold"
         metric_delta: -1
@@ -287,6 +291,7 @@ confrontations:
         consequence: "if caught, opponent draws on you — standoff escalation"
         narrator_hint: "Palm a card. Bottom deal. The Card Shark's specialty."
         requires: "Card Shark archetype or class ability"
+        gold_delta: -5
       - id: accuse_cheating
         label: "Accuse of Cheating"
         metric_delta: 0
