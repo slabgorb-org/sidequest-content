@@ -1,0 +1,45 @@
+# Caverns & Claudes — random equipment tables
+#
+# Consumed by CharacterBuilder when a character creation scene declares
+# `equipment_generation: random_table` in its mechanical_effects (see `the_kit`
+# scene in char_creation.yaml).
+#
+# Each slot lists candidate item_ids. The builder rolls one item per slot
+# during character creation (or `rolls_per_slot` override). Every id must
+# exist in inventory.yaml item_catalog — the wiring test enforces this.
+#
+# Story 31-3: wire equipment_generation random_table in CharacterBuilder.
+# Replaces the hardcoded `starting_equipment.Delver` list at inventory.yaml:294.
+
+tables:
+  weapon:
+    - dagger_iron
+    - sword_short
+    - mace_iron
+    - spear
+    - hand_axe
+  armor:
+    - leather_armor
+    - shield_wood
+    - helmet_iron
+  light:
+    - torch
+  consumable:
+    - rations_day
+    - waterskin
+    - potion_healing
+  utility:
+    - rope_hemp
+    - ten_foot_pole
+    - iron_spikes
+    - chalk
+    - crowbar
+    - sack_large
+    - lantern_oil
+
+# Override the default 1-roll-per-slot for bulk items. Mirrors the old
+# hardcoded Delver loadout (3 torches, 2 rations + 1 other, 3 utility picks).
+rolls_per_slot:
+  light: 3
+  consumable: 3
+  utility: 3
