@@ -38,9 +38,21 @@ negative_prompt: >-
   green lush landscape, snow, rain, fantasy, medieval, magic, neon,
   3d render, stock photo, portrait photography
 
-preferred_model: flux
+preferred_model: dev
 
 base_seed: 1966
+
+# ── LoRA (story 35-15) ────────────────────────────────────────
+# Genre-specific Flux LoRA for spaghetti-western visual style.
+# Path is relative to this genre pack directory; the Rust
+# dispatch layer resolves to an absolute path before sending
+# to the daemon (per ADR-032).
+# The trigger word activates the trained style and replaces
+# `positive_suffix` in the CLIP prompt when the LoRA is loaded.
+# The .safetensors file itself is trained/dropped in separately
+# (Epic 32 scope) — this YAML ships the wire, not the weights.
+lora: lora/spaghetti_western_style.safetensors
+lora_trigger: sw_style
 
 # ── Location Tag Overrides ────────────────────────────────────
 
