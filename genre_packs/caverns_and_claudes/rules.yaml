@@ -55,70 +55,98 @@ encounter_base_tension:
   boss: 0.50
   final: 0.60
 
+initiative_rules:
+  combat:
+    primary_stat: DEX
+    description: "Reflexes and speed determine who strikes first"
+  chase:
+    primary_stat: DEX
+    description: "Agility and footwork set the pace"
+  social:
+    primary_stat: CHA
+    description: "Force of personality controls the conversation"
+  exploration:
+    primary_stat: WIS
+    description: "Awareness determines who notices things first"
+
+# ── Confrontations ──────────────────────────────────────────
+# Forward-ported from main 5144b6c (story 28-10) — combat + chase
+# ConfrontationDefs. Required by sidequest-api test
+# `packs_without_confrontations_yaml_have_empty_vec`.
 confrontations:
-- type: combat
-  label: Dungeon Combat
-  category: combat
-  metric:
-    name: hp
-    direction: descending
-    starting: 0
-    threshold_low: 0
-  beats:
-  - id: attack
-    label: Attack
-    metric_delta: -8
-    stat_check: STR
-    narrator_hint: Steel rings off stone. Torchlight flickers across the blow.
-  - id: defend
-    label: Defend
-    metric_delta: 0
-    stat_check: CON
-    effect: "Reduce incoming damage this round"
-  - id: shield_bash
-    label: Shield Bash
-    metric_delta: -5
-    stat_check: STR
-    effect: "Stun the target briefly"
-    narrator_hint: Slam forward in the narrow corridor — nowhere to dodge.
-  - id: flee
-    label: Flee
-    metric_delta: 0
-    stat_check: DEX
-    resolution: true
-    risk: "Opportunity attack — take damage on failure"
-    consequence: "Combat ends — retreat deeper into the dungeon"
-  mood: combat
-- type: chase
-  label: Corridor Pursuit
-  category: movement
-  metric:
-    name: separation
-    direction: ascending
-    starting: 3
-    threshold_high: 10
-    threshold_low: 0
-  beats:
-  - id: sprint
-    label: Sprint
-    metric_delta: 2
-    stat_check: DEX
-    narrator_hint: Boots echo off stone as the quarry bolts down the passage.
-  - id: duck_through
-    label: Duck Through
-    metric_delta: 3
-    stat_check: INT
-    risk: "Wrong turn — dead end, lose 2 separation"
-    narrator_hint: Squeeze through a side passage too narrow for pursuers.
-  - id: barricade
-    label: Barricade
-    metric_delta: 1
-    stat_check: INT
-    effect: "Topple debris to slow pursuit"
-  - id: douse_torch
-    label: Douse Torch
-    metric_delta: 0
-    stat_check: DEX
-    resolution: true
-    consequence: "Chase ends in darkness — quarry vanishes"
-  mood: tension
+  - type: combat
+    label: Dungeon Combat
+    category: combat
+    # Momentum-based encounter metric. `momentum` is a bidirectional
+    # narrative dial: positive = party is winning, negative = party is
+    # losing. Actual HP/damage lives on character state — this metric
+    # tracks how the fight is *going*, not how much life is left.
+    # Resolution triggers at either threshold.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: attack
+        label: Attack
+        metric_delta: 2
+        stat_check: STR
+        effect: "Target takes damage this round"
+        narrator_hint: Steel rings off stone. Torchlight flickers across the blow.
+      - id: defend
+        label: Defend
+        metric_delta: 1
+        stat_check: CON
+        effect: "Reduce incoming damage this round, brace against the push"
+        narrator_hint: Shield raised, back to the wall, weight forward.
+      - id: shield_bash
+        label: Shield Bash
+        metric_delta: 4
+        stat_check: STR
+        risk: "Overcommitted — lose 2 momentum and take a counter on failure"
+        effect: "Stun the target briefly, break their footing"
+        narrator_hint: Slam forward in the narrow corridor — nowhere to dodge.
+      - id: flee
+        label: Flee
+        metric_delta: 0
+        stat_check: DEX
+        resolution: true
+        risk: "Opportunity attack — take damage on failure"
+        consequence: "Combat ends — retreat deeper into the dungeon"
+        narrator_hint: Break contact, torch sweeping behind you as you run.
+    mood: combat
+  - type: chase
+    label: Corridor Pursuit
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: sprint
+        label: Sprint
+        metric_delta: 2
+        stat_check: DEX
+        narrator_hint: Boots echo off stone as the quarry bolts down the passage.
+      - id: duck_through
+        label: Duck Through
+        metric_delta: 3
+        stat_check: INT
+        risk: "Wrong turn — dead end, lose 2 separation"
+        narrator_hint: Squeeze through a side passage too narrow for pursuers.
+      - id: barricade
+        label: Barricade
+        metric_delta: 1
+        stat_check: INT
+        effect: "Topple debris to slow pursuit"
+      - id: douse_torch
+        label: Douse Torch
+        metric_delta: 0
+        stat_check: DEX
+        resolution: true
+        consequence: "Chase ends in darkness — quarry vanishes"
+    mood: tension

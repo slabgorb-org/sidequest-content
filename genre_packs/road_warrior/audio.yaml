@@ -95,46 +95,9 @@ sfx_library:
   horn_blast:
     - audio/sfx/horn_blast.ogg
 
-creature_voice_presets:
-  warlord:
-    creature_type: warlord
-    description: "Booming voice over engine noise, megaphone distortion"
-    pitch: 0.7
-    rate: 0.9
-    effects:
-      - type: distortion
-        params:
-          amount: 0.3
-      - type: reverb
-        params:
-          room_size: 0.4
-  raider:
-    creature_type: raider
-    description: "Manic, high-energy screaming over wind noise"
-    pitch: 1.2
-    rate: 1.4
-    effects:
-      - type: highpass_filter
-        params:
-          cutoff_frequency_hz: 400
-  announcer:
-    creature_type: announcer
-    description: "Arena PA system, booming and theatrical"
-    pitch: 0.8
-    rate: 1.0
-    effects:
-      - type: reverb
-        params:
-          room_size: 0.7
-      - type: lowpass_filter
-        params:
-          cutoff_frequency_hz: 3000
-
 mixer:
   music_volume: 0.08
   sfx_volume: 0.15
-  voice_volume: 1.0
-  duck_music_for_voice: true
   duck_amount_db: -12.0
   crossfade_default_ms: 3000
 
@@ -191,3 +154,95 @@ themes:
         path: audio/music/convoy.ogg
       - type: full
         path: audio/music/convoy_3.ogg
+
+faction_themes:
+  - faction_id: bosozoku
+    track:
+      path: audio/music/faction_bosozoku.ogg
+      title: "Bosozoku Thunder"
+      bpm: 150
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: cafe_racers
+    track:
+      path: audio/music/faction_cafe_racer.ogg
+      title: "Cafe Racer Sprint"
+      bpm: 140
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: dekotora
+    track:
+      path: audio/music/faction_dekotora.ogg
+      title: "Dekotora Lights"
+      bpm: 110
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: lowriders
+    track:
+      path: audio/music/faction_lowrider.ogg
+      title: "Lowrider Cruise"
+      bpm: 85
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: matatu
+    track:
+      path: audio/music/faction_matatu.ogg
+      title: "Matatu Beat"
+      bpm: 120
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: mods
+    track:
+      path: audio/music/faction_mods.ogg
+      title: "Mod Revival"
+      bpm: 130
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: one_percenters
+    track:
+      path: audio/music/faction_one_percenters.ogg
+      title: "One Percenters"
+      bpm: 140
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: raggare
+    track:
+      path: audio/music/faction_raggare.ogg
+      title: "Raggare Rockabilly"
+      bpm: 135
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: rockers
+    track:
+      path: audio/music/faction_rocker.ogg
+      title: "Rockers"
+      bpm: 145
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5
+  - faction_id: tuk_tuk
+    track:
+      path: audio/music/faction_tuk_tuk.ogg
+      title: "Tuk Tuk Hustle"
+      bpm: 115
+    triggers:
+      location: true
+      npc_present: true
+      reputation_threshold: 5

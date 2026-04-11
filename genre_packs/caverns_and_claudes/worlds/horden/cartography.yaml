@@ -1,0 +1,144 @@
+world_name: Horden
+starting_region: copperbridge_square
+navigation_mode: room_graph
+
+regions:
+  copperbridge_square:
+    name: Copperbridge Square
+    summary: Valley crossroads town built on dungeon spillage
+    description: >-
+      A square paved with mismatched stone — half limestone, half
+      repurposed flagstones scavenged from the Spillfield. The
+      buildings lean inward, built from salvaged materials and
+      looking slightly too rich for a town this size. Copper-green
+      stains run down every gutter from the creek water. The air
+      smells of old metal. A stone bridge spans the creek at the
+      square's south edge — the original bridge, green with
+      mineral deposits, that gave the town its name.
+    terrain: settlement
+    adjacent:
+      - spiller_row
+      - copperbridge_approach
+    landmarks:
+      - name: "The Clinker"
+        type: tavern
+        description: >-
+          Named for the sound coins make when dropped on stone.
+          The bar top is hammered copper, the stools are repurposed
+          treasure chests, and the ale is served in dented silver
+          goblets because the town has more goblets than clay mugs.
+          Kreveld's Chair sits in the corner — reinforced, stained
+          green, never used. The brewer pays in spillage.
+      - name: "Kern's Post"
+        type: shop
+        description: >-
+          The Spillers' headquarters and general provisioner. Kern
+          Saltwall runs it from behind a counter made of stacked
+          ingots. Torches, rope, sacks, and one critical item: the
+          Spiller's Scale, which weighs your pack before and after
+          a delve. The difference is your profit. Or your death.
+      - name: "The Assay House"
+        type: guild_hall
+        description: >-
+          Where Sigri Forger evaluates what comes out of Horden.
+          A stone building with iron shutters and a reinforced
+          door. Inside, every surface is covered with scales,
+          loupes, and reference samples. Sigri sets the buy price
+          for everything. Her rates are fair. Her assessments are
+          final.
+    settlements: []
+    rivers: []
+
+  spiller_row:
+    name: Spiller Row
+    summary: Salvage market where spillage is sorted, priced, and sold
+    description: >-
+      A narrow street behind the square where the day's spillage is
+      laid out on blankets and tables. Everything here came from the
+      Spillfield this morning — coins, buckles, ring fragments,
+      unidentifiable metal objects. The Spillers sort by material
+      and the buyers sort by value. Prices fluctuate with the tide
+      of the hoard's overflow.
+    terrain: settlement
+    adjacent:
+      - copperbridge_square
+    landmarks:
+      - name: "Noll's Shrine"
+        type: shrine
+        description: >-
+          Not a real shrine — a counting table where Noll Thatcher
+          sits tallying the day's spillage in his ledger. He counts
+          everything twice and mutters corrections to himself. The
+          Counters call this their chapel. Everyone else calls it
+          Noll's problem.
+      - name: "The Sorting Blankets"
+        type: market
+        description: >-
+          Oilcloth blankets laid on the cobbles, each belonging to
+          a specific Spiller. Spillage is sorted by type: coins,
+          jewelry, metal scrap, oddments. Buyers browse at dawn.
+          By noon, everything worth having is gone. By evening,
+          the blankets are rolled up and stored. Tomorrow there
+          will be more.
+    settlements: []
+    rivers: []
+
+  copperbridge_approach:
+    name: The Approach
+    summary: The Mule Track from town to the dungeon mouth
+    description: >-
+      A worn track rising from the bridge to the ridge face. The
+      ruts are deep — deeper than foot traffic explains. Copper
+      filings fill the grooves and catch the light at sunset,
+      making the path glow green-gold. The Spillfield slopes below
+      the track, always glinting. The Twelve Posts stand at the
+      dungeon entrance — ancient, uncarved, driven deep. The
+      entrance itself is a ragged tear in the stone, wider than
+      it is tall, as though the ridge tried to yawn.
+    terrain: dungeon_entrance
+    adjacent:
+      - copperbridge_square
+    landmarks:
+      - name: "The Twelve Posts"
+        type: entrance
+        description: >-
+          Stone hitching posts at the dungeon mouth. Older than
+          the town, older than the track. No carvings, no marks.
+          Flowers do not grow near them. Delvers tie their mules
+          here and joke about it. Nobody laughs very hard.
+      - name: "The Spillfield"
+        type: landmark
+        description: >-
+          A slope of loose earth and treasure below the dungeon
+          entrance. Every morning, new objects appear — coins,
+          fragments, the occasional intact piece. The Spillers
+          pick it clean by noon. By morning, there is more. The
+          hoard overflows like a river in flood, constantly.
+    settlements: []
+    rivers: []
+
+routes:
+  - name: Spiller Row
+    description: Behind the square, through an alley of salvage stalls
+    from_id: copperbridge_square
+    to_id: spiller_row
+    distance: short
+    danger: none
+  - name: Spiller Row Return
+    description: Back to the square past the sorting blankets
+    from_id: spiller_row
+    to_id: copperbridge_square
+    distance: short
+    danger: none
+  - name: The Mule Track
+    description: Up the ridge to the dungeon mouth — copper filings crunch underfoot
+    from_id: copperbridge_square
+    to_id: copperbridge_approach
+    distance: medium
+    danger: none
+  - name: The Mule Track Return
+    description: Back down to the bridge — your pack heavier than when you left, or lighter
+    from_id: copperbridge_approach
+    to_id: copperbridge_square
+    distance: medium
+    danger: none

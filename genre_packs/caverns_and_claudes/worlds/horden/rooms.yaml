@@ -1,0 +1,380 @@
+# Horden — Room Graph
+# 18 rooms across 3 concentric rings. Tightening inward.
+# The Hoarder's den: rooms are defined by what they contain, not what they do.
+
+# === OUTER RING: THE SPILLOVER ===
+
+- id: mouth
+  name: "The Mouth"
+  room_type: entrance
+  size: [4, 3]
+  keeper_awareness_modifier: 0.8
+  description: >-
+    A ragged opening in the ridge face — not cut but pushed outward
+    from inside, stone cracked and bent like a mouth frozen mid-yawn.
+    The Mule Track ends here in a fan of tarnished copper filings.
+    Inside, the first chamber is wide and high-ceilinged, but the
+    floor is uneven — drifts of loose coins shift underfoot like
+    gravel on a beach. Broken furniture, split crates, and tangled
+    cloth spill from the darkness ahead. The air smells of old
+    metal and rotting leather. Everything glints.
+  exits:
+    - type: corridor
+      target: scrap_hall
+    - type: corridor
+      target: coin_drift
+
+- id: scrap_hall
+  name: "The Scrap Hall"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 0.9
+  description: >-
+    A long chamber lined with broken things. Shattered swords in
+    heaps. Dented helmets stacked like bowls. Shield bosses pried
+    from their boards and sorted by size into stone bins. Nothing
+    here is whole — the Hoarder keeps the pieces separately. The
+    stacks are organized by material: iron to the left, bronze in
+    the center, tin and copper to the right. Each stack is exactly
+    the same height. Someone has been tidying.
+  exits:
+    - type: corridor
+      target: mouth
+    - type: corridor
+      target: trophy_wall
+    - type: door
+      target: moth_gallery
+      is_locked: false
+
+- id: coin_drift
+  name: "The Coin Drift"
+  room_type: treasure
+  size: [3, 2]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A room where the floor has vanished under coins. Knee-deep at
+    the entrance, waist-deep at the far wall. Copper, mostly —
+    green with verdigris, fused into crusts along the bottom.
+    Silver coins surface like fish in a pond. Gold is rare here
+    but visible — single coins placed on top of the drifts at
+    precise intervals, as if marking a grid only the Hoarder can
+    read. Walking is slow. Every step clinks. The sound carries.
+  exits:
+    - type: corridor
+      target: mouth
+    - type: corridor
+      target: bolt_room
+    - type: door
+      target: moth_gallery
+      is_locked: false
+
+- id: trophy_wall
+  name: "The Trophy Wall"
+  room_type: normal
+  size: [2, 3]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    Weapons. Hundreds of them, driven point-first into the walls
+    and ceiling. Swords, axes, spears, daggers, a few things that
+    are not weapons but have been filed with them — a fireplace
+    poker, a bread knife, a shepherd's crook with an iron ferrule.
+    The Hoarder does not distinguish function. It sorts by material
+    and shape. Between the weapons, the plaster is scarred with
+    the merchant's trade cipher — inventory marks counting each
+    blade. Pull one out and the wall bleeds rust.
+  exits:
+    - type: corridor
+      target: scrap_hall
+    - type: corridor
+      target: toll_gate
+
+- id: moth_gallery
+  name: "The Moth Gallery"
+  room_type: normal
+  size: [3, 2]
+  keeper_awareness_modifier: 0.9
+  description: >-
+    Textiles. Rotting tapestries draped over mounds of folded cloth.
+    Silk gone to cobweb. Wool felted into solid blocks by centuries
+    of compression. The moths that give the room its name are not
+    insects — they are scraps of fabric that flutter when you pass,
+    stirred by the draft of your movement. The cloth is worthless
+    but the thread-of-gold embroidery peeled from the tapestries
+    lies in coiled heaps on stone shelves, still bright.
+  exits:
+    - type: door
+      target: scrap_hall
+      is_locked: false
+    - type: door
+      target: coin_drift
+      is_locked: false
+    - type: corridor
+      target: bolt_room
+
+- id: bolt_room
+  name: "The Bolt Room"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A small room stacked floor to ceiling with bolts of cloth,
+    rolls of leather, and bundles of cord. The organization is
+    meticulous — each bolt tagged with a scrap of vellum bearing
+    the trade cipher. The oldest bolts at the bottom have
+    compressed into something like stone. The newest, near the
+    top, are still supple. A narrow path winds between the stacks.
+    The air is thick with fiber dust that catches torchlight and
+    hangs motionless.
+  exits:
+    - type: corridor
+      target: coin_drift
+    - type: corridor
+      target: moth_gallery
+    - type: corridor
+      target: toll_gate
+
+- id: toll_gate
+  name: "The Toll Gate"
+  room_type: normal
+  size: [2, 1]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    A chokepoint between the outer and middle rings. The passage
+    narrows to a stone arch with a brass tray set into the wall
+    at chest height. The tray is polished smooth from use. Above
+    it, the trade cipher is carved deep — the same symbol repeated
+    three times. Every delver who has passed this point agrees on
+    what it means: put something in. The door beyond the tray is
+    stone, heavy, and closed. It opens when the tray holds
+    something it did not hold before. What you deposit stays.
+  exits:
+    - type: corridor
+      target: trophy_wall
+    - type: corridor
+      target: bolt_room
+    - type: door
+      target: tarnish_hall
+      is_locked: true
+
+# === MIDDLE RING: THE COLLECTION ===
+
+- id: tarnish_hall
+  name: "The Tarnish Hall"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 1.1
+  description: >-
+    The first room past the toll gate and the difference is
+    immediate. The treasure here is real. Silver candlesticks
+    black with tarnish. Gold chains draped over stone pedestals.
+    Gemstones loose in stone bowls — garnets, tourmalines, a few
+    pale sapphires. But the stacks are taller and the paths are
+    narrower. You walk single-file between walls of treasure that
+    lean inward. The air tastes of verdigris and old wax. Something
+    in the walls ticks — a faint, regular sound, like a clock or
+    a tongue clicking.
+  exits:
+    - type: door
+      target: toll_gate
+      is_locked: true
+    - type: corridor
+      target: gem_bower
+    - type: corridor
+      target: rust_gallery
+
+- id: gem_bower
+  name: "The Gem Bower"
+  room_type: treasure
+  size: [2, 2]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    A low-ceilinged room where gems have been pressed into every
+    surface — walls, floor, ceiling. Not set by a jeweler but
+    pushed in by force, the stone cracked around each stone like
+    a fist punched into clay. The effect is a cave of color —
+    torchlight fractures into reds, greens, blues that shift as
+    you move. The gems closest to the floor are dull with dust.
+    The ones near the ceiling are bright, recently placed. The
+    Hoarder is still decorating.
+  exits:
+    - type: corridor
+      target: tarnish_hall
+    - type: secret
+      target: appraisal_niche
+      discovered: false
+
+- id: rust_gallery
+  name: "The Rust Gallery"
+  room_type: normal
+  size: [3, 2]
+  keeper_awareness_modifier: 1.1
+  description: >-
+    The oldest part of the middle ring. Everything here has been
+    here for centuries. Iron has rusted to lace. Bronze has gone
+    green. Silver is black. Leather has become powder. Only the
+    gold remains — dull yellow shapes half-buried in the decay of
+    everything that was stored beside it. The floor is soft with
+    decomposed organic matter. The stacks have fused into solid
+    masses of corroded metal and rotted wood. Walking here sounds
+    like stepping on dry leaves.
+  exits:
+    - type: corridor
+      target: tarnish_hall
+    - type: door
+      target: goat_path
+      is_locked: false
+    - type: chute_down
+      target: deep_pile
+
+- id: appraisal_niche
+  name: "The Appraisal Niche"
+  room_type: treasure
+  size: [1, 1]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A hidden alcove behind the gem-studded wall. Inside, a stone
+    desk and a brass scale — the merchant's original equipment,
+    preserved perfectly. Weights in a velvet-lined case, each
+    marked with the trade cipher. A ledger book lies open on the
+    desk, its pages filled with inventory in a hand that started
+    neat and grew increasingly frantic. The last entry is a single
+    line repeated across the page: a number. The same number. The
+    count when it became the count.
+  exits:
+    - type: secret
+      target: gem_bower
+      discovered: false
+
+- id: goat_path
+  name: "The Goat Path"
+  room_type: normal
+  size: [1, 3]
+  keeper_awareness_modifier: 1.3
+  description: >-
+    The passage narrows to shoulder-width. The walls are not stone —
+    they are treasure, stacked and compressed into solid masses on
+    both sides. Coin edges protrude at shin height. A crown is
+    embedded in the left wall at eye level, its jewels arm's reach
+    away. The ceiling is a shelf of compacted ingots. You walk
+    sideways. Your pack scrapes both walls. Things shift behind you
+    as you pass — settling, tightening, closing the gap. The path
+    behind you is always narrower than the path ahead.
+  exits:
+    - type: door
+      target: rust_gallery
+      is_locked: false
+    - type: corridor
+      target: weight_lock
+    - type: corridor
+      target: counting_hall
+
+- id: weight_lock
+  name: "The Weight Lock"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.3
+  description: >-
+    A square room with a stone door on the far wall and a brass
+    platform set into the floor. The platform is a scale. The
+    door opens only when the platform reads the same weight it
+    read when you entered from the goat path — your body weight,
+    without gear. Everything you are carrying must be set down
+    on the room's stone shelves to pass. The shelves are full of
+    things other delvers set down and could not bring themselves
+    to leave behind. They went back for them. They did not come
+    out.
+  exits:
+    - type: corridor
+      target: goat_path
+    - type: door
+      target: antechamber
+      is_locked: true
+
+- id: counting_hall
+  name: "The Counting Hall"
+  room_type: normal
+  size: [3, 2]
+  keeper_awareness_modifier: 1.4
+  description: >-
+    A long room with stone tables down the center, each holding
+    an abacus made of gold wire and gemstone beads. The abacuses
+    move on their own — beads sliding, clicking, tallying. They
+    count everything in the dungeon. One abacus per ring. The
+    outer ring's abacus moves constantly. The middle ring's moves
+    less. The inner sanctum's abacus has not moved in a very long
+    time. The whispering is loudest here — the Hoarder's voice,
+    reading the count aloud to itself, endlessly, in a language
+    made entirely of numbers.
+  exits:
+    - type: corridor
+      target: goat_path
+    - type: door
+      target: antechamber
+      is_locked: true
+
+# === INNER SANCTUM: THE COUNTING HOUSE ===
+
+- id: antechamber
+  name: "The Antechamber"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.4
+  description: >-
+    The last room before the Hoarder. The treasure here is sorted
+    by type with inhuman precision — every coin facing the same
+    direction, every gem cut to the same size, every ingot aligned
+    to the same axis. The air is still. The dust does not move.
+    The walls are lined with ledger books — thousands of them,
+    floor to ceiling, each spine marked with a date range in the
+    trade cipher. This is the index. The catalog of the catalog.
+    The ticking sound from the Tarnish Hall is louder here. It is
+    not a clock. It is a tongue.
+  exits:
+    - type: door
+      target: weight_lock
+      is_locked: true
+    - type: door
+      target: counting_hall
+      is_locked: true
+    - type: corridor
+      target: counting_house
+
+- id: counting_house
+  name: "The Counting House"
+  room_type: boss
+  size: [3, 3]
+  keeper_awareness_modifier: 1.5
+  description: >-
+    A perfect circle of a room. The walls are gold — not gilded,
+    solid. The floor is a mosaic of coins pressed flat and fitted
+    together without gaps. At the center, a stone desk holds the
+    master ledger — a book the size of a coffin lid, its pages
+    turning on their own, the trade cipher flowing across them in
+    fresh ink that writes itself. This is where the counting lives.
+    The Hoarder is not in this room. The Hoarder IS this room.
+    The walls pulse faintly when you breathe. The mosaic floor
+    shifts under your weight, coins turning to show their faces —
+    all the same face. The merchant's face. Worn smooth by
+    counting.
+  exits:
+    - type: corridor
+      target: antechamber
+
+- id: deep_pile
+  name: "The Deep Pile"
+  room_type: treasure
+  size: [2, 2]
+  keeper_awareness_modifier: 1.5
+  description: >-
+    Below the Rust Gallery, accessible only by a one-way chute
+    through corroded metal. A chamber of pure treasure — the oldest
+    and most valuable items in Horden, compressed by the weight of
+    everything above them. Crown jewels fused to scepters. Gem-
+    encrusted armor crushed flat. A king's ransom in gold dust
+    ground from coins by centuries of pressure. The air is warm
+    from the mass of metal. The only exit is up, through the
+    Counting Hall, past the abacuses that will count every item
+    you carry.
+  exits:
+    - type: chute_up
+      target: counting_hall

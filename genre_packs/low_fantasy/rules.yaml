@@ -77,70 +77,114 @@ encounter_base_tension:
   boss: 0.40
   final: 0.50
 
+# ── Confrontations ──────────────────────────────────────────
 confrontations:
-- type: combat
-  label: Combat
-  category: combat
-  metric:
-    name: hp
-    direction: descending
-    starting: 0
-    threshold_low: 0
-  beats:
-  - id: attack
-    label: Attack
-    metric_delta: -8
-    stat_check: STR
-    narrator_hint: Describe the blow connecting or missing based on the check result.
-  - id: defend
-    label: Defend
-    metric_delta: 0
-    stat_check: CON
-    effect: "Reduce incoming damage this round"
-    narrator_hint: The character braces, parries, or raises a shield.
-  - id: heavy_strike
-    label: Heavy Strike
-    metric_delta: -15
-    stat_check: STR
-    risk: "Leaves the attacker exposed — take double damage on failure"
-    narrator_hint: A committed overhead swing or lunging thrust.
-  - id: disengage
-    label: Disengage
-    metric_delta: 0
-    stat_check: DEX
-    resolution: true
-    consequence: "Combat ends — the character flees or the enemy retreats"
-  mood: combat
-- type: chase
-  label: Chase
-  category: movement
-  metric:
-    name: separation
-    direction: ascending
-    starting: 3
-    threshold_high: 10
-    threshold_low: 0
-  beats:
-  - id: sprint
-    label: Sprint
-    metric_delta: 2
-    stat_check: DEX
-    narrator_hint: Flat-out running through streets or wilderness.
-  - id: maneuver
-    label: Maneuver
-    metric_delta: 1
-    stat_check: WIS
-    effect: "Use terrain to gain distance"
-  - id: shortcut
-    label: Shortcut
-    metric_delta: 3
-    stat_check: WIS
-    risk: "Dead end — lose 2 separation on failure"
-    narrator_hint: Duck through an alley, vault a fence, cut across a field.
-  - id: hide
-    label: Hide
-    metric_delta: 0
-    stat_check: DEX
-    resolution: true
-    consequence: "Chase ends — the quarry vanishes"
-  mood: tension
+  - type: negotiation
+    label: "Tense Negotiation"
+    category: social
+    metric:
+      name: leverage
+      direction: bidirectional
+      starting: 5
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: persuade
+        label: "Make Your Case"
+        metric_delta: 2
+        stat_check: CHA
+        effect: "opponent considers your argument"
+        narrator_hint: "Show the NPC weighing the player's words."
+      - id: threaten
+        label: "Threaten"
+        metric_delta: 3
+        stat_check: STR
+        risk: "faction reputation -1 if it fails"
+        consequence: "NPC becomes hostile on critical failure"
+        narrator_hint: "Escalate tension. The threat should feel dangerous."
+      - id: concede_point
+        label: "Concede a Point"
+        metric_delta: -1
+        stat_check: CHA
+        effect: "opponent disposition +5, reveals their real goal"
+        narrator_hint: "Strategic retreat. Player gives ground to gain information."
+      - id: walk_away
+        label: "Walk Away"
+        metric_delta: 0
+        stat_check: WIS
+        resolution: true
+        consequence: "deal collapses, reputation intact"
+        narrator_hint: "Player turns and leaves. No deal."
+    mood: tension
+  - type: combat
+    label: Melee
+    category: combat
+    # Momentum as narrative command of the skirmish. Real HP lives on
+    # character state — this tracks whether the line is holding.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: attack
+        label: Attack
+        metric_delta: 2
+        stat_check: STR
+        effect: "Target takes damage this round"
+        narrator_hint: Describe the blow connecting or missing based on the check result.
+      - id: defend
+        label: Defend
+        metric_delta: 1
+        stat_check: CON
+        effect: "Reduce incoming damage this round"
+        narrator_hint: The character braces, parries, or raises a shield.
+      - id: heavy_strike
+        label: Heavy Strike
+        metric_delta: 4
+        stat_check: STR
+        risk: "Overcommits — lose 2 momentum and take a counter on failure"
+        effect: "Target takes heavy damage"
+        narrator_hint: A committed overhead swing or lunging thrust.
+      - id: disengage
+        label: Disengage
+        metric_delta: 0
+        stat_check: DEX
+        resolution: true
+        consequence: "Combat ends — the character flees or the enemy retreats"
+        narrator_hint: Break contact, step back, let steel settle.
+    mood: combat
+  - type: chase
+    label: Chase
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: sprint
+        label: Sprint
+        metric_delta: 2
+        stat_check: DEX
+        narrator_hint: Flat-out running through streets or wilderness.
+      - id: maneuver
+        label: Maneuver
+        metric_delta: 1
+        stat_check: WIS
+        effect: "Use terrain to gain distance"
+      - id: shortcut
+        label: Shortcut
+        metric_delta: 3
+        stat_check: WIS
+        risk: "Dead end — lose 2 separation on failure"
+        narrator_hint: Duck through an alley, vault a fence, cut across a field.
+      - id: hide
+        label: Hide
+        metric_delta: 0
+        stat_check: DEX
+        resolution: true
+        consequence: "Chase ends — the quarry vanishes"
+    mood: tension
