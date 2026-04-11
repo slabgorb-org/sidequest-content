@@ -18,19 +18,6 @@ positive_suffix: >-
   cracked leather, faded denim, deep shadow under hat brims,
   not photorealistic, not clean, not digital, celluloid artifact
 
-portrait_style: >-
-  extreme close-up, eyes filling the frame, Sergio Leone dollar trilogy,
-  every pore and sun crease visible, shallow depth of field background
-  blown to nothing, sweat beading on upper lip, hat brim cutting a
-  shadow line across the forehead, Techniscope film grain, desaturated,
-  washed out, the stare before the draw
-
-poi_style: >-
-  ultra-wide establishing shot, tiny figures against vast empty landscape,
-  2.35:1 anamorphic widescreen, Almería desert, bleached sky taking up
-  two-thirds of the frame, single road or building dwarfed by geology,
-  Sergio Leone distance shot, heat shimmer, no green, Techniscope grain
-
 negative_prompt: >-
   clean, new, shiny, soft lighting, pastel colors, modern, anime,
   cartoon, cute, pristine, photorealistic, studio lighting, sharp focus,
@@ -38,9 +25,21 @@ negative_prompt: >-
   green lush landscape, snow, rain, fantasy, medieval, magic, neon,
   3d render, stock photo, portrait photography
 
-preferred_model: flux
+preferred_model: dev
 
 base_seed: 1966
+
+# ── LoRA (story 35-15) ────────────────────────────────────────
+# Genre-specific Flux LoRA for spaghetti-western visual style.
+# Path is relative to this genre pack directory; the Rust
+# dispatch layer resolves to an absolute path before sending
+# to the daemon (per ADR-032).
+# The trigger word activates the trained style and replaces
+# `positive_suffix` in the CLIP prompt when the LoRA is loaded.
+# The .safetensors file itself is trained/dropped in separately
+# (Epic 32 scope) — this YAML ships the wire, not the weights.
+lora: lora/spaghetti_western_style.safetensors
+lora_trigger: sw_style
 
 # ── Location Tag Overrides ────────────────────────────────────
 
