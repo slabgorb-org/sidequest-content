@@ -300,3 +300,75 @@ confrontations:
         reveals: cheat_evidence
         narrator_hint: "Call them out. If you're right, they're done. If you're wrong, so are you."
     mood: saloon
+  - type: combat
+    label: Gunfight
+    category: combat
+    # Momentum-based. Gunfights are fast and brutal — big momentum swings.
+    # `walk_away` as resolution is western genre gold: the hero who
+    # turns their back and keeps walking.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: draw
+        label: Draw
+        metric_delta: 3
+        stat_check: DRAW
+        effect: "Target takes damage this round"
+        narrator_hint: A single heartbeat. Then iron clears leather.
+      - id: fan_hammer
+        label: Fan the Hammer
+        metric_delta: 4
+        stat_check: NERVE
+        risk: "Empty cylinder — lose 2 momentum and skip next turn on failure"
+        effect: "Target takes heavy damage"
+        narrator_hint: Six shots in as many seconds. Accuracy sacrificed for volume.
+      - id: duck
+        label: Duck
+        metric_delta: 1
+        stat_check: CUNNING
+        effect: "Reduce incoming damage — hit the dirt or dive for cover"
+        narrator_hint: Dust puffs where you were a breath ago.
+      - id: walk_away
+        label: Walk Away
+        metric_delta: 0
+        stat_check: NERVE
+        resolution: true
+        consequence: "Combat ends — turn your back and keep walking"
+        narrator_hint: Holster the iron. Don't look back. Let them wonder.
+    mood: combat
+  - type: chase
+    label: Horseback Pursuit
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: spur
+        label: Spur the Horse
+        metric_delta: 2
+        stat_check: DRAW
+        narrator_hint: Hooves thunder across the flats. Dust plumes behind.
+      - id: canyon
+        label: Canyon Shortcut
+        metric_delta: 3
+        stat_check: CUNNING
+        risk: "Dead-end box canyon — lose 2 separation"
+      - id: ford_river
+        label: Ford the River
+        metric_delta: 1
+        stat_check: NERVE
+        effect: "Cross water to break pursuit's trail"
+      - id: go_to_ground
+        label: Go to Ground
+        metric_delta: 0
+        stat_check: CUNNING
+        resolution: true
+        consequence: "Chase ends — dismount, hide among the rocks"
+    mood: tension

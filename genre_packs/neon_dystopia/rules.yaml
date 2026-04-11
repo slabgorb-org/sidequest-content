@@ -187,3 +187,76 @@ confrontations:
         spendable: false
     mood: tension
 
+  - type: combat
+    label: Street Combat
+    category: combat
+    # Momentum-based. Real HP lives on character state. The netrun
+    # beat is the genre-distinct move: hack and shoot at the same time.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: shoot
+        label: Shoot
+        metric_delta: 2
+        stat_check: Body
+        effect: "Target takes damage this round"
+        narrator_hint: Muzzle flash in neon rain. Describe the chrome and the concrete.
+      - id: take_cover
+        label: Take Cover
+        metric_delta: 1
+        stat_check: Reflex
+        effect: "Reduce incoming damage behind urban debris"
+        narrator_hint: Dumpster, concrete pillar, burned-out car — the city is cover.
+      - id: netrun
+        label: Netrun Strike
+        metric_delta: 4
+        stat_check: Net
+        risk: "ICE counterattack — lose 2 momentum and take neural damage on failure"
+        effect: "Cripple target's implants or nearby environment"
+        narrator_hint: Jack in mid-firefight. Fry their implants from cyberspace.
+      - id: disengage
+        label: Disengage
+        metric_delta: 0
+        stat_check: Cool
+        resolution: true
+        consequence: "Combat ends — vanish into the crowd or the net"
+        narrator_hint: Drop the weapon, pull your hood up, slip between bodies.
+    mood: combat
+  - type: chase
+    label: Urban Pursuit
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: sprint
+        label: Sprint
+        metric_delta: 2
+        stat_check: Cool
+        narrator_hint: Weave through market stalls, dodge between crawling traffic.
+      - id: hack_path
+        label: Hack Environment
+        metric_delta: 3
+        stat_check: Tech
+        risk: "System lockout — lose 2 separation"
+        narrator_hint: Slam a door shut remotely, reroute an elevator, kill the lights.
+      - id: crowd_blend
+        label: Crowd Blend
+        metric_delta: 1
+        stat_check: Tech
+        effect: "Disappear into the press of bodies"
+      - id: go_dark
+        label: Go Dark
+        metric_delta: 0
+        stat_check: Cool
+        resolution: true
+        consequence: "Chase ends — off the grid"
+    mood: tension
+
