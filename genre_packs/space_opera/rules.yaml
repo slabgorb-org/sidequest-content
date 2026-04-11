@@ -214,3 +214,76 @@ confrontations:
         source_stat: Cunning
         spendable: false
     mood: combat
+
+  - type: combat
+    label: Firefight
+    category: combat
+    # Personal combat (not ship_combat — that one uses engagement_range).
+    # Momentum-based. Shoot-outs in corridors, station bars, airlock
+    # standoffs. HP on character state; momentum on the engagement.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: shoot
+        label: Shoot
+        metric_delta: 2
+        stat_check: Physique
+        effect: "Target takes damage this round"
+        narrator_hint: Blaster bolts sear the corridor. Sparks off bulkheads.
+      - id: take_cover
+        label: Take Cover
+        metric_delta: 1
+        stat_check: Resolve
+        effect: "Reduce incoming damage behind cargo or hull"
+        narrator_hint: Drop behind crates, return fire around the corner.
+      - id: overload
+        label: Overload Weapon
+        metric_delta: 4
+        stat_check: Physique
+        risk: "Weapon jams — lose 2 momentum and skip next turn on failure"
+        effect: "Target takes massive damage from the dump shot"
+        narrator_hint: Crank the power cell past safe limits.
+      - id: retreat
+        label: Fall Back
+        metric_delta: 0
+        stat_check: Reflex
+        resolution: true
+        consequence: "Combat ends — seal a bulkhead, reach the airlock"
+        narrator_hint: Covering fire, sprinting for the bulkhead, slam it shut.
+    mood: combat
+  - type: chase
+    label: Spaceflight Pursuit
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: burn
+        label: Full Burn
+        metric_delta: 2
+        stat_check: Reflex
+        narrator_hint: Engines flare blue-white. The hull groans under acceleration.
+      - id: asteroid_thread
+        label: Thread the Field
+        metric_delta: 3
+        stat_check: Cunning
+        risk: "Impact — take hull damage on failure"
+      - id: ecm
+        label: ECM Decoys
+        metric_delta: 1
+        stat_check: Cunning
+        effect: "Deploy countermeasures to confuse pursuit sensors"
+      - id: microjump
+        label: Microjump
+        metric_delta: 0
+        stat_check: Reflex
+        resolution: true
+        consequence: "Chase ends — short hyperspace hop, gone"
+    mood: tension

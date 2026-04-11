@@ -236,3 +236,74 @@ confrontations:
         narrator_hint: "Trade your chips for higher denominations. Time to go."
     mood: tension
 
+  - type: combat
+    label: Gunfight
+    category: combat
+    # Momentum-based. HP on character state, momentum on the encounter.
+    # Noir fights are dirty and short — big swings from one beat to the next.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: shoot
+        label: Shoot
+        metric_delta: 2
+        stat_check: Brawn
+        effect: "Target takes damage this round"
+        narrator_hint: Revolver bark in a dark alley. Cordite and rain.
+      - id: take_cover
+        label: Take Cover
+        metric_delta: 1
+        stat_check: Grit
+        effect: "Duck behind a car, a dumpster, a bar"
+        narrator_hint: The world narrows to the gap between bullet and brick.
+      - id: brawl
+        label: Brawl
+        metric_delta: 4
+        stat_check: Brawn
+        risk: "Overcommits — lose 2 momentum and take a blow on failure"
+        effect: "Close to grappling range, deal close damage"
+        narrator_hint: Close quarters — fists, bottles, chair legs.
+      - id: flee
+        label: Flee
+        metric_delta: 0
+        stat_check: Finesse
+        resolution: true
+        consequence: "Combat ends — disappear into the rain"
+        narrator_hint: Drop the piece, hit the fire escape, gone.
+    mood: combat
+  - type: chase
+    label: Car Chase
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: floor_it
+        label: Floor It
+        metric_delta: 2
+        stat_check: Finesse
+        narrator_hint: Tires scream on wet asphalt. Headlights sweep the rain.
+      - id: sidestreet
+        label: Side Street
+        metric_delta: 3
+        stat_check: Savvy
+        risk: "Dead end — lose 2 separation"
+      - id: weave
+        label: Weave Through Traffic
+        metric_delta: 1
+        stat_check: Savvy
+        effect: "Use civilian cars as cover"
+      - id: ditch_the_car
+        label: Ditch the Car
+        metric_delta: 0
+        stat_check: Finesse
+        resolution: true
+        consequence: "Chase ends — abandon the vehicle and vanish on foot"
+    mood: tension
