@@ -197,3 +197,77 @@ confrontations:
         narrator_hint: "Player fires up the rig and leaves. No deal."
     mood: tension
 
+  - type: combat
+    label: Vehicular Combat
+    category: combat
+    # Momentum as "control of the engagement" — who's on the offensive,
+    # who's running. Rig damage and character HP live on character state;
+    # momentum tracks whether the pack is routing you or you them.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: ram
+        label: Ram
+        metric_delta: 4
+        stat_check: Grip
+        risk: "Rig damage on failure — lose 2 momentum and take hull damage"
+        effect: "Target rig takes severe damage"
+        narrator_hint: Steel on steel at speed. Sparks, crumpled panels, the shriek of metal.
+      - id: sideswipe
+        label: Sideswipe
+        metric_delta: 2
+        stat_check: Grip
+        effect: "Force target to swerve, deal glancing damage"
+        narrator_hint: Paint trades paint. The two rigs grind together at sixty and part.
+      - id: evasive
+        label: Evasive Maneuver
+        metric_delta: 1
+        stat_check: Iron
+        effect: "Reduce incoming rig damage this round"
+        narrator_hint: Cut the wheel hard, thread the gap, let them shoot dust.
+      - id: disengage
+        label: Peel Off
+        metric_delta: 0
+        stat_check: Road Sense
+        resolution: true
+        consequence: "Combat ends — break away from the pack"
+        narrator_hint: Cut the throttle, fall back, let them roar past into the dust.
+    mood: combat
+  - type: chase
+    label: Road Chase
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: floor_it
+        label: Floor It
+        metric_delta: 2
+        stat_check: Road Sense
+        narrator_hint: Engine screams, dust plume stretches behind.
+      - id: terrain_cut
+        label: Terrain Cut
+        metric_delta: 3
+        stat_check: Scrap
+        risk: "Rollover — take rig damage on failure"
+        narrator_hint: Leave the road. Cut across hardpan, jump a wash.
+      - id: smoke_screen
+        label: Smoke Screen
+        metric_delta: 1
+        stat_check: Scrap
+        effect: "Oil burn or dust cloud blinds pursuit"
+      - id: engine_kill
+        label: Kill the Engine
+        metric_delta: 0
+        stat_check: Road Sense
+        resolution: true
+        consequence: "Chase ends — coast to a stop in the dust, hidden"
+    mood: tension
+

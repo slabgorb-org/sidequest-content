@@ -83,35 +83,41 @@ confrontations:
   - type: combat
     label: "Wasteland Brawl"
     category: combat
+    # Momentum-based encounter metric — tracks command of the brawl,
+    # not HP. Damage lives on character state. Brutal, gritty, and the
+    # mutation beat still has its cost-with-power dynamic.
     metric:
-      name: hp
-      direction: descending
-      starting: 12
-      threshold_low: 0
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
     beats:
       - id: attack
         label: "Attack"
-        metric_delta: -3
+        metric_delta: 2
         stat_check: Brawn
         effect: "deal damage to the target"
         narrator_hint: "Describe the blow connecting — gritty, physical, consequential."
       - id: defend
         label: "Defend"
-        metric_delta: -1
+        metric_delta: 1
         stat_check: Toughness
         effect: "reduce incoming damage, hold position"
         narrator_hint: "Player braces or blocks. Show the impact absorbed."
       - id: flank
         label: "Flank"
-        metric_delta: -4
+        metric_delta: 3
         stat_check: Reflexes
-        risk: "exposed if it fails — take extra damage"
+        risk: "exposed if it fails — lose 2 momentum and take extra damage"
+        effect: "gain positional advantage"
         narrator_hint: "Risky repositioning for a better angle of attack."
       - id: mutant_ability
         label: "Use Mutation"
-        metric_delta: -5
+        metric_delta: 4
         stat_check: Instinct
-        risk: "mutation instability — side effect on failure"
+        risk: "mutation instability — lose 2 momentum and suffer side effect on failure"
+        effect: "unleash mutation on target"
         narrator_hint: "The mutation manifests visibly. Show the cost as well as the power."
       - id: flee
         label: "Flee"
@@ -121,3 +127,36 @@ confrontations:
         consequence: "escape combat, possible pursuit"
         narrator_hint: "Player breaks contact and runs. Not every fight needs a winner."
     mood: combat
+
+  - type: chase
+    label: Wasteland Pursuit
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: scramble
+        label: Scramble
+        metric_delta: 2
+        stat_check: Reflexes
+        narrator_hint: Boots on dust, pickup tires spitting rocks.
+      - id: shortcut
+        label: Shortcut
+        metric_delta: 3
+        stat_check: Wits
+        risk: "Dead end in the rubble — lose 2 separation"
+      - id: distraction
+        label: Distraction
+        metric_delta: 1
+        stat_check: Wits
+        effect: "Throw a flare, scatter scrap, misdirect"
+      - id: go_underground
+        label: Go Underground
+        metric_delta: 0
+        stat_check: Reflexes
+        resolution: true
+        consequence: "Chase ends — vanish into a drainage tunnel or bunker"
+    mood: tension
