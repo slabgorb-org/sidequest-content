@@ -1,0 +1,62 @@
+name: Horden
+description: >-
+  A dungeon that keeps. Not guards — keeps. The way a miser keeps
+  coins in a jar and shakes the jar to hear them. Every passage is
+  choked with the things the Hoarder has collected over centuries —
+  coin drifts knee-deep, tarnished armor stacked to the ceiling,
+  rotting tapestries draped over mounds of gemstones nobody will
+  ever wear. The air is thick with dust from decaying velvet and
+  the green smell of verdigris. The town of Copperbridge squats at
+  the dungeon's mouth, picking through whatever spills out. Nothing
+  comes out on purpose. Nothing is meant to leave.
+
+tagline: "Nothing leaves."
+
+axis_snapshot:
+  comedy: 0.35
+  gravity: 0.75
+  outlook: 0.45
+
+keeper:
+  name: "The Hoarder"
+  personality: proprietary
+  obsession: retention
+  tone_override:
+    comedy: 0.3
+    gravity: 0.8
+  awareness:
+    starting: 0
+    tick_rate: 1
+    stealth_decay: -1
+    thresholds:
+      "3": "A stack you passed has been rearranged. Everything is one item closer to the edge."
+      "6": "A doorway you came through is now half-blocked by a pile that was not there before. You could still squeeze past. For now."
+      "10": "A whisper begins — just at the edge of hearing. It is counting. Your torches. Your rations. Your coins. Your teeth."
+      "15": "The goat paths have shifted. Your map is wrong. The stacks have moved to seal the route you planned to take out."
+      "20": "Every exit is walled shut with treasure. The whispering has stopped. It has finished counting. You are on the list."
+  monologue_style: >-
+    Offended. Not angry — offended. The voice of an accountant who
+    found a discrepancy in a ledger that has been balanced for three
+    hundred years. It speaks in inventory. It describes your
+    possessions with more affection than you have ever felt for them.
+    It knows what you are carrying. It knew before you picked it up.
+    It is disappointed that you touched it. Not because it was
+    forbidden. Because now the count is wrong.
+  trap_aesthetic: >-
+    Weight-based. Doors that only open when you are lighter than when
+    you entered the room. Corridors that narrow as your encumbrance
+    increases — the walls are stacked treasure, and they close in
+    when the Hoarder decides you are carrying too much. Floors built
+    from layered coins that give way under heavy loads, dropping the
+    overburdened into lower chambers. Locks that require a deposit —
+    put something in to get something out, and what you put in never
+    comes back.
+  topology_tendency: >-
+    Concentric rings tightening inward. The outer chambers are wide
+    and spacious, loosely piled with cheap junk — easy to navigate,
+    easy to loot, easy to grow confident. The middle ring narrows.
+    Goat paths between stacks that reach the ceiling. Single-file
+    passages where your pack scrapes both walls. The inner sanctum
+    is barely navigable — treasure so dense the architecture is
+    built from it. Walls of stacked ingots. Floors of compacted
+    coin. The Hoarder sits at the center and counts.

@@ -1,0 +1,207 @@
+# Grimvault — Encounter Tables
+# Per-room encounter probabilities referencing creatures.yaml IDs.
+# The Patient Butcher controls what you meet and where.
+#
+# Probability is base chance per room entry (0.0 to 1.0).
+# Keeper awareness modifiers increase probability at higher awareness levels.
+# Loot drops are per-encounter, separate from room treasure.
+
+levels:
+
+  - id: level_1
+    name: "The Workshop"
+    wandering_monster_chance: 0.12
+    wandering_monster_awareness_bonus: 0.02
+    wandering_monsters:
+      - creature_id: chalk_moth
+        weight: 4
+        count: "3d6"
+        description: >-
+          A cloud of white moths drifts through the corridor. Where
+          they pass, the walls fade to grey. Your torchlight catches
+          the stolen colors on their bellies — brief flashes of red,
+          blue, green.
+        loot:
+          - description: "Nothing. Moth wings crumble to powder."
+      - creature_id: seam_cricket
+        weight: 3
+        count: "2d6"
+        description: >-
+          A thin scraping sound from the walls. Glossy black shapes
+          flow along the mortar lines between stones, eating the
+          joins. Check your pack straps.
+        loot:
+          - description: "Nothing."
+      - creature_id: husk_walker
+        weight: 2
+        count: "1"
+        description: >-
+          A figure in the corridor ahead. It walks with purpose but
+          no weight — its feet make no impression on the dust. It
+          does not see you. It is following a route it has followed
+          for years. Give it room.
+        loot:
+          - description: "A token with the Butcher's notation (5 GP)"
+            value: 5
+            chance: 0.3
+      - creature_id: pane_lurker
+        weight: 1
+        min_awareness: 6
+        count: "1d2"
+        description: >-
+          A shimmer on the wall. Not a reflection — the wall itself
+          is rippling. Something flat and nearly invisible is pressed
+          against the stone, waiting for something three-dimensional
+          to pass close enough.
+        loot:
+          - description: "Pane residue (2 GP)"
+            value: 2
+            chance: 0.4
+
+    room_encounters:
+      - room_id: receiving
+        encounters:
+          - creature_id: chalk_moth
+            count: "4d6"
+            probability: 0.3
+            description: >-
+              The niches are full of moths — one per niche, wings
+              folded, bellies glowing faintly with stored color. They
+              stir as your torch approaches.
+          - creature_id: pane_lurker
+            count: "1"
+            probability: 0.15
+            description: >-
+              One of the niches contains not an object but a shimmer.
+              The pane lurker is curled inside, two-dimensional and
+              nearly invisible.
+
+      - room_id: sorting_floor
+        encounters:
+          - creature_id: husk_walker
+            count: "1d3"
+            probability: 0.4
+            description: >-
+              Husks at the sorting tables. Their hands move over the
+              surfaces in practiced motions — sorting, categorizing,
+              filing. They do not look up. They are working.
+          - creature_id: chalk_moth
+            count: "2d6"
+            probability: 0.2
+            description: >-
+              Moths along the ceiling, following the channels in the
+              floor. They drain color from the stone as they go.
+
+      - room_id: cold_store
+        encounters:
+          - creature_id: seam_cricket
+            count: "3d6"
+            probability: 0.5
+            description: >-
+              The shelves are infested. Crickets flow along the joins
+              between shelf and wall, between label and object. Some
+              of the stored items have come apart at their seams.
+
+      - room_id: holding_cells
+        encounters:
+          - creature_id: husk_walker
+            count: "2"
+            probability: 0.6
+            description: >-
+              Two husks in separate cells. The gates are not locked.
+              The husks stand still, hands at their sides, watching
+              through the bars. If a gate is opened, the husk steps
+              out and resumes its patrol route.
+
+  - id: level_2
+    name: "The Collection"
+    wandering_monster_chance: 0.18
+    wandering_monster_awareness_bonus: 0.04
+    wandering_monsters:
+      - creature_id: silence_stalker
+        weight: 3
+        count: "1d2"
+        description: >-
+          Sound drops away. Your torch still crackles but you cannot
+          hear it. Something is close — four-legged, grey-furred,
+          white-eyed. It has not seen you yet. It is listening to
+          the stone.
+        loot:
+          - description: "Silence stalker pelt (25 GP)"
+            value: 25
+            chance: 0.5
+      - creature_id: husk_walker
+        weight: 2
+        count: "1d2"
+        description: >-
+          A husk from Level 1, descended. More processed than the
+          ones above — this one has had its color separated too.
+          A grey, weightless figure drifting through the corridors.
+        loot:
+          - description: "A token with dense notation (8 GP)"
+            value: 8
+            chance: 0.3
+      - creature_id: pane_lurker
+        weight: 2
+        count: "1d3"
+        description: >-
+          The walls shimmer in patches. More pane lurkers down here —
+          and they are larger, or at least occupy more surface area.
+          They have had more time to feed on dimensions.
+        loot:
+          - description: "Pane residue (2 GP)"
+            value: 2
+            chance: 0.4
+      - creature_id: prism_sentinel
+        weight: 1
+        min_awareness: 10
+        count: "1"
+        description: >-
+          A shape of refracted light activates in the corridor ahead.
+          Color erupts from it — blinding, prismatic, beautiful. It
+          steps into position between you and the way forward.
+        loot:
+          - description: "Prism shard (40 GP, fragile)"
+            value: 40
+            chance: 0.3
+
+    room_encounters:
+      - room_id: refinement_hall
+        encounters:
+          - creature_id: prism_sentinel
+            count: "1"
+            probability: 0.5
+            min_awareness: 10
+            description: >-
+              The sentinel stands between the pillars. Motionless
+              until awareness rises. Then it shudders, and color
+              floods the room.
+          - creature_id: silence_stalker
+            count: "1d3"
+            probability: 0.3
+            description: >-
+              Among the quality-pools, stalkers drink from a patch
+              of stolen sound. They are feeding. They are not hungry
+              enough to hunt. Yet.
+
+      - room_id: specimen_gallery
+        encounters:
+          - creature_id: pane_lurker
+            count: "1d3"
+            probability: 0.4
+            description: >-
+              Lurkers pressed against the glass cases, feeding on the
+              depth of the specimens inside. They peel away when
+              disturbed, disoriented by the transition from surface
+              to air.
+
+      - room_id: the_press
+        encounters:
+          - creature_id: the_catalogue
+            count: "1"
+            probability: 1.0
+            description: >-
+              The Catalogue manifests from the separated qualities
+              pooling around the mechanism. Its form shifts — now a
+              figure of compressed silence, now a shape of stolen
+              warmth. It does not speak. It catalogs.

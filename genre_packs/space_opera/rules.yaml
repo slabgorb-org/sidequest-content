@@ -121,68 +121,169 @@ encounter_base_tension:
   boss: 0.40
   final: 0.50
 
+# ── Confrontations ──────────────────────────────────────────
 confrontations:
-- type: combat
-  label: Firefight
-  category: combat
-  metric:
-    name: hp
-    direction: descending
-    starting: 0
-    threshold_low: 0
-  beats:
-  - id: shoot
-    label: Shoot
-    metric_delta: -10
-    stat_check: Physique
-    narrator_hint: Blaster bolts sear the corridor. Sparks off bulkheads.
-  - id: take_cover
-    label: Take Cover
-    metric_delta: 0
-    stat_check: Resolve
-    effect: "Reduce incoming damage behind cargo or hull"
-  - id: overload
-    label: Overload Weapon
-    metric_delta: -15
-    stat_check: Physique
-    risk: "Weapon jams — skip next turn on failure"
-    narrator_hint: Crank the power cell past safe limits.
-  - id: retreat
-    label: Fall Back
-    metric_delta: 0
-    stat_check: Reflex
-    resolution: true
-    consequence: "Combat ends — seal a bulkhead, reach the airlock"
-  mood: combat
-- type: chase
-  label: Spaceflight Pursuit
-  category: movement
-  metric:
-    name: separation
-    direction: ascending
-    starting: 3
-    threshold_high: 10
-    threshold_low: 0
-  beats:
-  - id: burn
-    label: Full Burn
-    metric_delta: 2
-    stat_check: Reflex
-    narrator_hint: Engines flare blue-white. The hull groans under acceleration.
-  - id: asteroid_thread
-    label: Thread the Field
-    metric_delta: 3
-    stat_check: Cunning
-    risk: "Impact — take hull damage on failure"
-  - id: ecm
-    label: ECM Decoys
-    metric_delta: 1
-    stat_check: Cunning
-    effect: "Deploy countermeasures to confuse pursuit sensors"
-  - id: microjump
-    label: Microjump
-    metric_delta: 0
-    stat_check: Reflex
-    resolution: true
-    consequence: "Chase ends — short hyperspace hop, gone"
-  mood: tension
+  - type: negotiation
+    label: "Diplomatic Negotiation"
+    category: social
+    metric:
+      name: leverage
+      direction: bidirectional
+      starting: 5
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: persuade
+        label: "Make Your Case"
+        metric_delta: 2
+        stat_check: Influence
+        effect: "opponent considers your argument"
+        narrator_hint: "Show the NPC weighing the player's words."
+      - id: threaten
+        label: "Threaten"
+        metric_delta: 3
+        stat_check: Resolve
+        risk: "faction reputation -1 if it fails"
+        consequence: "NPC becomes hostile on critical failure"
+        narrator_hint: "Escalate tension. The threat should feel dangerous."
+      - id: concede_point
+        label: "Concede a Point"
+        metric_delta: -1
+        stat_check: Influence
+        effect: "opponent disposition +5, reveals their real goal"
+        narrator_hint: "Strategic retreat. Player gives ground to gain information."
+      - id: walk_away
+        label: "Walk Away"
+        metric_delta: 0
+        stat_check: Resolve
+        resolution: true
+        consequence: "deal collapses, reputation intact"
+        narrator_hint: "Player leaves the negotiation table. No treaty."
+    mood: tension
+  - type: ship_combat
+    label: "Ship Combat"
+    category: combat
+    metric:
+      name: engagement_range
+      direction: ascending
+      starting: 0
+      threshold_high: 10
+    beats:
+      - id: broadside
+        label: "Broadside"
+        metric_delta: 2
+        stat_check: Intellect
+        effect: "full weapons volley at current range"
+        narrator_hint: "All guns fire. The bridge shakes with each salvo."
+      - id: evasive_maneuver
+        label: "Evasive Maneuver"
+        metric_delta: -1
+        stat_check: Reflex
+        effect: "reduce incoming damage, open distance"
+        narrator_hint: "Hard burn on the maneuvering thrusters. The ship groans under G-forces."
+      - id: close_range
+        label: "Close Range"
+        metric_delta: 3
+        stat_check: Resolve
+        risk: "overextended — shields take double if it fails"
+        narrator_hint: "Push engines to maximum. Close the gap for a killing blow."
+      - id: target_systems
+        label: "Target Systems"
+        metric_delta: 1
+        stat_check: Cunning
+        reveals: ship_weakness
+        narrator_hint: "Scan for a weakness. Engines, weapons, life support — pick your target."
+      - id: disengage
+        label: "Disengage"
+        metric_delta: 0
+        stat_check: Reflex
+        resolution: true
+        consequence: "break contact — escape to hyperspace or retreat"
+        narrator_hint: "Full power to engines. The stars blur as the ship makes its escape."
+    secondary_stats:
+      - name: shields
+        source_stat: Intellect
+        spendable: false
+      - name: hull
+        source_stat: Physique
+        spendable: false
+      - name: engines
+        source_stat: Reflex
+        spendable: false
+      - name: weapons
+        source_stat: Cunning
+        spendable: false
+    mood: combat
+
+  - type: combat
+    label: Firefight
+    category: combat
+    # Personal combat (not ship_combat — that one uses engagement_range).
+    # Momentum-based. Shoot-outs in corridors, station bars, airlock
+    # standoffs. HP on character state; momentum on the engagement.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: shoot
+        label: Shoot
+        metric_delta: 2
+        stat_check: Physique
+        effect: "Target takes damage this round"
+        narrator_hint: Blaster bolts sear the corridor. Sparks off bulkheads.
+      - id: take_cover
+        label: Take Cover
+        metric_delta: 1
+        stat_check: Resolve
+        effect: "Reduce incoming damage behind cargo or hull"
+        narrator_hint: Drop behind crates, return fire around the corner.
+      - id: overload
+        label: Overload Weapon
+        metric_delta: 4
+        stat_check: Physique
+        risk: "Weapon jams — lose 2 momentum and skip next turn on failure"
+        effect: "Target takes massive damage from the dump shot"
+        narrator_hint: Crank the power cell past safe limits.
+      - id: retreat
+        label: Fall Back
+        metric_delta: 0
+        stat_check: Reflex
+        resolution: true
+        consequence: "Combat ends — seal a bulkhead, reach the airlock"
+        narrator_hint: Covering fire, sprinting for the bulkhead, slam it shut.
+    mood: combat
+  - type: chase
+    label: Spaceflight Pursuit
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: burn
+        label: Full Burn
+        metric_delta: 2
+        stat_check: Reflex
+        narrator_hint: Engines flare blue-white. The hull groans under acceleration.
+      - id: asteroid_thread
+        label: Thread the Field
+        metric_delta: 3
+        stat_check: Cunning
+        risk: "Impact — take hull damage on failure"
+      - id: ecm
+        label: ECM Decoys
+        metric_delta: 1
+        stat_check: Cunning
+        effect: "Deploy countermeasures to confuse pursuit sensors"
+      - id: microjump
+        label: Microjump
+        metric_delta: 0
+        stat_check: Reflex
+        resolution: true
+        consequence: "Chase ends — short hyperspace hop, gone"
+    mood: tension

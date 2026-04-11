@@ -58,6 +58,22 @@ stat_display_fields:
   - ac
   - luck
 
+resources:
+  - name: luck
+    label: Luck
+    min: 0.0
+    max: 6.0
+    starting: 3.0
+    voluntary: true
+    decay_per_turn: 0.0
+    thresholds:
+      - at: 1.0
+        event_id: luck_critical
+        narrator_hint: "Luck is nearly spent — one bad break from disaster."
+      - at: 0.0
+        event_id: luck_depleted
+        narrator_hint: "Out of luck entirely. Everything depends on grit and skill."
+
 encounter_base_tension:
   random: 0.15
   ambush: 0.35
@@ -144,174 +160,215 @@ luck_rules:
       - "Complete a bounty alive"
       - "Win a high-stakes gamble"
 
+# ── Confrontations ──────────────────────────────────────────
 confrontations:
-- type: combat
-  label: Gunfight
-  category: combat
-  metric:
-    name: hp
-    direction: descending
-    starting: 0
-    threshold_low: 0
-  beats:
-  - id: draw
-    label: Draw
-    metric_delta: -10
-    stat_check: DRAW
-    narrator_hint: Hand drops to the holster. Time stretches. Who clears leather first?
-  - id: fan_the_hammer
-    label: Fan the Hammer
-    metric_delta: -15
-    stat_check: DRAW
-    risk: "Wide spray — hit a bystander on failure"
-    narrator_hint: Empty the cylinder. Six shots in two seconds.
-  - id: duck
-    label: Duck
-    metric_delta: 0
-    stat_check: NERVE
-    effect: "Dive behind the bar, the horse trough, the coffin"
-  - id: walk_away
-    label: Walk Away
-    metric_delta: 0
-    stat_check: CUNNING
-    resolution: true
-    consequence: "Combat ends — turn your back and dare them to shoot"
-  mood: combat
-- type: chase
-  label: Horseback Pursuit
-  category: movement
-  metric:
-    name: separation
-    direction: ascending
-    starting: 3
-    threshold_high: 10
-    threshold_low: 0
-  beats:
-  - id: spur
-    label: Spur the Horse
-    metric_delta: 2
-    stat_check: CUNNING
-    narrator_hint: Dust clouds, hoofbeats, the creak of leather.
-  - id: canyon_cut
-    label: Canyon Shortcut
-    metric_delta: 3
-    stat_check: GRIT
-    risk: "Boxed in — dead end canyon, lose 2 separation"
-  - id: river_cross
-    label: Ford the River
-    metric_delta: 1
-    stat_check: GRIT
-    effect: "Water slows pursuit behind you"
-  - id: go_to_ground
-    label: Go to Ground
-    metric_delta: 0
-    stat_check: CUNNING
-    resolution: true
-    consequence: "Chase ends — dismount, hide among the rocks"
-  mood: tension
-- type: standoff
-  label: Showdown at High Noon
-  category: pre_combat
-  metric:
-    name: nerve
-    direction: descending
-    starting: 100
-    threshold_low: 0
-  beats:
-  - id: stare_down
-    label: Stare Down
-    metric_delta: -15
-    stat_check: NERVE
-    narrator_hint: Eyes narrow. A bead of sweat runs down a temple. The clock tower ticks.
-  - id: sizing_up
-    label: Size Up
-    metric_delta: -10
-    stat_check: CUNNING
-    effect: "Read the opponent — reveal their DRAW score"
-    narrator_hint: Feet shift. Weight settles. Hands drift closer to iron.
-  - id: taunt
-    label: Taunt
-    metric_delta: -20
-    stat_check: PRESENCE
-    risk: "Enrages opponent — they draw early, escalates to combat"
-    narrator_hint: Words cut deeper than bullets. Make them doubt.
-  - id: draw_first
-    label: Draw First
-    metric_delta: 0
-    stat_check: DRAW
-    resolution: true
-    consequence: "Standoff ends — first shot fired, escalates to combat"
-  escalates_to: combat
-  mood: tension
-- type: card_game
-  label: High Stakes Poker
-  category: social
-  metric:
-    name: pot
-    direction: ascending
-    starting: 0
-    threshold_high: 100
-  beats:
-  - id: raise
-    label: Raise
-    metric_delta: 15
-    stat_check: CUNNING
-    narrator_hint: Chips click. Eyes flick to the cards, then back.
-  - id: bluff
-    label: Bluff
-    metric_delta: 20
-    stat_check: PRESENCE
-    risk: "Called — lose double the bet if they see through it"
-    narrator_hint: A face like stone. Not a tell in sight. Or is that the tell?
-  - id: read
-    label: Read the Table
-    metric_delta: 5
-    stat_check: CUNNING
-    effect: "Reveal one opponent's hand strength"
-    narrator_hint: The way he stacks his chips. The way she holds her cards. Everyone talks.
-  - id: cheat
-    label: Cheat
-    metric_delta: 25
-    stat_check: CUNNING
-    risk: "Caught — standoff or gunfight if they notice"
-    narrator_hint: The marked deck slides. The bottom deal is clean. Almost clean.
-  - id: fold
-    label: Fold
-    metric_delta: 0
-    stat_check: NERVE
-    resolution: true
-    consequence: "Walk away from the table with what you've got"
-  mood: tension
-- type: negotiation
-  label: Parley
-  category: social
-  metric:
-    name: leverage
-    direction: ascending
-    starting: 50
-    threshold_high: 100
-    threshold_low: 0
-  beats:
-  - id: offer
-    label: Make an Offer
-    metric_delta: 10
-    stat_check: PRESENCE
-    narrator_hint: Name your price. Everything out here has one.
-  - id: threaten
-    label: Threaten
-    metric_delta: 15
-    stat_check: GRIT
-    risk: "Refused — lose 10 leverage, they dig in"
-    narrator_hint: The hand rests on the holster. Not a draw. A reminder.
-  - id: sweeten
-    label: Sweeten the Deal
-    metric_delta: 10
-    stat_check: CUNNING
-    effect: "Add information, a favor, or a cut of the take"
-  - id: walk_away
-    label: Walk Away
-    metric_delta: 0
-    stat_check: NERVE
-    resolution: true
-    consequence: "Negotiation ends — no deal, no hard feelings. Maybe."
-  mood: tension
+  - type: standoff
+    label: "Standoff"
+    category: pre_combat
+    metric:
+      name: tension
+      direction: ascending
+      starting: 0
+      threshold_high: 10
+    beats:
+      - id: size_up
+        label: "Size Up"
+        metric_delta: 2
+        stat_check: CUNNING
+        reveals: opponent_detail
+      - id: bluff
+        label: "Bluff"
+        metric_delta: 3
+        stat_check: NERVE
+        risk: "opponent may call it — immediate draw"
+      - id: flinch
+        label: "Flinch"
+        metric_delta: -1
+        stat_check: NERVE
+      - id: draw
+        label: "Draw"
+        metric_delta: 0
+        stat_check: DRAW
+        resolution: true
+    secondary_stats:
+      - name: focus
+        source_stat: NERVE
+        spendable: true
+    escalates_to: combat
+    mood: standoff
+  - type: negotiation
+    label: "Tense Negotiation"
+    category: social
+    metric:
+      name: leverage
+      direction: bidirectional
+      starting: 5
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: persuade
+        label: "Make Your Case"
+        metric_delta: 2
+        stat_check: PRESENCE
+        effect: "opponent considers your argument"
+        narrator_hint: "Show the NPC weighing the player's words."
+      - id: threaten
+        label: "Threaten"
+        metric_delta: 3
+        stat_check: NERVE
+        risk: "faction reputation -1 if it fails"
+        consequence: "NPC becomes hostile on critical failure"
+        narrator_hint: "Escalate tension. The threat should feel dangerous."
+      - id: concede_point
+        label: "Concede a Point"
+        metric_delta: -1
+        stat_check: PRESENCE
+        effect: "opponent disposition +5, reveals their real goal"
+        narrator_hint: "Strategic retreat. Player gives ground to gain information."
+      - id: walk_away
+        label: "Walk Away"
+        metric_delta: 0
+        stat_check: NERVE
+        resolution: true
+        consequence: "deal collapses, reputation intact"
+        narrator_hint: "Player leaves the table. No deal."
+    mood: tension
+  - type: poker
+    label: "Poker"
+    category: social
+    metric:
+      name: edge
+      direction: bidirectional
+      starting: 0
+      threshold_high: 8
+      threshold_low: -8
+    beats:
+      - id: bet
+        label: "Bet"
+        metric_delta: 1
+        stat_check: NERVE
+        risk: "bad hand — lose 2 edge on fail"
+        narrator_hint: "Push chips forward. Confidence or bluff?"
+        gold_delta: -5
+      - id: raise
+        label: "Raise"
+        metric_delta: 3
+        stat_check: CUNNING
+        risk: "overplayed — lose 3 edge if called and weak"
+        narrator_hint: "Escalate the stakes. Make them sweat."
+        gold_delta: -15
+      - id: bluff
+        label: "Bluff"
+        metric_delta: 2
+        stat_check: CUNNING
+        risk: "called bluff — lose 4 edge, table reads you"
+        reveals: opponent_tell
+        narrator_hint: "Stone face. Sell the lie."
+        gold_delta: -10
+      - id: call
+        label: "Call"
+        metric_delta: 0
+        stat_check: CUNNING
+        reveals: hand_strength
+        narrator_hint: "Match the bet. See what they've got."
+        gold_delta: -5
+      - id: fold
+        label: "Fold"
+        metric_delta: -1
+        stat_check: NERVE
+        narrator_hint: "Live to play another hand."
+      - id: read_table
+        label: "Read the Table"
+        metric_delta: 0
+        stat_check: CUNNING
+        reveals: opponent_tell
+        narrator_hint: "Watch their eyes. Everyone's got a tell."
+      - id: cheat
+        label: "Cheat"
+        metric_delta: 4
+        stat_check: DRAW
+        risk: "caught cheating — loss of all edge, possible gunfight"
+        consequence: "if caught, opponent draws on you — standoff escalation"
+        narrator_hint: "Palm a card. Bottom deal. The Card Shark's specialty."
+        requires: "Card Shark archetype or class ability"
+        gold_delta: -5
+      - id: accuse_cheating
+        label: "Accuse of Cheating"
+        metric_delta: 0
+        stat_check: CUNNING
+        risk: "wrong accusation — lose 3 edge, table turns on you"
+        reveals: cheat_evidence
+        narrator_hint: "Call them out. If you're right, they're done. If you're wrong, so are you."
+    mood: saloon
+  - type: combat
+    label: Gunfight
+    category: combat
+    # Momentum-based. Gunfights are fast and brutal — big momentum swings.
+    # `walk_away` as resolution is western genre gold: the hero who
+    # turns their back and keeps walking.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: draw
+        label: Draw
+        metric_delta: 3
+        stat_check: DRAW
+        effect: "Target takes damage this round"
+        narrator_hint: A single heartbeat. Then iron clears leather.
+      - id: fan_hammer
+        label: Fan the Hammer
+        metric_delta: 4
+        stat_check: NERVE
+        risk: "Empty cylinder — lose 2 momentum and skip next turn on failure"
+        effect: "Target takes heavy damage"
+        narrator_hint: Six shots in as many seconds. Accuracy sacrificed for volume.
+      - id: duck
+        label: Duck
+        metric_delta: 1
+        stat_check: CUNNING
+        effect: "Reduce incoming damage — hit the dirt or dive for cover"
+        narrator_hint: Dust puffs where you were a breath ago.
+      - id: walk_away
+        label: Walk Away
+        metric_delta: 0
+        stat_check: NERVE
+        resolution: true
+        consequence: "Combat ends — turn your back and keep walking"
+        narrator_hint: Holster the iron. Don't look back. Let them wonder.
+    mood: combat
+  - type: chase
+    label: Horseback Pursuit
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: spur
+        label: Spur the Horse
+        metric_delta: 2
+        stat_check: DRAW
+        narrator_hint: Hooves thunder across the flats. Dust plumes behind.
+      - id: canyon
+        label: Canyon Shortcut
+        metric_delta: 3
+        stat_check: CUNNING
+        risk: "Dead-end box canyon — lose 2 separation"
+      - id: ford_river
+        label: Ford the River
+        metric_delta: 1
+        stat_check: NERVE
+        effect: "Cross water to break pursuit's trail"
+      - id: go_to_ground
+        label: Go to Ground
+        metric_delta: 0
+        stat_check: CUNNING
+        resolution: true
+        consequence: "Chase ends — dismount, hide among the rocks"
+    mood: tension

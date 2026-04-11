@@ -1,0 +1,551 @@
+# Grimvault — Room Graph
+# 17 rooms across 2 levels. Linear processing flow with branching side-paths.
+# The Patient Butcher's workshop: rooms have functions, not just contents.
+# tactical_scale: 4 for all rooms (grid = size * 4 cells)
+
+# === LEVEL 1: THE WORKSHOP ===
+
+- id: threshold
+  name: "The Threshold"
+  room_type: entrance
+  size: [3, 2]
+  keeper_awareness_modifier: 0.8
+  description: >-
+    A rectangular chamber with walls cut flat. The floor is a single
+    slab of polished stone — no seams, no joints. Your torch dims
+    slightly as you enter, as though the flame has been asked to be
+    quieter. Tool marks on the walls, but not from any tool you
+    recognize — the grooves are too precise, too evenly spaced.
+    A stone lectern near the entrance holds nothing.
+  exits:
+    - type: corridor
+      target: receiving
+  tactical_scale: 4
+  grid: |
+    ############
+    #..........#
+    #..........#
+    #.L.........
+    #...........
+    #..........#
+    #..........#
+    ############
+  legend:
+    L: { type: interactable, label: "Stone lectern near the entrance" }
+
+- id: receiving
+  name: "The Receiving Hall"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A wide room with a low ceiling. Along both walls, stone niches
+    are cut at regular intervals — hundreds of them, each the size
+    of a fist. Some contain objects: a pebble, a tooth, a coin, a
+    button. Each niche is labeled with a mark that is not a letter
+    in any language you know. The air is dry and still. Dust does
+    not settle here — it has been separated from the air.
+  exits:
+    - type: corridor
+      target: threshold
+    - type: door
+      target: sorting_floor
+      is_locked: false
+    - type: corridor
+      target: cold_store
+  tactical_scale: 4
+  grid: |
+    ############
+    #N........N#
+    #..........#
+    ..........N#
+    ..........N#
+    #N........N#
+    #N........N#
+    #..........#
+    #N..........
+    #N..........
+    #..........#
+    #####..#####
+  legend:
+    N: { type: atmosphere, label: "Stone niche with catalogued object" }
+
+- id: sorting_floor
+  name: "The Sorting Floor"
+  room_type: normal
+  size: [4, 3]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    The largest room on Level 1. Stone tables arranged in rows,
+    each with a shallow depression at its center. The depressions
+    contain residue — not dust, not liquid, but a film that catches
+    torchlight and reflects a color that was not in the flame.
+    Channels are cut into the floor between the tables, leading
+    to drains at the far wall. The channels are dry. Whatever
+    flowed through them was not liquid.
+  exits:
+    - type: door
+      target: receiving
+      is_locked: false
+    - type: corridor
+      target: separation_chamber_west
+    - type: corridor
+      target: separation_chamber_east
+    - type: door
+      target: calibration_room
+      is_locked: true
+  tactical_scale: 4
+  grid: |
+    #######..#######
+    #..............#
+    #..T..T..T..T..#
+    #.G..........G.#
+    ...............#
+    ...............#
+    #.G..........G.#
+    #...............
+    #...............
+    #.G..........G.#
+    #..T..T..T..T..#
+    #######..#######
+  legend:
+    T: { type: cover, label: "Stone processing table with shallow depression" }
+    G: { type: hazard, label: "Drainage channel cut into the floor" }
+
+- id: separation_chamber_west
+  name: "West Separation Chamber"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.1
+  description: >-
+    A room where warmth has been removed. Not cold in the way
+    winter is cold — cold in the way a thing is cold when the
+    concept of warmth has been taken out of it. Your torch burns
+    but does not warm. Your breath fogs but the fog does not
+    dissipate — it hangs in the air as though the air has
+    forgotten how to move it.
+  exits:
+    - type: corridor
+      target: sorting_floor
+    - type: secret
+      target: quiet_archive
+      discovered: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #......#
+    #......#
+    ........
+    ........
+    #......#
+    #......#
+    ########
+
+- id: separation_chamber_east
+  name: "East Separation Chamber"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.1
+  description: >-
+    A room where color has been removed. Your torchlight still
+    illuminates but everything it touches is grey — the stone,
+    your clothing, your skin. The effect is disorienting. The
+    shadows are the wrong shade. When you leave, color returns
+    slowly — first reds, then blues, then the rest.
+  exits:
+    - type: corridor
+      target: sorting_floor
+    - type: door
+      target: holding_cells
+      is_locked: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #......#
+    #......#
+    ........
+    ........
+    #......#
+    #......#
+    ########
+
+- id: cold_store
+  name: "The Cold Store"
+  room_type: treasure
+  size: [2, 3]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A room full of shelves. On the shelves: objects that have been
+    processed. A sword with no weight. A shield with no hardness.
+    A lantern with no light. Each item is labeled with the same
+    unreadable marks as the niches in the Receiving Hall. The
+    objects are arranged by type, then by what was removed. This
+    is a catalog of subtraction.
+  exits:
+    - type: corridor
+      target: receiving
+    - type: door
+      target: waste_chute
+      is_locked: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #......#
+    #......#
+    #......#
+    #......#
+    ........
+    ........
+    #......#
+    #......#
+    #......#
+    #......#
+    ###..###
+
+- id: waste_chute
+  name: "The Waste Chute"
+  room_type: normal
+  size: [1, 1]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A narrow room with a hole in the floor. The hole descends into
+    darkness. Objects lie scattered around its edge — things the
+    Butcher discarded after separation. A gold ring with no shine.
+    A gem with no color. A coin with no weight. Waste to the
+    Butcher. Treasure to delvers.
+  exits:
+    - type: door
+      target: cold_store
+      is_locked: false
+    - type: chute_down
+      target: residue_well
+  tactical_scale: 4
+  grid: |
+    #..#
+    #..#
+    #..#
+    #..#
+
+- id: calibration_room
+  name: "The Calibration Room"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    Behind a locked door. The walls are covered in marks — the same
+    unreadable notation, but denser here, overlapping in layers.
+    At the center of the room, a stone pedestal holds a sphere of
+    polished stone that reflects nothing. It absorbs torchlight
+    without warming. This is where the Butcher measures its work.
+    Standing near the sphere, you feel your own qualities being
+    assessed — not taken, but weighed.
+  exits:
+    - type: door
+      target: sorting_floor
+      is_locked: true
+    - type: corridor
+      target: descent
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #......#
+    #......#
+    #..L...#
+    #......#
+    #......#
+    #......#
+    ###..###
+  legend:
+    L: { type: interactable, label: "Stone pedestal holding a sphere of polished stone" }
+
+- id: quiet_archive
+  name: "The Quiet Archive"
+  room_type: treasure
+  size: [2, 2]
+  keeper_awareness_modifier: 0.9
+  description: >-
+    Found through the secret passage. A room of absolute silence.
+    Your footsteps make no sound. Your breathing makes no sound.
+    The torch crackles silently. Stone boxes line the walls, each
+    sealed with wax. Inside the boxes — recorded sound, somehow
+    made solid. A box of birdsong. A box of thunder. A box of
+    a woman laughing. The Butcher separated these sounds from
+    the world and stored them here.
+  exits:
+    - type: secret
+      target: separation_chamber_west
+      discovered: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #N....N#
+    #......#
+    #N......
+    #.......
+    #N....N#
+    #......#
+    ########
+  legend:
+    N: { type: atmosphere, label: "Wax-sealed stone box of captured sound" }
+
+- id: holding_cells
+  name: "The Holding Cells"
+  room_type: normal
+  size: [3, 2]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A row of ten stone cells, each sealed with an iron gate. Most
+    are empty. Two contain creatures — things that were partially
+    processed and survived. They press against the bars without
+    sound. Their eyes track your torch. The gates are not locked
+    from the outside. They are locked from inside. The creatures
+    are not imprisoned. They are waiting.
+  exits:
+    - type: door
+      target: separation_chamber_east
+      is_locked: false
+    - type: corridor
+      target: descent
+  tactical_scale: 4
+  grid: |
+    ############
+    #.#.#.#....#
+    #.#.#.#....#
+    ............
+    ............
+    #.#.#.#....#
+    #.#.#.#....#
+    ############
+
+- id: descent
+  name: "The Descent"
+  room_type: normal
+  size: [2, 1]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    A spiral staircase carved into the ridge's bedrock. The stairs
+    are worn smooth but not by feet — the stone itself has been
+    polished by the absence of texture flowing downward. Each step
+    is colder than the last. By the halfway point, your torch
+    burns grey. The air tastes of chalk and forgetting.
+  exits:
+    - type: corridor
+      target: calibration_room
+    - type: corridor
+      target: holding_cells
+    - type: chute_down
+      target: intake
+  tactical_scale: 4
+  grid: |
+    #..##..#
+    #......#
+    #......#
+    ###..###
+
+# === LEVEL 2: THE COLLECTION ===
+
+- id: intake
+  name: "The Intake"
+  room_type: normal
+  size: [3, 2]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    The base of the descent opens into a room that is wrong. The
+    proportions are correct but the surfaces have been stripped of
+    every quality that makes stone look like stone. The walls are
+    smooth beyond polish — frictionless, featureless, the color
+    of absolute nothing. Your torch illuminates but casts no
+    shadow. Nothing here casts a shadow. The shadows have been
+    collected elsewhere.
+  exits:
+    - type: corridor
+      target: descent
+    - type: corridor
+      target: refinement_hall
+    - type: door
+      target: specimen_gallery
+      is_locked: false
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..........#
+    #...........
+    #...........
+    #..........#
+    #..........#
+    #####..#####
+
+- id: refinement_hall
+  name: "The Refinement Hall"
+  room_type: normal
+  size: [4, 4]
+  keeper_awareness_modifier: 1.3
+  description: >-
+    The central chamber of Level 2. Stone pillars support a ceiling
+    you cannot see — not because it is high, but because it has
+    been separated from visibility. Between the pillars, the air
+    itself has texture — zones where qualities pool like water.
+    Walk through a warm patch and you feel someone else's stolen
+    warmth. Walk through a bright patch and colors intensify
+    beyond natural range. The Butcher's work-in-progress, visible
+    in cross-section.
+  exits:
+    - type: corridor
+      target: intake
+    - type: door
+      target: the_press
+      is_locked: true
+    - type: corridor
+      target: residue_well
+  tactical_scale: 4
+  grid: |
+    ################
+    #..............#
+    #..............#
+    #...#......#...#
+    #..............#
+    ...............#
+    ...............#
+    #..............#
+    #..............#
+    #...#......#....
+    #...............
+    #..............#
+    #...#......#...#
+    #..............#
+    #..............#
+    #######..#######
+
+- id: specimen_gallery
+  name: "The Specimen Gallery"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 1.2
+  description: >-
+    Glass cases — or something like glass, smooth and perfectly
+    transparent. Inside each case, a creature or object suspended
+    in stillness. Not dead. Not alive. Separated from time. A rat
+    mid-leap. A beetle mid-click. A delver mid-scream, mouth open,
+    no sound emerging. Each specimen labeled with the Butcher's
+    notation. This is a museum. You are browsing the collection.
+  exits:
+    - type: door
+      target: intake
+      is_locked: false
+    - type: secret
+      target: the_index
+      discovered: false
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    ...........#
+    ...........#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    ############
+
+- id: the_index
+  name: "The Index"
+  room_type: treasure
+  size: [2, 3]
+  keeper_awareness_modifier: 1.1
+  description: >-
+    A hidden chamber filled with stone tablets arranged in
+    precise rows. Each tablet bears the Butcher's notation —
+    a catalog of everything that has been separated, from what,
+    and where the separated quality is stored. A complete index
+    of the vault's work. To a scholar, priceless. To a delver,
+    the tablets themselves are heavy, valuable stone.
+  exits:
+    - type: secret
+      target: specimen_gallery
+      discovered: false
+  tactical_scale: 4
+  grid: |
+    ########
+    #L....L#
+    #......#
+    #L....L#
+    #......#
+    #L......
+    #.......
+    #L....L#
+    #......#
+    #L....L#
+    #......#
+    ########
+  legend:
+    L: { type: interactable, label: "Stone tablet bearing the Butcher's notation" }
+
+- id: residue_well
+  name: "The Residue Well"
+  room_type: normal
+  size: [2, 2]
+  keeper_awareness_modifier: 1.3
+  description: >-
+    Where the waste chute empties. The floor is covered in
+    discarded material — the husks of objects stripped of their
+    defining qualities. Metal that is not hard. Fabric that is
+    not soft. Stone that is not heavy. The residue shifts
+    underfoot like sand. It is technically treasure — gold is
+    gold regardless of weight, and weightless gold is easier
+    to carry.
+  exits:
+    - type: corridor
+      target: refinement_hall
+    - type: chute_up
+      target: waste_chute
+  tactical_scale: 4
+  grid: |
+    ###..###
+    #......#
+    #......#
+    .......#
+    .......#
+    #......#
+    #..GG..#
+    ########
+  legend:
+    G: { type: hazard, label: "Pool of quality-stripped residue" }
+
+- id: the_press
+  name: "The Press"
+  room_type: boss
+  size: [3, 3]
+  keeper_awareness_modifier: 1.5
+  description: >-
+    Behind a locked door in the deepest chamber. The room is a
+    perfect cube — each wall exactly the same distance from the
+    center. At the center, a mechanism of stone and something
+    that is not stone. It turns slowly, without sound, without
+    visible power. This is where the Butcher does its finest
+    work. The air around the mechanism is thick with separated
+    qualities — patches of pure warmth, pure color, pure sound,
+    floating free of any host. The Catalogue guards this room.
+  exits:
+    - type: door
+      target: refinement_hall
+      is_locked: true
+  tactical_scale: 4
+  grid: |
+    #####..#####
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #....LL....#
+    #....LL....#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    ############
+  legend:
+    L: { type: interactable, label: "The separation mechanism — stone and not-stone" }

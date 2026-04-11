@@ -89,67 +89,221 @@ encounter_base_tension:
   boss: 0.35
   final: 0.45
 
+# ── Confrontations ──────────────────────────────────────────
 confrontations:
-- type: combat
-  label: Gunfight
-  category: combat
-  metric:
-    name: hp
-    direction: descending
-    starting: 0
-    threshold_low: 0
-  beats:
-  - id: shoot
-    label: Shoot
-    metric_delta: -10
-    stat_check: Brawn
-    narrator_hint: Revolver bark in a dark alley. Cordite and rain.
-  - id: take_cover
-    label: Take Cover
-    metric_delta: 0
-    stat_check: Grit
-    effect: "Duck behind a car, a dumpster, a bar"
-  - id: brawl
-    label: Brawl
-    metric_delta: -8
-    stat_check: Brawn
-    narrator_hint: Close quarters — fists, bottles, chair legs.
-  - id: flee
-    label: Flee
-    metric_delta: 0
-    stat_check: Finesse
-    resolution: true
-    consequence: "Combat ends — disappear into the rain"
-  mood: combat
-- type: chase
-  label: Car Chase
-  category: movement
-  metric:
-    name: separation
-    direction: ascending
-    starting: 3
-    threshold_high: 10
-    threshold_low: 0
-  beats:
-  - id: floor_it
-    label: Floor It
-    metric_delta: 2
-    stat_check: Finesse
-    narrator_hint: Tires scream on wet asphalt. Headlights sweep the rain.
-  - id: sidestreet
-    label: Side Street
-    metric_delta: 3
-    stat_check: Savvy
-    risk: "Dead end — lose 2 separation"
-  - id: weave
-    label: Weave Through Traffic
-    metric_delta: 1
-    stat_check: Savvy
-    effect: "Use civilian cars as cover"
-  - id: ditch_the_car
-    label: Ditch the Car
-    metric_delta: 0
-    stat_check: Finesse
-    resolution: true
-    consequence: "Chase ends — abandon the vehicle and vanish on foot"
-  mood: tension
+  - type: negotiation
+    label: "Backroom Deal"
+    category: social
+    metric:
+      name: leverage
+      direction: bidirectional
+      starting: 5
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: persuade
+        label: "Make Your Case"
+        metric_delta: 2
+        stat_check: Charm
+        effect: "opponent considers your argument"
+        narrator_hint: "Show the NPC weighing the player's words."
+      - id: threaten
+        label: "Threaten"
+        metric_delta: 3
+        stat_check: Nerve
+        risk: "faction reputation -1 if it fails"
+        consequence: "NPC becomes hostile on critical failure"
+        narrator_hint: "Escalate tension. The threat should feel dangerous."
+      - id: concede_point
+        label: "Concede a Point"
+        metric_delta: -1
+        stat_check: Charm
+        effect: "opponent disposition +5, reveals their real goal"
+        narrator_hint: "Strategic retreat. Player gives ground to gain information."
+      - id: walk_away
+        label: "Walk Away"
+        metric_delta: 0
+        stat_check: Nerve
+        resolution: true
+        consequence: "deal collapses, reputation intact"
+        narrator_hint: "Player leaves the table. No deal."
+    mood: tension
+  - type: interrogation
+    label: "Interrogation"
+    category: social
+    metric:
+      name: resistance
+      direction: descending
+      starting: 10
+      threshold_low: 0
+    beats:
+      - id: pressure
+        label: "Apply Pressure"
+        metric_delta: -2
+        stat_check: Nerve
+        risk: "subject shuts down if check fails badly"
+        narrator_hint: "Intimidation. The subject squirms."
+      - id: rapport
+        label: "Build Rapport"
+        metric_delta: -1
+        stat_check: Charm
+        effect: "safe — no risk, slow progress"
+        narrator_hint: "Empathy. The subject relaxes slightly."
+      - id: evidence
+        label: "Present Evidence"
+        metric_delta: -3
+        stat_check: Savvy
+        requires: "must have discovered relevant clue"
+        narrator_hint: "Confront with proof. Watch their face change."
+    mood: tension
+  - type: roulette
+    label: "Roulette"
+    category: social
+    metric:
+      name: winnings
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: bet_red
+        label: "Bet Red"
+        metric_delta: 1
+        stat_check: Nerve
+        risk: "wrong color — lose 2 winnings"
+        narrator_hint: "Even odds. The ball rattles in the wheel."
+      - id: bet_number
+        label: "Bet a Number"
+        metric_delta: 5
+        stat_check: Nerve
+        risk: "long odds — lose 3 winnings on miss"
+        narrator_hint: "35 to 1. The ball bounces. Bounces again."
+      - id: let_it_ride
+        label: "Let It Ride"
+        metric_delta: 3
+        stat_check: Nerve
+        risk: "lose everything on the table"
+        consequence: "total loss — winnings reset to 0"
+        narrator_hint: "Push it all back. Double or nothing."
+      - id: cash_out
+        label: "Cash Out"
+        metric_delta: 0
+        stat_check: Grit
+        resolution: true
+        consequence: "walk away with current winnings"
+        narrator_hint: "Know when to walk. Collect your chips."
+    mood: tension
+  - type: craps
+    label: "Craps"
+    category: social
+    metric:
+      name: streak
+      direction: bidirectional
+      starting: 0
+      threshold_high: 8
+      threshold_low: -8
+    beats:
+      - id: pass_line
+        label: "Pass Line"
+        metric_delta: 1
+        stat_check: Nerve
+        risk: "snake eyes — lose 2 streak"
+        narrator_hint: "The safe bet. Bet with the shooter."
+      - id: dont_pass
+        label: "Don't Pass"
+        metric_delta: 1
+        stat_check: Nerve
+        risk: "shooter hits — lose 2 streak"
+        narrator_hint: "Bet against the table. Nobody likes a don't player."
+      - id: press_bet
+        label: "Press the Bet"
+        metric_delta: 3
+        stat_check: Savvy
+        risk: "seven out — lose 4 streak"
+        narrator_hint: "Double the odds bet. Ride the hot streak."
+      - id: proposition
+        label: "Proposition Bet"
+        metric_delta: 4
+        stat_check: Nerve
+        risk: "sucker bet — lose 5 streak on miss"
+        narrator_hint: "The worst odds on the table. But the payout..."
+      - id: color_up
+        label: "Color Up"
+        metric_delta: 0
+        stat_check: Grit
+        resolution: true
+        consequence: "walk away from the table"
+        narrator_hint: "Trade your chips for higher denominations. Time to go."
+    mood: tension
+
+  - type: combat
+    label: Gunfight
+    category: combat
+    # Momentum-based. HP on character state, momentum on the encounter.
+    # Noir fights are dirty and short — big swings from one beat to the next.
+    metric:
+      name: momentum
+      direction: bidirectional
+      starting: 0
+      threshold_high: 10
+      threshold_low: -10
+    beats:
+      - id: shoot
+        label: Shoot
+        metric_delta: 2
+        stat_check: Brawn
+        effect: "Target takes damage this round"
+        narrator_hint: Revolver bark in a dark alley. Cordite and rain.
+      - id: take_cover
+        label: Take Cover
+        metric_delta: 1
+        stat_check: Grit
+        effect: "Duck behind a car, a dumpster, a bar"
+        narrator_hint: The world narrows to the gap between bullet and brick.
+      - id: brawl
+        label: Brawl
+        metric_delta: 4
+        stat_check: Brawn
+        risk: "Overcommits — lose 2 momentum and take a blow on failure"
+        effect: "Close to grappling range, deal close damage"
+        narrator_hint: Close quarters — fists, bottles, chair legs.
+      - id: flee
+        label: Flee
+        metric_delta: 0
+        stat_check: Finesse
+        resolution: true
+        consequence: "Combat ends — disappear into the rain"
+        narrator_hint: Drop the piece, hit the fire escape, gone.
+    mood: combat
+  - type: chase
+    label: Car Chase
+    category: movement
+    metric:
+      name: separation
+      direction: ascending
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: floor_it
+        label: Floor It
+        metric_delta: 2
+        stat_check: Finesse
+        narrator_hint: Tires scream on wet asphalt. Headlights sweep the rain.
+      - id: sidestreet
+        label: Side Street
+        metric_delta: 3
+        stat_check: Savvy
+        risk: "Dead end — lose 2 separation"
+      - id: weave
+        label: Weave Through Traffic
+        metric_delta: 1
+        stat_check: Savvy
+        effect: "Use civilian cars as cover"
+      - id: ditch_the_car
+        label: Ditch the Car
+        metric_delta: 0
+        stat_check: Finesse
+        resolution: true
+        consequence: "Chase ends — abandon the vehicle and vanish on foot"
+    mood: tension
