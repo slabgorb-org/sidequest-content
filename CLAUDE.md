@@ -13,9 +13,9 @@ This is a personal project under the `slabgorb` GitHub account.
 ## SideQuest System Overview
 
 Four repos compose the SideQuest Rust rewrite:
-- **sidequest-api** — Rust game engine and WebSocket API (workspace with 10 crates)
+- **sidequest-api** — Rust game engine and WebSocket API (workspace with 12 crates)
 - **sidequest-ui** — React/TypeScript game client
-- **sidequest-daemon** — Python media services (image gen, TTS, audio)
+- **sidequest-daemon** — Python media services (image gen, audio library playback)
 - **sidequest-content** — Genre packs (YAML configs, audio, images, world data)
 
 Orchestrator repo (`orc-quest`) coordinates sprint tracking, docs, ADRs, and cross-repo scripts.
@@ -60,8 +60,9 @@ system — imported, called, and reachable from production code paths.
 
 ### Rust vs Python Split
 If it doesn't involve operating LLMs, it goes in Rust. If it needs to run model inference
-(Flux, Kokoro, ACE-Step — not Claude), use Python for library maturity. Claude calls go
-through Rust as CLI subprocesses.
+(Flux, ACE-Step — not Claude), use Python for library maturity. Claude calls go
+through Rust as CLI subprocesses. (Kokoro TTS was formerly in this list;
+TTS has been removed from the system.)
 
 ## OTEL Observability Principle
 
@@ -76,34 +77,39 @@ every subsystem decision:
 - **Inventory mutations** — items added/removed, with source
 - **NPC registry** — NPCs detected, names assigned, collisions prevented
 - **Trope engine** — tick results, keyword matches, activations
-- **TTS segments** — what text was sent to voice synthesis
+- **Encounter engine** — beat selections, metric changes, resolution
 
 The GM panel is the lie detector. If a subsystem isn't emitting OTEL spans, you can't
 tell whether it's engaged or whether Claude is just improvising.
 
 **Not needed for:** Cosmetic UI changes (labels, spacing, colors).
 
-## Architecture Decision Index (docs/adr/)
+## Architecture Decision Index
 
-Before designing or modifying a subsystem, check the relevant ADR (68 total):
+ADRs live in the orchestrator repo at `orc-quest/docs/adr/`. See
+`orc-quest/docs/adr/README.md` for the canonical index. Before designing
+or modifying a subsystem, check the relevant ADR:
 
 | Domain | ADRs |
 |--------|------|
 | Core architecture | 001 (Claude CLI only), 002 (SOUL principles), 005 (background-first), 006 (graceful degradation) |
-| Genre packs | 003 (pack architecture), 004 (lazy binding) |
+| Genre packs | 003 (pack architecture), 004 (lazy binding), 072 (system/milieu decomposition — proposed) |
 | Prompt engineering | 008 (three-tier taxonomy), 009 (attention-aware zones), 066 (persistent Opus sessions / Full vs Delta tier) |
-| Agent system | 010 (intent routing), 011 (JSON patches), 012 (session mgmt), 013 (lazy extraction), 057 (narrator-crunch separation), 059 (monster manual server-side pregen), 067 (unified narrator agent — no keyword matching) |
+| Agent system | 010 (intent routing — **superseded by 067**), 011 (JSON patches), 012 (session mgmt), 013 (lazy extraction — superseded by 057), 057 (narrator-crunch separation), 059 (monster manual server-side pregen), 067 (unified narrator agent) |
 | Characters | 007 (unified model), 014 (diamonds/coal), 015 (builder FSM), 016 (three-mode chargen) |
-| Combat / chase | 017 (cinematic chase), 033 (confrontation resource pools) |
+| Encounters | 017 (cinematic chase — superseded by 033), 033 (confrontation engine + resource pools), 071 (tactical ASCII grids — proposed) |
 | World / NPCs | 018 (trope engine), 019 (cartography), 020 (NPC disposition), 022 (world maturity), 055 (room graph navigation) |
 | Progression | 021 (four-track progression), 052 (narrative axis system) |
 | Narrative pacing | 024 (dual-track tension), 025 (pacing detection), 050 (image pacing throttle), 051 (two-tier turn counter) |
 | Session persistence | 023 (state + recap) |
-| Frontend / protocol | 026 (client state mirror), 027 (reactive state messaging), 054 (WebRTC voice chat disabled), 065 (protocol message decomposition) |
+| Frontend / protocol | 026 (client state mirror), 027 (reactive state messaging), 065 (protocol message decomposition — proposed), 076 (narration protocol collapse post-TTS — proposed) |
 | Multiplayer | 028 (perception rewriter), 029 (guest NPC players), 030 (scenario packs), 053 (scenario system) |
 | Telemetry | 031 (game watcher semantic telemetry), 058 (Claude subprocess OTEL passthrough) |
-| Media | 032 (genre LoRA style training), 034 (portrait identity consistency), 056 (script tool generators) |
+| Media | 032 (genre LoRA style training), 034 (portrait identity consistency), 056 (script tool generators), 070 (MLX image renderer) |
+| Dice | 074 (dice resolution protocol — proposed), 075 (3D dice rendering — proposed) |
+| Fine-tuning | 069 (scenario fixtures), 073 (local fine-tuned model architecture) |
 | Codebase structure | 060 (genre models decomposition), 061 (lore module decomposition), 062 (server lib extraction), 063 (dispatch handler splitting), 064 (game crate domain modules), 068 (magic literal extraction) |
+| Historical (removed subsystems) | 054 (WebRTC voice chat — files deleted 2026-04), 045 (client audio engine — two-channel post-TTS) |
 
 ## Spoiler Protection
 
@@ -151,7 +157,7 @@ git remote add local /path/to/existing/sidequest-content
 ## Consumers
 
 - **sidequest-api** (Rust) — `--genre-packs-path` CLI arg
-- **sidequest-daemon** (Python) — `SIDEQUEST_GENRE_PACKS` env var, or auto-detected via `config.py`
+- **sidequest-daemon** (Python) — `SIDEQUEST_GENRE_PACKS` env var
 - **orchestrator justfile** — `content` variable points here
 - **scripts/** in orchestrator — `generate_poi_images.py`, `generate_music.py`, etc.
 
