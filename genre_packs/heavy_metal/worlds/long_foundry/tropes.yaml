@@ -1,0 +1,154 @@
+# World-specific tropes for The Long Foundry.
+# These supplement the genre-level tropes in heavy_metal/tropes.yaml.
+
+- id: the_stratum_camp_goes_silent
+  name: The Stratum Camp Goes Silent
+  description: >-
+    The Refuser-site excavation in the eastern hills has been running
+    for five years, producing artifacts for two, and producing
+    increasingly anxious correspondence for the past twelve months.
+    The correspondence has now stopped. The scholars have not come
+    home. The last rations delivery found the camp still inhabited
+    but changed in a way the courier could not describe to the city's
+    satisfaction. Someone is going to have to go out there.
+  category: revelation
+  triggers:
+    - mention of the stratum camp
+    - encounter with a Refuser Scholar
+    - visit to the Old Herding Track
+  narrative_hints:
+    - a courier returns from the camp oddly quiet
+    - the Coil and Brand quietly increases the camp's rations allocation without a rationale
+    - a Thessil herder in the forge quarter mentions the hills "sounding different"
+  tension_level: 0.9
+  resolution_hints:
+    - travel to the camp and open the question directly
+    - arrange for the camp's closure with full observance of the stratum's terms
+    - extract the remaining living scholars and seal the site behind them
+  tags: [archaeological, local, escalating]
+  escalation:
+    - at: 0.2
+      event: >-
+        A courier who has just returned from the camp is seen drinking
+        alone at a Kin Lanes tavern. They are not interested in
+        conversation. They are, specifically, not interested in
+        conversation about what they saw on the way back.
+      npcs_involved: [Refuser Scholar]
+      stakes: Something at the camp has begun affecting visitors, but only subtly.
+    - at: 0.5
+      event: >-
+        The Coil and Brand posts a discreet request for an outside
+        party — explicitly not guild members — willing to travel to
+        the camp and carry a specific document back in person. The
+        reward is better than the work looks.
+      npcs_involved: [Grey Thaumaturge, Refuser Scholar]
+      stakes: The guild is now officially concerned but unwilling to attach their own name to the response.
+    - at: 0.75
+      event: >-
+        A first party returns from the camp without all of its
+        members, and with a set of observations that the Coil and
+        Brand records but does not publish. A second party is
+        dispatched with different instructions.
+      npcs_involved: [Refuser Scholar]
+      stakes: The camp is actively affecting people who visit it. A response is now unavoidable.
+    - at: 1.0
+      event: >-
+        The camp's effect reaches the city. The specific symptom is
+        local — something appearing in the forge quarter or the
+        temple precinct that matches what the returning visitors
+        reported. The Coil and Brand, the temples, and the River
+        Wardens hold a joint emergency session.
+      npcs_involved: [Refuser Scholar, Feed-keeper, Grey Thaumaturge]
+      stakes: The city's quiet stability is now at active risk. A major resolution is required within days.
+  passive_progression:
+    rate_per_turn: 0.007
+    rate_per_day: 0.022
+    accelerators:
+      - camp
+      - stratum
+      - excavation
+      - scholar
+      - dig
+    decelerators:
+      - close
+      - seal
+      - recall
+      - withdraw
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: the_three_cult_arrangement_cracks
+  name: The Three-Cult Arrangement Cracks
+  description: >-
+    The formal arrangement between the Coil and Brand Guild and the
+    three feeding cults of the temple precinct is the document most
+    responsible for the Long Foundry's continued existence. It has
+    held for two centuries. It is about to develop a specific small
+    crack — a dispute between two of the three cults over the
+    apportionment of the annual refined-tally offering. The crack
+    is small. The consequences, if it widens, are not.
+  category: conflict
+  triggers:
+    - visit to the temple precinct
+    - conversation with a feed-keeper of any of the three cults
+    - attendance at a Coil and Brand monthly council
+  narrative_hints:
+    - a prefect of one cult is seen leaving another cult's temple with an expression
+    - a small-scale delay in the delivery of the refined tally
+    - a council session at the guild hall runs unusually long
+  tension_level: 0.65
+  resolution_hints:
+    - mediate the dispute between the two affected cults
+    - broker a Coil and Brand concession that makes the dispute moot
+    - escalate the dispute publicly to force an Astran prefect's ruling
+  tags: [political, local, cults]
+  escalation:
+    - at: 0.25
+      event: >-
+        A senior feed-keeper speaks quietly to an outsider about a
+        calendar discrepancy that is, formally, not yet a dispute.
+        They ask for nothing specific. They are clearly hoping
+        something will be done.
+      npcs_involved: [Feed-keeper]
+      stakes: The dispute is still private. It can still be defused at low cost.
+    - at: 0.5
+      event: >-
+        The Coil and Brand holds an emergency council session at
+        which the two affected cults send representatives. The
+        session is not minuted. The representatives leave without
+        a visible resolution.
+      npcs_involved: [Feed-keeper, Grey Thaumaturge]
+      stakes: The dispute is now known to the guild and to any scholar who pays attention to council agendas.
+    - at: 0.75
+      event: >-
+        One of the two cults begins to ration its miraculous output
+        in the affected quarter. The symptom is mild but noticeable
+        to the informed. The other cult publishes a formal query as
+        to why.
+      npcs_involved: [Feed-keeper]
+      stakes: The dispute is now affecting civic life and will escalate on its own momentum.
+    - at: 1.0
+      event: >-
+        An Astran prefect rules in the matter. The ruling is
+        technically correct, and emotionally satisfies neither party.
+        One of the two cults begins the paperwork to formally
+        re-negotiate its arrangement with the Coil and Brand. The
+        two-century arrangement is now provisional.
+      npcs_involved: [Feed-keeper]
+      stakes: The city's stability is now a matter of active political work, not passive observance.
+  passive_progression:
+    rate_per_turn: 0.006
+    rate_per_day: 0.018
+    accelerators:
+      - cult
+      - offering
+      - tally
+      - arrangement
+      - precinct
+    decelerators:
+      - mediate
+      - settle
+      - ruling
+      - concession
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
