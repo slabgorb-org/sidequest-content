@@ -287,3 +287,27 @@ confrontations:
         resolution: true
         consequence: "Chase ends — short hyperspace hop, gone"
     mood: tension
+
+  - type: dogfight
+    label: Dogfight
+    category: combat
+    resolution_mode: sealed_letter_lookup
+    # Sealed-letter simultaneous-commit dogfight (story 38-4). Each pilot
+    # privately commits to a maneuver per turn; the engine looks up the
+    # (red, blue) pair in the interaction table and applies the two
+    # descriptor deltas to each pilot's view. Table lives in its own file
+    # adjacent to this one — see dogfight/interactions_mvp.yaml.
+    metric:
+      name: energy
+      direction: descending
+      starting: 60
+      threshold_low: 0
+    beats:
+      - id: engage
+        label: Engage
+        metric_delta: -5
+        stat_check: Reflex
+        narrator_hint: The merge — both ships commit to their maneuvers.
+    interaction_table:
+      _from: dogfight/interactions_mvp.yaml
+    mood: combat
