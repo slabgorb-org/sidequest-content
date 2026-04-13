@@ -1,39 +1,33 @@
 # Low Fantasy Audio Asset Pack — Credits & Sources
 
-This directory contains placeholder audio files for the low fantasy genre pack.
-Replace these with real audio assets from the sources below.
+Music in this pack is generated with [ACE-Step](https://github.com/stepfun-ai/ACE-Step)
+at build time from prompt parameter files (`*_input_params.json`) that live
+alongside each `.ogg`. The full set of moods — combat, exploration, mystery,
+rest, sorrow, tavern, tension — is present with ambient / sparse / full /
+overture / resolution / tension_build variants driven by the scene interpreter.
 
-## Recommended CC0 / CC-BY Sources
+SFX are sourced from CC0 / public-domain libraries (primarily Kenney and
+Freesound) and mixed through `audio/mixer.py` in the daemon.
 
-### Music
-- **Kenney** (kenney.nl) — CC0 game audio packs
-- **Incompetech** (incompetech.com) — Kevin MacLeod, CC-BY 3.0 royalty-free music
-- **Pixabay** (pixabay.com) — Royalty-free music, Pixabay License
+## Music
 
-### SFX
-- **Kenney** (kenney.nl) — CC0 sound effect packs (RPG Audio, Impact Sounds)
-- **Freesound** (freesound.org) — Community-contributed CC0/CC-BY samples
-- **Pixabay** (pixabay.com) — Royalty-free sound effects
+- **Source:** ACE-Step local generation (see `scripts/generate_music.py` in the orchestrator).
+- **License:** Model output — no attribution required. The `_input_params.json`
+  files are the canonical record of how each track was produced; keep them
+  alongside any regenerated variant.
 
-### Ambience
-- **Freesound** (freesound.org) — Field recordings, nature loops
-- **BBC Sound Effects** (sound-effects.bbcredesign.co.uk) — RemArc license for personal use
+## SFX
 
-## Suggested Tracks
+- **Kenney** (kenney.nl) — CC0 game-audio packs (RPG Audio, Impact Sounds, Interface)
+- **Freesound** (freesound.org) — CC0 community uploads only (filter by license)
+- **Pixabay** (pixabay.com) — Royalty-free under the Pixabay License
 
-| File | Mood | Suggested Source |
-|------|------|-----------------|
-| music/combat.ogg | Combat — driving, percussive | Incompetech "Heroic Age" or similar |
-| music/tavern.ogg | Tavern — lively, acoustic | Incompetech "Merry Go" or similar |
-| music/exploration.ogg | Exploration — calm, atmospheric | Incompetech "Moorland" or similar |
-| music/tension.ogg | Tension — slow, foreboding | Incompetech "Dark Fog" or similar |
-| sfx/sword_clash.ogg | Metal-on-metal impact | Kenney RPG Audio or Freesound |
-| sfx/door_creak.ogg | Wooden door creak | Freesound |
-| sfx/thunder.ogg | Thunder rumble | Freesound / Pixabay |
-| ambience/forest_loop.ogg | Loopable forest atmosphere | Freesound field recordings |
+No attribution-required assets are permitted in this pack. If you add a new
+effect that requires attribution, credit the artist in this file and verify
+the license on the source page.
 
-## License Notes
+## Format
 
-- CC0: No attribution required, any use permitted.
-- CC-BY: Attribution required — add artist credit here when replacing placeholders.
-- Always verify the license of the specific asset you download.
+- Music: OGG Vorbis, stereo, 44.1kHz, ACE-Step defaults
+- SFX: OGG Vorbis quality 4, mono or stereo, 44.1kHz
+- Filenames match the mood / sfx_library key used in `pack.yaml`
