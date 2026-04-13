@@ -1,0 +1,225 @@
+# Character creation scenes — Heavy Metal genre pack
+# 6 scenes: origins, pronouns, crucible, obligation, the_road, confirmation
+# Framing: a scribe in the antechamber of a declining house, entering the
+# player into the household ledger before they may pass further inward.
+
+- id: origins
+  title: By What Name Shall We Enter You?
+  narration: |
+    The antechamber is narrow, cold, and very quiet. A scribe sits at a low table with three candles burning beside a ledger so thick its spine has cracked twice. The walls are lined with older books, some of them bound in materials you would rather not ask about. The house beyond the door — you can feel the house beyond the door, even without looking — is old, and is ending, and is in no hurry about either.
+
+    The scribe does not look up from their ruled page. Their hand is patient. Their quill is already inked. "Before we enter you into the book," they say, in the measured cadence of someone who has asked this question ten thousand times, "tell me the country your family came from. Not the one you were born in. The one your ancestors signed in."
+  loading_text: "The scribe considers your answer, and dips their quill."
+  choices:
+    - label: A house of the old covenants
+      description: >-
+        Your family line is one of those Perault houses that carries a
+        pact its ancestors signed long before you were thought of. The
+        covenant is quiet, for now. It will not be quiet forever.
+      mechanical_effects:
+        culture_hint: Perault
+        background: Inheritor
+    - label: The forge quarter
+      description: >-
+        You come from one of the Kragmoor guild cities — from a street
+        that smelled of hot metal and of the residues of workings done
+        by daylight. Magic in your childhood was a trade, not a mystery.
+      mechanical_effects:
+        culture_hint: Kragmoor
+        background: Guildborn
+    - label: A kin-people of the bound
+      description: >-
+        Your people are Orvinnic — a population whose physiology is a
+        continuing contract. You have known since you were a child that
+        your body is an accounting. You have always had two names.
+      mechanical_effects:
+        culture_hint: Orvinnic
+        background: Covenant-Kin
+    - label: A temple of the measured rite
+      description: >-
+        You were raised among the Astran clergy — in the liturgical
+        cold of a feeding cult, where every hour had its precise
+        observance, and where the gods were, in the most literal
+        sense, fed.
+      mechanical_effects:
+        culture_hint: Astran
+        background: Temple-Reared
+    - label: A people the maps have forgotten
+      description: >-
+        Your family are Thessil — descendants of a civilization older
+        than the current age, keeping a language and a line of memory
+        that outsiders rarely understand. Your elders know things about
+        certain ruins that no one has told them.
+      mechanical_effects:
+        culture_hint: Thessil
+        background: Stratum-Born
+  allows_freeform: true
+
+- id: pronouns
+  title: By What Address Shall You Be Entered?
+  narration: >-
+    The scribe pauses. "The book is precise about form," they say, "and
+    the form includes the way you are to be addressed by those who will
+    find your name here later. How is it said, when it is said of you?"
+  allows_freeform: true
+  choices:
+    - label: "she/her"
+      description: "Her entry will be kept with the other her-entries."
+      mechanical_effects:
+        pronoun_hint: "she/her"
+    - label: "he/him"
+      description: "His entry will be kept with the other his-entries."
+      mechanical_effects:
+        pronoun_hint: "he/him"
+    - label: "they/them"
+      description: "Their entry will be kept apart, and deliberately."
+      mechanical_effects:
+        pronoun_hint: "they/them"
+
+- id: crucible
+  title: What Debt Made You?
+  narration: |
+    The scribe sets down the quill and, for the first time, looks up. Their eyes are not unkind, but they are measuring. "Every entry in this book bears a mark," they say. "The mark is not your sin, and it is not your merit. It is the shape of the debt that formed you. Some of us are shaped by a debt we signed, and some by a debt someone else signed for us. Some by a cost paid every day of our lives without noticing. Tell me yours, and I will mark you in the proper column."
+
+    They slide a small tray of tokens across the table. Each token is the color of a different stain.
+  choices:
+    - label: A covenant inherited
+      description: >-
+        You are bound by something an ancestor of yours signed, and the
+        bill for it has begun to come due in your lifetime. You did not
+        agree to this. The pact does not care that you did not agree.
+      mechanical_effects:
+        class_hint: Paladin
+        personality_trait: Burdened
+    - label: A pact of your own making
+      description: >-
+        You met something that could grant a working, and you agreed to
+        its price, and the agreement holds. You carry the consequences
+        honestly. This, at least, you did sign.
+      mechanical_effects:
+        class_hint: Warlock
+        personality_trait: Resolute
+    - label: A tithe you were born into
+      description: >-
+        Your body, your craft, or your daily labor is a continuing
+        offering to a creditor you have never met face-to-face. You
+        do not know exactly what part of your life they are drawing
+        upon. You know only that they draw.
+      mechanical_effects:
+        class_hint: Cleric
+        personality_trait: Quiet
+    - label: A craft that costs the craftsman
+      description: >-
+        You learned a trade whose practice exacts something from the
+        practitioner — sorcery, thaumaturgy, smithing a kind of metal
+        that should not exist. You pay, a little, every time you
+        practice. You have accepted this as the terms of the work.
+      mechanical_effects:
+        class_hint: Wizard
+        personality_trait: Disciplined
+    - label: A refusal, quietly maintained
+      description: >-
+        You have declined to pay. You do not always know what you are
+        declining to pay, and you are not always sure the declining is
+        working. But you have made a choice, and you are keeping it.
+      mechanical_effects:
+        class_hint: Fighter
+        personality_trait: Unyielding
+  allows_freeform: true
+
+- id: obligation
+  title: Whose Ledger Are You In?
+  narration: |
+    The scribe has entered the first few lines. The quill has run dry twice already and been freshly inked without comment. The candles are slightly shorter than when you arrived, though you would swear you have been here perhaps ten minutes.
+
+    "No one," the scribe says, without stopping, "walks the road unaccompanied. Even those who believe themselves alone carry another in their accounts. A person. A debt. A face they cannot stop owing. Speak the one you carry, and I will cross-reference the entry."
+  choices:
+    - label: A companion to whom you owe a life
+      description: >-
+        Someone pulled you out of something you should not have
+        survived. You have been trying to balance that ledger ever
+        since, and they keep pretending the account is already closed.
+      mechanical_effects:
+        relationship: life_debt
+        personality_trait: Loyal
+    - label: A teacher you never finished repaying
+      description: >-
+        Someone older taught you the thing you are now best at. The
+        teaching was given freely, which is exactly the problem. The
+        absence of a stated price is the heaviest price of all.
+      mechanical_effects:
+        relationship: unpaid_teacher
+        personality_trait: Reflective
+    - label: A rival who keeps your measure
+      description: >-
+        Someone whose presence sharpens you, and whose absence would
+        hollow you. The account between you is open at both ends. You
+        are not sure which of you is the creditor this week.
+      mechanical_effects:
+        relationship: open_rival
+        personality_trait: Competitive
+    - label: A creditor you are still avoiding
+      description: >-
+        Someone — or something — is owed a specific, remembered,
+        unpaid thing by you, and has not yet arrived to collect. You
+        think about them almost every night. They, presumably, think
+        about you less often, and more decisively.
+      mechanical_effects:
+        relationship: avoided_creditor
+        personality_trait: Watchful
+  allows_freeform: true
+
+- id: the_road
+  title: What Are You Walking Toward?
+  narration: |
+    The scribe has filled most of a column with your entry. Their hand is remarkable — precise, baroque, a little too careful to be merely bureaucratic. They do not look at you now. They are writing what you have already said, and making it permanent.
+
+    "One more entry," they say. "The book records not only where you came from, but where you are going. The road always leads somewhere, even when we pretend we are only wandering. What is it you are walking toward — or what is it you are walking away from — that keeps your feet moving when everything in you says to stop?"
+  choices:
+    - label: A debt that must be settled before you die
+      description: >-
+        Something was owed that has never been paid, and you cannot
+        allow the debt to outlive you. You are walking to close the
+        account — by any form of payment the creditor will accept.
+      mechanical_effects:
+        goals: close_an_open_account
+        emotional_state: Resolved
+    - label: A ruin you must see with your own eyes
+      description: >-
+        There is a place from the older strata — a temple, an engine,
+        a library of the Refusers — that you have dreamed of, or been
+        told of, or simply known you must visit. You are walking
+        toward something that was waiting for you before you were born.
+      mechanical_effects:
+        goals: reach_a_buried_place
+        emotional_state: Haunted
+    - label: A god you no longer wish to feed
+      description: >-
+        You were raised in the service of a specific feeding, and you
+        have come to believe the feeding should end. You are walking
+        because if you stopped walking you would have to confront what
+        you are walking away from, and you are not yet ready.
+      mechanical_effects:
+        goals: end_a_feeding
+        emotional_state: Uncertain
+    - label: A name you are trying to outrun
+      description: >-
+        Someone — some house, some cult, some older entity — is
+        looking for you under a name you no longer use. The road is
+        your living defense against being found by that name again.
+        You have not yet invented a better strategy.
+      mechanical_effects:
+        goals: stay_ahead_of_a_name
+        emotional_state: Watchful
+  allows_freeform: true
+
+- id: confirmation
+  title: The Book Is Closed
+  narration: |
+    The scribe sets down the quill. They blot the entry with sand, brush the sand away, and turn the ledger so that you can see your name — {name} — written in a hand more elegant than any you have seen in your life, in a column that was waiting for you before you arrived. They press a small seal beside it. The seal is warm.
+
+    "You are now in the book," they say, in the same quiet cadence they have used throughout. "You are recorded. You are also, from this moment, findable — by those who consult this book, which is not all of them, but is more of them than you might prefer. Step through the door to your left when you are ready. The house beyond is aware that you are coming."
+
+    And so it is that {name}, a {race} {class}, rises, steps past the scribe's table, and walks into the house that is ending. Whatever comes next, the book has your measure.
+  choices: []
+  allows_freeform: false
