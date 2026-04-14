@@ -124,3 +124,39 @@ These audits are not optional. Run them on every audit pass before reporting.
 ## Output style
 
 When reporting name quality, show actual namegen output samples. When proposing a binding change, show the current `cultures.yaml` entry and the proposed diff. When adding a corpus, report its length and a sample of ~5 entries.
+
+## Return manifest (REQUIRED for every task invoked via Task tool)
+
+At the end of every response when invoked by world-builder's fan-out, emit a structured manifest as the **last content block**. Missing manifest = task failure; world-builder will retry.
+
+```yaml
+manifest:
+  agent: conlang
+  files_written:
+    - worlds/the_circuit/cultures.yaml
+    - corpus/shared/yoruba_given.txt       # if a new corpus was added
+    - corpus/shared/yoruba_surnames.txt
+  files_skipped: []
+  errors: []
+  facts:
+    culture_count: 5
+    language_families: ["yoruba", "portuguese", "spanish_mexican"]
+    named_bindings:
+      the_sagrado: ["spanish_mexican_given", "spanish_mexican_surnames"]
+      the_ogundare: ["yoruba_given", "yoruba_surnames"]
+    lookback_default: 3
+  sources:
+    the_sagrado_naming: "Mexican-American G.I. Forum member rosters 1948-1960, Corpus Christi chapter"
+    the_ogundare_naming: "Yoruba diaspora surnames in Bahia, Brazil — specifically the Ilê Aiyê genealogy"
+    corpus_yoruba_given_source: "Oyo Yoruba given-name catalogue, Bascom 1969 anthropological survey"
+    corpus_spanish_mexican_source: "1950 Mexican census surnames, top 2000 by frequency"
+  namegen_samples:
+    the_sagrado: ["Flaco Obregón", "Chelo Villanueva", "Tito Guzmán"]
+    the_ogundare: ["Ayodele Adébáyọ̀", "Folake Ọdẹ", "Kunle Àjàyí"]
+```
+
+**Every bound corpus** must appear in `sources:` with its real-world provenance **at the instance level** — not "Yoruba surnames" but "the Ilê Aiyê genealogy from Bahia, Brazil." Not "Mexican names" but "1950 Mexican census surnames, top 2000 by frequency." `cliche-judge` reads this manifest during validation. **No manifest = automatic cliche-judge blocker.**
+
+`facts:` contains declarations the writer and scenario-designer need to be consistent with (culture counts, language families, binding names). World-builder runs a fact-diff across all specialists' `facts:` blocks.
+
+`namegen_samples:` contains at least three live outputs per culture you bound or changed. These are evidence that the binding works — skipping them is a fail.
