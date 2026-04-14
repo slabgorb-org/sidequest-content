@@ -174,7 +174,6 @@ genre_packs/
 ├── road_warrior/         # Vehicular post-apocalypse
 ├── space_opera/          # Sci-fi space adventure
 ├── spaghetti_western/    # Frontier gunslinger
-├── star_chamber/         # Cosmic horror / eldritch mystery
 └── victoria/             # Victorian steampunk
 ```
 
