@@ -1,29 +1,41 @@
 # SFX Sourcing — Neon Dystopia
 
-## Required Effects
+All effects are sourced and present on disk. This file is the inventory,
+not a TODO list. Licensing is mixed — some effects derive from the commercial
+**Game SFX Ultimate Bundle** (see `sound_effects/README.md` at the content
+repo root), others from CC0 libraries (Kenney, Freesound). Per-file attribution
+below is best-effort and should be reconciled against the purchase receipt
+before any public release.
 
-| SFX ID | Description | Source | Status |
-|--------|-------------|--------|--------|
-| gunshot | Sci-fi energy weapon discharge | Kenney Sci-Fi Sounds | TODO |
-| laser | Laser weapon fire | Kenney Sci-Fi Sounds | TODO |
-| door_whoosh | Automatic door opening | Kenney Sci-Fi Sounds | TODO |
-| neon_hum | Electric hum of neon signage | Kenney Interface Sounds / custom | TODO |
-| rain_acid | Acid rain on metal surfaces | Kenney Nature Sounds + FX | TODO |
-| vehicle_hover | Hover vehicle pass-by | Kenney Sci-Fi Sounds | TODO |
-| comm_beep | Communication device beep | Kenney UI Audio | TODO |
-| crowd_dystopia | Oppressed crowd murmur | Custom / Freesound CC0 | TODO |
-| alarm | Security/corporate alarm | Kenney Sci-Fi Sounds | TODO |
-| explosion | Distant explosion | Kenney Impact Sounds | TODO |
+## Present Effects
+
+| File | Description |
+|------|-------------|
+| `chrome_deploy.ogg` | Cybernetic chrome implant activation |
+| `comm_ring.ogg` | Communication device notification |
+| `crowd_murmur.ogg` | Oppressed crowd background |
+| `cyberblade.ogg` | Energy blade activation / swing |
+| `door_hydraulic.ogg` | Hydraulic / pneumatic door |
+| `gunshot.ogg` | Sci-fi weapon discharge |
+| `hack_breach.ogg` | Netrunner breach sting |
+| `neon_hum.ogg` | Electric hum of neon signage |
+| `rain.ogg` | Acid rain ambience |
+| `vehicle_engine.ogg` | Hover / ground vehicle pass-by |
 
 ## Sources
 
-- **Kenney.nl** — CC0 licensed game assets: https://kenney.nl/assets?q=audio
+- **Game SFX Ultimate Bundle** — Daniel Nunez Martin, commercial (https://en.danielnunezmartin.com/). See `sound_effects/README.md`.
+- **Kenney.nl** — CC0 game assets: https://kenney.nl/assets?q=audio
 - **Freesound** — CC0 filtered search: https://freesound.org
-- All SFX must be CC0 or public domain. No attribution-required licenses.
+
+Mixed licensing. Any new SFX must be either CC0 or sourced from a licensed
+commercial bundle whose terms permit game distribution. No
+attribution-required-only licenses (CC-BY) without recording the attribution
+in this file.
 
 ## Format
 
 - OGG Vorbis, quality 4
 - Mono or stereo, 44.1kHz
-- Normalized to -16 LUFS (match music tracks)
-- Filename matches sfx_library key: `gunshot.ogg`, `laser.ogg`, etc.
+- Normalized to -16 LUFS (matches music track loudness)
+- Filename matches `sfx_library` key in `pack.yaml`

@@ -1,9 +1,28 @@
 # Road Warrior Corpus
 
-Road Warrior uses word_list naming (handles, road names, crew nicknames)
-rather than Markov-generated names from corpora. Corpus files are not
-needed for V1.
+Road Warrior's primary naming path is `word_list` (handles, road names, crew
+nicknames). The language corpora in this directory are a secondary source:
+the Markov name generator uses them when a world within Road Warrior needs
+linguistic flavor grounded in a real-world language tradition.
 
-If a world within Road Warrior needs linguistic depth (e.g., a world
-based on a specific real-world culture), add corpora at the world level
-in `worlds/<world>/corpus/`.
+## Files
+
+| File | Purpose |
+|------|---------|
+| `english.txt` | English-language corpus for Markov name gen |
+| `french.txt` | French corpus |
+| `german.txt` | German corpus |
+| `italian.txt` | Italian corpus |
+| `japanese.txt` | Japanese corpus (romaji) |
+| `portuguese.txt` | Portuguese corpus |
+| `spanish.txt` | Spanish corpus |
+| `swahili.txt` | Swahili corpus |
+| `swedish.txt` | Swedish corpus |
+| `thai_khmer.txt` | Thai / Khmer corpus |
+| `reject_common.txt` | Shared reject list (common words the generator should never emit as names) |
+
+## World-level overrides
+
+A world inside Road Warrior can add its own corpora at
+`worlds/<world>/corpus/` and those will override the pack-level files for
+that world only.
