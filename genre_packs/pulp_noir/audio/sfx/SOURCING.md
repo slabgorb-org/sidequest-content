@@ -1,31 +1,45 @@
 # SFX Sourcing — Pulp Noir
 
-## Required Effects
+All effects are sourced and present on disk. This file is the inventory,
+not a TODO list. Licensing is mixed — some effects derive from the commercial
+**Game SFX Ultimate Bundle** (see `sound_effects/README.md` at the content
+repo root), others from CC0 libraries (Kenney, Freesound). Per-file attribution
+below is best-effort and should be reconciled against the purchase receipt
+before any public release.
 
-| SFX ID | Description | Source | Status |
-|--------|-------------|--------|--------|
-| gunshot | Revolver/pistol report (1920s firearms) | Kenney Impact Sounds | TODO |
-| glass_break | Bottle/window smash | Kenney Impact Sounds | TODO |
-| car_engine | 1920s automobile engine | Freesound CC0 | TODO |
-| rain | Rain on cobblestones | Kenney Nature Sounds | TODO |
-| crowd_murmur | Speakeasy crowd chatter | Freesound CC0 | TODO |
-| phone_ring | Rotary phone ring | Freesound CC0 | TODO |
-| door_slam | Heavy wooden door | Kenney Impact Sounds | TODO |
-| footsteps_cobblestone | Leather shoes on cobblestone | Kenney RPG Audio | TODO |
-| jazz_applause | Nightclub applause | Freesound CC0 | TODO |
-| typewriter | Mechanical typewriter | Freesound CC0 | TODO |
-| siren | 1920s police siren | Freesound CC0 | TODO |
-| card_shuffle | Card deck shuffle | Kenney Casino Audio | TODO |
+## Present Effects
+
+| File | Description |
+|------|-------------|
+| `car_engine.ogg` | 1920s automobile engine |
+| `card_shuffle.ogg` | Card deck shuffle (speakeasy poker) |
+| `crowd_murmur.ogg` | Speakeasy crowd chatter |
+| `door_slam.ogg` | Heavy wooden door slam |
+| `footsteps_cobblestone.ogg` | Leather shoes on wet cobblestone |
+| `footsteps_cobblestone_2.ogg` | Alternate cadence |
+| `footsteps_cobblestone_3.ogg` | Alternate cadence |
+| `glass_break.ogg` | Bottle / window smash |
+| `gunshot.ogg` | Revolver / pistol report |
+| `jazz_applause.ogg` | Nightclub applause |
+| `phone_ring.ogg` | Rotary telephone ring |
+| `rain.ogg` | Rain on cobblestones |
+| `siren.ogg` | 1920s police siren |
+| `typewriter.ogg` | Mechanical typewriter clack |
 
 ## Sources
 
-- **Kenney.nl** — CC0 licensed game assets: https://kenney.nl/assets?q=audio
+- **Game SFX Ultimate Bundle** — Daniel Nunez Martin, commercial (https://en.danielnunezmartin.com/). See `sound_effects/README.md`.
+- **Kenney.nl** — CC0 game assets: https://kenney.nl/assets?q=audio
 - **Freesound** — CC0 filtered search: https://freesound.org
-- All SFX must be CC0 or public domain. No attribution-required licenses.
+
+Mixed licensing. Any new SFX must be either CC0 or sourced from a licensed
+commercial bundle whose terms permit game distribution. No
+attribution-required-only licenses (CC-BY) without recording the attribution
+in this file.
 
 ## Format
 
 - OGG Vorbis, quality 4
 - Mono or stereo, 44.1kHz
 - Normalized to -16 LUFS
-- Filename matches sfx_library key: `gunshot.ogg`, `glass_break.ogg`, etc.
+- Filename matches `sfx_library` key in `pack.yaml`
