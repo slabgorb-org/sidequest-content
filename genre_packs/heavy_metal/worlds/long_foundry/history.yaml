@@ -1,4 +1,7 @@
-# The Long Foundry — World History
+# The Long Foundry — World History & DM Prep
+#
+# Source of truth for chapter structure + points_of_interest.
+# Feeds: POI image generator, narrator campaign-maturity prompts.
 
 world_name: The Long Foundry
 
@@ -10,7 +13,9 @@ overview: >-
   declining Perault houses. The forge quarter holds the working
   guild and the Orvinnic labor-kin households that make the guild's
   work survivable. The eastern hills hold an excavation that has
-  recently begun to worry everyone.
+  recently begun to worry everyone. Every empire is ending. Every
+  account is a little overdue. The city is still working, for now,
+  and still magnificent.
 
 eras:
   - name: The Guild That Founded
@@ -82,3 +87,492 @@ eras:
       hills, which began five years ago, was producing artifacts
       two years ago, and has been producing progressively more
       anxious correspondence for the past twelve months.
+
+# ─────────────────────────────────────────────────────────────────────
+# CAMPAIGN STRUCTURE
+# Three tiers: city-jobs → the quiet crack → the dig in the hills.
+# ─────────────────────────────────────────────────────────────────────
+
+chapters:
+  # ───────────────────────────────────────────────────────────────────
+  # EARLY (Sessions 1-5): Small work, honest rates
+  # ───────────────────────────────────────────────────────────────────
+  - id: early
+    label: "The Rates-Book"
+    session_range: [1, 5]
+    location: "The forge quarter and the Long Span"
+    atmosphere: >-
+      Smoke braided with the residue of the day's thaumaturgy, thin
+      and sweet over the Graslo. The Coil and Brand's rates-book is
+      posted fresh at the guild hall each dawn. The Kin Lanes smell
+      faintly of warm iron and clean linen. River Warden whistles
+      carry from the span in three tones — all clear, attention,
+      stand aside. The temple precinct across the river is
+      preternaturally quiet, and the air above it has measurable
+      weight.
+    active_stakes: >-
+      The Coil and Brand has posted a small-run of outsider
+      commissions: a misfiled tally to retrieve from a tavern, a
+      Thessil complaint to hear out at the Kin Lanes, a letter to
+      carry to a feed-keeper who prefers not to leave her temple.
+      None of the jobs look like anything. Most of them are. One
+      of them is the first loose thread of the next two chapters,
+      and the guild will not tell you which.
+    character:
+      archetype: Grey Thaumaturge
+      name: "{{generated at session start}}"
+      culture: Kragmoor working-class or Orvinnic covenant-kin
+      level: 2
+      hp: 18
+      max_hp: 18
+      ac: 12
+      backstory: >-
+        Arrived in the Long Foundry with a small commission, a
+        smaller purse, and a letter of introduction to a junior
+        scribe at the Coil and Brand. Keeps honest books and a
+        longer memory than the job formally requires. Is starting
+        to understand that in this city every favor is recorded
+        and every silence is a balance.
+      personality: >-
+        Formal, careful, slow to spend a word twice. Believes that
+        the proper unit of thaumaturgic practice is the audit
+        trail.
+      items:
+        - travelling_cloak_grey
+        - brass_pen_nib_set
+        - calfskin_ledger_half_full
+        - warded_letter_sealed
+        - guild_lodgings_chit
+        - {catalog: ritual_knife_plain, name: "Accountant's Edge", lore: "Inherited from a grandmother who used it to draw circles, not blood."}
+      gold: 12
+      affinities:
+        Forge: {tier: 1, progress: 3}
+        Ledger: {tier: 1, progress: 5}
+        Rite: {tier: 0, progress: 2}
+        Covenant: {tier: 0, progress: 1}
+        Strata: {tier: 0, progress: 0}
+    npcs:
+      - archetype: Grey Thaumaturge
+        name: Senior Scribe Halvard Coil
+        location: Coil and Brand guild hall, the rates-book desk
+        disposition: 20
+        personality: >-
+          Thirty years at the desk. Keeps his cuffs clean through
+          any ledger work. Speaks to outsiders as equals until they
+          prove they aren't.
+      - archetype: Feed-keeper
+        name: Prefect Isola Hours-of-the-Hour
+        location: Temple precinct, Keepers of the Hour tally-hall
+        disposition: 10
+        personality: >-
+          Senior feed-keeper. Hands always clasped in front of her,
+          never behind. Speaks in the formal register and has for
+          so long it is no longer a register.
+      - archetype: River Warden
+        name: Warden-Captain Vos Graslo
+        location: The Long Span, north-bank guardhouse
+        disposition: 15
+        personality: >-
+          A Warden since before most Wardens. Hears everything that
+          passes the city and remembers all of it. Owes no one and
+          is owed by almost everyone.
+      - archetype: Kin Elder
+        name: Matriarch Enna of the Lower Lanes
+        location: Kin Lanes, the elder-house at the river's edge
+        disposition: 25
+        personality: >-
+          Orvinnic elder. Physiologically entangled with the foundry
+          residues; her skin is faintly iridescent in the right
+          light. Speaks for the Kin Lanes when the Kin Lanes choose
+          to speak, which is rarely.
+    points_of_interest:
+      - name: The Coil and Brand Guild Hall
+        slug: coil_and_brand_guild_hall
+        region: forge_quarter
+        type: guild_hall
+        description: >-
+          The senior working guild's hall at the head of the Long
+          Span. A wide publication wall at the entrance displays the
+          current rates-book and the previous month's ledger, both
+          maintained in a scribe-hand so regular it is nearly
+          printing. The back rooms are warded. The front rooms are
+          not. The difference is the whole shape of the city.
+      - name: The Kin Lanes
+        slug: the_kin_lanes
+        region: forge_quarter
+        type: district
+        description: >-
+          A district of narrow stepped streets between the foundries
+          and the river, where the Orvinnic labor-kin households
+          keep quiet, orderly courts. The air carries a faint iron
+          sweetness; the walls are washed with a mineral solution
+          every dawn; the children play a counting game whose rules
+          have not changed in a hundred and fifty years.
+      - name: The Long Span
+        slug: the_long_span
+        region: forge_quarter
+        type: bridge
+        description: >-
+          The great stone arch that has carried the central axis of
+          the Long Foundry for longer than any current ledger
+          records. Three carts wide, lit at night by brass lanterns
+          maintained by the River Wardens, and watched from both
+          banks at all hours. The stone itself has been replaced
+          twice. The span has not.
+      - name: The Temple Precinct (Threshold)
+        slug: temple_precinct_threshold
+        region: temple_precinct
+        type: precinct
+        description: >-
+          The raised southern terrace where the three feeding cults
+          hold their temples. Outsiders enter only through a single
+          north-facing gate and only during the formal visiting
+          window after the morning tally. The air inside the
+          precinct weighs visibly on the back of the tongue. No one
+          raises their voice here. No one has ever needed to.
+      - name: The Western Gate
+        slug: the_western_gate
+        region: forge_quarter
+        type: gate
+        description: >-
+          A working gate in the old city wall at the western edge
+          of the forge quarter, opening onto the Path-Eater pilgrim
+          road. Supervised by the River Wardens and usually open in
+          daylight. The first mile of road beyond it is loud with
+          pilgrims. The second mile is quieter. The third mile does
+          not speak at all unless spoken to.
+      - name: The Ascending Way
+        slug: the_ascending_way
+        region: high_quarter
+        type: road
+        description: >-
+          A paved street climbing from the river span through the
+          temple precinct and up into the lower terraces of the
+          high quarter. The stones are older than most of the
+          houses on it. The house-guards nod to outsiders in guild
+          grey and do not nod to anyone else.
+    tropes:
+      - id: the_three_cult_arrangement_cracks
+        status: dormant
+        progression: 0.05
+        notes:
+          - "A prefect of the Silent Patron's House was seen leaving the Keepers' temple wearing an expression."
+      - id: the_stratum_camp_goes_silent
+        status: dormant
+        progression: 0.03
+        notes:
+          - "A courier returned from the camp ordered two drinks at the Kin Lanes and did not speak to anyone."
+
+  # ───────────────────────────────────────────────────────────────────
+  # MID (Sessions 6-15): The arrangement develops a crack
+  # ───────────────────────────────────────────────────────────────────
+  - id: mid
+    label: "A Crack in the Arrangement"
+    session_range: [6, 15]
+    location: "The temple precinct and the high quarter"
+    atmosphere: >-
+      The rates-book is posted on time, but the second entry is a
+      correction the scribes won't discuss. The Grievance-Keepers
+      are rationing a small miraculous output in the Kin Lanes and
+      blaming "seasonal adjustment." A Perault house in the high
+      quarter has stopped receiving callers without explanation,
+      and the Ascending Way is quieter than it should be for this
+      week of the month. The Coil and Brand has called three
+      emergency sessions in a month, none of them minuted.
+    active_stakes: >-
+      A calendar dispute between the Keepers of the Hour and the
+      Silent Patron's House over the apportionment of the annual
+      refined-tally offering is no longer private. A senior
+      feed-keeper has spoken to an outsider — which is to say,
+      asked for help without asking. The High Seats are trying to
+      intervene, which is usually how the High Seats make things
+      worse. The River Wardens know more than they are saying.
+    character:
+      level: 5
+      hp: 36
+      max_hp: 36
+      ac: 14
+      milestones_earned:
+        - "triumph:Carried a warded document across the temple precinct and delivered it whole"
+        - "connection:Matriarch Enna now speaks to you without clearing her throat first"
+        - "discovery:Read a ledger entry that was supposed to have been struck through"
+        - "covenant:Accepted a small formal obligation from a High Seat"
+    npcs:
+      - archetype: Feed-keeper
+        name: Prefect Isola Hours-of-the-Hour
+        location: Temple precinct, Keepers of the Hour tally-hall
+        disposition: 25
+        personality: >-
+          Has begun to close her door for certain visitors. Has not
+          begun to close it for you.
+      - archetype: Feed-keeper
+        name: Under-Prefect Dannic of the Silent Patron
+        location: Temple precinct, Silent Patron's House
+        disposition: -5
+        personality: >-
+          Younger, ambitious, certain the Keepers have been over-
+          served for a century and willing to say so at the wrong
+          council. Brilliant at arithmetic. Clumsy at everything
+          else.
+      - archetype: High Seat
+        name: Lady Mireille of House Varant
+        location: High quarter, the Varant terrace
+        disposition: 5
+        personality: >-
+          Head of a declining house that has not yet admitted the
+          decline. Receives callers in a withdrawing room that has
+          not been repainted in a generation. Keeps her covenants
+          meticulously and her staff in poverty.
+    points_of_interest:
+      - name: The Keepers of the Hour Temple
+        slug: keepers_of_the_hour_temple
+        region: temple_precinct
+        type: temple
+        description: >-
+          The eldest of the three temples in the precinct, its
+          facade carved with nested calendar-wheels that turn at
+          dawn and dusk without visible mechanism. The tally-hall
+          inside holds the master register of the city's offerings,
+          kept in a bound volume so heavy it requires two scribes
+          to open. Prefect Isola presides. The door closes on its
+          own when an arbitration is being held.
+      - name: The Silent Patron's House
+        slug: the_silent_patrons_house
+        region: temple_precinct
+        type: temple
+        description: >-
+          The most politically connected of the three temples, its
+          approach paved in a stone that does not echo. The entrance
+          hall is hung with the silk records of every formal
+          arrangement the cult has entered since its founding, each
+          embroidered in threads that shift color if the terms are
+          violated. The threads have recently begun to darken.
+      - name: The Grievance-Keepers' Temple
+        slug: the_grievance_keepers_temple
+        region: temple_precinct
+        type: temple
+        description: >-
+          The least well-funded of the three temples, and
+          consequently the most anxious. Its interior courtyard
+          holds a ledger-tree — a living specimen trained to grow
+          in the shape of the temple's unresolved claims. The tree
+          is visibly healthier this season than it has been in
+          years, which is not a compliment.
+      - name: The Varant Terrace
+        slug: the_varant_terrace
+        region: high_quarter
+        type: estate
+        description: >-
+          The formal seat of House Varant, halfway up the southern
+          slope. A walled garden, a narrow bell-tower that rings
+          only for deaths in the family, and a withdrawing room
+          where every ledger in the house is kept under a glass
+          dome that has not been opened in a year. The callers'
+          book by the front door is nearly empty.
+      - name: The Terrace Stair
+        slug: the_terrace_stair
+        region: high_quarter
+        type: road
+        description: >-
+          The broad stone stair rising directly from the temple
+          precinct into the lower streets of the high quarter.
+          Used for formal processions from the cults to the
+          houses, and — less formally — by anyone who wants to
+          move between the precincts without crossing the Long
+          Span in public view.
+      - name: The Coil and Brand Back Rooms
+        slug: the_coil_and_brand_back_rooms
+        region: forge_quarter
+        type: chamber
+        description: >-
+          A series of warded chambers at the rear of the guild
+          hall where the guild's senior council holds its
+          unminuted sessions. Reached through a door that is not
+          a door. Reached more reliably with an invitation.
+      - name: The Pilgrim Road (Second Mile)
+        slug: the_pilgrim_road_second_mile
+        region: pilgrim_road
+        type: road
+        description: >-
+          The stretch of the Path-Eater pilgrim road beyond the
+          busy first mile, where waystation shrines sit at half-
+          mile intervals and the quiet begins to sink into the
+          landscape. Pilgrims note, recently, that this stretch
+          feels longer than it was. They comment on this to each
+          other and not to anyone else.
+    tropes:
+      - id: the_three_cult_arrangement_cracks
+        status: active
+        progression: 0.50
+        notes:
+          - "Emergency session at the Coil and Brand. Representatives of two cults leave without resolution."
+          - "Grievance-Keepers rationing miraculous output in the Kin Lanes."
+          - "Silent Patron's threads have darkened along one row of the entrance hall."
+      - id: the_stratum_camp_goes_silent
+        status: active
+        progression: 0.30
+        notes:
+          - "Coil and Brand quietly doubled the camp's rations allocation without a rationale entry."
+          - "A Thessil herder said the eastern hills 'sound different.'"
+
+  # ───────────────────────────────────────────────────────────────────
+  # VETERAN (Sessions 16+): The dig in the hills
+  # ───────────────────────────────────────────────────────────────────
+  - id: veteran
+    label: "What the Scholars Learned"
+    session_range: [16, 99]
+    location: "The Old Herding Track and the Stratum Camp"
+    atmosphere: >-
+      The week out of the city is long and quiet and each day
+      quieter than the last. The Thessil waystation is half-empty.
+      The track beyond it is not hostile, exactly, but the ground
+      is no longer cooperating — slopes that should be an hour's
+      climb take two, waymarkers appear in places nobody
+      remembers setting them, and the wind on the high ridges
+      sounds briefly, once per evening, like a name being read
+      from a list. At the camp, the scholars are still working.
+      That is the problem.
+    active_stakes: >-
+      The Coil and Brand has posted a private commission: travel
+      to the camp, carry a specific document back, and bring a
+      written assessment of whether the camp should be formally
+      closed. The reward is better than the work looks. The
+      temples are watching. The High Seats are offering — for
+      the first time in a generation — to underwrite a second
+      party with house gold. Something at the camp has begun
+      affecting visitors in a way no courier has been willing to
+      describe in writing.
+    character:
+      level: 9
+      hp: 62
+      max_hp: 62
+      ac: 16
+      milestones_earned:
+        - "covenant:Named in a formal arrangement between a cult and a High Seat"
+        - "discovery:Read a stratum layer nobody has read for six centuries"
+        - "betrayal:Watched a cult representative deliver a ruling they knew to be wrong"
+        - "connection:Accepted the Matriarch's mineral cup"
+        - "revelation:Learned what the older guild did not survive learning"
+    npcs:
+      - archetype: Refuser Scholar
+        name: Scholar-Chief Anesa Vardic
+        location: The Stratum Camp, main tent
+        disposition: 0
+        personality: >-
+          Head of the excavation. Composed, careful, and visibly
+          aware of a thing that she is not yet willing to name to
+          an outside party. Her correspondence to the city has
+          been drafted, over the last year, in a hand that grows
+          steadier the more it says nothing.
+      - archetype: Refuser Scholar
+        name: Cataloguer Pel Vornis
+        location: The Stratum Camp, artifact tent
+        disposition: 10
+        personality: >-
+          Junior scholar. Still cares about the work in the way
+          one cares about work when one has not yet understood
+          what the work is. The only person at the camp who will
+          show a visitor the stratum directly.
+      - archetype: Thessil Herder
+        name: Herd-Mother Kelu of the Northern Slopes
+        location: The Thessil Waystation, mid-route
+        disposition: 20
+        personality: >-
+          Fourth-generation Thessil. Runs the waystation as
+          courtesy and warning. Will trade news, shelter, and a
+          particular kind of tea that is supposed to help with
+          the ridge-wind. Believes the courtesy is in the
+          warning, not the tea.
+    points_of_interest:
+      - name: The Old Herding Track
+        slug: the_old_herding_track
+        region: stratum_hills
+        type: road
+        description: >-
+          A thin track climbing from the north bank into the
+          eastern hills, following routes laid down by Thessil
+          herders generations ago. A week's walk in good weather.
+          Every quarter-mile is marked by a small cairn, and
+          lately several cairns have appeared that the Thessil
+          say they did not place and cannot be persuaded to
+          remove.
+      - name: The Thessil Waystation
+        slug: the_thessil_waystation
+        region: stratum_hills
+        type: waystation
+        description: >-
+          A stone-walled herder's waystation at the halfway point
+          of the Old Herding Track, maintained by the Thessil for
+          the courtesy of travellers they do not necessarily
+          approve of. A low fire, a wooden bench, and a cup of
+          mineral tea for anyone who asks. The roof is reinforced
+          against a wind that, locally, has begun to carry words.
+      - name: The Stratum Camp (Outer)
+        slug: the_stratum_camp_outer
+        region: stratum_hills
+        type: camp
+        description: >-
+          The outer ring of the Refuser-site excavation: tents
+          arranged in a half-circle around a central fire pit
+          that is kept burning at all hours. Ropes strung between
+          tent poles carry notation-flags whose shorthand would
+          take a scholar a season to read. Everything in the
+          outer ring is normal. The wrongness begins at the
+          rope-line.
+      - name: The Artifact Tent
+        slug: the_artifact_tent
+        region: stratum_hills
+        type: chamber
+        description: >-
+          The cataloguer's tent, lit by brass lanterns burning at
+          half the oil a brass lantern usually takes. The
+          artifacts are arranged on felt pads in the order they
+          came out of the stratum. The most recent pad is empty.
+          Pel Vornis can tell you, if you ask kindly, what was
+          on it yesterday.
+      - name: The Open Face of the Stratum
+        slug: the_open_face_of_the_stratum
+        region: stratum_hills
+        type: dig_site
+        description: >-
+          The excavation face itself: a vertical cut into the
+          hillside where the Refuser layer has been exposed in
+          two meter-wide steps. The stratum reads, to anyone with
+          the training, like a ledger kept by something that had
+          good reasons to stop keeping ledgers. The deeper steps
+          are the worst. The deepest step is not a step.
+      - name: The Counting Stones
+        slug: the_counting_stones
+        region: stratum_hills
+        type: landmark
+        description: >-
+          A ring of seven upright stones half a mile above the
+          camp on the ridge-line, each one marked with a single
+          notation in a hand that predates the Thessil by several
+          centuries. The scholars have not yet formally catalogued
+          them because they cannot agree on how many there are.
+          The Thessil do not go near them and will not explain.
+      - name: The Gone-Home Lodgings
+        slug: the_gone_home_lodgings
+        region: stratum_hills
+        type: ruin
+        description: >-
+          A set of five small stone lodgings at the edge of the
+          camp, built to house scholars on rotation back to the
+          city. All five are currently occupied. The names on
+          the doors match scholars who, according to every city
+          register, have been on return-rotation for six months.
+          The lodgings are very clean. The scholars inside do
+          not answer knocks.
+    tropes:
+      - id: the_stratum_camp_goes_silent
+        status: active
+        progression: 0.85
+        notes:
+          - "First party returned without all its members. Coil and Brand recorded the observations and did not publish."
+          - "A symptom from the camp has now appeared in the forge quarter."
+      - id: the_three_cult_arrangement_cracks
+        status: active
+        progression: 0.75
+        notes:
+          - "An Astran prefect's ruling is imminent. One cult is drafting a formal re-negotiation."
