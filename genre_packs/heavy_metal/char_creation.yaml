@@ -10,48 +10,52 @@
 
     The scribe does not look up from their ruled page. Their hand is patient. Their quill is already inked. "Before we enter you into the book," they say, in the measured cadence of someone who has asked this question ten thousand times, "tell me the country your family came from. Not the one you were born in. The one your ancestors signed in."
   loading_text: "The scribe considers your answer, and dips their quill."
+  # Choices use ARCHETYPE language, not any world's specific culture names.
+  # The narrator reads the active world's cultures.yaml and fills in the
+  # matching culture at runtime via the background mechanical_effects hint.
+  # Worlds that want hand-authored named-culture origins can override this
+  # scene via {world}/char_creation.yaml once the loader supports it.
   choices:
     - label: A house of the old covenants
       description: >-
-        Your family line is one of those Perault houses that carries a
-        pact its ancestors signed long before you were thought of. The
-        covenant is quiet, for now. It will not be quiet forever.
+        Your family line is one of those houses that carries a pact its
+        ancestors signed long before you were thought of. The covenant
+        is quiet, for now. It will not be quiet forever. The book is
+        waiting for you to pay what your grandfather borrowed.
       mechanical_effects:
-        culture_hint: Perault
         background: Inheritor
     - label: The forge quarter
       description: >-
-        You come from one of the Kragmoor guild cities — from a street
-        that smelled of hot metal and of the residues of workings done
-        by daylight. Magic in your childhood was a trade, not a mystery.
+        You come from one of the guild cities — from a street that
+        smelled of hot metal and of the residues of workings done by
+        daylight. Magic in your childhood was a trade, not a mystery,
+        and the trade left scars that were meant to be left.
       mechanical_effects:
-        culture_hint: Kragmoor
         background: Guildborn
     - label: A kin-people of the bound
       description: >-
-        Your people are Orvinnic — a population whose physiology is a
-        continuing contract. You have known since you were a child that
-        your body is an accounting. You have always had two names.
+        Your people carry their pact in the body itself — a physiology
+        that is a continuing contract, a bloodline that is a ledger in
+        flesh. You have known since you were a child that your body is
+        an accounting. Perhaps you have always had two names.
       mechanical_effects:
-        culture_hint: Orvinnic
         background: Covenant-Kin
     - label: A temple of the measured rite
       description: >-
-        You were raised among the Astran clergy — in the liturgical
-        cold of a feeding cult, where every hour had its precise
-        observance, and where the gods were, in the most literal
-        sense, fed.
+        You were raised among clergy — in the liturgical cold of a
+        house where every hour had its precise observance, and where
+        the duties owed upward were, in the most literal sense, paid.
+        The rites you learned as a child you can still perform in the
+        dark.
       mechanical_effects:
-        culture_hint: Astran
         background: Temple-Reared
     - label: A people the maps have forgotten
       description: >-
-        Your family are Thessil — descendants of a civilization older
-        than the current age, keeping a language and a line of memory
-        that outsiders rarely understand. Your elders know things about
+        Your family are descendants of a civilization older than the
+        current age, keeping a language and a line of memory that
+        outsiders rarely understand. Your elders know things about
         certain ruins that no one has told them.
       mechanical_effects:
-        culture_hint: Thessil
         background: Stratum-Born
   allows_freeform: true
 
