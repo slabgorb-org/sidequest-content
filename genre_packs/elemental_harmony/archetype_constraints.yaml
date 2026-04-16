@@ -1,0 +1,144 @@
+# archetype_constraints.yaml — elemental_harmony
+# Defines valid Jungian x RPG Role pairings for this genre
+# common: chargen default, NPC gen draws most
+# uncommon: shown if player explores, NPC diversity
+# rare: allowed but unusual, memorable characters
+# forbidden: genuinely nonsensical for this genre
+#
+# Genre notes:
+#   sage — very common; philosophy is the genre's spine. Temple elders, wandering masters,
+#          spirit seers — all sage-coded. Nearly every archetype slots sage well here.
+#   outlaw — uncommon; tradition is load-bearing in this world. Rebels exist but are
+#            marked by their break from lineage, not celebrated as antiheroes.
+#   jester — rare but not forbidden; lightness and misdirection are genuine martial
+#            arts virtues (see: Drunken Fist, Air Nomad play-fighting). A jester
+#            tank is implausible but a jester control (confusing the enemy) works.
+
+valid_pairings:
+  common:
+    - [hero, dps]
+    - [hero, tank]
+    - [sage, control]
+    - [sage, support]
+    - [sage, healer]
+    - [caregiver, healer]
+    - [caregiver, support]
+    - [ruler, tank]
+    - [ruler, support]
+    - [explorer, jack_of_all_trades]
+    - [explorer, stealth]
+    - [magician, control]
+    - [magician, dps]
+    - [innocent, healer]
+    - [innocent, support]
+    - [everyman, jack_of_all_trades]
+
+  uncommon:
+    - [artist, support]
+    - [artist, control]
+    - [lover, healer]
+    - [lover, support]
+    - [outlaw, stealth]
+    - [outlaw, dps]
+    - [jester, stealth]
+    - [jester, control]
+    - [hero, jack_of_all_trades]
+    - [sage, dps]
+    - [magician, healer]
+    - [everyman, support]
+
+  rare:
+    - [jester, dps]
+    - [jester, tank]
+    - [innocent, dps]
+    - [outlaw, control]
+    - [lover, dps]
+    - [artist, stealth]
+    - [everyman, tank]
+    - [ruler, dps]
+
+  forbidden:
+    - [innocent, stealth]
+    - [caregiver, stealth]
+    - [ruler, stealth]
+
+# Genre-level fallback names and flavor for each axis value
+# Used when no world-level funnel claims a combination
+genre_flavor:
+  jungian:
+    hero:
+      speech_pattern: "direct, declarative, names the obstacle before naming a solution"
+      equipment_tendency: "well-worn training clothes, a single weapon polished daily, no ornament"
+      visual_cues: "callused knuckles, precise footwork, unselfconscious power in stillness"
+    sage:
+      speech_pattern: "unhurried, speaks in principles, lets silence carry weight"
+      equipment_tendency: "simple robes, prayer beads, a staff that has seen more roads than swords"
+      visual_cues: "ink-stained fingers or earth-caked nails, eyes that settle rather than dart"
+    outlaw:
+      speech_pattern: "clipped, wary, challenges the frame of the question"
+      equipment_tendency: "practical and hidden — nothing that names a school, nothing that admits allegiance"
+      visual_cues: "cropped hair or no emblem, posture that calculates exits, a scar without a story"
+    caregiver:
+      speech_pattern: "warm, precise about what hurts, firm about what heals"
+      equipment_tendency: "healer's satchel, warm traveling robes, medicinal herbs and binding cloth"
+      visual_cues: "unhurried hands, eyes that inventory injury before greeting, worn soles"
+    ruler:
+      speech_pattern: "formal, economical, expects to be followed without demanding it"
+      equipment_tendency: "quality weapons with a school's insignia, court dress adapted for the road"
+      visual_cues: "upright bearing, deliberate breath, the stillness of someone who commands rooms"
+    explorer:
+      speech_pattern: "eager, asks the second question before the first is answered"
+      equipment_tendency: "travel pack, maps of contested terrain, emergency rations"
+      visual_cues: "sun-darkened skin, lean build, gaze that clocks landmarks before faces"
+    magician:
+      speech_pattern: "precise, interrupts to correct, uses element names as nouns and verbs"
+      equipment_tendency: "focus object aligned to element, annotated sutras, reagent pouch"
+      visual_cues: "faint elemental signature — warmth, damp, earthen smell, a drift of air"
+    artist:
+      speech_pattern: "observational, metaphor from movement and form, emotionally present"
+      equipment_tendency: "tools of craft alongside weapons — brush, gourd flute, calligraphy set"
+      visual_cues: "graceful economy of motion, callused fingertips of two disciplines, distracted gaze"
+    innocent:
+      speech_pattern: "earnest, asks the question the trained eye stopped seeing"
+      equipment_tendency: "simple training gear, a gift from a teacher or family member"
+      visual_cues: "open posture, wide attention, hands not yet sure where to rest"
+    lover:
+      speech_pattern: "attentive, remembers names and histories, speaks through connection"
+      equipment_tendency: "a token from someone they protect, practical clothes kept presentable"
+      visual_cues: "expressive face, unhurried movement, warmth that precedes an introduction"
+    jester:
+      speech_pattern: "quick, misdirects with humor, turns gravity into footwork"
+      equipment_tendency: "nothing that announces itself — hidden advantages, unpredictable kit"
+      visual_cues: "animated gestures, a grin held just past comfort, movement that looks like play"
+    everyman:
+      speech_pattern: "plain, local idiom, no performance of tradition"
+      equipment_tendency: "practical and unadorned — whatever works, nothing borrowed from ceremony"
+      visual_cues: "unremarkable build, tired competence, hands built by repetition not theory"
+
+  rpg_roles:
+    tank:
+      fallback_name: "Iron Root"
+    dps:
+      fallback_name: "Strike Form"
+    control:
+      fallback_name: "Flow Bender"
+    healer:
+      fallback_name: "Restoration Hand"
+    stealth:
+      fallback_name: "Wind Step"
+    support:
+      fallback_name: "Harmony Anchor"
+    jack_of_all_trades:
+      fallback_name: "Open Form"
+
+# NPC roles available in this genre (all 9 enabled)
+npc_roles_available:
+  - mentor
+  - herald
+  - shadow
+  - threshold
+  - host
+  - artisan
+  - authority
+  - victim
+  - mook
