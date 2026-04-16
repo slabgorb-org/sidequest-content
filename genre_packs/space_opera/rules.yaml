@@ -303,11 +303,26 @@ confrontations:
       starting: 60
       threshold_low: 0
     beats:
-      - id: engage
-        label: Engage
+      - id: straight
+        label: Throttle Up
+        metric_delta: 5
+        stat_check: Reflex
+        narrator_hint: Hold vector. Engines at full burn. Recover energy.
+      - id: bank
+        label: Break Right
         metric_delta: -5
         stat_check: Reflex
-        narrator_hint: The merge — both ships commit to their maneuvers.
+        narrator_hint: Hard starboard break. Costs energy, breaks the merge geometry.
+      - id: loop
+        label: Vertical Reversal
+        metric_delta: -30
+        stat_check: Reflex
+        narrator_hint: Full vertical loop — catch them from behind on the exit.
+      - id: kill_rotation
+        label: Kill Rotation
+        metric_delta: -5
+        stat_check: Reflex
+        narrator_hint: Flip 180 on attitude jets. Back-shot on inertia.
     interaction_table:
       _from: dogfight/interactions_mvp.yaml
     mood: combat
