@@ -1,12 +1,29 @@
 /* Elemental Harmony — misty scroll, shrine lantern light, brushstroke ink */
 
-:root {
+:root[data-genre] {
+  /* Genre identity */
   --primary: #9E3520;
   --secondary: #1F5038;
   --accent: #B8962E;
   --background: #EEEEF5;
   --surface: #DDE0EC;
   --text: #1A1A2E;
+
+  /* Tailwind tokens */
+  --foreground: #1A1A2E;
+  --card: #DDE0EC;
+  --card-foreground: #1A1A2E;
+  --popover: #DDE0EC;
+  --popover-foreground: #1A1A2E;
+  --primary-foreground: #EEEEF5;
+  --secondary-foreground: #1A1A2E;
+  --muted: #DDE0EC;
+  --muted-foreground: #7C7D8D;
+  --accent-foreground: #1A1A2E;
+  --border: #DDE0EC;
+  --input: #DDE0EC;
+  --ring: #B8962E;
+  --destructive: oklch(0.704 0.191 22.216);
 }
 
 @font-face {
@@ -24,7 +41,7 @@ body::before {
     /* Soft lavender mist at edges */
     radial-gradient(ellipse at center, transparent 50%, rgba(160, 155, 180, 0.15) 100%);
   filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E#n");
-  mix-blend-mode: multiply;
+  mix-blend-mode: overlay;
   pointer-events: none;
   z-index: 0;
 }
