@@ -1,0 +1,172 @@
+- name: Perault
+  summary: "Inheritor aristocracy — baroque, geas-bound, old blood"
+  description: >-
+    The houses who carry covenants their ancestors signed generations
+    ago. Names are long, melodic, and often include the honorifics of
+    inherited debt. Every Perault child learns which pact they were
+    born into before they learn to read.
+  slots:
+    given_name:
+      corpora:
+        - corpus: french.txt
+          weight: 0.7
+        - corpus: polish.txt
+          weight: 0.3
+      lookback: 3
+    family_name:
+      corpora:
+        - corpus: french.txt
+          weight: 0.6
+        - corpus: polish.txt
+          weight: 0.4
+      lookback: 3
+    honorific:
+      word_list: [bound, owed, pledged, kept, heir, ninth, seventh, last]
+    place_noun:
+      word_list: [seat, house, vault, estate, court, demesne, holding, keep]
+    adjective:
+      word_list: [pale, waning, fallen, hollow, graven, unkept, slow, long]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{given_name} of House {family_name}"
+    - "{given_name} the {honorific}"
+    - "{given_name} {family_name}, {honorific} of the ledger"
+  place_patterns:
+    - "{adjective} {place_noun}"
+    - "{family_name} {place_noun}"
+    - "The {adjective} {place_noun} of {family_name}"
+
+- name: Kragmoor
+  summary: "Guild-trade thaumaturgists — industrial, wrought, craft-bound"
+  description: >-
+    The working-guild sorcerers and laborer-thaumaturges of the forge
+    quarters. Names are hard, short, and nearly always followed by a
+    craft-sign — the guild mark that says what they make and what
+    their making costs them. A Kragmoor introduces themselves by
+    trade before they introduce themselves by blood.
+  slots:
+    given_name:
+      corpora:
+        - corpus: polish.txt
+          weight: 0.6
+        - corpus: hungarian.txt
+          weight: 0.4
+      lookback: 2
+    craft_sign:
+      word_list: [wright, hammer, smelt, tally, scrive, brand, forge, leach, cant, flint, press, coil]
+    place_noun:
+      word_list: [works, quarter, yard, row, stacks, bellows, foundry, pits, gate, span]
+    adjective:
+      word_list: [iron, soot, brass, coal, wet, hot, scored, hammered, long, grim]
+  person_patterns:
+    - "{given_name} {craft_sign}"
+    - "{given_name} of the {craft_sign}s"
+    - "{given_name} the {craft_sign}"
+  place_patterns:
+    - "{adjective} {place_noun}"
+    - "{craft_sign}-{place_noun}"
+    - "The {adjective} {place_noun}"
+
+- name: Orvinnic
+  summary: "Covenant-people — their biology is a continuing pact"
+  description: >-
+    A people whose ancestors struck a bargain that is still being paid
+    with the bodies of every generation. They are not a race in the
+    old sense — they are a population whose physiology is a contract
+    still in force. Names are doubled in formal use, because every
+    Orvinnic child carries both the name they were given and the name
+    the pact gave them. One of those names should never be spoken in
+    the wrong room.
+  slots:
+    given_name:
+      corpora:
+        - corpus: finnish.txt
+          weight: 0.6
+        - corpus: swedish.txt
+          weight: 0.4
+      lookback: 3
+    bound_name:
+      corpora:
+        - corpus: finnish.txt
+          weight: 1.0
+      lookback: 4
+    place_noun:
+      word_list: [hollow, sanctum, grove, fold, hearth, circle, well, stone, stand]
+    adjective:
+      word_list: [bound, shared, patient, slow, held, changed, long-kept, quiet]
+  person_patterns:
+    - "{given_name}-{bound_name}"
+    - "{given_name} of the {bound_name} kin"
+    - "{given_name}, whose other name is {bound_name}"
+  place_patterns:
+    - "{adjective} {place_noun}"
+    - "The {place_noun} of the {bound_name}"
+
+- name: Astran
+  summary: "Clergy-officiant bureaucracy — priestly, liturgical, feeding the gods"
+  description: >-
+    The administrative priesthood of the feeding cults. An Astran is
+    not a prophet or a mystic — they are a clerk. They balance the
+    ledgers of sacrifice, supervise tithes, and keep the records that
+    prove the god was fed this month. Their names are half-Latin,
+    half-liturgical, and always include a rite-rank indicating which
+    feeding they are qualified to administer.
+  slots:
+    given_name:
+      corpora:
+        - corpus: french.txt
+          weight: 0.5
+        - corpus: swedish.txt
+          weight: 0.5
+      lookback: 3
+    rite_rank:
+      word_list: [first, second, third, fourth, fifth, sixth, lesser, greater, morning, evening]
+    rite_name:
+      word_list: [feeding, offering, tally, watch, vigil, rite, hour, breath, naming, ledger]
+    place_noun:
+      word_list: [temple, precinct, altar, nave, vault, scriptorium, cellarium, rood, sanctum]
+    adjective:
+      word_list: [cold, quiet, clean, marked, fasted, sated, pale, slow, kept]
+  person_patterns:
+    - "{given_name} of the {rite_rank} {rite_name}"
+    - "{given_name}, {rite_rank} of the {rite_name}"
+    - "{given_name} the {rite_rank}"
+  place_patterns:
+    - "{adjective} {place_noun}"
+    - "The {rite_name}-{place_noun}"
+    - "{place_noun} of the {rite_rank} {rite_name}"
+
+- name: Thessil
+  summary: "Stratum remnant — descendants of a buried civilization still paying its contract"
+  description: >-
+    A diminished people descended from one of the civilizations older
+    than history. Their ancestors signed something that is still in
+    the bedrock, and the Thessil live on the slow edge of that older
+    debt. They speak a language no one else understands properly, use
+    names with more syllables than courtesy permits, and seem to know
+    things about certain ruins that no one has told them.
+  slots:
+    given_name:
+      corpora:
+        - corpus: hungarian.txt
+          weight: 0.5
+        - corpus: finnish.txt
+          weight: 0.5
+      lookback: 4
+    stem_name:
+      corpora:
+        - corpus: hungarian.txt
+          weight: 1.0
+      lookback: 4
+    place_noun:
+      word_list: [stones, drift, bones, road, march, reach, vigil, silt, teeth, sleepers]
+    adjective:
+      word_list: [buried, forgotten, older, waking, slow, patient, deep, un-named, first]
+  person_patterns:
+    - "{given_name} of the {stem_name}"
+    - "{given_name}-of-{stem_name}"
+    - "{stem_name}'s {given_name}"
+  place_patterns:
+    - "{adjective} {place_noun}"
+    - "The {place_noun} of {stem_name}"
+    - "The {adjective} {place_noun} beneath {stem_name}"

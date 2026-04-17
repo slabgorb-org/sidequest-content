@@ -1,0 +1,536 @@
+world_name: Evrópí
+starting_region: egzami_frontier
+navigation_mode: region
+
+map_style: >-
+  Hand-drawn antique continental map on cream vellum — ink
+  crosshatching, compass rose in the northeast corner, cartographic
+  cartouches at each region label, sepia ink with faded red accents
+  for political borders, a drowned-ruin iconography for Tismenni
+  sites, tiny gull-ship sketches on the Řeknu trade routes, the
+  continent oriented with the Klas Steppes to the west and the
+  Sabulous Islands scattered east. Style reference: seventeenth-
+  century European continental maps.
+map_resolution: [1280, 1024]
+
+regions:
+  # ──────────────────────────────────────────────────────────────
+  # Klas Steppes — Aldkin free pastoralists
+  # ──────────────────────────────────────────────────────────────
+  klas_steppes:
+    name: The Klas Steppes
+    summary: "Broad western grasslands — Aldkin tribes, Anta horses, the Herdsman's weather"
+    description: >-
+      An endless temperate grassland west of the river Jälv, open
+      to the sky from horizon to horizon. The Aldkin tribes move
+      their herds across the Klas through summer and winter
+      pastures under the Herdsman's weather — following rain,
+      grass, and Njörkte guidance. The only permanent structure
+      in all the steppes is the Epäässä, a neutral peace-ground
+      where all tribes meet to trade, resolve disputes, and
+      forbid violence on pain of death. The air is clean, the
+      horses are black, and a traveller can ride for a week
+      without seeing a wall.
+    terrain: steppe
+    adjacent: [epaassa_townhill, egzami_frontier]
+    tags: [free, pastoral, nomadic]
+
+  epaassa_townhill:
+    name: Epäässä (the Townhill)
+    summary: "Aldkin neutral peace-ground — the only permanent structure in the Klas, violence punishable by death"
+    description: >-
+      The Aldkin Townhill — a low stone-and-turf settlement rising
+      out of the steppes, the only fixed point in Aldkin culture
+      and the only place in the Klas where outsiders are strictly
+      protected. Aldkin of all tribes are welcome. Trading quarters
+      have grown organically around the inner council-circle where
+      the Njörkte meet. Violence at Epäässä is punishable by death
+      — even drawing a weapon is a grave insult to the ancestor
+      spirits, and the punishment is enforced by the collective
+      will of every Aldkin present. Outsiders with Jabber can
+      manage business here. Outsiders who raise their voice usually
+      regret it.
+    terrain: settlement
+    adjacent: [klas_steppes]
+    tags: [neutral, sacred, trade]
+
+  # ──────────────────────────────────────────────────────────────
+  # Kingdom of Zkędzała — Zkęd authoritarian state
+  # ──────────────────────────────────────────────────────────────
+  egzami_frontier:
+    name: The Egzami Frontier
+    summary: "Forest-edge townships on the Waznoty road — including Upre, the starting location"
+    description: >-
+      The western edge of the Egzami forest where small frontier
+      townships cluster along the Waznoty road. Upre, a small
+      town ruled by a Gabra named Ebbe, sits at the forest's rim
+      and serves as the first Zkęd settlement most travellers
+      from the Klas encounter. The townships are poor, suspicious
+      of outsiders, and quietly run by whichever Wazdia informer
+      drew the local assignment. The Daggereyes bandit-assassins
+      plague the Waznoty on either side of Upre, making any
+      honest merchant's run a game of tithes and bribes. This is
+      where players enter Evrópí.
+    terrain: forest_frontier
+    adjacent: [klas_steppes, egzami_deep, zboznny_foothills]
+    tags: [frontier, starting_region, zkedzala]
+
+  egzami_deep:
+    name: The Deep Egzami
+    summary: "Interior of the zami forest — dense, dark, bandit-ridden, full of trees no outsider knows the names of"
+    description: >-
+      The interior of the Egzami forest — dense stands of zami
+      trees with arrowhead leaves and dark, pest-resistant wood,
+      crossed by a network of old Zkęd logger-trails that double
+      as smuggler routes. The canopy is so thick in places that
+      noon looks like dusk. The Daggereyes use the deep forest as
+      their base of operations, and the Wazdia uses the deep
+      forest as its unofficial disposal ground. Old Tismenni
+      ruins lie buried under the leaf-mulch in places no current
+      forester will go.
+    terrain: deep_forest
+    adjacent: [egzami_frontier, malach_river_port, wazan_capital, pakook_swamps, vaermm_reaches]
+    tags: [forest, dangerous, zkedzala]
+
+  wazan_capital:
+    name: Wazan (Capital of Zkędzała)
+    summary: "The Waz's court and the seat of the Wazdia — built by Waze Lody after the Pętu dynastic crisis"
+    description: >-
+      The capital of the Kingdom of Zkędzała, built by Waze Lody,
+      the Wysięce nímna Návají (Lady of the City), during a
+      dynastic shift that moved the court out of Pę centuries
+      ago. A walled city of cold stone and braided-iron gates,
+      Wazan is the seat of Waz Isku VIII and the nerve centre of
+      the Wazdia. The Waz's court holds audiences daily; the
+      Wazdia's offices hold them in the middle of the night. The
+      Widząn Zamzau maintains a hidden cell inside Wazan that
+      even the Wazdia has not yet found. The noble houses
+      (Zblášzed, Zężebyloz, Uzlůemar, Smrtvámi) keep town-seats
+      inside the walls, though only Zblášzed — the royal house —
+      still matters politically.
+    terrain: settlement
+    adjacent: [egzami_deep, malach_river_port, zboznny_foothills]
+    tags: [capital, authority, zkedzala]
+
+  malach_river_port:
+    name: Malach (the River Port)
+    summary: "Ancient Zkęd city on the Jälv; original seat of the Waz dynasty before the capital moved"
+    description: >-
+      An ancient Zkęd city on the Jälv, older than Wazan and
+      older than any surviving Zkęd ledger. Malach was the
+      original seat of the Waz dynasty — Zkęd na Iśvar, the
+      founder, ruled from here — and the city still keeps the
+      ruins of his throne-hall in its central district, now a
+      tax office. Malach is the inland terminus of the Jälv river
+      trade, handling zami wood, uděl grain, and slaves bound
+      downstream for Pę. Auteny, the legendary queen who
+      betrayed her husband Zamzau, was imprisoned and died in
+      the dungeons beneath Malach.
+    terrain: settlement
+    adjacent: [egzami_deep, wazan_capital, pe_port]
+    tags: [port, river, historical, zkedzala]
+
+  pe_port:
+    name: Pę (the Ocean Port)
+    summary: "Zkęd ocean port on the Řeknu — slave markets, the Wujasjav mage guild, the tumbledown Zypičkyvaj district"
+    description: >-
+      The great ocean port of Zkędzała on the Řeknu ocean, at the
+      mouth of the Jälv. Pę is a major city in three overlapping
+      layers: the civic district of Těgent (the Hill of Time),
+      where the Návajíaim mayor and the Sięcej city council meet
+      on a hill crowned by a sundial placed there by a forgotten
+      race; the nobles' estates of Věodność Celazmatko in the
+      northern moors, where Zkęd overseers whip Waterfolk and
+      Pakook`rook slaves at work on the estates; and the
+      tumbledown port district of Zypičkyvaj, a shantytown of
+      cantilevered architecture leaning out over the Jälv, where
+      free Pakook`rook and Waterfolk form a higher percentage of
+      the population and one watches one's back. The Wujasjav
+      mage guild holds its high hall near the docks. The slave
+      markets run daily.
+    terrain: settlement
+    adjacent: [malach_river_port, zypicky_shore, reknu_coast]
+    tags: [port, ocean, slave_market, zkedzala]
+
+  # ──────────────────────────────────────────────────────────────
+  # Contested border — Zbóźny Mountains
+  # ──────────────────────────────────────────────────────────────
+  zboznny_foothills:
+    name: The Zbóźny Foothills
+    summary: "Contested north slope of the Zbóźny — Zkęd watch-forts above, Mistos raiders below, Vaermm holds in the rocks"
+    description: >-
+      The northern foothills of the Zbóźny mountain range — the
+      contested border between the Kingdom of Zkędzała and the
+      Mistos heartland. Zkęd watch-forts hold the ridgelines and
+      Mistos raiders press up from the southern passes, with
+      Puppet Seats installed in the buffer-villages Waz Isku VIII
+      refuses to acknowledge have fallen. Vaermm holds are
+      scattered through the rocks — the marginal lands between
+      the empires are exactly where the Vaermm prefer to live,
+      and the Book-Checkers travel the foothill trails in small
+      impassive groups. Reniksnad grows wild here in certain
+      hidden glens.
+    terrain: mountains
+    adjacent: [egzami_frontier, wazan_capital, mistos_heartland, vaermm_reaches, ingurdios_mines, puppet_seats]
+    tags: [contested, border, dangerous]
+
+  ingurdios_mines:
+    name: The Ingurdios Mines
+    summary: "Mistos-run slave mines in the southern Zbóźny — Ingurdios labour, Mistos wardens, messianic underground"
+    description: >-
+      Forced-labour mines dug into the southern face of the
+      Zbóźny, operated by Mistos wardens and worked by the
+      Ingurdios — the people Mistos conquered so long ago that no
+      living Ingurdios remembers their original language or
+      culture. The shafts go deep, the air tastes of metal and
+      acid, and the Ingurdios sing old work-songs in accented
+      Trosse that their grandparents sang in the forbidden
+      tongue. The Last Ingurdios underground maintains its
+      messianic vigil here, waiting for the one who will speak
+      the dead language aloud in the shafts. Mistos wardens
+      consider the belief harmless. The mines produce iron,
+      copper, and the specific grade of silver that Mistos
+      smiths use to embroider officers' uniforms.
+    terrain: underground
+    adjacent: [zboznny_foothills, mistos_heartland]
+    tags: [slave_labour, alien_territory, mistos]
+
+  # ──────────────────────────────────────────────────────────────
+  # Mistos heartland — military junta
+  # ──────────────────────────────────────────────────────────────
+  mistos_heartland:
+    name: The Mistos Heartland
+    summary: "Red-and-black parade cities of the Mistos junta — military capital, puppet-state headquarters, beauty-inspections"
+    description: >-
+      The core territory of the Mistos junta, south of the Zbóźny
+      range. Parade-ground cities of white limestone and black
+      basalt, banners of red silk on every wall, statue-squares
+      where the most beautiful of every cohort stand preserved
+      in bronze. The General rules from a capital whose name
+      outsiders are not officially given — one learns it only by
+      rising high enough in Mistos service to be addressed by it.
+      Every able-bodied adult is in the Host; retirement is not a
+      meaningful concept. Beauty-inspections are conducted every
+      spring; the banished are marched to the Ingurdios mines
+      before the summer. Visitors to the heartland need letters
+      of introduction from an existing officer and are escorted
+      at all times.
+    terrain: settlement
+    adjacent: [zboznny_foothills, ingurdios_mines, puppet_seats]
+    tags: [authority, military, mistos]
+
+  puppet_seats:
+    name: The Puppet Seats
+    summary: "Mistos-installed buffer governments in conquered border-states along the southern Zbóźny"
+    description: >-
+      A belt of conquered buffer-states along the southern
+      Zbóźny foothills, each governed by a local ruler Mistos
+      installed after conquest and each watched over by a Mistos
+      Warden with a small garrison. The puppets keep most of the
+      local institutions running — the markets, the courts, the
+      temples — and answer to the General through their Warden
+      monthly. Waz Isku VIII refuses to publicly acknowledge
+      that the Puppet Seats were ever Zkęd territory. They were,
+      and in some memories still are.
+    terrain: settlement
+    adjacent: [mistos_heartland, zboznny_foothills]
+    tags: [puppet, occupied, mistos]
+
+  # ──────────────────────────────────────────────────────────────
+  # Marshes and swamps — enslaved free peoples
+  # ──────────────────────────────────────────────────────────────
+  hvoru_marshes:
+    name: The Hvoru Salt Marshes
+    summary: "Waterfolk home territory on the southeast coast — stilt-huts, domesticated eels, crane cavalry"
+    description: >-
+      The brackish salt marshes at the southeastern edge of
+      Zkędzała, where the Waterfolk keep their stilt-hut villages
+      raised above the waters and cultivate domesticated eels in
+      the estuaries below. Large domesticated cranes serve as
+      mounts for the patrolling fishers, striding through water
+      too deep for a human to wade. The air smells of brine and
+      eel-smoke. The Hvoru is officially part of Zkędzała — the
+      Zkęd claim to rule here and tax the Waterfolk accordingly —
+      but in practice the Wazdia sends agents only when slave
+      quotas run low. The Waterfolk are at war with the
+      Pakook`rook across the southern swamps.
+    terrain: wetland
+    adjacent: [reknu_coast, pakook_swamps, zypicky_shore]
+    tags: [enslaved, wetland, zypic]
+
+  pakook_swamps:
+    name: The Pakook Swamps
+    summary: "Deep freshwater swamps of the Pakook`rook — home of knotsong bards and reniksnad patches"
+    description: >-
+      Deep freshwater swamps south of the Egzami, home of the
+      Pakook`rook frog-humanoids and their knotsong culture. The
+      swamps are a maze of channels, reed-beds, and lilypad
+      mats, navigated by Pakook`rook pole-vault and by outsiders
+      at their own risk. Wild reniksnad grows in hidden patches
+      and is harvested by Wazdia contractors under Pakook`rook
+      protest. The Pakook`rook are at war with the Waterfolk,
+      though neither side remembers starting it. J`rook bards
+      inflate their throat-sacs and sing harmony-with-themselves
+      in the cooling evenings.
+    terrain: wetland
+    adjacent: [hvoru_marshes, egzami_deep]
+    tags: [enslaved, wetland, pakook]
+
+  zypicky_shore:
+    name: The Zypičky Shore
+    summary: "The long coast between Hvoru and Pę — mixed Waterfolk fishing settlements and Zkęd toll stations"
+    description: >-
+      The long sheltered coastline between the Hvoru marshes and
+      the port city of Pę — mixed fishing settlements where
+      Waterfolk villages sit uneasily beside Zkęd toll-stations
+      and the occasional Wazdia listening-post. Free Waterfolk
+      who haven't been caught yet work the nets here alongside
+      the officially-tolerated ones, and the tolerance is the
+      only thing keeping the whole shore from rising. Salt-drying
+      pans run in long lines down the beach during the summer.
+    terrain: coast
+    adjacent: [pe_port, hvoru_marshes]
+    tags: [coastal, mixed, zkedzala]
+
+  # ──────────────────────────────────────────────────────────────
+  # Vaermm reaches — scripture-totalitarian margins
+  # ──────────────────────────────────────────────────────────────
+  vaermm_reaches:
+    name: The Vaermm Reaches
+    summary: "Foothill scrublands east of Zkędzała — Vaermm holds, Book-checking halls, right-thinking silence"
+    description: >-
+      The marginal scrubland and foothills east of Zkędzała,
+      where the Egzami forest fades into dry uplands and the
+      rocks thicken toward the Zbóźny range. The Vaermm keep
+      their holds here — small stone settlements organised
+      around Book-checking halls and apprentice scriptoria.
+      A Vaermm hold has no tavern, no market square in the
+      outsider sense, and very little ambient conversation; the
+      ambient volume of a Vaermm settlement is permanently low
+      because non-mandatory talking is, by scripture, proscribed.
+      Visitors are received formally and briefly. A Vaermm trader
+      will conduct business in the minimum number of syllables.
+      The Reaches are never quite inside any empire, and the
+      Vaermm prefer it that way.
+    terrain: highland
+    adjacent: [zboznny_foothills, egzami_deep]
+    tags: [scripture_totalitarian, vaermm, marginal]
+
+  # ──────────────────────────────────────────────────────────────
+  # Ocean and islands — Jambiendo free traders
+  # ──────────────────────────────────────────────────────────────
+  reknu_coast:
+    name: The Řeknu Coast
+    summary: "The continental ocean coast north and east of Pę — shipping lanes, Jambiendo trade calls, Bladtrablo raid zones"
+    description: >-
+      The Zkęd coastline north and east of Pę, where the Řeknu
+      ocean meets the continent. The coast is rocky in places,
+      sandy in others, and lined with Zkęd watchtowers intended
+      to spot Bladtrablo undersea raids before they reach port.
+      Jambiendo gull-ships call at the smaller coves for
+      discreet spice trade the Wazdia would rather not know
+      about. Tismenni ruins sit on several of the headlands,
+      half-sunk by the Cataclysm.
+    terrain: coast
+    adjacent: [pe_port, hvoru_marshes, sabulous_islands]
+    tags: [coast, trade, zkedzala]
+
+  sabulous_islands:
+    name: The Sabulous Islands
+    summary: "Jambiendo home archipelago — gull-ship harbours, spice terraces, the iron mine on Rything Island"
+    description: >-
+      An archipelago of tropical-temperate islands in the eastern
+      Řeknu, home of the seafaring Jambiendo. Each island produces
+      a different spice, breadfruit, or tralbotura variant, and
+      the whole chain is woven together by gull-ship routes. The
+      Jambiendo have no formal capital — the Gull-Captains'
+      Compact meets annually on Rything Island, which also hosts
+      the only iron mine in the archipelago, a fact that makes
+      Rything strategically central in a culture otherwise
+      defiantly decentralised. Beaches echo year-round with the
+      pounding-log sound of tralbotura being beaten into fibre.
+    terrain: islands
+    adjacent: [reknu_coast, undersea_reefs]
+    tags: [free, trade, jambiendo]
+
+  undersea_reefs:
+    name: The Undersea Reefs
+    summary: "Bladtrablo coral-and-basalt cities around the volcanic vents of the Řeknu deep"
+    description: >-
+      The undersea territories of the Bladtrablo, beneath the
+      Sabulous Islands and extending west along the continental
+      shelf. Coral-and-basalt cities grow around volcanic vents
+      where Bladtrablo metallurgists forge steel in the heat of
+      the earth itself. Seaturtle-cavalry nobles patrol the
+      current-lanes between cities in elaborate saddles. The
+      Bladtrablo are blood enemies of the Jambiendo and raid
+      gull-ship lanes periodically. Outsiders — by definition
+      anyone without gills — cannot meaningfully visit without
+      magical assistance or Bladtrablo escort.
+    terrain: undersea
+    adjacent: [sabulous_islands]
+    tags: [free, undersea, bladtrablo]
+
+routes:
+  - from_id: klas_steppes
+    to_id: epaassa_townhill
+    name: "The Old Herd-Trail"
+    distance: medium
+    danger: safe
+    description: >-
+      The main riding-route across the Klas to the Townhill. Marked
+      by Aldkin cairns and Njörkte waymarks. Safe for outsiders
+      who carry no weapons and observe the peace.
+
+  - from_id: klas_steppes
+    to_id: egzami_frontier
+    name: "The Jälv Crossing"
+    distance: medium
+    danger: moderate
+    description: >-
+      The main crossing of the river Jälv from the Aldkin west
+      bank to the Zkęd east bank. Ferries run daily; Wazdia
+      informers watch both landings. Outsiders are inspected.
+
+  - from_id: egzami_frontier
+    to_id: egzami_deep
+    name: "The Waznoty Road"
+    distance: medium
+    danger: dangerous
+    description: >-
+      The main Zkęd road into the interior Egzami. The Daggereyes
+      bandits work this stretch continuously; Ebbe of Upre will
+      pay a gold per right hand brought back with the mark.
+
+  - from_id: egzami_deep
+    to_id: wazan_capital
+    name: "The King's Arrow"
+    distance: long
+    danger: moderate
+    description: >-
+      The straight-line road from the interior forest to the
+      capital, maintained by royal corvée. Wazdia patrols at
+      every waystation; travel papers required.
+
+  - from_id: egzami_deep
+    to_id: malach_river_port
+    name: "The Old Stone Road"
+    distance: medium
+    danger: moderate
+    description: >-
+      The ancient Tismenni-built stone road that still runs from
+      the interior Egzami to Malach. Worn smooth, bone-dry in
+      summer, passable in winter. Older than anything that uses it.
+
+  - from_id: malach_river_port
+    to_id: pe_port
+    name: "The Jälv Descent"
+    distance: long
+    danger: moderate
+    description: >-
+      The river route downstream from Malach to Pę. Zami-wood
+      rafts and grain-barges carry cargo; slave-galleys carry
+      Waterfolk and Pakook`rook to the Pę markets under the
+      Wazdia's discreet supervision.
+
+  - from_id: egzami_frontier
+    to_id: zboznny_foothills
+    name: "The Southern Pass"
+    distance: long
+    danger: dangerous
+    description: >-
+      The southern road from the Egzami frontier townships up
+      into the contested Zbóźny foothills. Wazdia watch-posts
+      thin out after the first day; Mistos raider activity
+      increases after the second.
+
+  - from_id: zboznny_foothills
+    to_id: mistos_heartland
+    name: "The Parade Road"
+    distance: long
+    danger: deadly
+    description: >-
+      The Mistos-built military highway from the contested
+      foothills south into the heartland. Wide, well-drained,
+      patrolled continuously by the Host. Outsiders without a
+      Mistos letter of introduction do not travel this road
+      alive.
+
+  - from_id: zboznny_foothills
+    to_id: ingurdios_mines
+    name: "The Shaft-Descent"
+    distance: short
+    danger: deadly
+    description: >-
+      The forced-labour route descending into the Ingurdios mines.
+      Mistos Wardens control access; no outsider enters without
+      explicit General's permission. Ingurdios messianic cells
+      maintain secret ways out that no one advertises.
+
+  - from_id: zboznny_foothills
+    to_id: vaermm_reaches
+    name: "The Silent Trail"
+    distance: medium
+    danger: moderate
+    description: >-
+      A worn footpath east from the Zbóźny foothills into the
+      Vaermm Reaches. Quiet — genuinely quiet, because talking on
+      this trail is considered off-script by the Vaermm walking
+      it. Outsiders are not forbidden, merely outnumbered.
+
+  - from_id: pe_port
+    to_id: hvoru_marshes
+    name: "The Eel-Road"
+    distance: medium
+    danger: moderate
+    description: >-
+      The coast road from Pę down along the Zypičky shore to the
+      Hvoru marshes. Zkęd toll-posts at every major crossing.
+      Waterfolk fishers move along it freely in daylight and
+      less freely at night.
+
+  - from_id: hvoru_marshes
+    to_id: pakook_swamps
+    name: "The Dividing Water"
+    distance: short
+    danger: dangerous
+    description: >-
+      The short but treacherous stretch of channels between the
+      salt marshes and the freshwater swamps where the two
+      enslaved peoples' war is fought. Both sides raid the other
+      across this water. Outsiders are targets for either.
+
+  - from_id: pe_port
+    to_id: sabulous_islands
+    name: "The Spice Run"
+    distance: long
+    danger: moderate
+    description: >-
+      The main Jambiendo gull-ship route from Pę east to the
+      Sabulous Islands — the most trafficked trade lane in the
+      Řeknu. Bladtrablo raids are uncommon but never zero.
+      Outsiders with the right papers and the right bribes can
+      book passage.
+
+  - from_id: sabulous_islands
+    to_id: undersea_reefs
+    name: "The Pearl Drop"
+    distance: short
+    danger: deadly
+    description: >-
+      The diving-route from the Sabulous shallows down into the
+      Bladtrablo reefs. No outsider survives this without
+      Bladtrablo escort and the specific magical preparations
+      the Wujasjav can provide at extortionate cost.
+
+  - from_id: egzami_deep
+    to_id: vaermm_reaches
+    name: "The Fade-Path"
+    distance: medium
+    danger: moderate
+    description: >-
+      The little-travelled route where the Egzami forest fades
+      into dry scrubland. The trees thin, the light brightens, and
+      at the tree-line a traveller encounters the first Vaermm
+      waymark — a stone with a single word in dwarf-script that
+      the Vaermm will not translate.

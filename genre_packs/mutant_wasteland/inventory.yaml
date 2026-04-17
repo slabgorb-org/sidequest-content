@@ -160,6 +160,90 @@ item_catalog:
     lore: Could be a weapon, a tool, or a fancy paperweight. Finding out is the adventure.
     narrative_weight: 0.7
 
+  # Playtest 2026-04-11: chargen artifact catalog entries.
+  # The mutant_wasteland chargen "The Thing You Found" step (char_creation.yaml
+  # `artifact` scene) gave players five artifact choices via `item_hint:` fields,
+  # but NONE of those ids existed in this catalog. Result: every artifact-bearing
+  # character (e.g., Vex with the Ancient Screen) had their artifact created via
+  # the inventory extractor's fallback path, which defaulted unknown items to
+  # `category: weapon`. Vex's datapad was showing under the `weapon` heading even
+  # though "she flicks the datapad at the humming gap" is a sensor-use action,
+  # not a strike. Adding all five entries with `category: tool` so the chargen
+  # → catalog lookup succeeds and the items land in the right inventory bucket.
+  #
+  # All five are tagged `[ancient, artifact]` so future taxonomy work (a
+  # dedicated `artifact` category, a "mysterious item" badge, etc.) has a single
+  # surface to grep. Per Keith's bug report: "It should be in `tool` or a
+  # dedicated `artifact` category, not `weapon`." `tool` is the existing
+  # category that best fits all five, especially since none of them are used
+  # to hit anything mechanically.
+
+  - id: datapad
+    name: Ancient Screen
+    description: "A flat glass rectangle that sometimes shows pictures of the old world. You can't control what it shows."
+    category: tool
+    value: 25
+    weight: 0.5
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, sensor, display]
+    lore: Pre-war glass that occasionally flickers awake with images of cities, faces, schematics. Vault Dwellers prize them for the fragments of lost knowledge they reveal.
+    narrative_weight: 0.6
+
+  - id: growth_wand
+    name: Growth Wand
+    description: "A humming metal rod that makes plants grow faster when you point it at them. The plants don't always grow right."
+    category: tool
+    value: 28
+    weight: 0.7
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, agricultural]
+    lore: Some kind of pre-war agritech relic. The plants it grows are sometimes useful, sometimes monstrous, sometimes both.
+    narrative_weight: 0.6
+
+  - id: purifier
+    name: Screaming Purifier
+    description: "A small box that purifies any liquid poured into it. The catch: it takes a day, and it screams while working."
+    category: tool
+    value: 35
+    weight: 1.0
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, water, survival]
+    lore: A box that makes any liquid drinkable. The scream — high, mechanical, almost a wail — is the cost of safe water in the wastes.
+    narrative_weight: 0.6
+
+  - id: power_glove
+    name: Power Glove
+    description: "A glove that makes your hand incredibly strong but only for about ten seconds. Then it needs to rest for an hour."
+    # Category: weapon (corrected during playtest 2026-04-11 audit). The
+    # other four chargen artifacts (datapad, growth_wand, purifier,
+    # mystery_compass) are tools because none of them hit anyone — Keith's
+    # rule. The Power Glove explicitly does: 10 seconds of crushing
+    # strength is a punch, a chain-rip, a hatch-tear. When combat resolution
+    # looks at the weapon slot, this is what should be there.
+    category: weapon
+    value: 32
+    weight: 1.0
+    rarity: rare
+    power_level: 2
+    tags: [ancient, artifact, augmentation, wearable, melee]
+    lore: A pre-war exo-glove with a battery cell that has somehow survived the centuries. Ten seconds of crushing strength then a full hour of useless cooldown. Tearing through a hatch, ripping a chain, breaking a jaw — short bursts only.
+    narrative_weight: 0.6
+
+  - id: mystery_compass
+    name: Mystery Compass
+    description: "A compass that doesn't point north. It points at something, but you haven't figured out what yet."
+    category: tool
+    value: 22
+    weight: 0.3
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, navigation, mysterious]
+    lore: The needle is always aligned to the same unknown referent. Some carriers say it's a person, some say a place, some say a future. The compass has no opinion.
+    narrative_weight: 0.6
+
 starting_equipment:
   Scavenger:
     - pipe_wrench
