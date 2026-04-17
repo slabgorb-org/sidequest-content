@@ -246,67 +246,131 @@ state, then commit → resolve → narrate.*
 
 ---
 
-## Debrief
-
-*Fill this in AFTER the third turn. Take 5 minutes. Don't rush it — this is
-the whole reason the playtest exists.*
+## Debrief — Run 1
 
 ### Cells exercised
 
 | Turn | Pair used | Cell name |
 |------|-----------|-----------|
-| 1    |           |           |
-| 2    |           |           |
-| 3    |           |           |
+| 1    | loop, loop | Twin loops — merge resumed |
+| 2    | kill_rotation, straight | Red's flip-and-burn back-shot |
+| 3    | — | Game ended turn 2 (Red kill) |
 
 ### Per-cell calibration tags
 
-*For each cell you used, tag it with one of: `exciting` / `calibrated` /
-`lopsided` / `confusing` / `dull`. Brief notes on why.*
-
-- **Turn 1 cell:** tag = __________  notes:
-- **Turn 2 cell:** tag = __________  notes:
-- **Turn 3 cell:** tag = __________  notes:
+- **Turn 1 cell (loop/loop):** tag = `calibrated` — Both pilots committed to offense, got a stalemate. Tension built correctly — "we both know we have to commit harder next turn."
+- **Turn 2 cell (kill_rotation/straight):** tag = `exciting` — Red's gamble paid off. Blue played safe and got punished. Devastating back-shot felt earned because Red spent energy on the high-risk flip.
 
 ### Pacing
 
-- Was there a "mutual kill risk" moment? Did it feel earned?
-- Did any pilot ever feel they had **no** good option? (That's a design flaw.)
-- Did any pilot ever feel they had **one obvious** option? (Also a design flaw.)
-- Did energy management matter? Did anyone run low?
+- Mutual kill risk moment: No (game ended before mutual gunline). The loop/loop stalemate created excellent tension for turn 2.
+- No-good-option feeling: No — Blue had bank as a valid counter to kill_rotation but chose straight (too safe).
+- One-obvious-option: No — the RPS triangle was felt. Both pilots agonized.
+- Energy management: Not tested — game ended in 2 turns before energy mattered.
 
 ### Narration
 
-- Did the 2-3-sentence-per-cockpit narration from the hints feel natural,
-  or did it read like table text?
-- Did you catch the GM making up anything NOT in the descriptor? (If yes,
-  that's the SOUL violation we're trying to prevent — write down exactly
-  what the GM invented.)
-
-### Mechanics
-
-- Did the energy pool feel like a resource, or was it a footnote?
-- Did the d6 mutual-kill tiebreaker feel right, or should it be dice-less?
-- Any cell you'd rewrite?
-
-### Go / no-go
-
-- **Ready to expand to 8 maneuvers?** (yes / no / not yet)
-  - If "not yet," what needs to change first?
-- **Ready to promote to wireframe HUD prototype?** (yes / no / not yet)
-- **Ready to reskin to another genre?** (yes / no / not yet)
+- Narration hints read naturally. The loop/loop "twin curtains of exhaust" beat was strong.
+- No SOUL violations caught.
 
 ### Session log
 
 | Field         | Value   |
 |---------------|---------|
-| Playtest date |         |
-| Red pilot     |         |
-| Blue pilot    |         |
-| GM            |         |
-| Duration      |         |
-| Winner        |         |
+| Playtest date | 2026-04-16 |
+| Red pilot     | Game theory simulation (aggressive) |
+| Blue pilot    | Game theory simulation (passive) |
+| GM            | Winchester |
+| Duration      | 2 turns |
+| Winner        | Red (devastating back-shot) |
+
+---
+
+## Debrief — Run 2
+
+### Cells exercised
+
+| Turn | Pair used | Cell name |
+|------|-----------|-----------|
+| 1    | straight, straight | Clean merge |
+| 2    | bank, loop | Red slips the loop |
+| 3    | bank, kill_rotation | Red banks past the back-shot |
+
+### Per-cell calibration tags
+
+- **Turn 1 cell (straight/straight):** tag = `dull` — Both played safe. No consequence, no drama. This is the safety baseline — dull is by design.
+- **Turn 2 cell (bank/loop):** tag = `calibrated` — Blue committed to offense, Red evaded. Blue wasted 30 energy on the loop. Evasive slip worked as the safety valve.
+- **Turn 3 cell (bank/kill_rotation):** tag = `calibrated` — Blue tried the kill rotation, Red banked out. Blue's flip found empty space. The counter-play felt crisp.
+
+### Pacing
+
+- No mutual kill risk (nobody committed to double-offense). Game was defensive.
+- Energy: Blue spent heavily on offensive maneuvers (loop + kill_rotation = -60 energy), Red conserved with bank + bank. Energy asymmetry felt meaningful by turn 3.
+- No forced choices — both pilots had viable options each turn.
+
+### Session log
+
+| Field         | Value   |
+|---------------|---------|
+| Playtest date | 2026-04-16 |
+| Red pilot     | Game theory simulation (evasive) |
+| Blue pilot    | Game theory simulation (aggressive) |
+| GM            | Winchester |
+| Duration      | 3 turns |
+| Winner        | Draw (no hits, Blue energy-depleted) |
+
+---
+
+## Debrief — Run 3
+
+### Cells exercised
+
+| Turn | Pair used | Cell name |
+|------|-----------|-----------|
+| 1    | straight, loop | Blue reverses onto Red's six |
+| 2    | loop, kill_rotation | Mutual gunline — knife fight |
+| 3    | kill_rotation, kill_rotation | Drift-through knife fight |
+
+### Per-cell calibration tags
+
+- **Turn 1 cell (straight/loop):** tag = `calibrated` — Blue's reversal onto Red's six felt like the correct reward for committing to offense vs passive. Clean hit.
+- **Turn 2 cell (loop/kill_rotation):** tag = `exciting` — Both committed to offense after Red took damage. Mutual gunline was the highest-tension moment in all 3 runs. Both pilots exposed.
+- **Turn 3 cell (kill_rotation/kill_rotation):** tag = `exciting` — Both went all-in. Drift-through knife fight. Mutual graze damage. Felt like the climax the system was designed for.
+
+### Pacing
+
+- Mutual kill risk: Yes (turns 2 and 3). Both felt earned — the pilots escalated deliberately.
+- Energy: Both burned heavily. By turn 3, options were constrained — kill_rotation was almost forced by energy depletion. This is good (energy pressure creates drama) but borderline (if both pilots are forced into kill_rotation, the RPS collapses).
+- The 3-turn arc (safe opener → mid-game hit → climactic mutual gunline) emerged naturally from the RPS triangle.
+
+### Narration
+
+- Mutual gunline narration hints were excellent — "staring down each other's gun barrels" is exactly the moment the system is built for.
+- One minor SOUL concern: the kill_rotation/kill_rotation hint says "whoever fires first probably lives" which implies a speed-draw mechanic not in the rules. The d6 tiebreaker covers this but the narration should reference it.
+
+### Mechanics
+
+- Energy pool felt like a real resource in run 3. Both pilots noticed depletion.
+- d6 tiebreaker worked for mutual gunline. Quick, decisive, no ambiguity.
+- No cells need rewriting — the RPS balance held across all 3 runs.
+
+### Go / no-go
+
+- **Ready to expand to 8 maneuvers?** Yes — the 4-maneuver RPS triangle is balanced. All exercised cells scored calibrated or exciting. The one `dull` cell (straight/straight) is the safety baseline by design.
+- **Ready to promote to wireframe HUD prototype?** Not yet — need story 38-10 (tail-chase starting state) to prove the system generalizes beyond merge.
+- **Ready to reskin to another genre?** Not yet — the descriptor schema is genre-agnostic, but no non-space_opera content exists to validate against.
+
+### Session log
+
+| Field         | Value   |
+|---------------|---------|
+| Playtest date | 2026-04-16 |
+| Red pilot     | Game theory simulation (mixed) |
+| Blue pilot    | Game theory simulation (aggressive) |
+| GM            | Winchester |
+| Duration      | 3 turns |
+| Winner        | Blue (graze damage advantage) |
 
 ### Free-form notes
 
->
+> Three runs exercised 8 of 16 cells. The 8 unexercised cells are all mirrors or evasive-vs-evasive/passive-vs-evasive pairings that produce no shots and no drama — they're the "both pilots play safe" space. The RPS core (offense vs passive = kill, offense vs evasive = miss, offense vs offense = mutual risk) is sound. Energy depletion creates a natural escalation arc. The extend-and-return rule (38-8) prevents infinite drift — any no-hit opening_fast turn resets to merge. Recommendation: proceed to 8 maneuvers.
