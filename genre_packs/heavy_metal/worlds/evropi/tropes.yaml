@@ -1,0 +1,401 @@
+# Evrópí — World Tropes
+#
+# Six world-level tropes mapped to the three-authoritarianisms spine
+# plus the free-peoples counter-currents. Each trope has passive
+# progression tied to keywords and escalation beats tied to named
+# NPCs and regions from the history.yaml chapter arc.
+
+- id: the_wazdia_eyes
+  name: The Wazdia Eyes
+  description: >-
+    The Zkęd secret police is watching. What begins as a single
+    local informer (Górzymi in Upre) escalates to the party being
+    on the Wazdia's active surveillance list, to an assassination
+    contract through the Daggereyes, to the kingdom-wide
+    description circulating among every Wazdia agent. Ndiziały
+    runs the operation, and Ndiziały is patient.
+  category: conflict
+  triggers:
+    - mentioning the Wazdia or the Daggereyes in public
+    - interfering with a Wazdia operation
+    - entering any Zkęd town without proper papers
+    - being seen with a Widząn Zamzau member
+  narrative_hints:
+    - A quiet man at the next table leaves without finishing his drink.
+    - A letter the party sent arrives at its destination already opened and resealed.
+    - A Daggereye's knife-tattoo glimpsed in a Wazan crowd and then gone.
+    - A stable-boy who asked too many questions about the party's horses cannot be found.
+  tension_level: 0.7
+  escalation:
+    - at: 0.25
+      event: >-
+        Górzymi of Upre quietly marks the party's description into
+        his ledger. The entry goes to Wazan by the next
+        grain-courier. Nothing in the party's day changes, but
+        something in Wazan has.
+      npcs_involved: [Górzymi]
+      stakes: The first entry in a file that will not get smaller.
+    - at: 0.5
+      event: >-
+        A Wazdia field agent approaches the party in Wazan with a
+        polite invitation to dinner that is not possible to decline
+        gracefully. The dinner is an interview. The interviewer
+        smiles with his eyes closed.
+      npcs_involved: ["Wazdia Field Agent"]
+      stakes: The party is on the active surveillance list. An active surveillance list does not shrink.
+    - at: 0.75
+      event: >-
+        Srárný Fyzioloniązka personally receives a contract from
+        the Wazdia with the party's names and descriptions. The
+        Daggereyes will be paid a gold per right hand. The contract
+        is open-ended. It will not be rescinded.
+      npcs_involved: ["Srárný Fyzioloniązka", "Ndiziały Zblášzed"]
+      stakes: The assassination is no longer hypothetical. It is scheduled for whenever is convenient.
+    - at: 1.0
+      event: >-
+        Ndiziały himself takes an interest in the party and appears
+        at a public court function to observe them personally. His
+        attention is a finite resource, and the party has it now.
+      npcs_involved: ["Ndiziały Zblášzed"]
+      stakes: The youngest heir's eye is on the party. This does not typically end well for the observed.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.020
+    accelerators: [wazdia, daggereye, informer, papers, spy, secret, coded, letter]
+    decelerators: [hide, underground, disguise, alibi, elsewhere]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+  tags: [zkedzala, authoritarian, surveillance, political]
+
+- id: the_zygwa_sought
+  name: The Zygwa Sought
+  description: >-
+    The Widząn Zamzau's centuries-long hunt for the lost heir of
+    Zamzau, the betrayed Waz whose bloodline was sworn by his wife
+    Auteny's treachery. The Widząn believes the Zygwa — the true
+    king — exists, and that finding him will overthrow Pętu's line
+    and restore the rightful throne. Their search has been quiet
+    for generations. It is not quiet now.
+  category: revelation
+  triggers:
+    - mentioning Zamzau, Auteny, or Pętu na Renwaz
+    - reading Zkęd genealogical records
+    - entering any Widząn safehouse
+    - investigating the Mutallamus
+  narrative_hints:
+    - An old man at an inn quietly hums a song about Zamzau and does not explain it.
+    - A copied fragment of a genealogy is slipped into the party's belongings by a passing stranger.
+    - A young Zkęd in Wazan asks the party whether they believe a true king could still walk the earth.
+    - Auteny's tomb beneath Malach has been visited recently. The guards do not know by whom.
+  tension_level: 0.65
+  escalation:
+    - at: 0.25
+      event: >-
+        A Widząn Seeker of the Heir approaches the party in Wazan
+        with a small courier task. Completing it earns a follow-up
+        invitation. The Widząn are desperate enough, this season,
+        to consider non-Zkęd as Seekers — a first in the cult's
+        history.
+      npcs_involved: ["Widząn Recruiter"]
+      stakes: First formal contact. The Widząn has decided the party might be trustworthy.
+    - at: 0.5
+      event: >-
+        A genealogy fragment naming a possible Zamzau descendant
+        is discovered. The same fragment is also in the Wazdia's
+        hands. The race to reach the descendant begins.
+      npcs_involved: ["Widząn Seeker", "Ndiziały Zblášzed"]
+      stakes: Two rival organisations are converging on a single name.
+    - at: 0.75
+      event: >-
+        A Zygwa candidate is brought to a Widząn safehouse in
+        Wazan — a young person whose parents' parents may have
+        been Zamzau's grandchildren, or may have been ordinary
+        Zkęd peasants. The Widząn believes. The party may know
+        better.
+      npcs_involved: ["The Zygwa candidate"]
+      stakes: The Widząn is about to commit to a rebellion based on this candidate. The party holds the truth.
+    - at: 1.0
+      event: >-
+        The Widząn publicly acclaims the Zygwa candidate as the
+        true heir. Wazan erupts. The Wazdia moves. Waz Isku VIII
+        is in no condition to rule. The succession is about to
+        be decided in the streets, not the court.
+      npcs_involved: ["The Zygwa candidate", "the Widząn Zamzau"]
+      stakes: The succession of Zkędzała. The survival of the Widząn. The shape of the kingdom.
+  passive_progression:
+    rate_per_turn: 0.006
+    rate_per_day: 0.015
+    accelerators: [zamzau, auteny, widzan, zygwa, heir, genealogy, pętu, mutallamus]
+    decelerators: [forget, bury, deny, orthodoxy, isku]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+  tags: [zkedzala, politics, rebellion, messianic]
+
+- id: the_mistos_tide
+  name: The Mistos Tide
+  description: >-
+    The Mistos junta is pressing north from the Zbóźny foothills,
+    installing Puppet Seats in conquered buffer-villages that Waz
+    Isku VIII refuses to publicly acknowledge have fallen. Their
+    beauty-eugenic logic and parade-ground conquest march forward
+    one village at a time. The General is waiting to march
+    personally until Wazan is vulnerable.
+  category: conflict
+  triggers:
+    - entering any Zkęd border township
+    - encountering red-and-black silk uniforms
+    - investigating Mistos puppet-state politics
+    - asking about the Ingurdios mines
+  narrative_hints:
+    - A refugee family from a border village asks the party for directions north and will not say why.
+    - A Zkęd merchant refuses to travel the Southern Pass and will not explain.
+    - "A new banner flies over a distant hilltop village — red and black over the old Zkęd coat of arms."
+    - A Mistos officer's letter of introduction is offered to the party as casually as a business card.
+  tension_level: 0.75
+  escalation:
+    - at: 0.2
+      event: >-
+        The second Mistos war-processor goes fully online. Iron,
+        copper, and silver output from the Ingurdios mines doubles.
+        The puppet-seat of Smrtvámi-na-Ziej formalises its allegiance.
+      npcs_involved: ["Warden Vragul-Krvstan"]
+      stakes: The Mistos war machine is ready. It is not yet moving.
+    - at: 0.5
+      event: >-
+        A third Zkęd buffer-village has fallen. Waz Isku VIII
+        refuses to acknowledge it publicly. Zkęd refugees begin
+        reaching Upre. The Daggereyes move to intercept them
+        before the Wazdia can be embarrassed.
+      npcs_involved: ["Warden Vragul-Krvstan", "Srárný Fyzioloniązka"]
+      stakes: The Zkęd denial is unsustainable. The kingdom's southern border is effectively gone.
+    - at: 0.75
+      event: >-
+        The Mistos General personally takes the field. The Host
+        marches north in parade formation at twenty miles a day.
+        The Zbóźny pass is crossed. The Zkęd southern garrison
+        holds for eleven days and then does not.
+      npcs_involved: ["The Mistos General"]
+      stakes: Wazan itself is now within the Host's marching range.
+    - at: 1.0
+      event: >-
+        The Mistos General is three days from Wazan. The Zkęd
+        court is holding emergency sessions the Wazdia is not
+        invited to. Isku VIII is on his deathbed. The party is
+        in a position to tip the outcome of the siege.
+      npcs_involved: ["The Mistos General", "Waz Isku VIII"]
+      stakes: Whether Wazan falls, resists, or is delivered into other hands entirely.
+  passive_progression:
+    rate_per_turn: 0.009
+    rate_per_day: 0.022
+    accelerators: [mistos, general, parade, host, puppet, red, black, silk, beauty, eugenic, ingurdios]
+    decelerators: [resist, coalition, northern, winter, supply]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+  tags: [mistos, military, conquest, authoritarian]
+
+- id: the_book_tightens
+  name: The Book Tightens
+  description: >-
+    The Vaermm Book-Checkers have begun a new policy of "reviewing"
+    foreign travellers' speech for deviations from right-thinking
+    and offering "corrections" that are difficult to refuse without
+    violence. The Book of Aest is tightening its grip on the
+    marginal lands, and for the first time in the scripture's
+    memory an intentional error has been introduced into an
+    apprentice's coming-of-age copy — an error that may or may
+    not propagate, depending on whether a Checker catches it.
+  category: revelation
+  triggers:
+    - speaking casually in a Vaermm hold
+    - refusing a hand-copied Book of Aest offered as a gift
+    - questioning Aest's doctrine of right-thinking
+    - entering a Book-checking hall during a ceremony
+  narrative_hints:
+    - A Vaermm trader at a market corrects the party's word-choice and waits patiently for thanks.
+    - A Book-Checker watches the party's inn room from the road for an hour without entering or speaking.
+    - A Vaermm child is being tested on the second tenet of the Book in a foothill courtyard the party is passing through.
+    - A page of the Book of Aest is found loose in a mountain stream, the ink still running.
+  tension_level: 0.6
+  escalation:
+    - at: 0.25
+      event: >-
+        A Vaermm elder offers the party a hand-copied Book of Aest
+        as a "correction." Refusing it politely is a formal offence
+        against right-thinking. Accepting it creates a ledger of
+        obligation the party does not fully understand.
+      npcs_involved: ["Tenth-Reader Getenafthten"]
+      stakes: First Vaermm formal correction. The party is now a Book case file.
+    - at: 0.5
+      event: >-
+        A young Vaermm apprentice introduces a single intentional
+        error into her coming-of-age Book copy: a word that shifts
+        the meaning of one of the opening tenets from "those among
+        the right-thinking" to something the Book originally
+        forbade. The error is not caught in her ceremony.
+      npcs_involved: ["The Intentional Error"]
+      stakes: A corruption in the scripture itself. Every apprentice who copies from this Book will copy the error.
+    - at: 0.75
+      event: >-
+        The error has propagated through three apprentice copies.
+        A senior Checker notices the second-generation deviation
+        and traces it back. The apprentice who started it is
+        brought before the Book-checking hall for what will, in
+        Vaermm social terms, be an execution.
+      npcs_involved: ["Tenth-Reader Getenafthten", "The Intentional Error"]
+      stakes: The corruption is discovered. The question is whether it has spread far enough to matter.
+    - at: 1.0
+      event: >-
+        The intentional error has propagated through an entire
+        generation of new Books across multiple Vaermm holds. The
+        Book-Checkers can no longer quietly suppress it without
+        burning a year's worth of coming-of-age copies. The Book's
+        closed logic is cracking along its single fault-line.
+      npcs_involved: ["Tenth-Reader Getenafthten"]
+      stakes: The first original thought permitted by the Book in ten thousand years. The scripture's grip on the Vaermm loosens.
+  passive_progression:
+    rate_per_turn: 0.006
+    rate_per_day: 0.018
+    accelerators: [vaermm, book, aest, right-thinking, mandatory, correction, checker, scripture]
+    decelerators: [error, question, original, apprentice, wrong-thinking]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.04
+  tags: [vaermm, scripture, totalitarian, marginal]
+
+- id: the_dust_speaks
+  name: The Dust Speaks
+  description: >-
+    The Land of Dust — the afterlife realm bordered by the Chalky
+    Cliffs — is thinning at the Tismenni ruin sites. The dead of
+    the drowned empire are beginning to speak to sleeping scholars
+    and, eventually, to waking ones. They are asking for something
+    specific. What they are asking for has been getting clearer.
+  category: revelation
+  triggers:
+    - sleeping near a Tismenni ruin
+    - reading Tismenni scholarly fragments aloud
+    - visiting the Chalky Cliffs
+    - speaking aloud the name of someone long dead
+  narrative_hints:
+    - A scholar at the Wujasjav wakes from sleep with a Tismenni phrase on her lips she does not remember learning.
+    - Jambiendo gull-ship captains report hearing voices from the drowned ampitheatre on calm nights.
+    - A dog in Upre barks at an empty corner of a Tismenni ruin for an entire afternoon.
+    - A dead language's syllables appear on a fogged window in the morning, already fading.
+  tension_level: 0.55
+  escalation:
+    - at: 0.25
+      event: >-
+        Scholar Malikka of Pę is the first non-mystic to hear the
+        Tismenni dead. She seeks out the party because she has no
+        one else to tell. Her dreams are clearer each night. The
+        dead are asking a question she does not yet understand.
+      npcs_involved: ["Scholar Malikka of Pę"]
+      stakes: The boundary is thinning. The question is being asked to the living.
+    - at: 0.5
+      event: >-
+        Multiple scholars across the continent begin hearing
+        Tismenni voices in their dreams. A Wujasjav master receives
+        a direct communication from the drowned empire, which the
+        guild suppresses immediately. A Njörkte in the Klas hears
+        the same voices and reports them openly. The Herdsman's
+        weather at Epäässä turns unseasonably still.
+      npcs_involved: ["Njörkte Bädd Hanga-of-the-Mäinkin", "Scholar Malikka of Pę"]
+      stakes: The thinning is no longer local. The dead empire is speaking across the continent.
+    - at: 0.75
+      event: >-
+        The Tismenni dead at the drowned ampitheatre off the Řeknu
+        coast can now be heard by any Jambiendo gull-ship at low
+        tide. Their message is clearer: they want the name of the
+        Not to be spoken aloud by a living person in a specific
+        place.
+      npcs_involved: []
+      stakes: The forgetting-pact is threatened. The dead want the name back in the world.
+    - at: 1.0
+      event: >-
+        A living scholar — either Malikka, a Njörkte, or the
+        party itself — stands at the Chalky Cliffs and is given the
+        name of the Not by the Tismenni dead. The name is
+        something specific. Speaking it aloud will have
+        consequences the speakers do not yet understand. The
+        Tismenni dead, having delivered the name, will ask for
+        something in exchange.
+      npcs_involved: ["the Tismenni dead"]
+      stakes: The last missing piece of continental history. Knowledge that was forbidden is offered. The price is to be named.
+  passive_progression:
+    rate_per_turn: 0.005
+    rate_per_day: 0.012
+    accelerators: [tismenni, dust, dead, ruin, language, scholar, dream, drowned, chalky, cliff]
+    decelerators: [silence, forget, suppress, sleep, bury]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+  tags: [tismenni, metaphysics, mystery, slow-burn]
+
+- id: the_slave_markets_break
+  name: The Slave Markets Break
+  description: >-
+    The reniksnad-drugged slave economy of Pę is under converging
+    pressure — the Waterfolk and Pakook`rook underground have
+    paused their ancestral war for the first time in generations,
+    the Ingurdios messianic underground has named a figure, and
+    the three oppressed peoples are beginning to recognise each
+    other across the Wazdia's carefully-maintained divisions. Pę's
+    slave markets have been open daily for centuries. They are
+    about to close, one way or another.
+  category: conflict
+  triggers:
+    - entering the Pę slave markets
+    - encountering free Waterfolk or Pakook`rook in Zypičkyvaj
+    - finding reniksnad being supplied or smuggled
+    - asking about Ingurdios mine conditions
+  narrative_hints:
+    - A Waterfolk fisher and a Pakook`rook bard speak quietly together in Zypičkyvaj and do not look up when the party passes.
+    - A reniksnad shipment has gone missing between Malach and Pę with no survivors and no obvious signs of struggle.
+    - An Ingurdios woman in the Mistos mines is overheard singing a song in accented Trosse whose melody is Pakook.
+    - The Pę slave market has reduced its daily operation by one hour without explanation.
+  tension_level: 0.65
+  escalation:
+    - at: 0.2
+      event: >-
+        The Waterfolk and Pakook`rook underground declare a quiet
+        ceasefire for the first time in living memory. The Wazdia
+        notices but cannot identify who brokered it. The Daggereyes
+        are assigned to disrupt it.
+      npcs_involved: []
+      stakes: The two enslaved peoples are no longer fighting each other. The Wazdia's divide-and-rule is cracking.
+    - at: 0.5
+      event: >-
+        The Ingurdios messianic underground has named a figure —
+        the Nameless Ingurdios in the deep shaft — and begun
+        preparation for the naming ceremony. Mistos Wardens notice
+        unusual pick-rhythms in the mines but do not yet read the
+        pattern.
+      npcs_involved: ["The Nameless Ingurdios"]
+      stakes: The Ingurdios are ready. The question is when.
+    - at: 0.75
+      event: >-
+        The Pę slave markets experience their first successful
+        mass escape in three generations. Reniksnad supply is
+        disrupted. Free Waterfolk and Pakook`rook appear in the
+        Zypičkyvaj district in numbers the Wazdia cannot account
+        for. The Wujasjav is asked to work a divination to locate
+        them; the divination fails in a way that suggests Ingurdios
+        involvement.
+      npcs_involved: []
+      stakes: The slave economy is bleeding. The market may close by accident.
+    - at: 1.0
+      event: >-
+        The three enslaved peoples — Waterfolk, Pakook`rook,
+        Ingurdios — openly coordinate for the first time in
+        recorded history. The Nameless Ingurdios speaks the old
+        language aloud in the deep shaft. The Pę slave markets
+        close. The Wazdia's control of its enslaved labour
+        collapses from the inside.
+      npcs_involved: ["The Nameless Ingurdios"]
+      stakes: The end of Zkęd slave economy. The free peoples of Evrópí are no longer divided into three ignorable groups.
+  passive_progression:
+    rate_per_turn: 0.007
+    rate_per_day: 0.018
+    accelerators: [slave, reniksnad, waterfolk, pakook, ingurdios, mine, messiah, free, ceasefire]
+    decelerators: [market, tariff, wazdia, divide, patrol]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+  tags: [zkedzala, mistos, rebellion, oppressed, political]

@@ -1,0 +1,169 @@
+# archetype_constraints.yaml — caverns_and_claudes
+# Defines valid Jungian x RPG Role pairings for this genre
+# common: chargen default, NPC gen draws most
+# uncommon: shown if player explores, NPC diversity
+# rare: allowed but unusual, memorable characters
+# forbidden: genuinely nonsensical for this genre
+#
+# Caverns & Claudes is classic dungeon-crawl D&D — the genre that codified
+# all of these archetypes in the first place. Almost every combination is
+# valid. The dungeon does not care about your archetype; it kills everyone
+# equally. Very few pairings are forbidden.
+
+valid_pairings:
+  common:
+    - [hero, tank]
+    - [hero, dps]
+    - [hero, jack_of_all_trades]
+    - [sage, control]
+    - [sage, healer]
+    - [sage, support]
+    - [outlaw, stealth]
+    - [outlaw, dps]
+    - [caregiver, healer]
+    - [caregiver, support]
+    - [ruler, tank]
+    - [ruler, support]
+    - [explorer, stealth]
+    - [explorer, jack_of_all_trades]
+    - [magician, control]
+    - [magician, dps]
+    - [everyman, jack_of_all_trades]
+    - [everyman, tank]
+
+  uncommon:
+    - [artist, support]
+    - [artist, control]
+    - [artist, stealth]
+    - [lover, support]
+    - [lover, healer]
+    - [jester, stealth]
+    - [jester, dps]
+    - [jester, support]
+    - [innocent, healer]
+    - [innocent, support]
+    - [innocent, jack_of_all_trades]
+    - [sage, stealth]
+    - [outlaw, control]
+    - [outlaw, support]
+    - [ruler, dps]
+    - [ruler, control]
+    - [explorer, dps]
+    - [explorer, support]
+    - [magician, stealth]
+    - [magician, support]
+    - [everyman, dps]
+    - [everyman, support]
+    - [hero, stealth]
+    - [hero, control]
+    - [caregiver, dps]
+    - [caregiver, control]
+
+  rare:
+    - [jester, tank]
+    - [jester, healer]
+    - [jester, control]
+    - [innocent, dps]
+    - [innocent, control]
+    - [lover, dps]
+    - [lover, control]
+    - [lover, tank]
+    - [artist, tank]
+    - [artist, dps]
+    - [artist, healer]
+    - [caregiver, stealth]
+    - [caregiver, tank]
+    - [innocent, tank]
+    - [lover, stealth]
+    - [everyman, healer]
+    - [everyman, control]
+
+  forbidden:
+    # The dungeon is an equal-opportunity killer — almost nothing is truly
+    # forbidden. These two are excluded because they require the character
+    # to care deeply about something other than survival, which the dungeon
+    # strips away.
+    - [innocent, stealth]
+    # Pure innocence and pure assassination instinct are mutually exclusive
+    # even in a world with +5 vorpal swords.
+
+# Genre-level fallback names and flavor for each axis value
+# Used when no world-level funnel claims a combination
+genre_flavor:
+  jungian:
+    hero:
+      speech_pattern: "direct, declarative, announces intent before acting"
+      equipment_tendency: "polished weapon, battered shield, trophy from a previous dungeon"
+      visual_cues: "torch held high, forward posture, scars worn openly"
+    sage:
+      speech_pattern: "measured, references obscure lore, corrects others mid-sentence"
+      equipment_tendency: "annotated spellbook, component pouch, reading glasses on a chain"
+      visual_cues: "ink-stained fingers, squinting in torchlight, mutters while walking"
+    outlaw:
+      speech_pattern: "clipped, evasive, dark humor about death and treasure"
+      equipment_tendency: "lockpicks, concealed blade, rope coiled just right"
+      visual_cues: "hood up indoors, checks exits habitually, too quiet on stone floors"
+    caregiver:
+      speech_pattern: "calm, counts heads reflexively, uses names"
+      equipment_tendency: "healer's kit, extra rations for the group, bandages already unrolled"
+      visual_cues: "positions near the wounded, worry lines, gentle hands with calluses"
+    ruler:
+      speech_pattern: "declarative, assigns roles without asking, expects compliance"
+      equipment_tendency: "quality weapon, map of the dungeon level, token of rank"
+      visual_cues: "stands at the front of marching order, sweeps the room before speaking"
+    explorer:
+      speech_pattern: "narrates observations aloud, excited by new passages, trail-worn idiom"
+      equipment_tendency: "rope, mapping kit, chalk for marking walls, pitons"
+      visual_cues: "hand trails the wall, pauses at every branching passage, leans into echoes"
+    magician:
+      speech_pattern: "precise, considers words as carefully as spell components"
+      equipment_tendency: "focus object, reagent pouch, second spellbook kept separately"
+      visual_cues: "stands back during melee, lips move when reading, odd smell"
+    artist:
+      speech_pattern: "observational, finds beauty in dungeon architecture, metaphor-heavy"
+      equipment_tendency: "charcoal and parchment, instrument, something carved"
+      visual_cues: "pauses to sketch, tilts head at ceiling friezes, hums in long corridors"
+    innocent:
+      speech_pattern: "earnest, asks what everyone else is thinking but won't say"
+      equipment_tendency: "simple weapon, family keepsake, holy symbol not yet tested"
+      visual_cues: "wide eyes that haven't adjusted to the dark, flinches at sounds"
+    lover:
+      speech_pattern: "attentive, remembers names and details, emotionally fluent"
+      equipment_tendency: "token from someone waiting above, presentable even underground"
+      visual_cues: "watches companions more than the dungeon, warm under pressure"
+    jester:
+      speech_pattern: "deflects with humor, names the monster before fighting it, never stops talking"
+      equipment_tendency: "motley that is somehow still motley, hidden blade, props"
+      visual_cues: "mischievous eyes, animated gestures, sly grin at the wrong moment"
+    everyman:
+      speech_pattern: "plain, no-nonsense, loudly skeptical of plans that sound complicated"
+      equipment_tendency: "practical gear, nothing fancy, worn boots that have done this before"
+      visual_cues: "unremarkable, forgotten in a lineup, exactly what the dungeon expects"
+
+  rpg_roles:
+    tank:
+      fallback_name: "Fighter"
+    dps:
+      fallback_name: "Slayer"
+    control:
+      fallback_name: "Wizard"
+    healer:
+      fallback_name: "Cleric"
+    stealth:
+      fallback_name: "Thief"
+    support:
+      fallback_name: "Bard"
+    jack_of_all_trades:
+      fallback_name: "Adventurer"
+
+# NPC roles available in this genre (all 9 enabled)
+npc_roles_available:
+  - mentor
+  - herald
+  - shadow
+  - threshold
+  - host
+  - artisan
+  - authority
+  - victim
+  - mook

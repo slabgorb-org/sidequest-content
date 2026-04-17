@@ -1,0 +1,144 @@
+world_name: The Long Foundry
+starting_region: forge_quarter
+map_style: "baroque engraving on cream vellum, deep ink crosshatching, architectural specificity with devotional marginalia, iron-red title cartouche, compass rose rendered as a feeding-sigil, city layout drawn in the manner of seventeenth-century urban panoramas"
+map_resolution: [1024, 1024]
+
+regions:
+  forge_quarter:
+    name: The Forge Quarter
+    summary: "The working foundries on the north bank and the Kin Lanes below them"
+    description: >-
+      The industrial heart of the Long Foundry. Kragmoor guild workshops
+      line the north bank of the Graslo, their chimneys braided with smoke
+      at all hours and their tally-books updated at the close of every
+      shift. Below the foundries proper, the Kin Lanes spill down toward
+      the river, where the Orvinnic covenant-kin households keep their
+      quiet orderly streets. The Coil and Brand guild hall stands at the
+      head of the span. This is where a newcomer to the city is most
+      likely to begin: the foundries need outsiders for small specific
+      tasks, and the Kin Lanes will house them if the coin is right.
+    origin: origins
+    adjacent: [temple_precinct, high_quarter, pilgrim_road, stratum_hills]
+
+  temple_precinct:
+    name: The Temple Precinct
+    summary: "The raised terrace on the south bank where the three feeding cults maintain their working temples"
+    description: >-
+      A walled precinct at the center of the southern bank, raised above
+      the river on terraced stonework. The three feeding cults that keep
+      the Long Foundry stable — the Keepers of the Hour, the Silent
+      Patron's House, and the Grievance-Keepers — hold their temples
+      here. The precinct is preternaturally quiet. The air has
+      measurable weight. A tally-hall at the center keeps the formal
+      register of the city's offerings, and a single Astran prefect
+      presides over inter-cult arbitration on the first morning of every
+      week.
+    adjacent: [forge_quarter, high_quarter]
+
+  high_quarter:
+    name: The High Quarter
+    summary: "The Perault noble district on the southern slope, where the declining houses keep their formal courts"
+    description: >-
+      The southern slope rises above the temple precinct in tiers of
+      old stone houses, connected by narrow stepped streets and walled
+      gardens that have not been tended as well as they were a
+      generation ago. The sixteen or so houses still formally open
+      maintain their ledgers, receive their callers, and quietly work
+      at the long arithmetic of accumulating covenants. The view from
+      the high quarter takes in the whole span of the Long Foundry,
+      and the air up here is cleaner than down by the river — a fact
+      the high houses mention often and do not connect to the fact
+      that they are also, steadily, running out of time.
+    adjacent: [forge_quarter, temple_precinct]
+
+  pilgrim_road:
+    name: The Pilgrim Road
+    summary: "The Path-Eater pilgrim route west along the river toward the next major temple"
+    description: >-
+      A wide old road that follows the Graslo downstream from the
+      Long Foundry toward the next major Path-Eater temple, three
+      days' walk to the west. The road is marked every half-mile
+      with small waystation shrines, most of them maintained by
+      volunteer devotees of the cult. The road is walked daily by
+      small groups of pilgrims, and a number of quiet households
+      along its length make their living by hosting them. The road
+      itself has been noted, recently, to feel slightly longer than
+      it was. Pilgrims comment on this to each other and not to
+      anyone else.
+    adjacent: [forge_quarter]
+
+  stratum_hills:
+    name: The Stratum Hills
+    summary: "The low hills east of the city where the Refuser-site excavation has been running for five years"
+    description: >-
+      East of the Graslo valley the land rises into a series of low
+      hills. Thessil herders have lived on the northern slopes for
+      generations; farmers cultivate the southern slopes; and for the
+      past five years, a small academic camp has been running a
+      Refuser-site excavation further back in the high valleys. The
+      camp is reachable by a week's walk from the Long Foundry, with
+      an overnight stop at the Thessil waystation where the old
+      herding trail meets the excavation path. The camp's
+      correspondence with the city has become erratic in the past
+      year. No one has yet demanded formally to know why.
+    adjacent: [forge_quarter]
+
+routes:
+  - from_id: forge_quarter
+    to_id: temple_precinct
+    name: "The Long Span"
+    distance: short
+    danger: safe
+    description: >-
+      The great stone arch that crosses the Graslo at the center of the
+      city. Wide enough for three carts abreast, and busy at all hours
+      with working traffic between the north bank foundries and the
+      south bank temple precinct. Watched by the River Wardens.
+
+  - from_id: forge_quarter
+    to_id: high_quarter
+    name: "The Ascending Way"
+    distance: short
+    danger: safe
+    description: >-
+      A paved street that climbs from the river span up through the
+      temple precinct and continues into the high quarter proper. The
+      stones are older than most of the houses on it. Patrolled by
+      the house-guards of the larger Perault seats.
+
+  - from_id: temple_precinct
+    to_id: high_quarter
+    name: "The Terrace Stair"
+    distance: short
+    danger: safe
+    description: >-
+      A set of broad stone stairs rising directly from the temple
+      precinct into the lower streets of the high quarter. Used by
+      formal processions from the cults to the houses, and less
+      formally by anyone who wants to move between the two districts
+      without crossing the main span.
+
+  - from_id: forge_quarter
+    to_id: pilgrim_road
+    name: "The Western Gate"
+    distance: medium
+    danger: cautious
+    description: >-
+      A working gate in the old city wall at the western edge of the
+      forge quarter, leading onto the Path-Eater pilgrim road. The
+      gate is nominally supervised by the River Wardens and is usually
+      open during daylight. The first mile of the pilgrim road is busy
+      with travellers. The second mile is quieter, and the third mile
+      quieter still.
+
+  - from_id: forge_quarter
+    to_id: stratum_hills
+    name: "The Old Herding Track"
+    distance: long
+    danger: dangerous
+    description: >-
+      A thin track that leaves the north bank of the city and climbs
+      into the eastern hills, following the old Thessil herding
+      routes. A week's walk if the weather holds, with one reliable
+      waystation at the halfway point. The ground becomes progressively
+      less cooperative as the track approaches the excavation site.

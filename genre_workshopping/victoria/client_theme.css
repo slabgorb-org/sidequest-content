@@ -1,0 +1,109 @@
+/* Victoria — candlelit manor, heavy curtains, gilt-framed shadows */
+
+:root[data-genre] {
+  /* Genre identity */
+  --primary: #8B1A1A;
+  --secondary: #2D4A3E;
+  --accent: #C9A96E;
+  --background: #1C1510;
+  --surface: #2A2118;
+  --text: #D4C5A9;
+
+  /* Tailwind tokens */
+  --foreground: #D4C5A9;
+  --card: #2A2118;
+  --card-foreground: #D4C5A9;
+  --popover: #2A2118;
+  --popover-foreground: #D4C5A9;
+  --primary-foreground: #1C1510;
+  --secondary-foreground: #D4C5A9;
+  --muted: #2A2118;
+  --muted-foreground: #7F7360;
+  --accent-foreground: #1C1510;
+  --border: #2A2118;
+  --input: #2A2118;
+  --ring: #C9A96E;
+  --destructive: oklch(0.704 0.191 22.216);
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/genre/assets/fonts/PlayfairDisplay-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+/* Aged wallpaper texture — dark vignette from edges, subtle grain */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    /* Deep vignette — the room is lit from the centre, darkness at the edges */
+    radial-gradient(ellipse at center, transparent 40%, rgba(15, 13, 11, 0.6) 100%),
+    /* Faint warm candlelight wash */
+    radial-gradient(ellipse at 30% 40%, rgba(201, 169, 110, 0.04) 0%, transparent 60%),
+    /* Subtle burgundy warmth from the fire */
+    radial-gradient(ellipse at 70% 80%, rgba(139, 26, 26, 0.03) 0%, transparent 50%);
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E#n");
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Content above the texture */
+#narrative {
+  position: relative;
+  z-index: 1;
+}
+
+/* Body text — warm, slightly softened, candlelit reading */
+.narration-block p {
+  text-shadow: 0 0 60px rgba(201, 169, 110, 0.03);
+  line-height: 1.75;
+}
+
+/* Drop cap — gilt-framed, heavy Victorian ornamentation shadow */
+.drop-cap-block img {
+  filter: drop-shadow(2px 3px 6px rgba(74, 55, 40, 0.5));
+}
+
+/* Dinkus — hedera (floral pilcrow), muted gold */
+.dinkus {
+  color: var(--accent);
+  opacity: 0.6;
+  letter-spacing: 0.6em;
+  font-size: 0.9em;
+}
+
+/* Pull quotes — Victorian chapter epigraph style, display font */
+.pull-quote {
+  border-left: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1.1em;
+  padding-left: 1.2em;
+  opacity: 0.85;
+}
+
+/* Session opener — gilt rule, formal */
+.session-opener {
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1.5em;
+  margin-bottom: 2em;
+}
+
+/* NPC dialogue — slight indent, distinguishing from narration */
+.dialogue {
+  font-style: italic;
+  margin-left: 1em;
+  border-left: 1px solid rgba(201, 169, 110, 0.2);
+  padding-left: 0.8em;
+}
+
+/* Stat blocks and mechanical readouts — restrained, below the prose */
+.stat-display {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-variant-numeric: oldstyle-nums;
+  letter-spacing: 0.05em;
+}

@@ -1,0 +1,132 @@
+# archetype_constraints.yaml — low_fantasy
+# Defines valid Jungian x RPG Role pairings for this genre
+# common: chargen default, NPC gen draws most
+# uncommon: shown if player explores, NPC diversity
+# rare: allowed but unusual, memorable characters
+# forbidden: genuinely nonsensical for this genre
+
+valid_pairings:
+  common:
+    - [hero, tank]
+    - [hero, dps]
+    - [sage, healer]
+    - [sage, control]
+    - [outlaw, stealth]
+    - [outlaw, dps]
+    - [caregiver, healer]
+    - [caregiver, support]
+    - [ruler, tank]
+    - [ruler, support]
+    - [explorer, stealth]
+    - [explorer, jack_of_all_trades]
+    - [magician, control]
+    - [magician, dps]
+    - [everyman, jack_of_all_trades]
+    - [everyman, support]
+
+  uncommon:
+    - [artist, support]
+    - [artist, control]
+    - [lover, support]
+    - [lover, healer]
+    - [jester, stealth]
+    - [jester, dps]
+    - [innocent, healer]
+    - [innocent, support]
+    - [hero, jack_of_all_trades]
+    - [sage, support]
+    - [outlaw, control]
+
+  rare:
+    - [jester, tank]
+    - [innocent, tank]
+    - [lover, dps]
+    - [artist, stealth]
+    - [everyman, tank]
+    - [everyman, dps]
+
+  forbidden:
+    - [innocent, stealth]
+    - [innocent, dps]
+    - [caregiver, stealth]
+
+# Genre-level fallback names and flavor for each axis value
+# Used when no world-level funnel claims a combination
+genre_flavor:
+  jungian:
+    hero:
+      speech_pattern: "direct, declarative, sparse"
+      equipment_tendency: "well-maintained weapons, practical armor"
+      visual_cues: "scarred hands, upright posture, watchful eyes"
+    sage:
+      speech_pattern: "measured, archaic vocabulary, references to old texts"
+      equipment_tendency: "robes, walking staff, herb pouch, journal"
+      visual_cues: "weathered hands, ink-stained fingers, squinting eyes"
+    outlaw:
+      speech_pattern: "clipped, evasive, dark humor"
+      equipment_tendency: "concealed blades, dark clothing, lockpicks"
+      visual_cues: "hood or scarf, restless gaze, calloused fingers"
+    caregiver:
+      speech_pattern: "warm, patient, firm when needed"
+      equipment_tendency: "healer's kit, sturdy cloak, provisions for others"
+      visual_cues: "gentle hands, worry lines, attentive posture"
+    ruler:
+      speech_pattern: "commanding, formal, economical with words"
+      equipment_tendency: "quality weapons, signet ring, heraldic tokens"
+      visual_cues: "upright bearing, steady gaze, deliberate movements"
+    explorer:
+      speech_pattern: "excited about geography, casual, trail-worn idiom"
+      equipment_tendency: "rope, maps, climbing gear, worn boots"
+      visual_cues: "sun-weathered skin, lean build, distant gaze"
+    magician:
+      speech_pattern: "precise, layered meanings, uncomfortable with small talk"
+      equipment_tendency: "focus object, reagent pouch, annotated grimoire"
+      visual_cues: "unusual eye color, faint smell of ozone or herbs"
+    artist:
+      speech_pattern: "observational, metaphor-heavy, emotionally present"
+      equipment_tendency: "tools of craft, sketchbook, instrument"
+      visual_cues: "paint under nails, callused fingertips, distracted gaze"
+    innocent:
+      speech_pattern: "earnest, questions assumed truths, occasionally naive"
+      equipment_tendency: "simple weapon, family keepsake, homespun clothes"
+      visual_cues: "open face, fidgeting hands, wide eyes"
+    lover:
+      speech_pattern: "attentive, emotionally fluent, remembers names"
+      equipment_tendency: "token from someone, presentable clothes, perfume"
+      visual_cues: "expressive face, graceful movement, warm smile"
+    jester:
+      speech_pattern: "quick wit, deflects with humor, breaks tension"
+      equipment_tendency: "motley, hidden blade, props, flask"
+      visual_cues: "mischievous eyes, animated gestures, sly grin"
+    everyman:
+      speech_pattern: "plain, relatable, local dialect"
+      equipment_tendency: "practical tools, nothing flashy, worn but functional"
+      visual_cues: "unremarkable build, tired eyes, calloused hands"
+
+  rpg_roles:
+    tank:
+      fallback_name: "Shield-Bearer"
+    dps:
+      fallback_name: "Blade"
+    control:
+      fallback_name: "Warder"
+    healer:
+      fallback_name: "Hedge Healer"
+    stealth:
+      fallback_name: "Shadow"
+    support:
+      fallback_name: "Warden"
+    jack_of_all_trades:
+      fallback_name: "Wanderer"
+
+# NPC roles available in this genre (all enabled for low_fantasy)
+npc_roles_available:
+  - mentor
+  - herald
+  - shadow
+  - threshold
+  - host
+  - artisan
+  - authority
+  - victim
+  - mook

@@ -16,9 +16,17 @@ negative_prompt: >-
   modern clothing, contemporary fashion, jeans, jacket, t-shirt,
   glasses, wristwatch, photograph, portrait photography, lighting setup
 
-preferred_model: flux
+preferred_model: dev
 
 base_seed: 42
+
+# ── LoRA (story 35-15) ────────────────────────────────────────
+# Genre-specific Flux LoRA for Erol Otus / Trampier black and
+# white pen-and-ink. LoRA config removed (playtest-2026-04-12):
+# the .safetensors file was never trained/delivered (Epic 32 scope),
+# causing noisy lora_file_not_found warnings on every render.
+# positive_suffix is used automatically and produces excellent results.
+# Re-add lora/lora_trigger when Epic 32 delivers the weights.
 
 visual_tag_overrides:
   dungeon: >-
