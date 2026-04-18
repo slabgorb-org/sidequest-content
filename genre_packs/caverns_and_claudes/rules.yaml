@@ -150,3 +150,56 @@ confrontations:
         resolution: true
         consequence: "Chase ends in darkness — quarry vanishes"
     mood: tension
+  - type: negotiation
+    label: "Haggling at the Counter"
+    category: social
+    # The canonical caverns_and_claudes scene: the party, mud-caked
+    # and underfunded, on one side of a shop counter. The town
+    # merchant — wary, greedy, or both — on the other. Haggling
+    # over a price, unloading a suspicious find, pushing for a
+    # better quest reward, or angling for the item on the top
+    # shelf that the merchant swears isn't for sale.
+    # `leverage` tracks who's running the table. Merchant starts
+    # ahead: the delvers need the gold or the gear, the shopkeep
+    # doesn't. Comedic register — stakes are low (a few silver)
+    # but feel enormous to a level-1 party counting rations.
+    metric:
+      name: leverage
+      direction: bidirectional
+      starting: 3
+      threshold_high: 10
+      threshold_low: 0
+    beats:
+      - id: talk_up_the_haul
+        label: "Talk Up the Haul"
+        metric_delta: 2
+        stat_check: CHA
+        effect: "merchant entertains the asking price — their eyebrow does the thing"
+        narrator_hint: "The delver pitches the goods like a town crier — this isn't a rusted dagger, it's a RELIC. The merchant has heard this exact speech seventeen times this week."
+      - id: swear_its_not_cursed
+        label: "Swear It's Not Cursed"
+        metric_delta: 3
+        stat_check: CHA
+        risk: "if the bluff fails, merchant knocks 50% off the offer and mentions it to the guard"
+        effect: "merchant accepts the suspicious item — with a receipt, carefully worded"
+        narrator_hint: "Running-joke territory. 'Is this cursed?' 'No.' 'Are you SURE it's not cursed?' 'It is DEFINITELY not cursed.' Lean all the way in. Merchant is not convinced but the coin is right there."
+      - id: plead_poverty
+        label: "Plead Poverty"
+        metric_delta: 2
+        stat_check: WIS
+        effect: "merchant softens — throws in a torch, a ration, or shaves a copper off the tally"
+        narrator_hint: "The delver goes for the sympathy play — empty purse, long road, hungry dog back at camp. The merchant has seen this a thousand times and it still works about a third of the time."
+      - id: flash_the_coin
+        label: "Flash the Coin"
+        metric_delta: -1
+        stat_check: CHA
+        effect: "merchant's disposition +5 and the real price — the one locals pay — slips out"
+        narrator_hint: "The delver makes a show of it: tips a pouch, lets a gold piece ring on the counter, asks 'what does THAT get me.' A small concession now to read the shop properly."
+      - id: walk_toward_the_door
+        label: "Walk Toward the Door"
+        metric_delta: 0
+        stat_check: WIS
+        resolution: true
+        consequence: "haggle ends — either the merchant calls them back with a better number, or the deal is off and the party leaves empty-handed"
+        narrator_hint: "The oldest trick at the counter. Delver turns, hand on the door, one beat, two beats. Either the merchant cracks — 'alright, alright, for you, three silver' — or the door closes behind the party and the moment is gone. The smart play when leverage has tipped the wrong way."
+    mood: tension
