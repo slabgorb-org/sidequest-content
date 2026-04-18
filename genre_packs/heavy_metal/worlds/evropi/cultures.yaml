@@ -490,6 +490,94 @@
     - "The {hollow_name}"
     - "{hollow_name} below {hollow_name}"
 
+- name: Half-Orc
+  summary: "Rare mixed-blood folk, most often found in mine-labour populations or mercenary bands; no coherent culture of their own in Evrópí"
+  description: >-
+    Half-orcs in Evrópí are rare and scattered. Full-blooded orcs
+    — large, green-grey, tusked, and temperamentally pragmatic —
+    live chiefly far to the north of the continent in clan-
+    holdings the southern empires do not map accurately. Half-
+    orcs born on the continent proper come from incidents of
+    slaving, migration, and the occasional northern mercenary
+    who settled and started a family that lasted. They have no
+    unified culture. What they do have, disproportionately, is
+    first-generation familiarity with the Mistos slave-caravans
+    and the Ingurdios mines — any non-Mistos body strong enough
+    to swing a pick is valuable to the junta, and half-orcs
+    have the shoulders for it.
+    .
+    A half-orc in the current age is usually found attached to
+    whichever human culture raised them (Zkęd dress, Aldkin
+    speech, Mistos quarter-mark) with a visible layer of orcish
+    physiology on top — tusks filed or not depending on local
+    taste, skin in the grey-green range, hands of a size that
+    does not pass for human at any distance. Mercenary work
+    suits them because most standing armies on the continent
+    will not have them and private contractors do not inquire
+    carefully. The few half-orcs who have escaped the Zbóźny
+    mines are a specific sub-category: they tend to travel in
+    pairs (they came out with someone), they tend not to go
+    back, and they tend to have grievances that require
+    specific people to be present to resolve.
+  slots:
+    given_name:
+      word_list: [Prot, Thokk, Grál, Mozda, Brugh, Kazi, Uldra, Gretta, Horn, Vask, Bruda, Morna, Orzh, Tuska, Grim, Zhark, Krug, Malda]
+    clan_mark:
+      word_list: [Thokk, Bruk, Horn, Zhar, Zulk, Grip, Molk, Krag, Vord, Brann]
+    place_noun:
+      word_list: [pit, cut, shaft, chain, mark, stand, run, hole, grave, scar]
+    adjective:
+      word_list: [broken, escaped, marked, pale, long, hard, cold, quiet, bent]
+  person_patterns:
+    - "{given_name}'{clan_mark}"
+    - "{given_name} {clan_mark}"
+    - "{given_name} of the {adjective} {place_noun}"
+  place_patterns:
+    - "The {adjective} {place_noun}"
+    - "{clan_mark}-{place_noun}"
+
+- name: Gnome
+  summary: "Small-folk with mine-tunnel heritage; many now bound to Mistos mine-work, some few escaped and walking the surface with whoever they came out with"
+  description: >-
+    Gnomes in Evrópí are small people — two-thirds human height,
+    broad-fingered, long-lived in the small way — whose ancestors
+    are held by most scholars to have been the original
+    population of the sub-surface tunnels of the Zbóźny, before
+    the Ingurdios settled the hill-country above and before the
+    Mistos conquered the whole system. Those ancestors mostly
+    died out, assimilated, or were driven deeper; the living
+    gnome population of the current age is diminished, scattered,
+    and disproportionately captive — the Mistos prize gnome
+    miners because their hands fit tunnel-seams a human can't
+    reach.
+    .
+    A gnome who has come out of the mines is a particular kind
+    of person: quiet where their captors were loud, careful about
+    promising anything to anyone after years of promising
+    everything to survive, and stubbornly attached to whichever
+    fellow escapee dragged them out. Free gnomes who were never
+    taken are rare and keep rarer company. The surface cultures
+    have no firm opinion about gnomes as a people because they
+    have not met enough of them to form one.
+  slots:
+    given_name:
+      corpora:
+        - corpus: finnish.txt
+          weight: 0.6
+        - corpus: swedish.txt
+          weight: 0.4
+      lookback: 2
+    trade_sign:
+      word_list: [tunnel, chisel, lamp, ore, seam, vein, shaft, cord, bolt, drum]
+    adjective:
+      word_list: [small, quiet, dusty, careful, bent, long, patient, patched]
+  person_patterns:
+    - "{given_name}"
+    - "{given_name} {trade_sign}"
+    - "{given_name} of the {adjective} {trade_sign}"
+  place_patterns:
+    - "The {adjective} {trade_sign}"
+
 - name: Kobold
   chargen: false
   summary: "LORE ONLY — Tismenni servant caste, all dead save one: Rux, the only kobold anyone alive has ever seen"
