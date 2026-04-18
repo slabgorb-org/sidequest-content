@@ -1,0 +1,377 @@
+# Evrópí — World-tier character creation
+#
+# Overrides heavy_metal/char_creation.yaml when a session is bound to
+# evropi (wired by sidequest-api PR #481 via World::char_creation). Same
+# six-scene structure as the genre file so the CharacterBuilder FSM and
+# mechanical_effects hints still drive the chargen state machine
+# identically — only the framing and prose change.
+#
+# Framing: a Wazdia informer seated at the long table in the lower hall
+# of the town of Upre, registering the party into the Gabra's book
+# before they may draw rations, carry arms on the Waznoty road, or be
+# entered into the month's tithe-ledger. The informer is polite,
+# meticulous, and entirely unhurried. Their motto, written in small
+# letters on the inside cover of the ledger, is "mind before heart."
+#
+# Non-standard races (Kobold, Antman, Half-Orc, Gnome) are supported
+# via `allows_freeform: true`. The informer registers them without
+# visible surprise. The ledger has columns for such things.
+
+- id: origins
+  title: What People Did Your Family Come From?
+  narration: |
+    The lower hall of Upre's town house is small, cold, and almost too quiet. A Wazdia informer sits at a long table with three candles burning in front of a ledger that has clearly been ruled and re-ruled many times. Their beard is braided in the Wazdia fashion — two plain strands, no beads, the lack of ornament being the ornament. They look up once to confirm the number of people in the party, then down again, and do not look up a second time.
+
+    "Before I mark you into the Gabra's book," they say, in the measured Wazdian cadence of someone who has asked this question many times this month alone, "tell me the people your family came from. Not the people who raised you, if it is not the same. The people whose name your grandfather gave when he was asked."
+  loading_text: "The informer considers your answer and marks the column."
+  # Choices cover the 8 playable evropi cultures by name. Rare origins
+  # (antman, half-orc, gnome, kobold) go through allows_freeform.
+  choices:
+    - label: Zkęd, of the frontier townships
+      description: >-
+        Your people are the Zkęd of the Waznoty settlements or the
+        Egzami forest rim. You braid your beard, or your hair, with
+        small metal beads that rattle faintly when you move, and
+        you have spent your life in a land where no room is ever
+        entirely private. You know which weeks to stay out of
+        Upre's lower hall and which weeks the Wazdia are watching
+        somewhere else.
+      mechanical_effects:
+        background: Zkęd-Frontier
+        jungian_hint: everyman
+    - label: Aldkin, of the Klas steppes
+      description: >-
+        You were raised on the Klas steppes under the Herdsman's
+        long care, riding an Anta horse before you could walk
+        unaided, and you know the rules of Epäässä — that hill
+        where the Aldkin keep their peace and where the shedding
+        of blood is answered by the shedding of the blood of the
+        one who shed it. You left the steppes for reasons you do
+        not yet have to explain.
+      mechanical_effects:
+        background: Aldkin-Rider
+        jungian_hint: explorer
+    - label: Waterfolk or Pakook`rook, of the marshes
+      description: >-
+        Your people are marsh-kin — the salt Waterfolk of the
+        Hvoru or the freshwater Pakook`rook of the deeper swamps,
+        two peoples the Zkęd enslave interchangeably and ship
+        drugged on reniksnad to the Pę markets. If you are free
+        and carrying your own name, it is because you walked out
+        of something you should not have walked out of, and you
+        are still walking.
+      mechanical_effects:
+        background: Marsh-Kin
+        jungian_hint: caregiver
+    - label: Mistos, in exile or hiding
+      description: >-
+        You were born Mistos — the tall elf-supremacist junta that
+        marches southward in red-and-black silk — and you are not
+        with them now. Perhaps you were born with the wrong
+        birthmark and exiled for it; perhaps you were a Puppet-Seat
+        functionary who read one book too many; perhaps you simply
+        disagreed aloud. The General has a standing instruction
+        about Mistos who leave. You know it without being told.
+      mechanical_effects:
+        background: Mistos-Exile
+        jungian_hint: rebel
+    - label: Vaermm, of the scrublands
+      description: >-
+        You copied out your own Book of Aest at coming-of-age, as
+        every Vaermm must, and perhaps you did not stop at your
+        own Book. You know that everything not mandatory is
+        forbidden. You know this has shaped you in ways no one
+        raised outside the Book can understand. You are in Upre
+        now, and the Book did not prescribe being here, and the
+        quiet of that fact occupies most of your mornings.
+      mechanical_effects:
+        background: Vaermm-Scribe
+        jungian_hint: sage
+    - label: Jambiendo or Bladtrablo, of the sea
+      description: >-
+        You are elvish and sea-bound — Jambiendo of the spice-
+        trading gull-ships, or Bladtrablo of the volcanic vents
+        beneath the Řeknu — and you are on the mainland for a
+        reason no one who asks you will hear aloud. The feud
+        between your two peoples is older than anyone alive
+        remembers why. You maintain it anyway.
+      mechanical_effects:
+        background: Sea-Bound
+        jungian_hint: outlaw
+    - label: Tismenni-descended scholar
+      description: >-
+        Your family line — you believe — threads back through the
+        drowned empire, twelve thousand years old and mostly dead
+        save for the language your grandmother taught you in
+        whispers. Whether this is true or a comforting family
+        legend is a question you have been careful not to resolve.
+        You read Tismenni well enough to get into trouble in
+        libraries.
+      mechanical_effects:
+        background: Tismenni-Descended
+        jungian_hint: magician
+    - label: Something the informer has to write carefully
+      description: >-
+        You are not from any of the continent's standing peoples
+        — or at least not obviously. The Wazdia informer turns
+        the ledger to a blank column at the back, selects a
+        slightly finer quill, and asks you to describe yourself
+        by their own word for what you are. They have written
+        stranger things. They will write this too. Whatever you
+        are, the book will hold it.
+      mechanical_effects:
+        background: Rare-Kin
+        jungian_hint: explorer
+  allows_freeform: true
+
+- id: pronouns
+  title: How Shall the Ledger Address You?
+  narration: >-
+    The informer pauses briefly over the column. "The Gabra's book
+    is precise about form," they say. "It is not a preference;
+    it is a legal address. When a runner from the Waznoty road
+    must find you and cannot describe your face, the book must
+    answer. How is it said, when it is said of you?"
+  allows_freeform: true
+  choices:
+    - label: "she/her"
+      description: "The entry is marked with the small rising tick the book uses for her-entries."
+      mechanical_effects:
+        pronoun_hint: "she/her"
+    - label: "he/him"
+      description: "The entry is marked with the small straight stroke the book uses for his-entries."
+      mechanical_effects:
+        pronoun_hint: "he/him"
+    - label: "they/them"
+      description: "The entry is marked with the small paired stroke reserved for entries the book keeps apart and deliberately."
+      mechanical_effects:
+        pronoun_hint: "they/them"
+
+- id: crucible
+  title: What Mark Does the Book Give You?
+  narration: |
+    The informer sets the quill down and, for the first time, looks directly at you. "Every entry in this book bears a mark," they say, in the same even Wazdian cadence. "The mark is not a sin and it is not a merit. It is the shape of the cost that formed you. Tell me what yours was, and the column will write itself."
+
+    They slide a small tray of ink-pots across the table. Each pot is a different shade of grey.
+  choices:
+    - label: A Mistos-blade I escaped
+      description: >-
+        You met the Mistos army, or the Mistos slaver-caravan, or
+        a Puppet-Seat's private enforcers, and you came out of
+        that meeting alive by a margin you are not quite willing
+        to revisit in detail. You left someone behind. You may
+        or may not intend to go back for them.
+      mechanical_effects:
+        class_hint: Fighter
+        personality_trait: Unyielding
+        jungian_hint: hero
+        rpg_role_hint: tank
+    - label: A Waz-court intrigue that cost my family
+      description: >-
+        Your family was positioned, or adjacent to, or useful
+        against someone at one of the Zkęd courts, and the Waz's
+        answer to that positioning was comprehensive. You were
+        young enough to survive it, which is partly why you did.
+        You have not been back to that court.
+      mechanical_effects:
+        class_hint: Rogue
+        personality_trait: Watchful
+        jungian_hint: outlaw
+        rpg_role_hint: stealth
+    - label: A Njörkte who paid for a life of mine with someone else's years
+      description: >-
+        A Flock-priest cast a healing working on your behalf — for
+        an injury, a birth, an illness — and paid the cost in
+        years of a life that was not their own. Usually it was
+        years they owed. Usually you do not know whose years they
+        were. The working succeeded. You are here. Someone is not.
+      mechanical_effects:
+        class_hint: Cleric
+        personality_trait: Quiet
+        jungian_hint: caregiver
+        rpg_role_hint: healer
+    - label: A Crimson God whose bargain I struck and kept
+      description: >-
+        You met, in a shrine or a dream or a literal red-lit
+        alleyway, one of the 999 Crimson Gods with their fiery
+        demonic faces. You offered something — your name, a
+        specific future, an organ, a firstborn not yet born — and
+        they granted something. The bargain holds. You carry what
+        you bought with the weight of someone who knows exactly
+        what they owe.
+      mechanical_effects:
+        class_hint: Warlock
+        personality_trait: Resolute
+        jungian_hint: outlaw
+        rpg_role_hint: dps
+    - label: A Book I copied out wrong, once, and did not tell anyone
+      description: >-
+        Your Vaermm coming-of-age Book contains, somewhere in its
+        ten thousand pages, a single word that does not match the
+        original. No one has found it yet. You did not correct it.
+        You think about it at night, and more often now than when
+        you were younger. The weight of the undetected error is a
+        specific religious and moral gravity no Vaermm who got it
+        right can quite understand.
+      mechanical_effects:
+        class_hint: Wizard
+        personality_trait: Disciplined
+        jungian_hint: magician
+        rpg_role_hint: control
+    - label: A refusal I have held, quietly, for a long time
+      description: >-
+        You have declined to pay something. You do not always
+        know precisely what you are declining, and the declining
+        is not always successful. But you have made the choice,
+        and you are keeping it. The refusal is the mark. The
+        informer writes it in pale ink.
+      mechanical_effects:
+        class_hint: Monk
+        personality_trait: Unyielding
+        jungian_hint: hero
+        rpg_role_hint: tank
+  allows_freeform: true
+
+- id: obligation
+  title: Whose Name Do You Carry in Your Own Ledger?
+  narration: |
+    The informer has filled most of a column. The quill has run dry twice and been freshly inked without comment. The candles are slightly shorter than when you sat down, though it cannot have been more than ten minutes.
+
+    "No one walks this road alone," the informer says, without stopping writing. "Even those who believe themselves alone carry another in their own account. A person. A debt. A face they cannot stop owing. Speak the one you carry. I will cross-reference the entry with the book of the town they are in, when I can find it."
+  choices:
+    - label: A fellow escapee who pulled me out
+      description: >-
+        Someone — a miner, a kin, a sapper, a small person with
+        hands that fit the narrow seams — came out of the same
+        place you came out of, and the two of you came out
+        together. Their hands are in every quiet decision you
+        make. You are not going back without them, and you are
+        not going much of anywhere either.
+      mechanical_effects:
+        relationship: fellow_escapee
+        personality_trait: Loyal
+        jungian_hint: caregiver
+    - label: A teacher who taught me the old script
+      description: >-
+        Someone older — a grandmother, a Vaermm book-checker, a
+        Tismenni scholar who should have published and did not —
+        taught you the reading of one of the older alphabets. You
+        owe them the thing that teaching always costs, which is
+        a specific future attention. You have not yet paid.
+      mechanical_effects:
+        relationship: unpaid_teacher
+        personality_trait: Reflective
+        jungian_hint: sage
+    - label: A rival from the steppes who measures me still
+      description: >-
+        Someone — Aldkin, or Mistos, or a Zkęd officer, or a
+        Jambiendo captain — whose presence sharpens you, and
+        whose absence would hollow you. The account between you
+        is open at both ends. You are not sure which of you is
+        currently the creditor.
+      mechanical_effects:
+        relationship: open_rival
+        personality_trait: Competitive
+        jungian_hint: hero
+    - label: A Wazdia officer I am quietly avoiding
+      description: >-
+        Someone in the Wazdia has a question about you they have
+        not yet decided to ask in person. You think about them
+        almost every night. They, presumably, think about you
+        less often, and more decisively. They are the reason you
+        tend to be leaving a town, not arriving at it.
+      mechanical_effects:
+        relationship: avoided_creditor
+        personality_trait: Watchful
+        jungian_hint: outlaw
+    - label: A companion the world does not know is a person
+      description: >-
+        Someone walks with you whom strangers underestimate,
+        miscount, or mistake for something they are not — a
+        dog, a servant, a pack-animal, a child. You do not
+        correct most strangers. The ones you do correct learn
+        quickly to be careful. The one you walk with corrects
+        no one, and forgets nothing.
+      mechanical_effects:
+        relationship: underestimated_companion
+        personality_trait: Loyal
+        jungian_hint: caregiver
+  allows_freeform: true
+
+- id: the_road
+  title: What Brought You to Upre?
+  narration: |
+    The informer has filled most of the page. The entry has taken longer than most. They have not complained about this. The book has a column for purpose — for the reason the person now seated in Upre's lower hall is in Upre's lower hall — and that column will not fill itself.
+
+    "The last entry, before the seal," they say. "The Gabra's book records not only where an entry has come from but what the entry is walking toward, or away from. Speak it. I will mark the compass."
+  choices:
+    - label: A contract with the Gabra, for the Waznoty road
+      description: >-
+        You came for the hire. Ebbe is paying gold for each
+        right hand returned from the Daggereyes, and you are
+        willing to do the kind of work the local militia has
+        so far failed to do. You are practical about this.
+        You have done worse work for less.
+      mechanical_effects:
+        goals: close_an_open_account
+        emotional_state: Resolved
+        jungian_hint: hero
+        rpg_role_hint: tank
+    - label: A rumor of the Zygwa — the lost Zkęd heir
+      description: >-
+        The Widząn Zamzau is recruiting quietly, and the rumor
+        of their current search has reached you. You are not
+        certain you believe the Zygwa is real. You are certain
+        you want to see what the Widząn has found out.
+      mechanical_effects:
+        goals: reach_a_buried_place
+        emotional_state: Haunted
+        jungian_hint: explorer
+    - label: A Tismenni ruin the maps don't quite agree on
+      description: >-
+        There is a strata site in the Zbóźny foothills that
+        three separate maps disagree on the location of. You
+        have been walking toward it for a while. You are not
+        certain what you will do when you reach it. You think
+        about this less than you should.
+      mechanical_effects:
+        goals: reach_a_buried_place
+        emotional_state: Haunted
+        jungian_hint: explorer
+    - label: A grievance I intend to settle with a specific Mistos
+      description: >-
+        There is a Mistos officer, or a Puppet-Seat functionary,
+        or a General's-Host quartermaster, whose name you carry.
+        You are walking toward a confrontation that the Mistos
+        have not yet scheduled. You do not intend to have it in
+        Upre. Upre is where you are coming from, not where you
+        are going.
+      mechanical_effects:
+        goals: close_an_open_account
+        emotional_state: Resolved
+        jungian_hint: outlaw
+    - label: A message I am carrying from somewhere further west
+      description: >-
+        You are not, precisely, free. You are carrying something
+        — a sealed packet, an oral message no one else has heard,
+        a small object you are not allowed to open — and the
+        delivery takes you through Upre. Whether you stop in
+        Upre longer than strictly necessary is a question the
+        informer politely does not ask.
+      mechanical_effects:
+        goals: stay_ahead_of_a_name
+        emotional_state: Watchful
+        jungian_hint: outlaw
+        rpg_role_hint: stealth
+  allows_freeform: true
+
+- id: confirmation
+  title: The Ledger is Closed
+  narration: |
+    The informer sets down the quill, blots the entry with sand from a small brass shaker, brushes the sand away, and turns the book to face you. Your name — {name} — is written in a hand considerably more elegant than anything you have produced in your life, in a column that was waiting for you before you arrived. Beside it, the Wazdia pressed a small seal the colour of iron. The seal is cool, not warm. This is a Wazdia book, not a Perault book.
+
+    "You are now entered," they say, in the same quiet cadence. "You are recorded, you are lawful, you may draw rations and carry arms on the Waznoty between now and the end of the season. You are also, from this moment, findable — by anyone who consults this book, which is not everyone, but is more than you might prefer. The door at your left opens onto the upper hall. The Gabra is expecting you, when you are ready, and not before. Welcome to Upre."
+
+    And so it is that {name}, a {race} {class}, rises from the long table, steps past the informer, and walks toward a door that opens onto a town on the edge of a forest, on the edge of a kingdom, on the edge of a continent that is quietly and very specifically counting down.
+  choices: []
+  allows_freeform: false
