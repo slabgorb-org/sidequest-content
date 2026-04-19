@@ -23,7 +23,7 @@
 - **Story 5 includes a per-genre audit pass** to determine which genres host effects in `progression.yaml` and which need a new file. Content task, not engine task.
 - **`AdvancementEffect` enum extended in v1:** `LoreRevealBonus { scope: LoreRevealScope }` is in. `BeatDiscount` gained `resource_mod: Option<HashMap<String, i32>>` so Pact-affinity tiers can discount push-currency costs.
 - **`RecoveryTrigger::OnBeatSuccess` extended in v1:** `while_strained: bool` is in. Precise definition: `current <= max / 4` (matches UI Cracked state).
-- **Four extended variants deferred to ADR-079:** `AllyBeatDiscount`, `BetweenConfrontationsAction`, `AllyEdgeGrant`, `EdgeThresholdDelay`. Heavy_metal Craft and Lore tiers 2-3 carry explicit `mechanical_effects: []  # TODO ADR-079` stubs in this draft. Tier 1 of both ships with `LoreRevealBonus`.
+- **Four extended variants deferred to ADR-082+:** `AllyBeatDiscount`, `BetweenConfrontationsAction`, `AllyEdgeGrant`, `EdgeThresholdDelay`. Heavy_metal Craft and Lore tiers 2-3 carry explicit `mechanical_effects: []  # TODO ADR-082+` stubs in this draft. Tier 1 of both ships with `LoreRevealBonus`.
 - **`read_the_opponent` patience beat endorsed** as story 8 content.
 - **Voice/Flesh/Ledger no auto-refill endorsed** — narrative recovery only.
 - **Combat `edge_delta` numbers** are first-pass; story 4 smoke playtest is the tuning gate.
@@ -244,11 +244,11 @@ Each affinity gets three tiers' worth of mechanical effects, themed to its exist
     - tier: 2
       label: "Working the Material"
       narration_hint: "The character can repair under fire — a snapped strap, a fouled lock, a guttering torch. Quick fixes between exchanges, not in them."
-      effects: []   # TODO ADR-079 — needs BetweenConfrontationsAction variant (new game-state slot)
+      effects: []   # TODO ADR-082+ — needs BetweenConfrontationsAction variant (new game-state slot)
     - tier: 3
       label: "The Apprentice's Hand"
       narration_hint: "The character has trained others. In a confrontation where they are giving instruction — to an ally, a child, a panicked soldier — the ally's beats cost less."
-      effects: []   # TODO ADR-079 — needs AllyBeatDiscount variant (party-aware resolved_beat_for)
+      effects: []   # TODO ADR-082+ — needs AllyBeatDiscount variant (party-aware resolved_beat_for)
 
 # ── Lore — forbidden and half-forbidden knowledge (non-combat) ─
 - name: "Lore"
@@ -264,16 +264,16 @@ Each affinity gets three tiers' worth of mechanical effects, themed to its exist
     - tier: 2
       label: "The Half-Forbidden Page"
       narration_hint: "The character can name the rite, the genealogy, or the heresy at the critical moment. When this happens, all allies in the scene get one Edge."
-      effects: []   # TODO ADR-079 — needs AllyEdgeGrant variant (scene-scope ally lookup)
+      effects: []   # TODO ADR-082+ — needs AllyEdgeGrant variant (scene-scope ally lookup)
     - tier: 3
       label: "The Sign Read in Time"
       narration_hint: "The character can identify a daemon, spirit, or working *before* it acts. Composure breaks that involve supernatural opponents do not happen on the same exchange — the character gets one extra breath."
-      effects: []   # TODO ADR-079 — needs EdgeThresholdDelay variant (conditional threshold firing)
+      effects: []   # TODO ADR-082+ — needs EdgeThresholdDelay variant (conditional threshold firing)
 ```
 
 **Status of extended `AdvancementEffect` variants (Margaret ruled 2026-04-15):**
 - ✓ **`lore_reveal_bonus`** — IN day-1 enum. Craft tier 1 and Lore tier 1 ship with this in v1. Single field, no plumbing change.
-- ⏳ **`ally_beat_discount`, `between_confrontations_action`, `ally_edge_grant`, `edge_threshold_delay`** — DEFERRED to ADR-079. Each requires substantial new context plumbing (party-aware `resolved_beat_for`, new game-state slots, scene-scope queries, conditional threshold firing). Craft tier 2-3 and Lore tier 2-3 ship in v1 with `effects: []  # TODO ADR-079` stubs — labels and narration_hints preserved as authored content, ready to wire when ADR-079 lands. ADR-079 is filed after story 8's playtest acceptance gate clears.
+- ⏳ **`ally_beat_discount`, `between_confrontations_action`, `ally_edge_grant`, `edge_threshold_delay`** — DEFERRED to ADR-082+. Each requires substantial new context plumbing (party-aware `resolved_beat_for`, new game-state slots, scene-scope queries, conditional threshold firing). Craft tier 2-3 and Lore tier 2-3 ship in v1 with `effects: []  # TODO ADR-082+` stubs — labels and narration_hints preserved as authored content, ready to wire when ADR-082+ lands. ADR-082+ is filed after story 8's playtest acceptance gate clears.
 
 ---
 
@@ -536,7 +536,7 @@ Each pact is a fully-formed scenario fragment Keith can drop into a heavy_metal 
 All six questions are now resolved. Listed in original order with the ruling inline:
 
 1. ✓ **`mechanical_effects` location for non-heavy_metal genres.** **Ruled: ADR-078 §5 amended.** Effects host on existing progression structures wherever those exist; standalone `advancements.yaml` is the fallback for genres with no scaffold. Story 5 includes a per-genre audit pass. Heavy_metal uses its existing `progression.yaml` affinity tiers as authored in §2 above.
-2. ✓ **Extended `AdvancementEffect` variants.** **Ruled: split decision.** `LoreRevealBonus` is IN the day-1 enum (Craft tier 1, Lore tier 1 use it). The other four (`AllyBeatDiscount`, `BetweenConfrontationsAction`, `AllyEdgeGrant`, `EdgeThresholdDelay`) are deferred to ADR-079 — each requires substantial new plumbing. Craft tier 2-3 and Lore tier 2-3 ship in v1 with documented `effects: []  # TODO ADR-079` stubs (see §2 above — labels and narration_hints preserved as authored content). ADR-079 is filed after story 8's playtest acceptance gate clears.
+2. ✓ **Extended `AdvancementEffect` variants.** **Ruled: split decision.** `LoreRevealBonus` is IN the day-1 enum (Craft tier 1, Lore tier 1 use it). The other four (`AllyBeatDiscount`, `BetweenConfrontationsAction`, `AllyEdgeGrant`, `EdgeThresholdDelay`) are deferred to ADR-082+ — each requires substantial new plumbing. Craft tier 2-3 and Lore tier 2-3 ship in v1 with documented `effects: []  # TODO ADR-082+` stubs (see §2 above — labels and narration_hints preserved as authored content). ADR-082+ is filed after story 8's playtest acceptance gate clears.
 3. ✓ **`while_strained` recovery trigger condition.** **Ruled: added to `RecoveryTrigger::OnBeatSuccess` in v1.** Precise definition: `current <= max / 4`, matching the UI Cracked composure_state. Honors Ruin tier 2's thematic core ("stand once after you should have fallen").
 4. ✓ **`read_the_opponent` patience beat in combat ConfrontationDef.** **Ruled: endorsed as story 8 content.** The criterion is "every combat ConfrontationDef must include at least one beat with `edge_delta < 0`" — `read_the_opponent` satisfies it for heavy_metal. Other genres can author their own equivalent. Not a precedent for content scope creep.
 5. ✓ **Resource recovery cadence for Voice/Flesh/Ledger.** **Ruled: endorsed as drafted.** No auto-refill. Narrative recovery only — silent meditation, bed-rest, debt forgiveness. Engine-side this is `decay_per_turn: 0` and no `recovery_per_rest` auto-trigger; the existing `ResourcePool` schema supports this with no code change. Genre-truth call.
@@ -557,6 +557,6 @@ See ADR-078 §"Architect Rulings on GM Draft" for the full ruling text. Stories 
 **Next GM action when stories begin landing:**
 - During story 4's smoke playtest gate: return to §5 to tune `edge_delta` numbers based on what felt right or wrong.
 - After story 8 acceptance: file the parallel content drafts for the other 9 genres (one ADR follow-up per genre — lower priority than heavy_metal acceptance, will need a per-genre audit to determine effects-host location per the ADR-078 §5 amendment).
-- After ADR-079 lands: revisit the four deferred Craft/Lore tier-2/tier-3 stubs and wire them with the new variants.
+- After ADR-082+ lands: revisit the four deferred Craft/Lore tier-2/tier-3 stubs and wire them with the new variants.
 
 — Hawkeye Pierce, Heavy Metal field hospital, 2026-04-15
