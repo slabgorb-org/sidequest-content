@@ -12,6 +12,38 @@ character:
     rare: [Court]
     absent: [Iron]
 
+starting_kit:
+  label: "The Sage Who Misremembers"
+  flavor: "Three ways to know: by reading, by owing, by being unsure. All three produce answers."
+  grants:
+    - id: read_what_others_cant_kit
+      label: "Read What Others Can't"
+      narration_hint: |
+        Any text in an older script resolves for Pumblestone without
+        check. He reads it. He may misquote it later — narrator may have
+        him do so at their discretion — but he reads it now.
+      effects:
+        - { type: lore_reveal_bonus, scope: older_script }
+
+    - id: owed_future_kit
+      label: "Owed Future"
+      narration_hint: |
+        Once per scene, Pumblestone casts a working without naming the
+        cost aloud. The invocation costs less Voice up front; narrator
+        defers the remainder of the cost to a moment of narrator's
+        choosing.
+      effects:
+        - { type: beat_discount, beat_id: invoke, resource_mod: { voice: 1 } }
+
+    - id: one_map_is_right_kit
+      label: "One Map Is Right"
+      narration_hint: |
+        Once per scene with conflicting intel, Pumblestone declares which
+        source is true. Narrator honors it — even if Pumblestone is sure
+        of the reasoning for the wrong reasons.
+      effects:
+        - { type: lore_reveal_bonus, scope: conflicting_intel }
+
 trunk:
   id: shape_right_name_wrong
   label: "Shape Right, Name Wrong"
