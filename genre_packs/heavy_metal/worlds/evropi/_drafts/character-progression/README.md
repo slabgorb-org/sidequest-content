@@ -78,13 +78,27 @@ Nodes that need `ally_beat_discount`, `between_confrontations_action`, `ally_edg
 ## Files in this folder
 
 - `rux.yaml` — Kobold Rogue, Tismenni servant-line
-- `prot_thokk.yaml` — Half-Orc Fighter, Cheeney's guardian
-- `hant.yaml` — Antman Bard, pheromone-composer (heavy ADR-081 dependency)
-- `ludzo.yaml` — Human Rogue, Zkęd exile
+- `prot_thokk.yaml` — Half-Orc Fighter, Cheeney's guardian (consumes ADR-081 `ally_edge_intercept`)
+- `hant.yaml` — Antman Bard, pheromone-composer (heavy ADR-082+ dependency for T2/T3 ally variants)
+- `ludzo.yaml` — Human Rogue, Zkęd exile (test sandbox — starting_kit inherits rux)
 - `pumblestone_sweedlewit.yaml` — Gnome Wizard, forgetful sage
+- `th_rook.yaml` — Pakook`rook Warlock, reniksnad-dependent (consumes ADR-081 `conditional_effect_gating`; character_resources: reniksnad)
 
 ## Scope tally
 
-5 characters × 13 nodes each = 65 content entries. Roughly half land on day-1 enum; roughly half ship as ADR-081 stubs with preserved flavor. (Aberu Kisu retired 2026-04-18.)
+5 playgroup characters + 1 test sandbox = 6 files.
+
+**Starting kits:** 3 grants per character. All day-1 enum effects EXCEPT:
+- Prot'Thokk's *Lil' Sebastian Stands* uses ADR-081 `ally_edge_intercept`
+- Th`rook's *The Dose Helps* uses ADR-081 `conditional_effect_gating`
+- Th`rook's path *The Body Keeps Its Own Ledger* (tier 2) uses ADR-081 `conditional_effect_gating` (future progression, not day-one)
+
+**Progression content (trunk + paths + capstones):** 13 nodes per character = 65 additional content entries. Roughly half land on day-1 enum; roughly half ship as ADR-082+ stubs with preserved labels and narration_hints.
+
+**Character resources:** Th`rook has a character-scoped `reniksnad` ResourcePool (new schema extension alongside the genre-level Voice/Flesh/Ledger).
+
+**Sunday deployment:** All five playgroup characters run under GM fiat via `../sunday-progression.md`. Post-Epic-39 story 5: starting kits and character resources hydrate at chargen.
+
+(Aberu Kisu retired 2026-04-18.)
 
 — Hawkeye, 2026-04-18
