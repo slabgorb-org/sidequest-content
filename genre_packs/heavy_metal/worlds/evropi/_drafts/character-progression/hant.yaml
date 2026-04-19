@@ -18,6 +18,38 @@ character:
     rare: [Ruin, Iron]
     absent: [Craft]
 
+starting_kit:
+  label: "Composer on the Surface"
+  flavor: "Surface strangers, pheromone-courts, the current he followed up out of the Deep Hollows. All three are crafts."
+  grants:
+    - id: drowse_kit
+      label: "Drowse"
+      narration_hint: |
+        Once per scene, Hant destabilizes one enemy through pheromone
+        composition. Narrator describes sudden fatigue, a misplaced word,
+        a step out of stance. No NPC in the scene ever attributes the
+        effect to Hant.
+      effects:
+        - { type: leverage_bonus, beat_id: argue, target_edge_delta_mod: -2 }
+
+    - id: pheromone_court_etiquette_kit
+      label: "Pheromone-Court Etiquette"
+      narration_hint: |
+        Once per scene, Hant reads an NPC's emotional state. Narrator
+        answers truthfully and concretely ("she is afraid of the older
+        priest"), never vaguely ("she seems nervous").
+      effects:
+        - { type: lore_reveal_bonus, scope: emotional_state }
+
+    - id: surface_stranger_kit
+      label: "Surface Stranger"
+      narration_hint: |
+        NPCs who have never seen an antman default to wonder or menace
+        on first meeting, not hostility. Hant's opening social beat in
+        any scene with new NPCs resolves cleaner.
+      effects:
+        - { type: beat_discount, beat_id: argue, edge_delta_mod: -1 }
+
 trunk:
   id: composition_not_explanation
   label: "Composition, Not Explanation"
