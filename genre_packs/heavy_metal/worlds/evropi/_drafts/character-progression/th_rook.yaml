@@ -1,0 +1,287 @@
+# Th`rook — Pakook`rook Warlock, reniksnad-dependent
+# PLACEHOLDER NAME — awaiting Sebastien confirmation. Replace `th_rook`/`Th`rook`
+# throughout this file at chargen if a canonical name is provided.
+#
+# Layered on top of heavy_metal/progression.yaml baseline affinity effects.
+# No save file yet (~/.sidequest/saves/heavy_metal/evropi/th_rook/) — created
+# on first play.
+
+character:
+  save_id: th_rook
+  name: Th`rook
+  race: Pakook`rook
+  class: Warlock
+  affinity_emphasis:
+    primary: [Pact, Ruin]
+    secondary: [Lore]
+    rare: [Court]
+    absent: [Iron, Craft]
+
+starting_kit:
+  label: "Sung to the Rock Beneath the Water"
+  flavor: "A pact older than the kingdom. It answers the knotsong. It does not care that he is dying."
+  grants:
+    - id: knotsung_name
+      label: "Knotsung Name"
+      narration_hint: |
+        The patron's name is easier to sing than to speak. Th`rook inflates
+        his throat-sac and invokes the pact through knotsong; the invocation
+        costs less Voice than a spoken working would. Half a song and half
+        a prayer.
+      effects:
+        - { type: beat_discount, beat_id: invoke, resource_mod: { voice: 1 } }
+
+    - id: creditors_mark
+      label: "Creditor's Mark"
+      narration_hint: |
+        Th`rook recognizes signs of other working in the world — another
+        warlock's pact-creditor, an unclosed rite, a place that has been
+        negotiated over. Narrator reveals one true fact about any such
+        sign on first encounter.
+      effects:
+        - { type: lore_reveal_bonus, scope: pact_creditor_sign }
+
+    - id: the_dose_helps
+      label: "The Dose Helps"
+      narration_hint: |
+        Reniksnad blunts the body's score-keeping. While Th`rook's reniksnad
+        resource is above 5, the commit_cost beat costs 1 less Flesh — the
+        drug silences the body's feedback. Below 5 (withdrawal), the same
+        beat costs 1 MORE Flesh — the body demands its own attention when
+        the drug is not there to silence it. The mechanical line is legible
+        to anyone watching the GM panel.
+      effects:
+        - type: conditional_effect_gating
+          condition:
+            type: resource_above
+            resource: reniksnad
+            threshold: 5
+          when_true:
+            type: beat_discount
+            beat_id: commit_cost
+            resource_mod: { flesh: 1 }
+          when_false:
+            type: beat_discount
+            beat_id: commit_cost
+            resource_mod: { flesh: -1 }
+          # Lands with ADR-081. See docs/adr/081-advancement-effect-variant-expansion.md.
+
+character_resources:
+  - name: reniksnad
+    label: "Reniksnad"
+    min: 0
+    max: 10
+    starting: 7
+    voluntary: false
+    decay_per_scene: 1
+    refill_trigger: "narrator-authored dose event (Wazdia-controlled supply)"
+    thresholds:
+      - at: 5
+        event_id: reniksnad_first_tremor
+        narrator_hint: "His hand shakes slightly when he reaches for water. A Wazdia informer would note it."
+        direction: crossing_down
+      - at: 3
+        event_id: reniksnad_withdrawal
+        narrator_hint: "Withdrawal has begun. His voice thins; knotsongs fail on the high notes. Voice-spends cost 1 more per invocation while he is here."
+        direction: crossing_down
+      - at: 0
+        event_id: reniksnad_death_clock
+        narrator_hint: "The clock has started. He will die within one in-fiction week without another dose. Narrator: this is not dramatic; it is medical."
+        direction: crossing_down
+
+trunk:
+  id: the_patron_answers_the_knotsong
+  label: "The Patron Answers the Knotsong"
+  narration_hint: |
+    The pact is older than the Zkęd kingdom. It lives in the water where
+    reeds meet rock. When Th`rook sings a knotsong — inflated throat-sac,
+    eyes half-closed — something answers. Narrator: the patron is never
+    fully described, never named in full. Its presence is a pressure and
+    a permission. NPCs who hear the knotsong feel nothing consciously;
+    Pakook`rook who hear it recognize it and know to look away.
+  effects: []   # Trunk carries no mechanical effect beyond the KnownFact
+                # injection — ADR-078 baseline Pact tier effects will stack
+                # when he crosses Pact thresholds.
+
+paths:
+  - id: the_songsworn
+    label: "The Songsworn"
+    flavor: "The pact itself — voice, flesh, and ledger spent into the water. Bargained magic at its most literal."
+    nodes:
+      - tier: 1
+        id: the_water_is_deep_enough
+        label: "The Water Is Deep Enough"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Pact:tier:1"
+        narration_hint: |
+          Near standing water deeper than Th`rook's waist, his pact workings
+          resolve as though rehearsed. Narrator treats the invocation as
+          having already steadied before he began.
+        effects:
+          - { type: beat_discount, beat_id: steady_the_rite, resource_mod: { voice: 1 } }
+
+      - tier: 2
+        id: the_patron_remembers_the_song
+        label: "The Patron Remembers the Song"
+        milestone_category: debt
+        grant_trigger:
+          condition: "affinity:Pact:tier:2"
+        narration_hint: |
+          When Th`rook closes the book after a working at or near standing
+          water, the patron accepts the terms more quickly. Ledger entries
+          write themselves shorter.
+        effects:
+          - { type: beat_discount, beat_id: close_the_book, resource_mod: { ledger: 1 } }
+
+      - tier: 3
+        id: sung_into_the_rock
+        label: "Sung Into the Rock"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Pact:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Once per arc, Th`rook may complete a pact working in a single
+          exchange at the site where the swamp meets rock. The patron
+          answers in full. Whatever was requested arrives. The price is
+          paid simultaneously — and legibly — across all four resources.
+        effects:
+          - { type: beat_discount, beat_id: force_completion, resource_mod: { ledger: 2, flesh: 1 } }
+
+  - id: the_pe_quiet
+    label: "The Pę Quiet"
+    flavor: "The addict's hard-won self-knowledge. Not freedom — familiarity."
+    nodes:
+      - tier: 1
+        id: tremor_as_tell
+        label: "Tremor as Tell"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Ruin:tier:1"
+        narration_hint: |
+          Th`rook recognizes another reniksnad-addict in any scene. Narrator
+          reveals one true fact about their supply — where they get it,
+          who they owe, how far from their last dose.
+        effects:
+          - { type: lore_reveal_bonus, scope: reniksnad_addict }
+
+      - tier: 2
+        id: the_body_keeps_its_own_ledger
+        label: "The Body Keeps Its Own Ledger"
+        milestone_category: ruin
+        grant_trigger:
+          condition: "affinity:Ruin:tier:2"
+        narration_hint: |
+          At reniksnad withdrawal (current <= 3), Th`rook's pact workings
+          gain a bitter precision. The body is paying attention for him.
+        effects:
+          - type: conditional_effect_gating
+            condition:
+              type: resource_at_or_below
+              resource: reniksnad
+              threshold: 3
+            when_true:
+              type: leverage_bonus
+              beat_id: commit_cost
+              target_edge_delta_mod: -1
+          # Lands with ADR-081. See docs/adr/081-advancement-effect-variant-expansion.md.
+
+      - tier: 3
+        id: dying_but_not_yet
+        label: "Dying But Not Yet"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Ruin:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Once per arc, at reniksnad = 0 (the death-clock started), Th`rook
+          may invoke the pact's emergency clause. The patron defers his
+          death by one week at the cost of an unspecified future service.
+          Narrator commits to the service later, at a moment of their
+          choosing; Th`rook cannot refuse it.
+        effects: []   # TODO ADR-082+ — needs DeferredNarratorDebt variant
+                      # (out-of-confrontation permanent character flag that
+                      # triggers a narrator-authored scene later)
+
+  - id: the_north_road
+    label: "The North Road"
+    flavor: "The patron named a place. Th`rook is walking toward it. The reniksnad supply south is behind him now."
+    nodes:
+      - tier: 1
+        id: away_from_the_supply
+        label: "Away From the Supply"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Lore:tier:1"
+        narration_hint: |
+          Th`rook recognizes Wazdia informers, tax-collectors, and
+          reniksnad-trade agents on sight. Narrator reveals their role
+          on first appearance.
+        effects:
+          - { type: lore_reveal_bonus, scope: wazdia_reniksnad_agent }
+
+      - tier: 2
+        id: the_named_place
+        label: "The Named Place"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:2"
+          usage: "1/session"
+        narration_hint: |
+          Once per session, Th`rook knows whether the scene's current
+          location is closer to or farther from the place the patron
+          named. Narrator answers concretely.
+        effects:
+          - { type: lore_reveal_bonus, scope: patron_destination_proximity }
+
+      - tier: 3
+        id: arrival
+        label: "Arrival"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Lore:tier:3"
+          usage: "1/arc"
+          location: "the place the patron named"
+        narration_hint: |
+          At arrival. The patron speaks in full, once. Narrator authors the
+          scene. Whatever the patron is becomes legible to the party.
+          Th`rook's reniksnad dependency ends OR transforms — narrator's
+          call.
+        effects: []   # TODO ADR-082+ — needs PermanentCharacterTransform variant
+                      # (mutate character state + resources + narrator contract
+                      # in one event)
+
+capstones:
+  unlock_condition: "any path tier 2 reached"
+  choose: 1
+  options:
+    - id: the_knotsong_teacher
+      label: "The Knotsong Teacher"
+      narration_hint: |
+        Th`rook takes on an apprentice — a freed Pakook`rook child or a
+        Waterfolk bard willing to learn. He teaches the knotsong. The
+        apprentice's presence grants Th`rook one additional Voice spend
+        per session before thresholds apply.
+      permanent_effect: "Apprentice NPC companion; +1 voluntary Voice spend/session budget."
+      effects: []   # TODO ADR-082+ — needs PartyMemberGrant + ResourceBudgetBonus variants
+
+    - id: the_freed_water
+      label: "The Freed Water"
+      narration_hint: |
+        Th`rook establishes a safe marsh-settlement for other Pakook`rook
+        walking north. The patron approves; the Wazdia does not. Narrator
+        treats this location as a recurring safe harbor, with cost.
+      permanent_effect: "Named safe-harbor location with factional heat; narrator-authored."
+      effects:
+        - { type: lore_reveal_bonus, scope: freed_water_settlement }
+
+    - id: the_reniksnad_broken
+      label: "The Reniksnad Broken"
+      narration_hint: |
+        Th`rook breaks the reniksnad dependency through a pact-working that
+        substitutes his patron's presence for the drug. He does not die.
+        But he also cannot be more than a day's travel from deep water for
+        the rest of his life.
+      permanent_effect: "Reniksnad resource removed. Geographic constraint added. Narrator-authored."
+      effects: []   # TODO ADR-082+ — needs PermanentCharacterTransform variant
