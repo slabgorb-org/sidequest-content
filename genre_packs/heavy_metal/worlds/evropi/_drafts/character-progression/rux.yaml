@@ -12,6 +12,38 @@ character:
     rare: [Craft]
     absent: [Pact]
 
+starting_kit:
+  label: "Servant of the Old Line"
+  flavor: "The Tismenni taught their servants three kinds of attention: what is written, where to strike, and how not to be seen."
+  grants:
+    - id: kept_the_masters_books_kit
+      label: "Kept the Master's Books"
+      narration_hint: |
+        Rux recognizes a sigil, script, or heraldry from 12,000-year
+        archive-memory. Narrator reveals one true fact about any written
+        or sigiled object he touches, once per scene, auto-success.
+      effects:
+        - { type: lore_reveal_bonus, scope: written_object }
+
+    - id: strike_from_the_low_line_kit
+      label: "Strike from the Low Line"
+      narration_hint: |
+        Rux's strikes land where Tismenni scholars taught their servants
+        to strike. Narrator describes precision, not force — scholar-killer
+        language, never duelist. STR 8 is not a constraint on his damage
+        language.
+      effects:
+        - { type: leverage_bonus, beat_id: strike, target_edge_delta_mod: -1 }
+
+    - id: already_dismissed_kit
+      label: "Already Dismissed"
+      narration_hint: |
+        Once per scene while Rux is at half Edge or below, an enemy's eye
+        slides past him; a successful beat of his restores composure the
+        narrator describes as the posture of having been overlooked.
+      effects:
+        - { type: edge_recovery, trigger: { type: on_beat_success, while_strained: true }, amount: 2 }
+
 trunk:
   id: the_dog_that_listens
   label: "The Dog That Listens"
