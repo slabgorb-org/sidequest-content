@@ -12,6 +12,44 @@ character:
     rare: [Craft]
     absent: [Pact, Lore]
 
+starting_kit:
+  label: "The One Who Stands Between"
+  flavor: "Three postures: the wall, the broken chain, the body that will not let the horse fall."
+  grants:
+    - id: stand_in_front_kit
+      label: "Stand in Front"
+      narration_hint: |
+        While Prot'Thokk is at full Edge, adjacent allies benefit from his
+        bearing. Narrator describes enemies reading the room and picking
+        easier targets. This is posture, not shield.
+      effects:
+        - { type: edge_max_bonus, amount: 1 }
+        - { type: beat_discount, beat_id: brace, edge_delta_mod: -1 }
+
+    - id: broke_the_chains_kit
+      label: "Broke the Chains"
+      narration_hint: |
+        Prot'Thokk frees a bound or captured ally as a single action.
+        No lock-roll, no guard-beat. The narrator allows the break.
+        Every time he does this, the moment with Cheeney re-surfaces
+        in his bearing.
+      effects:
+        - { type: beat_discount, beat_id: refuse, edge_delta_mod: -1 }
+
+    - id: lil_sebastian_stands_kit
+      label: "Lil' Sebastian Stands"
+      narration_hint: |
+        Any hostile beat targeting Cheeney or Lil' Sebastian (the horse)
+        can be intercepted. Prot'Thokk absorbs up to 3 points of the
+        target_edge_delta as his own Edge loss; any remainder continues
+        to the ally. Actor Edge is clamped to 1 minimum on the redirect
+        so the intercept cannot self-break him on the first hit.
+      effects:
+        - type: ally_edge_intercept
+          ally_whitelist: ["Cheeney", "Lil'Sebastian"]
+          max_redirect: 3
+      # Lands with ADR-081. See docs/adr/081-advancement-effect-variant-expansion.md.
+
 trunk:
   id: used_to_being_watched
   label: "Used to Being Watched"
