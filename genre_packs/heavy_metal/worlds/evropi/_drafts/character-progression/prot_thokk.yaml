@@ -1,0 +1,201 @@
+# Prot'Thokk — Half-Orc Fighter, Cheeney's sworn
+# Layered on top of heavy_metal/progression.yaml baseline affinity effects.
+
+character:
+  save_id: prot_thokk
+  name: Prot'Thokk
+  race: Half-Orc
+  class: Fighter
+  affinity_emphasis:
+    primary: [Iron, Ruin]
+    secondary: [Court]
+    rare: [Craft]
+    absent: [Pact, Lore]
+
+trunk:
+  id: used_to_being_watched
+  label: "Used to Being Watched"
+  narration_hint: |
+    When the party enters a new settlement, Prot'Thokk draws the first
+    attention — villagers, informers, Mistos-hired eyes. The rest of the
+    party gets one scene of reduced scrutiny. The half-orc absorbs
+    suspicion so the others can work. Narrator: the double-takes land on
+    him first, every time.
+  effects:
+    - { type: edge_max_bonus, amount: 1 }
+    # The baseline effect represents the settled composure of the
+    # chronically-watched. Court-flavored, even though he'd never call it that.
+
+paths:
+  - id: wall_between
+    label: "Wall Between"
+    flavor: "Tank. Take hits, hold lines, stand in front."
+    nodes:
+      - tier: 1
+        id: stand_in_front
+        label: "Stand in Front"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Iron:tier:1"
+        narration_hint: |
+          While Prot'Thokk is at full Edge, adjacent allies benefit from
+          his bearing. Narrator describes enemies reading the room and
+          picking easier targets. This is posture, not shield.
+        effects:
+          - { type: edge_max_bonus, amount: 1 }
+          - { type: beat_discount, beat_id: brace, edge_delta_mod: -1 }
+
+      - tier: 2
+        id: fought_wounded
+        label: "Fought Wounded"
+        milestone_category: ruin
+        grant_trigger:
+          condition: "affinity:Iron:tier:2"
+        narration_hint: |
+          At or below half Edge, Prot'Thokk's violence escalates. Narrator
+          writes him as more dangerous because he is hurting. Pain is a
+          posture he has learned to fight from.
+        effects:
+          - { type: edge_recovery, trigger: { type: on_beat_success, while_strained: true }, amount: 1 }
+          - { type: leverage_bonus, beat_id: committed_blow, target_edge_delta_mod: -1 }
+
+      - tier: 3
+        id: the_last_line
+        label: "The Last Line"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Iron:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          When Prot'Thokk would hit composure_break, he refuses once. The
+          scene continues. He pays for it later — narrator honors the bill
+          in a later scene of narrator's choosing.
+        effects: []  # TODO ADR-082+ — needs EdgeThresholdDelay variant (refuse
+                      # composure_break once per arc, defer consequence)
+
+  - id: fellow_escapee
+    label: "Fellow Escapee"
+    flavor: "Guardian of dependents. The oath with Cheeney is the mechanical spine."
+    nodes:
+      - tier: 1
+        id: broke_the_chains
+        label: "Broke the Chains"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Court:tier:1"
+        narration_hint: |
+          Prot'Thokk frees a bound or captured ally as a single action.
+          No lock-roll, no guard-beat. The narrator allows the break.
+          Every time he does this, the moment with Cheeney re-surfaces
+          in his bearing.
+        effects:
+          - { type: beat_discount, beat_id: refuse, edge_delta_mod: -1 }
+
+      - tier: 2
+        id: mistos_can_wait
+        label: "Mistos Can Wait"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Court:tier:2"
+        narration_hint: |
+          When a pursuing institutional faction (Mistos, guild, company,
+          crown) targets a companion, Prot'Thokk can redirect that
+          attention onto himself for the scene. His name goes further up
+          the ledger in exchange. Narrator honors the swap.
+        effects: []  # TODO ADR-082+ — needs AllyAttentionIntercept variant
+                      # (redirect faction-pursuit target from ally to self)
+
+      - tier: 3
+        id: open_account_closed
+        label: "Open Account Closed"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Court:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Prot'Thokk finishes a named pursuer from his past. The reckoning
+          is his — not the party's. Narrator does not soften it.
+        effects:
+          - { type: leverage_bonus, beat_id: pay_in_full, target_edge_delta_mod: -3 }
+
+  - id: over_the_horse
+    label: "Over the Horse"
+    flavor: "His signature. He will die for Lil' Sebastian and he means it."
+    nodes:
+      - tier: 1
+        id: lil_sebastian_stands
+        label: "Lil' Sebastian Stands"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Ruin:tier:1"
+        narration_hint: |
+          Any hostile action targeting Cheeney or the horse can be
+          intercepted as a reaction. No movement required. The narrator
+          always allows the intercept.
+        effects:
+          - type: ally_edge_intercept
+            ally_whitelist: ["Cheeney", "Lil'Sebastian"]
+            max_redirect: 3
+          # Lands with ADR-081. See docs/adr/081-advancement-effect-variant-expansion.md.
+
+      - tier: 2
+        id: grief_is_a_posture
+        label: "Grief Is a Posture"
+        milestone_category: ruin
+        grant_trigger:
+          condition: "affinity:Ruin:tier:2"
+        narration_hint: |
+          If Cheeney falls, Prot'Thokk cannot be knocked prone and cannot
+          drop his weapon for the remainder of the scene. He is literally
+          unmoveable. Narrator: this is not a stat bonus, it is a physics
+          rule.
+        effects:
+          - { type: edge_recovery, trigger: { type: on_beat_success, while_strained: true }, amount: 3 }
+
+      - tier: 3
+        id: die_over_the_horse
+        label: "Die Over the Horse"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Ruin:tier:3"
+          usage: "1/campaign"
+        narration_hint: |
+          If the horse or Cheeney would die, Prot'Thokk dies instead.
+          Permanent. He comes back in the next session — the world owes
+          him a resurrection it cannot name. Use once per campaign.
+        effects: []  # TODO ADR-082+ — needs CampaignOnceResurrection variant;
+                      # flavor preserved, no engine effect until wired
+
+capstones:
+  unlock_condition: "any path tier 2 reached"
+  choose: 1
+  options:
+    - id: the_oath_that_stood
+      label: "The Oath That Stood"
+      narration_hint: |
+        Prot'Thokk swears a binding word to Cheeney in the open. From then
+        on, any NPC who has heard the oath treats Prot'Thokk's refusals as
+        load-bearing — not empty, not negotiable.
+      permanent_effect: "Refusals land heavier. Oath witnesses remember."
+      effects:
+        - { type: leverage_bonus, beat_id: refuse, target_edge_delta_mod: -2 }
+
+    - id: the_mines_remembered
+      label: "The Mines Remembered"
+      narration_hint: |
+        Prot'Thokk carries a chain-link from the Ingurdios mine. Once per
+        session, he can find his way out of any subterranean space by
+        touch alone.
+      permanent_effect: "Underground navigation is narrator-honored."
+      effects:
+        - { type: lore_reveal_bonus, scope: subterranean_passage }
+
+    - id: the_chain_that_never_re_closes
+      label: "The Chain That Never Re-Closes"
+      narration_hint: |
+        Prot'Thokk can break any lock, manacle, or fetter by hand if the
+        binding is on a person. Not on a door. Not on a chest. On a
+        person.
+      permanent_effect: "Bindings on people yield to him, full stop."
+      effects:
+        - { type: beat_discount, beat_id: refuse, edge_delta_mod: -2 }
