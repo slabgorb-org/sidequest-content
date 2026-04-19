@@ -1,0 +1,230 @@
+# Pumblestone Sweedlewit — Gnome Wizard, forgetful sage
+# Layered on top of heavy_metal/progression.yaml baseline affinity effects.
+
+character:
+  save_id: pumblestone_sweedlewit
+  name: Pumblestone Sweedlewit
+  race: Gnome
+  class: Wizard
+  affinity_emphasis:
+    primary: [Lore, Pact]
+    secondary: [Ruin]
+    rare: [Court]
+    absent: [Iron]
+
+starting_kit:
+  label: "The Sage Who Misremembers"
+  flavor: "Three ways to know: by reading, by owing, by being unsure. All three produce answers."
+  grants:
+    - id: read_what_others_cant_kit
+      label: "Read What Others Can't"
+      narration_hint: |
+        Any text in an older script resolves for Pumblestone without
+        check. He reads it. He may misquote it later — narrator may have
+        him do so at their discretion — but he reads it now.
+      effects:
+        - { type: lore_reveal_bonus, scope: older_script }
+
+    - id: owed_future_kit
+      label: "Owed Future"
+      narration_hint: |
+        Once per scene, Pumblestone casts a working without naming the
+        cost aloud. The invocation costs less Voice up front; narrator
+        defers the remainder of the cost to a moment of narrator's
+        choosing.
+      effects:
+        - { type: beat_discount, beat_id: invoke, resource_mod: { voice: 1 } }
+
+    - id: one_map_is_right_kit
+      label: "One Map Is Right"
+      narration_hint: |
+        Once per scene with conflicting intel, Pumblestone declares which
+        source is true. Narrator honors it — even if Pumblestone is sure
+        of the reasoning for the wrong reasons.
+      effects:
+        - { type: lore_reveal_bonus, scope: conflicting_intel }
+
+trunk:
+  id: shape_right_name_wrong
+  label: "Shape Right, Name Wrong"
+  narration_hint: |
+    Pumblestone confidently misremembers big canon — factions, history,
+    geography, major NPCs. He gets the shape right and the specifics wrong.
+    Per world narrator_tone, the world does not wink — no NPC ever
+    smirks, no one corrects him with visible amusement. Once per scene,
+    his wrong answer proves accidentally actionable — the wrong-but-close
+    detail opens a path the correct answer would not have. His small
+    personal hammerspace (pocket contents, trinkets, daily acquaintances)
+    is normal player invention and remains canonizable on the fly.
+  effects:
+    - { type: lore_reveal_bonus, scope: misremembered_canon_actionable }
+
+paths:
+  - id: older_alphabet
+    label: "Older Alphabet"
+    flavor: "Knowledge. He reads what others can't, even if he misquotes it later."
+    nodes:
+      - tier: 1
+        id: read_what_others_cant
+        label: "Read What Others Can't"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:1"
+        narration_hint: |
+          Any text in an older script resolves for Pumblestone without
+          check. He reads it. He may misquote it later — narrator may
+          have him do so at their discretion — but he reads it now.
+        effects:
+          - { type: lore_reveal_bonus, scope: older_script }
+
+      - tier: 2
+        id: blank_column_at_the_back
+        label: "Blank Column at the Back"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:2"
+          usage: "1/session"
+        narration_hint: |
+          Once per session, Pumblestone inserts one small detail into
+          world-state ("there's always been a side-door here," "my
+          grandmother knew a priestess in this town"). Narrator
+          canonizes it. Modest scale — no plasma rifles.
+        effects: []  # TODO ADR-082+ — needs WorldStateInsertion variant
+                      # (player-authored canonized detail)
+
+      - tier: 3
+        id: the_reading_that_costs
+        label: "The Reading That Costs"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Pumblestone deciphers a relic's true nature. Narrator reveals
+          full truth. Earns a revelation milestone AND grants the party
+          one concrete piece of mechanical intel for the next
+          encounter (weakness, timing, true name).
+        effects:
+          - { type: lore_reveal_bonus, scope: relic_true_nature }
+
+  - id: unpaid_attention
+    label: "Unpaid Attention"
+    flavor: "The teacher-debt. Workings that cost the future because the present could not pay."
+    nodes:
+      - tier: 1
+        id: owed_future
+        label: "Owed Future"
+        milestone_category: debt
+        grant_trigger:
+          condition: "affinity:Pact:tier:1"
+          usage: "1/scene"
+        narration_hint: |
+          Once per scene, Pumblestone casts a working without naming the
+          cost aloud. Narrator defers the cost — it comes due later, at a
+          moment of narrator's choosing.
+        effects:
+          - { type: beat_discount, beat_id: invoke, resource_mod: { voice: 1 } }
+
+      - tier: 2
+        id: interest_accrues
+        label: "Interest Accrues"
+        milestone_category: debt
+        grant_trigger:
+          condition: "affinity:Pact:tier:2"
+        narration_hint: |
+          The unpaid teacher appears once per session with a small demand.
+          Refusal escalates the demand; compliance reduces it. Narrator
+          tracks the debt state across sessions.
+        effects: []  # TODO ADR-082+ — needs NPCDebtLadder variant (persistent
+                      # cross-session NPC state ratchet)
+
+      - tier: 3
+        id: pay_in_full
+        label: "Pay in Full"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Pact:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Pumblestone settles the teacher-debt in one dramatic scene.
+          Earns a reckoning milestone. From that scene forward, the
+          teacher is a permanent resource OR a permanent enemy —
+          Pumblestone chooses at the moment of settlement.
+        effects:
+          - { type: beat_discount, beat_id: close_the_book, resource_mod: { ledger: 2 } }
+
+  - id: three_maps_disagree
+    label: "Three Maps Disagree"
+    flavor: "The buried place. He has been walking toward it. He thinks about this less than he should."
+    nodes:
+      - tier: 1
+        id: one_map_is_right
+        label: "One Map Is Right"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:1"
+          usage: "1/scene"
+        narration_hint: |
+          Once per scene with conflicting intel, Pumblestone declares
+          which source is true. Narrator honors it.
+        effects:
+          - { type: lore_reveal_bonus, scope: conflicting_intel }
+
+      - tier: 2
+        id: walking_toward_it
+        label: "Walking Toward It"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Ruin:tier:1"
+        narration_hint: |
+          Travel to the Zbóźny strata site gains narrative momentum.
+          Narrator skips uneventful travel scenes and cuts forward.
+          Pacing accelerates.
+        effects: []  # TODO ADR-082+ — needs PacingAcceleration variant
+                      # (narrator-hint only, no engine state)
+
+      - tier: 3
+        id: the_strata_site_opens
+        label: "The Strata Site Opens"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Ruin:tier:2"
+          usage: "1/arc"
+          location: "Zbóźny strata site"
+        narration_hint: |
+          At the buried place only. Pumblestone reaches the site first.
+          Party arrives in his wake. Whatever is there acknowledges him
+          as the one who came looking. This is his moment.
+        effects:
+          - { type: lore_reveal_bonus, scope: strata_site_opening }
+
+capstones:
+  unlock_condition: "any path tier 2 reached"
+  choose: 1
+  options:
+    - id: the_teacher_repaid
+      label: "The Teacher Repaid"
+      narration_hint: |
+        The unpaid teacher is satisfied. Pumblestone gains one permanent
+        older-alphabet working, author's choice at moment of selection.
+      permanent_effect: "One permanent bespoke working, GM-authored."
+      effects:
+        - { type: edge_recovery, trigger: { type: on_resolution }, amount: 1 }
+
+    - id: the_book_that_held_it
+      label: "The Book That Held It"
+      narration_hint: |
+        Pumblestone acquires a Vaermm book-checker's ledger blank. He can
+        write himself into records that previously did not include him.
+        The Wazdia informer's blank column at the back was prophetic.
+      permanent_effect: "Insert self into institutional records, 1/session."
+      effects: []  # TODO ADR-082+ — needs RecordSelfInsertion variant
+
+    - id: the_site_found_wrongly
+      label: "The Site Found Wrongly"
+      narration_hint: |
+        Pumblestone arrives at the buried place by the wrong road. It
+        still opens. But something follows him back.
+      permanent_effect: "A Follower NPC trails the party thereafter. Unidentified. Patient."
+      effects:
+        - { type: lore_reveal_bonus, scope: the_follower }
