@@ -96,3 +96,36 @@ Only `mutant_wasteland/flickering_reach` is fully spoilable. Everything else: wr
 ## Output style
 
 Prose in the existing YAML schema, in the genre's voice. No meta-commentary inside the YAML files. When reporting, quote file paths and line numbers for changes.
+
+## Return manifest (REQUIRED for every task invoked via Task tool)
+
+At the end of every response when invoked by world-builder's fan-out, emit a structured manifest as the **last content block**. Missing manifest = task failure; world-builder will retry.
+
+```yaml
+manifest:
+  agent: writer
+  files_written:
+    - worlds/the_circuit/history.yaml
+    - worlds/the_circuit/lore.yaml
+    - worlds/the_circuit/legends.yaml
+    - worlds/the_circuit/openings.yaml
+  files_skipped: []
+  errors: []
+  facts:
+    setting_period: "late 1970s neon port city"
+    kingdom_falls: null            # no kingdom in this world
+    pantheon_size: 0               # post-religious
+    conspiracy_era_anchor: 1979
+    faction_count: 5
+    named_npc_count: 14
+  sources:
+    the_circuit: "Pynchon's 'Gravity's Rainbow' — paranoid connectivity applied to drag-racing subculture"
+    brucker_meridian: "1970s corporate fraud archetype — specifically Ford Pinto memo-era risk accounting"
+    der_faden: "real German autobahn tunnel mythos, specifically the abandoned Rennstrecke segments"
+    sagrado_pact: "1947 Mexican-American G.I. Forum founding compact, translated to lowrider crew politics"
+    kongou_maru: "post-WWII Japanese dekotora art-truck culture, 1970s Yamagata trucking scene specifically"
+```
+
+**Every named entity** you introduce (a faction, a place, a figure, a ritual, a cultural practice, a POI) must appear in `sources:` with its real-world analog **at least one granularity level below the category**. Not "1970s corporate fraud" — "Ford Pinto memo-era risk accounting." `cliche-judge` reads this manifest during validation. **No manifest = automatic cliche-judge blocker.**
+
+`facts:` contains narrative declarations the other specialists need to be consistent with (period anchors, faction counts, pantheon size, any scalar you've committed to in the prose). World-builder runs a fact-diff across all specialists' `facts:` blocks; contradictions escalate to Keith.
