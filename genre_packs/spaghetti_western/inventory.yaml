@@ -1,4 +1,15 @@
 # Spaghetti Western — Item Catalog and Starting Equipment
+#
+# NOTE ON WORLD/GENRE SPLIT: Items are world-flavor (a Mexican border
+# world ships revolvers and Winchesters; a Sengoku world would ship
+# katanas, wakizashi, and matchlocks). Currently the loader reads
+# inventory.yaml ONLY from the genre path — there's no world-level
+# override hook (see sidequest-api/crates/sidequest-genre/src/loader.rs:57).
+# The item catalog below is therefore the dust_and_lead American-West
+# inventory living at genre scope by constraint, not by design. When a
+# second world in this genre is added, the loader needs extension
+# (`load_yaml_optional(&world_path.join("inventory.yaml"))` with world
+# overriding genre) before the inventory can split properly.
 
 currency:
   name: Dollars
@@ -151,7 +162,7 @@ item_catalog:
     rarity: common
     power_level: 0
     tags: [clothing, concealment]
-    lore: "The Man With No Name made it iconic. You make it practical."
+    lore: "A nameless stranger in a poncho made this silhouette iconic. You make it practical."
     narrative_weight: standard
 
   - id: duster_coat

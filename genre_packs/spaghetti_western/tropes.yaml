@@ -25,7 +25,7 @@
       event: >-
         The local power broker sends someone to size up the stranger —
         a casual conversation that is anything but casual.
-      npcs_involved: [The Card Sharp]
+      npcs_involved: [The Broker]
       stakes: First impressions set the terms. Reveal too much and you lose leverage.
     - at: 0.4
       event: >-
@@ -37,19 +37,19 @@
       event: >-
         Someone tests the stranger — a provocation in the saloon, a
         rigged card game, a midnight visit with a knife.
-      npcs_involved: [The Hired Gun]
+      npcs_involved: [The Instrument]
       stakes: How the stranger responds defines their reputation in town.
     - at: 0.8
       event: >-
         Both factions realize the stranger cannot be controlled. They
         begin to coordinate against the common threat.
-      npcs_involved: [The Corrupt Sheriff, The Desperate Bandit]
+      npcs_involved: [The Corrupt Authority, The Desperate Bandit]
       stakes: The stranger is now hunted by everyone with power.
     - at: 1.0
       event: >-
         Full confrontation. The town's rotten structure collapses into
         open violence. The stranger is at the center of it.
-      npcs_involved: [The Corrupt Sheriff, The Hired Gun]
+      npcs_involved: [The Corrupt Authority, The Instrument]
       stakes: Survival. The town will be different after today.
   passive_progression:
     rate_per_turn: 0.02
@@ -156,13 +156,13 @@
         A rumor surfaces — a dying man's confession, a fragment of map,
         a coded letter. The first whispers of something valuable hidden
         in the territory.
-      npcs_involved: [The Card Sharp]
+      npcs_involved: [The Broker]
       stakes: Information is the first commodity. Who knows what, and who are they telling?
     - at: 0.4
       event: >-
         Multiple parties are now pursuing the same prize. An uneasy
         alliance of convenience forms — share the risk, split the take.
-      npcs_involved: [The Desperate Bandit, The Bounty Collector]
+      npcs_involved: [The Desperate Bandit, The Hunter]
       stakes: The alliance is already fragile. Everyone is calculating their double-cross.
     - at: 0.6
       event: >-
@@ -175,7 +175,7 @@
         The gold is close. The final obstacle is not distance or enemies
         but the people you traveled with. The math is simple — fewer
         shares means more gold.
-      npcs_involved: [The Man With No Name]
+      npcs_involved: [The Stranger]
       stakes: Betrayal or loyalty. This is where character is revealed.
     - at: 1.0
       event: >-
@@ -234,7 +234,7 @@
       event: >-
         The avenger arrives. They do not act immediately. They watch.
         They learn the target's routines, allies, weaknesses.
-      npcs_involved: [The Man With No Name]
+      npcs_involved: [The Stranger]
       stakes: The noose tightens. People around the target sense something wrong.
     - at: 0.6
       event: >-
@@ -246,7 +246,7 @@
       event: >-
         The target's defenses crumble. Allies are neutralized, escape
         routes closed. The reckoning is imminent.
-      npcs_involved: [The Hired Gun]
+      npcs_involved: [The Instrument]
       stakes: The target is cornered. Only intervention can change the outcome.
     - at: 1.0
       event: >-
@@ -269,15 +269,16 @@
     accelerator_bonus: 0.04
     decelerator_penalty: 0.02
 
-- id: railroad_coming
-  name: The Railroad Is Coming
+- id: progress_arrives
+  name: Progress Arrives
   description: >-
-    Progress has a schedule and it does not negotiate. The railroad
-    represents capital, modernity, and power that dwarfs any local
-    faction. It needs land, labor, and a clear right-of-way — and
-    it will acquire all three by purchase, coercion, or force. Every
-    person in its path must choose: profit, resist, or get out of
-    the way.
+    An outside force with capital, modernity, and power that dwarfs every
+    local faction rolls in on its own schedule. It needs land, labor, and
+    a clear path — and it will acquire all three by purchase, coercion, or
+    force. Every person in its path must choose: profit, resist, or get
+    out of the way. In Mexican border country it's the railroad and the
+    mining company. In Meiji Japan it's the imperial army and the
+    foreigners with iron ships. The shape is the same.
   category: conflict
   triggers:
     - railroad
@@ -285,49 +286,52 @@
     - eminent domain
     - progress
     - development
+    - outsiders with capital
+    - modernization
+    - imperial decree
   narrative_hints:
-    - surveyors appear on disputed land
-    - land prices spike or crash depending on the route
+    - surveyors or envoys appear on disputed land
+    - land prices spike or crash depending on whose plans run through it
     - hired muscle arrives in town with no local ties
   tension_level: 0.5
   resolution_hints:
     - negotiate a fair deal for the displaced
-    - expose the railroad's crimes and force accountability
-    - take the railroad's money and live with it
-    - burn the railroad out and accept the consequences
+    - expose the outsiders' crimes and force accountability
+    - take their money and live with it
+    - burn it out and accept the consequences
   tags: [political, progress, faction, land]
   escalation:
     - at: 0.2
       event: >-
-        Surveyors appear on the outskirts, driving stakes and measuring
-        distances. They are polite, professional, and backed by lawyers
-        nobody in town can afford.
+        Surveyors or agents appear on the outskirts, driving stakes and
+        measuring distances. They are polite, professional, and backed by
+        authority nobody in town can afford to challenge.
       npcs_involved: []
       stakes: The first stakes in the ground are literal. The metaphorical ones follow.
     - at: 0.4
       event: >-
         A representative arrives with buyout offers. Generous for those
         who cooperate. Conspicuously absent for those who don't.
-      npcs_involved: [The Card Sharp]
+      npcs_involved: [The Broker]
       stakes: Early cooperation means good money. Holdouts watch their neighbors get paid.
     - at: 0.6
       event: >-
-        The holdouts face pressure. Cattle fences cut. Water rights
-        contested. A mysterious fire. The railroad's patience has
-        limits.
-      npcs_involved: [The Hired Gun]
-      stakes: Resistance is becoming costly. The railroad plays dirty when it needs to.
+        The holdouts face pressure. Fences cut. Water rights contested.
+        A mysterious fire. The patience of the outside force has limits.
+      npcs_involved: [The Instrument]
+      stakes: Resistance is becoming costly. The outsiders play dirty when they need to.
     - at: 0.8
       event: >-
-        Open violence. Hired guns move against the remaining resistance.
-        The sheriff looks the other way — or pins on a railroad badge.
-      npcs_involved: [The Corrupt Sheriff, The Hired Gun]
-      stakes: The last holdouts fight or flee. The railroad does not stop.
+        Open violence. Hired weapons move against the remaining resistance.
+        The local authority looks the other way — or pins on the newcomers'
+        badge.
+      npcs_involved: [The Corrupt Authority, The Instrument]
+      stakes: The last holdouts fight or flee. The outside force does not stop.
     - at: 1.0
       event: >-
-        The tracks are laid or they are not. The town is transformed
-        or destroyed. Progress has arrived — and left its boot prints
-        on everyone who stood in the way.
+        The road is laid or it is not. The town is transformed or destroyed.
+        Progress has arrived — and left its boot prints on everyone who
+        stood in the way.
       npcs_involved: []
       stakes: The shape of the future. Nothing in the territory will be the same.
   passive_progression:
@@ -338,6 +342,8 @@
       - progress
       - land
       - development
+      - outsiders
+      - modernization
     decelerators:
       - sabotage
       - legal challenge
@@ -379,7 +385,7 @@
       event: >-
         The price goes up. A professional bounty hunter arrives in
         the territory, asking questions, studying trails.
-      npcs_involved: [The Bounty Collector]
+      npcs_involved: [The Hunter]
       stakes: A professional changes the calculus. Running is harder than fighting.
     - at: 0.6
       event: >-
@@ -391,13 +397,13 @@
       event: >-
         Multiple hunters converge. The territory is closing in. Safe
         havens are compromised.
-      npcs_involved: [The Bounty Collector, The Hired Gun]
+      npcs_involved: [The Hunter, The Instrument]
       stakes: Nowhere to rest. Every town is a trap.
     - at: 1.0
       event: >-
         Cornered. The final confrontation with the best hunter on
         the trail — or with the person who placed the bounty.
-      npcs_involved: [The Bounty Collector]
+      npcs_involved: [The Hunter]
       stakes: Freedom or capture. The bounty ends one way or another.
   passive_progression:
     rate_per_turn: 0.02
