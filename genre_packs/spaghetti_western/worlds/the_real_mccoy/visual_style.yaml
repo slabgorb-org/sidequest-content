@@ -1,0 +1,401 @@
+# The Real McCoy — World-Specific Visual Style
+#
+# Overrides spaghetti_western genre defaults for 1878-1880 Pittsburgh.
+# This is Pittsburgh industrial Gilded Age — coal-smoke sepia, gaslight amber,
+# Bessemer-fire orange, river-fog grey-white. NOT frontier Chihuahuan desert,
+# NOT Leone Almería. The spaghetti_western structural grammar (stillness
+# before violence, held stares, iconic silhouettes against harsh skies)
+# still applies, but the sky is smoke-stained and the silhouettes are
+# frock-coated against blast-furnace light.
+#
+# Visual register anchors:
+#   PORTRAITS    → Napoleon Sarony 1870s cabinet-card studio work,
+#                  Southworth & Hawes Boston daguerreotype tonal range
+#   INDUSTRIAL   → Harper's Weekly 1878 Mon Valley steel-mill engravings
+#                  by William Allen Rogers + Alfred R. Waud
+#   LANDSCAPE    → Currier & Ives 1870s lithograph composition + Underwood
+#                  & Underwood stereograph card industrial-scene framing
+#   ACTION       → Eadweard Muybridge 1878 Palo Alto plate (The Horse in
+#                  Motion) — frozen-instant clarity, collodion-plate grain
+#   REPLICANT    → Albert Robida's 1886 illustrations for Villiers de
+#                  l'Isle-Adam's *L'Ève future*; Jules Worms engravings;
+#                  the uncanny-still-doll register of Cameron's posthumous
+#                  daguerreotypes
+#
+# Anti-references (things this world is NOT):
+#   - Girl Genius / Abney Park brass-goggle steampunk cosplay
+#   - Wild Wild West 1999 or League of Extraordinary Gentlemen pastiche
+#   - Leone Almería desert (that's dust_and_lead's lane)
+#   - 1890s-1910s Gilded Age maturity (too late — stay 1878)
+#   - Post-Tesla AC-electric visual cues (Brush arc-light DC only)
+
+positive_suffix: >-
+  1878 Pittsburgh industrial Gilded Age, coal-smoke sepia atmosphere,
+  gaslight amber warm interior, Bessemer-fire distant orange glow,
+  mahogany and walnut paneling with brass fittings, river-fog grey-white,
+  hand-tinted albumen photograph aesthetic, Napoleon Sarony cabinet-card
+  studio portrait register, Harper's Weekly 1878 William Allen Rogers
+  Mon Valley engraving composition, Currier & Ives 1870s lithograph
+  background, Underwood stereograph industrial clarity, Muybridge 1878
+  Palo Alto plate motion-capture precision, carte-de-visite oval vignette
+  framing, collodion wet-plate grain, visible coal particulate in air,
+  James Parton 'hell with the lid off' smoke-stained sky, Pittsburgh 1878
+  documentarian grounded, pre-Tesla pre-AC-era, frock coats and waistcoats,
+  gaslight and arc-light only
+
+negative_prompt: >-
+  modern, clean, digital, futuristic, CGI, smooth plastic, neon, laser,
+  chrome, anime, cartoon, Instagram filter, HDR oversaturation, fluorescent,
+  1960s, 1980s, post-1900, post-1905, Edwardian, Art Nouveau, post-Tesla
+  AC-era visual, incandescent bulb, fluorescent tube, Girl Genius
+  gear-and-goggles steampunk, Abney Park brass-goggle caricature, Wild
+  Wild West 1999, League of Extraordinary Gentlemen pastiche, cosplay,
+  wide-brim cowboy hat, Clint Eastwood Leone register, Chihuahuan desert,
+  Almería, adobe, saguaro, mesa, cattle, open prairie, green lush landscape,
+  tropical, beach, snow mountain, medieval armor, magic, fantasy elf,
+  robot visible machinery, chrome android, exposed gears, fiber optic,
+  LED, plasma, hologram
+
+preferred_model: dev
+
+base_seed: 1878
+
+# ── Palette ───────────────────────────────────────────────────
+# Named hex values with semantic labels. The world reads as sepia +
+# amber + smoke, punctuated by rare Bessemer-orange sublime moments.
+palette:
+  coal_smoke_sepia:    "#5a4a3a"   # dominant mid-tone; sky, distance, facades
+  gaslight_amber:      "#d9a34a"   # interior warmth; lamp halos, lit windows
+  bessemer_orange:     "#e8692b"   # rare punch; furnace flare, sublime moments
+  mahogany_walnut:     "#3d2418"   # interior wood; train cars, libraries
+  brass_warm:          "#a8803a"   # fittings, fixtures, watch chains
+  fog_grey_white:      "#c7c2b8"   # river fog, Monongahela morning, alkaline mist
+  cemetery_slate:      "#4a4e52"   # Allegheny Cemetery, mourning, Raubritter cold
+  coal_black:          "#12100e"   # crushed shadows, soot, absolute dark
+  parchment_cream:     "#e8dcc0"   # newspaper, telegram, dispatch paper
+  ink_iron_gall:       "#2a1f18"   # handwriting, printed text, iron-gall ink
+  bethel_ame_gold:     "#b8882e"   # warm ceremonial highlight, AME pulpit brass
+
+# Semantic palette usage
+palette_usage:
+  sky_default: coal_smoke_sepia     # never blue — always smoke-tinted
+  sky_dramatic: bessemer_orange     # Mon Valley at night, furnace-lit
+  interior_warm: gaslight_amber
+  interior_cold: cemetery_slate     # Raubritter's study, Pinkerton office
+  wood_tone: mahogany_walnut
+  metal_tone: brass_warm            # NOT chrome, NOT polished steel
+  shadow: coal_black                # crushed, Leone-style, no soft fill
+  mist: fog_grey_white
+
+# ── Medium ────────────────────────────────────────────────────
+medium_primary: >-
+  1870s carte-de-visite and cabinet-card studio portraiture (Napoleon
+  Sarony 1870s Broadway studio register), Southworth & Hawes Boston
+  daguerreotype tonal range applied to albumen-print context, Underwood
+  & Underwood stereograph industrial-scene composition, Currier & Ives
+  1870s hand-tinted lithograph background, Eadweard Muybridge 1878 Palo
+  Alto zoogyroscope plate for action clarity, William Allen Rogers
+  Harper's Weekly 1878 engraving for mill/factory scenes
+
+medium_secondary_replicant_reveal: >-
+  Albert Robida illustration register for Villiers de l'Isle-Adam's
+  *L'Ève future* (1886); Jules Worms period engraving; the uncanny
+  stillness of posthumous daguerreotype portraiture; the female
+  automaton in Charles Babbage's 1840s salon anecdote visualized
+
+# ── Period Anchor ─────────────────────────────────────────────
+period_anchor: "1878-1880 Pittsburgh industrial Gilded Age"
+
+period_constraints:
+  technology_ceiling: "1878 — pre-Tesla AC, pre-Edison incandescent (Edison filed Oct 1879, first public demo Dec 1879), Brush arc-light DC is current-year tech"
+  clothing_ceiling: "1878 — frock coat, waistcoat, watch chain, top hat (formal) or bowler (working), no Edwardian shoulders, no 1890s mutton-sleeves, no 1900s shirtwaist"
+  architecture_ceiling: "1878 — Second Empire mansard, Italianate commercial, early Richardsonian Romanesque, no Beaux-Arts, no steel-frame skyscraper (Home Insurance Bldg is 1885)"
+  photography_medium: "albumen print from wet-collodion plate; cabinet card format (4.25x6.5 in) and carte-de-visite (2.5x4 in); early dry-plate appearing late-decade"
+  illumination_real: "gaslight (interior), Brush arc-light (exterior, 1878 rollout), kerosene lamp, candle, firelight — NO incandescent, NO fluorescent"
+
+# ── Flux Trigger Tokens ───────────────────────────────────────
+# The leone_style LoRA trained on Almería desert will ACTIVELY HARM
+# this world — do not invoke it. There is no existing LoRA aligned to
+# 1878 Pittsburgh industrial aesthetic. Training candidates below.
+lora_triggers:
+  active: []                         # no existing LoRA is period-correct
+  explicit_exclude:
+    - leone_style                    # Almería desert, wrong period+place
+  training_candidates:
+    - name: pittsburgh_1878_style
+      corpus: >-
+        Harper's Weekly 1878 Mon Valley engravings (W.A. Rogers, Waud),
+        Underwood & Underwood stereograph cards of Pittsburgh mills
+        1875-1885, Hine precursor industrial photography, Detroit
+        Publishing Co. 1890s Pittsburgh photochroms (lower weight)
+      priority: high
+      rationale: "World visual identity depends on period-authentic mill/river/smoke look"
+    - name: gilded_age_portrait_style
+      corpus: >-
+        Napoleon Sarony 1870s cabinet cards, Mathew Brady post-war
+        studio portraits 1866-1880, Southworth & Hawes daguerreotypes
+        (tonal reference), Gurney & Son NYC studio
+      priority: high
+      rationale: "Character portraits need consistent Sarony-era carte-de-visite feel"
+    - name: lève_future_replicant_style
+      corpus: >-
+        Albert Robida 1886 illustrations for *L'Ève future*, Gustave
+        Doré late-period engravings for uncanny stillness, posthumous
+        daguerreotype portraits, Jules Worms period figure engraving
+      priority: medium
+      rationale: "Replicant-reveal register needs consistent uncanny-portrait tell"
+
+# ── Per-Scene-Type Visual Tag Overrides ──────────────────────
+# Override the genre-level + sibling-world vocabulary. None of the
+# dust_and_lead tags (saloon, adobe, desert, canyon) apply here.
+visual_tag_overrides:
+
+  the_point: >-
+    the confluence of the Monongahela and Allegheny forming the Ohio,
+    old Fort Pitt blockhouse visible, wooden warehouses and rail yards
+    fog-muffled at dawn, coal barges at the wharves, Sixth Street iron
+    bridge in middle distance, sky coal-smoke sepia, Underwood stereograph
+    composition, sepia albumen print tonality
+
+  strip_district: >-
+    1878 produce markets and wholesale houses along Penn Avenue, slaughterhouse
+    smoke, Irish laborers in shirtsleeves and waistcoats, German brewery
+    draft horses at curb, cobblestone street with streetcar rails embedded,
+    gaslight standards, Harper's Weekly engraving composition
+
+  hill_district: >-
+    1878 Lower Hill brick rowhouses on Wylie Avenue, Bethel AME church
+    in middle distance with brass doors catching gaslight, Black
+    professional men in frock coats and stovepipe hats, women in
+    mourning-jet or plain calico depending on station, cobblestone
+    street damp from rain, lamplighter with pole, carte-de-visite
+    street-scene register
+
+  lawrenceville: >-
+    1878 Allegheny Arsenal brick walls with crenellated gates, Lucy
+    Furnace (Carnegie) with Bessemer stack in distance belching orange,
+    Allegheny Cemetery's gothic wrought-iron gate and Stephen Foster's
+    stone, mixed working-class rowhouses, William Allen Rogers engraving
+    composition
+
+  allegheny_city: >-
+    1878 independent-municipality-across-the-river view, German Deutschtown
+    row-houses with painted signage in Fraktur, Western Penitentiary stone
+    walls, Russell's Bible House (610 Arch Street) as modest brick storefront,
+    the suspension bridge back to Pittsburgh proper, coal-smoke-tinted sky
+
+  south_side_birmingham: >-
+    1878 Jones & Laughlin mill complex at river edge, Eliza Furnace and
+    Clinton Furnace (1859) smokestacks, Welsh puddlers in leather aprons
+    with long iron rods, Mount Washington cliff rising behind, Czech and
+    Polish workers at shift change, wet cobblestones reflecting furnace-orange
+
+  mount_washington: >-
+    1878 ridgetop overlook 400 feet above Monongahela, St. Mary of the
+    Mount's brick German-Catholic spire, Duquesne Incline (1877) cable-car
+    cresting, panoramic view down to The Point with all rivers and all
+    mills visible, coal-smoke haze thickening middle distance, Currier
+    & Ives lithograph composition
+
+  downtown: >-
+    1878 Fifth Avenue commercial core, Monongahela House hotel with its
+    wrought-iron balconies, Italianate commercial facades in cream sandstone
+    darkened by soot, gaslight standards every 60 feet, streetcars on
+    iron rails, horse-drawn drays, newspaper-boys with broadsheets, Brush
+    arc-lamp experimental standards at key intersections (1878 rollout)
+
+  east_liberty: >-
+    1878 old-money bourgeois residential, Second Empire mansard mansions
+    set back from Penn Avenue, mature elms, wrought-iron fences with
+    lamp-topped gateposts, Homewood Cemetery chartered 1878 with its
+    new stone chapel, carriage houses at rear, cream sandstone softened
+    by light rain, cabinet-card exterior register
+
+  braddock: >-
+    1878 Edgar Thomson Steel Works (1875) — Bessemer converters spitting
+    orange into night sky, molten rail being rolled on the hot line,
+    Welsh and Scots foremen in leather aprons, Hungarian laborers in
+    woolen shirts, slag dump glowing, the PMcK&Y rail cars bringing
+    Frick coke, W.A. Rogers Harper's Weekly engraving register
+
+  schloss_hohenzollern_sewickley: >-
+    1878 Raubritter country estate on Sewickley Heights bluff, oversize
+    Hudson-River-School-meets-Rhenish-revival mansion in cut sandstone
+    blackened by distant Pittsburgh smoke, formal parterre garden,
+    French windows, peacocks, imported Rhineland ironwork gate, carriage
+    sweep of crushed slate, cemetery-slate palette with cold cream
+    highlights
+
+  the_train_exterior: >-
+    1878 Baldwin 4-4-0 locomotive in black and brass with polished
+    wood cab, six-car consist: tender, workshop car, armory car,
+    study, library-observation, passenger, kitchen, medical, caboose;
+    each car custom mahogany-and-walnut finish with brass fittings
+    and McCoy Industries livery in small gold-leaf lettering, steam
+    plume, coal-smoke trail, Muybridge motion-plate crispness when
+    rolling, Underwood stereograph stillness when parked
+
+# ── Train Interior Sub-tags ──────────────────────────────────
+# The train is a location with its own internal room graph. Each
+# car has a distinct visual register under the world's master palette.
+train_interior_tags:
+
+  engine_cab: >-
+    Baldwin 4-4-0 engineer's cab interior, brass pressure gauges,
+    iron firebox door glowing bessemer_orange when opened, engineer
+    in striped denim and cap, fireman shoveling coal, coal dust on
+    every surface, tight stereograph framing
+
+  boiler_car: >-
+    coal tender forward, aft section houses auxiliary Planté wet-cell
+    dynamo bank (glass jars of lead-acid cells, visible electrolyte,
+    brass terminals, rubber insulator pads), gaslight through glass
+    in roof, a hum you can almost see
+
+  workshop: >-
+    McCoy's rolling laboratory, long benches of polished walnut with
+    iron-strap edges, vices, a belt-driven lathe powered off the dynamo,
+    acetylene brazing torch, gutta-percha insulation blocks, a Crookes
+    tube humming faintly violet in a corner, blueprints pinned to
+    cork, Chemistry & Druggist periodicals open, McCoy's work coat on
+    a peg, gaslight amber + violet corona from the Crookes tube
+
+  armory: >-
+    wall racks of McCoy-designed "defensive instruments" — a
+    compressed-air stun-rifle, a Faraday-cage net-thrower, a
+    resonance-harmonic tuning-fork weapon, each item cataloged on a
+    brass plate, ammunition and compressed-air tanks in wrought-iron
+    crates bolted to the floor, mahogany walls, a single gaslight on
+    a swiveled sconce, cemetery-slate undertone
+
+  study: >-
+    McCoy's private drafting room, mahogany-and-walnut paneling, a
+    huge draftsman's table with T-square and parallel-rule, correspondence
+    in neat stacks (Tabitha's work), oil-lamp on the desk rather than
+    gas (quieter), brass loupe, ink-gall stains on blotter, a framed
+    photo of the late Mrs. McCoy (mid-1850s daguerreotype tonal), warm
+    mahogany_walnut + gaslight_amber
+
+  library: >-
+    reading-and-research car, floor-to-ceiling mahogany bookcases with
+    brass rail, scientific periodicals 1860-1878 in bound volumes,
+    patent gazettes, a globe on a brass stand, Verne novels in gilt
+    calf, a reading desk with green-shaded banker's-lamp (period-correct:
+    oil-fed, not electric), deep armchairs in oxblood leather
+
+  observation_car: >-
+    aft of the study, broad plate-glass windows on three sides, brass
+    cuspidors at each corner, velvet-upholstered banquettes in deep
+    burgundy, a central table for meetings, a sideboard with decanters,
+    gaslight chandelier with etched-glass shades, the passing landscape
+    framed like a stereograph
+
+  passenger_quarters: >-
+    crew staterooms, four compact sleeping bays with fold-down berths,
+    mahogany-and-brass trim, each bay personalized (maps and a cigar
+    box / sheet music and a dress form / a compact rifle case / neat
+    and ascetic), a shared water closet with enameled-iron basin, a
+    coal stove
+
+  kitchen: >-
+    galley car, coal-fired cast-iron range (black-leaded to a gleam),
+    copper pots on a rack, hanging hams and braids of onion, cook's
+    jacket on a peg, a butcher-block prep table, a tin-lined icebox
+    with ice-tongs, oilcloth on the table
+
+  medical_car: >-
+    Dr. Teague's clinic, an examining table in white-enameled iron,
+    a Lister carbolic-spray apparatus on a shelf, a steam autoclave
+    (early — 1879-era Chamberland pattern), gauze and catgut in
+    glass jars, a microscope on a brass stand, sterile cream-and-white
+    interior contrasting the warm mahogany elsewhere — a deliberate
+    visual break, "the clean car"
+
+  caboose: >-
+    rear observation platform with wrought-iron rail, conductor's
+    desk inside with waybills and a telegraph-key, a coal stove, a
+    gun rack with two shotguns and a Sharps carbine, rear-facing view
+    of the receding rails in coal-smoke sepia
+
+# ── Per-Scene-Register Visual Grammar ────────────────────────
+# The register changes by the emotional tenor of the scene. All
+# registers use the same palette; they differ in lighting, grain,
+# framing, and reference medium.
+
+scene_registers:
+
+  interior_domestic: >-
+    soft gaslight amber, warm mahogany tones, visible coal-smoke
+    particulate in amber-lamp beams, cabinet-card portrait register,
+    Sarony composition, medium close-up, shallow depth
+
+  interior_institutional: >-
+    cooler gaslight with cemetery-slate undertones for Raubritter /
+    Pinkerton / bank / federal interiors; sparser furnishing, harder
+    shadows, Harper's Weekly institutional-engraving register
+
+  exterior_daylight_urban: >-
+    coal-smoke sepia sky (never blue), buildings cream sandstone
+    darkened by soot, mid-shot street-level composition, Underwood
+    stereograph framing with foreground-middleground-background depth,
+    visible air particulate, occasional raking arc-light in overcast
+
+  exterior_daylight_industrial: >-
+    Mon Valley mill complex, William Allen Rogers engraving composition,
+    Bessemer smokestacks as vertical verticals, river horizontal, workers
+    in mid-ground as small silhouettes for scale, coal-smoke haze
+    eating the far distance
+
+  exterior_night_industrial: >-
+    the Bessemer-sublime register — furnace flare lighting everything
+    from below in bessemer_orange, skies above pure coal_black, molten
+    metal reflections on wet cobblestones, worker silhouettes rimlit,
+    slow wide composition, Wagnerian scale, James Parton 'hell with
+    the lid off'
+
+  exterior_river_fog: >-
+    the Point at dawn, fog_grey_white pressing down, coal-barge
+    silhouettes emerging, rail-yard lanterns as amber pinpricks in
+    mist, cool wet-plate tonality, long lens compression, stillness
+
+  action_beat: >-
+    Muybridge 1878 Palo Alto plate register — frozen instant, collodion
+    clarity, motion suspended, figures in mid-stride or mid-swing with
+    impossible sharpness, grain texture visible, dust/sparks/water
+    arrested in air
+
+  replicant_reveal: >-
+    L'Ève future illustration register — the subject rendered with
+    slightly too-perfect symmetry, skin tone a half-stop too uniform,
+    eyes held open a half-second too long, hand position that a human
+    wouldn't hold, the uncanny-doll stillness of posthumous daguerreotype
+    brought into the living scene; warmer lighting only makes it worse;
+    Albert Robida engraving linework in the deep shadows
+
+  mourning_cemetery: >-
+    Allegheny Cemetery register — cemetery_slate dominant, black
+    wrought-iron, moss-softened stone, weeping-willow composition,
+    widow in full mourning weeds with jet jewelry, Sarony-studio
+    mourning-portrait formality transposed outdoors, soft diffused
+    overcast
+
+# ── Typography (non-Flux — for in-world artifacts) ──────────
+# When rendering newspaper clippings, telegrams, broadsides, etc.,
+# these fonts govern. Per design brief Section (f) Font notes.
+typography:
+  newspaper_headlines:     "Clarendon bold"           # slab serif, period-correct
+  newspaper_body:          "Century Schoolbook"        # readable, period-appropriate
+  newspaper_masthead_de:   "Fette Fraktur"             # Pittsburger Volksblatt style
+  telegram:                "Courier (teletype face)"
+  mccoy_broadside:         "Clarendon bold + Victorian ornamental trim"
+  ame_argus_masthead:      "Caslon display + engraved ornament"
+  raubritter_stationery:   "engraved copperplate script + Fraktur monogram"
+
+# ── Consistency Contract ──────────────────────────────────────
+# Every image generated for this world MUST:
+#   1. honor the period ceiling (no post-1900 visual elements)
+#   2. honor the palette (coal-smoke sepia dominant, never default-blue sky)
+#   3. honor the medium (albumen/carte-de-visite/engraving/stereograph)
+#   4. exclude the leone_style LoRA (wrong place, wrong period)
+#   5. render replicants at the L'Ève future illustration register
+#      (never show visible mechanism — the point is indistinguishability)

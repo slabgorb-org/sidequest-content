@@ -1,0 +1,295 @@
+# The Real McCoy — World-Specific Cultures
+# Pittsburgh 1878 ethnography. Seven immigrant/ethnic civic communities.
+# No constructed language — real-world American-English registers with
+# cultural-source naming per the corpus bindings below.
+#
+# All corpora bound here live at
+# genre_packs/spaghetti_western/corpus/<file>.txt after world-builder
+# promotion in Step 7. During dry-run they live at the world-scoped
+# session path.
+#
+# NOTE: shared/german.txt, shared/polish.txt, shared/hungarian.txt,
+# shared/english.txt are currently Project-Gutenberg ebook prose with
+# Latin-1 mojibake — NOT usable as name corpora. This world therefore
+# binds to curated world-scoped corpora (mccoy_*.txt) for every culture
+# that would otherwise have drawn on those files. shared/irish.txt is
+# clean (129 attested Irish surnames) and is bound as a supplement to
+# the Irish Catholic culture.
+#
+# Indigenous peoples (Haudenosaunee/Seneca — Cornplanter Tract upriver)
+# are intentionally excluded from this file. They exist in the world
+# as adjacent-but-not-Pittsburgh-civic populations; writer handles them
+# in history.yaml and legends.yaml as world-background.
+
+- name: Scots-Irish Presbyterian
+  summary: "Pittsburgh old-stock — law, banking, business ownership, East Liberty and Shadyside homes"
+  description: >
+    The founding Anglo-Scots-Ulster Presbyterian families established in
+    Pittsburgh since the 1770s. Dominant in law, banking, manufacturing
+    ownership, and the civic-reform establishment. Brick and stone homes
+    in Allegheny City, East Liberty, Shadyside. Mellon, Negley, Denny,
+    Carnegie, Wilkins, Scaife. First Presbyterian on Wood Street is the
+    mother congregation. Austere Calvinist registers — sermons quoted
+    at dinner, Latin mottoes on the stationery, Burns recited ironically.
+  slots:
+    given_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_scots_irish_given, weight: 1.0 }
+    family_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_scots_irish_surnames, weight: 1.0 }
+    title:
+      word_list: [Judge, Colonel, Captain, Reverend, Doctor, Professor, Elder, Esquire, Major, Alderman]
+    honorific:
+      word_list: [Old, Young, the Elder, the Younger, III, Sr., Jr.]
+    place_noun:
+      word_list: [avenue, hill, estate, works, bank, hall, square, terrace, heights, grove]
+    adjective:
+      word_list: [old, East, West, North, upper, lower, new, fine, stone, Presbyterian]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{title} {family_name}"
+    - "{title} {given_name} {family_name}"
+    - "{given_name} {family_name}, {honorific}"
+    - "{family_name} the {honorific}"
+  place_patterns:
+    - "{family_name} {place_noun}"
+    - "{adjective} {family_name} {place_noun}"
+    - "{family_name}'s {place_noun}"
+
+- name: Irish Catholic
+  summary: "Post-Famine Pittsburgh — mill puddlers, streetcar conductors, police, domestics, Strip and Lower Hill"
+  description: >
+    The mass Irish-Catholic cohort arriving Pittsburgh 1847 onward. Mill
+    puddlers (the elite), streetcar conductors, police, domestics,
+    saloon-keepers, drayage. Shantytown housing on the Hill's north
+    slope, South Side flats, rail-adjacent North Side. St. Patrick's
+    in the Strip (1808) is the mother parish; St. Paul Cathedral the
+    bishop's seat. Wakes, rosaries, whiskey, and union cards. The
+    "Bridget" domestic stereotype runs through Scots-Irish households
+    like a parallel economy.
+  slots:
+    given_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_irish_catholic_given, weight: 1.0 }
+    family_name:
+      lookback: 3
+      corpora:
+        - { corpus: irish, weight: 1.0 }
+    title:
+      word_list: [Father, Sister, Officer, Sergeant, Mister, Missus, Miss]
+    adjective:
+      word_list: [Big, Black, Red, Long, Whiskey, Fighting, Silent, Mad, Happy, Lucky, Holy]
+    place_noun:
+      word_list: [parish, alley, row, yard, flats, corner, saloon, hall, chapel, crossing]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{title} {family_name}"
+    - "{given_name} '{adjective}' {family_name}"
+    - "{adjective} {given_name} {family_name}"
+    - "{family_name}, {given_name}"
+  place_patterns:
+    - "{family_name}'s {place_noun}"
+    - "{adjective} {family_name} {place_noun}"
+    - "{place_noun} of Saint {given_name}"
+
+- name: German
+  summary: "Deutschtown and South Side — brewers, bakers, machinists, cabinetmakers, Turnverein and Sängerbund"
+  description: >
+    The 48er and post-1865 German-American community centered on
+    Deutschtown (East End of Allegheny City), Lower Hill, and the
+    South Side. Skilled craftsmen and industrialists — Iron City
+    Brewing (Frauenheim), Eberhardt & Ober, H. J. Heinz, H. C. Frick,
+    George Westinghouse. Bilingual homes, Pittsburger Volksblatt on the
+    breakfast table, Turnverein gymnastics and Sängerbund choral
+    societies as civic cornerstones. St. Mary of the Mount on the
+    ridgetop for the Catholic cohort; Smithfield Street German
+    Evangelical for the Protestants.
+  slots:
+    given_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_german_given, weight: 1.0 }
+    family_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_german_surnames, weight: 1.0 }
+    title:
+      word_list: [Herr, Frau, Fräulein, Herr Doktor, Herr Professor, Kapellmeister, Braumeister, Meister]
+    adjective:
+      word_list: [alt, jung, gross, klein, neu, schwarz, weiss, roth, eisern, golden]
+    place_noun:
+      word_list: [Brauerei, Garten, Halle, Platz, Strasse, Werk, Kirche, Verein, Markt, Gasse]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{title} {family_name}"
+    - "{title} {given_name} {family_name}"
+    - "{family_name}, {given_name}"
+  place_patterns:
+    - "{family_name}'s {place_noun}"
+    - "{family_name}-{place_noun}"
+    - "{adjective} {place_noun}"
+
+- name: Welsh
+  summary: "The technical aristocracy — puddlers and rollers imported from the South Wales valleys, Braddock and South Side chapels"
+  description: >
+    The imported technical aristocracy of Pittsburgh iron — puddlers
+    and rollers recruited from Merthyr Tydfil, Dowlais, Rhondda,
+    Aberdare because the American skill base couldn't yet match them.
+    Small, chapel-focused, Welsh-language at home. Calvinistic
+    Methodist and Welsh Congregational chapels in Braddock and on the
+    South Side. Clog-shod on the puddling floor (steel-toed boots
+    cost more than a day's wage; the clogs keep feet above the
+    cinders). Eisteddfods on Christmas and July 4. Patronymic naming
+    skew: Jones, Williams, Davies, Evans, Thomas, Lewis dominate.
+  slots:
+    given_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_welsh_given, weight: 1.0 }
+    family_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_welsh_surnames, weight: 1.0 }
+    title:
+      word_list: [Reverend, Deacon, Parch., Foreman, Roller, Puddler, Mister, Missus]
+    adjective:
+      word_list: [Old, Black, White, Red, Little, Big, Iron, Chapel, Singing, Quiet]
+    place_noun:
+      word_list: [chapel, valley, hollow, mill, furnace, terrace, row, lane, crossing, cwm]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{given_name} {family_name} the {title}"
+    - "{title} {family_name}"
+    - "{given_name} {family_name}, {adjective}"
+    - "{given_name} the {adjective}"
+  place_patterns:
+    - "{family_name}'s {place_noun}"
+    - "{adjective} {place_noun}"
+    - "Bethania {place_noun}"
+
+- name: Black American
+  summary: "Hill District and Arthursville — Bethel AME, Monongahela House staff, Pullman porters, barbers, the small professional class"
+  description: >
+    The established Black Pittsburgh community — 3,700 in the 1880
+    census, rooted in the Hill District and Arthursville since the
+    Underground Railroad era. Bethel AME on Wylie Avenue (founded
+    1808, among the oldest Black congregations west of the Alleghenies).
+    Pullman porters (highly respected after 1868), barbers (who dress
+    for white-elite clientele and carry the community's surest foothold
+    in commercial life), riverboat men (Cumberland Posey Sr. archetype),
+    the Monongahela House all-Black staff, a small professional class
+    of physicians and teachers. The Allegheny Argus muckrakes
+    Raubritter and claims McCoy from the pages of every issue.
+    Biblical-classical and virtue naming traditions strong; Anglo
+    surnames skewed toward former-enslaver lineages (Washington,
+    Jefferson, Carrington) and locative/occupational adoptions
+    (Freeman, Woods, Hunter, Carpenter).
+  slots:
+    given_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_black_given, weight: 1.0 }
+    family_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_black_surnames, weight: 1.0 }
+    title:
+      word_list: [Reverend, Deacon, Elder, Bishop, Brother, Sister, Mother, Professor, Doctor, Captain, Mister, Missus]
+    adjective:
+      word_list: [Old, Young, Big, Tall, Brother, Uncle, Auntie, Deacon, Preaching, Singing]
+    place_noun:
+      word_list: [Avenue, Street, Alley, Hall, Chapel, House, Lodge, Parish, Row, Quarter]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{title} {family_name}"
+    - "{title} {given_name} {family_name}"
+    - "{adjective} {given_name} {family_name}"
+    - "{family_name}, {given_name}"
+  place_patterns:
+    - "{family_name}'s {place_noun}"
+    - "{title} {family_name}'s {place_noun}"
+    - "Bethel {place_noun}"
+
+- name: Eastern European Slavs
+  summary: "The new arrivals — Polish, Slovak, Hungarian, Rusyn, Lithuanian single-man labor cohort in the South Side and Braddock boarding houses"
+  description: >
+    The emerging 1870s wave — Galician Poles, Slovaks from Upper
+    Hungary, Magyars, Carpatho-Rusyns, Lithuanians. Mostly single men
+    on labor contracts, boarding-house living on the South Side and
+    in Braddock. The most dangerous mill and coke-oven jobs at the
+    lowest pay. 1878 is early — the mass wave follows 1880. Greek
+    Catholic (Rusyn), Roman Catholic (Polish, Slovak, Magyar),
+    Lutheran (some Slovak), boarding-house diets of kielbasa, haluski,
+    kapusta, rye bread. Foremen and clerks Anglicize the names at the
+    hiring line — Jan becomes John, Mikolaj becomes Nicholas, Štefan
+    becomes Steve — but home and parish keep the original.
+  slots:
+    given_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_slav_given, weight: 1.0 }
+    family_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_slav_surnames, weight: 1.0 }
+    title:
+      word_list: [Pan, Pani, Ojciec, Otec, Atyám, Batyushka, Foreman, Mister, Missus]
+    adjective:
+      word_list: [Stary, Młody, Starý, Nový, Nagy, Kis, Black, Iron, Coke, Big]
+    place_noun:
+      word_list: [ulica, parish, kolonia, dom, patch, row, chapel, hall, works, borough]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{title} {family_name}"
+    - "{title} {given_name} {family_name}"
+    - "{family_name}, {given_name}"
+  place_patterns:
+    - "{family_name} {place_noun}"
+    - "{adjective} {place_noun}"
+    - "Saint {given_name}'s {place_noun}"
+
+- name: Jewish
+  summary: "Bavarian-Reform Pittsburgh — Rodef Shalom (1856), Tree of Life (1864), Concordia Club, Wood Street merchants and tailors"
+  description: >
+    The established Pittsburgh Jewish community in 1878 is predominantly
+    German-speaking Bavarian and Alsatian, arrived 1840s-1860s. Reform
+    by the 1860s — Rodef Shalom on Eighth Street, with Tree of Life
+    (founded 1864) the more traditional counterpoint. Merchants,
+    tailors, jewelers, scrap dealers, and dry-goods importers on Wood
+    Street, Diamond Street, Fifth Avenue, and the Strip. The Concordia
+    Club (1874) as the civic social anchor. Naming: Biblical Hebrew in
+    German/English assimilated forms (Aaron, Samuel, Moses, Rachel,
+    Miriam) alongside German secular names (Lippman, Herman, Max,
+    Louis, Bertha, Clara) that signal Bavarian-Reform respectability.
+    The Eastern European Yiddish-speaking wave has NOT yet arrived in
+    force — a small vanguard in 1878-1880, the mass after the 1881
+    pogroms. This culture reflects 1878's established community, not
+    the Hill-District Yiddish community that will dominate by 1900.
+  slots:
+    given_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_jewish_given, weight: 1.0 }
+    family_name:
+      lookback: 3
+      corpora:
+        - { corpus: mccoy_jewish_surnames, weight: 1.0 }
+    title:
+      word_list: [Rabbi, Reb, Herr, Frau, Herr Doktor, Kantor, Mister, Missus, Doctor]
+    adjective:
+      word_list: [Old, Young, Elder, Reform, Reb, Cantor, Wood-Street, Diamond-Street, Fifth-Avenue, Concordia]
+    place_noun:
+      word_list: [Shul, Synagogue, Temple, Street, House, Club, Hall, Works, Shop, Haus]
+  person_patterns:
+    - "{given_name} {family_name}"
+    - "{title} {family_name}"
+    - "{title} {given_name} {family_name}"
+    - "{given_name} {family_name}, {title}"
+  place_patterns:
+    - "{family_name}'s {place_noun}"
+    - "{adjective} {place_noun}"
+    - "{family_name} & {family_name}"
