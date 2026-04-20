@@ -1,0 +1,670 @@
+# The Real McCoy — Inventions Ledger
+#
+# Every entry is grounded in a real pre-1900 paper, patent, or demonstrated
+# device (the Bioshock constraint). Citations name inventor, year, and
+# patent number when available. The one forbidden category — post-1900
+# science — applies to everything here; humanoid replicants are the
+# world's unexplained exception and do NOT appear in this ledger.
+#
+# Each invention has:
+#   slug                  — snake_case id
+#   name                  — display name, in-world
+#   mccoy_purpose         — what Granville McCoy intended
+#   description_mechanical — what it does in play
+#   practicality, absurdity, danger — 0.0 to 1.0 axes
+#   real_science_citation — the mandatory real pre-1900 source
+#   world_weaponization[] — known misuses (populated on ~12 of 25)
+#   payoff_seed           — Chekhov's gun flag
+#
+# Distribution target: ~12 practical / ~7 absurd-but-real / ~4 dangerous /
+# ~2 Chekhov seeds. All 25 are real-science grounded.
+
+inventions:
+
+  # ── PRACTICAL (12) ──────────────────────────────────────────
+
+  - slug: fluoroscope_monocle
+    name: The Fluoroscope Monocle
+    mccoy_purpose: >-
+      A miner's medic's field tool. McCoy intended it to let a mill
+      doctor catch silicosis shadowing on a puddler's lungs without
+      shipping the man to a city X-ray bench he will not go to.
+    description_mechanical: >-
+      Brass-rimmed monocle with a calcium-tungstate fluorescent
+      screen bonded to a thin beryllium window and a miniature
+      Crookes tube powered by a Planté cell belt. User sees a live
+      fluorescent shadow of dense tissue within the field of view.
+      Mechanically: +2 to CUNNING checks that target medical
+      diagnosis or concealed-object detection at short range.
+    practicality: 0.85
+    absurdity: 0.15
+    danger: 0.4
+    real_science_citation: >-
+      William Crookes, cathode-ray tube experiments 1875–1879,
+      documented in Philosophical Transactions of the Royal Society.
+      Calcium tungstate phosphor: Thomas A. Edison fluoroscope US
+      Patent 596,216 (1898). X-ray emission was present in every
+      Crookes tube from 1869 onward, unrecognized until Röntgen
+      (1895); McCoy's monocle treats the effect as documented-by-1878.
+    world_weaponization:
+      - actor: Edgar Thomson Steel foremen
+        use: Hiring-line culling of applicants with TB, silicosis, or old injury
+        first_observed: backstory
+      - actor: Pinkerton Pittsburgh Branch
+        use: Searching travelers for hidden telegraph keys and concealed firearms at train stations
+        first_observed: EARLY trope beat
+    payoff_seed: false
+
+  - slug: vibrotelegraph_watch
+    name: The Vibrotelegraph Watch
+    mccoy_purpose: >-
+      A deaf engineer's watch. McCoy built it for a foundry foreman at
+      Lucy Furnace who lost his hearing to a bottom-pour accident and
+      needed to read telegraph traffic without a sounder.
+    description_mechanical: >-
+      Pocket watch case, Morse sounder electromagnet replaced with a
+      silenced vibrating armature against the wearer's wrist. Receives
+      via a short-range induction loop from a local telegraph relay.
+      Mechanically: passive comms, no action cost; NERVE check to
+      read long dispatches in a social encounter without being seen.
+    practicality: 0.9
+    absurdity: 0.1
+    danger: 0.1
+    real_science_citation: >-
+      Morse telegraph sounder, standard 1878 equipment (straight key
+      and electromagnetic armature); induction-loop near-field signal
+      transfer demonstrated by Michael Faraday 1831 and refined by
+      Joseph Henry through the 1830s-40s.
+    world_weaponization:
+      - actor: Okhrana cell (suspected)
+        use: Silent coordination of a replicant-team extraction in a Monongahela House parlor
+        first_observed: MID trope beat
+    payoff_seed: false
+
+  - slug: multiplex_pocket_telegraph
+    name: The Multiplex Pocket Telegraph
+    mccoy_purpose: >-
+      A journalist's field tool. McCoy prototyped it at Carrington's
+      request to let an Argus correspondent file copy from a riot line
+      without the copy being intercepted by Raubritter's paper.
+    description_mechanical: >-
+      Cigar-box-sized instrument with a polarity-switched key and a
+      frequency-selected reed. Four simultaneous messages per wire via
+      Edison-quadruplex principle. Requires a compliant repeater
+      station within 10 miles. Mechanically: allows one PRESENCE
+      check per scene to coordinate with an offsite ally.
+    practicality: 0.85
+    absurdity: 0.2
+    danger: 0.2
+    real_science_citation: >-
+      Thomas Edison, Quadruplex Telegraph, US Patent 246,244 (1881);
+      Western Union had 13,000 miles of quadruplex in service by 1878.
+      Stearns duplex 1872 precursor. Émile Baudot 5-bit multiplex code
+      1874 (French Post Office).
+    world_weaponization:
+      - actor: Silas Markham (Paris)
+        use: Filing stolen McCoy schematics to continental buyers in real time, obscured by shift-cipher
+        first_observed: backstory
+    payoff_seed: false
+
+  - slug: planté_cell_belt
+    name: Planté Cell Belt
+    mccoy_purpose: >-
+      A portable energy source for McCoy's hand-held devices. Worn
+      under a coat, powers the fluoroscope monocle, the vibrotelegraph,
+      or an arc-lamp rig for roughly six hours.
+    description_mechanical: >-
+      Rubberized canvas belt with four lead-acid Planté cells in series,
+      ~8V at 3Ah, two sulphuric-acid recombinant vents. Mechanically:
+      provides the power budget enabling other McCoy devices; 10%
+      chance per session of acid stain on clothing; -1 to NERVE checks
+      if the wearer is shot in the lower torso.
+    practicality: 0.75
+    absurdity: 0.05
+    danger: 0.5
+    real_science_citation: >-
+      Gaston Planté, lead-acid secondary cell, 1859 (Académie des
+      Sciences paper). Commercial packaging by Camille Alphonse Faure
+      1881; McCoy's belt uses pre-Faure Planté cells charged off the
+      train's Gramme dynamo.
+    world_weaponization:
+      - actor: Frick coke-field guards (suspected)
+        use: Detonation-initiator for "persuasive" mine-subsidence charges against striking Slavic coke-workers
+        first_observed: MID trope beat
+    payoff_seed: false
+
+  - slug: gramme_dynamo_cart
+    name: The Gramme Dynamo Cart
+    mccoy_purpose: >-
+      The train's on-board electric power supply. Steam-belt-driven
+      off the locomotive's auxiliary shaft or a workshop-car flywheel.
+      Charges the Planté banks, runs the workshop lights, and
+      occasionally runs a Brush arc lamp over the observation platform.
+    description_mechanical: >-
+      Ring-wound armature dynamo on a cast-iron cart frame, 8 hp input,
+      ~110V DC output, brush commutator. Mechanically: the train has
+      electric lighting, a bench voltmeter, and an audible hum at
+      3 a.m. that everyone has learned to sleep through. +1 to any
+      workshop-based CUNNING check in the rolling laboratory car.
+    practicality: 0.9
+    absurdity: 0.0
+    danger: 0.3
+    real_science_citation: >-
+      Zénobe Gramme, ring-wound dynamo, 1871 (demonstrated at the
+      Vienna Exhibition 1873). Werner von Siemens self-excited
+      dynamo principle, 1867.
+    world_weaponization: []
+    payoff_seed: false
+
+  - slug: brush_arc_lantern
+    name: The Brush Arc Lantern
+    mccoy_purpose: >-
+      An outdoor work-light for the caboose or the observation
+      platform. McCoy installed one over the rear platform because
+      Tabitha prefers to sort dispatches in clean light.
+    description_mechanical: >-
+      Charles Brush arc lamp in a brass-and-glass lantern housing,
+      solenoid-ring clutch regulator, carbon pair good for ~8 hours.
+      2000 candlepower. Mechanically: on the observation platform,
+      adds +3 to PRESENCE checks at night; blinds everyone within
+      30 ft if used as a weapon.
+    practicality: 0.8
+    absurdity: 0.2
+    danger: 0.4
+    real_science_citation: >-
+      Charles F. Brush, arc lamp, US Patent 203,411 (May 7, 1878).
+      Cleveland Public Square rollout April 29, 1879 — the first
+      electric street lighting in North America.
+    world_weaponization:
+      - actor: Pinkerton Pittsburgh Branch
+        use: Illuminated surveillance of labor meetings at the Strip wharf
+        first_observed: EARLY trope beat
+    payoff_seed: false
+
+  - slug: gelatin_dry_plate_kit
+    name: The Gelatin Dry-Plate Field Kit
+    mccoy_purpose: >-
+      A portable photograph kit for documentary use. McCoy built it
+      at Carrington's request so the Argus could photograph strike
+      lines and Bessemer interiors without hauling a wet-collodion
+      darkbox.
+    description_mechanical: >-
+      Mahogany field camera with Kennett-process gelatin silver
+      bromide dry plates. Plates pre-manufactured, stored for months,
+      developed on return. Mechanically: enables CUNNING-based
+      evidence-gathering in scenes where the action is too fast
+      for wet collodion; plates are admissible as narrative evidence.
+    practicality: 0.9
+    absurdity: 0.0
+    danger: 0.1
+    real_science_citation: >-
+      Richard Leach Maddox, "An experiment with gelatino-bromide,"
+      British Journal of Photography, September 8, 1871. Richard
+      Kennett commercial gelatin emulsion 1873. George Eastman
+      coating machine patent 1879.
+    world_weaponization:
+      - actor: Raubritter Concern
+        use: Staged photograph of a McCoy crew meeting with a known anarchist, published in Raubritter's paper
+        first_observed: VETERAN trope beat
+    payoff_seed: false
+
+  - slug: muybridge_gait_camera_array
+    name: The Gait Camera Array
+    mccoy_purpose: >-
+      A scientific tool for studying motion — originally horse gait,
+      adapted to study locomotive-boiler pressure-release oscillations.
+      Tabitha uses it to debug the workshop car's vibration signature.
+    description_mechanical: >-
+      12 glass-plate cameras on a tripod rail, trip-wire shutters
+      triggered in sequence. Exposure 1/1000 second per frame. Returns
+      a strip of images capturing motion under 1/12-second resolution.
+      Mechanically: turns a DRAW check into a CUNNING check when the
+      target is moving predictably (freight-car jump, window traversal).
+    practicality: 0.7
+    absurdity: 0.3
+    danger: 0.1
+    real_science_citation: >-
+      Eadweard Muybridge, Palo Alto Stock Farm horse-gait study
+      commissioned by Leland Stanford, June 19, 1878; published
+      Scientific American October 19, 1878. Wet-collodion plates at
+      1/1000 and 1/2000 second exposures. Zoopraxiscope projection
+      device 1879.
+    world_weaponization:
+      - actor: Federal Operative (Secret Service, implied)
+        use: Documenting counterfeiter dipping-rhythms at a Philadelphia print shop for prosecution
+        first_observed: MID trope beat
+    payoff_seed: false
+
+  - slug: pintsch_gas_cabin_lamp
+    name: The Pintsch Gas Cabin Lamp
+    mccoy_purpose: >-
+      Safer lighting for the passenger cars. McCoy retrofitted the
+      train's kerosene oil lamps after hearing Dr. Teague's account
+      of the Ashtabula 1876 fire.
+    description_mechanical: >-
+      Compressed-naphtha gas lamp in brass fixture, fed from under-car
+      storage tank via roof piping. Steadier, brighter, odorless.
+      Mechanically: passive; eliminates the derailment-fire random
+      event for the train's passenger quarters.
+    practicality: 0.95
+    absurdity: 0.0
+    danger: 0.3
+    real_science_citation: >-
+      Julius Pintsch, compressed-naphtha gas railway lighting, German
+      Reichspatent 1871. Pullman US adoption ~1880. Prior Baker-heater
+      fire context: Angola Horror 1867, Ashtabula Bridge Disaster 1876.
+    world_weaponization: []
+    payoff_seed: false
+
+  - slug: janney_kockner_coupler
+    name: The Janney-Köckner Coupler (McCoy Variant)
+    mccoy_purpose: >-
+      A passenger-car coupler redesign after an express-mail car nearly
+      decoupled crossing Horseshoe Curve. McCoy added a hydraulic
+      damping cylinder to the standard Janney knuckle.
+    description_mechanical: >-
+      Eli Janney automatic knuckle coupler with a gutta-percha-sealed
+      hydraulic-oil cylinder at the drawbar. Smooths coupler slack
+      under grade changes. Mechanically: reduces all vehicle-stress
+      DRAW checks by 1 difficulty when the train is in motion.
+    practicality: 0.95
+    absurdity: 0.0
+    danger: 0.1
+    real_science_citation: >-
+      Eli H. Janney, automatic knuckle coupler, US Patent 86,689
+      (April 21, 1868). Gutta-percha commercial since 1843
+      (Montgomerie), standard electrical and submarine-cable insulator.
+    world_weaponization: []
+    payoff_seed: false
+
+  - slug: baker_heater_sentinel
+    name: The Baker Heater Sentinel
+    mccoy_purpose: >-
+      A safety device for the train's Baker coal-stove heaters after
+      Dr. Teague insisted on it. A temperature-and-tilt sensor that
+      dumps the firebox on derailment.
+    description_mechanical: >-
+      Mercury-column tilt switch wired to a solenoid-released coal-
+      dump hopper on each car's Baker heater. Planté-cell backup
+      power. Mechanically: prevents the worst outcome of a
+      catastrophic derailment. Once triggered, the car is unheated
+      until reset at a depot.
+    practicality: 0.9
+    absurdity: 0.1
+    danger: 0.2
+    real_science_citation: >-
+      William C. Baker hot-water car heater, 1864. Mercury-switch
+      principle: Charles G. Page 1838 (tilt interruption); solenoid
+      latch: Joseph Henry 1831. All pre-1878.
+    world_weaponization: []
+    payoff_seed: false
+
+  - slug: edison_quadruplex_chorister
+    name: The Quadruplex Chorister
+    mccoy_purpose: >-
+      A multi-line switchboard for the workshop car's telegraph tray.
+      Lets Tabitha handle four simultaneous dispatches on the single
+      Western Union drop.
+    description_mechanical: >-
+      Brass-frame switchboard, 4 polarity-discriminated keys, 4
+      reed-tuned sounders, shared battery bus. Mechanically: Tabitha
+      can process 4 incoming dispatches per turn instead of 1 in
+      workshop_briefing scenes; reduces trope-tick rate for
+      presidential_request by 0.004 when manned.
+    practicality: 0.85
+    absurdity: 0.1
+    danger: 0.05
+    real_science_citation: >-
+      Thomas Edison, Quadruplex Telegraph, US Patent 246,244 (1881).
+      Stearns duplex 1872 precursor. Combines polarity and current-
+      strength discrimination on a single wire.
+    world_weaponization: []
+    payoff_seed: false
+
+  # ── ABSURD-BUT-REAL (7) ─────────────────────────────────────
+
+  - slug: kelvin_tide_piano
+    name: The Kelvin Tide Piano
+    mccoy_purpose: >-
+      A harmonic-analysis engine. McCoy uses it to debug acoustic
+      resonances in the boiler car and (privately) to compose little
+      piano figures of the tidal coefficients of Hampton Roads.
+    description_mechanical: >-
+      Brass-and-pulley mechanical harmonic synthesizer, chain-and-
+      pulley analog computer. Sums ~10 sinusoidal components. Runs
+      on a hand crank or the Gramme cart. Mechanically: +2 CUNNING
+      to any frequency-domain puzzle (boiler harmonics, telegraph
+      resonances, piano tuning). Takes 1 hour to set up.
+    practicality: 0.4
+    absurdity: 0.75
+    danger: 0.05
+    real_science_citation: >-
+      William Thomson (Lord Kelvin), tide-predicting machine, 1872.
+      First practical analog computer. Chain-and-pulley harmonic
+      synthesizer principle. Demonstrated at the Royal Society.
+    world_weaponization: []
+    payoff_seed: false
+
+  - slug: spirit_phone_prototype
+    name: The Spirit Phone Prototype
+    mccoy_purpose: >-
+      An untuned wireless-signal detector. McCoy built it to see
+      whether lightning near the Point produced detectable
+      electromagnetic oscillations at the workshop-car antenna.
+    description_mechanical: >-
+      Hertzian induction-coil spark-gap transmitter at the workshop
+      car, paired with a dipole-antenna resonant-loop receiver in
+      the observation car. Range <100 ft reliably; occasionally
+      more in coal-smoke inversion weather. Mechanically: PRESENCE
+      check to interpret the "voices" — most are induction artefacts,
+      some are Morse from nearby telegraph lines, none are ghosts.
+    practicality: 0.3
+    absurdity: 0.85
+    danger: 0.2
+    real_science_citation: >-
+      James Clerk Maxwell, "A Treatise on Electricity and
+      Magnetism" (1873) — predicted EM waves. Heinrich Hertz's
+      spark-gap oscillator detection (1887–1888) formally confirms
+      them; McCoy's 1878 prototype is ahead of the published bench
+      work but entirely within Maxwell's sketchable envelope.
+      Willoughby Smith selenium photoconductivity 1873 as detection
+      aid.
+    world_weaponization:
+      - actor: Charles Taze Russell's Bible Students
+        use: Claimed by Russell as an End-Times "trump shall sound" instrument; McCoy declined to confirm or deny
+        first_observed: MID trope beat
+      - actor: Theosophical Society (Abner Doubleday circle)
+        use: Claimed as proof of etheric-plane sensitivity
+        first_observed: MID trope beat
+    payoff_seed: false
+
+  - slug: zoopraxiscope_exposer
+    name: The Zoopraxiscope Exposer
+    mccoy_purpose: >-
+      A projection-and-documentation device for scientific lectures.
+      McCoy intended it to demonstrate motion physics to the
+      Mechanics' Institute.
+    description_mechanical: >-
+      Muybridge-style rotating glass-disk projector, Planté-cell
+      lamp. Projects 1-second motion loops onto a sheet or wall.
+      Mechanically: in a social scene, a pre-prepared disk can
+      function as evidence — +3 PRESENCE when unveiling a recorded
+      action (a bribe taken, a boot print matched, a handshake tell).
+    practicality: 0.55
+    absurdity: 0.65
+    danger: 0.1
+    real_science_citation: >-
+      Eadweard Muybridge, Zoopraxiscope, 1879 (derived from 1878
+      Palo Alto Stock Farm horse-gait cameras). Slotted-disc
+      projection principle from phenakistoscope (Joseph Plateau,
+      1832).
+    world_weaponization:
+      - actor: Mordecai Carrington
+        use: Public exposure of a Pittsburgh councilman taking a Raubritter bribe — projected at Bethel AME hall
+        first_observed: VETERAN trope beat
+    payoff_seed: false
+
+  - slug: crookes_radiometer_cigar_box
+    name: The Crookes Radiometer Cigar Box
+    mccoy_purpose: >-
+      A sensitive radiant-heat detector for tracking body heat
+      through a doorway or a Pullman-car wall. McCoy built it as a
+      physics curiosity; Dr. Teague found the diagnostic use.
+    description_mechanical: >-
+      Partial-vacuum glass bulb with black-and-silver mica vanes on
+      a low-friction spindle, housed in a cigar box with a lens cap.
+      Spins faster when warmer-than-ambient radiation is pointed at
+      it. Mechanically: +2 CUNNING to detect a living occupant
+      behind a thin wall; passive instrument, no check to use.
+    practicality: 0.5
+    absurdity: 0.7
+    danger: 0.05
+    real_science_citation: >-
+      William Crookes, light-mill radiometer, 1873 (Philosophical
+      Transactions of the Royal Society). Selenium photocell: Willoughby
+      Smith, Journal of the Society of Telegraph Engineers 1873.
+    world_weaponization: []
+    payoff_seed: false
+
+  - slug: celluloid_false_face
+    name: The Celluloid False Face
+    mccoy_purpose: >-
+      A theatrical mask for the Mechanics' Institute's amateur
+      production of Lincoln. McCoy sculpted it from a photograph
+      and a death-mask impression.
+    description_mechanical: >-
+      Moulded celluloid (nitrocellulose + camphor) mask, flesh-
+      tinted, hand-painted. Adheres with gum arabic. Mechanically:
+      +3 CUNNING to an impersonation check at >10 ft; fails
+      instantly at handshake distance due to the camphor odor and
+      the plastic's lack of pulse. Flammable.
+    practicality: 0.5
+    absurdity: 0.6
+    danger: 0.6
+    real_science_citation: >-
+      John Wesley Hyatt, celluloid (nitrocellulose plasticized with
+      camphor), US Patent 105,338 (July 12, 1870). Hyatt's Celluloid
+      Manufacturing Company operational in Newark by 1872.
+    world_weaponization:
+      - actor: unknown replicant-impersonator (suspected French Third Republic)
+        use: Used with an actor's wig to impersonate a Raubritter junior clerk for 40 minutes in a Shadyside house
+        first_observed: EARLY trope beat
+    payoff_seed: false
+
+  - slug: scheutz_difference_ledger
+    name: The Scheutz Difference Ledger
+    mccoy_purpose: >-
+      A mechanical calculator for McCoy Industries' commissions
+      accounting. Tabitha runs it once a week to true up the books;
+      it also produces a stereotyped printed page for Carrington's
+      Argus when quarterly numbers are needed.
+    description_mechanical: >-
+      Brass-and-iron Scheutz difference engine, ~500 lbs, occupies
+      one-third of the study car. Computes polynomial-differenced
+      tables to 8 decimal places and produces a stereotyped flong-
+      mould output for direct press work. Mechanically: +3 CUNNING
+      to any scene requiring accounting forensics or a forged
+      financial document.
+    practicality: 0.6
+    absurdity: 0.55
+    danger: 0.05
+    real_science_citation: >-
+      Georg and Edvard Scheutz, difference engine, built 1843,
+      delivered to Dudley Observatory Albany 1856 (a real machine
+      in real US operation). Derived from Charles Babbage's
+      difference engine design (1822 proposal).
+    world_weaponization:
+      - actor: Raubritter Concern (suspected, via bought clerk)
+        use: Pre-stereotyped "McCoy Industries annual loss" page slipped into the Pittsburg Leader's flong stack
+        first_observed: MID trope beat
+    payoff_seed: false
+
+  - slug: vortex_ring_gun
+    name: The Vortex Ring Demonstrator
+    mccoy_purpose: >-
+      A physics demonstration of Helmholtz and Kelvin vortex theory.
+      McCoy built a table-top version for the Mechanics' Institute
+      that tosses smoke rings across a hall.
+    description_mechanical: >-
+      Rubberized-canvas drum, diaphragm piston, smoke-charged
+      chamber. Fires a coherent air vortex ~10 ft. Mechanically:
+      non-lethal; the drum can be scaled up (McCoy has drawings
+      for a 4-ft version) to disrupt a lantern, blow out candles,
+      or stagger a nervous horse.
+    practicality: 0.4
+    absurdity: 0.8
+    danger: 0.2
+    real_science_citation: >-
+      Hermann von Helmholtz, "On Integrals of the Hydrodynamical
+      Equations Which Express Vortex Motion" (1858). William
+      Thomson (Kelvin), vortex-atom theory, 1867. P.G. Tait's
+      knot tables derived from this program.
+    world_weaponization: []
+    payoff_seed: false
+
+  # ── DANGEROUS (4) ───────────────────────────────────────────
+
+  - slug: etheric_induction_coil
+    name: The Etheric Induction Coil
+    mccoy_purpose: >-
+      A long-range energy-transfer demonstrator. McCoy wanted to
+      light a lamp across the observation-car without a wire.
+    description_mechanical: >-
+      Large iron-core induction coil on a Gramme-dynamo primary,
+      secondary-coil receiver mounted on a target lamp. 20 ft range
+      with 12 percent efficiency. Mechanically: can light a Brush
+      lamp across a room; 1 in 6 per use, operator takes 1d6 burn
+      damage from a pin-arc discharge. Consumes a full Planté belt
+      charge per use.
+    practicality: 0.3
+    absurdity: 0.4
+    danger: 0.85
+    real_science_citation: >-
+      Michael Faraday, electromagnetic induction, Philosophical
+      Transactions 1831. Heinrich Ruhmkorff induction coil 1851.
+      The Nikola Tesla polyphase resonant-transformer work (1888+)
+      is post-period; McCoy's 1878 rig operates at power and
+      efficiency levels any 1878 engineer could bench-build.
+    world_weaponization:
+      - actor: Raubritter-funded bench scientist (suspected)
+        use: Attempted demonstration of "wireless ignition" for Schloss Hohenzollern-Sewickley's private electric plant — burned one assistant's hand off
+        first_observed: backstory
+    payoff_seed: false
+
+  - slug: mercury_fulminate_flashbox
+    name: The Mercury Fulminate Flashbox
+    mccoy_purpose: >-
+      A photographer's flash. McCoy designed it for Dr. Teague's
+      medical-car clinical photography — clean white light without
+      the smoke of magnesium ribbon.
+    description_mechanical: >-
+      Small brass box with a mercury-fulminate primer pill in a
+      reflective mica housing, triggered by a shutter-linked hammer.
+      Yields ~1/500-second white flash. Mechanically: enables a
+      CUNNING check for in-flash photography; 1 in 20 chance per
+      session of a premature detonation on a jostle.
+    practicality: 0.55
+    absurdity: 0.2
+    danger: 0.9
+    real_science_citation: >-
+      Edward Howard, mercury fulminate, Philosophical Transactions
+      1800. Percussion-cap weapons standard since Joshua Shaw 1814.
+      Magnesium-ribbon flash predecessor: Edward Sonstadt commercial
+      magnesium 1862; Alfred Brothers photographic-flash demonstration
+      1864.
+    world_weaponization:
+      - actor: Unknown replicant-assassin (maker unidentified)
+        use: Repurposed as an improvised weapon at a Shadyside dinner party — flashbang distraction, primary victim escaped
+        first_observed: EARLY trope beat
+    payoff_seed: false
+
+  - slug: keely_counter_resonator
+    name: The Keely Counter-Resonator
+    mccoy_purpose: >-
+      A debunking instrument. McCoy built it after attending John
+      Worrell Keely's Philadelphia demonstration; it measures the
+      mechanical resonance of any vibrating system with a calibrated
+      reference tuning fork.
+    description_mechanical: >-
+      Brass chassis, 8 tuning forks spanning audible to subsonic,
+      microphone-diaphragm readout. Applied to Keely's etheric
+      generator, McCoy's device detected compressed-air input within
+      5 minutes. Mechanically: +4 CUNNING to detect fraud involving
+      mechanical resonance, perpetual motion claims, or compressed-
+      gas trickery.
+    practicality: 0.65
+    absurdity: 0.6
+    danger: 0.2
+    real_science_citation: >-
+      Hermann von Helmholtz, "On the Sensations of Tone" (Die Lehre
+      von den Tonempfindungen) 1863. Rudolph Koenig tuning-fork
+      instruments, Paris 1858-onward. Keely Motor Company, founded
+      1872 Philadelphia, defrauded investors with compressed-air
+      tricks revealed posthumously 1898.
+    world_weaponization:
+      - actor: Cornelius Raubritter
+        use: Threatened Keely's continued Pittsburgh demonstrations unless Keely endorsed a Raubritter-aligned "etheric vapor" prospectus
+        first_observed: MID trope beat
+    payoff_seed: false
+
+  - slug: nitrocellulose_speaking_plate
+    name: The Nitrocellulose Speaking Plate
+    mccoy_purpose: >-
+      A voice-recording medium. McCoy dissatisfied with Edison's
+      tinfoil's 2-playback fidelity, substituted a nitrocellulose
+      blank on a modified cylinder.
+    description_mechanical: >-
+      Celluloid-coated wax cylinder, 4-minute capacity, ~40 playbacks
+      before degradation. Mechanically: in an investigation scene,
+      can record 4 minutes of conversation covertly; highly flammable
+      if stored near the workshop's acetylene torch.
+    practicality: 0.6
+    absurdity: 0.3
+    danger: 0.8
+    real_science_citation: >-
+      Thomas Edison, phonograph, US Patent 200,521 (February 19,
+      1878) — tinfoil cylinder. Charles Sumner Tainter / Chichester
+      Bell, wax-cylinder Graphophone 1886 (post-period; McCoy's
+      nitrocellulose variant is the sketchable in-period precursor).
+      John Wesley Hyatt celluloid, US Patent 105,338 (1870).
+    world_weaponization: []
+    payoff_seed: false
+
+  # ── CHEKHOV'S-GUN PAYOFF SEEDS (2) ──────────────────────────
+
+  - slug: selenium_image_plate
+    name: The Selenium Image Plate
+    mccoy_purpose: >-
+      A light-sensing plate McCoy built for an "image transmission"
+      bench experiment, inspired by Willoughby Smith's 1873 paper.
+      Currently unreliable — images are blurry and the plate drifts.
+      Stored in the workshop car under a dust cover.
+    description_mechanical: >-
+      12x12 grid of selenium cells on a copper substrate, one wire
+      per cell, 144 wires routed to a commutator bank. When paired
+      with a Nipkow-style scanning disk (not yet built) could
+      transmit a crude 12x12 image down a wire. Mechanically:
+      dormant until the narrator decides a future session opens
+      the payoff. On that day, the plate works and someone's face
+      arrives by wire.
+    practicality: 0.2
+    absurdity: 0.5
+    danger: 0.1
+    real_science_citation: >-
+      Willoughby Smith, "Effect of Light on Selenium during the
+      passage of an Electric Current," Journal of the Society of
+      Telegraph Engineers 1873. Paul Nipkow's scanning disk
+      German Reichspatent 30105 (1884) — post-period, the payoff
+      can introduce it as a Markham leak.
+    world_weaponization: []
+    payoff_seed: true
+
+  - slug: analytical_engine_core
+    name: The Analytical Engine Core
+    mccoy_purpose: >-
+      A Babbage-designed mechanical general-purpose computer core,
+      uncased, ~40 percent complete. McCoy acquired the Menabrea-
+      Lovelace papers in 1872 and has been assembling a partial
+      mill and store since. Currently it can compute the first
+      seven Bernoulli numbers; when finished it could do much more.
+    description_mechanical: >-
+      Brass cams and toothed-wheel columns, Jacquard punched-card
+      reader (adapted from a Pittsburgh textile-loom), mill with
+      40 columns of 8-digit registers. Occupies the rear half of
+      the library car. Mechanically: dormant. When the crew needs
+      it — a cryptographic puzzle, a schedule optimization, a
+      counterfeit-detection computation — the narrator may enable
+      it as a permanent +4 CUNNING resource at the cost of 1 Luck
+      (the engine takes Tabitha a full week to reconfigure).
+    practicality: 0.25
+    absurdity: 0.7
+    danger: 0.15
+    real_science_citation: >-
+      Charles Babbage, Analytical Engine, designed 1837, never
+      completed. Ada Lovelace's Notes on Menabrea's paper, 1843
+      (first published algorithm, for Bernoulli numbers).
+      Jacquard loom punched-card program input, 1804. Henry
+      Babbage assembled partial mill 1888. Scheutz difference
+      engine built 1843 and sold 1856 — the proof of concept.
+    world_weaponization: []
+    payoff_seed: true
