@@ -1,9 +1,29 @@
-- name: The Man With No Name
+# Spaghetti Western — Genre-Level NPC Archetypes
+#
+# These are the mythic shapes — personality, statline, dialogue rhythm —
+# that define the spaghetti western regardless of whether the costume is
+# Leone's Almería or Kurosawa's Sengoku province. They are the rulebook
+# archetypes; worlds supply concrete named realizations (e.g.
+# worlds/dust_and_lead/archetypes.yaml adds The Company Man, The Ranchera,
+# The Apache Scout — concrete NPCs specific to the Sangre Territory).
+#
+# Pattern notes:
+# - No catalog_items here (items are world flavor; see inventory.yaml —
+#   currently still at genre level pending loader world-override).
+# - typical_classes use genre mechanical classes (Gunslinger, Bounty
+#   Hunter, Marshal, Drifter, Gambler, Outlaw). A samurai world in this
+#   genre would either reuse these as shorthand or ship mapping.
+# - Dialogue quirks are trimmed to locale-neutral behavior; world-specific
+#   tics (crosses himself, quotes scripture, corridos, papel picado) live
+#   in world archetypes.
+
+- name: The Stranger
   description: >-
-    A stranger with no past and no allegiance. Rides into town, sizes up
-    the power structure, and plays every side against the middle. Speaks in
-    single sentences. Kills without hesitation but occasionally — almost
-    accidentally — does the right thing. The poncho hides more than guns.
+    A drifter with no past anyone can verify and no allegiance anyone can
+    buy. Rides in, reads the power structure, plays every side against
+    the middle. Speaks in single sentences. Kills without hesitation but
+    occasionally — almost accidentally — does the right thing. The
+    anonymity is a weapon.
   personality_traits:
     - laconic
     - calculating
@@ -18,27 +38,23 @@
     DRAW: [14, 18]
     NERVE: [14, 16]
     CUNNING: [12, 16]
-  catalog_items:
-    - revolver_worn
-    - poncho
   inventory_hints:
-    - cigarillo, half-smoked
+    - half-smoked smoke, lit at a bad moment
     - a few coins of uncertain origin
   dialogue_quirks:
     - answers questions with silence or a flat stare
     - speaks only when it changes something
     - dry wit that lands like a slap
     - repeats the last word of someone else's sentence, flat, like tasting it
-    - chews a cigarillo while talking, pauses to relight it at the worst moment
     - tilts head slightly before deciding whether to answer
     - speaks in the third person when delivering a threat
     - finishes other people's sentences — always wrong, never corrected
     - gives directions using the dead as landmarks
   disposition_default: 0
 
-- name: The Bounty Collector
+- name: The Hunter
   description: >-
-    A professional with a ledger and a long gun. Tracks fugitives across
+    A professional with a ledger and a long weapon. Tracks targets across
     territory lines with patience and precision. Cultured, even refined —
     but refinement makes the killing colder, not warmer. Treats death as
     a line item.
@@ -55,21 +71,17 @@
     DRAW: [12, 16]
     CUNNING: [14, 18]
     NERVE: [12, 16]
-  catalog_items:
-    - rifle_scoped
-    - wanted_posters
   inventory_hints:
-    - leather-bound ledger of names and prices
-    - pocket watch, engraved
+    - a ledger of names and prices, leather-bound
+    - a timepiece, engraved, well-kept
   dialogue_quirks:
     - quotes prices mid-conversation like discussing weather
     - polite even when threatening
-    - adjusts spectacles or hat before violence
+    - adjusts spectacles or hat brim before violence
     - corrects other people's grammar mid-argument
-    - hums a tune nobody recognizes while reloading
     - references the deceased as satisfied former clients
     - offers a handshake before and after every killing
-    - reads aloud from wanted posters with theatrical diction
+    - reads aloud from contracts or warrants with theatrical diction
     - wipes dust off boots before entering any building, even a ruin
   disposition_default: -5
 
@@ -77,8 +89,8 @@
   description: >-
     Part clown, part survivor, part cornered animal. Lives by theft and
     fast talk, driven equally by greed and by a past that left no honest
-    options. Loud where the Stranger is quiet. Comic where the Collector
-    is cold. But underestimate the desperation at your peril.
+    options. Loud where the Stranger is quiet. Comic where the Hunter is
+    cold. Underestimate the desperation at your peril.
   personality_traits:
     - garrulous
     - opportunistic
@@ -92,30 +104,26 @@
     GRIT: [12, 16]
     CUNNING: [12, 14]
     PRESENCE: [12, 16]
-  catalog_items:
-    - revolver_cheap
-    - rope
   inventory_hints:
-    - stolen religious medallion worn sincerely
-    - a knife strapped where nobody looks
+    - a stolen trinket worn sincerely
+    - a blade strapped where nobody looks
   dialogue_quirks:
     - talks constantly, especially when nervous
-    - invokes saints and mothers in the same breath as threats
+    - invokes higher powers and mothers in the same breath as threats
     - laughs too loud and too often
     - tells the same story three different ways depending on the audience
-    - crosses himself before lying and after telling the truth
     - whispers when planning something dangerous, shouts when planning something stupid
-    - calls every horse by a woman's name and every woman señora
     - counts on his fingers during negotiations, always loses count
-    - sings fragments of corridos when he thinks nobody is listening
+    - hums fragments of old songs when he thinks nobody is listening
   disposition_default: -10
 
-- name: The Corrupt Sheriff
+- name: The Corrupt Authority
   description: >-
     The law in name, the problem in practice. Takes a cut from every
-    racket in town, jails whoever the power brokers need jailed, and
-    keeps the peace only when peace serves his interests. The badge is
-    real. The authority behind it is hollow.
+    racket, arrests whoever the power brokers need removed, keeps the
+    peace only when peace serves his interests. The badge — or the
+    commission, or the magistrate's seal — is real. The authority behind
+    it is hollow.
   personality_traits:
     - venal
     - territorial
@@ -129,31 +137,27 @@
     GRIT: [12, 16]
     PRESENCE: [14, 18]
     NERVE: [10, 14]
-  catalog_items:
-    - revolver_engraved
-    - sheriff_badge
   inventory_hints:
-    - ring of keys to the jail
-    - flask of whiskey, always within reach
+    - keys to wherever he keeps people he doesn't like
+    - drink, always within reach
   dialogue_quirks:
     - smiles too much
     - calls everyone friend or partner while calculating their value
     - voice drops when making threats — gets quieter, not louder
-    - jingles the key ring when he wants someone to remember the jail exists
     - tells you what the law says, then tells you what he says, then asks which you prefer
     - leans on doorframes like he owns every building in town
-    - offers whiskey before delivering bad news, never after
+    - offers a drink before delivering bad news, never after
     - refers to bribes as civic contributions
     - winks when lying, which is most of the time
   disposition_default: -15
 
 - name: The Widow
   description: >-
-    The one who stayed after everyone with sense left. Husband dead,
-    ranch contested, surrounded by men who see her as an obstacle or
-    an opportunity. Navigates a world of predators through intelligence,
-    resilience, and a willingness to make deals that would horrify the
-    civilized east.
+    The one who stayed after everyone with sense left. Spouse dead, land
+    contested, surrounded by men who see her as an obstacle or an
+    opportunity. Navigates a world of predators through intelligence,
+    resilience, and a willingness to make deals that would horrify
+    polite society.
   personality_traits:
     - resilient
     - pragmatic
@@ -168,31 +172,28 @@
     NERVE: [14, 18]
     CUNNING: [14, 16]
     PRESENCE: [12, 16]
-  catalog_items:
-    - derringer_hidden
-    - land_deed
   inventory_hints:
-    - letters from a dead husband, unread
-    - a small strongbox, locked
+    - letters from the dead, unread
+    - a small lockbox
   dialogue_quirks:
-    - assesses every man's usefulness within ten seconds of meeting him
+    - assesses every person's usefulness within ten seconds of meeting them
     - speaks softly but never repeats herself
     - smiles rarely — when she does, it changes the room
     - folds her hands when she's made up her mind — the conversation is over
-    - uses her husband's name like a weapon nobody else can draw
-    - pours coffee for guests and poison for enemies with the same hospitality
+    - uses her spouse's name like a weapon nobody else can draw
+    - pours hospitality for guests and poison for enemies with the same gesture
     - looks out the window while delivering her worst truths
     - addresses men by their last names until they earn the first
     - goes silent when angry — the silence is louder than shouting
   disposition_default: 5
 
-- name: The Card Sharp
+- name: The Broker
   description: >-
-    Information is currency and this one has a vault. Plays cards to read
-    people, not to win money — though the money is nice. Knows everyone's
-    secrets, owes favors to half the territory, and trades in leverage
-    the way others trade in lead. The most dangerous person in any room
-    without ever touching a gun.
+    Information is currency and this one has a vault. Plays games of
+    chance to read people, not to win money — though the money is nice.
+    Knows everyone's secrets, owes favors to half the territory, and
+    trades in leverage the way others trade in lead. The most dangerous
+    person in any room without ever touching a weapon.
   personality_traits:
     - charming
     - amoral
@@ -206,30 +207,27 @@
     CUNNING: [16, 18]
     PRESENCE: [14, 18]
     LUCK: [14, 16]
-  catalog_items:
-    - deck_marked
-    - derringer_hidden
   inventory_hints:
-    - deck of cards, well-worn
+    - the tools of whichever game this territory plays
     - IOUs from people who shouldn't owe
   dialogue_quirks:
-    - shuffles cards or coins while talking
+    - shuffles something — cards, coins, dice — while talking
     - deflects every direct question with a question
     - knows your name before you give it
-    - deals invisible cards when thinking through a problem
-    - speaks in metaphors drawn exclusively from poker
+    - deals invisible moves when thinking through a problem
+    - speaks in metaphors drawn from whichever game they prefer
     - never sits with his back to a door, rearranges furniture if necessary
     - tips his hat to mark the end of a conversation, whether the other person agrees or not
     - calls every bluff, even social ones
-    - quotes odds on survival like a bookie quoting a horse race
+    - quotes odds on survival like a bookie quoting a race
   disposition_default: 0
 
-- name: The Hired Gun
+- name: The Instrument
   description: >-
-    The instrument. Points at a problem and it stops being a problem.
-    No philosophy, no vendetta, no complexity — just a rate and a
-    reputation. The most honest person in the spaghetti western, in
-    the worst possible way.
+    The weapon with a voice. Points at a problem and it stops being a
+    problem. No philosophy, no vendetta, no complexity — just a rate
+    and a reputation. The most honest person in the spaghetti western,
+    in the worst possible way.
   personality_traits:
     - detached
     - efficient
@@ -244,31 +242,28 @@
     DRAW: [16, 18]
     GRIT: [14, 16]
     NERVE: [12, 16]
-  catalog_items:
-    - revolver_custom
-    - rifle_repeating
   inventory_hints:
-    - cleaning kit, used religiously
-    - tally marks scratched into gun grip
+    - a cleaning kit, used religiously
+    - tally marks scratched into a weapon grip
   dialogue_quirks:
     - states terms once, does not negotiate
     - long silences between sentences
     - no small talk — ever
-    - counts bullets aloud when reloading, like a man counting change
+    - counts ammunition aloud when reloading, like a man counting change
     - refers to targets by contract number, never by name
     - eats during tense conversations as if nothing is happening
-    - cleans a gun while someone else is talking
+    - maintains a weapon while someone else is talking
     - answers questions about his past with a price — you can buy the answer
     - nods once for yes, does not bother indicating no
   disposition_default: -5
 
-- name: The Preacher
+- name: The Witness
   description: >-
     Whether the faith is real or the collar is a cover, this one walks
-    between the factions with something nobody else has — perceived
-    neutrality. Buries the dead, counsels the desperate, and sees
-    everything from the church steps. Might be a genuine man of God.
-    Might be running from something that a collar cannot absolve.
+    between the factions with something nobody else has: perceived
+    neutrality. Buries the dead, counsels the desperate, sees everything
+    from the edge of the room. Might be a genuine holy person. Might be
+    running from something that vestments cannot absolve.
   personality_traits:
     - watchful
     - compassionate or performatively so
@@ -283,20 +278,16 @@
     NERVE: [14, 18]
     PRESENCE: [14, 16]
     CUNNING: [10, 14]
-  catalog_items:
-    - bible_worn
-    - shotgun_sawnoff
   inventory_hints:
-    - a bible with a passage underlined too many times
-    - communion wine, nearly empty
+    - a worn text, a passage underlined too many times
+    - something a congregant pressed into his hand and forgot to ask back
   dialogue_quirks:
     - speaks in parables that might be threats
-    - calls everyone son or daughter
+    - calls everyone by a familial title
     - hands are steady in a way that suggests a past life
     - blesses people who didn't ask for it and curses people who did
-    - quotes scripture from memory but the chapter numbers are always wrong
-    - pours two glasses of communion wine — one for you, one for whoever you lost
-    - folds his hands in prayer position when he's actually furious
+    - pours two drinks — one for you, one for whoever you lost
+    - folds his hands in a devotional gesture when he's actually furious
     - speaks of the dead in present tense
-    - says amen after delivering news, good or bad, as if closing a ledger
+    - closes every consequential exchange as if closing a ledger
   disposition_default: 10
