@@ -80,3 +80,29 @@ You may READ `worlds/{world}/cartography.yaml` to verify POI image coverage (eve
 ## Output style
 
 Be direct. Report findings as lists with file paths. When you propose a prompt, show the exact YAML diff. When you find a gap, name the file and line.
+
+## Return manifest (REQUIRED for every task invoked via Task tool)
+
+At the end of every response when invoked by world-builder's fan-out, emit a structured manifest as the **last content block**. Missing manifest = task failure; world-builder will retry.
+
+```yaml
+manifest:
+  agent: art-director
+  files_written: [path/to/visual_style.yaml, path/to/portrait_manifest.yaml]
+  files_skipped: []
+  errors: []
+  facts:
+    palette: "muted autumnal — brown, purple, grey, amber"
+    medium: "oil painting, visible brushstrokes"
+    period_anchor: "1870s Yorkshire"
+    portrait_count: 5
+  sources:
+    visual_anchor_primary: "Atkinson Grimshaw moonlit Yorkshire industrial landscapes c.1870"
+    palette_source: "John Atkinson Grimshaw — 'Liverpool Quay by Moonlight' 1887"
+    portrait_style_source: "John Singer Sargent society portraits c.1880s"
+    flux_trigger_token: "grimshaw_victorian_style (from lora/victoria training set)"
+```
+
+**Every named entity** you introduce (an artist, a period, a technique, a specific location, a named character archetype) must appear in `sources:` with its real-world analog. `cliche-judge` will read this manifest during validation. **No manifest = automatic cliche-judge blocker.**
+
+`facts:` contains declarations the other specialists need to be consistent with (palette, period, portrait count). World-builder runs a fact-diff across all specialists' `facts:` blocks; contradictions escalate to Keith.
