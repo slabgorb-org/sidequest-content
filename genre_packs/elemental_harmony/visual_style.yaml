@@ -33,6 +33,24 @@ preferred_model: dev
 
 base_seed: 42
 
+# ── Style LoRA ────────────────────────────────────────────────
+# Trained on ukiyo-e woodblock corpus (Kuniyoshi / Hokusai / Hiroshige
+# register), 1500 iterations, rank 8, single-tag caption convention
+# (every training image captioned with the bare `elemental_harmony`
+# trigger). Deployed from ~/lora-runs/elemental_harmony/landscape via
+# scripts/lora/remap_mlx_to_mflux.py — remap reported 608 translated
+# keys (healthy-load signal).
+#
+# Scale 0.65 holds the style present without overwhelming prompt
+# response; bump toward 0.8-0.9 if the woodblock register reads weak.
+
+loras:
+  - name: elemental_harmony_landscape
+    file: elemental_harmony/landscape.safetensors
+    scale: 0.65
+    applies_to: [landscape]
+    trigger: elemental_harmony
+
 # ── Location Tag Overrides ────────────────────────────────────
 
 visual_tag_overrides:
