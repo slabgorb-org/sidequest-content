@@ -1,15 +1,36 @@
 # Visual style configuration for heavy_metal genre pack
 #
-# Controls how Flux image generation renders scenes for this genre.
-
+# Controls how Flux / Z-Image image generation renders scenes for this genre.
+# Heavy Metal visual identity: ink and wash illustration with baroque ornate
+# detail, deep chiaroscuro shadow, visible cross-hatching in the darker
+# values, and a restrained palette of iron-red, tarnished brass, bone, and
+# void-black. Candlelight and lamp-flame on cold stone; architectural
+# specificity over empty dramatic vista. The mood is baroque engraving
+# brought forward into illustration — not modern digital painting.
+#
+# Style anchors: Gustave Doré (chiaroscuro engraving), Ian Miller (baroque
+# grotesque linework), Rembrandt (candlelit interiors). Evrópí-specific:
+# Polish/Slavic baroque architecture, Mistos red-and-black junta silks,
+# Vaermm book-checking monasticism, Zkęd secret-police austerity.
 
 # ── Core Style ────────────────────────────────────────────────
 
 positive_suffix: >-
-  RPG style
+  baroque ink and wash illustration in the tradition of Gustave Doré and
+  Ian Miller, deep chiaroscuro shadow with visible cross-hatching and
+  stippled halftone, restrained palette of iron-red and tarnished brass
+  on bone and void-black, candlelight or oil-lamp flame on cold stone,
+  architectural ornament with devotional marginalia, textile and metalwork
+  rendered with engraving-like specificity, low-key lighting, matte
+  surfaces, the specific small residues of a working just concluded,
+  period-appropriate baroque wardrobe only. Fake stylized lettering on
+  ledger pages, sigil-carvings, and tally-stones is allowed as in-world
+  texture. No cartouche, no title plate, no artist signature, no printer's
+  mark, no museum label, no border inscription, no watermark, no frame.
 
-negative_prompt: >-
-  
+# Z-Image Turbo ignores negative_prompt at guidance_scale=0. All constraints
+# live in positive_suffix. See PROMPTING_Z_IMAGE.md.
+negative_prompt: ""
 
 preferred_model: dev
 

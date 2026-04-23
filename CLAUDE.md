@@ -167,6 +167,7 @@ git remote add local /path/to/existing/sidequest-content
 genre_packs/
 ├── caverns_and_claudes/  # Classic dungeon crawl (meta-humor)
 ├── elemental_harmony/    # Martial arts / elemental magic
+├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic
 ├── low_fantasy/          # Gritty medieval
 ├── mutant_wasteland/     # Post-apocalyptic mutants
 ├── neon_dystopia/        # Cyberpunk
