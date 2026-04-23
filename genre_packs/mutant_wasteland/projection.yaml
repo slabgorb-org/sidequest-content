@@ -12,9 +12,12 @@
 #   python -m sidequest.cli.validate.projection_check \
 #       sidequest-content/genre_packs/mutant_wasteland
 
-rules: []
-# Intentionally empty for now — waiting for CONFRONTATION / STATE_UPDATE
-# payload schemas to stabilize before authoring redactions. The empty
-# file is still meaningful: it opts this genre into the ComposedFilter
-# pipeline (no-genre-rules fallback applies) and unblocks future rule
-# authoring without a code change.
+rules:
+  # visibility_tag activates the VisibilityTagFilter for canonical narration
+  # events — reads payload._visibility attached by the narration decomposer
+  # and enforces per-recipient inclusion + fidelity transforms.
+  - kind: NARRATION
+    visibility_tag: {}
+  # Further CONFRONTATION / STATE_UPDATE redactions will layer in here once
+  # payload schemas stabilize. visibility_tag MUST remain first so structural
+  # decisions are not re-opened by later redactions.
