@@ -52,12 +52,28 @@ These audits are not optional. Run them on every audit pass before reporting.
 3. Read `worlds/{world}/portrait_manifest.yaml` for each world — check that every manifest entry has a corresponding PNG, and every PNG has a manifest entry.
 4. Report gaps, inconsistencies, and prompts that drift from the style guide.
 
-### When writing a new Flux prompt
-1. Read `visual_style.yaml` and extract the style descriptors (medium, palette, lighting, composition).
-2. Read relevant `archetypes.yaml` / `cultures.yaml` for character context.
-3. Write the prompt: `[subject description], [style descriptors], [lighting/composition]`.
-4. Keep prompts tight — LoRA captions in existing datasets are ~150 chars. Follow that length.
-5. Add the entry to the appropriate `portrait_manifest.yaml` — never invent a new file.
+### When writing a new Flux / Z-Image prompt
+
+**READ `PROMPTING_Z_IMAGE.md` at the content repo root FIRST.** The renderer is
+Z-Image Turbo. It has no negative prompt and it renders text that appears in
+the prompt. The guide is mandatory reading; its scaffold, safety clause, and
+prose-to-visual translation rules are the house style.
+
+Workflow:
+1. Read `visual_style.yaml` and extract style descriptors (medium, palette, lighting, composition).
+2. Read relevant `archetypes.yaml` / `cultures.yaml` / `cartography.yaml` for context.
+3. **Translate any prose lore into visual clauses** — strip proper nouns,
+   historical clauses, and conditional / off-camera references. Proper nouns
+   will be rendered as text. See the guide's "Translating prose lore" section.
+4. Structure the prompt using the scaffold:
+   `[medium] + [shot] + [subject] + [clothing if human] + [foreground/middle/background] + [lighting] + [mood] + [style anchor] + [safety clause]`.
+5. **Always end with the safety clause** — at minimum `no text, no caption, no watermark`.
+   For humans, also `fully clothed, modest outfit, non-sexualized depiction`.
+6. Target 80–250 words of concrete, renderable description. No novelistic flourish.
+7. Add the entry to the appropriate `portrait_manifest.yaml` — never invent a new file.
+
+**LoRA captions are different.** They follow ADR 032, not the Z-Image generation
+scaffold. ~150 chars, structured tag schema, trigger token at the end.
 
 ### When curating a LoRA dataset
 1. Inspect `lora/{genre}/` — each training pair is `{name}.jpg` + `{name}.txt`, flat layout with a source prefix in the filename (e.g. `constable_0003`, `sargent_portraits_0011`). No subfolders per source.
