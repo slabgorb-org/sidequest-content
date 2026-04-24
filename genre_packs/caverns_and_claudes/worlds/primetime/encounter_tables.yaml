@@ -1,0 +1,177 @@
+# Primetime — Encounter Tables
+# Three zones mapped to room clusters. Each zone's wandering encounters
+# draw from the creature pool weighted by zone tier.
+#
+# Probability is base chance per room entry (0.0 to 1.0).
+# Keeper awareness (ratings) modifiers boost encounter frequency when
+# the show is trending — the Network dispatches Stalkers and Ad Spirits
+# to keep the numbers up.
+
+levels:
+
+  - id: level_1_stage
+    name: "On Stage"
+    wandering_monster_chance: 0.18
+    wandering_monster_awareness_bonus: 0.04
+    wandering_monsters:
+      - creature_id: fan_swarm
+        weight: 5
+        count: "1d4+2"
+        description: >-
+          A fan swarm breaks through the security line and rushes
+          the set, phones up, pens out, expressions varying with
+          this week's ratings trend.
+        loot:
+          - description: "A handful of autograph pens"
+          - description: "A half-eaten branded snack"
+      - creature_id: stagehand_crew
+        weight: 4
+        count: "1d3+2"
+        description: >-
+          A Stagehand crew enters with lunch pails and resets the
+          traps. One of them makes unreadable eye contact.
+        loot:
+          - description: "A union pamphlet (Safe Workplace Conduct, Rev. 47)"
+      - creature_id: prop
+        weight: 3
+        count: "1"
+        description: >-
+          A piece of set dressing shifts, then strikes. The
+          chandelier, probably. Or the cake.
+        loot:
+          - description: "Splinters of sponsored lumber"
+          - description: "One prop weapon, now broken"
+      - creature_id: promo
+        weight: 2
+        count: "1"
+        description: >-
+          THE PROMO steps into the spotlight, entrance music
+          already playing. He is giving it one hundred and ten
+          percent.
+        loot:
+          - description: "A signed PROMO plushie"
+          - description: "His signature prop weapon"
+
+  - id: level_2_arena
+    name: "Backstage Rotation"
+    wandering_monster_chance: 0.20
+    wandering_monster_awareness_bonus: 0.05
+    wandering_monsters:
+      - creature_id: ad_spirit
+        weight: 5
+        count: "1d2"
+        description: >-
+          An Ad Spirit manifests in the doorway, cheerful and
+          pre-rehearsed, ninety seconds of sponsored airtime
+          ready to go.
+        loot:
+          - description: "A sponsored product voucher"
+          - description: "A stack of PrimeBux coupons"
+      - creature_id: fan_swarm
+        weight: 4
+        count: "1d4+2"
+        description: >-
+          The fans have followed the party backstage. Security
+          is thinner here. Trending has shifted in the last scene.
+        loot:
+          - description: "A fan's notebook of continuity errors"
+      - creature_id: network_suit
+        weight: 3
+        count: "1"
+        description: >-
+          An HR representative apparates, clipboard in hand, ready
+          to discuss a clause the party didn't know they'd stepped on.
+        loot:
+          - description: "A termination packet (blank)"
+          - description: "A Network-issue pen"
+      - creature_id: sublime
+        weight: 2
+        count: "1"
+        description: >-
+          SUBLIME emerges from a catering cart cooler. The air
+          chills. She offers skincare advice. She attacks on the
+          second sentence.
+        loot:
+          - description: "A sparkling ice-shard dagger"
+          - description: "A Glacidew™ gift basket"
+      - creature_id: mother_in_law
+        weight: 2
+        count: "1"
+        description: >-
+          MOTHER-IN-LAW's laugh track precedes her by half a room.
+          She enters already disapproving.
+        loot:
+          - description: "A costume-jewelry brooch"
+          - description: "A signed cookbook"
+      - creature_id: buzzkill
+        weight: 2
+        count: "1"
+        description: >-
+          BUZZKILL is mid-setup. The chainsaw is idling. The
+          joke has been going on for four sentences.
+        loot:
+          - description: "A notebook of bad jokes"
+          - description: "A press photo"
+      - creature_id: dynamo
+        weight: 2
+        count: "1"
+        description: >-
+          DYNAMO's backing track kicks in from the lighting truss.
+          The arena lights strobe. The audience begins to chant.
+        loot:
+          - description: "A piece of electrified spandex"
+          - description: "A CD of his latest single"
+      - creature_id: ad_breaks
+        weight: 1
+        count: "1"
+        description: >-
+          AD BREAKS's full-screen takeover overrides the scene.
+          The party is yanked into the Commercial Break pocket
+          dimension.
+        loot:
+          - description: "A handful of skip-fee coupons"
+          - description: "A commercial-dimension map fragment"
+
+  - id: level_3_backstage
+    name: "Executive Wing"
+    wandering_monster_chance: 0.25
+    wandering_monster_awareness_bonus: 0.06
+    wandering_monsters:
+      - creature_id: network_suit
+        weight: 5
+        count: "1d2+1"
+        description: >-
+          Three HR representatives apparate in coordinated formation.
+          Three clipboards. Three fixed smiles. Three clauses ready
+          to go.
+        loot:
+          - description: "A termination packet"
+          - description: "A binding clause"
+      - creature_id: legal_department
+        weight: 3
+        count: "1"
+        description: >-
+          THE LEGAL DEPARTMENT arrives briefcases first. The three
+          heads are already arguing in legalese. The paperwork is
+          live-updating.
+        loot:
+          - description: "A legally-binding signed document"
+          - description: "Three briefcases"
+      - creature_id: the_franchise
+        weight: 2
+        count: "1"
+        description: >-
+          THE FRANCHISE is simply there. No music, no announcement.
+          The audience goes still. Even the Host is quiet.
+        loot:
+          - description: "His signature sword"
+          - description: "A note in his handwriting"
+      - creature_id: prop
+        weight: 2
+        count: "1d2"
+        description: >-
+          The set dressing in the executive wing is expensive and
+          old. One piece of it remembers being used on a different
+          production. It is activating now.
+        loot:
+          - description: "Vintage prop remnants (valuable to a collector)"
