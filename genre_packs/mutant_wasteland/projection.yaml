@@ -18,6 +18,11 @@ rules:
   # and enforces per-recipient inclusion + fidelity transforms.
   - kind: NARRATION
     visibility_tag: {}
+  # SECRET_NOTE events carry prompt-redacted dispatches stripped from the
+  # narrator prompt (Group G Task 5/6). Same visibility_tag rule so each
+  # note only reaches the recipients named in its _visibility.visible_to.
+  - kind: SECRET_NOTE
+    visibility_tag: {}
   # Further CONFRONTATION / STATE_UPDATE redactions will layer in here once
   # payload schemas stabilize. visibility_tag MUST remain first so structural
   # decisions are not re-opened by later redactions.
