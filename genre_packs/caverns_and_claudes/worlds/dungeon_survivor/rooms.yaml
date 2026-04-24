@@ -1,0 +1,287 @@
+# Dungeon Survivor — Room Graph
+# 8 rooms in a real dungeon that's been wired for broadcast.
+# Each room has a distinct mechanical identity — fight, traps, rest, merchant,
+# secret, boss, scry — so the player always knows why they walked into a
+# different door. The Network is an overlay: cameras, brass achievement
+# plaques, speaker grilles, sponsor stickers. The stone is real. The monsters
+# eat. The traps kill.
+#
+# tactical_scale: 4 for rooms where combat is expected.
+
+# === ACT I: THE DUNGEON ===
+
+- id: the_drop
+  name: "The Drop"
+  room_type: entrance
+  size: [3, 3]
+  keeper_awareness_modifier: 1.0
+  description: >-
+    A round stone pit at the bottom of a long vertical shaft. Torch
+    brackets at shoulder height, two of four lit, dripping a grainy
+    orange light onto pitted flagstone. Chalk scuffs from previous
+    landings streak the center — several of them end in rust-coloured
+    smears. Bolted to the wall at head height is a brass speaker grille
+    and, beside it, a brass plaque that lights green the moment the
+    party moves: WELCOME. SEASON ELEVEN. 0 KILLS / 0 DEATHS. DO YOUR
+    BEST! Above, the shaft recedes into dark — that's how you came in.
+    Ahead, a single iron-banded door stands ajar, with a cheerful foil
+    sticker pasted just above the handle: GOOD LUCK, BROUGHT TO YOU BY
+    GLOAMREACH WHETSTONES™. A fist-sized camera drone has tucked itself
+    into a cornice and hums, politely, at the party's expressions. The
+    speaker crackles. Someone is about to say something.
+  exits:
+    - type: corridor
+      target: the_knaves_grotto
+    - type: corridor
+      target: the_rest_stop
+  tactical_scale: 4
+  grid: |
+    ############
+    #..........#
+    #..........#
+    #....P.....#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #..........#
+    #####..#####
+
+- id: the_knaves_grotto
+  name: "The Knave's Grotto"
+  room_type: normal
+  size: [4, 3]
+  keeper_awareness_modifier: 1.1
+  description: >-
+    A wide, low-ceilinged chamber with six pillars of unchiseled granite
+    holding up a vaulted roof. The floor slopes gently to a shallow pool
+    at the far end where something has been chewing on a contestant's
+    dropped gauntlet — you can hear the chewing stop when you enter.
+    The pillars drip. Iron sconces cast more shadow than light, and in
+    the shadows between them, small patient wrong-shaped things are
+    waiting their cue. A camera drone has wedged itself between ceiling
+    beams for the angle. High on the far wall, a brass plaque idles dark,
+    cocked to chime ACHIEVEMENT UNLOCKED the instant something in this
+    room stops being alive. Three ways out: the iron door behind you, a
+    rusted grate south where the torchlight doesn't reach, and an
+    archway east where the dripping gets louder and the stone changes
+    colour. The air smells of wet stone and, faintly, of laundry.
+  exits:
+    - type: corridor
+      target: the_drop
+    - type: corridor
+      target: the_boneyard_bazaar
+    - type: corridor
+      target: the_gauntlet
+  tactical_scale: 4
+  grid: |
+    ################
+    #..............#
+    #..O..O..O.....#
+    #..............#
+    #..O..O..O..P..#
+    #..............#
+    #..~~~~~~~~~...#
+    #..............#
+    #..............#
+    #..............#
+    ##..###########.
+    ###............
+
+- id: the_gauntlet
+  name: "The Gauntlet"
+  room_type: normal
+  size: [3, 3]
+  keeper_awareness_modifier: 1.3
+  description: >-
+    A narrow corridor that is longer than the wall it fits inside. The
+    floor is checkered pale and dark flagstones — the pale ones are
+    pressure plates. Most of them. Scorch-haloes on the ceiling. Rust-
+    brown haloes on certain tiles. Something that used to be full plate
+    armour is slumped against the far wall, an arrow the size of a
+    shovel through the breastplate; above the body, a brass plaque reads
+    CONDOLENCES — SEASON NINE. NICE TRY. Halfway down the corridor, on
+    a fluted pedestal, sits an iron-bound chest with a bright yellow
+    sticker: OPEN ME! (GLOAMREACH WHETSTONES™ ENDORSES CAUTION.) The
+    plaque above the chest blinks on and off: BONUS OBJECTIVE — LIVE TO
+    COLLECT. Two camera drones are positioned for kill-shots. Neither
+    has the decency to pretend otherwise.
+  exits:
+    - type: corridor
+      target: the_knaves_grotto
+    - type: corridor
+      target: the_boneyard_bazaar
+  tactical_scale: 4
+  grid: |
+    ############
+    #..........#
+    #..T.T.T.T.#
+    #..........#
+    #....$.....#
+    #..........#
+    #..T.T.T.T.#
+    #..........#
+    ##.......###
+    .T.......T.
+    ############
+
+- id: the_rest_stop
+  name: "The Rest Stop"
+  room_type: hub
+  size: [3, 2]
+  keeper_awareness_modifier: 0.5
+  description: >-
+    A small round chamber with a domed ceiling and, for once, dry floor.
+    A stone bench wraps half the wall. Someone, seasons ago, chalked
+    LAST SAFE PLACE near the door — half scrubbed off, half still
+    legible. A metal box bolted to the wall dispenses a paper cup of
+    cold water when leaned on; the box is labeled COMPLIMENTARY
+    HYDRATION — THANK YOU FOR PLAYING (GLOAMREACH WHETSTONES™). A
+    single iron torch burns steady, fueled by whatever the dungeon
+    can't eat. Any camera drone that follows a contestant in stops at
+    the threshold — it is contractually not permitted inside. This is
+    the closest thing the dungeon has to a save point. Contestants
+    talk here. Contestants who remember how to talk, anyway. A narrow
+    hatch on the back wall, the size of a dog, leads into the
+    crawlspaces where the cameras can't reach.
+  exits:
+    - type: corridor
+      target: the_drop
+    - type: corridor
+      target: the_boneyard_bazaar
+    - type: corridor
+      target: the_maintenance_crawlspace
+
+- id: the_boneyard_bazaar
+  name: "The Boneyard Bazaar"
+  room_type: hub
+  size: [3, 2]
+  keeper_awareness_modifier: 0.6
+  description: >-
+    A side-cavern propped open with timber beams and rigged with
+    lanterns on fishing wire. A goblin in a waistcoat presides from
+    behind a counter made of two coffins and a plank. His name tag
+    says BRANN. His waistcoat has a sponsor patch. Shelves behind him:
+    cursed daggers in velvet boxes, potions labeled in three alphabets,
+    a row of plushies (one for each party member, remarkable likeness),
+    a rack of keys that may or may not fit any door in the dungeon,
+    and a full shelf of "commemorative season programmes" that no one
+    has bought in six seasons. Brann accepts PrimeBux, cold iron,
+    favours, and, under narrowly defined circumstances, promises. A
+    hand-lettered sign by the register reads NO REFUNDS, NO
+    RESURRECTIONS, NO EXCEPTIONS. The only camera drone in the room
+    hovers pointedly at the shelves, never the register. This is,
+    quietly, where the dungeon becomes commerce and commerce becomes
+    a save point.
+  exits:
+    - type: corridor
+      target: the_knaves_grotto
+    - type: corridor
+      target: the_rest_stop
+    - type: corridor
+      target: the_gauntlet
+
+# === ACT II: THE UNDERSIDE ===
+
+- id: the_maintenance_crawlspace
+  name: "The Maintenance Crawlspace"
+  room_type: secret
+  size: [4, 2]
+  keeper_awareness_modifier: 0.3
+  description: >-
+    Not rooms so much as the spaces between rooms — narrow service
+    passages the dungeon's original builders used and the Network has
+    never bothered to map. Pipes sweat. Bulbs flicker on a frequency
+    that gives headaches. Walls crusted with rusted conduit, hand-drawn
+    maps taped at eye level, and a long smear of chalk graffiti in a
+    dozen contestants' handwritings (most ending mid-sentence). The
+    Unaired live here — former contestants who slipped the cast and got
+    forgotten. A dead drop waits behind a loose stone at shoulder
+    height: a folded note from Marin, asking the party to look up. The
+    Host's voice does not reach these passages. There are no brass
+    plaques. No camera drones. The dungeon hums differently here — as
+    though it were listening with an ear that doesn't answer to the
+    broadcast.
+  exits:
+    - type: corridor
+      target: the_rest_stop
+    - type: corridor
+      target: the_directors_cell
+    - type: corridor
+      target: the_scrying_pool
+
+- id: the_directors_cell
+  name: "The Director's Cell"
+  room_type: boss
+  size: [2, 2]
+  keeper_awareness_modifier: 0.5
+  description: >-
+    A small circular crypt that the Host has claimed as his private
+    chamber. Velvet drapes over raw stone. A makeup counter curving
+    along one wall, half its vanity bulbs burnt out. A rack of
+    identical jumpsuits in descending sizes, smallest last. A drinks
+    cabinet with a single glass on top, half-empty. A single chair
+    facing a tall mirror. The mirror does not reflect the camera rig
+    overhead, which is either an effect or something worse. A locked
+    drawer in the makeup counter is, by long-standing rumour, where
+    the Host keeps his real face. There are no cameras here.
+    Contractually. Practically, he cannot stop being watched — the
+    dungeon sees him. If the party has reached this room, the Host is
+    here. He does not rise to meet them. This scene is not a boss
+    fight by default — it is a conversation. It can become a fight.
+    That is a choice.
+  exits:
+    - type: corridor
+      target: the_maintenance_crawlspace
+    - type: corridor
+      target: the_knaves_grotto
+  tactical_scale: 4
+  grid: |
+    ########
+    #......#
+    #..H...#
+    #..C...#
+    #......#
+    #......#
+    #.D....#
+    #......#
+    ####..##
+
+- id: the_scrying_pool
+  name: "The Scrying Pool"
+  room_type: secret
+  size: [3, 2]
+  keeper_awareness_modifier: 0.5
+  description: >-
+    A chamber the dungeon's builders hollowed for divination, which the
+    Network has colonised without ever quite understanding. At its
+    centre: a stone basin of black water — the scrying pool itself,
+    still doing its job. The pool's surface shows, in real time, every
+    camera feed in the dungeon, tiled like a mosaic and shifting when
+    anyone looks away. Around the basin: beige server racks of
+    broadcast equipment humming in discomfort next to the stone, three
+    empty swivel chairs, a clean coffee machine, and a single live
+    cue-board blinking through a schedule the Network calls Ops. The
+    room is technically staffed around the clock. In practice, the cue
+    board runs on automation and a skeleton crew patches in from
+    off-site. From this room, the broadcast can be cut, the Summoning
+    Engine's next casting delayed, and the archive tapes of the
+    Audience Revolt recovered. Every action taken here is, technically,
+    felony trespass. The pool does not care.
+  exits:
+    - type: corridor
+      target: the_maintenance_crawlspace
+  tactical_scale: 4
+  grid: |
+    ############
+    #..........#
+    #..FFFFF...#
+    #..........#
+    #..........#
+    #...OOO....#
+    #..........#
+    #......####
+    #......#...
+    ####..##...

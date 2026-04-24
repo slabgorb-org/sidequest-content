@@ -1,6 +1,8 @@
-# Primetime — World-Specific Tropes
-# Eight signature gameshow-crawl tropes layered over genre tropes.
-# Each encodes a narrative mechanic the narrator can deploy.
+# Dungeon Survivor — World-Specific Tropes
+# Eight signature tropes that wire the broadcast overlay onto a real
+# dungeon crawl. Each encodes a narrative mechanic the narrator can
+# deploy. Stone and torchlight first; cameras and sponsor stickers
+# second.
 
 - id: catchphrase_trigger
   name: The Catchphrase Trigger
@@ -17,10 +19,10 @@
     - scene transition with camera-worthy moment
     - Host enters or leaves a scene
   narrative_hints:
-    - the Host leans into the microphone
-    - the laugh track primes early
-    - the lighting shifts to a hero-spot
-    - a sponsor logo flickers across the feed
+    - the speaker grille crackles before the Host speaks
+    - a nearby camera drone drifts in for the reaction shot
+    - the torchlight in the room shifts warmer for a half-beat
+    - a sponsor logo flickers across the nearest brass plaque
   tension_level: 0.3
   resolution_hints:
     - the party playing along pleases the crowd
@@ -61,14 +63,14 @@
     - Host is stalling for time
     - a sponsor wants a particular outcome and has paid for it
   narrative_hints:
-    - the Host raises both hands to the audience
-    - the applause sign flickers
-    - the crowd begins a chant
-    - a LIVE POLL overlay flashes in-scene
+    - the Host's voice over the speakers drops to "and now — over to the audience!"
+    - every brass plaque in the room lights the same amber
+    - a distant coordinated chant bleeds through the stone
+    - a LIVE POLL overlay flickers across the nearest drone's lens
   tension_level: 0.5
   resolution_hints:
     - a party member can veto the vote by paying PrimeBux (expensive)
-    - the vote can be rigged by disabling the applause sign
+    - the vote can be rigged by disabling the plaques or shouting over them
     - the Unaired can offer a counter-narrative that shifts the result
     - defying the vote openly is permitted but has ratings consequences
   tags: [primetime, audience, choice]
@@ -103,13 +105,13 @@
   triggers:
     - party is in visible trouble on-camera
     - a sponsor brand is mentioned in narration
-    - a Commercial Break is pending and the sponsor wants a segue
+    - a Forced Ad Break is pending and the sponsor wants a segue
     - a Stalker encounter is going worse than producers hoped
   narrative_hints:
-    - a sponsor logo swells on the feed
-    - a branded item appears within reach
-    - an Ad Spirit materializes quietly in the background
-    - the Host mentions a product "by the way"
+    - a sponsor logo swells on the nearest brass plaque
+    - a sticker-branded item appears within reach (on a plinth, a ledge, a corpse)
+    - an Ad Spirit materializes quietly by a sconce
+    - the Host mentions a product "by the way" over the speaker grille
   tension_level: 0.4
   resolution_hints:
     - accept and take the clause
@@ -131,7 +133,7 @@
         The sponsor, rebuffed, retaliates. The Ad Spirit stalks the
         party for the rest of the session, manifesting at
         increasingly inconvenient moments. Can be dismissed by
-        paying the sponsor off or winning a Commercial Break.
+        paying the sponsor off or surviving a Forced Ad Break.
       npcs_involved: [Ad Spirit, The Network]
       stakes: "A persistent minor hazard. Also — the Unaired will hear about this and approve."
   passive_progression:
@@ -149,18 +151,18 @@
     - three consecutive low-tension turns
     - party spends too long in a hub room
     - party avoids encounters through stealth for too long
-    - a Commercial Break was skipped without cost
+    - a Forced Ad Break was skipped without cost
   narrative_hints:
-    - the audience is heard shifting in their seats
-    - the Host's microphone picks up a sigh
-    - a Network memo slides under the Green Room door
-    - the lighting cues shift to a more dramatic palette
+    - a distant chant through the stone begins to waver
+    - the Host's speaker grille picks up a sigh
+    - a Network memo slides under the Rest Stop door (the only door a memo can physically pass under)
+    - the drones in the room close distance by half a foot
   tension_level: 0.6
   resolution_hints:
     - engage a wandering encounter voluntarily
     - perform something camera-worthy (lean into mistaken-identity, catchphrase, fight)
-    - trigger a Commercial Break deliberately to reset tempo
-    - visit the Gift Shop and spend PrimeBux theatrically
+    - trigger a Forced Ad Break deliberately to reset tempo
+    - visit the Boneyard Bazaar and spend PrimeBux theatrically
   tags: [primetime, pacing, escalation]
   escalation:
     - at: 0.5
@@ -171,10 +173,11 @@
       stakes: Forced encounter the party was not preparing for.
     - at: 1.0
       event: >-
-        A Forced Commercial Break — the party is yanked into a
-        sponsor segment mid-stride. AD BREAKS may be summoned.
+        A Forced Ad Break — the room's brass plaques multiply, the
+        drones pack the ceiling, and a sponsor overlay drops
+        across the current scene. AD BREAKS may manifest in person.
       npcs_involved: [AD BREAKS, Ad Spirit]
-      stakes: Forced encounter in the Commercial Break pocket dimension.
+      stakes: Forced encounter in the current room, under broadcast overlay.
   passive_progression:
     rate_per_turn: 0.03
 
@@ -188,17 +191,17 @@
   triggers:
     - spotlight moment on a specific PC
     - boss-fight opening
-    - scene transition to a high-visibility room
+    - scene transition into a broadcast-active room
     - the party completed a crowd-pleasing beat in the prior scene
   narrative_hints:
-    - the audience wall rattles
-    - security stagehands mobilize
-    - a distant chant crystallizes into the PC's name
-    - someone is already climbing over the barrier
+    - a secondary Summoning flash, smaller than the first
+    - security stagehands mobilize from the crawlspace
+    - a distant chant crystallizes into one PC's name
+    - three off-world superfans are suddenly, unwelcomely, in the room
   tension_level: 0.4
   resolution_hints:
     - accommodate the swarm (selfies, signatures) — costs a turn, buffs trend
-    - flee through the back of the set — costs a trend point
+    - retreat into the Rest Stop (cameras stop at the door; so do fans) — costs a trend point
     - let security handle it — the Stagehands bill you
     - engage in combat — only if trending down; has ratings consequences
   tags: [primetime, fans, spotlight]
@@ -221,11 +224,14 @@
     rate_per_turn: 0.02
 
 - id: commercial_break
-  name: The Commercial Break
+  name: The Forced Ad Break
   description: >-
-    Scene-pause trope. Drags the party into the Commercial Break
-    pocket dimension for a sponsor segment. Host has no authority
-    there. Survive the sponsor or pay the skip fee.
+    Scene-overlay trope. The broadcast drops a sponsor ad on top of
+    the party's current room — brass plaques multiply on the walls,
+    drones pack the ceiling, a ninety-second pitch plays at
+    unskippable volume. The dungeon's own inhabitants step back
+    politely for the duration (this is in the lease). Survive the
+    overlay or pay the skip fee.
   category: interruption
   triggers:
     - Ratings Drought escalates to 1.0
@@ -233,28 +239,29 @@
     - AD BREAKS is summoned
     - a Network memo announces it
   narrative_hints:
-    - the lighting goes briefly white
-    - a banner drops from the lighting grid reading THIS BREAK SPONSORED BY
-    - the audience sound cuts abruptly
-    - the Host glances at a teleprompter he cannot override
+    - every brass plaque in the room lights at once
+    - the drones multiply from two to six to ten
+    - a sponsor banner physically unrolls from the ceiling over the party
+    - the Host's speaker glitches out, then clicks back in at ad-read volume
   tension_level: 0.5
   resolution_hints:
-    - survive the sponsor segment (Ad Spirit or AD BREAKS encounter)
+    - survive the overlay (Ad Spirit or AD BREAKS encounter)
     - pay the skip fee in PrimeBux (cost scales with sponsor tier)
     - win the sponsor's affinity (lean into the product)
-    - escape through the commercial-dimension back wall (risky, Unaired-aligned)
-  tags: [primetime, sponsor, pocket_dimension]
+    - retreat to the Rest Stop or Crawlspace (overlay cannot hold there)
+  tags: [primetime, sponsor, overlay]
   escalation:
     - at: 0.5
       event: >-
-        An Ad Spirit manifests for the scheduled segment. The
-        sponsor's pitch begins.
+        An Ad Spirit manifests for the scheduled segment in the
+        current room. The sponsor's pitch begins.
       npcs_involved: [Ad Spirit]
       stakes: A sponsor encounter. Standard rules.
     - at: 1.0
       event: >-
-        AD BREAKS takes the slot himself. The Commercial Break
-        escalates to a Stalker encounter.
+        AD BREAKS takes the slot himself, stepping out of the
+        overlay glare. The Forced Ad Break escalates to a Stalker
+        encounter in the same room.
       npcs_involved: [AD BREAKS]
       stakes: Stalker-tier encounter with skip-fee option.
   passive_progression:
@@ -274,10 +281,10 @@
     - a Sponsor Intervention has just resolved
     - a scene transition could naturally include a product shot
   narrative_hints:
-    - a product appears casually in the scene description
-    - the lighting catches a brand logo
-    - a PA offers a branded item without being asked
-    - the Host mentions a product in passing
+    - a sticker-branded item appears casually in the scene
+    - a torch catches a brand logo embossed on a sconce
+    - a stagehand offers a branded item without being asked
+    - the Host mentions a product in passing over the speaker
   tension_level: 0.2
   resolution_hints:
     - engage and use the product for a small bonus
@@ -317,9 +324,9 @@
     - a Stalker addresses a PC by title
   narrative_hints:
     - the Host pauses for effect before announcing a title
-    - a spotlight finds one PC specifically
-    - the crowd takes a breath
-    - a Stalker reads from a cue card
+    - every brass plaque in the room lights with one PC's name
+    - a distant chant takes a breath, then pivots to a title
+    - a Stalker reads from a cue card held up by a drone
   tension_level: 0.3
   resolution_hints:
     - lean in and earn ratings (soft buff, Host favor, audience spike)
