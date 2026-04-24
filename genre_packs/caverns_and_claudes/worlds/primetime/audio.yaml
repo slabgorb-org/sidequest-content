@@ -1,0 +1,154 @@
+# Primetime — Audio Configuration
+#
+# World-level override: the overlit broadcast studio inverts the
+# caverns_and_claudes grim-dungeon default. Music is not incidental —
+# it is part of the show's production design. The Host's mic is always
+# hot; the audience is always audible; cue music announces everything
+# from Stalker entrances to commercial breaks.
+#
+# Mixer tuning: louder music than the dungeon default (0.3 → 0.45)
+# because Primetime's music is meant to sit forward in the mix, not
+# lurk in the negative space. Crossfades are short to match TV cue
+# energy (2000ms → 1200ms).
+
+world: primetime
+genre: caverns_and_claudes
+inherits_from: genre_packs/caverns_and_claudes/audio.yaml
+override_policy: replace_mood_tracks  # world-level replaces genre mood_tracks; sfx_library inherits
+
+# ---------------------------------------------------------------------------
+# Mixer — music forward, crossfades short, show-tempo pacing.
+# ---------------------------------------------------------------------------
+mixer:
+  music_volume: 0.45
+  sfx_volume: 0.7
+  crossfade_default_ms: 1200
+
+# ---------------------------------------------------------------------------
+# Mood palette — 8 moods matching the 3-act broadcast structure.
+# Paths follow the world-scoped convention:
+#   worlds/primetime/audio/music/<mood>[_<n>].ogg
+# Variant count comes from generate_primetime_tracks.py's MOODS table.
+# ---------------------------------------------------------------------------
+mood_tracks:
+
+  stage_premiere:
+    # Opening of any scene where the Host introduces the party, announces a
+    # stage title, or kicks off a new beat under full studio lighting.
+    - path: audio/music/stage_premiere.ogg
+      title: "Opening Credits"
+      bpm: 110
+    - path: audio/music/stage_premiere_2.ogg
+      title: "Welcome to Primetime"
+      bpm: 110
+    - path: audio/music/stage_premiere_3.ogg
+      title: "Tonight's Contestants"
+      bpm: 110
+
+  green_room:
+    # Hub/waiting music. Plays in the Green Room between scenes, while the
+    # party regroups, checks gear, and the PA marks the clipboard.
+    - path: audio/music/green_room.ogg
+      title: "Between Takes"
+      bpm: 80
+    - path: audio/music/green_room_2.ogg
+      title: "Vending Machine Hum"
+      bpm: 80
+    - path: audio/music/green_room_3.ogg
+      title: "Five Minutes to Air"
+      bpm: 80
+
+  stalker_entrance:
+    # Generic Stalker reveal cue. Entrance music, lighting shift, audience
+    # reaction. Used whenever a named Stalker enters a scene.
+    - path: audio/music/stalker_entrance.ogg
+      title: "Enter the Stalker"
+      bpm: 130
+    - path: audio/music/stalker_entrance_2.ogg
+      title: "Spotlight Drop"
+      bpm: 130
+    - path: audio/music/stalker_entrance_3.ogg
+      title: "The Gimmick Lands"
+      bpm: 130
+
+  commercial_break:
+    # Forced sponsor segment in the Commercial Break pocket dimension.
+    # Cheerful, insistent, brand-core. Always slightly too loud.
+    - path: audio/music/commercial_break.ogg
+      title: "Sponsored Break"
+      bpm: 140
+    - path: audio/music/commercial_break_2.ogg
+      title: "Buy Now"
+      bpm: 140
+
+  audience_cheer:
+    # Victory sting. Crowd swell on a PC's catchphrase landing, a Stalker
+    # defeated cleanly, a sponsor segment survived with panache.
+    - path: audio/music/audience_cheer.ogg
+      title: "Standing Ovation"
+      bpm: 120
+    - path: audio/music/audience_cheer_2.ogg
+      title: "The Crowd Goes Wild"
+      bpm: 120
+
+  backstage_intrigue:
+    # Soundstage Alley music. Cancelled-set ghostliness, Unaired business,
+    # Stagehand gossip behind the flats. Off-camera tension.
+    - path: audio/music/backstage_intrigue.ogg
+      title: "Off-Camera"
+      bpm: 70
+    - path: audio/music/backstage_intrigue_2.ogg
+      title: "Cancelled Sets"
+      bpm: 70
+    - path: audio/music/backstage_intrigue_3.ogg
+      title: "Dead Drop"
+      bpm: 70
+
+  dressing_room:
+    # Late-game. The Host is offstage, drinking, his face slightly wrong.
+    # The bargain opens. Intimate, vulnerable, no crowd, no cue music.
+    - path: audio/music/dressing_room.ogg
+      title: "After the Show"
+      bpm: 60
+    - path: audio/music/dressing_room_2.ogg
+      title: "Vanity Bulbs"
+      bpm: 60
+
+  finale_theme:
+    # Season climax. The Dressing Room bargain resolves, the Control Booth
+    # unlocks, or THE FRANCHISE enters silently. Cinematic, heroic, with
+    # something off underneath.
+    - path: audio/music/finale_theme.ogg
+      title: "Season Finale"
+      bpm: 100
+    - path: audio/music/finale_theme_2.ogg
+      title: "Primetime Ending"
+      bpm: 100
+
+# ---------------------------------------------------------------------------
+# Scene-to-mood mapping guidance (for the server's pacing engine).
+#
+# - Room-based defaults:
+#     the_summoning_stage   → stage_premiere
+#     the_green_room        → green_room
+#     the_audience_pit      → stage_premiere (when Host present) / audience_cheer (on victory)
+#     the_gift_shop         → green_room
+#     the_commercial_break  → commercial_break
+#     the_soundstage_alley  → backstage_intrigue
+#     the_dressing_room     → dressing_room
+#     the_control_booth     → finale_theme
+#
+# - Trope-triggered overrides:
+#     catchphrase_trigger   → audience_cheer (one-shot)
+#     audience_vote         → stage_premiere
+#     sponsor_intervention  → commercial_break (one-shot)
+#     commercial_break      → commercial_break
+#     fan_ambush            → audience_cheer
+#     mistaken_identity     → stage_premiere
+#
+# - Stalker encounters (all rooms): stalker_entrance on entrance;
+#   revert to room-default after resolution.
+# ---------------------------------------------------------------------------
+
+# themes section is inherited from the genre file (per override_policy);
+# room/trope mapping above is authoritative guidance for the pacing engine.
