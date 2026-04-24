@@ -1,7 +1,9 @@
-# Primetime — Creature Bestiary
-# The Network's talent roster plus the arena's ecology.
-# Every creature in Primetime is a performer — monsters have sponsors,
-# traps have catchphrases, and the set itself has opinions.
+# Dungeon Survivor — Creature Bestiary
+# The Network's talent roster plus the dungeon's actual ecology.
+# Every creature here is either a genuine dungeon resident the Network
+# has put a sponsor patch on, or a paid Stalker the Network has dropped
+# in from its own roster. The monsters eat. The traps kill. The
+# broadcast overlays.
 
 creatures:
 
@@ -39,7 +41,7 @@ creatures:
       - description: "A crumpled union pamphlet (Safe Workplace Conduct, Rev. 47)"
       - description: "One wrench. Iron. Standard-issue. Worth 1 PrimeBux."
     tags: [level_1, neutral, union, primetime_crew]
-    rooms: [the_green_room, the_soundstage_alley, the_commercial_break]
+    rooms: [the_rest_stop, the_maintenance_crawlspace, the_gauntlet]
     notes: >-
       First-line rule: don't hit them. Second-line rule: tip them.
 
@@ -73,7 +75,7 @@ creatures:
       - description: "Splinters of sponsored lumber (worthless, unless bagged as merch)"
       - description: "One prop weapon, now broken. 1-in-6 it was real."
     tags: [level_1, environmental, scripted]
-    rooms: [the_summoning_stage, the_audience_pit, the_dressing_room]
+    rooms: [the_drop, the_knaves_grotto, the_directors_cell]
     notes: >-
       The prop class is a flavor wrapper for environmental hazards.
       Swap the specifics per room.
@@ -116,7 +118,7 @@ creatures:
       - description: "A half-eaten branded snack (sponsored)"
       - description: "A fan's notebook of continuity errors (useful)"
     tags: [level_1, populist, morale_based, primetime_crew]
-    rooms: [the_audience_pit, the_gift_shop, the_summoning_stage]
+    rooms: [the_knaves_grotto, the_boneyard_bazaar, the_drop]
     notes: >-
       Wiring: the `fan_ambush` trope triggers Fan Swarm encounters.
 
@@ -124,7 +126,7 @@ creatures:
     name: Ad Spirit
     description: >-
       A commercial-dimension entity that manifests during or near
-      a Commercial Break. Ad Spirits have a sponsor and a pitch.
+      a Forced Ad Break. Ad Spirits have a sponsor and a pitch.
       They are cheerful, insistent, and bound by brand law —
       they cannot lie about the product but they can distort the
       truth in ways that would make a lawyer weep with joy.
@@ -156,7 +158,7 @@ creatures:
       - description: "A sponsored product (variable; consult sponsor manifest)"
       - description: "A stack of PrimeBux coupons (expire unpredictably)"
     tags: [level_2, commercial, sponsor_bound]
-    rooms: [the_commercial_break, the_gift_shop]
+    rooms: [the_knaves_grotto, the_gauntlet, the_boneyard_bazaar]
     notes: >-
       Wiring: the `commercial_break` and `sponsor_intervention`
       tropes spawn Ad Spirits.
@@ -202,7 +204,7 @@ creatures:
       - description: "A ballpoint pen (Network-issue, heavy)"
       - description: "A binding clause that can be invoked against the Network"
     tags: [level_2, corporate, administrative]
-    rooms: [the_green_room, the_dressing_room, the_control_booth]
+    rooms: [the_rest_stop, the_directors_cell, the_scrying_pool]
     notes: >-
       Suits are the Network faction's muscle. They show up when
       the party steps on a clause they didn't know existed.
@@ -247,11 +249,11 @@ creatures:
           drops merch; if they kill him gently, he drops a
           note he meant to give his mother.
     loot:
-      - description: "A signed PROMO plushie (moves at the Gift Shop)"
+      - description: "A signed PROMO plushie (moves at the Boneyard Bazaar)"
       - description: "A headshot with a hopeful smile"
       - description: "His signature prop weapon (looks dangerous, was real)"
     tags: [stalker, boss, celebrity, primetime_crew, warmup]
-    rooms: [the_summoning_stage, the_audience_pit]
+    rooms: [the_drop, the_knaves_grotto]
     notes: >-
       Scene-one Stalker. Both outcomes (merciful/brutal) shift
       audience disposition; see trope `mistaken_identity` for
@@ -297,7 +299,7 @@ creatures:
       - description: "A signed cookbook (recipes are violations)"
       - description: "A handbag (heavy, contains unknown objects)"
     tags: [stalker, boss, celebrity, sitcom, morale_pressure]
-    rooms: [the_green_room, the_audience_pit, the_commercial_break]
+    rooms: [the_rest_stop, the_knaves_grotto, the_boneyard_bazaar]
     notes: >-
       Morale-drain Stalker. Parties without a strong in-character
       speaker will struggle.
@@ -307,7 +309,7 @@ creatures:
     description: >-
       The ice-assassin Stalker. Whispers rather than speaks.
       Sponsored by Glacidew™ Premium Spring Water — her
-      cross-branded skincare line is available at the Gift Shop.
+      cross-branded skincare line is available at the Boneyard Bazaar.
       She attacks from ductwork, air vents, and catering-cart
       cooler compartments. Kills contestants while offering
       unsolicited skincare advice. Her exit music is a chime.
@@ -341,7 +343,7 @@ creatures:
       - description: "A Glacidew™ gift basket (products, coupons, a chilled robe)"
       - description: "A signed SUBLIME skincare catalog"
     tags: [stalker, boss, celebrity, assassin, sponsor_bound]
-    rooms: [the_green_room, the_commercial_break, the_soundstage_alley]
+    rooms: [the_rest_stop, the_gauntlet, the_maintenance_crawlspace]
     notes: >-
       Sponsored Stalker. SUBLIME's scene typically includes a
       forced product-placement beat.
@@ -385,7 +387,7 @@ creatures:
       - description: "A notebook of bad jokes (occasionally funny)"
       - description: "A press photo from his open-mic days"
     tags: [stalker, boss, celebrity, comedy, rhythm_combat]
-    rooms: [the_audience_pit, the_commercial_break]
+    rooms: [the_knaves_grotto, the_gauntlet]
     notes: >-
       Rhythm-combat Stalker. Parties that hit on-beat deal max
       damage; off-beat attackers suffer the penalty.
@@ -399,7 +401,7 @@ creatures:
       voice is, objectively, pretty good. His dance moves are
       coordinated with his fist strikes in a way that is both
       terrifying and choreographically impressive. He has his
-      own music video. It's on at the Gift Shop.
+      own music video. It's on at the Boneyard Bazaar.
     threat_level: 6
     morale: theatrical
     hp: 26
@@ -430,7 +432,7 @@ creatures:
       - description: "A CD of his latest single (sponsored)"
       - description: "A branded microphone (functional, loud)"
     tags: [stalker, boss, celebrity, electropop, visual_tax]
-    rooms: [the_audience_pit, the_dressing_room]
+    rooms: [the_knaves_grotto, the_directors_cell]
     notes: >-
       Visual-attention-tax Stalker. Players who can hear but not
       see have a surprising advantage.
@@ -438,14 +440,17 @@ creatures:
   - id: ad_breaks
     name: AD BREAKS
     description: >-
-      A commercial-spirit monster in Stalker tier. He materializes
-      as a full-screen broadcast takeover — the entire arena
-      blanks out and the party is suddenly inside a sponsor's
-      thirty-second spot. AD BREAKS is the Stalker form of the
-      commercial break itself. He cannot be reasoned with but he
-      can, technically, be skipped (at a cost). He is sponsored
-      by nobody in particular; his brand is the ad break as a
-      concept. He has been on the roster since Season Four.
+      A commercial-spirit monster in Stalker tier. He manifests as a
+      broadcast overlay on the party's current room — brass plaques
+      multiply on the walls, camera drones pack the ceiling, a
+      thirty-second sponsor pitch plays at unskippable volume, and a
+      figure in a too-clean suit steps out of the glare. The stone
+      beneath is still the stone of whatever room they were in; the
+      dungeon's own monsters pause politely for the ad, which is in
+      the lease. AD BREAKS cannot be reasoned with but he can,
+      technically, be skipped (at a cost). He is sponsored by nobody
+      in particular; his brand is the ad break as a concept. He has
+      been on the roster since Season Four.
     threat_level: 6
     morale: inevitable
     hp: 30
@@ -453,18 +458,20 @@ creatures:
     ac: 16
     damage: "2d4 (branding, interruption)"
     abilities:
-      - name: Full-Screen Takeover
+      - name: Broadcast Overlay
         description: >-
-          AD BREAKS's entrance pauses the current scene and
-          pulls the party into a pocket dimension. Combat
-          resumes in the commercial space. The Host has no
-          authority here.
+          AD BREAKS's entrance pauses the current scene and blankets
+          the room in broadcast furniture — multiplying plaques,
+          swarming drones, sponsor banners draped over stone. The
+          dungeon's own inhabitants step back for the duration. The
+          Host has no authority while the overlay holds. Combat
+          resumes in the same physical room, visually transformed.
       - name: Skip Fee
         description: >-
           Party members can attempt to skip the encounter by
           paying 5d6 PrimeBux, pooled. If paid, AD BREAKS
-          dissolves and the scene resumes. If not, combat
-          continues.
+          dissolves, the overlay drops, and the scene resumes. If
+          not, combat continues.
       - name: Product Placement Strike
         description: >-
           On hit, AD BREAKS attaches a temporary sponsor-brand
@@ -474,12 +481,13 @@ creatures:
     loot:
       - description: "A handful of skip-fee coupons (expire in two scenes)"
       - description: "A sponsored product voucher (random brand)"
-      - description: "A commercial-dimension map fragment"
+      - description: "A shard of broadcast overlay (harmless, unnerving)"
     tags: [stalker, boss, celebrity, commercial, sponsor_bound]
-    rooms: [the_commercial_break]
+    rooms: [the_knaves_grotto, the_gauntlet, the_boneyard_bazaar, the_drop]
     notes: >-
-      Only encounterable in the Commercial Break. Wiring with
-      `commercial_break` trope.
+      Can manifest in any broadcast-active room (everywhere except
+      the Rest Stop, Maintenance Crawlspace, and Director's Cell).
+      Wired to the `commercial_break` trope's escalation tier.
 
   - id: legal_department
     name: THE LEGAL DEPARTMENT
@@ -515,14 +523,14 @@ creatures:
         description: >-
           If a party member verbally identifies a loophole
           ("you are not authorized to make this demand during a
-          Commercial Break"), the encounter ends immediately.
+          Forced Ad Break"), the encounter ends immediately.
           The loophole must be genuine.
     loot:
       - description: "A legally-binding signed document (usable against the Network)"
       - description: "Three briefcases (empty, imposing)"
       - description: "A charcoal suit (size XL, fits nobody)"
     tags: [stalker, boss, celebrity, bureaucracy, puzzle_combat]
-    rooms: [the_control_booth, the_dressing_room]
+    rooms: [the_scrying_pool, the_directors_cell]
     notes: >-
       Puzzle-combat Stalker. Combat-only parties will struggle.
       Parties with a verbally adept member can win in one round.
@@ -530,11 +538,11 @@ creatures:
   - id: the_franchise
     name: THE FRANCHISE
     description: >-
-      The Stalker who used to be a contestant. Won Primetime
+      The Stalker who used to be a contestant. Won Dungeon Survivor
       twelve seasons ago. Never left. Now he is a legacy-act
       trap-laying monster, tired and dangerous and a little bit
       on the party's side when no one is looking. His perfume
-      line is still in the Gift Shop. He has won seven Audience
+      line is still in the Boneyard Bazaar. He has won seven Audience
       Favorite awards. He has stopped accepting them. His entrance
       is the only one without music — he walks into a scene in
       silence and the audience goes still. Even the Host is quiet
@@ -559,7 +567,7 @@ creatures:
         description: >-
           No music cue. No announcement. He is simply there.
           The party takes a surprise round unless they have
-          read the Gift Shop signage (hint available).
+          read the Boneyard Bazaar signage (hint available).
       - name: Off-Script Whisper
         description: >-
           Once per encounter, between beats, THE FRANCHISE can
@@ -578,9 +586,9 @@ creatures:
       - description: "A signed headshot from his winning season (the smile is different)"
       - description: "A note in his handwriting, folded small"
     tags: [stalker, boss, celebrity, finale, legacy, unaired_sympathizer]
-    rooms: [the_dressing_room, the_control_booth, the_soundstage_alley]
+    rooms: [the_directors_cell, the_scrying_pool, the_maintenance_crawlspace]
     notes: >-
       Finale Stalker. His scene is the season's climax. Combat
       resolution is not the only resolution — sometimes not even
       the best one. Coordinate with the `mistaken_identity` and
-      `audience_vote` tropes and the Dressing Room bargain.
+      `audience_vote` tropes and the Director's Cell bargain.

@@ -1,15 +1,19 @@
-# Primetime — Audio Configuration
+# Dungeon Survivor — Audio Configuration
 #
-# World-level override: the overlit broadcast studio inverts the
-# caverns_and_claudes grim-dungeon default. Music is not incidental —
-# it is part of the show's production design. The Host's mic is always
-# hot; the audience is always audible; cue music announces everything
-# from Stalker entrances to commercial breaks.
+# World-level override: Dungeon Survivor is a real dungeon wired for
+# broadcast. The underlying ambience is caverns_and_claudes grim-dungeon
+# — dripping stone, torchlight, the weight of the place — but every
+# broadcast-active room has speaker-grille cue music layered over the
+# top. Music is part of the show's production design. The Host's mic
+# is always hot (except in the Rest Stop, Crawlspace, and Director's
+# Cell, which are contractually dry). Cue music announces Stalker
+# entrances, achievement chimes, and Forced Ad Breaks.
 #
-# Mixer tuning: louder music than the dungeon default (0.3 → 0.45)
-# because Primetime's music is meant to sit forward in the mix, not
+# Mixer tuning: louder music than the genre default (0.3 → 0.45)
+# because broadcast cue music is meant to sit forward in the mix, not
 # lurk in the negative space. Crossfades are short to match TV cue
-# energy (2000ms → 1200ms).
+# energy (2000ms → 1200ms). Safe rooms bring music back down via
+# override.
 
 world: primetime
 genre: caverns_and_claudes
@@ -46,8 +50,9 @@ mood_tracks:
       bpm: 110
 
   green_room:
-    # Hub/waiting music. Plays in the Green Room between scenes, while the
-    # party regroups, checks gear, and the PA marks the clipboard.
+    # Hub/waiting music. Plays in the Rest Stop and the Boneyard Bazaar
+    # between scenes, while the party regroups, checks gear, and a
+    # stagehand marks the clipboard.
     - path: audio/music/green_room.ogg
       title: "Between Takes"
       bpm: 80
@@ -72,7 +77,7 @@ mood_tracks:
       bpm: 130
 
   commercial_break:
-    # Forced sponsor segment in the Commercial Break pocket dimension.
+    # Forced sponsor overlay dropped on the party's current room.
     # Cheerful, insistent, brand-core. Always slightly too loud.
     - path: audio/music/commercial_break.ogg
       title: "Sponsored Break"
@@ -92,8 +97,9 @@ mood_tracks:
       bpm: 120
 
   backstage_intrigue:
-    # Soundstage Alley music. Cancelled-set ghostliness, Unaired business,
-    # Stagehand gossip behind the flats. Off-camera tension.
+    # Maintenance Crawlspace music. Dripping pipes, flickering bulbs,
+    # Unaired business, Stagehand gossip through the service walls.
+    # Off-feed tension.
     - path: audio/music/backstage_intrigue.ogg
       title: "Off-Camera"
       bpm: 70
@@ -115,9 +121,9 @@ mood_tracks:
       bpm: 60
 
   finale_theme:
-    # Season climax. The Dressing Room bargain resolves, the Control Booth
-    # unlocks, or THE FRANCHISE enters silently. Cinematic, heroic, with
-    # something off underneath.
+    # Season climax. The Director's Cell bargain resolves, the Scrying
+    # Pool unlocks, or THE FRANCHISE enters silently. Cinematic, heroic,
+    # with something off underneath.
     - path: audio/music/finale_theme.ogg
       title: "Season Finale"
       bpm: 100
@@ -129,20 +135,20 @@ mood_tracks:
 # Scene-to-mood mapping guidance (for the server's pacing engine).
 #
 # - Room-based defaults:
-#     the_summoning_stage   → stage_premiere
-#     the_green_room        → green_room
-#     the_audience_pit      → stage_premiere (when Host present) / audience_cheer (on victory)
-#     the_gift_shop         → green_room
-#     the_commercial_break  → commercial_break
-#     the_soundstage_alley  → backstage_intrigue
-#     the_dressing_room     → dressing_room
-#     the_control_booth     → finale_theme
+#     the_drop                     → stage_premiere (Host's opening monologue)
+#     the_knaves_grotto            → stage_premiere (when Host present) / audience_cheer (on victory)
+#     the_gauntlet                 → commercial_break (traps are sponsored)
+#     the_rest_stop                → green_room (safe, cameras off)
+#     the_boneyard_bazaar          → green_room (hub, merchant cues)
+#     the_maintenance_crawlspace   → backstage_intrigue (off-feed, Unaired space)
+#     the_directors_cell           → dressing_room (after-hours, the Host is human here)
+#     the_scrying_pool             → finale_theme (endgame, broadcast-control)
 #
 # - Trope-triggered overrides:
 #     catchphrase_trigger   → audience_cheer (one-shot)
 #     audience_vote         → stage_premiere
 #     sponsor_intervention  → commercial_break (one-shot)
-#     commercial_break      → commercial_break
+#     commercial_break      → commercial_break (Forced Ad Break overlay in current room)
 #     fan_ambush            → audience_cheer
 #     mistaken_identity     → stage_premiere
 #
