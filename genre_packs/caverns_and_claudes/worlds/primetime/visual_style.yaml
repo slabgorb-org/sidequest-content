@@ -1,6 +1,31 @@
 # Primetime — Visual Style
 # Overlit television-studio palette. Inverts mawdeep's B&W ink aesthetic.
 # The show looks like a show — staged, shiny, obviously produced.
+#
+# WIRING: positive_suffix is the field the Flux/Z-Image renderer actually
+# reads (via scripts/render_common.load_visual_style merging genre + world).
+# World-level positive_suffix overrides the genre's B&W ink with the overlit
+# studio look. The flux_prompt_suffix / portrait_style / creature_style /
+# poi_style fields below are authoring fields mirrored from mawdeep's
+# precedent — they are not yet consumed by the rendering pipeline but are
+# kept for art-director authoring continuity.
+
+positive_suffix: >-
+  overlit 1980s television game-show studio, saturated primary colors,
+  harsh key lighting with visible overhead lighting rigs and gantries,
+  cyclorama walls with obvious set seams, sponsored banners and brand
+  logos in background, staged tableau composition, slight lens flare,
+  studio audience silhouettes behind a low proscenium wall,
+  slightly-too-shiny production design, confetti drift and applause-sign
+  glow, 1980s broadcast television aesthetic, cinematic studio
+  photography, warm spotlight tracking, cheerful artificial brightness,
+  Press-Your-Luck-meets-Running-Man set photography. No text, no caption,
+  no title, no label, no page number, no writing, no signature, no
+  watermark, no border, no frame.
+
+# Legacy/authoring fields — mirrored from mawdeep, not currently read by
+# the rendering pipeline. Retain for forward-compatibility when the
+# pipeline gains per-tier style fields.
 
 flux_prompt_suffix: >-
   overlit 1980s game show studio, saturated primary colors, harsh key
