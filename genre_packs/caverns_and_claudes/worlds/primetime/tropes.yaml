@@ -1,0 +1,349 @@
+# Primetime — World-Specific Tropes
+# Eight signature gameshow-crawl tropes layered over genre tropes.
+# Each encodes a narrative mechanic the narrator can deploy.
+
+- id: catchphrase_trigger
+  name: The Catchphrase Trigger
+  description: >-
+    The Host deploys a catchphrase at a narratively loaded moment.
+    The audience response either buffs or debuffs the party
+    depending on the delivery's match with the current scene.
+    A well-landed catchphrase synchronizes the audience; a
+    mistimed one exposes the Host. Either way, it moves the needle.
+  category: presentation
+  triggers:
+    - Host addresses the party directly
+    - party completes a scene milestone
+    - scene transition with camera-worthy moment
+    - Host enters or leaves a scene
+  narrative_hints:
+    - the Host leans into the microphone
+    - the laugh track primes early
+    - the lighting shifts to a hero-spot
+    - a sponsor logo flickers across the feed
+  tension_level: 0.3
+  resolution_hints:
+    - the party playing along pleases the crowd
+    - the party deliberately silent lets the Host stretch uncomfortably
+    - a PC stealing the catchphrase back earns a morale spike
+  tags: [primetime, host, presentation]
+  escalation:
+    - at: 0.5
+      event: >-
+        The Host's catchphrase lands harder than usual — the crowd
+        erupts, and a sponsor buys the next ad slot at premium rate.
+        The party's next scene has enforced product placement.
+      npcs_involved: [The Host]
+      stakes: Sponsor friction — one party member gains a branded debuff for the rest of the scene.
+    - at: 1.0
+      event: >-
+        The Host delivers the catchphrase and the beat is wrong.
+        The laugh track cuts early. For a half-second his face
+        falls. Sharp-eyed PCs can catch it. This is a beat the
+        editors will cut — but the party saw it.
+      npcs_involved: [The Host]
+      stakes: A morale swing. The party has leverage they didn't have a minute ago.
+  passive_progression:
+    rate_per_turn: 0.02
+
+- id: audience_vote
+  name: The Audience Vote
+  description: >-
+    Mid-scene, the Host calls for an audience vote. The poll is
+    binding on the fiction — the Host will narrate the outcome
+    based on what the crowd wants, and the crowd is sometimes
+    wrong. Parties can lobby, pander, or openly disrespect the
+    vote at their peril.
+  category: spectacle
+  triggers:
+    - party reaches a morally ambiguous choice
+    - party splits on a decision mid-scene
+    - Host is stalling for time
+    - a sponsor wants a particular outcome and has paid for it
+  narrative_hints:
+    - the Host raises both hands to the audience
+    - the applause sign flickers
+    - the crowd begins a chant
+    - a LIVE POLL overlay flashes in-scene
+  tension_level: 0.5
+  resolution_hints:
+    - a party member can veto the vote by paying PrimeBux (expensive)
+    - the vote can be rigged by disabling the applause sign
+    - the Unaired can offer a counter-narrative that shifts the result
+    - defying the vote openly is permitted but has ratings consequences
+  tags: [primetime, audience, choice]
+  escalation:
+    - at: 0.4
+      event: >-
+        The crowd votes against the party's preferred option. The
+        Host spins it as a dramatic beat. The party's next scene
+        has a hostile opening.
+      npcs_involved: [The Host, The Fans]
+      stakes: The scene's outcome tilts against player intent; the party can recover with good play but has to work for it.
+    - at: 1.0
+      event: >-
+        The crowd votes for something the party actively refused —
+        the Host, under pressure from the Network, narrates the
+        vote's result anyway. This is a moment where the game's
+        agency principle rubs against the show's format. The
+        audience may or may not have been coached.
+      npcs_involved: [The Host, The Fans, The Network]
+      stakes: SOUL violation risk. The narrator must be careful here — the vote describes the world, not the PCs. PCs may resist, lose popularity, and gain Unaired sympathy.
+  passive_progression:
+    rate_per_turn: 0.015
+
+- id: sponsor_intervention
+  name: The Sponsor Intervention
+  description: >-
+    A sponsor "helps" the party. The help is real and the help
+    is conditional. Monkey's-paw rules apply — the benefit comes
+    with a clause. The party can accept, decline, or attempt to
+    negotiate; each option has consequences.
+  category: bargain
+  triggers:
+    - party is in visible trouble on-camera
+    - a sponsor brand is mentioned in narration
+    - a Commercial Break is pending and the sponsor wants a segue
+    - a Stalker encounter is going worse than producers hoped
+  narrative_hints:
+    - a sponsor logo swells on the feed
+    - a branded item appears within reach
+    - an Ad Spirit materializes quietly in the background
+    - the Host mentions a product "by the way"
+  tension_level: 0.4
+  resolution_hints:
+    - accept and take the clause
+    - decline and the sponsor escalates (debuff, next-scene penalty)
+    - negotiate using a loophole or Unaired intelligence
+    - refuse publicly to earn Unaired favor at ratings cost
+  tags: [primetime, sponsor, monkeys_paw]
+  escalation:
+    - at: 0.5
+      event: >-
+        A sponsor offers the party a product. The product does one
+        useful thing and one unexpected-clause thing. The party
+        learns the fine print after they've already used the
+        product.
+      npcs_involved: [Ad Spirit]
+      stakes: Branded debuff or cost-for-next-scene.
+    - at: 1.0
+      event: >-
+        The sponsor, rebuffed, retaliates. The Ad Spirit stalks the
+        party for the rest of the session, manifesting at
+        increasingly inconvenient moments. Can be dismissed by
+        paying the sponsor off or winning a Commercial Break.
+      npcs_involved: [Ad Spirit, The Network]
+      stakes: "A persistent minor hazard. Also — the Unaired will hear about this and approve."
+  passive_progression:
+    rate_per_turn: 0.01
+
+- id: ratings_drought
+  name: The Ratings Drought
+  description: >-
+    When a session gets quiet — too much planning, too many
+    conversations, too little action — the System cranks
+    difficulty to bring the numbers up. The narrator uses this
+    trope as permission to introduce complications on dull turns.
+  category: pacing
+  triggers:
+    - three consecutive low-tension turns
+    - party spends too long in a hub room
+    - party avoids encounters through stealth for too long
+    - a Commercial Break was skipped without cost
+  narrative_hints:
+    - the audience is heard shifting in their seats
+    - the Host's microphone picks up a sigh
+    - a Network memo slides under the Green Room door
+    - the lighting cues shift to a more dramatic palette
+  tension_level: 0.6
+  resolution_hints:
+    - engage a wandering encounter voluntarily
+    - perform something camera-worthy (lean into mistaken-identity, catchphrase, fight)
+    - trigger a Commercial Break deliberately to reset tempo
+    - visit the Gift Shop and spend PrimeBux theatrically
+  tags: [primetime, pacing, escalation]
+  escalation:
+    - at: 0.5
+      event: >-
+        The Network dispatches a mid-tier Stalker to the party's
+        current scene. Entrance music begins immediately.
+      npcs_involved: [a Stalker from the current zone's rotation]
+      stakes: Forced encounter the party was not preparing for.
+    - at: 1.0
+      event: >-
+        A Forced Commercial Break — the party is yanked into a
+        sponsor segment mid-stride. AD BREAKS may be summoned.
+      npcs_involved: [AD BREAKS, Ad Spirit]
+      stakes: Forced encounter in the Commercial Break pocket dimension.
+  passive_progression:
+    rate_per_turn: 0.03
+
+- id: fan_ambush
+  name: The Fan Ambush
+  description: >-
+    Fans rush the set for selfies, autographs, or violence,
+    depending on this week's ratings trend. Non-hostile if
+    trending up, hostile if trending down. Always interrupts.
+  category: intrusion
+  triggers:
+    - spotlight moment on a specific PC
+    - boss-fight opening
+    - scene transition to a high-visibility room
+    - the party completed a crowd-pleasing beat in the prior scene
+  narrative_hints:
+    - the audience wall rattles
+    - security stagehands mobilize
+    - a distant chant crystallizes into the PC's name
+    - someone is already climbing over the barrier
+  tension_level: 0.4
+  resolution_hints:
+    - accommodate the swarm (selfies, signatures) — costs a turn, buffs trend
+    - flee through the back of the set — costs a trend point
+    - let security handle it — the Stagehands bill you
+    - engage in combat — only if trending down; has ratings consequences
+  tags: [primetime, fans, spotlight]
+  escalation:
+    - at: 0.4
+      event: >-
+        The security line collapses faster than expected. The swarm
+        reaches the party. The current scene pauses while the fans
+        are handled.
+      npcs_involved: [The Fans]
+      stakes: A stalled turn. The Stalker or hazard the party was tracking gets a free action.
+    - at: 1.0
+      event: >-
+        Trending-down crowd rushes with pitchforks. Fan swarm
+        combat begins. The Host tries to regain control from the
+        podium and is partially successful.
+      npcs_involved: [The Fans, The Host]
+      stakes: A combat encounter the party did not schedule.
+  passive_progression:
+    rate_per_turn: 0.02
+
+- id: commercial_break
+  name: The Commercial Break
+  description: >-
+    Scene-pause trope. Drags the party into the Commercial Break
+    pocket dimension for a sponsor segment. Host has no authority
+    there. Survive the sponsor or pay the skip fee.
+  category: interruption
+  triggers:
+    - Ratings Drought escalates to 1.0
+    - a sponsor has purchased a slot and it is time
+    - AD BREAKS is summoned
+    - a Network memo announces it
+  narrative_hints:
+    - the lighting goes briefly white
+    - a banner drops from the lighting grid reading THIS BREAK SPONSORED BY
+    - the audience sound cuts abruptly
+    - the Host glances at a teleprompter he cannot override
+  tension_level: 0.5
+  resolution_hints:
+    - survive the sponsor segment (Ad Spirit or AD BREAKS encounter)
+    - pay the skip fee in PrimeBux (cost scales with sponsor tier)
+    - win the sponsor's affinity (lean into the product)
+    - escape through the commercial-dimension back wall (risky, Unaired-aligned)
+  tags: [primetime, sponsor, pocket_dimension]
+  escalation:
+    - at: 0.5
+      event: >-
+        An Ad Spirit manifests for the scheduled segment. The
+        sponsor's pitch begins.
+      npcs_involved: [Ad Spirit]
+      stakes: A sponsor encounter. Standard rules.
+    - at: 1.0
+      event: >-
+        AD BREAKS takes the slot himself. The Commercial Break
+        escalates to a Stalker encounter.
+      npcs_involved: [AD BREAKS]
+      stakes: Stalker-tier encounter with skip-fee option.
+  passive_progression:
+    rate_per_turn: 0.02
+
+- id: product_placement
+  name: The Product Placement
+  description: >-
+    Sponsor mention in narration. The narrator references a
+    branded product in-scene. Players can engage with the product
+    for a small bonus, mock it for a morale spike and Unaired
+    favor, or ignore it with no effect. Baseline: one per session.
+  category: commerce
+  triggers:
+    - party is in a shop, pantry, or consumption scene
+    - party is choosing gear
+    - a Sponsor Intervention has just resolved
+    - a scene transition could naturally include a product shot
+  narrative_hints:
+    - a product appears casually in the scene description
+    - the lighting catches a brand logo
+    - a PA offers a branded item without being asked
+    - the Host mentions a product in passing
+  tension_level: 0.2
+  resolution_hints:
+    - engage and use the product for a small bonus
+    - mock the product for morale and Unaired favor
+    - ignore it entirely — no effect, no penalty
+  tags: [primetime, sponsor, ambient]
+  escalation:
+    - at: 0.5
+      event: >-
+        The product placement lands well. The sponsor is pleased.
+        Next scene's sponsor-tier rates are higher.
+      npcs_involved: []
+      stakes: Minor narrative drift — the sponsor mentions their name more often in the next scene's narration.
+    - at: 1.0
+      event: >-
+        A product-placement scene goes sideways — the party mocks
+        the product so effectively that the Unaired's next dead
+        drop includes a note of congratulations.
+      npcs_involved: [The Unaired]
+      stakes: Unaired favor spike.
+  passive_progression:
+    rate_per_turn: 0.01
+
+- id: mistaken_identity
+  name: The Mistaken Identity
+  description: >-
+    The Host introduces a PC with a wildly-inflated stage title.
+    The PC can play into it (ratings buff, audience favor) or
+    deny it (authenticity buff, Unaired favor). Either fork
+    generates a narrative beat; refusing to choose leaves the
+    Host improvising and suffers a ratings dip.
+  category: identity
+  triggers:
+    - PC introductions or first appearances
+    - applause moments
+    - after a summoning (early scenes)
+    - a Stalker addresses a PC by title
+  narrative_hints:
+    - the Host pauses for effect before announcing a title
+    - a spotlight finds one PC specifically
+    - the crowd takes a breath
+    - a Stalker reads from a cue card
+  tension_level: 0.3
+  resolution_hints:
+    - lean in and earn ratings (soft buff, Host favor, audience spike)
+    - deny the title and earn authenticity (soft buff, Unaired favor)
+    - partial acknowledgment — confuses the Host, interesting outcomes
+    - ignore it — the Host improvises and the party takes a ratings hit
+  tags: [primetime, identity, core_mechanic]
+  escalation:
+    - at: 0.4
+      event: >-
+        The Host doubles down on the title. The PC is now
+        canonically that figure in the audience's eyes, for
+        better or worse. The title will follow them into the
+        next scene.
+      npcs_involved: [The Host]
+      stakes: The title sticks. Merchandise follows.
+    - at: 1.0
+      event: >-
+        The PC achieves, for a moment, the mistaken title for
+        real. A goat farmer slays a wyrm. An office temp becomes
+        legendary in fortune. The Sponsored Messiah precedent
+        is a warning. This is a beat the narrator should set up
+        carefully.
+      npcs_involved: [The Host, the PC, the audience]
+      stakes: High. The mistaken identity may become true. The Sponsored Messiah died of this.
+  passive_progression:
+    rate_per_turn: 0.025
