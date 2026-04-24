@@ -30,40 +30,18 @@
 #   - Post-Tesla AC-electric visual cues (Brush arc-light DC only)
 
 positive_suffix: >-
-  1878 Pittsburgh industrial Gilded Age, coal-smoke sepia atmosphere,
-  the_real_mccoy
+  1870s newspaper engraving, lines, ink on sepia, fine lines, engraved detail, monochrome, sepia, 1870's period costume,
 
 negative_prompt: >-
-  modern clothing, post-1900 technology, digital polish, anime, chrome
-  steampunk goggles, wide-brim cowboy hat, Almería desert, fluorescent
-  light
+  
 
 preferred_model: dev
 
 base_seed: 1878
 
-# ── Style LoRA ────────────────────────────────────────────────
-# Trained 2026-04-22 on a 179-tile dataset cropped from period media
-# (Harper's Weekly 1877-1881 engravings, Underwood & Underwood stereograph
-# cards of Pittsburgh mills, Currier & Ives lithographs, cabinet-card
-# studio portraiture, Muybridge 1878 Palo Alto plates). Rank 8, 1500
-# iterations, single-tag captions (`the_real_mccoy`). Remap: 608 keys
-# translated (healthy-load signal). Excludes the genre-level Leone LoRA
-# implicitly by world-scoping: only this entry applies to landscape
-# renders in this world. Style anchors previously embedded in
-# positive_suffix / visual_tag_overrides / visual_prompt fields were
-# acceptable when no LoRA was loaded; the LoRA now carries the medium
-# register, so those anchors may compete with it — strip on next
-# art-director pass if the style reads weak at 0.65.
-
 loras:
   exclude: []                         # nothing genre-level to drop
-  add:
-    - name: trm_landscape
-      file: spaghetti_western/the_real_mccoy/landscape.safetensors
-      scale: 0.65
-      applies_to: [landscape]
-      trigger: the_real_mccoy
+  add: []
 
 # ── Palette ───────────────────────────────────────────────────
 # Named hex values with semantic labels. The world reads as sepia +
@@ -94,13 +72,8 @@ palette_usage:
 
 # ── Medium ────────────────────────────────────────────────────
 medium_primary: >-
-  1870s carte-de-visite and cabinet-card studio portraiture (Napoleon
-  Sarony 1870s Broadway studio register), Southworth & Hawes Boston
-  daguerreotype tonal range applied to albumen-print context, Underwood
-  & Underwood stereograph industrial-scene composition, Currier & Ives
-  1870s hand-tinted lithograph background, Eadweard Muybridge 1878 Palo
-  Alto zoogyroscope plate for action clarity, William Allen Rogers
-  Harper's Weekly 1878 engraving for mill/factory scenes
+  1870s carte-de-visite and cabinet-card studio portraiture engraving, 
+  lines, ink on sepia, fine lines, engraved detail, monochrome, sepia, 
 
 medium_secondary_replicant_reveal: >-
   Albert Robida illustration register for Villiers de l'Isle-Adam's
