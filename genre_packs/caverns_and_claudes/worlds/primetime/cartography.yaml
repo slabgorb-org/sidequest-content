@@ -1,0 +1,269 @@
+# Primetime — Arena Cartography
+# One studio complex, eight regions. Each region maps 1:1 to a room.
+# Studio-adjacent topology: stage → backstage → pocket-dimension.
+
+world_name: Primetime
+starting_region: the_summoning_stage
+navigation_mode: room_graph
+
+regions:
+  the_summoning_stage:
+    name: The Summoning Stage
+    summary: Intake. Where the portal puts you. Where the Host introduces you.
+    description: >-
+      The circular stage at the front of the broadcast. Spotlights
+      track every movement. A podium holds the microphone the Host
+      owns. An audience wall at the edge muffles the live crowd into
+      a constant hum. A door at the rear opens into the arena.
+    terrain: stage
+    adjacent:
+      - the_green_room
+      - the_audience_pit
+    landmarks:
+      - name: "The Podium"
+        type: set_piece
+        description: >-
+          The Host's station. The microphone cannot be removed. The
+          podium has a drawer. The drawer is locked. The lock is,
+          by audit, not functional.
+      - name: "The Welcome Arch"
+        type: set_piece
+        description: >-
+          Gold-painted fiberglass. Reads WELCOME TO PRIMETIME in
+          capital letters. The letters can be unscrewed. One of
+          them is loose.
+      - name: "The Confetti Drift"
+        type: hazard
+        description: >-
+          Last season's confetti, crunched underfoot. Occasionally
+          something non-confetti is mixed in. Check before
+          slipping.
+
+  the_green_room:
+    name: The Green Room
+    summary: Hub. Coffee, a PA, a corkboard, the smell of nerves.
+    description: >-
+      The holding area between scenes. Fluorescent, slightly wrong
+      color temperature. Coffee machine, vending machine, motivational
+      posters, a rack of folding chairs. A door marked STAFF ONLY
+      opens irregularly. This is where the party resets, plans, and
+      waits for the next scene.
+    terrain: backstage
+    adjacent:
+      - the_summoning_stage
+      - the_gift_shop
+      - the_soundstage_alley
+    landmarks:
+      - name: "The Coffee Machine"
+        type: hub_fixture
+        description: >-
+          Season Seven vintage. Has not been cleaned in six seasons.
+          Serves something that is technically coffee.
+      - name: "The Vending Machine"
+        type: shop
+        description: >-
+          Accepts PrimeBux. Stocks small miracles (one health
+          restore), branded snacks, and a row of unlabeled
+          products nobody has ever bought.
+      - name: "The Motivational Posters"
+        type: set_piece
+        description: >-
+          Include TEAMWORK, BELIEVE, and one that just says
+          SMILE. The SMILE poster's frame is loose. There is
+          something behind it.
+
+  the_audience_pit:
+    name: The Audience Pit
+    summary: Main arena floor. The audience is heard constantly.
+    description: >-
+      The broad performance space where most scenes happen. A low
+      wall separates the floor from the audience. The audience is
+      never seen — only heard, a chorus of coordinated reactions.
+      The Host's voice is rigged through the lighting truss. A
+      runner microphone waits on the floor.
+    terrain: audience
+    adjacent:
+      - the_summoning_stage
+      - the_gift_shop
+      - the_commercial_break
+    landmarks:
+      - name: "The Runner Mic"
+        type: set_piece
+        description: >-
+          A wireless microphone on the floor near stage front. A
+          contestant who picks it up can address the audience
+          directly. The Host will notice immediately and try to
+          regain the mic.
+      - name: "The Applause Sign"
+        type: hazard
+        description: >-
+          Lit cue for audience response. Underneath it is a
+          trapdoor. When the sign lights, the trapdoor opens.
+      - name: "The Audience Wall Seams"
+        type: secret
+        description: >-
+          From certain angles, the seams in the opaque wall
+          allow a narrow view into the audience. The view is
+          briefly sufficient.
+
+  the_gift_shop:
+    name: The Gift Shop
+    summary: Retail. PrimeBux economy. Save point. Merchandise.
+    description: >-
+      A three-aisle retail environment with a registered franchise
+      in every arena. Plushies, t-shirts, coffee mugs, signed
+      headshots, commemorative programs, branded keychains. The
+      register's stagehand is named Brann and remembers everyone.
+      The gift shop quietly functions as a save mechanism.
+    terrain: retail
+    adjacent:
+      - the_audience_pit
+      - the_green_room
+      - the_commercial_break
+    landmarks:
+      - name: "The Plushie Aisle"
+        type: shop
+        description: >-
+          One aisle is dedicated to plushies of the party's own
+          members. The count updates in real time.
+      - name: "Brann's Register"
+        type: shop
+        description: >-
+          Save point. Purchase of a commemorative item
+          timestamps the run. Brann does not comment.
+      - name: "The Trending Sign"
+        type: set_piece
+        description: >-
+          YOU MUST BE TRENDING UP TO RIDE THIS ATTRACTION.
+          Flickers between UP and DOWN based on current
+          ratings. Informational.
+
+  the_commercial_break:
+    name: The Commercial Break
+    summary: Pocket dimension. Sponsor-leased. Host has no authority here.
+    description: >-
+      A small, overlit white space that smells of artificial lemon.
+      A central pedestal displays the current sponsor's product. A
+      banner reads THIS BREAK SPONSORED BY and a rotating name. The
+      party enters involuntarily when the Commercial Break trope
+      triggers, or voluntarily (rarely) by stepping through a
+      specific sponsor-marked archway.
+    terrain: pocket_dimension
+    adjacent:
+      - the_audience_pit
+      - the_gift_shop
+    landmarks:
+      - name: "The Sponsor Pedestal"
+        type: set_piece
+        description: >-
+          Central display. Rotates sponsors between scenes. The
+          product on it is, technically, acquirable.
+      - name: "The Skip Button"
+        type: hazard
+        description: >-
+          A large red button labeled SKIP FOR PRIMEBUX. Cost
+          scales with the sponsor tier. Pressing skips the
+          encounter and returns to the previous scene.
+      - name: "The Banner"
+        type: set_piece
+        description: >-
+          Rotating sponsor name. The banner can be pulled down.
+          The wall behind it is drywall and can be broken.
+
+  the_soundstage_alley:
+    name: The Soundstage Alley
+    summary: Liminal labyrinth. Cancelled shows. The Unaired hideout.
+    description: >-
+      The off-set backstage labyrinth where cancelled shows bleed
+      through. Abandoned scenery from dead productions, dim
+      unreliable lighting, cable runs, gaffer tape, dust. The
+      Network's cameras do not cover this space reliably. The
+      Unaired hide here. Dead drops are scattered through the
+      cancelled sets.
+    terrain: liminal
+    adjacent:
+      - the_green_room
+      - the_dressing_room
+      - the_control_booth
+    landmarks:
+      - name: "The Cooking-Show Kitchen"
+        type: secret
+        description: >-
+          A half-built kitchen from a cancelled show. The oven
+          works. Inside the oven is a dead drop. Check before
+          lighting.
+      - name: "The Fake Saloon"
+        type: set_piece
+        description: >-
+          Missing two walls. The bar is real. Someone has been
+          drinking from it recently. The bottle is labeled in a
+          hand the Network would not have approved.
+      - name: "Marin's Drop"
+        type: secret
+        description: >-
+          A specific gaffer-tape pattern on a support beam.
+          Behind it: a note, an Unaired contact frequency,
+          and a map of the Control Booth's backdoor.
+
+  the_dressing_room:
+    name: The Dressing Room
+    summary: The Host's private space. Late-game bargain location.
+    description: >-
+      Contractually inviolate, practically penetrable. A long
+      makeup counter with vanity bulbs (half burnt out). A rack
+      of identical jumpsuits. A drinks cabinet. A single chair
+      facing a mirror. A locked drawer. The Host is here when
+      the party reaches it. He does not fight by default.
+    terrain: executive
+    adjacent:
+      - the_soundstage_alley
+      - the_audience_pit
+    landmarks:
+      - name: "The Vanity Mirror"
+        type: set_piece
+        description: >-
+          Does not reflect the lighting grid overhead. Either
+          artistic choice or something worse.
+      - name: "The Drinks Cabinet"
+        type: set_piece
+        description: >-
+          Glass half-empty on top. The cabinet is stocked with
+          brand-name liquors the Network owns. One bottle,
+          however, is labeled in an old hand.
+      - name: "The Drawer"
+        type: secret
+        description: >-
+          Locked. Long-standing rumor: the Host keeps his real
+          face in it. What is actually in it is a choice the
+          party will have to make.
+
+  the_control_booth:
+    name: The Control Booth
+    summary: Network operational center. Endgame. Felony trespass.
+    description: >-
+      The Network's control room. A long curved desk, a wall of
+      camera feeds, rows of beige broadcast equipment, three
+      empty chairs. Runs on automation most of the time. The
+      Unaired know a cancelled-show backdoor into it.
+    terrain: executive
+    adjacent:
+      - the_soundstage_alley
+    landmarks:
+      - name: "The Feed Wall"
+        type: set_piece
+        description: >-
+          Every camera in the arena. The party can, from here,
+          see what the Network sees. They can also cut the
+          broadcast, if they know which switch.
+      - name: "The Summoning Engine Console"
+        type: hazard
+        description: >-
+          A single console labeled SUMMONING ENGINE — CAUTION.
+          From here, the next casting can be interrupted. The
+          interruption is felony-level.
+      - name: "The Archive Cabinet"
+        type: secret
+        description: >-
+          A filing cabinet of master broadcast tapes. The
+          Audience Revolt tape is in here, labeled in a hand
+          the Unaired recognize.
