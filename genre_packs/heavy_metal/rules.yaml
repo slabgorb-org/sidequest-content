@@ -139,37 +139,42 @@ confrontations:
   - type: negotiation
     label: "Cold Negotiation"
     category: social
-    metric:
+    player_metric:
       name: leverage
-      direction: bidirectional
-      starting: 4
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: leverage
+      starting: 0
+      threshold: 10
     beats:
       - id: argue
         label: "Argue the Ledger"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: INT
         effect: "opponent concedes a line-item"
         narrator_hint: "The player cites a specific clause, a remembered precedent, an older debt. This is not a persuasive speech — it is a reading from the book."
       - id: press_obligation
         label: "Press an Obligation"
-        metric_delta: 3
+        kind: strike
+        base: 3
         stat_check: CHA
         risk: "reputation -1 if the claim does not land; the other side may remember the overreach"
         effect: "opponent is visibly compelled to answer"
         narrator_hint: "The player names a debt the other party cannot politely ignore. The room changes temperature."
+      # yield: giving ground to read the opponent — sets up leverage, not raw forward pressure
       - id: yield
         label: "Yield a Point"
-        metric_delta: -1
+        kind: angle
+        target_tag: "Real Position Exposed"
         stat_check: WIS
         effect: "opponent disposition +5; a fragment of their real position becomes visible"
         narrator_hint: "The player gives ground by design — a small loss to buy a truer look at the opponent's real situation."
       - id: withdraw
         label: "Withdraw"
-        metric_delta: 0
+        kind: push
         stat_check: WIS
-        resolution: true
         consequence: "talks end; the matter remains open, and is remembered by both sides"
         narrator_hint: "The player stands, makes a formal closing gesture, and exits. Heavy Metal negotiations rarely die well; they are left half-buried."
     mood: tension
@@ -177,37 +182,44 @@ confrontations:
   - type: combat
     label: Blade-work
     category: combat
-    metric:
+    player_metric:
       name: momentum
-      direction: bidirectional
       starting: 0
-      threshold_high: 10
-      threshold_low: -10
+      threshold: 10
+    opponent_metric:
+      name: momentum
+      starting: 0
+      threshold: 10
     beats:
       - id: strike
         label: Strike
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: STR
         effect: "Target takes damage this round"
         narrator_hint: "Describe the blow with specificity — which grip, which angle, what gave way. Heavy Metal combat is not choreography; it is plumbing."
       - id: brace
         label: Brace
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: CON
         effect: "Reduce incoming damage this round"
         narrator_hint: "The character sets their weight, takes the impact, pays for it later."
       - id: committed_blow
         label: "Committed Blow"
-        metric_delta: 4
+        kind: strike
+        base: 4
+        deltas:
+          crit_fail:
+            own: -3
         stat_check: STR
         risk: "Overcommits — lose 3 momentum and take a counter on failure"
         effect: "Target takes heavy damage"
         narrator_hint: "An all-in swing; the character is not planning a follow-up. Describe the violence as expensive — to the one making it, as well as the one receiving it."
       - id: break_contact
         label: "Break Contact"
-        metric_delta: 0
+        kind: push
         stat_check: DEX
-        resolution: true
         consequence: "Combat ends — the character withdraws, or the enemy lets them go"
         narrator_hint: "Disengagement is a mercy in Heavy Metal. Describe it as such."
     mood: combat
@@ -215,35 +227,43 @@ confrontations:
   - type: chase
     label: Pursuit
     category: movement
-    metric:
+    player_metric:
       name: separation
-      direction: ascending
-      starting: 3
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: pursuit
+      starting: 0
+      threshold: 7
     beats:
       - id: run
         label: Run
-        metric_delta: 2
+        kind: push
+        base: 2
         stat_check: DEX
         narrator_hint: "Flat-out running through cobbled streets, colonnades, or thorny underbrush. The character's breath becomes part of the description."
+      # read_the_ground: notices terrain feature the pursuer misses — sets up a leverageable advantage
       - id: read_the_ground
         label: "Read the Ground"
-        metric_delta: 1
+        kind: angle
+        target_tag: "Terrain Advantage"
         stat_check: WIS
         effect: "Use terrain — arches, ledgers, pilgrim-paths — to gain distance"
         narrator_hint: "The character notices something about the architecture or the road that the pursuer does not. The advantage is always specific."
       - id: cut_through
         label: "Cut Through"
-        metric_delta: 3
+        kind: push
+        base: 3
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: WIS
         risk: "Blind turn — lose 2 separation on failure, and possibly end up somewhere unwanted"
         narrator_hint: "Duck through a confessional-alley, vault a temple-rail, cut across a tithing-yard. The character is betting on a shortcut they only half-know."
       - id: vanish
         label: Vanish
-        metric_delta: 0
+        kind: push
         stat_check: DEX
-        resolution: true
         consequence: "Chase ends — the quarry is gone; the pursuer is left with the feeling of having lost something more than the quarry"
         narrator_hint: "The character disappears into the crowd, the shadow, the ritual. Describe the pursuer's stillness in the moment after the loss."
     mood: tension
@@ -254,44 +274,50 @@ confrontations:
     # A sorcerer, priest, or laborer executes a pact-working under
     # time pressure. Metric is rite_progress ascending to completion.
     # Failure does not cancel the debt — it multiplies it.
-    metric:
+    player_metric:
       name: rite_progress
-      direction: ascending
       starting: 0
-      threshold_high: 10
-      threshold_low: 0
+      threshold: 10
+    opponent_metric:
+      name: rite_resistance
+      starting: 0
+      threshold: 10
     beats:
       - id: invoke
         label: "Invoke the Terms"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: INT
         effect: "The rite advances one step; the working's terms are laid down"
         narrator_hint: "The practitioner names the debt, the creditor, and the price. The ritual formally opens. The air, if one is paying attention, becomes measurable."
       - id: commit_cost
         label: "Commit the Cost"
-        metric_delta: 3
+        kind: strike
+        base: 3
         stat_check: CON
         risk: "The cost can be mis-paid — if the check fails, the rite advances but the debt is assigned to a wrong account; consequences may ripple for days or weeks"
         effect: "The working draws forward; the caster feels the withdrawal"
         narrator_hint: "Describe the commitment in concrete terms — an hour of life, a memory, a name, a year. Whatever is spent, it leaves."
+      # steady_the_rite: holding the working's shape against interference — defensive sustain
       - id: steady_the_rite
         label: "Steady the Rite"
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: WIS
         effect: "The rite stabilises; interference is held at bay"
         narrator_hint: "The practitioner holds the working's shape against whatever is pressing back against it. This is the work of mastery, done quietly."
       - id: force_completion
         label: "Force Completion"
-        metric_delta: 4
+        kind: strike
+        base: 4
         stat_check: CHA
         risk: "If the check fails, the rite collapses — the debt is still owed, and is now owed with a penalty that is never small"
         effect: "The rite lurches to its end"
         narrator_hint: "The practitioner stops pretending the rite is easy. Force is applied. Whatever happens next will be legible to anyone nearby with the sensitivity to feel it."
       - id: close_the_book
         label: "Close the Book"
-        metric_delta: 0
+        kind: push
         stat_check: WIS
-        resolution: true
         consequence: "The rite is complete — or is formally broken off with a lesser consequence than forcing it would carry"
         narrator_hint: "The practitioner closes the working deliberately — successful or not. The room feels it. The ledger either balances, or does not, and everyone in the room knows which."
     mood: ritual
@@ -303,44 +329,55 @@ confrontations:
     # defer, reassign, or refuse. The metric is composure; falling to
     # zero means the debt collects at full price, on the terms the
     # creditor prefers.
-    metric:
+    player_metric:
       name: composure
-      direction: bidirectional
-      starting: 6
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: composure
+      starting: 0
+      threshold: 10
     beats:
+      # acknowledge: absorbing the collector's pressure without yielding — defensive sustain
       - id: acknowledge
         label: "Acknowledge the Debt"
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: WIS
         effect: "The collector gives the player a moment; the scene does not accelerate"
         narrator_hint: "The player meets the collector's eye. No bluster. Heavy Metal rewards the quiet acknowledgement of an old bill."
+      # reassign: cite a clause that shifts the account — creates leverage for later
       - id: reassign
         label: "Reassign the Account"
-        metric_delta: 3
+        kind: angle
+        target_tag: "Account Reassigned"
+        deltas:
+          crit_fail:
+            own: -3
         stat_check: INT
         risk: "If the check fails, the collector takes the reassignment as insult; composure -3 and the terms get worse"
         effect: "A successful reassignment shifts the debt to another party — a faction, a dead ancestor's estate, a rival house"
         narrator_hint: "The player cites a clause, a precedent, a marriage, an older pact — anything that lets the account move. The collector may agree, or may not. Either way, something has been said that cannot be unsaid."
       - id: defer
         label: "Petition for Deferral"
-        metric_delta: 2
+        kind: push
+        base: 2
         stat_check: CHA
         effect: "The debt is delayed — but the interest compounds"
         narrator_hint: "The player asks for time. The collector considers. The answer is never really no, but the price of time is never really small."
+      # refuse: planting feet and holding the line — defensive resistance, not forward pressure
       - id: refuse
         label: "Refuse the Collector"
-        metric_delta: -2
+        kind: brace
+        base: 2
         stat_check: STR
         risk: "Refusing opens the scene to violence, ritual consequence, or both"
         effect: "The collector is, for the moment, held off"
         narrator_hint: "The player plants their feet and says no. The room changes. Describe what the collector does next with the precision that it deserves."
       - id: pay_in_full
         label: "Pay in Full"
-        metric_delta: 0
+        kind: push
         stat_check: CON
-        resolution: true
         consequence: "The debt is paid, in the coin the collector prefers. The price is specific, visible, and permanent."
         narrator_hint: "Describe the withdrawal concretely — years, memory, a name, a relationship, a piece of the body. The ledger closes. The player leaves the scene changed."
     mood: ritual
