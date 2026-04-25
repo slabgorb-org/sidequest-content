@@ -165,31 +165,44 @@ confrontations:
   - type: standoff
     label: "Standoff"
     category: pre_combat
-    metric:
+    # Legacy bidirectional duel maps cleanly to two ascending dials
+    # (spec §"spaghetti_western"). Each side accumulates tension;
+    # whoever crosses the threshold first blinks — or draws.
+    player_metric:
       name: tension
-      direction: ascending
       starting: 0
-      threshold_high: 10
+      threshold: 10
+    opponent_metric:
+      name: tension
+      starting: 0
+      threshold: 10
     beats:
+      # size_up: read opponent's stance, breathing, intent — angle (leverage / information)
       - id: size_up
         label: "Size Up"
-        metric_delta: 2
+        kind: angle
+        target_tag: "Opponent Read"
         stat_check: CUNNING
         reveals: opponent_detail
+      # bluff: create a false impression to force a mistake — angle
       - id: bluff
         label: "Bluff"
-        metric_delta: 3
+        kind: angle
+        target_tag: "False Tell"
+        base: 3
         stat_check: NERVE
         risk: "opponent may call it — immediate draw"
+      # flinch: absorbing the pressure — defensive brace
       - id: flinch
         label: "Flinch"
-        metric_delta: -1
+        kind: brace
+        base: 1
         stat_check: NERVE
       - id: draw
         label: "Draw"
-        metric_delta: 0
+        kind: push
         stat_check: DRAW
-        resolution: true
+        consequence: "Standoff resolves into action — gun clears leather"
     secondary_stats:
       - name: focus
         source_stat: NERVE
@@ -199,102 +212,134 @@ confrontations:
   - type: negotiation
     label: "Tense Negotiation"
     category: social
-    metric:
+    player_metric:
       name: leverage
-      direction: bidirectional
-      starting: 5
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: leverage
+      starting: 0
+      threshold: 10
     beats:
       - id: persuade
         label: "Make Your Case"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: PRESENCE
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
         label: "Threaten"
-        metric_delta: 3
+        kind: strike
+        base: 3
         stat_check: NERVE
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "Escalate tension. The threat should feel dangerous."
+      # concede_point: strategic retreat that reveals opponent's real goal — angle
       - id: concede_point
         label: "Concede a Point"
-        metric_delta: -1
+        kind: angle
+        target_tag: "Real Goal Revealed"
         stat_check: PRESENCE
         effect: "opponent disposition +5, reveals their real goal"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Walk Away"
-        metric_delta: 0
+        kind: push
         stat_check: NERVE
-        resolution: true
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player leaves the table. No deal."
     mood: tension
   - type: poker
     label: "Poker"
     category: social
-    metric:
+    player_metric:
       name: edge
-      direction: bidirectional
       starting: 0
-      threshold_high: 8
-      threshold_low: -8
+      threshold: 8
+    opponent_metric:
+      name: edge
+      starting: 0
+      threshold: 8
     beats:
       - id: bet
         label: "Bet"
-        metric_delta: 1
+        kind: strike
+        base: 1
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: NERVE
         risk: "bad hand — lose 2 edge on fail"
         narrator_hint: "Push chips forward. Confidence or bluff?"
         gold_delta: -5
       - id: raise
         label: "Raise"
-        metric_delta: 3
+        kind: strike
+        base: 3
+        deltas:
+          crit_fail:
+            own: -3
         stat_check: CUNNING
         risk: "overplayed — lose 3 edge if called and weak"
         narrator_hint: "Escalate the stakes. Make them sweat."
         gold_delta: -15
+      # bluff: deception for table leverage — angle
       - id: bluff
         label: "Bluff"
-        metric_delta: 2
+        kind: angle
+        target_tag: "Opponent Tell"
+        deltas:
+          crit_fail:
+            own: -4
         stat_check: CUNNING
         risk: "called bluff — lose 4 edge, table reads you"
         reveals: opponent_tell
         narrator_hint: "Stone face. Sell the lie."
         gold_delta: -10
+      # call: match the bet, see what they hold — angle (reveals hand_strength)
       - id: call
         label: "Call"
-        metric_delta: 0
+        kind: angle
+        target_tag: "Hand Revealed"
         stat_check: CUNNING
         reveals: hand_strength
         narrator_hint: "Match the bet. See what they've got."
         gold_delta: -5
+      # fold: live to play another hand — brace (accept small loss to preserve position)
       - id: fold
         label: "Fold"
-        metric_delta: -1
+        kind: brace
+        base: 1
         stat_check: NERVE
         narrator_hint: "Live to play another hand."
+      # read_table: watch for tells — angle (information gathering, no direct delta)
       - id: read_table
         label: "Read the Table"
-        metric_delta: 0
+        kind: angle
+        target_tag: "Opponent Tell"
         stat_check: CUNNING
         reveals: opponent_tell
         narrator_hint: "Watch their eyes. Everyone's got a tell."
       - id: cheat
         label: "Cheat"
-        metric_delta: 4
+        kind: strike
+        base: 4
         stat_check: DRAW
         risk: "caught cheating — loss of all edge, possible gunfight"
         consequence: "if caught, opponent draws on you — standoff escalation"
         narrator_hint: "Palm a card. Bottom deal. The Card Shark's specialty."
         requires: "Card Shark archetype or class ability"
         gold_delta: -5
+      # accuse_cheating: confrontation that surfaces evidence — angle
       - id: accuse_cheating
         label: "Accuse of Cheating"
-        metric_delta: 0
+        kind: angle
+        target_tag: "Cheat Exposed"
+        deltas:
+          crit_fail:
+            own: -3
         stat_check: CUNNING
         risk: "wrong accusation — lose 3 edge, table turns on you"
         reveals: cheat_evidence
@@ -306,69 +351,84 @@ confrontations:
     # Momentum-based. Gunfights are fast and brutal — big momentum swings.
     # `walk_away` as resolution is western genre gold: the hero who
     # turns their back and keeps walking.
-    metric:
+    player_metric:
       name: momentum
-      direction: bidirectional
       starting: 0
-      threshold_high: 10
-      threshold_low: -10
+      threshold: 10
+    opponent_metric:
+      name: momentum
+      starting: 0
+      threshold: 10
     beats:
       - id: draw
         label: Draw
-        metric_delta: 3
+        kind: strike
+        base: 3
         stat_check: DRAW
         effect: "Target takes damage this round"
         narrator_hint: A single heartbeat. Then iron clears leather.
       - id: fan_hammer
         label: Fan the Hammer
-        metric_delta: 4
+        kind: strike
+        base: 4
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: NERVE
         risk: "Empty cylinder — lose 2 momentum and skip next turn on failure"
         effect: "Target takes heavy damage"
         narrator_hint: Six shots in as many seconds. Accuracy sacrificed for volume.
       - id: duck
         label: Duck
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: CUNNING
         effect: "Reduce incoming damage — hit the dirt or dive for cover"
         narrator_hint: Dust puffs where you were a breath ago.
       - id: walk_away
         label: Walk Away
-        metric_delta: 0
+        kind: push
         stat_check: NERVE
-        resolution: true
         consequence: "Combat ends — turn your back and keep walking"
         narrator_hint: Holster the iron. Don't look back. Let them wonder.
     mood: combat
   - type: chase
     label: Horseback Pursuit
     category: movement
-    metric:
+    player_metric:
       name: separation
-      direction: ascending
-      starting: 3
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: pursuit
+      starting: 0
+      threshold: 7
     beats:
       - id: spur
         label: Spur the Horse
-        metric_delta: 2
+        kind: push
+        base: 2
         stat_check: DRAW
         narrator_hint: Hooves thunder across the flats. Dust plumes behind.
       - id: canyon
         label: Canyon Shortcut
-        metric_delta: 3
+        kind: push
+        base: 3
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: CUNNING
         risk: "Dead-end box canyon — lose 2 separation"
+      # ford_river: cross water to break the trail — angle (sets up misdirection tag)
       - id: ford_river
         label: Ford the River
-        metric_delta: 1
+        kind: angle
+        target_tag: "Trail Broken"
         stat_check: NERVE
         effect: "Cross water to break pursuit's trail"
       - id: go_to_ground
         label: Go to Ground
-        metric_delta: 0
+        kind: push
         stat_check: CUNNING
-        resolution: true
         consequence: "Chase ends — dismount, hide among the rocks"
     mood: tension
