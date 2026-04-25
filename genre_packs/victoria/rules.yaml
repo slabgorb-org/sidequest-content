@@ -107,109 +107,143 @@ encounter_base_tension:
   final: 0.40
 
 # ── Confrontations ──────────────────────────────────────────
+# Dual-dial momentum schema (Phase 3): each confrontation has a
+# player_metric and an opponent_metric, each with its own threshold.
+# Beats declare a kind (strike / brace / angle / push), a base value,
+# optional crit-fail penalties under deltas, and — for closing beats —
+# a consequence. Resolution fires when either metric crosses its
+# threshold or a push beat lands.
 confrontations:
   - type: negotiation
     label: "Polite Negotiation"
     category: social
-    metric:
+    player_metric:
       name: leverage
-      direction: bidirectional
-      starting: 5
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: leverage
+      starting: 3
+      threshold: 7
     beats:
       - id: persuade
         label: "Appeal to Reason"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: Cunning
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
         label: "Veiled Threat"
-        metric_delta: 3
+        kind: strike
+        base: 3
+        deltas:
+          crit_fail:
+            own: -1
         stat_check: Nerve
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "A polite suggestion with steel beneath. Propriety barely maintained."
       - id: concede_point
         label: "Concede a Point"
-        metric_delta: -1
+        kind: angle
+        target_tag: "Real Goal"
         stat_check: Cunning
-        effect: "opponent disposition +5, reveals their real goal"
+        effect: "opponent reveals their real goal — sets a leverage tag for the closer"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Take One's Leave"
-        metric_delta: 0
+        kind: push
+        base: 0
         stat_check: Nerve
-        resolution: true
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player excuses themselves. The matter is dropped — for now."
     mood: tension
   - type: trial
     label: "Trial by Tribunal"
     category: social
-    metric:
+    player_metric:
       name: conviction
-      direction: ascending
       starting: 0
-      threshold_high: 8
+      threshold: 8
+    opponent_metric:
+      name: conviction
+      starting: 0
+      threshold: 8
     beats:
       - id: cross_examine
         label: "Cross-Examine"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: Cunning
         effect: "witness credibility damaged"
         narrator_hint: "Pick apart the testimony. Find contradictions."
       - id: present_argument
         label: "Present Argument"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: Passion
         narrator_hint: "Address the tribunal directly. Be persuasive."
       - id: object
         label: "Object"
-        metric_delta: 1
+        kind: brace
+        base: 1
+        deltas:
+          crit_fail:
+            own: -1
         stat_check: Cunning
         risk: "overruled — lose credibility if frivolous"
         narrator_hint: "Challenge procedure or evidence. Must be substantive."
       - id: yield
         label: "Yield the Floor"
-        metric_delta: -1
+        kind: angle
+        target_tag: "Overplay"
         stat_check: Passion
-        effect: "opponent speaks — may reveal weakness"
+        effect: "opponent speaks — may reveal a weakness the next strike can spend"
         narrator_hint: "Strategic silence. Let them overplay their hand."
     mood: tension
   - type: auction
     label: "Auction"
     category: social
-    metric:
+    player_metric:
       name: bid
-      direction: ascending
       starting: 0
-      threshold_high: 8
+      threshold: 8
+    opponent_metric:
+      name: bid
+      starting: 0
+      threshold: 8
     beats:
       - id: raise
         label: "Raise the Bid"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: Cunning
         effect: "push the price higher — pressure opponents to fold"
         narrator_hint: "A discreet signal to the auctioneer. The bid climbs."
       - id: bluff
         label: "Bluff"
-        metric_delta: 3
+        kind: strike
+        base: 3
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: Nerve
         risk: "called out — lose credibility and 2 bid points"
         narrator_hint: "Feign deeper pockets than you possess. Convince them you'll go higher."
       - id: read_room
         label: "Read the Room"
-        metric_delta: 0
+        kind: angle
+        target_tag: "Tell"
         stat_check: Cunning
         reveals: opponent_intent
+        effect: "spot the bluffing or desperate bidder — sets a tag the next raise can spend"
         narrator_hint: "Study the other bidders. Who is bluffing? Who is desperate?"
       - id: withdraw
         label: "Withdraw"
-        metric_delta: 0
+        kind: push
+        base: 0
         stat_check: Nerve
-        resolution: true
         consequence: "bow out gracefully — reputation intact, item lost"
         narrator_hint: "A subtle shake of the head. The bid is yours no longer."
     secondary_stats:
@@ -220,63 +254,83 @@ confrontations:
   - type: social_duel
     label: Duel of Wits
     category: social
-    metric:
-      name: composure
-      direction: descending
-      starting: 10
-      threshold_low: 0
+    # Both duellists try to land barbs on the other's composure. The first
+    # to absorb threshold worth of cuts breaks first. Drawing-room blood sport.
+    player_metric:
+      name: barbs_landed
+      starting: 0
+      threshold: 5
+    opponent_metric:
+      name: barbs_landed
+      starting: 0
+      threshold: 5
     beats:
       - id: riposte
         label: Verbal Riposte
-        metric_delta: -3
+        kind: strike
+        base: 3
         stat_check: Cunning
         narrator_hint: A cutting remark, perfectly timed. The room goes quiet.
       - id: appeal_propriety
         label: Appeal to Propriety
-        metric_delta: -2
+        kind: strike
+        base: 2
         stat_check: Cunning
         effect: "Invoke social convention to embarrass the opponent"
       - id: composure
         label: Maintain Composure
-        metric_delta: 0
+        kind: brace
+        base: 1
         stat_check: Nerve
         effect: "Recover poise — resist the next barb"
       - id: concede
         label: Concede Gracefully
-        metric_delta: 0
+        kind: push
+        base: 0
         stat_check: Humour
-        resolution: true
         consequence: "Duel ends — withdraw with dignity intact"
     mood: mystery
   - type: scandal
     label: Scandal Eruption
     category: social
-    metric:
-      name: exposure
-      direction: ascending
+    # Player races to contain the scandal before exposure becomes public
+    # knowledge. Player builds containment; the gossip itself builds exposure
+    # in the background as turns pass.
+    player_metric:
+      name: containment
       starting: 0
-      threshold_high: 8
+      threshold: 5
+    opponent_metric:
+      name: exposure
+      starting: 0
+      threshold: 8
     beats:
       - id: deflect
         label: Deflect Rumour
-        metric_delta: -2
+        kind: strike
+        base: 2
         stat_check: Cunning
         narrator_hint: Redirect attention — another scandal, a convenient distraction.
       - id: counter_accusation
         label: Counter-Accusation
-        metric_delta: -3
+        kind: strike
+        base: 3
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: Pride
         risk: "Backfire — your own secrets surface if failed"
       - id: confide
         label: Confide in Ally
-        metric_delta: -1
+        kind: angle
+        target_tag: "Advocate"
         stat_check: Cunning
-        effect: "Gain an advocate who speaks on your behalf"
+        effect: "Gain an advocate who speaks on your behalf — sets a tag the next deflect can spend"
       - id: weather_it
         label: Weather the Storm
-        metric_delta: 0
+        kind: push
+        base: 0
         stat_check: Nerve
-        resolution: true
         consequence: "Scandal passes — Standing may have shifted"
     mood: mystery
 

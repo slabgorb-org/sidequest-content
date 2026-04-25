@@ -175,7 +175,7 @@ genre_packs/
 ├── road_warrior/         # Vehicular post-apocalypse
 ├── space_opera/          # Sci-fi space adventure
 ├── spaghetti_western/    # Frontier gunslinger
-└── victoria/             # Victorian steampunk
+└── victoria/             # Brontë gothic / drawing-room intrigue (no swords, no starships; tunable occult)
 ```
 
 Each pack contains YAML configs (archetypes, tropes, rules, etc.), world data, audio tracks, and images (portraits, POI landscapes).
