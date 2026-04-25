@@ -77,129 +77,140 @@ confrontations:
   - type: combat
     label: Dungeon Combat
     category: combat
-    # Momentum-based encounter metric. `momentum` is a bidirectional
-    # narrative dial: positive = party is winning, negative = party is
-    # losing. Actual HP/damage lives on character state — this metric
-    # tracks how the fight is *going*, not how much life is left.
-    # Resolution triggers at either threshold.
-    metric:
+    player_metric:
       name: momentum
-      direction: bidirectional
       starting: 0
-      threshold_high: 10
-      threshold_low: -10
+      threshold: 10
+    opponent_metric:
+      name: momentum
+      starting: 0
+      threshold: 10
     beats:
       - id: attack
         label: Attack
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: STR
         effect: "Target takes damage this round"
         narrator_hint: Steel rings off stone. Torchlight flickers across the blow.
       - id: defend
         label: Defend
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: CON
         effect: "Reduce incoming damage this round, brace against the push"
         narrator_hint: Shield raised, back to the wall, weight forward.
       - id: shield_bash
         label: Shield Bash
-        metric_delta: 4
+        kind: strike
+        base: 4
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: STR
-        risk: "Overcommitted — lose 2 momentum and take a counter on failure"
         effect: "Stun the target briefly, break their footing"
+        risk: "Overcommitted — lose 2 momentum and take a counter on failure"
         narrator_hint: Slam forward in the narrow corridor — nowhere to dodge.
+      - id: feint
+        label: Feint
+        kind: angle
+        target_tag: "Off-Balance"
+        stat_check: DEX
+        effect: "Set up a leverage tag the next attack can spend"
+        narrator_hint: A bait — open the guard, draw the swing.
       - id: flee
         label: Flee
-        metric_delta: 0
+        kind: push
+        base: 1
         stat_check: DEX
-        resolution: true
-        risk: "Opportunity attack — take damage on failure"
         consequence: "Combat ends — retreat deeper into the dungeon"
         narrator_hint: Break contact, torch sweeping behind you as you run.
     mood: combat
   - type: chase
     label: Corridor Pursuit
     category: movement
-    metric:
+    player_metric:
       name: separation
-      direction: ascending
-      starting: 3
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: pursuit
+      starting: 0
+      threshold: 7
     beats:
       - id: sprint
         label: Sprint
-        metric_delta: 2
+        kind: push
+        base: 2
         stat_check: DEX
         narrator_hint: Boots echo off stone as the quarry bolts down the passage.
       - id: duck_through
         label: Duck Through
-        metric_delta: 3
+        kind: angle
+        target_tag: "Out of Sight"
         stat_check: INT
-        risk: "Wrong turn — dead end, lose 2 separation"
         narrator_hint: Squeeze through a side passage too narrow for pursuers.
       - id: barricade
         label: Barricade
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: INT
         effect: "Topple debris to slow pursuit"
       - id: douse_torch
         label: Douse Torch
-        metric_delta: 0
+        kind: push
+        base: 1
         stat_check: DEX
-        resolution: true
         consequence: "Chase ends in darkness — quarry vanishes"
     mood: tension
   - type: negotiation
     label: "Haggling at the Counter"
     category: social
-    # The canonical caverns_and_claudes scene: the party, mud-caked
-    # and underfunded, on one side of a shop counter. The town
-    # merchant — wary, greedy, or both — on the other. Haggling
-    # over a price, unloading a suspicious find, pushing for a
-    # better quest reward, or angling for the item on the top
-    # shelf that the merchant swears isn't for sale.
-    # `leverage` tracks who's running the table. Merchant starts
-    # ahead: the delvers need the gold or the gear, the shopkeep
-    # doesn't. Comedic register — stakes are low (a few silver)
-    # but feel enormous to a level-1 party counting rations.
-    metric:
+    player_metric:
       name: leverage
-      direction: bidirectional
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: leverage
       starting: 3
-      threshold_high: 10
-      threshold_low: 0
+      threshold: 7
     beats:
       - id: talk_up_the_haul
         label: "Talk Up the Haul"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: CHA
         effect: "merchant entertains the asking price — their eyebrow does the thing"
-        narrator_hint: "The delver pitches the goods like a town crier — this isn't a rusted dagger, it's a RELIC. The merchant has heard this exact speech seventeen times this week."
+        narrator_hint: "The delver pitches the goods like a town crier."
       - id: swear_its_not_cursed
         label: "Swear It's Not Cursed"
-        metric_delta: 3
+        kind: strike
+        base: 3
+        deltas:
+          crit_fail:
+            own: -1
         stat_check: CHA
-        risk: "if the bluff fails, merchant knocks 50% off the offer and mentions it to the guard"
+        risk: "if the bluff fails, merchant knocks 50% off the offer"
         effect: "merchant accepts the suspicious item — with a receipt, carefully worded"
-        narrator_hint: "Running-joke territory. 'Is this cursed?' 'No.' 'Are you SURE it's not cursed?' 'It is DEFINITELY not cursed.' Lean all the way in. Merchant is not convinced but the coin is right there."
+        narrator_hint: "Running-joke territory. Lean all the way in."
       - id: plead_poverty
         label: "Plead Poverty"
-        metric_delta: 2
+        kind: angle
+        target_tag: "Sympathetic"
         stat_check: WIS
-        effect: "merchant softens — throws in a torch, a ration, or shaves a copper off the tally"
-        narrator_hint: "The delver goes for the sympathy play — empty purse, long road, hungry dog back at camp. The merchant has seen this a thousand times and it still works about a third of the time."
+        effect: "merchant softens — sets up a leverage tag for the closer"
+        narrator_hint: "The delver goes for the sympathy play."
       - id: flash_the_coin
         label: "Flash the Coin"
-        metric_delta: -1
+        kind: brace
+        base: 1
         stat_check: CHA
-        effect: "merchant's disposition +5 and the real price — the one locals pay — slips out"
-        narrator_hint: "The delver makes a show of it: tips a pouch, lets a gold piece ring on the counter, asks 'what does THAT get me.' A small concession now to read the shop properly."
+        effect: "merchant's disposition tightens — the real price slips out"
+        narrator_hint: "A small concession now to read the shop properly."
       - id: walk_toward_the_door
         label: "Walk Toward the Door"
-        metric_delta: 0
+        kind: push
+        base: 1
         stat_check: WIS
-        resolution: true
-        consequence: "haggle ends — either the merchant calls them back with a better number, or the deal is off and the party leaves empty-handed"
-        narrator_hint: "The oldest trick at the counter. Delver turns, hand on the door, one beat, two beats. Either the merchant cracks — 'alright, alright, for you, three silver' — or the door closes behind the party and the moment is gone. The smart play when leverage has tipped the wrong way."
-    mood: tension
+        consequence: "Negotiation ends — leave with the merchant's last offer"
+    mood: comedic
