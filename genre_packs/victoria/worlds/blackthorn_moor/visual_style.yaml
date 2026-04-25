@@ -1,0 +1,107 @@
+# Visual style overrides for Blackthorn Moor
+#
+# Z-Image authoring per sidequest-content/PROMPTING_Z_IMAGE.md and ADR-086.
+# Sits on top of the genre's impressionist oil base and pulls it toward
+# Yorkshire landscape painting — muted, atmospheric, autumnal. Style
+# anchors: John Atkinson Grimshaw (moonlit lanes, gaslit autumn), John
+# Brett (moorland), Pre-Raphaelite chiaroscuro.
+#
+# This world's axis_snapshot has gothic at 0.15 — the dread is human, the
+# wind is just wind. Render the world as melancholy and rain-washed; do
+# not paint ghosts. Atmosphere via low golden afternoon light, rain on
+# stone, autumnal palette — never via supernatural visual cues.
+
+positive_suffix: >-
+  impressionist oil painting on canvas, thick visible impasto brushstrokes,
+  cracked varnish, museum painting, Yorkshire moorland atmosphere, muted
+  autumnal palette of brown purple grey and amber, low golden afternoon
+  light, rain-washed stone, candlelit interiors, painted not photographed,
+  1860s Victorian period costume — frock coat and silk cravat for men,
+  full skirts and fitted bodices for women, woolen and tweed for outdoor
+  wear. Style of John Atkinson Grimshaw and John Brett. No text, no
+  caption, no title, no label, no signature, no watermark, no border, no
+  frame.
+
+# Z-Image ignores negative_prompt at guidance_scale=0. All constraints live
+# in positive_suffix. Field kept for pipeline compatibility only.
+negative_prompt: ""
+
+# ── World POI overrides ────────────────────────────────────────
+# Foreground / middle / background where the location admits it. No proper
+# nouns in the rendered prose — keys are routing labels only. Each override
+# appends to positive_suffix; ~40-60 words each.
+
+visual_tag_overrides:
+  blackthorn_hall: >-
+    handsome Georgian stone manor house on rising ground in autumn,
+    foreground a gravel drive circling a stone fountain and autumn
+    trees flanking the approach, middle ground a three-storey ivy-clad
+    facade with east and west wings showing warm amber light at the
+    windows, background the moors rising behind under turbulent sky,
+    rooks at the chimneys
+  study: >-
+    oak-panelled gentleman's study, foreground a partners desk with a
+    glass of brandy untouched on a silver tray and papers squared on
+    the blotter, middle ground a pipe rack and tobacco jar and a
+    fireplace with low embers, background a bay window facing open
+    moorland, a single lamp casting warm light, the sense of recent
+    absence
+  drawing_room: >-
+    south-facing Victorian drawing room in afternoon light, foreground
+    a low table with tea service and a careful flower arrangement,
+    middle ground heavy curtains in faded rose silk and a piano in the
+    corner, background family portraits in gilt frames, light catching
+    dust motes
+  moors: >-
+    Yorkshire moorland in autumn, foreground heather in brown and purple
+    and bracken turning gold, middle ground a single track winding
+    toward a distant ridge and sheep on the hillside, background
+    standing stones on the horizon under a vast grey sky with breaks
+    of golden light, wind bending the grass
+  village: >-
+    Yorkshire village of grey stone cottages in autumn, foreground a
+    cobbled lane between drystone walls and autumn leaves in the
+    gutters, middle ground a pub with a painted sign and a post office
+    with a bay window, background a Norman church with a square tower
+    and smoke from chimneys
+  mill: >-
+    Victorian cotton mill in a Yorkshire valley, foreground a cobbled
+    yard with a cart and workers in flat caps and shawls at the gate,
+    middle ground a tall brick chimney trailing smoke and rows of
+    windows reflecting grey sky, background terraced houses climbing
+    the hillside
+  churchyard: >-
+    English country churchyard in autumn, foreground a fresh grave with
+    dark earth and fallen leaves on the path, middle ground weathered
+    headstones tilting in rough grass, background a Norman church wall
+    sheltering the family plot and yew trees beside a lychgate
+  station: >-
+    small Yorkshire railway station, foreground a wooden bench facing
+    the moors and a stationmaster checking his watch, middle ground a
+    single platform with a wooden waiting room and a signal box,
+    background a locomotive arriving in a cloud of steam and tracks
+    stretching toward empty landscape
+  servants_hall: >-
+    below-stairs kitchen and servants' hall, foreground a long scrubbed
+    wood table with a candle and a household ledger open, middle ground
+    a bell board on the wall with room labels and copper pots on hooks,
+    background back stairs leading up into the house and the cook's
+    range warm with bread
+  the_blackthorn_arms: >-
+    Yorkshire village pub interior in evening, foreground a low oak
+    counter with pewter mugs and a publican wiping a glass, middle
+    ground a hearth that's never out and farmers and miners hunched
+    over drinks at scrubbed tables, background a fiddle on a hook and
+    smoke-stained beams, the light low and amber
+  the_solicitors_room: >-
+    converted guest bedroom serving as a temporary office, foreground
+    a writing desk with papers in legal precision and a locked leather
+    document case with brass clasps catching firelight, middle ground
+    a fireplace and a single armchair, background heavy curtains drawn
+    against the rain, an ink-stand and sealing wax to hand
+  the_moor_gate: >-
+    a wooden gate in a stone garden wall opening directly onto open
+    moorland, foreground the gate itself with a worn smooth latch and
+    a single track passing through, middle ground heather and bracken
+    climbing toward a ridge, background standing stones on the horizon
+    under turbulent grey sky, bent grass in the wind
