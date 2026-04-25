@@ -1,0 +1,111 @@
+# Visual style configuration for victoria genre pack
+#
+# Z-Image authoring per sidequest-content/PROMPTING_Z_IMAGE.md and ADR-086.
+# Identity: impressionist oil painting on canvas — physical-medium descriptors
+# (impasto, cracked varnish) push Z-Image toward painted output. Rich dark
+# palette of burgundy / umber / gold / grey, dramatic chiaroscuro candlelight,
+# 1860s Victorian costume. Style anchors: John Atkinson Grimshaw (gaslit
+# nocturnes), James Tissot (drawing-room costume), John Singer Sargent
+# (society portrait), Pre-Raphaelite chiaroscuro.
+
+# ── Core Style ────────────────────────────────────────────────
+
+positive_suffix: >-
+  impressionist oil painting on canvas, thick visible impasto brushstrokes,
+  cracked varnish, museum painting, heavy paint texture, rich dark palette
+  of burgundy umber gold and grey, dramatic chiaroscuro candlelight, 1860s
+  Victorian period costume — frock coat or morning coat, silk cravat or
+  stock at the throat, woolen waistcoat, high wing collar, monocle or
+  pince-nez where eyewear appears, ladies in full skirts with fitted
+  bodices, bonnet or chignon. Style of John Atkinson Grimshaw, James
+  Tissot, and John Singer Sargent. No text, no caption, no title, no
+  label, no signature, no watermark, no border, no frame, no museum plate.
+
+# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt entirely
+# (see sidequest-content/PROMPTING_Z_IMAGE.md). All constraints live in the
+# positive_suffix above. Field kept for pipeline compatibility.
+negative_prompt: ""
+
+preferred_model: dev
+
+base_seed: 1853
+
+# ── Location Tag Overrides ────────────────────────────────────
+# Foreground / middle / background layout. Concrete nouns. Proper nouns
+# avoided — Z-Image renders them as text. Each override appends to
+# positive_suffix; aim for ~40-60 words to stay under T5's 512-token ceiling.
+
+visual_tag_overrides:
+  manor: >-
+    grand Victorian country house at dusk, foreground gravel drive and
+    dark yew hedges, middle ground ivy-covered stone facade with tall
+    windows showing warm amber light, background storm clouds gathering
+    and rooks circling the chimneys, a single lit window in the east wing
+  drawing_room: >-
+    Victorian drawing room in evening, foreground a marble fireplace with
+    low fire and crystal decanters on a silver tray, middle ground heavy
+    velvet curtains in deep burgundy and gilt-framed oil paintings,
+    background a woman's silhouette at the window seat, beeswax candles
+    in branching candelabra
+  moor: >-
+    vast Yorkshire moorland under turbulent sky, foreground heather and
+    bracken in purple and brown, middle ground a single track winding
+    through and wind-bent hawthorn trees, background standing stones on
+    the horizon and distant rain sweeping across, a lone walking figure
+  garden: >-
+    walled English garden in late summer, foreground a stone bench
+    beneath a copper beech with a forgotten book on the bench, middle
+    ground gravel paths between boxwood hedges and climbing roses over
+    weathered brick, background lavender beds, late afternoon light
+    slanting through
+  street: >-
+    gaslit London street at night, foreground wet cobblestones reflecting
+    halos of amber light and a hansom cab waiting at the kerb, middle
+    ground iron railings and basement windows, background fog drifting
+    between terraced houses and a figure with an umbrella passing
+  church: >-
+    English parish church interior, foreground dark oak pews and a
+    lectern with a single candle, middle ground stained glass casting
+    coloured light on stone floor, background brass memorial plaques
+    on grey stone walls, dust motes in a shaft of light
+  kitchen: >-
+    below-stairs kitchen in a great house, foreground a long scrubbed-
+    wood table with a servant carrying a tray, middle ground copper
+    pots on hooks catching firelight, background a bell board on the
+    wall and rising steam from the cook's range
+  bedroom: >-
+    Victorian four-poster bed with heavy curtains half-drawn, foreground
+    a writing desk with an unfinished letter and a candle guttering
+    on the nightstand, middle ground a fire dying to embers, background
+    a wardrobe door slightly ajar, rain on the window
+  ballroom: >-
+    grand Victorian ballroom in full use, foreground dancers in silk
+    and broadcloth in motion, middle ground crystal chandeliers blazing
+    with hundreds of candles, background gilt mirrors multiplying the
+    light and an orchestra on a raised platform, flowers banked along
+    the walls
+  study: >-
+    gentleman's study, foreground a partners desk in dark mahogany with
+    correspondence in neat piles and a green-shaded lamp casting a pool
+    of light, middle ground a globe and a decanter, background leather-
+    bound books floor to ceiling, a tobacco jar and pipe rack
+  station: >-
+    Victorian railway station in iron and glass, foreground passengers
+    in travelling clothes on the platform and a porter with luggage,
+    middle ground steam billowing from an arriving locomotive, background
+    destination boards in white paint and the vaulted iron roof
+  attic: >-
+    attic room under the eaves, foreground bare floorboards and a single
+    candle, middle ground trunks and covered furniture, background a
+    small dormer window looking out on chimneys and sky, old portraits
+    turned to face the wall, dust on everything
+  cottage: >-
+    stone cottage in the English countryside, foreground a path worn
+    through grass and a garden gate half-open, middle ground lace
+    curtains in small windows and smoke from the chimney, background
+    a thatched roof dark with rain and sheep on the hill beyond
+  docks: >-
+    Thames-side wharf at low tide, foreground a customs officer with
+    a manifest and cargo being unloaded by lantern light, middle ground
+    warehouses in dark brick, background fog rolling off the water and
+    silhouettes of moored barges, coils of rope and pitch barrels
