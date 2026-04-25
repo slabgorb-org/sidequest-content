@@ -262,10 +262,16 @@ confrontations:
         kind: strike
         base: 4
         deltas:
+          # Both Fail and CritFail dock the player — the prose promises a
+          # consequence "on failure" without distinguishing tier, and the
+          # playtest 2026-04-25 [P0] caught the mismatch (Fail rolled, no
+          # momentum docked, button surface lied to the player).
+          fail:
+            own: -2
           crit_fail:
             own: -2
         stat_check: Physique
-        risk: "Weapon jams — lose 2 momentum and skip next turn on failure"
+        risk: "Weapon jams — lose 2 momentum on any failure"
         effect: "Target takes massive damage from the dump shot"
         narrator_hint: Crank the power cell past safe limits.
       - id: retreat
