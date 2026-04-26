@@ -1,0 +1,55 @@
+# Victoria — random equipment tables
+#
+# Consumed by CharacterBuilder when a character creation scene declares
+# `equipment_generation: random_table` in its mechanical_effects (mirrors
+# the C&C wiring). Each slot lists candidate item_ids; every id MUST exist
+# in inventory.yaml's item_catalog or pack load fails (no silent fallback).
+#
+# Victoria loadouts are *small portable possessions that signal class and
+# intent*, not battlefield kit. The slot taxonomy reflects this:
+#
+#   social      — calling cards, letters of introduction (door-openers)
+#   personal    — locket, handkerchief (intimate, narrative-loaded)
+#   tool        — medical bag, magnifying glass, skeleton key (profession)
+#   consumable  — laudanum, smelling salts (the chemist's everyday horrors)
+#   weapon      — walking stick, derringer (carried, not displayed)
+#   document    — family bible (rare, campaign-defining)
+#
+# Note: weapon is rolled but the catalogue is deliberately thin — a walking
+# stick (which everyone carries and nobody calls a weapon) and a derringer
+# (which nobody admits carrying). A character drawing either in scene is a
+# crisis. This is the lethality_policy talking.
+
+tables:
+  social:
+    - calling_cards
+    - letter_of_introduction
+  personal:
+    - mourning_locket
+    - silk_handkerchief
+  tool:
+    - medical_bag
+    - magnifying_glass
+    - skeleton_key
+  consumable:
+    - laudanum_bottle
+    - smelling_salts
+  weapon:
+    - walking_stick
+    - derringer
+  document:
+    - family_bible
+
+# Most slots roll exactly once — a single calling card case, a single
+# locket. `personal` rolls twice because Victorian characters typically
+# carry both a public token (handkerchief) and a private one (locket),
+# and the second adds narrative texture without bloat. `consumable`
+# rolls twice for the same reason — laudanum AND smelling salts is
+# the realistic baseline for almost any traveller in the period.
+rolls_per_slot:
+  social: 1
+  personal: 2
+  tool: 1
+  consumable: 2
+  weapon: 1
+  document: 1

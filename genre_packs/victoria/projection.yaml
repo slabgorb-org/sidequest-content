@@ -1,0 +1,28 @@
+# ProjectionFilter rules for victoria.
+#
+# Drawing-room mysteries lean harder on per-recipient visibility than any
+# other pack in the catalogue. What the governess overhears in the corridor,
+# the doctor's quiet word with the master of the house, the séance attended
+# by only three of the seven guests — the table state is fundamentally
+# asymmetric. Every player at the table has a different version of what
+# happened tonight.
+#
+# This file delegates to the decomposer's _visibility payload (set per
+# event by sidequest.game.dispatch.DispatchPackage.visibility, which reads
+# visibility_baseline.yaml — Victoria's baseline is `secret_heavy`,
+# default `actor_only` for npc_agency / stealth_roll_check / lore_reveal /
+# dice_roll_private). The visibility_tag rule is ordered FIRST so structural
+# per-recipient routing runs before any later mask rules; the same shape
+# spaghetti_western uses (it shares Victoria's secret_heavy posture) and
+# C&C uses (which leans the other way but routes the same).
+#
+# We do NOT add target_only / include_if / redact_fields rules here at v1.
+# The baseline + decomposer is doing the work. If a future scenario (the
+# blackmailer's dossier, the will reading where each heir hears different
+# clauses) demands field-level masking on a specific event kind, that's
+# where redact_fields rules join this file — not before.
+rules:
+  - kind: NARRATION
+    visibility_tag: {}
+  - kind: SECRET_NOTE
+    visibility_tag: {}

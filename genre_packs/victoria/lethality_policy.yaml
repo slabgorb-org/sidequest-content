@@ -1,0 +1,39 @@
+# Lethality policy — victoria
+#
+# Victoria is the least lethal genre pack in the catalogue. Combat is not the
+# default resolution path; the everyday weapons are scandal, gossip, the
+# withheld invitation, and the carefully chosen word. A drawn pistol on the
+# moor or a glint of poison in a wineglass is campaign-defining — shocking
+# precisely because the world's currency of harm is social, not martial.
+#
+# Reversibility default = `narrative_only`: most "defeats" here are setbacks
+# in a season-long social war. A character cut by the duchess at her ball is
+# not dead — they are *ruined*, and ruin can be repaired across many turns
+# with patience, alliances, and a strategic marriage. The arbiter elevates
+# to `permanent` only on the rare occasion the dual is real (a duel actually
+# fought, a poisoning that succeeds, a body in the library).
+#
+# verdicts_on_zero_edge:
+#   pc:  defeated  — socially crushed, cut from polite society, not killed.
+#                    The PC is still upright, still present at the next
+#                    drawing-room scene, but their Standing is in ruins and
+#                    every door has quietly closed.
+#   npc: defeated  — the rival is unmasked, the suitor cast out, the
+#                    blackmailer's grip broken. NPCs are removed from the
+#                    social board, not the mortal coil.
+#
+# This is deliberate asymmetry with spaghetti_western (dead/dead) and
+# alignment with caverns_and_claudes' "comedic_danger_no_permadeath" tone —
+# but for a different reason. C&C survives because the joke demands it.
+# Victoria survives because *social death is the genre's worst outcome*,
+# and reaching for a body count would betray the source material (Brontë,
+# Collins, Gaskell — characters are crushed, exiled, married off, driven
+# mad; almost never simply killed).
+genre_key: victoria
+default_reversibility: narrative_only
+verdicts_on_zero_edge:
+  pc: defeated
+  npc: defeated
+soul_md_constraint: "genre_truth:social_death_before_mortal_death"
+must_narrate: "A ruin in the drawing room. The cut direct, the closed door, the invitation that does not come. Show the silence at the dinner table when their name is mentioned. They are still breathing — and that is the worst of it. They will live with this."
+must_not_narrate: "graphic on-page killing; sword-fight choreography; gunshots played for spectacle; the doctor's table in close-up; ally bursts in to undo the social damage with a speech; rival is killed off conveniently to spare the PC's reputation"

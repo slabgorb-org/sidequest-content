@@ -1,0 +1,214 @@
+# archetype_constraints.yaml — victoria
+#
+# Defines valid Jungian x RPG Role pairings for Brontë gothic / drawing-room
+# intrigue. The combat-shaped roles (tank, dps, healer in the dungeon sense)
+# are mostly absent or rare here — Victoria's confrontations (negotiation,
+# trial, auction, social_duel, scandal) are *all* social. So our `common`
+# pairings cluster around control, support, stealth, jack_of_all_trades —
+# roles that translate cleanly into "the dinner party as battlefield."
+#
+# Forbidden pairings reflect genre incoherence: an innocent dps in
+# Blackthorn Moor is asking the system to write a romance heroine who is
+# also a swashbuckler, which is not the genre.
+
+valid_pairings:
+  common:
+    # The drawing room native — society, manners, the social weapon.
+    - [ruler, control]
+    - [ruler, support]
+    - [sage, control]
+    - [sage, support]
+    # The watchful outsider — governess, doctor, detective.
+    - [caregiver, healer]
+    - [caregiver, support]
+    - [outlaw, stealth]
+    - [outlaw, control]
+    # The romantic leads — the brooder and the ingenue.
+    - [lover, support]
+    - [lover, control]
+    - [innocent, support]
+    - [innocent, healer]
+    # The investigator — Holmes, the inspector, the curious cousin.
+    - [explorer, stealth]
+    - [explorer, jack_of_all_trades]
+    - [magician, control]
+    - [magician, support]
+    # The household — keeping things running while everyone schemes.
+    - [everyman, jack_of_all_trades]
+    - [everyman, support]
+
+  uncommon:
+    # The hero exists in Victoria but does not lead with violence —
+    # they rescue, expose, vouch. Tank is rare because nothing in Victoria
+    # asks you to absorb damage; the closest analog is "shielding a
+    # reputation" which is more support than tank.
+    - [hero, support]
+    - [hero, jack_of_all_trades]
+    - [hero, control]
+    - [artist, support]
+    - [artist, control]
+    - [artist, stealth]
+    - [jester, support]
+    - [jester, control]
+    - [jester, stealth]
+    # The witty dilettante or society wit — sharp at parties.
+    - [ruler, stealth]
+    - [sage, stealth]
+    - [caregiver, control]
+    - [lover, stealth]
+    - [innocent, control]
+    - [innocent, jack_of_all_trades]
+    - [explorer, control]
+    - [explorer, support]
+    - [magician, stealth]
+    - [outlaw, support]
+    - [outlaw, jack_of_all_trades]
+    - [everyman, stealth]
+    - [everyman, control]
+
+  rare:
+    # The duel-at-dawn or the assassination plot — these exist in genre
+    # canon but happen perhaps once a campaign and are shocking.
+    - [hero, dps]
+    - [hero, tank]
+    - [outlaw, dps]
+    - [magician, dps]
+    - [ruler, dps]
+    - [ruler, tank]
+    - [explorer, dps]
+    - [sage, dps]
+    - [artist, dps]
+    - [jester, dps]
+    - [everyman, tank]
+    - [everyman, dps]
+    - [caregiver, tank]
+
+  forbidden:
+    # Victoria has no battle-healer in the cleric sense; "healer" here
+    # means the doctor with the laudanum and the bedside manner, not the
+    # paladin. Pairings that demand the dungeon-style cleric are out.
+    - [ruler, healer]
+    - [outlaw, healer]
+    - [magician, healer]
+    - [explorer, healer]
+    - [hero, healer]
+    - [jester, healer]
+    - [artist, healer]
+    - [everyman, healer]
+    # The innocent dps / innocent tank / innocent stealth combinations
+    # contradict the archetype's social function in Victorian fiction —
+    # an "innocent" in this genre is the ingenue, the ward, the new
+    # arrival from the country, NOT a fighter.
+    - [innocent, dps]
+    - [innocent, tank]
+    - [innocent, stealth]
+    # The lover as combatant erases the genre's central tension — the
+    # romantic lead's weapon is feeling, letter, glance.
+    - [lover, dps]
+    - [lover, tank]
+    - [lover, healer]
+    # Caregiver dps / caregiver stealth — the doctor or governess who
+    # leads with a knife is a cliche the genre actively rejects (the
+    # twist when the doctor IS the killer is a one-shot, not a build).
+    - [caregiver, dps]
+    - [caregiver, stealth]
+    - [artist, tank]
+    - [artist, healer]
+    - [sage, tank]
+    - [sage, healer]
+    - [magician, tank]
+    - [outlaw, tank]
+    - [explorer, tank]
+    - [jester, tank]
+
+# Genre-level fallback names and flavor for each axis value.
+# Used when no world-level funnel claims a combination. Tuned to Victoria's
+# class roster (Governess, Detective, Society, Doctor, Industrialist,
+# Explorer, Clergyman) and to drawing-room conventions.
+genre_flavor:
+  jungian:
+    hero:
+      speech_pattern: "earnest, plain-spoken, says what others will not in mixed company"
+      equipment_tendency: "letter of introduction, sturdy walking stick, sealed letter from a worried friend"
+      visual_cues: "well-cut but not ostentatious dress, posture of someone used to being looked to, scar from the Crimea worn quietly"
+    sage:
+      speech_pattern: "measured, references journals and case-law, corrects Latin under their breath"
+      equipment_tendency: "leather-bound notebook, pince-nez on a black ribbon, monograph in a coat pocket"
+      visual_cues: "ink on the cuff, pause before each declarative sentence, eyes that go to the bookshelves first in any room"
+    outlaw:
+      speech_pattern: "clipped, plausibly lower-class, evasive about origins and movements last Tuesday"
+      equipment_tendency: "skeleton key, picklocks rolled in oilcloth, derringer in a reticule"
+      visual_cues: "hat brim low in good neighborhoods, knows the servants' entrance to every house in the parish, gloves that have been mended"
+    caregiver:
+      speech_pattern: "quiet, professional, addresses each person by their proper title"
+      equipment_tendency: "medical bag with brass clasps, smelling salts, a clean handkerchief always to hand"
+      visual_cues: "sleeves that can be rolled up at need, hands that have done real work despite the linen, watches the patients before the family"
+    ruler:
+      speech_pattern: "declarative, expects to be deferred to, cuts across other speakers when the matter is settled"
+      equipment_tendency: "calling cards in a silver case, signet ring, account book in the breast pocket"
+      visual_cues: "stands at the head of the room without being invited, regards servants as fixtures, sweeps a glance over the company before speaking"
+    explorer:
+      speech_pattern: "anecdotal, drops references to Cairo or Calcutta, slightly too informal for the room"
+      equipment_tendency: "Baedeker, magnifying glass, oilskin map case, something exotic that is also a weapon"
+      visual_cues: "tan that has not faded, restless when seated, attention drifts to the windows and the door"
+    magician:
+      speech_pattern: "precise, theatrical when channelling, drops into deeper register at the séance table"
+      equipment_tendency: "crystal ball that is possibly only glass, black silk gloves, letters from the bereaved"
+      visual_cues: "stillness others find unnerving, attention to candles and shadows, reads the room before speaking"
+    artist:
+      speech_pattern: "observational, finds the metaphor in the wallpaper, voice slightly bohemian for the parish"
+      equipment_tendency: "sketchbook in oilcloth, charcoal stub, a slim volume of verse marked at one page"
+      visual_cues: "paint or charcoal under the fingernails, dress half a season out of fashion, pauses to look at the light"
+    innocent:
+      speech_pattern: "earnest, asks the question everyone else has wisely declined to ask, blushes at her own boldness"
+      equipment_tendency: "mourning locket, prayer book, a letter from home that has been read many times"
+      visual_cues: "wide-eyed in candlelight, takes the stairs too quickly, has not yet learned what to pretend not to notice"
+    lover:
+      speech_pattern: "attentive, remembers small details, speaks in restraint that betrays feeling"
+      equipment_tendency: "monogrammed silk handkerchief, locket with a portrait that is turned face-down, letter that should have been burned"
+      visual_cues: "watches one particular person across any room, dresses with deliberate care, holds a glance a half-beat too long"
+    jester:
+      speech_pattern: "wit pitched for the gallery, deflects sentiment with epigram, names the awkward thing first"
+      equipment_tendency: "calling cards in too many pockets, anonymous column tucked in a magazine, fan used for emphasis"
+      visual_cues: "scans the room for the audience, slight smile that is doing a great deal of work, never quite still"
+    everyman:
+      speech_pattern: "plain, regional accent worn proudly or scrubbed away, no time for nonsense"
+      equipment_tendency: "ring of keys, mended gloves, a small notebook of accounts"
+      visual_cues: "moves through the house as someone who knows where every door leads, addressed by surname only, exists in the background until needed"
+
+  rpg_roles:
+    # The "fallback name" is what shows in chargen if a world's funnel
+    # doesn't supply a more specific class label. Tuned to Victorian
+    # idiom: no Fighter, no Wizard, no Cleric.
+    tank:
+      fallback_name: "Bodyguard"
+    dps:
+      fallback_name: "Duellist"
+    control:
+      fallback_name: "Society"
+    healer:
+      fallback_name: "Doctor"
+    stealth:
+      fallback_name: "Detective"
+    support:
+      fallback_name: "Governess"
+    jack_of_all_trades:
+      fallback_name: "Gentleman"
+
+# NPC roles available in this genre. The drawing-room mystery uses all nine —
+# the host (master of the house), the threshold (butler, housekeeper), the
+# herald (the Inspector arriving with a letter), the shadow (the blackmailer,
+# the spurned suitor), the victim (the body in the library), the artisan
+# (the doctor, the solicitor), the authority (the magistrate, the duchess),
+# the mentor (the family lawyer, the older confidante), the mook (footmen,
+# unnamed guests). Mooks here are social mooks — the chorus at the ball.
+npc_roles_available:
+  - mentor
+  - herald
+  - shadow
+  - threshold
+  - host
+  - artisan
+  - authority
+  - victim
+  - mook
