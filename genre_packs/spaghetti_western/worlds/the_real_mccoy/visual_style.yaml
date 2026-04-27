@@ -48,10 +48,6 @@ preferred_model: dev
 
 base_seed: 1878
 
-loras:
-  exclude: []                         # nothing genre-level to drop
-  add: []
-
 # ── Palette ───────────────────────────────────────────────────
 # Named hex values with semantic labels. The world reads as sepia +
 # amber + smoke, punctuated by rare Bessemer-orange sublime moments.
@@ -99,41 +95,6 @@ period_constraints:
   architecture_ceiling: "1878 — Second Empire mansard, Italianate commercial, early Richardsonian Romanesque, no Beaux-Arts, no steel-frame skyscraper (Home Insurance Bldg is 1885)"
   photography_medium: "albumen print from wet-collodion plate; cabinet card format (4.25x6.5 in) and carte-de-visite (2.5x4 in); early dry-plate appearing late-decade"
   illumination_real: "gaslight (interior), Brush arc-light (exterior, 1878 rollout), kerosene lamp, candle, firelight — NO incandescent, NO fluorescent"
-
-# ── Flux Trigger Tokens ───────────────────────────────────────
-# The Leone/Almería LoRA would ACTIVELY HARM this world — world-scoped
-# `loras:` block above ensures only the trm_landscape LoRA applies to
-# landscape renders here. Other tiers (portrait, scene) remain
-# untrained as of 2026-04-22.
-lora_triggers:
-  active:
-    - the_real_mccoy                 # trm_landscape — landscape tier, scale 0.65, shipped 2026-04-22
-  explicit_exclude:
-    - leone_style                    # legacy Almería LoRA (retired; listed for doc clarity)
-    - spaghetti_western_landscape    # genre-level mlx LoRA (trained on Leone footage) — not loaded here because world uses its own
-  training_candidates:
-    - name: pittsburgh_1878_style
-      corpus: >-
-        Harper's Weekly 1878 Mon Valley engravings (W.A. Rogers, Waud),
-        Underwood & Underwood stereograph cards of Pittsburgh mills
-        1875-1885, Hine precursor industrial photography, Detroit
-        Publishing Co. 1890s Pittsburgh photochroms (lower weight)
-      priority: shipped_as_trm_landscape
-      rationale: "Shipped 2026-04-22 as trm_landscape (trigger: the_real_mccoy). 179-tile dataset cropped from 90 sources; rank 8; 1500 iter; 608-key remap."
-    - name: gilded_age_portrait_style
-      corpus: >-
-        Napoleon Sarony 1870s cabinet cards, Mathew Brady post-war
-        studio portraits 1866-1880, Southworth & Hawes daguerreotypes
-        (tonal reference), Gurney & Son NYC studio
-      priority: high
-      rationale: "Character portraits need consistent Sarony-era carte-de-visite feel"
-    - name: lève_future_replicant_style
-      corpus: >-
-        Albert Robida 1886 illustrations for *L'Ève future*, Gustave
-        Doré late-period engravings for uncanny stillness, posthumous
-        daguerreotype portraits, Jules Worms period figure engraving
-      priority: medium
-      rationale: "Replicant-reveal register needs consistent uncanny-portrait tell"
 
 # ── Per-Scene-Type Visual Tag Overrides ──────────────────────
 # Override the genre-level + sibling-world vocabulary. None of the
