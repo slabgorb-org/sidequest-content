@@ -1,0 +1,108 @@
+# magic.yaml — road_warrior genre layer
+#
+# Status: DRAFT (2026-04-27) — initial napkin-shape population.
+# Reference: docs/design/magic-taxonomy.md
+#
+# Replaces the misleading `magic_level: none` flag in rules.yaml.
+# True claim: the named vehicle (Interceptor, War Rig, Pursuit Special) is
+# the magic item. "The man with the V8 Interceptor" is mythic-folkloric
+# item-magic. The mechanic is the McCoy/inventor source.
+
+magic:
+  intensity:
+    default: 0.35
+    permitted: [0.2, 0.6]
+
+  world_knowledge:
+    default: folkloric
+    permitted: [folkloric, mythic_lapsed]
+    # Named riders are legends. Tales of impossible runs travel between
+    # settlements. Nobody calls it magic; everybody knows the names.
+
+  visibility:
+    default: feared
+    permitted: [feared, revered]
+
+  allowed_sources:
+    - id: item_based
+      label: Item-based (Vessel)
+      always_available: true
+      mechanisms: [discovery, relational, mccoy, faction]
+      # Vehicles are found, inherited, salvaged-and-rebuilt (mccoy), or
+      # issued by gangs/cartels (faction).
+      item_subtype: vessel       # vehicles are first-class items
+      examples: [the named car, the war rig, the modified bike, the rolling fortress,
+                 the wrencher's salvage rebuild, gang-issued raid vehicles]
+      narrator_note: |
+        The vehicle is the magic-bearing object. It carries name, history,
+        and weight. Losing it is a loss of identity, not just transport.
+        Vehicles ARE characters — modify them, name them, mourn them.
+        The mechanic is the genre's wizard via the mccoy mechanism — they
+        make the vehicle do what shouldn't be possible by salvage,
+        jury-rig, and hard-won knowledge.
+
+    - id: innate
+      label: Innate (Wasteland-touched)
+      flavor: acquired_via_event   # narrative texture: gained via Wasteland exposure
+      gated_by: world
+      narrative_only: true
+      examples: [Wasteland-touched, road-mad, gas-fevered, sun-bleached changes]
+      narrator_note: |
+        The Wasteland marks long-haulers. Some changes are useful. None
+        are reversible. Identity-cost; severance-impossible. Cannot be a
+        player-build option — narrative only.
+
+    # NOT permitted: bargained_for, divine, learned (no formal traditions on the road)
+
+  required_costs: [vitality, karma]
+  # Vehicle magic costs gas, parts, and blood. The road remembers — every
+  # name made on it is also a debt. The man with the legendary car cannot
+  # rest; everyone knows the car, and someone always wants it.
+
+  hard_limits:
+    resurrection: forbidden
+    true_creation: forbidden
+    supernatural_explicit: forbidden
+    plane_shift: forbidden
+    permanence_without_renewal: forbidden  # vehicles need fuel, parts, repair
+
+  reliability:
+    default: skill_checked
+    permitted: [skill_checked, deterministic]
+    # Driving is skill-checked. The legendary vehicle's reputation is
+    # narrative-weighted (it doesn't fail at the worst moment because the
+    # genre says it doesn't).
+
+  counter:
+    - id: bigger_engine
+      description: A faster, better-armed vehicle
+    - id: ambush_terrain
+      description: Choke points, traps, terrain that takes the vehicle's edge away
+    - id: sabotage
+      description: The vehicle as system has many failure points
+    - id: gas_runs_out
+      description: The fundamental Wasteland counter — fuel as time limit
+
+  manifestation:
+    modes: [item_channeled]
+    # Exclusively item-channeled. The vehicle does the magic.
+    # No reflexive, no invoked, no ritual.
+    domains: [physical, spatial]
+    # Spatial = the road itself is a domain; named riders own road segments.
+    domain_constraints:
+      spatial: "linear/route-based, not portal/teleport"
+
+  narrator_register: |
+    The vehicle is a character. Name it, modify it, mourn it. The mechanic
+    is the genre's miracle-worker — describe their work like a priest's
+    rite, except greasier. The road remembers. Every legendary run accrues
+    debt that arrives in the form of rivals, raiders, and wreckers. Don't
+    narrate the supernatural; narrate the mythic. The man with the V8
+    Interceptor is doing magic; the genre calls it a fast car.
+
+  player_options:
+    can_build_caster: false
+    chargen_caster_classes: []
+    chargen_vehicle_required: true   # every character at chargen has a vehicle
+    can_acquire_in_play: true        # vehicles change hands; legendary status accrues
+    vehicle_legend_status: trackable # the schema should track vehicle's mythic weight

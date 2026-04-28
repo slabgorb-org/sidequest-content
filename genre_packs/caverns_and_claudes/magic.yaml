@@ -1,0 +1,89 @@
+# magic.yaml — caverns_and_claudes genre layer
+#
+# Status: DRAFT (2026-04-27) — initial napkin-shape population.
+# Reference: docs/design/magic-taxonomy.md
+#
+# Replaces the misleading `magic_level: none` flag in rules.yaml.
+# True claim: magic items are core gameplay; there are no caster classes;
+# world-knowledge is folkloric (commoners know wizards exist as legend).
+
+magic:
+  intensity:
+    default: 0.3
+    permitted: [0.1, 0.5]
+    # Some worlds (e.g. ruined wizard-tower scenarios) may dial higher
+
+  world_knowledge:
+    default: folkloric
+    permitted: [folkloric, mythic_lapsed]
+    # Commoners know stories. The Delver knows scrolls work because they've
+    # seen them work. Nobody studies. The Wizards are gone.
+
+  visibility:
+    default: feared
+    permitted: [feared, dismissed]
+
+  allowed_sources:
+    - id: item_based
+      label: Item-based
+      always_available: true
+      examples: [scrolls, potions, wands, cursed swords, sealed reliquaries]
+      narrator_note: "Magic is found, not learned. Items are consumable or load-bearing."
+
+    - id: learned
+      label: Learned (ritual knowledge)
+      gated_by: world
+      examples: [forbidden tomes, surviving wizard's notes]
+      narrator_note: |
+        Rare. Ritual knowledge that survives is incomplete and dangerous.
+        Cannot be a player-build option — only narrative.
+      narrative_only: true
+      plugin: learned_v1
+
+    # NOT permitted: innate (any flavor), bargained_for (no patrons
+    # in C&C), divine (no working churches in dungeon-OSR register).
+    # mccoy is a delivery mechanism for item_based (not used here —
+    # the OSR register has scrolls and wands, not invented gadgets).
+
+  required_costs: [components, backlash]
+
+  hard_limits:
+    resurrection: forbidden
+    true_creation: forbidden
+    high_evocation_unlimited: forbidden
+    plane_shift: forbidden
+    permanence_without_renewal: forbidden  # all magic decays / is consumable
+
+  reliability:
+    default: deterministic
+    permitted: [deterministic]
+    # The scroll fires. The potion works. But the item may be cursed,
+    # mislabeled, or tied to a backlash trigger.
+
+  counter:
+    - id: anti_magic_zone
+      description: Dungeon zones where magic fails (classic OSR feature)
+    - id: save_or_die
+      description: Direct attribute saves vs. magical effects
+    - id: destroy_source
+      description: Break the wand, burn the scroll, shatter the orb
+
+  manifestation:
+    modes: [item_channeled]
+    # No reflexive, no invoked, no ritual. The item does the work.
+    domains: [physical, elemental, necromantic, illusory, transmutative]
+    domain_constraints:
+      necromantic: "communing only; no resurrection"
+
+  narrator_register: |
+    Magic is found, not cast. Players don't learn spells — they identify scrolls,
+    drink potions, and wield wands they don't fully understand. Every magical
+    use is a choice to spend a finite resource. The wizards who made these
+    items are gone; the items remember things the world has forgotten.
+    Cursed items are the genre's signature trap — describe them as desirable
+    until the bill arrives.
+
+  player_options:
+    can_build_caster: false
+    chargen_caster_classes: []   # rules.yaml allowed_classes is [Delver]; no casters
+    can_acquire_in_play: true    # finding magic items is core gameplay

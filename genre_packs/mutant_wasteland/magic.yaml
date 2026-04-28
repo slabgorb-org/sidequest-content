@@ -1,0 +1,112 @@
+# magic.yaml — mutant_wasteland genre layer
+#
+# Status: DRAFT (2026-04-27) — initial napkin-shape population.
+# Reference: docs/design/magic-taxonomy.md
+#
+# Replaces the misleading `magic_level: none` flag in rules.yaml.
+# True claim: mutations ARE this pack's magic system. The "Use Mutation"
+# combat action with risk-narration is a magic system in everything but
+# name. Source = Acquired (radiation/exposure) + Innate (born mutants).
+
+magic:
+  intensity:
+    default: 0.6
+    permitted: [0.3, 0.9]
+
+  world_knowledge:
+    default: acknowledged
+    permitted: [acknowledged]
+    # Everyone knows mutations are real. Whole communities are built on the
+    # answer. Some welcome them, some burn them, all acknowledge them.
+
+  visibility:
+    default: feared
+    permitted: [feared, regulated, persecuted, ubiquitous]
+
+  allowed_sources:
+    - id: innate
+      label: Innate (mutation)
+      always_available: true
+      flavors: [born_with, acquired_via_event]
+      # Both flavors collapse into Innate — mutation can come from
+      # birth (second-gen, feral lineage) or radiation exposure
+      # (acquired-via-event). Same plugin, same costs, same plot
+      # engine — different narrative texture.
+      examples:
+        - "born mutant, second-generation drift, feral lineage (born_with)"
+        - "radiation exposure, hot zone contamination, ancient bioweapon (acquired_via_event)"
+      narrator_note: |
+        The Wasteland changes you, OR you were born already changed.
+        Cannot be turned off. The cost is paid for life, not per use.
+
+    - id: learned
+      label: Learned (mutation discipline)
+      gated_by: world
+      prerequisite: innate              # must be Innate-touched to begin training
+      examples: [trained mutant communities, Wasteland psychic schools]
+      narrator_note: |
+        Some worlds have communities that train mutation control.
+        Once trained, the discipline is the active source — the
+        Innate is the prerequisite gate.
+
+    - id: item_based
+      label: Item-based (Ancients' tech)
+      gated_by: world
+      mechanisms: [discovery, mccoy]
+      examples: [the Ancients' working reactor, salvaged power-armor, named gear]
+      narrator_note: |
+        Some worlds admit Ancients' tech as item-magic — though the
+        genre's primary register is mutation. Tech-named-gear is
+        mechanically item_legacy with the salvager flavor of mccoy.
+
+    # NOT permitted: bargained_for, divine (no working pantheon in
+    # the wasteland's secular cosmology by default — worlds may
+    # introduce cult-pantheons as variant)
+
+  required_costs: [backlash, karma, vitality]
+  # Every mutation use must surface visible cost — the rules already require
+  # "narrate a visible side effect on failure." The schema makes this explicit.
+
+  hard_limits:
+    resurrection: forbidden
+    true_creation: forbidden
+    precision_control: forbidden     # mutations are not surgical
+    choice_of_mutation: forbidden    # you don't pick what mutation you got
+    mind_compulsion: with_cost
+
+  reliability:
+    default: skill_checked
+    permitted: [skill_checked, wild]
+    # Default is Instinct skill check (per rules.yaml combat action).
+    # Wild is critical-failure register: visible side effect.
+
+  counter:
+    - id: suppressors
+      description: Old-world tech that dampens mutation expression
+    - id: prejudice
+      description: Social counter — mutants face hostility
+    - id: rad_exhaustion
+      description: Burning out a mutation through overuse
+
+  manifestation:
+    modes: [reflexive, invoked]
+    # Reflexive when mutation surfaces under stress; invoked when used deliberately.
+    # No ritual, no item-channeled (mutations live in the body).
+    domains: [physical, psychic, elemental]
+    domain_constraints:
+      psychic: "blunt only — telepathy is invasive, not surgical"
+
+  narrator_register: |
+    Mutations are visibly costly. Every use should show the cost as well as
+    the power — the third eye opens, but it weeps; the strength comes, but
+    so does the tremor. The Wasteland marks its own. Don't narrate mutations
+    as clean superpowers; narrate them as the body's adaptation to a world
+    that's still trying to kill it. The Ancients' tech and the body's
+    mutation are siblings — both broken miracles.
+
+  player_options:
+    can_build_caster: true            # mutant character builds use this system
+    chargen_mutation_required: false  # not all characters are mutants
+    can_acquire_in_play: true         # exposure events can grant mutations
+    mutation_visibility_to_player: full   # the player sees their mutation
+    mutation_outcomes_visible: false      # the cost is partially hidden
