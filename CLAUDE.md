@@ -12,8 +12,8 @@ This is a personal project under the `slabgorb` GitHub account.
 
 ## SideQuest System Overview
 
-Four repos compose the SideQuest Rust rewrite:
-- **sidequest-api** — Rust game engine and WebSocket API (workspace with 12 crates)
+Four repos compose the SideQuest stack (Python backend per ADR-082, ported from the Rust prototype 2026-04):
+- **sidequest-server** — Python/FastAPI game engine and WebSocket API on port 8765
 - **sidequest-ui** — React/TypeScript game client
 - **sidequest-daemon** — Python media services (image gen, audio library playback)
 - **sidequest-content** — Genre packs (YAML configs, audio, images, world data)
@@ -58,11 +58,13 @@ Unit tests prove a component works in isolation. That's not enough. Every set of
 must include at least one integration test that verifies the component is wired into the
 system — imported, called, and reachable from production code paths.
 
-### Rust vs Python Split
-If it doesn't involve operating LLMs, it goes in Rust. If it needs to run model inference
-(Flux, ACE-Step — not Claude), use Python for library maturity. Claude calls go
-through Rust as CLI subprocesses. (Kokoro TTS was formerly in this list;
-TTS has been removed from the system.)
+### Backend Language
+The server (`sidequest-server`) is Python/FastAPI per ADR-082, ported from a
+Rust prototype in 2026-04. The Rust codebase is preserved read-only at
+https://github.com/slabgorb/sidequest-api for historical reference. New backend
+code goes in Python. Media services (`sidequest-daemon`) remain Python for
+inference library maturity (Flux/Z-Image/ACE-Step). Claude calls go through
+Python subprocesses to the Claude CLI per ADR-001.
 
 ## OTEL Observability Principle
 
@@ -156,7 +158,7 @@ git remote add local /path/to/existing/sidequest-content
 
 ## Consumers
 
-- **sidequest-api** (Rust) — `--genre-packs-path` CLI arg
+- **sidequest-server** (Python) — `SIDEQUEST_GENRE_PACKS` env var
 - **sidequest-daemon** (Python) — `SIDEQUEST_GENRE_PACKS` env var
 - **orchestrator justfile** — `content` variable points here
 - **scripts/** in orchestrator — `generate_poi_images.py`, `generate_music.py`, etc.
