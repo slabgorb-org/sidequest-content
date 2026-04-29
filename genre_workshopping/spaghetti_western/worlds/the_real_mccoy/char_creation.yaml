@@ -1,0 +1,128 @@
+# The Real McCoy — World-level character creation override.
+#
+# The genre pack's spaghetti_western/char_creation.yaml has 5 scenes (origins,
+# crucible, reputation, the_ride, confirmation). This world overrides the
+# `origins` scene ONLY — because in 1878 Pittsburgh the "Frontier Born /
+# City Exile / Border Crosser / War Survivor" race vocabulary doesn't map.
+# Origins in this world are the immigrant-American cultures of the Hill
+# District, Braddock, Deutschtown, Arthursville, and the South Side.
+#
+# Party size: variable 1–4, sweet spot 2. McCoy is firmly NPC.
+#
+# Other chargen scenes (crucible, reputation, the_ride, confirmation)
+# inherit from the genre pack unchanged.
+
+party_size:
+  min: 1
+  max: 4
+  sweet_spot: 2
+  notes: >-
+    One player runs a lean crew-of-one; two players are the intended
+    register (McCoy + Tabitha + Prudence are the permanent NPC ensemble,
+    the PC crew is the mobile complement); three or four works at
+    Monongahela House banquet scenes and mill-floor confrontations but
+    sealed-turn pacing is slower.
+
+inherits_scenes_from_genre_pack:
+  - crucible
+  - reputation
+  - the_ride
+  - confirmation
+
+scenes:
+  - id: origins
+    title: Where Did You Come From?
+    narration: |
+      Gaslight warm on mahogany. The observation car's windows show the coal-smoke haze over the Point, the river glow of a Bessemer heat seven miles east at Braddock. Tabitha McCoy sets down the logistics ledger she has been updating since Altoona. Her father is in the workshop car again, humming something not-quite Joplin. Outside, the Argus folds itself onto the breakfast table on schedule.
+
+      Across from you, a man in a pressed black suit — Mordecai Carrington, editor of the Allegheny Argus — studies you over the rim of his coffee. He is not conducting an interview. He is deciding whether to quote you, and in what cause.
+
+      "Mr. McCoy has a gift for assembling people," he says, "the way he assembles devices. Every one has a use he did not foresee. Before I can write about you, I need to know where you came from — so I can tell the reader what to expect of you."
+
+      Somewhere, a telegraph key chatters. Tabitha picks up a pencil.
+    loading_text: "Carrington waits with the careful patience of a working editor..."
+    choices:
+      - label: Hill District, Black American
+        description: >-
+          You come from the Hill — Arthursville, Wylie Avenue, Bethel AME.
+          Your people have been here since the thirties, since the railroad
+          stations with the hidden compartments. You grew up with barbers
+          who talked politics in three languages and porters who knew
+          more than any senator. Carrington is family, in the civic sense.
+        mechanical_effects:
+          culture: hill_district_black
+          race_hint: Frontier Born
+          background: Hill_Professional
+      - label: Deutschtown, German-American
+        description: >-
+          You came up across the Allegheny in Deutschtown — the 48ers'
+          grandchildren, the brewers and cabinetmakers and machinists.
+          Lutheran or Catholic, Turnverein on Saturday nights, singing
+          club on Sundays. You speak both languages but the workshop
+          tongue is the one that matters. You have opinions about
+          Raubritter you will share only with people you trust.
+        mechanical_effects:
+          culture: deutschtown_german
+          race_hint: City Exile
+          background: German_Craftsman
+      - label: The Point, Irish Catholic
+        description: >-
+          Your family came during the Famine, or right after. You grew up
+          in shantytown on the Hill's north slope or in the Strip, your
+          father a puddler or a streetcar conductor or a policeman, your
+          mother minding seven and burying two. Parish is St. Patrick's
+          or St. Mary of Mercy. You have a rosary and a temper and a
+          memory for debts.
+        mechanical_effects:
+          culture: point_irish_catholic
+          race_hint: City Exile
+          background: Irish_Laborer
+      - label: Braddock, Welsh Puddler Stock
+        description: >-
+          Your people were the technical aristocracy — imported from
+          the South Wales valleys because the US didn't have the skill
+          yet. You know the mills the way other people know scripture.
+          Calvinistic Methodist chapel, Welsh at home, English at work,
+          steel in between. Bill Jones is your godfather or close enough.
+        mechanical_effects:
+          culture: braddock_welsh
+          race_hint: Frontier Born
+          background: Welsh_Mill_Family
+      - label: East Liberty, Scots-Irish Old-Stock
+        description: >-
+          You grew up in the brick Queen Anne houses of East Liberty or
+          Shadyside — old-stock Presbyterian, the Mellons and the Negleys
+          and the Dennys and their orbit. Law, banking, business ownership.
+          You are here because the professional world is open to you and
+          you chose McCoy over a Pittsburgh firm. That choice costs you
+          something at every family dinner.
+        mechanical_effects:
+          culture: east_liberty_scots_irish
+          race_hint: City Exile
+          background: Old_Stock_Professional
+      - label: The South Side, Eastern European Slav
+        description: >-
+          Your family came in the last wave — Poles, Slovaks, Rusyns,
+          Hungarians. Boarding-house on the South Side flats, your father
+          at Jones & Laughlin or in a Frick coke-field crew. You are
+          younger than the others here because your community is new;
+          the 1881 pogrom-wave is still three years out and most of your
+          neighbors arrived in the last five. You speak four languages
+          badly and the Pittsburgh steel shift-whistle perfectly.
+        mechanical_effects:
+          culture: south_side_slavic
+          race_hint: Border Crosser
+          background: Slavic_Laborer
+      - label: Monongahela River, Born Crew
+        description: >-
+          You grew up on the rivers — Mon, Ohio, Allegheny. Towboat
+          families, packet-steamer crews, coal-barge hands. You are as
+          likely Black as white (the rivers have been integrated labor
+          since before the war) and as likely to have visited New Orleans
+          as Braddock. You know currents, locks, ice breakups, and every
+          bartender from here to Cincinnati.
+        mechanical_effects:
+          culture: river_crew
+          race_hint: Border Crosser
+          background: Riverboat_Crew
+    allows_freeform: true

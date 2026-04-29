@@ -1,0 +1,425 @@
+# The Real McCoy — World-level tropes.
+# Pittsburgh 1878–1880, McCoy Industries Ltd. (the train) vs. Raubritter Concern,
+# Pinkertons, the Allegheny Black Press, and the anonymous cohort of replicant-makers.
+#
+# Four-tier escalation (FRESH / EARLY / MID / VETERAN) mapped to at: 0.25 / 0.5 / 0.75 / 1.0
+# to match the sibling world (worlds/dust_and_lead/tropes.yaml) schema.
+#
+# All checks use the genre stat vocabulary (GRIT, DRAW, NERVE, CUNNING, PRESENCE, LUCK)
+# and the genre luck resource from rules.yaml. McCoy stays firmly NPC across every beat;
+# escalation is driven by the PC crew or antagonists.
+
+- id: workshop_briefing
+  name: McCoy's Workshop Briefing
+  description: >-
+    Dr. Granville McCoy lays three inventions on the workbench of the
+    rolling laboratory car and narrates each with the wry affection of
+    a man who has just made a toaster that also writes its owner's will.
+    The crew picks what it carries. What it leaves behind is not
+    forgotten — it merely defers its utility.
+  category: meta
+  triggers:
+    - approach the workshop car
+    - McCoy calls the crew forward
+    - dispatch arrives and a mission forms
+  narrative_hints:
+    - three devices on a baize cloth, each labelled in McCoy's copperplate
+    - the Crookes tube in the corner hums at a pitch that sets teeth on edge
+    - Tabitha stands by the door with the logistics ledger, already costing out the absurd one
+  tension_level: 0.15
+  resolution_hints:
+    - crew selects two devices, McCoy presents the third as a gift and it comes anyway
+    - crew requests a specific invention; McCoy builds something tangential and insists it is "related"
+    - crew realizes mid-mission that the discarded device was the actual answer
+  tags: [meta, briefing, inventions, mccoy]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. Three devices are presented. The crew reads the labels,
+        weighs the baize, picks the two that obviously solve the stated
+        problem. The absurd one stays on the bench. McCoy nods as if he
+        already knew.
+      npcs_involved: [Dr. Granville McCoy, Tabitha McCoy]
+      stakes: Loadout is chosen. The discarded device will resurface at cost.
+    - at: 0.5
+      event: >-
+        EARLY. In the field, the crew finds that one of the chosen
+        devices does something adjacent to its stated purpose, and the
+        absurd one — carried by Tabitha's logistics note against advice —
+        becomes the hinge of the whole encounter.
+      npcs_involved: [Tabitha McCoy]
+      stakes: Luck -1 if the crew refused the "gift" and must improvise.
+    - at: 0.75
+      event: >-
+        MID. The crew starts requesting inventions by name before missions.
+        McCoy listens with polite attention and builds something tangentially
+        related instead. He is not being difficult. He is already three
+        problems ahead.
+      npcs_involved: [Dr. Granville McCoy]
+      stakes: CUNNING check to parse McCoy's tangent; success reveals the second-order use.
+    - at: 1.0
+      event: >-
+        VETERAN. McCoy presents an invention the crew did not ask for.
+        Across the next three scenes it answers a question the crew had
+        not yet articulated. The uncanny attentive moment — McCoy almost
+        looks at the crew the way Prudence does.
+      npcs_involved: [Dr. Granville McCoy, Prudence]
+      stakes: The crew understands something about McCoy they did not before. Reputation with Bethel AME +1.
+  passive_progression:
+    rate_per_turn: 0.0
+    rate_per_day: 0.0
+    accelerators: [workshop, invention, briefing, commission, dispatch, prototype]
+    decelerators: [skip workshop, decline briefing, refuse load]
+    accelerator_bonus: 0.12
+    decelerator_penalty: 0.08
+
+- id: the_weaponization
+  name: The Weaponization
+  description: >-
+    Every McCoy invention finds its second life in somebody else's hand.
+    The world is an ongoing inventory of this pattern. The narrator
+    renders McCoy's benign intent and the world's misuse with equal
+    sincerity — the sincerity-gap is the mood. The crew's job is to
+    decide whether each Weaponization gets disrupted, documented, or
+    absorbed into the permanent ledger.
+  category: meta
+  triggers:
+    - newspaper dispatch mentions a McCoy device
+    - witness a McCoy invention being used
+    - rumor of anomalous use
+    - Carrington asks the crew for comment
+  narrative_hints:
+    - a newspaper clipping folded onto the breakfast table
+    - a telegram in the workshop car's brass tray, addressed TO MCCOY INDUSTRIES LTD
+    - a worker at a mill lifts a device that should not be here
+  tension_level: 0.55
+  resolution_hints:
+    - disrupt the misuse (costly, rare, loud — accelerator for Raubritter's retaliation trope)
+    - document through Carrington's Argus (cheap, slow, Reputation with Black Press +1)
+    - live with it and add the entry to McCoy Industries' private ledger
+  tags: [meta, plowshares_swords, press, ethics]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. The crew sees a McCoy invention being used for its intended
+        purpose. Good feelings. The inventor's napkin-sketch made the
+        world marginally better today.
+      npcs_involved: [Dr. Granville McCoy]
+      stakes: Baseline. Luck +1 on a PRESENCE check to share the moment with an onlooker.
+    - at: 0.5
+      event: >-
+        EARLY. A newspaper dispatch mentions anomalous use. The Pittsburg
+        Leader attributes it to progress; the Allegheny Argus attributes
+        it to Raubritter; the Monongahela House staff know who actually
+        placed the order.
+      npcs_involved: [Mordecai Carrington]
+      stakes: CUNNING check to identify the actor from press angles. Failure costs +1 tension on the next chapter trope.
+    - at: 0.75
+      event: >-
+        MID. The crew confronts the misuse in the act — a foreman with
+        the monocle, a Pinkerton with the pocket-telegraph, a widow with
+        the vibrotelegraph. The actor is named.
+      npcs_involved: [Agent Oscar Holm]
+      stakes: Decision point. Disrupt sets Raubritter faction hostility +2; document sets Argus faction +2; absorb sets McCoy Industries Luck reserve +1 but the Weaponization becomes permanent.
+    - at: 1.0
+      event: >-
+        VETERAN. The ledger entry is written. Plowshares tend to stay
+        swords. The world adds the Weaponization to its permanent
+        inventory. McCoy, asked later, says "that is interesting" and
+        returns to his bench.
+      npcs_involved: [Dr. Granville McCoy, Tabitha McCoy]
+      stakes: Permanent world-state shift. The invention appears in future scenes with its secondary use already known.
+  passive_progression:
+    rate_per_turn: 0.015
+    rate_per_day: 0.035
+    accelerators: [weaponize, misuse, dispatch, clipping, commission, repurposed, press]
+    decelerators: [recall, destroy prototype, disrupt, patent challenge]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: real_mccoy_among_us
+  name: A Real McCoy Is Among Us
+  description: >-
+    A new hire at a mill, a clerk at a law office, a nurse at a ward,
+    or a footman at Raubritter's Shadyside residence shows odd tells —
+    a handshake a degree too firm, a memory a week too accurate, a
+    respiration rhythm a touch too even. Every replicant serves a
+    maker and carries a mission. None of them know, reliably, how
+    many others exist. The crew's Real McCoy Verification protocol
+    (Voight-Kampff-analogue from the parlor-game register) is their
+    only way to tell.
+  category: infiltration
+  triggers:
+    - new hire arrives at a watched institution
+    - someone fails a social tell in a way the crew catches
+    - Prudence indicates another like herself
+    - Carrington publishes a suspect-profile column
+  narrative_hints:
+    - a perfect handshake at the wrong altitude
+    - recall of last week's conversation in a register too precise
+    - the music-box cadence under the humming while they work
+    - a pulse check that does not match the breath
+  tension_level: 0.6
+  resolution_hints:
+    - expose the maker publicly (Carrington prints; faction war escalates)
+    - turn the replicant against its maker (high-CUNNING, costly)
+    - neutralize quietly (Holm's Pinkertons will want the body; bad outcome)
+    - recruit/defect (Prudence precedent; requires PRESENCE + LUCK)
+  tags: [replicant, infiltration, verification, plowshares_swords]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. Rumor. The new hire at Edgar Thomson's hiring line, or
+        the footman at Raubritter's house, or the nurse at West Penn
+        Hospital, is off somehow. Bill Jones mentions it over coffee.
+        Prudence stills when his name is spoken, which is data.
+      npcs_involved: [Capt. Bill Jones, Prudence]
+      stakes: NERVE check to take the tip seriously without spooking the mark. Failure wastes 1 day and the subject relocates.
+    - at: 0.5
+      event: >-
+        EARLY. Real McCoy Verification at a parlor register — the crew
+        engineers an ordinary social encounter (tea, a card game, a
+        hymnal passing) and runs the protocol. CUNNING + PRESENCE
+        contested against the replicant's composure. The tells compound.
+      npcs_involved: [Prudence, Dr. Abigail Teague]
+      stakes: >-
+        On success, subject confirmed and maker-hint revealed — one of
+        Raubritter Concern, US War Department, British War Office,
+        French Third Republic, Imperial Germany, the Okhrana cell,
+        Victorio's refugees, or Frick. On failure, the subject makes
+        the crew and the encounter escalates to standoff.
+    - at: 0.75
+      event: >-
+        MID. Extraction, interrogation, or neutralization. The replicant's
+        mission is revealed (or withheld at cost). Dr. Teague's medical
+        car is the only safe space for interrogation. Holm's Pinkertons
+        are already asking questions in the Strip.
+      npcs_involved: [Agent Oscar Holm, Dr. Abigail Teague]
+      stakes: Spend 1 Luck to avoid Pinkerton interception, OR succeed at a NERVE-contested Sizing Up at the medical car's threshold. Maker-identity is the payoff.
+    - at: 1.0
+      event: >-
+        VETERAN. The maker is known by name. The crew chooses: expose
+        publicly (Carrington prints, Raubritter or the federal lever
+        attacks McCoy's patents), turn the replicant on its maker (an
+        Instrument-class action), bury the incident (Argus is angry,
+        Prudence is quiet for a week), or the replicant defects and
+        Tabitha assigns it a car.
+      npcs_involved: [Cornelius Raubritter, Mordecai Carrington, Tabitha McCoy]
+      stakes: Permanent faction delta. One maker loses an asset; one faction loses or gains standing with McCoy Industries.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.03
+    accelerators: [replicant, verification, handshake, new hire, infiltrate, mission, maker, uncanny]
+    decelerators: [ignore the tell, trust the source, dismiss the rumor]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: watchmakers_apprentice
+  name: The Watchmaker's Apprentice
+  description: >-
+    Silas Markham is in Paris, by wire. He was McCoy's apprentice; now
+    he is the leak. Every month another set of plans surfaces in a new
+    capital — Berlin, St. Petersburg, Washington — carrying McCoy's
+    pencil marks and Markham's charm. The crew cannot reach Paris.
+    They can reach the buyer.
+  category: pursuit
+  triggers:
+    - dispatch from Paris or a transatlantic cable via Heart's Content
+    - a new McCoy device turns up in a hand it should not be in
+    - Tabitha's ledger shows an unaccounted-for schematic copy
+  narrative_hints:
+    - a cable arrives with European originating codes — Paris, Berlin, Vienna
+    - a device bears McCoy's signature notch but a different serial number
+    - a Pittsburg Leader ad offering "continental engineering consultation"
+  tension_level: 0.5
+  resolution_hints:
+    - identify the buyer and confront them in Pittsburgh
+    - bait Markham with a honeypot schematic Tabitha engineers
+    - map the betrayal-network piece by piece over the campaign
+  tags: [betrayal, espionage, pursuit, plowshares_swords]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. Dispatch from Paris. Markham has sold another copy.
+        The wire costs $100 minimum at $10 per word and says only
+        six: PLANS MOVED STOP BUYER UNKNOWN STOP. The crew has the
+        stub of a trail.
+      npcs_involved: [Tabitha McCoy]
+      stakes: CUNNING check vs. the ledger to identify which schematic. Failure delays the trace 1 day; success opens the buyer-trail.
+    - at: 0.5
+      event: >-
+        EARLY. A name surfaces. A Pittsburgh-based buyer — front for
+        a continental power — places an order at the Monongahela
+        House or hires out of the Strip District. The staff tip
+        Carrington and Carrington tips McCoy Industries.
+      npcs_involved: [Mordecai Carrington]
+      stakes: PRESENCE check to cultivate the informant without paying Pinkerton prices. Failure costs 10 gold to the broker; success unlocks the confrontation beat.
+    - at: 0.75
+      event: >-
+        MID. The crew confronts the buyer or their operatives in
+        Pittsburgh — downtown office, Shadyside parlor, Sewickley
+        dock. Holm's Pinkertons may already be guarding the exit.
+        Standoff-eligible.
+      npcs_involved: [Agent Oscar Holm, Cornelius Raubritter]
+      stakes: Confrontation escalates per rules.yaml standoff. Spend 2 Luck to Cheat Death if a Pinkerton shot connects. On success the schematic is recovered or destroyed.
+    - at: 1.0
+      event: >-
+        VETERAN. A lead on Markham's actual location — Hôtel du Louvre,
+        Marseille dockhouse, Biarritz villa. The campaign rarely catches
+        him. He keeps moving. The betrayal-network is mapped one
+        node at a time; each VETERAN resolution adds a node to the crew's
+        private ledger.
+      npcs_involved: [Silas Markham]
+      stakes: Permanent world-state map entry. Future Watchmaker's Apprentice cycles start one beat further along.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.03
+    accelerators: [paris, markham, plans, schematic, leak, buyer, continental, betrayal]
+    decelerators: [honeypot, counter-intelligence, revise plans]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: bessemers_shadow
+  name: The Bessemer's Shadow
+  description: >-
+    Edgar Thomson Steel is dismissing men faster than the furnace can
+    cool them off, and the pattern is visible to anyone standing at
+    the hiring line: the rejections carry McCoy's monocle, a fluoroscope
+    device he built to let the mill medic catch silicosis early and
+    treat it. The foremen use it to cull. Bill Jones is furious. The
+    workers do not yet know the name of the tool that unmade them.
+  category: labor
+  triggers:
+    - rumor of mass dismissals at Edgar Thomson or Jones & Laughlin
+    - Bill Jones sends a dispatch with the words QUIET WORD
+    - a McCoy fluoroscope monocle is seen at a hiring line
+  narrative_hints:
+    - Welsh puddlers' clogs gathering at the mill gate at dawn
+    - a foreman with a brass monocle held to a green-card inspector's lamp
+    - Bessemer flare lighting the Mon valley orange at 2 a.m., a rejected worker walking home
+  tension_level: 0.65
+  resolution_hints:
+    - expose through Carrington's Argus (Raubritter's paper counter-attacks; Bethel AME rallies)
+    - sabotage the monocles (Weaponization is disrupted; Raubritter retaliates via Pinkertons)
+    - petition management through Bill Jones (slow, partial, sustainable; the pattern persists at other mills)
+  tags: [labor, weaponization, ethics, pittsburgh]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. A Welsh puddler and a Black Pullman porter compare
+        notes at Monongahela House. Both know men dismissed without
+        stated cause. The pattern is visible but not spoken. Bill
+        Jones has not yet heard how they are doing it.
+      npcs_involved: [Capt. Bill Jones]
+      stakes: CUNNING check to correlate names across the mill list. Failure delays the investigation 2 days.
+    - at: 0.5
+      event: >-
+        EARLY. The crew identifies the tool — the fluoroscope monocle,
+        McCoy's invention, being used to reject anyone with TB,
+        silicosis, old injury, or coal-pneumoconiosis at the hiring
+        gate. Dr. Teague confirms the physics with a grim nod.
+      npcs_involved: [Dr. Abigail Teague, Capt. Bill Jones]
+      stakes: >-
+        The Weaponization is named. Trigger workshop_briefing
+        acknowledgement — McCoy must be told. Spend 1 Luck to avoid
+        Carrington learning first.
+    - at: 0.75
+      event: >-
+        MID. The crew confronts the foremen. Options: expose
+        (Carrington prints, Raubritter's paper counter-prints,
+        Pinkertons take interest in the crew), sabotage (the monocles
+        disappear overnight; the Bessemer's Shadow re-emerges at
+        Jones & Laughlin three weeks later), or petition (Bill
+        Jones pressures from inside; the foremen at Edgar Thomson
+        stand down but the practice spreads).
+      npcs_involved: [Agent Oscar Holm, Capt. Bill Jones, Mordecai Carrington]
+      stakes: Decision point. Each resolution has a permanent faction consequence; see tags under resolution_hints. All three paths cost 1 Luck.
+    - at: 1.0
+      event: >-
+        VETERAN. The monocles at Edgar Thomson are reclaimed,
+        altered, or publicly disgraced. Other mills adopt the
+        technique independently — the Weaponization persists at
+        regional scale. The crew managed the local case. The Argus
+        runs a follow-up; Raubritter's paper runs a dismissal;
+        Bethel AME holds a Wednesday-night meeting to discuss
+        "tools of industry."
+      npcs_involved: [Mordecai Carrington, Capt. Bill Jones]
+      stakes: The Weaponization graduates to permanent world-state. The monocle's secondary use is canonical.
+  passive_progression:
+    rate_per_turn: 0.014
+    rate_per_day: 0.03
+    accelerators: [mill, hiring line, fluoroscope, monocle, dismissal, silicosis, puddler, bessemer]
+    decelerators: [petition, buy back monocles, close hiring line]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: presidential_request
+  name: The Presidential Request
+  description: >-
+    A telegram from Washington. The President needs us. The nature of
+    the crisis is vague because the wire is vague. Federal money is
+    generous; federal missions are morally complicated. The crew must
+    decide whether McCoy Industries is a contractor to the United
+    States government — and if it declines, whether Raubritter will
+    take the contract instead.
+  category: political
+  triggers:
+    - an executive branch telegram arrives on the workshop car's tray
+    - a federal operative in a pressed wool suit boards at Braddock
+    - Washington names McCoy in a dispatch
+  narrative_hints:
+    - a telegram bearing the routing code WU-WAS-EX
+    - a man in a pressed wool suit studying the crew from two cars back
+    - McCoy reading the dispatch, setting it down, returning to a flame-cutter
+  tension_level: 0.55
+  resolution_hints:
+    - complete the mission and bear the moral weight (federal leverage +1, reputation with Black Press -1)
+    - decline and bear the political consequence (Raubritter picks up the contract; faction hostility +1)
+    - perform the mission on altered terms (PRESENCE-heavy, requires McCoy consultation)
+  tags: [political, federal, ethics, plowshares_swords]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. The telegram arrives. The workshop car's brass tray
+        chimes. The routing is unambiguous. The content is euphemism.
+        Tabitha unfolds it twice and says "he wants us."
+      npcs_involved: [Tabitha McCoy]
+      stakes: LUCK check at thresholds 3+ for a clear read of subtext. Failure means the crew walks in blind.
+    - at: 0.5
+      event: >-
+        EARLY. Federal envoy meets the crew — in Washington if they
+        travel, on the train if the envoy boards at Braddock. The
+        crisis becomes specific: federal tech request for the Indian
+        Wars (Apache-country fluoroscopes for "identifying non-combatants"),
+        or a covert item for the Secret Service, or a device for the
+        Treasury's Silver Act enforcement. Every one is a Weaponization
+        in progress.
+      npcs_involved: [Federal Operative]
+      stakes: CUNNING check to identify the actual end-use behind the stated one. Success reveals the mission's real price.
+    - at: 0.75
+      event: >-
+        MID. Decision. Complete (the moral weight is entered in the
+        ledger; McCoy is silent about it for a week), decline (Raubritter's
+        paper runs a "patriotism" hit piece within 48 hours), or
+        renegotiate (McCoy is consulted and offers an oblique device
+        that solves a different problem the federals didn't know they
+        had). Carrington is watching. So is Holm.
+      npcs_involved: [Dr. Granville McCoy, Federal Operative]
+      stakes: Spend 2 Luck to renegotiate. Each outcome has a permanent faction delta; the crew cannot cleanly exit.
+    - at: 1.0
+      event: >-
+        VETERAN. The federal relationship is either reinforced (more
+        missions, more leverage, more ethical compromises piled in
+        Tabitha's ledger) or strained (McCoy Industries politically
+        exposed, Raubritter picks up the next contract, the Argus runs
+        a cautious editorial). The world's understanding of McCoy
+        Industries shifts.
+      npcs_involved: [Dr. Granville McCoy, Cornelius Raubritter]
+      stakes: Permanent world-state shift. Future presidential_request cycles open at a tension_level modified by the prior resolution.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.025
+    accelerators: [washington, president, federal, telegram, dispatch, secret service, indian wars, treasury]
+    decelerators: [decline, counter-propose, delay reply, consult mccoy]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03

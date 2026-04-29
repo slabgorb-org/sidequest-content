@@ -1,62 +1,70 @@
 # Dust and Lead — World-Specific Visual Style
 # Overrides genre defaults for the Sangre Territory setting.
-# Chihuahuan desert specifics — red rock, white alkali, the river.
+# Positive suffix is era + biome + film-stock only — no POI-specific objects.
+# Specific locations (Sangre River, mission walls, ranch buildings) belong in
+# per-POI visual_prompt fields, not in this world-level suffix.
 
 positive_suffix: >-
   cinematic western film still, harsh Chihuahuan desert midday sun,
-  red rock canyons and white alkali flats, the Sangre River cutting
+  red rock canyons and white alkali flats, a wide muddy river cutting
   through dusty lowland, adobe mission walls and wooden ranch buildings,
   sweat on leather, extreme close-up Leone framing, 1860s frontier
   clothing and equipment, Technicolor film grain, Mexican and Anglo
-  frontier architecture side by side, the railroad's iron reaching west
+  frontier architecture side by side, freshly laid steel rail reaching
+  west. Storefronts, posters, and saloon facades in frame are weathered
+  blank wood or paper with abstract paint scars rather than legible
+  writing. No text, no caption, no writing, no lettering, no signage,
+  no posters with words, no film sprocket border, no camera info overlay,
+  no date stamp, no subtitle, no production credit, no watermark, no
+  frame.
 
-negative_prompt: >-
-  clean, new, shiny, soft lighting, pastel colors, modern, anime,
-  cartoon, green lush landscape, snow, rain, fantasy, medieval,
-  armor, swords, magic, neon, digital art, 3d render, smooth skin,
-  prairie grassland, Pacific coast, forest
+# Z-Image Turbo ignores negative_prompt at guidance_scale=0. All constraints
+# live in positive_suffix. See PROMPTING_Z_IMAGE.md.
+negative_prompt: ""
 
 preferred_model: dev
 
 base_seed: 1966
 
 visual_tag_overrides:
-  town: >-
-    sun-bleached frontier town with wooden false-front buildings, a
-    dusty main street wide enough for a stagecoach, a saloon with
-    batwing doors, a general store, hitching posts, horses standing
-    in thin shade, heat shimmer rising from packed earth
-  ranch: >-
-    adobe ranch house with a covered porch, corrals of weathered
-    timber, cattle visible in the distance, cottonwood trees along
-    an irrigation ditch, a windmill turning slowly, the mountains
-    blue in the background
-  cantina: >-
-    interior of a Mexican cantina, cool dark adobe walls, a wooden
-    bar stained with decades of use, candles in tin holders, a guitar
-    leaning against the wall, colorful papel picado banners, the
-    sound of someone who was just talking stopping
-  river: >-
-    the Sangre River — wide, shallow, muddy brown, cottonwoods on
-    both banks, a ford crossing with wheel ruts, the Mexican side
-    visible through river willows, footprints and hoofprints in
-    the mud bank
-  canyon: >-
-    red rock canyon with sheer walls, narrow passage, shade that
-    feels like ambush, petroglyphs visible on the rock face,
-    a thin stream at the bottom, hawk circling overhead
-  desert: >-
-    Chihuahuan desert stretching to the horizon, creosote bush
-    and mesquite, white alkali patches, distant mountains purple
-    with haze, a road that's really just wheel tracks in dust,
-    vultures circling something you can't see yet
-  railroad: >-
-    fresh-laid railroad track stretching into desert, wooden ties
-    on gravel bed, survey stakes with red flags, a work crew in the
-    distance, a water tower, the iron and wood geometry of progress
-    cutting through wilderness
-  mission: >-
-    Spanish colonial mission with crumbling adobe walls, a bell tower
-    with one bell, a graveyard with wooden crosses, prickly pear
-    cactus growing through the walls, interior cool and dark with
-    painted santos on the altar
+  town:
+    >-
+    A sun-bleached frontier town of timber false-fronts along a wide dirt
+    main street, hitching posts and a single horse in thin shade, heat
+    shimmer off packed earth under hard overhead sun.
+  ranch:
+    >-
+    An adobe ranch house with a covered porch and weathered corrals, a
+    dry fountain in a dusty courtyard, cottonwoods along an irrigation
+    ditch and blue mountains on the horizon, amber late-afternoon sun.
+  cantina:
+    >-
+    The cool dim interior of a Mexican cantina, thick adobe walls and
+    dried chile strings from ceiling beams, candles in tin holders and
+    papel picado banners over a scarred wooden bar, warm lantern glow.
+  river:
+    >-
+    A wide shallow muddy-brown river at a ford, pale cottonwoods peeling
+    in the heat on both banks, a stretched rope bank to bank and hoof
+    marks churning the mud, midday sun.
+  canyon:
+    >-
+    A red sandstone canyon with sheer three-hundred-foot walls closing
+    to a narrow passage, a bright slash of sky overhead, boulders on the
+    floor and a thin stream at the bottom, deep shade and hard contrast.
+  desert:
+    >-
+    Chihuahuan desert to the horizon, creosote and mesquite on cracked
+    earth, white alkali patches and distant purple mountains, a wagon
+    track dissolving into dust, hard overhead sun.
+  railroad:
+    >-
+    Fresh-laid steel rail on a gravel bed cutting through open desert,
+    wooden ties stretching to the vanishing point, survey stakes with
+    red ribbons along the grade, a lone water tower, hard afternoon
+    light.
+  mission:
+    >-
+    A Spanish colonial mission of crumbling adobe, a single-bell tower
+    and a graveyard of weathered wooden crosses, prickly pear growing
+    from the wall base, amber late-day sun on the plastered facade.

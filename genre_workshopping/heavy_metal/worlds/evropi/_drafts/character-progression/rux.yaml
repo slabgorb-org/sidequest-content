@@ -1,0 +1,233 @@
+# Rux — Kobold Rogue, Tismenni servant-line
+# Layered on top of heavy_metal/progression.yaml baseline affinity effects.
+
+character:
+  save_id: rux
+  name: Rux
+  race: Kobold
+  class: Rogue
+  affinity_emphasis:
+    primary: [Lore, Ruin]
+    secondary: [Iron, Court]
+    rare: [Craft]
+    absent: [Pact]
+
+starting_kit:
+  label: "Servant of the Old Line"
+  flavor: "The Tismenni taught their servants three kinds of attention: what is written, where to strike, and how not to be seen."
+  grants:
+    - id: kept_the_masters_books_kit
+      label: "Kept the Master's Books"
+      narration_hint: |
+        Rux recognizes a sigil, script, or heraldry from 12,000-year
+        archive-memory. Narrator reveals one true fact about any written
+        or sigiled object he touches, once per scene, auto-success.
+      effects:
+        - { type: lore_reveal_bonus, scope: written_object }
+
+    - id: strike_from_the_low_line_kit
+      label: "Strike from the Low Line"
+      narration_hint: |
+        Rux's strikes land where Tismenni scholars taught their servants
+        to strike. Narrator describes precision, not force — scholar-killer
+        language, never duelist. STR 8 is not a constraint on his damage
+        language.
+      effects:
+        - { type: leverage_bonus, beat_id: strike, target_edge_delta_mod: -1 }
+
+    - id: already_dismissed_kit
+      label: "Already Dismissed"
+      narration_hint: |
+        Once per scene while Rux is at half Edge or below, an enemy's eye
+        slides past him; a successful beat of his restores composure the
+        narrator describes as the posture of having been overlooked.
+      effects:
+        - { type: edge_recovery, trigger: { type: on_beat_success, while_strained: true }, amount: 2 }
+
+trunk:
+  id: the_dog_that_listens
+  label: "The Dog That Listens"
+  narration_hint: |
+    When an NPC has addressed Rux as an animal within the last exchange,
+    Rux's indignation is attentive. Something the NPC did not mean to reveal
+    becomes legible to him — a glanced-at door, a mispronounced name, a
+    ledger left open. He has not stopped explaining, and the world has not
+    stopped correcting him. Narrator: he takes offense every time. This is
+    mechanically productive.
+  effects:
+    - { type: lore_reveal_bonus, scope: scene_subtext }
+
+paths:
+  - id: silent_servant
+    label: "Silent Servant"
+    flavor: "The listener-at-doors. Tismenni inheritance is overhearing, not speaking."
+    nodes:
+      - tier: 1
+        id: kept_the_masters_books
+        label: "Kept the Master's Books"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:1"
+        narration_hint: |
+          Rux recognizes a sigil, script, or heraldry from 12,000-year
+          archive-memory. The narrator reveals one true fact about any
+          written or sigiled object he touches, once per scene, auto-success.
+        effects:
+          - { type: lore_reveal_bonus, scope: written_object }
+
+      - tier: 2
+        id: the_room_before_the_scholar_entered
+        label: "The Room Before the Scholar Entered"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:2"
+        narration_hint: |
+          When the destination is an archive, court, or chamber of record,
+          Rux arrives first. The first obstacle of infiltration does not
+          resolve against him — narrator describes him already past it.
+        effects:
+          # TODO ADR-082+ — needs BetweenConfrontationsAction variant for
+          # "auto-skip first infiltration beat." Sensible day-1 approximation
+          # is a large beat_discount on an infiltration chase beat:
+          - { type: beat_discount, beat_id: vanish, edge_delta_mod: -2 }
+
+      - tier: 3
+        id: twelve_thousand_years_of_listening
+        label: "Twelve Thousand Years of Listening"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Rux declares he knows something only a Tismenni servant would know.
+          Narrator must make it true, and must make it matter within the
+          same scene.
+        effects:
+          - { type: lore_reveal_bonus, scope: tismenni_artifact }
+
+  - id: defender_of_the_master
+    label: "Defender of the Master"
+    flavor: "Precision, not duel. The scholar-killer techniques his line was taught."
+    nodes:
+      - tier: 1
+        id: strike_from_the_low_line
+        label: "Strike from the Low Line"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Iron:tier:1"
+        narration_hint: |
+          Rux's strikes land where Tismenni scholars taught their servants
+          to strike. Narrator describes precision, not force — scholar-killer
+          language, never duelist. STR 8 is not a constraint on his damage
+          language.
+        effects:
+          - { type: leverage_bonus, beat_id: strike, target_edge_delta_mod: -1 }
+
+      - tier: 2
+        id: between_the_ribs_between_the_words
+        label: "Between the Ribs, Between the Words"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Iron:tier:2"
+          usage: "1/scene"
+        narration_hint: |
+          When an enemy is mid-speech, Rux's attack resolves inside the
+          sentence — the enemy's own words are the last thing they say.
+          Particularly triggers when the enemy is speaking over Rux or about
+          him as if he weren't there.
+        effects:
+          - { type: leverage_bonus, beat_id: committed_blow, target_edge_delta_mod: -2 }
+
+      - tier: 3
+        id: the_master_is_still_protected
+        label: "The Master Is Still Protected"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Iron:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Rux declares a ward on one named companion. The next blow that
+          would break that companion lands on Rux instead; he survives it
+          by the narrator's grace (1 Edge remaining).
+        effects: []  # TODO ADR-082+ — needs AllyEdgeIntercept variant (redirect
+                      # target_edge_delta from ally to self, clamp self Edge to 1)
+
+  - id: the_unfound
+    label: "The Unfound"
+    flavor: "Ruin because he has been overlooked for twelve millennia. Craft because locks, bodies, and doors all have joints."
+    nodes:
+      - tier: 1
+        id: already_dismissed
+        label: "Already Dismissed"
+        milestone_category: ruin
+        grant_trigger:
+          condition: "affinity:Ruin:tier:1"
+          usage: "1/scene"
+        narration_hint: |
+          Once per scene, an enemy's eye slides past Rux; a targeted action
+          resolves against someone or something else. Narrator describes why.
+        effects:
+          - { type: edge_recovery, trigger: { type: on_beat_success, while_strained: true }, amount: 2 }
+
+      - tier: 2
+        id: joints_of_a_thing
+        label: "Joints of a Thing"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Craft:tier:1"
+        narration_hint: |
+          Any Tismenni-make lock, door, or mechanism opens at Rux's touch
+          without check. Period. Cost — leaves a trace the next
+          Tismenni-trained eye will recognize.
+        effects: []  # TODO ADR-082+ — needs BetweenConfrontationsAction variant
+                      # for "auto-bypass Tismenni-make obstacle."
+
+      - tier: 3
+        id: not_where_the_blade_lands
+        label: "Not Where the Blade Lands"
+        milestone_category: ruin
+        grant_trigger:
+          condition: "affinity:Ruin:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          For one exchange, Rux is not in the room as far as enemies perceive
+          him. Narrator writes him out and back in. Hostile actions that
+          would have targeted him do not.
+        effects: []  # TODO ADR-082+ — needs EdgeThresholdDelay variant (conditional
+                      # immunity to targeting for one exchange)
+
+capstones:
+  unlock_condition: "any path tier 2 reached"
+  choose: 1
+  options:
+    - id: the_tongue_kept
+      label: "The Tongue Kept"
+      narration_hint: |
+        Rux begins speaking Tismenni aloud. NPCs who hear it save vs.
+        composure; some lose it. The Wazdia now writes his name in ink,
+        not pencil.
+      permanent_effect: "Rux may speak Tismenni. NPCs flinch at the older register."
+      effects:
+        - { type: leverage_bonus, beat_id: argue, target_edge_delta_mod: -1 }
+
+    - id: the_master_remembered
+      label: "The Master Remembered"
+      narration_hint: |
+        Rux carries a relic of a named Tismenni scholar. Once per long rest,
+        the scholar advises him. Cost — the scholar also judges him, and
+        tells him when he's wrong.
+      permanent_effect: "Narrator may voice the scholar once per session, with honest critique."
+      effects:
+        - { type: lore_reveal_bonus, scope: tismenni_artifact }
+
+    - id: the_name_that_is_not_dog
+      label: 'The Name That Is Not "Dog"'
+      narration_hint: |
+        Once per scene, Rux may force a correction. If the NPC refuses the
+        correction, treat them as openly hostile to Rux specifically for
+        the rest of the scene. He is allowed to let insults pass in a
+        crisis — but the narrator may have him occasionally correct the
+        wrong person anyway.
+      permanent_effect: "The world is on notice. Rux's name is load-bearing."
+      effects:
+        - { type: leverage_bonus, beat_id: press_obligation, target_edge_delta_mod: -1 }

@@ -1,10 +1,24 @@
+# macOS
 .DS_Store
-.source_files
+AB615685-*
 
-# Bulk asset libraries — stored outside the repo, symlinked in.
-# See ~/Projects/assets/ for actual files.
-/sound_effects
+# LoRA directories ship deployed artifacts (.safetensors, .ckpt) — source material is not tracked.
+# Training datasets (lora-datasets/) are local-only per machine.
+lora/**/*.jpg
+lora/**/*.jpeg
+lora/**/*.png
+lora/**/*.webp
+lora/**/*.txt
+lora/**/*.sqlite3
+lora/**/*.sqlite
+lora/**/.DS_Store
+lora/**/_raw/
+lora/**/_pages/
+lora-datasets/
 
-# LoRA training inputs — datasets of image/caption pairs, stored outside tracking.
-# Product artifacts (.safetensors, .ckpt) remain tracked under lora/ via LFS.
-/lora_datasets/
+# Local build/run artifacts
+.source_files/
+runs/
+
+# Commercial sound library (licensed, not redistributable) — symlinked out of repo
+sound_effects

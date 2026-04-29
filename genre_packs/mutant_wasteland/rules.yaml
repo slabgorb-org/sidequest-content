@@ -1,6 +1,11 @@
 tone: gonzo-sincere
 lethality: moderate
 magic_level: none
+# DRAFT (2026-04-27): the `magic_level` flag is being retired and is wrong here.
+# Mutations ARE this pack's magic system — the "Use Mutation" combat action with
+# its risk-narration rules is structurally a magic system. Source = Acquired
+# (radiation) + Innate (born mutants). See ./magic.yaml for the full napkin-shaped
+# truth and docs/design/magic-taxonomy.md for the framework.
 
 stat_generation: point_buy
 point_buy_budget: 27
@@ -17,7 +22,7 @@ allowed_classes:
   - Scavenger
   - Mutant
   - Pureblood
-  - Synth
+  - Wirewalker
   - Beastkin
   - Tinker
 
@@ -32,50 +37,48 @@ allowed_races:
 race_label: Stock
 class_label: Calling
 
-class_hp_bases:
-  Scavenger: 8
-  Mutant: 10
-  Pureblood: 8
-  Synth: 12
-  Beastkin: 10
-  Tinker: 6
 
 # ── Confrontations ──────────────────────────────────────────
 confrontations:
   - type: negotiation
     label: "Wasteland Parley"
     category: social
-    metric:
+    player_metric:
       name: leverage
-      direction: bidirectional
-      starting: 5
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: leverage
+      starting: 0
+      threshold: 10
     beats:
       - id: persuade
         label: "Make Your Case"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: Presence
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
         label: "Threaten"
-        metric_delta: 3
+        kind: strike
+        base: 3
         stat_check: Brawn
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "Escalate tension. The threat should feel dangerous."
+      # concede_point: strategic retreat to reveal opponent's real goal — angle
       - id: concede_point
         label: "Concede a Point"
-        metric_delta: -1
+        kind: angle
+        target_tag: "Real Goal Revealed"
         stat_check: Presence
         effect: "opponent disposition +5, reveals their real goal"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Walk Away"
-        metric_delta: 0
+        kind: push
         stat_check: Instinct
-        resolution: true
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player turns their back on the deal. Walking away."
     mood: tension
@@ -83,47 +86,65 @@ confrontations:
   - type: combat
     label: "Wasteland Brawl"
     category: combat
+    resolution_mode: opposed_check
+    opponent_default_stats:
+      Brawn: 12
+      Reflexes: 12
+      Instinct: 12
+      Toughness: 12
     # Momentum-based encounter metric — tracks command of the brawl,
     # not HP. Damage lives on character state. Brutal, gritty, and the
     # mutation beat still has its cost-with-power dynamic.
-    metric:
+    player_metric:
       name: momentum
-      direction: bidirectional
       starting: 0
-      threshold_high: 10
-      threshold_low: -10
+      threshold: 10
+    opponent_metric:
+      name: momentum
+      starting: 0
+      threshold: 10
     beats:
       - id: attack
         label: "Attack"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: Brawn
         effect: "deal damage to the target"
         narrator_hint: "Describe the blow connecting — gritty, physical, consequential."
       - id: defend
         label: "Defend"
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: Toughness
         effect: "reduce incoming damage, hold position"
         narrator_hint: "Player braces or blocks. Show the impact absorbed."
+      # flank: risky repositioning for better attack angle — angle (setup for next strike)
       - id: flank
         label: "Flank"
-        metric_delta: 3
+        kind: angle
+        target_tag: "Positional Advantage"
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: Reflexes
-        risk: "exposed if it fails — lose 2 momentum and take extra damage"
+        risk: "exposed if it fails — lose 2 momentum and become open to the next enemy beat"
         effect: "gain positional advantage"
         narrator_hint: "Risky repositioning for a better angle of attack."
       - id: mutant_ability
         label: "Use Mutation"
-        metric_delta: 4
+        kind: strike
+        base: 4
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: Instinct
-        risk: "mutation instability — lose 2 momentum and suffer side effect on failure"
+        risk: "mutation instability — lose 2 momentum and narrate a visible side effect on failure"
         effect: "unleash mutation on target"
         narrator_hint: "The mutation manifests visibly. Show the cost as well as the power."
       - id: flee
         label: "Flee"
-        metric_delta: 0
+        kind: push
         stat_check: Reflexes
-        resolution: true
         consequence: "escape combat, possible pursuit"
         narrator_hint: "Player breaks contact and runs. Not every fight needs a winner."
     mood: combat
@@ -131,32 +152,40 @@ confrontations:
   - type: chase
     label: Wasteland Pursuit
     category: movement
-    metric:
+    player_metric:
       name: separation
-      direction: ascending
-      starting: 3
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: pursuit
+      starting: 0
+      threshold: 7
     beats:
       - id: scramble
         label: Scramble
-        metric_delta: 2
+        kind: push
+        base: 2
         stat_check: Reflexes
         narrator_hint: Boots on dust, pickup tires spitting rocks.
       - id: shortcut
         label: Shortcut
-        metric_delta: 3
+        kind: push
+        base: 3
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: Wits
         risk: "Dead end in the rubble — lose 2 separation"
+      # distraction: throw a flare, scatter scrap — angle (misdirection tag)
       - id: distraction
         label: Distraction
-        metric_delta: 1
+        kind: angle
+        target_tag: "Misdirected"
         stat_check: Wits
         effect: "Throw a flare, scatter scrap, misdirect"
       - id: go_underground
         label: Go Underground
-        metric_delta: 0
+        kind: push
         stat_check: Reflexes
-        resolution: true
         consequence: "Chase ends — vanish into a drainage tunnel or bunker"
     mood: tension

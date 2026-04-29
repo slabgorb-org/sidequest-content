@@ -2,7 +2,6 @@
 
 Genre packs for SideQuest — YAML configs, audio, images, and world-building content.
 
-<!-- SHARED-PREAMBLE-START -->
 ## CRITICAL: Personal Project
 
 This is a personal project under the `slabgorb` GitHub account.
@@ -12,13 +11,13 @@ This is a personal project under the `slabgorb` GitHub account.
 
 ## SideQuest System Overview
 
-Four repos compose the SideQuest Rust rewrite:
-- **sidequest-api** — Rust game engine and WebSocket API (workspace with 12 crates)
-- **sidequest-ui** — React/TypeScript game client
+Four repos compose the SideQuest stack (Python backend per ADR-082, ported from the Rust prototype 2026-04):
+- **sidequest-server** — Python/FastAPI game engine and WebSocket API on port 8765
+- **sidequest-ui** — React/TypeScript game client (Vite, port 5173)
 - **sidequest-daemon** — Python media services (image gen, audio library playback)
 - **sidequest-content** — Genre packs (YAML configs, audio, images, world data)
 
-Orchestrator repo (`orc-quest`) coordinates sprint tracking, docs, ADRs, and cross-repo scripts.
+Orchestrator repo (`orc-quest`, also cloned as `oq-1` / `oq-2`) coordinates sprint tracking, docs, ADRs, and cross-repo scripts.
 
 ## Quality Rules
 
@@ -58,11 +57,16 @@ Unit tests prove a component works in isolation. That's not enough. Every set of
 must include at least one integration test that verifies the component is wired into the
 system — imported, called, and reachable from production code paths.
 
-### Rust vs Python Split
-If it doesn't involve operating LLMs, it goes in Rust. If it needs to run model inference
-(Flux, ACE-Step — not Claude), use Python for library maturity. Claude calls go
-through Rust as CLI subprocesses. (Kokoro TTS was formerly in this list;
-TTS has been removed from the system.)
+### Backend Language
+The server (`sidequest-server`) is Python/FastAPI per ADR-082, ported from a
+Rust prototype in 2026-04. The Rust codebase is preserved read-only at
+https://github.com/slabgorb/sidequest-api for historical reference; older ADRs
+that show Rust code are historical illustration only — see `docs/adr/README.md`
+for the translation table. New backend code goes in Python. Media services
+(`sidequest-daemon`) remain Python for inference library maturity (Flux /
+Z-Image / ACE-Step). Claude calls go through Python subprocesses to the Claude
+CLI per ADR-001. (Kokoro TTS was formerly in this list; TTS has been removed
+from the system.)
 
 ## OTEL Observability Principle
 
@@ -96,26 +100,27 @@ or modifying a subsystem, check the relevant ADR:
 | Genre packs | 003 (pack architecture), 004 (lazy binding), 072 (system/milieu decomposition — proposed) |
 | Prompt engineering | 008 (three-tier taxonomy), 009 (attention-aware zones), 066 (persistent Opus sessions / Full vs Delta tier) |
 | Agent system | 010 (intent routing — **superseded by 067**), 011 (JSON patches), 012 (session mgmt), 013 (lazy extraction — superseded by 057), 057 (narrator-crunch separation), 059 (monster manual server-side pregen), 067 (unified narrator agent) |
-| Characters | 007 (unified model), 014 (diamonds/coal), 015 (builder FSM), 016 (three-mode chargen) |
+| Characters | 007 (unified model), 014 (diamonds/coal), 015 (builder FSM), 016 (three-mode chargen), 080 (unified narrative weight) |
 | Encounters | 017 (cinematic chase — superseded by 033), 033 (confrontation engine + resource pools), 071 (tactical ASCII grids — proposed) |
 | World / NPCs | 018 (trope engine), 019 (cartography), 020 (NPC disposition), 022 (world maturity), 055 (room graph navigation) |
 | Progression | 021 (four-track progression), 052 (narrative axis system) |
 | Narrative pacing | 024 (dual-track tension), 025 (pacing detection), 050 (image pacing throttle), 051 (two-tier turn counter) |
 | Session persistence | 023 (state + recap) |
-| Frontend / protocol | 026 (client state mirror), 027 (reactive state messaging), 065 (protocol message decomposition — proposed), 076 (narration protocol collapse post-TTS — proposed) |
-| Multiplayer | 028 (perception rewriter), 029 (guest NPC players), 030 (scenario packs), 053 (scenario system) |
-| Telemetry | 031 (game watcher semantic telemetry), 058 (Claude subprocess OTEL passthrough) |
-| Media | 032 (genre LoRA style training), 034 (portrait identity consistency), 056 (script tool generators), 070 (MLX image renderer) |
+| Frontend / protocol | 026 (client state mirror), 027 (reactive state messaging), 065 (protocol message decomposition — proposed), 076 (narration protocol collapse post-TTS — proposed), 079 (genre theme system unification) |
+| Multiplayer | 028 (perception rewriter), 029 (guest NPC players), 030 (scenario packs), 036 (multiplayer turn coordination), 037 (shared/per-player state split), 053 (scenario system) |
+| Transport / IPC | 035 (Unix socket IPC for Python sidecar), 038 (WebSocket transport), 046 (GPU memory budget coordinator), 047 (prompt injection sanitization) |
+| Telemetry / Observability | 031 (game watcher semantic telemetry), 058 (Claude subprocess OTEL passthrough), 090 (OTEL dashboard restoration after port) |
+| Media | 032 (genre LoRA style training), 034 (portrait identity consistency), 044 (speculative prerender), 048 (lore RAG store), 056 (script tool generators), 070 (MLX image renderer) |
 | Dice | 074 (dice resolution protocol — proposed), 075 (3D dice rendering — proposed) |
 | Fine-tuning | 069 (scenario fixtures), 073 (local fine-tuned model architecture) |
-| Codebase structure | 060 (genre models decomposition), 061 (lore module decomposition), 062 (server lib extraction), 063 (dispatch handler splitting), 064 (game crate domain modules), 068 (magic literal extraction) |
+| Codebase structure | 060 (genre models decomposition), 061 (lore module decomposition), 062 (server lib extraction), 063 (dispatch handler splitting), 064 (game crate domain modules), 068 (magic literal extraction), 088 (ADR frontmatter schema and auto-generated indexes) |
+| Project lifecycle | 082 (port back to Python), 085 (tracker hygiene during port) |
 | Historical (removed subsystems) | 054 (WebRTC voice chat — files deleted 2026-04), 045 (client audio engine — two-channel post-TTS) |
 
 ## Spoiler Protection
 
 - **Fully spoilable:** `mutant_wasteland/flickering_reach` only
 - **Fully unspoiled:** Everything else
-<!-- SHARED-PREAMBLE-END -->
 
 ## Syncing Between Machines
 
@@ -156,7 +161,7 @@ git remote add local /path/to/existing/sidequest-content
 
 ## Consumers
 
-- **sidequest-api** (Rust) — `--genre-packs-path` CLI arg
+- **sidequest-server** (Python) — `SIDEQUEST_GENRE_PACKS` env var
 - **sidequest-daemon** (Python) — `SIDEQUEST_GENRE_PACKS` env var
 - **orchestrator justfile** — `content` variable points here
 - **scripts/** in orchestrator — `generate_poi_images.py`, `generate_music.py`, etc.
@@ -167,6 +172,7 @@ git remote add local /path/to/existing/sidequest-content
 genre_packs/
 ├── caverns_and_claudes/  # Classic dungeon crawl (meta-humor)
 ├── elemental_harmony/    # Martial arts / elemental magic
+├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic
 ├── low_fantasy/          # Gritty medieval
 ├── mutant_wasteland/     # Post-apocalyptic mutants
 ├── neon_dystopia/        # Cyberpunk
@@ -174,7 +180,7 @@ genre_packs/
 ├── road_warrior/         # Vehicular post-apocalypse
 ├── space_opera/          # Sci-fi space adventure
 ├── spaghetti_western/    # Frontier gunslinger
-└── victoria/             # Victorian steampunk
+└── victoria/             # Brontë gothic / drawing-room intrigue (no swords, no starships; tunable occult)
 ```
 
 Each pack contains YAML configs (archetypes, tropes, rules, etc.), world data, audio tracks, and images (portraits, POI landscapes).

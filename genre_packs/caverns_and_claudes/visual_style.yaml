@@ -6,15 +6,17 @@ positive_suffix: >-
   black and white pen and ink illustration in the style of Erol Otus and
   David Trampier, 1979 Advanced Dungeons and Dragons Monster Manual interior
   plate, heavy crosshatching, stippled shadows, bold black outlines, rough
-  paper texture, visible ink strokes, no color, monochrome, high contrast
-  black ink on white paper, surreal unsettling proportions
+  paper texture, visible ink strokes, pure monochrome black ink on white
+  paper, high contrast, surreal unsettling proportions, medieval-fantasy
+  wardrobe only. No text, no caption, no title, no label, no page number,
+  no writing, no signature, no watermark, no border, no frame.
 
-negative_prompt: >-
-  photorealistic, 3D render, anime, cartoon, color, painted, watercolor,
-  digital painting, smooth shading, airbrushed, glossy, saturated,
-  chromatic, modern, clean lines, cute, chibi, text, watermark,
-  modern clothing, contemporary fashion, jeans, jacket, t-shirt,
-  glasses, wristwatch, photograph, portrait photography, lighting setup
+# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt entirely
+# (see sidequest-content/PROMPTING_Z_IMAGE.md). All constraints live in the
+# positive_suffix above. The pipeline still plumbs this field, so we keep it
+# as an empty string rather than deleting it — but authoring effort goes into
+# the positive prompt.
+negative_prompt: ""
 
 preferred_model: dev
 

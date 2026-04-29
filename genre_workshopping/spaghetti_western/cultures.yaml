@@ -1,77 +1,11 @@
 # Spaghetti Western — Genre-Level Cultures
-# These define the default naming system for the "classic" spaghetti western
-# setting (Mexican-American border, 1860s-1880s). World packs like ronin_road
-# extend or replace these with setting-appropriate cultures.
-
-- name: Frontera
-  summary: "Mexican-Spanish border culture"
-  description: "Mexican-Spanish border culture — warm vowels, patronymics, saints' names"
-  slots:
-    given_name:
-      names_file: frontera_given.txt
-    family_name:
-      names_file: frontera_surnames.txt
-    place_noun:
-      word_list: [arroyo, mesa, cañón, cruz, fuente, hacienda, llano, paso, pozo, puente, sierra, valle]
-    adjective:
-      word_list: [viejo, rojo, seco, muerto, negro, blanco, santo, perdido, quieto, hondo]
-    saint:
-      word_list: [San Miguel, Santa Rosa, San Pedro, Santa Fe, San Cristóbal, Santa María, San Jacinto]
-  person_patterns:
-    - "{given_name} {family_name}"
-    - "{given_name} de {family_name}"
-    - "{given_name} {family_name} {family_name}"
-  place_patterns:
-    - "{saint} del {place_noun}"
-    - "{adjective} {place_noun}"
-    - "{place_noun} de los {adjective}s"
-    - "{given_name}'s {place_noun}"
-
-- name: Gringo
-  summary: "Anglo-American frontier culture"
-  description: "Anglo-American frontier culture — clipped surnames, nicknames, place-based identity"
-  slots:
-    given_name:
-      names_file: frontier_given.txt
-    family_name:
-      names_file: frontier_surnames.txt
-    place_noun:
-      word_list: [gulch, ridge, creek, flats, springs, crossing, bend, bluff, fork, hollow, pass, butte]
-    adjective:
-      word_list: [dead, dry, red, broken, burnt, bitter, lost, rattlesnake, devil, coyote, copper, bone]
-    nickname:
-      word_list: [Slim, Shorty, Doc, Kid, Blackjack, Dusty, One-Eye, Lefty, Lucky, Deadeye, Whiskey, Preacher]
-  person_patterns:
-    - "{given_name} {family_name}"
-    - "{nickname} {family_name}"
-    - "{given_name} \"{nickname}\" {family_name}"
-  place_patterns:
-    - "{adjective} {place_noun}"
-    - "{family_name}'s {place_noun}"
-    - "{nickname}'s {place_noun}"
-    - "{adjective} {place_noun}"
-
-- name: Nativo
-  summary: "Indigenous frontier culture"
-  description: "Indigenous frontier culture — nature-rooted names, descriptive epithets"
-  slots:
-    given_name:
-      corpora:
-        - corpus: navajo.txt
-          weight: 0.6
-        - corpus: apache.txt
-          weight: 0.4
-      lookback: 3
-    epithet:
-      word_list: [Walks-Far, Sees-the-Wind, Stone-Hand, Crow-Speaker, Red-Sky, Still-Water, Iron-Root, Shadow-Runner, Sun-Eater, Dust-Born, Breaks-the-Dawn, Smoke-Walker, Bone-Reader, River-Tongue, Thorn-Carrier, Night-Watcher, Fire-Keeper, Wind-Scar, Hawk-Eye, Dry-Thunder, Rain-Caller, Flint-Heart, Long-Shadow, Sky-Mender, Snake-Brother]
-    place_noun:
-      word_list: [canyon, mesa, spring, wash, butte, bluff, cave, ledge, basin, peak]
-    adjective:
-      word_list: [singing, sleeping, red, black, white, thunder, eagle, coyote, ancient, hidden]
-  person_patterns:
-    - "{given_name}"
-    - "{given_name} {epithet}"
-    - "{epithet}"
-  place_patterns:
-    - "{adjective} {place_noun}"
-    - "{place_noun} of the {adjective}"
+#
+# Intentionally empty at genre scope. Cultures are world flavor, not genre
+# crunch: a Mexican-border world ships Frontera / Anglo / Ndé (see
+# worlds/dust_and_lead/cultures.yaml); a war-torn Sengoku world would ship
+# Samurai / Chōnin / Ainu; an Outback world would ship different again.
+#
+# The genre loader requires this file to exist but accepts an empty list.
+# World cultures.yaml is loaded via load_yaml_optional and used directly by
+# name generation — it does NOT merge with this file.
+[]

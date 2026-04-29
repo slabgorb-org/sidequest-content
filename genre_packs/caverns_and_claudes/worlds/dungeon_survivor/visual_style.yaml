@@ -1,0 +1,64 @@
+# Dungeon Survivor — Visual Style
+# Real-dungeon torchlight with broadcast overlay. Inverts mawdeep's
+# B&W ink aesthetic at the edges — the dungeon is warm-toned stone,
+# the overlay is overlit studio-white where it intrudes. Network-
+# facing compositions stay shiny and staged; in-world compositions
+# stay dark, wet, and lit by torch, drone glare, or brass plaque.
+#
+# WIRING: positive_suffix is the field the Flux/Z-Image renderer actually
+# reads (via scripts/render_common.load_visual_style merging genre + world).
+# World-level positive_suffix overrides the genre's B&W ink with the overlit
+# studio look. The flux_prompt_suffix / portrait_style / creature_style /
+# poi_style fields below are authoring fields mirrored from mawdeep's
+# precedent — they are not yet consumed by the rendering pipeline but are
+# kept for art-director authoring continuity.
+
+positive_suffix: >-
+  1980s broadcast television aesthetic, overlit lighting, saturated
+  primary-color palette, slightly-too-shiny surfaces, glossy finish,
+  cinematic broadcast photography. No text, no caption, no title,
+  no label, no writing, no signature, no watermark, no border, no frame.
+
+# Legacy/authoring fields — mirrored from mawdeep, not currently read by
+# the rendering pipeline. Retain for forward-compatibility when the
+# pipeline gains per-tier style fields.
+
+flux_prompt_suffix: >-
+  overlit 1980s game show studio, saturated primary colors, harsh key
+  lighting, visible overhead lighting rigs and gantries, staged
+  tableau composition, slight lens flare, cyclorama walls and
+  obvious set seams, sponsored banners and brand logos in background,
+  studio audience silhouettes behind a low proscenium wall,
+  slightly-too-shiny production design, confetti and applause-sign
+  glow, lens flare and spotlight tracking, television broadcast
+  composition, Press-Your-Luck-meets-Running-Man set photography
+
+portrait_style: >-
+  overlit press-kit portrait under studio key lighting, slight lens
+  flare, subject framed for a television broadcast headshot, posed
+  against a cyclorama wall with a subtle branded gradient,
+  saturated colors, catchlight glinting in the eyes, high
+  definition, glossy production-design finish, 1980s game-show
+  contestant vibe, spotlit from above with a gentle fill light,
+  camera-aware expression, professionally styled hair
+
+creature_style: >-
+  stalker entrance-card composition under harsh theatrical spotlights,
+  full-body celebrity-monster portrait, signature weapon clearly
+  displayed, sponsor logo visible in lower corner, saturated
+  electric color palette, slight motion blur suggesting entrance
+  music cue, confetti drifting in foreground, staged backdrop with
+  visible stage-rigging at edges, 1980s action-figure marketing
+  aesthetic, promotional press-pack finish, dramatic low-angle
+  framing, catchphrase-ready pose
+
+poi_style: >-
+  overlit game-show studio set under a grid of theatrical lights,
+  cyclorama wall backdrop with obvious seam, visible lighting rigs
+  and cable runs near the edges of the frame, saturated primary
+  colors, sponsored banner or brand signage, staged tableau
+  composition with props arranged for television, a narrow
+  proscenium hint of the studio-audience wall, spotlights tracking
+  empty floor, slightly-too-shiny production design, 1980s set
+  photography for a syndicated variety show, slight lens flare,
+  confetti residue on the floor

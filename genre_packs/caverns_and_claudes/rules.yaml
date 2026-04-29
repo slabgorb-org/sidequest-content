@@ -1,6 +1,10 @@
 stat_generation: roll_3d6_strict
 point_buy_budget: 0
 magic_level: none
+# DRAFT (2026-04-27): the `magic_level` flag is being retired. It's misleading
+# here — magic items are core gameplay; this pack's actual claim is "no caster
+# classes" + `world_knowledge: folkloric`. See ./magic.yaml for the full
+# napkin-shaped truth and docs/design/magic-taxonomy.md for the framework.
 
 allowed_classes:
   - Delver
@@ -9,7 +13,6 @@ allowed_races:
 
 banned_spells: []
 
-hp_formula: "8 + CON_modifier"
 
 custom_rules:
   treasure_as_xp: "true"
@@ -24,13 +27,9 @@ custom_rules:
 
 default_class: Delver
 default_race: Human
-default_hp: 8
-default_ac: 10
 default_location: "The mouth of the dungeon"
 default_time_of_day: dawn
 
-class_hp_bases:
-  Delver: 8
 
 ability_score_names:
   - STR
@@ -77,76 +76,145 @@ confrontations:
   - type: combat
     label: Dungeon Combat
     category: combat
-    # Momentum-based encounter metric. `momentum` is a bidirectional
-    # narrative dial: positive = party is winning, negative = party is
-    # losing. Actual HP/damage lives on character state — this metric
-    # tracks how the fight is *going*, not how much life is left.
-    # Resolution triggers at either threshold.
-    metric:
+    resolution_mode: opposed_check
+    opponent_default_stats:
+      STR: 12
+      DEX: 12
+      CON: 12
+    player_metric:
       name: momentum
-      direction: bidirectional
       starting: 0
-      threshold_high: 10
-      threshold_low: -10
+      threshold: 10
+    opponent_metric:
+      name: momentum
+      starting: 0
+      threshold: 10
     beats:
       - id: attack
         label: Attack
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: STR
         effect: "Target takes damage this round"
         narrator_hint: Steel rings off stone. Torchlight flickers across the blow.
       - id: defend
         label: Defend
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: CON
         effect: "Reduce incoming damage this round, brace against the push"
         narrator_hint: Shield raised, back to the wall, weight forward.
       - id: shield_bash
         label: Shield Bash
-        metric_delta: 4
+        kind: strike
+        base: 4
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: STR
-        risk: "Overcommitted — lose 2 momentum and take a counter on failure"
         effect: "Stun the target briefly, break their footing"
+        risk: "Overcommitted — lose 2 momentum and take a counter on failure"
         narrator_hint: Slam forward in the narrow corridor — nowhere to dodge.
+      - id: feint
+        label: Feint
+        kind: angle
+        target_tag: "Off-Balance"
+        stat_check: DEX
+        effect: "Set up a leverage tag the next attack can spend"
+        narrator_hint: A bait — open the guard, draw the swing.
       - id: flee
         label: Flee
-        metric_delta: 0
+        kind: push
+        base: 1
         stat_check: DEX
-        resolution: true
-        risk: "Opportunity attack — take damage on failure"
         consequence: "Combat ends — retreat deeper into the dungeon"
         narrator_hint: Break contact, torch sweeping behind you as you run.
     mood: combat
   - type: chase
     label: Corridor Pursuit
     category: movement
-    metric:
+    player_metric:
       name: separation
-      direction: ascending
-      starting: 3
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: pursuit
+      starting: 0
+      threshold: 7
     beats:
       - id: sprint
         label: Sprint
-        metric_delta: 2
+        kind: push
+        base: 2
         stat_check: DEX
         narrator_hint: Boots echo off stone as the quarry bolts down the passage.
       - id: duck_through
         label: Duck Through
-        metric_delta: 3
+        kind: angle
+        target_tag: "Out of Sight"
         stat_check: INT
-        risk: "Wrong turn — dead end, lose 2 separation"
         narrator_hint: Squeeze through a side passage too narrow for pursuers.
       - id: barricade
         label: Barricade
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: INT
         effect: "Topple debris to slow pursuit"
       - id: douse_torch
         label: Douse Torch
-        metric_delta: 0
+        kind: push
+        base: 1
         stat_check: DEX
-        resolution: true
         consequence: "Chase ends in darkness — quarry vanishes"
     mood: tension
+  - type: negotiation
+    label: "Haggling at the Counter"
+    category: social
+    player_metric:
+      name: leverage
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: leverage
+      starting: 3
+      threshold: 7
+    beats:
+      - id: talk_up_the_haul
+        label: "Talk Up the Haul"
+        kind: strike
+        base: 2
+        stat_check: CHA
+        effect: "merchant entertains the asking price — their eyebrow does the thing"
+        narrator_hint: "The delver pitches the goods like a town crier."
+      - id: swear_its_not_cursed
+        label: "Swear It's Not Cursed"
+        kind: strike
+        base: 3
+        deltas:
+          crit_fail:
+            own: -1
+        stat_check: CHA
+        risk: "if the bluff fails, merchant knocks 50% off the offer"
+        effect: "merchant accepts the suspicious item — with a receipt, carefully worded"
+        narrator_hint: "Running-joke territory. Lean all the way in."
+      - id: plead_poverty
+        label: "Plead Poverty"
+        kind: angle
+        target_tag: "Sympathetic"
+        stat_check: WIS
+        effect: "merchant softens — sets up a leverage tag for the closer"
+        narrator_hint: "The delver goes for the sympathy play."
+      - id: flash_the_coin
+        label: "Flash the Coin"
+        kind: brace
+        base: 1
+        stat_check: CHA
+        effect: "merchant's disposition tightens — the real price slips out"
+        narrator_hint: "A small concession now to read the shop properly."
+      - id: walk_toward_the_door
+        label: "Walk Toward the Door"
+        kind: push
+        base: 1
+        stat_check: WIS
+        consequence: "Negotiation ends — leave with the merchant's last offer"
+    mood: comedic
