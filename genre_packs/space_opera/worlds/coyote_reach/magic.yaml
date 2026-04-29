@@ -2,9 +2,11 @@
 # World-layer magic config — Coyote Reach's specific tuple from
 # space_opera's allowed space.
 #
-# NOTE: `promote_to_status` keys are deferred to Task 3.4, when
-# LedgerBarSpec gains a `promote_to_status` field. Until then the
-# model has extra='forbid' and would reject those blocks.
+# `promote_to_status` blocks (Task 3.4) map per-bar threshold crossings
+# to entries on the existing Status renderer. Bars that don't surface
+# as character statuses (e.g. world-scope `hegemony_heat`) leave the
+# block off — the threshold-promotion pipeline silently skips bars
+# without it (architect §5.3).
 
 world: coyote_reach
 genre: space_opera
@@ -45,6 +47,9 @@ ledger_bars:
     range: [0.0, 1.0]
     threshold_low: 0.40
     consequence_on_low_cross: "auto-fire The Bleeding-Through confrontation"
+    promote_to_status:
+      text: "Bleeding through"
+      severity: Wound
     starts_at_chargen: 1.0
 
   - id: notice
@@ -53,6 +58,9 @@ ledger_bars:
     range: [0.0, 1.0]
     threshold_high: 0.75
     consequence_on_high_cross: "auto-fire The Quiet Word confrontation"
+    promote_to_status:
+      text: "Hegemony noticed"
+      severity: Wound
     starts_at_chargen: 0.0
 
   - id: vitality
@@ -61,6 +69,9 @@ ledger_bars:
     range: [0.0, 1.0]
     threshold_low: 0.20
     consequence_on_low_cross: "narrator-discretion: visible aging, hair-grey, tremor"
+    promote_to_status:
+      text: "Aging visibly"
+      severity: Wound
     starts_at_chargen: 1.0
 
   - id: hegemony_heat
