@@ -52,12 +52,28 @@ These audits are not optional. Run them on every audit pass before reporting.
 3. Read `worlds/{world}/portrait_manifest.yaml` for each world — check that every manifest entry has a corresponding PNG, and every PNG has a manifest entry.
 4. Report gaps, inconsistencies, and prompts that drift from the style guide.
 
-### When writing a new Flux prompt
-1. Read `visual_style.yaml` and extract the style descriptors (medium, palette, lighting, composition).
-2. Read relevant `archetypes.yaml` / `cultures.yaml` for character context.
-3. Write the prompt: `[subject description], [style descriptors], [lighting/composition]`.
-4. Keep prompts tight — LoRA captions in existing datasets are ~150 chars. Follow that length.
-5. Add the entry to the appropriate `portrait_manifest.yaml` — never invent a new file.
+### When writing a new Flux / Z-Image prompt
+
+**READ `PROMPTING_Z_IMAGE.md` at the content repo root FIRST.** The renderer is
+Z-Image Turbo. It has no negative prompt and it renders text that appears in
+the prompt. The guide is mandatory reading; its scaffold, safety clause, and
+prose-to-visual translation rules are the house style.
+
+Workflow:
+1. Read `visual_style.yaml` and extract style descriptors (medium, palette, lighting, composition).
+2. Read relevant `archetypes.yaml` / `cultures.yaml` / `cartography.yaml` for context.
+3. **Translate any prose lore into visual clauses** — strip proper nouns,
+   historical clauses, and conditional / off-camera references. Proper nouns
+   will be rendered as text. See the guide's "Translating prose lore" section.
+4. Structure the prompt using the scaffold:
+   `[medium] + [shot] + [subject] + [clothing if human] + [foreground/middle/background] + [lighting] + [mood] + [style anchor] + [safety clause]`.
+5. **Always end with the safety clause** — at minimum `no text, no caption, no watermark`.
+   For humans, also `fully clothed, modest outfit, non-sexualized depiction`.
+6. Target 80–250 words of concrete, renderable description. No novelistic flourish.
+7. Add the entry to the appropriate `portrait_manifest.yaml` — never invent a new file.
+
+**LoRA captions are different.** They follow ADR 032, not the Z-Image generation
+scaffold. ~150 chars, structured tag schema, trigger token at the end.
 
 ### When curating a LoRA dataset
 1. Inspect `lora/{genre}/` — each training pair is `{name}.jpg` + `{name}.txt`, flat layout with a source prefix in the filename (e.g. `constable_0003`, `sargent_portraits_0011`). No subfolders per source.
@@ -80,3 +96,29 @@ You may READ `worlds/{world}/cartography.yaml` to verify POI image coverage (eve
 ## Output style
 
 Be direct. Report findings as lists with file paths. When you propose a prompt, show the exact YAML diff. When you find a gap, name the file and line.
+
+## Return manifest (REQUIRED for every task invoked via Task tool)
+
+At the end of every response when invoked by world-builder's fan-out, emit a structured manifest as the **last content block**. Missing manifest = task failure; world-builder will retry.
+
+```yaml
+manifest:
+  agent: art-director
+  files_written: [path/to/visual_style.yaml, path/to/portrait_manifest.yaml]
+  files_skipped: []
+  errors: []
+  facts:
+    palette: "muted autumnal — brown, purple, grey, amber"
+    medium: "oil painting, visible brushstrokes"
+    period_anchor: "1870s Yorkshire"
+    portrait_count: 5
+  sources:
+    visual_anchor_primary: "Atkinson Grimshaw moonlit Yorkshire industrial landscapes c.1870"
+    palette_source: "John Atkinson Grimshaw — 'Liverpool Quay by Moonlight' 1887"
+    portrait_style_source: "John Singer Sargent society portraits c.1880s"
+    flux_trigger_token: "grimshaw_victorian_style (from lora/victoria training set)"
+```
+
+**Every named entity** you introduce (an artist, a period, a technique, a specific location, a named character archetype) must appear in `sources:` with its real-world analog. `cliche-judge` will read this manifest during validation. **No manifest = automatic cliche-judge blocker.**
+
+`facts:` contains declarations the other specialists need to be consistent with (palette, period, portrait count). World-builder runs a fact-diff across all specialists' `facts:` blocks; contradictions escalate to Keith.

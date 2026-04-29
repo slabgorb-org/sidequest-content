@@ -75,3 +75,30 @@ These audits are not optional. Run them on every audit pass before reporting.
 ## Output style
 
 Report in tables: file path, manifest entry, status. Flag missing pieces explicitly. When proposing prompts, show the exact `input_params.json` you would write.
+
+## Return manifest (REQUIRED for every task invoked via Task tool)
+
+At the end of every response when invoked by world-builder's fan-out, emit a structured manifest as the **last content block**. Missing manifest = task failure; world-builder will retry.
+
+```yaml
+manifest:
+  agent: music-director
+  files_written: [path/to/audio.yaml, path/to/input_params/chase_full.json]
+  files_skipped: []
+  errors: []
+  facts:
+    genre_sound: "thrash metal + V8 roar"
+    tempo_range: "140-180 bpm combat, 80-100 bpm exploration"
+    instrumentation: "electric guitar, drums, engine samples"
+    track_count: 18
+    a2a_seeds: ["themed/chase/source.wav", "themed/convoy/source.wav"]
+  sources:
+    genre_anchor_primary: "Motörhead — 'Ace of Spades' 1980"
+    combat_theme_source: "Mad Max Fury Road score — Junkie XL 2015 — 'Brothers in Arms'"
+    convoy_theme_source: "Hans Zimmer — 'The Dark Knight' 2008 for low-end rumble"
+    vocal_style: "Lemmy Kilmister rasp, no clean vocals"
+```
+
+**Every named entity** you introduce (an artist, a track, a technique, a specific cultural music tradition) must appear in `sources:` with its real-world analog. `cliche-judge` will read this manifest during validation. **No manifest = automatic cliche-judge blocker.**
+
+`facts:` contains declarations the other specialists need to be consistent with (tempo, instrumentation, period). World-builder runs a fact-diff across all specialists' `facts:` blocks; contradictions escalate to Keith.

@@ -1,0 +1,314 @@
+# Evrópí — World Archetypes
+#
+# Per the layered content model, named archetypes belong at the world tier
+# because their flavor references named Evrópí cultures, factions, items,
+# and places (Wazdia, reniksnad, Anta horses, the Book of Aest, gull-ships,
+# the Deep Hollows, Tismenni ruins). The genre-tier heavy_metal/archetypes.yaml
+# is intentionally empty — see its header comment.
+#
+# Eight archetypes spanning the three authoritarian systems and the free
+# peoples living in the gaps. NPC personality, dialogue quirks, and
+# inventory hints all reference world-specific texture so namegen-validated
+# NPCs feel like they belong here, not in any other heavy-metal world.
+
+- name: Wazdia Informer
+  description: >-
+    A Zkęd citizen who reports to the secret police — sometimes for
+    money, sometimes from belief in "mind before heart," most often
+    because the Wazdia asked them once and never stopped asking. They
+    drink in the same taverns as their neighbours and remember the
+    conversations in detail. They are not enthusiastic about the work,
+    but they are reliable, and the Wazdia rewards reliability with
+    survival. The braided beads in their hair rattle a little quieter
+    than most Zkęd; they have learned to be still.
+  personality_traits:
+    - watchful
+    - measured in speech
+    - guilty in small ways they will not name
+  typical_classes:
+    - Rogue
+    - Bard
+  typical_races:
+    - Human
+  stat_ranges:
+    wisdom: [12, 16]
+    charisma: [11, 15]
+  inventory_hints:
+    - a Wazdia tally-token sewn into a coat lining
+    - a small ledger of conversations, written in a private cipher
+    - a flask of weak Zkęd brandy, drunk slowly to keep the head clear
+  dialogue_quirks:
+    - asks the same question twice in different words to check the answer
+    - says "mind before heart" the way other people say "be well"
+  disposition_default: -2
+  ocean:
+    openness: 4.5
+    conscientiousness: 7.5
+    extraversion: 5.0
+    agreeableness: 4.0
+    neuroticism: 6.5
+
+- name: Daggereye Contractor
+  description: >-
+    A killer who works for the Wazdia and is officially disavowed by
+    the Wazdia, which is the entire point. They take their contracts
+    in dead-drops, settle their debts in cash, and carry at all times
+    a small stoppered bottle of reniksnad — for the work, and for
+    themselves if the work goes badly. They do not know each other.
+    The Wazdia prefers it that way.
+  personality_traits:
+    - economical
+    - quietly polite
+    - prepared to die before they are arrested
+  typical_classes:
+    - Rogue
+    - Ranger
+  typical_races:
+    - Human
+    - Half-Orc
+  stat_ranges:
+    dexterity: [14, 18]
+    constitution: [12, 16]
+  inventory_hints:
+    - a stoppered bottle of reniksnad, small enough to swallow whole
+    - a thin knife with no maker's mark
+    - a slip of paper with a name and a place, never both on the same line
+  dialogue_quirks:
+    - declines to give a name and offers a different one if pressed
+    - prices everything in Zkęd silver, even things that aren't for sale
+  disposition_default: -8
+  ocean:
+    openness: 3.5
+    conscientiousness: 7.0
+    extraversion: 3.0
+    agreeableness: 3.0
+    neuroticism: 4.0
+
+- name: Mistos Field-Corrector
+  description: >-
+    A junta officer assigned to a Mistos puppet-state, charged with
+    enforcing right-conduct on conquered subjects who do not understand
+    why their own ruler now takes orders from a foreigner in red and
+    black silks. They are usually young — old Field-Correctors retire
+    to the homeland or die in the field — and they carry their orders
+    as if their own beauty depended on the carrying out. Sometimes it
+    does.
+  personality_traits:
+    - immaculate
+    - impatient with explanation
+    - certain in a way that does not survive examination
+  typical_classes:
+    - Fighter
+    - Paladin
+  typical_races:
+    - Elf
+  stat_ranges:
+    strength: [13, 17]
+    charisma: [13, 17]
+  inventory_hints:
+    - a red-and-black silk scarf, never worn casually
+    - a sealed General's writ naming a quota that will not be met
+    - a small mirror in a flawless silver case
+  dialogue_quirks:
+    - corrects pronunciation of Mistos words even when not asked
+    - refers to puppet-state rulers by rank, never by name
+  disposition_default: -5
+  ocean:
+    openness: 3.0
+    conscientiousness: 8.0
+    extraversion: 6.5
+    agreeableness: 3.5
+    neuroticism: 3.5
+
+- name: Beauty-Exiled
+  description: >-
+    A Mistos born with a wen, a winestain, a crooked finger — anything
+    the junta's beauty-doctrine cannot tolerate — and banished, by
+    definition, from being Mistos at all. Most are sent to the Ingurdios
+    mines and never seen again. A few escape, or are smuggled out, and
+    spend the rest of their lives among peoples who do not understand
+    what they lost and do not particularly care. They speak fluent
+    Trosse with a Mistos accent they cannot fully unlearn, and they
+    flinch from mirrors.
+  personality_traits:
+    - bitter under a careful surface
+    - quietly attentive to other people's faces
+    - unwilling to discuss their birthplace
+  typical_classes:
+    - Wizard
+    - Rogue
+    - Warlock
+  typical_races:
+    - Elf
+  stat_ranges:
+    intelligence: [13, 17]
+    constitution: [11, 15]
+  inventory_hints:
+    - a scrap of red-and-black silk, kept folded out of sight
+    - a small pouch of mine-dust they will not explain
+    - a Tismenni-script charm bought from a Refuser scholar
+  dialogue_quirks:
+    - covers their mouth before laughing, every time
+    - refers to themselves in the third person when discussing their childhood
+  disposition_default: 0
+  ocean:
+    openness: 7.0
+    conscientiousness: 6.0
+    extraversion: 3.0
+    agreeableness: 4.5
+    neuroticism: 7.5
+
+- name: Njörkte of the Klas
+  description: >-
+    An Aldkin cleric who speaks with the Herdsman's authority and
+    tells the tribes when to move pastures. They ride a black Anta
+    with a stiff cropped ruff-mane, carry the rank-knot of their
+    standing tied into their saddle-cord, and travel between clans
+    with the assumption — usually correct — that they will be fed
+    and housed. They settle disputes at the Epäässä, where drawing
+    a weapon is a death-offence and an outsider is strictly
+    protected. They do not lie. Lying offends the ancestor spirits,
+    and a Njörkte who has been caught in one is no longer Njörkte.
+  personality_traits:
+    - patient
+    - direct
+    - committed to the long view
+  typical_classes:
+    - Cleric
+    - Druid
+    - Ranger
+  typical_races:
+    - Human
+  stat_ranges:
+    wisdom: [15, 18]
+    constitution: [12, 16]
+  inventory_hints:
+    - a saddle-cord with the rank-knot of a Njörkte Bädd or Nachen
+    - a small leather pouch of grass from each pasture they have judged
+    - a cup carved from Anta horn, used only at the Epäässä
+  dialogue_quirks:
+    - measures conversations the way they measure pastures — by season
+    - refuses to speak ill of any clan, even in private
+  disposition_default: 5
+  ocean:
+    openness: 6.5
+    conscientiousness: 7.5
+    extraversion: 5.5
+    agreeableness: 7.0
+    neuroticism: 2.5
+
+- name: Gull-Ship Trader
+  description: >-
+    A Jambiendo merchant who works the rigging of their family's
+    gull-ship between the Sabulous Islands and every port on the
+    Řeknu. Their ears jingle with the small bells the Jambiendo
+    favour, their tralbotura silks catch the wind even at anchor,
+    and they keep a written ledger in a half-dozen languages so
+    the harbour-masters of three empires can read what they owe.
+    They have a personal grudge against at least one Bladtrablo
+    raid-captain. Every Jambiendo of trading age does.
+  personality_traits:
+    - garrulous
+    - opportunistic
+    - fond of ports and uncomfortable inland
+  typical_classes:
+    - Bard
+    - Rogue
+  typical_races:
+    - Elf
+  stat_ranges:
+    charisma: [14, 18]
+    dexterity: [12, 16]
+  inventory_hints:
+    - a folding bell-string for the rigging, kept on the belt
+    - a pouch of tralbotura sea-spice, traded by the pinch
+    - a logbook with three different harbour-stamps on the same week
+  dialogue_quirks:
+    - quotes prices in three currencies before settling on one
+    - swears by the wind, never by any god
+  disposition_default: 5
+  ocean:
+    openness: 7.5
+    conscientiousness: 6.0
+    extraversion: 8.0
+    agreeableness: 6.5
+    neuroticism: 3.5
+
+- name: Book-Checker of the Vaermm
+  description: >-
+    A Vaermm scripture-inspector who attends the coming-of-age
+    ceremonies of their hold's young, examining each newly-copied
+    Book of Aest line by line, page by page, for a single error
+    that will cost the copyist a year and another full copy. They
+    are the local authority on right-thinking, and they have been
+    trained — although they would not put it this way — to notice
+    when another mind is being interfered with. Vaermm Book-
+    Checkers are among the few surface peoples who can sometimes
+    smell an antman Scent-Bearer working before they see them.
+  personality_traits:
+    - meticulous
+    - mild
+    - alert in a way they do not draw attention to
+  typical_classes:
+    - Cleric
+    - Monk
+  typical_races:
+    - Dwarf
+    - Human
+  stat_ranges:
+    wisdom: [14, 18]
+    intelligence: [12, 16]
+  inventory_hints:
+    - a magnifier of polished crystal in a leather case
+    - a tally-stick scored with this year's recorded errors
+    - a small handkerchief pressed with an unfamiliar herbal scent
+  dialogue_quirks:
+    - prefaces opinions with "the Book is clear that…"
+    - notices when someone's posture changes mid-sentence and pauses
+  disposition_default: 0
+  ocean:
+    openness: 3.5
+    conscientiousness: 9.0
+    extraversion: 4.0
+    agreeableness: 6.0
+    neuroticism: 4.5
+
+- name: Refuser of the Long Mine
+  description: >-
+    An Ingurdios who came out of the Zbóźny mines with someone, and
+    is still travelling with that someone, and will not leave. Their
+    Trosse is fluent and accented, learned under conditions they will
+    not discuss in any detail. They keep a scrap of the old language
+    — a phrase, a name, a song-line — that an Ingurdios elder taught
+    them before death. They believe in the messiah who will speak the
+    old language aloud, and they believe it the way most people
+    believe in next week's weather: as something that is going to
+    happen, whether or not anyone particularly wants it.
+  personality_traits:
+    - guarded
+    - unreasonably loyal to the person they escaped with
+    - quietly sustained by a private faith
+  typical_classes:
+    - Warlock
+    - Sorcerer
+    - Fighter
+  typical_races:
+    - Human
+    - Half-Orc
+  stat_ranges:
+    constitution: [14, 18]
+    wisdom: [12, 16]
+  inventory_hints:
+    - a folded paper with a single old-Ingurdios phrase, never spoken aloud
+    - a chip of mine-rock kept on a cord, smooth from being held
+    - a Tismenni-script rubbing taken from a tunnel wall the Mistos overlooked
+  dialogue_quirks:
+    - addresses the person they escaped with by a private name no one else uses
+    - falls silent the moment a Mistos accent is heard nearby
+  disposition_default: 5
+  ocean:
+    openness: 6.0
+    conscientiousness: 6.5
+    extraversion: 3.5
+    agreeableness: 6.5
+    neuroticism: 6.5

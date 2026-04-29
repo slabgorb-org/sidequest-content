@@ -34,126 +34,143 @@ allowed_races:
 
 default_class: Wanderer
 default_race: Jade Kingdoms
-default_hp: 8
 race_label: Origin
 class_label: Discipline
 
-class_hp_bases:
-  Channeler: 8
-  Martial Artist: 10
-  Spirit Medium: 6
-  Scholar: 6
-  Wanderer: 8
-  Guardian: 12
 
 # ── Confrontations ──────────────────────────────────────────
 confrontations:
   - type: negotiation
     label: "Diplomatic Council"
     category: social
-    metric:
+    player_metric:
       name: leverage
-      direction: bidirectional
-      starting: 5
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: leverage
+      starting: 0
+      threshold: 10
     beats:
       - id: persuade
         label: "Appeal to Harmony"
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: Harmony
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
         label: "Threaten"
-        metric_delta: 3
+        kind: strike
+        base: 3
         stat_check: Spirit
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "A display of elemental power. Intimidation through strength."
+      # concede_point: strategic retreat to reveal opponent's real goal — angle
       - id: concede_point
         label: "Concede a Point"
-        metric_delta: -1
+        kind: angle
+        target_tag: "Real Goal Revealed"
         stat_check: Harmony
         effect: "opponent disposition +5, reveals their real goal"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Walk Away"
-        metric_delta: 0
+        kind: push
         stat_check: Spirit
-        resolution: true
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player bows and departs. The matter is unresolved."
     mood: tension
   - type: combat
     label: Martial Exchange
     category: combat
+    resolution_mode: opposed_check
+    opponent_default_stats:
+      Strength: 12
+      Agility: 12
+      Endurance: 12
     # Momentum as "flow of the exchange" — who currently holds harmony.
     # Beats push the flow one way or the other. Damage lives on character
     # state; momentum tracks narrative command of the fight.
-    metric:
+    player_metric:
       name: momentum
-      direction: bidirectional
       starting: 0
-      threshold_high: 10
-      threshold_low: -10
+      threshold: 10
+    opponent_metric:
+      name: momentum
+      starting: 0
+      threshold: 10
     beats:
       - id: strike
         label: Strike
-        metric_delta: 2
+        kind: strike
+        base: 2
         stat_check: Strength
         effect: "Target takes damage this round"
         narrator_hint: A flowing combination — describe the elemental energy behind the blow.
       - id: guard
         label: Guard Stance
-        metric_delta: 1
+        kind: brace
+        base: 1
         stat_check: Endurance
         effect: "Reduce incoming damage, channel harmony back into stance"
         narrator_hint: Weight sinks. Breath steadies. The element answers.
       - id: elemental_burst
         label: Elemental Burst
-        metric_delta: 4
+        kind: strike
+        base: 4
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: Strength
         risk: "Spirit drain — lose 2 momentum and harmony on failure"
         effect: "Unleash elemental force on the target"
         narrator_hint: Channel raw elemental force. The air shimmers.
       - id: yield
         label: Yield
-        metric_delta: 0
+        kind: push
         stat_check: Agility
-        resolution: true
         consequence: "Combat ends — honor preserved through retreat"
         narrator_hint: A bow, a step backward, a parting gesture. The exchange ends.
     mood: combat
   - type: chase
     label: Pursuit
     category: movement
-    metric:
+    player_metric:
       name: separation
-      direction: ascending
-      starting: 3
-      threshold_high: 10
-      threshold_low: 0
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: pursuit
+      starting: 0
+      threshold: 7
     beats:
       - id: dash
         label: Dash
-        metric_delta: 2
+        kind: push
+        base: 2
         stat_check: Agility
         narrator_hint: Fleet feet across terraced fields or temple rooftops.
       - id: leap
         label: Elemental Leap
-        metric_delta: 3
+        kind: push
+        base: 3
+        deltas:
+          crit_fail:
+            own: -2
         stat_check: Insight
         risk: "Misjudge the landing — lose 2 separation"
+      # blend: use surrounding element to mask movement — angle (misdirection tag)
       - id: blend
         label: Blend with Element
-        metric_delta: 1
+        kind: angle
+        target_tag: "Elemental Concealment"
         stat_check: Insight
         effect: "Use surrounding element to mask movement"
       - id: vanish
         label: Vanish
-        metric_delta: 0
+        kind: push
         stat_check: Agility
-        resolution: true
         consequence: "Chase ends — dissolved into mist, earth, or shadow"
     mood: tension

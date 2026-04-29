@@ -1,0 +1,300 @@
+# Dungeon Survivor — Dungeon Cartography
+# One dungeon, eight regions. Each region maps 1:1 to a room in rooms.yaml.
+# Dungeon-first topology: stone and torchlight, with broadcast overlay.
+
+world_name: Dungeon Survivor
+starting_region: the_drop
+navigation_mode: room_graph
+
+regions:
+  the_drop:
+    name: The Drop
+    summary: Intake. Where the portal drops you. Where the speakers welcome you.
+    description: >-
+      A round stone pit at the bottom of a vertical shaft. Torches
+      dripping orange light onto pitted flagstone. A brass speaker
+      grille is bolted to the wall, with a green-lit achievement
+      plaque beside it. A single iron-banded door leads into the
+      dungeon proper. The first camera drone is already in the room.
+    terrain: stone_pit
+    adjacent:
+      - the_knaves_grotto
+      - the_rest_stop
+    landmarks:
+      - name: "The Speaker Grille"
+        type: set_piece
+        description: >-
+          Brass, bolted into keystone. The Host's voice emerges here,
+          stage-pitched for a live audience that isn't in the room
+          and never will be. The grille can be pried off. The wire
+          behind it goes back a long way.
+      - name: "The Welcome Plaque"
+        type: set_piece
+        description: >-
+          Brass, backlit green. Reads WELCOME. SEASON ELEVEN. 0
+          KILLS / 0 DEATHS. DO YOUR BEST! The counter updates in
+          real time once the party moves. Partially scratchable.
+      - name: "The Previous Season"
+        type: hazard
+        description: >-
+          Chalk scuffs and rust-coloured smears from a hundred
+          previous drops. A contestant's boot, in the corner, still
+          wearing half a leg. Check before slipping.
+
+  the_knaves_grotto:
+    name: The Knave's Grotto
+    summary: Combat chamber. Six pillars, shallow pool, patient things in shadow.
+    description: >-
+      A wide vaulted chamber with six granite pillars and a shallow
+      pool at the far end. Iron sconces throw more shadow than
+      light. The scene's first fight lives here — goblins, or
+      whatever the roster has cued for the episode. A brass plaque
+      idles, ready to chime the opening achievement.
+    terrain: stone_chamber
+    adjacent:
+      - the_drop
+      - the_boneyard_bazaar
+      - the_gauntlet
+    landmarks:
+      - name: "The Pillars"
+        type: set_piece
+        description: >-
+          Unchiseled granite holding up a vaulted roof. Excellent
+          cover. Each pillar has, at shoulder height, a small
+          circular scar — the camera mounting bracket installed by
+          the Network three seasons ago. Some pillars still have
+          the drone bolted to them.
+      - name: "The Gauntlet-Chewed Remains"
+        type: secret
+        description: >-
+          A contestant's abandoned gauntlet, still damp, still
+          being chewed on. Whatever is chewing on it retreats into
+          the pool when the party enters. The gauntlet itself is
+          inscribed on the inside with an Unaired contact sigil.
+      - name: "The First-Blood Plaque"
+        type: set_piece
+        description: >-
+          High on the far wall, dark until something in this room
+          dies. Then: ACHIEVEMENT UNLOCKED — FIRST BLOOD (SPONSORED
+          BY GLOAMREACH WHETSTONES™). Volume is, by design,
+          obnoxious.
+
+  the_gauntlet:
+    name: The Gauntlet
+    summary: Trap corridor. Pressure plates, pedestal chest, two drones for angles.
+    description: >-
+      A narrow stone corridor checkered with pale and dark
+      flagstones. Pale stones are pressure plates — not all of them,
+      not reliably. Scorch marks on the ceiling. A pedestal chest
+      halfway along, stickered by a sponsor. Season Nine left a
+      body here. The Network commemorated.
+    terrain: corridor
+    adjacent:
+      - the_knaves_grotto
+      - the_boneyard_bazaar
+    landmarks:
+      - name: "The Pedestal Chest"
+        type: set_piece
+        description: >-
+          Iron-bound, waist-high, with a bright yellow sticker:
+          OPEN ME! (GLOAMREACH WHETSTONES™ ENDORSES CAUTION.) The
+          chest is real. The contents are real. The pressure plate
+          under it is also real.
+      - name: "Season Nine's Remains"
+        type: hazard
+        description: >-
+          A full-plate corpse pinned to the far wall by an arrow
+          the size of a shovel. The plaque above reads CONDOLENCES
+          — SEASON NINE. NICE TRY. The arrow has not been removed.
+          It is, technically, set dressing now.
+      - name: "The Kill-Shot Drones"
+        type: set_piece
+        description: >-
+          Two camera drones positioned for the best possible
+          footage of a contestant triggering a plate. Their
+          positions are, visibly, correlated with the pressure-
+          plate layout. Reading the drones reveals the safe path.
+
+  the_rest_stop:
+    name: The Rest Stop
+    summary: Hub. Dry floor, stone bench, water box, hatch into the crawlspace.
+    description: >-
+      A small round chamber, domed ceiling, dry. A stone bench, a
+      metal water-dispensing box, a single steady torch. The one
+      place in the dungeon where the camera drones are
+      contractually barred. LAST SAFE PLACE chalked near the door.
+      A narrow hatch on the back wall opens into the crawlspaces.
+    terrain: stone_chamber
+    adjacent:
+      - the_drop
+      - the_boneyard_bazaar
+      - the_maintenance_crawlspace
+    landmarks:
+      - name: "The Hydration Box"
+        type: hub_fixture
+        description: >-
+          Bolted to the wall. Dispenses a paper cup of cold water
+          when leaned on. Labeled COMPLIMENTARY HYDRATION — THANK
+          YOU FOR PLAYING (GLOAMREACH WHETSTONES™). Water is clean.
+          The paper cup has terms and conditions on the bottom.
+      - name: "The Safe Threshold"
+        type: set_piece
+        description: >-
+          Camera drones physically stop at the door. Stagehands
+          respect the threshold. Broadcast audio stops. This rule
+          is older than the Network's lease. Contestants who
+          notice this can work with it.
+      - name: "The Hatch"
+        type: secret
+        description: >-
+          Dog-sized, on the back wall. Leads into the Maintenance
+          Crawlspace. A scrap of cloth is jammed in the hinge — a
+          previous contestant's message-drop.
+
+  the_boneyard_bazaar:
+    name: The Boneyard Bazaar
+    summary: Merchant. Brann the goblin. Shelves of branded and unbranded wares. Save point.
+    description: >-
+      A side-cavern propped open with timber beams and lanterns on
+      fishing wire. Brann, the waistcoated goblin shopkeeper,
+      presides from behind a counter made of two coffins and a
+      plank. Shelves: cursed daggers, potions, plushies of the
+      party, keys that may or may not fit. Cameras respect the
+      shelves, never the register. Save point.
+    terrain: stone_chamber
+    adjacent:
+      - the_knaves_grotto
+      - the_rest_stop
+      - the_gauntlet
+    landmarks:
+      - name: "Brann's Counter"
+        type: shop
+        description: >-
+          Save point. A commemorative purchase timestamps the
+          current run. Brann accepts PrimeBux, cold iron, favours,
+          and, under narrowly defined circumstances, promises. He
+          does not comment on what he sells or to whom.
+      - name: "The Plushie Wall"
+        type: shop
+        description: >-
+          An entire shelf of plushies matching the current party,
+          worryingly accurate. The count updates overnight.
+          Purchasing one's own plushie is, quietly, the most
+          reliable save action in the dungeon.
+      - name: "The Programme Shelf"
+        type: set_piece
+        description: >-
+          Commemorative season programmes. No one has bought one in
+          six seasons. The programmes include spoilers for seasons
+          that haven't aired. The Network lists these as production
+          errors. Brann says nothing.
+
+  # === ACT II: BACKSTAGE / UNDERSIDE ===
+
+  the_maintenance_crawlspace:
+    name: The Maintenance Crawlspace
+    summary: Liminal labyrinth. Service passages. The Unaired hide here. No cameras.
+    description: >-
+      Narrow service passages between the dungeon's formal rooms.
+      Pipes, flickering bulbs, rusted conduit, hand-drawn maps at
+      eye level, chalk graffiti in a dozen handwritings. The
+      Unaired live here. The Host cannot see in. The dungeon hums
+      differently in these passages, listening with its own ear.
+    terrain: service_passage
+    adjacent:
+      - the_rest_stop
+      - the_directors_cell
+      - the_scrying_pool
+    landmarks:
+      - name: "The Graffiti Wall"
+        type: secret
+        description: >-
+          A long stretch of chalk graffiti in the handwritings of
+          previous contestants. Most messages end mid-sentence.
+          Several include room-layout warnings, Stalker arrival
+          schedules, and a single phrase repeated in three hands:
+          THE POOL ISN'T FOR THEM.
+      - name: "Marin's Dead Drop"
+        type: secret
+        description: >-
+          A loose stone at shoulder height. Behind it: a folded
+          note from Marin — Unaired operative, former contestant —
+          asking the party to look up, to meet at the Scrying
+          Pool, and to trust no one with a clipboard.
+      - name: "The Abandoned Stretch"
+        type: set_piece
+        description: >-
+          A section of crawlspace where something lived long
+          enough to make a bed of wire insulation and then left.
+          Recent. Not the Unaired. Not an investment the Network
+          approved. Check the bed before sitting on it.
+
+  the_directors_cell:
+    name: The Director's Cell
+    summary: The Host's private chamber. Late-game bargain location.
+    description: >-
+      A small circular crypt, velvet drapes over stone, vanity
+      counter, jumpsuit rack, drinks cabinet, a locked drawer. The
+      Host is here when the party reaches it. He does not fight
+      by default. This scene is conversation.
+    terrain: crypt
+    adjacent:
+      - the_maintenance_crawlspace
+      - the_knaves_grotto
+    landmarks:
+      - name: "The Vanity Mirror"
+        type: set_piece
+        description: >-
+          Does not reflect the camera rig overhead. Either an
+          effect, or something the dungeon decided to do about
+          a camera.
+      - name: "The Drinks Cabinet"
+        type: set_piece
+        description: >-
+          Glass half-empty on top. Brand-name Network-owned
+          liquors on the shelves. One bottle, however, is labeled
+          in an older hand, with no barcode — older than the
+          broadcast, possibly older than the lease.
+      - name: "The Drawer"
+        type: secret
+        description: >-
+          Locked. Long-standing rumour: the Host keeps his real
+          face in it. What is actually in it is a choice the
+          party will have to make.
+
+  the_scrying_pool:
+    name: The Scrying Pool
+    summary: Dungeon's original divination chamber. Network has installed broadcast kit here. Endgame.
+    description: >-
+      A chamber the original builders hollowed for divination.
+      A stone basin of black water at the centre that shows, in
+      real time, every camera feed in the dungeon. Beige racks of
+      broadcast equipment around it. Three empty swivel chairs.
+      A cue board. The pool is older than the equipment. The
+      equipment is uncomfortable next to the pool.
+    terrain: scrying_chamber
+    adjacent:
+      - the_maintenance_crawlspace
+    landmarks:
+      - name: "The Pool"
+        type: set_piece
+        description: >-
+          Stone basin of black water. Shows every camera feed in
+          the dungeon tiled across its surface. When someone looks
+          away, the tiles rearrange. The pool predates the
+          equipment by centuries. The pool is, arguably, the
+          dungeon's own eye. The Network does not know this.
+      - name: "The Cue Board"
+        type: hazard
+        description: >-
+          The single live console. From here, the broadcast can
+          be cut, the Summoning Engine's next casting delayed,
+          and the feed-tiles on the pool rearranged for reach.
+          Every action here is, technically, felony trespass.
+      - name: "The Archive Cabinet"
+        type: secret
+        description: >-
+          A filing cabinet of master broadcast tapes. The Audience
+          Revolt tape is in here, labeled in a hand the Unaired
+          recognize. The cabinet is, arguably, also older than
+          the Network's lease.

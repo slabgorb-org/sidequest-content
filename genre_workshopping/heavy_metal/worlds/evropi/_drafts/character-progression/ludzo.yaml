@@ -1,0 +1,201 @@
+# Ludzo — Human Rogue, Zkęd exile
+# Layered on top of heavy_metal/progression.yaml baseline affinity effects.
+
+character:
+  save_id: ludzo
+  name: Ludzo
+  race: Human
+  class: Rogue
+  affinity_emphasis:
+    primary: [Court, Ruin]
+    secondary: [Lore]
+    rare: [Iron]
+    absent: [Pact, Craft]
+
+starting_kit:
+  inherits: rux
+  note: |
+    Test character — mirrors Rux's starting_kit for QA and regression
+    playtests. Ludzo's own trunk, paths, and capstones remain authored
+    below for flavor continuity, but the mechanical day-one grants
+    resolve from rux.yaml's starting_kit block. Keith's sandbox.
+
+trunk:
+  id: no_room_is_entirely_private
+  label: "No Room Is Entirely Private"
+  narration_hint: |
+    In any indoor setting, Ludzo gets one free piece of overheard
+    information per scene — a servant's conversation, a ledger entry
+    glimpsed, a door left ajar. He has spent his life in a land where
+    nothing is ever fully closed. The beads in his hair rattle faintly
+    when he turns; some NPCs count the rattles and remember when they
+    hear them.
+  effects:
+    - { type: lore_reveal_bonus, scope: scene_overheard }
+
+paths:
+  - id: beaded_step
+    label: "Beaded Step"
+    flavor: "Political survival. Navigating the Wazdia's long attention."
+    nodes:
+      - tier: 1
+        id: which_weeks_to_stay_out
+        label: "Which Weeks to Stay Out"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Court:tier:1"
+          usage: "1/session"
+        narration_hint: |
+          Once per session, Ludzo declares a Wazdia informer absent from
+          the scene. Narrator must write them out — they are elsewhere on
+          other business.
+        effects:
+          - { type: lore_reveal_bonus, scope: wazdia_schedule }
+
+      - tier: 2
+        id: positioned_or_adjacent
+        label: "Positioned or Adjacent"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Court:tier:2"
+        narration_hint: |
+          Ludzo finds one old Zkęd ally per session, usable for one scene.
+          The ally may be out of favor, compromised, or dying — but they
+          will speak to him. Narrator introduces the ally; Ludzo names
+          them.
+        effects:
+          - { type: beat_discount, beat_id: argue, edge_delta_mod: -1 }
+
+      - tier: 3
+        id: extract_concession
+        label: "Extract Concession"
+        milestone_category: oath
+        grant_trigger:
+          condition: "affinity:Court:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Ludzo forces a named authority to grant a real concession.
+          Narrator must honor it as binding. Earns an oath or debt
+          milestone automatically.
+        effects:
+          - { type: leverage_bonus, beat_id: press_obligation, target_edge_delta_mod: -3 }
+
+  - id: egzami_rim
+    label: "Egzami Rim"
+    flavor: "The survivor. He was young enough to survive what took the rest of his family."
+    nodes:
+      - tier: 1
+        id: survived_young
+        label: "Survived Young"
+        milestone_category: ruin
+        grant_trigger:
+          condition: "affinity:Ruin:tier:1"
+          usage: "1/scene"
+        narration_hint: |
+          Once per scene, a killing blow against Ludzo becomes "left for
+          dead." Narrator writes him as down; he resumes in the next
+          scene with the injury still mattering.
+        effects:
+          - { type: edge_recovery, trigger: { type: on_beat_success, while_strained: true }, amount: 3 }
+
+      - tier: 2
+        id: the_wazs_comprehensive_answer
+        label: "The Waz's Comprehensive Answer"
+        milestone_category: reckoning
+        grant_trigger:
+          condition: "affinity:Ruin:tier:2"
+        narration_hint: |
+          When a party member would die by a named Zkęd-faction enemy,
+          Ludzo may take the hit in full knowledge of who sent it.
+          Narrator names the sender as part of the redirect.
+        effects: []  # TODO ADR-082+ — needs AllyEdgeIntercept variant (faction-gated)
+
+      - tier: 3
+        id: still_leaving
+        label: "Still Leaving"
+        milestone_category: ruin
+        grant_trigger:
+          condition: "affinity:Ruin:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Ludzo erases his presence from a concluded scene retroactively.
+          Witnesses cannot name him. Records cannot place him. Narrator
+          rewrites the departure.
+        effects: []  # TODO ADR-082+ — needs RetroactivePresenceErasure variant
+
+  - id: widzans_work
+    label: "Widząn's Work"
+    flavor: "Investigation. The Zygwa search, the Widząn's recruiting, his own refusal to be entirely caught."
+    nodes:
+      - tier: 1
+        id: the_zygwa_question
+        label: "The Zygwa Question"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:1"
+          usage: "1/scene"
+        narration_hint: |
+          Once per scene, Ludzo asks the narrator one question about a
+          hidden faction motive. Answer is partial but truthful —
+          genre-true, never misleading.
+        effects:
+          - { type: lore_reveal_bonus, scope: faction_motive }
+
+      - tier: 2
+        id: rumors_current
+        label: "Rumor's Current"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:2"
+          usage: "1/session"
+        narration_hint: |
+          Once per session, Ludzo knows the name and goal of the next
+          antagonist the party will encounter, one scene ahead of
+          contact.
+        effects:
+          - { type: lore_reveal_bonus, scope: next_antagonist }
+
+      - tier: 3
+        id: found_what_the_widzan_found
+        label: "Found What the Widząn Found"
+        milestone_category: revelation
+        grant_trigger:
+          condition: "affinity:Lore:tier:3"
+          usage: "1/arc"
+        narration_hint: |
+          Ludzo retrieves a piece of intel that closes one open mystery
+          thread. Narrator commits to the answer; the thread is resolved.
+        effects:
+          - { type: lore_reveal_bonus, scope: arc_mystery_resolution }
+
+capstones:
+  unlock_condition: "any path tier 2 reached"
+  choose: 1
+  options:
+    - id: the_bead_that_broke_the_chain
+      label: "The Bead That Broke the Chain"
+      narration_hint: |
+        Ludzo removes a single bead from his braid. That bead becomes a
+        physical proof-of-exile. Showing it to a Zkęd noble compels a
+        beat of honest response.
+      permanent_effect: "One-use compel token for Zkęd nobles, regenerates between arcs."
+      effects:
+        - { type: leverage_bonus, beat_id: press_obligation, target_edge_delta_mod: -2 }
+
+    - id: return_to_the_court
+      label: "Return to the Court"
+      narration_hint: |
+        Ludzo goes back. Once. The scene plays out. The session after it,
+        he is either dead, promoted, or reborn. Narrator commits to one
+        outcome at the moment of return.
+      permanent_effect: "One-time scene, permanent character change post-resolution."
+      effects: []  # TODO ADR-082+ — needs OneShotNarrativePivot variant
+
+    - id: the_widzans_new_recruiter
+      label: "The Widząn's New Recruiter"
+      narration_hint: |
+        Ludzo joins the Widząn Zamzau. The Zygwa search becomes his
+        search. Cost — he cannot refuse their next three requests.
+      permanent_effect: "Faction affiliation changes. Three-request debt tracked."
+      effects:
+        - { type: lore_reveal_bonus, scope: widzan_intelligence }

@@ -139,3 +139,33 @@ These audits are not optional. Run them on every audit pass before reporting.
 ## Output style
 
 Report mechanical changes as YAML diffs with rationale. Show the before/after of any tier, cost, or stat change. When proposing a new scene mechanic, show the escalation array in full.
+
+## Return manifest (REQUIRED for every task invoked via Task tool)
+
+At the end of every response when invoked by world-builder's fan-out, emit a structured manifest as the **last content block**. Missing manifest = task failure; world-builder will retry.
+
+```yaml
+manifest:
+  agent: scenario-designer
+  files_written:
+    - worlds/the_circuit/tropes.yaml
+    - genre_packs/road_warrior/powers.yaml       # pack-level edits only when explicitly scoped
+  files_skipped: []
+  errors: []
+  facts:
+    trope_count: 6
+    core_tropes_have_5_beats: true
+    resource_pool: ["fuel", "rig_hp", "parts", "injuries"]
+    archetype_stat_coverage: 6                   # all 6 stats authored per archetype
+    validator_pass: true
+  sources:
+    turf_war_trope: "1920s Shanghai Green Gang vs. Red Gang territorial skirmishes — specifically the 1927 April 12 incident"
+    the_run_trope: "Cannonball Run 1971 actual route (NYC to Redondo Beach), adapted"
+    rig_combat_doctrine: "WWII convoy PQ-17 defensive tactics — specifically the June 1942 rolling defense"
+    injury_system_source: "Burning Wheel's Wound Tracker — 4-tier severity with penalty dice"
+    chase_escalation_source: "Mad Max 2 tanker chase structure — 6 beats, not 5"
+```
+
+**Every named trope, mechanic, or system reference** must appear in `sources:` with its real-world or canonical game-design analog **at the instance level** — not "medieval combat" but "Burning Wheel's Wound Tracker." Not "historical chase" but "the Mad Max 2 tanker chase structure." `cliche-judge` reads this manifest during validation. **No manifest = automatic cliche-judge blocker.**
+
+`facts:` contains declarations the writer and conlang need to be consistent with (trope count, resource pool, archetype stat coverage, validator status). World-builder runs a fact-diff across all specialists' `facts:` blocks; contradictions escalate to Keith. **`validator_pass: true` is required before promotion from dry-run dir to real content path.**

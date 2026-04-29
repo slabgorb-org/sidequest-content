@@ -1,0 +1,395 @@
+# Audio configuration for The Real McCoy (spaghetti_western / the_real_mccoy)
+#
+# World-level override: 1878 Pittsburgh grounded-steampunk replaces the
+# genre-pack's arid-frontier Morricone palette. No electric instruments.
+# All instrumentation is acoustic and pre-1900 period-plausible: parlor
+# piano (upright square Chickering c.1870), Heidelberg student-song brass
+# quartet, Bessemer-mill industrial percussion, 1870s church organ
+# (Hook & Hastings tracker-action), gospel choir (Ira Sankey revival-hymn
+# 1877-78), wordless soprano, and music-box detuned by <5 cents for the
+# replicant tell.
+#
+# Tonal target — "Parks-and-Rec deadpan + Verne wonder + western
+# industrial sublime." Sincerity-gap is the mood: McCoy's benign parlor
+# theme sits at the same dynamic level as the Raubritter minor-key
+# corruption. The narrator never winks; the score never winks.
+#
+# Film-score behavior (per OQ-2 memory "music is cinematic, not video
+# game") — cues, overtures, one-shots. No looping BGM. Long silences
+# between entries are part of the score, same as the Morricone baseline.
+#
+# Reference tracks are cited at the *instance* level, not the category
+# level, per cliche-granularity discipline. Every ACE-Step prompt names
+# a specific composer + work + movement/cue.
+#
+# Leitmotifs are generated via ACE-Step audio2audio (a2a) from a
+# per-leitmotif source.wav seed placed under themed/{leitmotif}/source.wav.
+# a2a is the validated approach for producing real thematic variation
+# instead of random regeneration (per OQ-2 memory "ACE-Step a2a for
+# themes"). Seed provenance is preserved: each themed/ directory contains
+# source.wav + its own input_params.json documenting the seed recipe.
+
+world: the_real_mccoy
+genre: spaghetti_western
+inherits_from: genre_packs/spaghetti_western/audio.yaml
+override_policy: replace_mood_tracks  # world-level replaces genre mood_tracks; sfx_library inherits
+
+# ---------------------------------------------------------------------------
+# Mixer — identical to genre baseline except crossfade lengthened for the
+# slower, cue-driven cinematic pacing of this world.
+# ---------------------------------------------------------------------------
+mixer:
+  music_volume: 0.08
+  sfx_volume: 0.15
+  crossfade_default_ms: 4500
+
+# ---------------------------------------------------------------------------
+# Mood palette — 8 moods, each a cue-style entry, not a BGM loop.
+# Paths follow the world-scoped convention:
+#   worlds/the_real_mccoy/audio/music/<mood>_<variant>.ogg
+# Variant roles match the music-director agent spec: full, sparse,
+# tension_build, overture. Not every mood takes every variant — only
+# what the cue-driven pacing actually calls for.
+# ---------------------------------------------------------------------------
+mood_tracks:
+
+  workshop_briefing:
+    # McCoy presents 3 inventions, crew picks 2. Walking tempo, curious,
+    # NOT triumphant — parlor-music register. The cake-walk syncopation
+    # is period-authentic (1877, pre-Maple Leaf Rag 1899) and carries the
+    # Parks-and-Rec deadpan without winking.
+    - path: audio/music/workshop_briefing_full.ogg
+      title: "The Three Devices"
+      bpm: 96
+      tempo: "medium, walking"
+    - path: audio/music/workshop_briefing_sparse.ogg
+      title: "One Glass Tube"
+      bpm: 92
+      tempo: "medium, thinned"
+
+  train_travel:
+    # Rolling HQ in motion. Steam-cadence percussion (not locomotive SFX —
+    # rhythm *derived* from the 4-4-0 Baldwin driver-rod pulse ~2.5 Hz at
+    # 40 mph). Low strings and brass ride underneath. Honegger's Pacific
+    # 231 (1923) is the structural reference, retrofitted to period-brass
+    # orchestration (no 1920s harmonic vocabulary).
+    - path: audio/music/train_travel_full.ogg
+      title: "Baldwin 4-4-0"
+      bpm: 132
+      tempo: "medium-fast, rhythmic"
+    - path: audio/music/train_travel_sparse.ogg
+      title: "Coal Tender, Night"
+      bpm: 120
+      tempo: "medium, thinned"
+    - path: audio/music/train_travel_overture.ogg
+      title: "Departure, The Point"
+      bpm: 138
+      tempo: "medium-fast with brass fanfare open"
+
+  confrontation:
+    # Morricone-retrofit: 0.8× operatic (Il Triello final standoff whistle-
+    # and-guitar progression reimagined without electric guitar — solo
+    # clarinet carries the whistle line, tremolo strings replace reverb
+    # twang) + 0.2× industrial clatter (hammer-on-anvil at eighth-note
+    # subdivision). Brass and snare drive the cadence.
+    - path: audio/music/confrontation_full.ogg
+      title: "The Drawing Room Standoff"
+      bpm: 156
+      tempo: "fast, tight"
+    - path: audio/music/confrontation_tension_build.ogg
+      title: "Raised Card, Raised Cane"
+      bpm: 88
+      tempo: "slow build accelerando to 156"
+
+  replicant_reveal:
+    # The emblematic mood. Music box *almost* right — detuned by 3 cents
+    # per note (below the threshold of explicit dissonance, above the
+    # threshold of unconscious wrongness). Celesta doubles the music-box
+    # line a major seventh up. Held strings underneath drone on open
+    # fifths. Goldsmith's Capricorn One (1978) "Main Title" alienation
+    # figure + Herrmann's Psycho (1960) "The Murder" cue shrieking strings
+    # retrofitted to period-string technique (no col legno; sul ponticello
+    # OK as it predates).
+    - path: audio/music/replicant_reveal_full.ogg
+      title: "Three Cents Flat"
+      bpm: 58
+      tempo: "slow, uncanny"
+    - path: audio/music/replicant_reveal_sparse.ogg
+      title: "The Handshake Was Perfect"
+      bpm: 52
+      tempo: "slow, near-silent"
+
+  bessemer_sublime:
+    # Wide, slow, full brass + timpani + wordless SATB choir. Wagner
+    # "Ride of the Valkyries" 1870 restrained to *half* dynamic —
+    # industrial sublime, not military triumph. Mahler Symphony No. 3
+    # movement 1 slow section is the structural model for the long
+    # brass swell. This plays when the crew sees the Bessemer converter
+    # pour at night from Mount Washington.
+    - path: audio/music/bessemer_sublime_full.ogg
+      title: "Hell with the Lid Off"
+      bpm: 56
+      tempo: "slow, wide"
+    - path: audio/music/bessemer_sublime_overture.ogg
+      title: "The Converter Blows"
+      bpm: 60
+      tempo: "slow with climactic swell"
+
+  domestic_train_home:
+    # Slow, warm. Parlor piano (upright, felted hammers for the soft
+    # tone of 1870s domestic music), light strings, harp. The gospel
+    # hymnody of Ira Sankey's 1877-78 Moody-Sankey revival songbook
+    # is the emotional anchor — specifically "There is a Fountain"
+    # and "I Need Thee Every Hour" as harmonic templates, not quoted
+    # melodies. Plays in the observation car after a mission, when
+    # the crew is mending.
+    - path: audio/music/domestic_train_home_full.ogg
+      title: "Observation Car, Dusk"
+      bpm: 64
+      tempo: "slow, warm"
+    - path: audio/music/domestic_train_home_sparse.ogg
+      title: "Tabitha at the Ledger"
+      bpm: 60
+      tempo: "slow, solo piano"
+
+  dispatch_telegraph:
+    # Fast, sparse. The rhythm IS the melody: a real Morse-key
+    # pattern played on a woodblock or pizzicato double bass, with
+    # strings entering in the gaps. Structural reference: Steve Reich
+    # "Clapping Music" (1972) retrofitted to 1878 orchestration —
+    # additive rhythmic process is a 20th-century technique but
+    # expressible with period instruments. The clatter of the actual
+    # telegraph key in the workshop is diegetic SFX layered over.
+    - path: audio/music/dispatch_telegraph_full.ogg
+      title: "Washington Wire"
+      bpm: 168
+      tempo: "fast, sparse"
+    - path: audio/music/dispatch_telegraph_tension_build.ogg
+      title: "Six Dashes, One Dot"
+      bpm: 144
+      tempo: "fast, accelerating dot-density"
+
+  mourning_cemetery:
+    # Allegheny Cemetery (1844) — Stephen Foster's grave is here, and
+    # the crew will stand at it at least once. Organ (Hook & Hastings
+    # tracker-action, as in 1870s Pittsburgh churches), wordless solo
+    # soprano, harp. Structural references: the Dies Irae plainchant
+    # sequence (13th c., Thomas of Celano attrib.) as a semitone motif
+    # buried in the bass line, and Gabriel Fauré's Requiem Op. 48
+    # (1888 — just past period, but the harmonic language is used as
+    # template, not quoted). The Pie Jesu solo soprano line is the
+    # model for the wordless vocalise.
+    - path: audio/music/mourning_cemetery_full.ogg
+      title: "Allegheny Cemetery, November"
+      bpm: 48
+      tempo: "slow, reverent"
+    - path: audio/music/mourning_cemetery_sparse.ogg
+      title: "One Name on the Stone"
+      bpm: 44
+      tempo: "slow, organ only"
+
+# ---------------------------------------------------------------------------
+# Leitmotif themes — each is a2a-generated from a seed source.wav.
+# These are the thematic variations the narrator layers over the mood
+# cues. Each leitmotif has a base_prompt (the ACE-Step text conditioning)
+# and variations (the a2a outputs, roles per music-director spec).
+# ---------------------------------------------------------------------------
+themes:
+
+  - name: mccoy_theme
+    # Parlor piano, slightly syncopated (cake-walk 1877 rhythmic template),
+    # curious-not-triumphant. The tune asks a question and does not
+    # resolve — McCoy as holy-fool inventor, always mid-thought.
+    leitmotif_for: "Dr. Granville McCoy"
+    seed: audio/music/themed/mccoy_theme/source.wav
+    seed_params: audio/music/themed/mccoy_theme/input_params.json
+    base_prompt: >
+      1870s American parlor piano solo, upright Chickering square piano,
+      felted hammers, warm domestic register, cake-walk syncopation
+      circa 1877 (pre-ragtime), curious inquisitive melody in C major
+      that rises to the dominant and does not resolve, tempo 96 bpm
+      walking, light touch, no vibrato, period-authentic 1870s domestic
+      music recording aesthetic, no electric instruments, no modern
+      production
+    variations:
+      - type: full
+        path: audio/music/themed/mccoy_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/mccoy_theme/sparse.ogg
+      - type: tension_build
+        path: audio/music/themed/mccoy_theme/tension_build.ogg
+      - type: resolution
+        path: audio/music/themed/mccoy_theme/resolution.ogg
+
+  - name: raubritter_theme
+    # Corrupted Heidelberg student song ("Gaudeamus Igitur", 1781
+    # Halle melody, adopted by the Studentenlied tradition) rendered
+    # in minor key with lowered-sixth chromatic inflection. Brass
+    # quartet (two trumpets, trombone, tuba) — cultivated German
+    # cadence. Never loud. The menace is in the correctness of the
+    # voice-leading.
+    leitmotif_for: "Cornelius Raubritter"
+    seed: audio/music/themed/raubritter_theme/source.wav
+    seed_params: audio/music/themed/raubritter_theme/input_params.json
+    base_prompt: >
+      brass quartet two trumpets one trombone one tuba, slow stately
+      tempo 72 bpm, corrupted German student song Gaudeamus Igitur 1781
+      Halle melody transposed to D minor with lowered sixth, Heidelberg
+      Studentenlied cadence but minor-key, controlled cultivated
+      voice-leading, never loud, mezzo-piano dynamic, 1870s brass band
+      recording aesthetic, no electric instruments, period-authentic
+    variations:
+      - type: full
+        path: audio/music/themed/raubritter_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/raubritter_theme/sparse.ogg
+      - type: tension_build
+        path: audio/music/themed/raubritter_theme/tension_build.ogg
+
+  - name: train_theme
+    # Rhythmic steam-cadence percussion (woodblock + bass drum pulse
+    # at 2.5 Hz matching Baldwin 4-4-0 driver-rod frequency at cruising
+    # speed) with low brass (trombone, tuba) ostinato underneath.
+    # Honegger Pacific 231 (1923) structural model, retrofitted to
+    # period brass-band orchestration. This is the a2a seed for all
+    # train_travel variants.
+    leitmotif_for: "McCoy's train (rolling HQ)"
+    seed: audio/music/themed/train_theme/source.wav
+    seed_params: audio/music/themed/train_theme/input_params.json
+    base_prompt: >
+      rhythmic steam-locomotive percussion cadence 2.5 Hz driver-rod
+      pulse, woodblock and bass drum foundation, low brass ostinato
+      trombone and tuba in E flat major rising fifths, Honegger Pacific
+      231 structural model retrofitted to 1870s brass band
+      instrumentation, 132 bpm medium-fast, building intensity,
+      period-authentic no electric instruments no modern production
+    variations:
+      - type: full
+        path: audio/music/themed/train_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/train_theme/sparse.ogg
+      - type: overture
+        path: audio/music/themed/train_theme/overture.ogg
+      - type: resolution
+        path: audio/music/themed/train_theme/resolution.ogg
+
+  - name: replicant_theme
+    # Music box *almost* right. Detuned by 3 cents per note — below
+    # explicit dissonance, above unconscious wrongness. The melody
+    # itself is a nursery tune ("Brahms' Lullaby" / "Wiegenlied" Op. 49
+    # No. 4, 1868) rendered on a mechanical cylinder music box with
+    # one or two teeth subtly out of true. This is the most carefully
+    # curated a2a seed in the world — 4 cents is too much, 1 cent is
+    # too little. Ground truth: 3 cents flat, on every other note.
+    leitmotif_for: "replicants (all subtypes)"
+    seed: audio/music/themed/replicant_theme/source.wav
+    seed_params: audio/music/themed/replicant_theme/input_params.json
+    base_prompt: >
+      mechanical cylinder music box solo, Brahms Wiegenlied Op. 49 No. 4
+      1868 nursery melody in F major, 19-note cylinder configuration,
+      subtle detuning 3 cents flat on every second note below pitch,
+      uncanny almost-correct quality, slow 54 bpm, thin recording
+      aesthetic reminiscent of wax cylinder 1890s, dry close-mic,
+      no reverb no modern processing, period mechanical music aesthetic
+    a2a_curation_note: >
+      3 cents flat is the target. Test variants at 2, 3, 4, 5 cents and
+      have Keith blind-compare. The "almost right" threshold is
+      perceptually narrow — wrong by too much reads as broken, wrong
+      by too little reads as fine.
+    variations:
+      - type: full
+        path: audio/music/themed/replicant_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/replicant_theme/sparse.ogg
+      - type: tension_build
+        path: audio/music/themed/replicant_theme/tension_build.ogg
+
+  - name: pittsburgh_theme
+    # Industrial rhythm — hammer-on-iron at eighth-note subdivision
+    # (Edgar Thomson Steel Works shift-change rhythm) under a fragmentary
+    # hymn quotation. The hymn is Lowell Mason's "Nearer, My God, to
+    # Thee" (1856), which was by 1878 a standard Protestant hymn and
+    # gospel-revival staple. Only the opening four-note motif is quoted
+    # — the rest is implied by the harmonic frame. The collision of
+    # the industrial percussion with the devotional hymn is the
+    # sincerity-gap in audible form.
+    leitmotif_for: "the city of Pittsburgh"
+    seed: audio/music/themed/pittsburgh_theme/source.wav
+    seed_params: audio/music/themed/pittsburgh_theme/input_params.json
+    base_prompt: >
+      industrial percussion hammer-on-iron at eighth-note subdivision
+      120 bpm, Edgar Thomson Steel Works shift-change rhythm template,
+      fragmentary quotation of Lowell Mason Nearer My God to Thee 1856
+      opening four-note motif B-flat major on brass choir, sincere not
+      ironic, devotional hymn collision with industrial clatter, 1870s
+      Pittsburgh coal-smoke atmosphere, no electric instruments,
+      period-authentic brass and iron percussion only
+    variations:
+      - type: full
+        path: audio/music/themed/pittsburgh_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/pittsburgh_theme/sparse.ogg
+      - type: overture
+        path: audio/music/themed/pittsburgh_theme/overture.ogg
+
+# ---------------------------------------------------------------------------
+# SFX library — world-scoped additions for 1878 Pittsburgh context.
+# The genre-pack SFX library (gunshots, horse, spurs, saloon_door) is
+# inherited and still available. These are the world-specific layers.
+# ---------------------------------------------------------------------------
+sfx_library_additions:
+  telegraph_key:
+    - path: audio/sfx/telegraph_key_1.ogg
+      description: "Morse-key clatter, single-operator cadence (~18 wpm per 1878 commercial-operator standard)"
+  steam_whistle:
+    - path: audio/sfx/steam_whistle_1.ogg
+      description: "Baldwin 4-4-0 chime whistle, three-note triad at departure"
+  bessemer_blow:
+    - path: audio/sfx/bessemer_blow_1.ogg
+      description: "Bessemer converter blow, 20-second air-rush with spectral pyrotechnic crackle (approximated — no period recording exists)"
+  incline_cables:
+    - path: audio/sfx/incline_cables_1.ogg
+      description: "Duquesne Incline (1877) steel-cable drum turning, wooden car creak"
+  church_bell_bethel:
+    - path: audio/sfx/church_bell_bethel_1.ogg
+      description: "Single tenor bell, Bethel AME Wylie Avenue, Sunday cadence"
+  organ_hook_hastings:
+    - path: audio/sfx/organ_hook_hastings_1.ogg
+      description: "Hook & Hastings tracker-action organ, single chord release (for cemetery scenes)"
+  crookes_tube_hum:
+    - path: audio/sfx/crookes_tube_hum_1.ogg
+      description: "Induction-coil hum + faint glow-discharge crackle (workshop ambience)"
+  newspaper_press:
+    - path: audio/sfx/newspaper_press_1.ogg
+      description: "Hoe rotary press 1846-type, paper-feed and ink-roller rhythm (Allegheny Argus production)"
+
+# ---------------------------------------------------------------------------
+# Scene → mood binding hints (for narrator audio-cue dispatch)
+# ---------------------------------------------------------------------------
+scene_bindings:
+  workshop_briefing_scene: workshop_briefing
+  train_in_motion: train_travel
+  train_departure: train_travel  # prefer overture variant
+  drawing_room_standoff: confrontation
+  duel_or_ambush: confrontation
+  replicant_tell_discovered: replicant_reveal
+  replicant_extraction: replicant_reveal
+  bessemer_converter_pour: bessemer_sublime
+  mount_washington_overlook_night: bessemer_sublime
+  observation_car_evening: domestic_train_home
+  crew_mending_post_mission: domestic_train_home
+  telegraph_incoming: dispatch_telegraph
+  washington_wire_received: dispatch_telegraph  # prefer tension_build variant
+  allegheny_cemetery_scene: mourning_cemetery
+  funeral_or_memorial: mourning_cemetery
+
+# ---------------------------------------------------------------------------
+# Fail-loud contract
+# ---------------------------------------------------------------------------
+# Per music-director core principles: if a path listed above does not
+# exist on disk at runtime, the engine MUST fail loudly. This manifest
+# does not declare any track as "optional" — every entry is a contract.
+# ACE-Step pipeline run is a separate step; until tracks are generated
+# and committed under worlds/the_real_mccoy/audio/, this manifest is
+# the spec, and the loader should refuse to bind this world until the
+# tracks exist. No silent fallback to genre mood_tracks.

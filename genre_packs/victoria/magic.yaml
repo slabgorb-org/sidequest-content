@@ -1,0 +1,151 @@
+# magic.yaml — victoria genre layer
+#
+# Status: DRAFT (2026-04-27) — initial napkin-shape population.
+# Reference: docs/design/magic-taxonomy.md
+#
+# Replaces the misleading `magic_level: none` flag in rules.yaml.
+# Architecture here was already correct — the gothic axis dials supernatural
+# in/out per world. Only the label was misleading. True claim:
+# `world_knowledge: gothic-dialed (denied → esoteric)` with intensity tied to
+# axes.gothic.
+
+magic:
+  intensity:
+    dial: gothic
+    default: 0.3
+    # At low gothic: world is rational, supernatural events have mundane
+    # explanations. At high gothic: the house remembers, mesmerism works,
+    # some books should not have been opened.
+
+  world_knowledge:
+    # The gothic axis controls BOTH ontology and epistemology in this genre.
+    # The two are coupled by genre register — at low gothic the world denies,
+    # at high gothic the world (or its initiates) acknowledges.
+    dial: gothic
+    default: denied
+    permitted: [denied, folkloric, esoteric]
+    rationale: |
+      This is a known coupling — see Open Question #5 in magic-taxonomy.md.
+      Low gothic = the world denies the supernatural exists; mid gothic = folk
+      whispers, peasants knowing, dismissed by educated; high gothic = scholars
+      and initiates acknowledge what the rest still deny.
+
+  visibility:
+    default: dismissed
+    permitted: [dismissed, persecuted, feared]
+
+  allowed_sources:
+    - id: bargained_for
+      label: Bargained-for
+      gated_by: world           # only at higher gothic
+      examples: [pact with a presence, soul-debt to the house, fae-coded compacts]
+      narrator_note: |
+        Treated as transgression. Even mentioning the bargain is a moral
+        violation. The bargain is never closed; the bill arrives later.
+
+    - id: innate
+      label: Innate (touched / sensitive)
+      gated_by: world
+      flavors: [born_with]               # the touched-from-birth register
+      examples: [the natural sensitive, second-sight, trance-medium-without-training]
+      narrator_note: |
+        Wild, untrained register. The character is touched without
+        having sought it. Treated as illness or wickedness rather
+        than gift. Reflexive mode — surfaces under stress.
+
+    - id: learned
+      label: Learned (mesmeric / occult studies)
+      gated_by: world
+      prerequisite: innate               # the trained sensitive must first be touched
+      examples: [trained mesmerist, occult-society initiate, ritual-bound medium]
+      narrator_note: |
+        The disciplined register. Mesmerists in formal schools are
+        *charlatans* at low gothic and *genuine violators of will*
+        at high gothic. The training requires a baseline gift, but
+        once trained the discipline is the active source.
+
+    - id: item_based
+      label: Item-based
+      always_available: true
+      examples: [the cursed letter, the locked room's key, the family portrait,
+                 the inherited locket, the book that should not have been opened]
+      narrator_note: |
+        Often Gothic-coded objects: heirlooms, correspondence, photographs.
+        The item's power is psychic and emotional, not physical.
+
+    - id: divine
+      label: Divine
+      narrative_only: true
+      gated_by: world
+      examples: [the answered prayer, the saint's intervention, the curse from the parsonage]
+      narrator_note: |
+        The Church is socially central but spiritually quiet. Divine
+        intervention, when it happens, is ambiguous — was it grace or
+        coincidence? The genre rarely answers.
+
+    # Innate is GATED — no bursting/wild powers in drawing rooms by
+    # default; touched-from-birth flavor only, with restrained register.
+    # The acquired-via-event flavor (radiation/experiment) is forbidden —
+    # that's mutant_wasteland register, wrong for victoria.
+    # mccoy mechanism on item_based (mad-scientist gadgets, Cavor's
+    # antigravity paint, Frankenstein's apparatus) is gated per world —
+    # technically admissible at high gothic gothic-pulp variant, but
+    # forbidden in Brontë register.
+    # learned (occult lodge studies) — gated per world; available at
+    # esoteric world_knowledge level.
+
+  required_costs: [sanity, karma]
+  # The supernatural costs you in mind and moral weight. Never in mana.
+
+  hard_limits:
+    resurrection: forbidden
+    true_creation: forbidden
+    combat_magic: forbidden       # supernatural is dread, not utility
+    tool_use_register: forbidden  # the supernatural cannot be a "tool"
+    plane_shift: forbidden
+    permanence_without_renewal: forbidden  # hauntings can be exorcised, etc.
+
+  reliability:
+    default: negotiated
+    permitted: [negotiated, wild]
+    # The supernatural has agency and does not answer commands. It manifests
+    # when *it* wants — usually at the worst social moment.
+
+  counter:
+    - id: faith
+      description: Genuine virtue — rare, expensive, sometimes effective
+    - id: exposure
+      description: Bringing the secret into daylight; the supernatural recoils from acknowledgment
+    - id: sunrise
+      description: The classic gothic counter — cock crows, ghost fades
+    - id: nothing
+      description: Sometimes the supernatural cannot be countered, only survived
+
+  manifestation:
+    modes: [invoked, reflexive, ritual]
+    # Invoked = séance, mesmeric working, deliberate ritual.
+    # Reflexive = visions, possession, inherited curse activating.
+    # Ritual = explicit but rare; the locked room as ritual space.
+    # No item_channeled mode (items mediate but don't channel actively).
+    domains: [psychic, necromantic, divinatory, illusory]
+    # Specifically NOT: elemental, physical, transmutative, alchemical,
+    # spatial. Gothic supernatural lives in mind and memory.
+    domain_constraints:
+      necromantic: "presence and return only — never animation, never resurrection"
+      psychic: "mesmerism = violation of will, not telepathy as toolkit"
+      divinatory: "premonitions, dreams, automatic writing — never reliable"
+
+  narrator_register: |
+    The supernatural is dread, atmosphere, transgression — never a tool.
+    Use it sparingly for maximum dread. At low gothic: every chill has a
+    rational explanation. At high gothic: the explanation is worse than
+    the chill. Characters who encounter genuine supernatural phenomena
+    are CHANGED — never untouched. Mesmerism, when real, is a violation
+    of will, not a parlour trick. The Church is socially load-bearing but
+    spiritually mute. Faith is performed before God is invoked.
+
+  player_options:
+    can_build_caster: false
+    chargen_caster_classes: []
+    can_acquire_in_play: false   # players don't gain supernatural toolkit in play
+    encounter_only: true         # supernatural arrives via narrative, not selection

@@ -1,0 +1,1521 @@
+# magic.yaml — world-layer instantiation for The Long Foundry
+#
+# Status: DRAFT 2026-04-28 — second concrete world-layer instantiation
+# of the plugin framework (after mutant_wasteland/flickering_reach).
+# Validates bargained_for_v1's faction-primary mechanism (Coil and
+# Brand Guild + Perault-inherited covenants), divine_v1's apparatus
+# (the three feeding cults of the temple precinct + the Path-Eater
+# pilgrim road), learned_v1 with active Innate-prerequisite gate
+# (Coil and Brand apprenticeship; Astran rite-rank training),
+# innate_v1 in heavy_metal's covenant-peoples reading (Orvinnic
+# Kin Lanes biology-as-pact + Thessil stratum-remnant lineage),
+# item_legacy_v1 (refined tally, Founders' Stone, Refuser artifacts),
+# and the load-bearing obligation_scales_v1 multi-plugin tracker
+# with all five scales LIVE simultaneously — the world's defining
+# claim per its own lore.yaml: "All five of the metaphysical scales
+# are live in this city at the same time. The city is a coincidence,
+# and an increasingly fragile one."
+#
+# Note on naming: the design-doc handoff and several plugin specs
+# refer to this world as "The Long Reckoning" (legacy doc-drift).
+# Canonical name is "The Long Foundry" (per world.yaml). Drift will
+# be corrected at the design-doc layer in a follow-up pass.
+#
+# Reference:
+#   - genre layer: ../../_drafts/magic.yaml
+#   - taxonomy: docs/design/magic-taxonomy.md
+#   - bargained_for_v1: docs/design/magic-plugins/bargained_for_v1.md
+#   - divine_v1: docs/design/magic-plugins/divine_v1.md
+#   - learned_v1: docs/design/magic-plugins/learned_v1.md
+#   - innate_v1: docs/design/magic-plugins/innate_v1.md
+#   - item_legacy_v1: docs/design/magic-plugins/item_legacy_v1.md
+#   - obligation_scales_v1: docs/design/magic-plugins/obligation_scales_v1.md
+#   - world lore: ./lore.yaml
+#   - cultures: ./cultures.yaml
+#   - cartography: ./cartography.yaml
+#   - legends: ./legends.yaml
+
+magic:
+  # Within genre's permitted intensity range. Heavy_metal floor is 0.4;
+  # the Long Foundry's lore explicitly states the city is "the unusual
+  # density of the overlap" with all five scales live simultaneously.
+  # Sets near genre default at 0.85.
+  intensity: 0.85
+
+  # Genre permits only `acknowledged`. Confirmed at world layer —
+  # everyone in the Long Foundry knows the cosmology. The Coil and
+  # Brand publish their rates-book monthly. The Astran temples post
+  # their feeding ledgers. The Perault houses' covenant-arrears are
+  # public knowledge in the High Quarter. There is no closeted magic
+  # in this city.
+  world_knowledge: acknowledged
+
+  # Genre permits regulated / feared / persecuted. The Long Foundry
+  # defaults to `regulated` — the city is built on the explicit
+  # arrangement between guild, cults, and houses; magic is licensed,
+  # tariffed, and tracked. Specific zones differ:
+  #   - Forge Quarter: regulated, with daily working
+  #   - Temple Precinct: regulated to the rite-rank of officiants
+  #   - High Quarter: privately practiced, publicly invisible
+  #   - Kin Lanes: ubiquitous (the Orvinnic biology is pact-active
+  #     in every household)
+  #   - Stratum Camp: ungoverned (no one in the city has authority
+  #     there, and the scholars stopped reporting on schedule)
+  #   - Pilgrim Road: regulated by Path-Eater devotees
+  visibility: regulated
+  visibility_by_location:
+    forge_quarter: regulated
+    temple_precinct: regulated
+    high_quarter: regulated_private    # the practice is regulated;
+                                       # the BILLS are private (and
+                                       # increasingly unpaid)
+    kin_lanes: ubiquitous              # Orvinnic biology = pact
+    stratum_hills: persecuted          # the Refusers feared magic;
+                                       # their ruins resist it
+    pilgrim_road: regulated            # Path-Eater devotees enforce
+    river_locks: regulated             # River Wardens know who is
+                                       # carrying what
+
+  # ─────────────────────────────────────────────────────────────────
+  # ACTIVE PLUGINS — this world activates ALL SIX. The Long Foundry
+  # is the framework's full-coverage reference world; every plugin
+  # has at least one named instance to track.
+  # ─────────────────────────────────────────────────────────────────
+  active_plugins: [bargained_for_v1, divine_v1, learned_v1, innate_v1, item_legacy_v1, obligation_scales_v1]
+
+  # ═════════════════════════════════════════════════════════════════
+  # BARGAINED_FOR_V1 — the genre's signature plugin
+  # The Coil and Brand publishes the rates-book; the Perault houses
+  # accumulate inherited covenants; rural variants exist along the
+  # river.
+  # ═════════════════════════════════════════════════════════════════
+  bargained_for_v1:
+
+    # ─── Active mechanisms ───────────────────────────────────────
+    active_mechanisms:
+      - id: faction
+        in_world_label: "the Coil and Brand Guild (and rate-book pacts)"
+        is_primary: true
+        named_instance:
+          id: coil_and_brand_guild
+          full_name: "The Coil and Brand Guild"
+          location_ref: cartography.forge_quarter
+          guild_hall: "the head of the Long Span"
+          rates_book: |
+            Posted publicly every month at the guild hall door.
+            Lists the going price for routine pacts (a season's
+            steady-hand for a forge worker, a one-night protective
+            warding, etc.) and the standing tariff the cults
+            collect on each. Major pacts (any working that would
+            cross individual_scale 0.30+ on cast) are NOT posted;
+            those are negotiated privately in the senior chamber.
+          npc_roles:
+            - id: senior_sorcerer
+              named_in_lore: "The senior chamber holds twelve seats"
+            - id: rate_clerk
+              description: "Maintains the public rates-book"
+            - id: tally_keeper
+              description: "Reconciles the guild's debts to the cults"
+            - id: severer
+              description: |
+                The guild's specialist in cutting obligation chains;
+                rare; reserved for cases the senior chamber escalates
+              note: |
+                Coil and Brand maintains exactly one Severer at a
+                time. The current incumbent is unnamed in lore;
+                generated at session-start as needed.
+
+      - id: relational
+        in_world_label: "personal pacts (rural and high-quarter)"
+        named_instances:
+          - id: perault_inherited_pacts
+            description: |
+              The High Quarter houses' inherited covenants. Each
+              of the ~16 still-formally-open Perault houses carries
+              one or more pacts signed by ancestors and now
+              accruing on the current heads' books. The relational
+              shape is patron-to-bloodline; the patron in each case
+              is a specific named entity (often forgotten or
+              partially-forgotten by the current head). House
+              instances generated per-PC if a Perault chargen.
+          - id: river_wardens_quiet_pacts
+            description: |
+              Several River Wardens carry small personal pacts
+              negotiated on the lock-cycle — minor wardings of
+              the river traffic. Quiet, pragmatic, never registered
+              with the guild. The Wardens hear everything; some of
+              what they hear is what they paid for.
+
+      - id: place
+        in_world_label: "the Founders' Footprint and the Path-Eater road"
+        named_instances:
+          - id: founders_footprint
+            description: |
+              The bedrock-anomaly under the oldest foundry where
+              residues collect in unusual patterns. A character
+              standing on the Footprint at certain hours can,
+              with a senior sorcerer's protection or with
+              dangerous independence, attempt to address whatever
+              left the residue patterns behind. The patron-entity
+              is unidentified — either the dissolved founding
+              guild, or what the founding guild was bargaining
+              with. Place-mechanism workings here debit
+              stratigraphic_scale heavily.
+            location_ref: cartography.forge_quarter.founders_footprint
+            warning: |
+              Apprentices are told not to sweep this area, and to
+              report observations to a senior sorcerer. The senior
+              sorcerers do not discuss what they hear.
+          - id: pilgrim_road_waystation
+            description: |
+              The Path-Eater pilgrim road is technically Path-Eater
+              territory (divine_v1), but several waystations along
+              it have become informal place-loci for small bargains
+              made with whatever the pilgrim-road has become as it
+              "feels slightly longer than it was." Bargained
+              workings here often debit divine_scale (Path-Eater
+              gets a share, regardless of intent) AND
+              stratigraphic_scale (the road's lengthening is not
+              normal road-business).
+            location_ref: cartography.pilgrim_road
+
+      - id: condition
+        in_world_label: "high-quarter rite-conditions"
+        named_instance:
+          id: perault_inheritance_rite
+          description: |
+            Each Perault house has a specific inheritance-rite —
+            usually a private fasting period, sometimes a vigil at
+            a family vault, sometimes a recitation — that opens the
+            house's accumulated pact-channel for the new head when
+            the prior head dies. The rite IS the condition; without
+            it, the heir cannot make pacts on the house's account
+            even though the house's bills continue. Reading the
+            condition wrong is a major plot engine in High Quarter
+            arcs.
+
+    # NOT active: time, native, discovery, cosmic
+    # (time is too systematic for this world; native is forbidden by
+    # plugin lane respect; discovery is not how this world's bargains
+    # find their bargainers; cosmic is too ambient for
+    # heavy_metal's specific contractual register)
+
+    # ─── Named patrons ───────────────────────────────────────────
+    named_patrons:
+      - id: the_silent_chamber
+        label: "The Silent Chamber"
+        description: |
+          The default rate-book patron for routine Coil and Brand
+          pacts. Not named, possibly not singular, possibly an
+          archaic legal-fiction the guild uses to insulate
+          individual sorcerers from their own pacts. Workings
+          attributed to "the Silent Chamber" are bargained-for
+          but the patron's specific identity is partially-hidden
+          even to the casting sorcerer. Genre register: this is
+          fine; this is normal; do not ask.
+        register: amused, patient, bureaucratic
+        debits_scales: [individual, communal]    # default; specific
+                                                 # workings may add
+                                                 # covenant or divine
+      - id: the_dissolved_guild
+        label: "The Founding Guild (dissolved 200 years ago)"
+        description: |
+          The guild that dissolved in the Dissolution event. Their
+          former members departed; their patron-roster did not.
+          Some of the Founders' Footprint pacts are still being
+          serviced by Coil and Brand sorcerers who do not realize
+          they are paying down a 200-year-old account. Workings
+          tied to this patron debit stratigraphic_scale. The
+          patron's true name is one of the city's most carefully
+          maintained silences.
+        register: silent, patient, infinitely overdue
+        debits_scales: [individual, stratigraphic, communal]
+        attribution_state_default: hidden    # most workings to this
+                                             # patron route via
+                                             # hidden attribution
+      - id: house_specific_patrons
+        label: "(per-house, generated at chargen)"
+        description: |
+          Each Perault house has its own specific patron from the
+          ancestor's bargain. Generated per-character at chargen
+          when a Perault PC is built. Default register: cold,
+          specific, increasingly displeased. Default debit shape:
+          [individual, covenant] — the house's bloodline carries
+          the bill alongside the individual.
+
+    # ─── Active classes from this plugin ─────────────────────────
+    available_classes:
+      - id: warlock          # Coil and Brand journeyman-sorcerer shape
+      - id: pact_priest      # rare; mostly the guild's senior chamber
+      - id: soul_trader      # private brokers; the guild barely tolerates
+      - id: crossroads_walker # rural; not common in the city itself
+
+    # ─── Counters active in this world ───────────────────────────
+    active_counters:
+      - id: severer
+        named_instance:
+          - id: coil_and_brand_severer
+            description: |
+              The guild's standing Severer (one at a time). Available
+              to PCs who can pay or who have guild standing; also
+              a counter when the guild dispatches them against an
+              unlicensed pact-bearer.
+        plot_use: |
+          Most often dispatched as `counter_dispatched` against rogue
+          bargainers who have not registered with the guild. May be
+          ally on a PC's own Severance attempt.
+
+      - id: account_holder_revoker
+        narrative_seed_only: true
+        description: |
+          Generated per-pact at the patron's character-template
+          level. The Founding Guild's revoker is particularly
+          dangerous because the patron is itself dissolved — the
+          revocation comes from a thing without a face.
+
+      - id: inquisitor
+        named_instance:
+          - id: astran_arbitration_prefect
+            description: |
+              The single Astran prefect who presides over inter-
+              cult arbitration on the first morning of every week
+              also has standing to investigate bargained workings
+              that interfere with the cults' feeding schedule.
+              Functions as Inquisitor when the guild's pacts cause
+              divine_scale debits the temples did not authorize.
+            faction: keepers_of_the_hour
+            location_ref: cartography.temple_precinct.tally_hall
+
+      - id: rival_pact_bearer
+        narrative_seed_only: true
+        description: |
+          Generated per-PC. Most common shape in this world: a
+          fellow Coil and Brand journeyman whose patron's interests
+          conflict with the PC's. The guild does not officially
+          take sides; the senior chamber adjudicates after blood
+          has been drawn.
+
+      - id: witness
+        named_instance:
+          - id: the_river_wardens
+            description: |
+              The River Wardens hear everything. Several Wardens
+              can be deployed as Witness counters — not malicious,
+              but holding leverage. "I saw you on the south bank
+              the night the Veriault girl disappeared" is the
+              shape.
+            faction: river_wardens
+
+  # ═════════════════════════════════════════════════════════════════
+  # DIVINE_V1 — three feeding cults active in the city + Path-Eaters
+  # on the road. The Long Foundry is the framework's reference world
+  # for divine_v1's faction-primary configuration.
+  # ═════════════════════════════════════════════════════════════════
+  divine_v1:
+
+    # ─── Active gods with full divine instantiation ──────────────
+    # Long Foundry hosts 3 of the 6 genre-cosmology gods directly,
+    # plus the Path-Eater accessible via the pilgrim road.
+    active_gods:
+      - id: keepers_of_the_hour
+        label: "The Keepers of the Hour"
+        location_ref: cartography.temple_precinct
+        location_specifics: "the eldest of the three temples"
+        is_primary: true
+        feeding_register: |
+          The Keepers eat time — formally, hours of service from
+          their devotees, recorded in the precinct's tally-hall.
+          Workings attributed to the Keepers debit divine_scale
+          (their hunger) AND extract a specific quantity of the
+          devotee's life-time, recorded against the individual_scale.
+        clergy_named:
+          - role: senior_arbiter
+            description: |
+              Presides over inter-cult arbitration on the first
+              morning of every week. Single seat, currently unnamed
+              in lore (generated at session-start).
+          - role: tally_keeper
+            description: "Maintains the temple's hour-records"
+        active_apparatus:
+          - the central tally-hall (records all three cults' offerings)
+          - the precinct walls (raised stonework, preternaturally quiet)
+          - the daily Hour-bell (rung at six prescribed intervals)
+        register: patient, accountant-precise, bureaucratically certain
+        hunger_default_level: 0.55   # well-fed; the arrangement is working
+
+      - id: silent_patron
+        label: "The Silent Patron's House"
+        location_ref: cartography.temple_precinct
+        location_specifics: "the politically connected temple"
+        is_primary: true
+        feeding_register: |
+          The Silent Patron eats names. Initiates surrender a word
+          — a name they had been called, a name they hoped to use,
+          a name they had not yet given anyone. The word is
+          recorded; the initiate stops being able to retrieve it
+          fully. Workings attributed to the Silent Patron debit
+          divine_scale AND extract a specific name from the
+          devotee, recorded against individual_scale and
+          covenant_scale (the bloodline forgets too — descendants
+          may share the gap).
+        clergy_named:
+          - role: name_keeper
+            description: "Keeper of the word-ledger"
+          - role: politicking_priest
+            description: "The cult's most politically connected face"
+        active_apparatus:
+          - the word-ledger (locked chamber within the temple)
+          - the silence-rooms (private interview chambers)
+          - the unsaid-portraits (family galleries with names absent)
+        register: dignified, soft-spoken, terribly polite
+        hunger_default_level: 0.45    # the most politically tended;
+                                      # rarely allowed to grow hungry
+
+      - id: grievance_keepers
+        label: "The Grievance-Keepers"
+        location_ref: cartography.temple_precinct
+        location_specifics: "the least well-funded temple"
+        is_primary: true
+        feeding_register: |
+          The Grievance-Keepers eat formal complaints. Devotees
+          bring registered grievances — written, witnessed,
+          notarized — and surrender them to the temple. The
+          grievance is consumed; the devotee feels lighter and
+          slightly less able to remember why they were aggrieved.
+          Workings debit divine_scale + remove a specific
+          motivation from the character. Devotees who feed the
+          Grievance-Keepers too often become incapable of holding
+          a grudge.
+        clergy_named:
+          - role: complaint_clerk
+            description: "Receives and notarizes the grievance"
+          - role: grievance_eater
+            description: |
+              Junior priest who actually conducts the consumption
+              rite. Junior because the rite is unpleasant and few
+              senior clergy will perform it.
+        active_apparatus:
+          - the complaint-vault (grievances stored before consumption)
+          - the surrender-room (where the rite is conducted)
+        register: tired, kindly, slightly underfunded
+        hunger_default_level: 0.65   # actively hungry; the city
+                                     # does not grieve enough; the
+                                     # temple is lean
+
+      - id: path_eater
+        label: "The Path-Eater"
+        location_ref: cartography.pilgrim_road
+        location_specifics: "no temple — walks the road; major temple 3 days west"
+        is_primary: false      # accessible from this world but not
+                               # housed within it
+        feeding_register: |
+          The Path-Eater does not sit in a temple — it walks. It
+          eats road. Devotees who walk the pilgrim road from the
+          Long Foundry to the next major temple feed the cult
+          with their own travel-time and travel-effort. The road
+          has been, recently, getting subtly longer; this is the
+          Path-Eater's hunger expressing.
+        clergy_named:
+          - role: pilgrim_priest
+            description: |
+              Always road-worn, often older than they should be.
+              Walk the road continuously between major temples;
+              never settle.
+          - role: waystation_devotee
+            description: |
+              Volunteer; maintains a half-mile waystation shrine
+              along the road. Several dozen scattered along the
+              pilgrim road from this world.
+        active_apparatus:
+          - the road itself (the apparatus is geographic)
+          - the waystation shrines
+          - the pilgrim-tokens (worn by devotees; item_legacy track)
+        register: weather-worn, wandering, gently insistent
+        hunger_default_level: 0.60   # the road's lengthening tells
+
+    # 3 of 6 genre-cosmology gods are NOT instantiated here:
+    # those gods exist in the cosmology but have no working temple
+    # or apparatus in this world. Workings that attempt to invoke
+    # them in the Long Foundry resolve as failed (no apparatus to
+    # channel through) and may dispatch counter the_apostate (the
+    # ex-priest who knows the cult is not here).
+    inactive_gods:
+      reason: |
+        The Long Foundry hosts three of the six known cults
+        directly. The Path-Eater is accessible via the pilgrim road.
+        The other two genre-cosmology gods have no instance in this
+        world. PC characters who chargen as priests of these gods
+        must travel; they cannot serve their cults from this city.
+
+    # ─── Active mechanisms ───────────────────────────────────────
+    active_mechanisms:
+      - id: faction
+        is_primary: true
+        in_world_label: "the temple precinct cults"
+      - id: place
+        in_world_label: "the temple precinct as locus + the pilgrim road"
+      - id: relational
+        in_world_label: "individual cult-bonds (priest-to-deity)"
+      - id: condition
+        in_world_label: "rite-rank prerequisites for officiating workings"
+      - id: time
+        in_world_label: "the Hour-bell cycle (Keepers); the spring procession"
+
+    # ─── Active classes from this plugin ─────────────────────────
+    available_classes:
+      - id: priest         # cult-bonded officiant
+      - id: devotee        # lay-worshipper
+      - id: hierophant     # rare; senior cult leadership
+      - id: wandering_prophet  # mostly Path-Eater devotees in this world
+      # NOT available: saint (no current saint-line in active cults),
+      # apostate (counter only)
+
+    # ─── Counters active in this world ───────────────────────────
+    active_counters:
+      - id: heretic
+        narrative_seed_only: true
+      - id: rival_inquisitor
+        narrative_seed_only: true
+        description: |
+          The cults investigate each other periodically. A
+          Grievance-Keeper inquisitor sniffing around a Silent
+          Patron initiate is a routine plot.
+      - id: apostate
+        narrative_seed_only: true
+        description: |
+          Particularly potent in this world — the inactive gods'
+          cults left ex-priests scattered across the region. An
+          apostate of an inactive cult knows things the active
+          cults would prefer remained quiet.
+      - id: eater_of_gods
+        narrative_seed_only: true
+        active_threat_level: low
+        description: |
+          The Refuser site in the eastern hills is the closest
+          thing to an Eater of Gods threat. It is not yet active;
+          may become so as stratigraphic_scale rises.
+      - id: rival_faith
+        named_instance:
+          - id: the_three_inactive_cults
+            description: |
+              The other three feeding cults of the genre cosmology
+              do not have temples here, but their cosmology is
+              real. A devotee of an inactive cult is, mechanically,
+              a rival faith for any active-cult priest in the
+              Long Foundry.
+
+  # ═════════════════════════════════════════════════════════════════
+  # LEARNED_V1 — the Coil and Brand apprenticeship + Astran rite-rank
+  # ═════════════════════════════════════════════════════════════════
+  learned_v1:
+
+    # ─── Innate prerequisite gate ────────────────────────────────
+    innate_prerequisite_gate:
+      active: true
+      requirement: |
+        Coil and Brand apprenticeship and Astran rite-rank training
+        in the Long Foundry both require an Innate baseline.
+        Specifically:
+          - Coil and Brand: must be Kragmoor-bloodline OR
+            stratigraphic-touched (acquired_via_event flavor
+            from prolonged Forge Quarter residue exposure). Roughly
+            30% of Forge Quarter children pass the threshold by
+            age 12 by this latter route.
+          - Astran rite-rank: must be Astran-bloodline (the
+            officiant lineage) OR have demonstrated specific
+            forms of feeding-resonance during devotee period.
+        Pure non-Innate characters cannot take a learned class
+        in this world — but the Forge Quarter residue exposure is
+        a valid backstory that satisfies the gate without requiring
+        bloodline.
+
+    # ─── Active traditions ───────────────────────────────────────
+    active_traditions:
+      - id: coil_and_brand_apprenticeship
+        label: "The Coil and Brand Apprenticeship"
+        faction: coil_and_brand_guild
+        named_master_seats:
+          - title: senior sorcerer
+            count: 12
+            description: |
+              The senior chamber holds twelve seats. Each seat is
+              a master available to take apprentices. Specific
+              named instances generated at session-start as the
+              party encounters them.
+        location_ref: cartography.forge_quarter.guild_hall
+        domain_palette: [physical, transmutative, alchemical, elemental]
+        primary_mechanism: faction
+        secondary_mechanism: relational
+        prepared_slots_active: false
+        components_active: true     # the foundry residues ARE the
+                                    # primary component
+        forbidden_techniques:
+          - id: footprint_invocation
+            description: |
+              Direct invocation of the Founders' Footprint anomaly.
+              Forbidden because the patron is undefined and the
+              debt routes via stratigraphic_scale at hidden
+              attribution.
+          - id: refuser_artifact_workings
+            description: |
+              Any working that incorporates a Refuser-site artifact.
+              The Refusers were anti-feeding-economy; their
+              artifacts produce something other than canonical
+              workings. Strictly forbidden by the senior chamber.
+              Apprentices found practicing this are revoked.
+        narrator_register: |
+          Coil and Brand workings draw on industrial vocabulary —
+          casting (in both senses), tempering, smelting, forging,
+          drawing-out, hammering. The discipline is half-craft,
+          half-bargain — the apprentice learns both the technique
+          AND the schedule of debits the technique runs against
+          the rates-book.
+
+      - id: astran_rite_rank_training
+        label: "Astran Rite-Rank Training"
+        faction: keepers_of_the_hour    # primary; also Silent
+                                        # Patron and Grievance-Keepers
+                                        # have their own variants
+        named_master_seats:
+          - title: rite-master (per cult)
+            count: 1_per_cult
+            description: |
+              Each active cult maintains one rite-master responsible
+              for training new clergy in the cult's specific
+              feeding apparatus.
+        location_ref: cartography.temple_precinct
+        domain_palette: [divinatory, alchemical, illusory]
+        primary_mechanism: faction
+        secondary_mechanism: condition  # rite-conditions are central
+        prepared_slots_active: true     # offerings prepared at the
+                                        # appropriate Hour-bell
+                                        # interval; cyclical reset
+        components_active: true         # cult-specific (hours, names,
+                                        # grievances)
+        forbidden_techniques:
+          - id: cross_cult_rite
+            description: |
+              Performing one cult's rite within another cult's
+              precinct. Forbidden by the inter-cult arbitration
+              treaty. Discovered cross-rite work triggers
+              immediate apostasy proceedings.
+          - id: inactive_god_invocation
+            description: |
+              Invoking one of the three inactive gods using
+              active-cult apparatus. Forbidden because the
+              apparatus is not configured for the inactive god;
+              attempts produce cascade insanity (similar to
+              long_signal_song's vault_broadcast_mimicry pattern
+              in flickering_reach).
+        narrator_register: |
+          Astran workings draw on liturgical vocabulary — feeding,
+          offering, tally, register, witness, ledger. The
+          discipline is bureaucratic-mystical — the priest is a
+          clerk who is also a mystic, and the paperwork is
+          load-bearing.
+
+    # ─── Counters active in this world ───────────────────────────
+    active_counters:
+      - id: the_inquisitor
+        named_instance:
+          - id: astran_arbitration_prefect
+            (shared_with: divine_v1.active_counters)
+            description: |
+              Same NPC as divine_v1's named Inquisitor; the prefect
+              also serves as Inquisitor for learned_v1 cross-rite
+              violations. Dual-role: the same person enforces both
+              divine and learned discipline.
+      - id: the_revoker
+        narrative_seed_only: true
+        description: |
+          The Coil and Brand senior chamber collectively serves as
+          revoker for apprentices who practice forbidden techniques.
+          The chamber's revocation rite is a formal collegial
+          decision; no single named NPC.
+      - id: the_destroyer_of_books
+        narrative_seed_only: true
+        active_threat_level: low_for_now
+        description: |
+          The dissolved Founding Guild took their books with them.
+          This is the world's defining destroyed-record event,
+          historical rather than active. Future destroyer events
+          could fire if the Stratum Camp's findings are forcibly
+          suppressed by the guild or a cult.
+      - id: the_dampener
+        environmental:
+          - id: refuser_site_silence
+            description: |
+              The Refuser site in the eastern hills is dampened
+              against canonical workings — the Refusers built their
+              ruins specifically to resist the feeding economy.
+              Coil and Brand workings cannot fire reliably within
+              the inner precincts of the dig site. Astran rite-rank
+              workings fail entirely. This is part of why the
+              scholars stopped reporting on schedule.
+          - id: founders_footprint_distortion
+            description: |
+              The Founders' Footprint produces unpredictable
+              dampening AND amplification depending on the working
+              attempted. Net effect: standard rate-book workings
+              are reliable; non-standard workings are unpredictable;
+              high-stratigraphic workings are dangerously amplified.
+      - id: the_mentor_betrayed
+        narrative_seed_only: true
+        description: |
+          Generated per-character. Most common shape: the senior
+          sorcerer who admitted the apprentice and later turns
+          against them — typically because the apprentice has been
+          investigating the Founders' Footprint or visiting the
+          Stratum Camp without senior chamber sanction.
+
+  # ═════════════════════════════════════════════════════════════════
+  # INNATE_V1 — heavy_metal's covenant-peoples reading
+  # The Orvinnic Kin Lanes are the canonical covenant-people
+  # community: biology IS pact. The Thessil are stratum-remnant
+  # covenant. Both flavor as innate; both contribute to covenant_scale.
+  # ═════════════════════════════════════════════════════════════════
+  innate_v1:
+
+    # ─── Active flavors ──────────────────────────────────────────
+    active_flavors:
+      - id: born_with
+        in_world_label: "Orvinnic / Thessil bloodline"
+        canonical_examples:
+          - "An Orvinnic child born to the Kin Lanes — the foundry-residue physiology manifests at adolescence; without it the child cannot work the forges and is treated tenderly but as outside-covenant"
+          - "A Thessil child of the eastern hills — the stratum-remnant inheritance is quieter but real; manifests as language-fluency the child was not taught and uneasy familiarity with certain ruins"
+        narrator_register: |
+          "Her mother carried the residue-tolerance. The daughter
+          carries it too, and the daughter carries also the fact
+          that someone signed something for her ancestors that
+          she will pay across her body."
+
+      - id: acquired_via_event
+        in_world_label: "stratigraphic-touched (extended Forge Quarter exposure or Refuser site)"
+        canonical_examples:
+          - "A non-Orvinnic apprentice who has worked the Forge Quarter for over a decade — the residues install slowly; manifestations appear in middle age"
+          - "A Stratum Camp scholar who has spent more than two seasons at the Refuser site — the manifestations are unlike Orvinnic patterns; the world has not seen these specific Innate shapes before"
+
+      - id: inherited
+        in_world_label: "house-bloodline pact-marks"
+        canonical_examples:
+          - "A Perault heir whose house's covenant has begun expressing in their body — small marks, partial visibility of the covenant's terms; the house head usually pretends not to see the developing marks until they cannot be ignored"
+
+      - id: returned_wrong
+        in_world_label: "Stratum Camp returnees"
+        canonical_examples:
+          - "One of the original Stratum Camp scholars who DID come back — they returned changed; the camp leadership decided to keep them on staff rather than admit they were now something else; current status of these scholars is the central anxiety of the Camp's late communications"
+        narrator_register: |
+          "What came back from the Refuser site with him is taking
+          up residence. He does not recognize what he writes when
+          he is alone. The Camp does not send him out anymore."
+
+    # ─── Active mechanisms ───────────────────────────────────────
+    active_mechanisms:
+      - id: native
+        is_primary: true
+      - id: condition
+        in_world_label: "foundry-residue exposure / rite-conditions / stratum-resonance"
+        active_triggers:
+          - id: forge_quarter_residue_saturation
+            description: |
+              Sustained presence in the Forge Quarter (working a
+              shift; living in the Kin Lanes) keeps Orvinnic
+              physiology in active-pact state. Withdrawal produces
+              symptoms.
+            primary_for: [orvinnic_lineage]
+          - id: refuser_site_proximity
+            description: |
+              Within the Stratum Hills' Refuser excavation, the
+              air carries residues of the un-working that
+              Refusers practiced. Innate workings fire wild here
+              for non-Refuser-touched characters; reliably for
+              returned_wrong-flavor characters.
+          - id: rite_condition_overlap
+            description: |
+              Innate manifestation gated by rite-readiness for
+              characters who are also rite-trained — the body
+              pact and the priestly pact reinforce. Common in
+              Astran-Orvinnic crossbreeding (rare but documented).
+      - id: place
+        named_loci:
+          - id: kin_lanes
+            label: "The Kin Lanes"
+            location_ref: cartography.forge_quarter.kin_lanes
+            amplification: high_for_orvinnic
+            description: |
+              The Orvinnic-covenant district. Innate workings by
+              Orvinnic characters here are amplified and stable;
+              the place IS the covenant locus. Non-Orvinnic
+              characters experience mild interference (the air is
+              for someone else's pact).
+          - id: stratum_hills
+            label: "The Stratum Hills"
+            location_ref: cartography.stratum_hills
+            amplification: high_for_returned_wrong
+            description: |
+              The eastern hills. Thessil bloodline mutations
+              amplify reliably; returned_wrong-flavor characters
+              experience the strongest amplification AND
+              wildest reliability.
+      - id: discovery
+        in_world_label: "the Awakening"
+        description: |
+          Per innate_v1 — the first surge as delivery moment.
+          Common Awakening trigger in this world: the first shift
+          a Kin Lanes child works in the Forge Quarter at age 12.
+          Less common but more dramatic: a Perault heir's first
+          attempted use of their house's pact-channel.
+      - id: cosmic
+        in_world_label: "ambient stratigraphic baseline"
+        description: |
+          The Long Foundry sits on First-Feeder bedrock with
+          Refuser strata below; the city's mutagenic baseline is
+          higher than most cities of comparable size. Latent
+          Innate potential exists in apparent non-mutants;
+          stress + place can surface previously-silent traits.
+          Pattern parallels flickering_reach's Drift baseline.
+
+    # NOT active: time, faction, relational
+    # (per plugin lane respect)
+
+    # ─── Awakening triggers ──────────────────────────────────────
+    awakening_default_trigger:
+      primary: kin_lanes_first_shift
+      description: |
+        Default Awakening in this world is the Orvinnic
+        adolescent's first Forge Quarter shift. Stress + residue
+        saturation + cultural expectation align; the body's pact
+        manifests.
+    awakening_alternatives:
+      - id: stratum_camp_residence
+        produces_flavor: returned_wrong
+      - id: perault_inheritance_rite
+        produces_flavor: inherited
+      - id: refuser_artifact_contact
+        produces_flavor: acquired_via_event
+        warning: "highest unpredictability; closest to wild_innate"
+
+    # ─── Stigma vocabulary (heavy_metal-specific Long Foundry register) ─
+    stigma_vocabulary:
+      tier_low:
+        - "skin developing the faint metallic tint of Forge Quarter residue exposure"
+        - "fingernails striated with iron oxide patterns"
+        - "small involuntary tremor when near foundry residues for the first time of a day"
+        - "voice taking on slight reverberation in the temple precinct"
+        - "Perault: a single covenant-glyph surfacing somewhere on the body, faint and growable"
+      tier_mid:
+        - "visible iron-flecking through the skin"
+        - "scalp-hair beginning to fall in patterns matching the foundry shift-cycle"
+        - "secondary pact-glyphs surfacing on Perault heirs (forearm, collarbone, jawline)"
+        - "Thessil: pupils irregular shape, faintly geometric"
+        - "Stratum-touched: handwriting changes (scholars affected sign their reports differently after the fifth season)"
+      tier_high:
+        - "fully metallic-tone skin in Orvinnic; can no longer pass outside Kin Lanes without comment"
+        - "Perault: covenant-glyphs visible across face/throat — the house's bill is publicly written on the heir"
+        - "Thessil: secondary skeletal features (additional vertebra, fused finger-bones); the body remembering an ancestor's body"
+        - "Stratum-touched (returned_wrong): visible structural inconsistencies — limbs that move slightly out of phase, eyes that focus on different things, voice that says one word and a half-second later says a different word"
+
+    # ─── Domain palette ──────────────────────────────────────────
+    domain_palette:
+      primary: [physical, transmutative]
+      common: [psychic, divinatory, alchemical]
+      rare: [illusory, elemental]
+      forbidden:
+        - id: spatial
+          reason: "genre hard_limit plane_shift forbidden; local-only allowed via Astran ritual"
+        - id: necromantic
+          reason: "genre hard_limit; commune only via divine apparatus, never via Innate"
+        - id: temporal
+          reason: "genre hard_limit; only Keepers of the Hour cult engages temporal domain, via apparatus"
+
+    # ─── Signal bar activation ───────────────────────────────────
+    signal_bar:
+      active: true
+      world_default_level: 0.20
+      decay_per_session: 0.05
+      thresholds:
+        high: 0.70
+        higher: 1.00
+      contributing_locations:
+        kin_lanes: 0.0           # ubiquitous; surges here do not register
+        forge_quarter: 0.5
+        temple_precinct: 1.5     # high-visibility, high-record
+        high_quarter: 1.0
+        stratum_hills: 0.3       # remote; few witnesses
+        pilgrim_road: 0.8        # devotees notice and remember
+      note: |
+        Lower default than flickering_reach because the world is
+        `acknowledged + regulated` rather than `acknowledged + feared`.
+        The hunters in the Long Foundry are bureaucratic (the cults
+        and the guild) rather than violent (Pureblood Purgers).
+
+    # ─── Counters ────────────────────────────────────────────────
+    active_counters:
+      - id: the_suppressor
+        named_instance:
+          - id: coil_and_brand_dampener_workings
+            description: |
+              The guild can produce a localized dampener around
+              an out-of-control Innate; their service is for hire
+              and is not free. Standard tariff for one
+              dampener-shift listed in the rates-book.
+      - id: the_hunter
+        named_instance:
+          - id: astran_arbitration_prefect
+            (shared_with: bargained_for_v1, learned_v1)
+            description: |
+              The same NPC. As Inquisitor for bargained_for and
+              learned, also Hunter for unauthorized Innate workings
+              that contaminate cult feeding-channels. Triple-role.
+      - id: the_amplifier
+        narrative_seed_only: true
+        description: |
+          The Stratum Camp leadership are functional Amplifiers
+          for any returned_wrong-flavor character — the camp
+          accelerates Innate manifestation in exchange for ongoing
+          research access. May or may not be malicious; the camp's
+          intent is opaque.
+      - id: the_other
+        named_instance:
+          - id: returned_camp_scholars
+            description: |
+              The original Stratum Camp scholars who came back
+              changed. Currently still on the camp's roster;
+              perform "translation work" on Refuser artifacts.
+              Function as the_other for any returned_wrong-flavor
+              PC: the path the PC may walk; advanced; possibly
+              past human.
+      - id: the_betrayer
+        narrative_seed_only: true
+        description: |
+          Most common shape in this world: a Kin Lanes elder who
+          reports a wayward Orvinnic to the Astran arbitration
+          prefect "for the family's protection."
+      - id: the_trainer
+        named_instance:
+          - id: kin_lanes_elder_council
+            cross_plugin_path_opener: true
+            target_plugin: learned_v1
+            target_tradition: coil_and_brand_apprenticeship
+            description: |
+              The Kin Lanes elders council recommends promising
+              Orvinnic adolescents to Coil and Brand. The Crossing
+              from innate_v1 (wild Orvinnic) to learned_v1
+              (Coil and Brand journeyman) is the canonical
+              advancement arc for Orvinnic PCs.
+          - id: astran_recruitment
+            cross_plugin_path_opener: true
+            target_plugin: learned_v1
+            target_tradition: astran_rite_rank_training
+            description: |
+              The Astran clergy recruit specifically among devotees
+              who show Innate divinatory aptitude. The Crossing
+              from innate_v1 divinatory wildness to Astran rite-
+              rank training is offered.
+
+    # ─── Cross-plugin paths ──────────────────────────────────────
+    crossing_paths:
+      - to_plugin: learned_v1
+        to_tradition: coil_and_brand_apprenticeship
+        opener: kin_lanes_elder_council
+        availability: high
+        cost_register: |
+          Stable, regulated practice in exchange for the wild
+          edge of Kin Lanes Innate. The character's covenant_scale
+          contribution stabilizes; their individual_scale rises
+          (they take on guild-mediated pacts).
+      - to_plugin: learned_v1
+        to_tradition: astran_rite_rank_training
+        opener: astran_recruitment
+        availability: medium
+        cost_register: |
+          Bureaucratic discipline replaces wild divinatory edge;
+          the character begins serving a specific cult and feeding
+          its hunger. divine_scale debits become routine.
+      - to_plugin: item_legacy_v1
+        to_item_subtype: relic
+        opener: refuser_artifact_bond
+        availability: low
+        cost_register: |
+          Bond a Refuser-site artifact; the character's wild
+          Innate stabilizes via the artifact's anti-feeding-economy
+          channel. Very rare; very dangerous; nearly all attempts
+          fail. The artifact has its own personality and its own
+          intentions, neither of which align with the character's
+          interests by default.
+
+  # ═════════════════════════════════════════════════════════════════
+  # ITEM_LEGACY_V1 — refined tally, Founders' Stone, Refuser artifacts
+  # ═════════════════════════════════════════════════════════════════
+  item_legacy_v1:
+
+    # ─── Active subtypes ─────────────────────────────────────────
+    active_subtypes: [weapon, scroll, relic, regalia]
+
+    # ─── Active mechanisms ───────────────────────────────────────
+    active_mechanisms: [discovery, mccoy, faction, relational]
+    # NOT active: place (items are mobile in this world by default),
+    # time, condition
+
+    # ─── Notable named items ─────────────────────────────────────
+    notable_items:
+      - id: the_founders_stone
+        subtype: relic
+        label: "The Founders' Stone"
+        location: "set into the wall of the Coil and Brand guild hall"
+        ocean: { o: 0.3, c: 0.95, e: 0.1, a: 0.4, n: 0.5 }
+        bonded_to: coil_and_brand_guild_collectively
+        description: |
+          The plain stone bearing no inscription. Every apprentice
+          is shown it. No one explains what it commemorates. As an
+          item-as-NPC, the Stone is silent, conscientious, and
+          remembers — the senior chamber knows the Stone responds
+          to specific questions if asked correctly. Almost no one
+          asks correctly.
+        narrative_use: |
+          Faction-bonded; the senior chamber has access. PCs may
+          attempt access at considerable risk. The Stone debits
+          stratigraphic_scale at hidden attribution when consulted.
+
+      - id: the_midpoint_stone
+        subtype: relic
+        label: "The Midpoint Stone (Long Span midpoint)"
+        location: "center of the Long Span"
+        ocean: { o: 0.4, c: 0.7, e: 0.3, a: 0.6, n: 0.3 }
+        bonded_to: spring_procession_collective
+        description: |
+          The marker bearing the overlaid sigils of the three cults
+          and the Coil and Brand mark. Touched by every party to
+          the annual procession. As an item-NPC, the Midpoint
+          Stone is the *witness* of the temple-guild arrangement.
+          A working that requires the four parties' overlapping
+          authority can sometimes be conducted at the Stone with
+          the Stone's consent.
+        narrative_use: |
+          Communal-resonant; debits communal_scale on consultation.
+          The Stone has not yet refused anyone; the senior chamber
+          considers the day it does refuse to be a major civic event.
+
+      - id: refined_tally
+        subtype: regalia
+        label: "Refined Tally"
+        ocean_default: { o: 0.5, c: 0.8, e: 0.2, a: 0.5, n: 0.4 }
+        bonded_to_mechanism: faction
+        description: |
+          The Coil and Brand's processed output — First-Feeder
+          residue refined into ledger-currency. Acts as item-as-
+          NPC at high concentrations: a senior sorcerer's tally-
+          chest is conscientious, methodical, has opinions about
+          inventory inconsistencies. Smaller quantities are inert.
+          Distributed annually to the temples per the formal
+          arrangement.
+        plot_use: |
+          Theft of refined tally is the city's most-feared crime;
+          the chest tells the senior chamber. Inheritance of a
+          tally-chest from a deceased master is a valid character
+          backstory.
+
+      - id: refuser_artifacts
+        subtype: relic
+        rarity: very_rare
+        label: "Refuser-site artifacts"
+        ocean_default: { o: 0.9, c: 0.6, e: 0.4, a: 0.2, n: 0.6 }
+        description: |
+          Artifacts surfacing from the eastern hills excavation.
+          Structurally unlike canonical-cosmology items —
+          high-openness OCEAN; resist cataloguing; their function
+          is unclear. The Stratum Camp has been bringing some back;
+          the Coil and Brand has refused to touch them; the Astran
+          arbitration prefect has not yet taken formal jurisdictional
+          notice. Bonding with a Refuser artifact debits
+          stratigraphic_scale heavily and may produce non-feeding-
+          economy workings — the artifact answers, but the answer
+          is not from the apparatus.
+        plot_use: |
+          The plot engine of the late-current arc. Crossing-target
+          for innate_v1 returned_wrong-flavor characters seeking
+          stabilization that does not route through the cults
+          or the guild.
+
+      - id: perault_house_relics
+        subtype: regalia
+        label: "Perault house regalia (per house)"
+        ocean_default: { o: 0.4, c: 0.7, e: 0.3, a: 0.4, n: 0.6 }
+        bonded_to_mechanism: relational
+        description: |
+          Each of the ~16 still-formally-open Perault houses
+          maintains one or more pieces of regalia bonded to the
+          house's covenant. The regalia carry the covenant's
+          terms; the heir wears them at formal occasions. As
+          the houses decline, the regalia grow more conscious of
+          their bills. Some have begun refusing to be worn.
+          Generated per-PC at chargen if a Perault.
+
+      - id: pilgrim_tokens
+        subtype: relic
+        rarity: common
+        label: "Path-Eater pilgrim tokens"
+        ocean_default: { o: 0.3, c: 0.5, e: 0.4, a: 0.7, n: 0.3 }
+        bonded_to_mechanism: relational
+        description: |
+          Small wooden tokens carried by Path-Eater devotees on
+          the pilgrim road. Acquire personality at long use
+          (tokens carried for many pilgrimages develop noticeable
+          OCEAN). Do not require formal item-NPC handling unless
+          the character has carried the same token for years.
+
+  # ═════════════════════════════════════════════════════════════════
+  # OBLIGATION_SCALES_V1 — the load-bearing claim
+  # All five scales are LIVE in this world simultaneously.
+  # The world's lore.yaml: "the city is a coincidence, and an
+  # increasingly fragile one."
+  # ═════════════════════════════════════════════════════════════════
+  obligation_scales_v1:
+
+    # ─── Cascade availability ────────────────────────────────────
+    # Per obligation_scales_v1.world_layer_required: declare whether
+    # The Cascade confrontation is reachable in this campaign.
+    cascade_availability: campaign_endgame
+    cascade_rationale: |
+      The Long Foundry's stated lore explicitly positions the city
+      as fragile across all five scales. The Cascade is the natural
+      endgame of any extended campaign here — three or more scales
+      crossing simultaneously is mechanically achievable through
+      sustained play. Worlds wishing to protect their campaign
+      length should manage scale ascent carefully; worlds wishing
+      a definite endpoint can lean into Cascade as the climax.
+
+    # ─── Per-scale instantiation ─────────────────────────────────
+    # Each of the five scales gets named instances tied to specific
+    # world content. This is the densest world-layer instantiation
+    # required by any plugin in the framework.
+
+    individual_scale:
+      starts_at_chargen: 0.05    # standard; bargained_for_v1 default
+      decay_per_session: 0.0
+      note: |
+        Per-character bar; routes to existing per-Source plugin
+        bills (bargained_for_v1.soul_debt for Warlocks/Pact-Priests,
+        divine_v1.standing for Priests, etc.). Union view rendered
+        in panel.
+
+    communal_scale:
+      world_default_decay_override: 0.04    # slightly above framework
+                                            # default; the Long Foundry's
+                                            # communities are dense and
+                                            # well-recorded
+      named_instances:
+        - id: forge_quarter_communal
+          label: "The Forge Quarter"
+          location_ref: cartography.forge_quarter
+          starts_at: 0.20
+          starts_at_rationale: |
+            Two centuries of guild workings have left a baseline
+            communal debt; the Founders' Footprint anomaly
+            specifically contributes to the Forge Quarter's
+            historical accumulation.
+          consequence_at_threshold: |
+            Forge accidents, residue-poisoning incidents, work
+            stoppage. Mid-tier: an apprentice maimed; senior
+            sorcerer dies; foundry shift cancelled. High-tier:
+            structural collapse of a foundry; mass injury.
+
+        - id: kin_lanes_communal
+          label: "The Kin Lanes"
+          location_ref: cartography.forge_quarter.kin_lanes
+          starts_at: 0.30
+          starts_at_rationale: |
+            The Kin Lanes are an Orvinnic-covenant district AND a
+            communal locus; the bar carries weight from both
+            communal AND covenant accumulation. Higher chargen
+            baseline reflects this overlap.
+          consequence_at_threshold: |
+            Mid-tier: Kin Lanes households experience
+            covenant-stress (children manifesting markings
+            earlier; the residue-tolerance failing on individuals).
+            High-tier: a generation of Kin Lanes children is born
+            unable to work the foundries; the city's labor base
+            cracks.
+
+        - id: temple_precinct_communal
+          label: "The Temple Precinct"
+          location_ref: cartography.temple_precinct
+          starts_at: 0.10
+          consequence_at_threshold: |
+            Mid-tier: inter-cult arbitration breaks down; the
+            three cults stop attending each other's tally
+            sessions. High-tier: open inter-cult conflict;
+            possibly a temple is closed; possibly a cult
+            relocates entirely.
+
+        - id: high_quarter_communal
+          label: "The High Quarter"
+          location_ref: cartography.high_quarter
+          starts_at: 0.45
+          starts_at_rationale: |
+            The High Quarter's chargen baseline is the highest
+            of the city's communal scales. The Perault houses'
+            accumulating covenants are in arrears already; the
+            city tolerates this because the houses have
+            historical precedence, but the bar is high and
+            climbing.
+          consequence_at_threshold: |
+            Mid-tier: a house formally closes (one of the ~16
+            becomes ~15); the closed house's covenants disperse,
+            either to the remaining houses or to wherever they
+            can be quietly absorbed. High-tier: multiple houses
+            close simultaneously; the High Quarter's political
+            function in the city council collapses; the Coil and
+            Brand and the Astran cults must renegotiate the
+            arrangement.
+
+        - id: stratum_camp_communal
+          label: "The Stratum Camp"
+          location_ref: cartography.stratum_hills.camp
+          starts_at: 0.55
+          starts_at_rationale: |
+            The Stratum Camp has been cycling without scheduled
+            reports for over a year. Whatever debt is accumulating
+            there is deeper than the camp itself can track. The
+            highest chargen baseline of any communal instance.
+          consequence_at_threshold: |
+            Mid-tier: the camp formally goes dark (no further
+            communications). High-tier: a search party fails to
+            return; the camp is now a stratigraphic-instability
+            site; this likely cross-triggers stratigraphic_scale
+            ascent.
+
+        - id: pilgrim_road_waystations
+          label: "The Pilgrim Road Waystations"
+          location_ref: cartography.pilgrim_road
+          starts_at: 0.15
+          consequence_at_threshold: |
+            Mid-tier: pilgrims' road experiences increase
+            ("longer than it was"); waystation devotees report
+            increased fatigue. High-tier: the road's lengthening
+            becomes physical; pilgrims who set out do not arrive
+            on schedule; the Path-Eater begins a Calling-shaped
+            consequence on the road's regular travelers.
+
+    covenant_scale:
+      world_default_decay_override: 0.003   # slightly below framework
+                                            # default; this world's
+                                            # bloodlines are old and
+                                            # patient
+      named_instances:
+        - id: orvinnic_kin_lanes_covenant
+          label: "The Kin Lanes Covenant (Orvinnic)"
+          bloodline: orvinnic
+          starts_at: 0.45
+          starts_at_rationale: |
+            The Orvinnic biology IS pact-active. Every generation
+            pays. The chargen baseline is high because the bloodline
+            has been paying continuously for at least eight
+            generations.
+          consequence_at_threshold: |
+            Mid-tier: Orvinnic births become harder; some children
+            born without the residue-tolerance trait at all (the
+            covenant is failing in specific lines). High-tier:
+            mass covenant-collapse — the residue-tolerance fails
+            across the bloodline within a generation; the Kin
+            Lanes lose their function in the Forge Quarter; the
+            city's labor model cracks.
+
+        - id: thessil_stratum_covenant
+          label: "The Thessil Stratum-Remnant Covenant"
+          bloodline: thessil
+          starts_at: 0.55
+          starts_at_rationale: |
+            Thessil bloodline carries an older debt than Orvinnic;
+            their ancestors signed something that is still in the
+            bedrock. Highest covenant baseline in the world.
+          consequence_at_threshold: |
+            Mid-tier: Thessil herders begin reporting visions and
+            language-fluency they did not have. The northern
+            slopes of the eastern hills become uncomfortable for
+            non-Thessil. High-tier: Thessil bodies begin
+            structurally aligning with stratigraphic remnants —
+            they are physically adjusting to host what is below;
+            this cross-triggers stratigraphic_scale.
+
+        - id: perault_houses_covenant
+          label: "The Perault Houses Collective Covenant"
+          bloodline: perault   # treated as a meta-bloodline of
+                               # ~16 individual houses
+          starts_at: 0.60
+          starts_at_rationale: |
+            The Perault houses carry the city's bargained-for
+            inheritance load. Each house is in some level of
+            arrears; the collective scale reflects the worst
+            offenders. Highest covenant chargen of any instance.
+          consequence_at_threshold: |
+            Mid-tier: house heirs begin manifesting covenant-
+            glyphs in tier_high stigma patterns visible to all
+            (innate_v1 cross-effect). The high quarter gossip
+            becomes ungovernable; rumors leave the quarter. High-
+            tier: heirs across multiple houses simultaneously
+            collapse, die, or transform; the high quarter
+            partially depopulates within a season; the houses'
+            political function in the city council is lost.
+
+    divine_scale:
+      world_default_decay_override: 0.025   # slightly higher than
+                                            # framework default; the
+                                            # cults are actively fed
+      named_instances:
+        - id: keepers_of_the_hour_divine
+          deity: keepers_of_the_hour
+          starts_at: 0.55
+          shared_with_plugin: divine_v1.keepers_of_the_hour.hunger
+          consequence_at_threshold: |
+            Mid-tier: the Hour-bell's intervals become subtly
+            shorter; the precinct's preternatural quiet deepens.
+            High-tier: time itself begins to anomaly-behave near
+            the Keepers' temple — pilgrims report hours that did
+            not happen; clergy age unevenly.
+
+        - id: silent_patron_divine
+          deity: silent_patron
+          starts_at: 0.45
+          shared_with_plugin: divine_v1.silent_patron.hunger
+          consequence_at_threshold: |
+            Mid-tier: names are forgotten faster; specific names
+            disappear from city records overnight. High-tier:
+            entire family lines lose their names; the city
+            records show blanks where there should be entries;
+            the Silent Patron is feeding past its ration.
+
+        - id: grievance_keepers_divine
+          deity: grievance_keepers
+          starts_at: 0.65
+          starts_at_rationale: |
+            The Grievance-Keepers are the least funded; they are
+            already actively hungry at chargen.
+          shared_with_plugin: divine_v1.grievance_keepers.hunger
+          consequence_at_threshold: |
+            Mid-tier: the city's appetite for grievance shrinks;
+            disputes deflate before reaching legal recording;
+            the cult's complaint-vault empties faster than it
+            fills. High-tier: catastrophic loss of memory-of-
+            wrong; everyone in the city forgets why they were
+            angry; the cult is consuming itself.
+
+        - id: path_eater_divine
+          deity: path_eater
+          starts_at: 0.60
+          shared_with_plugin: divine_v1.path_eater.hunger
+          consequence_at_threshold: |
+            Mid-tier: the pilgrim road from this world to the
+            next major temple becomes noticeably longer
+            (currently observed). High-tier: travelers between
+            the worlds become unable to complete the road;
+            the city's connection to the wider cult network
+            severs; pilgrims who set out do not return.
+
+    stratigraphic_scale:
+      starts_at_chargen: 0.40
+      starts_at_rationale: |
+        The Long Foundry sits on First-Feeder bedrock with Refuser
+        strata below. Twelve centuries of accumulated stratigraphic
+        obligation — substantial but not yet crisis-level. The
+        Founders' Footprint, the Refuser site excavation, and the
+        Path-Eater road's lengthening all contribute. Bar baseline
+        rises ~0.001/session even with no working contributions
+        (background drift; the bedrock keeps accruing whether or
+        not the city pays attention).
+      world_default_decay_override: 0.0005    # functionally never
+      named_contributors:
+        - id: founders_footprint_contribution
+          location_ref: cartography.forge_quarter.founders_footprint
+          rises_when: |
+            Workings performed on or near the Footprint;
+            apprentices instructed to ignore the area do not
+            contribute, but the senior chamber's quiet harvest
+            of residues from the area does.
+          attribution_state_default: hidden
+        - id: refuser_site_excavation
+          location_ref: cartography.stratum_hills.camp
+          rises_when: |
+            Each artifact retrieved from the dig site contributes
+            ~0.005. Refuser artifacts brought INTO the city
+            contribute additional 0.010 on each crossing of the
+            city limit.
+          attribution_state_default: partial
+        - id: pilgrim_road_drift
+          location_ref: cartography.pilgrim_road
+          rises_when: |
+            The road's lengthening is itself stratigraphic-symptom;
+            each pilgrim cycle contributes 0.001.
+          attribution_state_default: hidden
+        - id: thessil_bloodline_resonance
+          rises_when: |
+            High covenant_scale on the Thessil bloodline cross-
+            contributes here (the bloodline IS the bedrock's
+            covenant-line). Cross-effect: covenant_scale crossing
+            0.7 on Thessil contributes 0.05 to stratigraphic.
+          attribution_state_default: partial
+      named_strata:
+        - id: first_feeder_bedrock
+          description: |
+            The First-Feeder stratum the city is built on. Older
+            cults of the feeding economy left workings here; the
+            current civilization has been quietly servicing them
+            for centuries.
+        - id: refuser_stratum
+          description: |
+            The Refuser stratum below the First-Feeder bedrock.
+            Anti-feeding-economy entities; non-canonical
+            workings; the eastern hills excavation is unearthing
+            this stratum for the first time in twelve hundred
+            years.
+
+    # ─── Confrontation-resolution NPCs ───────────────────────────
+    # Per obligation_scales_v1.world_layer_required: each affected
+    # scope needs a face for The Account Comes Due.
+    resolution_npcs:
+      forge_quarter_communal:
+        - role: senior sorcerer (chamber-rotating)
+        - role: foundry shift-master
+      kin_lanes_communal:
+        - role: kin lanes elder council member
+      temple_precinct_communal:
+        - role: astran arbitration prefect
+      high_quarter_communal:
+        - role: house head of the worst-offender house
+      stratum_camp_communal:
+        - role: surviving Stratum Camp scholar
+      pilgrim_road_communal:
+        - role: senior path-eater pilgrim priest
+      orvinnic_kin_lanes_covenant:
+        - role: orvinnic eldest carrying highest stigma
+      thessil_stratum_covenant:
+        - role: thessil herder-elder (northern slopes)
+      perault_houses_covenant:
+        - role: oldest house head still capable of speech
+      keepers_of_the_hour_divine:
+        - role: senior arbiter of the Keepers
+      silent_patron_divine:
+        - role: name_keeper of the Silent Patron's House
+      grievance_keepers_divine:
+        - role: grievance_eater (the senior eater)
+      path_eater_divine:
+        - role: oldest pilgrim priest currently on the road
+      stratigraphic_scale:
+        - role: |
+            No single human face. The Founders' Stone serves as
+            apparatus; the senior chamber collectively serves as
+            human interlocutor; in extremis, a returned_wrong
+            scholar from the Stratum Camp may speak for the
+            stratum.
+
+  # ═════════════════════════════════════════════════════════════════
+  # WORLD-LEVEL HARD LIMITS
+  # ═════════════════════════════════════════════════════════════════
+  hard_limits:
+    inherits_from_genre: true
+    additional_forbidden:
+      - id: refuser_artifact_use_in_civic_workings
+        description: |
+          Refuser artifacts cannot be used in any working that
+          contributes to the city's civic apparatus (foundry
+          production, temple feeding, council proceedings). The
+          Refusers were anti-feeding-economy; their artifacts
+          break the apparatus, not contribute to it. Attempted
+          civic use is hardlimit-forbidden by senior chamber
+          decree.
+      - id: founding_guild_invocation
+        description: |
+          Direct invocation of the dissolved Founding Guild as
+          patron is forbidden by Coil and Brand standing rule.
+          The guild is gone; what remains in the bedrock is
+          undefined; pacts to the dissolved guild route via the
+          Founders' Footprint and produce hidden-attribution
+          stratigraphic_scale debits at unpredictable rates.
+      - id: cross_cult_workings
+        description: |
+          A devotee of one feeding cult cannot conduct a working
+          in another cult's precinct or using another cult's
+          apparatus. The inter-cult arbitration treaty governs
+          this absolutely. (Already declared in learned_v1
+          forbidden_techniques; world-level hard_limit
+          re-emphasizes for any other plugin's workings.)
+      - id: open_invocation_of_inactive_gods
+        description: |
+          The three genre-cosmology gods without active temples
+          in the city CANNOT be openly invoked here. Workings
+          that attempt to feed an inactive god in the Long
+          Foundry resolve as failed AND attract the attention of
+          the_apostate counter (an ex-priest who knows what was
+          attempted).
+
+  # ═════════════════════════════════════════════════════════════════
+  # NARRATOR REGISTER — this world's voice for magic narration
+  # ═════════════════════════════════════════════════════════════════
+  narrator_register: |
+    The Long Foundry's magic-narration voice is *baroque
+    accountancy*. Every working is registered, tariffed, and
+    cross-referenced. The city is built on the explicit
+    arrangement between guild, cults, and houses; magic is
+    literal bookkeeping — and the books are kept in beautiful
+    leather-bound ledgers in tally-halls with names inscribed
+    in iron over their doorways.
+
+    Default sensory register: smoke from the foundries, slow
+    river-water, ledger-paper, sealing wax, the cold quiet of
+    the temple precinct, the slightly-too-quiet hush above the
+    Founders' Footprint, the increasing-distance feeling of the
+    pilgrim road. Sound matters: the Hour-bell, the foundry
+    hammer-cycles, the quiet of the high quarter, the not-quite-
+    silence of the Stratum Camp at distance.
+
+    Costs surface as ledger entries. Workings are *posted to* the
+    appropriate scale; the narrator should occasionally use the
+    accountancy vocabulary directly — "the working is posted to
+    the Forge Quarter's account; a sliver also routes to the
+    Silent Patron's hunger." But the prose should NOT make the
+    bookkeeping the point; the point is the felt consequence.
+    The ledgers are visible because the city tracks them; the
+    drama is that the bills do not stay on paper.
+
+    The five scales are simultaneously live in this world. The
+    narrator should rotate through which scale is in foreground
+    across scenes — the Forge Quarter scene foregrounds communal;
+    the Kin Lanes scene foregrounds covenant; the Temple Precinct
+    scene foregrounds divine; the Stratum Hills scene foregrounds
+    stratigraphic. The character's individual_scale is always
+    quietly present in the background.
+
+    Attribution_state usage: the genre's signature is
+    *uncertainty about address*. Workings via the Coil and Brand
+    rate-book are usually `named` attribution (the rates-book is
+    explicit). Workings via Perault inheritance, the Founders'
+    Footprint, or any Refuser artifact are usually `partial` or
+    `hidden`. The narrator should preserve this uncertainty — the
+    pact-bearer feels the working land but does not know who,
+    specifically, is paying. Disclosure-at-outcome is one of the
+    genre's most-played dramatic beats; surface previously-hidden
+    debits at confrontation resolution and let the player feel
+    the names land.
+
+    The Stratum Camp is the world's central anxiety. Render it
+    as offstage but felt — its weekly ration-requests still
+    arrive, but the tone has changed; pilgrims report seeing
+    smoke from the camp at times when smoke should not be there;
+    the senior chamber's discussion of the camp grows shorter
+    each session. The camp is not yet a confrontation site. The
+    player should feel that it will be, soon.
+
+    Cascade narration, if it arrives, is a tonal shift to
+    incantatory and worldscape-scale prose. The Long Foundry's
+    Cascade is the kind that ends civilizations — the genre
+    cosmology's "every empire is ending" rendered as the
+    specific empire ending in this campaign. Reserve for genuine
+    confrontation triggers; do not narrate Cascade-shaped prose
+    for sub-cascade events.
+
+    The Test (SOUL #12) in this world: do not narrate the
+    character's pact succeeding without surfacing the bill;
+    do not narrate the bill landing at a single scale when the
+    working actually debited multiple; do not narrate hidden-
+    attribution debits as if they were named. The OTEL panel
+    keeps the books honest; the narrator's prose should match.

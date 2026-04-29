@@ -1,0 +1,104 @@
+# magic.yaml — spaghetti_western genre layer
+#
+# Status: DRAFT (2026-04-27) — initial napkin-shape population.
+# Reference: docs/design/magic-taxonomy.md
+#
+# Replaces the misleading `magic_level: none` flag in rules.yaml.
+# True claim: named guns, cursed bullets, the impossible quickdraw, the
+# gunslinger's mythic reputation — all item-channeled and Reflexive-Physical
+# magic. The genre denies the word, not the structure.
+
+magic:
+  intensity:
+    default: 0.25
+    permitted: [0.1, 0.6]
+    # Higher dial = weird-west territory. Default stays low.
+
+  world_knowledge:
+    default: folkloric
+    permitted: [folkloric, mythic_lapsed, esoteric]
+    # Old-timers tell stories. Educated townsfolk dismiss. The world has
+    # the concept of supernatural skill but treats it as superstition.
+
+  visibility:
+    default: dismissed
+    permitted: [dismissed, feared]
+    # Most refuse to admit there's anything magical happening. The fearful
+    # superstitious admit it among themselves.
+
+  allowed_sources:
+    - id: item_based
+      label: Item-based
+      always_available: true
+      mechanisms: [discovery, relational, mccoy]
+      # The named gun is found, inherited, OR built by a gunsmith.
+      # mccoy mechanism (tinkerer flavor) covers the gunsmith and sober Doc.
+      examples: [the named gun, the cursed bullet, the dead man's hat,
+                 the medallion, gunsmith's trick rounds, derringer up the sleeve]
+      narrator_note: |
+        The Colt with a notch for every man. The Mauser that never jams.
+        The bullet with a name on it. The gunsmith and the sober town Doc
+        are the genre's inventors — they make the impossible possible via
+        the mccoy mechanism. Items carry weight; weight is mythic.
+
+    - id: learned
+      label: Learned (frontier ritual knowledge)
+      narrative_only: true
+      gated_by: world
+      examples: [Curandera knowledge, native ritual, frontier folk magic]
+      narrator_note: |
+        At higher world-knowledge dial, frontier ritual knowledge is real.
+        Always treated with respect; never as toolkit.
+
+    # NOT permitted: bargained_for (unless world is weird-west), divine
+    # (no working churches in this register), innate (any kind)
+
+  required_costs: [karma]
+  # Every body costs sleep, peace, anonymity. The reputation that lets you
+  # win the next fight makes the next fight come sooner. The bill compounds.
+
+  hard_limits:
+    resurrection: forbidden
+    true_creation: forbidden
+    supernatural_explicit: forbidden  # the impossible shot is the only miracle
+    plane_shift: forbidden
+    high_evocation_unlimited: forbidden
+
+  reliability:
+    default: deterministic
+    permitted: [deterministic, skill_checked]
+    # The named gun fires when the moment demands. Reliability is narrative,
+    # not mechanical — the genre says he doesn't miss, so he doesn't miss.
+
+  counter:
+    - id: faster_draw
+      description: A faster gun is the only counter to a fast gun
+    - id: moral_hesitation
+      description: A moment of doubt — a child watching, a familiar face
+    - id: sun_in_eyes
+      description: Environmental — wind, dust, shadow that levels the field
+    - id: ambush
+      description: The genre permits being shot from behind; reputation can't see backwards
+
+  manifestation:
+    modes: [reflexive, item_channeled]
+    # The quickdraw is reflexive (it happens before thought). The named gun is
+    # item-channeled (the weight lives in the object).
+    # No invoked, no ritual.
+    domains: [physical]
+    # Spaghetti western magic is *exclusively physical*. No psychic, no
+    # elemental, no necromantic. The entire system is one cell.
+
+  narrator_register: |
+    Don't call it magic. Call it skill, or reputation, or luck. But describe
+    it with the weight of magic — the moment stretches before the draw, the
+    bullet finds its target through impossible odds, the named gun rests in
+    the holster like it's listening. Every body costs sleep. Reputation is
+    a debt you pay by being unable to put the gun down. The Man With No Name
+    is doing magic; the genre calls it skill.
+
+  player_options:
+    can_build_caster: false
+    chargen_caster_classes: []
+    can_acquire_in_play: true     # find a named gun in play, claim a reputation
+    item_legend_status: trackable # the schema should track an item's mythic weight
