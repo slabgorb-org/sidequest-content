@@ -1,0 +1,92 @@
+# sidequest-content/genre_packs/space_opera/worlds/coyote_reach/magic.yaml
+# World-layer magic config — Coyote Reach's specific tuple from
+# space_opera's allowed space.
+#
+# `promote_to_status` blocks (Task 3.4) map per-bar threshold crossings
+# to entries on the existing Status renderer. Bars that don't surface
+# as character statuses (e.g. world-scope `hegemony_heat`) leave the
+# block off — the threshold-promotion pipeline silently skips bars
+# without it (architect §5.3).
+
+world: coyote_reach
+genre: space_opera
+
+intensity: 0.25  # quiet, not power-fantasy
+
+active_plugins:
+  - innate_v1
+  - item_legacy_v1
+# Deferred: learned_v1 (no formal training tradition fits this world's tone).
+
+world_knowledge:
+  primary: classified         # Hegemony officially denies psychic effects exist
+  local_register: folkloric   # Frontier folk know it as "Coyote work"
+
+visibility:
+  primary: feared             # Hegemony layer (extractive)
+  local_register: dismissed   # Frontier layer (rumor, bad luck)
+
+can_build_caster: false       # Innate happens TO you; no chargen caster class
+can_build_item_user: true     # gunsmith / pilot / scavenger archetypes
+
+hard_limits_additional:
+  - id: psionics_never_decisive
+    description: |
+      The Reach's psychic effects are uncanny, not combat-defining.
+      Psionics never wins decisively against weapons — every working that
+      could end a fight cleanly produces an unintended consequence instead.
+
+cost_types_active: [sanity, notice, vitality]
+
+# World-load ledger bars. Per-item bars (bond, item_history) are
+# instantiated per-item when items enter play.
+ledger_bars:
+  - id: sanity
+    scope: character
+    direction: down
+    range: [0.0, 1.0]
+    threshold_low: 0.40
+    consequence_on_low_cross: "auto-fire The Bleeding-Through confrontation"
+    promote_to_status:
+      text: "Bleeding through"
+      severity: Wound
+    starts_at_chargen: 1.0
+
+  - id: notice
+    scope: character
+    direction: up
+    range: [0.0, 1.0]
+    threshold_high: 0.75
+    consequence_on_high_cross: "auto-fire The Quiet Word confrontation"
+    promote_to_status:
+      text: "Hegemony noticed"
+      severity: Wound
+    starts_at_chargen: 0.0
+
+  - id: vitality
+    scope: character
+    direction: down
+    range: [0.0, 1.0]
+    threshold_low: 0.20
+    consequence_on_low_cross: "narrator-discretion: visible aging, hair-grey, tremor"
+    promote_to_status:
+      text: "Aging visibly"
+      severity: Wound
+    starts_at_chargen: 1.0
+
+  - id: hegemony_heat
+    scope: world
+    direction: up
+    range: [0.0, 1.0]
+    threshold_high: 0.70
+    consequence_on_high_cross: "narrator-discretion: Hegemony attention escalates"
+    decay_per_session: 0.05
+    starts_at_chargen: 0.30
+
+narrator_register: |
+  The Reach doesn't perform miracles. It bleeds through. A ship's pilot taps
+  the panel that wasn't responding and it answers — once, never again. A
+  gunsmith's last bullet hits a target the shooter never aimed at. Someone
+  wakes at 0300 station-time knowing a name they shouldn't. The Hegemony
+  classifies this as Anomaly Class 4 and writes the witnesses' termination
+  orders. The frontier knows it as Coyote work, and you don't say it out loud.

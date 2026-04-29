@@ -1,0 +1,116 @@
+# sidequest-content/genre_packs/space_opera/worlds/coyote_reach/confrontations.yaml
+# The five named magic confrontations in Coyote Reach v1.
+# Schema follows docs/design/confrontation-advancement.md.
+
+confrontations:
+  - id: the_standoff
+    label: "The Standoff"
+    plugin_tie_ins: [item_legacy_v1]
+    auto_fire: false
+    rounds: 3
+    resource_pool:
+      primary: notice
+      secondary: bond
+    description: |
+      Frontier-classic at the chokepoint geography. Named gun in named
+      hand, the door doesn't open until someone draws.
+    outcomes:
+      clear_win:
+        mandatory_outputs: [item_history_increment, notice_increment]
+      pyrrhic_win:
+        mandatory_outputs: [item_history_increment, notice_increment, status_add_wound]
+      clear_loss:
+        mandatory_outputs: [bond_decrement, status_add_wound, hegemony_heat_increment]
+      refused:
+        mandatory_outputs: [item_history_increment, bond_increment]
+
+  - id: the_salvage
+    label: "The Salvage"
+    plugin_tie_ins: [item_legacy_v1, innate_v1]
+    auto_fire: false
+    rounds: 2
+    resource_pool:
+      primary: sanity
+      secondary: bond
+    description: |
+      Discovery confrontation. The thing you pulled from the wreck has
+      its own opinion about being pulled. May refuse, may bond, may
+      whisper at 0300.
+    outcomes:
+      clear_win:
+        mandatory_outputs: [item_acquired, item_history_increment]
+      pyrrhic_win:
+        mandatory_outputs: [item_acquired, sanity_decrement, status_add_scratch]
+      clear_loss:
+        mandatory_outputs: [sanity_decrement, status_add_wound]
+      refused:
+        mandatory_outputs: [item_acquired_with_low_bond, sanity_increment]
+
+  - id: the_bleeding_through
+    label: "The Bleeding-Through"
+    plugin_tie_ins: [innate_v1]
+    auto_fire: true
+    auto_fire_trigger: "sanity <= 0.40"
+    rounds: 1
+    resource_pool:
+      primary: sanity
+      secondary: vitality
+    description: |
+      The character cannot suppress what they're picking up. Voices
+      from the alien-resonant artifact, the long-resident's whispers,
+      a name spoken in the wrong language. Mandatory once sanity falls.
+    outcomes:
+      clear_win:
+        mandatory_outputs: [control_tier_advance, status_clear_bleeding_through]
+      pyrrhic_win:
+        mandatory_outputs: [control_tier_advance, status_add_scar, lore_revealed]
+      clear_loss:
+        mandatory_outputs: [status_add_scar, sanity_floor_lowered, lore_revealed]
+      refused:
+        mandatory_outputs: [sanity_decrement, status_add_wound]
+
+  - id: the_quiet_word
+    label: "The Quiet Word"
+    plugin_tie_ins: [innate_v1]
+    auto_fire: true
+    auto_fire_trigger: "notice >= 0.75"
+    rounds: 2
+    resource_pool:
+      primary: notice
+      secondary: hegemony_heat
+    description: |
+      The Hegemony's response when notice rises. A polite agent, a
+      quiet ship, an offer that looks like a job and isn't. Player-vs-
+      system social. Can end a character's frontier life.
+    outcomes:
+      clear_win:
+        mandatory_outputs: [notice_decrement, hegemony_heat_decrement, scar_political]
+      pyrrhic_win:
+        mandatory_outputs: [notice_decrement, hegemony_heat_increment, status_add_wound]
+      clear_loss:
+        mandatory_outputs: [character_scar_extracted, hegemony_heat_increment]
+      refused:
+        mandatory_outputs: [notice_increment, status_add_wound]
+
+  - id: the_long_resident
+    label: "The Long Resident"
+    plugin_tie_ins: [innate_v1, item_legacy_v1]
+    auto_fire: false
+    once_per_arc: true
+    rounds: 3
+    resource_pool:
+      primary: sanity
+      secondary: bond
+    description: |
+      The alien species who've been here forever observes you. May
+      give you something. May take something. The encounter is rare
+      and weighty; once per arc. Hybrid plugin-tie-in.
+    outcomes:
+      clear_win:
+        mandatory_outputs: [item_acquired_alien, lore_revealed_major, control_tier_advance]
+      pyrrhic_win:
+        mandatory_outputs: [item_acquired_alien, sanity_floor_lowered, lore_revealed_major]
+      clear_loss:
+        mandatory_outputs: [sanity_floor_lowered, status_add_scar, lore_revealed]
+      refused:
+        mandatory_outputs: [bond_increment_to_alien, lore_revealed]
