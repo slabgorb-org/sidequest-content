@@ -36,10 +36,11 @@
       stakes: The system's two powers in direct confrontation.
     - at: 0.75
       event: >-
-        The Tsveri, who have been silent, send an emissary. They have
-        an opinion about who governs the system. It's unexpected. It
-        changes the math for everyone.
-      npcs_involved: [Governor Vaskov, The Clan Elder, The Tsveri Emissary]
+        The Tsveri, who have been silent, send an envoy from their
+        Consulate at Far Landing. They have an opinion about who
+        governs the system. It's unexpected. It changes the math
+        for everyone.
+      npcs_involved: [Governor Vaskov, The Clan Elder, The Consulate Envoy]
       stakes: A third faction tips the balance.
     - at: 1.0
       event: >-
@@ -81,7 +82,7 @@
         Deep Root — energy signatures that don't match any known
         geological process. The Tsveri politely ask them to stop
         scanning. The miners want to know what they're sitting next to.
-      npcs_involved: [The Tsveri Emissary]
+      npcs_involved: [The Sealkeeper]
       stakes: The frontier's most patient neighbors are asking for space.
     - at: 0.5
       event: >-
@@ -89,7 +90,7 @@
         They come back unharmed but profoundly changed — won't
         talk about what they saw, quit mining, started building
         something in their quarters out of materials nobody recognizes.
-      npcs_involved: [The Tsveri Emissary]
+      npcs_involved: [The Sealkeeper]
       stakes: Something in the Deep Root changes people.
     - at: 0.75
       event: >-
@@ -97,7 +98,7 @@
         deliberate, in a mountain that has been sealed since before
         the Tsveri remember. The Tsveri don't know what's inside.
         They're afraid. The Tsveri are never afraid.
-      npcs_involved: [The Tsveri Emissary]
+      npcs_involved: [The Sealkeeper]
       stakes: Whatever the Tsveri have been guarding is awake.
     - at: 1.0
       event: >-
@@ -105,7 +106,7 @@
         isn't friendly either. It's old — older than the Tsveri,
         older than the system. It has a request. The request is
         reasonable. The implications are not.
-      npcs_involved: [The Tsveri Emissary]
+      npcs_involved: [The Sealkeeper, The Consulate Envoy]
       stakes: First contact with something that was here before anyone.
   passive_progression:
     rate_per_turn: 0.008
@@ -172,4 +173,380 @@
     accelerators: [claim, ore, mine, asteroid, prospector, rush]
     decelerators: [negotiate, share, withdraw, patrol]
     accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# Ship/crew tropes — interior-of-the-hull dramas specific to Coyote Reach.
+# Channels: Becky Chambers (shared rituals, accommodation of difference,
+# multi-species crews), Martha Wells (closed-system care, autonomy under
+# pressure, the crewmate who is not okay), Ann Leckie (ship-as-character,
+# sediment of prior crews, identity through belonging).
+#
+# Coyote Reach amplifies all three: one jump in, one jump out — there is
+# nowhere to drop a crewmate off, no port-of-call elsewhere, no fresh start
+# more than thirty hours' burn away. Whatever happens between you and your
+# crew, you finish it in this system.
+
+- id: clan_pot
+  name: The Clan's Pot
+  description: >-
+    Clan Moana-Teru cooks once a cycle at Turning Hub from a single shared
+    pot. Every docked crew is invited; the food is good, the seasoning is
+    voidborn, and the implication is that you eat with the freeport or you
+    do not. A captain who keeps her crew off the pot for three turnarounds
+    in a row is making a statement she may not have meant to make. A
+    crewmate who eats from the pot during a shipboard quarrel is making
+    one too. The pot binds. Skipping it costs.
+  category: interpersonal
+  triggers:
+    - the ship docks at Turning Hub
+    - a clan elder personally extends an invitation
+    - a crewmate accepts pot food during a shipboard disagreement
+    - the captain refuses pot hospitality to settle a private grudge
+  narrative_hints:
+    - the smell of the pot reaching the docking ring an hour before service
+    - voidborn deck-children tracking which ships sent who, and who didn't come
+    - a clan elder remembering, by name, the last time your captain ate
+    - a crewmate's bowl returned washed and stacked at the airlock, no comment
+  tension_level: 0.3
+  resolution_hints:
+    - sit at the pot together, the whole crew, no exceptions
+    - explain the absence to the pot keeper directly — voidborn forgive a reason
+    - host the clan in turn, on your own deck, with your own food
+    - accept that the freeport is not neutral to you anymore
+  tags: [crew, voidborn, ritual, freeport, hospitality, mess-table, attendance]
+  escalation:
+    - at: 0.25
+      event: >-
+        The captain skips the pot for the third docking running, citing
+        cargo. The pot keeper notes it. Two crewmates eat in their bunks
+        instead of together; nobody raises it.
+      npcs_involved: [The Clan Elder]
+      stakes: A small habit forming. The mess table grows quieter.
+    - at: 0.5
+      event: >-
+        A crewmate accepts pot food during a shipboard fight with the
+        captain — sits at the long bench, eats, returns the bowl. The
+        clan reads it as a small defection. The captain reads it as a
+        larger one. Neither is exactly wrong.
+      npcs_involved: [The Clan Elder]
+      stakes: The crew's loyalties have a witness now.
+    - at: 0.75
+      event: >-
+        The pot keeper offers the captain a personal bowl — a deliberate
+        gesture, voidborn-style. Eaten standing, in front of the clan,
+        it is an apology. Refused, it is a wall. The crew watches what
+        their captain does with both hands.
+      npcs_involved: [The Clan Elder]
+      stakes: Reconciliation is on the table, and so is a clean break.
+    - at: 1.0
+      event: >-
+        The pot is brought to the ship — or the ship is barred from the
+        pot. Either way, the relationship between this crew and the
+        freeport has been settled, on the record, in front of the clan.
+        Coyote Reach has only one freeport.
+      npcs_involved: [The Clan Elder]
+      stakes: The crew's standing at Turning Hub is fixed for years.
+  passive_progression:
+    rate_per_turn: 0.006
+    rate_per_day: 0.012
+    accelerators: [skip, alone, refuse, private, separate]
+    decelerators: [share, mess, together, invite, eat]
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.04
+
+- id: old_hull_remembers
+  name: The Old Hull Remembers
+  description: >-
+    Frontier ships in Coyote Reach are not built — they are inherited,
+    patched, salvaged, and patched again. The crew's hull has been three
+    captains' hull before this one. There are Tsveri silicon patches in
+    the engine bay where the original alloy could not hold. There are
+    Moana-Teru shipyard welds in the spine where a previous captain owed
+    the clan favors. There is a name etched into the underside of a
+    galley shelf that nobody on the current crew put there. The ship has
+    sediment. It has done things. Some of those things, it still does
+    on its own, and the crew does not always know why.
+  category: revelation
+  triggers:
+    - the ship behaves in a way the crew did not command
+    - a previous captain's name surfaces in a Compact ledger or clan record
+    - a system aboard does not match its own service record
+    - the ship is reluctant in a way that feels less than mechanical
+  narrative_hints:
+    - running lights coming on a beat before the captain calls for them
+    - a hatch that resists opening into a corridor with no flagged history
+    - voidborn riggers refusing to weld over certain seams without ritual
+    - an old comm log in the buffer, a voice the crew does not recognize
+  tension_level: 0.55
+  resolution_hints:
+    - have the ship surveyed honestly — Compact, voidborn, or Tsveri
+    - learn the names of the previous captains and what they did aboard
+    - rebuild the suspect compartment from scratch, ritual included
+    - accept that the ship is partner, not property, and adjust accordingly
+  tags: [ship, salvage, memory, sediment, partnership, ledger, inheritance]
+  escalation:
+    - at: 0.25
+      event: >-
+        The ship surprises the captain. A hatch cycles unprompted. A
+        running light comes on a half-second early. The chief engineer
+        runs diagnostics and finds nothing. The chief engineer is not
+        comforted by finding nothing.
+      npcs_involved: []
+      stakes: The hull has a habit. The crew does not know whose habit it is.
+    - at: 0.5
+      event: >-
+        A previous captain's affairs surface — an unpaid Compact debt,
+        an old contact at Mendes' Post who recognizes the hull, a
+        crewbunk with a name etched into the panel that matches a
+        Broken Drift Runners' obituary from twelve years ago.
+      npcs_involved: [The Prospector, The Clan Elder]
+      stakes: The ship has a past the crew is now answering for.
+    - at: 0.75
+      event: >-
+        The ship makes a decision. Refuses a course toward a region
+        a previous captain swore off. Or completes a docking maneuver
+        without orders, on a slip the current crew has never used.
+        It is not a malfunction. It is a preference.
+      npcs_involved: []
+      stakes: The hull is acting like a third officer. With seniority.
+    - at: 1.0
+      event: >-
+        The hull refuses a specific course — the run past Last Drift it
+        flew under a previous captain, the slip at Mendes' Post that
+        used to be its home berth, the Compact contract it carried
+        twice and will not carry a third time. A Tsveri trade-emissary
+        at Turning Hub recognizes the silicon-patch resonance and names
+        the captain it remembers, who is not this captain. The question
+        is not whether the ship is partner. It is what kind of partner
+        the captain is willing to be in return.
+      npcs_involved: [The Trade-Emissary at Turning Hub]
+      stakes: The captain answers the ship in front of a witness who keeps records.
+  passive_progression:
+    rate_per_turn: 0.007
+    rate_per_day: 0.014
+    accelerators: [hatch, log, patch, history, etched, previous, ledger]
+    decelerators: [survey, rebuild, document, name, witness]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: cabin_fever
+  name: Cabin Fever
+  description: >-
+    One jump in, one jump out. If a crewmate is coming apart, the
+    options are Far Landing, Mendes' Post, or your own bunkroom — no
+    clean break thirty hours' burn elsewhere, no quiet station six
+    systems away to send them to and forget. The crew is what you
+    have. Someone is sleeping less, talking less, joking a fraction
+    sharper. The captain has to choose the response Coyote Reach
+    actually contains: the clan's quiet rooms at Turning Hub, a watch
+    reassignment, an honest conversation across the galley table, or
+    nothing at all and the consequences nothing brings.
+  category: interpersonal
+  triggers:
+    - a crewmate misses watch rotation without explanation
+    - a joke at the mess lands a fraction too sharp
+    - a crewmate spends extended periods in their quarters
+    - a small mistake during routine work — a wrong jump calc, a fumbled coupling
+  narrative_hints:
+    - a bunk light burning all cycle, every cycle
+    - meals untouched in the galley fridge, returned to the pot the next day
+    - a crewmate volunteering for the watches nobody else wants
+    - the chief engineer tightening their own tools because someone else's hands are unsteady
+  tension_level: 0.5
+  resolution_hints:
+    - sit with them, not across from them, and ask once and wait
+    - assign them a real task with stakes, not a busywork distraction
+    - barter time at Turning Hub — voidborn quiet rooms are kinder than the ship
+    - admit aloud that there is nowhere to go and that the ship is enough
+  tags: [crew, mental-load, closed-system, care, watch-rotation, no-port-elsewhere]
+  escalation:
+    - at: 0.25
+      event: >-
+        Someone laughs a beat late at a joke they would have told. They
+        run the watch they were assigned. Nobody flags it. Two crewmates
+        notice each other noticing.
+      npcs_involved: []
+      stakes: The crew is keeping a private tally. The subject does not know.
+    - at: 0.5
+      event: >-
+        A missed coupling. A wrong jump-prep number caught by a crewmate
+        before it mattered. The subject apologizes, says they are tired,
+        goes to their bunk. The captain weighs intervening against
+        respecting that they are an adult who can ask for help.
+      npcs_involved: []
+      stakes: Pretending it is fine is becoming a crew-wide policy.
+    - at: 0.75
+      event: >-
+        An incident at port — a fight that did not have to happen, a
+        shouted exchange with a Compact miner, a customs interaction
+        that escalated. The crew has to admit, aloud, that something
+        is wrong with one of them.
+      npcs_involved: [Customs Officer]
+      stakes: The crew can no longer pretend by silent agreement.
+    - at: 1.0
+      event: >-
+        The captain says it plainly: stand down for a stretch, take a
+        clan quiet-room at Turning Hub, accept the help. Or: stay in
+        the rotation knowing that the crew is now your nervous system,
+        and act like it. There is no shore leave at the next port.
+        There is no next port.
+      npcs_involved: [The Clan Elder]
+      stakes: The crew either becomes each other's nervous system or stops being a crew.
+  passive_progression:
+    rate_per_turn: 0.009
+    rate_per_day: 0.018
+    accelerators: [alone, sleepless, sharp, mistake, withdraw, watch]
+    decelerators: [together, talk, ask, share, sit, listen]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.04
+
+- id: tsveri_passenger
+  name: The Tsveri Passenger
+  description: >-
+    A Tsveri emissary needs passage — Deep Root to Turning Hub, or Far
+    Landing to the Consulate. They are tall, slow-moving, silicon-laced.
+    Their vocal range is sub-bass; the hull resonates when they speak,
+    and the crew feels the conversation in their teeth before they hear
+    it in their ears. The galley was not built for them. The bunks were
+    not built for anyone like them. The crew's shipboard habits — fast
+    meals, loud chatter, casual physicality — were designed for humans
+    on a closed deck. Who accommodates whom, what the ship learns from
+    being slowed down, and what the Tsveri offers the crew at debark
+    are all open questions.
+  category: interpersonal
+  triggers:
+    - the crew is hired or volunteered to ferry a Tsveri
+    - a Tsveri emissary requests passage in lieu of clan or Hegemonic transport
+    - the ship has Tsveri silicon patches that the passenger recognizes
+    - the crew shares a meal with the passenger
+  narrative_hints:
+    - the passenger declining the offered cabin in favor of the cargo deck
+    - crewmates whispering without meaning to in shared corridors
+    - the galley pot vibrating gently when the passenger speaks nearby
+    - the chief engineer noticing the ship's resonance shift around the passenger
+  tension_level: 0.4
+  resolution_hints:
+    - rebuild the galley bench at Tsveri height for the duration
+    - share Tsveri trade-bread, slow chew, in front of the whole crew
+    - ask the passenger what they need and accept the answer without translation
+    - let the passenger debark at their chosen port without obligation either way
+  tags: [crew, alien, accommodation, tsveri, hospitality, sub-bass, resonance]
+  escalation:
+    - at: 0.25
+      event: >-
+        The Tsveri boards. They take the cargo deck instead of the
+        offered cabin — too small, too high in pitch. The crew goes
+        quiet around them, then quiet without realizing it, then quiet
+        when the passenger is not even on the deck.
+      npcs_involved: [The Passage-Pilgrim]
+      stakes: The ship's grammar has changed. The crew has not noticed yet.
+    - at: 0.5
+      event: >-
+        A crewmate sits with the passenger at a meal — Tsveri trade-bread,
+        slow chew, no conversation. The mess table reorients around the
+        gesture. Some crewmates approve. Some feel displaced. The captain
+        has to read the room.
+      npcs_involved: [The Passage-Pilgrim]
+      stakes: The crew's hospitality has a public position now.
+    - at: 0.75
+      event: >-
+        A shipboard fight — short, ugly, the kind every crew has — plays
+        out on a deck the passenger happens to be crossing. The Tsveri
+        keeps walking, sub-bass humming at the same register as before.
+        A crewmate apologizes to the passenger before apologizing to
+        the other crewmate. The captain has to decide what that ordering
+        means and whether to correct it.
+      npcs_involved: [The Passage-Pilgrim]
+      stakes: The crew's repair work has the wrong addressee. Course-correct or commit.
+    - at: 1.0
+      event: >-
+        At debark the passenger offers something — a name spoken in
+        sub-bass, a token of mineral-resonance gear, a piece of advice
+        the Tsveri rarely give. Accepting binds the ship to a slower
+        obligation neither side fully translates. Refusing is a closed
+        door no human in Coyote Reach has ever reopened.
+      npcs_involved: [The Passage-Pilgrim]
+      stakes: The ship now has, or does not have, a relationship with the Tsveri.
+  passive_progression:
+    rate_per_turn: 0.005
+    rate_per_day: 0.01
+    accelerators: [tsveri, passenger, deep-root, slow, resonance, sub-bass]
+    decelerators: [rush, ignore, refuse, displace]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: silent_one
+  name: The Silent One
+  description: >-
+    A crewmate caught the edge of a Long Hum past Red Prospect — a
+    sensor-blind pass through the outer system where the clocks slipped,
+    the comm went quiet in a way that wasn't quiet, and something at the
+    edge of audible range was not where the math said it should be.
+    They came back. The medbay characterized it as decompression-adjacent
+    stress and cleared them for duty. They are still on the watch
+    rotation. They are still themselves. They are also tuned to a
+    register the rest of the crew is not, and they hear the next outer-
+    system anomaly before the sensors do. Coyote Reach has no specialist
+    to consult who has not, in their own way, also brushed it.
+  category: revelation
+  triggers:
+    - a crewmate completes a sensor-blind pass past Red Prospect
+    - a crewmate survives a Long Hum incident and the medbay clears them with a shrug
+    - a crewmate begins flagging course corrections before the helm sees the cause
+    - a crewmate hums a low register during off-watch that the chief engineer recognizes from hull resonance
+  narrative_hints:
+    - a hummed melody during watch that matches archival Long Hum signatures
+    - the nav console agreeing twice in a cycle with one crewmate's offhand corrections
+    - the subject standing at the viewport during outer-system burns with their eyes closed
+    - the chief engineer running a quiet correlation between their shift log and the subject's bunk light
+  tension_level: 0.6
+  resolution_hints:
+    - keep them on the helm with full duty, eyes open, no pretending — the register is an asset
+    - log every prediction they make against the sensors and let the record speak for itself
+    - reassign them to a watch slot where their register is needed — burn legs, outer-system passes
+    - ferry them to Far Landing at their own request and discharge them from the watch with their share intact
+  tags: [crew, long-hum, change, identity, autonomy, register, watch]
+  escalation:
+    - at: 0.25
+      event: >-
+        The crewmate is back aboard, working their watch. They are quieter
+        than they were. They hum during the dog watches at a register the
+        chief engineer recognizes from a different context. The nav console
+        agrees with one of their offhand corrections. Nobody flags it.
+      npcs_involved: []
+      stakes: The crew has noticed something they cannot yet name.
+    - at: 0.5
+      event: >-
+        During a routine outer-system burn the crewmate calls a course
+        correction before the sensors do. The captain holds the helm a
+        half-second to verify, and the verification arrives. The crewmate
+        apologizes for being early. The chief engineer logs it in their
+        own ledger, separate from the ship's.
+      npcs_involved: []
+      stakes: The crewmate's register is now operationally useful and operationally unsettling.
+    - at: 0.75
+      event: >-
+        A second Long Hum signature appears past Red Prospect. The crewmate
+        hears it through the hull thirty seconds before the sensors confirm.
+        The captain has the option to follow the bearing they call, or to
+        run the official sensor track. One of those courses brings the ship
+        back to Turning Hub on schedule. The other does not.
+      npcs_involved: []
+      stakes: The crew is choosing between the official record and what one of them can hear.
+    - at: 1.0
+      event: >-
+        The crewmate asks the captain a question — to keep them on the helm
+        for the burn legs going forward, to be reassigned, or to be ferried
+        to Far Landing under their own request and discharged from the watch.
+        The answer the captain gives is the answer the crew lives with.
+        There is no station in Coyote Reach that can re-tune them, no jump-out
+        that can replace this conversation.
+      npcs_involved: []
+      stakes: The crew's helm is tuned to one register, or it is not. Either way is a decision.
+  passive_progression:
+    rate_per_turn: 0.007
+    rate_per_day: 0.014
+    accelerators: [long-hum, red-prospect, register, hum, anomaly, sensor-blind]
+    decelerators: [witness, log, ask, accept, watch]
+    accelerator_bonus: 0.04
     decelerator_penalty: 0.03
