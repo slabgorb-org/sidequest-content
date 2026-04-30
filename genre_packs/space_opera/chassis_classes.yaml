@@ -1,0 +1,61 @@
+# sidequest-content/genre_packs/space_opera/chassis_classes.yaml
+# Genre-layer chassis catalog for space_opera.
+# Slice scope (2026-04-29): one class — voidborn_freighter.
+#
+# Deferred classes (see rig MVP follow-on roadmap):
+#   - prospector_skiff
+#   - hegemonic_patrol_cruiser
+#   - fighter
+#   - station_hull
+#   - courier_skiff
+#
+# Spec: docs/superpowers/specs/2026-04-29-rig-mvp-coyote-reach-design.md
+
+version: "0.1.0"
+genre: space_opera
+
+classes:
+  - id: voidborn_freighter
+    display_name: "Voidborn Freighter"
+    class: freighter
+    provenance: voidborn_built
+    scale_band: vehicular
+    crew_model: flexible_roles
+    embodiment_model: singular
+    crew_awareness: surface
+    psi_resonance:
+      default: receptive
+      amplifies: [void_singing, far_listening]
+    default_voice:
+      default_register: dry_warm
+      vocal_tics:
+        - "almost-but-legally-distinct from a laugh"
+        - "theatrical sigh exactly long enough to register as judgement"
+        - "drops to a discreet murmur"
+      silence_register: approving_or_sulking_context_dependent
+      name_forms_by_bond_tier:
+        severed: "Pilot"
+        hostile: "Pilot"
+        strained: "Pilot"
+        neutral: "Pilot"
+        familiar: "Mr. {last_name}"
+        trusted: "{first_name}"
+        fused: "{nickname}"
+    interior_rooms:
+      - id: cockpit
+        display_name: "Cockpit"
+        default_occupants: [pilot]
+      - id: engineering
+        display_name: "Engineering"
+        default_occupants: [engineer]
+      - id: galley
+        display_name: "Galley"
+        bond_eligible_for: [the_tea_brew]
+      - id: deck_three_corridor
+        display_name: "Deck Three Corridor"
+        narrative_register: liminal_warm
+    crew_roles:
+      - id: pilot
+        operates_hardpoints: "*"
+        bond_eligible: true
+        default_seat: cockpit
