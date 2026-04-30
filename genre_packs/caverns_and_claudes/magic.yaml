@@ -1,89 +1,105 @@
 # magic.yaml — caverns_and_claudes genre layer
 #
-# Status: DRAFT (2026-04-27) — initial napkin-shape population.
-# Reference: docs/design/magic-taxonomy.md
+# Migrated from DRAFT (2026-04-27) napkin shape to canonical loader
+# schema (2026-04-30, playtest fix). Reference: docs/design/magic-
+# taxonomy.md plus tests/magic/fixtures/space_opera_magic.yaml as the
+# canonical-shape exemplar.
 #
-# Replaces the misleading `magic_level: none` flag in rules.yaml.
 # True claim: magic items are core gameplay; there are no caster classes;
 # world-knowledge is folkloric (commoners know wizards exist as legend).
+# The wizards who made these items are gone; the items remember things
+# the world has forgotten. Cursed items are the genre's signature trap.
 
-magic:
-  intensity:
-    default: 0.3
-    permitted: [0.1, 0.5]
-    # Some worlds (e.g. ruined wizard-tower scenarios) may dial higher
+genre: caverns_and_claudes
 
-  world_knowledge:
-    default: folkloric
-    permitted: [folkloric, mythic_lapsed]
-    # Commoners know stories. The Delver knows scrolls work because they've
-    # seen them work. Nobody studies. The Wizards are gone.
+# Runtime sources the loader knows about. ``learned`` is intentionally
+# excluded — it's gated_by world per the original draft and surfaces as
+# narrator-only flavor (forbidden tomes, surviving wizard's notes), not
+# as a player-build option. If a future world wants to enable learned
+# magic for a single campaign, it can author it world-side.
+allowed_sources: [item_based]
 
-  visibility:
-    default: feared
-    permitted: [feared, dismissed]
+# Plugins permitted by the genre. ``item_legacy_v1`` covers scrolls,
+# potions, wands, cursed swords, sealed reliquaries — every magic-item
+# shape C&C ships with. ``learned_v1`` is omitted at the genre tier
+# (see allowed_sources note) — narrator handles ritual-knowledge prose
+# without needing a runtime plugin.
+permitted_plugins: [item_legacy_v1]
 
-  allowed_sources:
-    - id: item_based
-      label: Item-based
-      always_available: true
-      examples: [scrolls, potions, wands, cursed swords, sealed reliquaries]
-      narrator_note: "Magic is found, not learned. Items are consumable or load-bearing."
+intensity:
+  default: 0.3
 
-    - id: learned
-      label: Learned (ritual knowledge)
-      gated_by: world
-      examples: [forbidden tomes, surviving wizard's notes]
-      narrator_note: |
-        Rare. Ritual knowledge that survives is incomplete and dangerous.
-        Cannot be a player-build option — only narrative.
-      narrative_only: true
-      plugin: learned_v1
+# Folkloric is the load-bearing C&C register: commoners know stories,
+# the Delver knows scrolls work because they've seen them work, nobody
+# studies. Worlds may dial up to ``mythic_lapsed`` for ruined-wizard-
+# tower scenarios.
+world_knowledge_default:
+  primary: folkloric
 
-    # NOT permitted: innate (any flavor), bargained_for (no patrons
-    # in C&C), divine (no working churches in dungeon-OSR register).
-    # mccoy is a delivery mechanism for item_based (not used here —
-    # the OSR register has scrolls and wands, not invented gadgets).
+hard_limits:
+  - id: no_resurrection
+    description: "Death is permanent. No resurrection magic — finding a 'true' resurrection scroll IS the campaign hook, never the answer."
+  - id: no_true_creation
+    description: "Magic does not create matter ex nihilo. Items conjure, transmute, or summon-from-elsewhere; nothing is made from nothing."
+  - id: no_unlimited_high_evocation
+    description: "Fire/lightning/blast effects exist but are bounded — wand charges, scroll one-shots, potion durations. No infinite blasters."
+  - id: no_plane_shift
+    description: "Player characters do not travel between planes. Things may bleed through; players cannot follow."
+  - id: no_permanence_without_renewal
+    description: "All magic decays or is consumable. Wands run out, scrolls burn, potions drain. Even reliquaries demand upkeep."
 
-  required_costs: [components, backlash]
+# Cost vocabulary for magic-item activation. ``components`` covers the
+# physical price (ash, blood, the second-to-last torch); ``backlash``
+# covers the consequence-of-use (cursed item awakens, attention drawn).
+# These are item-channeled costs — there are no per-character bars in
+# C&C (no caster classes, no innate magic), so cost_types feeds prompt
+# context and item-level ledger bars rather than character bars.
+cost_types: [components, backlash]
 
-  hard_limits:
-    resurrection: forbidden
-    true_creation: forbidden
-    high_evocation_unlimited: forbidden
-    plane_shift: forbidden
-    permanence_without_renewal: forbidden  # all magic decays / is consumable
+narrator_register: |
+  Magic is found, not cast. Players don't learn spells — they identify scrolls,
+  drink potions, and wield wands they don't fully understand. Every magical
+  use is a choice to spend a finite resource. The wizards who made these
+  items are gone; the items remember things the world has forgotten.
+  Cursed items are the genre's signature trap — describe them as desirable
+  until the bill arrives.
 
-  reliability:
-    default: deterministic
-    permitted: [deterministic]
-    # The scroll fires. The potion works. But the item may be cursed,
-    # mislabeled, or tied to a backlash trigger.
-
-  counter:
-    - id: anti_magic_zone
-      description: Dungeon zones where magic fails (classic OSR feature)
-    - id: save_or_die
-      description: Direct attribute saves vs. magical effects
-    - id: destroy_source
-      description: Break the wand, burn the scroll, shatter the orb
-
-  manifestation:
-    modes: [item_channeled]
-    # No reflexive, no invoked, no ritual. The item does the work.
-    domains: [physical, elemental, necromantic, illusory, transmutative]
-    domain_constraints:
-      necromantic: "communing only; no resurrection"
-
-  narrator_register: |
-    Magic is found, not cast. Players don't learn spells — they identify scrolls,
-    drink potions, and wield wands they don't fully understand. Every magical
-    use is a choice to spend a finite resource. The wizards who made these
-    items are gone; the items remember things the world has forgotten.
-    Cursed items are the genre's signature trap — describe them as desirable
-    until the bill arrives.
-
-  player_options:
-    can_build_caster: false
-    chargen_caster_classes: []   # rules.yaml allowed_classes is [Delver]; no casters
-    can_acquire_in_play: true    # finding magic items is core gameplay
+# === Design notes (not loader-consumed) ============================
+#
+# The following blocks document C&C's full magic taxonomy intent. The
+# loader currently consumes the canonical fields above; these notes
+# inform authoring of items, encounters, and future world-tier configs.
+#
+# visibility:
+#   default: feared
+#   permitted: [feared, dismissed]
+#
+# learned_source (gated_by world, narrative-only):
+#   examples: [forbidden tomes, surviving wizard's notes]
+#   plugin: learned_v1   # never registered runtime — narrator handles prose
+#   narrator_note: |
+#     Rare. Ritual knowledge that survives is incomplete and dangerous.
+#     Cannot be a player-build option — only narrative.
+#
+# reliability:
+#   default: deterministic    # the scroll fires; the potion works
+#   note: but the item may be cursed, mislabeled, or backlash-tied
+#
+# counter:
+#   - anti_magic_zone   (classic OSR feature)
+#   - save_or_die       (direct attribute saves vs. magical effects)
+#   - destroy_source    (break the wand, burn the scroll, shatter the orb)
+#
+# manifestation:
+#   modes: [item_channeled]
+#   domains: [physical, elemental, necromantic, illusory, transmutative]
+#   domain_constraints:
+#     necromantic: "communing only; no resurrection"
+#
+# player_options:
+#   can_build_caster: false        # no chargen caster classes
+#   can_build_item_user: true      # Delver acquires items in play
+#   chargen_caster_classes: []
+#   can_acquire_in_play: true      # finding magic items is core gameplay
+#
+# ====================================================================
