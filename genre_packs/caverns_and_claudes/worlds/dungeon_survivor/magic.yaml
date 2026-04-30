@@ -1,0 +1,62 @@
+# magic.yaml — caverns_and_claudes / dungeon_survivor world layer
+#
+# Created 2026-04-30 (playtest fix — Mira/Dungeon Survivor was firing
+# chargen-complete with no magic.init because the world layer was
+# missing). Loader requires both genre AND world magic.yaml; absence
+# at either tier silently no-ops the entire magic subsystem.
+#
+# Dungeon Survivor honors the C&C genre defaults exactly — folkloric
+# world-knowledge, item-based magic only, item_legacy_v1 plugin. No
+# per-character or world-scope bars: magic in dungeon_survivor lives
+# entirely in items, instantiated on pickup via item_legacy_v1's
+# add_item path. The Delver may carry magical things; they don't have
+# a magical state at the body level.
+
+world: dungeon_survivor
+genre: caverns_and_claudes
+
+# Honors the genre default. Worlds with ruined-wizard-tower scenarios
+# may dial up to 0.5; vanilla dungeon-OSR sits at 0.3.
+intensity: 0.3
+
+# World-knowledge stays folkloric — commoners know stories of wizards
+# but no one studies. The Delver knows scrolls work because they've
+# seen them work. ``local_register`` is unset (no register-divergence
+# in C&C — folk register is the canonical register).
+world_knowledge:
+  primary: folkloric
+
+# Visibility shape mirrors space_opera's authored set: ``primary`` is
+# how the institutional/dominant culture treats the existence of magic;
+# ``local_register`` is how everyday people treat it. C&C goes
+# feared/dismissed — the priesthood (such as it is) fears magic items
+# as cursed; tavern-folk dismiss them as drunk-uncle stories.
+visibility:
+  primary: feared
+  local_register: dismissed
+
+# item_legacy_v1 covers C&C's full magic surface — scrolls, potions,
+# wands, cursed swords, sealed reliquaries. The plugin instantiates
+# bond + item_history bars per-item on pickup, not at world-load, so
+# this world ships zero ledger_bars at the world tier.
+active_plugins: [item_legacy_v1]
+
+# Both cost types are runtime-relevant for item activation prompts.
+cost_types_active: [components, backlash]
+
+# No world-scope or character-scope bars. C&C magic is purely item-
+# based; bars only exist on items, instantiated by the plugin on
+# pickup. An empty list here is structurally valid — MagicState
+# constructs with an empty ledger and grows as items enter play.
+ledger_bars: []
+
+# Player-build hooks. The Delver acquires magic items in play — never
+# at chargen — so can_build_caster is False (no caster classes exist
+# in C&C) and can_build_item_user is True (the Delver IS the item-
+# user shape).
+can_build_caster: false
+can_build_item_user: true
+
+# Optional world override of the genre narrator_register. Inheriting
+# the genre prose suffices for dungeon_survivor — the wizards-are-
+# gone framing matches without world-specific overlay.
