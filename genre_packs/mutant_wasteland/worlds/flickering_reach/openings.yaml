@@ -1,0 +1,264 @@
+# Flickering Reach — session openings.
+# Mutant_wasteland's anchor world; the only fully-spoilable world in SideQuest.
+# Authored fresh per the canned-openings schema (M2 rewrite, post-restore-from-workshop).
+# Spec: docs/superpowers/specs/2026-05-01-canned-openings-design.md §1.1
+#
+# Hard contracts (validators):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     [authored / [TBD / [migrated / [placeholder
+#   - location-anchored entries set setting.location_label (no chassis_instance)
+#   - exactly one anchor per setting
+#
+# Voice contract: weathered, dust-coated, careful. The Reach is not Mad Max
+# (no road-warrior bombast) and not Fallout (no Vault-Tec parody, no Pip-Boy
+# UI register). It is a steppe of layered grudges held by mutual need —
+# rain-catcher debt, radio-static prayer, root-creep at the burn line, and
+# one trade post at Blind Reach where psychic frogs croak the names of
+# tithed children at dusk. Each entry pins to a different specific texture
+# of Salt Camp / Blind Reach so the three do not repeat each other's imagery.
+
+version: "0.1.0"
+world: flickering_reach
+genre: mutant_wasteland
+
+openings:
+  # ---------------------------------------------------------------
+  # SOLO — morning at the rain-catcher tally line
+  # ---------------------------------------------------------------
+
+  - id: solo_salt_camp_tally_line
+    name: "Salt Camp, New Moon Tally"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      location_label: "the rain-catcher tally line at Salt Camp, mouth of Blind Reach canyon, just past dawn on the new moon"
+      situation: >-
+        New-moon dawn at the canyon mouth. The Dome Syndicate's tally
+        clerk is working the rain-catcher payment line, and you have been
+        standing in it long enough that the canyon shadow has crept off
+        your boots.
+    tone:
+      register: "weathered, dust-coated, careful — the register of a place where everyone owes someone and nobody draws first"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - moving the player without their input
+        - generic "you wake up in danger" framing
+        - default-Fallout / Vault-Tec parody / Pip-Boy aesthetic
+        - default-Mad-Max / road-warrior aesthetic (that's a different genre)
+        - generic post-apoc vocabulary like "the wastes", "raiders", "scavengers" — use the Reach's specific terms
+        - a broker / quest-giver walking up to the PC
+        - ending the turn with a question
+    establishing_narration: |
+      New moon, which means tally day. The Dome Syndicate's clerk has set
+      up under a salvage-canvas awning at the far end of Salt Camp, and
+      the line in front of him is the patient, separated, faction-aware
+      kind of line the canyon mouth always produces — three Drifters at
+      the front with rain-catcher receipts pinned inside their hide
+      vests, two Scrapborn behind them rehearsing complaints under their
+      breath, a Greenfolk runner at the back keeping a courteous six
+      paces of distance because nobody wants root-spores anywhere near
+      the receipts.
+
+      You have been in the line long enough to watch the canyon shadow
+      retreat off your boots. Blind Reach's western wall is above you,
+      carved with the layered palimpsests — trail-script over clinical
+      vault notation over names, names, names — that everyone here has
+      learned not to read in the morning. The salt is on the trade tables
+      already, in the small clay bowls the Drifter elder pays out daily
+      from a source he refuses to name. The tables themselves are
+      Vaultborn hull plating that nobody at Salt Camp will admit they
+      sold.
+
+      The wind off the Przyå Dust is alkaline this morning — that grit
+      that gets between teeth at the canyon mouth, faintly metallic, the
+      taste a Drifter rider would call honest. Somewhere east, at a
+      distance that is hard to measure because the Glass Flat does odd
+      things to sound, the black plain is humming its low note. You feel
+      it in the bones of your jaw before you hear it in your ear.
+
+      The clerk under the awning calls a name that is not yours. The
+      line shuffles half a step forward. The canyon shadow has moved a
+      finger's width off your boots. Odige Fuseborn's tally is, as
+      always, exact to the day.
+    first_turn_invitation: |
+      The line moves. The salt bowls are out. The canyon wall above you
+      keeps the names of children it has had three centuries to learn.
+
+  # ---------------------------------------------------------------
+  # MULTIPLAYER — mixed-faction trade run cresting into Salt Camp
+  # ---------------------------------------------------------------
+
+  - id: mp_salt_camp_arrival_caravan
+    name: "Salt Camp, Caravan Arrival"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 6
+      backgrounds: []
+    setting:
+      location_label: "the long approach into Salt Camp from the Wiezko Run, late afternoon, two days out of Bone Wind"
+      situation: >-
+        Late-afternoon approach from the steppe trail. The cairns of Bone
+        Wind are two nights behind you, the canyon mouth is opening
+        below, and Salt Camp's smoke is already visible against Blind
+        Reach's western wall.
+    tone:
+      register: "weathered, dust-coated, careful — the register of a small mixed-faction crew who have crossed Bone Wind together and have not yet stopped flinching at the wind harps"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - re-introducing the PCs to one another
+        - generic broker/quest-giver-across-the-room beat
+        - default-Mad-Max convoy bombast (no V8s, no War Boys, no road-warrior dialect)
+        - default-Fallout aesthetic (no Vault-Tec, no Pip-Boy register)
+        - generic post-apoc vocabulary ("the wastes", "raiders", "scavengers")
+        - having the Singers prophesy something on turn 1
+        - ending the turn with a question
+    establishing_narration: |
+      The Wiezko Run drops out of the steppe in a long unhurried slope
+      and Salt Camp opens below you, smoke first, then the salvage-canvas
+      awnings, then the dark line of the Vaultborn-plate tables along
+      the canyon mouth. Two nights of Bone Wind are behind you and the
+      wind-harps' quarter-flat tone is still in the back of your skulls
+      the way that tone gets in and stays — not loud, not gone, the
+      Drifter rider on point flicked her ears once when it dropped off
+      and none of you remarked.
+
+      The mounts are tired in the specific way mounts get tired on the
+      Wiezko: not lame, not mean, just done arguing with the wind. The
+      pack on the third animal — the salt-and-copper trade you put
+      together at the Bright Junction four days ago — has not shifted
+      since the cairns, which is the sign that the lashings you redid
+      together at the second waystation held. Nobody mentions it. You
+      are past the age where good lashings get praised out loud.
+
+      Salt Camp's air is different from the steppe's: the alkaline grit
+      thinned by the canyon's cooler breath, a thread of cookfire smoke
+      that someone is feeding salvage-pine to, and underneath it the
+      faint rust-smell of the old hull plates the Drifter elder will
+      not acknowledge selling. The frogs are not yet croaking — that
+      is a dusk thing, the names-of-children thing — but the small
+      clay bowls of salt are already on the tables, set out for any
+      faction's hand to take a courteous pinch.
+
+      The Dome Syndicate's tally clerk is under his awning at the far
+      end. The line in front of him is short for late afternoon. The
+      canyon wall above the camp is in shadow now, the carved
+      palimpsests of trail-script and vault notation softened by the
+      light. The Glass Flat is humming its low note somewhere east,
+      and the bones of your jaws have agreed with each other about
+      it for two days.
+
+      Salt Camp accepts the four of you the way Salt Camp accepts
+      everyone — without comment, without welcome, with a pinch of
+      salt waiting on the table.
+    first_turn_invitation: |
+      The mounts settle. The trade pack is intact. The salt is on the
+      table and the canyon wall keeps its names to itself until dusk.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: familiar
+      shared_history_seeds:
+        - "You crossed Bone Wind together two nights ago and have not yet stopped flinching at the wind-harps' quarter-flat tone — a thing you do not discuss because Drifter custom holds that naming the harps' voice invites it closer."
+        - "At the second waystation on the Wiezko Run you redid the third mount's pack-lashings together in the dark, the kind of small shared work that does not get praised but that none of you would let anyone else do for you now."
+        - "Somebody in the crew bought the small clay bowl of salt at the Bright Junction four days ago — none of you remember which — and it has lived wrapped in a Greenfolk-cloth at the bottom of the trade pack since. It is for Salt Camp. It is not for the pack."
+      narrator_guidance: >-
+        Treat them as a small mixed-faction trade crew already assembled;
+        do not re-introduce them to one another or recap the trip in.
+        They are at the canyon-mouth slope, looking down into Salt Camp,
+        and they have crossed Bone Wind together. That is enough.
+
+  # ---------------------------------------------------------------
+  # EITHER — dusk at Blind Reach, the names beginning
+  # ---------------------------------------------------------------
+
+  - id: either_blind_reach_dusk_frogs
+    name: "Blind Reach, the Names Beginning"
+    triggers:
+      mode: either
+      backgrounds: []
+    setting:
+      location_label: "Blind Reach canyon's western wall, fifty paces back from Salt Camp, the hour the psychic frogs begin their evening recitation"
+      situation: >-
+        Dusk in the canyon. The frogs in the seep-pools at the wall's
+        base have begun their nightly recitation of the tithed children's
+        names, in order, from the first year of the Bargain to the last.
+        Salt Camp is fifty paces behind, doing what Salt Camp does at
+        dusk: tucking salt away, banking cookfires, not listening.
+    tone:
+      register: "weathered, dust-coated, careful — quieter than morning, an evening the canyon has had three centuries to rehearse"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - moving the player without their input
+        - sentimentalizing the frogs' recitation (the camp does not, the canyon does not, neither should the prose)
+        - default-Fallout / default-Mad-Max aesthetic
+        - generic post-apoc vocabulary ("the wastes", "raiders", "scavengers")
+        - having a Singer or NPC interrupt the recitation
+        - ending the turn with a question
+    establishing_narration: |
+      The light has gone the canyon's particular dusk color — the
+      half-rust, half-bruise tone the western wall throws when the sun
+      drops below the steppe rim and Blind Reach's stone gives back
+      what it has been holding all day. The wind has fallen the way it
+      always falls here at this hour. The Glass Flat's low hum, fifty
+      miles east, is more audible now, the way a thing gets audible
+      when the closer noises step aside.
+
+      The frogs are starting. They are not loud. They never are. The
+      seep-pools at the foot of the western wall hold a few dozen of
+      them — squat, pale, the eyes set wrong in a way you have learned
+      not to look directly at — and they begin in the same order they
+      have begun in for three centuries, the first name from the first
+      year of the Bargain, croaked low and clear, then a second voice
+      taking up the second name, then a third. The recitation goes in
+      order. It will reach the last tithed child a little before full
+      dark.
+
+      Behind you, fifty paces back, Salt Camp is doing what Salt Camp
+      does at this hour. The salt bowls are being collected from the
+      Vaultborn-plate tables and stacked under the awnings. A
+      cookfire is being banked at the Drifter end of the camp. A
+      Scrapborn salvage crew is stowing their copper coil rolls
+      against the canvas wall. Nobody is facing the canyon wall.
+      Nobody is covering their ears, either. That is not how it is
+      done here. You listen or you do not listen, and either way you
+      do not interrupt.
+
+      The canyon wall's carvings are above the seep-pools — the
+      palimpsests, the trail-script over the clinical vault notation
+      over the older trail-script under that. In this light the
+      layered hands almost look like one hand, a single long
+      sentence three centuries deep, and the frogs' recitation is
+      the only voice in the Reach that knows how to read it aloud.
+
+      You are at the seam. Behind you, the camp's small evening work.
+      In front of you, the wall and the seep-pools and the names
+      coming up in order, the ninth name now, the tenth. The Glass
+      Flat hums its low note. The wind does not return.
+    first_turn_invitation: |
+      The names continue in order. The camp banks its fires behind you.
+      The canyon wall is a long sentence and the frogs are the throat
+      that has it by heart.
+    party_framing:
+      already_a_crew: false
+      bond_tier_default: neutral
+      shared_history_seeds:
+        - "If there are several of you, you have drifted out of Salt Camp's evening work in the same direction without arranging to — the canyon at this hour does that, pulls people who can stand the recitation away from the people who cannot."
+      narrator_guidance: >-
+        Mode-agnostic. If solo, the PC is alone at the seam between camp
+        and canyon wall. If multiplayer, the PCs have ended up here
+        without arranging to; do not stage a meeting. The recitation is
+        the anchor; do not interrupt it with a Singer's prophecy, a
+        Vaultborn emissary, or any other NPC arrival on turn 1. The
+        complication, if any, comes from what the PC chooses to do at
+        the seam — listen, walk closer, walk back, or read the wall.

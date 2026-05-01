@@ -1,0 +1,115 @@
+# sidequest-content/genre_packs/space_opera/worlds/aureate_span/openings.yaml
+#
+# Aureate Span openings — minimal authored bank to satisfy Validator 7
+# (>=1 solo + >=1 MP) and unblock the genre-pack load. Phase 7 of the
+# canned-openings story expands this to the full four-archetype migration
+# (arena_trial, diplomatic_incident, ship_crisis, first_contact) per
+# docs/superpowers/specs/2026-05-01-canned-openings-design.md §4.
+#
+# Both entries are location-anchored: Aureate Span has no flagship rig
+# in this slice. Tone is in-medias-res by design — this world's right
+# fit is gilded high-stakes spectacle, not the cozy galley register.
+# Coyote Star's "any confrontation / any dice roll" AVOIDs are world-
+# specific and do NOT carry over here.
+
+version: "0.1.0"
+world: aureate_span
+genre: space_opera
+
+openings:
+  - id: solo_promenade_arrival
+    name: "The Promenade, First Bell"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      location_label: "the Promenade, lower tier, near the Imperatrix's gilded fountain"
+      situation: >-
+        First bell at evening, when the Span's lighting shifts from
+        copper-gold to deep amber and Solenne's last sliver burns
+        through the upper dome.
+    tone:
+      register: operatic, gilded, charged
+      stakes: imminent — every introduction in the Span is an opening move
+      complication: an ambassador's procession is crossing the same plaza, and
+        their attention has already landed on you
+      sensory_layers:
+        smell: "incense, machine oil, and the faint ozone of the dome's filters"
+        sound: "the long sustained chord the Crystalline Choir holds at first bell, layered with merchants' calls"
+        touch: "warm gold underfoot, the dome's heat overhead"
+      avoid_at_all_costs:
+        - ending the turn with a question
+        - moving the player without their input
+        - dropping them straight into combat dice
+    establishing_narration: |
+      First bell finds you on the lower tier of the Promenade, where the
+      crowd thickens around the Imperatrix's gilded fountain — a piece
+      that runs not on water but on shaped light, the rumor goes, fed
+      from Solenne's corona itself.
+
+      The light is shifting. Copper-gold giving way to deep amber as the
+      Span's filters compensate for the dying star above. Above the
+      dome, the Choir holds their first-bell chord — a sustained
+      harmonic that the Span has heard at this hour for two hundred
+      years and which Vaal-Kesh diplomats still claim is a coded message
+      no one has bothered to translate.
+
+      A procession is crossing the plaza from the embassy district.
+      Cinder Collective banners, three handlers, and one figure in the
+      ash-grey vestments of an envoy. The procession has slowed. The
+      envoy's gaze has stopped on you.
+    first_turn_invitation: |
+      The Choir's chord reaches its long resolving cadence. The envoy
+      has not looked away.
+
+  - id: mp_promenade_arrival
+    name: "The Promenade, First Bell — Together"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 6
+      backgrounds: []
+    setting:
+      location_label: "the Promenade, lower tier, beneath the Imperatrix's gilded fountain"
+      situation: >-
+        First bell. Your group has arrived together — separately
+        recruited, separately summoned, but the invitations all named
+        the same hour at the same fountain.
+    tone:
+      register: operatic, gilded, charged
+      stakes: imminent — the Span never schedules an arrival without intent
+      complication: the patron who summoned you is visibly absent, and the
+        crowd is reading you for it
+      avoid_at_all_costs:
+        - ending the turn with a question
+        - re-introducing the PCs to one another
+        - dropping the party straight into combat dice
+    establishing_narration: |
+      First bell on the Promenade, and you are all standing under the
+      same fountain — the gilded one, the one fed from Solenne's
+      corona, the one your patron's invitation specifically named. The
+      Choir's chord drapes over the plaza. The light is amber and
+      slowly going darker.
+
+      Your patron is not here.
+
+      The crowd is reading that. Span society reads everything. A
+      Vaal-Kesh aide has noted your absent host with a small motion of
+      the chin; a Span aristocrat's retinue has slowed at a discreet
+      distance to watch how you handle being kept waiting. A Cinder
+      Collective envoy is moving through the crowd toward your group,
+      not yet hurrying.
+    first_turn_invitation: |
+      The Choir's chord reaches its long resolving cadence. The envoy
+      has covered half the distance.
+    party_framing:
+      already_a_crew: false
+      bond_tier_default: neutral
+      shared_history_seeds:
+        - "you do not all know each other yet — the patron's invitation is the only common thread"
+        - "the patron's name carries weight, but the patron's absence is now the louder fact"
+      narrator_guidance: >-
+        These PCs are not yet a crew. Aureate Span's MP register is
+        recruited-strangers, not found-family. Treat introductions as
+        live work — first impressions matter and the watching crowd
+        is a third party in every exchange.
