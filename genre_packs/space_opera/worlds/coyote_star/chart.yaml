@@ -1,0 +1,32 @@
+# Engraved chart flavor for Coyote Star. Renderer reads; plotter ignores.
+# Per the original cartography map_style: a working orrery on dark vellum,
+# inner planets and the gas giant on engraved brass rings, moons on short
+# arms, mining claims and Lagrange points stamped in steel, jump points
+# struck-pin. Outer system past Red Prospect drawn in chalk and pencil.
+
+version: "0.1.0"
+
+annotations:
+  - kind: engraved_label
+    text: "the Last Drift"
+    curve_along: orbit_outermost
+    style: engraved_curved
+
+  - kind: engraved_label
+    text: "broken drift"
+    curve_along: body:broken_drift
+    style: engraved_curved
+
+  - kind: glyph
+    text: "?"
+    at: { ra_deg: 135, au: 5.5 }
+    caption: "absent gate"
+    style: question_mark
+
+  - kind: scale_ruler
+    at: { ra_deg: 350, au: 4.5 }
+    label: "scale (engraved) — 0 1 2 3 4 5 AU"
+
+  - kind: bearing_marks
+    body_ref: coyote
+    bearings: [0, 90, 180, 270]
