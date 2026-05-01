@@ -177,11 +177,24 @@ starting_states:
       narration_style: space_opera
 
   - id: tail_chase
-    status: future
+    status: mvp
     description: >-
-      One ship trailing the other, both heading the same direction. Requires
-      its own 16-cell interaction table — a bank from a tail-chase means
-      something different than a bank from a merge.
+      One ship trailing the other, both heading the same direction. Red is
+      the pursuer (behind), Blue is the evader (ahead). Asymmetric geometry:
+      the pursuer has positional advantage but must commit to close the gun
+      cone; the evader has escape options but must turn to fight back.
+      Requires its own 16-cell interaction table — a bank from a tail-chase
+      means something different than a bank from a merge.
+    initial_descriptor:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: tail_on
+      closure: closing
+      viewer_energy: 60
+      target_energy: 60
+      gun_solution: false
+      environment: deep_space
+      narration_style: space_opera
 
   - id: beam
     status: future
