@@ -254,7 +254,18 @@
         on their crew anyway.
       mechanical_effects:
         personality_trait: trouble-magnet
-        jungian_hint: innocent
+        # jungian_hint: outlaw — playtest 2026-05-02. Was `innocent`, but
+        # `[innocent, stealth]` is the genre's only forbidden pairing
+        # (`archetype_constraints.yaml`), and the Smuggler crucible routes
+        # rpg_role_hint=stealth — leaving any Smuggler+Trouble-Magnet build
+        # dead-ending at the chargen gate. Outlaw fits the description
+        # ("the Reach has a name for people like you") and pairs cleanly
+        # with every crucible's rpg_role_hint:
+        #   stealth (Smuggler)        → Drift Runner    (common)
+        #   support (Officer/Engineer)→ Manifest Ghost  (uncommon)
+        #   jack_of_all_trades (Pilot)→ Drift Runner    (common)
+        #   control (Diplomat)        → Manifest Ghost  (uncommon)
+        jungian_hint: outlaw
   allows_freeform: true
 
 - id: confirmation
