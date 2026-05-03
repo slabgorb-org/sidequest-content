@@ -127,6 +127,22 @@ confrontations:
         label: "Make Your Case"
         kind: strike
         base: 2
+        # Playtest 2026-05-03 [BUG] — Edge meters never advanced from
+        # failed rolls. DEFAULT_DELTAS gives every strike beat
+        # ``Fail: 0/0`` per the dual-track-momentum spec; the player saw
+        # three Fails in a row with both dials flat, no mechanical signal
+        # of pressure even as the narrator's prose escalated. Both
+        # negotiation metrics start at 0, so the existing
+        # ``own: -N`` precedent (ship_combat::boost) is invisible — need
+        # ``opponent: +N`` to advance the opposing leverage dial toward
+        # threshold. Conservative numbers: Fail = +1, CritFail = +2 so a
+        # full chain of failures still leaves headroom for narrative
+        # recovery before resolution at threshold=10.
+        deltas:
+          crit_fail:
+            opponent: 2
+          fail:
+            opponent: 1
         stat_check: Influence
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
@@ -134,6 +150,17 @@ confrontations:
         label: "Threaten"
         kind: strike
         base: 3
+        # ``risk: faction reputation -1 if it fails`` — the prose has
+        # always promised a consequence on Fail, but the engine wrote
+        # ``0/0``. Match the threaten flavor: a hollow threat hands the
+        # opponent more leverage than a missed persuasion. CritFail
+        # honors the ``consequence: NPC becomes hostile`` text with a
+        # bigger swing.
+        deltas:
+          crit_fail:
+            opponent: 3
+          fail:
+            opponent: 1
         stat_check: Resolve
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
@@ -143,12 +170,32 @@ confrontations:
         label: "Concede a Point"
         kind: angle
         target_tag: "Real Goal Revealed"
+        # angle's default Tie/Success grant tags but Fail does nothing.
+        # In a negotiation, conceding a point that doesn't yield
+        # information is *gifting* the opponent leverage. Mirror the
+        # strike numbers so the four beats give consistent failure
+        # feedback.
+        deltas:
+          crit_fail:
+            opponent: 2
+          fail:
+            opponent: 1
         stat_check: Influence
         effect: "opponent disposition +5, reveals their real goal"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Walk Away"
         kind: push
+        # push's default CritFail is ``own: -1`` (backslide on the
+        # player's dial); add ``opponent: +N`` for the same visibility
+        # reason as the strike beats. Failing to walk away from a
+        # negotiation is the opponent reeling you back to the table —
+        # they win positional ground.
+        deltas:
+          crit_fail:
+            opponent: 2
+          fail:
+            opponent: 1
         stat_check: Resolve
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player leaves the negotiation table. No treaty."
