@@ -1,0 +1,781 @@
+# sidequest-content/genre_packs/space_opera/worlds/coyote_star/openings.yaml
+#
+# Canned openings for Coyote Star — chassis-anchored aboard the Kestrel.
+# Solo bank is keyed on chargen `background`; the MP entry folds the
+# prose previously held in mp_opening.yaml (now deleted).
+#
+# Voice contract for every entry: warm, lived-in, dry. The Kestrel
+# speaks in her authored register (rigs.yaml: dry_warm, OCEAN
+# { O:0.6 C:0.7 E:0.4 A:0.5 N:0.5 }, name-form for trusted PCs is
+# {first_name}). Vocal tics: theatrical sigh, almost-but-legally-distinct
+# from a laugh, dry as bonemeal, drops to a discreet murmur.
+#
+# The crew (kestrel_captain, kestrel_engineer, kestrel_doc, kestrel_cook)
+# is pre-loaded via rigs.yaml:kestrel.crew_npcs and authored in npcs.yaml.
+# Solo openings reference crew by first name in the prose; do NOT
+# re-introduce them.
+#
+# Hard contracts (validators):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - chassis-anchored entries must have present_npcs empty/omitted
+#   - exactly one anchor per setting
+#
+# Spec: docs/superpowers/specs/2026-05-01-canned-openings-design.md §3.1
+
+version: "0.1.0"
+world: coyote_star
+genre: space_opera
+
+openings:
+  # ---------------------------------------------------------------
+  # SOLO — keyed on chargen `background`
+  # ---------------------------------------------------------------
+
+  - id: solo_came_through_the_gate
+    name: "Galley, Coast — Grand Gate Already a Year Behind"
+    triggers:
+      mode: solo
+      backgrounds: ["I Came Through the Gate"]
+    setting:
+      chassis_instance: kestrel
+      interior_room: galley
+      situation: >-
+        Mid-coast between markers, the long indifferent hum of a ship
+        that knows where it's going. No emergency. No destination drama.
+        Inbound for Mendes' Post in something like fourteen hours, give
+        or take a Hegemonic delay.
+    tone:
+      register: "warm, lived-in, dry"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3"
+      sensory_layers:
+        smell: >-
+          Recycled air, the burnt-edge of chicory-and-stim-grain that
+          passes for coffee out here, faint reactor-warmth seeping up
+          through the deck plating.
+        sound: >-
+          Long quiet hum of a ship at coast, the galley extractor fan
+          ticking once every few seconds, Kanga humming something half
+          under her breath in the galley locker.
+        touch: >-
+          Deck-warm underfoot, the chill of the alkaline-glass porthole
+          if you lean on it, a Kestrel-issue mug heavy enough to feel
+          honest.
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - any rig-emergency framing
+        - moving the player without their input
+        - introducing an antagonist in dialogue range
+        - referencing Grand Gate as a current threat
+        - ending the turn with a question
+    establishing_narration: |
+      Mid-coast. The Kestrel hums the way she hums when nobody is asking
+      anything of her — the long low note Hubo calls her thinking-sound
+      and Wainu calls her not-thinking-sound, depending on which of them
+      has the last word.
+
+      The galley is warm. The extractor fan ticks once every few seconds,
+      a cycle the Kestrel has explained more than once is "doing its job
+      exactly enough." Kanga is in the locker behind the counter,
+      cataloguing something to herself in clan-blue undertones; she gives
+      you a nod over her shoulder as you settle in, and goes back to it.
+
+      Outside the galley porthole: void, stars, the faint indifferent
+      gradient of a distant nebula in teal and oxblood. Somewhere down
+      a corridor, a hatch sighs open and closed — Hubo on a panel walk,
+      probably, the way he walks her every coast-shift whether she needs
+      it or not.
+
+      Grand Gate is a year behind you. Or five. The Reach does that to
+      time. The mug in front of you is hot. The morning, such as it is
+      on a ship that has no morning, is yours.
+    first_turn_invitation: |
+      The coffee is what passes for coffee. The Kestrel waits the way a
+      ship waits when she has nothing pressing to say. Outside the
+      porthole, the long indifferent gradient of the dark.
+    rig_voice_seeds:
+      - context: "first PC enters the galley"
+        line: |
+          "{first_name}. The coffee is what passes for coffee. You'll
+          want to be philosophical about it."
+      - context: "the PC stands a beat at the porthole"
+        line: |
+          *[a sound almost-but-legally-distinct from a laugh, from no
+          particular speaker grille]* "It does not move when watched.
+          I have tested this."
+      - context: "the PC asks ETA"
+        line: |
+          "Mendes' Post in fourteen, give or take a Hegemonic delay.
+          We are between things, in the way one is."
+      - context: "the PC says something earnest"
+        line: |
+          *[the register drops to a discreet murmur, addressed only
+          to that PC's seat]* "Mm. Yes. I had noticed."
+    per_pc_beats:
+      - applies_to: { background: "I Came Through the Gate" }
+        beat: |
+          Tucked behind a row of clan-blue spice tins on Kanga's shelf
+          — far enough back that it counts as out of sight without
+          being hidden — your old transit duffel. The Hegemonic customs
+          tag from Grand Gate is still threaded through the strap, the
+          stamp faded to a bureaucratic ghost. You haven't moved it
+          since you came aboard. Kanga has not asked. Nobody has asked.
+          You see it sometimes when she opens that locker, and she sees
+          you seeing it, and neither of you remarks.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The galley terminal blinks once — slow, unhurried, the way the
+        Kestrel queues a thing she has not decided is urgent.
+
+        "Tagged for this ship," she says, after exactly the right beat
+        of waiting. "From Mendes' Post. You can read it now, or finish
+        your coffee. Both are valid."
+      escalation_path:
+        turn_2_or_3: >-
+          The message names a job — routine on the surface, courier
+          work into the Compact-claimed flats. The wrinkle: the
+          rendezvous coordinates sit closer to Grand Gate than the
+          Kestrel's last three runs combined. Not on it. Near it.
+          Whoever wrote the request knew you would notice. That,
+          itself, is the question — but not on turn 1.
+    magic_microbleed:
+      detail: >-
+        A clan-blue mug on the rack jitters once, exactly once, at no
+        impact you can name. Kanga looks at it. Kanga looks at you.
+        Kanga does not say anything. The mug is still.
+      cost_bar: notice
+
+  - id: solo_far_landing_raised_me
+    name: "Galley, Approach — Far Landing on the Forward Scope"
+    triggers:
+      mode: solo
+      backgrounds: ["Far Landing Raised Me"]
+    setting:
+      chassis_instance: kestrel
+      interior_room: galley
+      situation: >-
+        Inbound for Far Landing on a slow approach, an hour out from
+        atmospheric interface. The forward scope has the planet small
+        and dust-pale on the screen above the galley counter.
+    tone:
+      register: "warm, lived-in, dry"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3"
+      sensory_layers:
+        smell: >-
+          Recycled air about to be cut with that faint mineral note
+          everyone who grew up on Far Landing knows — atmospheric
+          scrubbers picking up the planet's profile through the hull
+          intake.
+        sound: >-
+          Approach-coast hum, the extractor fan, the cooker behind the
+          counter where Kanga is making something that is going to be
+          breakfast whether you asked for it or not.
+        touch: >-
+          Deck-warm. The Kestrel-issue galley booth bench is the same
+          temperature as the deck and feels, faintly, like a known
+          country.
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - any rig-emergency framing
+        - moving the player without their input
+        - sentimentalizing the planet
+        - ending the turn with a question
+    establishing_narration: |
+      The Kestrel is on slow approach. You can tell from the quality of
+      the hum — half a register below coast, the faint shudder of trim
+      surfaces being asked to start thinking again about an atmosphere
+      they will not meet for another hour.
+
+      Above the galley counter, the forward scope has Far Landing small
+      and dust-pale, the ridgeline already a flat grey-blue line on the
+      horizon graphic. The scrubbers have started picking up the
+      planet's profile through the intake; the air in here has, in the
+      last few minutes, taken on a faint mineral note your body knows
+      before your mind does.
+
+      Kanga is at the cooker behind the counter, doing something with
+      stim-grain and the last of a Compact farmer's egg ration she
+      bought at the Mendes' Post run. She does not look up as you settle
+      in. She does push a mug across the counter without being asked.
+
+      "Hour out," she says, conversational, to the cooker rather than
+      to you. "Smelled it before the scope did. You always do."
+    first_turn_invitation: |
+      The mug is in front of you. The planet is on the scope. The air
+      already smells like home, in the way home smells like dust.
+    rig_voice_seeds:
+      - context: "first PC enters the galley"
+        line: |
+          "{first_name}. Approach. Kanga has appointed herself in
+          charge of the egg ration, and I have decided not to argue."
+      - context: "PC looks at the forward scope"
+        line: |
+          *[a theatrical sigh, exactly long enough to register as
+          judgement]* "It looks the same every time. I find that
+          reassuring. Do not tell anyone I said so."
+      - context: "PC asks about landing approach"
+        line: |
+          "Vaskov Centrum tower in forty-five. The dust profile is
+          ordinary. The customs queue is not my problem."
+      - context: "PC says something earnest about the planet"
+        line: |
+          *[the register drops to a discreet murmur, only to that
+          PC's seat]* "I know. I have been carrying you home for a
+          while now."
+    per_pc_beats:
+      - applies_to: { background: "Far Landing Raised Me" }
+        beat: |
+          On the galley datapad somebody — Kanga, probably; the locker
+          tag is hers — has the local feed running silently, scrolling
+          dock manifests, weather alerts, the kind of small-town
+          ledger no Hub-born would think to leave on. A name you grew
+          up knowing scrolls past on the Compact day-roster. Then
+          another. Then a third, somebody you haven't thought about
+          since you were fifteen. The screen times out on its own.
+          You let it. Kanga turns the egg ration over in the pan.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        From the cockpit corridor, Wainu's voice, unhurried: "Hey.
+        Galley." A pause that is not asking, only flagging. "Tower
+        flagged us a personal — not on the manifest channel. Came in
+        on the soft band. Your name on it, not the ship's."
+
+        She does not press it. The Kestrel does not press it. The egg
+        ration smells better than it has any right to.
+      escalation_path:
+        turn_2_or_3: >-
+          The personal is from somebody you knew on the strip — old
+          tie, neither bad nor entirely good. They want to meet at
+          the cantina before second bell. They have not said why. The
+          fact that they came in on the soft band rather than the
+          public manifest is, in Far Landing terms, the meaningful
+          thing. Not turn 1. Turn 2 at earliest.
+    magic_microbleed:
+      detail: >-
+        For a half-beat, the dust profile coming through the scrubbers
+        smells of after-rain, wet caliche, the kind of weather Far
+        Landing only manages twice a season — and the local feed,
+        when you glance at it, is showing dry winds. Kanga's hand
+        slows on the spatula. She does not remark.
+      cost_bar: notice
+
+  - id: solo_turning_hub_was_the_whole_world
+    name: "Cockpit, Coast — Hub on the Rear Scope"
+    triggers:
+      mode: solo
+      backgrounds: ["Turning Hub Was the Whole World"]
+    setting:
+      chassis_instance: kestrel
+      interior_room: cockpit
+      situation: >-
+        Coast-shift, second seat. Turning Hub is on the rear scope at
+        a respectful distance, the gas giant Red Prospect a banded
+        crescent off the starboard quarter. Inbound for Mendes' Post
+        on the long arc.
+    tone:
+      register: "warm, lived-in, dry"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3"
+      sensory_layers:
+        smell: >-
+          Cockpit-stale — the dry electrical scent of long-running
+          consoles, a Kestrel-issue mug going cold in the cup-holder
+          on the second seat.
+        sound: >-
+          The cockpit's quieter hum, instrument chimes pitched low
+          enough not to startle, Wainu in the captain's seat going
+          through a course-correction calc with the unhurried mutter
+          of someone who has done it in her sleep.
+        touch: >-
+          The cockpit harness webbing loose across your chest — coast,
+          not maneuver. The console under your palm is warm in the
+          way a thing that has been thinking is warm.
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - emergency-of-the-week framing
+        - sentimentalizing the Hub
+        - having Wainu do anything except be present and unhurried
+        - ending the turn with a question
+    establishing_narration: |
+      Second seat, coast-shift. The Kestrel is on her long arc out of
+      the gas-giant gravity well, Turning Hub a small bright fleck on
+      the rear scope at the kind of distance the clan calls "respectful
+      remove." Red Prospect hangs off the starboard quarter, banded in
+      its slow rust-and-cream weather, indifferent to anyone watching.
+
+      Wainu is in the captain's seat, half-turned to the navigation
+      console, going through a course-correction calc in the under-
+      voice she uses when she does not want to interrupt the ship's
+      thinking. She gives you a nod when you settle into the second
+      seat — clan-economical, not a greeting so much as an
+      acknowledgement that you are where you should be.
+
+      "Coast," she says, which is not information. It is an invitation
+      to share the quiet.
+
+      The cockpit hum is different from the galley hum. Lower. More
+      attentive. Like the Kestrel is paying a little closer attention
+      to herself up here, the way a person pays closer attention in a
+      room with a window.
+    first_turn_invitation: |
+      The Hub is on the rear scope. Wainu is at her calc. The seat
+      under you is the second seat, and you have flown it before.
+    rig_voice_seeds:
+      - context: "first PC enters the cockpit"
+        line: |
+          "{first_name}. Second seat is yours. The course is on rails
+          and Wainu is in a thinking mood. Say nothing of importance
+          for the next eleven minutes."
+      - context: "PC looks at the rear scope and Hub"
+        line: |
+          *[a sound almost-but-legally-distinct from a laugh]* "It is
+          smaller from out here. Most things are."
+      - context: "PC asks Wainu something low-stakes"
+        line: |
+          *[the Kestrel's register drops to a discreet murmur]* "She
+          will answer in a minute. She is doing the thing where she
+          thinks the calc is wrong before she finishes it. It will
+          not be wrong."
+      - context: "PC sits in the quiet"
+        line: |
+          "Good. Yes. We will keep this for a minute."
+    per_pc_beats:
+      - applies_to: { background: "Turning Hub Was the Whole World" }
+        beat: |
+          On your console, in the corner where Hub-born pilots tuck
+          comfort-feeds nobody else cares about, the Moana-Teru clan
+          board is scrolling — births, jump-departures, the small
+          public ledger Hub kids learn to read at six. A familiar
+          name on a docking schedule from this morning. An elder's
+          notice you remember from before you could read it. Wainu's
+          eyes flicker once across your screen — clan to clan — and
+          then back to her calc. Neither of you remarks.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The Kestrel chimes once, low and unhurried. "Clan band, soft
+        priority. Forwarded from Hub. Tagged personal, not manifest."
+
+        Wainu does not look up from her calc. "Yours, probably," she
+        says, conversational. "Mine come in louder."
+      escalation_path:
+        turn_2_or_3: >-
+          The forward is from a Moana-Teru relation — second-cousin
+          range, the kind of distance where the message is courteous
+          but the fact of sending it is the message. They are asking
+          a favor that involves either Hub politics or the kind of
+          family thing that travels under Hub politics. The wrinkle
+          is which. Not turn 1.
+    magic_microbleed:
+      detail: >-
+        On the rear scope, Turning Hub winks — once, the kind of
+        scintillation a station does not do, because stations do not
+        twinkle; they reflect. Wainu's pen pauses against the calc
+        pad. She does not look up. The Hub is steady again.
+      cost_bar: notice
+
+  - id: solo_lived_near_the_deep_root
+    name: "Deck Three Corridor, Coast — The Hum Below the Hum"
+    triggers:
+      mode: solo
+      backgrounds: ["I Lived Near the Deep Root"]
+    setting:
+      chassis_instance: kestrel
+      interior_room: deck_three_corridor
+      situation: >-
+        Coast-shift. The deck three corridor — the long quiet spine
+        between the galley and the engineering nacelle — is empty
+        except for you and Kuna-Mikkaan, who is doing whatever it is
+        Kuna-Mikkaan does when nobody is asking them to do something
+        else.
+    tone:
+      register: "warm, lived-in, dry"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3"
+      sensory_layers:
+        smell: >-
+          Cooler than the galley — the corridor's air recyclers run a
+          shade harder here, a faint trace of the Tsveri scrub-tea
+          Kuna-Mikkaan keeps in a clipped flask.
+        sound: >-
+          The Kestrel's coast-hum, and beneath it, when you stand still,
+          the lower register Kuna-Mikkaan carries with them — not
+          speech, exactly. Vibration. The kind your chest registers
+          before your ear does.
+        touch: >-
+          Deck-warm; the corridor wall faintly cooler than the deck.
+          The hum in your sternum if you stop walking.
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - any rig-emergency framing
+        - explaining what root-listening is
+        - making Kuna-Mikkaan exotic or uncanny in a hostile way
+        - having Kuna-Mikkaan teach the PC something
+        - ending the turn with a question
+    establishing_narration: |
+      The deck three corridor is the Kestrel's quiet spine — long, low-
+      lit, the ribbed bulkheads picking up the coast-hum and giving it
+      somewhere to go. You walk it slow, the way the Tsveri taught you
+      to walk hill paths: with attention, not hurry.
+
+      Kuna-Mikkaan is at the corridor's midpoint, standing the way they
+      stand when they are doing nothing in particular and everything
+      in particular at once — a hand resting flat against the bulkhead,
+      head ducked under the low hatch arch, integument quiet grey.
+      Their flask is clipped to the bulkhead at hip-height, the tea
+      inside it still warm enough to read on the metal.
+
+      They register your arrival the Tsveri way: a half-beat shift in
+      the subsonic hum that travels up through the deck and lands in
+      your sternum as a kind of yes. The hum does not change otherwise.
+      They do not turn their head.
+
+      The Kestrel does not interrupt. She knows when not to.
+
+      You stand at the other end of the corridor for a moment with the
+      hum below the hum, the way you used to stand on the foothill
+      paths when the wind off the Deep Root was carrying the long low
+      register and any human urgency would have been a discourtesy.
+    first_turn_invitation: |
+      The corridor is yours and Kuna-Mikkaan's. The hum is in your
+      chest. Nothing in the Reach is asking either of you to be
+      anywhere else.
+    rig_voice_seeds:
+      - context: "first PC enters the corridor"
+        line: |
+          *[the Kestrel's register, already low, drops further — a
+          discreet murmur reserved for moments she has decided are
+          Kuna-Mikkaan's]* "{first_name}. Deck three. They are
+          listening. Walk soft."
+      - context: "PC stops still in the corridor"
+        line: |
+          *[silence — the Kestrel's silence-register, here approving]*
+      - context: "PC says something to Kuna-Mikkaan"
+        line: |
+          *[the Kestrel does not interrupt; if she comments at all, it
+          is one beat after Kuna-Mikkaan answers, almost-but-legally-
+          distinct from a laugh]* "She gets a discount on the words."
+      - context: "PC moves to leave"
+        line: |
+          "Mm. Walk soft on the way back, also. They have it set the
+          way they like it."
+    per_pc_beats:
+      - applies_to: { background: "I Lived Near the Deep Root" }
+        beat: |
+          When you stop, Kuna-Mikkaan's integument warms a half-shade
+          toward bronze — the way it did, you remember, when the
+          old ones at the Deep Root foothills approved of a human
+          who knew how to wait. They do not look at you. They do not
+          need to. You stand in the hum together for a span of
+          seconds that does not seem to have a count, and then their
+          flask's tea-warmth ticks one tick downward on the bulkhead
+          metal, and that is the signal that the moment has held what
+          it needed to hold.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Kuna-Mikkaan straightens — slowly, the way they do everything,
+        ducking the low hatch arch as a courtesy to the ship rather
+        than to themselves. The hum in your sternum shifts a quarter
+        register, and then they speak above the audible band, one
+        beat slow.
+
+        "I have a letter," they say. "From a relation. It came on
+        the last clan band into Hub. It is not urgent. I would
+        prefer to read it with someone who knows the foothill
+        word for it. There is no hurry."
+      escalation_path:
+        turn_2_or_3: >-
+          The letter is from a Tsveri elder Kuna-Mikkaan was apprentice
+          to, on a matter that touches the Deep Root survey-rights
+          push the Free Miners' Compact has been making. The PC's
+          Deep-Root-adjacent background is exactly why Kuna-Mikkaan
+          asked. The letter is in foothill register, partial human
+          translation, a Tsveri register the textbooks do not have
+          a glossary for. The wrinkle is what the elder is asking
+          and what the elder is not asking. Not turn 1.
+    magic_microbleed:
+      detail: >-
+        The hum below the hum, for a half-beat, carries something
+        that is not the Kestrel and is not Kuna-Mikkaan — a third
+        register, longer-wavelength, the way the Deep Root used to
+        hum on the foothill paths when the wind was right. It is
+        gone before you can decide if you imagined it. Kuna-Mikkaan's
+        integument does not change. Or does, and then steadies.
+      cost_bar: notice
+
+  # ---------------------------------------------------------------
+  # SOLO — fallback (any unmatched background, including freeform)
+  # ---------------------------------------------------------------
+
+  - id: solo_galley_fallback
+    name: "Galley, Coast — Morning Aboard"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      chassis_instance: kestrel
+      interior_room: galley
+      situation: >-
+        Mid-coast. Inbound for Mendes' Post in fourteen hours, give or
+        take a Hegemonic delay. No emergency, no destination drama,
+        no one shooting at anyone.
+    tone:
+      register: "warm, lived-in, dry"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3"
+      sensory_layers:
+        smell: >-
+          Recycled air, chicory-stim coffee, faint reactor-warmth
+          through the deck plating.
+        sound: >-
+          Coast-hum, the extractor fan ticking once every few seconds,
+          somebody's mug hitting the table down the corridor.
+        touch: >-
+          Deck-warm underfoot, the chill of the alkaline-glass
+          porthole, the heft of a Kestrel-issue mug.
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - any rig-emergency framing
+        - moving the player without their input
+        - introducing an antagonist in dialogue range
+        - ending the turn with a question
+    establishing_narration: |
+      Mid-coast. The Kestrel hums her quiet-coast hum, the long low
+      note that voidborn crews call the breath of a ship that knows
+      where it's going.
+
+      The galley is warm. The extractor fan ticks once every few
+      seconds — a cycle the Kestrel has explained more than once is
+      "doing its job exactly enough." The coffee is what passes for
+      coffee. Outside the porthole: void, stars, the faint indifferent
+      gradient of a distant nebula in teal and oxblood.
+
+      Kanga is humming something behind the counter. Hubo is on a
+      panel walk somewhere down the engineering corridor, the way he
+      walks her every coast-shift whether she needs it or not. Kuna-
+      Mikkaan is presumably on deck three, standing the way they
+      stand. Wainu has the cockpit. Everyone is where they should be,
+      which is the Kestrel's preferred condition.
+
+      Mendes' Post in fourteen, give or take a Hegemonic delay.
+    first_turn_invitation: |
+      The mug is in front of you. The Kestrel waits the way a ship
+      waits when she has nothing pressing to say.
+    rig_voice_seeds:
+      - context: "first PC enters the galley"
+        line: |
+          "{first_name}. The coffee is what passes for coffee. You'll
+          want to be philosophical about it."
+      - context: "PC stands at the porthole"
+        line: |
+          *[a sound almost-but-legally-distinct from a laugh, from
+          no particular speaker grille]* "It does not move when
+          watched. I have tested this."
+      - context: "PC asks ETA"
+        line: |
+          "Mendes' Post in fourteen, give or take a Hegemonic delay.
+          We are between things, in the way one is. Drink your
+          coffee."
+      - context: "PC says something earnest"
+        line: |
+          *[the register drops to a discreet murmur, addressed only
+          to that PC's seat]* "Mm. Yes. I had noticed."
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The galley terminal blinks once — slow, unhurried, the way
+        the Kestrel queues a thing she has not decided is urgent.
+
+        "Tagged for this ship," she says, after exactly the right
+        beat of waiting. "From Mendes' Post. You can read it now, or
+        finish your coffee. Both are valid."
+      escalation_path:
+        turn_2_or_3: >-
+          The message names a job. The job has a wrinkle. The
+          wrinkle pulls toward whatever the PC's drive lit up at
+          chargen. Narrator picks the strongest hook on the second
+          or third beat; do not preview it on turn 1.
+    magic_microbleed:
+      detail: >-
+        The galley extractor fan ticks. Then it does not tick — exactly
+        once, exactly the length of the tick that is missing — and then
+        it ticks again. The Kestrel does not comment. You do not check
+        whether anyone else heard it. Out here, you don't.
+      cost_bar: notice
+
+  # ---------------------------------------------------------------
+  # MULTIPLAYER — folded from the deleted mp_opening.yaml
+  # ---------------------------------------------------------------
+
+  - id: mp_galley_jumprest
+    name: "Galley, Jump-Rest"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 6
+      backgrounds: []
+    setting:
+      chassis_instance: kestrel
+      interior_room: galley
+      situation: >-
+        Mid-jump-rest. Engines on minimum, the Kestrel coasting on
+        momentum between markers — what Mendes' Post crews call "the
+        long coffee." Inbound for Mendes' Post, fourteen hours give or
+        take a Hegemonic delay. No emergency, no destination drama,
+        no one shooting at anyone. This is the breathing-room opening
+        — the crew exists, the rig exists, the void exists, and the
+        players get to find their voices before anything pulls.
+    tone:
+      register: "warm, lived-in, dry"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3"
+      sensory_layers:
+        smell: >-
+          Recycled air, burnt-edge of "coffee" that is mostly chicory
+          and stim-grain, faint reactor-warmth seeping through the
+          deck.
+        sound: >-
+          Long quiet hum of a ship at coast, galley extractor fan
+          ticking, somebody's mug hitting the table.
+        touch: >-
+          Deck-warm underfoot, the chill of an alkaline-glass porthole
+          if a PC leans on it.
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - any rig-emergency framing — no hull breach, no engine flare, no pursuit, no Hegemony hail
+        - moving the players around without their input
+        - introducing an antagonist in dialogue range
+        - re-introducing the PCs to one another
+        - ending the turn with a question
+    establishing_narration: |
+      The Kestrel is mid-jump-rest, drifting on coast through the dark
+      between markers. Engines on minimum. The hull's long quiet hum
+      that voidborn crews call the breath of a ship that knows where
+      it's going.
+
+      The galley is warm. The extractor fan ticks once every few
+      seconds — a cycle the Kestrel never bothered to recalibrate
+      because, as she has explained more than once, "It is doing its
+      job exactly enough."
+
+      Mendes' Post in fourteen hours, give or take a Hegemonic delay.
+      The coffee is what passes for coffee. Outside the porthole, void
+      and stars and the faint indifferent gradient of a distant nebula
+      in teal and oxblood.
+
+      Kanga has appointed herself in charge of the coffee press and
+      will not relinquish it. Hubo is somewhere down the engineering
+      corridor on a panel walk. Kuna-Mikkaan is at the galley booth,
+      flask of scrub-tea clipped to the table, integument the quiet
+      grey that means content. Wainu has the cockpit and has, by the
+      sound of it, just decided the next course-correction calc can
+      wait the eleven minutes she always claims it can.
+    first_turn_invitation: |
+      The Kestrel waits the way a ship waits. The coffee is what it
+      is. Outside the porthole: void, stars, the long indifferent
+      gradient of distant gas. Each of you is exactly where you mean
+      to be.
+    rig_voice_seeds:
+      - context: "first PC enters the galley"
+        line: |
+          "{first_name}. The coffee is what passes for coffee. You'll
+          want to be philosophical about it."
+      - context: "a PC has been on extended watch"
+        line: |
+          *[a theatrical sigh, exactly long enough to register as
+          judgement]* "Eight hours, {first_name}. I appreciate the
+          consistency."
+      - context: "two PCs at the table, one says something dry"
+        line: |
+          *[a sound almost-but-legally-distinct from a laugh, from no
+          particular speaker grille]*
+      - context: "a PC asks position or ETA"
+        line: |
+          "We are between things, in the way one is. Mendes' Post in
+          fourteen, give or take a Hegemonic delay. Drink your
+          coffee."
+      - context: "a PC asks the Kestrel something earnest"
+        line: |
+          *[the register drops to a discreet murmur, addressed only
+          to that PC's seat]* "Mm. Yes. I had noticed."
+    per_pc_beats:
+      - applies_to: { drive: "I Saw Something Out Past the Gas Giant" }
+        beat: |
+          Your datapad is open on the galley counter. The nav log
+          from the run before last is still showing — the route you
+          didn't tell anyone about. The screen times out on its own.
+          You let it.
+      - applies_to: { drive: "Someone Went Into the Drift" }
+        beat: |
+          A Compact loss-claim notice scrolls past on the galley
+          feed, routine, unrelated. You read the name on it anyway.
+          You always read the name.
+      - applies_to: { drive: "A Debt That Followed Me Through the Gate" }
+        beat: |
+          A piece of mail in the Kestrel's relay queue, addressed to
+          a name you don't use anymore. Not flagged urgent. Not
+          nothing.
+      - applies_to: { drive: "My Place Got Dissolved" }
+        beat: |
+          Through the porthole over the galley booth — the cloud-
+          banded gas giant hangs indifferent in the middle distance,
+          the kind of view you used to be able to see from your old
+          window in a way that doesn't bear thinking about. You watch
+          it for a minute longer than you mean to.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces during turn 1 if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        On the galley terminal, an inbound comm blinks once — slow,
+        unhurried, the way the Kestrel queues things she hasn't
+        decided are urgent.
+
+        "Tagged for this ship," she says, after exactly the right
+        beat of waiting. "From Mendes' Post. You can read it now, or
+        finish your coffee. Both are valid."
+      escalation_path:
+        turn_2_or_3: >-
+          The message names a job. The job has a wrinkle. The wrinkle
+          pulls toward one PC's drive — the narrator picks whichever
+          PC has the strongest hook hit on the per_pc_beats above, or
+          rolls if it's a tie.
+        do_not: >-
+          Do not preview the wrinkle in the establishing scene. The
+          opening is the breath; the wrinkle is the second beat.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: trusted
+      shared_history_seeds:
+        - "muscle memory from at least three jumps' worth of patch kits"
+        - "an in-joke about Vaskov customs that one of you started and none of you can remember whose fault it was"
+        - "a galley mug that has a name written on the bottom that is not any of yours, that nobody throws away"
+      narrator_guidance: >-
+        These PCs already know each other. They have crewed the
+        Kestrel long enough to have reflexes around each other. Treat
+        them as established; do not re-introduce them to one another.
+    magic_microbleed:
+      detail: >-
+        Somewhere two compartments forward, a hatch sighs open and
+        closed without any of you opening it. The hatch is not on a
+        timer. None of you mentions it. None of you moves to check.
+        After the second beat of nobody-saying-anything the Kestrel
+        offers, in the discreet murmur she keeps for galley confidences:
+        "Settling, surely." Nobody disagrees out loud.
+      cost_bar: notice

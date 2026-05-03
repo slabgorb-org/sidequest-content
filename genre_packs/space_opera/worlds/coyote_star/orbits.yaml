@@ -1,0 +1,230 @@
+# Coyote Star — orbital mechanics. Plotter's only input.
+# Flavor (engraved arcs, glyphs, scale ruler) lives in chart.yaml.
+#
+# epoch_phase_deg notes:
+#   Top-level bodies spread around the dial. Lagrange companions
+#   are placed at +60° (L4), -60° (L5), and +180° (L3) relative to
+#   their primary so they render at the correct trojan offsets.
+#   Moons spread around their parent so the inner-Red-Prospect
+#   cluster reads as multiple bodies, not a single dot.
+#
+# Phase reference: 0° = right (3 o'clock), 90° = top, 180° = left,
+# 270° = bottom — matches the engraved orrery convention.
+
+version: "0.1.0"
+
+clock:
+  epoch_days: 0
+
+travel:
+  realism: orbital
+  travel_speed_factor: 1.0
+  danger_density: 0.012
+  hazard_arc_density: 0.10
+
+bodies:
+  coyote:
+    type: star
+    label: COYOTE
+    label_color: red
+
+  # ---- Inner system ----------------------------------------------------
+
+  far_landing:
+    type: habitat
+    parent: coyote
+    semi_major_au: 1.00
+    period_days: 365.0
+    eccentricity: 0.02
+    epoch_phase_deg: 45
+    label: "FAR LANDING"
+
+  tethys_watch:
+    type: habitat
+    parent: far_landing
+    semi_major_au: 0.0039      # 580,000 km
+    period_days: 50.0
+    eccentricity: 0.05
+    epoch_phase_deg: 0
+
+  deep_root_world:
+    type: habitat
+    parent: coyote
+    semi_major_au: 1.07
+    period_days: 404.0
+    eccentricity: 0.03
+    epoch_phase_deg: 75
+    label: "DEEP ROOT"
+
+  kerel_eye:
+    type: habitat
+    parent: deep_root_world
+    semi_major_au: 0.0028      # 420,000 km
+    period_days: 31.0
+    eccentricity: 0.04
+    epoch_phase_deg: 0
+
+  lower_kerel:
+    type: habitat
+    parent: deep_root_world
+    semi_major_au: 0.0012      # 185,000 km
+    period_days: 9.0
+    eccentricity: 0.01
+    epoch_phase_deg: 180
+
+  # ---- Coyote / Far Landing trojan field -------------------------------
+  # gravel_orchard at L4 of far_landing, dead_man_l5 at L5.
+
+  gravel_orchard:
+    type: habitat
+    parent: coyote
+    semi_major_au: 1.00
+    period_days: 365.0
+    epoch_phase_deg: 105       # far_landing L4 (+60°)
+    label: "GRAVEL ORCHARD"
+
+  dead_man_l5:
+    type: habitat
+    parent: coyote
+    semi_major_au: 1.00
+    period_days: 365.0
+    epoch_phase_deg: 345       # far_landing L5 (-60°)
+    label: "DEAD MAN'S DRIFT"
+
+  # ---- Mid system ------------------------------------------------------
+
+  broken_drift:
+    type: arc_belt
+    parent: coyote
+    semi_major_au: 2.50
+    period_days: 1442.0
+    epoch_phase_deg: 30
+    arc_extent_deg: 90
+    hazard: true
+    label: "BROKEN DRIFT"
+
+  new_claim:
+    type: habitat
+    parent: coyote
+    semi_major_au: 2.92
+    period_days: 1826.0
+    eccentricity: 0.08
+    epoch_phase_deg: 200
+    label: "NEW CLAIM"
+
+  # ---- Red Prospect and its trojan companions --------------------------
+
+  red_prospect:
+    type: companion
+    parent: coyote
+    semi_major_au: 5.24
+    period_days: 4382.0
+    eccentricity: 0.05
+    epoch_phase_deg: 270
+    label: "RED PROSPECT"
+    label_color: red
+
+  compact_anchorage:
+    type: habitat
+    parent: coyote
+    semi_major_au: 5.24
+    period_days: 4382.0
+    epoch_phase_deg: 330       # red_prospect L4 (+60°)
+    label: "COMPACT ANCHORAGE"
+
+  the_counter:
+    type: habitat
+    parent: coyote
+    semi_major_au: 5.24
+    period_days: 4382.0
+    epoch_phase_deg: 90        # red_prospect L3 (+180°)
+    label: "THE COUNTER"
+
+  # ---- Red Prospect moons ----------------------------------------------
+
+  turning_hub:
+    type: habitat
+    parent: red_prospect
+    semi_major_au: 0.0131      # 1,955,000 km
+    period_days: 18.0
+    eccentricity: 0.01
+    epoch_phase_deg: 0
+
+  whitedrift:
+    type: habitat
+    parent: red_prospect
+    semi_major_au: 0.0150      # 2,250,000 km
+    period_days: 22.0
+    eccentricity: 0.02
+    epoch_phase_deg: 60
+
+  ember_moon:
+    type: habitat
+    parent: red_prospect
+    semi_major_au: 0.0071      # 1,055,000 km
+    period_days: 7.0
+    eccentricity: 0.04
+    epoch_phase_deg: 90
+
+  the_horn:
+    type: habitat
+    parent: red_prospect
+    semi_major_au: 0.0271      # 4,050,000 km
+    period_days: 53.0
+    eccentricity: 0.42
+    epoch_phase_deg: 200
+
+  dead_lash:
+    type: habitat
+    parent: red_prospect
+    semi_major_au: 0.0217      # 3,250,000 km
+    period_days: 38.0
+    eccentricity: 0.03
+    epoch_phase_deg: 280
+
+  vael_thain:
+    type: habitat
+    parent: red_prospect
+    semi_major_au: 0.0112      # 1,675,000 km
+    period_days: 14.0
+    eccentricity: 0.02
+    epoch_phase_deg: 130
+
+  # ---- Outer system ----------------------------------------------------
+
+  grand_gate:
+    type: gate
+    parent: coyote
+    semi_major_au: 6.50
+    period_days: 6048.0
+    eccentricity: 0.01
+    epoch_phase_deg: 150
+    label: "GRAND GATE"
+
+  last_drift:
+    type: arc_belt
+    parent: coyote
+    semi_major_au: 10.00
+    period_days: 11550.0
+    epoch_phase_deg: 0
+    arc_extent_deg: 360        # full ring; the outer haze
+    label: "the Last Drift"
+
+# Watched conjunction events. Soonest one across all pairs surfaces in the
+# chart's bottom-HUD countdown. Bodies must share a common ancestor — here,
+# all children of coyote (the star).
+conjunctions:
+  # The trade window. Far Landing (inner hub of civilization) and Red
+  # Prospect (outer companion's claim) align about every two years — the
+  # only reliable time freight runs catch a tail-following gravity assist
+  # out and back without a Hohmann burn.
+  - body_a: far_landing
+    body_b: red_prospect
+    label: "FAR LANDING ↔ RED PROSPECT"
+
+  # Out-system shipping window. Deep Root grows the food, Grand Gate is
+  # the only legal way out of the system. Players hauling cargo for the
+  # Hegemonic patrol watch this one.
+  - body_a: deep_root_world
+    body_b: grand_gate
+    label: "DEEP ROOT ↔ GRAND GATE"

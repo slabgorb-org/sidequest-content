@@ -114,3 +114,33 @@ confrontations:
         mandatory_outputs: [sanity_floor_lowered, status_add_scar, lore_revealed]
       refused:
         mandatory_outputs: [bond_increment_to_alien, lore_revealed]
+
+  # Story 47-4: first intimate-register confrontation. Two-branch by
+  # design — pyrrhic_win and clear_loss don't apply to a consensual tea
+  # ritual. Auto-fires on Galley entry when chassis-side bond is at or
+  # above ``familiar`` and the cooldown has elapsed.
+  - id: the_tea_brew
+    label: "The Tea Brew"
+    register: intimate
+    plugin_tie_ins: [item_legacy_v1]
+    rig_tie_ins: [voidborn_freighter]
+    auto_fire: true
+    fire_conditions:
+      interior_room_present: galley
+      bond_tier_min: familiar
+      cooldown_turns: 6
+    rounds: 1
+    resource_pool:
+      primary: bond
+    description: |
+      Site-of-life ritual. Captain offers a personal preference (incense,
+      music, a tea variety) to the chassis. The chassis registers the
+      offering. The room remembers.
+    outcomes:
+      clear_win:
+        mandatory_outputs:
+          - bond_strength_growth_via_intimacy
+          - chassis_lineage_intimate
+      refused:
+        mandatory_outputs:
+          - chassis_lineage_intimate

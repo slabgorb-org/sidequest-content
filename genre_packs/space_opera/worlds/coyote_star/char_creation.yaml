@@ -1,4 +1,4 @@
-- id: origins
+- id: background
   title: How Did You End Up in the Reach?
   narration: |
     There's one way into Coyote Star and one way out, and they are the
@@ -254,21 +254,33 @@
         on their crew anyway.
       mechanical_effects:
         personality_trait: trouble-magnet
-        jungian_hint: innocent
+        # jungian_hint: outlaw — playtest 2026-05-02. Was `innocent`, but
+        # `[innocent, stealth]` is the genre's only forbidden pairing
+        # (`archetype_constraints.yaml`), and the Smuggler crucible routes
+        # rpg_role_hint=stealth — leaving any Smuggler+Trouble-Magnet build
+        # dead-ending at the chargen gate. Outlaw fits the description
+        # ("the Reach has a name for people like you") and pairs cleanly
+        # with every crucible's rpg_role_hint:
+        #   stealth (Smuggler)        → Drift Runner    (common)
+        #   support (Officer/Engineer)→ Manifest Ghost  (uncommon)
+        #   jack_of_all_trades (Pilot)→ Drift Runner    (common)
+        #   control (Diplomat)        → Manifest Ghost  (uncommon)
+        jungian_hint: outlaw
   allows_freeform: true
 
 - id: confirmation
-  title: Far Landing, Morning
+  title: Aboard the Kestrel
   narration: |
     {name}.
 
     The {class} from {race} space — for whatever those words mean here, where
-    every label is a story somebody tells about you. The dust is settling
-    after a wind. Somewhere down the strip, a generator coughs and catches.
-    The shuttle from Turning Hub is overdue. The Tsveri ridgeline is a flat
-    line of grey-blue against the cold morning sky.
+    every label is a story somebody tells about you.
 
-    Far Landing is just waking up around you, and so is whatever happens next.
+    The Kestrel hums her quiet-coast hum, the long low note voidborn crews
+    call the breath of a ship that knows where she's going. The Reach is
+    wide. The crew is the crew. Whatever shift this is on her — galley,
+    cockpit, the long deck-three spine — the morning, such as it is on a
+    ship that has no morning, is yours.
 
     Begin.
   choices: []

@@ -23,6 +23,13 @@
 #
 # Concrete subject vocabulary belongs in per-POI / per-scene prompts,
 # not here.
+#
+# Negative-style instructions ("no lanterns, no torches, no cut rock")
+# do NOT work — Z-Image runs at guidance_scale=0 and ignores negation.
+# Telling the model "no X" can paint the word X or the object itself.
+# The only working defense against an unwanted object is to never name
+# it. This supersedes the negative-instruction approach attempted in
+# PR #169.
 
 positive_suffix: >-
   Painted sci-fi concept art in the lineage of Ralph McQuarrie and John
