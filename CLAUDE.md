@@ -63,8 +63,7 @@ Rust prototype in 2026-04. The Rust codebase is preserved read-only at
 https://github.com/slabgorb/sidequest-api for historical reference; older ADRs
 that show Rust code are historical illustration only — see `docs/adr/README.md`
 for the translation table. New backend code goes in Python. Media services
-(`sidequest-daemon`) remain Python for inference library maturity (Flux /
-Z-Image / ACE-Step). Claude calls go through Python subprocesses to the Claude
+(`sidequest-daemon`) remain Python for inference library maturity (Z-Image / ACE-Step). Claude calls go through Python subprocesses to the Claude
 CLI per ADR-001. (Kokoro TTS was formerly in this list; TTS has been removed
 from the system.)
 
