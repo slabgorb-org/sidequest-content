@@ -4,91 +4,125 @@
 # (docs/superpowers/specs/2026-04-17-layered-content-model-design.md).
 # These all reference Long Foundry's named cultures (Perault, Thessil,
 # Refuser) and belong at the world tier.
+#
+# Migrated from pre-canned-openings sketch shape to the unified Opening
+# schema (spec: docs/superpowers/specs/2026-05-01-canned-openings-design.md).
 
-- id: the_collector_is_here
-  archetype: standoff
-  situation: >-
-    A Collector has arrived to collect a debt signed generations ago.
-    The player did not sign it. The Collector is patient, polite, and
-    absolute. The household staff have gone very quiet. There is no
-    obvious way to refuse. There is an obvious way to pay that the
-    player does not wish to pay.
-  tone: formal, inevitable
-  avoid:
-    - tavern introductions
-    - quest board browsing
-    - bandit ambushes
-    - helpful merchant NPCs
-  first_turn_seed: >-
-    The knock at the door is not the knock of someone in a hurry. When
-    you open it, a figure in a correctly cut coat presents a sealed
-    writ with the small formal bow that goes with that particular
-    document. They address you by a name that is on the paperwork. It
-    is not the name you have been using.
+version: "0.1.0"
+world: long_foundry
+genre: heavy_metal
 
-- id: covenant_called_due
-  archetype: challenge
-  situation: >-
-    A covenant signed by a Perault ancestor is being formally called
-    due in the great hall of a declining house. The player has been
-    named as present in an official capacity — as witness, as
-    beneficiary, or as party to the original agreement. They do not
-    know which, yet. The Collector and the family are already seated.
-    There is a specific small ceremony that begins the proceedings.
-  tone: baroque, tragic
-  avoid:
-    - heroic entry scenes
-    - mystery setup through clues
-    - stranger-at-the-tavern hooks
-  first_turn_seed: >-
-    The letter was formal, the seal was old, and the invitation was
-    not one you could politely decline. You are now standing in the
-    great hall of a house that does not open its doors more than
-    twice a year. A scribe is already at their table. The Collector
-    is already in their chair. The family is already waiting for the
-    proceedings to begin, and you are the last party to arrive.
+openings:
+  - id: the_collector_is_here
+    name: "Collector at the Door"
+    triggers:
+      mode: either
+      backgrounds: []
+    setting:
+      location_label: "The player's household, doorstep, mid-afternoon"
+    tone:
+      register: formal, inevitable
+      avoid_at_all_costs:
+        - tavern introductions
+        - quest board browsing
+        - bandit ambushes
+        - helpful merchant NPCs
+    establishing_narration: >-
+      A Collector has arrived to collect a debt signed generations ago.
+      The player did not sign it. The Collector is patient, polite, and
+      absolute. The household staff have gone very quiet. There is no
+      obvious way to refuse. There is an obvious way to pay that the
+      player does not wish to pay.
+    first_turn_invitation: >-
+      The knock at the door is not the knock of someone in a hurry. When
+      you open it, a figure in a correctly cut coat presents a sealed
+      writ with the small formal bow that goes with that particular
+      document. They address you by a name that is on the paperwork. It
+      is not the name you have been using.
 
-- id: the_ruin_is_leaking
-  archetype: mystery
-  situation: >-
-    A stratum ruin that the player has been asked to visit — or has
-    been drawn toward by other means — is no longer behaving like a
-    ruin. Something inside it is responding to the current age. The
-    local Thessil are quiet and unhappy about it. A Refuser scholar
-    is already on the site and has not been home in three days.
-  tone: dread, archaeological
-  avoid:
-    - monster-hunting party scenes
-    - clear quest-giver assignments
-    - combat-first encounters
-  first_turn_seed: >-
-    The stratum site was supposed to be a small excavation — a
-    scholar's quiet afternoon. When you arrive, no one is in the
-    tent. The lanterns have been left burning into daylight. The
-    notebook is open to a fresh page that reads simply: "It is not
-    where the surveys put it." There are footprints going further
-    into the ruin than anyone should have gone.
+  - id: covenant_called_due
+    name: "Covenant Called Due"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+      min_players: 2
+      max_players: 6
+    setting:
+      location_label: "Great hall of a declining Perault house, formal seating"
+    tone:
+      register: baroque, tragic
+      avoid_at_all_costs:
+        - heroic entry scenes
+        - mystery setup through clues
+        - stranger-at-the-tavern hooks
+    establishing_narration: >-
+      A covenant signed by a Perault ancestor is being formally called
+      due in the great hall of a declining house. The player has been
+      named as present in an official capacity — as witness, as
+      beneficiary, or as party to the original agreement. They do not
+      know which, yet. The Collector and the family are already seated.
+      There is a specific small ceremony that begins the proceedings.
+    first_turn_invitation: >-
+      The letter was formal, the seal was old, and the invitation was
+      not one you could politely decline. You are now standing in the
+      great hall of a house that does not open its doors more than
+      twice a year. A scribe is already at their table. The Collector
+      is already in their chair. The family is already waiting for the
+      proceedings to begin, and you are the last party to arrive.
 
-- id: the_heirs_last_favor
-  archetype: standoff
-  situation: >-
-    An inheritor from a declining house approaches the player in
-    formal but conspiratorial circumstances with a single specific
-    request: to carry something, or to witness something, or to
-    deliver something, before the final collapse of their line.
-    The favor is small in size and enormous in weight. The
-    inheritor will not be alive in a season.
-  tone: tragic, intimate
-  avoid:
-    - tavern recruitment scenes
-    - vague mysterious strangers
-    - generic escort quests
-  first_turn_seed: >-
-    The young Perault looks less like a noble than a person who has
-    been recently asked to understand too much in one week. They
-    meet you in a small upstairs room of a tavern that is not quite
-    in the house-quarter. They place a single sealed object on the
-    table between you. They ask you to carry it to a specific
-    address, three days' travel away, and to open it only if a
-    particular condition occurs. They do not tell you the condition.
-    They tell you only that you will know it when it happens.
+  - id: the_ruin_is_leaking
+    name: "Stratum Ruin Excavation"
+    triggers:
+      mode: either
+      backgrounds: []
+    setting:
+      location_label: "Stratum dig site, lanterns left burning, no one in the tent"
+    tone:
+      register: dread, archaeological
+      avoid_at_all_costs:
+        - monster-hunting party scenes
+        - clear quest-giver assignments
+        - combat-first encounters
+    establishing_narration: >-
+      A stratum ruin that the player has been asked to visit — or has
+      been drawn toward by other means — is no longer behaving like a
+      ruin. Something inside it is responding to the current age. The
+      local Thessil are quiet and unhappy about it. A Refuser scholar
+      is already on the site and has not been home in three days.
+    first_turn_invitation: >-
+      The stratum site was supposed to be a small excavation — a
+      scholar's quiet afternoon. When you arrive, no one is in the
+      tent. The lanterns have been left burning into daylight. The
+      notebook is open to a fresh page that reads simply: "It is not
+      where the surveys put it." There are footprints going further
+      into the ruin than anyone should have gone.
+
+  - id: the_heirs_last_favor
+    name: "The Heir's Last Favor"
+    triggers:
+      mode: either
+      backgrounds: []
+    setting:
+      location_label: "Small upstairs room of a tavern, just outside the house-quarter"
+    tone:
+      register: tragic, intimate
+      avoid_at_all_costs:
+        - tavern recruitment scenes
+        - vague mysterious strangers
+        - generic escort quests
+    establishing_narration: >-
+      An inheritor from a declining house approaches the player in
+      formal but conspiratorial circumstances with a single specific
+      request: to carry something, or to witness something, or to
+      deliver something, before the final collapse of their line.
+      The favor is small in size and enormous in weight. The
+      inheritor will not be alive in a season.
+    first_turn_invitation: >-
+      The young Perault looks less like a noble than a person who has
+      been recently asked to understand too much in one week. They
+      meet you in a small upstairs room of a tavern that is not quite
+      in the house-quarter. They place a single sealed object on the
+      table between you. They ask you to carry it to a specific
+      address, three days' travel away, and to open it only if a
+      particular condition occurs. They do not tell you the condition.
+      They tell you only that you will know it when it happens.
