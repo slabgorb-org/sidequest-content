@@ -203,20 +203,23 @@ confrontations:
   - type: ship_combat
     label: "Ship Combat"
     category: combat
+    # ship_combat uses resolution_mode: opposed_check (sealed_letter_lookup
+    # applies only to dogfight). Calibrated alongside the other opposed_check
+    # confrontations per ADR-093.
     resolution_mode: opposed_check
     opponent_default_stats:
-      Intellect: 12
-      Reflex: 12
-      Resolve: 12
-      Cunning: 12
+      Intellect: 10
+      Reflex: 10
+      Resolve: 10
+      Cunning: 10
     player_metric:
       name: engagement_range
       starting: 0
-      threshold: 10
+      threshold: 7
     opponent_metric:
       name: engagement_range
       starting: 0
-      threshold: 10
+      threshold: 7
     beats:
       - id: broadside
         label: "Broadside"
@@ -273,21 +276,22 @@ confrontations:
     label: Firefight
     category: combat
     resolution_mode: opposed_check
+    # Opponent stats calibrated to mod +0 per ADR-093 (was 12 / mod +1).
     opponent_default_stats:
-      Physique: 12
-      Reflex: 12
-      Resolve: 12
+      Physique: 10
+      Reflex: 10
+      Resolve: 10
     # Personal combat (not ship_combat — that one uses engagement_range).
     # Momentum-based. Shoot-outs in corridors, station bars, airlock
     # standoffs. HP on character state; momentum on the engagement.
     player_metric:
       name: momentum
       starting: 0
-      threshold: 10
+      threshold: 7
     opponent_metric:
       name: momentum
       starting: 0
-      threshold: 10
+      threshold: 7
     beats:
       - id: shoot
         label: Shoot
