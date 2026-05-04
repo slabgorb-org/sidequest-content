@@ -1,0 +1,92 @@
+# Hamlet of Sünden — Narrative Pacing Configuration
+# Default tempo for the hub world is `deliberate` — Sünden between delves
+# is hireling-aware, lived-in, and never quite at ease. Per-dungeon delves
+# may override via dungeon-local pacing if needed; the contexts below
+# also include dungeon-generic exploration/combat/extraction/boss entries
+# so a dungeon without an override gets sensible defaults.
+
+drama_thresholds:
+  sentence_delivery_threshold: 0.3
+  render_threshold: 0.5
+  escalation_threshold: 0.7
+  climax_threshold: 0.9
+
+pacing_profile:
+  default_tempo: deliberate
+  tempo_overrides:
+    # ── Hub-world contexts (Sünden between delves) ────────────────────
+    - context: hamlet
+      tempo: deliberate
+      notes: >-
+        Sünden is the breathing-out scene. The party returns from a delve
+        and the Hamlet absorbs them slowly. Lamps already lit. Bread already
+        cooling. The Wall has been read by someone today. Pace this like
+        people who have time but not many years of it. Do not rush.
+    - context: recruitment
+      tempo: deliberate
+      notes: >-
+        Rolling new hirelings is character work, not a transaction.
+        The recruiter reads each candidate's papers slowly. Names. Origins.
+        Why they came to Sünden. The board lists costs in days available
+        and sin-affinity, not just gold. Let the player see the person
+        before naming a price.
+    - context: stress_relief
+      tempo: slow
+      notes: >-
+        The three services (Confessional / Workhouse / Masquerade) are
+        rituals. Each takes a delve-tick and costs something the hireling
+        notices. Pace the ritual itself, not the price. The hireling enters
+        with one weight and leaves with another. Do not summarize.
+    - context: the_wall
+      tempo: slow
+      notes: >-
+        Reading the Wall is a contemplative scene. Names are carved by
+        chisel, not stamped. The four blank columns are the loudest part
+        of the monument. Pace this like a parish death-roll — let the
+        reader feel the absence of names that were not the party's.
+    # ── Dungeon-generic defaults (overridden by dungeons/<name>/pacing
+    #    if a dungeon ships its own; absent here means the dungeon
+    #    inherits these via the hub) ────────────────────────────────────
+    - context: exploration
+      tempo: slow
+      notes: >-
+        Caverns delving rewards measured pacing — the dungeon reveals its
+        wrongness room by room. Describe what is absent, not just what is
+        present. Let realization land before the next room.
+    - context: combat
+      tempo: moderate
+      notes: >-
+        Combat in this genre is disorienting more often than frantic.
+        Pace the strangeness, not the speed. Per-dungeon overrides
+        (precision-clinical for Grimvault, weight-economic for Horden,
+        wet-organic for Mawdeep) carry the specific texture.
+    - context: extraction
+      tempo: fast
+      notes: >-
+        Extraction ramps. Rooms that were passive turn active. Short
+        sentences. Fewer adjectives. The dungeon corrects for the party's
+        presence on the way out.
+    - context: boss
+      tempo: moderate
+      notes: >-
+        Boss-floor delves are puzzles under pressure, not brawls. Each
+        Keeper reads the party with a different attentional grammar
+        (clinical / acquisitive / digestive). Pace the read.
+
+narration_style:
+  default: >-
+    Sünden voice. Literate, slightly sardonic, willing to commit to a vibe.
+    Past tense for what was, present for what is. Let the Hamlet's lived-in
+    tiredness do the work — do not over-flag it. Hirelings are people, not
+    counters. The Wall is a public record, not a punchline.
+  hamlet: >-
+    The town has weathered three sins waking close. Describe limestone
+    that has been weathered by lamp-soot, doors that close without
+    slamming, the Recovery Bench at the Workhouse's south door with
+    Wren Peatford patching what came back wrong. Characters greet
+    the party by face, not by name, until they have been there a while.
+  delve: >-
+    Once the party crosses an approach hamlet's edge into the dungeon
+    proper, the prose shifts. Per-dungeon visual_style.yaml carries the
+    specific texture; this is the hub-level reminder that the dungeons
+    are NOT Sünden — they are sins, and the prose should narrow.
