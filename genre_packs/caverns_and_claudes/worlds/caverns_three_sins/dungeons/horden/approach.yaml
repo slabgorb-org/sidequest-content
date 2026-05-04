@@ -1,0 +1,88 @@
+# Approach: a half-abandoned hamlet at this dungeon's mouth. The party walks
+# through here on the way down and on the way back. NOT a hub town — Sünden
+# is the hub. Approaches are sin-touched, hollow, mostly silent.
+
+dungeon: horden
+name: Copperbridge
+slug: copperbridge
+
+description: >-
+  Copperbridge was a working town once — a creekside settlement with a
+  copper-stained bridge and a square paved in mismatched flagstones,
+  where the Spillers raked the Spillfield at dawn and Kern Saltwall ran
+  honest scales at the post. The greed pull made the town impossible.
+  Things that came up out of Horden could not be moved on; the Hoarder's
+  retention reaches further than its walls, and a coin pulled from the
+  dungeon's throat refuses to leave Copperbridge entirely. Half the
+  buildings now stand stuffed to the rafters with hoards that nobody
+  wants and nobody can sell. Most people left for Sünden with what
+  little they could carry past the town line. The few who remain are
+  the ones who could not bring themselves to walk out without their
+  pile, useless as it is, watching the Mouth for the rare days when
+  something else rolls free.
+
+state: hollowed
+population_remaining: 11
+
+what_remains:
+  - Kern's Post is still upright on the south side of the square, the Spiller's Scale still bolted to its counter of stacked ingots, though Kern stopped weighing packs out months ago and now only weighs them in.
+  - Noll Thatcher sits at his counting table on what used to be Spiller Row, tallying the day's spillage in his ledger and muttering corrections to numbers that have not changed in eight weeks.
+  - Households still leave a copper coin on the threshold every morning — an old Spiller habit meant to keep the count balanced — and every morning every coin is still there, exactly where it was placed.
+
+scene_hooks:
+  - id: arrival
+    when: party_first_enters
+    description: >-
+      The road comes in over the green-stained bridge and the first
+      thing the party sees is a doorway sagging open, the room behind
+      it stacked chest-high with tarnished plate the homeowner did not
+      take with him. The square is silent. The Spillfield beyond it
+      glints with coins nobody has bothered to pick up in a week. Kern
+      stands behind his scale, watching the road, scale-pan empty.
+
+  - id: return
+    when: party_returns_from_delve
+    description: >-
+      The Spillfield has been raked since the party went down, but
+      raked badly — half the rows neat, half abandoned mid-stroke.
+      Noll is at the doorway of his house counting under his breath as
+      they pass. Kern comes out to meet them at the post and asks,
+      without preamble, what they are carrying. The scale is already
+      uncovered. The brass pan catches the light too brightly for the
+      hour.
+
+# These were full POIs in the old world.yaml — preserve the most evocative
+# 1-3 as named locations in the approach. Drop the rest.
+points_of_interest:
+  - name: Kern's Post
+    slug: kerns_post
+    description: >-
+      A low stone shop on the south side of the square, its counter
+      built from stacked silver ingots that a buyer once tried to
+      purchase and could not move past the bridge. Kern Saltwall runs
+      it alone now — the other Spillers are gone — and keeps the
+      Spiller's Scale clean. He will weigh a returning party's pack
+      for a copper. He will not weigh his own ledger and grows
+      quiet if asked why.
+
+  - name: The Spillfield
+    slug: the_spillfield
+    description: >-
+      The open ground between Copperbridge and the Mouth of Horden,
+      where the dungeon's overflow accumulates in coins and buckles
+      and ring-fragments shaken loose from its throat. The Spillfield
+      used to be worked at dawn by every able hand in town. Now Noll
+      rakes a corner of it in the early hours, and the rest sits as
+      it falls. Some days nothing comes out at all. Most days, lately,
+      are some days.
+
+  - name: Noll's Table
+    slug: nolls_table
+    description: >-
+      A weather-warped counting table set on Spiller Row outside Noll
+      Thatcher's house. A ledger is open on it from one dawn to the
+      next, and Noll is at the bench more often than not, tallying.
+      The Counters once called this place their chapel. Noll calls it
+      his work. The sums he writes do not match anything any other
+      ledger in town remembers. He is the only one still keeping a
+      count, and the count is creeping.
