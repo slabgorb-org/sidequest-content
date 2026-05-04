@@ -203,11 +203,9 @@ confrontations:
   - type: ship_combat
     label: "Ship Combat"
     category: combat
-    # Calibrated per ADR-093 alongside the other opposed_check confrontations.
-    # Note: the ADR's Implementation Pointer table treated ship_combat as a
-    # sealed-letter exception; in fact it uses opposed_check (only `dogfight`
-    # is sealed_letter_lookup). See session 45-41 deviation log for the
-    # reconciliation that lands ship_combat in the calibrated set.
+    # ship_combat uses resolution_mode: opposed_check (sealed_letter_lookup
+    # applies only to dogfight). Calibrated alongside the other opposed_check
+    # confrontations per ADR-093.
     resolution_mode: opposed_check
     opponent_default_stats:
       Intellect: 10
