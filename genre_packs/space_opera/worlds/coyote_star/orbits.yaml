@@ -63,6 +63,7 @@ bodies:
     period_days: 31.0
     eccentricity: 0.04
     epoch_phase_deg: 0
+    show_at_system_scope: false  # Design elides — only Lower Kerel surfaces at system scope.
 
   lower_kerel:
     type: habitat
@@ -142,6 +143,10 @@ bodies:
 
   # ---- Red Prospect moons ----------------------------------------------
 
+  # Red Prospect moons. moon_display_radius_px values follow the design
+  # source's hand-curated band radii — closest moon at 38px, stepping
+  # outward to 140px for The Horn. See spec §4.6 / Coyote Reach Orrery
+  # v2.html lines 504-587.
   turning_hub:
     type: habitat
     parent: red_prospect
@@ -149,6 +154,7 @@ bodies:
     period_days: 18.0
     eccentricity: 0.01
     epoch_phase_deg: 0
+    moon_display_radius_px: 74
 
   whitedrift:
     type: habitat
@@ -157,6 +163,7 @@ bodies:
     period_days: 22.0
     eccentricity: 0.02
     epoch_phase_deg: 60
+    moon_display_radius_px: 96
 
   ember_moon:
     type: habitat
@@ -165,6 +172,7 @@ bodies:
     period_days: 7.0
     eccentricity: 0.04
     epoch_phase_deg: 90
+    moon_display_radius_px: 38
 
   the_horn:
     type: habitat
@@ -173,6 +181,7 @@ bodies:
     period_days: 53.0
     eccentricity: 0.42
     epoch_phase_deg: 200
+    moon_display_radius_px: 140
 
   dead_lash:
     type: habitat
@@ -181,7 +190,10 @@ bodies:
     period_days: 38.0
     eccentricity: 0.03
     epoch_phase_deg: 280
+    moon_display_radius_px: 118
 
+  # vael_thain — Tsveri-blank lives here. Hazard flag drives the dashed
+  # non-color signal (AC #11) plus red coloring.
   vael_thain:
     type: habitat
     parent: red_prospect
@@ -189,6 +201,8 @@ bodies:
     period_days: 14.0
     eccentricity: 0.02
     epoch_phase_deg: 130
+    moon_display_radius_px: 54
+    hazard: true
 
   # ---- Outer system ----------------------------------------------------
 
@@ -200,6 +214,7 @@ bodies:
     eccentricity: 0.01
     epoch_phase_deg: 150
     label: "GRAND GATE"
+    register: chalk          # Hand-charted, frontier — dashed orbit + chalk-class label.
 
   last_drift:
     type: arc_belt
@@ -208,7 +223,9 @@ bodies:
     period_days: 11550.0
     epoch_phase_deg: 0
     arc_extent_deg: 360        # full ring; the outer haze
-    label: "the Last Drift"
+    label: "Last Drift"        # "the " is now a register concern, not in-band string.
+    register: chalk            # Orbit dashed (hand-drawn frontier).
+    label_register: prose      # Label decouples — lowercase italic VT323 ("prose register").
 
 # Watched conjunction events. Soonest one across all pairs surfaces in the
 # chart's bottom-HUD countdown. Bodies must share a common ancestor — here,
