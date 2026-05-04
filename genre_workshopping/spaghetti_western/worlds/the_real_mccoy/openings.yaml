@@ -1,88 +1,117 @@
 # The Real McCoy — Session 1 Openings
 # Situations, not scenes. The crew in motion, stakes visible, a question on
 # the table. The doctor is an NPC. The crew decides.
+#
+# Migrated from pre-canned-openings sketch shape to the unified Opening
+# schema (spec: docs/superpowers/specs/2026-05-01-canned-openings-design.md).
 
-- id: workshop_briefing_monongahela_house
-  archetype: briefing
-  situation: >-
-    Breakfast at the Monongahela House. A private parlor off the main
-    dining room with a view of the Point through coal-smoke sepia. Dr.
-    McCoy has laid three devices on a starched white tablecloth between
-    the coffee service and the honey. One is a hydraulic field splint
-    the crew has handled before. One is a brass-and-gutta-percha monocle
-    they have not. The third is an object of folded sheet-copper and
-    catgut that McCoy has been calling, with visible affection, a
-    "sympathetic vibrator." Tabitha is at the next table with three
-    dispatches in a leather portfolio and a fourth envelope she has
-    not yet opened. The doctor wants the crew to pick two devices for
-    the morning's errands. He will not tell them which one is the
-    answer. The waiter is pouring. The crew has a minute.
-  tone: dry, polite, load-bearing
-  avoid:
-    - long expository setup
-    - McCoy explaining the politics
-    - being handed a quest the doctor frames as a quest
-  first_turn_seed: >-
-    The splint is familiar. The monocle is new. The sympathetic vibrator
-    is humming faintly on its own in the honey pot's vicinity. McCoy
-    smiles mildly and says "I should be delighted by any two." Tabitha
-    opens the fourth envelope and sets a folded yellow telegraph sheet
-    face-down on the tablecloth beside the monocle. What do you pick up?
+version: "0.1.0"
+world: the_real_mccoy
+genre: spaghetti_western
 
-- id: the_washington_dispatch
-  archetype: arrival
-  situation: >-
-    The train's telegraph in the Study has clacked for eleven minutes.
-    The operator's pad reads: WAR DEPT / PRESCOTT UNDERSECRETARY / AT
-    YOUR EARLIEST CONVENIENCE / PARTICULARS NOT FOR WIRE / MATTER
-    CONCERNS DISPOSITION OF AN INSTRUMENT OF YOURS IN A THEATER YOU
-    HAVE NOT VISITED. McCoy is in the Workshop Car and has not come
-    forward. Tabitha has already booked Undersecretary Prescott into
-    the Monongahela House for three weeks hence. The crew is now
-    trying to work out, in the Library Car, which instrument is in
-    which theater. Three candidates on the table: the fluoroscope
-    monocle (Braddock hiring line), the hydraulic splint (southwestern
-    frontier cavalry rumor), the new stop-motion plate-runner
-    (no rumors, which is worse). The question is: which one does
-    Washington actually want, and how much of the answer does the
-    household owe the government?
-  tone: quiet, consequential, diagnostic
-  avoid:
-    - a named villain stepping through the door
-    - combat
-    - McCoy declaring what his position is
-  first_turn_seed: >-
-    Tabitha sets the three shop-drawings side by side on the
-    Library table. She says "Which of these is Washington going to
-    ask us to give them?" The dispatch arrived in the clear. That
-    is a warning. Prescott has three weeks. What do you do with
-    those three weeks?
+openings:
+  - id: workshop_briefing_monongahela_house
+    name: "Breakfast at the Monongahela House"
+    triggers:
+      mode: either
+      backgrounds: []
+    setting:
+      location_label: "Private parlor, Monongahela House, Pittsburgh, dawn coal-smoke"
+    tone:
+      register: dry, polite, load-bearing
+      avoid_at_all_costs:
+        - long expository setup
+        - McCoy explaining the politics
+        - being handed a quest the doctor frames as a quest
+    establishing_narration: >-
+      Breakfast at the Monongahela House. A private parlor off the main
+      dining room with a view of the Point through coal-smoke sepia. Dr.
+      McCoy has laid three devices on a starched white tablecloth between
+      the coffee service and the honey. One is a hydraulic field splint
+      the crew has handled before. One is a brass-and-gutta-percha monocle
+      they have not. The third is an object of folded sheet-copper and
+      catgut that McCoy has been calling, with visible affection, a
+      "sympathetic vibrator." Tabitha is at the next table with three
+      dispatches in a leather portfolio and a fourth envelope she has
+      not yet opened. The doctor wants the crew to pick two devices for
+      the morning's errands. He will not tell them which one is the
+      answer. The waiter is pouring. The crew has a minute.
+    first_turn_invitation: >-
+      The splint is familiar. The monocle is new. The sympathetic vibrator
+      is humming faintly on its own in the honey pot's vicinity. McCoy
+      smiles mildly and says "I should be delighted by any two." Tabitha
+      opens the fourth envelope and sets a folded yellow telegraph sheet
+      face-down on the tablecloth beside the monocle. Pick up what
+      seems most likely to matter.
 
-- id: the_strip_district_handshake
-  archetype: investigation
-  situation: >-
-    An Argus-porter named Elias Hawkins, Bethel AME deacon, shook hands
-    yesterday morning with a new hire at the Liberty Avenue produce
-    market loading dock. The hand was too firm. The man had called him
-    by name. Hawkins does not know the man. Hawkins has not slept and
-    has come to the 28th Street siding at ten past six in the morning
-    to ask the household whether he is losing his mind or whether the
-    thing he has read about in the Argus has begun to walk on his
-    street. The crew is in the kitchen car with a fresh coffee pot.
-    Prudence is at the second seat. The household has, as a matter
-    of policy, always taken a Bethel member's walk-in. The question is
-    what the crew does with the next four hours before the market
-    closes and the man in question finishes his shift and goes
-    wherever a replicant goes at ten in the morning.
-  tone: domestic, attentive, slowly tightening
-  avoid:
-    - a gunfight on Liberty Avenue
-    - Prudence speaking in clinical language
-    - Hawkins being dismissed or humored
-  first_turn_seed: >-
-    Hawkins sits at the kitchen table and he is not crying but his
-    hands are around the mug in a way that says he might. Prudence
-    pours the coffee. She says "Tell me about the handshake." The
-    crew has four hours of market, one porter's missing sleep, and
-    no instruction from the doctor who is asleep three cars
-    forward. What do you ask, and who do you send?
+  - id: the_washington_dispatch
+    name: "The Washington Dispatch"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+      min_players: 2
+      max_players: 6
+    setting:
+      location_label: "Library Car of the McCoy household train, three drawings on the table"
+    tone:
+      register: quiet, consequential, diagnostic
+      avoid_at_all_costs:
+        - a named villain stepping through the door
+        - combat
+        - McCoy declaring what his position is
+    establishing_narration: >-
+      The train's telegraph in the Study has clacked for eleven minutes.
+      The operator's pad reads: WAR DEPT / PRESCOTT UNDERSECRETARY / AT
+      YOUR EARLIEST CONVENIENCE / PARTICULARS NOT FOR WIRE / MATTER
+      CONCERNS DISPOSITION OF AN INSTRUMENT OF YOURS IN A THEATER YOU
+      HAVE NOT VISITED. McCoy is in the Workshop Car and has not come
+      forward. Tabitha has already booked Undersecretary Prescott into
+      the Monongahela House for three weeks hence. The crew is now
+      trying to work out, in the Library Car, which instrument is in
+      which theater. Three candidates on the table: the fluoroscope
+      monocle (Braddock hiring line), the hydraulic splint (southwestern
+      frontier cavalry rumor), the new stop-motion plate-runner
+      (no rumors, which is worse). The question is: which one does
+      Washington actually want, and how much of the answer does the
+      household owe the government.
+    first_turn_invitation: >-
+      Tabitha sets the three shop-drawings side by side on the
+      Library table. She says "Which of these is Washington going to
+      ask us to give them." The dispatch arrived in the clear. That
+      is a warning. Prescott has three weeks. Choose what to do with
+      those three weeks.
+
+  - id: the_strip_district_handshake
+    name: "The Strip District Handshake"
+    triggers:
+      mode: either
+      backgrounds: []
+    setting:
+      location_label: "Kitchen Car of the McCoy household train, 28th Street siding, 6:10 a.m."
+    tone:
+      register: domestic, attentive, slowly tightening
+      avoid_at_all_costs:
+        - a gunfight on Liberty Avenue
+        - Prudence speaking in clinical language
+        - Hawkins being dismissed or humored
+    establishing_narration: >-
+      An Argus-porter named Elias Hawkins, Bethel AME deacon, shook hands
+      yesterday morning with a new hire at the Liberty Avenue produce
+      market loading dock. The hand was too firm. The man had called him
+      by name. Hawkins does not know the man. Hawkins has not slept and
+      has come to the 28th Street siding at ten past six in the morning
+      to ask the household whether he is losing his mind or whether the
+      thing he has read about in the Argus has begun to walk on his
+      street. The crew is in the kitchen car with a fresh coffee pot.
+      Prudence is at the second seat. The household has, as a matter
+      of policy, always taken a Bethel member's walk-in. The question is
+      what the crew does with the next four hours before the market
+      closes and the man in question finishes his shift and goes
+      wherever a replicant goes at ten in the morning.
+    first_turn_invitation: >-
+      Hawkins sits at the kitchen table and he is not crying but his
+      hands are around the mug in a way that says he might. Prudence
+      pours the coffee. She says "Tell me about the handshake." The
+      crew has four hours of market, one porter's missing sleep, and
+      no instruction from the doctor who is asleep three cars
+      forward. Decide what to ask, and who to send.
