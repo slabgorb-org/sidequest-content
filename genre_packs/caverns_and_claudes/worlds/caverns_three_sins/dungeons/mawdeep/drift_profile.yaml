@@ -1,0 +1,65 @@
+# Drift profile: how Sünden NPCs are colored after a delve into Mawdeep.
+# Consumed by the Hamlet narrator prompt-zone via latest_delve_sin flag.
+
+dungeon: mawdeep
+sin: gluttony
+
+ambient_drift: >-
+  Sünden chews. Somebody is eating in every doorway — bread, fat,
+  rind, gristle — and the chewing carries further than the talk. The
+  air smells of broth and rendered tallow no matter which street you
+  walk. Crumbs collect on benches, on ledgers, on the rim of the well.
+  Plates are never empty long; refills arrive uncalled. Tables are
+  sticky. The cobbles glisten in patches that may be rain. Nobody looks
+  full. Even the lamplight seems hungry, eating the dark slowly and
+  then asking for more.
+
+npc_overrides:
+  - role: innkeeper
+    drift: >-
+      She talks with her mouth full and does not apologize. The kitchen
+      keeps sending out plates you did not order. Grease shines on her
+      apron, on the bar, on the rim of your cup. She refills before you
+      ask and stands too close while you eat.
+  - role: recruiter
+    drift: >-
+      He chews while reading the contracts. Crumbs settle in the seal
+      wax. He offers each hireling a heel of bread before their name,
+      and watches them eat it. His thumbprint is on every page. He
+      licks it before turning.
+  - role: market_vendor
+    drift: >-
+      He samples his own goods between customers — cheese, sausage,
+      pickle — and does not stop talking through it. Portions are
+      generous and slightly past their prime. He presses a taste into
+      your hand before you ask, and watches your throat as you swallow.
+  - role: confessional_keeper
+    drift: >-
+      He is eating a pear behind the screen. The juice is audible. He
+      hears your sin around the fruit and absolves between bites. The
+      coin sticks to his fingers when he takes it. He asks if you have
+      eaten today, and means it as scripture.
+  - role: workhouse_master
+    drift: >-
+      He looks unsettled — his domain, his sin, and he knows it. He
+      keeps a bowl of fat on his desk and dips bread without looking
+      down. He assigns longer shifts and shorter meals, and the
+      contradiction does not seem to trouble him. The bell sounds late.
+  - role: masquerade_host
+    drift: >-
+      She serves wine before fitting masks. The masks have grown
+      mouths — wider, wetter, lined in red. Guests arrive hungry and
+      leave hungrier. She presses a sweetmeat into your palm with the
+      mask, as though one will not work without the other.
+  - role: itinerant_preacher
+    drift: >-
+      He preaches with crumbs in his beard. Tonight he warns of Sloth —
+      the sin that "lies down at the table and does not rise." He pauses
+      mid-sermon to chew. The crowd brings him offerings of food. He
+      accepts each one and keeps preaching, mouth full.
+
+decay:
+  duration_delves: 1
+  notes: >-
+    Drift is overwritten by the next delve's drift profile. There is no
+    fade — it's a flag swap on delve-end.

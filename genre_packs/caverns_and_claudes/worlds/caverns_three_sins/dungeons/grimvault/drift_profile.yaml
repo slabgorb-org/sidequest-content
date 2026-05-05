@@ -1,0 +1,65 @@
+# Drift profile: how Sünden NPCs are colored after a delve into Grimvault.
+# Consumed by the Hamlet narrator prompt-zone via latest_delve_sin flag.
+
+dungeon: grimvault
+sin: pride
+
+ambient_drift: >-
+  Sünden cools. Lamps burn at a measured rate, as if rationed. Sound
+  travels short distances and stops, like cloth absorbing it. Doors close
+  without slamming. The cobbles look sorted — paler stones together,
+  darker together, no one remembers laying them that way. Steam from the
+  kettles rises straight, no curl. Townsfolk pass each other without
+  greeting, then glance back, as though checking a tally. Nothing is
+  hurried. Nothing is warm. The square feels measured against a standard
+  it does not name.
+
+npc_overrides:
+  - role: innkeeper
+    drift: >-
+      She speaks softly enough that you lean in. She does not repeat
+      herself. She names the cut of meat before she names the price, and
+      looks at your hands when she serves you, as though grading the
+      grip. Her smile is a closed line.
+  - role: recruiter
+    drift: >-
+      He reads each hireling's papers aloud, slowly, in front of them.
+      He pauses at flaws — a limp, a debt, a missing tooth — and lets
+      the pause sit. He never says no. He simply hands the papers back
+      and waits to see who flinches first.
+  - role: market_vendor
+    drift: >-
+      She has resorted her stall by material rather than price: bone
+      with bone, iron with iron, cloth with cloth. She quotes weight, not
+      worth. When you choose, she nods once, as though you have passed
+      a small examination she did not announce.
+  - role: confessional_keeper
+    drift: >-
+      He listens longer than usual. The screen feels closer. He repeats
+      one phrase you said back to you, stripped of feeling, as if testing
+      it for soundness. The coin you push through is counted twice. He
+      does not absolve. He says, "Noted."
+  - role: workhouse_master
+    drift: >-
+      He inspects hands before assigning labor — calluses, scars, the
+      set of the thumb. He sorts workers into piles he does not name.
+      Praise is withheld; correction is precise and quiet. The bell rings
+      on the half-hour, never the hour.
+  - role: masquerade_host
+    drift: >-
+      She is unsettled and tries to hide it. She fits masks by holding
+      them an inch from your face and studying the gap. She speaks of
+      "improvement" rather than disguise. She charges more tonight, and
+      will not say why, and does not look away when you pay.
+  - role: itinerant_preacher
+    drift: >-
+      He has gone quiet on Wrath and Lust. Tonight he warns only of the
+      sin that "weighs the soul on its own scale," and will not name it.
+      He speaks in clean sentences, no shouting, and the crowd listens
+      the way a ledger listens.
+
+decay:
+  duration_delves: 1
+  notes: >-
+    Drift is overwritten by the next delve's drift profile. There is no
+    fade — it's a flag swap on delve-end.

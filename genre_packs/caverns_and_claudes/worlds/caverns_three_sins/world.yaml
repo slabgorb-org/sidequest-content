@@ -1,0 +1,52 @@
+# Caverns & Claudes — Hamlet of Sünden
+# Hub world. Three of the Seven Deadly Sins woke close together; Sünden
+# sits at the center of that wound. Three dungeons reachable from the
+# Hamlet — Grimvault (Pride), Horden (Greed), Mawdeep (Gluttony). The
+# four absent sins (Wrath, Sloth, Lust, Envy) are stories told elsewhere.
+#
+# Per-dungeon Keepers, rooms, cartography, creatures, openings, drift
+# profiles, wound profiles, and approach hamlets live under
+# dungeons/<name>/. World-level lore, history, legends, factions,
+# archetypes, visual_style, pacing, audio, portrait_manifest, and the
+# Hamlet of Sünden itself (hamlet.yaml) live at this directory's root.
+#
+# There is NO `keeper:` block at the world level. Keepers are dungeon-
+# scoped and live in dungeons/<name>/dungeon.yaml.
+
+cover_poi: sunden_square
+name: "Hamlet of Sünden"
+description: >-
+  Three of the Seven Deadly Sins woke close together. Three dungeon
+  mouths gape at the borders of a single town. The Hamlet of Sünden is
+  the only inhabited point at the regional center — limestone weathered
+  by lamp-soot, a Wall of carved names along the north face of the
+  square, three stress-service houses keyed to the opposing virtues
+  (Generosity / Temperance / Humility), and the Recruiter's Post at
+  the south edge where new hirelings are presented and rolled into the
+  current roster. The party does not delve as themselves; they send
+  hirelings down. Some come back. Some come back changed. Some get
+  carved into the Wall. The four absent sins (Wrath, Sloth, Lust,
+  Envy) are stories told elsewhere — a held breath, never a commitment.
+  Pride lives in Grimvault under the Patient Butcher's clinical eye.
+  Greed lives in Horden under the Hoarder's offended count. Gluttony
+  lives in Mawdeep under the Glutton Below's wet appetite. Sünden
+  reads each delve afterwards in the drift on its own NPCs — the
+  innkeeper's voice doesn't carry, the market vendor sorts by material,
+  someone is always chewing. The campaign is the long shape of which
+  sins get wounded and which survive to drift the Hamlet again.
+
+tagline: "Three sins. One town. Send your hirelings down."
+
+axis_snapshot:
+  comedy: 0.25     # tempered down from per-dungeon avg toward Hamlet warmth
+  gravity: 0.85    # campaign-level weight; deeper than any single dungeon
+  outlook: 0.4     # slightly more hope than any single sin alone
+
+# Informational; the loader walks dungeons/ regardless. The order below is
+# the recommended onboarding order for new tables — Grimvault is the most
+# legible (clinical/precise), Horden is the middle weight (acquisitive
+# economic puzzles), Mawdeep is the rawest (organic/wet appetite).
+dungeons:
+  - grimvault
+  - horden
+  - mawdeep

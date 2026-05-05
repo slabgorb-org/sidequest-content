@@ -1,0 +1,90 @@
+# Hamlet of Sünden — World Visual Style
+# The warmth-and-people counterweight to the three dungeons. Pale
+# limestone hamlet, sin-touched but lived-in. Warmer than Grimvault's
+# clinical chill, drier than Horden's verdigris damp, less organic than
+# Mawdeep's cartilage walls — and never quite at ease.
+#
+# WIRING: positive_suffix is the field the daemon's StyleCatalog reads
+# (sidequest-daemon/sidequest_daemon/media/catalogs.py::StyleCatalog.load).
+# World-level positive_suffix layers on top of the genre's B&W ink
+# suffix via the explicit-recipes PromptComposer's ART_SENSIBILITY.WORLD
+# slot. The dungeon-level visual_style files override this when the
+# scene resolves under a dungeon prefix.
+#
+# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt
+# entirely (see sidequest-content/PROMPTING_Z_IMAGE.md). Rejection
+# clauses are folded into positive_suffix as "No X, no Y" rather than
+# authored as a separate negative_prompt.
+
+positive_suffix: >-
+  Late-medieval European limestone hamlet, parish-church scale,
+  weathered pale stone darkened in lamp-soot streaks above doorways
+  and lintels, oil-lamp light spilling cream-white onto warm grey
+  walls, narrow flagged streets sloped to a central drainage,
+  pitched slate roofs with moss in the shaded courses, oak shutters
+  rubbed grey by hand-use, low timber-and-stone dwellings, a parish
+  Wall of carved slate as the most-photographed feature of the
+  square, three dungeon mouths visible only as small dark notches
+  on the upper terraces in the far background, never centered, never
+  framed. Lived-in but uneasy — a market stall sorted oddly, an
+  empty corner where someone should be standing, a half-closed door,
+  a chair pushed back from a table nobody is sitting at. Heavy
+  crosshatch shadow under eaves and arches, fine line work on
+  carved stone, B&W pen-and-ink discipline in the genre style of
+  Erol Otus and David Trampier. No castles, no wizardry, no banners,
+  no overt horror in the foreground, no bright colors, no sun-flooded
+  exteriors, no modern materials, no signage with readable letters,
+  no text, no caption, no title, no watermark.
+
+# Z-Image ignores this; rejection clauses are in positive_suffix above.
+negative_prompt: ""
+
+color_palette:
+  primary: "#C9C2B2"      # warm pale limestone
+  secondary: "#9A8466"    # weathered ochre, lamp-soot wood
+  accent: "#A85A3C"       # low-saturation brick / copper warm
+  shadow: "#3E342A"       # warm dark, not dungeon cold-black
+  highlight: "#F2E7C9"    # cream-white oil-lamp light
+
+atmosphere:
+  square: >-
+    Sünden Square is the warmest and most populated frame in the
+    world. Pale limestone underfoot in three radial wedges of
+    different stone, the central drainage running clean. The Wall
+    stands on the western edge with morning sun behind it; in any
+    other lighting the light is oil-lamp warm spilling from window
+    slits and porches. The square is lived-in but never bustling —
+    five or six figures in frame is full, and one of them is always
+    standing slightly too still.
+  market: >-
+    The market arcade tucks under the south side of the square — a
+    timber-and-stone awning sheltering a dozen stalls. Crates and
+    sacks are present but the sorting is wrong in small ways: a row
+    of identical apples in obsessive order, a fish stall with no
+    fish out and the fishmonger waiting, a coin tray sorted by date
+    rather than denomination. Lamp-soot blackens the rafters above
+    the stalls. The light is warm but the shadows under the awning
+    are heavier than they should be at midday.
+  the_wall: >-
+    The Wall is a three-course slate monument on the western edge
+    of the square, twenty paces along, faced east so the carved
+    names read sharpest at first light. Seven columns. Three of
+    them — Pride, Greed, Gluttony — bear cut names of varying
+    depth; the other four are kept blank by custom. Heavy fine line
+    work on the carved letters, deeper cut for deaths than for
+    returns, a single horizontal line beneath any name whose owner
+    came back after their carving. The Wallwrights work this surface
+    at dusk by lamp; the chisels do not ring during the day.
+  approaches: >-
+    The three approach hamlets — Ashgate north, Copperbridge east,
+    Gristwell south — read visually as hollowed-out variants of
+    Sünden's late-medieval template. Each is thinner than the town
+    it was built for: half-boarded windows, fountains running
+    flavorless water, hitching posts with no horses tied. Ashgate's
+    hollowing is bleached pale (limestone gone too white, stones
+    that should not be stones); Copperbridge's is verdigris and
+    copper-stained (water that should not be that color, bridges
+    mossed over); Gristwell's is sunken and damp (ground that gives
+    underfoot, buildings on the highest holdouts). All three carry
+    the same B&W ink discipline as Sünden but with more white space
+    where the population should be.

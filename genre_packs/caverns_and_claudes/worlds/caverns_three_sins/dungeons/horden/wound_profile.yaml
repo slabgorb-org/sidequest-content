@@ -1,0 +1,56 @@
+# Wound profile: applied to dungeon after boss-floor success.
+# Merges into the Keeper definition via narrator prompt-zone (engine plan separate).
+
+dungeon: horden
+sin: greed
+
+# Override deltas — narrator prompt-zone applies these on top of base Keeper.
+keeper_overrides:
+  monologue_style_delta: >-
+    The accountant is still offended, but the ledger has gone wrong and
+    the accountant knows it — the count comes out different twice in a
+    row, the inventory contradicts itself mid-sentence, and the voice
+    keeps starting over because it cannot trust its own arithmetic.
+
+  awareness_delta:
+    starting: -1
+    tick_rate: 0.0
+    # Note: post-wound awareness is ERRATIC. tick_rate stays at base
+    # but threshold prose carries the unevenness — the Hoarder reacts
+    # too early at some marks and far too late at others, miscounting
+    # the party's progress because the count itself is broken.
+    threshold_overrides:
+      "3": >-
+        A coin rolls past your boot in the wrong direction — toward the entrance, on its edge, unhurried.
+      "6": >-
+        A stack you have not touched is already rearranged, and a stack you DID touch sits exactly as you left it.
+      "10": >-
+        The whisper begins counting and stops, restarts at a different number, accuses itself of lying, starts again.
+      "15": >-
+        A doorway that should be sealed by treasure is open, and a doorway that should be open is bricked with coin you cannot account for.
+      "20": >-
+        Every exit is walled shut except one, and the one is walled shut tomorrow — the Hoarder cannot decide which.
+
+ambient_delta: >-
+  The thick velvet hush of the vault has cracked. Coins shift when no
+  weight has been added or removed, sometimes in small landslides,
+  sometimes one piece at a time crawling outward against the pile.
+  Verdigris has begun spreading in patterns that look almost like
+  tally-marks. The air still smells of dust and tarnished metal, but
+  there is a new note underneath — the sour panic of a counting-house
+  that has lost a single page and cannot move on. Lanterns flicker
+  unevenly, as if someone is opening and closing distant doors. The
+  vault is louder. The vault has stopped being sure of itself.
+
+new_lore_strand: >-
+  The Sünden carvers cut a second mark beside Greed's name and call it
+  the Broken Tally. Coin found in the streams east of Copperbridge now
+  carries dates and faces it never bore before. Misers sleep worse.
+  Old debts reappear in ledgers that were closed a generation ago, and
+  new debts vanish from ledgers that were balanced last week. The
+  Wall's new inscription reads: THE COUNT IS WRONG. IT WILL STAY WRONG.
+  Delvers who return to Horden find the Hoarder paranoid rather than
+  patient, breaking his own rules — letting things out, refusing things
+  in, accusing the dust of theft. Something was taken from him that he
+  cannot replace, and he cannot stop counting long enough to notice it
+  is gone.
