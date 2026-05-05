@@ -1,0 +1,65 @@
+# Drift profile: how Sünden NPCs are colored after a delve into Horden.
+# Consumed by the Hamlet narrator prompt-zone via latest_delve_sin flag.
+
+dungeon: horden
+sin: greed
+
+ambient_drift: >-
+  Coins do not move freely tonight. They stick to palms a moment too
+  long; change is given in undercount and nobody corrects it. Doors
+  across Sünden stand half-closed — not shut, not open, as though
+  someone might still come back for what was left. Sentences end early
+  and nobody finishes them. Small piles accumulate on counters, on
+  windowsills, in the corners of the square: buttons, nails, copper
+  scraps. No one is counting them. No one is moving them. Lamplight
+  pools and refuses to spread.
+
+npc_overrides:
+  - role: innkeeper
+    drift: >-
+      She pours short and does not top up. She quotes the price, then
+      quotes it again as though you misheard. She slides your coin into
+      a drawer she does not close. The bread basket sits between you,
+      and she does not push it forward.
+  - role: recruiter
+    drift: >-
+      He names a price for each hireling and does not take payment. He
+      lets the figure sit on the counter while he describes the next
+      one. The papers stay on his side. He says "we can discuss it" and
+      then discusses something else.
+  - role: market_vendor
+    drift: >-
+      He adds to a small pile beside the till with every sale — buttons,
+      pins, a bent nail — and does not ring it up. He weighs your coin
+      in his hand before pocketing it. Goods stay on the stall. Sales
+      conclude without the goods leaving.
+  - role: confessional_keeper
+    drift: >-
+      He seems lighter tonight, vindicated, almost amused. He takes the
+      coin through the screen and lets it rest in his palm a beat too
+      long, then sets it aside rather than into the box. He absolves
+      quickly. The sin is named and not lingered on.
+  - role: workhouse_master
+    drift: >-
+      He revises today's wages downward, citing a cost no one
+      remembers. He keeps a private tally on a slate he turns to the
+      wall. Tools are issued reluctantly, one at a time. Workers leave
+      with less than they earned, and do not press the point.
+  - role: masquerade_host
+    drift: >-
+      She rents masks tonight rather than selling them, and the deposit
+      is steep. She does not return all of it. The cheaper masks are
+      "spoken for." The expensive ones hang on the wall, available, and
+      somehow never quite for sale.
+  - role: itinerant_preacher
+    drift: >-
+      He preaches with one hand on his coin pouch. He warns of Envy
+      tonight — the sin that "wants what is owed and what is not." He
+      does not pass the cup. When a coin is offered unprompted, he
+      pockets it and does not break his sermon.
+
+decay:
+  duration_delves: 1
+  notes: >-
+    Drift is overwritten by the next delve's drift profile. There is no
+    fade — it's a flag swap on delve-end.

@@ -1,0 +1,219 @@
+# Caverns and Claudes — mawdeep session openings.
+# Migrated from pre-canned-openings OpeningHook shape (M1 envelope wrap).
+# Spec: docs/superpowers/specs/2026-05-01-canned-openings-design.md §1.1
+#
+# Hard contracts (validators):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - location-anchored entries set setting.location_label (not chassis_instance)
+#   - exactly one anchor per setting
+#
+# Returning delve openers. Set the scene at Gristwell before the descent.
+# Each opening assumes the player has been here before — this is not
+# their first time at the Mouth. The dungeon is familiar. That makes it worse.
+
+version: "0.1.0"
+world: caverns_three_sins
+dungeon: mawdeep
+genre: caverns_and_claudes
+
+openings:
+  - id: dawn_at_the_mouth
+    name: "The Mouth, Dawn at the Threshold"
+    triggers:
+      mode: either
+      backgrounds: []
+    setting:
+      location_label: "Gristwell — the Mouth of Mawdeep at dawn"
+      situation: >-
+        Dawn in Gristwell. The party gathers at the Mouth as the sun rises
+        behind them. The dungeon exhales its cold morning breath. Gear is
+        checked, torches counted, hirelings paid. The chalk marks on the
+        entrance walls are a census of the lost.
+    tone:
+      register: "quiet dread, ritual"
+      stakes: "low — preparation phase"
+      complication: "defer to descent"
+      avoid_at_all_costs:
+        - combat in the first scene
+        - NPC quest assignments
+        - exposition about the dungeon's nature (the player knows)
+        - ending the turn with a question
+    establishing_narration: |
+      Dawn. The Mouth breathes out — a slow, cold exhalation that smells
+      of copper and wet stone. Your torch gutters in the draft before you
+      have even lit it. The hirelings stamp their feet and do not look at
+      the dark. Brecca Half-Hand chalked another mark on the wall this
+      morning — the hundred and ninth party to enter this season. She did
+      not chalk how many came back. You check your pack. Rope. Iron spikes.
+      Six torches. Rations for two days. A waterskin you filled at the well
+      an hour ago, when the water still tasted clean. The Mouth is sixty
+      feet across and slopes gently downward into nothing. The daylight
+      reaches about thirty feet in. After that, it is yours to carry.
+    first_turn_invitation: |
+      Brecca's chalk is dry. Your torch is unlit. The Mouth is breathing
+      out and the daylight only goes thirty feet.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: familiar
+      shared_history_seeds:
+        - "Brecca Half-Hand has chalked your party in before"
+        - "a hireling who has been paid by you before and stayed"
+      narrator_guidance: >-
+        Treat the party as returning delvers. They know the Mouth and
+        the morning ritual; do not re-explain Gristwell.
+
+  - id: the_sinkhole_tavern
+    name: "The Sinkhole, Planning Over Stew"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+      min_players: 2
+      max_players: 6
+    setting:
+      location_label: "The Sinkhole tavern, Gristwell, evening"
+      situation: >-
+        Evening at The Sinkhole. The tavern is full of delvers spending what
+        they dragged out of the dark. Rumors circulate — which rooms are
+        restocked, whether the Maw has reformed, what the Glutton swallowed
+        last week. The party plans tomorrow's descent over weak ale and
+        Old Kettle's stew.
+    tone:
+      register: "gallows humor, anticipation"
+      stakes: "low; ambient unease"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - dungeon encounters
+        - immediate danger
+        - long NPC monologues about lore
+        - ending the turn with a question
+    establishing_narration: |
+      The Sinkhole is loud tonight. Two parties came back today — one heavy
+      with gold from the Gallery, the other missing their porter and not
+      talking about it. Old Kettle is pouring the dark ale, the one he
+      saves for delvers who look like they need it. The fire pops. Someone
+      at the corner table is selling a map of Level 2 that they swear is
+      current. Torchboy Fen is at the hiring board, chalking rates for
+      tomorrow — torchbearers at six gold a day, porters at ten, sellswords
+      at twenty and they bring their own weapon. The Provisioner sent word
+      that torch prices are going up again. Pitch is scarce. The trade road
+      cracked last week and the wagons are taking the long way around. You
+      nurse your ale and think about the Vault of Teeth. The ruby. The
+      one you saw last time but did not have the crowbar to free.
+    first_turn_invitation: |
+      Old Kettle's dark ale is in front of you. Fen's chalk rates are on
+      the board. The ruby in the Vault of Teeth is still there.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: trusted
+      shared_history_seeds:
+        - "the ruby in the Vault of Teeth — you all saw it, none of you got it"
+        - "a hireling you lost and a hireling you kept"
+      narrator_guidance: >-
+        The party is a working crew with at least one prior delve in
+        common. Treat them as established; do not re-introduce them
+        to the Sinkhole or to one another.
+
+  - id: the_morning_count
+    name: "Rented Room, The Morning Count"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+      min_players: 2
+      max_players: 6
+    setting:
+      location_label: "The rented room above The Sinkhole, morning"
+      situation: >-
+        Morning in the rented room above The Sinkhole. The party inventories
+        what they have, what they need, and what they can afford. The math
+        of delving: torches times rooms divided by danger. The numbers never
+        quite work out.
+    tone:
+      register: "grim arithmetic, resolve"
+      stakes: "low — preparation phase"
+      complication: "defer to descent"
+      avoid_at_all_costs:
+        - action scenes
+        - new NPC introductions
+        - dungeon descriptions (save it for the descent)
+        - ending the turn with a question
+    establishing_narration: |
+      You spread it all on the bed. Four torches — three hours of light
+      if you are careful, two if you are not. Rations for a day and a half.
+      One waterskin. Fifty feet of rope, fraying where the acid touched it
+      last time. A hand axe with a notch in the blade from the amber hulk
+      in the Junction. Fourteen gold pieces and some copper — not enough
+      for another torch at Marga's prices, not unless you skip breakfast.
+      The hireling is downstairs eating your share of the stew. You paid
+      him in advance because the last one ran when the walls started
+      sweating, and Torchboy Fen says they are less likely to bolt if the
+      money is already spent. You are not sure that is true. Through the
+      floor, you hear Old Kettle's voice and the scrape of chairs. Another
+      party is forming. They will reach the Junction before you if you do
+      not move. You begin packing.
+    first_turn_invitation: |
+      The gear is on the bed. The hireling is on the stew. Another party
+      is moving for the Junction downstairs.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: trusted
+      shared_history_seeds:
+        - "the notched hand axe from the amber hulk in the Junction"
+        - "the rope frayed by acid on a previous descent"
+        - "a hireling who ran on you, and the lesson you took from it"
+      narrator_guidance: >-
+        These delvers have descended together before; the gear on the
+        bed has shared scars. Do not re-introduce them or re-explain
+        the math.
+
+  - id: the_mouth_remembers
+    name: "The Mouth, Wider This Morning"
+    triggers:
+      mode: either
+      backgrounds: []
+    setting:
+      location_label: "Gristwell — the Mouth of Mawdeep, the morning it grew"
+      situation: >-
+        The party arrives at the Mouth to find it changed. Something is
+        different — the breath is warmer, the opening is wider, or there
+        are fewer chalk marks than yesterday. The Glutton has been active
+        overnight.
+    tone:
+      register: "wrongness, unease"
+      stakes: "immediate; nonlethal in turn 1"
+      complication: "defer escalation to turn 2 or 3"
+      avoid_at_all_costs:
+        - explaining the change (let the players theorize)
+        - immediate combat
+        - NPC hand-holding
+        - ending the turn with a question
+    establishing_narration: |
+      The Mouth is wider. You are sure of it. The chalk marks on the left
+      wall — the ones Brecca carves at shoulder height — are at chest
+      height now. The stone lips have spread another foot overnight,
+      smooth and worn as if decades of rain shaped them between dusk and
+      dawn. The morning exhalation is warmer than yesterday. Not cold
+      cave air — warm, like breath from a throat. Your torchbearer stops
+      at the threshold and looks at you. He does not say anything. He
+      does not need to. The dungeon grew last night. It ate something
+      underground — a root cellar, a well, a grave. You cannot see what.
+      You can only see that the Mouth is wider and the dark inside is
+      deeper. The trade road behind you has a new crack running across it,
+      hairline thin, that was not there yesterday. Gristwell is three
+      hundred yards from the Mouth. It used to be four hundred. You
+      light your torch and step inside. The Mouth swallows the daylight
+      behind you, and the breathing of the stone closes in.
+    first_turn_invitation: |
+      The chalk marks are at chest height. The breath is warm. The
+      torch is lit and the daylight is already behind you.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: familiar
+      shared_history_seeds:
+        - "Brecca's chalk marks at the height you remember from yesterday"
+        - "a torchbearer who has worked your party long enough to read your faces"
+      narrator_guidance: >-
+        Treat the party as returning delvers who recognise the wrongness
+        because they know the baseline. Do not explain the change for
+        them.

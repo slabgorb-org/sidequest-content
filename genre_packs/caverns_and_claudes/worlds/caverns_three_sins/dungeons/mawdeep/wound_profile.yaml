@@ -1,0 +1,51 @@
+# Wound profile: applied to dungeon after boss-floor success.
+# Merges into the Keeper definition via narrator prompt-zone (engine plan separate).
+
+dungeon: mawdeep
+sin: gluttony
+
+# Override deltas — narrator prompt-zone applies these on top of base Keeper.
+keeper_overrides:
+  monologue_style_delta: >-
+    The wet voice is still wet, but it is slower now — the words come
+    between long, sated breaths, the consonants thick with a meal that
+    will not finish digesting, hunger postponed rather than answered.
+
+  awareness_delta:
+    starting: -1
+    tick_rate: -0.25
+    threshold_overrides:
+      "3": >-
+        A low grinding under the floor, far away, sluggish — a stomach turning over in sleep.
+      "6": >-
+        Rations spoil unevenly: today's bread is fine, last week's apple has gone to pulp.
+      "10": >-
+        The walls weep slowly, in heavy beads. The fluid is warm. The fluid is patient.
+      "15": >-
+        Rooms are not where you left them. The corridor you came down is now two corridors down, and longer.
+      "20": >-
+        Full digestion, postponed — the dungeon distends instead of constricting, and every step is farther than the last.
+
+ambient_delta: >-
+  Mawdeep has bloated. The gullet that used to draw you tight has
+  loosened into a vast, slow interior, and the interior keeps
+  rearranging itself between footsteps. A door you walked through five
+  minutes ago opens onto a chamber that was three floors down. Walls
+  bulge outward where they used to press in. The heat is still there
+  but it is the heat of something asleep on a full stomach, not the
+  heat of an open mouth. Distances stretch. What was close is now far.
+  The dungeon has not stopped eating — it is simply taking longer to
+  swallow what it has.
+
+new_lore_strand: >-
+  The Wall gains a swollen line beneath Gluttony's name, and the
+  Sünden carvers call it the Long Swallow. Sinkholes around Gristwell
+  have stopped widening but have started moving — a paddock that sat
+  on solid ground in spring is over open air by autumn, and the open
+  air is over solid ground again by spring. Caravans no longer vanish;
+  they arrive, three weeks late, at towns they were not heading for.
+  The Wall's new inscription reads: IT STILL HUNGERS. IT IS ONLY SLOW.
+  Delvers who return to Mawdeep find a dungeon larger than their map
+  remembers, with the same Glutton inside — heavier, drowsier, no less
+  bottomless. The meal it took on the boss floor sits in it still, and
+  the digestion is changing the shape of the country above.
