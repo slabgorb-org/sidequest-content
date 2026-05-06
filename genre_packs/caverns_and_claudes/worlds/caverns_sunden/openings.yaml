@@ -1,0 +1,177 @@
+# Caverns & Claudes — Hamlet of Sünden session openings.
+# Spec: docs/superpowers/specs/2026-05-01-canned-openings-design.md §1.1
+#
+# Hard contracts (loader validators):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - location-anchored entries set setting.location_label (not
+#     chassis_instance); exactly one anchor per setting
+#   - solo + MP coverage required at world level
+#
+# All openings anchor at the Hamlet of Sünden so the player begins in
+# town and walks down to the dungeon they choose — not narrator-imposed.
+# Voice contract: limestone, lamp-soot, Wall, the careful courtesy of
+# a town that knows a fraction of its sons and daughters by name and
+# the rest by chiselled inscription.
+
+version: "0.1.0"
+world: caverns_sunden
+genre: caverns_and_claudes
+
+openings:
+  # ---------------------------------------------------------------
+  # SOLO — first lamp-light in the square
+  # ---------------------------------------------------------------
+
+  - id: solo_sunden_first_lamp
+    name: "Sünden Square, First Lamp-Light"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      location_label: "Sünden Square at first lamp-light, the Wall of Names along the north face, the Recruiter's Post visible at the south edge"
+      situation: >-
+        Dusk in Sünden. The four cardinal lamps have just been lit; the
+        Workhouse rota's lighter is still walking back to the Workhouse
+        with their pole over one shoulder. The Wall is shadowed but
+        legible. The Recruiter's Post door is open, which means today
+        was a recruitment day; whoever was taken on is somewhere in
+        town tonight.
+    tone:
+      register: "weathered limestone, lamp-soot, the careful courtesy of a place that has buried a lot of its own — neither doom-laden nor falsely hopeful"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any combat in the first scene
+        - any dice roll
+        - the narrator walking the player toward a specific dungeon
+        - generic ye olde tavern framing
+        - generic you-wake-up-in framing
+        - an old man approaches you with a quest
+        - ending the turn with a question
+    establishing_narration: |
+      First lamp-light in Sünden. The four cardinal lamps were lit a
+      few minutes ago; the Workhouse rota's lighter is still walking
+      back across the square with their pole over their shoulder, the
+      flame at the tip swaying once with each step. The fountain at
+      the center runs clear water that tastes of nothing — you tried
+      it on your way in this afternoon and you are not going to try
+      it again. Above the fountain, the Wall of Names runs along the
+      north face of the square, half-shadowed by the lamp angle. You
+      have been here long enough to read some of the older inscriptions
+      and to recognise that the chisel work changes from generation
+      to generation.
+
+      The Recruiter's Post stands at the south edge of the square, a
+      narrow door in a narrow building, the door open. Today was a
+      recruitment day; you saw two people go in and one come out. The
+      one who came out went to the Spillway tavern, which is where
+      you would have gone if the Recruiter had asked you the three
+      questions and you had given the right answers, which today the
+      Recruiter did not ask.
+
+      Three dungeon mouths watch the town from their respective
+      ridges. Grimvault's threshold is visible to the northwest as
+      a rectangle of darker shadow above the limestone scarp.
+      Horden's trapdoor is invisible from here — it is inside the
+      Counting House at Copperbridge, an hour's walk south. Mawdeep
+      is closer; Gristwell Quay sits half a mile downriver and the
+      shaft itself is only another ten minutes past that, but the
+      sound of running water from the Mawriver carries up to the
+      square at this hour and you have been hearing it since you
+      arrived. Tonight you are not committed. Tonight, you can walk
+      anywhere you like.
+    first_turn_invitation: |
+      The lamp-light is on. The fountain is at your back. The Wall is
+      to your right, the Recruiter's Post to your left, the three
+      dungeon mouths each at their own compass point. Take whichever
+      direction you like.
+    party_framing:
+      already_a_crew: false
+      bond_tier_default: neutral
+      shared_history_seeds:
+        - "you have been in Sünden for one full day"
+        - "the Recruiter did not call you in today"
+      narrator_guidance: >-
+        Treat the player as a single delver who arrived in Sünden
+        recently and has not yet committed to a dungeon. Do not
+        introduce a quest-giver. Do not have an NPC walk up. Wait
+        for the player to choose a direction.
+
+  # ---------------------------------------------------------------
+  # MP — two or more delvers at the Spillway after the lamps light
+  # ---------------------------------------------------------------
+
+  - id: mp_sunden_spillway_evening
+    name: "The Spillway, Sünden — After the Lamps"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+      min_players: 2
+      max_players: 6
+    setting:
+      location_label: "the back room of the Spillway tavern in Sünden's Hamlet, the night the cardinal lamps were lit"
+      situation: >-
+        The Spillway's back room runs over a natural spring. The
+        water moves through a stone channel cut into the floor; the
+        sound is half the appeal. The party is together at the long
+        table with a pitcher of dark ale and three lit candles; the
+        Recruiter took on a delver from each of them today, which is
+        why all of them are still in town tonight. Outside in the
+        square, the lamps are lit. Tomorrow morning is when the
+        delving party walks down to whichever dungeon the table
+        chooses.
+    tone:
+      register: "the careful courtesy of veteran delvers in a tavern they have all been in before — quiet, considered, the conversation circling around what tomorrow's descent should be"
+      stakes: "low on turn 1; the choice is what's at stake, not blood"
+      complication: "the table does not have to agree by the end of turn 1"
+      avoid_at_all_costs:
+        - combat in the first scene
+        - dice rolls
+        - an NPC walking up to the table with a quest
+        - the narrator picking a dungeon for the party
+        - running water sounds described more than once on turn 1
+        - ending the turn with a question
+    establishing_narration: |
+      The Spillway's back room is full but quiet. The natural spring
+      runs through the stone channel under the table; one of you has
+      a boot on the channel-grating and you can feel the cold come
+      up through the leather. Three candles are lit on the table,
+      one for each of you the Recruiter took on this morning — that's
+      the Spillway's tradition for delvers between contracts, and
+      the candles will keep being relit by the staff for as long as
+      the table is at the table. The pitcher is dark ale and is the
+      one thing in Sünden that still tastes the way it is supposed to.
+
+      Outside the Spillway, the four cardinal lamps were lit half an
+      hour ago, and through the back-room window you can see the
+      square half in light and half in shadow. The Wall of Names is
+      on the lit side tonight. None of you have read it yet on this
+      visit; one of you read it last visit and is not going to read
+      it tonight. The Recruiter's Post is on the dark side and is
+      closed.
+
+      Tomorrow morning is the descent. The choice is the table's.
+      Pride is two hours' walk to Ashgate ridge and another half
+      hour across the Quiet Field to Grimvault's threshold. Greed
+      is one hour to Copperbridge and however long it takes to find
+      the right counting-house door, which is almost always the same
+      door. Gluttony is the closest — Gristwell Quay is forty minutes
+      down the Mawriver path, and Mawdeep itself is another ten past
+      that. The pitcher is half-full.
+    first_turn_invitation: |
+      The candles are lit. The pitcher is half-full. The descent is
+      tomorrow. Talk among yourselves.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: familiar
+      shared_history_seeds:
+        - "the Recruiter took each of you on this morning"
+        - "the Spillway lit a candle per delver, as they always do"
+      narrator_guidance: >-
+        Treat the party as veteran delvers who have all worked in
+        Sünden before but not necessarily together. Do not have an
+        NPC join the table. Let the players decide which dungeon
+        tomorrow's descent goes to. Do not narrate them moving;
+        wait for their actions.

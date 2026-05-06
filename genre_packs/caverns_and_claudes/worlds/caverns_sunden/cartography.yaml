@@ -1,0 +1,201 @@
+# Sünden cartography — region-level adjacency.
+#
+# Four regions arranged around the Hamlet:
+#   sunden_hamlet — the limestone town at center, the only safe ground
+#   grimvault_descent — Pride; the clean cold vault under Ashgate ridge
+#   horden_warren — Greed; the counting passages under Copperbridge
+#   mawdeep_gullet — Gluttony; the wet deep under Gristwell
+#
+# Adjacency: the Hamlet borders all three dungeons. Dungeons do NOT
+# border each other — you cross back through the Hamlet to switch sins.
+# This matches the world.yaml geography ("three dungeon mouths gape
+# at the borders of a single town").
+#
+# More dungeons can be added by appending region entries; the engine
+# does not care how many there are.
+
+map_resolution: null
+map_style: >-
+  Soot-stained ink on weathered parchment, hand-drawn pilgrim chart,
+  three chambered mouths sketched in Iron Gall, Hamlet limestone
+  rendered in cross-hatched gray, candlelight shadow, deliberate
+  imperfections.
+
+starting_region: sunden_hamlet
+
+regions:
+  sunden_hamlet:
+    name: Hamlet of Sünden
+    summary: The limestone town at the wound's center; Wall, Recruiter's Post, three stress-relief houses.
+    description: >-
+      A single square paved in pale limestone, smoke-stained around
+      the north face where the Wall has been chiseled and re-chiseled
+      across generations of names. The fountain at the center runs
+      clear water that tastes of nothing at all — long-time residents
+      drink from the brewery instead. Three houses on the side
+      streets keep the town livable: the Confessional (humility),
+      the Workhouse (temperance), the Masquerade (generosity). At
+      the south edge, the Recruiter's Post sees through a thin door
+      whoever the day brings; some are turned away, some are not.
+      Three dungeon mouths watch the town from their respective
+      ridges, never quite out of sight.
+    terrain: settlement
+    adjacent:
+      - grimvault_descent
+      - horden_warren
+      - mawdeep_gullet
+    landmarks:
+      - name: "Sünden Square"
+        type: plaza
+        description: >-
+          Fountain at center; the Wall of Names along the north face;
+          the four cardinal lamps lit at dusk by whoever is working
+          the Workhouse rota that week. Where the Hamlet gathers when
+          a delving party returns or fails to return.
+      - name: "The Recruiter's Post"
+        type: civic
+        description: >-
+          A narrow door in a narrow building at the south edge. The
+          Recruiter is a different person every season; the role
+          rotates among Hamlet residents who have lost too many
+          delvers to do anything else. They take notes, they ask
+          three questions, they decide.
+      - name: "The Wall"
+        type: monument
+        description: >-
+          A single limestone face the height of three people, carved
+          and re-carved with the names of every delver who did not
+          return. New names are chiseled in at dawn after a defeat;
+          the chiseler is whoever in town holds the hammer that day.
+      - name: "The Confessional / The Workhouse / The Masquerade"
+        type: stress_relief_houses
+        description: >-
+          Three small houses keyed to the virtues that oppose the
+          three sins. The Confessional (humility, against pride),
+          the Workhouse (temperance, against gluttony), the
+          Masquerade (generosity, against greed). A delver who
+          returns shaken can spend a day or two in the appropriate
+          house at no cost.
+    settlements:
+      - Sünden
+    rivers: []
+
+  grimvault_descent:
+    name: Grimvault Descent
+    summary: Pride — a clean rectangular shaft cut into the limestone above Ashgate. The Patient Butcher waits inside.
+    description: >-
+      The vault entrance is a rectangle cut into limestone with edges
+      too sharp for any chisel. It sits on the ridge above Ashgate,
+      one of three approach hamlets that grew up along the descent
+      paths. Wren Peatford's Recovery Bench sits at the threshold;
+      she checks each delver's hearing with a tuning fork before
+      they enter and again when they return. Inside: clinical
+      passages, white-lit chambers, the Patient Butcher who notices
+      everything and forgives nothing. Pride is the sin that survives
+      contact with this place. Pride does not survive long.
+    terrain: dungeon
+    adjacent:
+      - sunden_hamlet
+    landmarks:
+      - name: "Ashgate Square"
+        type: settlement
+        description: >-
+          The approach hamlet on the ridge above the Vault. Limestone
+          cottages, the Spillway tavern, Durn's Provisions, the
+          Assayer Hall. Quiet by design; the Quiet Field below the
+          town eats sound on the way to the threshold.
+      - name: "The Threshold Stone"
+        type: dungeon_entrance
+        description: >-
+          A flat slab of limestone at the bottom of the Quiet Field.
+          Delvers mark their entry time with chalk on its face. The
+          stone is cool to the touch even in summer.
+      - name: "The Sorting Floor"
+        type: dungeon_chamber
+        description: >-
+          The vault's first deep room — perfectly white, perfectly
+          lit, perfectly silent. The Patient Butcher does not appear
+          here, but his attention does.
+    settlements:
+      - Ashgate
+    rivers: []
+
+  horden_warren:
+    name: Horden Warren
+    summary: Greed — counting passages and ledger rooms under Copperbridge. The Hoarder counts and re-counts.
+    description: >-
+      The Warren entrance is a wooden trapdoor at the back of a
+      counting house in Copperbridge, the second approach hamlet.
+      The trapdoor has no lock; it does not need one. Below: a
+      branching maze of ledger-rooms, weighing chambers, and tally
+      passages where the Hoarder's offended counting echoes through
+      every wall. Greed survives here longer than pride does in
+      Grimvault — but Greed gets sorted, weighed, and recorded
+      while it survives.
+    terrain: dungeon
+    adjacent:
+      - sunden_hamlet
+    landmarks:
+      - name: "Copperbridge Square"
+        type: settlement
+        description: >-
+          The approach hamlet for Horden. A narrow town built on
+          accumulated trade. The Counting House sits where the
+          square narrows; nobody has counted what's inside in three
+          generations, and nobody has been allowed to.
+      - name: "The Trapdoor"
+        type: dungeon_entrance
+        description: >-
+          Wooden, splintered, unlocked. Past it: a downward stair,
+          a single oil lamp on a hook, and the first weighing room.
+          Once you've taken the stair, the lamp begins to gutter.
+      - name: "The First Ledger Room"
+        type: dungeon_chamber
+        description: >-
+          A small chamber lined floor-to-ceiling with bound books.
+          A scale sits in the middle. Whatever you carry in, you
+          must weigh; whatever you weigh, the Hoarder counts.
+    settlements:
+      - Copperbridge
+    rivers: []
+
+  mawdeep_gullet:
+    name: Mawdeep Gullet
+    summary: Gluttony — wet sloping passages and the slow throat under Gristwell. The Glutton Below eats and eats.
+    description: >-
+      Mawdeep is an open shaft on the riverbank below Gristwell,
+      half-flooded most of the year and fully flooded after the
+      autumn rains. The descent is wet, the air is rich, and the
+      passages narrow as they go down. The Glutton Below does not
+      hunt, does not stalk, does not appear; the Glutton Below
+      simply eats — slowly, patiently, with a wet appetite that
+      makes itself known as warmth in your face long before you
+      hear or see it.
+    terrain: dungeon
+    adjacent:
+      - sunden_hamlet
+    landmarks:
+      - name: "Gristwell Quay"
+        type: settlement
+        description: >-
+          The approach hamlet for Mawdeep, built on the riverbank
+          where the water meets the shaft. Fishermen and farmers;
+          everyone over forty has lost someone to the deep. The
+          Quay has a single tavern and three priests of three
+          different faiths.
+      - name: "The Maw"
+        type: dungeon_entrance
+        description: >-
+          A river-mouth in stone, the throat sloping down into wet
+          dark. Most delvers descend by rope. The walls are warm
+          even in winter.
+      - name: "The Slow Throat"
+        type: dungeon_chamber
+        description: >-
+          The first deep chamber. Wet limestone, knee-deep water,
+          the slow drip of something organic from the ceiling.
+          Sound carries here, but only downward.
+    settlements:
+      - Gristwell
+    rivers:
+      - Mawriver
