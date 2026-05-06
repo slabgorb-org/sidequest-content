@@ -4,7 +4,13 @@
 # campaign's relationship to the three sins as a whole.
 
 chapters:
-  - id: arrival
+  # NOTE 2026-05-06: chapter IDs must be one of {fresh, early, mid, veteran}
+  # for CampaignMaturity.from_chapter_id() to map them to a tier. The other
+  # chapters below (first_blood, wounded_one, wounded_two, wounded_all)
+  # currently use non-canonical IDs and won't be applied by world
+  # materialization — they're authoring stubs awaiting canonicalization
+  # into early/mid/veteran tiers.
+  - id: fresh
     label: "Arrival in Sünden"
     session_range: [1, 2]
     lore:
