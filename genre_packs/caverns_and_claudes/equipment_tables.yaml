@@ -43,3 +43,36 @@ rolls_per_slot:
   light: 3
   consumable: 3
   utility: 3
+
+# Class-themed kits — consumed by `equipment_generation: class_kit`.
+# Each ClassDef.kit_table in classes.yaml resolves to one block here.
+# Slots match the top-level `tables:` slot names so rolls_per_slot
+# applies consistently.
+class_tables:
+  fighter_kit:
+    weapon: [sword_long, sword_short, mace_iron, hand_axe, spear]
+    armor:  [leather_armor, shield_wood, helmet_iron]
+    light:  [torch]
+    consumable: [rations_day, waterskin]
+    utility: [rope_hemp, ten_foot_pole, iron_spikes]
+
+  mage_kit:
+    weapon: [dagger_iron, staff_wood]
+    armor:  []
+    light:  [torch]
+    consumable: [rations_day, waterskin, potion_healing]
+    utility: [spellbook, component_pouch, chalk]
+
+  cleric_kit:
+    weapon: [mace_iron, hammer_war]
+    armor:  [leather_armor, shield_wood]
+    light:  [torch]
+    consumable: [rations_day, waterskin, potion_healing]
+    utility: [holy_symbol, rope_hemp, chalk]
+
+  thief_kit:
+    weapon: [dagger_iron, sword_short]
+    armor:  [leather_armor]
+    light:  [torch, lantern_oil]
+    consumable: [rations_day, waterskin]
+    utility: [lockpicks, ten_foot_pole, chalk, sack_large]
