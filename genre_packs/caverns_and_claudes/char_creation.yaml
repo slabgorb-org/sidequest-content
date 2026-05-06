@@ -1,6 +1,8 @@
-# Character creation — Caverns & Claudes
-# Anti-backstory. You are nobody until you survive.
-# 3 scenes: roll stats, roll equipment, enter the dungeon.
+# Character creation — Caverns & Claudes (classic-class era)
+# 5 scenes: roll → class → pronouns → kit → dungeon mouth.
+# Class qualification loop: scene 1 rerolls server-side until ≥1
+# class qualifies. UI sees only the final stats. Class scene then
+# offers only the qualifying classes as buttons.
 
 - id: the_roll
   title: "3d6. In Order."
@@ -10,25 +12,48 @@
     seven-delve veteran — pushes six bone dice across the wood toward you.
 
     "Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma," she
-    says, tapping the table once for each word. "Roll them in order. No
-    switching. No rerolling. The bones don't care what you wanted to be."
-
-    She watches you roll. She does not comment on the results.
-  loading_text: "Brecca Half-Hand considers your words..."
+    says, tapping the table once for each word. "Roll them in order. The bones
+    don't care what you wanted to be — but if they hand you nothing useful, we
+    throw them again."
+  loading_text: "Brecca Half-Hand considers your numbers..."
   choices: []
   allows_freeform: false
-  # Caverns delvers are anti-backstory dungeoneers — every character is
-  # someone who walked into the dark with a torch and a ten-foot pole.
-  # The pack-canonical archetype is hero/jack_of_all_trades (a common
-  # pairing in archetype_constraints.yaml). Hint at scene 1 so the
-  # archetype-resolution gate (Story 45-6) sees both axes by the time
-  # chargen confirms; without these the gate blocks chargen because
-  # the pack declares axes but no scene populated them — the same
-  # failure mode as evrópí pumblestone.
   mechanical_effects:
     stat_generation: roll_3d6_strict
-    jungian_hint: hero
-    rpg_role_hint: jack_of_all_trades
+    class_qualification_loop: true
+
+- id: the_calling
+  title: "What You'll Be Called"
+  narration: |
+    Brecca looks at the bones, then at you. "These are the trades the bones
+    will let you take. The dungeon doesn't care which one you pick. The
+    records do."
+  choices:
+    - label: "Fighter"
+      description: "Plate, polearm, and the patience to be hit first. (STR 9+)"
+      mechanical_effects:
+        class_hint: Fighter
+        rpg_role_hint: tank
+        jungian_hint: hero
+    - label: "Mage"
+      description: "Bookish, half-blind, and dangerous in the third round. (INT 9+)"
+      mechanical_effects:
+        class_hint: Mage
+        rpg_role_hint: control
+        jungian_hint: magician
+    - label: "Cleric"
+      description: "Holy symbol, war-mace, and a faith that is mostly working so far. (WIS 9+)"
+      mechanical_effects:
+        class_hint: Cleric
+        rpg_role_hint: healer
+        jungian_hint: caregiver
+    - label: "Thief"
+      description: "Lockpicks, leather, and a professional interest in being elsewhere. (DEX 9+)"
+      mechanical_effects:
+        class_hint: Thief
+        rpg_role_hint: stealth
+        jungian_hint: outlaw
+  allows_freeform: false
 
 - id: pronouns
   title: "Who Are You?"
@@ -54,15 +79,14 @@
   title: "What You Have"
   narration: |
     Brecca reaches beneath the table and drops a canvas sack in front of you.
-    It lands with a dull thud. "Standard kit," she says. "Torch, rope, and
-    whatever else was left from the last one who didn't make it back. Some of
-    it is useful. Some of it is not. All of it is yours now."
+    It lands with a dull thud. "Standard kit," she says. "Sized to the trade.
+    Some of it's useful. Some of it isn't. All of it's yours now."
 
     "You'll have time to read what you've got before you set out."
   choices: []
   allows_freeform: false
   mechanical_effects:
-    equipment_generation: random_table
+    equipment_generation: class_kit
 
 - id: the_mouth
   title: "The Dungeon Waits"
@@ -73,7 +97,5 @@
 
     Behind you, the town is already forgetting your name. Ahead, the dark
     waits with the patience of something that has swallowed better than you.
-
-    You have a torch, a ten-foot pole, fifty feet of rope, and no backstory.
   choices: []
   allows_freeform: false
