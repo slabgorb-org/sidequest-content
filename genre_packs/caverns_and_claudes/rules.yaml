@@ -219,3 +219,19 @@ confrontations:
         stat_check: WIS
         consequence: "Negotiation ends — leave with the merchant's last offer"
     mood: comedic
+
+# Per-class starting Edge (composure pool).
+# Class strings match Character.char_class display values (set via class_hint
+# in char_creation.yaml). Fighter has the deepest pool — trained to be hit.
+# Mage and Thief share the lowest — glass-cannon and skirmisher respectively.
+edge_config:
+  base_max_by_class:
+    Fighter: 4
+    Cleric:  3
+    Mage:    2
+    Thief:   2
+
+  recovery_defaults:
+    on_resolution: full
+    on_long_rest: full
+    between_back_to_back: 0
