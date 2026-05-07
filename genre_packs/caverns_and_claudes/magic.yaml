@@ -1,30 +1,28 @@
 # magic.yaml — caverns_and_claudes genre layer
 #
-# Migrated from DRAFT (2026-04-27) napkin shape to canonical loader
-# schema (2026-04-30, playtest fix). Reference: docs/design/magic-
-# taxonomy.md plus tests/magic/fixtures/space_opera_magic.yaml as the
-# canonical-shape exemplar.
+# 2026-05-07: pivoted to D&D Basic Set (B/X) — Clerics and Magic-Users
+# now exist as caster classes with innate spell-slot magic, in addition
+# to the original item-based magic surface (scrolls, potions, wands,
+# cursed swords). World-knowledge stays folkloric in setting prose, but
+# under the hood the game now models per-character spell slots that
+# refresh on rest. Reference: B/X (Moldvay/Cook) memorization model.
 #
-# True claim: magic items are core gameplay; there are no caster classes;
-# world-knowledge is folkloric (commoners know wizards exist as legend).
-# The wizards who made these items are gone; the items remember things
-# the world has forgotten. Cursed items are the genre's signature trap.
+# True claim: magic items remain core gameplay AND clerics/mages cast
+# prepared spells from a daily slot pool. The wizards who made these
+# items are not entirely gone — some still walk the dungeon mouths.
 
 genre: caverns_and_claudes
 
-# Runtime sources the loader knows about. ``learned`` is intentionally
-# excluded — it's gated_by world per the original draft and surfaces as
-# narrator-only flavor (forbidden tomes, surviving wizard's notes), not
-# as a player-build option. If a future world wants to enable learned
-# magic for a single campaign, it can author it world-side.
-allowed_sources: [item_based]
+# Runtime sources. Both shapes live: ``item_based`` for scrolls/potions/
+# wands; ``innate`` for caster-class spell slots. ``learned`` remains
+# narrator-only flavor (forbidden tomes, surviving wizard's notes) — if
+# a world wants player-side learned magic, author it world-side.
+allowed_sources: [item_based, innate]
 
 # Plugins permitted by the genre. ``item_legacy_v1`` covers scrolls,
-# potions, wands, cursed swords, sealed reliquaries — every magic-item
-# shape C&C ships with. ``learned_v1`` is omitted at the genre tier
-# (see allowed_sources note) — narrator handles ritual-knowledge prose
-# without needing a runtime plugin.
-permitted_plugins: [item_legacy_v1]
+# potions, wands, cursed swords, sealed reliquaries. ``innate_v1`` covers
+# Cleric / Magic-User per-character spell-slot ledgers in the B/X model.
+permitted_plugins: [item_legacy_v1, innate_v1]
 
 intensity:
   default: 0.3
@@ -48,21 +46,30 @@ hard_limits:
   - id: no_permanence_without_renewal
     description: "All magic decays or is consumable. Wands run out, scrolls burn, potions drain. Even reliquaries demand upkeep."
 
-# Cost vocabulary for magic-item activation. ``components`` covers the
-# physical price (ash, blood, the second-to-last torch); ``backlash``
-# covers the consequence-of-use (cursed item awakens, attention drawn).
-# These are item-channeled costs — there are no per-character bars in
-# C&C (no caster classes, no innate magic), so cost_types feeds prompt
-# context and item-level ledger bars rather than character bars.
-cost_types: [components, backlash]
+# Cost vocabulary. ``components`` covers item-activation physical price
+# (ash, blood, the second-to-last torch); ``backlash`` covers
+# consequence-of-use (cursed item awakens, attention drawn). ``slots``
+# covers caster-class daily spell slots — refreshed on rest, B/X-style.
+cost_types: [components, backlash, slots]
 
 narrator_register: |
-  Magic is found, not cast. Players don't learn spells — they identify scrolls,
-  drink potions, and wield wands they don't fully understand. Every magical
-  use is a choice to spend a finite resource. The wizards who made these
-  items are gone; the items remember things the world has forgotten.
-  Cursed items are the genre's signature trap — describe them as desirable
-  until the bill arrives.
+  Magic in C&C is both found AND prepared. The Magic-User spends the
+  morning bent over the spellbook, copying sigils into memory; one slot,
+  one spell, one shot. The Cleric kneels before dawn and asks; the gods
+  answer in the count of prayers granted that day. Once spent, a slot is
+  gone until rest — an inn bed, a shrine floor, or a wilderness camp
+  that nothing finds. Items sit alongside the slots: scrolls flake to
+  ash on first reading, potions drain to the rind, wands count down to
+  dead bone. Every working surfaces its cost in the same beat as its
+  effect — the page burns, the vial empties, the pulse drops, the slot
+  vanishes. Do not narrate magic as ambient atmosphere. Do not narrate
+  cost-free workings. Do not narrate spells outside the canonical
+  spellbook.yaml lists; if a player names a spell that isn't in the
+  book, the page is blank and the spell does not exist in the world.
+  Cursed items remain the genre's signature trap — describe them as
+  desirable until the bill arrives, and the bill arrives. The wizards
+  who wrote these scrolls are not entirely gone. Some are sitting at
+  the next table, watching to see who picks up which page.
 
 # === Design notes (not loader-consumed) ============================
 #
@@ -97,9 +104,9 @@ narrator_register: |
 #     necromantic: "communing only; no resurrection"
 #
 # player_options:
-#   can_build_caster: false        # no chargen caster classes
-#   can_build_item_user: true      # Delver acquires items in play
-#   chargen_caster_classes: []
-#   can_acquire_in_play: true      # finding magic items is core gameplay
+#   can_build_caster: true         # B/X — Cleric and Magic-User are caster classes
+#   can_build_item_user: true      # Delver / Fighter / Thief still acquire items in play
+#   chargen_caster_classes: [Cleric, Mage]
+#   can_acquire_in_play: true      # finding magic items remains core gameplay
 #
 # ====================================================================
