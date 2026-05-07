@@ -391,7 +391,19 @@ starting_equipment:
     - dagger_iron
 
 starting_gold:
+  # Classic B/X tradition is 3d6 × 10 gp (avg ~105) per starting PC; the
+  # chargen pipeline takes a flat int per class today, so these are
+  # deterministic mid-band values. Tuned so every class can engage the
+  # Sünden Recruiter's Post (two-silver-bond gate) at chargen-end —
+  # patron-power-fantasy was unreachable with 0 gold (playtest 2026-05-06,
+  # Carl-the-Cleric vs Brenna). Class-relative balance: Fighter / Cleric
+  # carry heavier starting kits, Mage / Thief lean on cash for spell
+  # components and tools.
   Delver: 10
+  Fighter: 60
+  Cleric: 50
+  Mage: 80
+  Thief: 75
 
 philosophy:
   carry_limit: 30
