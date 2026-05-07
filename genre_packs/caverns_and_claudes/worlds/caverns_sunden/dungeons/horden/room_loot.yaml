@@ -1,0 +1,606 @@
+# Horden — Room-Level Static Loot (DRAFT — Fix F)
+#
+# DRAFT STATUS: this file is authored against the proposed schema in the
+# pingpong P0/CRITICAL ticket. Field shape may shift on Fix B merge; values
+# are stable.
+#
+# Design budget (Horden, 18 rooms across 3 concentric rings):
+#   - Outer Ring clear (7 rooms): ~300-500gp + 1-2 unique items
+#   - Middle Ring clear (7 rooms): ~500-900gp + 2-3 unique items
+#   - Inner Sanctum clear (3 rooms): ~400-700gp + 1-2 unique items
+#   - Boss clear (counting_house): +600-1000gp + Hoarder's master ledger
+#   - Deep Pile (secret, chute-only): +500-1000gp (one-way visit)
+#   - Full delve total: ~2300-4100gp + 5-8 unique items
+#
+# Theme: Horden is GREED. The Hoarder is a long-dead merchant whose
+# counting compulsion outlasted death; the dungeon is one accumulated
+# inventory across centuries. Loot here is straightforwardly rich — coins,
+# gems, gold chains, gem-encrusted armor — but every haul is also a curse:
+# the Hoarder counts everything you take, and the abacuses in the Counting
+# Hall track your inventory in real time. Heavy hauls increase keeper
+# awareness; sneaking out with too much is harder than sneaking in.
+#
+# Horden is the OSR-classic loot dungeon — gold and gems by the heap,
+# meant to be the canonical "this is why you delve" experience.
+
+room_loot:
+
+  # === OUTER RING: THE SPILLOVER ===
+
+  - room_id: mouth
+    items:
+      - name: "Loose copper coins"
+        description: >-
+          A scoop of green-tarnished coppers from the drift at the
+          entrance. Common currency, real weight — about 30gp worth
+          of mixed copper and bronze.
+        category: treasure
+        value: 30
+        quantity: 1
+        chance: 1.0
+      - name: "Mule-track silver finger-cap"
+        description: >-
+          A silver thimble dropped from a recent delver's pack near
+          the cave mouth. Worth real coin to a tailor.
+        category: treasure
+        value: 8
+        quantity: 1
+        chance: 0.6
+
+  - room_id: scrap_hall
+    items:
+      - name: "Sorted iron blades (bundle)"
+        description: >-
+          Six broken sword tips bundled with copper wire. The Hoarder
+          sorted them by length. The Assayer Hall pays scrap-iron rate.
+        category: treasure
+        value: 25
+        quantity: 1
+        chance: 1.0
+      - name: "Bronze shield boss (intact)"
+        description: >-
+          A round bronze shield boss with no shield attached, the
+          metal still bright under tarnish. Worth real coin as a
+          smithing blank.
+        category: treasure
+        value: 35
+        quantity: 1
+        chance: 0.9
+      - name: "Tin and copper scrap (sack)"
+        description: >-
+          A sack scooped from the right-hand stack. Mixed tin, copper,
+          and worked alloy fragments — a smith would pay 40gp for it.
+        category: treasure
+        value: 40
+        quantity: 1
+        chance: 0.8
+
+  - room_id: coin_drift
+    # PRIMARY OUTER-RING TREASURE ROOM
+    items:
+      - name: "Copper coins (heap)"
+        description: >-
+          A double-handful of verdigris-green coppers from the drift.
+          Real currency, real weight — heavy in the pack.
+        category: treasure
+        value: 80
+        quantity: 1
+        chance: 1.0
+        tags: [bulky, currency]
+      - name: "Silver coins (surfaced)"
+        description: >-
+          Silver pieces visible on top of the drift, tarnished but
+          intact. The Hoarder placed these deliberately; taking them
+          disturbs the count.
+        category: treasure
+        value: 120
+        quantity: 1
+        chance: 1.0
+        tags: [currency, hoarder_marked]
+      - name: "Gold coins (grid markers)"
+        description: >-
+          Three gold coins set on the drift at precise intervals.
+          Pocketing them feels like erasing a chalk mark on a teacher's
+          board — wrong in a way that will be noticed.
+        category: treasure
+        value: 60
+        quantity: 1
+        chance: 1.0
+        tags: [currency, hoarder_marked]
+        lore: >-
+          Taking these increases keeper awareness by 1 step on the
+          next encounter roll.
+      - name: "Fused coin clump (pry bar required)"
+        description: >-
+          A solid mass of corroded coppers fused into a single brick
+          along the bottom of the drift. Worth real coin if you can
+          break it free — but it weighs as much as a small dog.
+        category: treasure
+        value: 100
+        quantity: 1
+        chance: 0.7
+        tags: [heavy, requires_tool]
+
+  - room_id: trophy_wall
+    items:
+      - name: "Trophy spear (rusted but valuable)"
+        description: >-
+          One of the spears driven into the wall — pulling it free
+          starts a small bleed of rust. Functional weapon, real value
+          to a smith for re-forging.
+        category: weapon
+        value: 45
+        quantity: 1
+        chance: 1.0
+        tags: [weapon_recovery]
+      - name: "Iron ferrule (shepherd's crook)"
+        description: >-
+          The iron-bound end of a shepherd's crook, still solid. Odd
+          curiosity — the Hoarder filed it with weapons. Collectors
+          pay for the misfile.
+        category: misc
+        value: 20
+        quantity: 1
+        chance: 0.7
+      - name: "Silver-hilted dagger (Vexell heirloom)"
+        description: >-
+          Pulled from the wall: a slim dagger with a silver hilt
+          and a maker's mark from the missing Vexell party. The
+          Hamlet's Wall of Names will recognize it.
+        category: weapon
+        value: 90
+        quantity: 1
+        chance: 0.5
+        tags: [vexell, narrative_weight, heirloom]
+
+  - room_id: moth_gallery
+    items:
+      - name: "Coiled gold thread (large)"
+        description: >-
+          A thick coil of gold-thread embroidery peeled from the
+          tapestries. Heavy enough to be real gold, fine enough to
+          re-spool. Tailors in Copperbridge pay top price.
+        category: treasure
+        value: 80
+        quantity: 1
+        chance: 1.0
+      - name: "Coiled gold thread (small)"
+        description: >-
+          A second smaller coil, less pristine. Still worth real coin.
+        category: treasure
+        value: 35
+        quantity: 1
+        chance: 0.9
+      - name: "Compressed silk (block)"
+        description: >-
+          A felted block of compressed silk the size of a brick.
+          Useless as cloth. A weaver might pay curiosity rates for
+          the fiber compression alone.
+        category: misc
+        value: 15
+        quantity: 1
+        chance: 0.6
+
+  - room_id: bolt_room
+    items:
+      - name: "Supple leather roll"
+        description: >-
+          One of the newer bolts from the top of a stack — still
+          flexible, real material. A leatherworker will pay for it.
+        category: misc
+        value: 30
+        quantity: 1
+        chance: 0.9
+      - name: "Cord bundle (silk)"
+        description: >-
+          A bundle of fine silk cord in three colors, each tagged
+          with the trade cipher. Useful, valuable, light.
+        category: tool
+        value: 25
+        quantity: 1
+        chance: 0.8
+      - name: "Vellum tags (collected set)"
+        description: >-
+          A small leather pouch holding fifty trade-cipher tags
+          gathered from various bolts. To a Hamlet scholar, this is
+          a Rosetta stone for the Hoarder's notation.
+        category: quest
+        value: 80
+        quantity: 1
+        chance: 0.5
+        tags: [scholar_value, cipher_key]
+
+  - room_id: toll_gate
+    # The toll requires a deposit to pass — this isn't loot, it's a cost.
+    # But abandoned deposits remain.
+    items:
+      - name: "Abandoned toll (silver coin)"
+        description: >-
+          A previous delver's deposit still sits in the tray — they
+          paid the toll, then either died beyond it or chose not to
+          come back. The tray has not registered the change. Taking
+          it does not undo the toll for you.
+        category: treasure
+        value: 5
+        quantity: 1
+        chance: 0.5
+      - name: "Abandoned toll (a child's button)"
+        description: >-
+          Some delver paid the toll with a wooden button. The gate
+          opened. The Hoarder counted the button as one item; the
+          inventory does not care what it is, only that it is.
+        category: misc
+        value: 1
+        quantity: 1
+        chance: 0.4
+        tags: [trade_cipher_lesson]
+
+  # === MIDDLE RING: THE COLLECTION ===
+
+  - room_id: tarnish_hall
+    items:
+      - name: "Silver candlestick (tarnished)"
+        description: >-
+          A heavy silver candlestick black with tarnish. Solid silver
+          beneath; an Assayer will polish and weigh it for real coin.
+        category: treasure
+        value: 70
+        quantity: 1
+        chance: 1.0
+      - name: "Gold chain (looped over pedestal)"
+        description: >-
+          A length of gold chain draped over one of the pedestals.
+          Twenty-two inches of solid gold linkage — real, weighable
+          currency.
+        category: treasure
+        value: 110
+        quantity: 1
+        chance: 1.0
+      - name: "Garnets (handful, loose)"
+        description: >-
+          Cut garnets from one of the stone bowls. A jeweler in
+          Copperbridge values these at 60gp the set.
+        category: treasure
+        value: 60
+        quantity: 1
+        chance: 1.0
+      - name: "Pale sapphire (large, raw)"
+        description: >-
+          One of the few pale sapphires in the bowl, uncut and
+          knuckle-sized. A jeweler pays much; a noble pays more.
+        category: treasure
+        value: 180
+        quantity: 1
+        chance: 0.6
+        tags: [gem, large]
+
+  - room_id: gem_bower
+    # SECONDARY TREASURE ROOM
+    items:
+      - name: "Pried-loose gemstone (handful, low)"
+        description: >-
+          Smaller gems pried from the floor and lower walls — easier
+          to remove, dustier, slightly lower quality. Still gems.
+        category: treasure
+        value: 90
+        quantity: 1
+        chance: 1.0
+      - name: "Pried-loose gemstone (handful, mid)"
+        description: >-
+          Mid-wall gems, brighter and cleaner. Real value at any
+          jeweler's bench.
+        category: treasure
+        value: 140
+        quantity: 1
+        chance: 1.0
+      - name: "Recent ceiling stone (intact, fist-sized)"
+        description: >-
+          One of the freshly-placed ceiling gems, recently pushed in
+          by the Hoarder. Larger than the wall stones, near-perfect
+          cut, dust-free. The most valuable thing in this room.
+        category: treasure
+        value: 250
+        quantity: 1
+        chance: 0.8
+        tags: [recent, hoarder_marked]
+        lore: >-
+          The Hoarder will notice this is missing. Awareness +2 on
+          next entry to any Horden room.
+      - name: "Stone fragments with fused gem chips"
+        description: >-
+          When you pry a gem free, the cracked stone around it
+          comes loose too. The chips embedded in the stone add up
+          to real value if assayed properly.
+        category: treasure
+        value: 40
+        quantity: 1
+        chance: 1.0
+
+  - room_id: rust_gallery
+    items:
+      - name: "Half-buried gold ingot"
+        description: >-
+          A standard merchant's gold ingot, half-buried in decayed
+          organic matter. Still gold. Still ingot.
+        category: treasure
+        value: 200
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, currency]
+      - name: "Gold dust (sweep from fused mass)"
+        description: >-
+          Gold ground out of corroded coins by centuries of compression
+          — collectable into a leather pouch. Real, weighable.
+        category: treasure
+        value: 90
+        quantity: 1
+        chance: 1.0
+      - name: "Bronze idol (corroded, recognizable)"
+        description: >-
+          A small bronze figurine the rust gallery has not finished
+          consuming. The shape is still identifiable as a saint of
+          a religion the Hamlet does not practice. Curio value.
+        category: treasure
+        value: 60
+        quantity: 1
+        chance: 0.7
+
+  - room_id: appraisal_niche
+    # SECRET TREASURE ROOM — the merchant's original tools
+    items:
+      - name: "The merchant's brass scale"
+        description: >-
+          The scale itself, perfectly preserved. Heavy. Worth real
+          coin to any trade in the Hamlet — but the Hoarder will
+          notice this is missing more than anything else.
+        category: tool
+        value: 220
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, hoarder_marked, narrative_weight]
+        lore: >-
+          Removing the scale jumps Horden's keeper awareness to
+          maximum permanently. The Hoarder cannot count without it.
+      - name: "Velvet-lined weight set"
+        description: >-
+          The weights themselves — twelve small brass disks, each
+          marked with the trade cipher. A smith pays for the brass;
+          a scholar pays more for the cipher set.
+        category: quest
+        value: 140
+        quantity: 1
+        chance: 1.0
+        tags: [cipher_key, scholar_value]
+      - name: "The frantic ledger"
+        description: >-
+          The ledger book itself. The early pages are inventory in a
+          neat hand. The later pages devolve into a single number,
+          repeated, the count when the merchant became the Hoarder.
+          Priceless to the Hamlet's scholars.
+        category: quest
+        value: 350
+        quantity: 1
+        chance: 1.0
+        tags: [narrative_weight, hoarder_origin]
+
+  - room_id: goat_path
+    items:
+      - name: "Embedded crown (left wall, eye level)"
+        description: >-
+          The crown set in the wall jewels-out. Prying it free takes
+          time — minutes, not seconds — and the wall around it
+          tightens as you work. Solid gold band, six set jewels.
+        category: treasure
+        value: 380
+        quantity: 1
+        chance: 1.0
+        tags: [requires_time, dangerous, large]
+        lore: >-
+          Working on this prompts the Hoarder. Roll an extra
+          encounter on the next room transition.
+      - name: "Shin-height coin edges (scoopable)"
+        description: >-
+          Coins protruding from the wall at shin height — pry-bar
+          access. The wall releases a few before resisting.
+        category: treasure
+        value: 50
+        quantity: 1
+        chance: 1.0
+      - name: "Compacted ingot (ceiling, dropped)"
+        description: >-
+          One of the ceiling-shelf ingots that worked itself loose
+          and fell. Lying in the path. A small but solid gold ingot.
+        category: treasure
+        value: 100
+        quantity: 1
+        chance: 0.7
+
+  - room_id: weight_lock
+    # Other delvers' abandoned gear
+    items:
+      - name: "Abandoned pack (full)"
+        description: >-
+          One of many packs left on the shelves. Inside: 60gp in
+          mixed coin, two torches, a dagger, a small purse of
+          uncut tourmalines worth 40gp.
+        category: misc
+        value: 100
+        quantity: 1
+        chance: 1.0
+      - name: "Abandoned helm (silver-chased)"
+        description: >-
+          A delver's helmet with silver inlay. Functional armor
+          plus assayer value.
+        category: armor
+        value: 75
+        quantity: 1
+        chance: 0.9
+      - name: "Abandoned ledger entries (loose)"
+        description: >-
+          Pages torn from various delvers' notebooks — maps, bargains
+          struck with the Hoarder, partial counts. Useful for the
+          next delve, valuable to scholars.
+        category: quest
+        value: 50
+        quantity: 1
+        chance: 0.8
+        tags: [intel]
+
+  - room_id: counting_hall
+    items:
+      - name: "Outer-ring abacus bead (gemstone)"
+        description: >-
+          One of the gemstone counting beads pried from the abacus
+          for the outer ring. Removing it disrupts the count for
+          one round of encounters — the Hoarder must re-tally.
+        category: tool
+        value: 60
+        quantity: 1
+        chance: 1.0
+        tags: [tactical_disruption]
+      - name: "Gold wire (abacus rod)"
+        description: >-
+          A length of fine gold wire pulled from one of the counting
+          racks. About eighteen inches of pure gold, worth real coin
+          by mass.
+        category: treasure
+        value: 75
+        quantity: 1
+        chance: 1.0
+      - name: "Abacus master-bead (large amethyst)"
+        description: >-
+          The largest bead on the inner sanctum's abacus — an amethyst
+          the size of a robin's egg. Removing it freezes the inner
+          ring's count permanently.
+        category: treasure
+        value: 220
+        quantity: 1
+        chance: 0.5
+        tags: [tactical_disruption, large_gem, hoarder_marked]
+
+  # === INNER SANCTUM: THE COUNTING HOUSE ===
+
+  - room_id: antechamber
+    items:
+      - name: "Sorted gold pile (one bay)"
+        description: >-
+          A neat stack from one of the bays, every coin facing the
+          same direction. Disrupting the order draws the Hoarder's
+          attention; pocketing the gold draws it more.
+        category: treasure
+        value: 200
+        quantity: 1
+        chance: 1.0
+        tags: [hoarder_marked, currency]
+      - name: "Sorted gem set (matched)"
+        description: >-
+          A row of identical-cut emeralds, ten in a line. Real gems,
+          matched cuts — a jeweler pays double for a set this clean.
+        category: treasure
+        value: 280
+        quantity: 1
+        chance: 1.0
+      - name: "Index ledger (single volume)"
+        description: >-
+          One of the thousand-and-something ledger books. A single
+          volume catalogues a single century. Heavy. Scholarly value
+          enormous; carrying weight non-trivial.
+        category: quest
+        value: 150
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, scholar_value]
+
+  - room_id: counting_house
+    # BOSS ROOM — defeating the Hoarder unlocks the master ledger
+    items:
+      - name: "The master ledger"
+        description: >-
+          The book the size of a coffin lid. Absolutely unmovable by
+          one delver alone — but tearing the final page (the page
+          currently being written) ends the Hoarder's count permanently.
+          The page itself is priceless to the Hamlet scholars and
+          worth a fortune intact.
+        category: quest
+        value: 1200
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, narrative_weight, immovable, single_page]
+        lore: >-
+          Removing the page seals Horden for one delving season; the
+          Hoarder must re-establish the count from scratch.
+      - name: "Gold-mosaic floor tile (large pry)"
+        description: >-
+          A tile of fitted gold coins from the floor mosaic — three
+          dozen coins fused face-up. The merchant's worn-smooth face
+          on every one.
+        category: treasure
+        value: 360
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, currency]
+      - name: "Solid gold wall fragment"
+        description: >-
+          A fist-sized chunk of the wall, pried loose during the
+          fight. The walls are solid gold. This is a meaningful sample.
+        category: treasure
+        value: 480
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, heavy, currency]
+      - name: "The Hoarder's true count (scrap)"
+        description: >-
+          A single scrap of paper from the master ledger's most
+          recent entry, written in the Hoarder's frenzy: the actual
+          inventory of every item it ever counted. Names of delvers.
+          Names of items. A century of merchant fraud.
+        category: quest
+        value: 600
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, narrative_weight, hoarder_origin]
+
+  - room_id: deep_pile
+    # SECRET ONE-WAY TREASURE ROOM (chute access only, exit through Counting Hall)
+    items:
+      - name: "Crown jewel cluster (fused)"
+        description: >-
+          A cluster of gem-set crown jewels fused into a single mass
+          by centuries of pressure. Cannot be separated without a
+          stonewright. Sells whole for enormous coin; unmistakable.
+        category: treasure
+        value: 600
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, large, recognizable]
+      - name: "Compressed gold-dust brick"
+        description: >-
+          A brick-shaped mass of gold dust ground from coins, pressed
+          solid. Heavy as lead. Pure gold by mass.
+        category: treasure
+        value: 350
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, currency]
+      - name: "Gem-encrusted breastplate (crushed flat)"
+        description: >-
+          A nobleman's breastplate compressed to half-thickness. The
+          gems are intact. The plate is unwearable. The gems alone
+          are worth a fortune.
+        category: treasure
+        value: 280
+        quantity: 1
+        chance: 0.9
+      - name: "Crown jewels — single intact circlet"
+        description: >-
+          One full circlet that survived the compression, half-buried
+          beside its owner's bones. The piece a collector dreams of.
+        category: treasure
+        value: 480
+        quantity: 1
+        chance: 0.5
+        tags: [large, narrative_weight, recognizable]
+        lore: >-
+          The circlet bears a Vexell house mark; carrying it back
+          to the Hamlet unlocks Vexell-line dialogue at the Recruiter's
+          Post.

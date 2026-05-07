@@ -1,0 +1,520 @@
+# Grimvault — Room-Level Static Loot (DRAFT — Fix F)
+#
+# DRAFT STATUS: this file is authored against the proposed schema in the
+# pingpong P0/CRITICAL ticket "C&C dungeon loot is broken end-to-end". Fix B
+# will land the schema (either inline RoomDef.loot or this sibling file).
+# Once Fix B is merged, this file may need a one-shot migration to whatever
+# field name and shape Dev picks. Values are stable; only field names may move.
+#
+# Design budget (Grimvault, 17 rooms across 2 levels):
+#   - Level 1 clear (10 rooms): ~250-400gp + 2-3 unique items
+#   - Level 2 clear (7 rooms): ~250-450gp + 2-3 unique items
+#   - Boss clear (the_press): +300-500gp + Catalogue's hoard
+#   - Full delve total: ~800-1300gp + 5-7 unique items + Catalogue boss loot
+#
+# Theme: The Patient Butcher subtracts qualities from objects. Loot here is
+# weird-but-valuable: quality-stripped equipment that still works, stored
+# qualities in stone containers, stone tablets from the Index, abandoned
+# delver gear. Standard gold/coins exist too — the Butcher catalogues coins
+# alongside everything else.
+#
+# Rolling: chance 1.0 = always present, 0.x = rolled on first room entry,
+# persists per (party, room_id) across saves. Rooms with no loot omitted.
+
+room_loot:
+
+  # === LEVEL 1: THE WORKSHOP ===
+
+  - room_id: threshold
+    items:
+      - name: "Stone lectern offering"
+        description: >-
+          A tarnished silver coin set into a depression on the lectern's
+          surface, left by a previous delver as toll. Pocketing it is
+          rude. Pocketing it is also worth doing.
+        category: treasure
+        value: 5
+        quantity: 1
+        chance: 0.7
+
+  - room_id: receiving
+    items:
+      - name: "Catalogued tooth"
+        description: >-
+          A single human molar in one of the niches, labeled with the
+          Butcher's notation. The tooth is heavier than it should be —
+          something has been added, not taken.
+        category: misc
+        value: 3
+        quantity: 1
+        chance: 0.8
+      - name: "Catalogued silver coin"
+        description: >-
+          A silver piece in a niche, polished to mirror finish. The
+          mint mark is from a kingdom that does not exist.
+        category: treasure
+        value: 12
+        quantity: 1
+        chance: 0.9
+      - name: "Catalogued button (mother-of-pearl)"
+        description: >-
+          A coat button worth nothing on the surface, but priceless to
+          the Hamlet's relic-buyers — it is from the missing Vexell
+          delver-party of three generations ago.
+        category: quest
+        value: 25
+        quantity: 1
+        chance: 0.4
+
+  - room_id: sorting_floor
+    items:
+      - name: "Vial of separation residue"
+        description: >-
+          A glass vial of the iridescent film from one of the table
+          depressions. Alchemists in the Hamlet pay well for it — it
+          is the closest thing to bottled subtraction.
+        category: treasure
+        value: 30
+        quantity: 1
+        chance: 0.7
+      - name: "Drainage channel sediment"
+        description: >-
+          A handful of crystalline grit scraped from a channel —
+          condensed quality, shed during processing. Worth coin to the
+          Assayer Hall.
+        category: treasure
+        value: 15
+        quantity: 1
+        chance: 0.8
+
+  - room_id: separation_chamber_west
+    items:
+      - name: "Vial of bottled cold"
+        description: >-
+          A small stoppered phial that is cold to the touch but does
+          not chill the air around it. The Workhouse keeps a standing
+          buy order for these.
+        category: consumable
+        value: 40
+        quantity: 1
+        chance: 0.5
+        tags: [cold, alchemical]
+
+  - room_id: separation_chamber_east
+    items:
+      - name: "Vial of bottled color"
+        description: >-
+          A glass tube containing what looks like grey water until you
+          tilt it — then it flashes through every hue at once. Worth
+          a fortune in Copperbridge if you can get it there unbroken.
+        category: consumable
+        value: 50
+        quantity: 1
+        chance: 0.4
+        tags: [color, alchemical, fragile]
+
+  - room_id: cold_store
+    # PRIMARY HAUL — treasure room, the Cold Store catalogue
+    items:
+      - name: "Sword of unburdened iron"
+        description: >-
+          A longsword stripped of its weight. It cuts as well as any
+          blade and you can carry it all day without tiring. The
+          Butcher labeled it "Sword (-mass)" in stone notation.
+        category: weapon
+        value: 200
+        quantity: 1
+        chance: 1.0
+        tags: [weight_stripped, longsword, cursed]
+        lore: >-
+          Wielding it disturbs the Butcher; future delves into Grimvault
+          face heightened keeper awareness while this blade is in the party.
+      - name: "Lantern of dimless oil"
+        description: >-
+          An iron lantern containing oil that has been stripped of
+          dimness. Light it and the flame burns at full brightness
+          forever — but it casts no shadow, so the dungeon thinks
+          there is nothing there.
+        category: tool
+        value: 150
+        quantity: 1
+        chance: 1.0
+        tags: [light, eternal, shadow_stripped]
+      - name: "Shield of unhardened bronze"
+        description: >-
+          A bronze shield with no hardness — it deforms around blows
+          rather than blocking them, distributing impact across its
+          surface. Useless against piercing, excellent against bludgeoning.
+        category: armor
+        value: 80
+        quantity: 1
+        chance: 1.0
+      - name: "Boots of stripped silence"
+        description: >-
+          Leather boots from which silence has been removed. They
+          announce every step with a sharp crack — but on stone floors
+          underground, that crack carries strangely, sounding like it
+          comes from somewhere else entirely.
+        category: armor
+        value: 60
+        quantity: 1
+        chance: 0.8
+      - name: "Three jars of subtraction labels"
+        description: >-
+          Glass jars filled with the Butcher's stone notation. Scholars
+          at Wren Peatford's Recovery Bench will buy these for transcription
+          — 50gp the set if intact.
+        category: quest
+        value: 50
+        quantity: 1
+        chance: 0.6
+
+  - room_id: waste_chute
+    # Discarded "treasure" — the Butcher threw these out, still worth gold
+    items:
+      - name: "Gold ring (no shine)"
+        description: >-
+          A heavy gold band, perfectly dull. The Butcher discarded it
+          when its shine was extracted; the gold itself is real and
+          weighable. Forty gold pieces' worth, if you melt it.
+        category: treasure
+        value: 40
+        quantity: 1
+        chance: 1.0
+      - name: "Gem (no color)"
+        description: >-
+          A gem the size of a thumbnail, perfectly transparent and
+          perfectly dull. The cut is exquisite. Some jeweler in
+          Copperbridge will pay for the cut alone.
+        category: treasure
+        value: 35
+        quantity: 1
+        chance: 0.9
+      - name: "Coin pile (mass-stripped)"
+        description: >-
+          Twenty-eight coins of mixed denomination scattered around the
+          chute. Each weighs nothing — you can pour the whole pile into
+          a single pocket. They still spend like coins.
+        category: treasure
+        value: 28
+        quantity: 1
+        chance: 1.0
+      - name: "Bracelet of bone (decoration-stripped)"
+        description: >-
+          A delver's bracelet, the carving worn flat — not by use but
+          by removal. The bone itself is from no animal a delver would
+          recognize. Curiosity value at the Assayer Hall.
+        category: treasure
+        value: 20
+        quantity: 1
+        chance: 0.5
+
+  - room_id: calibration_room
+    items:
+      - name: "Stone notation sphere (small)"
+        description: >-
+          A polished orb of dark stone the size of a walnut, dense
+          enough to use as a sling stone or a paperweight. Reflects
+          no light. Steals warmth from your hand.
+        category: tool
+        value: 75
+        quantity: 1
+        chance: 1.0
+        tags: [strange, calibration]
+      - name: "Wax-sealed measurement record"
+        description: >-
+          A scroll case containing the Butcher's calibration log for
+          the past century — what was measured, against what, and
+          how it failed. Antiquarians pay fortunes for these.
+        category: quest
+        value: 120
+        quantity: 1
+        chance: 0.5
+
+  - room_id: quiet_archive
+    # SECRET TREASURE ROOM — captured sounds, very valuable but fragile
+    items:
+      - name: "Box of birdsong"
+        description: >-
+          A wax-sealed stone box. Crack the seal and a recorded burst
+          of birdsong escapes — three seconds of dawn chorus, then
+          silence forever. Performers in the Hamlet pay enormous sums
+          for these. One use only.
+        category: consumable
+        value: 200
+        quantity: 1
+        chance: 1.0
+        tags: [sound_capture, fragile, one_use]
+      - name: "Box of thunder"
+        description: >-
+          Open it for a single peal of thunder, loud enough to deafen
+          a hireling and stun creatures within a small radius. Useful
+          as a weapon. Useful as a signal. Useful only once.
+        category: consumable
+        value: 250
+        quantity: 1
+        chance: 0.9
+        tags: [sound_capture, weapon, one_use]
+      - name: "Box of a woman laughing"
+        description: >-
+          The seal is hairline-cracked. Open it carefully. A delver
+          might not.
+        category: consumable
+        value: 300
+        quantity: 1
+        chance: 0.7
+        tags: [sound_capture, narrative_weight, one_use]
+        lore: >-
+          The laughter belongs to someone the Butcher catalogued. A
+          listener who knew her in life will react.
+      - name: "Box of stillness"
+        description: >-
+          Smaller than the others. Open it and the air around you
+          stops moving for a count of ten. Dust hangs. Smoke holds.
+          A thrown blade drifts.
+        category: consumable
+        value: 400
+        quantity: 1
+        chance: 0.4
+        tags: [sound_capture, time_anchor, one_use, rare]
+
+  - room_id: holding_cells
+    # Abandoned delver gear; the cells were locked from inside
+    items:
+      - name: "Delver's pack (Vexell party)"
+        description: >-
+          A pack outside one of the cells, undisturbed for years. It
+          contains a coil of hemp rope, three torches, a tin box of
+          waterlogged rations, and a small purse with 18 silver pieces.
+        category: misc
+        value: 25
+        quantity: 1
+        chance: 1.0
+      - name: "Cell-keeper's iron keyring"
+        description: >-
+          Hanging on a hook between the cells. A ring of seven iron
+          keys, none of them obvious matches to any lock you have seen.
+          Could open something. Could open nothing.
+        category: tool
+        value: 30
+        quantity: 1
+        chance: 0.8
+
+  # === LEVEL 2: THE COLLECTION ===
+
+  - room_id: intake
+    items:
+      - name: "Shadow-soaked stone"
+        description: >-
+          A chip of wall stone you broke loose; it is heavy with
+          collected shadow. Hold it in light and a small dark patch
+          drifts at your feet that should not be there.
+        category: misc
+        value: 40
+        quantity: 1
+        chance: 0.6
+        tags: [shadow_capture]
+
+  - room_id: refinement_hall
+    items:
+      - name: "Bottle of pooled warmth"
+        description: >-
+          A glass flask collected from one of the warm patches in the
+          air. The flask is hot to the touch. Drink it for an hour's
+          warmth in any cold; sell it to the Workhouse for fuel cost.
+        category: consumable
+        value: 60
+        quantity: 1
+        chance: 0.9
+      - name: "Bottle of pooled brightness"
+        description: >-
+          Liquid that is brighter than any flame. Pour it on a wall
+          to illuminate a corridor for a day. Pour it on a creature
+          to blind it for one round.
+        category: consumable
+        value: 80
+        quantity: 1
+        chance: 0.8
+      - name: "Pillar dust (pure separation)"
+        description: >-
+          Scrapings from the base of one of the pillars — concentrated
+          subtraction, the most valuable assayer good in Sünden.
+          The Hamlet's relic-buyers will outbid each other for an
+          intact pouch.
+        category: treasure
+        value: 150
+        quantity: 1
+        chance: 0.5
+
+  - room_id: specimen_gallery
+    items:
+      - name: "Specimen case (suspended beetle)"
+        description: >-
+          A small case the size of a snuffbox containing a beetle
+          frozen mid-click. The case is glass-or-not-glass and
+          unbreakable by ordinary means. A curiosity worth real coin
+          to a Copperbridge collector.
+        category: treasure
+        value: 60
+        quantity: 1
+        chance: 0.9
+      - name: "Specimen case (suspended rat)"
+        description: >-
+          A larger case. A rat mid-leap. Same impossible glass. A
+          collector pays double for a vertebrate.
+        category: treasure
+        value: 100
+        quantity: 1
+        chance: 0.7
+      - name: "Specimen case (suspended delver)"
+        description: >-
+          A man-sized case standing upright at the gallery's far end.
+          Inside, a delver mid-scream. The Butcher's notation labels
+          him with a name from the missing Vexell party. Worth more
+          than coin to his descendants in the Hamlet — but the case
+          is heavy as cast iron and unmovable by one delver alone.
+        category: quest
+        value: 500
+        quantity: 1
+        chance: 0.3
+        tags: [heavy, narrative_weight, vexell]
+        lore: >-
+          The Hamlet's Wall of Names lists him. Returning the case
+          intact unlocks recovery rituals at the Confessional.
+
+  - room_id: the_index
+    # SECRET TREASURE ROOM — heavy stone tablets, scholar gold
+    items:
+      - name: "Stone tablet (separation index)"
+        description: >-
+          A tablet roughly the size and weight of a small anvil,
+          covered in the Butcher's notation. Each tablet catalogues
+          one quality and where it was stored. Heavy, valuable, slow.
+        category: treasure
+        value: 80
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, scholar_value]
+      - name: "Stone tablet (subject index)"
+        description: >-
+          A second tablet listing the subjects from which qualities
+          were taken. Names appear that the Hamlet would pay to know.
+        category: quest
+        value: 120
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, narrative_weight]
+      - name: "Stone tablet (storage index)"
+        description: >-
+          The map of the Quiet Archive's contents. Anyone holding this
+          tablet can identify any sealed sound box on sight. Worth
+          enormous sums to performers, collectors, and one-or-two
+          enemies of someone the Butcher catalogued.
+        category: quest
+        value: 200
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, archive_map]
+      - name: "Stone tablet fragments (broken set)"
+        description: >-
+          Three smaller tablets that have been deliberately shattered
+          by some prior delver who wanted to deny the Butcher its work.
+          Reassembled, they list the locations of further hidden caches
+          — but reassembly takes time and a stonewright.
+        category: quest
+        value: 60
+        quantity: 1
+        chance: 0.6
+        tags: [heavy, fragment, requires_assembly]
+
+  - room_id: residue_well
+    # Discarded loot, weightless gold
+    items:
+      - name: "Weightless gold (heap)"
+        description: >-
+          A scoopable mound of gold coins from which mass has been
+          subtracted. You can carry the whole heap in one pocket; it
+          spends as ordinary gold anywhere a coin is weighed by mark.
+        category: treasure
+        value: 120
+        quantity: 1
+        chance: 1.0
+        tags: [weightless, currency]
+      - name: "Soft metal scraps"
+        description: >-
+          Twisted bits of armor and weapon — iron stripped of its
+          hardness. Worthless as gear. The Assayer Hall pays scrap
+          value for the metal alone.
+        category: treasure
+        value: 25
+        quantity: 1
+        chance: 1.0
+      - name: "Heavy fabric scraps"
+        description: >-
+          Rags of cloth from which softness was removed. Sharp-edged
+          enough to cut on. Useless to a tailor. A weaver might pay
+          a curiosity-fee.
+        category: misc
+        value: 8
+        quantity: 1
+        chance: 0.8
+
+  - room_id: the_press
+    # BOSS ROOM — The Catalogue's hoard, drops on victory
+    items:
+      - name: "The Patient Butcher's calibration sphere (large)"
+        description: >-
+          A perfect orb of dark stone, the size of a man's head, that
+          stood at the center of the press mechanism. Reflects no light.
+          Carrying it impedes the Butcher's work permanently. Worth a
+          fortune to no one — and beyond price to the Hamlet.
+        category: quest
+        value: 800
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, heavy, narrative_weight, butcher_seal]
+        lore: >-
+          Returning the sphere to Wren Peatford's Recovery Bench seals
+          Grimvault's intake for one delving season. Future delves face
+          reduced keeper awareness and the Quiet Field above the threshold
+          becomes loud again.
+      - name: "Pure separation (sealed flask)"
+        description: >-
+          A flask containing the Butcher's distilled work — a fluid
+          that subtracts the next quality it touches. Single use. The
+          quality removed depends on what the flask is poured on.
+        category: consumable
+        value: 350
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, one_use, dangerous]
+      - name: "Catalogue's keyring (master)"
+        description: >-
+          A heavy iron keyring from the Catalogue's belt. Twelve keys.
+          Opens every locked door in Grimvault, and three doors in
+          places no delver has yet found.
+        category: tool
+        value: 200
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, master_keyring]
+      - name: "Hoarded gold (Catalogue's tribute)"
+        description: >-
+          A small chest the Catalogue defended with its life. 240gp
+          in mixed coin, untouched by the Butcher's work — the
+          Catalogue kept these from the press, presumably as tribute
+          to something it served.
+        category: treasure
+        value: 240
+        quantity: 1
+        chance: 1.0
+      - name: "Catalogue's plate (separation-warded)"
+        description: >-
+          The boss's armor: heavy stone-and-metal plate that resists
+          quality-subtraction. Wearer takes -1 to keeper awareness
+          checks while in any C&C dungeon. Heavier than cast iron.
+        category: armor
+        value: 400
+        quantity: 1
+        chance: 0.7
+        tags: [boss_drop, heavy, butcher_warded]

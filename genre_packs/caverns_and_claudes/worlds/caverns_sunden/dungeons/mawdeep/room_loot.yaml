@@ -1,0 +1,617 @@
+# Mawdeep — Room-Level Static Loot (DRAFT — Fix F)
+#
+# DRAFT STATUS: this file is authored against the proposed schema in the
+# pingpong P0/CRITICAL ticket. Field shape may shift on Fix B merge; values
+# are stable.
+#
+# Design budget (Mawdeep, 19 rooms across 2 levels):
+#   - Level 1 clear (10 rooms): ~400-700gp + 2-3 unique items
+#   - Level 2 clear (8 rooms): ~600-1000gp + 3-4 unique items
+#   - Boss clear (maw_chamber): +500-800gp + Glutton's lieutenant drops
+#   - Full Belly clear (post-boss treasure room): +800-1500gp + 3-4 unique items
+#   - Full delve total: ~2300-4000gp + 8-11 unique items
+#
+# Theme: Mawdeep is GLUTTONY. The Glutton Below is a vast organic dungeon
+# that swallows everything — caravans, villages, delvers — and the deeper
+# you go the more its loot is mixed with bone, bile, and partial digestion.
+# Loot is real and rich (the Glutton swallows everything anyone has) but
+# every item carries the Glutton's mark — slick with bile, fused with bone,
+# warm with residual heat. The Hamlet's relic-buyers know to discount items
+# that smell of digestion.
+
+room_loot:
+
+  # === LEVEL 1: THE GULLET ===
+
+  - room_id: mouth
+    items:
+      - name: "Chalk-marked relic (delver token)"
+        description: >-
+          Among the chalk marks at the entrance, a brass token nailed
+          into the stone — a previous delver's name-tag, left as a
+          warning or a marker. Worth real coin to its kin in Gristwell.
+        category: quest
+        value: 25
+        quantity: 1
+        chance: 0.6
+        tags: [vexell_or_local, narrative_weight]
+
+  - room_id: throat
+    items:
+      - name: "Cartilage-fused coin string"
+        description: >-
+          A string of copper coins partly fused into the cartilage-
+          textured wall. Pry-bar work. About 40gp once cleaned.
+        category: treasure
+        value: 40
+        quantity: 1
+        chance: 0.7
+        tags: [bile_residue]
+
+  - room_id: antechamber
+    # Abandoned equipment pile
+    items:
+      - name: "Pile of abandoned packs"
+        description: >-
+          Three rotted packs leaning against the far wall. Inside:
+          mixed silver coins (35gp), a dagger, a flint-and-steel,
+          and a ledger book listing the assets of a Gristwell
+          merchant who was swallowed three years ago.
+        category: misc
+        value: 60
+        quantity: 1
+        chance: 1.0
+      - name: "Bone-grit relic (silver locket)"
+        description: >-
+          Half-buried in the floor grit: a silver locket with a
+          portrait inside. Identifiable. Worth real coin to the
+          Hamlet, more to the family.
+        category: quest
+        value: 75
+        quantity: 1
+        chance: 0.7
+        tags: [narrative_weight, locket]
+      - name: "Iron-bound torch case"
+        description: >-
+          A delver's torch case, three torches still inside, dry.
+          Useful and worth scrap for the iron.
+        category: tool
+        value: 20
+        quantity: 1
+        chance: 0.9
+
+  - room_id: cistern
+    items:
+      - name: "Cistern-bottom gold coin"
+        description: >-
+          Reaching into the warm, sweet-smelling water risks something.
+          A gold coin glints at the bottom. Several, actually.
+        category: treasure
+        value: 80
+        quantity: 1
+        chance: 1.0
+        tags: [requires_action, water_hazard]
+      - name: "Bile-warmed silver chain"
+        description: >-
+          A silver neck-chain coiled at the cistern's edge. Warm to
+          the touch, smells faintly of digestion. Real silver beneath.
+        category: treasure
+        value: 45
+        quantity: 1
+        chance: 0.8
+        tags: [bile_residue]
+
+  - room_id: junction
+    items:
+      - name: "Amber-encased coin (broken sap pocket)"
+        description: >-
+          One of the amber-filled cracks holds a single gold piece,
+          preserved in the resin. Worth more for the amber than the
+          coin — a Hamlet alchemist would buy it intact.
+        category: treasure
+        value: 60
+        quantity: 1
+        chance: 0.9
+        tags: [amber, intact_specimen]
+      - name: "Hardened sap chunk (large)"
+        description: >-
+          A fist-sized chunk of the amber sap, pulled from a crack.
+          Pure, translucent, alchemically valuable.
+        category: treasure
+        value: 50
+        quantity: 1
+        chance: 0.8
+
+  - room_id: gallery
+    # PRIMARY LEVEL-1 TREASURE ROOM — the relics of the eaten
+    items:
+      - name: "Rusted sword (Gristwell militia)"
+        description: >-
+          One of the alcove relics — a militia-issue sword from
+          Gristwell. The hilt is recognizable; the blade is functional
+          after cleaning. Real value as both weapon and relic.
+        category: weapon
+        value: 60
+        quantity: 1
+        chance: 1.0
+        tags: [relic, gristwell_history]
+      - name: "Child's doll (preserved)"
+        description: >-
+          A wax doll, perfectly preserved by the dryness of the
+          alcove. Worthless as currency. Priceless to the Hamlet's
+          Confessional — a record of one of the Glutton's intake
+          tolls. Confession value, not coin.
+        category: quest
+        value: 0
+        quantity: 1
+        chance: 1.0
+        tags: [narrative_weight, confessional, gluttony_toll]
+      - name: "Merchant's brass scale (small)"
+        description: >-
+          A merchant's hand-scale from the alcove, brass intact.
+          Practical tool plus relic value.
+        category: tool
+        value: 80
+        quantity: 1
+        chance: 0.9
+      - name: "Holy symbol (silver, twin-faced)"
+        description: >-
+          A silver pendant in the shape of a twin-faced sun — a
+          religion the Hamlet stopped practicing two centuries
+          ago. Real silver. The Confessional pays high for these.
+        category: quest
+        value: 110
+        quantity: 1
+        chance: 1.0
+        tags: [silver, lost_faith, confessional]
+      - name: "Wedding band (gold, inscribed)"
+        description: >-
+          A gold band inscribed with two names in old Sünden script.
+          A widow in the Hamlet would pay anything to have it back —
+          if either name still has descendants there.
+        category: quest
+        value: 90
+        quantity: 1
+        chance: 0.8
+        tags: [narrative_weight, return_to_kin]
+      - name: "Apothecary's signet (lead-cored brass)"
+        description: >-
+          A pharmacy guild signet from a defunct Gristwell shop.
+          Worth modest coin to a collector; modest plus to the
+          relic-buyer at Wren Peatford's Recovery Bench.
+        category: quest
+        value: 70
+        quantity: 1
+        chance: 0.7
+
+  - room_id: pantry
+    items:
+      - name: "Spoiled rations (still salt-bag intact)"
+        description: >-
+          The shelves' contents are rotted, but a sealed leather
+          salt-bag at the back is dry. Worth modest coin in the
+          Hamlet — salt is currency in deep winter.
+        category: consumable
+        value: 30
+        quantity: 1
+        chance: 0.9
+        tags: [salt, currency_substitute]
+      - name: "Sealed waterskin (oddly preserved)"
+        description: >-
+          One of the waterskins is unspoiled. The seal is fresh.
+          Disturbing. Drinkable, valuable, suspicious.
+        category: consumable
+        value: 8
+        quantity: 1
+        chance: 0.6
+        tags: [unsettling]
+      - name: "Pre-spoil iron rations (brick)"
+        description: >-
+          A solid brick of iron rations from before the rot started.
+          One delver-week of food, worth real coin to a fresh party.
+        category: consumable
+        value: 25
+        quantity: 1
+        chance: 0.7
+
+  - room_id: hall
+    # The Swallowing Hall — Edgeholm's remains (a whole village)
+    items:
+      - name: "Edgeholm wellstone (carved)"
+        description: >-
+          A flat carved stone from one of the floor mosaic fragments —
+          the hub-stone of Edgeholm's village well. Worth real coin
+          to the Hamlet; immense narrative weight.
+        category: quest
+        value: 180
+        quantity: 1
+        chance: 1.0
+        tags: [heavy, narrative_weight, edgeholm]
+        lore: >-
+          Returning the wellstone to the Hamlet's Workhouse unlocks
+          Edgeholm dialogue and a one-time tribute payout (gold +
+          remembrance ritual).
+      - name: "Edgeholm coin cache"
+        description: >-
+          Wedged in the cracks of the floor mosaic: 90gp in mixed
+          coin, all dated to before Edgeholm fell.
+        category: treasure
+        value: 90
+        quantity: 1
+        chance: 1.0
+      - name: "Foundation-stone fragment (carved)"
+        description: >-
+          A carved building corner — a guild-mark from the smiths'
+          hall of Edgeholm. Heavy. Narrative-charged. The smith-line
+          in the Hamlet has waited centuries for this.
+        category: quest
+        value: 220
+        quantity: 1
+        chance: 0.8
+        tags: [heavy, narrative_weight, edgeholm, guild]
+      - name: "Well-cast bone die (one of a pair)"
+        description: >-
+          A single carved bone die, worn smooth, found near the
+          stone well. Half of a famous gambling pair from a
+          legendary Edgeholm story. The other die is somewhere.
+        category: misc
+        value: 40
+        quantity: 1
+        chance: 0.7
+        tags: [paired_relic, gambler_lore]
+
+  # === LEVEL 2: THE BELLY ===
+
+  - room_id: landing
+    items:
+      - name: "Bioluminescent vein-flake"
+        description: >-
+          A flake of stone with the orange luminescence still trapped
+          inside. Glows faintly for days after removal. Worth real
+          coin to the Hamlet's apothecaries; useful as a low-light
+          source.
+        category: tool
+        value: 35
+        quantity: 1
+        chance: 1.0
+        tags: [light, alchemical]
+
+  - room_id: gullet_passage
+    items:
+      - name: "Gullet glint (gold-fused tooth)"
+        description: >-
+          The golden glint ahead resolves to a delver's gold tooth
+          set in a fragment of jaw, fused into the wall. Worth modest
+          coin and worth significant coin to a chirurgeon.
+        category: misc
+        value: 50
+        quantity: 1
+        chance: 1.0
+        tags: [bone, gold]
+      - name: "Wedged signet ring"
+        description: >-
+          A signet ring caught in the cartilage-stone of the wall,
+          half-extruded. Pry-bar work. Real gold band, recognizable
+          family seal.
+        category: treasure
+        value: 95
+        quantity: 1
+        chance: 0.9
+        tags: [house_seal]
+
+  - room_id: acid_pool
+    items:
+      - name: "Bile-resistant gem (sealed in cyst)"
+        description: >-
+          At the pool's edge, a stone cyst the size of an apple.
+          Cracking it open reveals an emerald the size of a thumbnail
+          — preserved by the cyst's resistance to the acid pool.
+        category: treasure
+        value: 220
+        quantity: 1
+        chance: 0.8
+        tags: [requires_action, gem, large]
+      - name: "Acid-etched coin (curiosity)"
+        description: >-
+          A coin half-dissolved by the pool, lying at its edge. The
+          pattern of dissolution is unique — a curiosity-buyer in
+          Copperbridge collects these.
+        category: treasure
+        value: 25
+        quantity: 1
+        chance: 0.7
+      - name: "Vial of bile (capped, dangerous)"
+        description: >-
+          Carefully scooping the warm acid into a glass vial. The
+          alchemists at the Recovery Bench will pay handsomely for
+          a fresh sample. The vial is fragile.
+        category: consumable
+        value: 80
+        quantity: 1
+        chance: 0.7
+        tags: [fragile, alchemical, dangerous]
+
+  - room_id: warren
+    items:
+      - name: "Warren cache (lost expedition pack)"
+        description: >-
+          One of the small chambers contains a fully-intact delver
+          pack: 70gp in mixed coin, two torches, a vial of holy water,
+          and a hand-drawn map of the warren's twists.
+        category: misc
+        value: 90
+        quantity: 1
+        chance: 1.0
+        tags: [intel, map]
+      - name: "Bioluminescent vein-cluster (large)"
+        description: >-
+          One of the warren's chambers has a fist-sized cluster of
+          luminescent stone. Powerful natural light source, valuable
+          to apothecaries.
+        category: tool
+        value: 90
+        quantity: 1
+        chance: 0.7
+        tags: [light, large, alchemical]
+      - name: "Curled delver's bones (gold tooth)"
+        description: >-
+          A skeleton in one of the chambers. Picked clean. The skull
+          has a gold tooth and a small belt-purse of 18gp.
+        category: treasure
+        value: 30
+        quantity: 1
+        chance: 0.8
+
+  - room_id: vault
+    # SECONDARY TREASURE ROOM — gem-studded teeth in the wall
+    items:
+      - name: "Tooth-set ruby (large)"
+        description: >-
+          A ruby set in one of the stone teeth, knuckle-sized.
+          Pry-bar work. Real value at any jeweler.
+        category: treasure
+        value: 280
+        quantity: 1
+        chance: 1.0
+        tags: [gem, large]
+      - name: "Tooth-set sapphire (small)"
+        description: >-
+          A small sapphire embedded near the floor. Easier to remove
+          but smaller. Real coin nonetheless.
+        category: treasure
+        value: 90
+        quantity: 1
+        chance: 1.0
+      - name: "Coin-tooth cluster (gold)"
+        description: >-
+          One of the teeth has gold coins fused into its surface —
+          eight or nine coins partially absorbed. Pry the whole
+          tooth free and the coins come with it.
+        category: treasure
+        value: 140
+        quantity: 1
+        chance: 1.0
+      - name: "Jeweled bracelet (intact)"
+        description: >-
+          A full gold bracelet looped around one of the teeth, set
+          with three small pearls. Real, intact, beautiful.
+        category: treasure
+        value: 220
+        quantity: 1
+        chance: 0.9
+      - name: "Stone tooth (souvenir, heavy)"
+        description: >-
+          One of the teeth itself, cracked free of the wall. Pure
+          curiosity value to a Hamlet relic-buyer; heavy as a stone.
+        category: misc
+        value: 50
+        quantity: 1
+        chance: 0.6
+        tags: [heavy, curiosity]
+
+  - room_id: stomach
+    items:
+      - name: "Half-digested pack (still buoyant)"
+        description: >-
+          A pack lying on the soft floor, partially absorbed but
+          contents intact. Inside: 60gp in mixed coin, a vial of
+          oil, a leather coin-purse with three small uncut
+          tourmalines.
+        category: misc
+        value: 100
+        quantity: 1
+        chance: 1.0
+        tags: [bile_residue]
+      - name: "Floor-embedded weapon (golden hilt)"
+        description: >-
+          A sword hilt protrudes from the soft floor — the blade is
+          lost beneath. The hilt alone is gold-wrapped over steel.
+          Half a relic. Half a fortune.
+        category: weapon
+        value: 130
+        quantity: 1
+        chance: 1.0
+        tags: [partial, gold_wrapped]
+      - name: "Recently-swallowed coin pile"
+        description: >-
+          Coins still bright, recently absorbed. The Glutton ate
+          someone last week. 75gp in mixed currency.
+        category: treasure
+        value: 75
+        quantity: 1
+        chance: 0.9
+        tags: [recent, currency]
+      - name: "Living-stone fragment"
+        description: >-
+          A piece of the wall pried free — still warm, still
+          undulating faintly even after removal. Alchemists fight
+          over these.
+        category: treasure
+        value: 100
+        quantity: 1
+        chance: 0.6
+        tags: [living, alchemical, unstable]
+
+  - room_id: marrow_hall
+    items:
+      - name: "Skull with gold dental work"
+        description: >-
+          One of the wall-skulls has gold dental work intact. Pry
+          the bone free and the gold comes with it. Real coin to
+          a chirurgeon or assayer.
+        category: treasure
+        value: 70
+        quantity: 1
+        chance: 1.0
+        tags: [bone, dental_gold]
+      - name: "Femur-set ruby (decorative)"
+        description: >-
+          One of the wall femurs has a ruby drilled into it — a
+          previous delver's marker, or an offering. Real ruby.
+        category: treasure
+        value: 90
+        quantity: 1
+        chance: 0.7
+      - name: "Marrow-warm bone (alchemical)"
+        description: >-
+          A small wall-bone that radiates heat. Apothecaries pay
+          for these — useful in compound-making.
+        category: tool
+        value: 45
+        quantity: 1
+        chance: 0.8
+        tags: [alchemical, warm]
+
+  - room_id: maw_chamber
+    # BOSS ROOM — the Glutton's lieutenant
+    items:
+      - name: "The lieutenant's bone-armor plates"
+        description: >-
+          The lieutenant's body armor — fused fragments of every
+          armor piece the Glutton has ever swallowed. Heavy, ugly,
+          mechanically functional. Wearer takes -1 to encounter
+          rolls in any C&C dungeon (the Glutton remembers it).
+        category: armor
+        value: 280
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, heavy, glutton_marked]
+      - name: "Lieutenant's ingested hoard"
+        description: >-
+          When you cut open the boss, a cascade of swallowed
+          treasure spills out: 320gp in mixed coin, a small uncut
+          diamond, a silver flask, a gold ring with a flat seal.
+        category: treasure
+        value: 380
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, currency]
+      - name: "The Glutton's tongue-stone"
+        description: >-
+          A polished stone the lieutenant kept under its tongue —
+          warm, dense, faintly luminous. Carrying it grants the
+          bearer the ability to speak with the Glutton (via Hamlet
+          ritual). Worth a fortune to the Confessional.
+        category: quest
+        value: 500
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, narrative_weight, ritual_key]
+      - name: "Lieutenant's belt of trophies"
+        description: >-
+          A leather belt strung with the gold teeth of every
+          significant kill. Real gold, ~28 teeth. Each tooth
+          is identifiable to a chirurgeon — names attached.
+        category: treasure
+        value: 200
+        quantity: 1
+        chance: 1.0
+        tags: [boss_drop, narrative_weight, dental_gold]
+
+  - room_id: full_belly
+    # POST-BOSS TREASURE ROOM — the Glutton's full hoard
+    # This is the deepest, richest room in Sünden — earned only by
+    # killing the lieutenant and unlocking the door past the Maw.
+    items:
+      - name: "The treasure carpet (scoop)"
+        description: >-
+          The floor here is treasure — coins, gems, jewelry, weapons,
+          armor. A single scoop nets ~250gp in mixed mid-quality
+          currency without any specific selection.
+        category: treasure
+        value: 250
+        quantity: 1
+        chance: 1.0
+        tags: [bulky, currency]
+      - name: "The treasure carpet (selected)"
+        description: >-
+          Sorting through the carpet for the higher-quality pieces:
+          a gold goblet, two silver candelabra, a fistful of pearls,
+          three uncut emeralds. Time-cost; real value.
+        category: treasure
+        value: 480
+        quantity: 1
+        chance: 1.0
+        tags: [requires_time]
+      - name: "Caravan-master's chest (intact)"
+        description: >-
+          A merchant chest at the chamber's edge, swallowed whole
+          centuries ago, the leather still intact. Inside: 320gp
+          in old coin, two small ingots of silver, a velvet pouch
+          of cut sapphires.
+        category: treasure
+        value: 420
+        quantity: 1
+        chance: 1.0
+        tags: [chest, currency, sealed]
+      - name: "Royal armor (gold-chased plate)"
+        description: >-
+          A breastplate inlaid with gold filigree — clearly
+          ceremonial, clearly noble, clearly priceless. Identifiable
+          house mark. Worth a fortune; politically dangerous.
+        category: armor
+        value: 700
+        quantity: 1
+        chance: 0.9
+        tags: [heavy, narrative_weight, house_seal, dangerous]
+      - name: "Master-crafted longsword (gold-wire grip)"
+        description: >-
+          A pristine longsword half-buried in the carpet — gold-wire
+          grip, mirror-polished blade, smith's mark you have never
+          seen. Mechanically functional, narratively significant.
+        category: weapon
+        value: 380
+        quantity: 1
+        chance: 0.9
+        tags: [master_craft]
+      - name: "Crown of the swallowed king"
+        description: >-
+          A heavy gold crown set with five large gems — the
+          tradition is that one of the swallowed villages was
+          the seat of a forgotten kingdom. The crown weighs as
+          much as a brick. The history weighs more.
+        category: quest
+        value: 1200
+        quantity: 1
+        chance: 0.6
+        tags: [heavy, narrative_weight, kingdom_lost, recognizable]
+        lore: >-
+          The crown's house mark unlocks the "lost kingdom" arc at
+          the Hamlet's Confessional. The Hamlet does not currently
+          know it had a king.
+      - name: "Living treasure pearl (the Glutton's gift)"
+        description: >-
+          At the chamber's center, a single perfect pearl that the
+          walls of the Glutton are slowly secreting around a grain
+          of bone-grit. Removing it before it finishes is a
+          delicate operation. The pearl is unique, alive, and
+          alchemically priceless.
+        category: treasure
+        value: 800
+        quantity: 1
+        chance: 0.5
+        tags: [requires_action, living, alchemical, unique, narrative_weight]
+        lore: >-
+          The Glutton is alive. Removing the pearl is theft. Future
+          Mawdeep delves face permanent +1 keeper awareness. The
+          pearl can be returned later via Hamlet ritual.

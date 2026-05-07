@@ -37,7 +37,15 @@ creatures:
           through the cloud must pause or risk walking into walls —
           depth perception fails when every surface is the same hue.
     loot:
-      - description: "Chalk moth wings — worthless, crumble to white powder."
+      - description: "Color-stained moth bellies (jar) — apothecaries pay for the trapped pigment."
+        value: 4
+        chance: 0.8
+      - description: "Catalogued pin (Butcher's notation) — a dead moth pinned to a tag, one in every dozen."
+        value: 6
+        chance: 0.5
+      - description: "Wing-dust pouch (assayer-grade pigment substrate)."
+        value: 8
+        chance: 0.3
     tags: [level_1, swarm, vermin, butcher_fauna]
     rooms: [receiving, sorting_floor]
     notes: >-
@@ -75,7 +83,15 @@ creatures:
           entirely. A seamless metal flask is invisible to them.
           A stitched leather pack is a feast.
     loot:
-      - description: "Nothing. The crickets leave no residue."
+      - description: "Cricket carapace (jar) — useful in alchemy as a binding-eater catalyst."
+        value: 5
+        chance: 0.7
+      - description: "Stripped-stitch fragment (compressed thread) — Hamlet leatherworkers buy in bulk."
+        value: 10
+        chance: 0.5
+      - description: "A pried-loose mortar bead the swarm was working on (curiosity)."
+        value: 3
+        chance: 0.4
     tags: [level_1, swarm, vermin, butcher_fauna]
     rooms: [cold_store, waste_chute]
     notes: >-
@@ -122,10 +138,17 @@ creatures:
           and cold for one hour. Accumulated cold grip can
           render a limb useless.
     loot:
-      - description: "Whatever the husk was carrying when it was processed — usually nothing."
-        chance: 0.1
-      - description: "A token with the Butcher's notation (5 GP to the Ledger)"
+      - description: "A token with the Butcher's notation (5 GP to the Ledger)."
         value: 5
+        chance: 1.0
+      - description: "Coins from the husk's pocket — what it was carrying when processed."
+        value: 12
+        chance: 0.7
+      - description: "A weight-stripped trinket (silver locket, ring, or coin purse)."
+        value: 30
+        chance: 0.5
+      - description: "Husk-cloth (a cloak that weighs nothing, retains shape)."
+        value: 45
         chance: 0.3
     tags: [level_1, undead, patrol, butcher_fauna]
     rooms: [sorting_floor, separation_chamber_west, separation_chamber_east]
@@ -165,9 +188,15 @@ creatures:
           distortion imposes disadvantage on fine manipulation
           with affected limbs.
     loot:
-      - description: "Pane residue — a film that makes any surface appear perfectly flat (2 GP)"
-        value: 2
-        chance: 0.4
+      - description: "Pane residue (vial) — a film that flattens any surface; Hamlet alchemists buy these."
+        value: 18
+        chance: 1.0
+      - description: "Edge-flake (fragment of dimensional drain crystal) — fragile, valuable to glassmakers."
+        value: 35
+        chance: 0.5
+      - description: "Coins half-flattened by drain (still spend, look strange)."
+        value: 8
+        chance: 0.7
     tags: [level_1, ambush, butcher_fauna]
     rooms: [receiving, holding_cells, cold_store]
     notes: >-
@@ -214,12 +243,18 @@ creatures:
           Their overlapping auras create a twenty-foot sphere of
           total silence. Communication is impossible.
     loot:
-      - description: "Silence stalker pelt — absorbs sound when worn (25 GP)"
+      - description: "Silence stalker pelt — absorbs sound when worn (Hamlet thieves' guild pays double)."
+        value: 70
+        chance: 1.0
+      - description: "Stalker teeth (set) — ground to powder, used in Assayer equipment calibration."
         value: 25
+        chance: 0.9
+      - description: "Stalker claws (silent-strike daggers, paired) — assassin tools."
+        value: 60
         chance: 0.5
-      - description: "Stalker teeth — ground to powder, used in Assayer equipment calibration (10 GP)"
-        value: 10
-        chance: 0.3
+      - description: "Vibration-sense organ (sealed in oil) — alchemical/diagnostic value."
+        value: 40
+        chance: 0.4
     tags: [level_2, predator, pack, butcher_fauna]
     rooms: [refinement_hall, intake, specimen_gallery]
     notes: >-
@@ -262,9 +297,17 @@ creatures:
           the sensation of brightness applied to nerves. No visible
           wound. Pain is real. Accumulated strikes cause disorientation.
     loot:
-      - description: "Prism shard — a fragment of crystallized light (40 GP, fragile)"
-        value: 40
-        chance: 0.3
+      - description: "Prism shards (set of three, fragile) — crystallized separated light; required for the Catalogue fight."
+        value: 120
+        chance: 1.0
+        tags: [fragile, catalogue_weapon]
+      - description: "Refraction core — dense crystallized light, alchemists pay enormously."
+        value: 200
+        chance: 0.6
+      - description: "Sentinel's stillness — a flake of motionless time. One-shot consumable."
+        value: 80
+        chance: 0.4
+        tags: [consumable, time_stop]
     tags: [level_2, guardian, keeper_construct, butcher_fauna]
     rooms: [refinement_hall]
     notes: >-
@@ -318,12 +361,25 @@ creatures:
           it from fresh material between delves. Each incarnation
           has different quality-composition but the same function.
     loot:
-      - description: "Catalogue core — a dense sphere of interwoven qualities (100 GP)"
-        value: 100
+      # NOTE: Boss-room static treasure (sphere, sealed flask, master keyring,
+      # tribute chest, separation-warded plate) is in room_loot.yaml under
+      # `the_press`. The drops below are the body-of-the-creature drops only.
+      - description: "Catalogue core — a dense sphere of interwoven qualities; functions as a one-shot Quality Shield reroll item."
+        value: 240
         chance: 1.0
-      - description: "Quality residue — loose separated properties that slowly reattach to nearby objects (30 GP)"
-        value: 30
+        tags: [boss_drop, quality_shield, one_shot]
+      - description: "Quality residue (vial) — loose separated properties that slowly reattach to nearby objects."
+        value: 90
+        chance: 1.0
+        tags: [boss_drop, alchemical]
+      - description: "Catalogue's woven cloak — separated qualities bound into wearable form; +1 to keeper-evasion in any C&C dungeon."
+        value: 320
         chance: 0.7
+        tags: [boss_drop, armor_charm]
+      - description: "Manifestation seed — when planted in the Press, prevents the Catalogue's reassembly for one delving season."
+        value: 0
+        chance: 1.0
+        tags: [boss_drop, narrative_weight, butcher_seal]
     tags: [level_2, boss, keeper_construct, butcher_fauna]
     rooms: [the_press]
     notes: >-

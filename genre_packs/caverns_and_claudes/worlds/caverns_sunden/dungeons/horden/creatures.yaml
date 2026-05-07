@@ -39,7 +39,15 @@ creatures:
           The only prevention is separating metals with cloth or
           leather wrapping.
     loot:
-      - description: "Nothing. The mites are too small to harvest."
+      - description: "Coins shaken loose by the swarm — partly tarnished, fully spendable."
+        value: 12
+        chance: 1.0
+      - description: "Mite shell powder (jar) — Hamlet apothecaries buy it as a metal-cleaning agent."
+        value: 8
+        chance: 0.6
+      - description: "Tarnish residue (sealed pouch) — assayer-grade chemical."
+        value: 15
+        chance: 0.4
     tags: [outer_ring, swarm, vermin, hoard_fauna]
     rooms: [coin_drift, scrap_hall, tarnish_hall]
     notes: >-
@@ -76,7 +84,15 @@ creatures:
           and it stains your boot permanently — useful for nothing,
           impossible to remove. Annoying, not dangerous.
     loot:
-      - description: "Ink pellets — worthless but indelible."
+      - description: "Ink pellet pouch (compressed) — Hamlet scribes pay for the pigment density."
+        value: 10
+        chance: 0.9
+      - description: "Pre-eaten ledger pages (still legible at the edges) — scholar/scrap value."
+        value: 25
+        chance: 0.6
+      - description: "Worm castings (rare) — alchemists buy these as a permanent-marker substrate."
+        value: 18
+        chance: 0.4
     tags: [outer_ring, swarm, vermin, hoard_fauna]
     rooms: [moth_gallery, bolt_room, appraisal_niche]
     notes: >-
@@ -119,9 +135,19 @@ creatures:
           The scattered coins are real treasure but tarnish-mite
           infested.
     loot:
-      - description: "Scattered coins (3d6 GP worth, tarnish-mite infested)"
-        value: 10
+      - description: "Scattered coins (heap) — the lurker's body, mixed denominations, tarnish-mite infested but spendable."
+        value: 80
         chance: 1.0
+      - description: "Spring-steel jaw (intact) — a smith pays well for engineered steel this old."
+        value: 60
+        chance: 0.9
+      - description: "Lurker's cache (jewelry it absorbed but did not yet work into its body)."
+        value: 120
+        chance: 0.6
+        tags: [jewelry]
+      - description: "Edge-on coin teeth (set) — usable as throwing weapons; novelty value to assassins."
+        value: 35
+        chance: 0.5
     tags: [outer_ring, middle_ring, ambush, predator, hoard_fauna]
     rooms: [coin_drift, trophy_wall, tarnish_hall, gem_bower]
     notes: >-
@@ -166,12 +192,20 @@ creatures:
           Walk past without touching its treasure and it watches
           you go. Reach for the pack and it swings.
     loot:
-      - description: "Rust ghost pack — sealed by corrosion, requires a smith to open (50 GP contents)"
+      - description: "Rust ghost pack — sealed by corrosion, smith required to open. Contents: 80gp mixed coin + a silver flask + a deed to a Hamlet plot."
+        value: 140
+        chance: 1.0
+        tags: [requires_smith, sealed]
+      - description: "Corroded plate armor (intact under rust) — refurbishable, real value to a smith."
+        value: 70
+        chance: 0.9
+      - description: "Iron scraps (sack) — collector value plus smith scrap value."
+        value: 12
+        chance: 1.0
+      - description: "Wedding ring (warrior's, intact under rust) — narrative-charged, real gold."
         value: 50
-        chance: 0.4
-      - description: "Corroded iron scraps (2 GP to a collector)"
-        value: 2
-        chance: 0.6
+        chance: 0.5
+        tags: [narrative_weight, ring]
     tags: [middle_ring, undead, guardian, hoard_fauna]
     rooms: [rust_gallery, goat_path, tarnish_hall]
     notes: >-
@@ -221,12 +255,20 @@ creatures:
           does not try to hurt. It tries to hold you still long
           enough to finish counting.
     loot:
-      - description: "The Appraiser's empty pack — good condition, worth 3 GP"
-        value: 3
+      - description: "The Appraiser's pack (good condition) and personal belongings: 40gp, two notched tally sticks, a silver buckle, a Vexell-marked locket."
+        value: 90
+        chance: 1.0
+        tags: [vexell_or_local, narrative_weight]
+      - description: "Tally stick (master count) — the Appraiser's working tally; scholars decode these for fortunes."
+        value: 80
+        chance: 0.8
+      - description: "Boots (Appraiser's) — well-made, broken in, worth real coin to a quartermaster."
+        value: 25
+        chance: 0.7
+      - description: "Whisper-blank scroll — a parchment the Appraiser was about to file the count to. Catches the Hoarder's voice."
+        value: 60
         chance: 0.5
-      - description: "A tally stick with precise notches (5 GP to the Counters, worthless otherwise)"
-        value: 5
-        chance: 0.3
+        tags: [hoarder_voice, alchemical]
     tags: [middle_ring, inner_sanctum, tracker, hoard_fauna]
     rooms: [counting_hall, goat_path, tarnish_hall]
     notes: >-
@@ -274,9 +316,18 @@ creatures:
           are replaced from the dungeon's reserves — it is
           always the same size when it reforms.
     loot:
-      - description: "Coin golem remnants — a pile of mixed coins (total value equals remaining HP in GP)"
-        value: 18
+      - description: "Coin golem remnants — body collapses into a heap of mixed coins (~remaining HP × 8 in gp)."
+        value: 180
         chance: 1.0
+        tags: [scaling_with_hp, currency, heavy]
+      - description: "Animation-binder fragment (the invisible thing holding the coins together)."
+        value: 100
+        chance: 0.7
+        tags: [keeper_construct, alchemical]
+      - description: "Embedded jewelry (a few rings and chains absorbed into the golem's body)."
+        value: 90
+        chance: 0.6
+        tags: [jewelry]
     tags: [middle_ring, guardian, keeper_construct, hoard_fauna]
     rooms: [toll_gate, weight_lock, antechamber]
     notes: >-
@@ -332,12 +383,29 @@ creatures:
           Ledger is vulnerable and not pulsing. The tactical key:
           feed it new items to create attack windows.
     loot:
-      - description: "Ledger pages — parchment cataloguing specific items (100 GP to scholars)"
-        value: 100
+      # NOTE: Boss-room static treasure (master ledger, mosaic floor tile,
+      # gold wall fragment, true-count scrap) is in room_loot.yaml under
+      # `counting_house`. The drops below are body-of-creature drops only.
+      - description: "Ledger pages (torn during fight) — each catalogues a specific item; scholars buy them for fortunes."
+        value: 240
         chance: 1.0
-      - description: "Ledger binding — warm leather that resists cutting (40 GP to a tanner)"
-        value: 40
-        chance: 0.7
+        tags: [boss_drop, scholar_value]
+      - description: "Ledger binding — warm leather resists cutting; tanners pay; armorers pay more."
+        value: 110
+        chance: 1.0
+        tags: [boss_drop, armor_material]
+      - description: "Pulse-locus crystal — the source of the reclamation pulse; alchemists fight over these."
+        value: 280
+        chance: 0.9
+        tags: [boss_drop, alchemical]
+      - description: "The Hoarder's true name (page) — the merchant's actual identity, written once on the ledger's first page. Recovery requires this."
+        value: 0
+        chance: 1.0
+        tags: [boss_drop, narrative_weight, hoarder_origin]
+      - description: "Cataloguer's pen — writes inventory in any language, on any surface."
+        value: 180
+        chance: 0.6
+        tags: [boss_drop, magical_tool]
     tags: [inner_sanctum, boss, keeper_construct, hoard_fauna]
     rooms: [counting_house]
     notes: >-

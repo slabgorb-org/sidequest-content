@@ -32,7 +32,16 @@ creatures:
           They do not need food from the surface. They are part of the
           dungeon's ecology — or its digestion.
     loot:
-      - description: "Nothing. Rat pelts are worthless and stink of bile."
+      - description: "Coins shaken from the rats' nests in the cracks (mixed copper and silver)."
+        value: 8
+        chance: 1.0
+      - description: "Resin-soaked rat (alchemical specimen) — apothecaries pay; useful in compound brewing."
+        value: 4
+        chance: 0.7
+      - description: "A swallowed gem cached in a nest — small but real."
+        value: 18
+        chance: 0.4
+        tags: [gem]
     tags: [level_1, swarm, vermin, glutton_fauna]
     rooms: [junction]
     notes: >-
@@ -66,7 +75,16 @@ creatures:
           noisy — each beetle crunches loudly. Clearing a room of
           beetles raises Keeper awareness by +1.
     loot:
-      - description: "Calcite shell fragments. Worthless but crunchy."
+      - description: "Calcite shell fragments (jar) — apothecaries grind these for poultice base."
+        value: 6
+        chance: 0.9
+      - description: "Calcium deposit (compressed) — a smith uses these as flux; real coin."
+        value: 12
+        chance: 0.6
+      - description: "Bone-marrow gem (rare beetle ate something it shouldn't have)."
+        value: 30
+        chance: 0.3
+        tags: [gem, narrative_weight]
     tags: [level_1, swarm, vermin, glutton_fauna]
     rooms: [pantry, throat]
     notes: >-
@@ -109,11 +127,20 @@ creatures:
           morale check. Not from danger — from the recognition of what
           the dungeon does to people who stay too long.
     loot:
-      - description: "Tattered remnants of delving gear — a corroded belt buckle (2 CP), a broken compass"
-        value: 1
-      - description: "Occasionally, a scavenger still wears a ring or amulet from its former life"
-        value: 15
-        chance: 0.2
+      - description: "Scavenger's pocket cache — coins they could not stop hoarding even after they forgot why."
+        value: 25
+        chance: 1.0
+      - description: "Ring or amulet from former life — identifiable to the Hamlet's Wall of Names."
+        value: 45
+        chance: 0.7
+        tags: [narrative_weight, identifiable]
+      - description: "Belt buckle and compass (corroded but salvageable)."
+        value: 8
+        chance: 0.9
+      - description: "Resin-crusted journal (legible at the dry edges) — a delver's last weeks recorded."
+        value: 60
+        chance: 0.5
+        tags: [intel, narrative_weight, journal]
     tags: [level_1, undead_adjacent, glutton_fauna, unsettling]
     rooms: [hall]
     notes: >-
@@ -154,9 +181,19 @@ creatures:
           narrow as eight inches. No door or barricade stops them
           unless it is sealed airtight.
     loot:
-      - description: "Contents of the crawler's gut — occasionally coins or small items from previous victims"
-        value: 5
-        chance: 0.3
+      - description: "Crawler's gut contents — coins and small items from previous victims (mixed mid-quality)."
+        value: 50
+        chance: 1.0
+      - description: "Crawler hide (translucent leather) — armorers prize it for stealth gear."
+        value: 80
+        chance: 0.8
+      - description: "A swallowed dagger or signet (identifiable to a missing party)."
+        value: 70
+        chance: 0.5
+        tags: [identifiable, narrative_weight]
+      - description: "Pack-leader's gold tooth — they hoard these from kills."
+        value: 30
+        chance: 0.4
     tags: [level_2, predator, pack, glutton_fauna]
     rooms: [warren]
     notes: >-
@@ -195,7 +232,16 @@ creatures:
           Severed polyps regrow between delves. They cannot be
           permanently cleared. The dungeon grows them back.
     loot:
-      - description: "Nothing. They are part of the walls."
+      - description: "Polyp ichor (vial) — alchemists pay well; raw acid base."
+        value: 30
+        chance: 1.0
+        tags: [alchemical, dangerous]
+      - description: "Tongue-stone (small calculus from the polyp's digestion)."
+        value: 25
+        chance: 0.7
+      - description: "Swallowed coin (the polyp tasted a delver's purse)."
+        value: 15
+        chance: 0.6
     tags: [level_2, hazard_creature, glutton_organ, sessile]
     rooms: [gullet_passage]
     notes: >-
@@ -239,12 +285,22 @@ creatures:
           At Keeper awareness 15+, amber hulks patrol corridors they
           normally ignore. At awareness 20, they actively hunt.
     loot:
-      - description: "Cracking the amber shell reveals the original delver's gear — corroded but sometimes valuable"
-        value: 30
+      - description: "Encased delver's gear (full kit) — sword, dagger, coin purse (~80gp), a Hamlet-issued seal."
+        value: 130
+        chance: 1.0
+        tags: [identifiable, narrative_weight, full_kit]
+      - description: "Amber resin chunks (large) — alchemically valuable on the surface; sealable in jars."
+        value: 60
+        chance: 1.0
+        tags: [alchemical, heavy]
+      - description: "Encased face (recognizable) — the delver's preserved features. Confessional pays for these."
+        value: 80
+        chance: 0.7
+        tags: [narrative_weight, confessional, vexell_or_local]
+      - description: "Glutton-puppet linkage (the invisible binding that animated the corpse)."
+        value: 100
         chance: 0.5
-      - description: "Amber resin chunks (alchemically valuable on the surface)"
-        value: 20
-        weight: 2.0
+        tags: [keeper_construct, alchemical]
     tags: [level_1, level_2, construct, glutton_puppet, slow]
     rooms: [hall, landing, stomach]
     notes: >-
@@ -286,12 +342,21 @@ creatures:
           The worms sense body heat. Dousing a torch does not hide you
           from them. Cold iron or ice repels them temporarily.
     loot:
-      - description: "Worm enzyme glands — an alchemist in Gristwell pays well for them"
-        value: 15
-        weight: 0.1
-      - description: "Bioluminescent segments glow for 1d4 hours after the worm dies — dim but free light"
-        value: 5
-        weight: 0.1
+      - description: "Worm enzyme glands (set) — Gristwell alchemists pay enormously; bone-dissolution agent."
+        value: 65
+        chance: 1.0
+        tags: [alchemical, dangerous]
+      - description: "Bioluminescent segments (jar) — glow for 1d4 hours after harvest; useful free light."
+        value: 25
+        chance: 1.0
+        tags: [light, consumable]
+      - description: "Marrow-set jewelry (a ring or pendant the worm ate, lodged in its body)."
+        value: 50
+        chance: 0.6
+        tags: [identifiable]
+      - description: "Heat-sense organ — alchemical and tactical value (one-shot vibration ward)."
+        value: 80
+        chance: 0.4
     tags: [level_2, ambush, glutton_fauna, bone]
     rooms: [marrow_hall]
     notes: >-
@@ -360,18 +425,34 @@ creatures:
           Full Belly unseals. The party has a window before the Glutton
           recovers.
     loot:
-      - description: "Gemstone eyes — two flawless gems worth 75 GP each"
-        value: 150
-        weight: 0.2
-      - description: "Gold-inlaid breastplate fragment, pried from the torso"
-        value: 80
-        weight: 4.0
-      - description: "Silver-capped bone club — a functional weapon salvaged from its limbs"
-        value: 35
-        weight: 3.0
-      - description: "Assorted metal fragments and coins fused into its body"
-        value: 40
-        weight: 6.0
+      # NOTE: Boss-room static treasure (lieutenant's bone-armor plates,
+      # ingested hoard, tongue-stone, belt of trophies) is in room_loot.yaml
+      # under `maw_chamber`. The drops below are body-of-creature drops
+      # only — assembled from what the Maw was built from.
+      - description: "Gemstone eyes (pair) — two flawless gems, the Maw's vision."
+        value: 250
+        chance: 1.0
+        tags: [boss_drop, gem]
+      - description: "Gold-inlaid breastplate fragment (large pry from torso) — armor or assayer value."
+        value: 140
+        chance: 1.0
+        tags: [boss_drop, armor]
+      - description: "Silver-capped bone club — functional weapon salvaged from its limbs."
+        value: 70
+        chance: 1.0
+        tags: [boss_drop, weapon]
+      - description: "Assorted metal fragments and coins (heap) — fused into its body, pried free post-fight."
+        value: 180
+        chance: 1.0
+        tags: [boss_drop, currency, bulky]
+      - description: "Composite skull (assembled from a dozen smaller skulls) — Hamlet relic-buyer pays enormously; family-recognition possible."
+        value: 220
+        chance: 1.0
+        tags: [boss_drop, narrative_weight, identifiable]
+      - description: "Maw's heart-stone — a fist-sized warm stone from its core, alchemically priceless."
+        value: 320
+        chance: 0.8
+        tags: [boss_drop, alchemical]
     tags: [level_2, boss, epitome, glutton_construct, unique]
     rooms: [maw_chamber]
     respawn: >-
