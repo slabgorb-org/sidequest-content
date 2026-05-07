@@ -8,8 +8,28 @@
 # (sidequest-daemon/sidequest_daemon/media/catalogs.py::StyleCatalog.load).
 # World-level positive_suffix layers on top of the genre's B&W ink
 # suffix via the explicit-recipes PromptComposer's ART_SENSIBILITY.WORLD
-# slot. The dungeon-level visual_style files override this when the
-# scene resolves under a dungeon prefix.
+# slot.
+#
+# IMPORTANT (playtest 2026-05-06 fix): the world-level suffix is INJECTED
+# INTO EVERY RENDER IN THIS WORLD, including dungeon scenes (Grimvault,
+# Horden, Mawdeep). Earlier this field carried a long Sünden-hamlet
+# subject description (limestone hamlet, parish-church scale, market
+# stalls, parish Wall, etc.) which then dominated dungeon prompts —
+# a torchlit chamber inside Grimvault rendered as the hamlet's exterior
+# town square. The dungeon-level visual_style.yaml files in
+# `worlds/caverns_sunden/dungeons/<dungeon>/` are NOT yet wired into
+# the StyleCatalog, so they cannot currently override.
+#
+# Doctrine for this slot: keep the world-level suffix to *tonal art
+# discipline* (palette mood, line discipline, what the WHOLE world looks
+# like as black-and-white ink). Subject specifics (which architecture,
+# which props, which lighting) belong on the per-POI ``visual_prompt``
+# block in ``history.yaml`` (see ``sunden_square`` for the canonical
+# shape) — those are pulled into the LOCATION layer only when the
+# scene actually resolves to that POI. Free-form prose locations
+# (mid-corridor, transient encounters) intentionally fall through with
+# only the world-level tonal layer + the narrator's
+# ``visual_scene.subject`` describing the scene-specific imagery.
 #
 # Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt
 # entirely (see sidequest-content/PROMPTING_Z_IMAGE.md). Rejection
@@ -17,23 +37,9 @@
 # authored as a separate negative_prompt.
 
 positive_suffix: >-
-  Late-medieval European limestone hamlet, parish-church scale,
-  weathered pale stone darkened in lamp-soot streaks above doorways
-  and lintels, oil-lamp light spilling cream-white onto warm grey
-  walls, narrow flagged streets sloped to a central drainage,
-  pitched slate roofs with moss in the shaded courses, oak shutters
-  rubbed grey by hand-use, low timber-and-stone dwellings, a parish
-  Wall of carved slate as the most-photographed feature of the
-  square, three dungeon mouths visible only as small dark notches
-  on the upper terraces in the far background, never centered, never
-  framed. Lived-in but uneasy — a market stall sorted oddly, an
-  empty corner where someone should be standing, a half-closed door,
-  a chair pushed back from a table nobody is sitting at. Heavy
-  crosshatch shadow under eaves and arches, fine line work on
-  carved stone, B&W pen-and-ink discipline in the genre style of
-  Erol Otus and David Trampier. No castles, no wizardry, no banners,
-  no overt horror in the foreground, no bright colors, no sun-flooded
-  exteriors, no modern materials, no signage with readable letters,
+  B&W pen-and-ink discipline in the genre style of Erol Otus and
+  David Trampier, heavy crosshatch shadow, fine line work on carved
+  stone and grain in cut timber, high contrast, no readable signage,
   no text, no caption, no title, no watermark.
 
 # Z-Image ignores this; rejection clauses are in positive_suffix above.
