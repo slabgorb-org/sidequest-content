@@ -4,11 +4,20 @@
 # campaign's relationship to the three sins as a whole.
 
 chapters:
-  # NOTE: chapter id MUST be one of {fresh, early, mid, veteran} for
-  # CampaignMaturity.from_chapter_id() to map it to a tier. Other ids
-  # are skipped by world_materialization. The remaining chapters
-  # below (first_blood, wounded_*) currently use non-canonical ids
-  # and are authoring stubs awaiting canonicalization.
+  # Chapter ids MUST be one of {fresh, early, mid, veteran} —
+  # CampaignMaturity.from_chapter_id() (world_materialization.py)
+  # only maps those four. Sünden's authored progression is five
+  # phases (arrival → first_blood → 1/2/3 sins wounded), so two
+  # phases collapse into the same tier:
+  #   fresh        — arrival                            (sessions 1-2)
+  #   early        — first_blood + wounded_one          (sessions 3-10)
+  #   mid          — wounded_two                        (sessions 11-15)
+  #   veteran      — wounded_all                        (sessions 16-20)
+  # Tiers are CUMULATIVE in materialization: at Veteran, all five
+  # chapters apply, so the doubling at `early` is intentional — both
+  # phases describe present-tense state and stack into the lore feed.
+  # The phase label (first_blood / wounded_one / etc.) is preserved
+  # in `phase_label` for authoring clarity.
   - id: fresh
     label: "Arrival in Sünden"
     session_range: [1, 2]
@@ -124,7 +133,7 @@ chapters:
           land. The town at the end of the road is thinner than the
           town the road was built for.
 
-  - id: first_blood
+  - id: early
     label: "First Names on the Wall"
     session_range: [3, 5]
     lore:
@@ -204,7 +213,7 @@ chapters:
           and a pair of tarnished old hitching posts that everyone
           walks around without commenting.
 
-  - id: wounded_one
+  - id: early
     label: "One Wounded"
     session_range: [6, 10]
     lore:
@@ -294,7 +303,7 @@ chapters:
           breathing on its diurnal cycle, and the road never quite
           looks at it directly.
 
-  - id: wounded_two
+  - id: mid
     label: "Two Wounded"
     session_range: [11, 15]
     lore:
@@ -383,7 +392,7 @@ chapters:
           functional building. Anyone living in Ashgate now is
           either too old to leave or too rooted to consider it.
 
-  - id: wounded_all
+  - id: veteran
     label: "Three Wounded"
     session_range: [16, 20]
     lore:
