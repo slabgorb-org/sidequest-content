@@ -1,0 +1,105 @@
+# spellbook.yaml — caverns_and_claudes / caverns_sunden world layer
+#
+# 2026-05-07: Sünden ships three Cleric "rite-house" domains keyed to
+# the town's three stress-service houses (Confessional / Workhouse /
+# Masquerade). A Cleric chooses one at chargen.
+#
+# This file is FLAVOR-ONLY. The canonical L1 spell list lives at
+# genre_packs/caverns_and_claudes/spellbook.yaml and is closed —
+# domains do NOT add new spells. Domain affects narration register,
+# signature phrasings, broken-vow consequences, and a small bias
+# toward favored spells in narrator framing.
+#
+# Magic-User has no domain in Sünden — guild outsiders, lodge where
+# they can. No housing, no domain, no broken-vow consequence.
+
+world: caverns_sunden
+genre: caverns_and_claudes
+
+# === Cleric domains (Sünden) ==========================================
+
+cleric_domains:
+  - id: confessional
+    house: The Confessional
+    rite: Generosity
+    opposing_sin: Greed
+    keeper: Anselm Vail
+    location: "north-west corner of the Square (narrow stone chapel, two rows of benches and a single carved screen between penitent and keeper)"
+    flavor: |
+      Clerics of the Confessional channel mercy through tithed-coin
+      penance. Their healing comes after a count is broken — coin
+      surrendered, sum forgiven. Their prayers are low and even,
+      spoken across a screen rather than face to face. They do not
+      look at the people they heal until after the count is done.
+    favored_spells: [cure_light_wounds, remove_fear]
+    signature_phrasing: |
+      "The count is broken. The poor box is heavier. Be lighter."
+    broken_vow: |
+      Refusing to surrender coin when a brother asks; spending the
+      poor box on personal need. The Cleric loses spellcasting until
+      they surrender three times the missing sum at the screen.
+      Anselm Vail keeps the ledger; he does not forget.
+
+  - id: workhouse
+    house: The Workhouse
+    rite: Temperance
+    opposing_sin: Gluttony
+    keeper: Brother Hesh
+    location: "east side of the Square (long timber hall, cold hearth, benches and looms set for plain labor)"
+    flavor: |
+      Clerics of the Workhouse channel through plain labor and plain
+      food. Their healing is patient — wounds close at the speed of
+      bread proving. Their prayers are physical: kneading, sawing,
+      turning, looms worked. Casting is unhurried, and they will not
+      be hurried by anyone — not pursuers, not patrons, not the
+      bleeding party member.
+    favored_spells: [cure_light_wounds, resist_cold, purify_food_and_water]
+    signature_phrasing: |
+      "Eat the plain bread. Drink the cold water. Be still."
+    broken_vow: |
+      Indulging in fine food, drink, or drug; rushing the rite by
+      paying others to labor in your stead. The Cleric loses
+      spellcasting until they complete two delve-ticks at the long
+      bench under Brother Hesh's hand.
+
+  - id: masquerade
+    house: The Masquerade
+    rite: Humility
+    opposing_sin: Pride
+    keeper: "(by Sünden tradition unnamed; a different mask each season; the office is older than any wearer's tenure)"
+    location: "south side of the Square (vaulted single-room hall, walls hung with carved wooden masks of every face but the wearer's)"
+    flavor: |
+      Clerics of the Masquerade channel through becoming someone
+      else. Their prayers are spoken as the masked face — never as
+      themselves, never as their delver, never as anyone they have
+      ever been. They do not introduce themselves; they introduce
+      the mask. Healing comes when the cleric's own name is set
+      aside.
+    favored_spells: [cure_light_wounds, remove_fear, ventriloquism]
+    signature_phrasing: |
+      "I am not the one who asks. The mask asks."
+    broken_vow: |
+      Speaking as oneself during a working; refusing to wear the
+      assigned mask in public. The Cleric loses spellcasting until
+      they complete a three-day Masquerade vigil — and risks the
+      mask sticking permanently.
+    risk: |
+      Per Sünden custom, on rare nights the masked face overwrites a
+      flavor trait of the cleric — a cadence of speech, a preference,
+      a small habit — and the Wallwrights add nothing to the Wall,
+      because the cleric is not changed in any way the Wall records.
+
+# === Magic-User in Sünden =============================================
+# Tolerated guild outsiders. No domain. No housing. No broken-vow.
+# A Magic-User who lodges at Brecca Half-Hand's silver-market back
+# rooms is the most common arrangement; the Recruiter's Post takes
+# them too if they pay the bond.
+
+magic_user:
+  housing: "tolerated; lodges at Recruiter's Post (two-silver bond) or Brecca's silver-market back rooms"
+  social_register: "guild outsider — neither honored like a Cleric nor reviled like a cursed-item carrier"
+  narrator_hint: |
+    Sünden Magic-Users get the Detect Magic / Read Magic / Sleep
+    package and are watched by the Wallwrights. They are not asked
+    to heal; they are not asked to bless. They are asked to identify
+    the scroll Brecca brought back from Horden last week.
