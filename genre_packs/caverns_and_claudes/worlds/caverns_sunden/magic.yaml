@@ -1,54 +1,80 @@
 # magic.yaml — caverns_and_claudes / caverns_sunden world layer
 #
+# 2026-05-07: pivoted to D&D Basic Set (B/X). Sünden now ships both the
+# innate caster surface (Cleric / Magic-User daily spell slots) AND the
+# item-based surface (scrolls, potions, wands, cursed reliquaries).
+#
 # Loader requires both genre AND world magic.yaml; absence at either
 # tier silently no-ops the entire magic subsystem.
-#
-# Sünden honors the C&C genre defaults exactly — folkloric world-
-# knowledge, item-based magic only, item_legacy_v1 plugin. No
-# per-character or world-scope bars: magic in C&C lives entirely in
-# items, instantiated on pickup via item_legacy_v1's add_item path.
-# The Delver may carry magical things; they don't have a magical
-# state at the body level.
 
 world: caverns_sunden
 genre: caverns_and_claudes
 
-# Honors the genre default. Worlds with ruined-wizard-tower scenarios
-# may dial up to 0.5; vanilla dungeon-OSR sits at 0.3.
-intensity: 0.3
+# B/X intensity is moderate — magic exists, casters are notable, but
+# combat is still mostly steel and wits at low levels.
+intensity: 0.4
 
-# World-knowledge stays folkloric — commoners know stories of wizards
-# but no one studies. The Delver knows scrolls work because they've
-# seen them work. ``local_register`` is unset (no register-divergence
-# in C&C — folk register is the canonical register).
+# Folkloric register survives the pivot — peasants tell wizard stories,
+# clerics attend the same shrine generations have. The mechanics are now
+# B/X spell slots; the prose stays grounded.
 world_knowledge:
   primary: folkloric
 
-# C&C goes feared/dismissed — the priesthood (such as it is) fears
-# magic items as cursed; tavern-folk dismiss them as drunk-uncle
-# stories.
+# Sünden's priesthood and lay folk both treat working magic with respectful
+# distance. Magic-Users are tolerated guild outsiders; Clerics are part of
+# the village's ritual rhythm. Cursed items keep the dismissed register —
+# every other tavern story is "I knew a man who picked one up."
 visibility:
   primary: feared
   local_register: dismissed
 
-# item_legacy_v1 covers C&C's full magic surface — scrolls, potions,
-# wands, cursed swords, sealed reliquaries. The plugin instantiates
-# bond + item_history bars per-item on pickup, not at world-load, so
-# this world ships zero ledger_bars at the world tier.
-active_plugins: [item_legacy_v1]
+# Both plugins active. ``innate_v1`` powers per-character spell slots
+# for Clerics and Magic-Users. ``item_legacy_v1`` powers scrolls,
+# potions, wands, cursed gear instantiated on pickup.
+active_plugins: [item_legacy_v1, innate_v1]
 
-# Both cost types are runtime-relevant for item activation prompts.
-cost_types_active: [components, backlash]
+# B/X-aligned cost vocabulary. ``slots`` is the caster-side cost (a
+# memorized spell is consumed when cast); ``components`` and ``backlash``
+# remain item-side costs.
+cost_types_active: [components, backlash, slots]
 
-# No world-scope or character-scope bars. C&C magic is purely item-
-# based; bars only exist on items, instantiated by the plugin on
-# pickup. An empty list here is structurally valid — MagicState
-# constructs with an empty ledger and grows as items enter play.
-ledger_bars: []
+# Per-character spell-slot pool. The B/X model is "memorize today's
+# allotment from your spellbook (Magic-User) or pray for it (Cleric);
+# spend slots as you cast; refresh on rest." We model that as a single
+# down-bar normalized to [0.0, 1.0]; the per-class chargen-init value
+# encodes B/X canon at L1:
+#   Mage    1.0   (1 L1 slot/day at L1)
+#   Cleric  0.0   (Cleric casting begins at L2)
+#   Fighter 0.0   (non-caster)
+#   Thief   0.0   (non-caster)
+#   Delver  0.0   (pre-class default; non-caster)
+#
+# When L2+ chargen lands, expand to per-spell-level bars
+# (spell_slots_l1, spell_slots_l2, …) — do NOT reinterpret this normalized
+# bar as a count, that direction lies. Class-aware resolution lives in
+# ``MagicState.add_character`` via ``LedgerBarSpec.starts_at_chargen``
+# accepting either a scalar or a class-keyed dict.
+#
+# Note: ``promote_to_status`` is intentionally absent. Slot exhaustion
+# is a transient resource state ("rest to refresh"), not a Status to
+# pin to the character sheet — the narrator surfaces "out of slots"
+# via the consequence_on_low_cross prose hook instead.
+ledger_bars:
+  - id: spell_slots
+    scope: character
+    direction: down
+    range: [0.0, 1.0]
+    threshold_low: 0.0
+    consequence_on_low_cross: "no spells available until rest — find an inn or risk a wilderness camp"
+    starts_at_chargen:
+      Mage: 1.0
+      Cleric: 0.0
+      Fighter: 0.0
+      Thief: 0.0
+      Delver: 0.0
 
-# Player-build hooks. The Delver acquires magic items in play — never
-# at chargen — so can_build_caster is False (no caster classes exist
-# in C&C) and can_build_item_user is True (the Delver IS the item-
-# user shape).
-can_build_caster: false
+# Player-build hooks. B/X has Cleric and Magic-User as caster classes,
+# Fighter and Thief as non-casters. Item-user shape (Delver pre-class)
+# remains valid for any character.
+can_build_caster: true
 can_build_item_user: true
