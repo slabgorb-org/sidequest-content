@@ -7,7 +7,10 @@ magic_level: none
 # napkin-shaped truth and docs/design/magic-taxonomy.md for the framework.
 
 allowed_classes:
-  - Delver
+  - Fighter
+  - Mage
+  - Cleric
+  - Thief
 allowed_races:
   - Human
 
@@ -21,9 +24,6 @@ custom_rules:
   extraction_phase: "true"
   encumbrance: "strict"
   injuries: "permanent"
-  no_classes: "true"
-  no_races: "true"
-  no_spells: "true"
 
 default_class: Delver
 default_race: Human
@@ -113,6 +113,7 @@ confrontations:
           crit_fail:
             own: -2
         stat_check: STR
+        class_filter: [Fighter, Cleric]
         effect: "Stun the target briefly, break their footing"
         risk: "Overcommitted — lose 2 momentum and take a counter on failure"
         narrator_hint: Slam forward in the narrow corridor — nowhere to dodge.
@@ -121,6 +122,7 @@ confrontations:
         kind: angle
         target_tag: "Off-Balance"
         stat_check: DEX
+        class_filter: [Fighter, Thief]
         effect: "Set up a leverage tag the next attack can spend"
         narrator_hint: A bait — open the guard, draw the swing.
       - id: flee
@@ -130,6 +132,78 @@ confrontations:
         stat_check: DEX
         consequence: "Combat ends — retreat deeper into the dungeon"
         narrator_hint: Break contact, torch sweeping behind you as you run.
+      - id: cleave
+        label: Cleave
+        kind: strike
+        base: 3
+        stat_check: STR
+        class_filter: [Fighter]
+        effect: "Wide swing — opens up space against multiple foes"
+        narrator_hint: "Two-handed sweep, momentum carrying through to the next stance."
+      - id: parry
+        label: Parry
+        kind: brace
+        base: 2
+        stat_check: DEX
+        class_filter: [Fighter]
+        effect: "Trade momentum for a guarantee — turn the next blow aside"
+        narrator_hint: "Steel meets steel, deflecting just enough."
+      - id: backstab
+        label: Backstab
+        kind: strike
+        base: 4
+        stat_check: DEX
+        target_tag: "Off-Balance"
+        class_filter: [Thief]
+        risk: "Requires Off-Balance setup — wasted swing without it"
+        effect: "Out of the dark, blade between ribs"
+        narrator_hint: "Shadow into the gap, blade going in where armor stops."
+      - id: sneak
+        label: Slip Behind
+        kind: angle
+        target_tag: "Off-Balance"
+        stat_check: DEX
+        class_filter: [Thief]
+        effect: "Set up an Off-Balance tag the next backstab can spend"
+        narrator_hint: "A step into the side passage, gone before the lantern catches."
+      - id: cast_cantrip
+        label: Cast Cantrip
+        kind: strike
+        base: 1
+        stat_check: INT
+        class_filter: [Mage]
+        effect: "A small working — a glamour, a spark, a trick"
+        narrator_hint: "A flick of the wrist, a syllable too brief to catch."
+      - id: cast_spell
+        label: Cast Spell
+        kind: strike
+        base: 4
+        stat_check: INT
+        class_filter: [Mage]
+        risk: "Consumes a spell slot; without one, the verb does not exist"
+        effect: "The prepared spell unspools — page burns or memory empties"
+        narrator_hint: "The morning's memorized syllables, spent in one pass."
+      - id: turn_undead
+        label: Turn Undead
+        kind: push
+        base: 3
+        stat_check: WIS
+        class_filter: [Cleric]
+        effect: "Drives the dead off the field"
+        narrator_hint: "Holy symbol raised; the unliving recoil from the will behind it."
+      - id: pray
+        label: Pray for Aid
+        kind: brace
+        base: 1
+        stat_check: WIS
+        class_filter: [Cleric]
+        edge_delta: 1
+        effect: "The saint listens, briefly — composure returns"
+        narrator_hint: "A whispered name, an answered breath."
+    morale:
+      score: 8
+      triggers: [first_blood, half_killed, intimidated, leader_killed]
+      flee_consequence: chase
     mood: combat
   - type: chase
     label: Corridor Pursuit
