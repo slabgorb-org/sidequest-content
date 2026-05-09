@@ -40,11 +40,17 @@ active_plugins: [item_legacy_v1, innate_v1, learned_v1]
 
 # B/X-aligned cost vocabulary. ``spell_slots`` is the caster-side cost
 # (a memorized spell is consumed when cast); ``components`` and
-# ``backlash`` remain item-side costs. Cost-type names MUST match the
+# ``backlash`` remain item-side costs. ``divine_favor`` is the Cleric's
+# bidirectional standing-with-the-rite-house bar — narrator may emit
+# negative deltas (broken vow, expedient compromise) or positive deltas
+# (penance completed, rite observed). Cost-type names MUST match the
 # ledger bar id below — the engine routes ``cost_type → bar_id``
 # directly at ``magic/state.py``. A `slots`/`spell_slots` divergence
-# dropped every Mage cast silently in the 2026-05-08 playtest.
-cost_types_active: [components, backlash, spell_slots]
+# dropped every Mage cast silently in the 2026-05-08 playtest; the
+# ``divine_favor`` omission would do the same for any narrator-emitted
+# Cleric standing change against the rite-house, the imported faiths
+# (Herdsman / Green / Dust), or the Wall of Names itself.
+cost_types_active: [components, backlash, spell_slots, divine_favor]
 
 # Per-character spell-slot pool. The B/X model is "memorize today's
 # allotment from your spellbook (Magic-User) or pray for it (Cleric);

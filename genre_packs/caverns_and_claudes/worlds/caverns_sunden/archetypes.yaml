@@ -21,7 +21,7 @@
     - precise
     - skeptical
     - obsessive
-  typical_classes: []
+  typical_classes: [Mage, Thief]
   typical_races: []
   stat_ranges:
     intelligence: [14, 18]
@@ -55,7 +55,7 @@
     - empathetic
     - observant
     - cautious
-  typical_classes: []
+  typical_classes: [Cleric, Mage]
   typical_races: []
   stat_ranges:
     wisdom: [14, 18]
@@ -90,7 +90,7 @@
     - mercantile
     - knowledgeable
     - calculating
-  typical_classes: []
+  typical_classes: [Mage, Thief]
   typical_races: []
   stat_ranges:
     charisma: [12, 16]
@@ -125,7 +125,7 @@
     - methodical
     - taciturn
     - honest about limitations
-  typical_classes: []
+  typical_classes: [Fighter, Thief]
   typical_races: []
   stat_ranges:
     dexterity: [12, 16]
@@ -164,7 +164,7 @@
     - pragmatic
     - territorial
     - risk-averse
-  typical_classes: []
+  typical_classes: [Thief]
   typical_races: []
   stat_ranges:
     dexterity: [12, 16]
@@ -200,7 +200,7 @@
     - obsessive
     - precise
     - anxious
-  typical_classes: []
+  typical_classes: [Cleric, Mage]
   typical_races: []
   stat_ranges:
     intelligence: [14, 18]
@@ -235,7 +235,7 @@
     - precise
     - mercantile
     - unflappable
-  typical_classes: []
+  typical_classes: [Mage, Thief]
   typical_races: []
   stat_ranges:
     intelligence: [14, 18]
@@ -271,7 +271,7 @@
     - methodical
     - cautious
     - honest about limits
-  typical_classes: []
+  typical_classes: [Fighter]
   typical_races: []
   stat_ranges:
     strength: [14, 18]
@@ -306,7 +306,7 @@
     - nervous
     - surprisingly brave in short bursts
     - prone to exaggeration
-  typical_classes: []
+  typical_classes: [Thief, Fighter]
   typical_races: []
   stat_ranges:
     strength: [8, 10]
@@ -341,7 +341,7 @@
     - silent
     - immovable
     - oddly gentle with fragile treasure
-  typical_classes: []
+  typical_classes: [Fighter]
   typical_races: []
   stat_ranges:
     strength: [16, 18]
@@ -373,7 +373,7 @@
     - calculating
     - superstitious
     - terrified of the dungeon
-  typical_classes: []
+  typical_classes: [Thief, Mage]
   typical_races: []
   stat_ranges:
     charisma: [14, 16]
@@ -404,7 +404,7 @@
     - theatrical
     - half-drunk
     - knows more than he should
-  typical_classes: []
+  typical_classes: [Thief, Cleric]
   typical_races: []
   stat_ranges:
     charisma: [12, 14]
@@ -436,7 +436,7 @@
     - businesslike
     - keeps her own counsel
     - remembers every face
-  typical_classes: []
+  typical_classes: [Cleric, Thief]
   typical_races: []
   stat_ranges:
     charisma: [10, 12]
@@ -461,3 +461,307 @@
     extraversion: 2.0
     agreeableness: 5.0
     neuroticism: 2.0
+
+# ── Caster archetypes (post-2026-05-09 B/X pivot) ─────────────────────────
+# Sünden's caster classes — Mage and Cleric — produce a class of person, not
+# just a class of player character. The archetypes below give the narrator
+# stock NPCs to populate the rite-houses, the Recruiter's Post back rooms,
+# Brecca Half-Hand's silver-market lodgings, and the wandering edges of the
+# imported faiths (Herdsman's Witnesses, Green-Watchers, Dust-Listeners).
+# All are PC-buildable as well — a player who picks Mage or Cleric at chargen
+# and wants a Sünden-anchored backstory can pull from these.
+
+- name: Brecca's Apprentice
+  sin_origin: pride
+  description: >-
+    A guild-outsider Mage who lodges in the silver-market back rooms
+    above Brecca Half-Hand's office. Pays the rent in scroll-identifying
+    work — the trader brings something back from Horden each season and
+    the Apprentice spends the morning telling her whether it will burn
+    her hand or not. Chronically half-blind from reading by lamp-soot.
+    Carries a spellbook with the standard Sünden Mage's three
+    workings — Detect Magic, Read Magic, Sleep — and not much else.
+  personality_traits:
+    - bookish
+    - careful with words
+    - quietly practical
+  typical_classes: [Mage]
+  typical_races: []
+  stat_ranges:
+    intelligence: [14, 18]
+    wisdom: [10, 14]
+    constitution: [8, 12]
+  catalog_items:
+    - spellbook
+    - component_pouch
+    - dagger_iron
+    - torch
+  inventory_hints:
+    - a leather-bound spellbook with Brecca's silver-market mark on the spine
+    - a component pouch missing one or two compartments by long use
+    - reading lenses in a hinged copper case
+    - a list of pending scroll-jobs for Brecca, in cipher
+  dialogue_quirks:
+    - asks to see the writing before naming the price
+    - corrects pronunciation of magical words without comment
+    - pauses for a long count before refusing a job
+  disposition_default: 5
+  ocean:
+    openness: 8.0
+    conscientiousness: 7.0
+    extraversion: 3.0
+    agreeableness: 6.0
+    neuroticism: 5.0
+  role: town
+  morale: null
+
+- name: Wallwright Scribe
+  sin_origin: pride
+  description: >-
+    A Mage in the formal employment of the Wallwrights — the guild that
+    chisels names into the Wall of Names. The Scribe's job is to verify
+    that the proposed inscription matches the deceased's true name (which
+    the Wall reads back if the working is performed correctly). One Scribe
+    per shift, paid in lodging and silence. They almost never speak the
+    names they have verified; they take the secrecy as part of the work.
+  personality_traits:
+    - reverent
+    - exact
+    - selectively mute
+  typical_classes: [Mage]
+  typical_races: []
+  stat_ranges:
+    intelligence: [14, 16]
+    wisdom: [12, 16]
+  catalog_items:
+    - spellbook
+    - component_pouch
+  inventory_hints:
+    - a Wallwright's verification stylus, ash-tipped
+    - a spellbook with one extra working — Read Magic plus a name-checker
+      cantrip the Wallwrights teach in-house
+    - a closed ledger of the day's verifications, sealed with wax
+  dialogue_quirks:
+    - never repeats a name they have just chiselled
+    - touches the Wall before answering any question about it
+  disposition_default: 8
+  ocean:
+    openness: 5.0
+    conscientiousness: 9.0
+    extraversion: 2.0
+    agreeableness: 6.0
+    neuroticism: 3.0
+  role: town
+  morale: null
+
+- name: Confessional Acolyte
+  sin_origin: greed
+  description: >-
+    A junior Cleric of Anselm Vail's rite-house, working a rotation under
+    the keeper before they are entrusted with the screen and the count.
+    Acolytes wear plain undyed linen, carry the pierced-coin holy symbol,
+    and are the rite-house's first responders for any party returning
+    from a Greed-aligned dungeon — the count needs to be broken before
+    the cleric's cure-light-wounds can run. They learn doctrine slowly
+    and stop apologising for it eventually.
+  personality_traits:
+    - earnest
+    - tightly disciplined
+    - quietly competitive about coin-counts
+  typical_classes: [Cleric]
+  typical_races: []
+  stat_ranges:
+    wisdom: [14, 18]
+    charisma: [12, 16]
+    constitution: [10, 14]
+  catalog_items:
+    - mace_iron
+    - holy_symbol
+    - rope_hemp
+  inventory_hints:
+    - the Confessional pierced-copper holy symbol, worn inside the collar
+    - a folded rite-book of the standing penance-counts
+    - a leather purse with the morning's poor-box change for working-cost
+  dialogue_quirks:
+    - states the penance-count before applying any healing
+    - looks at the screen-wall when speaking even when no screen is present
+    - calls Anselm Vail "the keeper" never "Vail"
+  disposition_default: 12
+  ocean:
+    openness: 4.0
+    conscientiousness: 9.0
+    extraversion: 4.0
+    agreeableness: 7.0
+    neuroticism: 4.0
+  role: town
+  morale: 7
+
+- name: Workhouse Novice
+  sin_origin: gluttony
+  description: >-
+    A junior Cleric of Brother Hesh's rite-house, in the second of
+    seven years of formation. Novices are the muscle of the Workhouse
+    — they bake the day's loaves before dawn, mend the looms, draw
+    well-water for the visiting parties, and cast Purify Food and
+    Water before every shared meal as a matter of habit. Their working
+    is unhurried by design, and they are notoriously hard to hurry by
+    persuasion. They keep a personal labour-tally that is more
+    important to them than the silver the Workhouse pays in.
+  personality_traits:
+    - patient
+    - physically calm
+    - allergic to shortcuts
+  typical_classes: [Cleric]
+  typical_races: []
+  stat_ranges:
+    constitution: [14, 18]
+    wisdom: [12, 16]
+    strength: [12, 14]
+  catalog_items:
+    - hammer_war
+    - holy_symbol
+    - rations_day
+  inventory_hints:
+    - the Workhouse pinewood-disc holy symbol on plain twine
+    - a folded apron with flour and pine-soap stains
+    - a small tally-book in which the labour-counts and prayer-counts share columns
+  dialogue_quirks:
+    - finishes any current task before answering the question
+    - pauses to bless plain bread before eating in the field
+    - says "Brother Hesh would" before any deviation from rote
+  disposition_default: 8
+  ocean:
+    openness: 3.0
+    conscientiousness: 9.0
+    extraversion: 2.0
+    agreeableness: 7.0
+    neuroticism: 2.0
+  role: town
+  morale: 8
+
+- name: Wandering Witness
+  sin_origin: pride
+  description: >-
+    A Cleric of the Herdsman, lodging at the Recruiter's Post when in
+    Sünden and walking the Wall of Names on holy days. Witnesses came
+    south from the Klas steppes after a bad winter and stayed because
+    the Wall reminded them of the Mjöndenheill's roll-call. They
+    handle the rite of separation — sick from healthy, dying from
+    salvageable — and they pay in years-of-life for every working.
+    Apparent age is not stated age. They do not complain about it.
+  personality_traits:
+    - flat-affected
+    - careful with names
+    - decisive at the wrong moments
+  typical_classes: [Cleric]
+  typical_races: []
+  stat_ranges:
+    wisdom: [14, 18]
+    constitution: [10, 14]
+    charisma: [12, 14]
+  catalog_items:
+    - mace_iron
+    - holy_symbol
+  inventory_hints:
+    - a short wooden crook the length of a forearm, dark with use
+    - an Aldkin-pattern wool cloak, river-grey
+    - a small leather-bound journal of names with the prayer-tolls noted
+      against each
+  dialogue_quirks:
+    - speaks Aldkin-cadenced Common with flat consonants and long vowels
+    - half-step pause before any name
+    - decides for you which side of the line you sit on
+  disposition_default: 5
+  ocean:
+    openness: 4.0
+    conscientiousness: 7.0
+    extraversion: 2.0
+    agreeableness: 5.0
+    neuroticism: 3.0
+  role: town
+  morale: 6
+
+- name: Hill-Country Watcher
+  sin_origin: gluttony
+  description: >-
+    A celibate druidic Cleric of the Green who patrols the limestone
+    hills between Sünden and the dungeon mouths. Watchers are not from
+    here — usually displaced from a northern forest that was cut down
+    or burned — and they tend the Sünden hill country because what
+    survives is what they tend. They take water at the Workhouse, sleep
+    upwind of dungeon vents, and pay in childlessness for the Green's
+    bond. Half a season ahead of the parties they shadow, knowing the
+    hill-paths better than any guide the Recruiter's Post provides.
+  personality_traits:
+    - quiet
+    - unsentimental about loss
+    - softly observant of growing things
+  typical_classes: [Cleric]
+  typical_races: []
+  stat_ranges:
+    wisdom: [14, 18]
+    dexterity: [12, 16]
+    constitution: [12, 14]
+  catalog_items:
+    - hammer_war
+    - holy_symbol
+    - rope_hemp
+    - rations_day
+  inventory_hints:
+    - a pressed-leaf disc the size of a thumbprint on a long cord
+    - a Watcher's hill-bag with seed-packets and small clay water-pots
+    - a stitched cloak in three shades of green that pattern-breaks at distance
+  dialogue_quirks:
+    - speaks half under the breath
+    - addresses growing things (trees, moss, lichen) before addressing strangers
+    - declines invitations to lodge indoors with a single nod
+  disposition_default: 0
+  ocean:
+    openness: 7.0
+    conscientiousness: 6.0
+    extraversion: 2.0
+    agreeableness: 5.0
+    neuroticism: 4.0
+  role: town
+  morale: 7
+
+- name: Wall-Listener
+  sin_origin: pride
+  description: >-
+    A Dust-Listener Cleric who works the Wall of Names at first
+    lamp-light and at the hour before dawn. Listeners hear the named
+    dead at thin places and translate the fragments for the parties
+    who will accept the framing. Their healing is laced with funeral
+    cadence and they pray to specific names on the Wall, not into the
+    air. They pay in being slowly pulled toward the Chalky Cliffs;
+    veteran Listeners walk in their sleep and have to be turned around.
+  personality_traits:
+    - composed
+    - oriented toward the dead
+    - plain-spoken about cost
+  typical_classes: [Cleric]
+  typical_races: []
+  stat_ranges:
+    wisdom: [14, 18]
+    intelligence: [12, 16]
+    constitution: [10, 14]
+  catalog_items:
+    - mace_iron
+    - holy_symbol
+  inventory_hints:
+    - a knuckle-sized limestone chip on a cord, the source-name written along the cord
+    - a journal of named-dead-heard with annotations in two hands (the Listener's and their predecessor's)
+    - a long cord coiled at the belt — used at night, when the pull is strongest
+  dialogue_quirks:
+    - prays to a specific named dead before treating an injury
+    - quotes the dead in fragments, fills the gaps without flagging which is which
+    - watches the Wall during conversations rather than the speaker
+  disposition_default: 5
+  ocean:
+    openness: 7.0
+    conscientiousness: 8.0
+    extraversion: 3.0
+    agreeableness: 5.0
+    neuroticism: 4.0
+  role: town
+  morale: 7

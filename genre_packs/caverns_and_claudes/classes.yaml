@@ -44,7 +44,14 @@
   # prepared_spells, and per-level slot bars from arcane_l1.yaml.
   magic_config:
     tradition: arcane
-    starting_known_spells: 2
+    # C&C deviation from B/X canon (canon = 2). Sünden Mages get the
+    # Detect Magic / Read Magic / Sleep package as a guild-outsider's
+    # working baseline — three workings give the L1 Mage one daily-cast
+    # option even after Read Magic burns the morning slot. Worlds that
+    # want strict B/X parity may override at the world layer (no
+    # mechanism shipped yet — author here when a non-Sünden C&C world
+    # lands).
+    starting_known_spells: 3
     save_dc_stat: INT
     turn_undead: false
     # B/X canon Magic-User slot progression. Outer key: class level.
