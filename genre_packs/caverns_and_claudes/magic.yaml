@@ -22,7 +22,11 @@ allowed_sources: [item_based, innate]
 # Plugins permitted by the genre. ``item_legacy_v1`` covers scrolls,
 # potions, wands, cursed swords, sealed reliquaries. ``innate_v1`` covers
 # Cleric / Magic-User per-character spell-slot ledgers in the B/X model.
-permitted_plugins: [item_legacy_v1, innate_v1]
+# learned_v1 is the data layer (story 47-10 dual-plugin pivot 2026-05-09):
+# spell catalogs (arcane_l1, divine_l1), MagicState.known_spells /
+# prepared_spells collections, prepare/cast/rest/turn_undead operations.
+# innate_v1 stays as the player-facing surface for cast_spell.
+permitted_plugins: [item_legacy_v1, innate_v1, learned_v1]
 
 intensity:
   default: 0.3
