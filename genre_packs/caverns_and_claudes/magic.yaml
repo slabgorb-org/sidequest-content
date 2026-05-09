@@ -54,11 +54,16 @@ hard_limits:
 # (ash, blood, the second-to-last torch); ``backlash`` covers
 # consequence-of-use (cursed item awakens, attention drawn).
 # ``spell_slots`` covers caster-class daily spell slots — refreshed on
-# rest, B/X-style. The cost_type name MUST match the ledger bar id
-# (engine resolves ``BarKey(scope, owner, bar_id=cost_type)`` directly
-# at ``magic/state.py``); a `slots` → `spell_slots` divergence dropped
-# every Mage cast silently in the 2026-05-08 playtest.
-cost_types: [components, backlash, spell_slots]
+# rest, B/X-style. ``divine_favor`` is the bidirectional Cleric
+# standing-with-rite-house bar, world-scope by default; permitted at
+# the genre level so worlds may instantiate it (caverns_sunden does;
+# future C&C worlds may decline). The cost_type name MUST match the
+# ledger bar id (engine resolves ``BarKey(scope, owner, bar_id=cost_type)``
+# directly at ``magic/state.py``); a `slots` → `spell_slots` divergence
+# dropped every Mage cast silently in the 2026-05-08 playtest, and a
+# missing ``divine_favor`` would do the same for any narrator-emitted
+# Cleric vow / penance / rite delta.
+cost_types: [components, backlash, spell_slots, divine_favor]
 
 narrator_register: |
   Magic in C&C is both found AND prepared. The Magic-User spends the

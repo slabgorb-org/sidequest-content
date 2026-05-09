@@ -98,6 +98,51 @@ openings:
         recently and has not yet committed to a dungeon. Do not
         introduce a quest-giver. Do not have an NPC walk up. Wait
         for the player to choose a direction.
+    per_pc_beats:
+      # Cleric — rite-house / imported-faith pick. Surfaced as a
+      # passing observation by the lamp-lighter or another townsperson
+      # who recognises the holy_symbol_form on sight. Player declares
+      # the rite in their reply; narrator canonises it via Yes-And.
+      # The five canonical houses are: confessional, workhouse,
+      # masquerade (local rite-houses) and herdsman, green_watcher,
+      # dust_listener (imported faiths). See worlds/caverns_sunden/
+      # spellbook.yaml for full per-house flavor.
+      - applies_to:
+          class: Cleric
+        beat: |
+          The Workhouse rota's lighter passes close enough to see the
+          holy symbol at your collar — the pierced copper of the
+          Confessional, the plain pinewood disc of the Workhouse, the
+          carved mask-fragment of the Masquerade, the dark wooden
+          crook of a Herdsman's Witness, the pressed-leaf disc of a
+          Green-Watcher, the limestone chip of a Dust-Listener — and
+          their nod adjusts by a fraction to match the rite. They do
+          not ask which house you serve. The symbol speaks for itself.
+          Tonight, in the square, the form your symbol takes is the
+          form the town will read you by for the rest of the season.
+
+      # Mage — spell-pack pick. Surfaced as Brecca Half-Hand reading
+      # the spine of the Mage's spellbook in the silver-market window.
+      # The C&C/Sünden Mage starts with three workings copied into the
+      # book (per genre classes.yaml: starting_known_spells: 3). The
+      # canonical L1 catalog is at genre_packs/caverns_and_claudes/
+      # spells/arcane_l1.yaml — twelve options. Player picks three in
+      # their reply; narrator canonises via Yes-And.
+      - applies_to:
+          class: Mage
+        beat: |
+          You walk past the silver-market on your way out of the
+          square earlier and Brecca Half-Hand is at the back-room
+          window, her three remaining left-hand fingers rested against
+          the glass. She sees the spellbook at your hip and reads the
+          spine by lamp-light — the way she reads every Mage's spine
+          in Sünden — and her mouth moves once for each working she
+          identifies. Three workings. Brecca knows the count without
+          opening the book. She nods; the nod is her version of
+          "carry on." The three workings you copied in are the three
+          you can cast tomorrow morning, and Brecca has just confirmed
+          to half the silver-market that you came south with them in
+          your book.
 
   # ---------------------------------------------------------------
   # MP — two or more delvers at the Spillway after the lamps light
@@ -175,3 +220,42 @@ openings:
         NPC join the table. Let the players decide which dungeon
         tomorrow's descent goes to. Do not narrate them moving;
         wait for their actions.
+    per_pc_beats:
+      # Cleric — rite-house / imported-faith pick, MP framing. The
+      # Spillway's third candle is the rite-house tell — the staff
+      # match the candle's wax color to the Cleric's house when they
+      # know it, and ask without asking when they don't. Player
+      # declares the rite in their reply; narrator canonises via
+      # Yes-And. Five canonical houses: confessional, workhouse,
+      # masquerade, herdsman, green_watcher, dust_listener.
+      - applies_to:
+          class: Cleric
+        beat: |
+          The Spillway's barkeep — Mira behind the counter, who has
+          been here long enough to know the shorthand — sets down the
+          third candle and pauses with the wax-pot at the ready.
+          Confessional candles are pierced-coin coloured; Workhouse
+          candles are unbleached pinewood; Masquerade candles are
+          mask-pale; Witness candles are the river-grey of the Aldkin
+          cloak; Watcher candles burn with a single pressed leaf in
+          the wax; Listener candles are limestone-chalk white. Mira
+          does not ask. She waits to be told, the way the Spillway's
+          staff have always waited. Once she lights it, the rest of
+          the room will know which rite is at the table tonight.
+
+      # Mage — spell-pack pick, MP framing. The MP frame keeps Brecca
+      # offstage but shifts the visibility to a fellow delver at the
+      # table noticing the spellbook spine in the candlelight. The
+      # Mage's three workings are common knowledge by the next dawn.
+      # See solo opening's per_pc_beat for the spell catalog reference.
+      - applies_to:
+          class: Mage
+        beat: |
+          One of the other delvers at the table — whichever of the
+          party is sitting closest — leans over the candle and reads
+          the spine of your spellbook upside-down, the way veterans
+          do, and counts the workings under their breath. Three. They
+          nod, settle back, and do not ask which three. Sünden Mages
+          carry three. The party will know which three by the morning
+          regardless; whether you say them now or wait for tomorrow's
+          first cast is a Mage's call, but the three are the three.
