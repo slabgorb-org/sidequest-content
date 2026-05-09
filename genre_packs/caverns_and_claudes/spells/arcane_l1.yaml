@@ -1,0 +1,285 @@
+# Caverns & Claudes — Arcane L1 spell catalog (Magic-User / Elf list)
+# Moldvay/Cook B/X canon, twelve spells, C&C voice.
+# Schema: see docs/superpowers/specs/2026-05-06-magic-system-caverns-and-claudes-implementation-design.md §2
+
+version: "0.1.0"
+genre: caverns_and_claudes
+tradition: arcane
+level: 1
+
+spells:
+  - id: magic_missile
+    name: "Magic Missile"
+    level: 1
+    tradition: arcane
+    range: near
+    target: single
+    duration: instant
+    save:
+      stat: null
+      effect: none
+    effect_template: "Force dart strikes target — 1 momentum damage, auto-hit"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      A bolt of glowing force, half-thought, half-aimed. The dart finds
+      what the caster pointed at, even in dark, even around a corner if
+      the corner is short. It does not miss. It also does not impress.
+    hard_limits_check: []
+    domain: physical
+    otel_attrs: [cast_intent, validator_outcome]
+
+  - id: sleep
+    name: "Sleep"
+    level: 1
+    tradition: arcane
+    range: near
+    target: area
+    duration: turns:1d4+1
+    save:
+      stat: WIS
+      effect: negates
+    effect_template: "Up to 4d4 HD of creatures (lowest HD first); save WIS or unconscious"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      A slow, kind weight. The eyes go first, then the knees. The smallest
+      foes drop first; the strongest may yet stand and look at you.
+    hard_limits_check: []
+    domain: psychic
+    otel_attrs: [cast_intent, hd_affected, saves_made, saves_failed]
+
+  - id: charm_person
+    name: "Charm Person"
+    level: 1
+    tradition: arcane
+    range: near
+    target: single
+    duration: until_rest
+    save:
+      stat: WIS
+      effect: negates
+    effect_template: "Single humanoid; save WIS or treats caster as trusted friend"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      The target's eyes settle. The grip on the hilt loosens. They have
+      always known you, and have always wanted to help you, and the
+      reasons will come later. This works on people. People are flexible.
+      Saint statues, talking doors, and the things in Grimvault are not.
+    hard_limits_check: []
+    domain: psychic
+    otel_attrs: [cast_intent, save_made]
+
+  - id: detect_magic
+    name: "Detect Magic"
+    level: 1
+    tradition: arcane
+    range: close
+    target: self
+    duration: turns:2
+    save:
+      stat: null
+      effect: none
+    effect_template: "Caster perceives magical auras within close range; reveals presence and rough strength, not nature or function"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      Cold spots and warm spots. The lamp on the desk in Sünden Square
+      reads cold; the dagger under the desk reads warm. Three cursed
+      coins in a purse read as one bright spot — the spell does not
+      count, only feels. What the magic does, what the magic costs,
+      whose magic it is — none of that. Only that it is here.
+    hard_limits_check: []
+    domain: physical
+    otel_attrs: [cast_intent, auras_detected]
+
+  - id: floating_disc
+    name: "Floating Disc"
+    level: 1
+    tradition: arcane
+    range: touch
+    target: self
+    duration: until_rest
+    save:
+      stat: null
+      effect: none
+    effect_template: "Conjures a horizontal disc of force ~3 ft diameter at waist height; carries up to 500 lbs; trails caster within 6 ft; vanishes if caster steps out of range"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      A shimmer in the lamp-oil dark, the size of a dinner platter,
+      level as still water. It carries what the Mage cannot — the iron
+      strongbox out of the Workhouse, the body of the apprentice up the
+      stairs to Lampwick. Step out of range and whatever was on it is
+      on the floor. The disc keeps no memory of what it was holding.
+    hard_limits_check: []
+    domain: physical
+    otel_attrs: [cast_intent, payload_weight]
+
+  - id: hold_portal
+    name: "Hold Portal"
+    level: 1
+    tradition: arcane
+    range: close
+    target: object
+    duration: turns:2d6
+    save:
+      stat: null
+      effect: none
+    effect_template: "One door, gate, shutter, or hatch is held magically shut; STR 18+ or magical force may break it; Knock or Dispel Magic ends it"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      The door does not appear locked. It appears stuck. The pursuer
+      tests the latch, then the hinges, then puts a shoulder to it,
+      and each of those is a count of seconds the party does not have
+      to spend running. A wizard's lock pretends to be carpentry. That
+      is most of why it works.
+    hard_limits_check: []
+    domain: physical
+    otel_attrs: [cast_intent, portal_target, duration_rolled]
+
+  - id: light
+    name: "Light"
+    level: 1
+    tradition: arcane
+    range: near
+    target: object
+    duration: turns:6
+    save:
+      stat: DEX
+      effect: partial:"if cast on a creature's eyes, save DEX or be blinded for the duration"
+    effect_template: "One object or point sheds bright light in a 30 ft radius; if cast on eyes, save DEX or blinded"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      A torch that does not gutter. Cast on a sword and the wielder is
+      a target. Cast on a goblin's spear and the goblins are giving
+      themselves away. Cast in an enemy's eyes and the world goes
+      white for them and stays white. The Sünden lampwrights would
+      buy this trick by the hour if they could; they cannot.
+    hard_limits_check: []
+    domain: physical
+    otel_attrs: [cast_intent, target_kind, save_made]
+
+  - id: protection_from_evil
+    name: "Protection from Evil"
+    level: 1
+    tradition: arcane
+    range: touch
+    target: self
+    duration: turns:12
+    save:
+      stat: null
+      effect: none
+    effect_template: "Caster gains +1 edge against magical attacks from evil-aligned sources; enchanted/summoned evil creatures cannot make melee attacks against caster and take −1 to ranged attacks against caster"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      A circle drawn in salt and breath, carried with the caster
+      instead of laid on the floor. Bandits feel nothing — bandits
+      are not evil, only desperate. The thing in the lower
+      Confessional that wears a priest's collar feels the ward at
+      arm's length and does not cross it. The Mage of Sünden trains
+      this spell early; the Mage of Sünden has reasons.
+    hard_limits_check: []
+    domain: divine
+    otel_attrs: [cast_intent, ward_triggered]
+
+  - id: read_languages
+    name: "Read Languages"
+    level: 1
+    tradition: arcane
+    range: touch
+    target: self
+    duration: turns:2
+    save:
+      stat: null
+      effect: none
+    effect_template: "Caster reads any non-magical written language for the duration; does not grant speech or writing of the language"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      The dwarven contract, the bandit tally, the Lampwick merchant's
+      double-ledger in cipher. The letters do not move on the page.
+      The Mage simply reads them, the way one reads one's own
+      handwriting. Set the parchment down and the gift ends — pick
+      it up again and the letters are foreign once more. Speaking
+      the language is another working entirely.
+    hard_limits_check: []
+    domain: psychic
+    otel_attrs: [cast_intent, document_kind]
+
+  - id: read_magic
+    name: "Read Magic"
+    level: 1
+    tradition: arcane
+    range: touch
+    target: object
+    duration: turns:1
+    save:
+      stat: null
+      effect: none
+    effect_template: "Caster deciphers magical writing on one item — scroll, spellbook page, rune, sigil; does not consume the item; scribing into one's own spellbook is a separate downtime activity"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      The first spell every Mage memorizes every morning, because
+      without it the rest of the catalog is locked behind a door
+      that looks like spider-tracks. The runes resolve into sense
+      while the duration holds, then close again. Read the scroll,
+      then choose: cast it now and burn it, or carry it home and
+      copy it down at the desk in Sünden Square.
+    hard_limits_check: []
+    domain: psychic
+    otel_attrs: [cast_intent, item_kind]
+
+  - id: shield
+    name: "Shield"
+    level: 1
+    tradition: arcane
+    range: touch
+    target: self
+    duration: turns:2
+    save:
+      stat: null
+      effect: none
+    effect_template: "Caster gains +2 edge against ranged attacks and +1 edge against melee attacks for the duration; floors only, does not stack with better existing edge"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      Invisible until the arrow finds it — then a flat plane of
+      shimmer, the size of a tavern door, hanging in the air a
+      handspan in front of the Mage. The arrow stops. The Mage
+      does not. A volley reveals the spell to everyone in the
+      room; a single shot may go unremarked. Lasts no longer
+      than a careful breath count of two hundred.
+    hard_limits_check: []
+    domain: physical
+    otel_attrs: [cast_intent, attacks_deflected]
+
+  - id: ventriloquism
+    name: "Ventriloquism"
+    level: 1
+    tradition: arcane
+    range: close
+    target: object
+    duration: turns:2
+    save:
+      stat: WIS
+      effect: partial:"listeners save WIS to disbelieve only if they have specific reason to suspect a trick"
+    effect_template: "Caster's voice issues from a chosen point within close range; words must be spoken aloud by caster — silent ventriloquism is not the spell"
+    components: { verbal: true, somatic: true, material: null }
+    backlash: null
+    narrator_register: |
+      The voice comes from the statue, or the chest, or the
+      empty stairwell at the end of the hall. The Mage's lips
+      move; nobody is watching the Mage's lips. The trick lives
+      or dies on whether the listener has a reason to look for
+      a trick. Sünden guards on a slow watch will believe a
+      barrel that addresses them by name; a cult deacon, halfway
+      through a sermon, will not.
+    hard_limits_check: []
+    domain: physical
+    otel_attrs: [cast_intent, listener_save]
