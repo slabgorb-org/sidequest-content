@@ -28,10 +28,15 @@ visibility:
   primary: feared
   local_register: dismissed
 
-# Both plugins active. ``innate_v1`` powers per-character spell slots
-# for Clerics and Magic-Users. ``item_legacy_v1`` powers scrolls,
-# potions, wands, cursed gear instantiated on pickup.
-active_plugins: [item_legacy_v1, innate_v1]
+# Three plugins active. ``innate_v1`` is the player-facing surface for
+# spell casting (cast_spell beat in rules.yaml). ``item_legacy_v1``
+# powers scrolls, potions, wands, cursed gear instantiated on pickup.
+# ``learned_v1`` is the data layer (per dual-plugin pivot 2026-05-09):
+# it owns the spell-catalog loader, prepared_spells / known_spells
+# state, and the prepare/cast/rest/turn_undead operations. innate_v1's
+# cast_spell beat consumes learned_v1's prepared list via the
+# beat-filter prepared-list gate.
+active_plugins: [item_legacy_v1, innate_v1, learned_v1]
 
 # B/X-aligned cost vocabulary. ``slots`` is the caster-side cost (a
 # memorized spell is consumed when cast); ``components`` and ``backlash``
@@ -68,6 +73,27 @@ ledger_bars:
     consequence_on_low_cross: "no spells available until rest — find an inn or risk a wilderness camp"
     starts_at_chargen:
       Mage: 1.0
+      Cleric: 0.0
+      Fighter: 0.0
+      Thief: 0.0
+      Delver: 0.0
+
+  # Cleric class-scope bar (story 47-10). Tracks the Cleric's standing
+  # with the Three Rites of Sünden — bidirectional, [-1.0, 1.0] with
+  # thresholds at ±0.7. High band: narrator may grant a free reliquary
+  # effect within the session. Low band: cleric cannot Turn Undead until
+  # restored (Confessional / Workhouse / Masquerade narrator hooks).
+  # Non-Cleric classes start at 0.0 and the bar is dormant for them.
+  - id: divine_favor
+    scope: character
+    direction: bidirectional
+    range: [-1.0, 1.0]
+    threshold_high: 0.7
+    threshold_low: -0.7
+    consequence_on_high_cross: "narrator-discretion: cleric receives one free reliquary effect this session"
+    consequence_on_low_cross: "narrator-discretion: cleric cannot Turn until favor is restored at the Confessional / Workhouse / Masquerade"
+    starts_at_chargen:
+      Mage: 0.0
       Cleric: 0.0
       Fighter: 0.0
       Thief: 0.0
