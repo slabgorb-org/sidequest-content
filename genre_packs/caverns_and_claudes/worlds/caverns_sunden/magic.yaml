@@ -38,10 +38,13 @@ visibility:
 # beat-filter prepared-list gate.
 active_plugins: [item_legacy_v1, innate_v1, learned_v1]
 
-# B/X-aligned cost vocabulary. ``slots`` is the caster-side cost (a
-# memorized spell is consumed when cast); ``components`` and ``backlash``
-# remain item-side costs.
-cost_types_active: [components, backlash, slots]
+# B/X-aligned cost vocabulary. ``spell_slots`` is the caster-side cost
+# (a memorized spell is consumed when cast); ``components`` and
+# ``backlash`` remain item-side costs. Cost-type names MUST match the
+# ledger bar id below — the engine routes ``cost_type → bar_id``
+# directly at ``magic/state.py``. A `slots`/`spell_slots` divergence
+# dropped every Mage cast silently in the 2026-05-08 playtest.
+cost_types_active: [components, backlash, spell_slots]
 
 # Per-character spell-slot pool. The B/X model is "memorize today's
 # allotment from your spellbook (Magic-User) or pray for it (Cleric);
