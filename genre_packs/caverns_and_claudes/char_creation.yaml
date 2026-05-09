@@ -1,26 +1,41 @@
 # Character creation — Caverns & Claudes (classic-class era)
-# 5 scenes: roll → class → pronouns → kit → dungeon mouth.
-# Class qualification loop: scene 1 rerolls server-side until ≥1
-# class qualifies. UI sees only the final stats. Class scene then
-# offers only the qualifying classes as buttons.
+# 6 scenes: roll → arrange → calling → story → kit → mouth.
+# Visible 3d6 rolls; click-to-assign arrangement with live class
+# qualification panel; reject-and-reroll on arrangement scene only.
+# Story scene folds pronouns + background + description with autogen.
 
 - id: the_roll
-  title: "3d6. In Order."
+  title: "Six Bones, In Any Order You Can Stomach"
   narration: |
     You sit at a scarred table in a lamplit room that smells of tallow and old
     sweat. Brecca Half-Hand — missing three fingers from her left hand,
     seven-delve veteran — pushes six bone dice across the wood toward you.
 
-    "Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma," she
-    says, tapping the table once for each word. "Roll them in order. The bones
-    don't care what you wanted to be — but if they hand you nothing useful, we
-    throw them again."
-  loading_text: "Brecca Half-Hand considers your numbers..."
+    "Roll them in any order you can stomach. The bones don't care which trade
+    you pick. They only care which numbers land."
+  loading_text: "Brecca counts the bones..."
   choices: []
   allows_freeform: false
   mechanical_effects:
-    stat_generation: roll_3d6_strict
-    class_qualification_loop: true
+    stat_generation: roll_3d6_arrange_visible
+
+- id: the_arrangement
+  title: "Arrange Them"
+  narration: |
+    Brecca taps the table once. "Now arrange them. The trade is yours to
+    choose, if the bones allow it."
+
+    Drop each number into a slot — Strength, Dexterity, Constitution,
+    Intelligence, Wisdom, Charisma. The list to the side will tell you which
+    trades the bones permit.
+
+    If you cannot stomach what they gave you, throw them again.
+  loading_text: "Brecca watches you arrange..."
+  choices: []
+  allows_freeform: false
+  mechanical_effects:
+    assignment_required: true
+    allow_reject: true
 
 - id: the_calling
   title: "What You'll Be Called"
@@ -30,50 +45,48 @@
     records do."
   choices:
     - label: "Fighter"
-      description: "Plate, polearm, and the patience to be hit first. (STR 9+)"
+      description: "Plate, polearm, and the patience to be hit first."
       mechanical_effects:
         class_hint: Fighter
         rpg_role_hint: tank
         jungian_hint: hero
     - label: "Mage"
-      description: "Bookish, half-blind, and dangerous in the third round. (INT 9+)"
+      description: "Bookish, half-blind, and dangerous in the third round."
       mechanical_effects:
         class_hint: Mage
         rpg_role_hint: control
         jungian_hint: magician
     - label: "Cleric"
-      description: "Holy symbol, war-mace, and a faith that is mostly working so far. (WIS 9+)"
+      description: "Holy symbol, war-mace, and a faith that is mostly working so far."
       mechanical_effects:
         class_hint: Cleric
         rpg_role_hint: healer
         jungian_hint: caregiver
     - label: "Thief"
-      description: "Lockpicks, leather, and a professional interest in being elsewhere. (DEX 9+)"
+      description: "Lockpicks, leather, and a professional interest in being elsewhere."
       mechanical_effects:
         class_hint: Thief
         rpg_role_hint: stealth
         jungian_hint: outlaw
   allows_freeform: false
 
-- id: pronouns
-  title: "Who Are You?"
-  narration: >-
-    Brecca looks you over once, recording something in a water-stained
-    ledger. "For the tally," she says. "In case you don't come back."
+- id: the_story
+  title: "For The Tally"
+  narration: |
+    Brecca dips the quill and looks up. "For the tally," she says. "In case
+    you don't come back."
+
+    She wants three things: how to refer to you, what you did before, and
+    what you look like. Or you can let her make something up.
+  loading_text: "Brecca writes in the ledger..."
+  choices: []
   allows_freeform: true
-  choices:
-    - label: "she/her"
-      description: "She."
-      mechanical_effects:
-        pronoun_hint: "she/her"
-    - label: "he/him"
-      description: "He."
-      mechanical_effects:
-        pronoun_hint: "he/him"
-    - label: "they/them"
-      description: "They."
-      mechanical_effects:
-        pronoun_hint: "they/them"
+  mechanical_effects:
+    identity_capture:
+      pronouns_required: true
+      background_optional: true
+      description_optional: true
+    background_autogen_source: backstory_tables
 
 - id: the_kit
   title: "What You Have"
@@ -81,8 +94,6 @@
     Brecca reaches beneath the table and drops a canvas sack in front of you.
     It lands with a dull thud. "Standard kit," she says. "Sized to the trade.
     Some of it's useful. Some of it isn't. All of it's yours now."
-
-    "You'll have time to read what you've got before you set out."
   choices: []
   allows_freeform: false
   mechanical_effects:
