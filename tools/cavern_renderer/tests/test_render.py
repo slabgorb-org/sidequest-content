@@ -1,9 +1,7 @@
 """Tests for Pillow PNG renderer."""
 
-import hashlib
 from pathlib import Path
 
-import pytest
 
 from cavern_renderer.cellular import gen_cave
 from cavern_renderer.render import render_grid_to_png
@@ -15,6 +13,7 @@ def test_render_dimensions_match_grid_times_cell_size(tmp_path):
     render_grid_to_png(grid, out, cell_size=28)
 
     from PIL import Image
+
     with Image.open(out) as img:
         assert img.size == (18 * 28, 18 * 28)
         assert img.mode == "RGB"
@@ -35,6 +34,7 @@ def test_render_handles_smaller_cell_size(tmp_path):
     render_grid_to_png(grid, out, cell_size=16)
 
     from PIL import Image
+
     with Image.open(out) as img:
         assert img.size == (12 * 16, 12 * 16)
 

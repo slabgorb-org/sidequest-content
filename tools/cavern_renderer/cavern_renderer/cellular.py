@@ -43,8 +43,7 @@ def gen_cave(
     """
     rng = random.Random(seed)
     grid = [
-        [FLOOR if rng.random() < density else WALL for _ in range(width)]
-        for _ in range(height)
+        [FLOOR if rng.random() < density else WALL for _ in range(width)] for _ in range(height)
     ]
     # Borders forced to wall
     for x in range(width):
@@ -79,9 +78,7 @@ def _ca_pass(grid: list[list[int]], width: int, height: int, cutoff: int) -> lis
     return new
 
 
-def _keep_largest_floor_region(
-    grid: list[list[int]], width: int, height: int
-) -> list[list[int]]:
+def _keep_largest_floor_region(grid: list[list[int]], width: int, height: int) -> list[list[int]]:
     seen = [[False] * width for _ in range(height)]
     best: list[tuple[int, int]] = []
     for y in range(height):

@@ -23,8 +23,7 @@ def process_room(room_yaml_path: Path) -> None:
         return  # settlements have no PNG/mask
     if room_type != "cavern":
         raise ValueError(
-            f"{room_yaml_path}: unknown room_type {room_type!r} "
-            f"(expected 'cavern' or 'settlement')"
+            f"{room_yaml_path}: unknown room_type {room_type!r} (expected 'cavern' or 'settlement')"
         )
 
     cellular = data["cellular"]
@@ -61,9 +60,7 @@ def process_room(room_yaml_path: Path) -> None:
 
 
 def _grid_to_mask(grid: list[list[int]]) -> str:
-    return "\n".join(
-        "".join("." if cell == FLOOR else "#" for cell in row) for row in grid
-    ) + "\n"
+    return "\n".join("".join("." if cell == FLOOR else "#" for cell in row) for row in grid) + "\n"
 
 
 def _exits_to_yaml(
