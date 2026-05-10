@@ -1,0 +1,158 @@
+# Caverns Sünden — Wound Profiles
+#
+# Applied to a descent after its boss-floor success. Merged into the
+# Keeper definition via narrator prompt-zone (engine wiring is a
+# separate plan; per ADR-080 narrative weight is the load-bearing
+# concept here, not a typed field). Each region's wound is permanent
+# until cleared — no decay duration.
+#
+# Folded 2026-05-10 from per-descent dungeons/{grimvault,horden,
+# mawdeep}/wound_profile.yaml. Region IDs match cartography.yaml.
+
+regions:
+
+  grimvault_descent:
+    sin: pride
+    keeper_overrides:
+      monologue_style_delta: >-
+        The voice no longer rises from the silences between your words; it
+        rises from every surface at once, slower and colder, the way a
+        workshop speaks after the gemcutter has set the stone down and
+        walked away.
+
+      awareness_delta:
+        starting: -1
+        tick_rate: -0.25
+        threshold_overrides:
+          "3": >-
+            Tools left on a dozen workbenches at once. Clean. Recently oiled. None of them yours.
+          "6": >-
+            Rooms you have not yet entered are already sorted by material, waiting.
+          "10": >-
+            Your shadow is missing from every wall, not just this one. It has been distributed.
+          "15": >-
+            Every surface has been planed smooth — floor, ceiling, the back of your own hand.
+          "20": >-
+            Your name has been filed into a hundred drawers, one syllable at a time, and none of them are deeper than the others.
+
+    ambient_delta: >-
+      The workshop is no longer a place — it is a condition. What used to
+      concentrate at the bottom of Grimvault now hangs evenly through every
+      corridor, like dust that refuses to settle. The cold is uniform. The
+      quiet is uniform. There is no central room to fear, because the
+      attention has been spread across all rooms equally. Doors that once
+      opened onto preparation chambers now open onto more of the same
+      patient, unhurried emptiness. The dungeon has been opened up. It is
+      larger inside than it was, and slower to focus, but when it focuses
+      it focuses harder.
+
+    new_lore_strand: >-
+      Carvers add a thinner line beneath Pride's name and call it the
+      Distributed Cut. The countryside notes it in small ways — knives in
+      Ashgate hold an edge longer, lullabies sung indoors carry less than
+      they used to, mirrors in three villages stop reflecting warmth before
+      they stop reflecting faces. The Wall's new inscription reads: HE WAS
+      NARROWED, NOT ENDED. THE WORKSHOP IS EVERYWHERE NOW. Delvers who go
+      back in find the Patient Butcher harder to provoke and worse to wake.
+      Something was taken from him on the boss floor. He has spent the
+      years since spreading what remains across more surfaces, so it can
+      never be taken whole again.
+
+  horden_warren:
+    sin: greed
+    keeper_overrides:
+      monologue_style_delta: >-
+        The accountant is still offended, but the ledger has gone wrong and
+        the accountant knows it — the count comes out different twice in a
+        row, the inventory contradicts itself mid-sentence, and the voice
+        keeps starting over because it cannot trust its own arithmetic.
+
+      awareness_delta:
+        starting: -1
+        tick_rate: 0.0
+        # Note: post-wound awareness is ERRATIC. tick_rate stays at base
+        # but threshold prose carries the unevenness — the Hoarder reacts
+        # too early at some marks and far too late at others, miscounting
+        # the party's progress because the count itself is broken.
+        threshold_overrides:
+          "3": >-
+            A coin rolls past your boot in the wrong direction — toward the entrance, on its edge, unhurried.
+          "6": >-
+            A stack you have not touched is already rearranged, and a stack you DID touch sits exactly as you left it.
+          "10": >-
+            The whisper begins counting and stops, restarts at a different number, accuses itself of lying, starts again.
+          "15": >-
+            A doorway that should be sealed by treasure is open, and a doorway that should be open is bricked with coin you cannot account for.
+          "20": >-
+            Every exit is walled shut except one, and the one is walled shut tomorrow — the Hoarder cannot decide which.
+
+    ambient_delta: >-
+      The thick velvet hush of the vault has cracked. Coins shift when no
+      weight has been added or removed, sometimes in small landslides,
+      sometimes one piece at a time crawling outward against the pile.
+      Verdigris has begun spreading in patterns that look almost like
+      tally-marks. The air still smells of dust and tarnished metal, but
+      there is a new note underneath — the sour panic of a counting-house
+      that has lost a single page and cannot move on. Lanterns flicker
+      unevenly, as if someone is opening and closing distant doors. The
+      vault is louder. The vault has stopped being sure of itself.
+
+    new_lore_strand: >-
+      The Sünden carvers cut a second mark beside Greed's name and call it
+      the Broken Tally. Coin found in the streams east of Copperbridge now
+      carries dates and faces it never bore before. Misers sleep worse.
+      Old debts reappear in ledgers that were closed a generation ago, and
+      new debts vanish from ledgers that were balanced last week. The
+      Wall's new inscription reads: THE COUNT IS WRONG. IT WILL STAY WRONG.
+      Delvers who return to Horden find the Hoarder paranoid rather than
+      patient, breaking his own rules — letting things out, refusing things
+      in, accusing the dust of theft. Something was taken from him that he
+      cannot replace, and he cannot stop counting long enough to notice it
+      is gone.
+
+  mawdeep_gullet:
+    sin: gluttony
+    keeper_overrides:
+      monologue_style_delta: >-
+        The wet voice is still wet, but it is slower now — the words come
+        between long, sated breaths, the consonants thick with a meal that
+        will not finish digesting, hunger postponed rather than answered.
+
+      awareness_delta:
+        starting: -1
+        tick_rate: -0.25
+        threshold_overrides:
+          "3": >-
+            A low grinding under the floor, far away, sluggish — a stomach turning over in sleep.
+          "6": >-
+            Rations spoil unevenly: today's bread is fine, last week's apple has gone to pulp.
+          "10": >-
+            The walls weep slowly, in heavy beads. The fluid is warm. The fluid is patient.
+          "15": >-
+            Rooms are not where you left them. The corridor you came down is now two corridors down, and longer.
+          "20": >-
+            Full digestion, postponed — the dungeon distends instead of constricting, and every step is farther than the last.
+
+    ambient_delta: >-
+      Mawdeep has bloated. The gullet that used to draw you tight has
+      loosened into a vast, slow interior, and the interior keeps
+      rearranging itself between footsteps. A door you walked through five
+      minutes ago opens onto a chamber that was three floors down. Walls
+      bulge outward where they used to press in. The heat is still there
+      but it is the heat of something asleep on a full stomach, not the
+      heat of an open mouth. Distances stretch. What was close is now far.
+      The dungeon has not stopped eating — it is simply taking longer to
+      swallow what it has.
+
+    new_lore_strand: >-
+      The Wall gains a swollen line beneath Gluttony's name, and the
+      Sünden carvers call it the Long Swallow. Sinkholes around Gristwell
+      have stopped widening but have started moving — a paddock that sat
+      on solid ground in spring is over open air by autumn, and the open
+      air is over solid ground again by spring. Caravans no longer vanish;
+      they arrive, three weeks late, at towns they were not heading for.
+      The Wall's new inscription reads: IT STILL HUNGERS. IT IS ONLY SLOW.
+      Delvers who return to Mawdeep find a dungeon larger than their map
+      remembers, with the same Glutton inside — heavier, drowsier, no less
+      bottomless. The meal it took on the boss floor sits in it still, and
+      the digestion is changing the shape of the country above.

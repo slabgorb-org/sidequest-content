@@ -94,3 +94,92 @@ atmosphere:
     underfoot, buildings on the highest holdouts). All three carry
     the same B&W ink discipline as Sünden but with more white space
     where the population should be.
+
+# ============================================================
+# Per-descent visual-style overrides — NOT YET WIRED
+# ============================================================
+#
+# These are preserved authorial intent for each descent. The
+# StyleCatalog currently reads only the world-tier positive_suffix
+# above; per-region overrides have no consumer yet (the daemon's
+# StyleCatalog has no concept of region-level style override).
+# Folded 2026-05-10 from dungeons/{grimvault,horden,mawdeep}/visual_style.yaml
+# pending wiring through the explicit-recipes PromptComposer at the
+# REGION layer.
+
+regions:
+
+  grimvault_descent:
+    positive_suffix: Dungeon interior, cold stone, desaturated palette, precise geometry,
+      clean-cut walls with no tool marks, flat surfaces, sharp edges, machined precision,
+      torchlight that does not warm, shadows that are too sharp, empty shelves, labeled
+      niches, stone workbenches, the aesthetic of a laboratory not a cave, Dyson Logos
+      crosshatch style but cleaner — less organic, more architectural. No gore, no blood,
+      no organic textures, no warmth, no comfort, no natural stone, no rough surfaces,
+      no vegetation, no water, no moisture, no bright colors.
+    negative_prompt: ''
+    color_palette:
+      primary: '#C4C4C4'
+      secondary: '#8A8A8A'
+      accent: '#E8E8E8'
+      shadow: '#3A3A3A'
+      highlight: '#FFFFFF'
+    atmosphere:
+      level_1: Subtly desaturated. Colors exist but are muted — as if viewed through frosted
+        glass. Torchlight is cool-toned. Shadows have hard edges.
+      level_2: Severely desaturated. Almost monochrome. Occasional patches of intense
+        color where separated qualities pool — unnaturally vivid against the grey. Like
+        a black-and-white photograph with a single color element.
+
+  horden_warren:
+    positive_suffix: treasure hoard dungeon, piles of coins and tarnished metal stacked
+      floor to ceiling, cluttered passages, goat paths between treasure walls, verdigris
+      patina on bronze, tarnished silver, rotting fabric under gemstones, claustrophobic
+      abundance, wunderkammer density, every surface covered, every shelf full, heavy
+      crosshatch shadows between treasure stacks, single torch illuminating dense clutter
+    negative_prompt: empty rooms, clean surfaces, sparse decoration, minimalism, outdoor
+      scenes, vegetation, water, orderly arrangement, modern materials, open spaces
+    visual_tag_overrides:
+      dungeon: claustrophobic passage between walls of stacked treasure, coins protruding
+        from compacted piles, crosshatched shadows between leaning stacks, single torch
+        catching glints on metal surfaces, goat path barely wide enough for one person,
+        dust motes in beam
+      tavern: prosperous underground tavern furnished with dungeon spillage, copper bar
+        top dented from coins, mismatched silver goblets, treasure-chest stools, chalkboard
+        with spillage yields, a reinforced empty chair in the corner
+      town: frontier salvage town at a dungeon mouth, stone bridge over a creek stained
+        green with copper, sorting blankets on cobbles covered in coins and scrap metal,
+        green-stained hands, prosperous but uneasy, ridge looming above
+    atmosphere:
+      outer_ring: Generous clutter. Wide passages with treasure in easy reach. Crosshatch
+        the piles loosely — they are not threatening yet. Glints and reflections suggested
+        by leaving white space in the ink. The dungeon looks like a gift. This is the
+        trap.
+      middle_ring: Dense, oppressive stacking. The crosshatch is heavier — less white
+        space, more ink. Treasure piles lean inward, creating tunnel-like passages. Verdigris
+        and tarnish visible as texture variation in the ink work. The torch barely reaches
+        past the nearest stack.
+      inner_sanctum: Obsessive precision. Clean lines replace crosshatch. Every coin faces
+        the same direction. Geometric patterns in the floor mosaic. The chaos of the outer
+        rings gives way to unsettling order. Heavy black fills around the edges — the
+        room is a small bright space surrounded by absolute ink.
+
+  mawdeep_gullet:
+    positive_suffix: black and white pen and ink illustration in the style of Erol Otus
+      and David Trampier, organic dungeon, ribbed stone walls like cartilage, bioluminescent
+      veins in rock, claustrophobic perspective, single torch source casting long shadows,
+      damp stone surfaces, stomach-like architecture, tooth-shaped stone formations, heavy
+      crosshatching, stippled shadows, monochrome, high contrast, 1979 TSR interior art
+    portrait_style: black and white pen and ink portrait in the style of Erol Otus and
+      David Trampier, torchlit from below, heavy crosshatching, dungeon grime and sweat,
+      wide frightened eyes or hollow exhaustion, monochrome, high contrast, stippled shadows,
+      rough paper texture
+    creature_style: black and white pen and ink illustration in the style of Erol Otus
+      and David Trampier, 1979 Monster Manual interior plate, organic dungeon horror,
+      ribbed stone walls, bioluminescent veins, heavy crosshatching, stippled shadows,
+      bold black outlines, monochrome, high contrast, surreal unsettling proportions,
+      single torch source, rough paper texture
+    poi_style: black and white pen and ink illustration of an organic dungeon chamber
+      in the style of Erol Otus and David Trampier, ribbed walls like cartilage, bioluminescent
+      veins in stone, single torch illumination, claustrophobic framing, heavy crosshatching,
+      stippled shadows, monochrome, high contrast, moisture glistening on surfaces
