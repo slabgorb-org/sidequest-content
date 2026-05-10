@@ -1,10 +1,19 @@
-# Hamlet of Sünden — Resident Factions
-# Three institutions that live in Sünden Square. They predate the
-# party's arrival and will outlast their delving careers. Per-dungeon
-# factions (Assayers, Ledger, Spillers, Counters, Delvers Guild,
-# Gristwell Merchants, and the three dungeons themselves) live in
-# their respective dungeon directories. These three are the regional
-# institutions of the hamlet itself.
+# Caverns Sünden — Factions
+#
+# Folded 2026-05-10 from the per-descent dungeon directories into a
+# single world-tier file. The list runs in three layers:
+#   1. Hamlet of Sünden's resident institutions (Wallwrights, Vetters'
+#      Office, Confraternity of Three Rites) — the regional bodies that
+#      predate any delving career.
+#   2. Per-descent factions: Ashgate (Grimvault) — Assayers, Ledger,
+#      The Vault Itself.
+#   3. Copperbridge (Horden) — Spillers, Counters, The Hoard Itself.
+#   4. Gristwell (Mawdeep) — Delvers Guild, Gristwell Merchants,
+#      The Dungeon Itself (Glutton Below).
+#
+# Cross-faction relationships (e.g. Wallwrights ↔ Assayers) are
+# expressed in each entry's `relationships:` map; see those for the
+# full graph.
 
 factions:
 
@@ -271,3 +280,466 @@ factions:
       The Delvers Guild (Gristwell): cordial — Brother Hesh's old fraternity. He still corresponds with Brecca Half-Hand. The Workhouse's policy is that any retired Gristwell delver is owed a free first rite.
       The Assayers (Ashgate): cool — the Assayers prefer measurement to ritual and have been formally polite to the Confraternity for thirty years without ever actually participating. Mistress Coro finds this unsporting.
       Gristwell Merchants and the Ledger (Ashgate): transactional — both consortiums donate to the poor boxes regularly, both for reasons that are not entirely about charity, and both are accepted on the unspoken terms each side understands.
+
+  # === Ashgate / Grimvault Descent — Pride ===
+  # (folded from dungeons/grimvault/factions.yaml)
+
+  - region: grimvault_descent
+    name: The Assayers
+    description: >-
+      The delving fraternity of Ashgate — experienced vault-runners
+      who measure everything twice. Where Gristwell's Delvers Guild
+      is a loose brotherhood of treasure-seekers, the Assayers are
+      obsessive catalogers. They map every room, record every anomaly,
+      note every quality that was different on the way out compared
+      to the way in. Their records are Ashgate's most valuable asset.
+      They know which rooms take what, and how long it takes to get
+      it back.
+    goal: >-
+      Systematic extraction. The Assayers believe the vault can be
+      understood and therefore exploited safely — that with enough
+      data, they can predict which rooms are dangerous and which
+      are merely strange. They are wrong about this, but their
+      data is still useful.
+    urgency: pressing
+    scene_event: >-
+      An Assayer team returned from Level 1 with a crate of separated
+      materials — iron that weighs nothing, cloth that has no color,
+      a bell that makes no sound. The Ledger is already pricing them.
+    disposition_to_players: friendly
+    resources:
+      - Maps of Level 1 (meticulous, annotated with quality-loss zones)
+      - Separation logs (what was taken from whom, which rooms, recovery times)
+      - Specialized equipment (lead-lined torches, salted rations, mirror compasses)
+      - Hireling vetting (they know which hirelings have been in before and what they lost)
+    key_npcs:
+      - name: Falk Stonehelm
+        role: Chief Assayer, twelve-delve veteran
+        description: >-
+          Speaks in a flat monotone — not by choice. The vault took
+          the pitch from his voice on his ninth delve. He compensates
+          with precision in his words. Every sentence is exactly as
+          long as it needs to be. He has more data on Grimvault than
+          anyone alive and shares it at fixed rates. He draws maps
+          with his left hand. His right hand cannot hold a pen
+          anymore — the grip was separated from his fingers.
+      - name: Wren Peatford
+        role: Recovery specialist, sensory therapist
+        description: >-
+          The closest thing Ashgate has to a healer for what the
+          vault does. Wren treats returned delvers — retraining
+          senses that came back scrambled, coaching people to taste
+          food again, teaching the color-blind to navigate by shadow.
+          She has never entered the vault herself. She says she
+          cannot afford to lose what she uses to help others.
+    relationships:
+      The Ledger: competitive — the Assayers want data, the Ledger wants profit. They need each other and resent it.
+      The Vault Itself: clinical — the Assayers study the vault like naturalists study a predator.
+
+  - region: grimvault_descent
+    name: The Ledger
+    description: >-
+      Ashgate's merchant consortium — shopkeepers, moneylenders, and
+      fences who trade in the byproducts of separation. Where
+      Gristwell's merchants sell torches and buy gold, the Ledger
+      deals in stranger goods. Weightless iron sells to smiths who
+      make armor for the elderly. Soundless bells sell to temples
+      that need silence. Colorless cloth sells to mourners. The
+      vault's waste products have found a market, and the Ledger
+      controls it.
+    goal: >-
+      Monetize everything the vault discards. The Ledger does not
+      care about understanding the dungeon — only about what comes
+      out of it and what it is worth. They price separated materials
+      the way any merchant prices exotic goods: by scarcity and by
+      how far the buyer is from understanding what they are buying.
+    urgency: simmering
+    scene_event: >-
+      A Ledger courier arrived from downriver with orders for
+      fifty yards of colorless cloth. A noble house wants mourning
+      drapes that do not remind anyone of anything. The price is
+      extraordinary. The Ledger needs delvers to go deeper.
+    disposition_to_players: neutral
+    resources:
+      - Equipment and provisions (at Ashgate markup, competitive with Gristwell)
+      - Separated-material trading (unique to Ashgate)
+      - Credit advances (against future haul, terms negotiable)
+      - Downriver trade contacts (buyers for exotic vault byproducts)
+    key_npcs:
+      - name: Agna Ironjaw
+        role: Ledger master, pricing authority
+        description: >-
+          A broad woman with an abacus and no patience. She sets
+          the buy price for everything that comes out of Grimvault.
+          Her assessments are fast, fair in the mathematical sense,
+          and non-negotiable. She has a vault-standard scale that
+          weighs properties as well as mass — she can tell you
+          how much color a fabric has lost, measured in units she
+          invented herself.
+      - name: Durn Oakwell
+        role: Equipment supplier, torch specialist
+        description: >-
+          Sells the lead-lined torches that burn longer in the
+          vault's quality-draining atmosphere. Also sells standard
+          torches at half the price. He is honest about the
+          difference but does not push the upgrade. Most buyers
+          figure it out after one delve.
+    relationships:
+      The Assayers: competitive — the Ledger wants to sell what the Assayers want to study. Conflicting incentives.
+      The Vault Itself: transactional — the vault produces waste, the Ledger sells waste.
+
+  - region: grimvault_descent
+    name: The Vault Itself
+    description: >-
+      The Patient Butcher does not negotiate, threaten, or communicate
+      in any conventional sense. It observes. It catalogs. It separates.
+      The vault is its workshop and every room is a station in a
+      process that no surface intelligence has fully mapped. Unlike
+      the Glutton Below, the Butcher is not hostile by nature — it
+      is indifferent to intent. It processes what enters. Delvers
+      are not food or enemies. They are material. The vault's immune
+      responses are not rage but quality control — removing variables
+      that interfere with the work.
+    goal: >-
+      Continue the work. The Butcher has been separating qualities
+      for longer than Ashgate has existed. It separated the color
+      from the ridge stone long before miners cracked it open. The
+      delvers are a minor interruption — interesting material, but
+      not the primary project. What the primary project is, nobody
+      knows. The deeper vaults contain the results. Nobody has
+      survived to catalog them.
+    urgency: pressing
+    scene_event: >-
+      The Quiet Field has expanded. It now reaches thirty paces
+      closer to town than it did last spring. Agna Ironjaw hired
+      a surveyor to measure it. The surveyor's instruments lost
+      their calibration halfway through.
+    disposition_to_players: hostile
+    resources:
+      - Environmental quality drain (passive resource degradation)
+      - Separation traps (targeted removal of specific qualities)
+      - The Catalogue (respawning boss guardian)
+      - Processed fauna (creatures partially separated and still moving)
+      - Keeper awareness system (escalating precision of response)
+    key_npcs: []
+    relationships:
+      The Assayers: indifferent — the Assayers catalog the vault. The vault catalogs the Assayers.
+      The Ledger: indifferent — trade in separated byproducts is a surface concern.
+    notes: >-
+      The Patient Butcher is not malicious. This is worse. Malice
+      can be reasoned with, bargained with, avoided. Indifference
+      cannot. The vault processes what enters the way a mill
+      processes grain. It does not hate the grain.
+
+  # === Copperbridge / Horden Warren — Greed ===
+  # (folded from dungeons/horden/factions.yaml)
+
+  - region: horden_warren
+    name: The Spillers
+    description: >-
+      Copperbridge's salvage guild — the people who pick the
+      Spillfield clean every morning and sell what they find. They
+      never enter Horden. They never need to. The dungeon's overflow
+      is enough to sustain the entire town. The Spillers are
+      organized, territorial about their salvage rights, and deeply
+      suspicious of delvers who go inside. Going in means you are
+      greedy. The Spillfield is enough for anyone who is not.
+    goal: >-
+      Control the spillage economy. The Spillers want exclusive
+      rights to the Spillfield and a cut of anything delvers bring
+      out — a hazard tax for attracting the Hoarder's attention.
+      They believe delvers provoke the inhalations by disturbing
+      the count, which endangers the whole town.
+    urgency: pressing
+    scene_event: >-
+      A Spiller crew returned from the dawn sweep with an intact
+      gold chain — not scrap, not corroded, still warm from the
+      dungeon. The Hoarder is reorganizing. That means an inhalation
+      is possible. The Spillers are moving their stockpiles away
+      from the Mule Track.
+    disposition_to_players: neutral
+    resources:
+      - Spillfield salvage (daily income, no risk)
+      - Town contacts (they know everyone, control commerce)
+      - Mule teams for hauling (available for hire, at a premium)
+      - Inhalation warnings (they read the spillage patterns)
+    key_npcs:
+      - name: Kern Saltwall
+        role: Spiller boss, veteran scavenger
+        description: >-
+          A lean man with permanently green-stained hands from
+          handling copper spillage every morning for thirty years.
+          He speaks in weights and prices, never in abstractions.
+          He has never entered Horden and considers this evidence
+          of intelligence, not cowardice. His scale is the standard
+          in Copperbridge — if Kern says it weighs ten pounds, it
+          weighs ten pounds.
+      - name: Petra Brewer
+        role: Tavern keeper, information hub
+        description: >-
+          Runs The Clinker from behind a bar made of hammered
+          copper. She brews strong ale and collects stories from
+          returning delvers. Not a Spiller by trade but married
+          to one — she knows the spillage patterns as well as
+          anyone and will share them for the price of a good tale.
+    relationships:
+      The Counters: hostile — the Spillers think the Counters are mad. The Counters think the Spillers are thieves.
+      The Hoard Itself: wary — the Spillers respect the dungeon the way fishermen respect the sea.
+
+  - region: horden_warren
+    name: The Counters
+    description: >-
+      A cult of obsessive talliers who believe the Hoarder's count
+      is sacred. They enter Horden not to take but to add — bringing
+      offerings of new items to keep the count growing, to keep the
+      Hoarder occupied, to prevent it from ever finishing. They
+      believe if the Hoarder completes the count — tallies every
+      item perfectly with nothing new to add — it will reach outward
+      for more. The inhalations are previews. The Counters are
+      trying to prevent the final one.
+    goal: >-
+      Keep the count going forever. The Counters add items to the
+      hoard on regular pilgrimages. They oppose delvers who remove
+      items because every removal forces a recount, and recounts
+      bring the Hoarder closer to completion. They want to ban
+      delving entirely and rely on spillage only.
+    urgency: simmering
+    scene_event: >-
+      Noll Thatcher returned from a counting pilgrimage with his
+      hands shaking. He added forty items — coins, buttons, a
+      brass spoon — but the abacus in the Counting Hall was moving
+      faster than he had ever seen it. The count is accelerating.
+      The Counters are worried.
+    disposition_to_players: wary
+    resources:
+      - Knowledge of the counting patterns (which rooms the Hoarder focuses on)
+      - Safe passage in the outer ring (the Hoarder ignores those who add, not take)
+      - The trade cipher (partial decoding — can read some of the Hoarder's notation)
+      - Tally sticks (pre-counted offerings that satisfy the toll gate without losing anything valuable)
+    key_npcs:
+      - name: Noll Thatcher
+        role: Counter elder, counting pilgrim
+        description: >-
+          A thin man with restless fingers who counts everything
+          he sees — flagstones, roof tiles, buttons on your coat.
+          He does not do this voluntarily. He entered Horden once
+          and came out counting. He has not stopped in fifteen
+          years. He keeps a running tally of Copperbridge in his
+          ledger and can tell you if a single cobblestone has been
+          moved. The Counters call him blessed. Everyone else calls
+          him Noll.
+      - name: Inga Ditcher
+        role: Counter acolyte, offering crafter
+        description: >-
+          A young woman who makes counting offerings — small items
+          designed to occupy the Hoarder's attention without being
+          valuable enough to attract the Appraiser. She crafts
+          buttons, tokens, and wooden beads in precise quantities.
+          She has never entered the dungeon herself. Noll will not
+          allow it until she can count to ten thousand without error.
+    relationships:
+      The Spillers: hostile — the Counters see spillage-taking as desecration. The Spillers see counting-obsession as dangerous madness.
+      The Hoard Itself: reverential — the Counters serve the count. They are the only faction the Hoarder tolerates.
+
+  - region: horden_warren
+    name: The Hoard Itself
+    description: >-
+      The Hoarder does not negotiate. It does not communicate
+      except through the count — the whispered inventory, the
+      shifting stacks, the doors that close when something moves.
+      Unlike the Patient Butcher's clinical indifference or the
+      Glutton's ravenous hunger, the Hoarder is proprietary. It
+      knows what it has. It knows when something is missing. It
+      does not rage. It corrects. The dungeon is a self-adjusting
+      inventory system and you are a discrepancy in the ledger.
+    goal: >-
+      Retain everything. The Hoarder cannot stop acquiring and
+      cannot release what it has. The hoard grows. The exits
+      narrow. The count becomes more precise. Eventually the
+      dungeon will consume Copperbridge, the ridge, and everything
+      within reach. The Counters know this and are trying to
+      delay it. The Spillers do not believe it. The delvers do
+      not think about it.
+    urgency: pressing
+    scene_event: >-
+      The Spillfield yielded more than usual this morning — three
+      intact weapons, a set of armor, and a sealed chest. The
+      Hoarder is reorganizing the outer ring, pushing old stock
+      outward. This means the inner rings are getting denser.
+      Something is being compressed to make room for something
+      new.
+    disposition_to_players: hostile
+    resources:
+      - Environmental encumbrance (passages narrow as you carry more)
+      - The count (awareness based on inventory changes, not noise)
+      - Stack collapse (treasure piles that fall on the overburdened)
+      - Exit sealing (doors close behind those carrying dungeon items)
+      - The Ledger (boss guardian that reclaims catalogued items)
+    key_npcs: []
+    relationships:
+      The Spillers: indifferent — spillage is waste. The Hoarder does not miss it.
+      The Counters: tolerant — they add to the count. This is acceptable.
+    notes: >-
+      The Hoarder is not evil. It is compulsive. It cannot stop
+      counting because counting is what it is. The merchant died
+      and the counting continued without him. The dungeon is not
+      a monster. It is a habit that became architecture.
+
+  # === Gristwell / Mawdeep Gullet — Gluttony ===
+  # (folded from dungeons/mawdeep/factions.yaml)
+
+  - region: mawdeep_gullet
+    name: The Delvers Guild
+    description: >-
+      The loose fraternity of treasure-seekers who descend into Mawdeep
+      and — sometimes — return. Not a guild in any formal sense: no
+      charter, no dues, no hierarchy. What they share is knowledge.
+      Which rooms are trapped. Where the amber resin is thickest. How
+      long a torch lasts on Level 2. This knowledge is currency.
+      Experienced delvers sell maps, hire out as guides, and hoard
+      intelligence about the deeper rooms. Fresh delvers buy rounds
+      at The Sinkhole tavern and hope someone talks.
+    goal: >-
+      Extract maximum treasure from Mawdeep with minimum casualties.
+      The Guild exists because the dungeon is profitable — barely,
+      on average, but spectacularly for the lucky few. The dream of
+      the Full Belly's hoard keeps them coming back.
+    urgency: pressing
+    scene_event: >-
+      A delving party staggers out of the Mouth at dawn, one member
+      short, packs heavy with gold. By noon the tavern is buzzing
+      with rumors of what they found. By evening, three new parties
+      are forming.
+    disposition_to_players: friendly
+    resources:
+      - Maps of Level 1 (accurate, expensive)
+      - Maps of Level 2 (incomplete, unreliable, very expensive)
+      - Experienced hirelings (torchbearers, porters, sellswords)
+      - Rumor network (which rooms have been cleared recently, Maw status)
+    key_npcs:
+      - name: Brecca Half-Hand
+        role: Guild elder, seven-delve veteran
+        description: >-
+          Lost three fingers to a gullet polyp on her fourth delve.
+          Kept going. Now she runs the hiring board at The Sinkhole
+          and takes a cut of every contract. She has been deeper than
+          anyone alive and will not talk about what she saw in the
+          Stomach. She will sell you a map. She will not sell you hope.
+      - name: Torchboy Fen
+        role: Hireling broker, torchbearer trainer
+        description: >-
+          Nineteen years old, already on his eleventh delve as a
+          torchbearer. He trains new torchbearers and takes a fee
+          from both sides. He is very good at staying alive and
+          very bad at keeping his employers alive. He does not
+          seem troubled by this.
+    relationships:
+      Gristwell Merchants: symbiotic — the Guild sells what it extracts, the Merchants supply what delvers need
+      The Dungeon Itself: adversarial — the Glutton eats delvers, delvers rob the Glutton
+
+  - region: mawdeep_gullet
+    name: Gristwell Merchants
+    description: >-
+      The shopkeepers, innkeepers, provisioners, and moneylenders of
+      Gristwell — the town that exists because the dungeon exists.
+      Every business in Gristwell services the delving trade. The
+      Provisioner sells torches and rations at markup. The Sinkhole
+      tavern sells ale and rumors. The moneylender advances gold
+      against future hauls at ruinous interest. The blacksmith repairs
+      weapons that come back notched and acid-scarred. Gristwell is a
+      parasite on a parasite — it feeds off the delvers who feed off
+      the dungeon.
+    goal: >-
+      Keep the delving economy flowing. A dead delver is bad for business,
+      but a successful one who retires is worse. The ideal customer
+      returns with just enough gold to resupply and goes back in
+      tomorrow. Gristwell's merchants are not evil — they are simply
+      the economic inevitability of a town built on the lip of a
+      living dungeon.
+    urgency: simmering
+    scene_event: >-
+      The Provisioner has raised torch prices again — the last shipment
+      of pitch was delayed by a sinkhole on the trade road. The
+      moneylender is offering advances at only forty percent interest.
+      Generous, for him.
+    disposition_to_players: neutral
+    resources:
+      - Equipment and provisions (at Gristwell markup)
+      - Moneylending (high interest, collateral = future haul)
+      - Lodging and meals at The Sinkhole tavern
+      - Weapon and armor repair (quality varies)
+      - Fencing services for unusual loot (gems, artifacts, the Maw's components)
+    key_npcs:
+      - name: Marga Provisioner
+        role: Supplies dealer, price gouger
+        description: >-
+          She sells torches, rope, rations, chalk, iron spikes, and
+          everything else a delver needs at exactly the price the
+          market will bear — which is steep, because the alternative
+          is going into the dark without them. She is not unkind. She
+          is not kind. She is accurate.
+      - name: Rendel the Lender
+        role: Moneylender, debt collector
+        description: >-
+          Advances gold against a percentage of the next haul. His
+          contracts are ironclad and his collection methods are
+          creative. He has never entered the dungeon. He does not
+          need to. The dungeon comes to him, one debtor at a time.
+      - name: Old Kettle
+        role: Innkeeper, The Sinkhole tavern
+        description: >-
+          Runs the only tavern in Gristwell. The ale is weak, the
+          stew is mysterious, and the rumors are the real product.
+          Old Kettle has heard every delver's story for thirty years.
+          He remembers which ones came back. He does not share his
+          count unless you buy a third round.
+    relationships:
+      The Delvers Guild: symbiotic — merchants need delvers to buy supplies, delvers need merchants to sell treasure
+      The Dungeon Itself: parasitic — Gristwell exists because the dungeon exists, and will die when it doesn't
+
+  - region: mawdeep_gullet
+    name: The Dungeon Itself
+    description: >-
+      The Glutton Below is not a faction in any human sense. It does
+      not negotiate, ally, trade, or communicate in language — though
+      it speaks, after a fashion, in the grinding of stone and the
+      wet sounds of digestion. It is a geological intelligence: vast,
+      slow, and hungry. It has been swallowing the countryside for
+      generations. Caravans, farmsteads, villages — Edgeholm went
+      down whole. The dungeon grows wider every spring. The Maw is
+      its guardian. The amber resin is its blood. The rooms are its
+      organs. It is not malicious. It is hungry. There is no
+      reasoning with hunger.
+    goal: >-
+      Consume. The Glutton does not plan or strategize. It responds
+      to intrusion the way a stomach responds to food — with acid,
+      with contraction, with digestion. Its "tactics" are autonomic:
+      corridors narrow, traps reset, the Maw guards the deepest
+      treasure because the deepest treasure is the most nutritious
+      part of the meal. The delvers are not enemies. They are food
+      that fights back.
+    urgency: pressing
+    scene_event: >-
+      The Mouth breathed this morning — a long, slow exhalation of
+      warm air that carried the smell of copper and old stone. The
+      trade road cracked overnight, two hundred yards closer to
+      Gristwell than the last crack. The dungeon is still growing.
+    disposition_to_players: hostile
+    resources:
+      - Infinite regeneration (the dungeon rebuilds itself between delves)
+      - The Maw (respawning boss guardian)
+      - Amber hulks (constructed from digested remains)
+      - Environmental control (constricting corridors, acid pools, bioluminescence)
+      - Keeper awareness system (escalating hostility)
+    key_npcs: []
+    relationships:
+      The Delvers Guild: predatory — delvers are food that carries treasure into the dungeon
+      Gristwell Merchants: indifferent — the town is too far from the Mouth to eat. For now.
+    notes: >-
+      The Glutton is not a traditional faction. It cannot be negotiated
+      with, allied to, or reasoned with. It is included as a faction
+      because it is a force with goals, resources, and responses to
+      player actions — the Keeper awareness system makes it a reactive
+      antagonist. The "diplomacy" with the Glutton is the Offering
+      trope — dropping treasure to reduce awareness. You cannot make
+      peace with it. You can only feed it enough to buy time.

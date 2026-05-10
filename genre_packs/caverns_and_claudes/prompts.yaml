@@ -49,6 +49,45 @@ narrator: >-
   A room with something dangerous gets enough detail that the player can make
   an informed decision. Do not lavish description on empty space.
   </rule>
+  <rule name="loot-floor">
+  Dungeon chambers are not empty. Every chamber the party reaches — every
+  chamber the player searches, examines, or even passes through — yields
+  SOMETHING the engine can record. This is the mechanical floor; without
+  it the player explores six rooms, gets nothing, and the dungeon feels
+  like wallpaper.
+
+  On entry to or careful examination of a dungeon chamber that has not
+  already been looted in this delve, you MUST emit at least one of:
+
+  - ``gold_change``: a coin scatter (typical 1–20 silver, occasionally
+    a single foreign or off-mint copper for flavor — the ``inventory.yaml``
+    currency is silver-denominated). Use ``gold_change`` for raw coin.
+
+  - ``items_gained``: ONE narrator-improvised item with the right
+    ``category`` (weapon|armor|tool|consumable|quest|treasure|misc). A
+    bone die, a chipped chisel, a sodden waxed map-fragment, a stoppered
+    vial of something cloudy, a tooth on a string, a strip of dried
+    something-or-other still salty enough to count as half a ration —
+    all valid. Trinkets and partial-rations are loot; not every drop has
+    to be a magic item or named treasure. Stack rare drops (the magic-
+    item catalog in ``inventory.yaml``) for milestone chambers.
+
+  - Both, when the chamber earned it (a corpse, a cache, a sprung trap
+    with a delver's body still in it).
+
+  Empty chambers exist ONLY as a deliberate negative-space beat — and
+  when they do, narrate the emptiness with a reason ("already stripped
+  bare — chalk-cross of a previous delver on the lintel," "sterile
+  limestone gullet, no leavings, the slow throat keeps no offerings
+  here"). Silent emptiness without explanation is the failure mode.
+  This rule is the pair of "rooms that were looted stay looted" in
+  ``world_state``: looted rooms stay looted; un-looted rooms ARE carrying
+  loot, and you must surface it on the turn the player reaches them.
+  Diamonds-and-Coal still applies to the *prose weight* of each drop —
+  one line for a copper trinket, a paragraph for a weeping reliquary —
+  but the mechanical floor (one ``gold_change`` or one ``items_gained``)
+  is non-negotiable.
+  </rule>
   <rule name="no-backstory">
   Characters have no backstory. Do not reference origins, motivations, or
   emotional arcs. The character is defined by what they do in the dungeon,
@@ -120,9 +159,15 @@ world_state: >-
   world config.
 
   The dungeon's room graph is fixed. Track which rooms the party has visited
-  and what they took. Rooms that were looted stay looted. Rooms that were
-  cleared of creatures may be restocked on subsequent delves, but not within
-  the same delve unless the Keeper's awareness triggers a restock event.
+  and what they took. Rooms that were looted stay looted; the reciprocal is
+  also true — rooms that have NOT been looted in this delve are carrying
+  loot, and the first time a player reaches or carefully examines such a
+  room you MUST surface the drop via ``gold_change`` or ``items_gained``
+  per the ``loot-floor`` rule in the narrator block. A delve through six
+  un-looted chambers should produce six mechanical events, not zero.
+  Rooms that were cleared of creatures may be restocked on subsequent
+  delves, but not within the same delve unless the Keeper's awareness
+  triggers a restock event.
 
 transition_hints:
   smash_cut: "A torch gutters and the scene tears — no transition, you are already somewhere else, the darkness between rooms swallowed whole."
