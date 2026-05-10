@@ -1,0 +1,136 @@
+# Flickering Reach — World Visual Style
+#
+# Three wounds, twelve centuries old. The Dead Signal hums under every
+# horizon. Phosphor green is this world's accent — not the generic toxic
+# green of the genre baseline, but something closer to a radio-glow seen
+# through dust. The Reach is older, drier, and stranger than the rest of
+# the mutant_wasteland template.
+#
+# WIRING: positive_suffix is the field the daemon's StyleCatalog reads
+# (sidequest-daemon/sidequest_daemon/media/catalogs.py::StyleCatalog.load).
+# World-level positive_suffix layers ON TOP of the genre-level
+# mutant_wasteland positive_suffix via the explicit-recipes
+# PromptComposer's ART_SENSIBILITY.WORLD slot. The genre already
+# carries the broad identity (gritty post-apocalyptic digital painting,
+# desaturated earth tones with bioluminescent accent, bruised amber and
+# toxic-green sky, weathered surfaces and rust, salvage wardrobe,
+# anti-text/UI clauses). DO NOT DUPLICATE genre material here —
+# duplication makes the world layer compete with the genre instead of
+# specializing it.
+#
+# IMPORTANT: the world-level suffix is INJECTED INTO EVERY RENDER IN
+# THIS WORLD — including transient encounter scenes that have no POI
+# resolution. Earlier worlds (caverns_sunden) shipped subject text in
+# this slot and the suffix dominated dungeon prompts where the named
+# subjects had no business existing. This file therefore restricts
+# itself to *tonal art discipline*: how light, haze, age, and the
+# Signal manifest in any render. Subject specifics — which faction,
+# which architecture, which props, which named POI — belong on
+# per-POI ``visual_prompt`` blocks inside ``history.yaml``.
+#
+# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt
+# entirely (see sidequest-content/PROMPTING_Z_IMAGE.md). Rejection
+# clauses are folded into positive_suffix as "No X, no Y" rather than
+# authored as a separate negative_prompt.
+
+positive_suffix: >-
+  Atmospheric haze carries a faint phosphor-green radio undertone —
+  the Dead Signal humming under the static — a barely perceptible
+  green tint at the edges of light sources and a whisper of scan-line
+  interference in deep distance. Age reads twelve centuries: weathering
+  is older than the genre baseline, with bone-bleach, salt-frost, and
+  fused-glass scarring layered into surfaces; light is thin and
+  pre-modern rather than new. A faint dust-static texture sits in the
+  atmospheric depth, never as overlay. No CRT screens, no radar
+  overlays, no on-screen readouts, no game HUD, no UI elements rendered
+  literally in the scene — the Signal is felt in the haze, never
+  pictured as hardware.
+
+# Z-Image ignores this; rejection clauses are in positive_suffix above.
+negative_prompt: ""
+
+color_palette:
+  primary: "#8E8473"      # bone-bleached salt-dust, twelve centuries old
+  secondary: "#5A5641"    # rust-tarnish over irradiated soil
+  accent: "#7CC472"       # phosphor-green Long Signal glow
+  shadow: "#1F1A14"       # deep mutagenic ash-black
+  highlight: "#D8E2C0"    # pale pre-war moonlight diffused through haze
+
+# ============================================================
+# Atmosphere — per-region tonal reference
+# ============================================================
+#
+# Mirrors the schema in caverns_sunden/visual_style.yaml: keys are
+# region/POI clusters; values are tonal descriptions for authorial
+# reference and (future) region-layer prompt injection. The daemon's
+# StyleCatalog currently reads only positive_suffix above; this block
+# is reference material for per-POI ``visual_prompt`` authors and
+# placeholder for the REGION layer when wired through PromptComposer.
+#
+# These describe MOOD AND TONAL DISCIPLINE — not subject specifics.
+# Subject specifics live in history.yaml per-POI visual_prompt blocks.
+
+atmosphere:
+  glass_flat: >-
+    The mutagenic black-glass plain east of Silo Prime. Composition
+    keeps the horizon flat, low, and silent; the world's single
+    slow-blinking phosphor-green eye at the plain's center pulses
+    below the horizon line, reflected once in the glass surface and
+    a second time as a tint in the haze above. Nothing grows. The
+    glass is dust-glazed but not weathered — it has refused twelve
+    centuries of erosion. Light is sourceless and pre-dawn, with no
+    sun position resolvable. The plain is always farther than it looks.
+  bone_wind: >-
+    The northern canyon — wind made visible as dust streaks, sound
+    made visible as tension lines across the frame. Palette runs dry:
+    bone, rust, the occasional phosphor flicker where stressed wire
+    touches stressed wire. Composition prefers tight verticals and
+    high horizons; figures are dwarfed when present. The light is
+    canyon-bottom indirect, never warm.
+  blooming_tangle: >-
+    The hyper-mutated jungle. Bioluminescence is heavy but
+    chromatically wide — not the genre's stock toxic green, but a
+    full synesthetic spectrum where each species of root runs a
+    different note. Roots invade frame from below and from the sides;
+    the canopy fluoresces in patterns that read as both light and
+    sound. The mood is calm and attentive — the jungle is *listening*,
+    not threatening.
+  vault_echo: >-
+    The sealed Pre-War bunker zone. The cleanest geometry in any
+    frame is the perfect grass circles around the air vents — grass
+    inside the circles reads correctly green, outside resumes the
+    wasteland palette immediately. The pale phosphor-green column
+    rising from the main shaft is always cropped, never resolved at
+    its top. Composition keeps the bunker half-buried; ground texture
+    suggests slow pulsing without rendering motion lines.
+  tood_s_dome: >-
+    The Scrapborn trade-city. Palette runs warmer than the rest of
+    the Reach — copper, lamp-amber, rust-orange from oil-drum fires
+    and salvage-wired arc-lamps — but the haze above the dome carries
+    the world's phosphor undertone, so the warmth is always tinged
+    rather than pure. Surfaces are over-weathered: twelve centuries
+    of scrap accreted in visible layers, with no clean fresh element
+    anywhere in frame.
+  blind_reach: >-
+    The carving canyon. Composition makes the carved wall the dominant
+    surface and the floor a cracked, lateral plane. Carvings layer
+    over centuries with no era cleanly readable — rage-gouged scoring
+    interleaved with clinical notation interleaved with ride-glyphs,
+    none of it healed. Light is low, lateral, and dusk-coloured. No
+    figure should ever appear larger than a carving cluster.
+  the_understory: >-
+    The Greenfolk root network below the surface. The lighting source
+    is the roots themselves — green bioluminescent dimness, neither
+    night nor day. Boundary between living tissue and geological
+    structure is aggressively blurred; rock and root interweave. Read
+    in low-saturation green-on-black with occasional bone-pale
+    highlights where the network has consumed something that used to
+    walk. Air is implied to be still and humid.
+  signal_radius: >-
+    The transient zone where Drifter singers can hear the Long Signal
+    clearly. No fixed location. Visual marker is a thickening of the
+    world suffix's phosphor undertone — the haze runs greener at the
+    frame edges, the scan-line whisper deepens in distance, and the
+    sky reads as if a CRT were glowing two rooms away. Figures inside
+    the radius are subtly outlined in phosphor where light catches
+    them. Composition is otherwise unconstrained.
