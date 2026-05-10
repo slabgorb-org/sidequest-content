@@ -1,0 +1,44 @@
+# Grimvault — Visual Style Override
+# Cold, precise, desaturated. The opposite of Mawdeep's organic warmth.
+#
+# WIRING: positive_suffix is the field the daemon's StyleCatalog reads
+# (sidequest-daemon/sidequest_daemon/media/catalogs.py::StyleCatalog.load).
+# World-level positive_suffix layers on top of the genre's B&W ink suffix
+# via the explicit-recipes PromptComposer's ART_SENSIBILITY.WORLD slot.
+#
+# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt
+# entirely (see sidequest-content/PROMPTING_Z_IMAGE.md). Rejection
+# clauses must therefore be folded into the positive prompt as
+# "No X, no Y" rather than authored as a separate negative_prompt.
+
+positive_suffix: >-
+  Dungeon interior, cold stone, desaturated palette, precise geometry,
+  clean-cut walls with no tool marks, flat surfaces, sharp edges,
+  machined precision, torchlight that does not warm, shadows that
+  are too sharp, empty shelves, labeled niches, stone workbenches,
+  the aesthetic of a laboratory not a cave, Dyson Logos crosshatch
+  style but cleaner — less organic, more architectural.
+  No gore, no blood, no organic textures, no warmth, no comfort,
+  no natural stone, no rough surfaces, no vegetation, no water,
+  no moisture, no bright colors.
+
+# Z-Image ignores this; rejection clauses are in positive_suffix above.
+negative_prompt: ""
+
+color_palette:
+  primary: "#C4C4C4"
+  secondary: "#8A8A8A"
+  accent: "#E8E8E8"
+  shadow: "#3A3A3A"
+  highlight: "#FFFFFF"
+
+atmosphere:
+  level_1: >-
+    Subtly desaturated. Colors exist but are muted — as if viewed
+    through frosted glass. Torchlight is cool-toned. Shadows have
+    hard edges.
+  level_2: >-
+    Severely desaturated. Almost monochrome. Occasional patches of
+    intense color where separated qualities pool — unnaturally vivid
+    against the grey. Like a black-and-white photograph with a
+    single color element.
