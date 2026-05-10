@@ -93,28 +93,20 @@ ADRs live in the orchestrator repo at `orc-quest/docs/adr/`. See
 `orc-quest/docs/adr/README.md` for the canonical index. Before designing
 or modifying a subsystem, check the relevant ADR:
 
+Particularly relevant to this content repo:
+
 | Domain | ADRs |
 |--------|------|
-| Core architecture | 001 (Claude CLI only), 002 (SOUL principles), 005 (background-first), 006 (graceful degradation) |
-| Genre packs | 003 (pack architecture), 004 (lazy binding), 072 (system/milieu decomposition — proposed) |
-| Prompt engineering | 008 (three-tier taxonomy), 009 (attention-aware zones), 066 (persistent Opus sessions / Full vs Delta tier) |
-| Agent system | 010 (intent routing — **superseded by 067**), 011 (JSON patches), 012 (session mgmt), 013 (lazy extraction — superseded by 057), 057 (narrator-crunch separation), 059 (monster manual server-side pregen), 067 (unified narrator agent) |
-| Characters | 007 (unified model), 014 (diamonds/coal), 015 (builder FSM), 016 (three-mode chargen), 080 (unified narrative weight) |
-| Encounters | 017 (cinematic chase — superseded by 033), 033 (confrontation engine + resource pools), 071 (tactical ASCII grids — proposed) |
-| World / NPCs | 018 (trope engine), 019 (cartography), 020 (NPC disposition), 022 (world maturity), 055 (room graph navigation) |
-| Progression | 021 (four-track progression), 052 (narrative axis system) |
-| Narrative pacing | 024 (dual-track tension), 025 (pacing detection), 050 (image pacing throttle), 051 (two-tier turn counter) |
-| Session persistence | 023 (state + recap) |
-| Frontend / protocol | 026 (client state mirror), 027 (reactive state messaging), 065 (protocol message decomposition — proposed), 076 (narration protocol collapse post-TTS — proposed), 079 (genre theme system unification) |
-| Multiplayer | 028 (perception rewriter), 029 (guest NPC players), 030 (scenario packs), 036 (multiplayer turn coordination), 037 (shared/per-player state split), 053 (scenario system) |
-| Transport / IPC | 035 (Unix socket IPC for Python sidecar), 038 (WebSocket transport), 046 (GPU memory budget coordinator), 047 (prompt injection sanitization) |
-| Telemetry / Observability | 031 (game watcher semantic telemetry), 058 (Claude subprocess OTEL passthrough), 090 (OTEL dashboard restoration after port) |
-| Media | 032 (genre LoRA style training), 034 (portrait identity consistency), 044 (speculative prerender), 048 (lore RAG store), 056 (script tool generators), 070 (MLX image renderer) |
-| Dice | 074 (dice resolution protocol — proposed), 075 (3D dice rendering — proposed) |
-| Fine-tuning | 069 (scenario fixtures), 073 (local fine-tuned model architecture) |
-| Codebase structure | 060 (genre models decomposition), 061 (lore module decomposition), 062 (server lib extraction), 063 (dispatch handler splitting), 064 (game crate domain modules), 068 (magic literal extraction), 088 (ADR frontmatter schema and auto-generated indexes) |
-| Project lifecycle | 082 (port back to Python), 085 (tracker hygiene during port) |
-| Historical (removed subsystems) | 054 (WebRTC voice chat — files deleted 2026-04), 045 (client audio engine — two-channel post-TTS) |
+| Genre packs | 003 (pack architecture), 004 (lazy binding) |
+| Pack-side mechanics | 014 (diamonds/coal), 018 (trope engine), 020 (NPC disposition), 022 (world maturity), 033 (confrontation engine), 077 (dogfight), 078 (edge/composure), 093 (confrontation calibration), 095 (class mechanical surface) |
+| Cultures / naming | 091 (culture-corpus Markov naming) |
+| Music | 095 (daemon music tier via ACE-Step) — `*_input_params.json` lives here, OGG lives in R2 |
+| Image style | 086 (image-composition taxonomy — portrait / POI / illustration), 070 (MLX / Z-Image renderer), `PROMPTING_Z_IMAGE.md` in this repo |
+| Cartography | 019 (cartography config — runtime fog-of-war view retired 2026-04-28, see SUPERSEDED), 055 (room graph navigation), 089 (cavern template generation), 096 (cavern renderer revival) |
+| Worlds | 053 (scenario system — clue graph, belief state, gossip) |
+
+For the full ADR index see `orc-quest/docs/adr/README.md`.
+Drift: `orc-quest/docs/adr/DRIFT.md`. Superseded: `orc-quest/docs/adr/SUPERSEDED.md`.
 
 ## Spoiler Protection
 
@@ -163,8 +155,8 @@ git remote add local /path/to/existing/sidequest-content
 
 | Machine | Path | Local remote points to |
 |---------|------|----------------------|
-| OQ-1 | `/Users/keithavery/Projects/sidequest-content` | (primary copy) |
-| OQ-2 | `/Users/keithavery/Projects/oq-2/sidequest-content` | OQ-1 path above |
+| OQ-1 | `/Users/slabgorb/Projects/oq-1/sidequest-content` | (primary copy) |
+| OQ-2 | `/Users/slabgorb/Projects/oq-2/sidequest-content` | OQ-1 path above |
 
 ## Consumers
 
@@ -175,19 +167,19 @@ git remote add local /path/to/existing/sidequest-content
 
 ## Structure
 
+Live, wired packs (loaded by server + daemon at runtime):
+
 ```
 genre_packs/
-├── caverns_and_claudes/  # Classic dungeon crawl (meta-humor)
+├── caverns_and_claudes/  # Classic dungeon crawl (meta-humor on D&D tropes)
 ├── elemental_harmony/    # Martial arts / elemental magic
-├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic
-├── low_fantasy/          # Gritty medieval
 ├── mutant_wasteland/     # Post-apocalyptic mutants
-├── neon_dystopia/        # Cyberpunk
-├── pulp_noir/            # 1930s detective
-├── road_warrior/         # Vehicular post-apocalypse
 ├── space_opera/          # Sci-fi space adventure
-├── spaghetti_western/    # Frontier gunslinger
 └── victoria/             # Brontë gothic / drawing-room intrigue (no swords, no starships; tunable occult)
 ```
 
-Each pack contains YAML configs (archetypes, tropes, rules, etc.), world data, audio tracks, and images (portraits, POI landscapes).
+Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — heavy_metal, low_fantasy, neon_dystopia, pulp_noir, road_warrior, spaghetti_western at various levels of completeness.
+
+Each pack contains YAML configs (archetypes, tropes, rules, encounters, factions, OCEAN profiles, conlang morphemes, audio cues, `visual_style.yaml`), world data, ACE-Step music params (`audio/music/*_input_params.json` — ADR-095, OGG lives in R2), and images (portraits, POI landscapes, LFS-tracked).
+
+See `README.md` in this repo for the full taxonomy.
