@@ -123,6 +123,14 @@ or modifying a subsystem, check the relevant ADR:
 
 ## Syncing Between Machines
 
+> **Audio assets are NOT in this repo.** They live in R2 (`cdn.slabgorb.com`).
+> Per-track ACE-Step generation parameters (`*_input_params.json` under
+> `genre_packs/<pack>/audio/music/`) ARE in this repo and are the canonical
+> regeneration spec — see ADR-095 (Daemon Music Tier via ACE-Step). To
+> restore audio for a pack, run `python scripts/generate_music.py --genre
+> <pack>` from the orchestrator. Image assets that remain LFS-tracked are
+> unaffected by this change; the LFS notes below apply only to images.
+
 Binary assets are tracked with Git LFS. **Do not pull from GitHub to sync between local repos** — it eats LFS bandwidth (10 GiB/month limit on GitHub Pro).
 
 Instead, each clone has a `local` remote pointing to the other machine's copy:
