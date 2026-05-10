@@ -20,6 +20,7 @@
     - cleave
     - parry
     - feint
+    - taunt
   magic_access: null
   # B/X B26 saving-throw targets. Flat per Basic-set canon (no per-level
   # adjustment); Expert-set scaling is a future content pass.
@@ -29,6 +30,17 @@
     paralysis_or_stone: 14
     dragon_breath: 15
     rods_staves_spells: 16
+  abilities:
+    - name: "Taunt"
+      genre_description: >-
+        A half-step forward — close enough that the swing has to come at
+        you. An insult landing somewhere it costs to ignore. The squishies
+        are behind you now, and the thing in front has lost the option of
+        choosing prettier prey. You are the meal. Eat it on the chin.
+      mechanical_effect: >-
+        Forces enemy attention onto the Fighter for the round; one ally
+        attack per round reroutes to the Fighter; expires at end of round.
+      involuntary: false
 
 - id: mage
   display_name: Mage
@@ -118,6 +130,18 @@
     paralysis_or_stone: 14
     dragon_breath: 16
     rods_staves_spells: 15
+  abilities:
+    - name: "Turn Undead"
+      genre_description: >-
+        He lifts the holy symbol — wood worn pale where the thumb has rested
+        for a thousand prayers. The unliving feel it before they see it: a
+        line drawn between the world that is theirs and the world that is
+        no longer. Some break. Some do not. The intelligent ones already
+        chose, long ago, and the symbol means nothing to them.
+      mechanical_effect: >-
+        2d6 vs target HD; loud (raises Keeper awareness); auto-fails on
+        intelligent unliving who have made their alignment.
+      involuntary: false
 
 - id: thief
   display_name: Thief
@@ -142,3 +166,16 @@
     paralysis_or_stone: 13
     dragon_breath: 16
     rods_staves_spells: 15
+  abilities:
+    - name: "Backstab"
+      genre_description: >-
+        She picks the moment the way a counterman picks the right coin
+        from a handful — by feel, without looking. The gap between rib
+        and rib. The gap between one breath and the next. Quiet, brief,
+        complete. The kind of removal you wouldn't notice happened to
+        someone else.
+      mechanical_effect: >-
+        Requires unaware target (sneak / feint setup or surprise round);
+        damage multiplier per Edge math; one-shot ends combat against
+        single weak unaware targets.
+      involuntary: false
