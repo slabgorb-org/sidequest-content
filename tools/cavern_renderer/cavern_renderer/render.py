@@ -19,9 +19,9 @@ from PIL import Image, ImageDraw
 
 from cavern_renderer.cellular import FLOOR, WALL
 
-_FLOOR_BASE = (58, 58, 74)        # #3a3a4a
-_WALL_BASE = (14, 14, 24)         # #0e0e18
-_GRAIN = (80, 80, 96)             # subtle dot
+_FLOOR_BASE = (58, 58, 74)  # #3a3a4a
+_WALL_BASE = (14, 14, 24)  # #0e0e18
+_GRAIN = (80, 80, 96)  # subtle dot
 _INK = (0, 0, 0)
 _GRID_LINE = (255, 255, 255)
 
@@ -70,11 +70,15 @@ def render_grid_to_png(
             if y > 0 and grid[y - 1][x] == WALL:
                 draw.line((px, py, px + cell_size - 1, py), fill=_INK)
             if y < h - 1 and grid[y + 1][x] == WALL:
-                draw.line((px, py + cell_size - 1, px + cell_size - 1, py + cell_size - 1), fill=_INK)
+                draw.line(
+                    (px, py + cell_size - 1, px + cell_size - 1, py + cell_size - 1), fill=_INK
+                )
             if x > 0 and grid[y][x - 1] == WALL:
                 draw.line((px, py, px, py + cell_size - 1), fill=_INK)
             if x < w - 1 and grid[y][x + 1] == WALL:
-                draw.line((px + cell_size - 1, py, px + cell_size - 1, py + cell_size - 1), fill=_INK)
+                draw.line(
+                    (px + cell_size - 1, py, px + cell_size - 1, py + cell_size - 1), fill=_INK
+                )
 
     # Wall stipple
     for y in range(h):

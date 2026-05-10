@@ -26,7 +26,10 @@ def find_exits(grid: list[list[int]]) -> dict[str, tuple[int, int] | None]:
     h = len(grid)
     w = len(grid[0]) if h else 0
     sides: dict[str, tuple[int, int] | None] = {
-        "north": None, "south": None, "east": None, "west": None,
+        "north": None,
+        "south": None,
+        "east": None,
+        "west": None,
     }
     for x in range(1, w - 1):
         if sides["north"] is None and grid[1][x] == FLOOR:

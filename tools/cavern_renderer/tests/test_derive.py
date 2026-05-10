@@ -45,7 +45,7 @@ def test_find_pois_are_spaced_apart():
     grid = gen_cave(width=18, height=18, seed=1042)
     pois = find_pois(grid)
     for i, (x1, y1) in enumerate(pois):
-        for x2, y2 in pois[i + 1:]:
+        for x2, y2 in pois[i + 1 :]:
             dist = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
             assert dist > 3.5
 

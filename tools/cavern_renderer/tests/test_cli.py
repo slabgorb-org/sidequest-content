@@ -49,13 +49,17 @@ def test_process_room_is_idempotent(room_in_tmp):
 
 def test_process_room_skips_settlement_rooms(tmp_path):
     settlement = tmp_path / "confessional.yaml"
-    settlement.write_text(yaml.safe_dump({
-        "id": "confessional",
-        "name": "The Confessional",
-        "room_type": "settlement",
-        "description": "A small house keyed to humility.",
-        "exits": [{"to": "sunden_square", "label": "out to the square"}],
-    }))
+    settlement.write_text(
+        yaml.safe_dump(
+            {
+                "id": "confessional",
+                "name": "The Confessional",
+                "room_type": "settlement",
+                "description": "A small house keyed to humility.",
+                "exits": [{"to": "sunden_square", "label": "out to the square"}],
+            }
+        )
+    )
     process_room(settlement)  # should not raise
     assert not (tmp_path / "confessional.cavern.png").exists()
     assert not (tmp_path / "confessional.mask.txt").exists()
