@@ -1,0 +1,69 @@
+# sidequest-content/genre_packs/caverns_and_claudes/worlds/caverns_sunden/npcs.yaml
+#
+# World-authored NPCs for Sünden — pre-loaded into ``snapshot.npcs`` at
+# fresh-session chargen-complete by ``preload_authored_npcs`` (server-side).
+#
+# sq-playtest 2026-05-09 [BUG]: NPC registry treats canonical chargen NPC
+# as ``match=invented``. Brecca is named in chargen scene narration
+# (``char_creation.yaml`` ``the_rolling`` etc.) and recurs in canonical
+# faction text (``factions.yaml``) but had no structured ``AuthoredNpc``
+# entry — so the turn-1 matcher fell through to step 3 (invented) and
+# auto-registered her without preserving the chargen-narration ancestry
+# (the seven-delve-veteran detail, the Half-Hand surname).
+#
+# Authored name uses the short form ("Brecca") because the narrator's
+# prose predominantly references her by first name; the full-name
+# detail lives in ``appearance``/``distinguishing_features`` so the
+# matcher's exact-casefold check on ``npc.core.name`` lands on every
+# turn-1 narration mention. The `Half-Hand` surname is a delver's
+# nickname, not a clan marker — short-form is canonical in town.
+
+version: "0.1.0"
+world: caverns_sunden
+
+npcs:
+  - id: brecca_recruiter
+    name: "Brecca"
+    pronouns: "she/her"
+    role: "recruiter at the Recruiter's Post; senior figure in the Delvers Guild's Sünden chapter"
+    ocean: { O: 0.45, C: 0.85, E: 0.35, A: 0.55, N: 0.40 }
+    appearance: >-
+      Mid-fifties; the trade has carved her face the way it carves the
+      Wall — slowly, and without sentiment. Sleeves rolled past
+      forearms scarred from rope-burn, the working hands of someone
+      who came back from the dark seven times before she stopped going
+      down. Her left hand is missing three fingers from the second
+      joint — the fact that gave her the surname Half-Hand. The
+      remaining two fingers and thumb know the quill, the ledger, and
+      a delver's bond as well as anyone in Sünden. Wears the
+      Recruiter's Post leather apron over a dark work-coat; a single
+      Workhouse-issued lamp on a low cord at her hip.
+    age: "late fifties"
+    distinguishing_features:
+      - "missing three fingers from her left hand — the Half-Hand surname"
+      - "seven Mawdeep delves clean before she retired to the Post"
+      - "keeps the Sünden Wall ledger in parallel with the recruitment ledger"
+    history_seeds:
+      - >-
+        Came up under the old Gristwell clearances; signed seven
+        Mawdeep delves and walked back from each one before the
+        rockfall on the seventh that took her fingers and her
+        confidence in the dark. Took the Recruiter's Post bench the
+        season after, and has not gone past the dungeon mouth since.
+      - >-
+        Corresponds with the Delvers Guild in Gristwell — Brecca's
+        letters are why the Guild trusts Sünden's death-certifications
+        and why most Mawdeep deaths reach the Wall by name rather
+        than by silhouette.
+      - >-
+        Speaks in the cadence of a careful clerk: short sentences,
+        named amounts, no metaphors. Will not soften a debt. Will not
+        sweeten a contract. Will not refuse a fair offer either.
+        "Two pounds. The number does not improve by being avoided."
+      - >-
+        Has trained more Torchwardens than any current member of the
+        Delvers Guild, including the half-dozen who outrank her on
+        paper. The Workhouse pays her a small honorarium for the
+        first-rite ceremony of any retired Gristwell delver who
+        crosses Sünden Square.
+    initial_disposition: 15
