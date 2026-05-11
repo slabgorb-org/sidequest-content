@@ -20,6 +20,31 @@ lora-datasets/
 .source_files/
 runs/
 
+# Generated images live in R2 (cdn.slabgorb.com), not in this repo.
+# Render scripts (scripts/generate_portrait_images.py, generate_poi_images.py,
+# generate_creature_images.py) write PNGs into these paths as local workspace
+# only; the canonical home is R2. r2_sync_packs.py uploads from here.
+# Manifests (portrait_manifest.yaml, POI yaml files) ARE the spec and stay in git.
+genre_packs/**/images/portraits/*.png
+genre_packs/**/images/portraits/*.jpg
+genre_packs/**/images/portraits/*.webp
+genre_packs/**/images/poi/*.png
+genre_packs/**/images/poi/*.jpg
+genre_packs/**/images/poi/*.webp
+genre_packs/**/images/scenes/*.png
+genre_packs/**/images/scenes/*.jpg
+genre_packs/**/images/scenes/*.webp
+genre_packs/**/images/creatures/*.png
+genre_packs/**/images/creatures/*.jpg
+genre_packs/**/images/creatures/*.webp
+genre_packs/**/assets/poi/*.png
+genre_packs/**/assets/poi/*.jpg
+genre_packs/**/assets/poi/*.webp
+genre_packs/**/worlds/*/rooms/*.cavern.png
+genre_packs/**/worlds/*/rooms/*.png
+genre_packs/**/worlds/*/rooms/*.jpg
+genre_packs/**/worlds/*/rooms/*.webp
+
 # Commercial sound library (licensed, not redistributable) — symlinked out of repo
 sound_effects
 .playtest-screenshots/
