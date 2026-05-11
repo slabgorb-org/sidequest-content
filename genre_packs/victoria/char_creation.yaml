@@ -1,257 +1,260 @@
 - id: origins
-  title: Where Do You Come From?
+  title: How Do You Come to the Village?
   narration: |
-    The drawing room is quiet save for the fire. Rain streaks the tall windows,
-    and the clock on the mantelpiece marks the hour with a sound like a small
-    judgement. You have been shown in by a servant who did not meet your eye.
+    The bar of the village inn is half a foot of polished oak that has been
+    polished by hands going back to your great-grandmother's time. The fire
+    is going. The rain has just eased off. The publican has set down a mug
+    in front of you without asking — strong tea, the kind that gets you
+    through to supper.
 
-    The house is grand — or was, once. The wallpaper speaks of better decades.
-    A portrait above the fireplace watches you with the fixed disapproval of
-    someone long dead.
+    He wipes his hands on the cloth tucked into his belt. He has the way
+    village publicans have of looking at strangers — friendly, unhurried,
+    taking your measure for the next ten years.
 
-    A voice from the wing chair by the fire. You hadn't noticed anyone sitting
-    there.
-
-    "Do sit down. You look as though you've come a long way." A pause. The
-    fire pops. "Who are your people?"
-  loading_text: "The voice from the wing chair considers your words..."
+    "Settling in, then. You'll be wanting your supper before long." He
+    folds the cloth. "Where do your people come from?"
+  loading_text: "The publican sets a second mug down and listens..."
   choices:
-    - label: Good Family
+    - label: Old Family Hereabouts
       description: >-
-        Your name opens doors. Your family has land, a pew in the parish
-        church, and expectations that weigh more than any inheritance. You
-        were raised to behave, to marry well, and to never discuss money.
+        Your name belongs to this place. Your grandfather is in the
+        kirkyard and your aunt is in the second pew. You may have been
+        away — school, the regiment, the city — but the village knew you
+        as a child and treats you, more or less, as one of its own.
       mechanical_effects:
         race_hint: Gentry
-        background: County
-    - label: Trade
+        background: Local
+    - label: The Manse or the Surgery
       description: >-
-        Your father — or perhaps your mother — built something. Mills,
-        shops, shipping. The money is new and the gentry can smell it.
-        You have more wealth than breeding, and breeding is what matters.
+        You were born into a respectable household — the doctor's, the
+        minister's, the country solicitor's. Educated, not landed.
+        Comfortable rather than wealthy. You learned early that
+        professional courtesy opens doors that money cannot.
+      mechanical_effects:
+        race_hint: Clergy
+        background: Professional
+    - label: Trade or Distillery
+      description: >-
+        Your family built something — a mill, a shop, a distillery,
+        a chandlery on the coast. The money is recent and was earned.
+        The old families are polite to your face and gossip behind it.
+        You do not entirely mind.
       mechanical_effects:
         race_hint: Trade
         background: New Money
-    - label: In Service
+    - label: The Village Itself
       description: >-
-        You know the great houses from the inside — the back stairs, the
-        servants' hall, the cold kitchen at five in the morning. You know
-        every secret of the family you serve. They have never once asked
-        your Christian name.
+        You are of the place in the truest sense — a crofter, a
+        farmhand, a shopkeeper, a railwayman's daughter. You know
+        every footpath and which farms hold a grudge. The squire
+        nods to you in the lane.
       mechanical_effects:
         race_hint: Servant
-        background: Domestic
-    - label: The Church
+        background: Village
+    - label: From Down South
       description: >-
-        You were raised in the shadow of a steeple. Faith, duty, and the
-        parish register — you know who was baptised, who was buried, and
-        who was married in haste. The vicarage is modest but the position
-        is not.
-      mechanical_effects:
-        race_hint: Clergy
-        background: Parsonage
-    - label: The Margins
-      description: >-
-        Artists, writers, radicals, foreigners — you belong to the world
-        that polite society pretends doesn't exist. You have seen more
-        of life than anyone in this drawing room, and it shows in ways
-        that make them uncomfortable.
+        Edinburgh, Manchester, London — you were educated south of the
+        line and have come north to work, to recover, or to settle.
+        The village is patient with your manners. You are learning
+        to be patient with the village.
       mechanical_effects:
         race_hint: Bohemian
-        background: Unconventional
-    - label: From Abroad
+        background: Returner
+    - label: From Away
       description: >-
-        India, the Caribbean, Africa, the Orient — you have lived in places
-        these people can barely imagine. You came back with stories, scars,
-        and a restlessness that England's small rooms cannot contain.
+        India, the Cape, Canada, the Caribbean — you have lived in
+        places these neighbours can barely imagine. You came back
+        with stories, a slight tan, and a habit of standing at
+        windows that troubles the housekeeper.
       mechanical_effects:
         race_hint: Colonial
         background: Returned
   allows_freeform: true
 
-- id: crucible
-  title: What Is Your Nature?
+- id: vocation
+  title: What Do You Do for a Living?
   narration: |
-    The figure in the chair leans forward. Firelight catches a face that is
-    difficult to read — neither old nor young, neither kind nor cruel.
+    The publican refills your mug without being asked. The fire pops. A
+    dog has settled itself across your feet without consulting you on
+    the matter.
 
-    "Everyone who walks through that door has a quality. Something that
-    defines them before they speak a word." The eyes study you with
-    uncomfortable precision.
-
-    "What is yours?"
+    "Working folk, then." He says it as observation, not question.
+    "There's plenty of work in a village if you've a trade for it. What's
+    yours?"
+  loading_text: "The publican nods slowly, as though placing you..."
   choices:
-    - label: I Notice Everything
+    - label: Country Doctor
       description: >-
-        The stain on the glove. The letter half-hidden in the desk. The
-        way someone's smile doesn't reach their eyes. You see what others
-        miss, and what you see keeps you up at night.
-      mechanical_effects:
-        class_hint: Detective
-        personality_trait: observant
-    - label: I Endure
-      description: >-
-        You have survived things that would have broken someone with fewer
-        resources or less stubbornness. You do what must be done, bear
-        what must be borne, and keep your counsel.
-      mechanical_effects:
-        class_hint: Governess
-        personality_trait: resilient
-    - label: I Command a Room
-      description: >-
-        When you enter, people notice. When you speak, they listen. You
-        have an instinct for power — who has it, who wants it, and how
-        to make sure it's you.
-      mechanical_effects:
-        class_hint: Society
-        personality_trait: commanding
-    - label: I Heal
-      description: >-
-        The body and its ailments. The mind and its troubles. You have
-        studied suffering and learned to ease it, and in doing so you
-        have seen every class of person at their most honest.
+        Surgery hours posted on the door, house calls across the glen,
+        a black bag with brass clasps and a telephone (one of two in
+        the village). You enter any household at any hour without
+        being asked twice. You have seen everyone in their dressing-
+        gown and know what their hands look like when they are lying.
       mechanical_effects:
         class_hint: Doctor
-        personality_trait: compassionate
-    - label: I Build
+        personality_trait: observant
+        vocation: doctor
+    - label: Parish Minister
       description: >-
-        Mills, enterprises, fortunes. You see opportunity where others
-        see risk, and you have the nerve to act on it. The old families
-        may sneer, but the future belongs to you.
+        The manse, the parish register, Sunday twice and Wednesday
+        evening, weddings and funerals and the awkward bit in between.
+        Church of Scotland by default. You sit with the dying, the
+        bereaved, and the merely guilty. People tell you things they
+        will tell no one else.
       mechanical_effects:
-        class_hint: Industrialist
-        personality_trait: ambitious
-    - label: I Seek
+        class_hint: Clergyman
+        personality_trait: discreet
+        vocation: minister
+    - label: Episcopal Rector
       description: >-
-        There is always something beyond the next hill, the next border,
-        the next locked door. You cannot leave a mystery unsolved or a
-        horizon unexplored. It has cost you, and it will cost you again.
-      mechanical_effects:
-        class_hint: Explorer
-        personality_trait: restless
-    - label: I Counsel
-      description: >-
-        People tell you things. In the vestry, in the garden, in letters
-        they should have burned. You carry the weight of other people's
-        secrets, and it has given you a particular understanding of
-        human nature.
+        The small chapel for the recusant families and the laird's
+        household when they're in residence. Scottish Episcopal —
+        Anglican Communion, small congregation, an outsider's
+        eye in your own parish. The Father-Brown sort of clergyman:
+        attentive, patient, harder to fool than you look.
       mechanical_effects:
         class_hint: Clergyman
         personality_trait: perceptive
+        vocation: rector
+    - label: Postmistress
+      description: >-
+        The post office, the telegraph, the parcel counter. Every
+        letter that enters or leaves the village passes through your
+        hands. You know who writes to whom, in what frequency, and
+        from where. You see the village's correspondence as a single
+        long conversation about which you are the only complete witness.
+      mechanical_effects:
+        class_hint: Society
+        personality_trait: attentive
+        vocation: postmistress
+    - label: Schoolmistress
+      description: >-
+        The village school, thirty children, the slate and the bell.
+        You have taught every adult under forty. You know which
+        marriages are going well by what the children draw at break.
+        The children tell you things they will not tell their parents.
+      mechanical_effects:
+        class_hint: Governess
+        personality_trait: principled
+        vocation: schoolmistress
+    - label: Country Veterinary Surgeon
+      description: >-
+        Large-animal practice across every farm and sporting estate
+        in the glen. You see the back kitchen of every household and
+        the inside of every byre. You know whose horses are kept
+        well and whose are not, and what that says about the rest
+        of the household.
+      mechanical_effects:
+        class_hint: Doctor
+        personality_trait: pragmatic
+        vocation: vet
+    - label: Village Constable
+      description: >-
+        The county constabulary, one sergeant, one bicycle. Official
+        authority that is utterly dependent on village cooperation.
+        You know which lies are habitual and which are new. You can
+        tell from a man's coat whether his Sunday was where he said
+        it was.
+      mechanical_effects:
+        class_hint: Detective
+        personality_trait: methodical
+        vocation: constable
+    - label: Retired Colonial Officer
+      description: >-
+        Half-pay, a cottage you are still painting, three months in the
+        glen and already restless. India or the Cape or the West
+        Indies — you came back with a bad leg, several decorations,
+        and an inability to ignore a stranger who does not move like
+        a civilian.
+      mechanical_effects:
+        class_hint: Explorer
+        personality_trait: watchful
+        vocation: colonel
   allows_freeform: true
 
-- id: connection
-  title: What Haunts You?
+- id: eye
+  title: What Do You Always Notice?
   narration: |
-    The fire has burned lower. The room feels smaller. Your host rises and
-    moves to the window, looking out at the rain as though expecting someone.
+    The publican is wiping a glass slowly, the way a man does when he is
+    listening to something he wants to remember. The fire has settled. The
+    dog has begun to snore.
 
-    "No one comes to a house like this without a reason." The voice is
-    quieter now. "There is always something — someone lost, something
-    owed, a door that should have stayed shut."
-
-    A long silence. Then, without turning: "What haunts you?"
+    "Folk in a village," he says, conversational, to the glass rather than
+    to you. "They all see different things. The doctor sees hands. The
+    minister sees faces. The schoolmistress sees the children of folk who
+    haven't said a word." He sets the glass down. "What about you. What
+    do you always notice?"
+  loading_text: "The publican is no longer wiping the glass..."
   choices:
-    - label: A Secret
+    - label: What's Out of Place
       description: >-
-        You know something — about yourself, about someone powerful, about
-        something that happened in a room no one talks about. The knowledge
-        is a weight you carry every day. If it surfaces, lives will change.
-        Possibly yours.
+        The stain on the glove. The chair drawn up to a desk it doesn't
+        belong at. The umbrella by the door that doesn't match anyone
+        in the house. You see what doesn't fit, and once you've seen
+        it you can't stop seeing it.
       mechanical_effects:
-        relationship: keeper_of_secrets
-        personality_trait: guarded
-    - label: A Loss
+        personality_trait: observant
+        eye: out_of_place
+    - label: What Isn't Said
       description: >-
-        Someone you loved. Gone — dead, vanished, or simply lost to the
-        vast indifference of the world. Their absence is the shape of
-        your days. You catch yourself listening for their step on the stair.
+        The pause before the answer. The subject changed too smoothly.
+        The condolence offered to the wrong person. You read silence
+        the way other people read newspapers.
       mechanical_effects:
-        relationship: the_bereaved
-        personality_trait: melancholy
-    - label: A Debt
+        personality_trait: perceptive
+        eye: silence
+    - label: The Children
       description: >-
-        Someone did you a kindness you can never repay — or a cruelty
-        you can never forget. Either way, there is an account that must
-        be settled, and the ledger keeps you awake.
+        Children watch everything and tell most of it to whoever asks
+        nicely. A child's sudden fear of a particular adult is a fact
+        worth its weight. A child's sudden knowledge of a word they
+        shouldn't have is a clue.
       mechanical_effects:
-        relationship: the_obligated
-        personality_trait: driven
-    - label: A Rival
+        personality_trait: patient
+        eye: children
+    - label: The Money
       description: >-
-        There is someone who has what you want, or wants what you have.
-        You have been circling each other for years — in society, in
-        business, in love. One of you will break first.
+        Sudden frugality. Sudden flush. A new hat on a wife whose
+        husband is meant to be in debt. A pew rebuilt by a family
+        that swore they had nothing. You follow the money because
+        the money has never lied to you yet.
       mechanical_effects:
-        relationship: the_rival
-        personality_trait: competitive
-  allows_freeform: true
-
-- id: drive
-  title: Then Why Are You Here?
-  narration: |
-    Your host turns from the window. The rain has worsened. There will be
-    no leaving tonight — not in this weather, not on these roads. You are
-    committed now, to this house and whatever it contains.
-
-    "I have a talent for reading people. Occupational necessity." A thin
-    smile. "You didn't come here by accident. Nobody does."
-
-    The clock strikes again. The fire finds something new to burn.
-
-    "Why are you here? What do you want?"
-  choices:
-    - label: The Truth
+        personality_trait: shrewd
+        eye: money
+    - label: The Room Before the People
       description: >-
-        Something is wrong in this place — in this house, this family,
-        this parish. You can feel it in the silences and the locked doors.
-        You intend to find out what it is, whatever the cost.
+        You take a room in before you take its occupants in. What's
+        on the mantel. Which book is half-read. Whether the windows
+        have been opened today. By the time you greet your host you
+        already know more than they intend.
       mechanical_effects:
-        goals: uncover_the_truth
-        emotional_state: determined
-    - label: A Position
+        personality_trait: attentive
+        eye: room
+    - label: I Won't Let It Go
       description: >-
-        You need a place in the world — a post, a marriage, a living,
-        a practice. You have come here because this is where the
-        opportunity is, and you intend to seize it with both hands.
+        It isn't that you notice more than other people. It's that
+        you don't stop noticing. Once something has caught your
+        attention you will return to it until it gives way, however
+        long that takes, however gentle you have to be.
       mechanical_effects:
-        goals: secure_a_position
-        emotional_state: purposeful
-    - label: Escape
-      description: >-
-        You are running from something — a scandal, a marriage, a
-        reputation, a version of yourself you cannot bear. This house
-        is far enough from everything. Perhaps here you can begin again.
-      mechanical_effects:
-        goals: start_over
-        emotional_state: wary
-    - label: Someone
-      description: >-
-        There is a person in this place you need to find — a lost
-        relation, a vanished friend, a name in a letter that should
-        never have been sent. You will not leave until you have answers.
-      mechanical_effects:
-        goals: find_someone
-        emotional_state: desperate
+        personality_trait: tenacious
+        eye: tenacity
   allows_freeform: true
 
 - id: confirmation
-  title: The Story Begins
+  title: Settling In
   narration: |
-    Your host nods slowly, as though a suspicion has been confirmed. They
-    move to a bell pull by the fireplace and give it a single tug.
+    The publican nods slowly, as though placing the last piece of you on
+    the shelf where you belong.
 
-    "You'll stay the night. The east wing has been made up — it's perfectly
-    comfortable, despite what the servants say." A pause, weighted with
-    something unsaid. "I should mention — we keep early hours here. And
-    {name}?"
+    "You'll be wanting a room, then, I expect. The back bedroom looks
+    over the burn — better than the front, the carriages come past at
+    six. Supper is at the half-hour." He picks up the cloth again.
 
-    They meet your eyes for the first time without pretence.
+    "And {name}? Welcome to the village. They'll have you up the lane
+    for tea before the week's out."
 
-    "Do try to ignore any sounds in the night. Old houses settle."
-
-    A servant appears at the door with a candle. The hallway beyond is
-    long and dark, and {name} — a {race} {class} with more questions
-    than answers — follows the flickering light into the house.
+    {name} — a {race} {class} with a fresh suitcase and a steady eye —
+    follows the publican's gesture toward the stairs.
   choices: []
   allows_freeform: false

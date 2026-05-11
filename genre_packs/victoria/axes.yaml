@@ -1,125 +1,180 @@
 definitions:
+  - id: cosy
+    name: Cosy
+    description: >-
+      How warm and forgiving the world is. At the bracing pole, the rain
+      gets in, neighbours bicker, and the mystery has cold edges. At the
+      cosy pole, every door opens to a tea-kettle, the vicar is kind, and
+      even the murderer regrets it. Most worlds in this genre default
+      toward cosy — this is BritBox at heart.
+    poles:
+      - bracing
+      - cosy
+    default: 0.7
+
+  - id: puzzle
+    name: Puzzle
+    description: >-
+      How much the narrator foregrounds the mystery-as-puzzle. At the
+      atmospheric pole, the village and its people matter more than the
+      solution; the mystery is the lens, not the engine. At the puzzle
+      pole, clues are planted in plain sight, red herrings are deliberate,
+      and the player is meant to *solve* it.
+    poles:
+      - atmospheric
+      - puzzle
+    default: 0.7
+
+  - id: gossip
+    name: Gossip
+    description: >-
+      How much social information flow drives the plot. At the discreet
+      pole, the village keeps its own counsel and secrets stay secret;
+      the sleuth must dig. At the talkative pole, the post office is the
+      library, the tea rooms are the courthouse, and the right question
+      asked of the right person at the right time unlocks the whole case.
+    poles:
+      - discreet
+      - talkative
+    default: 0.5
+
   - id: gothic
     name: Gothic
     description: >-
-      How much supernatural reality exists beneath the surface. At low values,
-      every chill is a draft and every noise is the house settling. At high
-      values, the ghost is real, the curse works, and some rooms should stay
-      locked.
+      How much supernatural reality leaks into the world. At the rational
+      pole, every chill is a draft and every noise is the house settling;
+      Cosy crime is materialist by default. At the gothic pole, the
+      ghost is real, the curse works, and some rooms should stay locked.
+      Reserve this dial for tonal escalation — the storm night, the burnt
+      shieling, the Old Drove Road — not for the village in daylight.
     poles:
       - rational
       - supernatural
-    default: 0.3
-
-  - id: romance
-    name: Romance
-    description: >-
-      How central the love story is. At the restrained pole, feelings are
-      implied, duty wins, and a lingering glance is the most anyone dares.
-      At the passionate pole, love is the engine — desire overrules propriety,
-      hearts break loudly, and the question is always who loves whom.
-    poles:
-      - restrained
-      - passionate
-    default: 0.5
-
-  - id: intrigue
-    name: Intrigue
-    description: >-
-      Whether the mystery leans toward social maneuvering or criminal
-      investigation. At the social pole, the battleground is the drawing room —
-      reputation, alliances, who is invited and who is cut. At the criminal
-      pole, bodies appear, evidence is hidden, and someone is lying to the
-      police.
-    poles:
-      - social
-      - criminal
-    default: 0.4
+    default: 0.1
 
 modifiers:
+  cosy:
+    bracing: >-
+      The wind finds every gap. The vicar is short on patience and the
+      doctor's bedside manner could shave a beard. Neighbours have
+      grievances and remember slights. Tea is taken cold because the
+      kettle's gone off again. The mystery's edges are sharp; the
+      village's warmth is conditional and earned.
+    cosy: >-
+      Every door opens to a tea-kettle. The vicar will sit with anyone.
+      The postmistress remembers your sister's birthday. The doctor's
+      surgery is full because nobody really wants to leave the waiting
+      room. Even the murderer, when finally cornered, would rather
+      explain it over a sherry than fight it out. Warmth is the default;
+      the puzzle sits inside the warmth, not against it.
+  puzzle:
+    atmospheric: >-
+      The village comes first. Long Sunday afternoons. The light in the
+      kirkyard at evening. The doctor's locum learning everyone's name.
+      The mystery is a way to look at these people, not the point of
+      looking. Clues surface late and obliquely; solutions come from
+      knowing the village, not from notebook-and-pencil deduction.
+    puzzle: >-
+      Clues are deliberately seeded. Red herrings are planted with
+      intention. The narrator gives the player a fair chance — every
+      fact the sleuth needs is on the page before the solution lands.
+      The pleasure is in the click of the puzzle resolving, in the
+      moment the player sees what they've been looking at all along.
+  gossip:
+    discreet: >-
+      The village keeps its own counsel. People answer questions
+      politely without saying anything. The doors close behind you
+      when you leave. Information has to be earned — observed, deduced,
+      pried loose with kindness or pressure. The post office is silent
+      about who writes to whom.
+    talkative: >-
+      The post office is the library and the tea rooms are the
+      courthouse. Mrs. Buchan will tell you who's writing to whom and
+      Mrs. Cameron will tell you who they used to write to. Information
+      flows fast — but everyone has an angle, and every account is
+      shaped by who's telling it. The sleuth's work is sorting which
+      version of the village is true.
   gothic:
     rational: >-
-      Every mystery has a mundane explanation. The ghost is grief. The curse is
-      coincidence. The locked room has a key someone is hiding. Maintain this
-      consistently — the world is material, knowable, and governed by human
-      nature alone. Atmosphere can be eerie, but the answer is always human.
+      Every mystery has a mundane explanation. The ghost is grief. The
+      curse is coincidence. The locked room has a key someone is hiding.
+      The world is material, knowable, and governed by human nature
+      alone. Atmosphere can be eerie — the storm, the empty road, the
+      portrait that seems to follow you — but the answer is always
+      human. Cosy crime is rationalist by genre.
     supernatural: >-
-      The supernatural is real and terrible. The house remembers violence done
-      within its walls. The portrait's eyes follow you because something looks
-      through them. Mesmerism works — not as parlor trick but as genuine
-      violation of will. Use sparingly for maximum dread. The supernatural
-      should feel transgressive, ancient, and wrong — never routine, never
-      a tool. Characters who encounter it are changed.
-  romance:
-    restrained: >-
-      Feelings exist but are never spoken plainly. A touch of hands is
-      electric. A letter is agonized over for days. Duty, family expectation,
-      and propriety hold desire in check. The tension is in what cannot be
-      said. Relationships develop through glances, small kindnesses, and
-      arguments that are really about something else entirely.
-    passionate: >-
-      Love drives the plot. Characters make terrible decisions because they
-      cannot help themselves. Confessions happen in storms, on moors, in
-      rooms where they should not be alone. Desire collides with duty and
-      wins — or loses spectacularly. The emotional stakes are always as
-      high as the narrative ones. Hearts break. People are ruined for love.
-      It is worth it, or it isn't, and that is the question.
-  intrigue:
-    social: >-
-      The battlefield is the drawing room. Weapons are invitations withheld,
-      rumors planted, alliances shifted. A word at the right dinner party
-      can elevate or destroy. The villain operates through society — a
-      strategic marriage, a whispered accusation, a door that no longer
-      opens. Standing and Scandal are the primary stakes.
-    criminal: >-
-      Someone is dead, missing, or threatened, and the law is either
-      incompetent or complicit. Investigation drives the plot — clues,
-      witnesses, evidence hidden or destroyed. The criminal underworld
-      exists beneath the respectable surface: opium dens, body-snatchers,
-      forgers, blackmailers. Scotland Yard may help or hinder.
+      Something old and uncosy lives in the corners of the glen. The
+      green lady at Castle Ross is more than a story. The standing
+      stones above the burn keep a low pressure on the air. Use
+      sparingly and only at tonal escalation — the storm night, the
+      shieling, the Long Pass at midnight. Never the village in
+      daylight. The cosy is the default; the gothic is the dial you
+      turn only when the story has earned it.
 
 presets:
-  - name: Brontë
+  - name: Father Brown
     description: >-
-      Moody manors, burning passion, dark secrets. The moors are alive
-      and the house has a history. Someone broods magnificently.
+      Early Chesterton register, late-Victorian / Edwardian. Quiet
+      cleric, attentive eye, gentle relentless pursuit of the truth.
+      Cosy and rational; puzzle-forward without coldness.
     values:
-      gothic: 0.7
-      romance: 0.8
-      intrigue: 0.3
+      cosy: 0.7
+      puzzle: 0.8
+      gossip: 0.4
+      gothic: 0.05
 
-  - name: Bridgerton
+  - name: Christie
     description: >-
-      The social season as battlefield. Wit, beauty, and strategic
-      marriages. Low stakes physically, devastating stakes socially.
+      Pre-war Agatha Christie — country house parties, garden fetes,
+      improbable visitors, a body in the library. Puzzle-foregrounded;
+      warmth conditional on knowing your neighbour.
     values:
+      cosy: 0.6
+      puzzle: 0.9
+      gossip: 0.6
+      gothic: 0.05
+
+  - name: Herriot
+    description: >-
+      All Creatures Great and Small, moved earlier. The village seen
+      through the vet's day. Mystery as occasional intrusion into a
+      world of births, calvings, and stubborn farmers. Atmosphere over
+      puzzle.
+    values:
+      cosy: 0.9
+      puzzle: 0.4
+      gossip: 0.6
+      gothic: 0.0
+
+  - name: Midsomer
+    description: >-
+      The English-village ensemble murder. Comfortable cast, regular
+      bodies, the postmistress always knows something. Cosy register
+      with a high body count by week's end.
+    values:
+      cosy: 0.7
+      puzzle: 0.8
+      gossip: 0.8
       gothic: 0.1
-      romance: 0.9
-      intrigue: 0.2
 
-  - name: Holmes
+  - name: Hamish Macbeth
     description: >-
-      Fog, deduction, criminal London. The game is afoot. Romance is
-      irrelevant; the puzzle is everything.
+      Lochdubh by way of Glenross — Highland village, slow constable,
+      everyone-knows-everyone. Quieter, slyer, with the glen's weather
+      doing half the work.
     values:
-      gothic: 0.1
-      romance: 0.1
-      intrigue: 0.9
-
-  - name: Collins
-    description: >-
-      Identity and conspiracy. The woman in white, the asylum, the
-      forged will. Who is this person really? Suspense over spectacle.
-    values:
-      gothic: 0.5
-      romance: 0.5
-      intrigue: 0.7
+      cosy: 0.7
+      puzzle: 0.6
+      gossip: 0.8
+      gothic: 0.15
 
   - name: Balanced
     description: >-
-      A bit of everything — the genre's default. Gothic atmosphere,
-      simmering romance, and a mystery that could go either way.
+      The genre's default — cosy village, fair puzzle, a healthy
+      amount of gossip, a faint suggestion of something older in the
+      hills you'll probably never have to look at directly.
     values:
-      gothic: 0.3
-      romance: 0.5
-      intrigue: 0.4
+      cosy: 0.7
+      puzzle: 0.7
+      gossip: 0.5
+      gothic: 0.1

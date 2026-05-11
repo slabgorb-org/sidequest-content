@@ -1,60 +1,121 @@
 obstacles:
   - name: Locked door
-    description: A door that should not be locked, or one to which you should not want the key
+    description: A study, a drawer, a desk — locked when it should not be, or with a key no one admits to holding
     stat_check: Cunning
-    failure_penalty: Discovery, someone knows you tried
+    failure_penalty: Discovery — someone in the household knows you tried
     tags: [house, access, secret]
 
-  - name: Chaperone
-    description: A watchful companion who must not suspect your true destination
+  - name: The post office queue
+    description: Five other villagers ahead of you and an urgent question for the postmistress
     stat_check: Humour
-    failure_penalty: Scandal +1, the chaperone reports to your guardian
-    tags: [social, romantic, surveillance]
+    failure_penalty: The information you wanted is now everyone's; the postmistress is too distracted to confide
+    tags: [social, information, public]
 
-  - name: Crowded ballroom
-    description: A press of bodies and opinions — reach the right person without the wrong one noticing
-    stat_check: Pride
-    failure_penalty: Wrong conversation, Standing -1
-    tags: [social, crowd, public]
-
-  - name: Muddy lane
-    description: Rain-soaked country road — your clothes will suffer and so will your dignity
-    stat_check: Nerve
-    failure_penalty: Appearance ruined, social disadvantage at destination
-    tags: [rural, weather, physical]
-
-  - name: Suspicious servant
-    description: A member of staff who has been told to watch you
-    stat_check: Cunning
-    failure_penalty: Movements reported, the household knows where you've been
-    tags: [house, surveillance, stealth]
-
-  - name: Drawing room interrogation
-    description: Polite questions that are not polite at all — someone is probing for information
-    stat_check: Nerve
-    failure_penalty: Information leaked, a secret is closer to exposure
-    tags: [social, verbal, pressure]
-
-  - name: Dark staircase
-    description: No candle, unfamiliar house, and the sound of someone else moving in the dark
-    stat_check: Nerve
-    failure_penalty: Fall, noise, discovery — or worse, you find what's at the bottom
-    tags: [house, night, physical]
+  - name: The Sunday tea
+    description: A social obligation — refuse and you are heartless, attend and you must endure the parish gossip before the sleuth can ask the one question that matters
+    stat_check: Humour
+    failure_penalty: Standing slip with the village; the question must wait until Wednesday
+    tags: [social, obligation, information]
 
   - name: Mourning call
-    description: A social obligation to visit the bereaved — refuse and you're heartless, attend and you'll learn things
+    description: A formal visit to the bereaved — propriety requires it, the sleuth knows the household is the place to ask the question, and both facts must be honoured at once
     stat_check: Humour
     failure_penalty: Reputation damage from callousness or from asking the wrong question
     tags: [social, obligation, information]
 
-  - name: Carriage pursuit
-    description: Follow a hansom through London streets without being seen
+  - name: Drawing-room enquiry
+    description: Polite questions that are not polite at all — the laird, the rector, the visiting solicitor each wants to know exactly what you know, and how
+    stat_check: Nerve
+    failure_penalty: A confidence leaks, or a secret is closer to exposure
+    tags: [social, verbal, pressure]
+
+  - name: The cricket pavilion crowd
+    description: Half the parish in a small space; the one person you need to speak to is the one person who must not see you cross the pitch
+    stat_check: Pride
+    failure_penalty: The wrong eyes meet yours, Standing -1
+    tags: [social, crowd, public]
+
+  - name: The Long Pass after dark
+    description: A walk between hamlets in failing light; the wind in the heather, the way sound carries in the glen, the awareness of company you did not expect
+    stat_check: Nerve
+    failure_penalty: Lost; or worse, found
+    tags: [rural, night, physical]
+
+  - name: Muddy lane
+    description: Rain-soaked country track — your boots will suffer and so will your dignity at the manse you arrive at
+    stat_check: Nerve
+    failure_penalty: Appearance ruined; the household receives you in the back kitchen instead of the parlour
+    tags: [rural, weather, physical]
+
+  - name: The discreet servant
+    description: A member of the household staff who has been instructed to remember you were never there
     stat_check: Cunning
-    failure_penalty: Lost the trail, or they know you're following
-    tags: [urban, chase, investigation]
+    failure_penalty: Movements reported; the master knows you have called
+    tags: [house, surveillance, social]
+
+  - name: The wireless message
+    description: A telegram that must be sent without the postmistress reading the contents, or composed in a code that cannot be cracked between Glenross and Inverness
+    stat_check: Cunning
+    failure_penalty: The contents are common village knowledge by sundown
+    tags: [communication, information, precision]
+
+  - name: The bicycle pursuit
+    description: A figure ahead on the lane, a bicycle propped against the inn wall, three miles of unmade road and a hill at the end
+    stat_check: Nerve
+    failure_penalty: Lost the trail, or thrown into the verge by a careless ditch
+    tags: [chase, rural, physical]
+
+  - name: The motor-car
+    description: Glenross has perhaps three motor-cars in the parish; pursuing or escaping one is the sort of incident villagers remember
+    stat_check: Nerve
+    failure_penalty: Mechanical trouble, a missed turning, a witness who will not stop telling the story for a fortnight
+    tags: [chase, modern, conspicuous]
+
+  - name: The train timetable
+    description: Two trains a day to Inverness; the next one is in forty minutes and someone is on it who must not leave the parish
+    stat_check: Cunning
+    failure_penalty: The train departs with the person — and the question — aboard
+    tags: [travel, time-pressure, urgency]
 
   - name: Difficult correspondence
-    description: A letter that must be written with perfect precision — one wrong word changes everything
+    description: A letter that must be written with perfect precision — one wrong word and the recipient knows you suspect them
     stat_check: Cunning
     failure_penalty: Misunderstanding, offence given, or intention revealed
     tags: [communication, social, precision]
+
+  - name: The kirk session
+    description: A meeting of the parish elders — questions about morals and money and who has been seen where, asked with the full weight of the kirk behind them
+    stat_check: Pride
+    failure_penalty: A formal censure; Standing slip in the parish for a season
+    tags: [social, formal, public]
+
+  - name: The laird's lawn party
+    description: The summer fixture at the Big House; the right conversation happens between the second tea and the first wasp; the wrong conversation lives on for years
+    stat_check: Pride
+    failure_penalty: An invitation is not extended the following summer
+    tags: [social, formal, public]
+
+reveals:
+  - name: The lie told from habit
+    description: A villager has been telling the same small fiction for so long that they do not realise it has just collapsed in their hand
+    stat_check: Cunning
+    payoff: The sleuth now knows the shape of the truth, even if they do not yet have the truth itself
+    tags: [social, observation, deduction]
+
+  - name: The letter half-burnt
+    description: A scrap of paper rescued from the fire — a date, a name, a sum, a destination
+    stat_check: Cunning
+    payoff: A piece of physical evidence that will not be denied
+    tags: [evidence, physical, deduction]
+
+  - name: The child's drawing
+    description: A picture on the schoolmistress's wall — a stick figure where there should not be one, a window where the curtains were said to be drawn
+    stat_check: Humour
+    payoff: A witness no adult thought to interview
+    tags: [witness, child, observation]
+
+  - name: The wrong tea
+    description: A teapot at the wrong table, a cup with the wrong sugar, the brand of biscuit that was not in the house yesterday
+    stat_check: Cunning
+    payoff: Someone has been somewhere they said they had not
+    tags: [domestic, observation, deduction]
