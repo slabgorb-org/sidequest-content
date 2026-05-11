@@ -10,12 +10,17 @@
 # fills the item_legacy_v1 lane — the named, OCEAN-shaped, NPC-grade items
 # that satisfy the plugin's `world_layer_required` slot.
 #
-# LOADER NOTE: as of 2026-05-11 no runtime loader consumes this file. It
-# is canonical content authored against the locked plugin schema; when the
-# loader lands, the schema should match without rework. The mundane
-# modifier_items section is research-doc-shape; the confrontation-engine
-# `requires`-against-inventory feature is unimplemented per the research
-# doc's Scope Estimate. Both sections are content-ready, code-pending.
+# LOADER NOTE: the world-tier items loader landed on 2026-05-11
+# (sidequest-server: sidequest/genre/loader.py :: _load_world_items).
+# All five sections (named_items, modifier_items, reliquaries,
+# crimson_remnants, consumable_items) are surfaced to World.items as
+# a WorldItemsCatalog and load emits a
+# `state_transition:world_items:loaded` watcher event. The
+# confrontation-engine `requires`-against-inventory consumer remains
+# unimplemented per the research doc's Scope Estimate — modifier_items
+# entries round-trip through the loader but aren't matched against
+# beats yet. Cleric `divine_favor` reliquary wiring is the next consumer
+# to land.
 #
 # Surface lore only. No hidden_history beats baked in — items reference
 # only what the public lore (lore.yaml, factions.yaml, world.yaml) already
