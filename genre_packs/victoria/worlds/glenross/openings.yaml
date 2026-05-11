@@ -1,0 +1,1451 @@
+# Glenross — Openings bank.
+#
+# Hard contracts (validators in genre/loader.py + models/narrative.py):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - OpeningSetting requires exactly one anchor: chassis_instance OR
+#     location_label (not both, not neither). Glenross uses location_label.
+#   - At least one solo + one multiplayer opening present.
+#   - PerPcBeat.applies_to keys are constrained to {background, drive,
+#     race, class}.
+#
+# Spec: docs/superpowers/specs/completed/2026-05-01-canned-openings-design.md
+#       docs/superpowers/specs/2026-05-11-tea-and-murder-glenross-design.md
+#
+# Voice contract: warm, observant, dryly witty, slightly arch in the way
+# the best village storytellers are arch. Tea Cup Test applies — body
+# discovery (when it comes) is off-stage or tidy; turn 1 never carries
+# a body. Stakes on turn 1 are gentle; the complication waits for
+# turn 2 or 3 per the SOUL pacing rule.
+#
+# v2 bank (2026-05-11): EIGHT solo openings, one anchored at each
+# vocation's signature POI, plus one MP at the cricket ground. All solo
+# entries use triggers.backgrounds: [] so they share the fallback pool —
+# the runtime picks one at random at chargen-complete. Each opening
+# carries per_pc_beats for all six chargen class_hints (Doctor,
+# Clergyman, Society, Governess, Detective, Explorer) so any
+# vocation/POI combination still threads the player's day-job into the
+# scene gracefully. (A "perfect" anchoring where vocation hard-gates
+# opening selection requires an OpeningTrigger schema extension —
+# tracked as a separate Dev follow-up; see opening_bank_v2 finding in
+# the orchestrator handoff.)
+
+version: "0.2.0"
+world: glenross
+genre: victoria
+
+openings:
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #1 — The Surgery (Country Doctor's signature POI)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_surgery_morning_post
+    name: "The Surgery — Tuesday morning post, the kettle on, the waiting bench empty"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: the_surgery
+      situation: >-
+        Tuesday morning, late autumn. Surgery hours are ten to noon and
+        nobody has yet come through the door. Dr. Eilidh Ross has the
+        kettle on, the post on the desk, the dispensary cabinet open
+        for the weekly inventory. The lane outside is quiet; a horse
+        is being shod down at the inn yard and the sound carries.
+      present_npcs:
+        - dr_ross
+    tone:
+      register: "warm, observant, the village in its weekday courtesy"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — the wrinkle is in the morning post"
+      sensory_layers:
+        smell: >-
+          Carbolic and lavender from the dispensary cabinet, peat smoke
+          drifting in from the bar across the lane, the faint tea smell
+          of a kettle that has just come off, the wax-and-paper smell
+          of a stack of unopened envelopes.
+        sound: >-
+          The kettle settling. The slow rhythmic ring of the farrier's
+          hammer at the inn yard, three doors down, carrying as such
+          sounds do on a still autumn morning. The surgery clock,
+          which is always two minutes fast.
+        touch: >-
+          The waiting-bench cushion thin under the hand. The
+          dispensary cabinet's brass handles cool. The mug, when it
+          arrives, is the heaviest object in the room.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - introducing the surgery telephone ringing on turn 1 (save it)
+        - asking the player a question — turn 1 closes on a declarative
+        - moving the player without their input
+        - the gothic register
+    establishing_narration: |
+      The surgery faces the lane, painted cream, three steps up to a
+      door that has been propped open since nine. Inside, the waiting
+      bench is empty and the kettle has just come off. Dr. Eilidh
+      Ross is at the desk with the morning post in three neat piles —
+      the local hand on the left, the Edinburgh and London on the
+      right, the one with the foreign stamp by itself in the middle.
+
+      She looks up at you with the unhurried half-smile of a country
+      doctor who has learned that nine visitors in ten can be put at
+      ease by the look on the practitioner's face before anything else
+      happens. "You're early. Or I'm slow. Sit yourself down — the
+      kettle's just come off and I've a few minutes before the first
+      of them."
+
+      The dispensary cabinet is open behind her, the weekly inventory
+      half done. The surgery telephone — one of two in the village —
+      is mounted on the wall by the door, silent for the moment.
+      Through the window, the farrier's hammer at the inn yard rings
+      out three doors down, and somewhere up at the kirk a single
+      bell tolls the half-past.
+    first_turn_invitation: |
+      The kettle is just settled. Dr. Ross is reaching for the
+      foreign-stamped letter in the middle pile. The lane outside is
+      doing its slow Tuesday-morning business.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Dr. Ross opens the foreign-stamped letter with a paper-knife
+        and reads it through once without expression. Then a second
+        time, more slowly. She does not put it down. She refolds it
+        once along its existing crease and slides it under the
+        blotter without comment.
+
+        "Well." She picks up the next letter, which is in a local
+        hand. "How are your people keeping. I haven't seen your aunt
+        in the lane this fortnight."
+
+        The clock on the surgery wall, which is always two minutes
+        fast, ticks audibly into the small pause that follows.
+      escalation_path:
+        turn_2_or_3: >-
+          The foreign-stamped letter is the wrinkle. By turn three Dr.
+          Ross will have brought it up, or it will fall out from
+          under the blotter, or the writer will be the next person
+          through the door. The narrator picks the path on the basis
+          of the player's vocation. Do not preview on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          "You'll know the cabinet then." Dr. Ross gestures, without
+          quite looking. "I'm short on quinine and the wholesaler in
+          Inverness has been promising for three weeks. If you've a
+          spare grain in your bag I would consider it a kindness. The
+          kettle's just on; help yourself."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          Dr. Ross sets the post aside. "Reverend. Tea." She fills two
+          mugs without asking. "I've a parishioner of yours who has
+          not been at service these three Sundays and who will not
+          tell me why. I won't betray a confidence, but I will say
+          that the manse might walk past her cottage this afternoon."
+      - applies_to: { class: "Society" }
+        beat: |
+          "You'll have come for the news, then." Dr. Ross's smile is
+          courteous and entirely unguileless. "Sit down. The kettle's
+          just on. Whatever you've heard about Lady Annabel's nephew
+          I will not confirm or deny, but I will give you tea while
+          you ask."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Schoolmistress — sit. Sit." Dr. Ross indicates the bench
+          with the back of a pen. "Young Tommy MacKay's cough was the
+          croup, not the chest, but I want him in here Thursday all
+          the same. Tell his mother for me. She'll take it better
+          from you than from the prescription pad."
+      - applies_to: { class: "Detective" }
+        beat: |
+          Dr. Ross considers you over the mug. "Sergeant. I haven't
+          called for you and I haven't been called on. So I take it
+          this is a friendly cup of tea." Her glance touches the
+          foreign-stamped letter under the blotter and does not
+          rest. "It is, isn't it."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          "Colonel." Dr. Ross's tone shifts faintly — the careful
+          politeness of one professional meeting another. "Your leg.
+          Be honest with me, before you sit. The damp this autumn has
+          been worse than last year's, and pride has set back more
+          recoveries than gout ever did."
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #2 — The Manse (Parish Minister's signature POI)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_manse_bee_garden
+    name: "The Manse — late afternoon in the bee garden, the minister cutting roses"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: the_manse
+      situation: >-
+        Late afternoon, autumn sunshine. The Reverend Andrew Murchison
+        is in the walled garden behind the manse, cutting the last of
+        the roses for Mrs. Drummond to put on the kitchen table.
+        Beyond the kitchen door is the bee-garden with its six hives;
+        beyond that, the kirkyard sloping down to the burn. There is
+        no parish emergency today.
+      present_npcs:
+        - rev_murchison
+    tone:
+      register: "warm, contemplative, ministerially attentive"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — surfaces from the kirkyard side"
+      sensory_layers:
+        smell: >-
+          Cut rose stems, beeswax from the hives, woodsmoke from the
+          manse chimney, the wet-leaf smell from the kirkyard yew, the
+          faint kitchen-bread smell from the open back door.
+        sound: >-
+          The drowsy late-season hum from the bee-garden. Mrs.
+          Drummond moving things on the kitchen flagstones. A blackbird
+          in the yew. Far off, two farm dogs disagreeing about a stoat.
+        touch: >-
+          The garden bench warmer than expected in the afternoon sun.
+          The rose stems' cool wet weight against the cuff. The
+          beeswax-and-newsprint feel of the minister's hands.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - using "Father" as the form of address (he is "Mr." or "Reverend"; CofS)
+        - asking the player a question — turn 1 closes on a declarative
+        - the gothic register
+        - moving the player without their input
+    establishing_narration: |
+      The manse garden is at the side of a house that has been a
+      minister's house for a hundred and forty years. Stone wall,
+      high enough to be private and low enough to nod over to a
+      passer-by. Six bee-hives in the bee-garden at the far end,
+      drowsing through the last of the season. Roses in a long bed
+      against the south-facing wall — too late for many, but enough
+      for the kitchen table.
+
+      The Reverend Andrew Murchison is cutting them with secateurs in
+      the unhurried way of a widower who has learned that small
+      tendings keep the larger sadnesses in proportion. He is in his
+      shirt-sleeves and waistcoat, the dog-collar plain at his
+      throat, sleeves rolled to the elbow. His hands are stained
+      faintly with the brown ink of the morning's correspondence and
+      the green of the rose stems.
+
+      He looks up as you come down the path from the kitchen door,
+      and the smile he produces is the smile of a man who has spent
+      forty years being glad to see whoever comes through a manse
+      door. "Aye. Sit down, sit down. Mrs. Drummond is bringing tea
+      out in a quarter of an hour and there is no hurry on any of it.
+      Mind the bees on the lavender — they are slow in the cool but
+      they take a step badly."
+
+      Beyond the bee-garden, the kirkyard yew is throwing a long
+      shadow across the dry-stone wall, and somewhere on the lane a
+      child is calling for a dog called Bonnie who is not coming.
+    first_turn_invitation: |
+      The minister has gone back to the secateurs. The kettle indoors
+      has just begun to whistle. The bees in the lavender are taking
+      their slow last business of the day, and the kirkyard yew is
+      shading the wall.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Mrs. Drummond comes out with the tea tray, sets it on the
+        garden table, and pauses with her hand still on the pot.
+        "Mr. Murchison. The Buchan girl was at the kitchen door not
+        ten minutes ago. She wouldn't come in. She left a note." Mrs.
+        Drummond produces a folded paper from her apron pocket. "She
+        said: when the minister has the time. Not before."
+
+        Andrew Murchison takes the note, unfolds it, reads it once,
+        and folds it back along the same crease. He does not put it
+        down. "Aye. Thank you, Mrs. Drummond. I'll walk down at six."
+
+        Mrs. Drummond looks once at the visitor, once at the note,
+        and goes back to the kitchen without comment. The yew shadow
+        has reached the bee-garden.
+      escalation_path:
+        turn_2_or_3: >-
+          The Buchan girl's note is the wrinkle. By turn three the
+          minister will be heading down to the post office, or the
+          girl will be at the gate, or the note's content — a name,
+          a place, a time — will have surfaced. Narrator picks the
+          shape on the basis of the player's vocation. Do not preview.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          "Doctor — sit. I was going to send word." Andrew sets the
+          secateurs down. "Old Mrs. Cattanach. I sat with her on
+          Sunday and she would not say what was wrong, but it was
+          something, and it was new. Could you call this week
+          without making it a call. She would notice the bag and
+          she would not say a word more."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "Aye. Reverend." Andrew's face shifts faintly with the
+          recognition. "You'll have heard about the rector and me —
+          we get on, you'll find, better than is expected of two men
+          of our different houses. Sit. Mrs. Drummond will bring out
+          a second cup directly. The bees have been quiet today;
+          they are a good measure of the parish, the bees."
+      - applies_to: { class: "Society" }
+        beat: |
+          "The Hall, I take it." Andrew nods, not displeased. "Sir
+          Iain has been by twice this week. Lady Annabel I have not
+          seen in a fortnight — I do not say this with concern, but
+          I say it. If you are up at Castle Ross again before Sunday,
+          ask after her in a way that lets her change the subject
+          gracefully."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Miss." Andrew gives the secateurs a wipe with a kerchief.
+          "There is a child in the lower form whose father has not
+          been home this fortnight. I do not say which child. I am
+          only mentioning that the school is sometimes the first
+          place a household's quietness becomes visible. You will
+          know better than I."
+      - applies_to: { class: "Detective" }
+        beat: |
+          "Sergeant. Sit." Andrew sets the secateurs into the basket
+          and wipes his hands. "Nothing has been put before me that
+          would warrant your time. I will say only — the way I would
+          say it to any sergeant, if I had the chance — that the
+          village is unusually quiet this week, and a village is
+          rarely quiet without a reason."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          "Colonel. The bench in the sun is the warmest seat in the
+          garden." Andrew gestures. "You'll find I do not press a
+          retired man on his recollections. But Sir Iain served too,
+          and he is up at the Hall this week, and the manse is
+          always a peaceable house if you've a mind for a walk down
+          on a quiet evening."
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #3 — St. Margaret's Chapel (Episcopal Rector's signature POI)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_chapel_vestry_evensong
+    name: "St. Margaret's — late vestry hour before evensong, the rector at his books"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: st_margarets_chapel
+      situation: >-
+        Half past four on a Thursday in autumn. The Reverend Alistair
+        Quill is in the vestry of St. Margaret's, going over the
+        register and the offertory book before evensong at six.
+        Outside the chapel porch a lone visitor's umbrella is propped
+        and dripping. The Ross family are at the Hall this week; the
+        rector's small congregation is otherwise scattered through the
+        glen.
+      present_npcs:
+        - rev_quill
+    tone:
+      register: "mild, observant, gently relentless"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — surfaces in the offertory book"
+      sensory_layers:
+        smell: >-
+          Beeswax polish on the pews, damp wool from a hanging coat,
+          old paper from the bound parish register, the cold faintly-
+          metallic smell of Aberdeenshire granite.
+        sound: >-
+          The slow tick of the vestry clock. Rain on the roof —
+          intermittent, polite. The chapel door breathing once or
+          twice in the wind. The rector's pen moving across paper in
+          steady short scratches.
+        touch: >-
+          The vestry chair worn smooth on its arms. The cold of the
+          chapel granite where the hand rests on a pew. The dry rustle
+          of register pages turned with care.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - any sectarian aside (Roman Catholic / sectarian baggage)
+        - asking the player a question — turn 1 closes on a declarative
+        - the gothic register (despite the chapel — keep it small and warm)
+        - moving the player without their input
+    establishing_narration: |
+      St. Margaret's is the size of a country chapel that no one
+      built large because no one expected the small congregation to
+      need anything else. Single nave, six bays, a porch with a
+      noticeboard whose copperplate is the rector's own hand. The
+      Aberdeenshire granite is the colour of dry oatmeal under a
+      grey sky and the colour of warm sand under a clear one. Today,
+      it is the first.
+
+      The rector is in the vestry, which is the size of a large
+      cupboard with one window. The register is open on the desk
+      and the offertory book is open beside it, and the rector is
+      checking one against the other in the quiet way that small-
+      congregation clergymen check anything they intend to
+      remember. He is in his cassock, his black umbrella propped
+      mended-side-up by the door, and the breviary that lives in
+      his pocket is on the desk where the lamp catches it.
+
+      He looks up at your shadow in the doorway and the smile that
+      arrives is small, exact, and entirely unsurprised. "Aye. Come
+      in. The vestry is the warmest of three options — porch, nave,
+      vestry — and the seat is mine but I'll not be on it for the
+      next half hour." He stands, slips the pen into the inkwell,
+      and turns the lamp a quarter further on. "I had a feeling the
+      door would open before evensong. Sit, sit."
+
+      Outside the high window, the rain is patient. From the rear of
+      the chapel the small lay-clerk who attends to the brass is
+      humming something that is not a hymn.
+    first_turn_invitation: |
+      The rector has set the offertory book aside, but kept his finger
+      between the pages. The vestry clock ticks unhurriedly. The
+      copper kettle on the small spirit-burner — there is one — is
+      not yet on.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The rector closes the offertory book at last, but not before
+        he has paused with his finger on one entry for a beat too
+        long. "I notice things, you'll find — it is a small
+        failing." He sets the book on the shelf. "There is a sum
+        in the plate at Sunday last that did not come from any of
+        the forty I know to have been at service. A whole sovereign,
+        in among the half-crowns. And a card with no name on it,
+        wedged behind a hymnbook in the back pew that nobody sits
+        in."
+
+        He produces the card from the cassock pocket and lays it on
+        the desk. The reverse is plain. The face is plain. There is
+        an address in copperplate — Edinburgh — but no name.
+
+        The rain on the chapel roof pauses for a moment, as such
+        rain does, and then takes itself back up.
+      escalation_path:
+        turn_2_or_3: >-
+          The card and the sovereign are the wrinkle. By turn three
+          the rector will name a household worth visiting, or the
+          visitor whose umbrella drips in the porch will return for
+          it, or the address on the card will be traced. Narrator
+          picks the path on the basis of the player's vocation. Do
+          not preview on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          "Doctor." The rector's eyes warm by a degree. "I will not
+          ask you anything that would compromise a confidence. I will
+          only say that the Munros' youngest is in my Sunday school
+          and has been pale these three weeks. The mother will not
+          come to the surgery. If you are passing the distillery on
+          another errand, she would speak to a doctor at her own door
+          who she would not speak to at yours."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "Aye." The rector's smile is faint and entirely glad.
+          "Brother. Murchison and I have shared the parish forty
+          years between us and disagreed about exactly two things,
+          and both of them small. Sit. The kettle will be on in a
+          minute. The offertory I will not show you, but the chapter
+          and verse I would gladly bring before yours."
+      - applies_to: { class: "Society" }
+        beat: |
+          "I take it the Hall sent you." The rector's tone is mild
+          and unprovokeable. "Lady Annabel and I correspond by note
+          when she is in residence — she has a difficulty with stairs
+          which she does not name and I do not press. If you would
+          carry a small bundle of books back up the hill, the
+          gardener at the lodge will know what to do with them."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Miss." The rector's manner softens to the careful warmth
+          he reserves for women who teach village children. "Two of
+          the lower form are mine on Sundays, and one of them has
+          been writing in her catechism in pencil what she ought to
+          be writing in ink. The reason will be at home, not at
+          school. You will know that without my saying so."
+      - applies_to: { class: "Detective" }
+        beat: |
+          "Sergeant. Sit." The rector glances at the visitor's
+          umbrella in the porch and then back. "I will not waste
+          your time with hypotheticals. I will only mention that I
+          have, in this drawer, a sovereign that arrived without
+          a face attached to it, and that I would be in your debt
+          if you would look at the card it came in with. The rest
+          you will see in five seconds."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          "Colonel — sit." The rector indicates the second chair.
+          "Sir Iain told me once that the Long Pass walked is the
+          best half-hour in the parish for a man with a thought
+          to consider. If you have come down off it this afternoon
+          and stopped here on the way, I take it as a courtesy. The
+          chapel is small enough to feel like a tent, in its way."
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #4 — The Post Office (Postmistress's signature POI)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_post_office_morning_round
+    name: "The Post Office — the morning sorting, the kettle on, the bell waiting to ring"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: the_post_office
+      situation: >-
+        Quarter past eight on a still autumn morning. Mrs. Catriona
+        Buchan has the day's post on the counter, sorted into walking
+        rounds. The bag for the postman is half full. The telegraph
+        machine in the back is silent. The kettle is on. The lane
+        outside is quiet but is about to not be, as it always is at
+        the half-hour.
+      present_npcs:
+        - mrs_buchan
+    tone:
+      register: "alert, courteous, the village's information at attention"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — surfaces from a letter on the counter"
+      sensory_layers:
+        smell: >-
+          Stamp paste from a small open pot, paraffin from the lamp
+          that is still on in the back, peat smoke from a chimney
+          that has been going since six, the dry-paper smell of a
+          counter that has been the counter for forty years.
+        sound: >-
+          The kettle just on. The slow regular click of Mrs. Buchan
+          stamping a date onto the morning round. The lane outside,
+          which is not yet busy. A cart at the bridge, just audible.
+        touch: >-
+          The polished counter under the hand. The brass scale's
+          smooth weight when leaned against. The faintly waxy feel
+          of a freshly stamped envelope.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - having Mrs. Buchan reveal the contents of any letter unprompted
+        - asking the player a question — turn 1 closes on a declarative
+        - the gothic register
+        - moving the player without their input
+    establishing_narration: |
+      The post office at this hour is the village's quietest busy
+      room. Mrs. Catriona Buchan is behind the counter, in the
+      grey-blue smock she has worn for sorting since the late king's
+      reign. The day's post is laid out in three rows — the
+      manse, the surgery, Castle Ross — and the bag for the postman
+      is half full. The brass scale at the corner of the counter is
+      polished to within an inch of its life. The kettle is on.
+
+      The wall behind the counter carries the rate-card, the telegraph
+      manual, and a small photograph of Mrs. Buchan's son, who took a
+      commission and is in Quetta. There is a pot of stamp paste, a
+      brass-handled date stamp, and a cup of tea that has gone cold
+      while she finished the manse round.
+
+      She looks up at you with the alert, careful courtesy that has
+      kept her in the post office for twenty-two years. "Good
+      morning. The kettle's just back on — I'll have a fresh cup in
+      a minute. You'll forgive me if I finish the round; the postman
+      will be in at the half-hour and he is, may I say, a man who
+      will not be made to wait."
+
+      The lane outside the door is quiet, but is about to not be.
+      The bell over the door is hung on a curled iron bracket and
+      has not rung yet today.
+    first_turn_invitation: |
+      Mrs. Buchan picks up the date stamp again and lays it once,
+      precisely, on a thick cream envelope. The kettle is at the boil.
+      The lane outside is still empty. The clock is two minutes off
+      eight-thirty.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Mrs. Buchan pauses on a particular envelope — thick cream
+        paper, an unfamiliar hand, a London postmark — and turns it
+        over once in her fingers as though the back will explain the
+        front. It does not. She looks at the front again. She does
+        not lay it on any of the three rounds. She sets it down
+        flat on the counter between the rounds, equidistant.
+
+        "Mrs. Cameron at the tea rooms." She says it conversationally.
+        "It is not Mrs. Cameron's correspondence — she has a sister
+        in Glasgow whose hand I know by sight. This is not her
+        sister's hand. Mind you" — she fits the envelope into the
+        Mrs. Cameron round at last — "she is sixty-three years old
+        and the post office is not in the habit of supposing on a
+        person's mail."
+
+        The bell over the door rings as the first villager of the
+        day pushes in.
+      escalation_path:
+        turn_2_or_3: >-
+          The cream envelope is the wrinkle. By turn three Mrs.
+          Cameron will have come for her post and either opened it
+          in the post office or walked out without doing so; or Mrs.
+          Buchan will have admitted what she suspects and asked for
+          a discreet eye on the tea rooms. Narrator picks the path
+          on the basis of the player's vocation. Do not preview.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          "Doctor — the telephone is yours if you want it." Mrs.
+          Buchan inclines her head toward the wall set. "Inverness
+          has been intermittent this morning — they tell me a tree
+          is down by Tomatin — but Aberdeen has been clear. I will
+          not be a moment with the round if you need to make a call."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          Mrs. Buchan slides the manse round to the front of the
+          counter. "Reverend — I was going to send this up at noon.
+          There is a letter from Edinburgh that came in last night
+          and I think it is the matter Mrs. Drummond was asking after
+          last week. I'll trust your discretion on it; you'll know
+          what's needed."
+      - applies_to: { class: "Society" }
+        beat: |
+          "The Hall's round goes up at ten." Mrs. Buchan's manner
+          shifts a degree — courteous, observant, unreadable. "If
+          you are walking up, I would be obliged for the favour and
+          would myself save the postman ten minutes. There is one
+          letter for Sir Iain marked private. I do not say that to
+          mean anything by it."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Miss — the school's two letters today, both for the
+          schoolhouse address. One is your subscription to the
+          Educational Times, the other is from the inspector's
+          office at Inverness. I would not open the inspector's one
+          on the doorstep, if I may say. Take a chair on the bench."
+      - applies_to: { class: "Detective" }
+        beat: |
+          "Sergeant. The bell will ring in a moment and you will
+          have a witness." Mrs. Buchan does not glance at the cream
+          envelope on the counter, but her hand has come to rest on
+          a different part of the counter from where it was. "Stand
+          this side of the counter, would you, and pretend to be
+          waiting for the post round. I have a thing to show you in
+          half a minute."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          Mrs. Buchan reaches for a particular pigeonhole. "Colonel.
+          Your mail today — two from the regimental association,
+          one from your sister in Stirling, and the catalogue from
+          the seedsman. Nothing from India this round; I would have
+          said so directly if there had been." She lays the four
+          pieces on the counter in the order received.
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #5 — The School (Schoolmistress's signature POI)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_school_after_bell
+    name: "The School — after the four o'clock bell, the room empty, the slate not yet wiped"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: the_school
+      situation: >-
+        Ten past four on a Wednesday in autumn. The four o'clock bell
+        has been rung and the schoolroom is empty of children. Miss
+        Margaret Ferguson is at the slate, marking up tomorrow's
+        psalm. The coal stove at the far end is going down. Through
+        the long windows the schoolyard is settling into late-
+        afternoon. The schoolmistress's cottage door at the back is
+        open and a kettle is on.
+      present_npcs:
+        - miss_ferguson
+    tone:
+      register: "principled, patient, the schoolroom quiet of children just gone"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — surfaces from a child's slate"
+      sensory_layers:
+        smell: >-
+          Chalk dust, the faint coal-smoke from the stove, lavender
+          from a small dish Miss Ferguson keeps on the corner of her
+          desk, the wet-wool smell of thirty coats just gone from the
+          hooks at the back.
+        sound: >-
+          The stove ticking as it cools. The schoolhouse clock
+          marking the quarter. A single child still in the
+          schoolyard, calling to another who has gone on. The faint
+          sound of a kettle just back on through the cottage door.
+        touch: >-
+          The chalk-dust roughness on the desk's edge. The smooth
+          cool of the slate. The warmer wood of the chairs where
+          thirty children have just sat.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - infantilising the schoolmistress or treating her as fragile
+        - asking the player a question — turn 1 closes on a declarative
+        - the gothic register
+        - moving the player without their input
+    establishing_narration: |
+      The schoolroom is a long single room with tall windows on the
+      lane side and a coal stove at the far end. Thirty desks in
+      five rows, slates stacked on the corner of each, inkwells
+      filled — the inkwells were filled on Friday, as they are every
+      Friday for thirty years and as they will be next Friday — and
+      a smell of chalk dust hanging on the air the way it always
+      does for ten minutes after the bell.
+
+      Miss Margaret Ferguson is at the master slate at the front,
+      sleeves pinned back, marking up tomorrow's text. The bell rope
+      is coiled neatly on its hook by the door. The schoolmistress's
+      green-covered register is closed on her desk; the daily mark
+      is done. Through the open door at the back, into the cottage,
+      the kettle has just come back on.
+
+      She looks up as you come in, and the smile she produces is the
+      smile of a woman who has not been surprised by anything that
+      walked through a schoolroom door in twenty years. "Aye. Come
+      in. The bench by the stove is the warmest seat. I have ten
+      minutes before I shut the place up. Mind the chalk." She
+      gestures with the duster. "It is not my best class, dust-wise."
+
+      Through the long windows, the schoolyard is settling. One
+      child — the MacRae girl, by her plait — is still at the gate,
+      her satchel against her hip, looking down the lane in the
+      patient way of a child who is not in a hurry to go home today.
+    first_turn_invitation: |
+      Miss Ferguson sets the chalk down on the master slate. The
+      duster is over her arm. The stove ticks as it cools. The MacRae
+      girl is still at the schoolyard gate, looking down the lane.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Miss Ferguson glances at the MacRae girl through the long
+        window, and a small considering line forms between her
+        eyes. "Effie MacRae has not gone home tonight. Effie
+        MacRae goes home, every day, before the bell has stopped
+        its first ring. She is the eldest of four and she has the
+        habit." She lays the duster down on the desk.
+
+        She walks the three steps to her own desk and lifts a
+        slate from the top of the stack. "This is Effie's. The
+        word at the bottom is the word she has written, neat as a
+        copybook, three times today instead of her sums. Look at
+        it. Tell me what you think it is."
+
+        On the slate, written in a careful nine-year-old hand,
+        three times under the day's date, is the word: ROOM.
+
+        Just the word. Just three times. Just clean.
+      escalation_path:
+        turn_2_or_3: >-
+          Effie at the gate and the word ROOM are the wrinkle. By
+          turn three Miss Ferguson will have asked the player to
+          walk Effie home, or the constable will have been sent for,
+          or Effie will have come back inside on a pretext. Narrator
+          picks the path on the basis of the player's vocation. Do
+          not preview.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          "Doctor — sit." Miss Ferguson indicates the bench by the
+          stove. "It is nothing I would call a case yet, but the
+          MacRae children have all four had a cold this fortnight,
+          and Effie's is taking longer than I would like. Their
+          mother is proud and will not call. If you happen past
+          the cottage on the way back, my favour for a year."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "Reverend — the bench is yours." Miss Ferguson's manner
+          shifts toward the careful directness she uses with the
+          minister. "There is a household in the school I would
+          rather not name in here, but the children have been
+          quieter than children should be these two weeks. If you
+          are at the manse tonight, I will walk by after supper."
+      - applies_to: { class: "Society" }
+        beat: |
+          "Sit. The bench, please." Miss Ferguson's smile is small
+          and unsentimental. "Your aunt has been an excellent
+          subscriber to the school's lending library, and I am due
+          to call. If you will tell her I will be up on Friday at
+          tea-time, I will be obliged. Take a barley sugar from
+          the tin on the desk; the children are not here to notice."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Sister." Miss Ferguson does not use the word lightly, and
+          her face warms a degree at saying it. "I have a slate I
+          would rather not show to Sergeant MacRae just yet, and
+          a child at the gate who has not gone home. Sit. I am
+          asking you, between teachers, what you would do."
+      - applies_to: { class: "Detective" }
+        beat: |
+          "Sergeant." Miss Ferguson straightens slightly. "I have
+          not sent for you, and what I am about to show you is in
+          a child's hand. I will trust your discretion, and I will
+          trust your discretion twice." She lifts a slate from the
+          top of the stack and holds it. "Read what is at the
+          bottom. Then I will tell you whose slate it is."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          "Colonel — the bench by the stove is warmer than the
+          parlour." Miss Ferguson resumes her marking. "I have
+          taught your housekeeper's grandson, and I will tell you
+          frankly that your cottage roof is the wonder of the village
+          children, who have a competition going as to who will be
+          first invited inside. The eldest MacRae girl is winning."
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #6 — Castle Ross stables (Country Vet's signature POI)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_castle_stables_lameness
+    name: "Castle Ross — the stables, a hunter standing wrong, Old Tam waiting at the door"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: castle_ross
+      situation: >-
+        Eleven in the morning. The laird's bay hunter has been
+        standing wrong since the hunt meet on Saturday and Old
+        Tam Cattanach, the gillie, has sent down for a professional
+        eye. The day is bright and cold. Sir Iain is shooting; Lady
+        Annabel is at the lodge with the housekeeper's accounts; the
+        stables are quiet but for one tack-man whistling at the far
+        end. The hunter is in the second loose-box, head down.
+      present_npcs:
+        - old_tam
+    tone:
+      register: "practical, professional, the steady kindness of working hands"
+      stakes: "none on turn 1 — animal is uncomfortable, not in danger"
+      complication: "defer to turn 2 or 3 — surfaces from what's in the tack-room"
+      sensory_layers:
+        smell: >-
+          Sweet hay, leather oil from the tack-room, the warm-stall
+          smell of a horse that has stood overnight, the faint cold
+          stone smell of the courtyard.
+        sound: >-
+          A horse breathing. A wood-pigeon in the lime walk. The
+          distant single report of a shotgun on the high ground —
+          Sir Iain's. The tack-man whistling something pre-war from
+          the far end of the stable.
+        touch: >-
+          The smooth wood of the loose-box rail. The warm flank of a
+          horse leaned against in patience. The cold morning air
+          across the back of the neck under the stable arch.
+      avoid_at_all_costs:
+        - the horse being mortally injured or having to be put down on turn 1
+        - any human body, any death, any forensic detail on turn 1
+        - asking the player a question — turn 1 closes on a declarative
+        - the gothic register
+        - moving the player without their input
+    establishing_narration: |
+      Castle Ross's stable courtyard is a cobbled square enclosed on
+      three sides by a long stable block of the same Highland-
+      baronial stone as the house. The clock above the carriage arch
+      says eleven. The morning is bright and cold; the cobbles are
+      wet from a stable-lad's bucket and the air smells of leather
+      oil and sweet hay. A wood-pigeon is in the lime walk on the
+      drive side.
+
+      Old Tam Cattanach is at the door of the second loose-box,
+      tweed cap in hand, with the steady, patient bearing of a man
+      who has been gillie at Castle Ross longer than the present
+      laird has been laird. "Aye. Thank you for coming up so prompt.
+      I'll not waste your time. The bay hunter has been standing
+      wrong since Saturday's meet, and Sir Iain wants him sound
+      for the Tuesday hunt, and I would not lay a fortune on
+      Tuesday at this minute. The leg is right there." He
+      indicates with the cap.
+
+      Inside the loose-box, the bay is on three legs and not on
+      four, head a little down, the off-fore not bearing weight
+      properly. There is no swelling. The hoof has been picked out
+      since Saturday and the leg has been hosed; Old Tam will have
+      done both. He is not the kind of gillie who would have failed
+      to.
+
+      "I have not let anyone else in to look at him until you got
+      here." Old Tam lays a hand on the bay's neck and the bay
+      breathes out heavily and lets his head down another inch.
+      "And the lad with the bucket is the tack-man's son and the
+      tack-man's son is to be trusted. The tack-room is the third
+      door on the right; the kettle is on. Take your time."
+    first_turn_invitation: |
+      The bay is unbothered by your presence. Old Tam has stepped
+      back a pace to give you the box. The wood-pigeon in the lime
+      walk has not stopped. There is no swelling, but the leg is
+      not bearing weight properly.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Old Tam clears his throat in the careful way of a man who
+        is about to say a thing he would prefer not to have to say.
+        "I would not bring this up if it were the bay's leg alone.
+        But the tack-room is the third door on the right, and there
+        is a thing on the bench in it that came in with the
+        Saturday tack and has not been claimed by any rider I know.
+        I would be obliged for a second pair of eyes on it before
+        Sir Iain comes down off the hill at one."
+
+        He does not say what is on the bench. He looks once toward
+        the high ground where the shotgun went off, and once
+        toward the tack-room door, and he stays where he is by
+        the bay's head.
+
+        The wood-pigeon in the lime walk falls silent for a moment
+        and then resumes.
+      escalation_path:
+        turn_2_or_3: >-
+          The thing in the tack-room is the wrinkle. By turn three
+          the player will have looked, or Old Tam will name it, or
+          Sir Iain will be back from the hill. Object on the bench:
+          narrator's choice on the basis of the player's vocation —
+          an unfamiliar riding crop with a foreign maker's mark; a
+          spent shotgun shell that should not be there; a glove that
+          is the wrong size for the household. Do not preview.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          Old Tam tips his cap further back. "Doctor — I have not
+          sent down for you, and I will not pretend the horse is
+          a person. But you are the only set of careful hands the
+          glen has, and Mr. Dempster the vet from Cullenmore is
+          three hours away on the morning train. I would consider
+          a look an enormous kindness, with no charge expected."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "Reverend — you came up at Lady Annabel's word, I take it."
+          Old Tam's manner softens. "She is in the lodge office at
+          this hour. I am to bring you across the moment you are
+          finished here. She would not have called you for the bay's
+          leg. There is a thing in the tack-room she will want you
+          to look at."
+      - applies_to: { class: "Society" }
+        beat: |
+          Old Tam touches his cap. "Up for the shooting, then.
+          Sir Iain is on the high ground and Hugo went up with him.
+          They will be down at one. The bay's leg is a bother but
+          you have a quarter of an hour spare; if you would lean
+          on the rail and pretend an interest in the leg, I would
+          be obliged."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Miss." Old Tam's manner formalises a degree. "Lady
+          Annabel asked me to send word if you came up — she is
+          arranging the children's harvest at the school and would
+          take a quarter of an hour over tea before you walk down.
+          The bay's leg, in the meantime, is no concern of yours
+          but I am grateful for the company."
+      - applies_to: { class: "Detective" }
+        beat: |
+          "Sergeant — I am glad of the call." Old Tam does not look
+          at the tack-room door. "The bay's leg is real, and I will
+          not pretend it is not, but the matter I sent down about
+          is in the tack-room. I would prefer Sir Iain heard about
+          it from you rather than from me, when he comes down."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          Old Tam's eye warms a degree. "Colonel. Sir Iain said you
+          might come up. The Sutherland mare you admired at the
+          summer meet is the third box along; she has settled well.
+          The bay here is the trouble of the morning. If you have
+          a quarter of an hour, you and I have not had a proper
+          conversation since the spring."
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #7 — The Bridge (Village Constable's signature POI)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_bridge_constable_tea
+    name: "The Bridge — Sgt MacRae's quarters, the kettle on, the bicycle against the rail"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: the_bridge
+      situation: >-
+        Half past three on a still autumn afternoon. Sergeant
+        Findlay MacRae has just had his tea in the small whitewashed
+        cottage that serves as the village's police house, at the
+        south end of the bridge. His bicycle is leaning against the
+        bridge rail. He has been waiting, in the way constables wait,
+        for whoever is going to come down the lane next. He is not
+        expecting anyone in particular and is therefore expecting
+        everyone.
+      present_npcs:
+        - sgt_macrae
+    tone:
+      register: "methodical, patient, the long courtesy of a county sergeant"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — surfaces from a notebook entry"
+      sensory_layers:
+        smell: >-
+          The cold-water smell of the burn under the bridge, peat
+          smoke from the constable's chimney, the leather of a
+          well-tended bicycle saddle, a faint paraffin smell from
+          the cottage lamp left burning for a dim afternoon.
+        sound: >-
+          The Allt Ross over its stones beneath the bridge. The
+          milestone-and-leaves sound of a single cart going up the
+          north lane. The sergeant's regulation notebook closing
+          and reopening as he checks something against itself.
+        touch: >-
+          The bridge parapet's smooth cold stone. The pencil stub
+          worn to a usable length. The bicycle saddle's slight
+          warmth where the sergeant has been sitting on it
+          intermittently for the last twenty minutes.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - the sergeant being officious, suspicious, or hostile (he is not)
+        - asking the player a question — turn 1 closes on a declarative
+        - the gothic register
+        - moving the player without their input
+    establishing_narration: |
+      The bridge over the Allt Ross is three stone arches at the
+      heart of the village, with a milestone at the south end —
+      Inverness 28, Cullenmore 7 — and a small whitewashed cottage
+      tucked behind a hedge on the south bank that serves as the
+      county constabulary's only Glenross outpost. The cottage door
+      is propped open; the kettle has just come off; a notebook is
+      open on the bridge parapet, weighted down by a pencil.
+
+      Sergeant Findlay MacRae is leaning on the parapet beside the
+      notebook, looking neither at it nor at the river. His bicycle
+      is propped against the bridge rail with its bicycle clip on
+      the saddle. He has had his tea. He has done his afternoon
+      walk to the kirk and back. He is, by all visible appearances,
+      doing nothing — but his eyes are tracking the lane up to the
+      crossroads and the lane down toward the railway halt with the
+      easy economy of a man who has worked the same village for
+      eighteen years and would notice a new pair of boots before he
+      had registered the wearer.
+
+      He looks at you over the bridge and the smile is unhurried.
+      "Aye. Afternoon." He nods once. "I'd offer tea, but you'll
+      have seen the kettle's just off, and I have not the heart for
+      a second pot before five. The cottage is open and the bench
+      under the lime is the warmer seat. Sit, if you've a mind. I
+      have not been called on these three hours and I expect that
+      will not last."
+
+      The Allt Ross is running dark and quick beneath. Up at the
+      kirk a single bell rings the half-past three.
+    first_turn_invitation: |
+      Sgt MacRae has gone back to looking at nothing in particular,
+      which is what village constables look at when they are doing
+      their most attentive work. The notebook on the parapet has
+      not been opened. The bicycle clip is on the saddle and not on
+      his ankle.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The sergeant unclips the bicycle clip from the saddle and
+        re-clips it to his right ankle in the precise economical
+        movement of a man preparing to walk somewhere. He does not
+        get on the bicycle. He picks up the notebook from the
+        parapet and turns to a page that is two pages back from
+        today's.
+
+        "I keep a record." He says it conversationally, not to
+        anyone in particular. "Most days are empty pages. Three days
+        ago there is an entry that is not empty. A gentleman went
+        up the Long Pass at four in the afternoon, came down at
+        seven, and did not stop at the inn on the way back —
+        which is the only thing about him that would make me write
+        it down at all. He has not been seen since."
+
+        He closes the notebook unhurriedly and tucks it into the
+        breast pocket of his tunic. "I have not yet decided whether
+        it is anything."
+      escalation_path:
+        turn_2_or_3: >-
+          The unaccounted gentleman is the wrinkle. By turn three
+          the player will be walking the Long Pass with the sergeant
+          on a pretext, or a witness from the inn will surface, or
+          the man's name will be guessed. Narrator picks the path on
+          the basis of the player's vocation. Do not preview.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          Sgt MacRae touches his cap. "Doctor — your father served
+          here, didn't he, before the surgery was built. I will not
+          waste your time with hypotheticals. There is a man I have
+          on my mind who walked up the Pass three days ago. If you
+          have heard of any stranger calling at a household between
+          here and Cullenmore, I would be obliged to know."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "Reverend." Sgt MacRae's manner softens to the careful
+          courtesy he uses with the manse. "I will not ask you to
+          break a confidence and I never have. I will only say that
+          the man I have on my mind walked up the Pass on Tuesday
+          and walked down at seven and that the manse is on the way
+          back from the Pass."
+      - applies_to: { class: "Society" }
+        beat: |
+          "Up at the Hall, then. I'll not detain you." Sgt MacRae
+          glances along the lane toward Castle Ross's gates.
+          "Sir Iain has been kind enough to let me know when the
+          shooting parties go up the high ground. If you are dining
+          there tonight, I would consider it a courtesy to be told
+          which guests took a stroll on the Pass Tuesday last."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Miss." Sgt MacRae tips his cap. "Effie MacRae is my
+          brother's daughter and she has been quiet in the school
+          this week and quieter at home. I do not ask you to break
+          a teacher's discretion. I do ask, if you will, whether
+          a stranger spoke to the children on the lane on Tuesday
+          afternoon. They notice strangers."
+      - applies_to: { class: "Detective" }
+        beat: |
+          "Sergeant." Sgt MacRae's smile broadens by a faint degree
+          — the recognition between two men of the same trade.
+          "I have a county colleague at the next table, then. Sit.
+          The notebook is yours to read if you wish. I have one
+          entry from Tuesday I will not pretend to be at ease with."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          Sgt MacRae nods slowly. "Colonel. The Pass walked is a
+          good walk for a man with a thought. If you took it on
+          Tuesday afternoon between four and seven you would have
+          met a single gentleman coming down at six who has not
+          since been seen in the village. I do not say this to
+          imply you did. I say it to ask whether you would."
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #8 — The Long Pass (Retired Colonial Officer's signature POI)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_long_pass_cottage_works
+    name: "The Long Pass — the half-built cottage, the colonel's roses, Old Tam coming up the path"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: the_long_pass
+      situation: >-
+        Mid-morning. A mile up the Long Pass on a small shelf above
+        the burn, the retired colonel's cottage is half-built —
+        walls to the lintel course, roof to come, joists laid. Beside
+        the works, a young rose bed has been dug and the first canes
+        planted. The colonel is on the shelf with his coat off,
+        sleeves rolled, doing the patient business of building a
+        house when one is not in a hurry. Old Tam is on the path
+        below, climbing up.
+      present_npcs:
+        - old_tam
+    tone:
+      register: "watchful, sociable, the dignified solitude of a half-pay officer at his works"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — surfaces from what Old Tam has come up to say"
+      sensory_layers:
+        smell: >-
+          Cut larchwood from the joists, fresh-turned earth in the
+          rose bed, woodsmoke from the kettle on a brazier, heather
+          from the slope above, the wet-stone smell of the burn
+          twenty feet below.
+        sound: >-
+          The Allt Ross over its stones below the shelf. A buzzard
+          on the high air. A solitary curlew from the upper moor.
+          Old Tam's boots on the path, regular and unhurried.
+        touch: >-
+          The sun-warmed lintel-stone under the hand. The new-cut
+          larch's slight resin tack. The cold morning air on the
+          back of the neck.
+      avoid_at_all_costs:
+        - the colonel having a flashback / war horror on turn 1 (no PTSD framing)
+        - any body, any death, any forensic detail on turn 1
+        - asking the player a question — turn 1 closes on a declarative
+        - the gothic register
+        - moving the player without their input
+    establishing_narration: |
+      The Long Pass climbs gently for a mile out of the village and
+      then bears north along the side of the glen between the Ross
+      of Glenross to the east and the lower Ben Eilidh to the west.
+      On a small shelf above the burn — half a mile short of the
+      high cairn — the colonel's cottage is going up. Stone walls to
+      the lintel course, roof timbers stacked, a sheet of canvas
+      pegged over the joists against the rain. A rose bed has been
+      dug along the south wall and the first canes planted, with
+      labels in a neat hand.
+
+      The colonel is at the works with his coat off, shirt-sleeves
+      rolled, his bad leg straight on a stool while he writes
+      something into a small notebook on his knee. A brazier with
+      a tin kettle on it is going by the doorway. The view from the
+      shelf, on a clear morning like this one, is twelve miles of
+      glen southward to the village and the distillery's smoke and
+      the railway halt's roof — and northward, up the path, the
+      cairn at the head of the Pass against a sky the colour of
+      wet slate.
+
+      A buzzard is high above the shoulder of Ben Eilidh. A curlew
+      calls from the moor. Down on the path, twenty yards below the
+      shelf, Old Tam Cattanach is climbing up at the unhurried pace
+      of a gillie who has come a mile for a reason and would prefer
+      to take the last twenty yards slowly.
+
+      The colonel looks up at you and his smile is unforced. "Aye.
+      Come up. The kettle's on the brazier and the second mug is in
+      the basket. Mind the rose bed; I am going to be insufferable
+      about it for two years."
+    first_turn_invitation: |
+      The colonel writes one more line in the notebook and closes
+      it. The kettle on the brazier is at the boil. Old Tam is ten
+      yards short of the shelf, taking his cap off as he climbs.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Old Tam reaches the shelf, takes his cap off, and inclines
+        his head to the colonel. "Colonel. Afternoon. I'd not come
+        up at this hour, only Sir Iain asked me to walk by and pass
+        a word, and the cottage was on my way anyhow." He looks
+        once at the view and once at the rose bed and once at the
+        colonel.
+
+        "There was a gentleman walking the high path on Tuesday
+        evening, between five and seven. He stopped at the burnt
+        shieling for ten minutes and walked on. Sir Iain saw him
+        through the glass from the high stand. He has not been
+        named in the village and he has not come back. Sir Iain
+        thought you might have seen him."
+
+        The colonel sets the notebook down on the larch joist
+        carefully, and his attention rests for a long moment on
+        the curlew on the moor before he answers.
+      escalation_path:
+        turn_2_or_3: >-
+          The unnamed walker on Tuesday evening is the wrinkle. By
+          turn three the colonel will say what he saw and didn't
+          say at the time, or Old Tam will mention the burnt
+          shieling, or the player will offer to walk up to the
+          shieling. Narrator picks the path on the basis of the
+          player's vocation. Do not preview.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          "Doctor — sit. The stool under the canvas." The colonel
+          gestures with the pen. "I had not meant to ask you up
+          for the leg today but the dampness has been worse, you
+          will see it in three minutes' walking, and I am too proud
+          to ride down for a consultation. Five minutes of your
+          time and I will be honest about it for the first time
+          this autumn."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "Reverend. The kettle's on. Sit." The colonel's smile is
+          warm and faintly puzzled, the way it always is when the
+          manse comes calling. "I am not a churchgoer in your house,
+          as you'll know, but you'll find the cottage rises whether
+          I attend or not. Sit and tell me if I have spent the
+          summer wisely."
+      - applies_to: { class: "Society" }
+        beat: |
+          "Aye, up at the Hall, are we." The colonel's voice carries
+          a faint dry amusement. "Sir Iain has been good enough to
+          let me have the larch from the home wood at a price that
+          will embarrass me in twenty years' time. If you are dining
+          at the Hall tonight, you may tell him the joists are laid
+          and the roof will be on before the storms."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Miss." The colonel inclines his head. "The schoolhouse
+          children come up on a Saturday and have a competition to
+          see who can balance on the lintel-stone. I will not
+          discourage it. If Miss Ferguson would care for an
+          afternoon's class up here next term I will provide tea
+          and biscuits and no instruction."
+      - applies_to: { class: "Detective" }
+        beat: |
+          "Sergeant — sit." The colonel sets the notebook aside.
+          "I had been meaning to walk down and find you. There was
+          a gentleman on the high path on Tuesday evening who I
+          did not know and did not wish to interrogate from the
+          shelf with no reason. Now Sir Iain has sent word — and
+          you have come up — and we can speak of it without
+          pretending it is nothing."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          The colonel's smile is the real one — broad, brief, and
+          a degree older than his face. "Aye. Another half-pay
+          builder. Sit. The kettle's on and the second mug is
+          yours. The cottage is two summers from its first winter
+          and the rose bed is six years from being worth speaking
+          of. Tell me, honestly, whether your cottage is as much
+          trouble as mine."
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # MULTIPLAYER — Cricket-and-shinty Saturday (carried from v1)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: mp_cricket_saturday
+    name: "The Cricket Ground — the Saturday fixture, the village out in force"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 4
+      backgrounds: []
+    setting:
+      location_label: the_cricket_ground
+      situation: >-
+        Late August, the Saturday fixture against the eleven up from
+        Cullenmore. Half the parish is at the meadow. The pavilion is
+        full. The marquee that is going up for the parish fete next
+        week is half-erected at the far end of the field. The cricket
+        is well into the second innings; the village team is doing
+        better than expected. The players' party are all at the
+        ground for various reasons of their own and have not yet
+        quite found each other.
+      present_npcs:
+        - hamish_sinclair
+        - rev_murchison
+        - mrs_cameron
+        - sgt_macrae
+        - mrs_buchan
+        - hugo_ross
+    tone:
+      register: "warm, sociable, the village in full courtesy"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — the wrinkle is at the marquee"
+      sensory_layers:
+        smell: >-
+          Cut grass, paraffin lamp from the pavilion verandah, the
+          tea-and-sandwiches smell from the back of the marquee, peat
+          smoke from a single chimney drifting down off the village.
+        sound: >-
+          The slow regular sound of bat on ball, polite applause from
+          the pavilion, the unhurried commentary of half a dozen
+          village men along the rope, a child somewhere being told
+          to come back from the boundary. The bell at the kirk has
+          just rung the half-past four.
+        touch: >-
+          Late afternoon warm on the back of the neck. The pavilion
+          rail worn smooth under the hand. The mug, when one is put
+          into your hand at some point in the next half hour, is
+          warm enough to be honest and not hot enough to spill.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - bringing the wrinkle out before the players have introduced themselves to each other
+        - asking the player a question — turn 1 closes on a declarative
+        - moving any player without their input
+        - the gothic register
+    establishing_narration: |
+      The cricket ground is full. The village pavilion at the north
+      end is doing brisk trade in tea-and-sandwiches; the lime-washed
+      verandah is two-deep in villagers along the rope; the marquee
+      that's going up for next week's parish fete is half-erected at
+      the far end of the meadow. The sky is the soft blue of a late
+      August Saturday in the Highlands, with a thinner mid-altitude
+      cloud bank moving in from the west — there will be a shower,
+      but not yet.
+
+      The eleven from Cullenmore are batting. The Glenross XV
+      shinty captain — who is also the Glenross XI's second-change
+      bowler — has just come on, and his first over is going well
+      enough that the rope is leaning slightly forward in attention.
+      Hugo Ross, the laird's son, is the village's wicket-keeper
+      this season; he is taller than the keepers Cullenmore
+      remember, and the boundary has noticed.
+
+      Reverend Murchison is on the rope in his tweed jacket and
+      Sunday collar, hands clasped behind his back, watching with
+      the unhurried attention of a man who has watched this fixture
+      for thirty years. Mrs. Cameron is moving along the rope with
+      a teapot in either hand. Mrs. Buchan, the postmistress, has
+      brought her knitting out, has not done much knitting with it,
+      and is watching the marquee being raised at the far end with
+      the particular look of a woman who is reading the field rather
+      than the cricket. Sergeant MacRae's bicycle is leaning against
+      the back wall of the pavilion; he is leaning beside it,
+      neither watching the cricket nor not watching it.
+
+      The party — you — are here at the same fixture for your own
+      reasons. You have not yet quite found each other.
+    first_turn_invitation: |
+      The bell at the kirk has just rung the half-past four. The
+      bowler's run-up is restarting. The marquee at the far end
+      shakes once in a gust of wind. The village is at full
+      Saturday courtesy.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        At the far end of the meadow, the marquee that is going up
+        for next week's fete loses one of its corner ropes in a
+        small flurry of wind. One of the men putting it up — a
+        broad figure in a brown jacket, no one the regulars on the
+        rope quite recognise — straightens, looks toward the
+        pavilion, then walks the long way around the back of the
+        marquee rather than the short way along the rope.
+
+        Sergeant MacRae's gaze, which had not been watching the
+        cricket, follows him until he is out of sight behind the
+        canvas. Then the sergeant unclips a bicycle clip and
+        re-clips it on the other ankle, which is a thing he does
+        when he is about to walk the long way around something
+        himself.
+
+        Mrs. Buchan picks up her knitting again. The bowler's run-
+        up restarts. From the back of the pavilion Mrs. Cameron is
+        calling someone's name in a tone of practical authority.
+      escalation_path:
+        turn_2_or_3: >-
+          The figure at the marquee is the wrinkle. By turn three he
+          will have left, will be missed at the village hall, will
+          turn up at the inn under a name no one recognises, will
+          have left a parcel at the post office, or — most likely —
+          will have done the polite circuit that visiting men do at
+          a village fixture and become the topic of the rope's
+          conversation. Narrator picks the path on the basis of the
+          party's vocations and chargen choices. Do not preview the
+          shape of the wrinkle on turn one.
+    party_framing:
+      already_a_crew: false
+      bond_tier_default: "trusted"
+      shared_history_seeds:
+        - >-
+          The players have lived in or visited the glen long enough to
+          know each other by name. The doctor has treated the
+          schoolmistress's brother for a chill last winter; the
+          constable has been at the inn with the rector after the
+          last cricket match; the postmistress has handed the
+          minister his correspondence every weekday morning for as
+          long as either of them can remember. The bonds are warm
+          but the relationships are not romantic by default — the
+          village's social tissue, in other words.
+      narrator_guidance: >-
+        The party are not arriving as a single unit. They are at the
+        same fixture for their own reasons. Introduce each player to
+        the scene through what they would notice — the doctor sees
+        a child's bandage that has come undone, the minister sees a
+        face he has not seen at Sunday service in a fortnight, the
+        constable sees the marquee figure walk the long way around,
+        the postmistress sees a letter she has been waiting on
+        delivered to a hand she did not expect to see. Let the
+        players find each other naturally across turns 1 and 2.
+    magic_microbleed: null

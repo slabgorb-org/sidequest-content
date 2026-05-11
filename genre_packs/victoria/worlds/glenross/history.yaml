@@ -1,0 +1,633 @@
+# Glenross history across world-maturity tiers. Episodic structure
+# means no "veteran" tier — by design (see world.yaml). Fresh / early
+# / mid track how much of the village's standing cast the player has
+# come to know, not how much the village has changed.
+#
+# `chapters:` at the bottom of the file is a parallel schema consumed
+# by scripts/generate_poi_images.py — it enumerates the village's POIs
+# with Flux/Z-Image-clean visual_prompt entries for landscape image
+# generation. Episodic structure means all 14 POIs are present from
+# session one; a single chapter ("presence") holds them all. Z-Image
+# rules apply: NO proper nouns in the subject (rendered as literal
+# text). Style/medium handled by visual_style.yaml positive_suffix.
+
+fresh:
+  summary: >-
+    The player has just arrived in the village or returned to it after
+    long absence. Names are still being learned; first impressions are
+    forming; the recurring cast are still being placed on the village's
+    map. Mysteries at this stage lean on outsider energy — the visitor
+    with business, the body discovered in a household the player has
+    not yet visited — so the player can investigate by walking and
+    learning.
+  established_facts:
+    - "The village exists; the railway, the kirk, the inn, the laird are all visible from anywhere."
+    - "The publican has welcomed the player; the postmistress has measured them; the minister has called."
+    - "Castle Ross is visible on the rise; the player has not yet been invited up."
+    - "The distillery smokes through the trees; the player has not yet been inside it."
+  tone: "warm introduction; village is a place to be looked at and listened to before it can be questioned"
+  example_seeds:
+    - "A visitor at the inn whose business is unclear and whose questions are pointed"
+    - "A letter arrives at the post office with a stamp Mrs. Buchan doesn't recognise"
+    - "A body discovered at the Bridge by the early postman; the village is sympathetic but private"
+
+early:
+  summary: >-
+    The player knows the warm cast by name and habit. Mysteries can
+    now lean on what the village has shown the player — the household
+    rhythms, the kirk session politics, the relationship between the
+    distiller and the laird. Romance subplots may be quietly forming
+    among the recurring cast (Hugo Ross and Dr. Ross; the new curate
+    and the schoolmistress; the rector's discreet friendship with the
+    Edinburgh aunt who visits every autumn). The player is now a
+    villager-by-courtesy.
+  established_facts:
+    - "The recurring cast are known: Murchison, Quill, Dr. Ross, the Buchans, the Fergusons, the Sinclairs, the Camerons, the MacRaes, the Munros, the Ross family, Old Tam."
+    - "The player has been to the manse for tea, the surgery in a professional capacity, the post office daily, the tea rooms twice a week."
+    - "The laird has had the player up to Castle Ross at least once; the household has formed an opinion."
+    - "The cricket and shinty fixtures are familiar; the player has watched at least one match."
+    - "The Long Pass has been walked, in good weather."
+  tone: "the village is now home; the mysteries surface against a known background"
+  example_seeds:
+    - "A will reading at Castle Ross — a clause no one expected, a cousin from London arriving unannounced"
+    - "The distillery's senior cooper is found at his bench; the doctor's brief examination confirms what everyone hoped against"
+    - "A letter from India arrives for the Retired Colonel; he is at the inn within the hour; he is gone by Friday"
+
+mid:
+  summary: >-
+    The player has settled into village life. Multiple mysteries have
+    been solved; the village's trust is earned. Recurring cast have
+    evolved — Hugo and Dr. Ross are engaged; the rector has taken on
+    a curate; the schoolmistress has brought her invalid sister to
+    live in the cottage; the post office has had the new wireless
+    telegraph installed; the Munros are exporting to London. Mysteries
+    at this stage are sharper, draw on deeper village fact, and may
+    pull in a returner the player remembers from an earlier session.
+  established_facts:
+    - "All recurring cast have a season of evolution behind them; relationships have shifted."
+    - "The player has been the village's quiet detective for a year or two."
+    - "The retired colonel has finished his cottage; Hugo Ross has married into the village; the curate has joined the cast."
+    - "The wireless telegraph has been installed at the post office; the gas company has run a line as far as the school."
+    - "The county CID has been called in twice and has been gently corrected by the player both times."
+  tone: "lived-in mastery; the player is now a fixture of the village"
+  example_seeds:
+    - "A visitor returns from an earlier session; their business this time is different and worse"
+    - "The schoolmistress's invalid sister has died; the will is contested by a cousin no one in Glenross has met"
+    - "The Munros are being courted for a takeover by a Lowland firm; the negotiator does not survive the visit"
+
+
+# === POI landscape image manifest (scripts/generate_poi_images.py) ====
+#
+# Z-Image discipline:
+#   - visual_prompt is SUBJECT only — style/medium/lighting are layered
+#     in by visual_style.yaml positive_suffix at render time.
+#   - NO proper nouns in any prompt. Village place names, NPC names,
+#     and the river's name all become "the village", "the publican",
+#     "the small river" etc. Z-Image will render proper nouns as
+#     literal text otherwise.
+#   - solo = the place fills the frame, used for full POI landscape.
+#   - backdrop = the place as a distant or background element, used
+#     behind portraits / interior shots / scene illustration.
+
+chapters:
+  - id: presence
+    label: "The Village Roster"
+    session_range: [1, 999]
+    description: >-
+      Glenross is episodic — every POI is present from session one.
+      This chapter exists to enumerate the village's renderable places
+      for the landscape image pipeline. Mystery cadence and cast
+      evolution live in the fresh/early/mid blocks above.
+    events: []
+    points_of_interest:
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Village Inn
+        slug: the_glenross_arms
+        region: the_glenross_arms
+        type: inn
+        description: >-
+          The village inn at the crossroads. Two-storey stone building
+          with a slate roof, three small dormer windows above the bar,
+          a swinging sign painted with a heraldic shield, three rooms
+          upstairs, the snug at the end of the bar, the stable yard
+          behind. The fire is always going.
+        visual_prompt:
+          solo: >-
+            Wide elevated landscape view of a two-storey Highland
+            village inn at a small stone crossroads. Foreground: the
+            crossroads cobbles and a low drystone wall. Middle ground:
+            a square stone-built inn with a steep slate roof, three
+            small dormer windows above a wide bar window, a swinging
+            wooden sign painted with a heraldic shield hanging from
+            an iron bracket, smoke from a single chimney curling up,
+            an arched stone passage to a stable yard at the back.
+            Background: low whitewashed cottages along a quiet lane,
+            soft heather-covered hills receding into autumn mist.
+            Late afternoon, low warm directional sun.
+          backdrop: >-
+            Square two-storey village inn with a steep slate roof and
+            a swinging signboard on an iron bracket, a single chimney
+            smoking, sitting at a quiet stone crossroads with low
+            cottages curving away behind it and heather hills in the
+            far distance.
+        environment:
+          solo: >-
+            Low directional autumn light from frame-right, warm and
+            golden, long soft shadows across damp cobbles, peat-smoke
+            scent drifting from the chimney, the distant ringing of
+            a farrier's hammer from a yard out of frame, the unhurried
+            village hush of late afternoon.
+          backdrop: >-
+            Warm golden light, peat-smoke, late-afternoon village hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Village Post Office
+        slug: the_post_office
+        region: the_post_office
+        type: post_office
+        description: >-
+          A single low-ceilinged room with a polished counter, a brass
+          scale, a telegraph machine behind a curtain at the back, a
+          wooden waiting chair, and a kettle always either just on or
+          just off. The window looks onto the lane; the village
+          notice-board is pinned outside.
+        visual_prompt:
+          solo: >-
+            Medium landscape view of the front of a small Highland
+            village post office. Foreground: a stone-flagged lane, a
+            wooden notice-board with handbills pinned in neat rows.
+            Middle ground: a single-storey stone building painted
+            cream with a low slate roof, a small sash window, a glossy
+            green-painted door propped open, a hand-painted sign-board
+            above the door reading nothing legible. Background: low
+            village cottages with smoking chimneys and a glimpse of a
+            wide quiet lane curving uphill. Mid-morning warm sun.
+          backdrop: >-
+            Single-storey stone village post office painted cream, low
+            slate roof, glossy green-painted door propped open, a small
+            sash window, a notice-board with pinned handbills outside,
+            sitting on a stone-flagged village lane.
+        environment:
+          solo: >-
+            Mid-morning warm light from frame-left, the dry-paper scent
+            of stacked correspondence drifting through the open door,
+            the slow tick of a counter date-stamp, the distant clatter
+            of a single cart over cobbles, the alert hush of a small
+            room of considered information.
+          backdrop: >-
+            Mid-morning warm light, dry-paper scent, considered hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Village Tea Rooms
+        slug: the_tea_rooms
+        region: the_tea_rooms
+        type: tea_room
+        description: >-
+          A small parlour off the lane with three round tables in
+          starched linen, a counter, a kitchen behind a half-door,
+          mismatched window panes, geraniums in the front window, the
+          village's daytime social hub.
+        visual_prompt:
+          solo: >-
+            Interior landscape view of a small Edwardian village tea
+            room. Foreground: three round tables draped in starched
+            white linen, each set with mismatched flowered china and
+            small posies, wooden chairs neatly pushed in. Middle
+            ground: a polished wooden counter with a glass-fronted
+            cake stand, a brass urn, a slate of the day's specials in
+            chalk. Background: a half-door open to a kitchen with
+            copper pans on a rail and a window of mismatched panes
+            with red geraniums in pots, soft afternoon light
+            spilling in. Mood warm, hospitable, lived-in.
+          backdrop: >-
+            Three round tables in starched white linen with mismatched
+            flowered china, a polished counter with a brass urn and a
+            chalk slate, a half-open kitchen door behind, red geraniums
+            in pots in mismatched window panes, soft afternoon light.
+        environment:
+          solo: >-
+            Soft warm afternoon light spilling from frame-right through
+            mismatched window glass, the scent of warm shortbread and
+            steeped tea, the small steady clink of teaspoons on china,
+            the murmur of three conversations at three round tables,
+            hospitable warmth.
+          backdrop: >-
+            Warm afternoon light, shortbread scent, gentle murmur.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Village School
+        slug: the_school
+        region: the_school
+        type: school
+        description: >-
+          A single long room with a coal stove at one end, tall windows,
+          slate-grey desks in rows, a bell at the door, the
+          schoolmistress's cottage attached at the back, a schoolyard
+          with a hawthorn hedge and a stile onto the railway path.
+        visual_prompt:
+          solo: >-
+            Wide landscape view of a small Highland village school
+            building. Foreground: a swept schoolyard of beaten earth,
+            a clipped hawthorn hedge along one side, a stone stile in
+            the corner leading onto a footpath. Middle ground: a
+            long single-storey stone schoolhouse with a steeply
+            pitched slate roof, tall arched sash windows along its
+            length, a bell on a small iron bracket above the wooden
+            door, smoke rising from a single chimney at the far end.
+            Background: a low row of cottages and the soft swell of
+            heather hills under a clear afternoon sky.
+          backdrop: >-
+            Long single-storey stone schoolhouse with a steep slate
+            roof and tall arched sash windows, a small iron bell-
+            bracket above a plain wooden door, a single chimney
+            smoking at one end, a clipped hawthorn hedge running
+            along its swept yard, heather hills behind.
+        environment:
+          solo: >-
+            Clear afternoon light from frame-left, the faint coal-smoke
+            scent from the schoolhouse chimney, the distant ring of the
+            schoolyard bell carrying across stone walls, the post-
+            class quiet of a building just emptied of children.
+          backdrop: >-
+            Clear afternoon light, faint coal-smoke, post-bell quiet.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Village Surgery
+        slug: the_surgery
+        region: the_surgery
+        type: surgery
+        description: >-
+          A converted cottage opposite the inn, painted cream, surgery
+          hours posted on the door. The waiting room is the front
+          parlour with a bench along the wall; the consulting room is
+          behind with the examining couch and dispensary cabinet. One
+          of the village's two telephones is on the wall.
+        visual_prompt:
+          solo: >-
+            Medium landscape view of the front of a small Edwardian
+            village doctor's surgery. Foreground: three worn stone
+            steps up from a quiet village lane. Middle ground: a
+            stone cottage painted cream with a slate roof, a glossy
+            black-painted door propped open, a small brass plate
+            mounted beside it, a sash window with a lace curtain half-
+            drawn, a wooden bench under the window. Background: low
+            grey-stone cottages opposite, a glimpse of the village inn
+            across the lane, soft heather-covered hills receding.
+            Mid-morning warm sun.
+          backdrop: >-
+            Stone cottage painted cream with a slate roof, a glossy
+            black door propped open, a small brass plate beside it, a
+            sash window with a half-drawn lace curtain, a wooden bench
+            below the window, three worn stone steps down to a quiet
+            village lane.
+        environment:
+          solo: >-
+            Mid-morning warm light from frame-left, the faint mixed
+            scent of carbolic and lavender drifting through the open
+            door, the slow tick of a clock just inside, the unhurried
+            village hush of a working morning.
+          backdrop: >-
+            Mid-morning warm light, carbolic-and-lavender, working hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Parish Manse
+        slug: the_manse
+        region: the_manse
+        type: manse
+        description: >-
+          A handsome stone house beside the kirkyard, two storeys,
+          slate roof, sash windows. The walled garden behind has six
+          bee-hives, a bench, and roses along the south wall. The
+          minister's study at the front looks onto the lane.
+        visual_prompt:
+          solo: >-
+            Wide landscape view of a handsome two-storey Highland
+            parish minister's house. Foreground: a low drystone garden
+            wall and a path of flat stones. Middle ground: a substantial
+            stone manse with a steep slate roof, four tall sash windows
+            above and below, a glossy black-painted front door beneath
+            a simple stone porch, a walled side garden visible with a
+            long rose bed against the south wall and six pale wooden
+            bee-hives in a neat row. Background: the tall dark crown
+            of a churchyard yew tree just beyond the garden wall,
+            heather hills in soft autumn light.
+          backdrop: >-
+            Two-storey stone manse with a steep slate roof, four tall
+            sash windows, a glossy black door beneath a simple stone
+            porch, a long rose bed against the south garden wall and
+            six pale wooden bee-hives in a neat row, the dark crown
+            of a churchyard yew tree rising just beyond.
+        environment:
+          solo: >-
+            Soft autumn afternoon light from frame-right, the faint
+            scent of cut rose stems and beeswax drifting from the
+            garden, the drowsy late-season hum of bees on lavender, a
+            blackbird in the yew, the steady contemplative hush of a
+            minister's house.
+          backdrop: >-
+            Soft autumn light, beeswax and roses, contemplative hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Small Chapel
+        slug: st_margarets_chapel
+        region: st_margarets_chapel
+        type: chapel
+        description: >-
+          A small chapel of pale granite, single nave, vestry, and
+          porch with a noticeboard. The rector lives in the cottage
+          behind. The walled chapelyard has three graves. Congregation
+          of around forty.
+        visual_prompt:
+          solo: >-
+            Medium landscape view of a small Highland country chapel
+            of pale grey granite. Foreground: a low drystone churchyard
+            wall, a wooden lych-gate, a flagstone path. Middle ground:
+            a single-nave chapel of pale dressed granite blocks with a
+            steeply pitched slate roof, a plain stone porch with a
+            small wooden noticeboard mounted beside the arched door,
+            three tall narrow leaded windows along its side. Behind
+            the chapel, a low cottage with a slate roof sharing the
+            same dressed granite. Background: a small walled
+            chapelyard with three weathered stone gravestones, autumn
+            heather hills receding under a soft overcast sky.
+          backdrop: >-
+            Small single-nave pale-granite Highland chapel with a
+            steep slate roof and a plain stone porch, three tall narrow
+            leaded windows along its side, a low matching-stone cottage
+            behind, a small walled chapelyard with three weathered
+            gravestones, all enclosed by a low drystone wall.
+        environment:
+          solo: >-
+            Soft overcast afternoon light, the cool faintly-metallic
+            scent of weathered granite, the muffled drip of rainwater
+            from a porch gutter, the deep quiet of a small chapel
+            after a service.
+          backdrop: >-
+            Soft overcast light, cool granite scent, deep chapel quiet.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Parish Kirk
+        slug: the_kirk_of_st_maelrubha
+        region: the_kirk_of_st_maelrubha
+        type: kirk
+        description: >-
+          A Norman-Scoto-medieval parish kirk on a low mound at the
+          village centre, restored in the 1850s. Square bell-tower, a
+          long nave, oak pews dark with polish. The kirkyard slopes
+          down to the burn, gravestones leaning, moss bright in the
+          rain.
+        visual_prompt:
+          solo: >-
+            Wide elevated view of an old Highland parish kirk on a low
+            grass mound. Foreground: a sloping kirkyard of weathered
+            leaning gravestones, bright moss on the older stones, a
+            narrow footpath between them. Middle ground: a long
+            buttressed stone nave with a steep slate roof, a square
+            bell-tower with a small open belfry, three tall arched
+            windows down the side. Background: a small dark river
+            below the mound, heather hills under soft overcast, low
+            diffuse late-afternoon light.
+          backdrop: >-
+            Long old stone parish church on a low grass mound with a
+            steep slate roof and a square stone bell-tower with an
+            open belfry, three tall arched windows along the nave, a
+            sloping kirkyard of weathered leaning gravestones with
+            bright moss on the older stones, a small dark river
+            winding below.
+        environment:
+          solo: >-
+            Soft overcast late-afternoon light, the cold wet-stone
+            scent of a centuries-old kirk after rain, the faint sound
+            of a small river running below the kirkyard, the deep
+            settled hush of an old parish church.
+          backdrop: >-
+            Cool overcast light, wet-stone, ancient settled hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Village Railway Halt
+        slug: the_railway_halt
+        region: the_railway_halt
+        type: railway_halt
+        description: >-
+          A single platform of dressed stone with a wooden waiting
+          room, a ticket window, a stationmaster's office, a small
+          goods siding for whisky barrels, and a kettle in the office
+          always on. Two trains a day.
+        visual_prompt:
+          solo: >-
+            Wide landscape view of a small Edwardian Highland branch-
+            line halt with a single platform. Foreground: polished
+            rails curving away to the left across grey-ballasted
+            sleepers. Middle ground: a dressed-stone platform with a
+            small wooden waiting-room, vertical-plank walls painted
+            dark red, a steep slate roof and slender chimney smoking
+            gently, a ticket window with the shutter half-down, oil
+            lamps on tall posts at each end. A short wooden goods
+            wagon stands on a side siding. Background: heather hills
+            under a cool clear sky.
+          backdrop: >-
+            Small dressed-stone single platform with a dark-red wooden
+            waiting-room, steep slate roof and slender brick chimney
+            smoking gently, a ticket window with the shutter half-
+            down, oil lamps on tall posts at each end, a single short
+            wooden goods wagon on a side siding, heather hills behind.
+        environment:
+          solo: >-
+            Cool clear morning light from frame-left, the faint scent
+            of coal-smoke and warm oiled timber, the distant rhythmic
+            chime of a single bell from a stationmaster's office, the
+            quiet of a country halt between trains.
+          backdrop: >-
+            Cool morning light, coal-smoke and oiled timber, halt quiet.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Village Bridge
+        slug: the_bridge
+        region: the_bridge
+        type: bridge
+        description: >-
+          A handsome stone bridge of three arches across the river at
+          the village centre. The drove road crossed here a hundred
+          years before the railway arrived. The river runs dark and
+          fast over the stones beneath; in autumn the leaves collect
+          against the upstream side of the central arch.
+        visual_prompt:
+          solo: >-
+            Wide landscape view of a handsome Highland stone bridge of
+            three round arches across a small dark river. Foreground:
+            a paved approach lane and a worn pale milestone at the
+            bridge end. Middle ground: a three-arch grey ashlar bridge,
+            central arch slightly higher, dressed-stone parapets at
+            hand height, fallen autumn leaves against the upstream
+            side of the central pier, dark water running fast over
+            rounded stones beneath. Background: low whitewashed
+            cottages on the far bank, heather hills under a clear
+            autumn sky.
+          backdrop: >-
+            Three-arch grey stone bridge with the central arch
+            slightly higher and dressed-stone parapets, a worn pale
+            milestone at the approach, dark water running fast over
+            rounded stones beneath, fallen autumn leaves collecting
+            against the upstream side of the central pier.
+        environment:
+          solo: >-
+            Clear cool autumn light from frame-right, the cold-water
+            scent of a fast-running burn, the constant low sound of
+            water over stone, the sharp scent of damp fallen leaves,
+            the open hush of a small bridge in open country.
+          backdrop: >-
+            Cool autumn light, cold-water and damp leaves, bridge hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Village Distillery
+        slug: the_distillery
+        region: the_distillery
+        type: distillery
+        description: >-
+          A long stone building with two pagoda-roofed kilns, a mash
+          house, the still room, three bonded warehouses, and a small
+          office. Three generations of Munros have run it. Sits west
+          of the bridge along the burn, downwind of the village by
+          design.
+        visual_prompt:
+          solo: >-
+            Wide landscape view of a small Highland malt whisky
+            distillery beside a fast-flowing burn. Foreground: a
+            flagstone yard, a wooden cart with empty oak casks stacked
+            on it. Middle ground: a long low stone building with two
+            distinctive pagoda-roofed kiln towers rising above it,
+            each with a small cupola at the peak, a slate-roofed mash
+            house with tall arched windows venting steam, a separate
+            block of low whitewashed bonded warehouses to one side
+            with small dark double doors at regular intervals.
+            Background: a fast-flowing dark burn skirting the
+            distillery, heather hills and pale autumn sky beyond.
+          backdrop: >-
+            Long low stone distillery building with two distinctive
+            pagoda-roofed kiln towers each with a small cupola, a
+            slate-roofed mash house venting steam, a separate block of
+            low whitewashed bonded warehouses with small dark double
+            doors at regular intervals, a fast-flowing dark burn
+            running past it.
+        environment:
+          solo: >-
+            Cool overcast afternoon light, the rich warm scent of
+            peat-fired malt and damp oak casks, the soft steady steam-
+            hiss from a mash-house vent, the constant sound of a fast
+            burn close by, the working hush of a small industrial
+            yard between shifts.
+          backdrop: >-
+            Cool overcast light, peat-malt scent, working hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Laird's House
+        slug: castle_ross
+        region: castle_ross
+        type: manor_house
+        description: >-
+          A late-Georgian house with a Highland baronial restoration
+          of the 1870s — turret, crow-stepped gables, a porte-cochère.
+          Twenty bedrooms. Walled gardens on the south side, the river
+          below, parkland and home farm to the west. Largest single
+          employer in the village.
+        visual_prompt:
+          solo: >-
+            Wide elevated view of a large Highland baronial country
+            house on a low rise. Foreground: a long gravel drive lined
+            with mature lime trees, ornate iron lodge gates at the far
+            end. Middle ground: a substantial three-storey stone
+            country house — a tall round corner turret with a conical
+            slate roof, crow-stepped gables, a deep stone carriage-
+            arch entrance, mullioned bay windows, multiple chimneys, a
+            walled garden on one side. Background: parkland sloping to
+            a dark river, heather hills under late-afternoon sun.
+          backdrop: >-
+            Substantial three-storey stone country house in Highland
+            baronial style — tall round corner turret with a conical
+            slate roof, crow-stepped gables, a deep stone porte-
+            cochère carriage entrance, mullioned bay windows, multiple
+            chimneys, sitting on a low rise above a parkland drive
+            lined with mature lime trees.
+        environment:
+          solo: >-
+            Warm late-afternoon light from frame-right, long shadows
+            across mown parkland, the faint distant sound of a stable
+            yard, the polished hush of a great house at the end of the
+            day.
+          backdrop: >-
+            Warm late light, mown parkland, great-house hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Cricket and Shinty Ground
+        slug: the_cricket_ground
+        region: the_cricket_ground
+        type: sports_ground
+        description: >-
+          A long flat meadow east of the kirk, leased from the laird
+          and kept by the village. Cricket in summer, shinty in autumn,
+          parish fete in late August. A wooden lime-washed pavilion
+          with a verandah at the north end.
+        visual_prompt:
+          solo: >-
+            Wide landscape view of a long flat village sports meadow
+            in late summer. Foreground: a closely mown grass boundary,
+            a low painted rope edge on small wooden stakes. Middle
+            ground: a level cricket square of paler grass at the
+            centre with wooden stumps at each end, a wooden lime-
+            washed pavilion with a verandah and slate roof at one end,
+            a small flag-pole above it. Wooden goal-frames stand at
+            the far ends. Background: heather hills under a soft late-
+            afternoon sky, distant whitewashed cottages.
+          backdrop: >-
+            Wooden lime-washed pavilion with a verandah and a slate
+            roof at one end of a long flat mown meadow, a small flag-
+            pole rising above it, a low painted rope boundary on
+            small wooden stakes running around the field, wooden
+            goal-frames at the far ends.
+        environment:
+          solo: >-
+            Soft late-afternoon Highland summer light, the cut-grass
+            scent of a freshly mown sports field, the faint distant
+            ring of a kirk bell carrying across the meadow, the open
+            unhurried hush of a Saturday fixture about to begin.
+          backdrop: >-
+            Soft summer light, cut-grass, fixture-day hush.
+
+      # ────────────────────────────────────────────────────────────
+      - name: The Mountain Pass
+        slug: the_long_pass
+        region: the_long_pass
+        type: mountain_pass
+        description: >-
+          The drove road north out of the village, climbing gently for
+          two miles before narrowing into a pass between the higher
+          ground east and west. Beyond the pass the road becomes a
+          track. The high cairn at the head was built by a previous
+          laird's wife.
+        visual_prompt:
+          solo: >-
+            Wide landscape view looking north up a Highland mountain
+            pass. Foreground: a stony unmade drove road climbing
+            gently between heather banks, a low dry-stone wall along
+            one side. Middle ground: the road narrowing into a saddle
+            between two steep-sided heather-covered ridges, the
+            ruined low walls of a small burnt-out shieling cottage
+            roofless on one bank with grass and weather worked into
+            its tumbled stones, a tall cairn of piled rocks rising at
+            the head of the pass. Background: deeper darker peaks
+            rising beyond the saddle, a cool cloud-shadowed sky.
+          backdrop: >-
+            Stony unmade drove road climbing into a saddle between two
+            steep-sided heather-covered ridges, a tall cairn of piled
+            rocks at the head of the pass, the ruined low walls of a
+            roofless burnt-out shieling cottage on one bank, deeper
+            peaks rising beyond.
+        environment:
+          solo: >-
+            Cool diffuse mountain light from a cloud-shadowed sky,
+            the dry scent of heather and wet stone, the high thin
+            piping cry of a curlew on the moor, a steady wind from the
+            head of the pass, the wide quiet of open Highland country.
+          backdrop: >-
+            Cool mountain light, heather and stone, the cry of a curlew.

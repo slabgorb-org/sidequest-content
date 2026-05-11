@@ -1,51 +1,51 @@
-/* Victoria — candlelit manor, heavy curtains, gilt-framed shadows */
+/* Tea & Murder — sunlit parlour, watercolour glen, tea-room cream */
 
 :root[data-genre] {
   /* Genre identity */
-  --primary: #8B1A1A;
-  --secondary: #2D4A3E;
+  --primary: #5C7A4F;
+  --secondary: #A67B5B;
   --accent: #C9A96E;
-  --background: #1C1510;
-  --surface: #2A2118;
-  --text: #D4C5A9;
+  --background: #F4EBDA;
+  --surface: #FDF6E8;
+  --text: #2C2417;
 
   /* Tailwind tokens */
-  --foreground: #D4C5A9;
-  --card: #2A2118;
-  --card-foreground: #D4C5A9;
-  --popover: #2A2118;
-  --popover-foreground: #D4C5A9;
-  --primary-foreground: #1C1510;
-  --secondary-foreground: #D4C5A9;
-  --muted: #2A2118;
-  --muted-foreground: #7F7360;
-  --accent-foreground: #1C1510;
-  --border: #2A2118;
-  --input: #2A2118;
-  --ring: #C9A96E;
-  --destructive: oklch(0.704 0.191 22.216);
+  --foreground: #2C2417;
+  --card: #FDF6E8;
+  --card-foreground: #2C2417;
+  --popover: #FDF6E8;
+  --popover-foreground: #2C2417;
+  --primary-foreground: #FDF6E8;
+  --secondary-foreground: #FDF6E8;
+  --muted: #ECDFC4;
+  --muted-foreground: #6B5A3A;
+  --accent-foreground: #2C2417;
+  --border: #C9A96E;
+  --input: #FDF6E8;
+  --ring: #5C7A4F;
+  --destructive: oklch(0.55 0.18 28);
 }
 
 @font-face {
-  font-family: 'Playfair Display';
-  src: url('/genre/assets/fonts/PlayfairDisplay-Regular.woff2') format('woff2');
+  font-family: 'Lora';
+  src: url('/genre/assets/fonts/Lora-Regular.woff2') format('woff2');
   font-display: swap;
 }
 
-/* Aged wallpaper texture — dark vignette from edges, subtle grain */
+/* Watercolour-paper texture — soft warm wash from upper-left, faint grain */
 body::before {
   content: '';
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background:
-    /* Deep vignette — the room is lit from the centre, darkness at the edges */
-    radial-gradient(ellipse at center, transparent 40%, rgba(15, 13, 11, 0.6) 100%),
-    /* Faint warm candlelight wash */
-    radial-gradient(ellipse at 30% 40%, rgba(201, 169, 110, 0.04) 0%, transparent 60%),
-    /* Subtle burgundy warmth from the fire */
-    radial-gradient(ellipse at 70% 80%, rgba(139, 26, 26, 0.03) 0%, transparent 50%);
-  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E#n");
-  mix-blend-mode: soft-light;
+    /* Sunlit wash — the light comes from the tall window upper-left */
+    radial-gradient(ellipse at 30% 25%, rgba(201, 169, 110, 0.18) 0%, transparent 55%),
+    /* Heather-green hint at lower-right — the glen beyond the garden */
+    radial-gradient(ellipse at 80% 85%, rgba(92, 122, 79, 0.08) 0%, transparent 60%),
+    /* Cream paper wash */
+    linear-gradient(180deg, rgba(244, 235, 218, 0.0) 0%, rgba(236, 223, 196, 0.25) 100%);
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E#n");
+  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 0;
 }
@@ -56,54 +56,54 @@ body::before {
   z-index: 1;
 }
 
-/* Body text — warm, slightly softened, candlelit reading */
+/* Body text — warm, light, readable like a hand-written postcard */
 .narration-block p {
-  text-shadow: 0 0 60px rgba(201, 169, 110, 0.03);
   line-height: 1.75;
+  color: var(--text);
 }
 
-/* Drop cap — gilt-framed, heavy Victorian ornamentation shadow */
+/* Drop cap — botanical illustration shadow, soft */
 .drop-cap-block img {
-  filter: drop-shadow(2px 3px 6px rgba(74, 55, 40, 0.5));
+  filter: drop-shadow(1px 2px 3px rgba(166, 123, 91, 0.35));
 }
 
-/* Dinkus — hedera (floral pilcrow), muted gold */
+/* Dinkus — hedera, muted moss-green */
 .dinkus {
-  color: var(--accent);
-  opacity: 0.6;
+  color: var(--primary);
+  opacity: 0.55;
   letter-spacing: 0.6em;
   font-size: 0.9em;
 }
 
-/* Pull quotes — Victorian chapter epigraph style, display font */
+/* Pull quotes — epigraph style, italic, with a heather-green rule */
 .pull-quote {
-  border-left: 2px solid var(--accent);
-  color: var(--accent);
-  font-family: 'Playfair Display', Georgia, serif;
+  border-left: 2px solid var(--primary);
+  color: var(--secondary);
+  font-family: 'Lora', Georgia, serif;
   font-style: italic;
   font-size: 1.1em;
   padding-left: 1.2em;
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
-/* Session opener — gilt rule, formal */
+/* Session opener — botanical rule beneath the title */
 .session-opener {
   border-bottom: 1px solid var(--accent);
   padding-bottom: 1.5em;
   margin-bottom: 2em;
 }
 
-/* NPC dialogue — slight indent, distinguishing from narration */
+/* NPC dialogue — slight indent, light heather rule */
 .dialogue {
   font-style: italic;
   margin-left: 1em;
-  border-left: 1px solid rgba(201, 169, 110, 0.2);
+  border-left: 1px solid rgba(92, 122, 79, 0.35);
   padding-left: 0.8em;
 }
 
-/* Stat blocks and mechanical readouts — restrained, below the prose */
+/* Stat blocks and mechanical readouts — restrained, oldstyle */
 .stat-display {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-variant-numeric: oldstyle-nums;
   letter-spacing: 0.05em;
 }

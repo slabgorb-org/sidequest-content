@@ -1,111 +1,161 @@
-# Visual style configuration for victoria genre pack
+# Visual style configuration for the Tea & Murder genre.
 #
 # Z-Image authoring per sidequest-content/PROMPTING_Z_IMAGE.md and ADR-086.
-# Identity: impressionist oil painting on canvas — physical-medium descriptors
-# (impasto, cracked varnish) push Z-Image toward painted output. Rich dark
-# palette of burgundy / umber / gold / grey, dramatic chiaroscuro candlelight,
-# 1860s Victorian costume. Style anchors: John Atkinson Grimshaw (gaslit
-# nocturnes), James Tissot (drawing-room costume), John Singer Sargent
-# (society portrait), Pre-Raphaelite chiaroscuro.
+#
+# AUTHORING RULE (load-bearing — from coyote_star 2026-05-03 playtest):
+# This file describes HOW to render, not WHAT to render. positive_suffix
+# layers onto every render in the genre. Object-nouns here become
+# artifacts the model paints into every scene — "lamp" forces a lamp
+# into the cricket match, "teacup" forces a teacup into the chase, and
+# "frock coat" forces Edwardian costume into a render of an empty
+# meadow. Only style / medium / palette / light / composition vocabulary
+# belongs here. Abstract qualifiers ("sunlit", "soft-edged", "lived-in")
+# are fine. Concrete nouns are not.
+#
+# Costume, architecture, and prop vocabulary lives per-context in
+# visual_tag_overrides below, or per-subject in portrait_manifest.yaml
+# and per-POI in /sq-poi landscape prompts.
+#
+# Negative-style instructions ("no gothic, no rain") do NOT work — Z-Image
+# runs at guidance_scale=0 and ignores negation. Defense against an
+# unwanted element is to never name it.
 
-# ── Core Style ────────────────────────────────────────────────
+# ── Core Style ─────────────────────────────────────────────────────
 
 positive_suffix: >-
-  impressionist oil painting on canvas, thick visible impasto brushstrokes,
-  cracked varnish, museum painting, heavy paint texture, rich dark palette
-  of burgundy umber gold and grey, dramatic chiaroscuro candlelight, 1860s
-  Victorian period costume — frock coat or morning coat, silk cravat or
-  stock at the throat, woolen waistcoat, high wing collar, monocle or
-  pince-nez where eyewear appears, ladies in full skirts with fitted
-  bodices, bonnet or chignon. Style of John Atkinson Grimshaw, James
-  Tissot, and John Singer Sargent. No text, no caption, no title, no
-  label, no signature, no watermark, no border, no frame, no museum plate.
+  Edwardian-era watercolour painting on heavy paper, visible paper-grain
+  texture, soft pigment bleed at edges, fine drawn line beneath the
+  colour, in the painterly lineage of Helen Allingham, Sutton Palmer,
+  and Edwardian British postcard illustration. Palette favours warm
+  cream and honey-gold, moss-green, heather-purple, brass-and-sepia,
+  with bracken-russet and slate-grey as supporting tones. Light is
+  golden-afternoon directional, warm rather than cool, shadows pooling
+  warm umber. Surfaces read as lived-in, hand-worn, gently weathered.
+  Atmosphere is pastoral, never gothic — mild weather, soft
+  distance, gentle bleed at horizons. Composition prefers layered
+  depth (clear foreground, soft middle, atmospheric distance),
+  restraint, and the British landscape watercolour habit of leaving
+  paper-light to do half the work. No text, no caption, no title,
+  no writing, no label, no signature, no watermark, no border, no
+  frame.
 
-# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt entirely
-# (see sidequest-content/PROMPTING_Z_IMAGE.md). All constraints live in the
-# positive_suffix above. Field kept for pipeline compatibility.
+# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt.
+# All constraints live in positive_suffix above.
 negative_prompt: ""
 
 preferred_model: dev
 
-base_seed: 1853
+base_seed: 1908
 
-# ── Location Tag Overrides ────────────────────────────────────
-# Foreground / middle / background layout. Concrete nouns. Proper nouns
-# avoided — Z-Image renders them as text. Each override appends to
-# positive_suffix; aim for ~40-60 words to stay under T5's 512-token ceiling.
+# ── Per-Context Tag Overrides ──────────────────────────────────────
+#
+# Concrete nouns ARE permitted here because each override applies ONLY
+# when the relevant tag is active. "Tea-rooms" only paints a teapot
+# when the render is tagged tea-rooms. Foreground / middle / background
+# layout. Proper nouns avoided (Z-Image renders them as text). Aim for
+# ~40-60 words per override to stay under the T5 token ceiling.
 
 visual_tag_overrides:
-  manor: >-
-    grand Victorian country house at dusk, foreground gravel drive and
-    dark yew hedges, middle ground ivy-covered stone facade with tall
-    windows showing warm amber light, background storm clouds gathering
-    and rooks circling the chimneys, a single lit window in the east wing
-  drawing_room: >-
-    Victorian drawing room in evening, foreground a marble fireplace with
-    low fire and crystal decanters on a silver tray, middle ground heavy
-    velvet curtains in deep burgundy and gilt-framed oil paintings,
-    background a woman's silhouette at the window seat, beeswax candles
-    in branching candelabra
-  moor: >-
-    vast Yorkshire moorland under turbulent sky, foreground heather and
-    bracken in purple and brown, middle ground a single track winding
-    through and wind-bent hawthorn trees, background standing stones on
-    the horizon and distant rain sweeping across, a lone walking figure
-  garden: >-
-    walled English garden in late summer, foreground a stone bench
-    beneath a copper beech with a forgotten book on the bench, middle
-    ground gravel paths between boxwood hedges and climbing roses over
-    weathered brick, background lavender beds, late afternoon light
-    slanting through
-  street: >-
-    gaslit London street at night, foreground wet cobblestones reflecting
-    halos of amber light and a hansom cab waiting at the kerb, middle
-    ground iron railings and basement windows, background fog drifting
-    between terraced houses and a figure with an umbrella passing
-  church: >-
-    English parish church interior, foreground dark oak pews and a
-    lectern with a single candle, middle ground stained glass casting
-    coloured light on stone floor, background brass memorial plaques
-    on grey stone walls, dust motes in a shaft of light
-  kitchen: >-
-    below-stairs kitchen in a great house, foreground a long scrubbed-
-    wood table with a servant carrying a tray, middle ground copper
-    pots on hooks catching firelight, background a bell board on the
-    wall and rising steam from the cook's range
-  bedroom: >-
-    Victorian four-poster bed with heavy curtains half-drawn, foreground
-    a writing desk with an unfinished letter and a candle guttering
-    on the nightstand, middle ground a fire dying to embers, background
-    a wardrobe door slightly ajar, rain on the window
-  ballroom: >-
-    grand Victorian ballroom in full use, foreground dancers in silk
-    and broadcloth in motion, middle ground crystal chandeliers blazing
-    with hundreds of candles, background gilt mirrors multiplying the
-    light and an orchestra on a raised platform, flowers banked along
-    the walls
-  study: >-
-    gentleman's study, foreground a partners desk in dark mahogany with
-    correspondence in neat piles and a green-shaded lamp casting a pool
-    of light, middle ground a globe and a decanter, background leather-
-    bound books floor to ceiling, a tobacco jar and pipe rack
-  station: >-
-    Victorian railway station in iron and glass, foreground passengers
-    in travelling clothes on the platform and a porter with luggage,
-    middle ground steam billowing from an arriving locomotive, background
-    destination boards in white paint and the vaulted iron roof
-  attic: >-
-    attic room under the eaves, foreground bare floorboards and a single
-    candle, middle ground trunks and covered furniture, background a
-    small dormer window looking out on chimneys and sky, old portraits
-    turned to face the wall, dust on everything
+  inn: >-
+    interior of a small Highland country inn at late afternoon,
+    foreground a polished oak bar with a slate of regulars' tabs in
+    pencil and a glass cloth folded on it, middle ground a fire in
+    a stone hearth and a sleeping dog, background a low-beamed
+    ceiling and a window onto the lane
+  manse: >-
+    Edwardian Highland manse parlour in afternoon, foreground a
+    sash window with light pouring in and a writing desk with
+    sermon notes folded between book pages, middle ground a fire
+    in a small grate and an upholstered armchair, background
+    walls of cream wallpaper with a single botanical print
+  surgery: >-
+    Edwardian country doctor's surgery, foreground a polished
+    consulting desk with a notebook and a brass pocket watch,
+    middle ground a glass-fronted dispensary cabinet with labelled
+    bottles, background a sash window with cream curtains half
+    drawn, soft sunlight
+  post_office: >-
+    Edwardian village post office, foreground a polished wooden
+    counter with a brass scale, middle ground a chair against the
+    wall and a slate of postal rates pinned up, background a curtain
+    drawn across an inner doorway, late afternoon light through a
+    small front window
+  school: >-
+    Edwardian village schoolroom, foreground rows of slate-grey
+    wooden desks with inkwells and a coal stove at the near end,
+    middle ground a blackboard with the day's lesson in copperplate
+    chalk, background tall windows with hawthorn hedge visible
+    beyond
+  tea_rooms: >-
+    Edwardian small village tea rooms in afternoon, foreground three
+    round tables in starched linen, foreground a window with
+    geraniums in red bloom, middle ground a counter with shortbread
+    on a glass stand, background mismatched china on shelves, warm
+    afternoon light, soft cream wallpaper
+  parish_kirk: >-
+    interior of a Scottish parish kirk, foreground dark oak pews
+    polished by three centuries, middle ground a simple stone pulpit
+    and a brass communion table, background tall plain-glass
+    windows on either side of the apse, soft cool light
+  episcopal_chapel: >-
+    interior of a small Scottish Episcopal chapel, foreground a
+    short nave with simple pews, middle ground a stone altar with
+    embroidered frontal and two brass candlesticks, background a
+    plain-glass window above and whitewashed Aberdeenshire granite
+    walls
+  kirkyard: >-
+    a Highland parish kirkyard sloping toward a river, foreground
+    weathered headstones leaning, middle ground grass gone to seed
+    in autumn and bracken at the wall, background the bell-tower of
+    the parish kirk and a low stone perimeter, golden afternoon
+  railway_halt: >-
+    Edwardian single-platform Highland railway halt, foreground
+    dressed-stone platform edge and the ticket window of a small
+    wooden building, middle ground a goods siding with empty
+    wooden casks, background the curve of the line vanishing into
+    the glen, soft mist on the hills
+  bridge: >-
+    a stone three-arch bridge over a Highland river, foreground the
+    parapet with moss in the joints, middle ground the river running
+    dark and quick over stones, background the village rooftops in
+    soft afternoon distance, autumn trees overhanging the burn
+  distillery: >-
+    exterior of a small working Highland distillery, foreground a
+    long stone building with two pagoda-roofed kilns, middle ground
+    a yard with empty wooden barrels stacked, background the burn
+    running past and woodland beyond, peat-smoke from a single
+    kiln chimney
+  great_house: >-
+    exterior of a Highland baronial country house in afternoon,
+    foreground a curving gravel drive and clipped lawn, middle
+    ground the house with crow-stepped gables and a square turret,
+    background the glen rising behind and autumn woodland in
+    middle distance, soft sunlit watercolour
+  manor_interior: >-
+    interior of an Edwardian country house library, foreground a
+    leather-topped writing desk with correspondence in neat piles
+    and a green-shaded lamp, middle ground floor-to-ceiling
+    bookshelves in walnut, background a stone fireplace with a
+    laird's portrait above, afternoon light through a tall window
+  cricket_ground: >-
+    Edwardian village cricket ground in summer, foreground a long
+    flat meadow with a single roller at the side, middle ground a
+    lime-washed wooden pavilion with a verandah, background distant
+    hills under a soft pastoral sky, golden afternoon light
+  long_pass: >-
+    a Highland drove road climbing north into a glen pass, foreground
+    a worn path through heather and bracken, middle ground a small
+    cairn at the head of the pass and a ruined stone shieling,
+    background the hills rising in autumn purple under a soft sky,
+    long evening light
+  lane: >-
+    a Highland village lane in late afternoon, foreground a worn
+    track of small stones, middle ground low stone cottages set
+    back behind small front gardens, background the parish bell-
+    tower in soft distance, autumn trees overhanging
   cottage: >-
-    stone cottage in the English countryside, foreground a path worn
-    through grass and a garden gate half-open, middle ground lace
-    curtains in small windows and smoke from the chimney, background
-    a thatched roof dark with rain and sheep on the hill beyond
-  docks: >-
-    Thames-side wharf at low tide, foreground a customs officer with
-    a manifest and cargo being unloaded by lantern light, middle ground
-    warehouses in dark brick, background fog rolling off the water and
-    silhouettes of moored barges, coils of rope and pitch barrels
+    a small Highland stone cottage in autumn, foreground a path of
+    worn stones up to a low door, middle ground sash windows with
+    cream curtains half drawn, background a slate roof and a
+    chimney with rising peat-smoke, the glen rising behind in soft
+    distance
