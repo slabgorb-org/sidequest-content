@@ -113,17 +113,36 @@ Drift: `orc-quest/docs/adr/DRIFT.md`. Superseded: `orc-quest/docs/adr/SUPERSEDED
 - **Fully spoilable:** `mutant_wasteland/flickering_reach` only
 - **Fully unspoiled:** Everything else
 
+## Asset Hosting
+
+> **Both audio and image assets are NOT in this repo.** They live in R2
+> (`cdn.slabgorb.com`). What lives in git is the *spec* (prompts, manifests,
+> generation parameters) — the rendered binary lives in R2.
+>
+> - **Audio:** per-track ACE-Step generation parameters live at
+>   `genre_packs/<pack>/audio/music/*_input_params.json` (ADR-095). The OGG
+>   lives in R2. Regenerate with
+>   `python scripts/generate_music.py --genre <pack>` from the orchestrator.
+> - **Images:** `portrait_manifest.yaml`, POI yaml files, and Z-Image prompt
+>   text in `visual_style.yaml` are the canonical spec. The rendered PNGs
+>   live in R2 at the same relative path under `genre_packs/<pack>/…`.
+>   Render scripts (`scripts/generate_portrait_images.py`,
+>   `generate_poi_images.py`, `generate_creature_images.py`) write PNGs into
+>   the local workspace; `.gitignore` keeps them out of commits.
+>   `scripts/r2_sync_packs.py` uploads from the workspace to R2.
+
+**Never commit fresh PNG/JPG/WebP assets through git-LFS.** The
+`.gitattributes` file still has `*.png filter=lfs` rules as residue from the
+pre-R2 era, but the `.gitignore` in `genre_packs/**/images/**` and friends
+prevents accidental commits. A few historical LFS objects remain in the
+test-fixture tree (`tools/cavern_renderer/tests/fixtures/`) — those stay.
+
 ## Syncing Between Machines
 
-> **Audio assets are NOT in this repo.** They live in R2 (`cdn.slabgorb.com`).
-> Per-track ACE-Step generation parameters (`*_input_params.json` under
-> `genre_packs/<pack>/audio/music/`) ARE in this repo and are the canonical
-> regeneration spec — see ADR-095 (Daemon Music Tier via ACE-Step). To
-> restore audio for a pack, run `python scripts/generate_music.py --genre
-> <pack>` from the orchestrator. Image assets that remain LFS-tracked are
-> unaffected by this change; the LFS notes below apply only to images.
-
-Binary assets are tracked with Git LFS. **Do not pull from GitHub to sync between local repos** — it eats LFS bandwidth (10 GiB/month limit on GitHub Pro).
+LFS-tracked binaries have a 10 GiB/month bandwidth budget on GitHub Pro.
+With audio and images both in R2, the bandwidth concern is minor — but
+`.safetensors` LoRA weights still ride LFS. **Do not pull from GitHub to
+sync between local repos** when LoRA weights are part of the diff.
 
 Instead, each clone has a `local` remote pointing to the other machine's copy:
 
@@ -180,6 +199,6 @@ genre_packs/
 
 Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — heavy_metal, low_fantasy, neon_dystopia, pulp_noir, road_warrior, spaghetti_western at various levels of completeness.
 
-Each pack contains YAML configs (archetypes, tropes, rules, encounters, factions, OCEAN profiles, conlang morphemes, audio cues, `visual_style.yaml`), world data, ACE-Step music params (`audio/music/*_input_params.json` — ADR-095, OGG lives in R2), and images (portraits, POI landscapes, LFS-tracked).
+Each pack contains YAML configs (archetypes, tropes, rules, encounters, factions, OCEAN profiles, conlang morphemes, audio cues, `visual_style.yaml`), world data, ACE-Step music params (`audio/music/*_input_params.json` — ADR-095, OGG lives in R2), and image prompts (portrait_manifest.yaml, POI yamls — rendered PNGs live in R2 at `cdn.slabgorb.com/genre_packs/<pack>/...`).
 
 See `README.md` in this repo for the full taxonomy.
