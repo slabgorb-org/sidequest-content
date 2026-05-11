@@ -1,0 +1,535 @@
+# Caverns Sünden — Magic & Notable Items Catalog
+#
+# This file is the world-layer instantiation of two design documents:
+#
+#   - docs/design/magic-plugins/item_legacy_v1.md  → named_items below
+#   - docs/research/items-as-confrontation-modifiers.md → modifier_items below
+#
+# Sünden's magic.yaml activates item_legacy_v1, innate_v1, learned_v1. The
+# innate/learned pair powers player casting and the spell catalog; this file
+# fills the item_legacy_v1 lane — the named, OCEAN-shaped, NPC-grade items
+# that satisfy the plugin's `world_layer_required` slot.
+#
+# LOADER NOTE: as of 2026-05-11 no runtime loader consumes this file. It
+# is canonical content authored against the locked plugin schema; when the
+# loader lands, the schema should match without rework. The mundane
+# modifier_items section is research-doc-shape; the confrontation-engine
+# `requires`-against-inventory feature is unimplemented per the research
+# doc's Scope Estimate. Both sections are content-ready, code-pending.
+#
+# Surface lore only. No hidden_history beats baked in — items reference
+# only what the public lore (lore.yaml, factions.yaml, world.yaml) already
+# names. Each item is grounded in a specific Sünden NPC or location so
+# the narrator has concrete texture, not generic dungeon-loot.
+
+world: caverns_sunden
+genre: caverns_and_claudes
+
+# ─────────────────────────────────────────────────────────────────────
+# NAMED ITEMS — item_legacy_v1 NPC-shape
+# Each item carries OCEAN, disposition, nature, history, demands,
+# prohibitions, resonances. The narrator must hold these consistent
+# across sessions. Items refuse, resist, and remember.
+# ─────────────────────────────────────────────────────────────────────
+
+named_items:
+
+  # ═══ GRIMVAULT / Pride / Separation ═══════════════════════════════
+
+  - id: the_quiet_bell
+    name: "The Quiet Bell"
+    subtype: tool
+    delivery_mechanisms: [discovery, faction]   # Assayer-held; can pass to delvers
+    found_at: "Old Coroner's House — Wallwrights' collection"
+    ocean: { o: 0.45, c: 0.85, e: 0.15, a: 0.55, n: 0.35 }
+    disposition_default: 0
+    sentience: implicit
+    nature: |
+      Prefers to be held by those who have been silenced by others, not by
+      those who silence. Tolls reluctantly when rung by a loud hand.
+    history: |
+      Recovered from Grimvault Level 1 by an Assayer team eleven years
+      ago. The bell's clapper was separated from its sound somewhere in
+      the vault — it tolls visibly but is heard by nothing. Falk
+      Stonehelm catalogued it; Sevra Tarn keeps it in the Old Coroner's
+      House because the Assayers had no use for a bell they couldn't
+      hear. Sevra has loaned it twice in eleven years.
+    resonances:
+      - "rung in a room where listening matters (the Wall at lamp-light, a Confessional behind the screen)"
+      - "carried by a delver returning from Pride-drift toward speech again"
+    demands:
+      - "must be returned to the Old Coroner's House between delves"
+    prohibitions:
+      - "cannot be used to summon — the vault recognizes summoning as theft of an absence and the bell rings backward"
+      - "cannot be wrapped to hide its tolling — it stops working when handled like a hidden thing"
+
+  - id: falks_right_hand_pen
+    name: "Falk's Right-Hand Pen"
+    subtype: tool
+    delivery_mechanisms: [relational, faction]   # Falk gifted three; two are in Sünden
+    found_at: "Vetters' Office (Toller Renn's drawer) — one; Wren Peatford's office, Ashgate — the second"
+    ocean: { o: 0.55, c: 0.95, e: 0.10, a: 0.65, n: 0.25 }
+    disposition_default: 5
+    sentience: implicit
+    nature: |
+      Writes only what the wielder believes to be true. The pen records;
+      it does not invent. Slows the hand for lies the wielder tells
+      themselves about the work.
+    history: |
+      Made by Falk Stonehelm in the year after Grimvault separated grip
+      from his right hand. The Assayers' workshop fitted three pens with
+      a counterweight Falk designed himself — the pen carries its own
+      stroke once the writer's intent is clear, slow and exacting in
+      Falk's monotone hand. Falk gifted three: one to Wren Peatford, one
+      to Sevra Tarn, one to Mira Thorn. Mira passed hers to Toller Renn
+      when he began filing the drift profiles, on the condition he
+      return it on the day he leaves the Office.
+    resonances:
+      - "used to copy a document the wielder has read carefully"
+      - "used by a vetter writing a clearance they believe in"
+    demands:
+      - "must be cleaned of ink with vault-cloth (provided by the Ledger) between scribings"
+    prohibitions:
+      - "cannot transcribe a lie the wielder believes true — refuses the stroke and goes still"
+      - "cannot be wielded by two hands at once (the counterweight is for the right hand, or the left)"
+
+  - id: coronet_of_pale_iron
+    name: "The Coronet of Pale Iron"
+    subtype: jewelry
+    delivery_mechanisms: [discovery, condition]
+    found_at: "Grimvault Level 1, on the corpses the vault leaves at the threshold"
+    ocean: { o: 0.65, c: 0.35, e: 0.40, a: 0.50, n: 0.55 }
+    disposition_default: -3
+    sentience: implicit
+    nature: |
+      Wants to be passed on, not kept. The iron remembers being heavy,
+      and resents the wielder who forgets that weight is what made it
+      mean anything.
+    history: |
+      Three of these have been recovered from the vault threshold over
+      the last decade, all from corpses that came back without their
+      weight. The Assayers refuse to keep one. The Ledger sells the
+      ones they get for sums that change every week — Agna Ironjaw says
+      the iron weighs negative pride and prices it accordingly. Wearing
+      one imparts to the wearer the impression that they are heavier
+      than they appear to others. The Wall has carved three names of
+      wearers who could not put one down.
+    resonances:
+      - "passed to a comrade after a delve"
+      - "set down on the Wall's east extension between delves"
+    demands:
+      - "must change hands every seven days; bond falls otherwise"
+    prohibitions:
+      - "cannot be melted — returns to circlet shape on cooling, in the same room"
+      - "cannot be worn into the Confessional (Anselm Vail refuses to admit a wearer)"
+
+  # ═══ HORDEN / Greed / Count ════════════════════════════════════════
+
+  - id: nolls_spare_ledger
+    name: "Noll's Spare Ledger"
+    subtype: tome
+    delivery_mechanisms: [relational]
+    found_at: "Counting Hall, Copperbridge — Noll holds it, gifts rarely"
+    ocean: { o: 0.30, c: 0.95, e: 0.20, a: 0.60, n: 0.70 }
+    disposition_default: 0
+    sentience: implicit
+    nature: |
+      The count comes with it. The ledger wants to be added to, never
+      subtracted from. It accepts a careful wielder and sours on a
+      careless one.
+    history: |
+      Noll Thatcher's first counting-pilgrimage ledger, carried into
+      Horden in the year he entered the dungeon and came out counting.
+      The pages record one chamber's contents as it stood the day he
+      first crossed it. Noll has not opened the book since. He will
+      gift it — once, in his lifetime, to a delver he judges capable
+      of carrying a count without becoming it.
+    resonances:
+      - "opened to a current count when the wielder names a Horden chamber they have seen"
+      - "added to (in the wielder's own hand) at first light, in a Copperbridge tavern, sober"
+    demands:
+      - "one new entry per week of carrying, or the pages begin to renumber themselves"
+    prohibitions:
+      - "no page may be torn — tear one and the book closes for that wielder forever"
+      - "cannot be carried in Mawdeep (the count becomes the wielder's hunger; bond crashes)"
+
+  - id: the_misfit_coin
+    name: "The Misfit Coin"
+    subtype: jewelry
+    delivery_mechanisms: [discovery, place]
+    found_at: "Spillfield, dawn sweep — Spillers occasionally surface one and sell it cheap"
+    ocean: { o: 0.50, c: 0.20, e: 0.75, a: 0.30, n: 0.40 }
+    disposition_default: 2
+    sentience: implicit
+    nature: |
+      The Hoarder rejected it. The coin remembers being refused and
+      enjoys being uncountable. Wants to be carried alone — pocketed
+      with other coins it sours and turns the other coins' weight.
+    history: |
+      Struck twice at the same Copperbridge mint by an engraver who
+      could not stop. The double-strike is faint; the front face is
+      almost the right merchant-saint, the reverse is almost the
+      right denomination. The Hoarder will not count it. The Counters
+      consider its existence a doctrinal problem and refuse to handle
+      it. The Spillers fish three or four out of the Spillfield each
+      year and sell them to delvers who think they understand.
+    resonances:
+      - "held in the open palm at the Horden threshold (Hoarder skips the wielder for ten breaths)"
+      - "carried alone in a sealed pocket through a delve"
+    demands:
+      - "must not share a pocket with other currency"
+    prohibitions:
+      - "cannot be spent (no merchant accepts it; Agna Ironjaw will not even price it)"
+      - "cannot be carried by a Counter — the carrier draws Counter hostility immediately"
+
+  - id: the_misfiled_seal
+    name: "The Hoarder's Misfiled Seal"
+    subtype: relic
+    delivery_mechanisms: [discovery, condition]
+    found_at: "Horden inner ring — only when the dungeon is reorganizing the outer stock"
+    ocean: { o: 0.25, c: 0.90, e: 0.15, a: 0.10, n: 0.80 }
+    disposition_default: -8
+    sentience: implicit
+    nature: |
+      Was the merchant who became the Hoarder. The seal counts when
+      held, but its count is a count of what is missing, not what is
+      present. Wants to be left somewhere accountable.
+    history: |
+      A clay merchant's seal in the old Copperbridge form, recovered
+      twice in the last fifteen years from deep in Horden's inner ring.
+      The Counters identify it as one of the original merchant's
+      personal seals from before the cave swallowed him. The seal
+      slows the Hoarder's awareness when set down in a room — the
+      dungeon counts the room more carefully when the seal is present,
+      which takes longer.
+    resonances:
+      - "set down on a stone shelf and left while the party moves on"
+      - "returned to a Copperbridge ledger-house at session end"
+    demands:
+      - "must be returned to Copperbridge between delves, or Notoriety jumps two tiers"
+    prohibitions:
+      - "cannot be held while sleeping — the wielder counts in their sleep and wakes off-stride"
+      - "cannot be carried out of the region (refuses to leave the ridge country)"
+
+  # ═══ MAWDEEP / Gluttony / Consumption ══════════════════════════════
+
+  - id: maw_tooth_hatchet
+    name: "The Maw-Tooth Hatchet"
+    subtype: weapon
+    delivery_mechanisms: [mccoy, discovery]      # smith-flavor — Gristwell forge
+    found_at: "Forged at the Gristwell smithy from a tooth chipped off the Maw's outer ring"
+    ocean: { o: 0.50, c: 0.40, e: 0.90, a: 0.05, n: 0.65 }
+    disposition_default: -5
+    sentience: implicit
+    nature: |
+      Hungry. The tooth remembers being part of an appetite and has
+      not stopped being part of one. Wants meat, hates wood and rope,
+      will not bite cleanly on the wrong thing.
+    history: |
+      The Maw drops teeth on the diurnal exhale — chipped fragments
+      catch in the lip of the Mouth and the Delvers Guild collects
+      them. Three hatchets like this exist in Gristwell, all forged
+      by Olbi Stenn at the smithy on the south road. Brecca Half-Hand
+      owns one and will not sell it. The second hangs over the
+      Sinkhole bar (Old Kettle says it is decoration; nobody who has
+      held it believes him). The third surfaces and disappears every
+      few years as the wielder dies or sets it down.
+    resonances:
+      - "drawn against a dungeon-creature of Mawdeep (amber hulks, resin-fed things) — bond rises sharply"
+      - "fed by the wielder's own hand within three days of last drawing"
+    demands:
+      - "must draw blood within three days of last drawing, or the edge dulls"
+      - "must be fed enemy flesh before sheathing — Brecca leaves a strip on the haft for the bond after each kill"
+    prohibitions:
+      - "cannot be sheathed unclean — the tooth refuses the next draw"
+      - "cannot be used on a Mawdeep creature already counted dead (the Maw counts its own; the hatchet will not strike twice)"
+
+  - id: amber_pendant_of_edgeholm
+    name: "The Amber Pendant of Edgeholm"
+    subtype: jewelry
+    delivery_mechanisms: [discovery, place]
+    found_at: "Mawdeep Level 1 — washed up where amber resin pools, rare"
+    ocean: { o: 0.70, c: 0.60, e: 0.25, a: 0.85, n: 0.55 }
+    disposition_default: 3
+    sentience: implicit
+    nature: |
+      Mourns. The amber preserved a firefly at the moment Edgeholm
+      went down, and the firefly's light has not faltered since.
+      The pendant wants to be carried under open sky.
+    history: |
+      Edgeholm was swallowed in the spring forty-three years ago.
+      The amber pendant is the only attested object recovered from
+      that village's contents — a piece of resin already old when
+      Edgeholm sat, that caught a firefly on the last evening. The
+      light is steady, never wavers. Brecca Half-Hand says she has
+      seen three pendants in seven delves; she does not know how
+      many are still down there.
+    resonances:
+      - "shown moonlight or starlight every seven nights"
+      - "worn by a delver during a Mawdeep withdraw (not while pressing deeper)"
+    demands:
+      - "must see the open sky at least once a week — bond falls fast if kept underground"
+    prohibitions:
+      - "cannot be sold (Mawdeep counts it as still its own and reclaims the buyer the next exhale-cycle; Brecca will not broker the sale)"
+      - "cannot be opened or broken — the firefly's light dies and the amber blackens"
+
+  - id: breccas_stomach_map
+    name: "Brecca's Map of the Stomach"
+    subtype: letter
+    delivery_mechanisms: [relational]
+    found_at: "The Sinkhole tavern — Brecca rents it, never sells it"
+    ocean: { o: 0.60, c: 0.85, e: 0.45, a: 0.55, n: 0.40 }
+    disposition_default: 1
+    sentience: implicit
+    nature: |
+      Loyal to Brecca first, the wielder second. The map redraws
+      itself when the dungeon rearranges, but only for chambers
+      Brecca herself has crossed.
+    history: |
+      Drawn by Brecca Half-Hand after her fourth Mawdeep delve, on
+      vellum she traded the Gristwell tanner for. The map updates
+      itself when the dungeon rearranges, but the updates only cover
+      rooms Brecca has personally walked. Brecca rents it for ten
+      silver a delve, takes it back at session end without
+      negotiation, and refuses to make copies.
+    resonances:
+      - "consulted at The Sinkhole before a delve (Brecca's hand on the wielder's shoulder)"
+      - "carried into a Level 2 chamber Brecca had previously survived"
+    demands:
+      - "returned to Brecca at session end, no exceptions"
+    prohibitions:
+      - "cannot be copied — copies come out blank, every time"
+      - "cannot be carried by a delver Brecca has refused to vouch for"
+
+  # ═══ SÜNDEN SQUARE / Wall / Listeners ══════════════════════════════
+
+  - id: caels_underline_chisel
+    name: "Wallwright Cael's Underline Chisel"
+    subtype: tool
+    delivery_mechanisms: [relational, condition]
+    found_at: "Wallwrights' workshop — Cael will lend, Sevra will not"
+    ocean: { o: 0.55, c: 0.95, e: 0.50, a: 0.80, n: 0.30 }
+    disposition_default: 4
+    sentience: implicit
+    nature: |
+      Hopeful. The chisel was apprenticed on shallow cuts and prefers
+      them. Wants to mark returns, not deaths. Goes shy if asked to
+      do first carvings.
+    history: |
+      Cael's apprentice chisel from his certification work eight years
+      ago, kept in the Wallwrights' workshop and used now mostly for
+      the horizontal underline cut beneath the name of a delver who
+      came back after their carving was already made. Cael will lend
+      it to a delver going down for a delve he believes they will
+      survive. Sevra Tarn does not approve, and Cael has begun
+      checking the workshop ledger less often.
+    resonances:
+      - "carried by a delver returning to verify a comrade's underline"
+      - "used to deepen a returned-name underline on the Wall in good weather"
+    demands:
+      - "must be returned to Cael at session end (Cael will check the workshop ledger and ask)"
+    prohibitions:
+      - "cannot make a first carving — the cut will not deepen, no matter the hand"
+      - "cannot be used while it is raining (Wallwright custom — the chisel does not work in the wet)"
+
+  - id: dust_listeners_reed
+    name: "A Dust-Listener's Reed"
+    subtype: tool
+    delivery_mechanisms: [faction, condition]
+    found_at: "Listeners' bench at the Wall's north face — borrowed, not given"
+    ocean: { o: 0.85, c: 0.80, e: 0.15, a: 0.70, n: 0.50 }
+    disposition_default: 0
+    sentience: implicit
+    nature: |
+      Patient. The reed does not work for the hasty. Wants to be
+      worked at first lamp-light or the hour before dawn, against a
+      carved name, in silence.
+    history: |
+      The Dust-Listeners brought the reed-shape to Sünden from
+      somewhere the Tismenni walked when the Tismenni still walked,
+      and have not changed the construction in three generations.
+      The reed is hollow bone, mouthed but not blown, set against a
+      carved name on the Wall. The hum the listener hears is the
+      named dead — not a voice, not a compulsion. The reeds are
+      lent out to delvers infrequently, and only when the question
+      to be asked is a confirmation, not a request.
+    resonances:
+      - "used at first lamp-light or pre-dawn against a confirmed-dead name on the Wall"
+      - "wielded by someone the Listeners have judged ready"
+    demands:
+      - "returned to the Listeners' bench within one watch of use"
+      - "used to confirm, not to compel — bond falls fast on attempted compulsion"
+    prohibitions:
+      - "cannot be used twice on the same name in a single day"
+      - "cannot be used to ask what the dead want — only to confirm what they were"
+
+# ─────────────────────────────────────────────────────────────────────
+# MUNDANE CONFRONTATION-MODIFIER ITEMS
+# Per docs/research/items-as-confrontation-modifiers.md. These are NOT
+# named NPC-shaped items — they're inventory-shape items whose presence
+# modifies confrontation beats. They serve as the "non-magic item that
+# takes the magic slot" tier described in the research doc, for moments
+# where Sünden wants a beat-modifier without a full bonded artifact.
+#
+# Schema is research-doc shape:
+#   confrontation_modifiers:
+#     - confrontation_type: <type from rules.yaml — combat | chase | negotiation>
+#       beat_id: <beat or named requirement>
+#       effect: unlocks_beat | delta_bonus | removes_risk | satisfies_requires
+#       value: <int, when effect is delta_bonus>
+#       consumable: <bool>
+# ─────────────────────────────────────────────────────────────────────
+
+modifier_items:
+
+  - id: inga_tally_stick
+    name: "A Pre-Counted Tally Stick"
+    category: utility
+    rarity: uncommon
+    value: 8
+    weight: 0.1
+    description: |
+      A wooden stick notched forty-seven times — Inga Ditcher's lucky
+      tally. Held aloft at the Horden threshold, the dungeon counts the
+      stick instead of the wielder.
+    lore: |
+      Inga crafts these in batches of twelve, all to her own preferred
+      tally. The Counters consider them a sacrament; the Spillers will
+      sell them at the Spillfield edge for the cost of the wood plus
+      the labor.
+    confrontation_modifiers:
+      - confrontation_type: chase
+        beat_id: horden_threshold_toll
+        effect: satisfies_requires
+        consumable: true
+    notes: |
+      Single use. The stick is left at the threshold; the dungeon
+      counts it.
+
+  - id: hesh_letter_of_introduction
+    name: "A Letter of Introduction from Brother Hesh"
+    category: utility
+    rarity: rare
+    value: 25
+    weight: 0.05
+    description: |
+      A folded sheet sealed with the Workhouse's wax-and-cinder mark.
+      Names the bearer as known to the Workhouse and worth a hearing.
+    lore: |
+      Brother Hesh writes maybe three of these a season. He writes
+      them quickly, in his own hand, and he writes them only for
+      people he has seen work. The letter is good for one audience.
+    confrontation_modifiers:
+      - confrontation_type: negotiation
+        beat_id: seek_audience
+        effect: satisfies_requires
+        consumable: true
+    notes: |
+      Consumed on delivery. The Workhouse keeps the letter on file.
+
+  - id: wallwright_verifier_knot
+    name: "A Wallwright's Verifier's Knot"
+    category: utility
+    rarity: rare
+    value: 15
+    weight: 0.1
+    description: |
+      A specific knotted cord used in Wallwright verification
+      interviews — the knots are the verifier's, the cord is the
+      interviewee's, the untying is the proof.
+    lore: |
+      Sevra Tarn ties the knot for first-carving and underline-cut
+      verifications both. The cord stays with the interviewee.
+      Holding it in a later interview saves the wielder explaining
+      themselves twice.
+    confrontation_modifiers:
+      - confrontation_type: negotiation
+        beat_id: verify_return
+        effect: satisfies_requires
+        consumable: true
+    notes: |
+      One use. The knot is untied at verification and the cord is
+      kept by the Wallwrights.
+
+  - id: assayers_ash_sealed_map
+    name: "An Assayer's Ash-Sealed Map of Grimvault Level 1"
+    category: utility
+    rarity: uncommon
+    value: 40
+    weight: 0.2
+    description: |
+      A meticulously drawn Falk-Stonehelm map, sealed with vault-ash
+      against quality drain. The seal flakes off as the map is used,
+      one chamber per crossing.
+    lore: |
+      Falk sells these to delvers he judges capable of reading them.
+      The ash seal preserves the map's accuracy on the way in;
+      crossings beyond Level 1 strip the seal and the map goes blank.
+    confrontation_modifiers:
+      - confrontation_type: chase
+        beat_id: navigate_grimvault_l1
+        effect: delta_bonus
+        value: 2
+        consumable: true
+    notes: |
+      Useful for one delve only. The ash is gone by the way out.
+
+  - id: toller_renn_cleared_token
+    name: "Vetter Toller Renn's Cleared Token"
+    category: utility
+    rarity: uncommon
+    value: 12
+    weight: 0.05
+    description: |
+      A small wooden disk stamped on both sides with the Vetters'
+      Office mark — one face Mira's, one face Korven's. Toller stamps
+      both when he writes the clearance.
+    lore: |
+      Held forward at the Recruiter's Post or a Confraternity branch,
+      the token saves the wielder explaining their drift profile to
+      someone who has not read it. Toller issues maybe a dozen a year.
+    confrontation_modifiers:
+      - confrontation_type: negotiation
+        beat_id: seek_passage
+        effect: satisfies_requires
+        consumable: true
+    notes: |
+      Single-use. The wielder hands over the token and the conversation
+      continues without explanation.
+
+# ─────────────────────────────────────────────────────────────────────
+# AUTHORING NOTES
+# ─────────────────────────────────────────────────────────────────────
+# Every named_item is grounded in a Sünden NPC or location that already
+# appears in lore.yaml, factions.yaml, world.yaml, or magic.yaml. No new
+# named NPCs are introduced. Items reference:
+#
+#   - Wallwrights:        Sevra Tarn, Wallwright Cael (the_quiet_bell,
+#                         caels_underline_chisel, falks_right_hand_pen)
+#   - Vetters' Office:    Mira Thorn, Korven Daish, Toller Renn
+#                         (falks_right_hand_pen, toller_renn_cleared_token)
+#   - Confraternity:      Anselm Vail, Brother Hesh, Mistress Coro
+#                         (coronet_of_pale_iron, hesh_letter_of_introduction)
+#   - Assayers:           Falk Stonehelm, Wren Peatford, Agna Ironjaw
+#                         (the_quiet_bell, falks_right_hand_pen,
+#                          coronet_of_pale_iron, assayers_ash_sealed_map)
+#   - Spillers:           Spillfield as place (the_misfit_coin)
+#   - Counters:           Noll Thatcher, Inga Ditcher (nolls_spare_ledger,
+#                         the_misfiled_seal, inga_tally_stick)
+#   - Delvers Guild:      Brecca Half-Hand, Old Kettle, Olbi Stenn (new
+#                         smith name, mentioned only — not foregrounded)
+#                         (maw_tooth_hatchet, amber_pendant_of_edgeholm,
+#                          breccas_stomach_map)
+#   - Dust-Listeners:     (no individuals named — guild reference only)
+#                         (dust_listeners_reed)
+#
+# Each item carries the item_legacy_v1 plugin's required shape:
+# id, name, subtype, ocean, disposition_default, nature, history,
+# plus the optional demands / prohibitions / resonances triple. The
+# loader is not live as of 2026-05-11; this content is design-ready
+# against the locked schema.
+#
+# Mundane modifier_items follow the items-as-confrontation-modifiers
+# research-doc shape. The `requires`-against-inventory engine work is
+# unimplemented (3-point estimate per the research doc); these items
+# are content-ready for when that lands.
