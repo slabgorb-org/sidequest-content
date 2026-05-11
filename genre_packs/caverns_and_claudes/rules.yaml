@@ -38,10 +38,9 @@ ability_score_names:
   - WIS
   - CHA
 
+# HP/max_hp/AC removed per ADR-014 (Diamonds and Coal) — momentum/edge/fate
+# replaced HP. Stragglers were stale-schema display fields with no backing data.
 stat_display_fields:
-  - hp
-  - max_hp
-  - ac
   - torches
   - rations
   - encumbrance
@@ -104,6 +103,21 @@ confrontations:
         stat_check: CON
         effect: "Reduce incoming damage this round, brace against the push"
         narrator_hint: Shield raised, back to the wall, weight forward.
+      - id: hold_the_line
+        label: Hold the Line
+        kind: brace
+        base: 2
+        stat_check: CON
+        effect: "Plant the feet — pass durability to the rest of the party until the next round"
+        narrator_hint: Stance widens, breath steadies. Whatever comes through has to come through you first.
+      - id: second_wind
+        label: Second Wind
+        kind: brace
+        base: 1
+        stat_check: CON
+        edge_delta: 1
+        effect: "Catch a breath — recover composure when the lungs and legs still have something left"
+        narrator_hint: A held breath, a settling of the shoulders. The body remembers it isn't done yet.
       - id: shield_bash
         label: Shield Bash
         kind: strike
@@ -111,11 +125,11 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: STR
+        stat_check: CON
         class_filter: [Fighter, Cleric]
         effect: "Stun the target briefly, break their footing"
         risk: "Overcommitted — lose 2 momentum and take a counter on failure"
-        narrator_hint: Slam forward in the narrow corridor — nowhere to dodge.
+        narrator_hint: Shoulder-and-shield, body weight committed — the kind of blow that costs the bracer as much as the braced.
       - id: feint
         label: Feint
         kind: angle
