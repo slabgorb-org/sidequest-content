@@ -132,6 +132,30 @@ chapters:
           paler than they should be in the last mile. Birds do not
           land. The town at the end of the road is thinner than the
           town the road was built for.
+    tropes:
+      # Fresh-tier backdrop: the genre-frame tropes are present from
+      # the moment the party steps off the coach. They start dormant
+      # and low — the Wall already has names, the Keepers already
+      # exist, the deeper-dark already pulls — but the party has
+      # not yet generated any pressure. The first turn after the
+      # gate cracks open at dawn, the activation gate will start
+      # promoting these one at a time (PASS D in trope_tick.py).
+      # Per-descent tropes do NOT seed here — they activate at
+      # ``early`` when the party has chosen a dungeon to favor.
+      - id: the_keeper_stirs
+        status: dormant
+        progression: 0.02
+        notes:
+          - "The Wall already carries strangers. The dungeons already remember."
+      - id: the_deeper_dark
+        status: dormant
+        progression: 0.02
+      - id: hireling_mutiny
+        status: dormant
+        progression: 0.00
+      - id: extraction_panic
+        status: dormant
+        progression: 0.00
 
   - id: early
     label: "First Names on the Wall"
@@ -212,6 +236,40 @@ chapters:
           road has a half-empty square, a bridge that still stands,
           and a pair of tarnished old hitching posts that everyone
           walks around without commenting.
+    tropes:
+      # First Names on the Wall: the party has begun to delve. The Wall
+      # is beginning to carry strangers the party knew; the three
+      # Keepers are aware but uncommitted. Per-descent introducers are
+      # dormant — the party hasn't picked a favorite dungeon yet, so
+      # all three sins are in equal preliminary observation mode.
+      - id: the_keeper_stirs
+        status: dormant
+        progression: 0.05
+        notes:
+          - "First names on the Wall the party can read."
+      - id: the_deeper_dark
+        status: dormant
+        progression: 0.05
+        notes:
+          - "Late-night Lampwick conversations about how deep is too deep."
+      - id: hireling_mutiny
+        status: dormant
+        progression: 0.00
+      - id: the_butcher_assesses
+        status: dormant
+        progression: 0.05
+        notes:
+          - "Grimvault entry-vault catalog count rising. Pride is observing."
+      - id: the_hoarder_counts
+        status: dormant
+        progression: 0.05
+        notes:
+          - "Horden's first ledger-room visit. Greed is counting."
+      - id: the_glutton_tastes
+        status: dormant
+        progression: 0.05
+        notes:
+          - "Mawdeep's Throat breath has touched the party. Gluttony is tasting."
 
   - id: early
     label: "One Wounded"
@@ -302,6 +360,42 @@ chapters:
           year. The Mawdeep mouth is visible from the last mile,
           breathing on its diurnal cycle, and the road never quite
           looks at it directly.
+    tropes:
+      # One Wounded: the party has completed enough delves that one
+      # of the three Keepers is now reacting. The pack-tier keeper
+      # trope and the deeper-dark pull are progressing. The per-descent
+      # introducers progress in parallel — the wounded descent's
+      # introducer is the one the narrator should foreground most, but
+      # without knowing which dungeon the party preferred we keep all
+      # three at parity and let the foreground-K selector sort them.
+      - id: the_keeper_stirs
+        status: progressing
+        progression: 0.20
+        notes:
+          - "Doors that opened easily a week ago resist now."
+          - "Lamps gutter on cue from below."
+      - id: the_deeper_dark
+        status: progressing
+        progression: 0.15
+        notes:
+          - "Talk in the Lampwick of a passage no map shows."
+      - id: hireling_mutiny
+        status: dormant
+        progression: 0.05
+      - id: extraction_panic
+        status: dormant
+        progression: 0.05
+        notes:
+          - "First near-miss on the way out — a tread that gave under boot."
+      - id: the_butcher_assesses
+        status: progressing
+        progression: 0.15
+      - id: the_hoarder_counts
+        status: progressing
+        progression: 0.15
+      - id: the_glutton_tastes
+        status: progressing
+        progression: 0.15
 
   - id: mid
     label: "Two Wounded"
@@ -391,6 +485,52 @@ chapters:
           tastes of nothing. The Spillway tavern is the last
           functional building. Anyone living in Ashgate now is
           either too old to leave or too rooted to consider it.
+    tropes:
+      # Two Wounded: two Keepers are actively defending. The pack-tier
+      # extraction-panic trope has matured (returning out is now its
+      # own act of survival), and the cross-descent treasure tropes
+      # are queued. The party is past the point of casual touristing —
+      # delves now have real cost and hireling morale is fraying.
+      - id: the_keeper_stirs
+        status: progressing
+        progression: 0.45
+        notes:
+          - "The Keepers know each other and trade observations."
+      - id: the_deeper_dark
+        status: progressing
+        progression: 0.30
+        notes:
+          - "Maps shared at the Recruiter's Post no longer match below the second tier."
+      - id: hireling_mutiny
+        status: progressing
+        progression: 0.15
+        notes:
+          - "Two of the named porters are refusing Greed-side contracts."
+      - id: extraction_panic
+        status: progressing
+        progression: 0.20
+        notes:
+          - "Time-to-exit is the metric every contract now negotiates."
+      - id: quality_extraction
+        status: dormant
+        progression: 0.10
+        notes:
+          - "Treasure pulled in haste returns degraded. The valuators have started warning."
+      - id: the_extraction
+        status: dormant
+        progression: 0.10
+      - id: sensory_cascade
+        status: dormant
+        progression: 0.05
+      - id: the_butcher_assesses
+        status: progressing
+        progression: 0.40
+      - id: the_hoarder_counts
+        status: progressing
+        progression: 0.40
+      - id: the_glutton_tastes
+        status: progressing
+        progression: 0.40
 
   - id: veteran
     label: "Three Wounded"
@@ -484,3 +624,61 @@ chapters:
           who remain say the breathing is what tells them the
           ground is still being held. When the breathing stops,
           they say, they will leave.
+    tropes:
+      # Three Wounded: every dungeon is on guard. Per-descent climax
+      # tropes activate — the Mawdeep-Gluttony climaxes are seeded
+      # here (the_inhalation, the_belly_contracts, the_offering) and
+      # the equivalent Grimvault/Horden climaxes would follow the
+      # same shape once their world-tropes.yaml entries are authored.
+      # The pack-tier tropes are now load-bearing every turn.
+      - id: the_keeper_stirs
+        status: progressing
+        progression: 0.70
+        notes:
+          - "Lamps don't go out — they refuse to start. The Keepers are listening before the match strikes."
+      - id: the_deeper_dark
+        status: progressing
+        progression: 0.55
+        notes:
+          - "The Confraternity has stopped issuing standing return-route guidance for the lower tiers."
+      - id: hireling_mutiny
+        status: progressing
+        progression: 0.35
+        notes:
+          - "The bunkhouse has lost three porters to refusal-of-contract in a single week."
+      - id: extraction_panic
+        status: progressing
+        progression: 0.45
+        notes:
+          - "The Wallwrights have rebuilt the south stair-rail twice this season."
+      - id: quality_extraction
+        status: progressing
+        progression: 0.25
+      - id: the_extraction
+        status: progressing
+        progression: 0.25
+      - id: sensory_cascade
+        status: dormant
+        progression: 0.10
+      - id: the_butcher_assesses
+        status: progressing
+        progression: 0.65
+      - id: the_hoarder_counts
+        status: progressing
+        progression: 0.65
+      - id: the_glutton_tastes
+        status: progressing
+        progression: 0.65
+      - id: the_inhalation
+        status: dormant
+        progression: 0.20
+        notes:
+          - "Mawdeep's diurnal breath is now audible from the Square at first light."
+      - id: the_belly_contracts
+        status: dormant
+        progression: 0.10
+      - id: the_offering
+        status: dormant
+        progression: 0.10
+        notes:
+          - "Confessional intake has doubled. Keeper Lin keeps a second slate."
