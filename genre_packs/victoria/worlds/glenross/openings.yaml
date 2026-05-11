@@ -1,0 +1,352 @@
+# Glenross — Openings bank.
+#
+# Hard contracts (validators in genre/loader.py + models/narrative.py):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - OpeningSetting requires exactly one anchor: chassis_instance OR
+#     location_label (not both, not neither). Glenross uses location_label.
+#   - At least one solo + one multiplayer opening present.
+#
+# Spec: docs/superpowers/specs/completed/2026-05-01-canned-openings-design.md
+#       docs/superpowers/specs/2026-05-11-tea-and-murder-glenross-design.md
+#
+# Voice contract: warm, observant, dryly witty, slightly arch in the way
+# the best village storytellers are arch. Tea Cup Test applies — body
+# discovery (when it comes) is off-stage or tidy; turn 1 never carries
+# a body. Stakes on turn 1 are gentle; the complication waits for
+# turn 2 or 3 per the SOUL pacing rule.
+#
+# v1 bank: two openings. Solo "Arrival" fires for any solo player and
+# uses per_pc_beats to flavour the entry per chosen class. MP "Cricket
+# Saturday" puts the whole party at the village fixture. Eight per-
+# vocation solo openings are deferred to v2 — see the design spec
+# "Future iterations" section.
+
+version: "0.1.0"
+world: glenross
+genre: victoria
+
+openings:
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO — Arrival by the afternoon train
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_arrival_afternoon_train
+    name: "The Glenross Arms — the afternoon train, the inn fire, the publican wiping the bar"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: the_glenross_arms
+      situation: >-
+        Late afternoon in the back-end of autumn. The afternoon train
+        has come and gone. The village is settling toward supper, the
+        kettle is on, the inn fire is going, and the bar of the
+        Glenross Arms is the warmest room within thirty miles. No
+        emergency in the parish today. No mystery yet. The village is
+        making space, in its considered way, to look at the new
+        arrival.
+      present_npcs:
+        - hamish_sinclair
+    tone:
+      register: "warm, observant, dryly witty"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3"
+      sensory_layers:
+        smell: >-
+          Peat smoke from the inn fire, polished oak, the faint
+          back-kitchen warmth of something being baked for supper, the
+          rain-on-stone smell that comes through the open door from
+          the lane.
+        sound: >-
+          The kettle just on. A dog breathing slow and even on the
+          flagstones by the hearth. The faint sound of the burn under
+          the bridge a hundred yards off. Outside, the cooling tick
+          of the goods-wagon at the railway halt.
+        touch: >-
+          Bar-warm under the hand. The flagstones cool through the
+          boot-sole. The mug heavier than expected — the inn's mugs
+          are old and honestly weighted.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - any mention of a missing person or a worrying letter on turn 1
+        - moving the player without their input
+        - asking the player a question — turn 1 closes on a declarative
+        - introducing a confrontation, a dice roll, or a rig-emergency framing
+        - the gothic register (storm-night, dread, supernatural intimation)
+    establishing_narration: |
+      The afternoon train has come and gone. You can still hear it,
+      faintly, working its way south through the cutting — and then
+      that goes too, and the only sound is the burn under the bridge
+      and the kettle just coming back on in the snug.
+
+      The Glenross Arms is the warmest room you have been in since
+      Edinburgh. Hamish Sinclair is behind the bar with a glass cloth
+      folded twice over his belt, doing the polishing-without-looking
+      that is the publican's way of taking your measure for the next
+      ten years. There is a dog asleep on the flagstones by the fire
+      whose name, you have just learned by overhearing, is Caley.
+      Caley does not open her eyes for you, which is high praise.
+
+      "Settling in, then." Hamish doesn't quite ask. He sets a mug
+      down in front of you without enquiring what you would prefer
+      to drink. "Aye. Supper's at the half-hour. The back bedroom's
+      free, looks over the burn — better than the front, the
+      carriages go past at six. We'll get you the key when you've
+      a mind."
+
+      Out through the open door the lane is going gold. There is
+      smoke rising from a half-dozen cottage chimneys and from
+      somewhere up at the kirk a single bell rings the half-past.
+      The kettle, which had stopped for a moment, comes back on.
+    first_turn_invitation: |
+      The mug is at your elbow. Caley has not moved. Hamish is
+      polishing a glass that has been clean for some minutes now,
+      and the village outside is shifting unhurriedly toward supper.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The door behind you opens with the small bell that the
+        publican has hung over it. A figure steps in, shakes the
+        rain from a coat sleeve, and does not for a moment notice
+        anyone but the publican.
+
+        "Hamish." It is the postmistress, Mrs. Buchan, with a
+        single letter held in her hand the way a careful person
+        holds something they have not opened. "When you've a
+        minute. Not now. I'm not after a fuss."
+
+        Hamish looks at her over the glass. Whatever passes between
+        them is the village's language, and you do not quite hear
+        it. He nods once. "After supper."
+
+        The postmistress lets her gaze travel across the bar,
+        pauses on you for a beat that is courteous rather than
+        curious, and goes back out into the lane.
+      escalation_path:
+        turn_2_or_3: >-
+          The letter is the wrinkle. By turn three the publican
+          will have brought it up, or the postmistress will be at
+          the door again. The contents are the mystery's hook —
+          the narrator picks the shape on the basis of the
+          player's vocation and chargen choices. Foreign stamp,
+          unfamiliar hand, or a postmark from a place a villager
+          had said they were not. Do not preview on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          Hamish glances at the bag in the corner — the brass clasps
+          give it away. "Doctor, then." He says it as observation, not
+          question. "You'll be the new locum, or you're the new
+          surgery. Either way you'll want to know that the surgery's
+          across the lane, Eilidh keeps regular hours, and the
+          telephone's on her wall, not mine. She'll be over before
+          breakfast tomorrow to introduce herself, I expect."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          Hamish takes a beat longer over the polishing. "Reverend.
+          Aye." He puts the glass down. "Mr. Murchison is at the
+          manse, you'll know — Free Kirk, Sunday twice and Wednesday
+          evening. The rector at St. Margaret's, that's Mr. Quill,
+          Episcopal. Forty in the congregation when the Ross family's
+          up. The two of them get on. You'll be called on by
+          whichever of them owns you, soon enough."
+      - applies_to: { class: "Society" }
+        beat: |
+          Hamish takes a careful look at the cut of your coat. "Post
+          office, then. Or the tea rooms. Or" — and there is a quiet
+          consideration here — "or you're up at the Hall this season.
+          Sir Iain's London party is end of the week." He returns to
+          the polishing. "The village will sort you out by Wednesday,
+          one way or the other."
+      - applies_to: { class: "Governess" }
+        beat: |
+          Hamish nods as though something is now clear that hadn't
+          been. "School, is it. Miss Ferguson runs a tight ship and
+          a kind one. The schoolhouse is past the post office, the
+          schoolmistress's cottage attached to the back. Margaret
+          will have you over for tea before the week's out — she
+          enjoys a new face about a teapot."
+      - applies_to: { class: "Detective" }
+        beat: |
+          Hamish considers the bag in the corner and then the way you
+          hold the mug. He does not say anything immediately. When he
+          does it is one word: "Constabulary." Then: "Sergeant MacRae
+          is the sergeant in Glenross. He'll have heard you came in
+          on the afternoon. The cottage by the bridge — he'll come
+          across when he's finished his tea, not before."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          Hamish glances at the case in the corner — older leather,
+          the labels not all British. "Aye, well. You'll have heard
+          the glen is a quiet place after India. Sir Iain served too,
+          if you ever want a hand on his arm at the inn. The path up
+          the Long Pass is grand if you've a mind for a walk before
+          dark. Half an hour to the cairn and the same back."
+      - applies_to: { class: "Industrialist" }
+        beat: |
+          Hamish puts the polishing cloth down. "Distillery business,
+          then. Donald Munro is the man. He'll be at the still room
+          this hour — go after supper. Don't come without an
+          appointment in the morning, that's not the village's way."
+          He picks the cloth back up. "If it's the railway you're
+          here about, that's another conversation, and you'll want
+          to take it to the stationmaster, who is at this minute
+          almost certainly drinking tea."
+    magic_microbleed: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # MULTIPLAYER — Cricket-and-shinty Saturday
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: mp_cricket_saturday
+    name: "The Cricket Ground — the Saturday fixture, the village out in force"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 4
+      backgrounds: []
+    setting:
+      location_label: the_cricket_ground
+      situation: >-
+        Late August, the Saturday fixture against the eleven up from
+        Cullenmore. Half the parish is at the meadow. The pavilion is
+        full. The marquee that is going up for the parish fete next
+        week is half-erected at the far end of the field. The cricket
+        is well into the second innings; the village team is doing
+        better than expected. The players' party are all at the
+        ground for various reasons of their own and have not yet
+        quite found each other.
+      present_npcs:
+        - hamish_sinclair
+        - rev_murchison
+        - mrs_cameron
+        - sgt_macrae
+        - mrs_buchan
+        - hugo_ross
+    tone:
+      register: "warm, sociable, the village in full courtesy"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — the wrinkle is at the marquee"
+      sensory_layers:
+        smell: >-
+          Cut grass, paraffin lamp from the pavilion verandah, the
+          tea-and-sandwiches smell from the back of the marquee, peat
+          smoke from a single chimney drifting down off the village.
+        sound: >-
+          The slow regular sound of bat on ball, polite applause from
+          the pavilion, the unhurried commentary of half a dozen
+          village men along the rope, a child somewhere being told
+          to come back from the boundary. The bell at the kirk has
+          just rung the half-past four.
+        touch: >-
+          Late afternoon warm on the back of the neck. The pavilion
+          rail worn smooth under the hand. The mug, when one is put
+          into your hand at some point in the next half hour, is
+          warm enough to be honest and not hot enough to spill.
+      avoid_at_all_costs:
+        - any body, any death, any forensic detail on turn 1
+        - bringing the wrinkle out before the players have introduced themselves to each other
+        - asking the player a question — turn 1 closes on a declarative
+        - moving any player without their input
+        - the gothic register
+    establishing_narration: |
+      The cricket ground is full. The village pavilion at the north
+      end is doing brisk trade in tea-and-sandwiches; the lime-washed
+      verandah is two-deep in villagers along the rope; the marquee
+      that's going up for next week's parish fete is half-erected at
+      the far end of the meadow. The sky is the soft blue of a late
+      August Saturday in the Highlands, with a thinner mid-altitude
+      cloud bank moving in from the west — there will be a shower,
+      but not yet.
+
+      The eleven from Cullenmore are batting. The Glenross XV
+      shinty captain — who is also the Glenross XI's second-change
+      bowler — has just come on, and his first over is going well
+      enough that the rope is leaning slightly forward in attention.
+      Hugo Ross, the laird's son, is the village's wicket-keeper
+      this season; he is taller than the keepers Cullenmore
+      remember, and the boundary has noticed.
+
+      Reverend Murchison is on the rope in his tweed jacket and
+      Sunday collar, hands clasped behind his back, watching with
+      the unhurried attention of a man who has watched this fixture
+      for thirty years. Mrs. Cameron is moving along the rope with
+      a teapot in either hand. Mrs. Buchan, the postmistress, has
+      brought her knitting out, has not done much knitting with it,
+      and is watching the marquee being raised at the far end with
+      the particular look of a woman who is reading the field rather
+      than the cricket. Sergeant MacRae's bicycle is leaning against
+      the back wall of the pavilion; he is leaning beside it,
+      neither watching the cricket nor not watching it.
+
+      The party — you — are here at the same fixture for your own
+      reasons. You have not yet quite found each other.
+    first_turn_invitation: |
+      The bell at the kirk has just rung the half-past four. The
+      bowler's run-up is restarting. The marquee at the far end
+      shakes once in a gust of wind. The village is at full
+      Saturday courtesy.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        At the far end of the meadow, the marquee that is going up
+        for next week's fete loses one of its corner ropes in a
+        small flurry of wind. One of the men putting it up — a
+        broad figure in a brown jacket, no one the regulars on the
+        rope quite recognise — straightens, looks toward the
+        pavilion, then walks the long way around the back of the
+        marquee rather than the short way along the rope.
+
+        Sergeant MacRae's gaze, which had not been watching the
+        cricket, follows him until he is out of sight behind the
+        canvas. Then the sergeant unclips a bicycle clip and
+        re-clips it on the other ankle, which is a thing he does
+        when he is about to walk the long way around something
+        himself.
+
+        Mrs. Buchan picks up her knitting again. The bowler's run-
+        up restarts. From the back of the pavilion Mrs. Cameron is
+        calling someone's name in a tone of practical authority.
+      escalation_path:
+        turn_2_or_3: >-
+          The figure at the marquee is the wrinkle. By turn three he
+          will have left, will be missed at the village hall, will
+          turn up at the inn under a name no one recognises, will
+          have left a parcel at the post office, or — most likely —
+          will have done the polite circuit that visiting men do at
+          a village fixture and become the topic of the rope's
+          conversation. Narrator picks the path on the basis of the
+          party's vocations and chargen choices. Do not preview the
+          shape of the wrinkle on turn one.
+    party_framing:
+      already_a_crew: false
+      bond_tier_default: "trusted"
+      shared_history_seeds:
+        - >-
+          The players have lived in or visited the glen long enough to
+          know each other by name. The doctor has treated the
+          schoolmistress's brother for a chill last winter; the
+          constable has been at the inn with the rector after the
+          last cricket match; the postmistress has handed the
+          minister his correspondence every weekday morning for as
+          long as either of them can remember. The bonds are warm
+          but the relationships are not romantic by default — the
+          village's social tissue, in other words.
+      narrator_guidance: >-
+        The party are not arriving as a single unit. They are at the
+        same fixture for their own reasons. Introduce each player to
+        the scene through what they would notice — the doctor sees
+        a child's bandage that has come undone, the minister sees a
+        face he has not seen at Sunday service in a fortnight, the
+        constable sees the marquee figure walk the long way around,
+        the postmistress sees a letter she has been waiting on
+        delivered to a hand she did not expect to see. Let the
+        players find each other naturally across turns 1 and 2.
+    magic_microbleed: null

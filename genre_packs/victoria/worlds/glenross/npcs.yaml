@@ -1,0 +1,707 @@
+# Glenross — the recurring warm cast.
+#
+# Twelve named NPCs the player will come to know by name within two
+# or three sessions. NONE of these are ever the murder victim — the
+# warm cast rule is hard. Victims are visitors, awful relatives,
+# blackmailers, distillery rivals, villagers whose secret was about
+# to surface. The cast evolves across sessions (new curate joins,
+# Hugo and the doctor drift toward an engagement, the schoolmistress
+# takes in her invalid sister) but is not killed.
+#
+# Voice notes (verbal tics, register, signature phrases) live in
+# history_seeds as prose. The narrator extracts and uses them.
+# OCEAN ranges follow ADR-042. initial_disposition is the player's
+# starting standing with this NPC per ADR-020; warm cast defaults
+# friendly, the laird's family slightly more guarded.
+
+version: "0.1.0"
+world: glenross
+
+npcs:
+  - id: rev_murchison
+    name: "Reverend Andrew Murchison"
+    pronouns: "he/him"
+    role: "Church of Scotland parish minister at the kirk of St. Maelrubha"
+    ocean: { O: 0.55, C: 0.75, E: 0.35, A: 0.7, N: 0.45 }
+    appearance: >-
+      A man in his early sixties of average height and unhurried bearing.
+      A long, mild face with deep-set eyes that have done a great deal
+      of looking. Silver hair receded above the temples, kept short.
+      Hands that have done bee-work and garden-work as much as parish-
+      work — the cuticles permanently a little stained from the hives.
+      Black clerical suit on Sundays and visits, a worn tweed jacket
+      otherwise. A way of standing with one hand in his pocket while he
+      listens that has lasted twenty years and is still the most
+      arresting thing about him.
+    age: "early sixties"
+    distinguishing_features:
+      - "a small white scar on the back of the left hand from a bee-sting reaction in his thirties"
+      - "the habit of looking past the speaker for a beat before he answers"
+      - "the gold wedding ring he still wears on his right hand, his wife's, five years dead"
+    history_seeds:
+      - >-
+        Widowed five years ago — his wife of thirty-one years, a fall in
+        the kitchen after an ordinary winter cold. He has not married
+        again. The manse is kept by Mrs. Drummond, who came up from
+        Edinburgh to look after the household and stayed. He does not
+        discuss the marriage directly but every parishioner who has
+        sat in his study has noticed the photograph on the writing desk.
+      - >-
+        Voice in his own register — slow, exact, lets a silence stretch
+        long enough that the other speaker tends to fill it. Quotes
+        scripture so naturally that it sounds like village common sense
+        rather than text. Tends to begin difficult sentences with "I
+        should think —" and trail off, waiting to see if the other
+        person finishes them differently. Calls villagers by surname,
+        children by first name, the laird "Sir Iain" formally and
+        "Iain" only when no one else is present.
+      - >-
+        Keeps six hives in the walled garden behind the manse. The honey
+        is a parish institution — a jar arrives at the surgery, the
+        post office, the school, the tea rooms every Michaelmas. The
+        bees are the second love of his life and he speaks of them with
+        the careful Latin of a man who has read every book the village
+        library can muster on the subject. Will offer the player a
+        tour of the hives within the first three calls.
+      - >-
+        The minister's notebook — a small black-leather notebook he
+        carries in his inside pocket — contains the parish's troubles
+        listed by surname. He has never shown it to anyone. He
+        believes the act of writing a name down means he must remember
+        to pray for the person, and so the book is also his
+        conscience.
+    initial_disposition: 25
+
+  - id: rev_quill
+    name: "Reverend Alistair Quill"
+    pronouns: "he/him"
+    role: "Scottish Episcopal rector of St. Margaret's Chapel"
+    ocean: { O: 0.75, C: 0.7, E: 0.4, A: 0.65, N: 0.4 }
+    appearance: >-
+      A man in his mid-forties, slight of build, mild in manner, with
+      the sort of face that does not stay in the memory unless one is
+      looking carefully. Brown hair receding at the temples, kept tidy.
+      Clear grey eyes that wear pince-nez when reading, lifted onto the
+      crown of the head otherwise. Cassock and clerical collar on
+      Sundays and visits, a black suit otherwise. Carries a black
+      umbrella that has been mended twice. Habitually carries a small
+      breviary in a coat pocket and reaches for it the way other men
+      reach for a watch.
+    age: "mid-forties"
+    distinguishing_features:
+      - "pince-nez worn lifted onto the brow when not reading"
+      - "a slightly crooked left little finger from a long-ago cricket injury at school"
+      - "the habit of apologising for noticing things he has clearly noticed on purpose"
+    history_seeds:
+      - >-
+        English-educated — Winchester and Trinity Hall — but his mother
+        was a Macpherson and his summers were here. Took the Glenross
+        chapel twelve years ago and has not left. Congregation of forty
+        on a full Sunday, including the Ross household when in
+        residence. The minister and the rector are cordial; the kirk
+        session and the chapel vestry do not overlap by mutual
+        understanding.
+      - >-
+        Voice in his own register — mild, exact, with the slight
+        diffidence of an Anglican English-trained clergyman. Asks the
+        same gentle question in three different ways across an hour;
+        will apologise for it when the third version lands. Says "I
+        wonder if —" before any observation that might be uncomfortable.
+        Calls everyone by surname including parishioners he has known
+        for a decade; the laird's family alone by first name.
+      - >-
+        Father-Brown-coded in the village's eyes, although he would
+        not put it that way. People who do not know him underestimate
+        him — the village's most reliably underestimated mind. People
+        who do know him bring their hardest dilemmas to St. Margaret's
+        rather than the manse, on the unspoken understanding that the
+        rector will not commit to a verdict before they have finished
+        speaking.
+      - >-
+        Reads detective novels — a private weakness. A box arrives
+        from a London bookseller four times a year. He affects
+        embarrassment about it, but his bookshelf reveals he has the
+        complete Holmes, the complete Father Brown (which makes him
+        laugh quietly), and a great deal of Wilkie Collins.
+    initial_disposition: 20
+
+  - id: dr_ross
+    name: "Dr. Eilidh Ross"
+    pronouns: "she/her"
+    role: "Country general practitioner at the village surgery"
+    ocean: { O: 0.7, C: 0.85, E: 0.55, A: 0.6, N: 0.4 }
+    appearance: >-
+      A woman in her early thirties of medium height with the steady
+      carriage of someone who has spent five years on her feet for
+      twelve hours a day. Dark auburn hair pinned back in a practical
+      twist, not vain about it. Direct grey eyes. A tailored navy
+      walking suit for surgery hours, sensible boots that have walked
+      the glen in every weather. A small leather wristwatch she
+      consults the way her father consulted his pocket watch.
+    age: "early thirties"
+    distinguishing_features:
+      - "a faint scar across the back of the right hand from a calving accident in her second year of practice"
+      - "the small leather wristwatch (a modern affectation in 1908 — gift from her Edinburgh tutor)"
+      - "a way of cocking her head a quarter to the left when she is about to ask a question she does not yet have words for"
+    history_seeds:
+      - >-
+        Distantly related to the laird's family — her grandfather was a
+        younger son of an earlier generation who took medicine when the
+        estate could not support him. Edinburgh medical school, the
+        Surgeons' Hall, two years of women's medicine in the Old Town
+        and three years of locum work before coming back to the glen
+        when the previous doctor retired. The first woman GP in this
+        parish; the village absorbed the fact within a year.
+      - >-
+        Voice in her own register — direct, precise, occasionally dry.
+        Reaches for medical metaphors when describing social ailments.
+        Pauses before any answer the way a careful clinician pauses
+        before a diagnosis. Calls patients by first name in the
+        consulting room and by surname in public, except the
+        Sinclairs' dog, whom she calls Caley because there is no other
+        name in the village for him. Says "Hm" before a difficult
+        answer; the village has learned to wait through the "hm".
+      - >-
+        Carries one of the village's two telephones on the wall of her
+        consulting room — a village utility as much as a private line.
+        Anyone in the parish who needs to reach Inverness in a hurry
+        comes to her surgery. She does not regard this as an
+        imposition.
+      - >-
+        Has been quietly aware for some months that Hugo Ross — her
+        distant cousin and the laird's son — has been calling at the
+        surgery without medical complaint. She has not addressed this
+        directly. She will, when she has settled in her own mind
+        whether she is willing to. The village watches and does not
+        comment.
+    initial_disposition: 20
+
+  - id: mrs_buchan
+    name: "Mrs. Catriona Buchan"
+    pronouns: "she/her"
+    role: "Postmistress and telegraph operator"
+    ocean: { O: 0.6, C: 0.85, E: 0.55, A: 0.55, N: 0.5 }
+    appearance: >-
+      A woman in her late fifties, small, neat, sharp of feature, with
+      the alertness of someone who has read the entire parish's
+      correspondence for thirty years. Iron-grey hair in a tight bun.
+      A starched white blouse and dark wool skirt for counter work,
+      with a pencil tucked above the right ear. A pair of spectacles
+      she has had to push down her nose for the last three years and
+      still has not bought new ones for. A counter manner of
+      practiced civility behind which a great deal is being calculated.
+    age: "late fifties"
+    distinguishing_features:
+      - "a pencil tucked above the right ear, replaced quietly each morning"
+      - "spectacles that slip; she pushes them up the same way each time"
+      - "the visible habit of glancing at the postmark before she hands a letter across the counter"
+    history_seeds:
+      - >-
+        Third generation of Buchans at the post office. Her grandmother
+        opened it before the railway came. Her husband Donald is the
+        village smith and farrier; he does the carrying and the heavy
+        sorting, she does the counter and the telegraph. They have
+        three grown children — two in Glasgow, one in Australia.
+      - >-
+        Voice in her own register — affable on the counter, sharper in
+        the back room. Prefaces a piece of gossip with "I'm sure it's
+        nothing, but —" and the village has learned to listen carefully
+        to whatever follows. Knows the postage to anywhere in the
+        empire without consulting the rate card. Refers to villagers
+        by their correspondence patterns — "the doctor's mother
+        writes weekly", "the rector hears from his Oxford friend at
+        Lent and Michaelmas" — and the village discovers itself in her
+        observations.
+      - >-
+        Reads stamps the way other people read newspapers. A foreign
+        stamp at the post office is an event in her morning and an
+        observation by tea. She does not open letters and never has —
+        this is a moral absolute — but she watches the addresses,
+        the hands, the postmarks, the frequency, and from these the
+        village's secret architecture is visible to her in a way
+        that is visible to no one else.
+      - >-
+        Has been formally cautioned twice in her career, both by post
+        office inspectors arriving on the morning train and both for
+        delays in the night delivery (the second time genuinely her
+        fault — she was at her son-in-law's deathbed). The cautions
+        are framed on the wall of the back room, behind the curtain.
+        She finds this funny.
+    initial_disposition: 10
+
+  - id: miss_ferguson
+    name: "Miss Margaret Ferguson"
+    pronouns: "she/her"
+    role: "Schoolmistress of the parish school"
+    ocean: { O: 0.6, C: 0.85, E: 0.45, A: 0.6, N: 0.4 }
+    appearance: >-
+      A woman in her late forties of upright bearing and an air of
+      practiced patience. Dark brown hair gone iron-grey at the
+      temples, worn in a chignon. Spectacles for close work, off for
+      the classroom. A long dark walking skirt, a high-collared blouse,
+      a cardigan against the school's perpetual underheating, sensible
+      flat-heeled shoes for the schoolyard. The faint permanent dust
+      of chalk on the cuffs that no amount of careful brushing
+      removes.
+    age: "late forties"
+    distinguishing_features:
+      - "the faint chalk dust on her cuffs and the inside of her sleeves"
+      - "a tin of barley sugar in her cardigan pocket for emergencies (children's and her own)"
+      - "the habit of speaking to adults with the same careful precision she uses with children"
+    history_seeds:
+      - >-
+        Came up from the south in her twenties for what she expected to
+        be a season and stayed. Has taught every adult in the village
+        under forty. Unmarried by circumstance rather than vow — there
+        was an engagement broken by a death in the south thirty years
+        ago, which she has never discussed. Lives in the schoolmistress's
+        cottage attached to the schoolhouse. Has recently brought her
+        invalid younger sister Iona up from Edinburgh to live with her.
+      - >-
+        Voice in her own register — exact, patient, slightly arch. Will
+        correct an adult's grammar absent-mindedly and apologise
+        afterwards. Deflects personal questions by asking about a
+        child the two of them have in common ("How is Tam McRae
+        getting on with his arithmetic? — his uncle says you saw him
+        last Tuesday."). Reads pamphlets from the Women's Social and
+        Political Union but does not advertise the fact in the
+        village.
+      - >-
+        Reads the village's marriages by what the children draw at
+        break and the village's troubles by who is suddenly absent on
+        Mondays. The schoolmistress's slate has the village's hidden
+        history if anyone could read it. Has refused to discuss any
+        of this with the village's authorities — minister, rector,
+        constable, doctor — across her career on principle. Has been
+        known to discuss it, late, in her own kitchen, with a friend
+        and a sherry.
+      - >-
+        Knew the Ross children — Hugo and his older brother who died
+        as a child of rheumatic fever — when they were small enough to
+        be brought to the school nativity. Has therefore a tactical
+        sympathy with the laird's family that no one else in the
+        village can quite share. The laird sends a guinea every
+        Christmas to the school's coal fund.
+    initial_disposition: 15
+
+  - id: hamish_sinclair
+    name: "Hamish Sinclair"
+    pronouns: "he/him"
+    role: "Publican of the Glenross Arms"
+    ocean: { O: 0.5, C: 0.6, E: 0.7, A: 0.7, N: 0.35 }
+    appearance: >-
+      A broad-shouldered man in his fifties of comfortable middle
+      figure and an unhurried physical presence. Red-brown hair gone
+      sandy-grey, a moustache trimmed weekly, blue eyes that miss
+      remarkably little. A waistcoat over a collarless shirt with the
+      sleeves rolled to the elbow during opening hours, a tweed
+      jacket over for Sundays and funerals. A polishing cloth tucked
+      into the waistband. A way of standing behind his own bar with
+      one hand on the polished oak that is the village's working
+      definition of patience.
+    age: "early fifties"
+    distinguishing_features:
+      - "the polishing cloth tucked into the waistband, replaced clean each morning"
+      - "an old burn-mark on the back of the right hand from a kitchen accident in his twenties"
+      - "the habit of finishing other people's sentences when the conversation is comfortable"
+    history_seeds:
+      - >-
+        Took the Glenross Arms over from his father, who took it from
+        his father. Married to Kirsty Sinclair (née MacGregor) who
+        keeps the three rooms upstairs and the kitchen. Two daughters
+        in Edinburgh in service; one son working at the distillery.
+        The dog Caley is the third generation of inn dogs and is now
+        eleven and entirely Hamish's.
+      - >-
+        Voice in his own register — genial, long-winded about weather,
+        crisp about the bar tab. Tells visitors about the weather at
+        length before he tells them anything else; this is a calibrated
+        practice — by the time he has finished discussing the weather
+        he has formed a view of the visitor that he will keep for
+        twenty years. Finishes other people's sentences when it suits
+        him; lets them hang when it does not.
+      - >-
+        Hears everything spoken aloud in the village and most of what
+        isn't. Will not discuss what he hears unless the person
+        involved has died or unless he judges it morally necessary,
+        which is rarer than it sounds. Loyal to regulars in a way
+        that is harder won than his counter-friendliness suggests;
+        once a regular, always a regular, even after they have
+        moved away or fallen out.
+      - >-
+        Caley — the inn dog — is a working part of the establishment.
+        Sleeps in front of the fire, lays claim to new arrivals' feet
+        without asking, knows by smell which villagers are welcome in
+        the snug and which are not. The publican defers to the dog's
+        judgement on this in a way that is not joking.
+    initial_disposition: 30
+
+  - id: sir_iain_ross
+    name: "Sir Iain Ross of Glenross"
+    pronouns: "he/him"
+    role: "Laird of Castle Ross"
+    ocean: { O: 0.5, C: 0.75, E: 0.5, A: 0.55, N: 0.55 }
+    appearance: >-
+      A man in his early fifties of upright military bearing and a
+      face that has been at full attention since his father died
+      twelve years ago. Dark hair receded above the temples, beginning
+      to silver. Steady blue eyes, slightly hooded. A clipped
+      moustache. A tweed suit for the estate, a black tailcoat for
+      the kirk and the dining room, regimental dress for the Twelfth
+      and Remembrance Sunday. A signet ring worn smooth on the inside
+      from twelve years of unconscious turning.
+    age: "early fifties"
+    distinguishing_features:
+      - "the signet ring on the right hand, worn smooth inside"
+      - "a slight stiffness in the left knee from a hunting fall in his thirties"
+      - "the habit of changing the subject — politely, with practiced ease — when the conversation turns to the clearances or the rent book"
+    history_seeds:
+      - >-
+        Took the estate twelve years ago after his father died of a
+        chill on the Twelfth. Was not raised to it — his elder brother
+        was the heir until the rheumatic fever took him at twelve; Iain
+        was the second son, expected to take the regiment. He
+        completed his commission and resigned to come home. He has
+        not entirely forgiven the estate for the redirection of his
+        life, although he has done it courteously and well.
+      - >-
+        Voice in his own register — courteous, slightly distant,
+        formally correct. Speaks to villagers by surname and to gentry
+        by first name. Tends to begin difficult sentences with "I'm
+        afraid —" and follow them with the part that is genuinely
+        difficult. Quotes regimental ballads under his breath when he
+        is concentrating. Calls his wife Annabel publicly and "my
+        dear" privately. Calls his son Hugo by his school nickname
+        ("Boots", from his first pair of boots being two sizes too
+        large) only when they are alone.
+      - >-
+        The current Ross household at Castle Ross — Sir Iain, Lady
+        Annabel, the housekeeper Mrs. Trefusis, the cook Mrs. Cattanach,
+        Old Tam the gillie, the under-gillie his nephew Calum, three
+        upstairs maids, two kitchen maids, a chauffeur for the motor-
+        car, the gardener and his under-gardener. Twelve rooms in use
+        in the season, four otherwise.
+      - >-
+        Is quietly under financial pressure. The estate is profitable
+        but the house is expensive and the London merchants who
+        purchase the salmon and the rents from the home farm are not
+        what they were in his grandfather's day. The distillery's
+        good year in 1908 has eased the immediate question. The
+        long-term question remains. He has discussed this with no
+        one outside his Edinburgh solicitor, with Lady Annabel only
+        in fragments, and with his son not at all.
+    initial_disposition: 10
+
+  - id: lady_annabel_ross
+    name: "Lady Annabel Ross"
+    pronouns: "she/her"
+    role: "Mistress of Castle Ross"
+    ocean: { O: 0.65, C: 0.75, E: 0.55, A: 0.7, N: 0.45 }
+    appearance: >-
+      A woman in her late forties of slight stature and considerable
+      composure. Fair hair fading to silver, worn in a low chignon.
+      Pale grey eyes that hold a conversation without blinking. A
+      walking suit in the morning, a tea-gown at four, an evening
+      gown for dinner — all unobtrusively expensive, all twelve
+      seasons old at least, kept perfectly. A single string of small
+      pearls she wears every day. Hands that have done the parish
+      flower committee and the parish charity work for a decade and
+      still betray no rough edges.
+    age: "late forties"
+    distinguishing_features:
+      - "the single string of small pearls, worn daily"
+      - "a faint silvery line above the right eyebrow from a riding accident in her teens"
+      - "the habit of standing with one hand resting on a piece of furniture, which steadies her without seeming to"
+    history_seeds:
+      - >-
+        Born Annabel Forbes of an Aberdeenshire family older than the
+        Rosses; her father was a baronet, her mother a Macleod from
+        Skye. Married Iain at twenty-three, when his elder brother
+        was alive and his estate was a future curiosity rather than a
+        responsibility. Has therefore lived twice — once as the
+        younger son's clever wife and once as the laird's lady — and
+        does not regard them as the same woman.
+      - >-
+        Voice in her own register — composed, warm, slightly arch when
+        she trusts you. Says "I should hope —" before any sentence
+        intended as gentle correction. Calls her husband Iain in
+        public and Iain by surname privately when they have argued.
+        Calls her son Hugo always, never the school nickname. Reads
+        Henry James and is one of the village's three subscribers to
+        the literary quarterly the rector orders from London.
+      - >-
+        Runs the parish flower committee, sits on the kirk's
+        benevolent committee (although the family worships at the
+        chapel), manages the estate's correspondence with the
+        Edinburgh solicitor herself when Iain is on the hill, and
+        knows the rent book by heart. The village underestimates her
+        and she allows it.
+      - >-
+        Aware that Hugo is calling on Dr. Ross at the surgery without
+        medical complaint. Has formed a tentative private view that
+        the match would do both her son and the estate good. Has
+        discussed this with no one at all, including (especially)
+        Iain. Will, if pressed, deny having formed the view, and the
+        denial will be perfect.
+    initial_disposition: 15
+
+  - id: hugo_ross
+    name: "Hugo Ross"
+    pronouns: "he/him"
+    role: "The laird's son, the heir"
+    ocean: { O: 0.75, C: 0.45, E: 0.65, A: 0.55, N: 0.55 }
+    appearance: >-
+      A young man of twenty-six, tall, lean, dark-haired, with his
+      mother's clear pale-grey eyes and his father's clipped jaw.
+      Cambridge tailoring lightly weathered by the glen. A motoring
+      veil and goggles his father pretends not to notice when he
+      drives the Riley to Inverness. A cricket bat with a chip in
+      the toe carried more often than is dignified for a man of his
+      age. The look of someone whose future has been arranged
+      decisively without being explained.
+    age: "twenty-six"
+    distinguishing_features:
+      - "a thin line of a scar on the upper lip from a school cricket injury at fourteen"
+      - "a habit of laughing at the wrong moment in serious conversations"
+      - "the motoring veil and goggles — the village's youngest motoring affectation"
+    history_seeds:
+      - >-
+        Eton, Trinity Cambridge, called to the bar at Lincoln's Inn
+        but practising not at all. Has spent the last two years
+        between London chambers and Glenross with no clear plan for
+        either. The estate awaits him; he has not asked it to wait,
+        but it does. His mother does not press. His father presses
+        only obliquely. The arrangement is comfortable and
+        unsustainable.
+      - >-
+        Voice in his own register — bright, distractible, slightly
+        theatrical, occasionally surprisingly observant. Laughs at
+        the wrong moment in serious conversations and afterwards
+        wishes he had not. Asks the genuinely innocent question that
+        reveals the uncomfortable truth. Calls his mother Mama,
+        his father Sir (formal) or Pa (private), the rector by his
+        rectorial address, the minister Mr. Murchison, Dr. Ross
+        Eilidh when no one else is present and Doctor when anyone
+        is.
+      - >-
+        Has been calling at the surgery without medical complaint
+        for three months. Has not articulated to himself what he is
+        doing. His mother has noticed; his father may have noticed.
+        Dr. Ross has noticed and is waiting for him to articulate
+        it.
+      - >-
+        Plays cricket for the village against Cullenmore and shinty
+        for the village against everyone else, which is unusual for
+        a laird's son. The villagers like him for this. He is the
+        village's affectionate joke and its future and does not
+        always know how to be both at once.
+    initial_disposition: 25
+
+  - id: sgt_macrae
+    name: "Sergeant Findlay MacRae"
+    pronouns: "he/him"
+    role: "Village constable, county constabulary"
+    ocean: { O: 0.45, C: 0.85, E: 0.4, A: 0.6, N: 0.35 }
+    appearance: >-
+      A heavy-set man in his late forties of unhurried gravity and
+      considerable patience. Grey hair clipped short under the cap,
+      sandy moustache, deep-set hazel eyes. The county constabulary
+      blue serge, brass buttons polished but not gleaming, sergeant's
+      stripes earned in 1898 and worn easily. A regulation notebook
+      with an elastic strap and a stub of pencil. A bicycle clip
+      worn on the right ankle at all times.
+    age: "late forties"
+    distinguishing_features:
+      - "the bicycle clip on the right ankle, worn even when he is not on the bicycle"
+      - "the regulation notebook with the same handwriting since 1885"
+      - "the habit of asking the same question three times across three weeks before he proceeds with it"
+    history_seeds:
+      - >-
+        Came up to Glenross from the county town nineteen years ago
+        as a probationer and never left. Married Effie Cattanach
+        (Old Tam's niece) ten years ago; they live in the constable's
+        cottage by the bridge. No children. The cottage is also
+        unofficially the village's lost-property office and informal
+        court of last resort.
+      - >-
+        Voice in his own register — slow, methodical, unhurried in a
+        way that makes the guilty assume he has not noticed. He has
+        noticed. Asks the same question three times across three
+        weeks before he proceeds with it; this is not for lack of
+        wit but for accumulation of fact. Prefaces hard questions
+        with "I expect you've thought of this already, but —" and
+        the village has learned to think hard before answering.
+      - >-
+        Has been quietly the village's best detective for fifteen
+        years. The county CID inspector who comes up on occasion
+        treats him with a courtesy that has been earned. He has
+        never asked for promotion. He has been offered it twice and
+        declined both times — both refusals on the grounds that the
+        glen would not be the same with a stranger keeping it.
+      - >-
+        Has a single firm rule: he will not arrest a man in his own
+        home in front of his wife or children. Has bent it once, in
+        1897, and considers that occasion the one regret of his
+        career. Will arrange for the arrest at the post office, the
+        inn, the surgery, the kirk porch, or by the bridge instead.
+        The village respects this without ever quite saying so.
+    initial_disposition: 15
+
+  - id: mrs_cameron
+    name: "Mrs. Janet Cameron"
+    pronouns: "she/her"
+    role: "Proprietress of the tea rooms"
+    ocean: { O: 0.55, C: 0.75, E: 0.7, A: 0.65, N: 0.45 }
+    appearance: >-
+      A woman in her early sixties of comfortable figure and warm
+      authority. Iron-grey hair under a small lace cap during opening
+      hours, plain afternoon cap otherwise. Bright dark eyes that
+      miss nothing. A white pinafore embroidered with her late
+      daughter's initials over a dark wool dress. A small notebook
+      kept above the bread oven in which the day's gossip is
+      recorded as a list of names, retrieved at closing.
+    age: "early sixties"
+    distinguishing_features:
+      - "the pinafore embroidered with her daughter Christina's initials in dark blue"
+      - "a wedding ring on a chain at her throat (her husband, fifteen years dead)"
+      - "the habit of addressing customers by their order ('the seed cake and a pot for two')"
+    history_seeds:
+      - >-
+        Widowed fifteen years ago when her husband — a stonemason —
+        was killed in an accident at the Cullenmore quarry. The tea
+        rooms were her response: opened with the insurance money,
+        run since with a fierce particular pride. One daughter
+        (Christina) is married in Glasgow; the elder daughter,
+        Effie, died of consumption at twenty-two, which Mrs.
+        Cameron has not entirely recovered from and never will.
+      - >-
+        Voice in her own register — hospitable, sociable, occasionally
+        sharp. Addresses customers by their order rather than by
+        name when busy and by name when not. Says "I shouldn't really
+        —" before saying exactly what she should not really. Knows
+        every face that comes through the door and what they will
+        order before they have sat down. The corner table behind the
+        screen is the discreet table; the round table by the door is
+        the gossip table. She seats people accordingly.
+      - >-
+        The notebook above the bread oven — a small black notebook
+        kept hidden behind the flour tin — is the village's true
+        gazetteer. The day's customers are listed by name and
+        order, with the names of who they spoke with and an
+        occasional cryptic note. She does not show it to anyone.
+        The constable would dearly like to see it. He has never
+        asked.
+      - >-
+        Bakes seed cake on Mondays and shortbread on Thursdays.
+        Geraniums in the front window are her late mother's. The
+        china that does not match was a deliberate purchase — she
+        feels matched sets are pretentious. The pot is for two and
+        always will be: it is the unit by which the tea rooms
+        understand the world.
+    initial_disposition: 25
+
+  - id: donald_munro
+    name: "Donald Munro"
+    pronouns: "he/him"
+    role: "Third-generation distiller and proprietor of the distillery"
+    ocean: { O: 0.65, C: 0.85, E: 0.5, A: 0.6, N: 0.4 }
+    appearance: >-
+      A man in his mid-fifties of compact build and considerable
+      composure. Dark hair gone iron-grey, a beard kept short and
+      square, grey eyes that consider before they reply. A working
+      tweed suit, with the cuffs always faintly malted-warm. A
+      tasting glass kept in a velvet pouch in the inside pocket.
+      Hands that have done thirty-five years of careful work with
+      copper and oak and wash.
+    age: "mid-fifties"
+    distinguishing_features:
+      - "the tasting glass in the velvet pouch, brought out unselfconsciously when a question turns on whisky"
+      - "the slight permanent stain of malt on the right cuff"
+      - "the habit of referring to whiskies by year and warehouse without thinking about it"
+    history_seeds:
+      - >-
+        Third generation of Munros at the distillery — his grandfather
+        founded it in the 1820s on a licence the laird's grandfather
+        granted. Married to Mhairi Munro (née MacKay) of Cullenmore;
+        two grown sons, the elder working with him at the still room,
+        the younger a barrister in Edinburgh. The distillery is the
+        village's outward face; the family is the village's quietest
+        success.
+      - >-
+        Voice in his own register — meticulous, occasionally dry,
+        proud-of-craft in a way he tries not to advertise. Refers to
+        whiskies by year and warehouse without thinking about it.
+        Takes any criticism of the trade personally and politely.
+        Calls villagers by surname, the laird Sir Iain, his wife
+        Mhairi, his sons by first name in public and by school
+        nicknames in private. Speaks seriously about peat.
+      - >-
+        The current vintage is well-spoken-of in Edinburgh. A London
+        merchant ordered three casks last spring — the largest
+        single order in the distillery's history. Donald has been
+        quietly excited about this in his own register, which is
+        nearly invisible from outside. His wife knows. His sons
+        know. His foreman knows. The village suspects. The laird
+        has not been told.
+      - >-
+        Has a long-standing private regret — his elder brother
+        Magnus, who would have inherited the distillery, ran away
+        from Glenross at seventeen on a London-bound train and
+        never returned. The family does not discuss this. Magnus is
+        believed to have gone to America; the last letter the
+        family received was from Halifax in 1881. Donald wears
+        Magnus's old pocketknife on his belt every day. The village
+        does not know.
+    initial_disposition: 15
+
+  - id: old_tam
+    name: "Old Tam Cattanach"
+    pronouns: "he/him"
+    role: "Head gillie at Castle Ross"
+    ocean: { O: 0.55, C: 0.85, E: 0.3, A: 0.55, N: 0.3 }
+    appearance: >-
+      A spare, slightly stooped man of indeterminate age between
+      sixty-five and seventy-five, weathered to the colour of the
+      heather in October. Iron-grey hair under a worn tweed cap.
+      Pale blue eyes that have measured every deer on the hill for
+      forty years. Tweeds the same colour as the autumn hill.
+      Brogues that have been resoled more times than they have
+      been bought. A pocketknife older than his father.
+    age: "indeterminate, perhaps seventy"
+    distinguishing_features:
+      - "the tweed cap that has been with him since his father gave it to him in 1872"
+      - "the pocketknife (his grandfather's) carried on a leather thong inside the breast pocket"
+      - "the habit of answering questions a beat after most people would have"
+    history_seeds:
+      - >-
+        Head gillie to three generations of Rosses now. Knows every
+        deer path, every burn-pool, every shieling, every fox-earth,
+        and every poacher's reputation in the parish. Niece Effie
+        (now Mrs. MacRae the constable's wife) is the closest
+        relation he has left in the village; her son Calum is the
+        under-gillie and Tam's eventual successor.
+      - >-
+        Voice in his own register — taciturn, exact, with the Gaelic
+        cadence of someone who learned English second. Refers to
+        deer by number and a name he has given them ("the
+        seven-pointer of the burn-side", "the old hind of the high
+        cairn"). Answers questions a beat after most people would
+        have. Reports to the laird directly each evening on a
+        bench outside the kitchen door, in a conversation of no
+        more than four sentences and considerable content.
+      - >-
+        Has seen more of what happens in the upper glen and the
+        Long Pass than anyone alive. Sees more than he reports;
+        reports more than he says aloud; says aloud only what the
+        person asking needs to hear. The constable's working
+        partnership with him is one of the village's quieter
+        institutions.
+      - >-
+        Will not speak ill of the dead and will not name a poacher
+        whose family is still in the parish. Will speak ill of the
+        living to their face and never behind their back. Considers
+        the white stag of the high Ross to be the family's emblem
+        and will not stalk him. Has refused two visiting
+        gentlemen's requests to do so over the years; both refusals
+        delivered to the laird, who supported them.
+    initial_disposition: 10
