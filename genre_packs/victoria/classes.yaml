@@ -1,0 +1,127 @@
+# Victoria — Callings (the Brontë-gothic "class" equivalent).
+# Per rules.yaml chargen_field_labels these are "Callings", not classes, but
+# the engine reads them through ClassDef so the field name stays `classes`.
+# Each calling drives:
+#   - starting equipment kit via kit_table → equipment_tables.yaml.class_tables
+#   - encounter_beat_choices into the genre's social confrontation pool
+# No combat — every beat is social (negotiation/trial/auction/social_duel/scandal).
+# Prime requisites map to Victoria stats (Angst/Pride/Humour/Nerve/Cunning/Passion).
+
+- id: doctor
+  display_name: Doctor
+  rpg_role: support
+  jungian_default: caregiver
+  prime_requisite: Cunning
+  minimum_score: 10
+  kit_table: doctor_kit
+  flavor: >-
+    Brass-clasped gladstone bag, surgery hours posted on the door, and the
+    privilege of entering any household at any hour without being asked twice.
+  encounter_beat_choices:
+    - cross_examine
+    - persuade
+    - composure
+    - weather_it
+    - read_room
+
+- id: clergyman
+  display_name: Clergyman
+  rpg_role: support
+  jungian_default: sage
+  prime_requisite: Nerve
+  minimum_score: 10
+  kit_table: clergyman_kit
+  flavor: >-
+    Parish register, breviary, sermon notes between the pages of a book.
+    Sits with the dying without making a fuss. Hears more than he says.
+  encounter_beat_choices:
+    - persuade
+    - concede_point
+    - composure
+    - confide
+    - weather_it
+
+- id: detective
+  display_name: Detective
+  rpg_role: investigator
+  jungian_default: explorer
+  prime_requisite: Cunning
+  minimum_score: 10
+  kit_table: detective_kit
+  flavor: >-
+    The county constabulary, one sergeant, one bicycle. Magnifying glass
+    in the breast pocket. Knows which lies are habitual and which are new.
+  encounter_beat_choices:
+    - cross_examine
+    - present_argument
+    - read_room
+    - object
+    - confide
+
+- id: society
+  display_name: Society
+  rpg_role: social
+  jungian_default: ruler
+  prime_requisite: Pride
+  minimum_score: 10
+  kit_table: society_kit
+  flavor: >-
+    Calling cards on a silver salver, an invitation to every drawing room
+    that matters, and a memory for who-said-what at last season's ball.
+  encounter_beat_choices:
+    - riposte
+    - appeal_propriety
+    - raise
+    - bluff
+    - deflect
+
+- id: governess
+  display_name: Governess
+  rpg_role: support
+  jungian_default: caregiver
+  prime_requisite: Nerve
+  minimum_score: 10
+  kit_table: governess_kit
+  flavor: >-
+    The village school, thirty children, the slate and the bell. The
+    children tell you things they will not tell their parents.
+  encounter_beat_choices:
+    - composure
+    - yield
+    - concede
+    - weather_it
+    - persuade
+
+- id: explorer
+  display_name: Explorer
+  rpg_role: scout
+  jungian_default: explorer
+  prime_requisite: Nerve
+  minimum_score: 10
+  kit_table: explorer_kit
+  flavor: >-
+    Half-pay, a cottage you are still painting, and an inability to ignore
+    a stranger who does not move like a civilian.
+  encounter_beat_choices:
+    - threaten
+    - withdraw
+    - composure
+    - weather_it
+    - persuade
+
+- id: industrialist
+  display_name: Industrialist
+  rpg_role: social
+  jungian_default: ruler
+  prime_requisite: Cunning
+  minimum_score: 10
+  kit_table: industrialist_kit
+  flavor: >-
+    A mill, a shop, a chandlery on the coast. Money is recent and was
+    earned. The old families are polite to your face.
+  encounter_beat_choices:
+    - raise
+    - bluff
+    - present_argument
+    - counter_accusation
+    - threaten
