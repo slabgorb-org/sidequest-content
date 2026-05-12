@@ -503,38 +503,430 @@ modifier_items:
       continues without explanation.
 
 # ─────────────────────────────────────────────────────────────────────
+# RELIQUARIES — The Three Rites (Confraternity-issued)
+#
+# Item_legacy_v1 NPC-shape, but flagged `divine_register: true` and
+# `divine_favor_gated: true`. These differ from the named_items above
+# in three load-bearing ways:
+#
+#   1. Acquisition is faction-mediated only. The Confraternity issues
+#      reliquaries to Clerics in good standing. The Wallwrights and
+#      Assayers loan named_items more casually; the Three Rites do not.
+#   2. Effects fire against the Cleric's `divine_favor` ledger bar
+#      (see magic.yaml). At high band (`>= 0.7`) the Cleric may invoke
+#      one reliquary effect free that session. Otherwise the reliquary
+#      can still be carried — it just costs the same as anything else.
+#   3. Each reliquary is keyed to one of the three opposing virtues
+#      and mechanically pushes against its opposing sin. The
+#      Confessional Bowl works against the Hoarder's count; the
+#      Workhouse Lamp against the Glutton's appetite; the Masquerade
+#      Mask against the Butcher's separation.
+#
+# Clerics keep these reliquaries with the rite-house's permission, not
+# their ownership. A Cleric who breaks faith (`divine_favor` falls past
+# `-0.7`) is asked, politely or otherwise, to return the loan.
+# ─────────────────────────────────────────────────────────────────────
+
+reliquaries:
+
+  - id: confessional_alms_bowl
+    name: "Anselm Vail's Confessional Alms-Bowl"
+    subtype: relic
+    divine_register: true
+    divine_favor_gated: true
+    keyed_to_rite: confessional
+    opposes_sin: greed
+    delivery_mechanisms: [faction, relational]
+    found_at: "The Confessional, north side of Sünden Square — issued by Anselm Vail to Clerics in good standing"
+    ocean: { o: 0.45, c: 0.90, e: 0.20, a: 0.85, n: 0.30 }
+    disposition_default: 6
+    sentience: implicit
+    nature: |
+      The bowl wants to be given from, not received into. Treasure
+      placed in it is for the poor box; treasure taken out is for the
+      poor — accepting payment for an alms-act sours the bowl for
+      weeks.
+    history: |
+      Hand-passed through three keepers of the Confessional, Anselm Vail
+      the third. The current bowl is silver beaten thin enough that it
+      flexes in the palm — the previous bowl wore through on its
+      ninth keeper and was melted down into the poor box's lock. The
+      rim is engraved with the Sünden count of donated weight to the
+      day Anselm took the keepership.
+    resonances:
+      - "held forward at the Horden threshold while the wielder is carrying treasure they are willing to give away (the Hoarder cannot count what is being given)"
+      - "passed full to a penitent the Confessional has cleared"
+    demands:
+      - "the wielder must give away at least the value of one silver per delve, no exceptions, no IOUs"
+    prohibitions:
+      - "cannot accept payment for an alms-act (the bowl rings hollow and Anselm Vail will hear)"
+      - "cannot be carried into a Counter's pilgrimage (the doctrinal hostility is mutual)"
+    divine_favor_effect: |
+      At `divine_favor >= 0.7`, the Cleric may extend the bowl toward an
+      approaching count-event (Hoarder awareness, Counter inquisition,
+      a forced inventory) and divert it once. The Hoarder skips the
+      bowl-bearer; the Counter folds their tally and leaves. Spends the
+      free-reliquary-effect for the session.
+
+  - id: workhouse_lamp
+    name: "Brother Hesh's Workhouse Lamp"
+    subtype: relic
+    divine_register: true
+    divine_favor_gated: true
+    keyed_to_rite: workhouse
+    opposes_sin: gluttony
+    delivery_mechanisms: [faction, relational]
+    found_at: "The Workhouse, east side of Sünden Square — Hesh keeps it on the cold hearth"
+    ocean: { o: 0.30, c: 0.95, e: 0.55, a: 0.65, n: 0.25 }
+    disposition_default: 4
+    sentience: implicit
+    nature: |
+      The lamp prefers plain oil and a wick trimmed short. Burns
+      steadier in the hands of someone who has eaten less than they
+      could that day. Flickers when carried by the well-fed.
+    history: |
+      Plain iron, the spout dented in three places from being knocked
+      on the long bench at the Workhouse's cold hearth, where Hesh
+      lights it before each plain meal. Hesh forged the body himself
+      at the Gristwell smithy in the year he climbed out of Mawdeep
+      for the last time. The wick is replaced every full moon by
+      whatever penitent is sitting closest to the hearth that night.
+    resonances:
+      - "carried into Mawdeep on a delve where the wielder has skipped the morning meal at the Workhouse"
+      - "lit at a Mawdeep camp where the party rations one extra night"
+    demands:
+      - "the wielder must take less than their share at one meal per delve, witnessed"
+    prohibitions:
+      - "cannot be lit with anything but the Workhouse's own lamp-oil (Hesh refills it; nobody else does)"
+      - "cannot be carried by someone who has eaten the Glutton's amber (the lamp will not light)"
+    divine_favor_effect: |
+      At `divine_favor >= 0.7`, lighting the lamp in a Mawdeep chamber
+      causes the dungeon to read the room as un-nutritive for one
+      watch. Constriction relaxes. The Maw's exhale-cycle is delayed.
+      Spends the free-reliquary-effect for the session.
+
+  - id: masquerade_hawthorn_mask
+    name: "Mistress Coro's Unassigned Hawthorn Mask"
+    subtype: jewelry
+    divine_register: true
+    divine_favor_gated: true
+    keyed_to_rite: masquerade
+    opposes_sin: pride
+    delivery_mechanisms: [faction, relational]
+    found_at: "The Masquerade, south side of Sünden Square — on the unassigned hook above Mistress Coro's bench"
+    ocean: { o: 0.75, c: 0.70, e: 0.35, a: 0.80, n: 0.45 }
+    disposition_default: 3
+    sentience: implicit
+    nature: |
+      The mask wants to be worn by someone who has not yet been seen
+      that day. Resists the wearer who introduces themselves. Settles
+      easily on the face of one who has just been overlooked.
+    history: |
+      Hawthorn, carved by a Masquerade penitent four keepers ago and
+      left on the hook when the penitent finished their rite. Coro
+      has not assigned the mask to any of her current penitents — the
+      face it carved is, she says, too quiet for the present cohort.
+      She lends it to Clerics going into Grimvault on the understanding
+      that the mask is not the wearer's face; it is the face the
+      vault will catalog, in their place.
+    resonances:
+      - "worn into Grimvault by a Cleric who has not spoken their own name aloud since lamp-light"
+      - "passed silently to a comrade who has just been wronged in conversation"
+    demands:
+      - "the wearer must not name themselves to a stranger while wearing it (a self-introduction breaks the mask's protection for the session)"
+    prohibitions:
+      - "cannot be modified — paint, carving, or notation strips the protection"
+      - "cannot be worn by a wielder Mistress Coro has not seen in person at least once (she remembers faces; the mask remembers her remembering)"
+    divine_favor_effect: |
+      At `divine_favor >= 0.7`, in a Grimvault separation-trap the
+      Patient Butcher targets the mask, not the wearer. One quality
+      is separated from the mask (the carving loses its eye-line,
+      the wood loses its grain, the hawthorn loses its hawthorn) and
+      the wearer walks out unaltered. Spends the free-reliquary-effect
+      for the session, and the mask carries the separation-damage
+      visibly when returned.
+
+# ─────────────────────────────────────────────────────────────────────
+# CRIMSON REMNANTS — The 999 Crimson Gods (imported from Evropi)
+#
+# Sünden's cosmology already imports three Evropi religions: the
+# Herdsman (the Flock), the Green (the Scouts), and the Land of Dust
+# (the Dust-Listeners). All three appear in magic.yaml's `divine_favor`
+# bar as faiths the Cleric can swing for or against. The fourth Evropi
+# religion is the 999 Crimson Gods — a pantheon of individually-unique
+# fiery deities with demonic visages; each bargain is private, named,
+# and costs flesh, name, or blood. (See
+# `genre_workshopping/heavy_metal/worlds/evropi/lore.yaml` for the
+# Evropi-side source.)
+#
+# In Sünden, the Crimson Gods are present NOT as active bargaining
+# partners — Sünden's magic plugins are `item_legacy_v1`, `innate_v1`,
+# `learned_v1`, NOT `bargained_for_v1` — but as REMNANTS. An object
+# marked by a completed bargain outlives the bargainer. The wielder
+# is not in pact; the wielder is carrying the evidence of someone
+# else's pact. The named god may or may not still be paying attention.
+#
+# All three remnants below trigger negative `divine_favor` deltas for
+# a Cleric who uses them (these are doctrinally hostile to the Three
+# Rites). Non-Clerics get the item's effects without the divine cost.
+# Notoriety rises fast with use — the Crimson Gods notice the wielder
+# the way a creditor notices a debt that has changed hands.
+# ─────────────────────────────────────────────────────────────────────
+
+crimson_remnants:
+
+  - id: brand_of_wrzaz_tysul
+    name: "The Brand of Wrząz-Tysul"
+    subtype: jewelry
+    crimson_god: "Wrząz-Tysul (one of the 999; takes flesh)"
+    cost_signature: flesh
+    delivery_mechanisms: [discovery]
+    found_at: "Around the neck of a corpse Mawdeep exhaled three years ago; held now by Wren Peatford in Ashgate, who refuses to sell it"
+    ocean: { o: 0.65, c: 0.30, e: 0.85, a: 0.10, n: 0.75 }
+    disposition_default: -10
+    sentience: implicit
+    notoriety_acceleration: 2x
+    nature: |
+      Wrząz-Tysul takes flesh — a strip of skin, a fingernail, a
+      tooth, a knuckle — at each favor granted. The brand-amulet
+      remembers the price already paid by the corpse it left and
+      bills the next wielder at the rate of the previous bargain.
+      Each use draws one of the wielder's marks.
+    history: |
+      Cast in iron with the god's circular brand-sigil raised at the
+      center, hung on a leather cord older than the corpse it was
+      found with. The corpse — a Gristwell delver who went into
+      Mawdeep with both hands and came out with one — was wearing
+      the brand under his shirt. Wren Peatford recovered it during
+      her recovery work on the survivors who came out with him and
+      will not let it be carried into Mawdeep again.
+    resonances:
+      - "carried by a wielder who has already lost flesh to a dungeon (the brand reads them as already-paying)"
+    demands:
+      - "each invocation costs a small piece of the wielder's flesh — nail, hair, tooth, fingertip — at Wrząz-Tysul's preference"
+    prohibitions:
+      - "cannot be removed once worn three full days in a row (it bonds to skin and the next wielder inherits the active count)"
+      - "cannot be touched by a Three Rites cleric without divine_favor falling"
+    effect: |
+      One invocation per delve. The wielder calls the god's name aloud
+      and a wound — theirs or an enemy's, the god's choice — closes
+      instantly. The flesh-payment is taken at the same beat from the
+      wielder, regardless of whose wound closed.
+
+  - id: scratched_coin_of_hawkat_pa
+    name: "The Scratched Coin of Hawkat-Pa"
+    subtype: jewelry
+    crimson_god: "Hawkat-Pa (one of the 999; takes names)"
+    cost_signature: name
+    delivery_mechanisms: [discovery, relational]
+    found_at: "Behind the Sinkhole bar — Old Kettle keeps it in a tin with the buttons; he does not know whose face it was, and that not-knowing is the proof"
+    ocean: { o: 0.85, c: 0.65, e: 0.15, a: 0.35, n: 0.55 }
+    disposition_default: -6
+    sentience: implicit
+    notoriety_acceleration: 2x
+    nature: |
+      Hawkat-Pa takes names. Not the wielder's name all at once — a
+      letter, a syllable, an introduction, the way a stranger
+      remembered them, the way a friend says them in passing. The
+      coin returns favors in fragments and bills in fragments. The
+      wielder forgets being called certain things, and then they
+      were never called those things.
+    history: |
+      Silver, originally a Copperbridge mint-piece struck a hundred
+      years before the wakings. The face is scratched out beyond
+      recognition — the deliberate scarification of features that
+      Hawkat-Pa's bargains require, performed once the bargain is
+      made and the bargainer's name is taken. Old Kettle has had the
+      coin behind his bar for as long as he can remember. He cannot
+      remember from whom.
+    resonances:
+      - "held by a wielder who is willing to be confused for someone else"
+      - "spent (set on a bar, on a desk, on a Wall ledge) to deflect attention from the wielder for a watch"
+    demands:
+      - "each invocation costs the wielder one specific name they were called by — a nickname, a title, a kinship form — never to be remembered again"
+    prohibitions:
+      - "cannot be carried by a Wallwright (the carving relies on names being stable; the coin and the carving cancel each other)"
+      - "cannot be presented to the Vetters' Office (Toller Renn will not file a clearance for someone who has been at Hawkat-Pa's table)"
+    effect: |
+      One invocation per delve. The wielder names what they want to be
+      mistaken for; for one scene, NPCs treat them as that thing.
+      Hawkat-Pa takes the name-fragment immediately.
+
+  - id: vial_of_krwiosad_hawn
+    name: "The Vial of Krwiosąd-Hawn"
+    subtype: relic
+    crimson_god: "Krwiosąd-Hawn (one of the 999; takes blood)"
+    cost_signature: blood
+    delivery_mechanisms: [discovery]
+    found_at: "Recovered from a Grimvault corpse the Assayers refused to catalog — Wren Peatford has it locked in her recovery office; Falk Stonehelm refuses to handle it"
+    ocean: { o: 0.40, c: 0.80, e: 0.45, a: 0.05, n: 0.85 }
+    disposition_default: -12
+    sentience: implicit
+    notoriety_acceleration: 3x
+    nature: |
+      Krwiosąd-Hawn is the most exacting of the three. The vial reads
+      blood the way the Wall reads names — by exact measure, by
+      witnessed offering. The god is a creditor. Every favor is a
+      specific debit drawn from a specific vein.
+    history: |
+      A clear glass vial, sealed with red wax, containing what looks
+      like rust-coloured dust — dried blood from old bargains,
+      preserved in the vial's own dryness. The vial was recovered
+      from a Grimvault corpse the Assayers refused to catalog (Falk's
+      monotone, when asked about it, falls below audible). Wren
+      Peatford keeps the vial locked in her recovery office. She has
+      mentioned three times that she would prefer it broken, but
+      breaking it is not safe.
+    resonances:
+      - "wielded by a delver who has bled at the Wall (the carved-name verification ritual draws blood; the vial recognizes the gesture)"
+    demands:
+      - "each invocation costs the wielder a measured offering of their own blood, drawn into the vial in the same beat as the favor"
+    prohibitions:
+      - "cannot be wielded by a wounded delver (the open wound is read as already-billed; the god refuses to deal twice)"
+      - "cannot be carried into the Confessional, the Workhouse, or the Masquerade (the Three Rites consider Krwiosąd-Hawn the worst of the three remnants; Anselm Vail will refuse the wielder entry)"
+    effect: |
+      One invocation per delve. The wielder offers blood and names a
+      favor — a wound on an enemy, a hand to grasp a held breath, an
+      hour bought back from a fatigue. The blood is drawn at the
+      moment of asking. The favor is granted within the watch.
+
+# ─────────────────────────────────────────────────────────────────────
+# CONSUMABLE MAGIC ITEMS — Sünden-flavored mundane magic
+#
+# These are the scrolls, potions, and charged wands tier. They are
+# magic, but they are NOT bonded NPC-shape items. They have no OCEAN,
+# no nature, no Bond bar — they fire effects and are consumed (or
+# spend a charge). They sit in inventory like rope and rations and
+# disappear when used.
+#
+# This section reframes the three pre-`item_legacy_v1` magic items
+# currently in `genre_packs/caverns_and_claudes/inventory.yaml`
+# (Scroll of Light, Potion of Mending, Wand of Sparks) as
+# Sünden-specific variants. The genre-level inventory.yaml items can
+# stay as the c&c-default fallback when no world overrides them; this
+# world overrides them with provenance and flavor.
+# ─────────────────────────────────────────────────────────────────────
+
+consumable_items:
+
+  - id: confessional_scroll_of_lamplight
+    name: "Confessional Scroll of Lamplight"
+    category: magic
+    rarity: rare
+    value: 50
+    weight: 0.1
+    tags: [magic, consumable, light, scroll]
+    description: |
+      Written by a Confessional scribe in script that burns the page
+      as it is read aloud. Floods a thirty-foot circle with pale white
+      light for ten minutes.
+    lore: |
+      The Confessional keeps a small stock in the poor box. Anselm
+      Vail does not sell them — they are given to delvers whose
+      Confessional clearance is recent and whose next delve looks
+      hard. The script is in old Tismenni and the scribe who writes
+      them, a Confessional acolyte named Pell's aunt, refuses to
+      write more than three a season.
+    effect: |
+      Single use. Read aloud; the page burns from the bottom up over
+      ten seconds. Light floods the chamber for ten minutes and does
+      not flicker, does not consume air, does not draw attention from
+      the dungeon (the script is benediction, not flame).
+    replaces_baseline: scroll_light
+
+  - id: workhouse_vial_of_mending
+    name: "Workhouse Vial of Mending"
+    category: magic
+    rarity: rare
+    value: 75
+    weight: 0.2
+    tags: [magic, consumable, healing, potion]
+    description: |
+      A cloudy red liquid in a glass vial, brewed at the Workhouse's
+      cold hearth from rust-iron infusion and a herb Hesh will not
+      name. Tastes like rust and closes wounds.
+    lore: |
+      Brother Hesh brews these himself, in batches of six, on the
+      first plain meal of each new moon. He sells at cost (twenty
+      silver) to Workhouse alumni and at Gristwell market rate
+      (seventy-five) to everyone else. Marga Provisioner carries
+      three or four at a time; she does not haggle.
+    effect: |
+      Single use. The wielder drinks; wounds close over the next
+      watch, leaving thick numb scar tissue. Does not restore stamina
+      or edge. The drinker is alive; that is what the vial is for.
+    replaces_baseline: potion_healing
+
+  - id: charred_wand_of_sparks
+    name: "Charred Wand of Sparks"
+    category: magic
+    rarity: rare
+    value: 150
+    weight: 0.3
+    tags: [magic, consumable, weapon, wand]
+    charges: 3
+    description: |
+      A charred bone wand. Three charges. Each charge throws a
+      fistful of fire — short range, sharp light, a noise like dry
+      wood splitting.
+    lore: |
+      Carved by a Gristwell bone-trader named Vey who buys
+      Mawdeep-fauna remains from the Delvers Guild and finishes them
+      at her workshop. Vey will sell two or three a season to Marga
+      Provisioner, who marks them up sixty percent. Vey will sell
+      one direct to a delver she likes, at cost. Vey does not like
+      many delvers.
+    effect: |
+      Each charge: a single fist-sized burst of fire at short range.
+      Two-handed grip, mouthed words required (the wand's etching is
+      a vocabulary, not a circuit). When the third charge is spent
+      the bone goes inert; Vey will take it back for the wood-value.
+    replaces_baseline: wand_spark
+
+# ─────────────────────────────────────────────────────────────────────
 # AUTHORING NOTES
 # ─────────────────────────────────────────────────────────────────────
-# Every named_item is grounded in a Sünden NPC or location that already
-# appears in lore.yaml, factions.yaml, world.yaml, or magic.yaml. No new
-# named NPCs are introduced. Items reference:
+# Five sections, all item_legacy_v1-adjacent, all world-layer content:
 #
-#   - Wallwrights:        Sevra Tarn, Wallwright Cael (the_quiet_bell,
-#                         caels_underline_chisel, falks_right_hand_pen)
-#   - Vetters' Office:    Mira Thorn, Korven Daish, Toller Renn
-#                         (falks_right_hand_pen, toller_renn_cleared_token)
-#   - Confraternity:      Anselm Vail, Brother Hesh, Mistress Coro
-#                         (coronet_of_pale_iron, hesh_letter_of_introduction)
-#   - Assayers:           Falk Stonehelm, Wren Peatford, Agna Ironjaw
-#                         (the_quiet_bell, falks_right_hand_pen,
-#                          coronet_of_pale_iron, assayers_ash_sealed_map)
-#   - Spillers:           Spillfield as place (the_misfit_coin)
-#   - Counters:           Noll Thatcher, Inga Ditcher (nolls_spare_ledger,
-#                         the_misfiled_seal, inga_tally_stick)
-#   - Delvers Guild:      Brecca Half-Hand, Old Kettle, Olbi Stenn (new
-#                         smith name, mentioned only — not foregrounded)
-#                         (maw_tooth_hatchet, amber_pendant_of_edgeholm,
-#                          breccas_stomach_map)
-#   - Dust-Listeners:     (no individuals named — guild reference only)
-#                         (dust_listeners_reed)
+#   - named_items        — found / inherited / mccoy-built artifacts
+#                          (11 items, full NPC shape, generic Bond bar)
+#   - modifier_items     — non-magic items that satisfy confrontation
+#                          beat `requires` (5 items, research-doc shape)
+#   - reliquaries        — Three Rites loaners (3 items, divine register,
+#                          divine_favor-gated effects at high band)
+#   - crimson_remnants   — Evropi-import artifacts of completed
+#                          Crimson God bargains (3 items, divine-hostile;
+#                          item_legacy_v1 shape with Crimson-cost addenda)
+#   - consumable_items   — Sünden-flavored scrolls/potions/wand
+#                          (3 items, no Bond, single/charge use; replaces
+#                          the c&c genre-level baseline in this world)
 #
-# Each item carries the item_legacy_v1 plugin's required shape:
-# id, name, subtype, ocean, disposition_default, nature, history,
-# plus the optional demands / prohibitions / resonances triple. The
-# loader is not live as of 2026-05-11; this content is design-ready
-# against the locked schema.
+# Every entry is grounded in an NPC or location that already appears in
+# lore.yaml, factions.yaml, world.yaml, or magic.yaml. New names
+# introduced as flavor (not foregrounded NPCs): Olbi Stenn (Gristwell
+# smith — maw_tooth_hatchet), Vey (Gristwell bone-trader —
+# charred_wand_of_sparks), Pell's aunt (Confessional acolyte —
+# confessional_scroll_of_lamplight).
 #
-# Mundane modifier_items follow the items-as-confrontation-modifiers
-# research-doc shape. The `requires`-against-inventory engine work is
-# unimplemented (3-point estimate per the research doc); these items
-# are content-ready for when that lands.
+# Cross-world reference: the crimson_remnants section pulls three of
+# the 999 Crimson Gods from Evropi (genre_workshopping/heavy_metal/
+# worlds/evropi/lore.yaml). The Tismenni-era trade route that brought
+# the Dust-Listeners to Sünden also brought Crimson cult fragments;
+# magic.yaml already imports three Evropi religions (Herdsman/Green/
+# Dust). Adding the Crimson Gods as a fourth imported faith is
+# lore-consistent, but the items here are REMNANTS — evidence of
+# completed bargains — not active bargaining apparatus. Sünden does
+# not currently activate `bargained_for_v1` (see magic.yaml's
+# active_plugins list); these items channel item_legacy_v1 with an
+# additional `cost_signature` and `notoriety_acceleration` shape.
+#
+# Loader status: no runtime loader consumes this file as of 2026-05-11.
+# Content is design-ready against the locked plugin schema. The
+# `requires`-against-inventory engine for modifier_items is unimplemented
+# (3-point estimate per the research doc); content is ready for when
+# that lands. The reliquary `divine_favor_effect` integrates with the
+# existing ledger bar in magic.yaml; the crimson_remnant
+# `notoriety_acceleration` multiplier is a new field the item_legacy_v1
+# plugin spec should ratify on first implementation pass (or the
+# remnants flatten to standard Notoriety rise — the rest of the
+# content survives either way).
