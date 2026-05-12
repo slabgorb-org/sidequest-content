@@ -1,0 +1,110 @@
+# Victoria — per-calling starting kits.
+#
+# Consumed by CharacterBuilder when a character creation scene declares
+# `equipment_generation: class_kit` (see `the_satchel` scene in
+# char_creation.yaml). The chosen calling's `kit_table` resolves to one
+# of the blocks under `class_tables`.
+#
+# Every item_id below must exist in inventory.yaml item_catalog —
+# tests/genre/test_victoria_class_kits.py enforces this.
+#
+# Slot naming convention: singleton slots (one option) guarantee that item
+# every time the kit is rolled; multi-option slots roll once (or per
+# rolls_per_slot) with replacement. Slot names are kit-local — only
+# rolls_per_slot is global.
+
+tables:
+  # Random-table fallback — Victorian pocket essentials any villager
+  # might carry. Used only if the_satchel scene ever switches to
+  # equipment_generation: random_table (it currently uses class_kit).
+  tool:
+    - magnifying_glass
+  consumable:
+    - laudanum_bottle
+    - smelling_salts
+  accessory:
+    - pocket_watch_silver
+    - silk_handkerchief
+    - mourning_locket
+  document:
+    - visiting_cards
+    - notebook_leather
+  weapon:
+    - walking_stick
+
+rolls_per_slot:
+  # Doctor's apothecary slot rolls 2 from 3 options so a Doctor reliably
+  # arrives with two of laudanum / quinine / iodine.
+  apothecary: 2
+  # Explorer's medical_supply slot — quinine + laudanum on long postings.
+  medical_supply: 2
+
+class_tables:
+  doctor_kit:
+    # Singleton slots — guaranteed items per AC5 (gladstone_bag,
+    # stethoscope, clinical_thermometer, bandages, apothecary picks).
+    bag: [gladstone_bag]
+    diagnostic_primary: [stethoscope]
+    diagnostic_secondary: [clinical_thermometer]
+    dressings: [bandages_linen]
+    apothecary: [laudanum_bottle, quinine_bottle, iodine_tincture]
+    pocket: [pocket_watch_silver, silk_handkerchief, mourning_locket]
+    paperwork: [visiting_cards, notebook_leather]
+    outerwear: [oilskin_coat]
+
+  clergyman_kit:
+    devotional_primary: [breviary]
+    devotional_secondary: [prayer_book]
+    sacrament_kit: [communion_kit]
+    notes: [sermon_notebook]
+    consumable: [smelling_salts]
+    pocket: [silk_handkerchief, mourning_locket, pocket_watch_silver]
+    paperwork: [visiting_cards]
+    outerwear: [oilskin_coat]
+    weapon: [walking_stick]
+
+  detective_kit:
+    lens: [magnifying_glass]
+    signal: [whistle_brass]
+    notes: [notebook_leather]
+    writing: [fountain_pen]
+    pocket: [pocket_watch_silver, silk_handkerchief]
+    paperwork: [visiting_cards]
+    sidearm: [walking_stick, derringer]
+
+  society_kit:
+    introduction: [visiting_cards]
+    backup_introduction: [letter_of_introduction]
+    pocket: [pocket_watch_silver, silk_handkerchief, mourning_locket, calling_cards]
+    consumable: [smelling_salts, laudanum_bottle]
+    writing: [fountain_pen]
+    weapon: [walking_stick]
+
+  governess_kit:
+    teaching_slate: [chalkboard_slate]
+    primer: [school_primer]
+    notes: [notebook_leather]
+    writing: [fountain_pen]
+    devotional: [prayer_book]
+    pocket: [silk_handkerchief, mourning_locket, pocket_watch_silver]
+    consumable: [smelling_salts]
+    weapon: [walking_stick]
+
+  explorer_kit:
+    compass: [field_compass]
+    decorations: [regimental_decorations]
+    sidearm: [service_revolver]
+    medical_supply: [quinine_bottle, laudanum_bottle]
+    pocket: [pocket_watch_silver, silk_handkerchief]
+    paperwork: [letter_of_introduction, visiting_cards]
+    outerwear: [oilskin_coat]
+    walking: [walking_stick]
+
+  industrialist_kit:
+    ledger: [ledger_book]
+    writing: [fountain_pen]
+    flask: [hip_flask]
+    pocket: [pocket_watch_silver, silk_handkerchief]
+    paperwork: [letter_of_introduction, visiting_cards]
+    consumable: [laudanum_bottle]
+    weapon: [walking_stick]
