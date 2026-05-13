@@ -40,7 +40,7 @@ will surface them to players as if they were finished.
 | `mutant_wasteland` | Post-apocalyptic mutants; `flickering_reach` world is the only spoilable canon |
 | `space_opera` | Sci-fi space adventure |
 | `spaghetti_western` | Frontier gunslinger |
-| `victoria` | Brontë gothic / drawing-room intrigue (no swords, no starships; tunable occult) |
+| `tea_and_murder` | Cosy Edwardian BritBox murder mystery; village amateur sleuths (Glenross) |
 
 ## Spoiler protection
 

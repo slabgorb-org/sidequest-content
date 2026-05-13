@@ -43,7 +43,7 @@ tracks the repo as a whole.
 ### Bumped per-pack versions
 - `caverns_and_claudes/pack.yaml` 1.0.0 → 1.1.0
 - `space_opera/pack.yaml` 1.0.0 → 1.1.0
-- `victoria/pack.yaml` 1.0.0 → 1.1.0
+- `tea_and_murder/pack.yaml` 1.0.0 → 1.1.0 (was `victoria/`; pack renamed)
 
 ## [1.0.0] - prior
 
