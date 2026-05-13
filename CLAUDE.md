@@ -194,7 +194,7 @@ genre_packs/
 ├── elemental_harmony/    # Martial arts / elemental magic
 ├── mutant_wasteland/     # Post-apocalyptic mutants
 ├── space_opera/          # Sci-fi space adventure
-└── victoria/             # Brontë gothic / drawing-room intrigue (no swords, no starships; tunable occult)
+└── tea_and_murder/       # Cosy Edwardian BritBox murder mystery (Glenross — Highland village amateur sleuths)
 ```
 
 Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — heavy_metal, low_fantasy, neon_dystopia, pulp_noir, road_warrior, spaghetti_western at various levels of completeness.

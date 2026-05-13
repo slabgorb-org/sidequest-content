@@ -116,7 +116,7 @@ manifest:
     visual_anchor_primary: "Atkinson Grimshaw moonlit Yorkshire industrial landscapes c.1870"
     palette_source: "John Atkinson Grimshaw — 'Liverpool Quay by Moonlight' 1887"
     portrait_style_source: "John Singer Sargent society portraits c.1880s"
-    flux_trigger_token: "grimshaw_victorian_style (from lora/victoria training set)"
+    flux_trigger_token: "grimshaw_victorian_style (from lora/tea_and_murder training set)"
 ```
 
 **Every named entity** you introduce (an artist, a period, a technique, a specific location, a named character archetype) must appear in `sources:` with its real-world analog. `cliche-judge` will read this manifest during validation. **No manifest = automatic cliche-judge blocker.**

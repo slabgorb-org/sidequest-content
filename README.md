@@ -18,7 +18,7 @@ services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 | `elemental_harmony` | Martial arts / elemental magic | — |
 | `mutant_wasteland` | Post-apocalyptic mutants | `flickering_reach` (fully spoilable) |
 | `space_opera` | Sci-fi space adventure | `coyote_star` |
-| `victoria` | Brontë-flavored gaslamp gothic, drawing-room intrigue (no swords, no starships; tunable occult) | — |
+| `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross` |
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters,
 factions, OCEAN profiles, conlang morphemes, audio cues, visual style), and
