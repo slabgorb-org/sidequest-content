@@ -1,0 +1,22 @@
+# depth_score → CR band. Bands ORDINAL (shallow < mid < deep), increasing
+# depth. Boundaries are content tuning; depth_score is oq-1's.
+cr_bands:
+  - { id: shallow, depth_lt: 0.25, cr_min: 0, cr_max: 2 }
+  - { id: mid,     depth_lt: 0.60, cr_min: 2, cr_max: 7 }
+  - { id: deep,    depth_lt: 1.01, cr_min: 6, cr_max: 30 }
+big_bad_gate:
+  on_first_band_entry: [mid, deep]
+  recurring_chance: { mid: 0.10, deep: 0.20 }
+look_race_affinity:
+  necropolis: { undead: 6, aberration: 2, ooze: 1, goblinoid: 1, dwarf: 3 }
+  sunken:     { ooze: 5, undead: 2, aberration: 3, goblinoid: 1, dwarf: 1 }
+  delvehold:  { dwarf: 6, undead: 4, goblinoid: 2, aberration: 1, ooze: 1 }
+rarity_by_band:
+  shallow: { Common: 6, Uncommon: 2 }
+  mid:     { Uncommon: 5, Rare: 3, Common: 1 }
+  deep:    { Rare: 4, "Very rare": 3, Legendary: 1, Artifact: 0.2 }
+size_by_burst:
+  - { burst_lte: 1, wandering_rolls: 1, special_rooms: 0, loot_rolls: 1 }
+  - { burst_lte: 3, wandering_rolls: 3, special_rooms: 1, loot_rolls: 2 }
+  - { burst_lte: 9, wandering_rolls: 6, special_rooms: 2, loot_rolls: 4 }
+big_bad_forces_size: large
