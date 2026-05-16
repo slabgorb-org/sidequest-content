@@ -5,7 +5,8 @@ interior:
   algorithm: roomcorridor
   # Real gen_roomcorridor kwargs (verified vs interiors/roomcorridor.py):
   # max_rooms, room_min, room_max (NOT min_room/max_room/room_attempts).
-  # gen_roomcorridor returns silent all-wall below 12x12 — Plan 7's
+  # gen_roomcorridor raises ValueError below 5x5; at valid-but-small dims
+  # its room-placement retries can yield sparse/degenerate rooms — Plan 7's
   # materializer must validate region dims before dispatch (carry-forward
   # gotcha); not Plan 4's concern (params undispatched here).
   params: {max_rooms: 16, room_min: 4, room_max: 9}
@@ -33,8 +34,9 @@ set_pieces:
       The approach is swept clean and the channels cut into the altar
       stone are dark and dry — and recently scrubbed. It is ready.
     outcome: >-
-      The temple's bargain begins the moment the expansion attaches, not
-      when you arrive: the demand is already counting when you walk in.
+      The channels were scrubbed clean for the next offering; the demand has
+      been counting since long before you arrived, and it does not pause for
+      your deliberation.
     depth_band: {min: 45.0, max: null}
     slots:
       - name: features
