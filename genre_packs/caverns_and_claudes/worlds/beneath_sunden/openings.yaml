@@ -1,0 +1,181 @@
+# Beneath Sünden — session openings. REQUIRED/MANDATORY: _load_openings
+# (loader.py:618) raises if this file is absent; Validator 7
+# (_validate_opening_bank_coverage, loader.py:463) requires >=1
+# solo-eligible AND >=1 MP-eligible opening.
+#
+# Hard contracts (loader validators):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - location-anchored: set setting.location_label, NOT chassis_instance
+#     (exactly one anchor per OpeningSetting)
+#   - present_npcs left empty so no npcs.yaml is required (Validator 12b)
+#
+# Both openings anchor at Ropefoot, at the fire, before the rope. The
+# player begins on the surface and chooses to descend — the narrator
+# never walks them onto the rope. Voice contract: scoured stone, the
+# kept fire, the pawl of the winch, the board of burned-in names, a cold
+# that climbs the rope. Played straight. Never wink. Never explain the
+# name.
+
+version: "0.1.0"
+world: beneath_sunden
+genre: caverns_and_claudes
+
+openings:
+  # ---------------------------------------------------------------
+  # SOLO — one delver, at the fire, before the rope
+  # ---------------------------------------------------------------
+  - id: solo_ropefoot_before_the_rope
+    name: "Ropefoot, Before the Rope"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      location_label: >-
+        Ropefoot — the kept fire on the shaft side of the rigging
+        benches, the winch-house and its board a few steps off, the
+        Dropmouth's collar a dark ring at the edge of the firelight
+      situation: >-
+        Late, on the saddle. The fire is high because someone whose
+        turn it was fed it before they walked back out the dead road
+        rather than down. The winch-keeper has the drum locked off and
+        the day's count already burned where it goes. The rope is rigged
+        and waiting on the benches. Nothing is asking the delver to take
+        it tonight. Nothing ever does.
+    tone:
+      register: >-
+        scoured stone and kept fire; the spare courtesy of a camp that
+        knows its dead by the length of slack rope — grave, lethal,
+        never doom-narrated and never falsely hopeful
+      stakes: "low on turn 1 — the rope is not taken yet"
+      complication: "defer to turn 2 or later; let the cold and the board do the work"
+      avoid_at_all_costs:
+        - any combat in the first scene
+        - any dice roll
+        - the narrator walking the delver onto the rope
+        - explaining or winking at the name "Sünden"
+        - generic ye-olde-tavern or you-wake-up framing
+        - an old man approaches you with a quest
+        - ending the turn with a question
+    establishing_narration: |
+      The fire is high. Whoever's rota it was built it up before they
+      shouldered their kit, looked at the rope for a while, and then
+      walked back out the dead road instead of down — you watched them
+      go and neither of you said anything, because there is nothing to
+      say to that one way or the other.
+
+      The winch-keeper has the drum locked off for the night, the pawl
+      dropped into its notch with the flat iron clack the camp likes to
+      hear. Behind them the board stands in the lee of the winch-house,
+      the names burned into it close-set near the bottom and thinning
+      toward the top the way they always thin toward the top. You have
+      been here long enough to have read it. You have been here long
+      enough that reading it is no longer the thing you do with your
+      hands when you do not know what to do with them.
+
+      The rope is rigged and coiled on the end of the bench, checked
+      twice today by people who are not going down it. Past the benches
+      the Dropmouth's collar is a darker ring at the edge of where the
+      firelight reaches, and the draught comes up out of it the way it
+      always does — steady, colder than the saddle's own cold, smelling
+      of wet rock and the underside of old iron. It is not waiting for
+      you. It does not do anything as deliberate as waiting. It is just
+      there, and it is just up, and it has been doing that since long
+      before you came up the dead road on the same rumor everyone comes
+      up on.
+    first_turn_invitation: |
+      The fire is at your front, the board at your shoulder, the rope on
+      the bench, the collar past the last of the light. No one here will
+      tell you to take it and no one here will tell you not to. Do
+      whatever you came up the road to do, in whatever order you can
+      stand to do it.
+    party_framing:
+      already_a_crew: false
+      bond_tier_default: neutral
+      shared_history_seeds:
+        - "you came up the dead road on the rumor of an unspent hold"
+        - "you have read the board enough times to know it by heart"
+      narrator_guidance: >-
+        Treat the player as a single delver at Ropefoot who has not yet
+        committed to the rope. Do not introduce a quest-giver. Do not
+        have an NPC walk up with a hook. Let the fire, the board, and
+        the cold off the shaft carry the scene. Wait for the player to
+        move.
+
+  # ---------------------------------------------------------------
+  # MULTIPLAYER — a crew at the benches, rigging
+  # ---------------------------------------------------------------
+  - id: mp_ropefoot_rigging_at_the_benches
+    name: "Ropefoot, Rigging at the Benches"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 6
+      backgrounds: []
+    setting:
+      location_label: >-
+        Ropefoot — the rigging benches between the kept fire and the
+        winch-house, the board within reach, the Dropmouth's collar a
+        few steps past the last bench
+      situation: >-
+        The crew is at the benches doing the thing the benches are for:
+        checking each other's knots and lamps before the rope. The
+        winch-keeper is at the drum, not hurrying them and not waiting
+        on them. The rope is theirs when they say it is. Nothing about
+        the camp marks this as the start of anything; the camp has seen
+        a great many crews rig at these benches.
+    tone:
+      register: >-
+        scoured stone, kept fire, the pawl of the winch; a crew's plain
+        shared competence against a place that counts everyone — grave,
+        lethal, never doom-narrated
+      stakes: "low on turn 1 — they are rigging, not descending"
+      complication: "defer; let the board and the cold introduce it"
+      avoid_at_all_costs:
+        - any combat in the first scene
+        - any dice roll
+        - the narrator putting the crew on the rope
+        - explaining or winking at the name "Sünden"
+        - splitting the party's attention with an NPC hook
+        - ending the turn with a question
+    establishing_narration: |
+      The benches are yours tonight. You have them to yourselves except
+      for the winch-keeper at the drum a few steps off, who looked up
+      when you came down to the rigging ground, took the count of you
+      with their eyes the way they take the count of everyone, and went
+      back to the drum. They are not hurrying you. They will not. The
+      rope is checked and coiled at the end of the bench and it is yours
+      whenever the last knot is the one you trust.
+
+      The fire is on the shaft side, high enough to work by, and the
+      cold that comes up the collar past the last bench reaches you in
+      thin pulls between the fire's warmth — you can feel exactly where
+      one stops and the other starts, and you have all stopped
+      mentioning it to each other because mentioning it does not change
+      where the line is.
+
+      The board is close enough to read from where you sit. None of your
+      names are on it. That is the only thing the board says about you,
+      and it says it the way it says everything, which is plainly, and
+      without any opinion at all about whether that is going to last.
+    first_turn_invitation: |
+      The knots are between your hands and the rope is at the end of the
+      bench and the collar is a few steps past that into the dark. Rig
+      the way you rig, talk the way you talk, take the time the benches
+      are for. The rope keeps until you are ready and not one moment
+      longer than you make it.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: trusted
+      shared_history_seeds:
+        - "you came up the dead road together on the same rumor"
+        - "you have rigged at these benches before and come back light a name once"
+        - "none of you has said out loud which way the count is trending"
+      narrator_guidance: >-
+        Treat the players as an established crew rigging at Ropefoot's
+        benches before a descent they have not yet begun. Distribute
+        attention evenly across the crew; do not anchor the scene on one
+        player. Do not introduce a quest-giver or an NPC hook. Let the
+        rigging, the board, and the cold off the shaft carry turn 1.
+        Wait for the crew to choose the rope.
