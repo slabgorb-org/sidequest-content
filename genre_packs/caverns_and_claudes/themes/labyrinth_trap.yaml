@@ -1,0 +1,40 @@
+id: labyrinth_trap
+display_name: The Labyrinth
+generator_class: labyrinthine
+interior:
+  algorithm: depthfirst
+  params: {}
+  braid_ratio: 0.0
+depth_band: {min: 60.0, max: null}
+narrator:
+  register: grave
+  flavor: >-
+    A perfect maze, built by something that understood despair. There is
+    exactly one path between any two points and it is never the one you
+    want.
+  motifs: [maze, despair, no_shortcut, the_long_way]
+adjacency:
+  prefers: [labyrinth_trap]
+  avoids: [drowned_cavern]
+creature_table:
+  - {ref: minotaur_of_the_deep, weight: 1.0, depth_band: {min: 90.0}}
+  - {ref: starved_seeker, weight: 2.0}
+loot_table:
+  - {ref: predecessors_journal, weight: 1.0}
+set_pieces:
+  - id: the_only_path
+    name: The Only Path
+    telegraph: >-
+      Scratch-tallies on the wall climb into the hundreds and then stop
+      mid-stroke. Whoever counted them did not finish.
+    outcome: >-
+      There is no shortcut here and the schema guarantees it: a single
+      dead-true perfect maze. Rationing fails before the maze does.
+    depth_band: {min: 60.0, max: null}
+    slots:
+      - name: layout
+        options:
+          - {value: dead_true_perfect_maze, weight: 1.0}
+    trope_components:
+      - trope_id: the_resource_clock_you_can_see
+        params: {resource: light}

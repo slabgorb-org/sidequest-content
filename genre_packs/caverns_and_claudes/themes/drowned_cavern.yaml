@@ -1,0 +1,49 @@
+id: drowned_cavern
+display_name: The Drowned Cavern
+generator_class: organic
+interior:
+  algorithm: cellular
+  # Real gen_cave kwargs (verified vs interiors/cellular.py): density,
+  # cutoff, passes. Plan 4 does NOT dispatch these (params is a free dict
+  # until Plan 7's materializer) — correct names ship now so Plan 7 has
+  # no TypeError landmine.
+  params: {density: 0.45, cutoff: 5, passes: 4}
+  braid_ratio: 0.0
+depth_band: {min: 0.0, max: 60.0}
+narrator:
+  register: grave
+  flavor: >-
+    Black standing water that gives back no echo; the cold of stone that
+    has never been warm. Footing is never certain.
+  motifs: [flood, drowning, silence, cold]
+adjacency:
+  prefers: [drowned_cavern, winding_catacomb]
+  avoids: [sunless_temple]
+creature_table:
+  - {ref: blind_cave_eel, weight: 2.0}
+  - {ref: drowned_revenant, weight: 1.0, depth_band: {min: 30.0}}
+loot_table:
+  - {ref: silt_pearl, weight: 2.0}
+  - {ref: waterlogged_strongbox, weight: 1.0}
+set_pieces:
+  - id: the_siphon
+    name: The Siphon
+    telegraph: >-
+      A steady, patient suck of current draws toward a black slot in the
+      cavern floor; loose grit slides into it and does not come back.
+    outcome: >-
+      Anyone who enters the pull without a fixed line is taken under the
+      rock and is not returned. The line holds or it does not.
+    depth_band: {min: 0.0, max: 60.0}
+    save_or_die: {save: reflex, dc: 15}
+    slots:
+      - name: layout
+        options:
+          - {value: funnel_chamber, weight: 2.0}
+          - {value: flooded_gallery, weight: 1.0}
+      - name: loot
+        options:
+          - {value: drowned_porters_pack, weight: 1.0}
+    trope_components:
+      - trope_id: the_thing_that_followed_you_down
+        params: {from_region: surface}
