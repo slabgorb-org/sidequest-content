@@ -1,0 +1,16 @@
+id: aberration
+display: "The Wrongness"
+# Aberration 5 rows: Gibbering Mouther 2, Chuul 4, Otyugh 5, Cloaker 8,
+# Aboleth 10 → resolves shallow(≤2)/mid(2-7)/deep(6-30).
+filter:
+  any_of:
+    - { type: Aberration }
+telegraph:
+  shallow: "Angles in the stone that the eye keeps re-counting."
+  mid: "The corridor was not this shape on the way in."
+  deep: "It has been watching long enough to learn your name."
+loot_bias:
+  category_weight: { "Wondrous Item": 1.4, Armor: 0.7 }
+big_bads:
+  - { name: "Otyugh", min_band: mid }    # cr 5 → mid capstone
+  - { name: "Aboleth", min_band: deep }  # cr 10 → deep

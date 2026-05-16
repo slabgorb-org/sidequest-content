@@ -1,0 +1,18 @@
+id: ooze
+display: "The Seep"
+# Ooze 4 rows: Gray Ooze 0.5, Gelatinous Cube 2, Ochre Jelly 2,
+# Black Pudding 4. CR CEILING 4 → CANNOT fill a `deep` region.
+# This is the data-forced low-ceiling case (see plan "Data-Forced
+# Design Item"): the assembler performs an observable affinity re-roll
+# (cookbook.race.reroll) rather than emit an empty deep table.
+filter:
+  any_of:
+    - { type: Ooze }
+telegraph:
+  shallow: "The floor is wet where nothing should be wet."
+  mid: "It came through a gap a coin could not. It is not in a hurry."
+  deep: "The walls here are digested. Do not touch the walls."
+loot_bias:
+  category_weight: { Potion: 1.2, "Wondrous Item": 0.9 }
+big_bads:
+  - { name: "Black Pudding", min_band: mid }  # cr 4 → mid capstone

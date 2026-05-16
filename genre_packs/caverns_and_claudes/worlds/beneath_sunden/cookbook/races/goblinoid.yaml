@@ -1,0 +1,17 @@
+id: goblinoid
+display: "The Scavengers"
+# goblinoid-tagged Humanoids in SRD: Goblin 0.25, Hobgoblin 0.5,
+# Bugbear 1. CR CEILING 1 → shallow-only. No SRD goblinoid capstone
+# exists ("Hobgoblin Warlord" is NOT in SRD 5.1). Deliberately
+# big_bad-less harrier faction; low-ceiling re-roll case (see
+# "Data-Forced Design Item").
+filter:
+  any_of:
+    - { type: Humanoid, tags_any: [goblinoid] }
+telegraph:
+  shallow: "Cookfire smell, gnawed bone, a sentry who runs the moment he sees you."
+  mid: "They have learned the corridors better than the dead did."
+  deep: "Not a warband. A war."
+loot_bias:
+  category_weight: { Weapon: 1.3, "Wondrous Item": 0.8 }
+big_bads: []

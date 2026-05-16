@@ -1,0 +1,23 @@
+id: dwarf
+display: "The Delved-Too-Deep"
+# No literal SRD "dwarf" monster. This RACE sources its creatures via the
+# undead filter and supplies narrative framing (spec §4.2 concept).
+filter:
+  any_of:
+    - { type: Undead }
+deny:
+  name_glob: ["*faerie*"]
+telegraph:
+  shallow: "Dwarf-make everywhere. Tools set down mid-task, never taken up again."
+  mid: "They held this gate. You can see exactly how long, and exactly how it ended."
+  deep: "They dug toward something. It dug back."
+loot_bias:
+  category_weight: { Weapon: 1.2, Armor: 1.2 }
+big_bads:
+  - { name: "Wight", min_band: mid }   # the watch that did not stand down
+  - { name: "Lich", min_band: deep }   # what answered the digging
+concept:
+  framing: >-
+    A dwarfhold that dug past where digging should stop. No survivors —
+    only what answered. Played as Moria-grave tragedy, never comedy.
+  sourced_from: undead
