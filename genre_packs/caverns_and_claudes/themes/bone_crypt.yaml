@@ -1,0 +1,45 @@
+id: bone_crypt
+display_name: The Bone Crypt
+generator_class: structured
+interior:
+  algorithm: prim
+  params: {}
+  braid_ratio: 0.3
+depth_band: {min: 30.0, max: 130.0}
+narrator:
+  register: grave
+  flavor: >-
+    Dry air, stacked femurs sorted by length, dust that still remembers
+    names it will not say. Someone keeps this place.
+  motifs: [ossuary, order, the_keeper, dust]
+adjacency:
+  prefers: [winding_catacomb, sunless_temple]
+  avoids: [drowned_cavern]
+creature_table:
+  - {ref: bone_drake, weight: 1.0, depth_band: {min: 60.0}}
+  - {ref: crypt_warden, weight: 2.0}
+loot_table:
+  - {ref: grave_silver, weight: 2.0}
+  - {ref: wardens_keyring, weight: 1.0}
+set_pieces:
+  - id: the_false_floor
+    name: The False Floor
+    telegraph: >-
+      One flagstone's mortar is a shade newer than its neighbours and
+      rings hollow when the pole touches it.
+    outcome: >-
+      Weight on the slab drops it onto upturned iron in the pit beneath.
+      The pole finds it; the careless foot finds it too late.
+    depth_band: {min: 30.0, max: 130.0}
+    save_or_die: {save: reflex, dc: 16}
+    slots:
+      - name: layout
+        options:
+          - {value: ten_foot_spiked_pit, weight: 2.0}
+          - {value: oubliette, weight: 1.0}
+      - name: loot
+        options:
+          - {value: prior_victims_effects, weight: 1.0}
+    trope_components:
+      - trope_id: the_keeper_notices_the_disturbance
+        params: {patience: low}

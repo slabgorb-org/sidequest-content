@@ -1,0 +1,54 @@
+id: sunless_temple
+display_name: The Sunless Temple
+generator_class: built
+interior:
+  algorithm: roomcorridor
+  # Real gen_roomcorridor kwargs (verified vs interiors/roomcorridor.py):
+  # max_rooms, room_min, room_max (NOT min_room/max_room/room_attempts).
+  # gen_roomcorridor raises ValueError below 5x5; at valid-but-small dims
+  # its room-placement retries can yield sparse/degenerate rooms — Plan 7's
+  # materializer must validate region dims before dispatch (carry-forward
+  # gotcha); not Plan 4's concern (params undispatched here).
+  params: {max_rooms: 16, room_min: 4, room_max: 9}
+  braid_ratio: 0.0
+depth_band: {min: 45.0, max: null}
+narrator:
+  register: grave
+  flavor: >-
+    Deliberate halls, squared and colonnaded, raised to something that
+    expected to be fed. The architecture itself is a demand.
+  motifs: [temple, sacrifice, the_old_demand, deliberate_stone]
+adjacency:
+  prefers: [bone_crypt]
+  avoids: [drowned_cavern]
+creature_table:
+  - {ref: temple_acolyte_shade, weight: 2.0}
+  - {ref: altar_horror, weight: 1.0, depth_band: {min: 80.0}}
+loot_table:
+  - {ref: votive_gold, weight: 2.0}
+  - {ref: sacrificial_regalia, weight: 1.0}
+set_pieces:
+  - id: the_altar_that_waits
+    name: The Altar That Waits
+    telegraph: >-
+      The approach is swept clean and the channels cut into the altar
+      stone are dark and dry — and recently scrubbed. It is ready.
+    outcome: >-
+      The channels were scrubbed clean for the next offering; the demand has
+      been counting since long before you arrived, and it does not pause for
+      your deliberation.
+    depth_band: {min: 45.0, max: null}
+    slots:
+      - name: features
+        options:
+          - {value: blood_channel_altar, weight: 1.0}
+      - name: creatures
+        options:
+          - {value: waking_acolytes, weight: 2.0}
+          - {value: the_thing_the_temple_feeds, weight: 1.0}
+    trope_components:
+      - trope_id: priest_demands_a_sacrifice
+        params: {countdown_expansions: 2}
+    quest_components:
+      - quest_id: deny_or_feed_the_altar
+        params: {irreversible: true}

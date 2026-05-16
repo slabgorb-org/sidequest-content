@@ -1,0 +1,43 @@
+id: winding_catacomb
+display_name: The Winding Catacomb
+generator_class: labyrinthine
+interior:
+  algorithm: depthfirst
+  params: {}
+  braid_ratio: 0.3
+depth_band: {min: 20.0, max: 110.0}
+narrator:
+  register: grave
+  flavor: >-
+    Niche after niche of the stacked anonymous dead; every turn looks like
+    the last turn and none of them lead back the way you think.
+  motifs: [bones, repetition, disorientation]
+adjacency:
+  prefers: [bone_crypt, drowned_cavern]
+  avoids: []
+creature_table:
+  - {ref: ossuary_crawler, weight: 2.0}
+  - {ref: lamp_wight, weight: 1.0, depth_band: {min: 50.0}}
+loot_table:
+  - {ref: grave_silver, weight: 2.0}
+  - {ref: sealed_reliquary, weight: 1.0}
+set_pieces:
+  - id: the_counting_niche
+    name: The Counting Niche
+    telegraph: >-
+      One niche in this row holds a skull that faces outward when every
+      other faces in; the dust before it has been disturbed recently.
+    outcome: >-
+      Disturbing the marked niche drops the corridor's portcullis behind
+      and ahead at once; the only way on is the unlit side passage.
+    depth_band: {min: 20.0, max: 110.0}
+    slots:
+      - name: features
+        options:
+          - {value: dropping_portcullis_pair, weight: 1.0}
+      - name: creatures
+        options:
+          - {value: lamp_wight_ambush, weight: 1.0}
+    quest_components:
+      - quest_id: find_the_unlit_way_out
+        params: {pressure: high}
