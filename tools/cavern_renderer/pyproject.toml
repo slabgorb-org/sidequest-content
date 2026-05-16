@@ -6,6 +6,7 @@ requires-python = ">=3.12"
 dependencies = [
     "pillow>=10.4.0",
     "pyyaml>=6.0.2",
+    "sidequest-server",
 ]
 
 [project.optional-dependencies]
@@ -30,3 +31,6 @@ target-version = "py312"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.uv.sources]
+sidequest-server = { path = "../../../sidequest-server", editable = true }
