@@ -1,0 +1,68 @@
+# Beneath Sünden — World Visual Style
+# The cold, scoured counter-pole to caverns_sunden's warm, peopled
+# limestone hamlet. There is no warmth-and-people frame in this world.
+# One descent; one kept fire losing a slow argument with a cold dark
+# that has no bottom the lamps reach. Moria-as-tragedy, played straight.
+#
+# WIRING: positive_suffix is the field the daemon's StyleCatalog reads
+# (sidequest-daemon/sidequest_daemon/media/catalogs.py::StyleCatalog.load).
+# World-level positive_suffix layers on top of the genre's B&W ink
+# suffix via the explicit-recipes PromptComposer's ART_SENSIBILITY.WORLD
+# slot.
+#
+# DOCTRINE (caverns_sunden playtest 2026-05-06 fix, applied here from
+# the start): the world-level suffix is INJECTED INTO EVERY RENDER IN
+# THIS WORLD. Keep it to *tonal art discipline* only — palette mood,
+# line discipline, what the WHOLE world looks like as black-and-white
+# ink. Subject specifics (the collar, the winch, the burned board, the
+# rope) belong on per-POI visual_prompt blocks, NOT here, or they will
+# dominate every unrelated frame.
+#
+# Z-IMAGE NAME RULE (load-bearing for this world): Z-Image Turbo paints
+# any proper noun in the prompt as a caption/title. This world's entire
+# conceit is that the name is never explained — so the name appears
+# NOWHERE in this file, and no per-POI prompt may carry it either.
+# Rejection clauses are folded into positive_suffix as "No X, no Y";
+# guidance_scale=0 means negative_prompt is ignored (see
+# sidequest-content/PROMPTING_Z_IMAGE.md).
+
+positive_suffix: >-
+  B&W pen-and-ink discipline in the genre style of Erol Otus and David
+  Trampier, dense crosshatch driven hard into crushing black, the
+  composition mostly shadow with a single low warm light source losing
+  ground to it, scoured bare stone and cold cut iron rendered in fine
+  line, no ornament, no decoration, no warmth in the architecture, high
+  contrast, grave and lethal in mood, never whimsical, no readable
+  signage, no text, no caption, no title, no lettering, no watermark.
+
+# Z-Image ignores this; rejection clauses are in positive_suffix above.
+negative_prompt: ""
+
+color_palette:
+  primary: "#6E6A63"      # cold scoured stone, lampless grey
+  secondary: "#4A4843"    # wet rock, the underside of old iron
+  accent: "#B5743A"       # the one kept fire — low-sat ember, used sparingly
+  shadow: "#16161A"       # cold near-black, the dark with no floor
+  highlight: "#C7B58C"    # thin, cold oil-lamp wash — never generous
+
+atmosphere:
+  the_lip: >-
+    The widest frame this world offers and it is still small: a flat of
+    bare scoured stone with one stone-ringed fire on it, the warm light
+    falling only a few feet before the cold dark takes the rest. Heavy
+    black mass on every side. Nothing grows, nothing is decorated,
+    nothing is at ease. The fire is the only warm value in the frame
+    and it is plainly outmatched.
+  the_descent: >-
+    A worked rim of cut stone going straight down into a black the
+    lamps do not reach the bottom of. The light is a thin ring at the
+    top and then nothing — the deepest tones in the world should be
+    here, an absence of floor rendered as ink, not as a drawn space.
+    Cold reads as value: the air coming up is the coldest thing in any
+    frame it appears in.
+  general: >-
+    Everything built here is built only because the rope made it
+    necessary — timber and iron, plain, worn, never adorned. Treat
+    every frame as mostly shadow with one grudging source of light.
+    There is no peopled-warmth register in this world; if a frame
+    feels comfortable, it is wrong.

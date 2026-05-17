@@ -1,0 +1,217 @@
+# Beneath Sünden — bestiary image manifest (the deep's grammar).
+#
+# This world has NO procedural-engine creatures.yaml; the deep is
+# generated and unbounded (Plans 5-7). This file authors ONLY the
+# world's named bestiary — the marquee + cookbook capstones that survive
+# the world_register genre-truth gate — so the monster-manual image set
+# (ADR-059 placement intent) has a real, contract-true spec to render
+# from. These are not monsters-of-the-week; they are what answered the
+# digging. Moria-as-tragedy, played straight, never comic, never cute.
+#
+# ── FINAL SET DERIVATION (audit trail) ──────────────────────────────
+#   cookbook/races/*.yaml big_bads union (dedup):
+#     aberration → Otyugh (mid), Aboleth (deep)
+#     dwarf      → Wight (mid), Lich (deep)
+#     goblinoid  → (none — deliberately big_bad-less harrier faction)
+#     ooze       → Black Pudding (mid)
+#     undead     → Wight (mid), Mummy Lord (deep), Lich (deep)
+#   world_register marquee adds: Vampire (Lich/Mummy Lord already in union)
+#   world_register deny gate (allow_types Undead/Aberration/Ooze + others;
+#     deny types Celestial/Fey, tags titan/metallic/angel/genie, name_globs)
+#     applied against corpus/monsters.yaml (size/type/tags/cr):
+#       Aboleth      Large  Aberration  []             cr10  → PASS
+#       Otyugh       Large  Aberration  []             cr5   → PASS
+#       Wight        Medium Undead      []             cr3   → PASS
+#       Mummy Lord   Medium Undead      []             cr15  → PASS (marquee)
+#       Lich         Medium Undead      []             cr21  → PASS (marquee)
+#       Black Pudding Large Ooze        []             cr4   → PASS
+#       Vampire      Medium Undead      [shapechanger] cr13  → PASS (marquee;
+#         'shapechanger' is NOT in world_register deny.tags)
+#   NO cookbook big_bad is dropped by the deny gate. Final set = 7.
+#
+# ── WIRING (verified against the live contract, do not change blind) ─
+#   - scripts/generate_creature_images.py::collect_creatures does
+#     genre_dir.rglob("creatures.yaml") and reads a TOP-LEVEL `creatures:`
+#     list (or a top-level list). It does NOT recurse a nested `regions:`
+#     map — caverns_sunden's region-keyed file is shape-reference only and
+#     is itself not renderer-discoverable (verified: --world caverns_sunden
+#     --dry-run → "No items found!"). This file therefore uses the FLAT
+#     {creatures: [ {name,id,description,threat_level,tags} ]} schema the
+#     renderer actually consumes. Verified discoverable:
+#       generate_creature_images.py --genre caverns_and_claudes \
+#         --world beneath_sunden --dry-run  → lists all 7.
+#   - compose_prompt() sends `description` as the subject and ALSO sends
+#     `clip = "{name}, creature illustration"` as clip_prompt on the
+#     non-catalog path (creature renderer does NOT set catalog_compose).
+#     Z-Image paints proper nouns from BOTH subject and CLIP. This world's
+#     entire conceit is that nothing is named. Therefore each `name` is a
+#     non-proper-noun descriptive phrase (it is also what slugifies to the
+#     PNG filename); the SRD linkage lives in `id` for audit only and
+#     never reaches the renderer prompt.
+#   - render_batch writes images/creatures/<slugify(name)>.png at the
+#     GENRE level (genre_packs/caverns_and_claudes/images/creatures/).
+#     The server has no creature-image resolver yet (ADR-059 content
+#     pipeline is dark — P0 RESTORE in ADR-087), so following the
+#     established assets/<kind>/ convention used for POIs
+#     (world.yaml cover_poi → worlds/<w>/assets/poi/<slug>.png, server
+#     rest.py:208), the rendered creature PNGs are also mirrored to
+#     worlds/beneath_sunden/assets/creatures/<slug>.png so the
+#     forward-compatible world-asset path exists the same verified way
+#     the POI seam was bridged.
+#
+# ── Z-IMAGE NAME RULE + TONAL LAYER (load-bearing) ──────────────────
+#   No proper noun, date, or quoted phrase appears in any field below —
+#   not even a creature's real name. Each description is camera-style
+#   concrete subject prose ONLY: anatomy, posture, scale cue, what the
+#   dark does around it. The B&W pen-and-ink grave register (Otus /
+#   Trampier, dense crosshatch into crushing black, one grudging warm
+#   source, no whimsy) auto-layers from this world's visual_style.yaml
+#   positive_suffix via the daemon StyleCatalog WORLD slot and is NOT
+#   duplicated here, or it would dominate and flatten every plate. Each
+#   description ends with the no-text/no-caption cleanup clause because
+#   guidance_scale=0 means negative_prompt is ignored.
+
+creatures:
+
+  # ── DEEP-BAND CAPSTONES (threat 5 → full-page, imposing scale) ──────
+
+  - id: aboleth
+    name: The Thing That Learned Your Name
+    description: >-
+      A vast eel-bodied horror filling the frame, longer than three men
+      and thicker than a man is tall, hanging level in black water with
+      no floor and no surface shown. The hide is slick and ridged, banded
+      in heavy crosshatch, glistening where the single low light catches
+      a wet flank. Three round lidless eyes sit stacked down the blunt
+      front, each ringed and patient, fixed straight out of the plate at
+      the viewer. Four long barbels trail from beneath the maw, drifting
+      slack in the cold water. Pale slime sheets off the body and hangs
+      in threads into the dark below. It is not lunging — it is holding
+      still, the way a thing holds still when it has had two lifetimes to
+      watch and is in no hurry. Heavy black water crushes in on every
+      side; the lit flank is the only value the dark gives back. No
+      figures other than the creature. No text, no caption, no title, no
+      lettering, no labels, no watermark, no border.
+    threat_level: 5
+    tags: [aberration, deep, marquee_adjacent, capstone]
+
+  - id: lich
+    name: The One That Answered The Digging
+    description: >-
+      A gaunt robed figure standing upright and alone, dead two lifetimes
+      and not finished, filling a tall frame. The skull is bare and
+      tight-skinned, the jaw fixed, the eye sockets empty and black with
+      two cold pinpoint lights set deep in them, the gaze level and out
+      of the plate. The robes are heavy, rotted at the hem into ribbons,
+      caked with rock dust, hanging dead straight in still cold air.
+      Skeletal hands show at the cuffs, the finger bones long and bare,
+      one raised low and open as if it has all the time there is. Around
+      the feet the floor is bare cut stone going to black. The figure is
+      the one upright vertical in a frame that is otherwise crushing
+      shadow; a single grudging low light rakes one side of the skull and
+      loses the rest. Grave and lethal, never theatrical. No other
+      figures. No text, no caption, no title, no lettering, no labels, no
+      watermark, no border.
+    threat_level: 5
+    tags: [undead, deep, marquee, capstone]
+
+  - id: mummy_lord
+    name: The Watch That Was Wrapped And Kept
+    description: >-
+      A tall withered figure bound head to foot in blackened linen wrap,
+      standing rigid and alone, filling the frame. The wrappings are
+      ancient, split along the limbs, packed with rock dust, the cloth
+      sunk tight to a body that is all bone and dried sinew beneath. The
+      head is wrapped but for a band across the eyes, where the sockets
+      show black and deep-set, the stare fixed level out of the plate.
+      One arm is half-raised, the wrapped hand clawed; strips of loosened
+      linen hang dead straight in still cold air. The feet stand on bare
+      cut stone that goes to black behind. The body holds the stillness
+      of a thing that was set to keep a post and has kept it past all
+      reason. One low grudging light catches the wrapped shoulder and
+      jaw; the rest is crushing dark. No other figures. No text, no
+      caption, no title, no lettering, no labels, no watermark, no
+      border.
+    threat_level: 5
+    tags: [undead, deep, marquee, capstone]
+
+  - id: vampire
+    name: The One The Cold Did Not Stop
+    description: >-
+      A tall gaunt humanoid figure standing alone in heavy dark, pale
+      hairless skin drawn tight over a long skull, filling a tall frame.
+      The face is lean and bloodless, the lips thin and parted enough to
+      show a pair of long upper fangs, the eyes deep-set and fixed level
+      out of the plate without warmth. The hands are long-fingered and
+      clawed, held low at the sides, the nails dark. The figure wears a
+      heavy ruined long coat, collar high, the hem rotted and grey with
+      rock dust, hanging dead straight in still cold air. It stands very
+      upright on bare cut stone that drops to black behind. Nothing about
+      it is at ease and nothing is courtly; it is grave and predatory and
+      patient. One low grudging light rakes the pale jaw and one hand and
+      gives the dark nothing else. No other figures. No text, no caption,
+      no title, no lettering, no labels, no watermark, no border.
+    threat_level: 5
+    tags: [undead, deep, marquee, capstone, shapechanger]
+
+  # ── MID-BAND CAPSTONES (threat 4 → half/full-page, menacing) ───────
+
+  - id: otyugh
+    name: The Thing In The Sump
+    description: >-
+      A squat heavy three-legged horror crouched low in a flooded pit,
+      filling most of the frame. The body is a bloated ovoid covered in
+      filth-matted plating and warty hide, rendered in dense crosshatch,
+      slick and dark with wet. Three thick stump legs splay it wide and
+      low over black standing water. Two long tendrils rise off the back,
+      each ending in a rough leaf-shaped flap, lifted and turned forward
+      as if listening. A wide lipless mouth splits the front of the mass,
+      crammed with blunt teeth, hanging open. It is hunkered and waiting,
+      not charging, the patience of a thing that lives where everything
+      eventually falls. Black water and heavy dark press in on every
+      side; one low grudging light catches the wet of the near flank and
+      the rim of the open mouth. No figures other than the creature. No
+      text, no caption, no title, no lettering, no labels, no watermark,
+      no border.
+    threat_level: 4
+    tags: [aberration, mid, capstone]
+
+  - id: black_pudding
+    name: The Seep That Digests The Walls
+    description: >-
+      A huge formless mound of glistening black ooze slumped across bare
+      cut stone, filling the lower two-thirds of the frame, taller than a
+      crouching man at its heap and spreading wide and low. The surface
+      is wet and heavy, rendered in dense crosshatch, sheeting thick
+      runnels of itself down onto the rock and pooling. It has no eyes,
+      no limbs, no face — only mass and a slow forward bulge where it is
+      moving. The stone it crosses is visibly eaten away, pitted and
+      slumped, where it has touched. It is not reared up to strike; it is
+      coming on the slow patient way the cold comes up the rope. Heavy
+      dark crushes in on every side; one low grudging light lies along
+      the wet upper curve of the mass and the dissolved stone, and gives
+      the rest nothing. No figures. No text, no caption, no title, no
+      lettering, no labels, no watermark, no border.
+    threat_level: 4
+    tags: [ooze, mid, capstone]
+
+  # ── MID-BAND LESSER CAPSTONE (threat 3 → half-page, menacing) ──────
+
+  - id: wight
+    name: The Watch That Did Not Stand Down
+    description: >-
+      A lean armored corpse standing upright and alone, dead and not
+      finished, filling a tall frame. The flesh is dried tight and grey
+      over the bones of the face, the lips pulled back, the eye sockets
+      sunk and black with a faint cold light far back in them, the stare
+      level out of the plate. It wears old mail and a dwarf-make plate
+      harness, dust-caked and dull, the straps rotted, a notched short
+      blade held low in one fleshless fist. It stands the way a thing
+      stands that was set to hold a gate and has held it long past the
+      end of the watch. The feet are planted on bare cut stone going to
+      black behind. One low grudging light rakes the grey jaw and the
+      dull mail; the rest is crushing dark. No other figures. No text, no
+      caption, no title, no lettering, no labels, no watermark, no
+      border.
+    threat_level: 3
+    tags: [undead, mid, capstone]
