@@ -210,3 +210,221 @@
     accelerators:
       - descent
       - depth
+
+- id: the_thing_that_followed_you_down
+  name: The Thing That Followed You Down
+  description: >-
+    Something came down with you, or after you, and it is between you and
+    the rope now. It does not hurry. It has the patience of a thing that
+    knows the only way out is back past it.
+  category: tension
+  triggers:
+    - descent from the surface or a shallower level
+    - a set-piece reveals that something came down with the party
+    - the party splits or a straggler falls behind
+    - light fails at the rear of the column
+  narrative_hints:
+    - wet drag-marks in the dust that lead the way you came, then stop
+    - the rearguard's torch keeps finding nothing, and keeps looking
+    - a sound from behind that matches your pace exactly, then does not
+  tension_level: 0.7
+  resolution_hints:
+    - turn and face it in light and numbers before it picks the ground
+    - collapse the way behind you and accept there is no going back that way
+    - give it the straggler it is pacing and live with having done so
+  tags: [pursuit, surface, dark, tension, escalation]
+  escalation:
+    - at: 0.25
+      event: >-
+        The rear of the column finds sign that did not come from the party:
+        a print half in a print, a smear still wet on stone the party passed
+        dry. Nothing is there when the light turns. Nothing is ever there
+        when the light turns.
+      npcs_involved: []
+      stakes: The party is being followed. The rearguard cannot be spared now.
+    - at: 0.5
+      event: >-
+        It takes something at the edge of the light — a torch, a pack, a
+        hireling who lagged one step too far. No struggle anyone sees. Just
+        a gap in the column where someone was, and the dark closing it.
+      npcs_involved: []
+      stakes: A loss the party cannot replace this deep. The rope is now on the far side of it.
+    - at: 1.0
+      event: >-
+        It stops pacing and waits in the only passage that goes up, in the
+        place it chose, on the ground it chose. There is no route around
+        that it has not already counted. It will be met, or the party will
+        not surface.
+      npcs_involved: []
+      stakes: Confront it on its ground or do not leave the deep. There is no third door.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.0
+    accelerators:
+      - descent
+      - dark
+      - straggler
+      - split
+
+- id: the_keeper_notices_the_disturbance
+  name: The Keeper Notices the Disturbance
+  description: >-
+    Not the slow, ambient waking of the whole deep — this is local, and it
+    is about you specifically. Something registered what the party did here
+    and has decided, with very little patience, to attend to it.
+  category: tension
+  triggers:
+    - a sprung trap, forced floor, or broken seal in a guarded place
+    - disturbing a marked grave, niche, or interred thing
+    - loud work — digging, prying, breaking — in a still place
+    - returning to a place the party already disturbed
+  narrative_hints:
+    - the dust the party raised has been smoothed flat again, recently
+    - a thing left disturbed is found set right, and nothing did it
+    - the next room is arranged as if it expected exactly this approach
+  tension_level: 0.65
+  resolution_hints:
+    - leave the disturbed place and do not come back through it
+    - move quiet and quick before the attention finishes orienting
+    - meet what it sends here rather than carry it deeper
+  tags: [keeper, attention, trap, tension, escalation]
+  escalation:
+    - at: 0.3
+      event: >-
+        What the party broke or sprung has been undone behind them —
+        re-set, re-closed, re-laid, patiently and without witness. The
+        message is not a threat. It is bookkeeping.
+      npcs_involved: []
+      stakes: The deep is correcting the party's work faster than the party can do it. Stealth is gone here.
+    - at: 0.6
+      event: >-
+        The hazards in this place stop being incidental. A pit is where the
+        party's own route would have put a foot. A fall of stone waits on
+        the path back, not the path on. It is reading the party's habits.
+      npcs_involved: []
+      stakes: Traps now target the party's patterns specifically. Improvise the route or be where it expects.
+    - at: 1.0
+      event: >-
+        The disturbed place commits to the party fully — every remaining
+        seam, slab, and counterweight in it working at once, against these
+        intruders, here, now, until the place is still again.
+      npcs_involved: []
+      stakes: The set-piece turns wholly hostile. Clear it or be cleared from it.
+  passive_progression:
+    rate_per_turn: 0.04
+    rate_per_day: 0.0
+    accelerators:
+      - breach
+      - loud
+      - return
+      - grave
+
+- id: priest_demands_a_sacrifice
+  name: The Priest Demands a Sacrifice
+  description: >-
+    The altar has been counting since long before the party arrived and it
+    does not pause for deliberation. It does not want worship. It wants one
+    of you, or one of what you carry that bleeds, and it has set a price
+    that comes due whether or not the party agrees to pay it.
+  category: conflict
+  triggers:
+    - entering a temple, altar, or offering-place that is kept ready
+    - an altar or offering-place that is already counting
+    - refusing, defiling, or trying to leave the offering unmade
+    - a death or grievous wound near the altar
+  narrative_hints:
+    - the offering-channels are dry, scrubbed, and recently made ready
+    - the count is somewhere being kept, and it is not slowing for you
+    - the acolytes do not bar the way out; they do not need to
+  tension_level: 0.8
+  resolution_hints:
+    - feed the altar what it asks and carry what that costs the party out
+    - deny it and survive the two expansions it takes to collect regardless
+    - destroy the altar before the count completes, if it can be destroyed
+  tags: [sacrifice, temple, dilemma, countdown, escalation]
+  escalation:
+    - at: 0.34
+      event: >-
+        The demand is made plain — not in words the party needs translated,
+        but in the way the place arranges itself toward the stone. One
+        offering. The party has perhaps two expansions of deep before it is
+        no longer asking.
+      npcs_involved: []
+      stakes: The choice is named. Deny-or-feed is now a clock, not a question.
+    - at: 0.67
+      event: >-
+        Unfed, the temple stops waiting politely. Ways close that were open.
+        What the party needs is on the far side of the altar. The price has
+        not changed; only the cost of refusing it has.
+      npcs_involved: []
+      stakes: Refusal is now actively expensive. The altar collects in passage tolls until it collects in full.
+    - at: 1.0
+      event: >-
+        The count completes. The altar takes its offering — the one the
+        party chose, or the one it chooses for them, and it does not choose
+        kindly. What is fed is not given back. What is denied is taken
+        anyway, and remembered.
+      npcs_involved: []
+      stakes: Terminal. A sacrifice is made by the party or by the temple; either way the deep keeps it.
+  passive_progression:
+    rate_per_turn: 0.05
+    rate_per_day: 0.0
+    accelerators:
+      - refusal
+      - defile
+      - bloodshed
+      - delay
+
+- id: the_resource_clock_you_can_see
+  name: The Resource Clock You Can See
+  description: >-
+    The cruelty of this place is that it shows you the math. There is no
+    shortcut and there never was; the only path is exactly as long as it is,
+    and the light the party is burning to walk it is visibly, countably,
+    running out faster than the path is.
+  category: tension
+  triggers:
+    - committing to a route with no branch and no return budgeted
+    - a place that makes the resource drain countable and legible
+    - rationing the named resource (light, water, air, rope)
+    - losing or spending a unit of that resource to a hazard
+  narrative_hints:
+    - tally-scratches on the wall climb into the hundreds, then stop unfinished
+    - the party can count the torches left and count the turnings left
+    - the two counts are not the same count, and everyone has done the sum
+  tension_level: 0.8
+  resolution_hints:
+    - spend everything else to protect the one resource the clock measures
+    - find the unlit way the maze hides rather than outlast the maze
+    - accept a loss now to keep the clock from reaching zero in the dark
+  tags: [resource, maze, light, attrition, escalation]
+  escalation:
+    - at: 0.3
+      event: >-
+        The path proves longer than it looked and does not branch. The
+        party does the arithmetic without being asked: the resource will
+        not reach the end at this rate. Everyone has now done it.
+      npcs_involved: []
+      stakes: The drain is legible and adverse. Rationing starts here or it starts too late.
+    - at: 0.6
+      event: >-
+        Rationing fails the way rationing fails — not all at once, but in a
+        skipped torch, a dry skin, a stretch walked darker than is safe to
+        save what cannot be saved. The clock does not slow for thrift.
+      npcs_involved: []
+      stakes: Thrift is no longer enough. Only a different route or a hard loss changes the sum.
+    - at: 1.0
+      event: >-
+        The resource reaches zero with path still ahead. The maze does not
+        end because the light did. What happens here happens in the dark,
+        on the party's hands, against the turnings, by feel and by count.
+      npcs_involved: []
+      stakes: Terminal attrition. Cross the rest blind and lessened, or do not cross it.
+  passive_progression:
+    rate_per_turn: 0.05
+    rate_per_day: 0.0
+    accelerators:
+      - dark
+      - lost
+      - slow
+      - waste
