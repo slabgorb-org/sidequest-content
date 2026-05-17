@@ -1,0 +1,27 @@
+# Beneath Sünden — character portrait manifest.
+#
+# This world has NO pre-authored named-NPC portrait set, and that is the
+# true and complete state — not a placeholder. world_register.yaml's
+# humanoid_constraint fixes it: "Humanoid only as grave cultists/bandits/
+# the delved-too-deep — never townsfolk-tone." There are no townsfolk
+# here. The people at the lip are the ones who keep the rope and keep
+# the count; the things below are the deep's grammar. Any humanoid the
+# party meets is materialized at runtime under the genre-truth gate, not
+# drawn from a fixed portrait roster. Authoring named portraits here
+# would manufacture a peopled-warmth register the world explicitly does
+# not have.
+#
+# WHY THIS FILE EXISTS ANYWAY (verified wiring, do not delete):
+# The daemon's catalog-composed render path is what serves POI images in
+# this world. zimage_mlx_worker._get_composer (l.67) unconditionally
+# calls CharacterCatalog.load for the world, and CharacterCatalog.load
+# (catalogs.py:52-53) does `yaml.safe_load(path.read_text())` with NO
+# existence guard — the file MUST exist or every render in this world
+# dies with FileNotFoundError and the daemon closes the socket without a
+# response (observed 2026-05-17: all 5 POI renders failed this way until
+# this file was added). `characters: []` makes load() return a valid
+# empty catalog: read_text() succeeds, the loop body never runs. This is
+# the correct, contract-true representation of "this world has no
+# authored character portraits", not a stub.
+
+characters: []

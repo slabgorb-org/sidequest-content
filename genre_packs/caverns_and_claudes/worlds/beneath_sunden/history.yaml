@@ -1,0 +1,373 @@
+# Beneath Sünden — Campaign Progression + POI image manifest.
+#
+# This world has no three-sin hub and no authored dungeon. The deep is
+# generated, unbounded, by the Sünden Deep procedural engine (Plans 5-7).
+# This file authors the STATIC SURFACE only: the chapter maturity feed
+# and the per-POI image manifest for the two cartography regions
+# (`ropefoot`, `the_dropmouth`). The shaft mouth POI is the world's
+# cover (`cover_poi: the_dropmouth` in world.yaml).
+#
+# WIRING (verified against the live contract, do not change blind):
+#   - scripts/generate_poi_images.py::collect_pois walks chapters[].
+#     points_of_interest[]; each POI needs `slug` + a DICT visual_prompt
+#     so a `catalog_ref = where:<world>/<slug>` is built (collect_pois
+#     l.61-63). generate_poi_images.py hardwires catalog_compose=True,
+#     and render_batch raises if any item's catalog_ref is empty.
+#   - daemon PlaceCatalog._load_specific (catalogs.py:144) reads this
+#     exact file, requires visual_prompt to be {solo, backdrop} (it
+#     HARD-FAILS on a string), and registers where:<world>/<slug>.
+#   - server rest.py:208 resolves the lobby hero from world.yaml
+#     cover_poi → genre_packs/<g>/worlds/<w>/assets/poi/<cover_poi>.png.
+#     render_batch writes images/poi/<slugify(name)>.png; the rendered
+#     hero is placed at the server-expected world assets/poi/ path so
+#     `cover_poi: the_dropmouth` resolves to a real PNG.
+#
+# Z-IMAGE NAME RULE (load-bearing): Z-Image Turbo paints any proper
+# noun, date, or quoted phrase onto the image as a caption. The world's
+# whole conceit is that the name is never explained — so NO proper noun
+# appears in any visual_prompt below. Prompts are camera-style concrete
+# clauses only. The B&W pen-and-ink tonal register (Otus / Trampier,
+# crushing shadow, one grudging warm source) auto-layers from this
+# world's visual_style.yaml positive_suffix via the daemon StyleCatalog
+# WORLD slot — it is NOT duplicated into per-POI prose, or it would
+# dominate every frame. Per-POI prose carries SUBJECT + framing +
+# lighting + the cleanup clause only.
+#
+# Chapter ids MUST be one of {fresh, early, mid, veteran} —
+# CampaignMaturity.from_chapter_id() only maps those four. This world's
+# progression is measured the only way the camp measures it: the length
+# of the board of the unreturned.
+
+chapters:
+  - id: fresh
+    label: "The Rope Is Slack"
+    session_range: [1, 4]
+    lore:
+      - >-
+        The party comes up the dead road to the lip. There is no town to
+        arrive in — there is a winch, a fire, plank benches, and a board.
+        The people here keep the rope and keep the count. They are
+        courteous in the spare way of a place that knows a fraction of
+        its dead by name and the rest by how long the rope stayed slack.
+      - >-
+        The board is short, at this stage, to a newcomer's eye — but no
+        one at the fire reads it as short. The rope has not yet been let
+        down with the party's weight on it. The cold that climbs the
+        shaft is described, not yet felt. The fire is fed in rota and
+        nobody explains why; it is simply never let go out.
+      - >-
+        The deep is unmapped and the camp writes none of it down. Every
+        party that has come back up has come back up describing a
+        different way down. The surface is fixed, small, and known to
+        the inch; the dark under it is neither, and the only honest
+        thing anyone here will tell the party is the count.
+    location: "Ropefoot, at the winch-house fire"
+    time_of_day: "no day — lamp and fire only"
+    atmosphere: >-
+      Grave, lethal, quiet. Nothing is at ease and nothing is decorated.
+      The widest frame this world offers is still small: a flat of
+      scoured stone, one stone-ringed fire plainly outmatched by the
+      cold dark on every side, and a shaft that only goes down.
+    points_of_interest:
+      # ── HERO / COVER ────────────────────────────────────────────────
+      # world.yaml cover_poi: the_dropmouth → server reads
+      # assets/poi/the_dropmouth.png. name slugifies to `the_dropmouth`;
+      # slug is set explicitly so catalog_ref = where:beneath_sunden/
+      # the_dropmouth. The Collar (chalked dwarf-cut rim) and The Rope
+      # (wet, vanishing, longer than the shaft should need) are folded
+      # into the ONE frame — splitting them would fragment the single
+      # subject this world is built around.
+      - name: The Dropmouth
+        slug: the_dropmouth
+        region: the_dropmouth
+        type: descent
+        description: >-
+          The mouth is a worked collar of dwarf-cut stone going straight
+          down into a dark the lamps do not reach the bottom of. The
+          rope runs over the winch's lip, wet for the first arm's length
+          and then simply gone. A draught comes UP the shaft, steady,
+          colder than the night on the saddle. This is the last place
+          that is lit and built and counted.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape looking down into a vertical mine
+            shaft cut straight through bare rock. Foreground: a worked
+            rim of squared, chisel-cut stone, the topmost edge rubbed to
+            a hard shine and marked with a single short chalk stroke at
+            one point of the rim. A heavy iron winch drum on a low
+            timber frame sits at the shaft's edge, a thick hemp rope
+            running over its lip, wet and dark for the first stretch,
+            then unlit and gone. Middle ground: the shaft walls drop
+            sheer and sightless, the squared dwarf stonework fading
+            within a body's length into rough unworked rock. Background:
+            the shaft is pure black with no visible bottom, the deepest
+            value in the frame, an absence of floor rather than a drawn
+            space. A single low oil lamp hung on the winch frame throws
+            a thin cold wash a few feet down the near wall and no
+            further. Cold air reads as the palest value rising from the
+            mouth. No figures, no signage. No text, no caption, no
+            title, no lettering, no labels, no watermark, no border.
+          backdrop: >-
+            Behind a subject: the rim of a stone-cut vertical shaft and
+            an iron winch drum with a wet rope going over the lip into
+            black, one thin cold lamp wash, no visible bottom. No text,
+            no caption, no watermark.
+      # ── ROPEFOOT — landmark-level POI frames ────────────────────────
+      - name: The Winch-House
+        slug: the_winch_house
+        region: ropefoot
+        type: civic
+        description: >-
+          A low timber house built over the drum, open on the shaft
+          side. The winch-keeper works it and counts it: who went onto
+          the rope, when, and whether the rope came back light or heavy
+          or not at all. The drum's pawl is filed loud on purpose.
+        visual_prompt:
+          solo: >-
+            Wide landscape of a low, plain timber shed built over a
+            heavy iron winch drum, on bare scoured rock. The whole wall
+            on the shaft side is open — no door, no shutter — and gives
+            straight onto the dark lip of a vertical shaft just beyond
+            the frame's edge. Foreground: the winch drum, thick and
+            iron-banded on a squat timber cradle, a hemp rope wound on
+            it and running out toward the dark, a filed iron pawl
+            resting in a ratchet. Middle ground: rough sawn-plank walls,
+            unpainted, grey with age, a single bench and a tally stick
+            leaned in the corner. Background: open dark beyond the
+            shaft-side wall, no horizon, heavy black mass. One low
+            lamp on a nail throws a small warm wash over the drum and
+            nothing else. No figures. No text, no caption, no title,
+            no lettering, no labels, no watermark, no border.
+          backdrop: >-
+            Behind a subject: a low timber shed open on one side over a
+            banded iron winch drum and coiled rope, grey plank walls,
+            one small lamp, dark beyond. No text, no caption, no
+            watermark.
+      - name: The Kept Fire
+        slug: the_kept_fire
+        region: ropefoot
+        type: hearth
+        description: >-
+          A stone-ringed fire on the shaft side of the benches, fed in
+          rota, never out. It is not ceremony. The cold that climbs the
+          rope thins where the fire is, and that is the one thing the
+          camp is certain of, so it is the one thing never neglected.
+        visual_prompt:
+          solo: >-
+            Wide landscape of a single stone-ringed fire on a flat of
+            bare scoured rock at night. Foreground: a low ring of
+            rough, soot-dark stones holding a small steady fire, a
+            modest stack of split timber to one side, the rock around
+            the ring scorched pale. Middle ground: the warm light
+            falls only a few feet before the dark takes it — no walls,
+            no shelter, nothing decorated, nothing growing. Background:
+            heavy black mass on every side, the cold dark plainly
+            larger than the fire, a faint paler band of rising cold air
+            beyond the firelight. The fire is the only warm value in
+            the frame and it is visibly outmatched. No figures. No
+            text, no caption, no title, no lettering, no labels, no
+            watermark, no border.
+          backdrop: >-
+            Behind a subject: a small stone-ringed fire on bare rock at
+            night, split timber beside it, warm light reaching only a
+            few feet into heavy surrounding dark. No text, no caption,
+            no watermark.
+      - name: The Board of the Unreturned
+        slug: the_board_of_the_unreturned
+        region: ropefoot
+        type: monument
+        description: >-
+          A single salvaged plank wall on the lee side of the
+          winch-house, the names burned in with an iron because no one
+          here has the tools or the heart to carve. The length of it is
+          how the camp measures how long this has been going on.
+        visual_prompt:
+          solo: >-
+            Medium-wide landscape of a single standing wall of salvaged
+            timber planks on bare rock, lit from one low side. The
+            planks are mismatched, weather-grey, nailed to a rough
+            frame. Foreground: the plank face fills most of the frame,
+            covered in row after row of short marks scorched dark into
+            the wood with a hot iron — burned, blistered, sunk into the
+            grain, never cut or carved, the lines irregular and made by
+            many different hands. Middle ground: the marks crowd the
+            upper boards and run down toward the lower ones; the lowest
+            boards are still bare. Background: bare scoured stone and
+            heavy dark to either side, a sliver of a low timber shed at
+            the frame edge. One low lamp rakes across the planks from
+            the left so the burned marks read as shadowed grooves. No
+            figures. No readable letterforms, no words, no text, no
+            caption, no title, no lettering, no labels, no watermark,
+            no border.
+          backdrop: >-
+            Behind a subject: a standing wall of weather-grey salvaged
+            planks covered in rows of short iron-burned scorch marks,
+            no readable letters, raked by one low lamp, dark to the
+            sides. No text, no caption, no watermark.
+      - name: The Rigging Benches
+        slug: the_rigging_benches
+        region: ropefoot
+        type: muster
+        description: >-
+          Two ranks of plank benches where parties check each other's
+          knots and lamps before the rope. Worn pale in the middle, dark
+          at the ends. You sit, you rig, you go; the benches are not
+          for sitting long, and everyone knows what sitting long means.
+        visual_prompt:
+          solo: >-
+            Wide landscape of two ranks of long, low plank benches
+            facing each other on bare scoured rock. Foreground: the
+            near bench, heavy sawn timber on stone blocks, the seat
+            worn pale and smooth down the middle and dark and unworn at
+            the ends, coils of hemp rope and an unlit lamp left on it.
+            Middle ground: the second bench parallel beyond it, the
+            same wear, the same plain timber, empty. Background: the
+            dark lip of a shaft and a sliver of a low timber shed at
+            the frame's edge, heavy black mass beyond, nothing
+            decorated, nothing at ease. One low lamp on a post throws
+            a thin cold wash across the benches and falls off fast into
+            dark. No figures. No text, no caption, no title, no
+            lettering, no labels, no watermark, no border.
+          backdrop: >-
+            Behind a subject: two ranks of worn plank benches on bare
+            rock, coiled rope and an unlit lamp on the near one, a
+            shaft lip and dark beyond, one thin lamp wash. No text, no
+            caption, no watermark.
+    tropes:
+      # Genre-frame tropes for a Moria-as-tragedy descent. They are
+      # present from the first turn at the lip — the board already
+      # carries names, the cold already climbs the rope — but start
+      # dormant and low until the party generates pressure by going
+      # down. The count is the campaign; these track the camp's
+      # relationship to the deep, not a per-dungeon depth.
+      - id: the_deeper_dark
+        status: dormant
+        progression: 0.02
+        notes:
+          - "The shaft already has no readable bottom. It does not need the party to be dangerous."
+      - id: the_keeper_stirs
+        status: dormant
+        progression: 0.02
+        notes:
+          - "The deep does not keep its dead. It has had two lifetimes to learn the shape of the shaft."
+      - id: extraction_panic
+        status: dormant
+        progression: 0.00
+      - id: hireling_mutiny
+        status: dormant
+        progression: 0.00
+
+  - id: early
+    label: "The Rope Has Been Down"
+    session_range: [5, 12]
+    lore:
+      - >-
+        The party has been on the rope and the rope has brought them
+        back, at least once, at least lighter or heavier than it went.
+        The fire is no longer a described thing; the party has felt the
+        cold thin where it is, and understood, without being told, why
+        no one here lets it go out.
+      - >-
+        A name or names the party knew has gone onto the board, burned
+        in at the hour the rope was finally given up on. The camp did
+        not debate it. It is the only record kept and the party now
+        reads it the way the camp reads it — not as short.
+      - >-
+        No two of the party's descents have agreed on the way down. The
+        camp expected this and wrote none of it. Coming back changed,
+        or not coming back, is the only progression anyone here
+        measures or narrates.
+    location: "Ropefoot, between the benches and the rope"
+    time_of_day: "no day — lamp and fire only"
+    atmosphere: >-
+      Graver. The board is longer by the party's own count. Hope is not
+      absent but it is expensive and quiet; relief is the fire, not
+      rescue. If a frame here feels comfortable, it is wrong.
+    points_of_interest: []
+    tropes:
+      - id: the_deeper_dark
+        status: active
+        progression: 0.20
+      - id: the_keeper_stirs
+        status: active
+        progression: 0.15
+      - id: extraction_panic
+        status: dormant
+        progression: 0.05
+      - id: hireling_mutiny
+        status: dormant
+        progression: 0.03
+
+  - id: mid
+    label: "The Board Is Longer"
+    session_range: [13, 17]
+    lore:
+      - >-
+        The count the party arrived skeptical of is now the count the
+        party keeps. More went down than the rope brought back, across
+        the party's own time here, and the camp has stopped pretending
+        otherwise within earshot of the party because the party has
+        stopped needing it to.
+      - >-
+        The cold that climbs the shaft is read now as the coldest thing
+        in any frame it enters. The fire is fed more carefully, not less.
+        What is down there goes on the slow patient way a draught comes
+        up the rope, and the camp's whole cosmology is still the one
+        observed fact: the cold does not like the fire.
+    location: "Ropefoot, at the board"
+    time_of_day: "no day — lamp and fire only"
+    atmosphere: >-
+      Lethal and plain. The widest frame is still small and now it is
+      also heavier. Outlook stays low. Nothing here is at ease.
+    points_of_interest: []
+    tropes:
+      - id: the_deeper_dark
+        status: active
+        progression: 0.45
+      - id: the_keeper_stirs
+        status: active
+        progression: 0.40
+      - id: extraction_panic
+        status: active
+        progression: 0.20
+      - id: hireling_mutiny
+        status: active
+        progression: 0.15
+
+  - id: veteran
+    label: "Counted on Both Sides"
+    session_range: [18, 22]
+    lore:
+      - >-
+        The party is part of the count now, on the side that went down,
+        and the camp watches the rope on the party's behalf the way the
+        party once watched it for strangers. Some of the party may
+        already be on the board. The deep does not keep its dead, and
+        everyone at the fire understands what that means and does not
+        say it.
+      - >-
+        There is no rescue and there never was; the delve is two
+        lifetimes closed and the party always knew that. What is left
+        is the rope, the weight on it, the fire that does not like the
+        cold, and the length of the board, which is the whole of the
+        campaign and the whole of the record.
+    location: "Ropefoot, before the rope, with the board long behind"
+    time_of_day: "no day — lamp and fire only"
+    atmosphere: >-
+      Grave to the end. The fire still loses ground and is still fed.
+      The deep is still unmapped and unmappable by design. The count is
+      the only thing that ever resolves.
+    points_of_interest: []
+    tropes:
+      - id: the_deeper_dark
+        status: active
+        progression: 0.75
+      - id: the_keeper_stirs
+        status: active
+        progression: 0.70
+      - id: extraction_panic
+        status: active
+        progression: 0.45
+      - id: hireling_mutiny
+        status: active
+        progression: 0.35
