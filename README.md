@@ -14,7 +14,7 @@ services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 
 | Pack | Theme | Worlds present |
 |------|-------|----------------|
-| `caverns_and_claudes` | Classic dungeon crawl (meta-humor on D&D tropes) | `caverns_sunden` |
+| `caverns_and_claudes` | Classic dungeon crawl (meta-humor on D&D tropes) | `beneath_sunden` (single-shaft procedural megadungeon, ADR-106; surface anchor authored, deep is runtime) |
 | `elemental_harmony` | Martial arts / elemental magic | — |
 | `mutant_wasteland` | Post-apocalyptic mutants | `flickering_reach` (fully spoilable) |
 | `space_opera` | Sci-fi space adventure | `coyote_star` |
