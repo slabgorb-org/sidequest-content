@@ -194,11 +194,14 @@ genre_packs/
 ├── caverns_and_claudes/  # Classic dungeon crawl (meta-humor on D&D tropes)
 ├── elemental_harmony/    # Martial arts / elemental magic
 ├── mutant_wasteland/     # Post-apocalyptic mutants
+├── road_warrior/         # Late-70s / early-80s vehicle subcultures sharing one port city
 ├── space_opera/          # Sci-fi space adventure
 └── tea_and_murder/       # Cosy Edwardian BritBox murder mystery (Glenross — Highland village amateur sleuths)
 ```
 
-Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — heavy_metal, low_fantasy, neon_dystopia, pulp_noir, spaghetti_western at various levels of completeness.
+`genre_packs/` also contains stub directories (`heavy_metal/`, `spaghetti_western/`) that lack a `pack.yaml` and are not loaded at runtime — promote them by writing the pack file.
+
+Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — caverns_sunden (deprecated three-sins hub, superseded by beneath_sunden), heavy_metal, low_fantasy, neon_dystopia, pulp_noir, spaghetti_western at various levels of completeness. `genre_workshopping/{elemental_harmony,space_opera,tea_and_murder}/worlds/` hold in-progress alternate worlds for the live packs of the same name.
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters, factions, OCEAN profiles, conlang morphemes, audio cues, `visual_style.yaml`), world data, ACE-Step music params (`audio/music/*_input_params.json` — ADR-095, OGG lives in R2), and image prompts (portrait_manifest.yaml, POI yamls — rendered PNGs live in R2 at `cdn.slabgorb.com/genre_packs/<pack>/...`).
 
