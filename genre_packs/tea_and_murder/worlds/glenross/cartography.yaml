@@ -34,6 +34,77 @@ regions:
       - the snug at the end with its private fire
       - the upstairs landing with three numbered doors
       - the stable yard behind, used for visiting traps
+    entities:
+      - id: bar
+        label: the bar
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: glenross_arms_bar
+        affordances:
+          - lean_on
+          - order_drink
+          - inspect_tab_slate
+      - id: tab_slate
+        label: the slate of regulars' tabs
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: glenross_arms_tab_slate
+        affordances:
+          - read
+      - id: snug
+        label: the snug at the end
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: glenross_arms_snug
+        affordances:
+          - enter
+          - eavesdrop
+      - id: snug_fire
+        label: the private fire in the snug
+        tier: flavor_only
+      - id: upstairs_landing
+        label: the upstairs landing
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: glenross_arms_landing
+        affordances:
+          - ascend
+          - knock_on_door
+      - id: room_one
+        label: room one
+        tier: flavor_only
+      - id: room_two
+        label: room two
+        tier: flavor_only
+      - id: room_three
+        label: room three
+        tier: flavor_only
+      - id: stable_yard
+        label: the stable yard
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: glenross_arms_stable_yard
+        affordances:
+          - search
+      - id: hamish
+        label: Hamish Sinclair
+        tier: real_object
+        binding:
+          kind: npc
+          ref: hamish_sinclair
+      - id: caley
+        label: Caley
+        tier: real_object
+        binding:
+          kind: npc
+          ref: hamish_sinclair
+        affordances:
+          - pet
     rivers: []
     settlements: []
 
@@ -58,6 +129,63 @@ regions:
       - the brass scale on the counter
       - the telegraph machine behind the back curtain
       - the village notice board outside, where the funerals and the cricket fixtures are pinned
+    entities:
+      - id: counter
+        label: the counter
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: post_office_counter
+        affordances:
+          - lean_on
+          - place_parcel
+      - id: brass_scale
+        label: the brass scale
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: post_office_brass_scale
+        affordances:
+          - weigh
+      - id: telegraph
+        label: the telegraph machine
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: post_office_telegraph
+        affordances:
+          - send_wire
+      - id: back_curtain
+        label: the back curtain
+        tier: flavor_only
+      - id: back_room
+        label: the back room
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: post_office_back_room
+        affordances:
+          - enter
+      - id: wooden_chair
+        label: the wooden chair
+        tier: flavor_only
+      - id: kettle
+        label: the kettle
+        tier: flavor_only
+      - id: notice_board
+        label: the village notice board
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: village_notice_board
+        affordances:
+          - read
+      - id: mrs_buchan
+        label: Mrs Buchan
+        tier: real_object
+        binding:
+          kind: npc
+          ref: mrs_buchan
     rivers: []
     settlements: []
 
@@ -83,6 +211,57 @@ regions:
       - the round table by the door (the gossip table)
       - the corner table behind the screen (the discreet table)
       - the slate behind the counter with the day's specials
+    entities:
+      - id: gossip_table
+        label: the round table by the door
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: tea_rooms_gossip_table
+        affordances:
+          - sit
+          - eavesdrop
+      - id: discreet_table
+        label: the corner table behind the screen
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: tea_rooms_discreet_table
+        affordances:
+          - sit
+          - confide
+      - id: specials_slate
+        label: the slate of the day's specials
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: tea_rooms_specials_slate
+        affordances:
+          - read
+      - id: counter
+        label: the counter
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: tea_rooms_counter
+        affordances:
+          - lean_on
+          - order
+      - id: half_door
+        label: the kitchen half-door
+        tier: flavor_only
+      - id: geraniums
+        label: the geraniums in the front window
+        tier: flavor_only
+      - id: mismatched_window
+        label: the window of mismatched panes
+        tier: flavor_only
+      - id: mrs_cameron
+        label: Mrs Cameron
+        tier: real_object
+        binding:
+          kind: npc
+          ref: mrs_cameron
     rivers: []
     settlements: []
 
@@ -108,6 +287,67 @@ regions:
       - the schoolmistress's slate on the wall, with the day's text
       - the cottage door through the back of the schoolroom
       - the schoolyard hawthorn hedge
+    entities:
+      - id: coal_stove
+        label: the coal stove
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: school_coal_stove
+        affordances:
+          - warm_hands
+          - stoke
+      - id: warmth_bench
+        label: the warmth bench
+        tier: flavor_only
+      - id: slate_on_wall
+        label: the schoolmistress's slate on the wall
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: school_slate
+        affordances:
+          - read
+      - id: cottage_door
+        label: the cottage door
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: school_cottage_door
+        affordances:
+          - knock
+          - enter
+      - id: hawthorn_hedge
+        label: the schoolyard hawthorn hedge
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: school_hawthorn_hedge
+        affordances:
+          - peer_through
+      - id: stile_to_railway
+        label: the stile onto the path to the railway halt
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: school_railway_stile
+        affordances:
+          - cross
+      - id: desks
+        label: the slate-grey desks
+        tier: flavor_only
+      - id: inkwells
+        label: the inkwells
+        tier: flavor_only
+      - id: bell
+        label: the bell
+        tier: flavor_only
+      - id: miss_ferguson
+        label: Miss Margaret Ferguson
+        tier: real_object
+        binding:
+          kind: npc
+          ref: miss_ferguson
     rivers: []
     settlements: []
 
@@ -133,6 +373,59 @@ regions:
       - the dispensary cabinet
       - the examining couch behind the curtain
       - the waiting bench under the parlour window
+    entities:
+      - id: surgery_telephone
+        label: the surgery telephone
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: surgery_telephone
+        affordances:
+          - place_call
+          - answer_call
+      - id: dispensary
+        label: the dispensary cabinet
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: surgery_dispensary
+        affordances:
+          - open
+          - search
+      - id: examining_couch
+        label: the examining couch
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: surgery_consulting_room
+        affordances:
+          - examine_patient
+      - id: waiting_bench
+        label: the waiting bench
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: surgery_waiting_bench
+        affordances:
+          - sit
+      - id: surgery_door
+        label: the surgery door
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: surgery_door
+        affordances:
+          - read_hours
+          - enter
+      - id: parlour_shelf
+        label: the small shelf of well-worn books
+        tier: flavor_only
+      - id: dr_ross
+        label: Dr Eilidh Ross
+        tier: real_object
+        binding:
+          kind: npc
+          ref: dr_ross
     rivers: []
     settlements: []
 
@@ -158,6 +451,60 @@ regions:
       - the walled garden with the bee-hives
       - the kitchen door onto the kirkyard
       - the parlour where parishioners are received
+    entities:
+      - id: study
+        label: the minister's study
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: manse_study
+        affordances:
+          - enter
+          - search_papers
+      - id: hives
+        label: the bee-hives
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: manse_hives
+        affordances:
+          - inspect
+      - id: walled_garden
+        label: the walled garden
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: manse_garden
+        affordances:
+          - walk
+          - sit
+      - id: roses
+        label: the roses
+        tier: flavor_only
+      - id: kitchen_door
+        label: the kitchen door onto the kirkyard
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: manse_kitchen_door
+        affordances:
+          - knock
+          - enter
+      - id: parlour
+        label: the parlour
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: manse_parlour
+        affordances:
+          - sit
+          - receive
+      - id: rev_murchison
+        label: Rev Andrew Murchison
+        tier: real_object
+        binding:
+          kind: npc
+          ref: rev_murchison
     rivers: []
     settlements: []
 
@@ -182,6 +529,68 @@ regions:
       - the vestry with the rector's robes and the parish register
       - the rector's study in the cottage behind
       - the small walled chapelyard with three graves
+    entities:
+      - id: chapel_porch
+        label: the chapel porch
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: chapel_porch
+        affordances:
+          - shelter
+          - read_noticeboard
+      - id: chapel_noticeboard
+        label: the chapel noticeboard
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: chapel_noticeboard
+        affordances:
+          - read
+      - id: vestry
+        label: the vestry
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: chapel_vestry
+        affordances:
+          - enter
+          - inspect_register
+      - id: parish_register
+        label: the parish register
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: chapel_parish_register
+        affordances:
+          - read
+      - id: rectors_study
+        label: the rector's study
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: chapel_rectors_study
+        affordances:
+          - enter
+          - search_papers
+      - id: chapelyard
+        label: the small walled chapelyard
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: chapel_chapelyard
+        affordances:
+          - walk
+          - inspect_graves
+      - id: three_graves
+        label: three graves
+        tier: flavor_only
+      - id: rev_quill
+        label: Rev Alistair Quill
+        tier: real_object
+        binding:
+          kind: npc
+          ref: rev_quill
     rivers: []
     settlements: []
 
@@ -209,6 +618,70 @@ regions:
       - the laird's pew at the front
       - the war memorial in the porch (South Africa, three names)
       - the kirkyard slope down to the burn
+    entities:
+      - id: bell_tower
+        label: the bell-tower
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: kirk_bell_tower
+        affordances:
+          - ring_bell
+          - ascend
+      - id: lairds_pew
+        label: the laird's pew
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: kirk_lairds_pew
+        affordances:
+          - sit
+      - id: war_memorial
+        label: the war memorial in the porch
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: kirk_war_memorial
+        affordances:
+          - read_names
+      - id: pulpit
+        label: the pulpit
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: kirk_pulpit
+        affordances:
+          - ascend
+          - address_congregation
+      - id: pews
+        label: the oak pews
+        tier: flavor_only
+      - id: vestry
+        label: the vestry
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: kirk_vestry
+        affordances:
+          - enter
+      - id: kirkyard_slope
+        label: the kirkyard slope down to the burn
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: kirk_kirkyard_slope
+        affordances:
+          - descend
+          - inspect_graves
+      - id: headstones
+        label: the headstones
+        tier: flavor_only
+      - id: rev_murchison
+        label: Rev Andrew Murchison
+        tier: real_object
+        binding:
+          kind: npc
+          ref: rev_murchison
     rivers: []
     settlements: []
 
@@ -234,6 +707,54 @@ regions:
       - the goods siding for the distillery
       - the ticket window
       - the wooden bench under the awning
+    entities:
+      - id: platform
+        label: the platform
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: railway_platform
+        affordances:
+          - wait
+          - meet_train
+      - id: stationmasters_office
+        label: the stationmaster's office
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: railway_stationmasters_office
+        affordances:
+          - enter
+          - ask_about_passengers
+      - id: goods_siding
+        label: the goods siding
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: railway_goods_siding
+        affordances:
+          - inspect
+          - load_unload
+      - id: ticket_window
+        label: the ticket window
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: railway_ticket_window
+        affordances:
+          - buy_ticket
+          - ask_question
+      - id: waiting_bench
+        label: the wooden bench under the awning
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: railway_waiting_bench
+        affordances:
+          - sit
+      - id: kettle
+        label: the kettle in the office
+        tier: flavor_only
     rivers: []
     settlements: []
 
@@ -261,6 +782,51 @@ regions:
       - the central span (the place where the village stops to look at the river)
       - the upstream side where the leaves collect
       - the milestone at the south end (Inverness 28, Cullenmore 7)
+    entities:
+      - id: three_arches
+        label: the three stone arches
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: bridge_arches
+        affordances:
+          - inspect
+      - id: central_span
+        label: the central span
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: bridge_central_span
+        affordances:
+          - cross
+          - look_at_river
+      - id: parapet
+        label: the parapet
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: bridge_parapet
+        affordances:
+          - lean_on
+      - id: upstream_side
+        label: the upstream side where the leaves collect
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: bridge_upstream_side
+        affordances:
+          - inspect_debris
+      - id: milestone
+        label: the milestone at the south end
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: bridge_milestone
+        affordances:
+          - read
+      - id: river_below
+        label: the river below
+        tier: flavor_only
     rivers: [allt_ross]
     settlements: []
 
@@ -285,6 +851,74 @@ regions:
       - the bonded warehouse (number one — the longest aged)
       - the still room with the two copper stills (Caelidh and Brigid)
       - the distiller's office with the tasting cabinet
+    entities:
+      - id: pagoda_kilns
+        label: the two pagoda kilns
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: distillery_pagoda_kilns
+        affordances:
+          - inspect
+      - id: bonded_warehouse
+        label: the bonded warehouse
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: distillery_warehouse
+        affordances:
+          - enter
+          - inspect_casks
+      - id: still_room
+        label: the still room
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: distillery_still_room
+        affordances:
+          - enter
+          - inspect_stills
+      - id: copper_stills
+        label: the two copper stills
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: distillery_copper_stills
+        affordances:
+          - touch
+          - inspect
+      - id: mash_house
+        label: the mash house
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: distillery_mash_house
+        affordances:
+          - enter
+      - id: distillers_office
+        label: the distiller's office
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: distillery_office
+        affordances:
+          - enter
+          - inspect_books
+      - id: tasting_cabinet
+        label: the tasting cabinet
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: distillery_tasting_cabinet
+        affordances:
+          - open
+          - sample
+      - id: donald_munro
+        label: Donald Munro
+        tier: real_object
+        binding:
+          kind: npc
+          ref: donald_munro
     rivers: [allt_ross]
     settlements: []
 
@@ -312,6 +946,99 @@ regions:
       - the rose garden (the gardener's domain — and the place where bodies are sometimes found)
       - the gun-room beside the stables
       - the long drive down to the lodge gates
+    entities:
+      - id: porte_cochere
+        label: the porte-cochère
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: castle_porte_cochere
+        affordances:
+          - approach
+          - shelter
+      - id: main_door
+        label: the main door
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: castle_main_door
+        affordances:
+          - knock
+          - enter
+      - id: library
+        label: the library
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: castle_library
+        affordances:
+          - enter
+          - search_books
+      - id: rose_garden
+        label: the rose garden
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: castle_rose_garden
+        affordances:
+          - walk
+          - search
+      - id: gun_room
+        label: the gun-room
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: castle_gun_room
+        affordances:
+          - enter
+          - inspect_arms
+      - id: walled_gardens
+        label: the walled gardens
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: castle_walled_gardens
+        affordances:
+          - walk
+      - id: long_drive
+        label: the long drive
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: castle_long_drive
+        affordances:
+          - walk
+          - ride
+      - id: lodge_gates
+        label: the lodge gates
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: castle_lodge_gates
+        affordances:
+          - approach
+          - pass_through
+      - id: home_farm
+        label: the home farm
+        tier: flavor_only
+      - id: sir_iain
+        label: Sir Iain Ross
+        tier: real_object
+        binding:
+          kind: npc
+          ref: sir_iain_ross
+      - id: lady_annabel
+        label: Lady Annabel Ross
+        tier: real_object
+        binding:
+          kind: npc
+          ref: lady_annabel_ross
+      - id: hugo
+        label: Hugo Ross
+        tier: real_object
+        binding:
+          kind: npc
+          ref: hugo_ross
     rivers: []
     settlements: []
 
@@ -336,6 +1063,57 @@ regions:
       - the cricket square at the centre
       - the shinty goals (north and south)
       - the marquee field where the fete is held
+    entities:
+      - id: pavilion
+        label: the pavilion
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: cricket_pavilion
+        affordances:
+          - enter
+          - change
+      - id: verandah
+        label: the verandah
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: cricket_verandah
+        affordances:
+          - sit
+          - watch_play
+      - id: cricket_square
+        label: the cricket square
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: cricket_square
+        affordances:
+          - bat
+          - bowl
+          - inspect
+      - id: shinty_goals
+        label: the shinty goals
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: cricket_shinty_goals
+        affordances:
+          - inspect
+      - id: marquee_field
+        label: the marquee field
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: cricket_marquee_field
+        affordances:
+          - walk
+      - id: boundary_rope
+        label: the boundary rope
+        tier: flavor_only
+      - id: meadow
+        label: the long flat meadow
+        tier: flavor_only
     rivers: []
     settlements: []
 
@@ -362,5 +1140,46 @@ regions:
       - the burnt shieling (a ruin, late 1860s, the cause is folklore now)
       - the view of the glen back south, on a clear day
       - the path that branches east to the Ross summit
+    entities:
+      - id: high_cairn
+        label: the high cairn at the head of the pass
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: long_pass_high_cairn
+        affordances:
+          - inspect
+          - shelter_behind
+      - id: burnt_shieling
+        label: the burnt shieling
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: long_pass_burnt_shieling
+        affordances:
+          - enter
+          - search_ruin
+      - id: shielings
+        label: the high shielings
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: long_pass_shielings
+        affordances:
+          - approach
+      - id: ross_summit_path
+        label: the path that branches east to the Ross summit
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: long_pass_ross_summit_path
+        affordances:
+          - ascend
+      - id: deer_forest
+        label: the deer forest
+        tier: flavor_only
+      - id: southward_view
+        label: the view of the glen back south
+        tier: flavor_only
     rivers: [allt_ross]
     settlements: []
