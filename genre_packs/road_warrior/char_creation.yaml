@@ -1,0 +1,227 @@
+- id: origins
+  title: Where'd You Learn to Ride?
+  narration: |
+    A garage. Fluorescent light, oil on concrete, a radio playing
+    something with bass. The rig is up on the lift, hood open, and
+    you've been under it for hours.
+
+    The radio cuts to a voice — tight, urgent: "All crews be advised —
+    Eastside border is hot tonight. Divvies running checkpoints on the
+    Nine. Stay in your lanes."
+
+    You wipe your hands on a rag that stopped being clean a long time
+    ago and look at the rig. Your rig. Every scar on it is a story.
+    Every bolt you tightened yourself.
+
+    How'd you get here?
+  loading_text: "The engine ticks as the fluorescent hum fills your answer..."
+  choices:
+    - label: Born into a crew
+      description: >-
+        You grew up in the culture — crew parties in the garage, riding
+        on the back of someone's bike before you could see over the tank.
+        The crew is the only family you've ever known, and the road is
+        the family business.
+      mechanical_effects:
+        race_hint: Convoy Born
+        background: Crew Kid
+    - label: Grew up in the garage
+      description: >-
+        Engines were your toys. Wrenches were your utensils. You took
+        apart your first carburetor at eight and had it running better
+        by nine. The machine makes sense to you in ways people don't.
+      mechanical_effects:
+        race_hint: Gearhead
+        background: Shop Kid
+    - label: Running from something
+      description: >-
+        You don't talk about before. Before is gone. All that matters
+        is the road ahead and the thing behind you that you're not sure
+        has stopped following.
+      mechanical_effects:
+        race_hint: Outlaw
+        background: Runner
+    - label: Trained for this
+      description: >-
+        Pit crew. Racing team. Military motor pool. Whatever it was,
+        they taught you discipline, precision, and how to change a tire
+        in under thirty seconds. Then that life ended and this one began.
+      mechanical_effects:
+        race_hint: Pit Crew
+        background: Professional
+    - label: Built my own rig from nothing
+      description: >-
+        Found the frame at a salvage yard. Found the engine in a
+        classifieds listing. Found the will in yourself. Nobody gave
+        you anything. Everything on this rig, you earned, scrounged,
+        or stole.
+      mechanical_effects:
+        race_hint: Scrapper
+        background: Self-Made
+    - label: Inherited a legend
+      description: >-
+        The rig was someone else's first. Someone who mattered. Their
+        name still opens doors — or slams them shut. You ride in their
+        shadow, for better or worse.
+      mechanical_effects:
+        race_hint: Legacy
+        background: Heir
+  allows_freeform: true
+
+- id: pronouns
+  title: "Who Are You?"
+  narration: >-
+    On the road, names change with the crew. But the riders who ride
+    with you — how do they talk about you on the radio?
+  allows_freeform: true
+  choices:
+    - label: "she/her"
+      description: "She walks her own path."
+      mechanical_effects:
+        pronoun_hint: "she/her"
+    - label: "he/him"
+      description: "He forges his own way."
+      mechanical_effects:
+        pronoun_hint: "he/him"
+    - label: "they/them"
+      description: "They answer to no one's expectations."
+      mechanical_effects:
+        pronoun_hint: "they/them"
+
+- id: the_rig
+  title: Tell Me About the Rig
+  narration: |
+    You step back and look at it. Really look at it.
+
+    Every rig has a personality. Some purr, some growl, some scream.
+    Some are fast, some are tough, some are held together by spite
+    and baling wire. But every one of them is alive in a way that
+    matters to the person behind the wheel.
+
+    This one is yours. What's it like?
+  choices:
+    - label: Fast and fragile
+      description: >-
+        Built for speed. Stripped down, tuned up, everything sacrificed
+        for velocity. She's light, she's quick, and if something hits
+        her hard she'll fold like paper. But nothing's going to hit her,
+        because nothing can catch her.
+      mechanical_effects:
+        rig_type_hint: interceptor
+        rig_trait: speed
+    - label: Heavy and mean
+      description: >-
+        A wall on wheels. Armored, reinforced, heavy as sin. She doesn't
+        dodge — she takes the hit and keeps rolling. Slow off the line
+        but once she's moving, God help whatever's in the way.
+      mechanical_effects:
+        rig_type_hint: war_rig
+        rig_trait: armor
+    - label: Jury-rigged miracle
+      description: >-
+        Three different vehicles welded into one beautiful disaster.
+        Nothing matches, half the parts shouldn't work together, and
+        she stalls if you look at her wrong. But you know her moods,
+        her quirks, and the exact spot to hit the dashboard when the
+        electrics fail.
+      mechanical_effects:
+        rig_type_hint: frankenstein
+        rig_trait: character
+    - label: A bike
+      description: >-
+        Two wheels. No armor. No roof. Just you, the engine, and the
+        wind trying to kill you. Faster than anything on four wheels
+        and half as safe. You wouldn't have it any other way.
+      mechanical_effects:
+        rig_type_hint: bike
+        rig_trait: agility
+    - label: A working machine
+      description: >-
+        Not flashy. Not fast. Not tough. But reliable. Starts every
+        morning, runs all day, and has never left you stranded. In a
+        world where everything breaks, reliable is the most valuable
+        thing there is.
+      mechanical_effects:
+        rig_type_hint: hauler
+        rig_trait: reliability
+  allows_freeform: true
+
+- id: crucible
+  title: What Happened on the Road?
+  narration: |
+    The radio crackles again. Different voice this time, tighter:
+    "All crews — we have a situation on the boulevard. This is not a drill."
+
+    You've heard calls like that before. Everyone has. The road gives
+    and the road takes. Something happened to you out there — something
+    that made you who you are now.
+
+    What was it?
+  choices:
+    - label: I lost my crew
+      description: >-
+        They were good people. Good riders. It wasn't enough. You're
+        the one who made it out, and you've been riding alone since.
+        The empty seat behind you is louder than the engine.
+      mechanical_effects:
+        class_hint: Wheelman
+        personality_trait: haunted
+    - label: I won a race I shouldn't have
+      description: >-
+        Outmatched, outgunned, outclassed. But you rode like the devil
+        was in the passenger seat, and when the dust settled, you were
+        the only one still rolling. Now everyone knows your name.
+      mechanical_effects:
+        class_hint: Wheelman
+        personality_trait: reckless
+    - label: I built something from wreckage
+      description: >-
+        After the worst day of your life, you sat in the garage and
+        started picking up pieces. Bolted them together. Made something
+        new. Turns out that's what you do — you take what's broken and
+        make it run again.
+      mechanical_effects:
+        class_hint: Grease Monkey
+        personality_trait: resourceful
+    - label: I took down someone bigger than me
+      description: >-
+        They had more riders, more rigs, more pull. You had one machine
+        and a plan that was either brilliant or suicidal. It worked.
+        Barely. The scars are still healing.
+      mechanical_effects:
+        class_hint: Wrecker
+        personality_trait: defiant
+    - label: I saw something on the road nobody believes
+      description: >-
+        Out past the last streetlight, where the city gives way to
+        nothing. You saw it. You can't explain it. You rode back
+        changed, and now the road calls you in a way it didn't before.
+      mechanical_effects:
+        class_hint: Chrome Saint
+        personality_trait: seeking
+    - label: I brought people together
+      description: >-
+        They were scattered — lost riders, broken crews, people with
+        nowhere to ride. You gave them somewhere to ride. You gave them
+        a crew. Now they follow you, and you're not sure you deserve it.
+      mechanical_effects:
+        class_hint: Road Preacher
+        personality_trait: reluctant_leader
+  allows_freeform: true
+
+- id: the_name
+  title: What Do They Call You?
+  narration: |
+    The radio goes quiet. You close the hood. The rig is ready.
+    You're ready.
+
+    On the road, nobody cares about your birth certificate. They care
+    about what you ride, how you ride it, and the name people say
+    when they see your headlight in the mirror.
+
+    What do they call you? And what do they call the rig?
+  choices: []
+  allows_freeform: true
+  hook_prompt: >-
+    Give your rider a road name and your rig a name. Both matter.
+    Both are how the world knows you.

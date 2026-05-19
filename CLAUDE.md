@@ -198,7 +198,7 @@ genre_packs/
 └── tea_and_murder/       # Cosy Edwardian BritBox murder mystery (Glenross — Highland village amateur sleuths)
 ```
 
-Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — heavy_metal, low_fantasy, neon_dystopia, pulp_noir, road_warrior, spaghetti_western at various levels of completeness.
+Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — heavy_metal, low_fantasy, neon_dystopia, pulp_noir, spaghetti_western at various levels of completeness.
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters, factions, OCEAN profiles, conlang morphemes, audio cues, `visual_style.yaml`), world data, ACE-Step music params (`audio/music/*_input_params.json` — ADR-095, OGG lives in R2), and image prompts (portrait_manifest.yaml, POI yamls — rendered PNGs live in R2 at `cdn.slabgorb.com/genre_packs/<pack>/...`).
 

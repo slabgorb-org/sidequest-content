@@ -1,0 +1,16 @@
+# Road Warrior — visibility baseline.
+# Per-genre default for what each player sees of other players' actions.
+# Road Warrior is open table-talk: formation rides, parking-lot meets, and
+# crew-vs-crew confrontations are inherently public. Stealth and private
+# rolls (e.g. a furtive scrap-grab, a clandestine repair) stay actor-only.
+tone: balanced
+default_visibility:
+  npc_agency: all
+  confrontation_init: all
+  stealth_roll_check: actor_only
+  lore_reveal: actor_only
+  dice_roll_private: actor_only
+status_effect_fidelity:
+  blinded: {visual_only: drop, audio_only: keep}
+  deafened: {audio_only: drop, visual_only: keep}
+all_scope: protagonists

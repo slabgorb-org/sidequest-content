@@ -17,6 +17,7 @@ services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 | `caverns_and_claudes` | Classic dungeon crawl (meta-humor on D&D tropes) | `beneath_sunden` (single-shaft procedural megadungeon, ADR-106; surface anchor authored, deep is runtime) |
 | `elemental_harmony` | Martial arts / elemental magic | — |
 | `mutant_wasteland` | Post-apocalyptic mutants | `flickering_reach` (fully spoilable) |
+| `road_warrior` | Late-70s / early-80s vehicle subcultures sharing one port city (bōsōzoku, mods, lowriders, dekotora, raggare, &c.) | `the_circuit` |
 | `space_opera` | Sci-fi space adventure | `coyote_star` |
 | `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross` |
 
@@ -26,7 +27,7 @@ asset directories for portraits, POI landscapes, and music params.
 
 Stub / workshopping packs not yet wired into runtime live under
 `genre_workshopping/` (heavy_metal, low_fantasy, neon_dystopia, pulp_noir,
-road_warrior, spaghetti_western at various levels of completeness).
+spaghetti_western at various levels of completeness).
 
 ## Layout
 
