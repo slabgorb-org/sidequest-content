@@ -26,8 +26,15 @@ factions, OCEAN profiles, conlang morphemes, audio cues, visual style), and
 asset directories for portraits, POI landscapes, and music params.
 
 Stub / workshopping packs not yet wired into runtime live under
-`genre_workshopping/` (heavy_metal, low_fantasy, neon_dystopia, pulp_noir,
+`genre_workshopping/` (caverns_sunden — deprecated three-sins hub superseded
+by `beneath_sunden`; heavy_metal, low_fantasy, neon_dystopia, pulp_noir,
 spaghetti_western at various levels of completeness).
+`genre_workshopping/{elemental_harmony,space_opera,tea_and_murder}/worlds/`
+hold in-progress alternate worlds for the live packs of the same name.
+
+`genre_packs/heavy_metal/` and `genre_packs/spaghetti_western/` exist as
+empty scaffolding (no `pack.yaml`) and are skipped by the loader; promote
+the workshopping versions before listing them as live.
 
 ## Layout
 
