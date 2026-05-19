@@ -1,0 +1,226 @@
+# Road Warrior — Class Definitions (ADR-095 Class Mechanical Surface)
+#
+# One signature ability per non-magical class. Each ability is gated
+# narratively — "once per chase / per combat / per encounter" — and
+# couples to the two-pool damage model (Driver Edge + Rig Composure)
+# documented in rules.yaml > custom_rules.damage_model.
+#
+# All six road_warrior classes are non-magical. magic_access stays
+# null; "supernatural equivalent" flavor lives in powers.yaml.
+#
+# Class influences:
+#   - Starting Edge max (rules.yaml > edge_config.base_max_by_class)
+#   - Starting equipment incl. tier-1 rig (inventory.yaml > starting_equipment)
+#   - Signature ability (this file)
+#   - Stat-keyed power-source narrative scaffolding (powers.yaml)
+#
+# Prime requisites use the six road_warrior ability scores:
+#   Grip, Iron, Nerve, Scrap, Road Sense, Swagger.
+#
+# saving_throws is intentionally null on every class — road_warrior
+# uses confrontation beats + Edge thresholds, not B/X saves.
+
+- id: wheelman
+  display_name: Wheelman
+  rpg_role: skirmisher
+  jungian_default: hero
+  prime_requisite: GRIP
+  minimum_score: 9
+  kit_table: wheelman_kit
+  flavor: >-
+    Ten thousand hours behind the wheel. The road talks; you listen.
+  encounter_beat_choices:
+    - floor_it
+    - terrain_cut
+    - smoke_screen
+    - engine_kill
+    - sideswipe
+    - evasive
+    - disengage
+  magic_access: null
+  abilities:
+    - name: "Threading the Needle"
+      genre_description: >-
+        You see the gap before it opens — the half-meter between two
+        rigs, the slot under a rising shutter, the seam in a wall of
+        oncoming traffic. Your hands move before your eyes catch up.
+        The gap is exactly the width of your rig. It is always exactly
+        the width of your rig. You drift through and the engines on
+        either side scream at the air where you just weren't.
+      mechanical_effect: >-
+        Once per chase: declare a Threading the Needle move on any
+        chase beat that would inflict Rig Composure damage. The damage
+        is negated and your player_metric (separation) drops by 1
+        instead — you took the gap but lost ground. Cannot be used on
+        a beat that would crash the rig (Composure already at 1).
+      involuntary: false
+  saving_throws: null
+
+- id: wrecker
+  display_name: Wrecker
+  rpg_role: tank
+  jungian_default: warrior
+  prime_requisite: IRON
+  minimum_score: 9
+  kit_table: wrecker_kit
+  flavor: >-
+    Violence is a craft and the rig is the chisel.
+  encounter_beat_choices:
+    - ram
+    - sideswipe
+    - evasive
+    - disengage
+    - threaten
+  magic_access: null
+  abilities:
+    - name: "Push Through"
+      genre_description: >-
+        You don't slow down. You pick the angle, line up the front
+        end, and commit. The other rig has heavier armor — doesn't
+        matter. You hit a seam, a hinge, a weak weld; you hit through
+        them. Steel finds steel. Something gives, and it's never you.
+      mechanical_effect: >-
+        Once per combat: on a Ram beat, ignore the target's Armor
+        rating entirely. Deal Composure damage equal to your own
+        rig's Armor + Iron modifier. You take 1 Composure damage to
+        your own rig as recoil. Cannot be used while dismounted.
+      involuntary: false
+  saving_throws: null
+
+- id: grease_monkey
+  display_name: Grease Monkey
+  rpg_role: support
+  jungian_default: caregiver
+  prime_requisite: SCRAP
+  minimum_score: 9
+  kit_table: grease_monkey_kit
+  flavor: >-
+    Every machine is a patient. Most of them you can save.
+  encounter_beat_choices:
+    - evasive
+    - smoke_screen
+    - concede_point
+    - disengage
+    - persuade
+  magic_access: null
+  abilities:
+    - name: "Field Repair"
+      genre_description: >-
+        You roll under, hands moving fast through smoke and sparks.
+        Something is loose, something else is bent — you don't need
+        light, you need three minutes and a wrench. The engine note
+        changes before you slide out from underneath. The rig was
+        dying. Now it is not dying.
+      mechanical_effect: >-
+        Once per encounter (chase OR combat): spend a beat to restore
+        1d3 Rig Composure to any rig in scene including your own.
+        Resolve as a Scrap check vs DC 11 — failure restores 1 only.
+        Cannot resurrect a wrecked rig (Composure already at 0); that
+        is a repair scene, not a beat.
+      involuntary: false
+  saving_throws: null
+
+- id: war_rider
+  display_name: War Rider
+  rpg_role: striker
+  jungian_default: warrior
+  prime_requisite: NERVE
+  minimum_score: 9
+  kit_table: war_rider_kit
+  flavor: >-
+    The rig moves and you move with it. The shot lands at sixty.
+  encounter_beat_choices:
+    - ram
+    - sideswipe
+    - evasive
+    - threaten
+    - disengage
+  magic_access: null
+  abilities:
+    - name: "Strafe Run"
+      genre_description: >-
+        You pace alongside the target at speed — close enough to
+        share air, close enough that your driver and theirs are
+        making eye contact. You stand in the stirrups, on the pegs,
+        in the bed of the truck, wherever the rig lets you stand,
+        and you fire. One shot. Clean. Their world cracks. You're
+        already past them when the casing hits asphalt.
+      mechanical_effect: >-
+        Once per combat: on a beat where you have Speed > target,
+        make a ranged attack at +2 base AND advance one chase tier
+        (your Speed effectively +1 for the round). The attack auto-
+        resolves before the target's next beat. Cannot be used while
+        dismounted or while target has Speed parity.
+      involuntary: false
+  saving_throws: null
+
+- id: chrome_saint
+  display_name: Chrome Saint
+  rpg_role: striker
+  jungian_default: martyr
+  prime_requisite: NERVE
+  minimum_score: 9
+  kit_table: chrome_saint_kit
+  flavor: >-
+    The line between flesh and machine is the line you cross daily.
+  encounter_beat_choices:
+    - ram
+    - sideswipe
+    - evasive
+    - threaten
+    - disengage
+  magic_access: null
+  abilities:
+    - name: "Body Sync"
+      genre_description: >-
+        You feel the rig the way you feel your own ribs. When it
+        takes a hit, you take a hit. When it bleeds oil, you bleed
+        somewhere. The boundary that other drivers maintain — the
+        seat, the harness, the cabin — you don't have. You and the
+        rig are one piece of moving steel-and-meat, and what hurts
+        one of you can be re-routed through the other.
+      mechanical_effect: >-
+        Once per combat or chase: spend 1 Driver Edge to either
+        (a) restore your Rig Composure to its current maximum,
+        OR (b) negate a critical-fail consequence on any beat — your
+        body absorbs through the chrome what would have broken the
+        rig. Visibly costs you (the narrator MUST describe the
+        physical toll — a new burn, a stuttering implant, a tooth
+        spat onto the seat).
+      involuntary: false
+  saving_throws: null
+
+- id: road_preacher
+  display_name: Road Preacher
+  rpg_role: controller
+  jungian_default: ruler
+  prime_requisite: SWAGGER
+  minimum_score: 9
+  kit_table: road_preacher_kit
+  flavor: >-
+    Conviction so absolute that others follow. Belief is contagious.
+  encounter_beat_choices:
+    - persuade
+    - threaten
+    - concede_point
+    - walk_away
+    - evasive
+  magic_access: null
+  abilities:
+    - name: "Rally"
+      genre_description: >-
+        You stand up in the seat, you raise your voice, you say the
+        thing that has to be said. It isn't a speech — speeches are
+        for after. It's a sentence and a name and a reason. The crew
+        hears it. They were going to break and now they aren't. The
+        rig at the back, the one that was failing — it isn't failing
+        now. The driver in it remembered why they ride.
+      mechanical_effect: >-
+        Once per encounter (combat OR chase OR negotiation): declare
+        a Rally. All allied rigs in scene (including yours) get +1
+        base on their next beat. One allied rig at less than 50% Rig
+        Composure restores 1 Composure. If a social confrontation is
+        active, your active player_metric drops by 1 (you spent
+        leverage to spend belief).
+      involuntary: false
+  saving_throws: null

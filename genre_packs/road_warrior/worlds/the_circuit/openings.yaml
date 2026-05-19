@@ -1,0 +1,164 @@
+# The Circuit — session openings.
+# Road_warrior's flagship world: ten vehicle subcultures sharing one port city.
+# Authored per the canned-openings schema (M2, post-restore-from-workshop).
+# Spec: docs/superpowers/specs/2026-05-01-canned-openings-design.md §1.1
+#
+# Hard contracts (validators):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     [authored / [TBD / [migrated / [placeholder
+#   - location-anchored entries set setting.location_label (no chassis_instance)
+#   - at least one solo + one MP opening
+#
+# Voice contract: late-70s / early-80s, asphalt-and-neon, joyful-paranoid.
+# Pynchon under the daylight surface. This is NOT Mad Max — there is a
+# functioning city with traffic lights, convenience stores, and people who
+# go to work in the morning. The crews live in the spaces between.
+# Faction logic, music, and territory differ per crew — each opening pins
+# to a specific crew's register so the bank doesn't smear into "generic
+# motorcycle gang night."
+
+version: "0.1.0"
+world: the_circuit
+genre: road_warrior
+
+openings:
+  # ---------------------------------------------------------------
+  # SOLO — bosozoku formation pulling onto the expressway, just past midnight
+  # ---------------------------------------------------------------
+
+  - id: solo_bosozoku_kanjo_onramp
+    name: "Kanjō Loop, Formation Onramp"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      location_label: "the Kannai onramp to the elevated expressway, just past midnight, at the back of a bōsōzoku formation throttling up for the night's run"
+      situation: >-
+        Midnight at the long curving onramp. The formation has assembled
+        in the convenience-store lot below — twelve bikes, a dekotora
+        running rear support, and a Bluebird wagon with the radio
+        relaying engine cues — and the lead rider has just nodded for
+        the climb. The expressway is empty above you. Your bike idles
+        in the slot that was open when you arrived.
+    tone:
+      register: "late-70s asphalt-and-neon, joyful-paranoid, the register of a crew who treats engine noise as language and the expressway as a temple"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - moving the player without their input
+        - generic "you wake up in danger" framing
+        - default-Mad-Max / wasteland aesthetic (wrong genre register)
+        - generic biker-movie vocabulary like "the wastes", "marauders", "outlaws on the run" — the Circuit has streetlights and convenience stores
+        - a quest-giver walking up to the PC at the start
+        - ending the turn with a question
+    establishing_narration: |
+      The formation has assembled the way bōsōzoku formations always
+      assemble — without anyone seeming to give the order — in the
+      Lawson lot below the Kannai onramp, twelve kaidō-racers and a
+      single dekotora with its running-lights dialed down to courtesy
+      brightness so the convenience-store clerk inside can keep
+      pretending he doesn't see you. The Bluebird wagon is parked
+      across the entrance with its radio tuned to the formation's
+      working frequency, a low static carrier the lead rider uses to
+      cue engine pulses when the expressway gets noisy. Nobody is
+      talking. Talking is for after.
+
+      Your bike is in the slot that was open when you rolled in
+      eight minutes ago. The slot was open because the rider it
+      belongs to is two minutes late, which means either he isn't
+      coming or he is coming so hard he won't bother with the lot,
+      and the formation has decided to leave the slot to you while
+      the question resolves. The dekotora driver — Konno — nodded at
+      you on the way past, which is as close as Konno comes to
+      welcome. Konno's truck is the formation's rear marker tonight,
+      Buddhist mural lit edge-on, twin chrome smokestacks ticking as
+      they cool from the run in.
+
+      The lead rider is Hibiki, three slots up the diagonal, helmet
+      already on, gloves on, idle set high enough that her exhaust
+      note is a separate organism from yours. She glances back once
+      — not at you specifically, at the whole tail of the formation —
+      and her right hand goes to the throttle in the small unhurried
+      half-twist that is the bōsōzoku version of *we are leaving*.
+
+      The onramp climbs in a long left-handed curve into the elevated
+      expressway, and the expressway is empty, and the expressway
+      lights are sodium-orange overhead, and the air smells like the
+      bay and like two-stroke oil and like the kanjō loop at the hour
+      when the city pretends nothing is happening up there.
+    first_turn_invitation: |
+      Hibiki's exhaust note drops a quarter-tone. Konno's running lights
+      come up. The slot in front of you opens onto the curve.
+
+  # ---------------------------------------------------------------
+  # MULTIPLAYER — mixed-crew sit-down in the Marina Heights lot, pre-negotiation
+  # ---------------------------------------------------------------
+
+  - id: mp_marina_heights_sitdown
+    name: "Marina Heights, Pre-Meet Lot"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 4
+      backgrounds: []
+    setting:
+      location_label: "the Marina Heights overflow lot above the container terminal, an hour before the cross-crew sit-down, late evening, fog coming in off the harbor"
+      situation: >-
+        An hour before the agreed sit-down at the diner across the
+        boulevard, your mixed-crew contingent has gathered in the
+        gravel overflow lot above the container terminal to compare
+        notes. Three rigs, three crews on the same side of a fragile
+        agreement, fog rolling in off the harbor. The other side
+        isn't here yet. You have time.
+    tone:
+      register: "late-70s asphalt-and-neon, joyful-paranoid, the register of three crews who shouldn't be on the same side and are, for tonight, on the same side"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - re-introducing the PCs to one another
+        - generic broker/quest-giver-across-the-room beat
+        - default-Mad-Max convoy bombast (no War Boys, no V8 worship, no wasteland dialect)
+        - generic biker-movie aesthetic (no "outlaw country" register)
+        - generic post-apoc vocabulary ("the wastes", "raiders")
+        - having a rival crew arrive on turn 1
+        - ending the turn with a question
+    establishing_narration: |
+      The Marina Heights overflow lot is unpaved gravel above the
+      container terminal, fenced on the harbor side with chain link
+      that the lowriders' kids have woven plastic strips through into
+      a slow argyle that catches the sodium lights from the boulevard.
+      Three rigs are parked at courteous angles — not in formation,
+      not in confrontation, just at the angles that say *we are here
+      and we are choosing not to box anyone in*. The fog is coming up
+      from the container yard in the slow undecided way harbor fog
+      arrives in this city, and the container-stack lights below show
+      through it as soft rectangles of green and red.
+
+      The diner you are all due at — Sal's, on the seaward side of
+      the boulevard — is visible across four lanes of light Tuesday
+      traffic. Its sign is on. The booth your contingent reserved is
+      not yet occupied. The other side's rigs are not yet on the
+      block. You arrived together on purpose, because none of you
+      wanted to be the first one inside, and none of you wanted to
+      be the second one inside either, and the gravel lot above the
+      terminal is the agreed staging ground when three crews have to
+      walk into the same room and pretend they have always agreed.
+
+      Somebody — possibly Yolanda, possibly Reggie, possibly the dog
+      that follows Reggie everywhere — has brought a thermos. The
+      thermos is on the hood of the middle rig. The cap is off. Three
+      paper cups are on the hood beside it. Nobody has poured yet,
+      because pouring is a moment, and the moment hasn't arrived.
+
+      The container-yard crane down the slope rotates once, slowly,
+      against the fog. Its warning beacon ticks across the lot in red
+      pulses you stop noticing after the second pass. The boulevard
+      is quiet enough that you can hear the harbor.
+    first_turn_invitation: |
+      The thermos is on the hood. The cups are out. Sal's booth is
+      still empty across the boulevard. The fog keeps coming.

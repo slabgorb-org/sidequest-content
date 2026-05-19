@@ -1,0 +1,335 @@
+- id: turf_war
+  name: Turf War
+  description: >-
+    Two crews are contesting the same road, corner, or district. Territory
+    is identity — losing ground means losing face, losing revenue, losing
+    the right to call yourself a crew. The player is caught between,
+    recruited by, or directly responsible for the escalation.
+  category: conflict
+  triggers:
+    - a crew pushing into another crew's territory
+    - an insult on someone's home turf
+    - a business deal that crosses territorial lines
+  narrative_hints:
+    - graffiti tags being painted over with rival colors
+    - increased patrol rides on the disputed route
+    - mechanics at the neutral garage talking about it in whispers
+  tension_level: 0.6
+  resolution_hints:
+    - settle it with a race — winner takes the turf
+    - broker a shared-territory arrangement
+    - escalate to open war and take everything
+    - find out a third party is playing both sides
+  tags: [territory, war, faction, reputation]
+  escalation:
+    - at: 0.2
+      event: >-
+        Skirmishes on the border. Tags painted over. A rider from one crew
+        spotted deep in the other's territory with no explanation. Small
+        provocations that everyone knows aren't small.
+      npcs_involved: [The Enforcer]
+      stakes: Territory is being tested.
+    - at: 0.4
+      event: >-
+        The challenge goes formal. Both Bosses know. Both crews are
+        mobilizing. The player is asked to pick a side — or is told to
+        stay out, which is itself a kind of picking.
+      npcs_involved: [The Boss, The Enforcer]
+      stakes: A crew's territory and reputation are on the line.
+    - at: 0.6
+      event: >-
+        A third crew's turf gets caught in the crossfire. They weren't
+        involved before. They are now, and they're not happy. The police
+        have noticed. The neutral garage is running out of parts.
+      npcs_involved: [The Boss, The Broker]
+      stakes: The conflict is spreading beyond the original dispute.
+    - at: 0.8
+      event: >-
+        Full war on the road. Both crews commit everything — riders,
+        rigs, every weapon they've got. The route between territories is
+        a running battle. Civilians are avoiding the area. The police
+        are deciding whether to intervene or wait it out.
+      npcs_involved: [The Boss, The Enforcer, The Prospect]
+      stakes: Winner takes the turf. Loser walks or fights to the last rig.
+    - at: 1.0
+      event: >-
+        The final confrontation. Every rider on both sides, face to face.
+        Whatever happens here defines the road for a generation. The
+        whole city is watching — every crew, every garage, every cop.
+      npcs_involved: [The Boss, The Enforcer]
+      stakes: The map is redrawn tonight.
+  passive_progression:
+    rate_per_turn: 0.0125
+
+- id: the_run
+  name: The Run
+  description: >-
+    A job: move something across the city through contested territory by
+    a deadline. Cargo might be parts, a person, information, or something
+    nobody will name. The route crosses multiple crews' turf. Every
+    crossing is a negotiation, a bribe, or a chase.
+  category: journey
+  triggers:
+    - accepting a delivery job through hostile territory
+    - owing a favor that gets called in as a courier run
+    - needing to move something the police can't know about
+  narrative_hints:
+    - the route requires crossing at least two hostile districts
+    - other crews have turned down the same job
+    - the cargo is suspiciously well-wrapped or suspiciously casual
+  tension_level: 0.5
+  resolution_hints:
+    - deliver the cargo and collect the pay
+    - open the cargo and deal with what's inside
+    - sell the cargo to someone along the route
+    - abandon the run when the cost gets too high
+  tags: [journey, cargo, deadline, territory]
+  escalation:
+    - at: 0.2
+      event: >-
+        The first district is friendly — your crew's turf or neutral
+        ground. Easy riding. But the handoff point at the border is
+        where it gets real. Someone is watching who shouldn't be.
+      npcs_involved: [The Boss]
+      stakes: The easy part is over.
+    - at: 0.4
+      event: >-
+        First hostile territory. A checkpoint, a patrol, a crew that
+        wants to know what you're carrying. Talk your way through, ride
+        through, or find another way. Every option costs something.
+      npcs_involved: [The Enforcer, The Lone Rider]
+      stakes: The cargo is intact but the margin just got thinner.
+    - at: 0.6
+      event: >-
+        A choice: the planned route is blocked. The fast route goes
+        through the worst crew in the city. The back streets add an
+        hour you don't have. Someone knows what you're carrying.
+      npcs_involved: [The Broker, The Mechanic]
+      stakes: The run is failing and hard decisions are needed.
+    - at: 0.8
+      event: >-
+        The rig is damaged. The route is compromised. Someone else
+        wants the cargo and they're behind you with more riders than
+        you have. The destination is close but the road between here
+        and there is the worst stretch yet.
+      npcs_involved: [The Enforcer, The Prospect]
+      stakes: Finish the run or abandon it — halfway isn't an option.
+    - at: 1.0
+      event: >-
+        The final stretch. Everything that can go wrong has. The rig
+        is hurting. The crew is quiet. The cargo is all that matters.
+        One more district.
+      npcs_involved: [The Boss]
+      stakes: The destination — and what happens when you arrive.
+  passive_progression:
+    rate_per_turn: 0.025
+
+- id: the_race
+  name: The Race
+  description: >-
+    A race — sanctioned or not — with real stakes. Could be a turf
+    dispute settled on asphalt, a personal grudge, a crew initiation,
+    or just ego and gasoline. The route, the rules (if any), and the
+    consequences are what matter.
+  category: competition
+  triggers:
+    - a challenge issued in front of witnesses
+    - a turf dispute that both sides agree to settle by speed
+    - a newcomer claiming they're faster than the local legend
+  narrative_hints:
+    - mechanics prepping a specific rig with unusual intensity
+    - bets being placed across multiple crews
+    - the route being scouted by both riders
+  tension_level: 0.5
+  resolution_hints:
+    - win clean and take the glory
+    - win dirty and take the consequences
+    - lose and deal with what that means
+    - discover the race was rigged from the start
+  tags: [race, reputation, speed, honor]
+  escalation:
+    - at: 0.2
+      event: >-
+        The challenge is public. Both riders' reputations are on the
+        line. The Broker is already taking bets. The Mechanic is shaking
+        their head at your rig's condition.
+      npcs_involved: [The Broker, The Mechanic]
+      stakes: Reputation is on the table.
+    - at: 0.5
+      event: >-
+        Race night. The route is set. Half the city's crews are lining
+        the road to watch. The police know it's happening but haven't
+        moved yet. Your opponent's rig looks faster than you expected.
+      npcs_involved: [The Voice, The Boss]
+      stakes: Everyone is watching.
+    - at: 0.8
+      event: >-
+        Mid-race. Something goes wrong — a third party interferes, the
+        route is blocked, a rig starts to fail. The race becomes a
+        chase, the chase becomes survival, and the original stakes are
+        buried under "get through this alive."
+      npcs_involved: [The Enforcer, The Prospect]
+      stakes: Winning no longer matters — finishing does.
+    - at: 1.0
+      event: >-
+        The finish. Whoever crosses first takes everything — reputation,
+        territory, bragging rights. But the wreckage along the route has
+        created new grudges, and the police are moving.
+      npcs_involved: [The Voice, The Boss]
+      stakes: The outcome reshapes the pecking order.
+  passive_progression:
+    rate_per_turn: 0.02
+
+- id: crew_betrayal
+  name: Crew Betrayal
+  description: >-
+    Someone in a crew has turned. Selling information, skimming parts,
+    cutting deals with a rival. In road culture, crew loyalty is the
+    highest law — betrayal is worse than losing a fight. When it comes
+    out, and it always comes out, the fallout reshapes alliances.
+  category: faction
+  triggers:
+    - a crew job going wrong in ways that suggest inside knowledge
+    - a rival crew anticipating moves they shouldn't know about
+    - a member living above their means or ducking crew obligations
+  narrative_hints:
+    - the Broker suddenly knowing things they shouldn't
+    - a crew member missing meetings with weak excuses
+    - rival crews making moves that are too perfectly timed
+  tension_level: 0.6
+  resolution_hints:
+    - find the traitor and let the crew handle it
+    - discover the traitor has a sympathetic reason
+    - the "betrayal" is actually a setup by a third party
+    - the traitor offers the player a cut to stay quiet
+  tags: [betrayal, crew, loyalty, politics]
+  escalation:
+    - at: 0.3
+      event: >-
+        Something doesn't add up. A run goes bad in a way that suggests
+        someone talked. The Boss is suspicious but doesn't know who.
+        Trust in the crew is cracking.
+      npcs_involved: [The Boss]
+      stakes: Crew cohesion is fragile.
+    - at: 0.6
+      event: >-
+        Evidence points to someone specific. The crew is splitting —
+        those who believe it and those who don't. The accused is either
+        defending themselves badly or running. The player has to decide
+        what they believe and who they back.
+      npcs_involved: [The Boss, The Enforcer]
+      stakes: The crew may not survive this.
+    - at: 1.0
+      event: >-
+        Confrontation. The truth comes out — all of it, including parts
+        nobody wanted to hear. What happens next defines whether the
+        crew holds together or shatters.
+      npcs_involved: [The Boss, The Enforcer, The Veteran]
+      stakes: Loyalty tested to destruction.
+  passive_progression:
+    rate_per_turn: 0.0125
+
+- id: heat
+  name: The Heat
+  description: >-
+    Law enforcement is cracking down. Checkpoints, surveillance, raids.
+    Something embarrassed someone important and now every crew is feeling
+    the pressure. The usual accommodations between road culture and the
+    law are suspended. Nobody is safe on the road.
+  category: external
+  triggers:
+    - a civilian injury during a crew chase
+    - media coverage that forces a political response
+    - a new police commander with something to prove
+  narrative_hints:
+    - checkpoints appearing on previously safe routes
+    - informants going silent
+    - crews pulling rigs into garages and laying low
+  tension_level: 0.4
+  resolution_hints:
+    - lay low until the heat passes
+    - find what triggered the crackdown and fix it
+    - unite crews against a common enemy (temporarily)
+    - cut a deal with a cop who has their own agenda
+  tags: [police, external, pressure, all-factions]
+  escalation:
+    - at: 0.2
+      event: >-
+        The first checkpoint. Unexpected, efficient, and on a route
+        that was supposed to be clear. Someone got stopped. Someone got
+        their rig impounded. The crews are nervous.
+      npcs_involved: [The Broker]
+      stakes: The law is no longer predictable.
+    - at: 0.5
+      event: >-
+        Multiple crews hit simultaneously. Rigs impounded, riders
+        arrested, routes blocked. The crews are being squeezed and
+        starting to blame each other for bringing the heat.
+      npcs_involved: [The Boss, The Veteran]
+      stakes: Crews may turn on each other under pressure.
+    - at: 0.8
+      event: >-
+        The police offer a deal — to one crew. Cooperate, inform, and
+        we'll leave your territory alone. The offer is real. The question
+        is whether any crew takes it — and what happens when the others
+        find out.
+      npcs_involved: [The Boss, The Broker]
+      stakes: Crew loyalty vs. survival.
+    - at: 1.0
+      event: >-
+        The crackdown reaches its peak. A massive operation targeting
+        the heart of one crew's territory. The response from the road
+        defines the next era: submit, scatter, or unite.
+      npcs_involved: [The Boss, The Enforcer, The Veteran]
+      stakes: The relationship between the road and the law is rewritten.
+  passive_progression:
+    rate_per_turn: 0.008
+
+- id: rig_legend
+  name: Rig Legend
+  description: >-
+    A legendary rig exists — a one-of-a-kind machine with a history
+    that everyone in the scene knows. Might be a stolen prototype, a
+    dead rider's untouched bike, a custom build by a legendary mechanic
+    who disappeared. Everyone wants it. Finding it is a quest. Keeping
+    it is a war.
+  category: treasure
+  triggers:
+    - hearing stories about a specific legendary vehicle
+    - finding a part that matches no known production model
+    - encountering a rider on a machine that shouldn't exist
+  narrative_hints:
+    - mechanics whispering about a rig they saw once
+    - a Broker offering information about it for an unusual price
+    - old photographs in a garage showing a machine nobody recognizes
+  tension_level: 0.4
+  resolution_hints:
+    - find the rig and claim it
+    - find the rig and discover why it was hidden
+    - find the rig and realize it belongs to someone you can't take it from
+    - the "legend" turns out to be something other than a vehicle
+  tags: [treasure, rig, legend, quest]
+  escalation:
+    - at: 0.3
+      event: >-
+        A Mechanic tells you the story — a rig built by someone who
+        doesn't build anymore. Faster, meaner, or more beautiful than
+        anything on the road. Last seen heading somewhere nobody goes.
+      npcs_involved: [The Mechanic]
+      stakes: A legend might be real.
+    - at: 0.6
+      event: >-
+        Evidence surfaces — a part, a photograph, a sighting. You're
+        not the only one looking. A rival crew has the same lead, and
+        a Broker is selling the same information to both of you.
+      npcs_involved: [The Broker, The Lone Rider]
+      stakes: The competition is real and closing in.
+    - at: 1.0
+      event: >-
+        The rig. It's real. It's here. And getting it out is going to
+        be the hardest thing you've ever done — because everyone else
+        is here too.
+      npcs_involved: [The Broker, The Prospect, The Lone Rider]
+      stakes: The rig of legend — and everyone who wants it.
+  passive_progression:
+    rate_per_turn: 0.01

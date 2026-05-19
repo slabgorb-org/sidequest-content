@@ -1,0 +1,497 @@
+currency:
+  name: Fuel
+  abbreviation: F
+  description: >-
+    Fuel is the universal currency. Everything is priced in fuel units.
+    A full tank is wealth. An empty tank is death. The world's economy
+    runs on combustion — whoever controls fuel controls everything.
+  secondary:
+    - name: Parts
+      abbreviation: P
+      description: >-
+        Scavenged mechanical components. Used for rig repairs and upgrades.
+        More specialized parts are rarer and more valuable. A working
+        alternator is worth more than gold.
+    - name: Favor
+      abbreviation: Fv
+      description: >-
+        Debts owed and favors earned. The informal economy of the road.
+        A Fuel Broker who owes you a favor is better than a full tank.
+        Tracked per NPC/faction, not as a number.
+
+item_catalog:
+  # Rig Parts
+  - id: scrap_metal
+    name: Scrap Metal
+    description: "Generic salvage. Enough of it fixes anything."
+    category: rig_part
+    value: 1
+    weight: 2.0
+    rarity: common
+    power_level: 1
+    tags: [salvage, repair, rig]
+    lore: Bent, rusted, beautiful. Every pile of scrap is a rig waiting to happen.
+    narrative_weight: 0.1
+
+  - id: tire_worn
+    name: Tire (worn)
+    description: "Bald and patched but it holds air. Barely."
+    category: rig_part
+    value: 2
+    weight: 5.0
+    rarity: common
+    power_level: 1
+    tags: [tire, rig, repair]
+    lore: More patch than rubber. Pray it holds through the next stretch.
+    narrative_weight: 0.1
+
+  - id: tire_good
+    name: Tire (good)
+    description: "Actual tread. A luxury."
+    category: rig_part
+    value: 5
+    weight: 5.0
+    rarity: uncommon
+    power_level: 2
+    tags: [tire, rig, repair]
+    lore: Grip. Real grip. You forgot what that felt like.
+    narrative_weight: 0.2
+
+  - id: engine_part
+    name: Engine Part (generic)
+    description: "Belt, hose, gasket, filter. The stuff that keeps it running."
+    category: rig_part
+    value: 3
+    weight: 1.5
+    rarity: common
+    power_level: 2
+    tags: [engine, rig, repair]
+    lore: Nobody cares about a gasket until theirs blows at 90 mph.
+    narrative_weight: 0.1
+
+  - id: armor_plate
+    name: Armor Plate
+    description: "Weldable sheet metal. Adds Rig Armor when installed."
+    category: rig_part
+    value: 4
+    weight: 8.0
+    rarity: common
+    power_level: 2
+    tags: [armor, rig, upgrade]
+    lore: Quarter inch of steel between you and the road.
+    narrative_weight: 0.2
+
+  - id: alternator
+    name: Alternator
+    description: "Working alternator. Keeps the battery alive. Rare."
+    category: rig_part
+    value: 10
+    weight: 3.0
+    rarity: rare
+    power_level: 3
+    tags: [engine, rig, electrical]
+    lore: The heartbeat of the electrical system. Find one and guard it with your life.
+    narrative_weight: 0.3
+
+  - id: turbocharger
+    name: Turbocharger
+    description: "Bolt-on speed. Increases rig Speed when installed."
+    category: rig_part
+    value: 20
+    weight: 4.0
+    rarity: rare
+    power_level: 4
+    tags: [engine, rig, upgrade, speed]
+    lore: Whine, spool, scream. The sweetest sound on the road.
+    narrative_weight: 0.4
+
+  - id: engine_block
+    name: Engine Block
+    description: "A whole working engine. The holy grail of scavenging."
+    category: rig_part
+    value: 50
+    weight: 100.0
+    rarity: legendary
+    power_level: 5
+    tags: [engine, rig, upgrade]
+    lore: V8. Intact. Running. You'd kill for it. Someone probably did.
+    narrative_weight: 0.7
+
+  # Mount Weapons
+  - id: spike_strip_launcher
+    name: Spike Strip Launcher
+    description: "Drops spikes behind you. One use per chase."
+    category: weapon
+    value: 8
+    weight: 6.0
+    rarity: uncommon
+    power_level: 2
+    tags: [mounted, rig, weapon, chase, defensive]
+    lore: Coward's weapon, they say. Winner's weapon, you say.
+    narrative_weight: 0.3
+
+  - id: harpoon_gun
+    name: Harpoon Gun
+    description: "Fires a grappling harpoon. Can tow, anchor, or board."
+    category: weapon
+    value: 15
+    weight: 10.0
+    rarity: rare
+    power_level: 3
+    tags: [mounted, rig, weapon, utility]
+    lore: One shot. One cable. A hundred uses.
+    narrative_weight: 0.4
+
+  - id: flame_rig
+    name: Flame Rig
+    description: "Side-mounted flamethrower. Short range, dramatic effect."
+    category: weapon
+    value: 15
+    weight: 12.0
+    rarity: rare
+    power_level: 3
+    tags: [mounted, rig, weapon, fire]
+    lore: The road behind you glows orange. Nobody follows.
+    narrative_weight: 0.5
+
+  - id: mounted_gun
+    name: Mounted Gun
+    description: "Bolted-on firearm. Gunner-operated during chases."
+    category: weapon
+    value: 25
+    weight: 15.0
+    rarity: rare
+    power_level: 4
+    tags: [mounted, rig, weapon, ranged]
+    lore: Belt-fed and ugly. The universal language of the wasteland.
+    narrative_weight: 0.4
+
+  - id: ram_plow
+    name: Ram Plow
+    description: "Welded front plate. Reduces ramming damage to your rig."
+    category: weapon
+    value: 12
+    weight: 20.0
+    rarity: uncommon
+    power_level: 3
+    tags: [mounted, rig, armor, melee]
+    lore: Built from a highway sign. Now it IS the highway.
+    narrative_weight: 0.3
+
+  # Survival Gear
+  - id: water_1day
+    name: Water (1 day)
+    description: "Clean water. One day's supply for one person."
+    category: consumable
+    value: 1
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [survival, consumable, water]
+    lore: Worth more than fuel if you're walking.
+    narrative_weight: 0.1
+
+  - id: road_rations_1day
+    name: Road Rations (1 day)
+    description: "Calories. Don't ask what's in it."
+    category: consumable
+    value: 1
+    weight: 0.5
+    rarity: common
+    power_level: 1
+    tags: [survival, consumable, food]
+    lore: Protein paste and dried something. It keeps you moving.
+    narrative_weight: 0.1
+
+  - id: medkit
+    name: Medkit
+    description: "Basic medical supplies. Treats one injury."
+    category: consumable
+    value: 5
+    weight: 1.0
+    rarity: uncommon
+    power_level: 2
+    tags: [survival, consumable, medical]
+    lore: Bandages, antiseptic, painkillers. Civilization in a box.
+    narrative_weight: 0.2
+
+  - id: tool_kit
+    name: Tool Kit
+    description: "Wrenches, screwdrivers, hammer. Required for field repairs."
+    category: tool
+    value: 5
+    weight: 3.0
+    rarity: uncommon
+    power_level: 2
+    tags: [tool, repair, rig]
+    lore: A mechanic without tools is just a guy staring at an engine.
+    narrative_weight: 0.2
+
+  - id: binoculars
+    name: Binoculars
+    description: "See trouble coming. Road Sense bonus when scouting."
+    category: tool
+    value: 3
+    weight: 0.5
+    rarity: common
+    power_level: 1
+    tags: [tool, scouting, recon]
+    lore: The best weapon is the one you never have to use because you saw them first.
+    narrative_weight: 0.2
+
+  - id: radio_handheld
+    name: Radio (handheld)
+    description: "Short-range communication. Listen to road reports."
+    category: tool
+    value: 4
+    weight: 0.5
+    rarity: common
+    power_level: 2
+    tags: [tool, communication, radio]
+    lore: Crackle, static, and sometimes a voice that saves your life.
+    narrative_weight: 0.2
+
+  - id: radio_rig
+    name: Radio (rig-mounted)
+    description: "Long-range comms. Hear convoy signals, road warnings, arena broadcasts."
+    category: tool
+    value: 10
+    weight: 2.0
+    rarity: uncommon
+    power_level: 3
+    tags: [tool, communication, radio, rig]
+    lore: Reach out and touch someone. Fifty miles in every direction.
+    narrative_weight: 0.3
+
+  # Personal Weapons
+  - id: tire_iron
+    name: Tire Iron
+    description: "Melee. Better than nothing."
+    category: weapon
+    value: 1
+    weight: 1.5
+    rarity: common
+    power_level: 1
+    tags: [melee, weapon, tool]
+    lore: Every driver carries one. Not just for tires.
+    narrative_weight: 0.1
+
+  - id: chain
+    name: Chain
+    description: "Melee. Good reach. Classic road warrior accessory."
+    category: weapon
+    value: 1
+    weight: 2.0
+    rarity: common
+    power_level: 1
+    tags: [melee, weapon]
+    lore: Three feet of oily steel. Swings wide, hits hard.
+    narrative_weight: 0.2
+
+  - id: sawed_off_shotgun
+    name: Sawed-off Shotgun
+    description: "Two shots. Make them count."
+    category: weapon
+    value: 8
+    weight: 2.0
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, weapon, firearm]
+    lore: Close range diplomacy. Two barrels of persuasion.
+    narrative_weight: 0.3
+
+  - id: crossbow
+    name: Crossbow
+    description: "Silent. Reusable ammo. Slow to reload."
+    category: weapon
+    value: 6
+    weight: 2.5
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, weapon, silent]
+    lore: No bang, no flash. Just a bolt in the dark.
+    narrative_weight: 0.3
+
+  - id: pistol
+    name: Pistol
+    description: "Sidearm. Limited ammo is the real constraint."
+    category: weapon
+    value: 7
+    weight: 1.0
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, weapon, firearm, one-handed]
+    lore: Six rounds. Every one is a decision.
+    narrative_weight: 0.2
+
+  # ── VESSELS (RIGS) — magic.yaml vessel category ────────────────
+  # Templates by tier. The player names their rig at chargen
+  # (char_creation.yaml the_name scene). The materializer should
+  # instantiate the appropriate tier template based on character level
+  # (see custom_rules.rig_progression_arc and rig_composure_spec in
+  # rules.yaml). Composure / Speed / Armor / Fuel / Mount Slots are
+  # encoded in tags as ``composure:N``, ``speed:N``, etc. so the
+  # backend can parse them at materialization (filed as backlog story).
+  #
+  # Type is left abstract — the player's chosen chassis (Bōsōzoku
+  # kaidō racer, Vespa scooter, '64 Impala lowrider, dekotora, etc.)
+  # colors the narrative without changing the mechanical pool.
+
+  - id: rig_tier_1_prospect
+    name: "Prospect Rig"
+    description: >-
+      A fresh-on-the-road rig. Beat-up, mismatched panels, coughing
+      engine, steering pulls left, but it runs. Whatever you can salvage,
+      inherit, or buy with what's in your pocket on day one.
+    category: vessel
+    value: 0
+    weight: 0
+    rarity: common
+    power_level: 1
+    tags:
+      - vessel
+      - rig
+      - tier-1
+      - "composure:4"
+      - "composure_max:4"
+      - "speed:3"
+      - "armor:0"
+      - "fuel_capacity:60"
+      - "mount_slots:1"
+    lore: >-
+      Tier 1 — Prospect. Rig Composure 4. 1 mount slot. Fuel 60. The
+      thing that gets you to tomorrow.
+    narrative_weight: 0.5
+
+  - id: rig_tier_2_runner
+    name: "Runner Rig"
+    description: >-
+      Tuned engine purring under a reinforced hood. Painted stripes, a
+      name scratched into the dash, a lucky charm dangling from the
+      mirror. The relaxed confidence of someone who's been outrunning
+      things for a year.
+    category: vessel
+    value: 0
+    weight: 0
+    rarity: uncommon
+    power_level: 2
+    tags:
+      - vessel
+      - rig
+      - tier-2
+      - "composure:6"
+      - "composure_max:6"
+      - "speed:4"
+      - "armor:1"
+      - "fuel_capacity:80"
+      - "mount_slots:2"
+    lore: >-
+      Tier 2 — Runner. Composure 6. 2 mount slots. Light armor.
+      The rig has a personality now.
+    narrative_weight: 0.6
+
+  - id: rig_tier_3_road_name
+    name: "Road Name Rig"
+    description: >-
+      People know this rig before they know you. Custom paint that's
+      survived three repaints. A signature trait — a particular exhaust
+      note, a hood mural, a chrome detail — that the city recognizes.
+      Reputation rolls off it at every gas station.
+    category: vessel
+    value: 0
+    weight: 0
+    rarity: rare
+    power_level: 3
+    tags:
+      - vessel
+      - rig
+      - tier-3
+      - "composure:8"
+      - "composure_max:8"
+      - "speed:5"
+      - "armor:2"
+      - "fuel_capacity:100"
+      - "mount_slots:3"
+      - "signature_traits:1"
+    lore: >-
+      Tier 3 — Road Name. Composure 8. 3 mount slots. Armor 2.
+      One Signature Trait — choose at acquisition.
+    narrative_weight: 0.7
+
+  - id: rig_tier_4_convoy_legend
+    name: "Convoy Legend Rig"
+    description: >-
+      War boys want to ride with this rig. Fuel brokers extend credit on
+      sight of it. The chassis has been rebuilt around the engine, the
+      engine has been rebuilt around the chassis, and the result is
+      something that shouldn't exist but does.
+    category: vessel
+    value: 0
+    weight: 0
+    rarity: legendary
+    power_level: 4
+    tags:
+      - vessel
+      - rig
+      - tier-4
+      - "composure:10"
+      - "composure_max:10"
+      - "speed:6"
+      - "armor:3"
+      - "fuel_capacity:120"
+      - "mount_slots:4"
+      - "signature_traits:2"
+    lore: >-
+      Tier 4 — Convoy Legend. Composure 10. 4 mount slots. Armor 3.
+      Two Signature Traits.
+    narrative_weight: 0.85
+
+  - id: rig_tier_5_road_immortal
+    name: "Road Immortal Rig"
+    description: >-
+      The rig is a legend. Spoken about on every frequency. Photographs
+      of it pinned to garage walls in three districts. People claim it
+      was built by hand from the bones of seven crashed rigs. People
+      claim it was always here. The truth is somewhere in between.
+    category: vessel
+    value: 0
+    weight: 0
+    rarity: legendary
+    power_level: 5
+    tags:
+      - vessel
+      - rig
+      - tier-5
+      - "composure:12"
+      - "composure_max:12"
+      - "speed:7"
+      - "armor:4"
+      - "fuel_capacity:150"
+      - "mount_slots:5"
+      - "signature_traits:2"
+      - "legendary"
+    lore: >-
+      Tier 5 — Road Immortal. Composure 12. 5 mount slots. Armor 4.
+      Legendary tag (narratively indestructible except for story reasons).
+    narrative_weight: 1.0
+
+starting_equipment:
+  Wheelman: [rig_tier_1_prospect, tool_kit, pistol, radio_handheld]
+  Grease Monkey: [rig_tier_1_prospect, tool_kit, engine_part, medkit]
+  Wrecker: [rig_tier_1_prospect, chain, ram_plow, armor_plate]
+  War Rider: [rig_tier_1_prospect, sawed_off_shotgun, armor_plate, medkit]
+  Chrome Saint: [rig_tier_1_prospect, medkit, radio_rig, binoculars]
+  Road Preacher: [rig_tier_1_prospect, sawed_off_shotgun, radio_handheld, medkit]
+
+starting_gold:
+  Wheelman: 15
+  Grease Monkey: 20
+  Wrecker: 10
+  War Rider: 10
+  Chrome Saint: 15
+  Road Preacher: 25
+
+philosophy:
+  carry_limit: 0
+  restricted_categories: []
+  progression_gates: {}

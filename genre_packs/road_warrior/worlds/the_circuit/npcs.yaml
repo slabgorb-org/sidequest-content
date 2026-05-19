@@ -1,0 +1,469 @@
+# The Circuit — Authored NPCs (the recurring cast)
+#
+# Twelve named NPCs the player will come to know within four or five
+# sessions. Appearance prose lifted from portrait_manifest.yaml so the
+# face the narrator describes and the face the renderer paints stay in
+# sync. OCEAN per ADR-042. initial_disposition per ADR-020 (chapter
+# dispositions in history.yaml are the canonical source).
+#
+# Voice notes (verbal tics, register, signature phrases) live in
+# history_seeds as prose. The narrator extracts and uses them.
+#
+# This file is consumed by the world loader (per loader.py
+# `_validate_present_npcs_resolve` and `_validate_authored_npc_uniqueness`)
+# and is what lets the materializer pin these characters into
+# `snap.npcs` per "gaslight the narrator" doctrine — the narrator
+# cannot accidentally invent a Spark Greasefire who is suddenly
+# a man, or a Tombstone who is suddenly warm-hearted.
+
+version: "0.1.0"
+world: the_circuit
+
+npcs:
+  # ── FRESH: NEW BLOOD ───────────────────────────────────────────
+
+  - id: spark_greasefire
+    name: "Spark Greasefire"
+    pronouns: "she/her"
+    role: "Pit Crew mechanic at Grensholt — the safest person in the city to owe a favor"
+    ocean: { O: 0.55, C: 0.85, E: 0.45, A: 0.7, N: 0.3 }
+    appearance: >-
+      A woman in her forties with a shaved head and safety goggles pushed
+      up on her forehead like a crown. Dark skin covered in a permanent
+      patina of engine grease that she's stopped trying to wash off. Burn
+      scars ladder up both forearms from years of welding. Broad shoulders,
+      thick wrists, hands that could palm a transmission housing. Wears a
+      sleeveless mechanic's coverall over a tank top, steel-toed boots
+      worn smooth at the toe. A heavy tool belt hangs low on her hips. Her
+      expression is patient, appraising — the look of someone who listens
+      to your engine before she listens to you.
+    age: "forties"
+    distinguishing_features:
+      - "burn-scar ladders up both forearms from welding"
+      - "welding goggles pushed up like a crown — the unconscious tell that she's just stopped working on something"
+      - "a small blowtorch holstered at her hip like a sidearm"
+    history_seeds:
+      - >-
+        Voice in her own register: patient, technical, undramatic. Calls
+        rigs by their problems before she calls them by their names
+        ("the bent-rim one", "the radiator that lies"). Diagnoses a rig
+        before she diagnoses a person.
+      - >-
+        Belongs to no faction by deliberate choice. The 1%ers tried to
+        absorb her garage twice; both times she refused without
+        explanation and they did not push, because the next time a 1%er
+        bike came in needing work she fixed it at fair price. Neutrality
+        is her business model and her doctrine.
+      - >-
+        Will fix anyone's rig if they pay or owe properly. Owes nobody.
+        The leverage everyone wants from her is the same leverage she
+        protects: she sees what's wrong with every rig in the city and
+        does not gossip.
+    initial_disposition: 5
+
+  - id: haraka
+    name: "Haraka"
+    pronouns: "he/him"
+    role: "Matatu tout and information broker — best city-knowledge source for a newcomer"
+    ocean: { O: 0.7, C: 0.55, E: 0.85, A: 0.5, N: 0.55 }
+    appearance: >-
+      A lean young man in his twenties with close-cropped hair and a smile
+      that never quite reaches his calculating eyes. Dark brown skin, sharp
+      cheekbones, a thin scar across the bridge of his nose from a
+      side-mirror impact. Wears a brightly patterned button-up shirt open
+      over a white vest, slim trousers, and canvas sneakers good for
+      jumping on and off moving vehicles. A whistle on a cord around his
+      neck. Moves like he's always in transit — never standing still,
+      always half-turned toward the next thing.
+    age: "twenties"
+    distinguishing_features:
+      - "thin scar across the bridge of his nose from a past side-mirror hit"
+      - "metal whistle on a cord around his neck — used as both call-sign and prop"
+      - "a battered Nokia phone in each hand at all times"
+    history_seeds:
+      - >-
+        Voice: cheerful patter at speed, three languages braided together
+        (English, Swahili, faction slang). Always finishing one
+        conversation while starting another. Uses "boss" and "chief" as
+        punctuation, not respect.
+      - >-
+        The free-first-question rule is a real rule, not a sales pitch.
+        Asks his question back; whatever the player needs to know, he
+        knows or knows who knows. The second question costs.
+      - >-
+        Side-mirror scar story is the one he tells at parties; the real
+        story (a side-mirror at speed left him with the scar, and the
+        rider who didn't slow down is still on his list) is a fourth-
+        session reveal.
+    initial_disposition: 10
+
+  # ── EARLY: EARNING COLORS ──────────────────────────────────────
+
+  - id: souchou_hayate
+    name: "Souchou Hayate"
+    pronouns: "he/him"
+    role: "Bōsōzoku formation leader (souchou rank) — kanjō loop nights"
+    ocean: { O: 0.5, C: 0.7, E: 0.65, A: 0.4, N: 0.55 }
+    appearance: >-
+      A young man barely twenty with a sharp angular face and hair spiked
+      straight up in a pompadour that adds six inches to his height. Pale
+      skin, dark eyes lined with exhaustion and adrenaline. Lean and wiry —
+      built for a motorcycle, not a fight, though he's been in plenty.
+      Wears a modified tokkoufuku — a long embroidered coat in black and
+      crimson with kanji down the back, open over a white jumpsuit. Tall
+      boots with steel plates riveted to the shins. His jaw is set in a
+      permanent challenge.
+    age: "early twenties"
+    distinguishing_features:
+      - "six-inch black pompadour kept rigid with industrial pomade"
+      - "crimson-and-black embroidered tokkoufuku long coat with formation kanji down the back"
+      - "white knuckle gloves and steel-plated boot shins"
+    history_seeds:
+      - >-
+        Voice: terse, formal, code-switches into formation-callout slang
+        on the radio. Calls anything not Bōsōzoku by its faction noun
+        ("the chrome ones", "the British"). Does not use first names.
+      - >-
+        Inherited the souchou rank younger than tradition allows because
+        the previous souchou was killed in a tunnel pile-up on the kanjō
+        loop. Does not believe it was an accident. Has not told anyone.
+      - >-
+        Reads engine notes the way an orchestra conductor reads a score —
+        can pick out a single misfire in a formation of twenty. This
+        is how he tells which rider is hiding fear.
+    initial_disposition: 0
+
+  - id: tombstone
+    name: "Tombstone"
+    pronouns: "he/him"
+    role: "1%er chapter president — highway corridors and the oldest outlaw institution"
+    ocean: { O: 0.2, C: 0.7, E: 0.4, A: 0.2, N: 0.3 }
+    appearance: >-
+      A massive man in his fifties with a grey beard braided into two
+      forks and hands like engine blocks. Weathered white skin tanned to
+      leather by decades of highway sun. A face that looks like it lost
+      arguments with pavement — twice-broken nose, a scar bisecting his
+      left eyebrow, one ear cauliflowered. Shaved head under a faded black
+      bandana. Wears a patched denim vest over a black t-shirt, the vest
+      heavy with club patches and pins. Arms sleeved in old tattoos blurred
+      by sun and age. His eyes are pale blue and absolutely empty of warmth.
+    age: "fifties"
+    distinguishing_features:
+      - "grey beard braided into two forks"
+      - "patched denim vest heavy with club patches and pins, including the president's rocker"
+      - "pale blue eyes with no warmth, the cauliflower ear, the bisected eyebrow scar"
+    history_seeds:
+      - >-
+        Voice: quiet, slow, lets a pause kill a sentence. Calls the club
+        "we" and everyone else "you people" without irony. Never raises
+        his voice; the volume comes from the people behind him.
+      - >-
+        Rule: a debt to the chapter is paid in fuel, parts, or favor —
+        never in money and never in apology. The chapter has not
+        accepted an apology in eleven years.
+      - >-
+        The bandana hides a long-healed scalp injury from a wreck that
+        killed two patched members. He has not let anyone see his head
+        bare since.
+    initial_disposition: -10
+
+  - id: ace_nifty
+    name: "Ace Nifty"
+    pronouns: "they/them"
+    role: "Mod intelligence broker — Nottavello clubs and the information economy"
+    ocean: { O: 0.75, C: 0.95, E: 0.5, A: 0.45, N: 0.25 }
+    appearance: >-
+      A slim person of indeterminate age — could be thirty, could be
+      forty-five — with a narrow face, sharp cheekbones, and immaculately
+      styled hair in a side-parted sweep that hasn't moved since 1965.
+      Olive skin, dark eyes that inventory everything in a room before
+      their body finishes entering it. Wears a tailored three-button suit
+      in charcoal over a black turtleneck, Italian leather shoes polished
+      to mirrors. Not a wrinkle, not a thread out of place. In a city of
+      grease and dust, Ace Nifty is surgically clean. That is the threat.
+    age: "indeterminate (thirties? forties?)"
+    distinguishing_features:
+      - "immaculate charcoal three-button suit, never wrinkled"
+      - "side-parted hair sweep, frozen 1965"
+      - "Vespa key on a silver chain at the hip, mirror-polished Italian shoes"
+    history_seeds:
+      - >-
+        Voice: clipped, dry, deploys silence like a club. Uses precise
+        small words; the word "interesting" from Ace Nifty means
+        something specific and bad.
+      - >-
+        Sells information in three tiers — what's true, what's
+        actionable, and what's compromising. Each tier costs roughly
+        ten times the last. Does not haggle; haggling closes the
+        account.
+      - >-
+        The hair has not moved since 1965. Nobody knows why. Speculation
+        on this point has been a faux pas in mod circles for fifteen
+        years.
+    initial_disposition: 0
+
+  # ── MID: THE WAR FOR THE ROAD ──────────────────────────────────
+
+  - id: kongou_maru
+    name: "Kongou-maru"
+    pronouns: "he/him"
+    role: "Dekotora convoy master — port roads and ceremonial freight"
+    ocean: { O: 0.5, C: 0.85, E: 0.3, A: 0.65, N: 0.25 }
+    appearance: >-
+      An old heavyset Japanese man in his sixties, broad weathered face
+      with deep wrinkles and sun damage, deep-set dark eyes, grey hair
+      cropped close under a peaked driver's cap. Heavy jowls, thick neck,
+      large calloused hands with thick fingers. Wears a pressed white
+      short-sleeve shirt with a pen in the breast pocket, dark work
+      trousers, and leather driving gloves worn thin at the palm. A small
+      Buddhist shrine charm hangs from a cord at his neck. Serious formal
+      expression, the face of an old trucker who has seen everything and
+      says nothing.
+    age: "sixties"
+    distinguishing_features:
+      - "peaked driver's cap, always worn, casts shadow across the eyes"
+      - "Buddhist shrine charm on a cord at the neck"
+      - "leather-bound notebook in the breast pocket — never seen open"
+    history_seeds:
+      - >-
+        Voice: formal, slow, complete sentences. Bows slightly when
+        greeting and when departing. Never speaks while another person
+        is speaking. The pauses he allows are the longest in the city.
+      - >-
+        The leather-bound notebook contains thirty years of port-road
+        manifests and route times. He has not opened it in front of
+        anyone alive. It is rumored to be the master timetable of the
+        city's secret-freight runs.
+      - >-
+        Maintains a strict no-violence-on-convoy rule. Riders who break
+        formation get one warning. There is no second warning.
+    initial_disposition: 5
+
+  - id: don_flaco_de_la_cruz
+    name: "Don Flaco de la Cruz"
+    pronouns: "he/him"
+    role: "Lowrider elder and peacemaker — Doracanto boulevard, broker of the Sagrado Pact"
+    ocean: { O: 0.6, C: 0.7, E: 0.55, A: 0.85, N: 0.2 }
+    appearance: >-
+      A thin elderly Mexican man in his sixties, gaunt face with prominent
+      cheekbones, a carefully maintained thin pencil mustache, slicked-back
+      silver hair combed tight to the skull. Dark brown weathered skin
+      with deep creases and sun damage, the texture of old leather. Deep-
+      set brown eyes under heavy brows. Erect posture, narrow shoulders,
+      bony hands with visible veins and a gold watch. Wears a pressed
+      white guayabera shirt over a white undershirt, creased khaki
+      trousers, mirror-polished black shoes. A single thin gold chain at
+      his neck. Thin lips, serious dignified expression — the face of an
+      old veterano who has buried friends and outlived enemies.
+    age: "sixties"
+    distinguishing_features:
+      - "thin pencil mustache, kept exact"
+      - "single thin gold chain at the neck, no other jewelry except the gold watch"
+      - "his '64 Impala under fourteen coats of candy-apple red, parked at Flaco's Doravio"
+    history_seeds:
+      - >-
+        Voice: courteous, measured, bilingual — drifts in and out of
+        Spanish when the company permits it. Refers to enemies as "my
+        friend" once before refusing to refer to them at all.
+      - >-
+        Brokered the Sagrado Pact — the unwritten Doracanto accord that
+        keeps Lowrider cruise nights inviolate from cross-faction
+        violence. Nobody knows what it cost him personally. His wife
+        has been dead nine years; the pact predates her death by one
+        year.
+      - >-
+        Has buried more friends than he has living ones. The mural
+        wall at Dorapinta has at least three faces he painted himself,
+        late at night, alone.
+    initial_disposition: 10
+
+  - id: phi_lek
+    name: "Phi Lek"
+    pronouns: "he/him"
+    role: "Senior Tuk-Tuk Syndicate operator — Nokutori alleys, the routes nobody maps"
+    ocean: { O: 0.7, C: 0.6, E: 0.3, A: 0.55, N: 0.2 }
+    appearance: >-
+      A small man in his late fifties — lek means small and he earned that
+      name twice over. Wiry, with sun-darkened skin, a shaved head, and
+      eyes that are always slightly amused. His face is lined but not aged
+      — more weathered than old, like a piece of driftwood that's been
+      shaped by current rather than decay. Wears a loose collarless shirt,
+      fisherman's pants, and rubber sandals. No jewelry, no watch, nothing
+      that would snag or identify. He sits in a plastic chair in an alley
+      that shouldn't fit a chair and drinks iced tea and knows everything.
+    age: "late fifties"
+    distinguishing_features:
+      - "bare shaved head, perpetually slightly amused eyes"
+      - "rubber sandals, plain collarless shirt, no jewelry whatsoever"
+      - "a glass of iced tea on the plastic chair beside him at all hours"
+    history_seeds:
+      - >-
+        Voice: soft Thai-Khmer accent, brief sentences, frequent
+        pauses while drinking iced tea. Uses long silences as a
+        conversational tool. Smiles often; the smile means many
+        different things.
+      - >-
+        Has, with effort, made himself the least noticed important
+        person in the city. People walk past his alley every day for
+        years before they realize he is always sitting in it.
+      - >-
+        Knows alleys in Nokutori that don't appear on any city map,
+        including the ones the Tuk-Tuk Syndicate keeps off the
+        syndicate's own internal maps. Some of these alleys connect
+        to the underground road network. He has not personally
+        verified this. He has reason to suspect.
+    initial_disposition: 0
+
+  # ── VETERAN: THE THREAD ────────────────────────────────────────
+
+  - id: the_kungansen_magnus
+    name: "The Kungansen Magnus"
+    pronouns: "he/him"
+    role: "Raggare elder — Bromsviken drive-in and the suburban strip"
+    ocean: { O: 0.5, C: 0.55, E: 0.7, A: 0.75, N: 0.4 }
+    appearance: >-
+      A large man in his sixties with a belly that speaks to decades of
+      drive-in food and a face that speaks to decades of Scandinavian
+      winter — ruddy, broad, framed by grey muttonchop sideburns that
+      haven't been fashionable since 1958 and never will be again. Pale
+      blue eyes, a wide nose broken at least once, and a gap-toothed
+      smile that is entirely genuine. Wears a white t-shirt with the
+      sleeves rolled up over thick forearms, jeans with a two-inch cuff,
+      and engineer boots. A pack of cigarettes rolled into his left
+      sleeve. Pomade in his thinning grey hair, combed back in a
+      ducktail that the years have not been kind to.
+    age: "sixties"
+    distinguishing_features:
+      - "grey muttonchop sideburns, defiantly out of fashion"
+      - "cigarette pack rolled into the left sleeve of a white tee"
+      - "set of car keys on a long chrome chain at the belt"
+    history_seeds:
+      - >-
+        Voice: lightly Swedish-accented English, loud, warm, drives a
+        sentence with both hands. Calls everyone "brother" or "sister",
+        means it, and remembers their birthdays.
+      - >-
+        His '57 Chevy has a VIN that does not match any factory
+        record. He does not know this; he believes the car has been
+        in his family since new. If pressed on the car's history he
+        gets quiet, then changes the subject — a quiet that he has
+        never explained, even to himself.
+      - >-
+        Hosts an open Tuesday night at Bromsveld. Anyone, any faction,
+        no colors at the drive-in. The rule has been broken twice;
+        both times Magnus did not raise his voice and both times the
+        offender was eating with their family by Wednesday.
+    initial_disposition: 10
+
+  - id: ton_redline
+    name: "Ton Redline"
+    pronouns: "they/them"
+    role: "Café Racer speed legend — the fastest rider on every road in the city"
+    ocean: { O: 0.5, C: 0.85, E: 0.2, A: 0.5, N: 0.3 }
+    appearance: >-
+      A person of indeterminate age and minimal words — could be thirty,
+      could be fifty, with a runner's build whittled down to wire and
+      sinew. Angular face, sharp jaw, skin browned by wind and sun to a
+      uniform leather tone. Eyes that are always focused on a vanishing
+      point nobody else can see. Wears a scuffed brown leather jacket
+      zipped to the throat, dark jeans, and racing boots with steel toe
+      sliders worn to bright metal. A scratched open-face helmet hangs
+      from one hand. No patches, no faction colors, no name visible
+      anywhere on their person. The helmet has a single stripe — faded
+      red — and nothing else.
+    age: "indeterminate"
+    distinguishing_features:
+      - "open-face helmet with one faded red stripe and nothing else"
+      - "racing boots with the steel toe sliders worn down to bright metal"
+      - "no faction colors, no patches, no name visible anywhere"
+    history_seeds:
+      - >-
+        Voice: rare. Communicates in nods, lap times, and occasional
+        single-word agreements. Has been known to deliver an entire
+        evening's social commentary by adjusting the angle of their
+        helmet on a bar stool.
+      - >-
+        Has done "the ton" (100 mph timed pass) on every named road in
+        The Circuit — verified by witnesses on twelve of fifteen
+        routes, the other three are unconfirmed in mod society and
+        debated nightly at Nottavello.
+      - >-
+        Has, possibly, run the full underground route. If so they
+        have not said. If pressed on the topic they reset the strap
+        on their helmet and leave the room. This has happened four
+        times in eight years.
+    initial_disposition: 0
+
+  # ── CROSS-FACTION ──────────────────────────────────────────────
+
+  - id: elsa_bruckner
+    name: "Elsa Brückner"
+    pronouns: "she/her"
+    role: "The Architect — Swiss civil-engineering professional, deceased 1981 (historical / photograph only)"
+    ocean: { O: 0.6, C: 0.95, E: 0.25, A: 0.4, N: 0.3 }
+    appearance: >-
+      A woman in her forties as captured in a faded 1970s photograph —
+      severe blonde hair pulled back in a tight chignon, sharp Nordic
+      features, wire-rimmed glasses, and the unsmiling expression of
+      someone who builds things that outlast people. Wears a white
+      blouse under a grey blazer, a slide rule visible in the breast
+      pocket. Her hands rest on a drafting table covered in blueprints.
+      The photograph is sun-damaged, the colors shifted to amber and
+      cyan, the edges curling. She looks directly into the camera as
+      if she knows exactly who will be looking at this picture and when.
+    age: "forties (1971); deceased 1981"
+    distinguishing_features:
+      - "wire-rimmed glasses, tight chignon, severe Nordic features"
+      - "slide rule visible in the blazer breast pocket"
+      - "the Meridian Asphalt nameplate at the edge of every photograph she appears in"
+    history_seeds:
+      - >-
+        Civil engineer for Meridian Asphalt 1968–1981. Designed the
+        city's elevated expressway loop and at least one road network
+        nobody admits is there. Worked in English, German, and
+        French; correspondence is mostly French.
+      - >-
+        Officially died in a 1981 single-vehicle accident on a curve
+        of Sturmichi. The accident report exists. The vehicle does
+        not. Her office (Brückner's Office, Faroporta) has been kept
+        sealed since by Port Authority order; nobody can produce
+        the order in writing.
+      - >-
+        Knew exactly who would be looking at her photographs and when.
+        Several people have reported a chill recognizing this.
+    initial_disposition: 0
+
+  - id: bruckners_ghost
+    name: "Brückner's Ghost"
+    pronouns: "she/her (as glimpsed)"
+    role: "The Ghost Rig Driver — apparition seen in tunnel darkness, peripheral only"
+    ocean: { O: 0.6, C: 0.95, E: 0.2, A: 0.4, N: 0.35 }
+    appearance: >-
+      A figure seen only in peripheral vision and tunnel darkness — a
+      silhouette behind a windshield lit from below by dashboard
+      instruments. The shape suggests a woman, upright, both hands on
+      the wheel. The vehicle changes depending on who sees it — a
+      kaidō racer, an Impala, a decorated truck — but the driver is
+      always the same: still, focused, and driving a road that was
+      designed before anyone else knew it existed. Seen in motion,
+      never stopped. Headlights but no engine sound.
+    age: "indeterminate / outside time"
+    distinguishing_features:
+      - "always behind a windshield, never on foot"
+      - "vehicle changes; driver does not"
+      - "headlights without engine sound — observers report the silence first"
+    history_seeds:
+      - >-
+        Twelve confirmed sightings across four years, distributed
+        across all six factional regions. No two witnesses describe
+        the same vehicle. Every witness describes the same driver.
+      - >-
+        Has never spoken. Has never stopped. Has never caused a
+        crash. Has, on two occasions, passed a player who was about
+        to take a wrong turn and led them away from harm without
+        looking at them.
+      - >-
+        Don Flaco saw her once in 1976 and has not driven the
+        sturmichi loop at night since. He will tell the story if
+        asked but not before sundown.
+    initial_disposition: 0

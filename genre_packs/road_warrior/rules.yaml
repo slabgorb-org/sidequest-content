@@ -1,0 +1,441 @@
+tone: defiant-kinetic
+lethality: gritty
+magic_level: none
+# DRAFT (2026-04-27): the `magic_level` flag is being retired and is wrong here.
+# The named vehicle (Interceptor, War Rig, Pursuit Special) is the magic item.
+# "The man with the V8 Interceptor" is mythic-folkloric item-magic; the mechanic
+# is the McCoy/inventor source. World-knowledge is folkloric. See ./magic.yaml
+# for the napkin-shaped truth and docs/design/magic-taxonomy.md for the framework.
+
+stat_generation: point_buy
+point_buy_budget: 27
+
+ability_score_names:
+  - Grip
+  - Iron
+  - Nerve
+  - Scrap
+  - Road Sense
+  - Swagger
+
+allowed_classes:
+  - Wheelman
+  - Wrecker
+  - Grease Monkey
+  - War Rider
+  - Chrome Saint
+  - Road Preacher
+
+allowed_races:
+  - Convoy Born
+  - Gearhead
+  - Outlaw
+  - Pit Crew
+  - Scrapper
+  - Legacy
+
+
+# Driver Edge per ADR-078. Rig Composure lives on the rig vessel item
+# (see inventory.yaml + custom_rules.rig_composure_spec below) and is
+# pulled into the snapshot by the materializer; it is NOT a per-character
+# stat_display_field. Fuel and injuries remain character-side trackers.
+stat_display_fields:
+  - fuel
+  - injuries
+  - dismounted
+
+# Driver Edge — per-class scaling. Tiers reflect each class's combat
+# survivability when dismounted (rig-as-armor handles the mounted case
+# via the Rig Composure pool, below).
+edge_config:
+  base_max_by_class:
+    War Rider: 5      # combat-forward, takes hits
+    Wrecker: 5        # high-impact, rams things
+    Chrome Saint: 4   # body-modded, durable
+    Wheelman: 3       # driver — fast but fragile dismounted
+    Grease Monkey: 3  # support; survivability through fixing, not fighting
+    Road Preacher: 3  # charisma class, not a brawler
+  recovery_defaults:
+    on_resolution: full
+    on_long_rest: full
+    between_back_to_back: 0
+  thresholds:
+    - at: 1
+      event_id: edge_critical
+      narrator_hint: >-
+        The driver is hurting bad. Bleeding through their jacket, vision
+        narrowing, breath ragged. One more hit and they're out.
+      direction: crossing_down
+    - at: 0
+      event_id: edge_zero
+      narrator_hint: >-
+        Down. Bleeding out on the asphalt or slumped over the wheel.
+        Per lethality_policy.yaml — the road is indifferent.
+      direction: crossing_down
+
+
+default_class: Wheelman
+default_race: Scrapper
+race_label: Background
+class_label: Role
+default_location: "In a garage with the hood up, radio on, crew somewhere nearby"
+default_time_of_day: dawn
+
+custom_rules:
+  lethality: gritty
+  rest_variant: gritty_realism
+  encumbrance: variant
+
+  # --- DAMAGE MODEL: TWO POOLS, ADR-078 ALIGNED ---
+
+  damage_model: >-
+    Road Warrior runs a TWO-POOL damage model on top of the standard
+    ADR-078 Edge framework:
+
+    1. DRIVER EDGE — the character's own Edge pool (see edge_config above).
+       Per-class scaling, recovers on resolution/long rest. This is the
+       human inside the rig.
+
+    2. RIG COMPOSURE — a vessel-attached pool on the named rig item (see
+       inventory.yaml vessels + custom_rules.rig_composure_spec). The rig
+       is the character's armor while mounted; incoming damage hits Rig
+       Composure first.
+
+    WHILE MOUNTED:
+    Incoming damage is absorbed by Rig Composure. The narrator MUST
+    reflect this visibly — panels fly off, engine smokes, mirrors
+    crack, exhaust drags sparks. This is not a hidden number; it is the
+    most visible thing happening on screen.
+
+    CRASH EVENT (Rig Composure → 0):
+    The rig is wrecked. The driver loses 1 Edge from the crash itself
+    AND takes an injury tag (see injury_system). The character is now
+    DISMOUNTED — exposed, slow, vulnerable. Whatever caused the crash
+    is still there.
+
+    WHILE DISMOUNTED:
+    No vessel buffer. Incoming damage hits Driver Edge directly. Grip
+    checks at disadvantage. The world treats a driver who lost their
+    rig differently — getting back on the road is a story arc, not a
+    shopping trip.
+
+    EDGE ZERO:
+    Driver is down or dead per lethality_policy.yaml (gritty / permanent
+    / road is indifferent). The road doesn't owe anyone a recovery.
+
+  rig_damage_tiers: >-
+    Rig Composure narrative tiers (for narrator description as the
+    Composure pool drains, not separate mechanical bands):
+
+    full Composure   — Tight. Everything works. Engine purrs.
+    75% Composure    — Cosmetic damage. Rattles, dents, cracked mirror.
+                       Functional. Body shop fix.
+    50% Composure    — Systems failing. Door hanging off, windshield
+                       gone, exhaust dragging sparks. Mounted-only
+                       Speed penalty kicks in.
+    25% Composure    — Skeleton mode. Barely holding. Major Speed
+                       penalty, a mount slot may be destroyed, any
+                       hit risks fire.
+    0  Composure     — CRASH EVENT (see damage_model).
+
+  rig_composure_spec: >-
+    Backend reference (see backlog story for RigComposurePool wiring):
+
+    - Each character has one named rig (vessel item, inventory.yaml).
+    - The vessel item carries: composure (current), composure_max
+      (per rig tier), speed, armor, fuel_capacity, mount_slots, scars.
+    - Composure_max by rig tier:
+        tier 1 (prospect)         max 4   1 mount slot
+        tier 2 (runner)           max 6   2 mount slots
+        tier 3 (road name)        max 8   3 mount slots + 1 signature trait
+        tier 4 (convoy legend)    max 10  4 mount slots + 2 signature traits
+        tier 5 (road immortal)    max 12  5 mount slots + legendary tag
+    - Composure recovery:
+        on_resolution: 0 (rig damage is sticky — repair is a story beat)
+        on_long_rest: 0 (you fix it at a garage; the bed doesn't fix it)
+        on_repair_scene: full (a Grease Monkey + parts + time)
+    - Crash event hook (Composure crosses 0 downward): fire
+      event_id: rig_crash. The handler MUST emit OTEL span
+      `rig_pool.crash_event` with {rig_slug, location, attacker} per
+      ADR-031, write the dismounted status, and apply -1 Edge + 1
+      injury tag to the driver.
+
+  injury_system: >-
+    Per ADR-080: injuries are narrative_weight tags on the character,
+    not a parallel HP pool. When the driver takes direct damage
+    (dismounted, crash event, boarding combat, or rig pierced) they
+    take an INJURY tag — a specific, named wound with a stat penalty:
+
+      Slashed Arm     → Grip -1     (heals in 2 sessions / medical care)
+      Concussion      → Road Sense -1
+      Broken Rib      → Iron -1, Nerve -1 in fast scenes
+      Burned          → Scrap -1 until salved
+      Whiplash        → -1 to all checks first round of any chase scene
+      Internal        → -1 Edge max until full medical (this is the bad one)
+
+    Tags live as narrative_weight entries on the character; the narrator
+    references them until healed. Light injuries dissolve at long rest;
+    serious ones (Broken Rib, Internal) require a medical scene.
+
+  # --- RIG AS VESSEL ---
+
+  rig_rules: >-
+    Per magic.yaml: the rig is an item_based / vessel — a first-class
+    item in inventory.yaml, not a Car-acter-Sheet sidebar. Every
+    character has exactly one named rig (vessel_id pointer on the
+    character → rig vessel item).
+
+    Vessel fields (authored in inventory.yaml under vessels:):
+      name           — player-chosen at chargen (the_name scene)
+      type           — world-defined chassis class (kaidō racer, chopper,
+                       Vespa, dekotora, lowrider Impala, matatu, tuk-tuk,
+                       Raggare V8, etc.)
+      composure      — current Rig Composure
+      composure_max  — by tier (see rig_composure_spec)
+      speed          — base movement / chase tier
+      armor          — flat reduction on incoming Composure damage
+      fuel           — current fuel; max from fuel_capacity
+      mount_slots    — weapon/tool hardpoints, scales with tier
+      signature_traits — per-tier narrative descriptors (Tier-3+)
+      scars          — narrative history array (each scar is a repair
+                       story; do NOT prune them)
+
+    Losing your rig means losing your armor pool, your speed, your mount
+    slots, your signature traits, your identity. You're meat on the
+    road. Getting a new rig is a story arc, not a transaction —
+    inheritance, salvage rebuild (Grease Monkey + parts + time), or
+    earning a faction-issued vessel.
+
+  fuel_system: >-
+    Fuel is tracked during chases and long runs — not as a survival
+    resource but as a tactical one. Running low mid-chase means hard
+    decisions. Running dry means your rig is dead weight — Rig
+    Composure still absorbs hits (you're cover), but Speed → 0 means
+    no escape. In normal play, fuel is available at gas stations like
+    anywhere else. The drama isn't "can I find fuel" — it's "can I
+    afford to burn fuel on this chase and still make it across town."
+
+  chase_system: >-
+    Chases are structured as beat sequences, not single rolls. Each chase
+    has an Opening (engage or evade?), Pursuit (distance, terrain, hazards),
+    Escalation (boarding, weapons, rig damage), Crisis (something breaks,
+    someone falls, a choice), and Resolution (wreckage, escape, or victory).
+    Each beat is a decision point. If there is no decision, skip the beat.
+    Rig Composure degrades through the chase — the narrator reflects this
+    as progressive visible damage. Allies can fall. The fortress crumbles.
+
+  dismounted_rules: >-
+    A driver without a rig is in survival mode. No Rig Composure buffer —
+    incoming damage hits Driver Edge directly. All Grip checks at
+    disadvantage. Swagger checks to maintain reputation take a penalty.
+    Movement is slow in a world built for wheels. The world treats you
+    differently — you're a driver who lost their ride. Getting a new
+    rig or recovering your old one is a story arc, not a shopping trip.
+    The narrator should make dismounted sequences feel desperate and
+    wrong — this is not where you belong.
+
+  rig_progression_arc: >-
+    The level arc for narrator reference (mechanical bonuses come from the
+    standard progression.yaml level_bonuses; this arc colors the *flavor*
+    of each tier):
+
+    Level 1 — Prospect: Fresh on the road. Your rig is new to you or you're
+    new to it. 1 mount slot.
+
+    Level 3 — Runner: You've survived enough runs to know what you're doing.
+    2 mount slots, +10 Rig HP.
+
+    Level 5 — Road Name: People know your name and your rig's name.
+    Reputation opens doors. 3 mount slots, +20 Rig HP, rig gains a
+    Signature Trait.
+
+    Level 7 — Convoy Legend: War boys want to ride with you. Fuel brokers
+    give you credit. Your rig is famous. 4 mount slots, +30 Rig HP, rig
+    gains a second Signature Trait.
+
+    Level 10 — Road Immortal: Your name is spoken on every frequency. Your
+    rig is a legend. The road itself seems to bend for you. 5 mount slots,
+    +50 Rig HP, rig becomes Legendary (narratively indestructible except
+    for story reasons).
+
+resources:
+  - name: fuel
+    label: Fuel
+    min: 0.0
+    max: 100.0
+    starting: 50.0
+    voluntary: false
+    decay_per_turn: 0.0
+
+encounter_base_tension:
+  random: 0.10
+  road_encounter: 0.20
+  ambush: 0.35
+  chase: 0.40
+  boss: 0.45
+  final: 0.50
+
+# ── Confrontations ──────────────────────────────────────────
+confrontations:
+  - type: negotiation
+    label: "Wasteland Bargain"
+    category: social
+    resolution_mode: opposed_check
+    # Opponent stats calibrated to mod +0 per ADR-093.
+    opponent_default_stats:
+      Grip: 10
+      Iron: 10
+      Nerve: 10
+      Scrap: 10
+      Road Sense: 10
+      Swagger: 10
+    player_metric:
+      name: leverage
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: leverage
+      starting: 0
+      threshold: 10
+    beats:
+      - id: persuade
+        label: "Make Your Case"
+        kind: strike
+        base: 2
+        stat_check: Swagger
+        effect: "opponent considers your argument"
+        narrator_hint: "Show the NPC weighing the player's words."
+      - id: threaten
+        label: "Threaten"
+        kind: strike
+        base: 3
+        stat_check: Iron
+        risk: "faction reputation -1 if it fails"
+        consequence: "NPC becomes hostile on critical failure"
+        narrator_hint: "Rev the engine. Let them hear what's coming."
+      # concede_point: strategic give-ground to reveal opponent's real goal — angle
+      - id: concede_point
+        label: "Concede a Point"
+        kind: angle
+        target_tag: "Real Goal Revealed"
+        stat_check: Swagger
+        effect: "opponent disposition +5, reveals their real goal"
+        narrator_hint: "Strategic retreat. Player gives ground to gain information."
+      - id: walk_away
+        label: "Walk Away"
+        kind: push
+        stat_check: Iron
+        consequence: "deal collapses, reputation intact"
+        narrator_hint: "Player fires up the rig and leaves. No deal."
+    mood: tension
+
+  - type: combat
+    label: "Vehicular Combat"
+    category: combat
+    resolution_mode: opposed_check
+    # Opponent stats calibrated to mod +0 per ADR-093.
+    opponent_default_stats:
+      Grip: 10
+      Iron: 10
+      Nerve: 10
+      Scrap: 10
+      Road Sense: 10
+      Swagger: 10
+    # Momentum as "control of the engagement" — who's on the offensive,
+    # who's running. Rig damage and character HP live on character state;
+    # momentum tracks whether the pack is routing you or you them.
+    player_metric:
+      name: momentum
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: momentum
+      starting: 0
+      threshold: 7
+    beats:
+      - id: ram
+        label: Ram
+        kind: strike
+        base: 4
+        deltas:
+          crit_fail:
+            own: -2
+        stat_check: Grip
+        risk: "Rig damage on failure — lose 2 momentum and take hull damage"
+        effect: "Target rig takes severe damage"
+        narrator_hint: "Steel on steel at speed. Sparks, crumpled panels, the shriek of metal."
+      - id: sideswipe
+        label: Sideswipe
+        kind: strike
+        base: 2
+        stat_check: Grip
+        effect: "Force target to swerve, deal glancing damage"
+        narrator_hint: "Paint trades paint. The two rigs grind together at sixty and part."
+      - id: evasive
+        label: "Evasive Maneuver"
+        kind: brace
+        base: 1
+        stat_check: Iron
+        effect: "Reduce incoming rig damage this round"
+        narrator_hint: "Cut the wheel hard, thread the gap, let them shoot dust."
+      - id: disengage
+        label: "Peel Off"
+        kind: push
+        stat_check: Road Sense
+        consequence: "Combat ends — break away from the pack"
+        narrator_hint: "Cut the throttle, fall back, let them roar past into the dust."
+    mood: combat
+
+  - type: chase
+    label: "Road Chase"
+    category: movement
+    resolution_mode: opposed_check
+    # Opponent stats calibrated to mod +0 per ADR-093.
+    opponent_default_stats:
+      Grip: 10
+      Iron: 10
+      Nerve: 10
+      Scrap: 10
+      Road Sense: 10
+      Swagger: 10
+    player_metric:
+      name: separation
+      starting: 0
+      threshold: 7
+    opponent_metric:
+      name: pursuit
+      starting: 0
+      threshold: 7
+    beats:
+      - id: floor_it
+        label: "Floor It"
+        kind: push
+        base: 2
+        stat_check: Road Sense
+        narrator_hint: "Engine screams, dust plume stretches behind."
+      - id: terrain_cut
+        label: "Terrain Cut"
+        kind: push
+        base: 3
+        deltas:
+          crit_fail:
+            own: -2
+        stat_check: Scrap
+        risk: "Rollover — take rig damage on failure"
+        narrator_hint: "Leave the road. Cut across hardpan, jump a wash."
+      # smoke_screen: oil burn or dust cloud — angle (misdirection tag on pursuers)
+      - id: smoke_screen
+        label: "Smoke Screen"
+        kind: angle
+        target_tag: "Blinded"
+        stat_check: Scrap
+        effect: "Oil burn or dust cloud blinds pursuit"
+        narrator_hint: "Pop the smoker, pull the rip-cord, leave them coughing in your wake."
+      - id: engine_kill
+        label: "Kill the Engine"
+        kind: push
+        stat_check: Road Sense
+        consequence: "Chase ends — coast to a stop in the dust, hidden"
+        narrator_hint: "Cut the engine. Glide silent into cover. Let them roar past."
+    mood: tension
+
