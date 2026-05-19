@@ -1,0 +1,560 @@
+chapters:
+  - id: early
+    label: "Newcomer on the Highway"
+    session_range: [1, 5]
+    character:
+      name: ""
+      level: 1
+      gold: 30
+      relationships:
+        - name: Takeda Jirō
+          role: teahouse keeper on the Tōkaidō
+          disposition: 15
+          notes: "Gave you shelter during a storm. Knows everyone who passes through."
+        - name: Hasegawa Ren
+          role: ronin traveling the same road
+          disposition: 5
+          notes: "Shared a meal at a posting station. Too disciplined to be truly aimless."
+      progression:
+        primary_affinity: null
+        affinity_scores: {}
+        milestones_earned: []
+    npcs:
+      - archetype: Teahouse Keeper
+        name: Takeda Jirō
+        disposition: 15
+        location: hakone
+        notes: "Runs a teahouse at the Hakone posting station. Hears every rumor."
+      - archetype: Ronin Swordsman
+        name: Hasegawa Ren
+        disposition: 5
+        location: edo
+        notes: "Recently arrived in Edo. Looking for work. Carries a grudge."
+      - archetype: Metsuke Inspector
+        name: Kageyama Tōru
+        disposition: -10
+        location: hakone
+        notes: "Stationed at Hakone Gate. Thorough, suspicious, not corrupt."
+    quests:
+      "Deliver a letter to Edo": "in_progress"
+      "Find lodging in the capital": "not_started"
+    lore:
+      - "The Tōkaidō highway has fifty-three posting stations between Edo and Kyōen."
+      - "Every traveler must carry papers stamped by their local lord."
+      - "Hakone Gate searches for weapons moving toward Edo and women moving away."
+      - "Mount Kasai has been rumbling for three years. The officials say it is nothing."
+    notes:
+      - "The player arrives on the Tōkaidō, traveling toward Edo with a simple task."
+      - "First encounters establish the social hierarchy and the checkpoint system."
+      - "The ronin Hasegawa Ren will become important later — a thread, not a plot."
+    narrative_log:
+      - speaker: narrator
+        text: >-
+          The highway stretches before you through morning mist. Ahead,
+          the posting stations of the Tōkaidō march toward Edo like
+          soldiers standing at attention. Behind you, the mountains hide
+          everything you left.
+    location: hakone
+    time_of_day: morning
+    atmosphere: >-
+      A world in careful, beautiful, controlled order — paper screens,
+      precise courtesies, the smell of charcoal and green tea. Beneath
+      the beauty, the constant awareness of being watched.
+    active_stakes: "Reach Edo safely. Avoid the attention of the Metsuke."
+    points_of_interest:
+      - name: Hakone Gate
+        slug: hakone_gate
+        region: hakone
+        type: checkpoint
+        description: >-
+          The most feared checkpoint on the Five Highways. Two stone
+          gateposts at the far end of a wooden bridge over the volcanic
+          gorge. The Shogunate's fire channeler garrison searches every
+          traveler, examines papers, watches for weapons moving toward
+          the capital and women moving away from it.
+        visual_prompt:
+          solo: >-
+            Wide elevated landscape view of a mountain checkpoint gate
+            at the head of a cedar-plank bridge spanning a deep
+            volcanic gorge. Foreground: the polished cedar bridge,
+            travelers in indigo and brown traveling robes standing
+            patiently in inspection queue, low stone parapets, a
+            single tall lacquered lantern post. Middle ground: two
+            massive stone gateposts joined by a curved tile-roofed
+            gatehouse, deep-relief three-flame crest carved into the
+            lintel and picked out in fresh red lacquer, four uniformed
+            inspectors at standing desks beneath the eaves, a single
+            bronze inspection bell hung from a beam, fire-channeler
+            garrison in dark indigo with the same three-flame crest
+            on their breast, a single black kite circling overhead.
+            Background: steep cedar-forested volcanic peaks, a crater
+            lake visible through a break in the trees, a thin plume
+            of sulfurous steam rising from a vent up the pass,
+            cloud-banded sky in the soft greys and pale blues of a
+            cool morning.
+          backdrop: >-
+            Two massive stone gateposts joined by a curved tile-
+            roofed gatehouse with a deep-relief three-flame crest
+            above the lintel, at the head of a cedar-plank bridge
+            spanning a volcanic gorge, steep forested peaks rising
+            behind, a single thin plume of sulfurous steam in the
+            distance.
+        environment:
+          solo: >-
+            Cool overcast morning light, soft directional from frame-
+            left, no harsh shadows, the damp cedar smell of bridge
+            timbers after dew, sulfur drifting up from the gorge,
+            the measured sound of an inspector's brush across paper
+            and the distant drill-count of fire forms from inside
+            the garrison wall.
+
+      - name: The Hakone posting-station teahouse
+        slug: hakone_posting_station
+        region: hakone
+        type: teahouse
+        description: >-
+          A single-room cedar teahouse fronting the Tōkaidō road at
+          the village below the pass. Three tatami sections, a
+          kitchen behind a noren curtain, a brazier for the morning
+          rice. Travelers stop here before or after the inspection
+          at the gate. The proprietress has watched the road for
+          thirty years.
+        visual_prompt:
+          solo: >-
+            Wide elevated landscape view of a small village teahouse
+            on a mountain highway. Foreground: a swept earth
+            courtyard with a low fence of split bamboo, two low
+            travelers' geta paired neatly on a wooden step, a stone
+            water basin with a bamboo ladle. Middle ground: a single-
+            storey cedar-board teahouse with a low cypress-shingle
+            roof and a deep eave, the front fully open to the
+            courtyard, a dark indigo noren curtain across the kitchen
+            entry with a family crest in white, three low tatami
+            sections visible inside, a brass water-clock by the
+            doorpost, smoke from a kitchen brazier curling up under
+            the eave. Background: the cobbled Tōkaidō road curving
+            up toward a wooded mountain pass, cedar-roofed posting-
+            station inns lining the road on both sides, the silhouette
+            of a sacred volcano in the far distance with a thin plume
+            of sulfurous steam at its shoulder, autumn maples in the
+            mid-slopes turning red and amber.
+          backdrop: >-
+            A single-storey cedar-board teahouse with an open front,
+            a low cypress-shingle roof, an indigo noren curtain over
+            the kitchen entry, on a swept courtyard fronting a
+            cobbled mountain highway with cedar-roofed inns behind
+            and a volcanic peak in the far distance.
+        environment:
+          solo: >-
+            Mid-morning light, warm directional sun from frame-right,
+            long soft shadows across the swept courtyard, fresh-rice
+            steam from the kitchen, the slow plink of a water-clock,
+            cicadas in the upper cedars, the unhurried bell of a
+            yamabushi's staff coming down the pass.
+
+      - name: The Hakone shrine upper torii
+        slug: hakone_shrine_torii
+        region: hakone
+        type: shrine
+        description: >-
+          The upper torii of the ancient Hakone shrine, a quarter li
+          above the posting station along a cryptomeria-lined path.
+          Older than the Tokigane Shogunate by four centuries. A
+          small stone court before the inner sanctuary, with stone
+          fox guardians and an offering box. The shrine boy sweeps
+          the court in the half-hour before noon service.
+        visual_prompt:
+          solo: >-
+            Wide landscape view of an ancient mountain shrine
+            threshold seen from below. Foreground: a long stone
+            stairway climbing through tall straight cryptomeria
+            trunks, mossy stone fox guardians flanking the lower
+            steps, a red votive ribbon tied to one fox's offering
+            bowl. Middle ground: a massive weather-greyed wooden
+            torii gate at the head of the stairs, its lintel
+            carvings softened by four centuries of weather, a small
+            flat stone court beyond the gate, a child shrine
+            attendant in white robes and dark hakama sweeping the
+            court with a long bamboo broom. Background: a modest
+            inner sanctuary of dark cedar with a camellia-oil lamp
+            burning at the doorway, dense cryptomeria forest rising
+            on three sides, a glimpse of a distant valley with a
+            thin smoke-line of a village below, deep mountain shadows
+            settling between the upper trees.
+          backdrop: >-
+            A massive weather-greyed wooden torii gate at the head
+            of a stone stairway flanked by stone fox guardians,
+            standing among tall cryptomeria, a small dark cedar
+            inner sanctuary visible behind the torii.
+        environment:
+          solo: >-
+            Cool dappled forest light filtering through cryptomeria,
+            shafts of mid-morning sun reaching the stone court, the
+            cedar-bark and incense smell of an old shrine, the slow
+            sound of a bamboo broom on stone and the deep tide-like
+            sound of wind in the upper trees.
+
+      - name: The Hakone hot springs
+        slug: hakone_hot_springs
+        region: hakone
+        type: social
+        description: >-
+          The volcanic hot springs around the posting station.
+          Travelers bathe before the inspection and gossip after.
+          Stone-lined pools terraced down a slope behind the inns,
+          steam thick on the air at any hour. Sulfur scent. The
+          waters are said to draw the road out of a traveler's
+          bones.
+        visual_prompt:
+          solo: >-
+            Wide elevated landscape view of a Japanese mountain
+            hot-spring bath. Foreground: stone-lined terraced
+            bathing pools cut into a forested hillside, steam rising
+            thick from the surface, smooth volcanic boulders forming
+            the pool edges, a low bamboo privacy fence along the
+            road-facing side, neatly folded indigo and grey travelers'
+            yukata laid on a wooden bench. Middle ground: a cedar
+            bathhouse with a low cypress-shingle roof and a single
+            paper lantern, narrow stone steps down between the
+            pools, a stone water-channel feeding each pool from a
+            volcanic vent, a small stone shrine in a niche of the
+            cliff face. Background: a steep cedar-forested slope
+            climbing to the volcanic ridge, ash-grey cliffs streaked
+            with mineral colors where the vents emerge, late-autumn
+            maples blazing red between the cedars, a thin plume of
+            sulfurous steam rising from a fumarole.
+          backdrop: >-
+            Stone-lined terraced hot-spring pools cut into a forested
+            mountain hillside, steam rising thick, a cedar bathhouse
+            with a paper lantern at one end, a steep cedar-forested
+            slope rising behind to mineral-streaked volcanic cliffs.
+        environment:
+          solo: >-
+            Late-afternoon light filtering through cedar boughs, low
+            warm directional sun catching the rising steam from
+            below, sulfur and pine on the air, the soft burble of a
+            volcanic spring, distant temple bells from down the
+            valley, the unhurried hush of travelers between baths.
+
+      - name: Mount Kasai
+        slug: mount_kasai
+        region: mount_kasai
+        type: landmark
+        description: >-
+          The sacred volcano at the heart of the Ember Isles. Visible
+          from Edo on clear days, from Kyōen always. For three years
+          its rumbling has grown louder. The yamabushi say the spirits
+          of the mountain are afraid; the Shogunate's astrologers say
+          it is nothing. The mountain has begun appearing in poets'
+          metaphors.
+        visual_prompt:
+          solo: >-
+            Wide cinematic landscape view of a great sacred volcano
+            at dawn. Foreground: a high mountain shrine path,
+            weather-greyed stone steps climbing the lower flank,
+            tall stone pilgrim lanterns on either side, a single
+            black-robed yamabushi mountain ascetic in a small cap
+            with a conch shell at his hip walking the path with a
+            tall pilgrim staff. Middle ground: the broad symmetrical
+            cone of the volcano rising against the morning sky,
+            snow-streaked at the upper cone, ash-grey at the
+            shoulder, dense cedar forest skirting the lower slopes,
+            a thin plume of sulfurous steam rising from the crater
+            and bending east on the wind, a pair of distant kites
+            wheeling on the thermal. Background: a soft pink and
+            gold sunrise sky banded with thin cloud, the silhouette
+            of a lesser mountain ridge falling away to a coastal
+            plain twelve miles below, a single river catching the
+            morning light.
+          backdrop: >-
+            The broad symmetrical cone of a great sacred volcano
+            rising against a pink and gold sunrise sky, snow-streaked
+            upper cone and ash-grey shoulder, a thin plume of
+            sulfurous steam bending east on the wind, dense cedar
+            forest skirting the lower slopes.
+        environment:
+          solo: >-
+            Cold dawn light, low directional sun from frame-right
+            catching the upper cone in pink and gold, long blue
+            shadows down the western flank, the still-cold air of a
+            mountain morning, the faint distant rumble of the
+            sleeping volcano, a single crow call from the cedar
+            forest below.
+    tropes:
+      - id: the_spirit_gate_opens
+        name: The Spirit Gate Opens
+        progress: 0.05
+        status: background
+        notes: "A fox watches from the treeline at dusk. Too still. Too attentive."
+
+  - id: mid
+    label: "The Fires Below"
+    session_range: [6, 15]
+    character:
+      name: ""
+      level: 3
+      gold: 150
+      items:
+        - name: Traveler's Sword
+          description: "A serviceable blade. Nothing special, but yours."
+        - name: Papers of passage
+          description: "Stamped by three different checkpoints. Getting worn."
+        - name: Teahouse keeper's letter
+          description: "A letter of introduction from Takeda Jirō. Opens doors."
+      relationships:
+        - name: Takeda Jirō
+          role: teahouse keeper, information source
+          disposition: 25
+          notes: "You did him a favor. He remembers. His network remembers."
+        - name: Hasegawa Ren
+          role: ronin ally
+          disposition: 20
+          notes: "You've fought together. He trusts you. He is one of forty-seven."
+        - name: Padre Rodrigo Ferreira
+          role: Nanban missionary in hiding
+          disposition: 15
+          notes: "You found him in a merchant's basement. He asked for nothing."
+        - name: Kageyama Tōru
+          role: Metsuke inspector
+          disposition: -5
+          notes: "He's watching you now. Something you did caught his attention."
+        - name: Shimora Takako
+          role: outer lord's daughter
+          disposition: 10
+          notes: "Met during alternate attendance season in Edo. Dangerous."
+      progression:
+        primary_affinity: null
+        affinity_scores: {}
+        milestones_earned:
+          - "Survived Hakone Gate inspection"
+          - "Earned a teahouse keeper's trust"
+          - "Witnessed a spirit at the mountain shrine"
+    npcs:
+      - archetype: Teahouse Keeper
+        name: Takeda Jirō
+        disposition: 25
+        location: hakone
+        notes: "Has become a reliable contact. Passes messages through his network."
+      - archetype: Ronin Swordsman
+        name: Hasegawa Ren
+        disposition: 20
+        location: edo
+        notes: "Revealed himself as one of the forty-seven loyal ronin."
+      - archetype: Nanban Missionary
+        name: Padre Rodrigo Ferreira
+        disposition: 15
+        location: osaka
+        notes: "Moving between safe houses. The Hidden Way protects him."
+      - archetype: Metsuke Inspector
+        name: Kageyama Tōru
+        disposition: -5
+        location: edo
+        notes: "Reassigned to Edo. Following leads on the forty-seven."
+      - archetype: Daimyō's Advisor
+        name: Shimora Takako
+        disposition: 10
+        location: edo
+        notes: "Outer lord's daughter, but also a trained channeler and strategist."
+      - archetype: Yamabushi Ascetic
+        name: Enkū
+        disposition: 5
+        location: mount_kasai
+        notes: "Descended from the mountain. Says the fire spirits are afraid."
+      - archetype: Kabuki Performer
+        name: Ichikawa Danjūrō
+        disposition: 10
+        location: osaka
+        notes: "The most famous actor on the islands. Knows everything about everyone."
+    quests:
+      "Deliver a letter to Edo": "completed"
+      "Find lodging in the capital": "completed"
+      "Help Hasegawa Ren with a 'small favor'": "in_progress"
+      "Investigate the spirit sighting at Nikkō shrine": "in_progress"
+      "Decide what to do about the missionary": "not_started"
+    lore:
+      - "The forty-seven ronin are real. Their lord was stripped of his domain unjustly."
+      - "The Hidden Way has cells in every major city."
+      - "Mount Kasai's fire spirits have begun appearing outside the mountain."
+      - "The Shimora clan of Satsuma is training channelers in secret."
+      - "Emperor Kazuhime has been receiving visitors from the outer lords."
+    notes:
+      - "Multiple plot threads converging — the ronin, the faith, the mountain."
+      - "The player must start choosing sides, even passively."
+      - "The Metsuke attention creates time pressure."
+    narrative_log:
+      - speaker: narrator
+        text: >-
+          Edo is a city of a million fires — cooking fires, forge fires,
+          lantern fires, and the controlled channeling of samurai
+          practicing their forms at dawn. You know the rhythms now.
+          You know which alleys to avoid and which tea houses to trust.
+          But the city is changing. Ronin gather in quiet clusters.
+          The mountain's tremors rattle teacups. And somewhere in the
+          merchant quarter, a foreign priest is teaching that fire is
+          not supreme. The peace is burning from the inside.
+    location: edo
+    time_of_day: evening
+    atmosphere: >-
+      The careful order of the early sessions is cracking. Every
+      conversation has a subtext. Every courtesy might be surveillance.
+      The beauty is still there but now you see the cracks.
+    active_stakes: >-
+      The ronin conspiracy is moving. The mountain is waking. The
+      Metsuke are watching. The player cannot stay uninvolved much longer.
+    points_of_interest:
+      - name: Ronin's lodging above the sake shop
+        slug: edo_ronin_lodging
+        region: edo
+        type: conspiracy
+        description: >-
+          A small upstairs room above a sake shop in the merchant
+          quarter. Paper screens patched with old playbills, a low
+          table, a folded bedroll, a single ink-and-brushstroke map
+          of the Tōkaidō tacked to the wall with each posting station
+          circled. The kind of room a ronin keeps when he is waiting
+          for forty-six others.
+        visual_prompt:
+          solo: >-
+            Wide elevated landscape view of a narrow Edo-period
+            merchant quarter alley at dusk. Foreground: a wet cobbled
+            alley with a low wooden footbridge over a small drainage
+            ditch, two paper lanterns hung from a sake-shop signpost,
+            indigo noren curtains across a low shopfront with the
+            stylized character for sake stitched in white. Middle
+            ground: a two-storey timber-frame sake shop, the lower
+            front fully open under a deep eave with low wooden
+            benches and clay sake jars stacked along one wall, a
+            steep narrow external staircase climbing to an upstairs
+            shōji-screened room with a single warm light glowing
+            behind the paper, a faintly visible map silhouette tacked
+            to the inside of the screen. Background: rows of dark
+            cedar-board townhouses crowding the alley, tile roofs
+            stepping down toward the canal at the alley's end, a
+            second-storey balcony with drying laundry across the way,
+            a sliver of evening sky between the eaves in the soft
+            blue of just-after-sunset.
+          backdrop: >-
+            A two-storey Edo-period sake shop with a steep external
+            staircase climbing to an upstairs shōji-screened room
+            with a single warm lantern light behind the paper, on a
+            narrow cobbled alley between dark cedar-board townhouses
+            stepping down toward a canal.
+        environment:
+          solo: >-
+            Dusk light fading to evening, warm directional glow from
+            paper lanterns at street level and the single upstairs
+            lamp, deep cool blue in the upper sky, the smell of warm
+            sake and cooking oil from the shop below, the distant
+            sound of a shamisen from a neighboring teahouse.
+
+      - name: The merchant's basement chapel
+        slug: edo_hidden_way_basement
+        region: edo
+        type: underground
+        description: >-
+          A low-ceilinged stone cellar beneath a respectable rice
+          merchant's storehouse where the Hidden Way meets after
+          the kane bell of the hour of the boar. A single hanging
+          lamp, a low altar of plain wood with a small wooden cross
+          carved in relief and partly concealed by a chrysanthemum
+          arrangement, kneeling cushions arranged in a half-circle.
+          Whispered prayer in two languages.
+        visual_prompt:
+          solo: >-
+            Wide low-angle interior view of a hidden religious
+            meeting in an Edo-period merchant's stone-walled cellar.
+            Foreground: stone steps descending into the cellar with
+            a single oil lamp hanging from a beam at the foot,
+            casting warm directional light. Middle ground: a low
+            cedar altar of plain unfinished wood against the far
+            wall, a small wooden cross carved in relief into the
+            altar's face, partly concealed behind a tall ikebana
+            arrangement of white chrysanthemums and pine in a plain
+            black-glazed ceramic vase. Six kneeling cushions arranged
+            in a half-circle before the altar, occupied by indigo-
+            and grey-robed figures bowed in prayer, faces averted.
+            Background: rough cut-stone walls with traces of moss in
+            the corners, stacked rice bales pushed to the sides to
+            clear the meeting space, deep dark shadows where the
+            lamp does not reach, a single closed wooden trapdoor
+            visible above the staircase.
+          backdrop: >-
+            A low Edo-period stone-walled cellar with a single oil
+            lamp casting warm directional light onto a low cedar
+            altar, a small wooden cross carved in relief partly
+            concealed behind a chrysanthemum ikebana arrangement,
+            kneeling cushions in a half-circle, stacked rice bales
+            pushed to the walls.
+        environment:
+          solo: >-
+            Single-source warm lamplight, deep falloff into stone
+            shadow, the smell of damp stone and chrysanthemums and
+            old rice, the soft sound of whispered prayer in two
+            languages overlapping, a single drip from the cellar
+            ceiling marking the time.
+
+      - name: The Shimora residence in Edo
+        slug: edo_shimora_residence
+        region: edo
+        type: political
+        description: >-
+          An outer lord's Edo mansion compound, kept under the
+          alternate attendance system. Tile-roofed walls enclose a
+          formal garden, a reception hall, and three lesser
+          buildings. Beautiful, expensive, watched. Inspectors note
+          every visitor who passes the gate.
+        visual_prompt:
+          solo: >-
+            Wide elevated landscape view of an Edo-period outer
+            lord's compound in autumn. Foreground: a long tile-
+            capped white plaster perimeter wall along a clean
+            cobbled lane, a formal gatehouse with deep tile-roofed
+            eaves and a heavy cedar gate left ajar, two armored
+            spear-guards in dark blue and grey at the gate, a single
+            uniformed inspector standing across the lane making
+            notes in a small register. Middle ground: an extensive
+            walled garden visible behind the gate — a small bridged
+            pond, a stone lantern beside a clipped pine, raked white
+            gravel paths, a single autumn maple at the center
+            blazing red — and beyond the garden a long single-storey
+            reception hall with a sweeping tile roof and shōji-
+            screened veranda, attendants in dark indigo crossing
+            between buildings. Background: tile-roofed Edo mansion
+            quarter stretching to either side, a glimpse of distant
+            castle walls and watchtowers, a sky of soft autumn
+            cloud.
+          backdrop: >-
+            A tile-capped white plaster outer lord's compound wall
+            with a tile-roofed gatehouse, opening onto a formal
+            walled garden with a small bridged pond and a blazing
+            autumn maple, a long single-storey reception hall with
+            a shōji-screened veranda visible beyond.
+        environment:
+          solo: >-
+            Late-morning autumn light, cool directional from frame-
+            left, the polished hush of a controlled household, the
+            faint smell of incense from the reception hall and damp
+            stone from the morning's watering of the garden, the
+            distant tap of an attendant's wooden geta on a stone
+            path inside the wall.
+    tropes:
+      - id: the_loyal_ronin
+        name: The Loyal Ronin
+        progress: 0.4
+        status: active
+        notes: "Hasegawa has revealed the conspiracy. The clock is ticking."
+      - id: the_hidden_congregation
+        name: The Hidden Congregation
+        progress: 0.3
+        status: active
+        notes: "The player knows about the missionary. The Metsuke do not. Yet."
+      - id: the_spirit_gate_opens
+        name: The Spirit Gate Opens
+        progress: 0.3
+        status: active
+        notes: "Fire spirits appearing outside the mountain. Wards weakening."
+      - id: the_outer_lords_gambit
+        name: The Outer Lords' Gambit
+        progress: 0.2
+        status: background
+        notes: "Shimora Takako dropped hints. The Shimora are preparing something."
