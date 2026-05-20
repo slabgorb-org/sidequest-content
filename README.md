@@ -19,6 +19,7 @@ services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 | `mutant_wasteland` | Post-apocalyptic mutants | `flickering_reach` (fully spoilable) |
 | `road_warrior` | Late-70s / early-80s vehicle subcultures sharing one port city (bōsōzoku, mods, lowriders, dekotora, raggare, &c.) | `the_circuit` |
 | `space_opera` | Sci-fi space adventure | `coyote_star` |
+| `spaghetti_western` | Morally ambiguous anti-heroes — Leone/Corbucci/Kurosawa. Standoff as ritual, betrayal as inevitability. | `dust_and_lead` (Sangre Territory border town), `the_real_mccoy` (1878 industrial Pittsburgh) |
 | `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross` |
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters,
@@ -26,8 +27,8 @@ factions, OCEAN profiles, conlang morphemes, audio cues, visual style), and
 asset directories for portraits, POI landscapes, and music params.
 
 Stub / workshopping packs not yet wired into runtime live under
-`genre_workshopping/` (heavy_metal, low_fantasy, neon_dystopia, pulp_noir,
-spaghetti_western at various levels of completeness).
+`genre_workshopping/` (heavy_metal, low_fantasy, neon_dystopia, pulp_noir
+at various levels of completeness).
 
 ## Layout
 
