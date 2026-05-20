@@ -159,6 +159,9 @@ luck_rules:
 confrontations:
   - type: standoff
     label: "Standoff"
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [draw, stare, threaten, intimidate, square, confront]
+    on_intent_mismatch: reprompt
     category: pre_combat
     # Legacy bidirectional duel maps cleanly to two ascending dials
     # (spec §"spaghetti_western"). Each side accumulates tension;
@@ -206,6 +209,9 @@ confrontations:
     mood: standoff
   - type: negotiation
     label: "Tense Negotiation"
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [haggle, bargain, barter, offer, deal, price, sell, buy, negotiate]
+    on_intent_mismatch: warn
     category: social
     player_metric:
       name: leverage
@@ -248,6 +254,9 @@ confrontations:
     mood: tension
   - type: poker
     label: "Poker"
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [bet, raise, call, fold, bluff, ante, wager]
+    on_intent_mismatch: warn
     category: social
     player_metric:
       name: edge
@@ -342,6 +351,9 @@ confrontations:
     mood: saloon
   - type: combat
     label: Gunfight
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
+    on_intent_mismatch: reprompt
     category: combat
     resolution_mode: opposed_check
     opponent_default_stats:
@@ -394,6 +406,9 @@ confrontations:
     mood: combat
   - type: chase
     label: Horseback Pursuit
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [chase, pursue, flee, run, escape, follow]
+    on_intent_mismatch: reprompt
     category: movement
     player_metric:
       name: separation
