@@ -42,6 +42,9 @@ class_label: Calling
 confrontations:
   - type: negotiation
     label: "Wasteland Parley"
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [haggle, bargain, barter, offer, deal, price, sell, buy, negotiate]
+    on_intent_mismatch: warn
     category: social
     player_metric:
       name: leverage
@@ -85,6 +88,9 @@ confrontations:
 
   - type: combat
     label: "Wasteland Brawl"
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
+    on_intent_mismatch: reprompt
     category: combat
     resolution_mode: opposed_check
     # Opponent stats calibrated to mod +0 per ADR-093 (was 12 / mod +1).
@@ -152,6 +158,9 @@ confrontations:
 
   - type: chase
     label: Wasteland Pursuit
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [chase, pursue, flee, run, escape, follow]
+    on_intent_mismatch: reprompt
     category: movement
     player_metric:
       name: separation

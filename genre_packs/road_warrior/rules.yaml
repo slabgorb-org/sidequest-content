@@ -279,6 +279,9 @@ encounter_base_tension:
 confrontations:
   - type: negotiation
     label: "Wasteland Bargain"
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [haggle, bargain, barter, offer, deal, price, sell, buy, negotiate]
+    on_intent_mismatch: warn
     category: social
     resolution_mode: opposed_check
     # Opponent stats calibrated to mod +0 per ADR-093.
@@ -331,6 +334,9 @@ confrontations:
 
   - type: combat
     label: "Vehicular Combat"
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
+    on_intent_mismatch: reprompt
     category: combat
     resolution_mode: opposed_check
     # Opponent stats calibrated to mod +0 per ADR-093.
@@ -388,6 +394,9 @@ confrontations:
 
   - type: chase
     label: "Road Chase"
+    # Spec 2026-05-20 confrontation-intent-validator
+    intent_verbs: [chase, pursue, flee, run, escape, follow]
+    on_intent_mismatch: reprompt
     category: movement
     resolution_mode: opposed_check
     # Opponent stats calibrated to mod +0 per ADR-093.

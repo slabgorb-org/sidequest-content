@@ -152,6 +152,9 @@ encounter_base_tension:
 confrontations:
   - type: negotiation
     label: "Polite Negotiation"
+    # Spec 2026-05-20 confrontation-intent-validator (cosy-genre: all warn)
+    intent_verbs: [haggle, bargain, barter, offer, deal, price, sell, buy, negotiate]
+    on_intent_mismatch: warn
     category: social
     player_metric:
       name: leverage
@@ -197,6 +200,9 @@ confrontations:
     mood: tension
   - type: trial
     label: "Trial by Tribunal"
+    # Spec 2026-05-20 confrontation-intent-validator (cosy-genre: all warn)
+    intent_verbs: [testify, accuse, defend, argue, examine, object]
+    on_intent_mismatch: warn
     category: social
     player_metric:
       name: conviction
@@ -240,6 +246,9 @@ confrontations:
     mood: tension
   - type: auction
     label: "Auction"
+    # Spec 2026-05-20 confrontation-intent-validator (cosy-genre: all warn)
+    intent_verbs: [bid, raise, outbid, hammer, lot]
+    on_intent_mismatch: warn
     category: social
     player_metric:
       name: bid
@@ -289,6 +298,9 @@ confrontations:
     mood: tension
   - type: social_duel
     label: Duel of Wits
+    # Spec 2026-05-20 confrontation-intent-validator (cosy-genre: all warn)
+    intent_verbs: [insult, riposte, parry, slight, retort, snub]
+    on_intent_mismatch: warn
     category: social
     # Both duellists try to land barbs on the other's composure. The first
     # to absorb threshold worth of cuts breaks first. Drawing-room blood sport.
@@ -328,6 +340,9 @@ confrontations:
     mood: mystery
   - type: scandal
     label: Scandal Eruption
+    # Spec 2026-05-20 confrontation-intent-validator (cosy-genre: all warn)
+    intent_verbs: [whisper, gossip, expose, slander, accuse, rumor]
+    on_intent_mismatch: warn
     category: social
     # Player races to contain the scandal before exposure becomes public
     # knowledge. Player builds containment; the gossip itself builds exposure
