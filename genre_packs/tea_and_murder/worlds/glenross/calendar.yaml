@@ -49,8 +49,8 @@ system:
   sabbath: Sunday
   notes:
     - "Gregorian as adopted by the UK in 1752."
-    - "Year-numbering is consensus civil; the older folk in the parish may still mark Old Year's Day (12 January, the pre-1752 Julian Hogmanay) as an excuse for a second dram."
-    - "Gaelic month and quarter names persist in the upper glen and on the Catholic side but the village reckons in English by default."
+    - "Year-numbering is consensus civil; the older folk in the parish may still mark Old Year's Day (12 January, the Old New Year — frozen at the 1752 adoption offset of eleven days; by strict reckoning the drift to 1908 would put it at 14 January, but the folk tradition does not update) as an excuse for a second dram."
+    - "Gaelic month and quarter names persist in the upper glen, where the old-faith families and the Gaelic-speaking crofters keep them alive, but the village reckons in English by default."
 
 # ────────────────────────────────────────────────────────────────────
 # Months
@@ -149,8 +149,8 @@ months:
       The minister's strawberries are watched. Visitors begin arriving
       in twos and threes; the inn opens its second-floor rooms.
     notable_days:
-      - "21 — Midsummer (no parish observance; the upper-glen Catholics keep St John's Eve on the 23rd with a hilltop fire that the kirk pretends not to see)"
-      - "24 — St John's Day (the Catholic side keeps it; the kirk passes by)"
+      - "21 — Midsummer (no parish observance; the upper-glen old-faith families keep St John's Eve on the 23rd with a hilltop fire — a folk survival of pre-Reformation midsummer that the kirk officially pretends not to see)"
+      - "24 — St John's Day (the upper-glen old-faith families keep it informally; the kirk passes by)"
 
   - number: 7
     name: July
@@ -180,7 +180,7 @@ months:
     notable_days:
       - "1 — Lammas (Scottish quarter day; loaves blessed in the kirk; harvest is *about* to begin in the parish but not begun)"
       - "12 — The Glorious Twelfth (the grouse season opens; Castle Ross is at its fullest; the laird in regimental dress for dinner)"
-      - "15 — Marymas (the upper-glen Catholics keep the Assumption; a small procession at St Margaret's chapel)"
+      - "15 — Marymas (the Assumption — kept quietly at St Margaret's chapel by the Episcopal side; the kirk is busy elsewhere)"
       - "(last Saturday) — the parish fete (white marquee in the meadow east of the kirk; the whole parish; the warm centre of the year)"
 
   - number: 9
@@ -222,13 +222,13 @@ months:
     season: late_autumn
     texture: >-
       The shutting month. Visiting season closed. The village is the
-      village by itself, which is when (per ADR sensibility) most
-      mysteries happen. The Martinmas quarter day reorders the year's
-      finances. The minister begins the Advent sermon series; the
-      schoolmistress is teaching the children carols by candle.
+      village by itself, which is when most mysteries happen. The
+      Martinmas quarter day reorders the year's finances. The minister
+      begins the Advent sermon series; the schoolmistress is teaching
+      the children carols by candle.
     notable_days:
       - "5 — Bonfire Night (the schoolyard fire; the chapel boys throw the best squibs; the laird sends down a barrel of his second-best whisky)"
-      - "11 — Martinmas (Scottish quarter day — fee and rent day; the principal financial reckoning of the year; the laird's factor and the parish doctor both at the post office; the inn does its best Tuesday's-evening trade)"
+      - "11 — Martinmas (Scottish quarter day — fee and rent day; the principal financial reckoning of the year; the laird's factor and the parish doctor both at the post office; the inn does its best midweek-evening trade)"
       - "30 — St Andrew's Day (Scotland's patron; the kirk observes; the schoolmaster recites; the laird is at the Sutherland's in Inverness)"
 
   - number: 12
@@ -491,12 +491,15 @@ festivals:
     name: St John's Eve and Day
     date: "23–24 June"
     fixed: true
-    register: catholic_minority
+    register: old_faith_folk
     description: >-
-      Kept by the upper-glen Catholic minority — a small hilltop fire
-      on the night of the 23rd that the kirk officially does not see
-      and unofficially knows about. A short procession at St Margaret's
-      chapel on the 24th.
+      Kept informally by the upper-glen old-faith families — a folk
+      survival of pre-Reformation midsummer that the Highland kirk
+      has neither suppressed nor blessed. A small hilltop fire on the
+      night of the 23rd that the kirk officially does not see and
+      unofficially knows about. On the 24th the families walk down
+      and St Margaret's rings a quiet Angelus for the Episcopal side
+      to acknowledge the day; the kirk passes the morning entirely.
 
   - id: glorious_twelfth
     name: the Glorious Twelfth
@@ -530,8 +533,14 @@ festivals:
     name: Marymas
     date: "15 August"
     fixed: true
-    register: catholic_minority
-    description: "The Assumption, kept at St Margaret's chapel with a short procession down from the upper glen. The kirk is busy elsewhere."
+    register: episcopal_high_church
+    description: >-
+      The Assumption — kept quietly at St Margaret's chapel by the
+      Episcopal side. The rector is English-educated and inclined to
+      the higher register, so the day is marked with a sung office
+      and the candles lit on the Lady chapel; the kirk takes no
+      notice. The upper-glen old-faith families walk down for the
+      service. Castle Ross attends, in summer best.
 
   - id: parish_fete
     name: the Parish Fete
@@ -611,7 +620,7 @@ festivals:
       Scottish quarter day. The principal financial day of the parish
       year — fee day for hired servants, half-year rents due, the laird's
       factor and the parish doctor both at the post office, the inn doing
-      its best Tuesday's-evening trade. A working day pretending to be a
+      its best midweek-evening trade. A working day pretending to be a
       holiday and not quite getting away with it.
     narrator_hooks:
       - "A fee is not paid where everyone expected it would be."
@@ -748,13 +757,15 @@ starting_date:
   day: 17
   day_of_week: Saturday
   time_of_day: "late afternoon (about half past four)"
-  prose: "Saturday the seventeenth of October, nineteen-and-eight; the inn fire reinstated last week; the visiting season closed; the harvest home a fortnight gone; the kirk steeple scaffolding still up."
+  prose: "Saturday the seventeenth of October, nineteen-and-eight; the inn fire reinstated last week; the visiting season closed; the harvest home four weeks gone; the kirk steeple scaffolding still up."
   season: autumn
   nearest_festival_past:
     id: harvest_home
-    days_ago: 14
+    date: "1908-09-19"
+    days_ago: 28
   nearest_festival_future:
     id: halloween
+    date: "1908-10-31"
     days_ahead: 14
 
 # ────────────────────────────────────────────────────────────────────
@@ -769,11 +780,19 @@ useful:
   am_pm_notation: "the village says 'in the morning' / 'in the afternoon' / 'at night'; the railway says 9.40 a.m. or 4.15 p.m. when it must be precise"
   weekend_concept: "Saturday is a half-working day; Sunday is the Sabbath; the modern 'weekend' is not yet a settled idea in 1908 rural Scotland"
   bank_holidays_1908:
-    - "1 January (New Year's Day)"
-    - "2 January (Scotland's quieter second day)"
-    - "Good Friday (chapel only; kirk does not close)"
-    - "Easter Monday (English use; Scotland goes lightly)"
-    - "(first Monday in May) — the spring bank holiday; the parish observes mildly"
-    - "(first Monday in August) — the autumn bank holiday in Scotland; the parish observes by closing the post office"
-    - "25 December (Christmas; observed quietly)"
-    - "26 December (Boxing Day; observed quietly)"
+    # The Bank Holidays Act 1871 gave Scotland a shorter statutory list than
+    # England and Wales. By 1908 the statutory Scottish bank holidays were:
+    statutory:
+      - "1 January — New Year's Day"
+      - "Good Friday (the post office and the bank close; the kirk does not close — the legal holiday and the kirk's holy-day-keeping diverge here, as they do throughout the Scottish calendar)"
+      - "first Monday in May — the spring bank holiday"
+      - "first Monday in August — the Scottish autumn bank holiday (England's August bank holiday will move to the last Monday in 1971; in 1908 both countries observe the first Monday)"
+    # Days the parish customarily observes but which are NOT statutory bank
+    # holidays in 1908. They became statutory later, but in 1908 the post
+    # office is technically open on these days even if the village pretends
+    # otherwise.
+    customary_not_statutory:
+      - "2 January — the post office honours it as a quieter second day; not statutory until 1974"
+      - "25 December (Christmas) — observed quietly by the kirk and more substantially by the chapel; not a Scottish bank holiday in 1908 (becomes one in 1958). Working folk traditionally work the morning"
+      - "26 December (Boxing Day) — the laird's staff are given their boxes; not a Scottish bank holiday in 1908 (becomes one in 1974)"
+      - "Easter Monday — observed by the English visitors; the village goes about its Monday"
