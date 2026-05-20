@@ -1,0 +1,86 @@
+/* Spaghetti Western — sun-bleached parchment, woodtype, leather, dust */
+
+:root[data-genre] {
+  /* Genre identity */
+  --primary: #8B4513;
+  --secondary: #5C3317;
+  --accent: #CD853F;
+  --background: #F5E6D0;
+  --surface: #E8D5B8;
+  --text: #2B1810;
+
+  /* Tailwind tokens */
+  --foreground: #2B1810;
+  --card: #E8D5B8;
+  --card-foreground: #2B1810;
+  --popover: #F5E6D0;
+  --popover-foreground: #2B1810;
+  --primary-foreground: #F5E6D0;
+  --secondary-foreground: #F5E6D0;
+  --muted: #D9C3A1;
+  --muted-foreground: #6E4E2C;
+  --accent-foreground: #2B1810;
+  --border: #8B4513;
+  --input: #E8D5B8;
+  --ring: #CD853F;
+  --destructive: oklch(0.55 0.22 22.216);
+}
+
+@font-face {
+  font-family: 'Alfa Slab One';
+  src: url('/genre/assets/fonts/AlfaSlabOne-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    /* Noon sun — bright bleach from above */
+    radial-gradient(ellipse at 50% 0%, rgba(255, 235, 180, 0.18) 0%, transparent 55%),
+    /* Sepia vignette — old photograph edges */
+    radial-gradient(ellipse at center, transparent 40%, rgba(92, 51, 23, 0.22) 100%);
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E#n");
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#narrative {
+  position: relative;
+  z-index: 1;
+}
+
+/* Body text — typewriter on rag paper, slight ink bleed */
+.narration-block p {
+  letter-spacing: 0.005em;
+  text-shadow: 0 0 22px rgba(139, 69, 19, 0.04);
+}
+
+/* Drop cap — woodtype broadside */
+.drop-cap-block img {
+  filter: drop-shadow(2px 2px 3px rgba(92, 51, 23, 0.45)) sepia(0.15);
+}
+
+/* Dinkus — bullet, spur, or crossed irons */
+.dinkus {
+  color: var(--secondary);
+  letter-spacing: 0.45em;
+  font-weight: bold;
+}
+
+/* Pull quote — wanted poster register */
+.pull-quote {
+  border-left: 4px solid var(--secondary);
+  color: var(--primary);
+  font-family: 'Alfa Slab One', 'Rockwell', 'Clarendon', serif;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 1.05em;
+  letter-spacing: 0.06em;
+}
+
+.session-opener {
+  border-bottom: 2px solid var(--secondary);
+}
