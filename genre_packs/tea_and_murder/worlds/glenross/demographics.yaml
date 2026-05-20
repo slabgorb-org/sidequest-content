@@ -1,41 +1,705 @@
 # Glenross Demographics
 #
-# Settlement profiles and population structure for the Highland village.
-# Glenross is "large enough to support a minister, a doctor, a school,
-# a post office, one inn — small enough that everyone knows everyone's
-# business by sundown." Population figures and service counts ground the
-# narrator's descriptions in concrete plausibility.
+# Settlement profile, population structure, and social register for the
+# Highland parish of Glenross, c. 1908. This file is the narrator's
+# grounding reference for who lives in the parish, what work they do,
+# how they rank socially, and what daily rhythms the village runs on.
 #
-# Schema: docs/schemas/world-grounding/demographics.schema.json
-# ADR-059: Monster Manual pattern (YAML content → narrator prompt zone)
+# Authored alongside:
+#   - world.yaml        — axis snapshot, scope sentence, themes
+#   - cartography.yaml  — the 14 named regions of the village & glen
+#   - npcs.yaml         — the 12-strong warm cast (never the victim)
+#   - lore.yaml         — economy, religion, transport, period texture
+#
+# Schema: pending — Story 24-1 will formalise the shape across all
+# world-grounding files; until then this YAML is authored in the shape
+# I'd want the schema to enforce. Per ADR-059 (Monster Manual pattern),
+# this content is injected into narrator prompt zones (story 24-6).
+
+version: "0.1.0"
+world: glenross
+genre_pack: tea_and_murder
+
+# ────────────────────────────────────────────────────────────────────
+# Parish overview
+# ────────────────────────────────────────────────────────────────────
+
+parish:
+  name: Glenross
+  type: highland_parish
+  era: edwardian
+  year: 1908
+  region: "the western Highlands, a fictional glen running east-west"
+  scope: >-
+    Large enough to support a minister, a doctor, a school, a post
+    office, one inn — small enough that everyone knows everyone's
+    business by sundown.
+  total_population: 412
+  village_centre_population: 148
+  outlying_parish_population: 264
+  households_approx: 96
+  recurring_cast_count: 12
+  axis_alignment:
+    cosy: 0.75
+    puzzle: 0.7
+    gossip: 0.7
+    gothic: 0.05
+
+# ────────────────────────────────────────────────────────────────────
+# Settlements
+# ────────────────────────────────────────────────────────────────────
+# The village proper, plus the off-map neighbours the parish names.
+# All in-village geography is enumerated in cartography.yaml; this is
+# the parish-level outline.
 
 settlements:
-  - name: Glenross
+  - id: glenross_village
+    name: Glenross
     type: highland_village
-    population: 412
+    population: 148
     wealth: modest
-    profile:
-      clergy: 1
-      taverns: 1
-      inns: 1
-      shops:
-        general_merchant: 1
-        apothecary: 1
-        tea_room: 1
-        butcher: 1
-        grocer: 1
-      guilds:
-        - kirk_session
-        - village_council
-      institutions:
-        school: 1
-        post_office: 1
-        surgery: 1
-        distillery: 1
-    notes: >-
-      A railway hub village in Edwardian Scotland (c. 1908). The social order runs
-      from Castle Ross (laird's household) through the professional class (minister,
-      doctor, schoolmistress, postmaster), shopkeepers and tradespeople, to farm servants.
-      The kirk session and post office serve as informal courts; the inn and kirk kitchen
-      are social gathering points. The distillery is the village's economic anchor.
-      Two trains a day to Inverness; single road in and out.
+    character: >-
+      A working Highland village in the long warm afternoon of empire.
+      Stone cottages and slate roofs gathered around a three-arch bridge
+      over the river Allt Ross; the kirk on its mound at the geographic
+      centre after the bridge; Castle Ross on the rise above, visible
+      from almost anywhere; the distillery downwind to the west; the
+      single railway halt at the southern edge.
+    economic_role: >-
+      The parish's professional and commercial centre. Hosts the kirk,
+      the chapel, the school, the surgery, the post office, the tea
+      rooms, the smithy, the inn, and the railway halt. The Munro
+      distillery sits west along the burn.
+    cartography_regions: 14
+    season_pulse:
+      visiting_season: "August through October — sportsmen, the Twelfth, the parish fete"
+      working_year: "November through July — the village by itself, which is when most mysteries happen"
+
+  - id: castle_ross_estate
+    name: Castle Ross and its policies
+    type: estate
+    population: 23
+    wealth: comfortable_but_pressed
+    character: >-
+      Late-Georgian house with an 1870s Highland baronial restoration —
+      turret, crow-stepped gables, porte-cochère, walled gardens, the
+      rose garden on the south side, the home farm and a dozen tenant
+      crofts on the policies. Twelve rooms in use during the season,
+      four otherwise.
+    economic_role: >-
+      The parish's largest single employer (indoor and outdoor staff,
+      gillies, gardeners). Rents from the home farm and the crofts;
+      salmon beats in season; the laird quietly under financial pressure
+      against London expenses.
+    cartography_regions: 1
+
+  - id: cullenmore_neighbour
+    name: Cullenmore
+    type: off_map_market_village
+    distance_miles: 7
+    rail_connection: true
+    role: >-
+      The nearest market village south down the line. Source of the
+      cricket eleven and shinty fifteen Glenross plays. Visitors come
+      up by train; shopping the village can't supply (mended boots,
+      dressmaking, books, a wider butcher) goes down by train.
+    note: "Not playable. Referenced as a rumour-and-supply elsewhere."
+
+  - id: inverness_north
+    name: Inverness
+    type: off_map_county_town
+    distance_miles: 28
+    rail_connection: true
+    role: >-
+      The afternoon train down. The county constabulary HQ, the county
+      CID inspector who comes up on occasion, the Edinburgh solicitor's
+      onward link, the wider shops, the hospital, the assize court.
+      Twenty-eight miles by rail.
+    note: "Not playable."
+
+# ────────────────────────────────────────────────────────────────────
+# Districts (cartography clusters)
+# ────────────────────────────────────────────────────────────────────
+# Groupings of the 14 named cartography regions. These are how the
+# village's residents speak about where things are, not arbitrary zones.
+
+districts:
+  - id: village_centre
+    name: "the village centre"
+    character: >-
+      The crossroads at the bridge, the inn on one side, the post office
+      and tea rooms across, the kirk and chapel on the mound to the
+      north-east, the surgery and manse along the lane. Most of the
+      village's daytime life happens within five minutes' walk of here.
+    regions:
+      - the_glenross_arms
+      - the_post_office
+      - the_tea_rooms
+      - the_kirk_of_st_maelrubha
+      - the_manse
+      - st_margarets_chapel
+      - the_school
+      - the_surgery
+      - the_bridge
+
+  - id: railway_quarter
+    name: "the railway halt and approach"
+    character: >-
+      A single platform at the southern edge of the village, the
+      stile from the schoolyard, the lane up to the bridge. The
+      morning train arrives at 9.40, the afternoon at 4.15 — the
+      village's two daily appointments with the world outside.
+    regions:
+      - the_railway_halt
+
+  - id: distillery_quarter
+    name: "the distillery and burn-side"
+    character: >-
+      West of the bridge along the Allt Ross. Two pagoda kilns smoking
+      faintly all year and in earnest from August. The bonded warehouse
+      number one is the oldest in the parish. The village's outward
+      face when London asks where the whisky comes from.
+    regions:
+      - the_distillery
+
+  - id: castle_policies
+    name: "Castle Ross and its grounds"
+    character: >-
+      The rise above the bridge, the long drive up from the lodge
+      gates, the walled gardens, the rose garden, the gun-room beside
+      the stables, the home farm to the west. The cricket and shinty
+      ground east of the kirk is leased from the laird's meadow.
+    regions:
+      - castle_ross
+      - the_cricket_ground
+
+  - id: upper_glen
+    name: "the upper glen and the Long Pass"
+    character: >-
+      North out of the village, climbing gently for two miles to the
+      pass, then the track to the high shielings, the deer forest, and
+      the next parish a day's walk on. The burnt shieling and the high
+      cairn are the local landmarks. Body discoveries and chase scenes
+      happen here, as does the village's summer-evening view.
+    regions:
+      - the_long_pass
+
+# ────────────────────────────────────────────────────────────────────
+# Services and institutions
+# ────────────────────────────────────────────────────────────────────
+# Strict to canon. Every entry is anchored in lore.yaml, cartography.yaml,
+# or npcs.yaml. No invented shops or guilds.
+
+services:
+
+  religion:
+    - name: "Kirk of St. Maelrubha"
+      tradition: "Church of Scotland"
+      typical_attendance: 200
+      clergy_npc: rev_murchison
+      governance: "Kirk session — the village's senior moral court"
+      cartography_region: the_kirk_of_st_maelrubha
+
+    - name: "St. Margaret's Chapel"
+      tradition: "Scottish Episcopal"
+      typical_attendance: 40
+      clergy_npc: rev_quill
+      governance: "Chapel vestry — does not overlap with the kirk session"
+      cartography_region: st_margarets_chapel
+      note: "The laird's family worships here; the rector is English-educated."
+
+    - name: "Wee Free meeting"
+      tradition: "Free Church of Scotland (Continuing)"
+      typical_attendance: 12
+      clergy_npc: null
+      governance: "Visiting elder from a neighbouring parish"
+      cartography_region: null
+      note: "Meets in a barn in the upper glen on the third Sunday of the month."
+
+  civic_and_law:
+    - role: "Parish constable"
+      role_holder: sgt_macrae
+      jurisdiction: "Parish of Glenross; county constabulary out of Inverness"
+      establishment: "the constable's cottage by the bridge (doubles as the lost-property office)"
+      escalation: "County CID inspector comes up on occasion from Inverness"
+
+    - role: "Kirk session"
+      role_holder: rev_murchison
+      function: "Discipline, charity, the village's quiet moral court"
+      note: "The chapel vestry does not overlap, by mutual understanding."
+
+    - role: "Stationmaster"
+      role_holder: albert_macgregor
+      establishment: the_railway_halt
+      services: ["tickets", "freight", "two_trains_per_day", "telegrams_relayed_through_post_office"]
+      note: "Named in cartography.yaml; not yet a full NPC entry."
+
+  medical:
+    - role: "Country general practitioner"
+      role_holder: dr_ross
+      coverage: "Glenross parish + visiting calls to Cullenmore when needed"
+      hours: "Mon-Wed-Fri, ten to noon and four to six"
+      establishment: the_surgery
+      utilities: ["village_telephone_line_1_of_2", "dispensary_cabinet"]
+
+  education:
+    - role: "Schoolmistress"
+      role_holder: miss_ferguson
+      pupils_total: 30
+      pupil_age_range: "7 to 14"
+      establishment: the_school
+      note: "Single-room schoolhouse; the schoolmistress's cottage is attached."
+
+  communications:
+    - role: "Postmistress and telegraph operator"
+      role_holder: mrs_buchan
+      establishment: the_post_office
+      services: ["royal_mail", "telegraph", "parcels", "marconi_messages", "village_notice_board"]
+      utilities: ["village_telephone_line_2_of_2"]
+
+  hospitality_and_trade:
+    - role: "Publican"
+      role_holder: hamish_sinclair
+      establishment: the_glenross_arms
+      rooms_for_let: 3
+      household: "Hamish, his wife Kirsty (kitchen and the three rooms upstairs), the dog Caley"
+
+    - role: "Tea-room proprietress"
+      role_holder: mrs_cameron
+      establishment: the_tea_rooms
+      tables: 3
+      schedule:
+        seed_cake: "Mondays"
+        shortbread: "Thursdays"
+
+    - role: "Smith and farrier"
+      role_holder: donald_buchan
+      establishment: "the smithy (behind the post office)"
+      household: "Husband of the postmistress; does the heavy sorting and the carrying for the post office as well as the smithy work."
+
+  industry:
+    - name: "Munro Distillery"
+      proprietor_npc: donald_munro
+      establishment: the_distillery
+      employees_approx: 12
+      production_scale: small
+      output_notes:
+        - "Two copper stills (Caelidh and Brigid), sixty years old."
+        - "Three bonded warehouses; warehouse number one holds the longest-aged casks."
+        - "Current vintage well-spoken-of in Edinburgh."
+        - "A London merchant ordered three casks in spring 1908 — largest single order in the distillery's history."
+      generations: 3
+      founded: "1820s, on a licence the laird's grandfather granted"
+
+  household_employment:
+    castle_ross:
+      indoor:
+        - role: "Housekeeper"
+          role_holder: mrs_trefusis
+        - role: "Cook"
+          role_holder: mrs_cattanach
+        - role: "Upstairs maids"
+          count: 3
+        - role: "Kitchen maids"
+          count: 2
+        - role: "Chauffeur"
+          count: 1
+      outdoor:
+        - role: "Head gillie"
+          role_holder: old_tam
+        - role: "Under-gillie"
+          role_holder: calum_cattanach
+          note: "Old Tam's grand-nephew; eventual successor."
+        - role: "Gardener"
+          count: 1
+        - role: "Under-gardener"
+          count: 1
+      total_approx: 13
+
+    the_manse:
+      - role: "Housekeeper"
+        role_holder: mrs_drummond
+        note: "Came up from Edinburgh after the minister's wife's death five years ago; stayed."
+
+  utilities_and_period_texture:
+    telephones_in_parish: 2
+    telephone_locations: [the_surgery, the_post_office]
+    private_telephone_lines: [castle_ross]
+    electric_lighting: "Castle Ross has a private plant; the village runs on gaslight and oil."
+    motor_cars_in_parish: 3
+    motor_car_owners: ["Sir Iain's Riley", "Dr. Ross's smaller car", "an occasional visitor's"]
+    railway_services_per_day: 2
+    cycling_villagers: [sgt_macrae, dr_ross, mrs_buchan, miss_ferguson, rev_quill]
+    horse_and_trap: "Castle Ross keeps four; the inn keeps a pair for the visiting trade."
+
+# ────────────────────────────────────────────────────────────────────
+# Population breakdown
+# ────────────────────────────────────────────────────────────────────
+# Approximate. The narrator uses these to ground "a face in the crowd"
+# without inventing implausible new occupations.
+
+population:
+  total: 412
+
+  age_bands:
+    children_under_15: 118
+    working_age_15_to_64: 252
+    elderly_65_plus: 42
+
+  workforce: 252
+
+  occupational_mix:
+    - sector: "Tenant farming and crofting"
+      headcount: 92
+      share: 0.365
+      note: "A dozen tenant crofts on the home farm, smallholders along the glen, shepherds, peat-cutters."
+
+    - sector: "Castle Ross household and estate"
+      headcount: 17
+      share: 0.067
+      note: "Indoor and outdoor staff. The village's largest single employer."
+
+    - sector: "Other domestic service"
+      headcount: 14
+      share: 0.056
+      note: "Manse, surgery, chapel cottage, and a handful of visiting-season service positions at the inn."
+
+    - sector: "Munro Distillery"
+      headcount: 12
+      share: 0.048
+      note: "Distillery hands, the foreman, the cooper, the warehouseman."
+
+    - sector: "Inn, tea rooms, smithy, post office, tea-trade"
+      headcount: 14
+      share: 0.056
+      note: "Publican household, tea-room cook, smith, postmistress, parcel boy."
+
+    - sector: "Professional service"
+      headcount: 9
+      share: 0.036
+      note: "Minister, rector, doctor, schoolmistress, postmistress, constable, stationmaster, plus pupil-teacher and surgery assistant in season."
+
+    - sector: "Salmon beats and woodland (seasonal)"
+      headcount: 11
+      share: 0.044
+      note: "Salmon ghillies under Old Tam in season; forestry casuals."
+
+    - sector: "Casual labour and road-mending"
+      headcount: 19
+      share: 0.075
+      note: "Day-work for the home farm, the County Council road parties, the railway gangs."
+
+    - sector: "Independent or at home"
+      headcount: 64
+      share: 0.254
+      note: "Keeping house, retired-in-employment, dependents above 15, the schoolmistress's invalid sister and similar."
+
+  class_distribution:
+    landed_gentry: 0.005   # The Ross family at Castle Ross
+    professional: 0.025    # Clergy, doctor, schoolmistress, postmistress, stationmaster, constable
+    artisan_and_trade: 0.060  # Innkeeper, tea-room, smith, distiller, distillery foreman, cooper
+    domestic_service: 0.075   # Castle and other domestic staff
+    crofter_and_farmer: 0.36  # The parish's largest single class
+    farm_labourer: 0.15       # Hired hands, road-menders, casual labour
+    dependent_or_other: 0.325 # Children, elderly, those keeping house
+
+# ────────────────────────────────────────────────────────────────────
+# Social strata
+# ────────────────────────────────────────────────────────────────────
+# Class is load-bearing in Edwardian Scotland but the village is small
+# enough to see through it. The narrator uses these layers to set
+# register: who calls whom by what, who waits for whom to sit first,
+# who is owed a deferential nod at the post office.
+
+social_strata:
+
+  - layer: landed_gentry
+    rank: 1
+    description: >-
+      The Ross family at Castle Ross. Apex of the parish, courteously
+      distant from village life. The laird and lady sit in their pew at
+      the front of the kirk on Sundays (though the family worships
+      mostly at the chapel) and host the parish fete in the meadow each
+      August.
+    exemplars: [sir_iain_ross, lady_annabel_ross, hugo_ross]
+    forms_of_address:
+      from_village: '"Sir Iain", "her ladyship", "the laird", "the young master"'
+      from_peer_gentry: "first names"
+      from_older_gaelic_crofters: '"the laird"'
+    village_attitude: >-
+      Cordial-but-distant. The Big House and the village have a working
+      truce a hundred and sixty years old. Hugo is "the village's
+      affectionate joke and its future" and is liked for playing
+      cricket and shinty alongside the village against Cullenmore.
+
+  - layer: professional_class
+    rank: 2
+    description: >-
+      The minister, the rector, the doctor, the schoolmistress, the
+      postmistress, the distiller. The warm centre of the recurring
+      cast. The village's working professionals — what the village
+      means when it says "the professions".
+    exemplars: [rev_murchison, rev_quill, dr_ross, miss_ferguson, mrs_buchan, donald_munro]
+    forms_of_address:
+      from_village: '"Mr. Murchison", "Reverend Quill", "Doctor", "Miss Ferguson", "Mrs. Buchan", "Mr. Munro"'
+      among_themselves: "surnames, with sherry"
+    village_attitude: >-
+      Familiar warmth. These are the doors the village knocks on with
+      its troubles. The kettle is always on at the manse, the surgery,
+      the post office, the tea rooms.
+
+  - layer: constabulary_and_law
+    rank: 2
+    description: >-
+      The parish constable. Between professional and yeoman in standing;
+      treated by the village with the gravity earned over nineteen years.
+    exemplars: [sgt_macrae]
+    forms_of_address:
+      from_village: '"Mr. MacRae" or "the sergeant"'
+    village_attitude: >-
+      Trusted absolutely on village matters; treated with quiet
+      deference on parish matters. Has a firm rule against arresting a
+      man in his own home; the village respects this without saying so.
+
+  - layer: artisans_and_shopkeepers
+    rank: 3
+    description: >-
+      The publican, the tea-room proprietress, the smith-farrier, the
+      stationmaster, the distillery foreman. The trades that keep the
+      village running day to day.
+    exemplars: [hamish_sinclair, mrs_cameron, donald_buchan, albert_macgregor]
+    forms_of_address:
+      from_village: '"Hamish", "Mrs. Cameron", "Donald" (Buchan), "the stationmaster"'
+      between_intimates: "first names"
+      in_public: "surnames"
+    village_attitude: >-
+      Friendly familiarity. The publican's view of a visitor lasts
+      twenty years; the tea-room's notebook above the bread oven is the
+      village's true gazetteer.
+
+  - layer: castle_household
+    rank: 4
+    description: >-
+      The Castle's indoor and outdoor staff. Respected for service and
+      addressed by post.
+    exemplars: [old_tam, calum_cattanach, mrs_trefusis, mrs_cattanach, mrs_drummond]
+    forms_of_address:
+      from_village: '"Old Tam", "Mrs. Trefusis", "the cook", "the gillie"'
+      from_laird: '"Tam", surname for senior staff, first names for maids'
+    village_attitude: >-
+      The estate's people are the village's people; most are kin to
+      named cast through some thread of marriage or christening (the
+      constable's wife is Old Tam's niece; the Castle cook is her
+      mother's sister).
+
+  - layer: crofters_and_tenant_farmers
+    rank: 5
+    description: >-
+      The parish's largest single class. A dozen tenant crofts on the
+      laird's home farm, smallholders along the glen, sheep families
+      who have farmed the same shieling for four generations.
+    exemplars: []   # unnamed; the parish's body
+    forms_of_address:
+      from_village: "surname and first name interchangeably; older crofters often have Gaelic by-names"
+      from_gentry: '"surname" or "the McRae", "the Cattanach"'
+    village_attitude: >-
+      The village's stock. The minister knows every household by the
+      surname on the kirk session roll; the schoolmistress has taught
+      every adult under forty. Most older crofters retain Gaelic at
+      home; the village proper speaks Scots-inflected English.
+
+  - layer: farm_servants_and_labourers
+    rank: 6
+    description: >-
+      Hired hands on the home farm, casual labour at the distillery,
+      road-menders, peat-cutters, railway gangs on the line.
+    exemplars: []
+    forms_of_address:
+      from_village: "recognised by face and family; named in narration only when they speak"
+    village_attitude: >-
+      The unnamed body of the parish. The narrator should reach for
+      "a road-mender", "the railway gang", "the McGregor lad up from
+      Cullenmore" rather than invent specific names unless the player
+      asks.
+
+# ────────────────────────────────────────────────────────────────────
+# Anchor households
+# ────────────────────────────────────────────────────────────────────
+# The households the narrator can reliably reach for. Sizes are
+# approximate; the warm-cast NPC IDs cross-reference npcs.yaml.
+
+anchor_households:
+  - id: castle_ross
+    composition:
+      family: [sir_iain_ross, lady_annabel_ross, hugo_ross]
+      indoor_staff: [mrs_trefusis, mrs_cattanach, "3 upstairs maids", "2 kitchen maids", "chauffeur"]
+      outdoor_staff: [old_tam, calum_cattanach, "head gardener", "under-gardener"]
+    size: 14_in_residence
+
+  - id: the_manse
+    composition:
+      family: [rev_murchison]
+      staff: [mrs_drummond]
+    size: 2
+    note: "The minister has been widowed five years."
+
+  - id: the_chapel_cottage
+    composition:
+      family: [rev_quill]
+    size: 1
+    note: "Lives alone; a charwoman comes in from the village three days a week."
+
+  - id: the_surgery
+    composition:
+      family: [dr_ross]
+    size: 1
+    note: "Lives above the surgery. A girl from the village comes in to do the rough."
+
+  - id: the_glenross_arms
+    composition:
+      family: ["hamish_sinclair", "Kirsty Sinclair (his wife)"]
+      establishment_animal: "Caley (the inn dog)"
+    size: 2
+    note: "Three grown children away — two daughters in service in Edinburgh, one son at the distillery."
+
+  - id: the_post_office
+    composition:
+      family: [mrs_buchan, donald_buchan]
+    size: 2
+    note: "Three grown children away — two in Glasgow, one in Australia. They live in the back room and the adjoining cottage."
+
+  - id: the_schoolmistress_cottage
+    composition:
+      family: [miss_ferguson, "Iona Ferguson (her invalid younger sister)"]
+    size: 2
+    note: "Iona arrived recently from Edinburgh. Attached to the schoolhouse."
+
+  - id: the_tea_rooms_cottage
+    composition:
+      family: [mrs_cameron]
+    size: 1
+    note: "Widowed fifteen years. One daughter (Christina) married in Glasgow; elder daughter Effie deceased."
+
+  - id: the_distillery_cottage
+    composition:
+      family: ["donald_munro", "Mhairi Munro (his wife)"]
+    size: 2
+    note: "Elder son lives in his own cottage at the bonded warehouse and works alongside Donald. Younger son is a barrister in Edinburgh."
+
+  - id: the_constables_cottage
+    composition:
+      family: [sgt_macrae, "Effie MacRae (his wife, Old Tam's niece)"]
+    size: 2
+    note: "No children. The cottage doubles as the village's lost-property office and informal court of last resort."
+
+# ────────────────────────────────────────────────────────────────────
+# Narrator grounding phrases
+# ────────────────────────────────────────────────────────────────────
+# Short, evocative lines the narrator can drop directly into prose.
+# These are the lines that distinguish "a Highland village" from
+# "Glenross specifically". Each phrase is a baited hook (ADR-014) the
+# narrator can re-cast when needed.
+
+narrator_grounding_phrases:
+
+  scale_and_shape:
+    - "Large enough to support a minister, a doctor, a school, a post office, one inn — small enough that everyone knows everyone's business by sundown."
+    - "A parish of four hundred souls; thirty children at the school; forty in the chapel pews on a full Sunday; two hundred in the kirk."
+    - "One inn, one school, one surgery, one post office, one smithy, one distillery — and two churches that politely do not overlap."
+    - "Two trains a day. Two telephones. Three motor-cars in the parish."
+    - "A dozen tenant crofts and a Big House; a distillery downwind by design."
+
+  social_register:
+    - "The village's recurring cast you will come to love."
+    - "The kirk session and the post office are its courts."
+    - "Standing and gossip are the village's currency."
+    - "Class is still load-bearing in Edwardian Scotland but the village is small enough to see through it."
+    - "The minister, the rector, the doctor, the schoolmistress, the postmistress, and the distiller — the village's working professionals."
+    - "Castle Ross above, cottages below, kirk between."
+
+  daily_rhythm:
+    - "Surgery hours Mon-Wed-Fri, ten to noon and four to six."
+    - "The kettle is always on at the manse, the surgery, the post office, the tea rooms — and Mrs. Cameron will judge your sugar habits in silence but won't bring it up."
+    - "Seed cake on Mondays, shortbread on Thursdays."
+    - "The morning train up from the south, the afternoon down from Inverness — anything new arrives or departs from that platform."
+    - "Bells: quarter past and quarter to at the school; Sundays, funerals, fires, and the New Year at the kirk."
+
+  who_calls_whom:
+    - 'The laird is "Sir Iain" to the village, "the laird" to the older Gaelic crofters, "Iain" only to the rector when no one else is present.'
+    - 'The professionals are addressed by surname and title — "Mr. Murchison", "Doctor", "Miss Ferguson", "Mrs. Buchan".'
+    - 'The tradespeople are first names with intimates, surnames in public — "Hamish" behind the bar, "Mr. Sinclair" in the post office.'
+    - 'The household staff are addressed by post — "the cook", "the gillie", "the housekeeper" — or by surname.'
+    - 'The crofters and labourers are recognised by face and family; named in narration only when they speak.'
+
+  outsider_signals:
+    - "A face the publican does not know is a story by tea."
+    - "A foreign stamp at the post office is an event in Mrs. Buchan's morning and an observation by tea."
+    - "Hurry, performance, and treating the village as a backdrop earn courteous distance and no candour."
+    - "Patience, observation, and the willingness to wait out a story earn the warmth of the standing cast."
+    - "The village will defend a long-resident against an outsider's accusation almost reflexively."
+
+  season_and_weather:
+    - "The Highland light: heather and bracken in autumn, the river dark and quick over the stones beneath the bridge, peat smoke from the cottages."
+    - "Visiting season runs August through October — sportsmen, the Twelfth, the parish fete."
+    - "The rest of the year is the village by itself, which is when most mysteries happen."
+    - "The inn fire is going from October to April."
+    - "The distillery smokes faintly all year and in earnest from August."
+
+# ────────────────────────────────────────────────────────────────────
+# Naming conventions
+# ────────────────────────────────────────────────────────────────────
+
+naming_conventions:
+
+  prevalent_surnames:
+    # In rough order of frequency in the parish; cross-references in npcs.yaml.
+    - Ross         # the laird's family and many tenants who took the name
+    - MacRae       # constable's family; long-resident
+    - Munro        # distiller's family
+    - Buchan       # postmistress and smith
+    - Cattanach    # gillie family; Castle cook's family
+    - Cameron      # tea-room family
+    - Murchison    # minister's family
+    - Sinclair     # publican's family
+    - Ferguson     # schoolmistress's family
+    - MacGregor    # stationmaster; publican's wife's maiden name
+    - Drummond     # manse housekeeper's family
+    - Forbes       # Lady Annabel's family (off-glen)
+    - Macpherson   # Rev. Quill's maternal line (off-glen)
+    - Trefusis     # Castle housekeeper (English origin)
+
+  gaelic_at_home:
+    description: >-
+      The older generation in the upper glen and the gillie families
+      retain Gaelic at home. The village proper speaks Scots-inflected
+      English by 1908. The school taught in English only for a
+      generation; the younger residents understand Gaelic phrases but
+      do not speak them. Old Tam thinks in Gaelic and translates as
+      he speaks.
+    exemplars: [old_tam]
+
+  honorifics:
+    apex:
+      - "Sir / Lady (the laird and Lady Annabel)"
+    professional:
+      - "Doctor (Dr. Ross)"
+      - "Reverend (the minister and the rector)"
+      - "Mister / Mrs. / Miss"
+    civic:
+      - "Sergeant (Sgt. MacRae)"
+    by_post:
+      - "the publican, the postmistress, the schoolmistress, the gillie, the cook, the stationmaster"
+
+# ────────────────────────────────────────────────────────────────────
+# Cross-references
+# ────────────────────────────────────────────────────────────────────
+
+references:
+  world:        "worlds/glenross/world.yaml — axis snapshot, themes, mood, premise"
+  cartography:  "worlds/glenross/cartography.yaml — 14 named regions; each NPC bound to a region"
+  npcs:         "worlds/glenross/npcs.yaml — 12 warm-cast NPCs (never the victim)"
+  lore:         "worlds/glenross/lore.yaml — economy, religion, transport, period_texture, cosy_constraints"
+  legends:      "worlds/glenross/legends.yaml"
+  history:      "worlds/glenross/history.yaml"
+  openings:     "worlds/glenross/openings.yaml"
+  cultures:     "worlds/glenross/cultures.yaml"
