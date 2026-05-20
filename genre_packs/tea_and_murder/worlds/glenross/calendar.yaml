@@ -1,0 +1,798 @@
+# Glenross Calendar
+#
+# The reckoning of time in the Highland parish of Glenross, c. 1908.
+# This file is the narrator's grounding reference for what month and day
+# the village is in, what the next festival or quarter day is, what the
+# moon is doing, what the church bells will ring for, and how working
+# people in the parish actually talk about hours of the day.
+#
+# Authored alongside:
+#   - world.yaml        — axis snapshot, scope sentence, themes
+#   - demographics.yaml — parish profile, settlements, recurring cast
+#   - cartography.yaml  — the 14 named regions of the village & glen
+#   - lore.yaml         — economy, religion, transport, period texture
+#   - npcs.yaml         — the 13-strong warm cast (never the victim)
+#
+# Schema: pending — Story 24-1 will formalise the shape across all
+# world-grounding files; until then this YAML is authored in the shape
+# I'd want the schema to enforce. Per ADR-059 (Monster Manual pattern),
+# this content is read at runtime by the `get_world_grounding` narrator
+# tool (story 24-6) and surfaced into the narrator's tool-result payload
+# when a scene needs grounding in date, season, or festival proximity.
+
+version: "0.1.0"
+world: glenross
+genre_pack: tea_and_murder
+
+# ────────────────────────────────────────────────────────────────────
+# The system
+# ────────────────────────────────────────────────────────────────────
+# The Gregorian calendar as used throughout Edwardian Britain. Scotland
+# adopted it in 1752 along with the rest of the United Kingdom. The
+# Highland Gaelic substrate persists in older Catholic month-and-quarter
+# names (Am Faoilleach, An Gearran, etc.) but the parish's anglophone
+# day-to-day reckoning is plain Gregorian. Year reckoning is Anno Domini;
+# the parish minister will say "in the year of our Lord nineteen-and-eight"
+# from the pulpit, and the schoolchildren will say "1908" in their copybooks.
+
+system:
+  type: gregorian
+  era: Anno Domini
+  era_short: AD
+  era_in_prose: "the year of our Lord nineteen-and-eight"
+  current_year: 1908
+  decade_register: "the Edwardian decade — the long warm afternoon of empire"
+  months_per_year: 12
+  days_per_week: 7
+  weeks_per_year: 52
+  first_day_of_week: Monday
+  sabbath: Sunday
+  notes:
+    - "Gregorian as adopted by the UK in 1752."
+    - "Year-numbering is consensus civil; the older folk in the parish may still mark Old Year's Day (12 January, the Old New Year — frozen at the 1752 adoption offset of eleven days; by strict reckoning the drift to 1908 would put it at 14 January, but the folk tradition does not update) as an excuse for a second dram."
+    - "Gaelic month and quarter names persist in the upper glen, where the old-faith families and the Gaelic-speaking crofters keep them alive, but the village reckons in English by default."
+
+# ────────────────────────────────────────────────────────────────────
+# Months
+# ────────────────────────────────────────────────────────────────────
+# Standard Gregorian months. Each carries its parish-level texture —
+# what the village is doing, what the weather is generally up to, what
+# the next thing on the horizon is. Use these to ground a scene in
+# *when* without forcing the narrator to invent it.
+
+months:
+  - number: 1
+    name: January
+    short: Jan
+    gaelic: Am Faoilleach
+    days: 31
+    season: deep_winter
+    texture: >-
+      The bleak month. Short days, snow on the high ground, the river
+      black and quick. The inn fire is the parish's centre. The new
+      curate is finding his feet; the laird is at home rather than in
+      town; the schoolmistress is teaching by lamplight at four o'clock.
+    notable_days:
+      - "1 — New Year's Day (a parish holiday in fact if not in law)"
+      - "2 — January Holiday in Scotland (a quieter second day of the year)"
+      - "12 — Old Year's Day, the pre-1752 Hogmanay (an excuse, not an observance)"
+      - "25 — Burns Night (the Munros host a supper at the distillery; the laird does not attend; the schoolmaster recites)"
+
+  - number: 2
+    name: February
+    short: Feb
+    gaelic: An Gearran
+    days: 28
+    leap_days: 29
+    leap_rule: "29 days in years divisible by 4 except centuries not divisible by 400; 1908 is a leap year — 29 days."
+    season: deep_winter
+    texture: >-
+      The hard month. Wind off the moor, sleet, the school's coal-fund
+      collection box. The kirk session meets oftener. Lambing has not
+      started; the gillies are mending tackle.
+    notable_days:
+      - "2 — Candlemas (Scottish quarter day; school spring term opens; the kirk has a quieter than English observance)"
+
+  - number: 3
+    name: March
+    short: Mar
+    gaelic: Am Màrt
+    days: 31
+    season: late_winter
+    texture: >-
+      Lambing begins on the home farm and the crofts. Snowdrops in the
+      manse garden. The road from Cullenmore is rutted; the morning
+      train runs late twice a week on account of points freezing.
+    notable_days:
+      - "(movable) — Easter often falls in late March; see festivals.easter."
+
+  - number: 4
+    name: April
+    short: Apr
+    gaelic: An Giblean
+    days: 30
+    season: early_spring
+    texture: >-
+      The break. The inn fire is allowed to go out by the last week.
+      Salmon beats reopen on the river. The kirk grounds are being
+      tidied; the manse plum tree is in bud. The schoolmaster's spring
+      examinations are next month and the parish knows it.
+    notable_days:
+      - "(movable) — Easter often falls in April; see festivals.easter."
+
+  - number: 5
+    name: May
+    short: May
+    gaelic: An Cèitean
+    days: 31
+    season: spring
+    texture: >-
+      The kind month. Daffodils along the burn, the first warm days
+      that mean nothing yet. The Whitsunday quarter day reorganises
+      tenancies; one or two crofts change hands or change rent. The
+      parish fete committee meets for the first time about the August
+      arrangements.
+    notable_days:
+      - "1 — May Day (children's procession from the school; a maypole on the green; not a kirk observance)"
+      - "15 — Whitsunday (Scottish quarter day — removal day, term hiring, half-year rents due)"
+      - "24 — Empire Day (the school marks it; the village politely; the laird sends a wreath to the war memorial in Inverness)"
+
+  - number: 6
+    name: June
+    short: Jun
+    gaelic: An t-Ògmhios
+    days: 30
+    season: early_summer
+    texture: >-
+      The light month — sunset after ten, the long northern twilight,
+      midges in earnest after the seventeenth. The school year ends.
+      The minister's strawberries are watched. Visitors begin arriving
+      in twos and threes; the inn opens its second-floor rooms.
+    notable_days:
+      - "21 — Midsummer (no parish observance; the upper-glen old-faith families keep St John's Eve on the 23rd with a hilltop fire — a folk survival of pre-Reformation midsummer that the kirk officially pretends not to see)"
+      - "24 — St John's Day (the upper-glen old-faith families keep it informally; the kirk passes by)"
+
+  - number: 7
+    name: July
+    short: Jul
+    gaelic: An t-Iuchar
+    days: 31
+    season: summer
+    texture: >-
+      The waiting month. The visitors are arriving by the trainload.
+      The Castle Ross gun-room is being inventoried. The schoolmaster
+      is reading. The minister is preparing a sermon series on Job. The
+      cricket eleven plays Cullenmore twice; the shinty fifteen once.
+    notable_days: []
+
+  - number: 8
+    name: August
+    short: Aug
+    gaelic: An Lùnastal
+    days: 31
+    season: late_summer
+    texture: >-
+      The loud month — the visiting season is in full song. The
+      distillery begins its working-in-earnest. The Twelfth opens the
+      grouse moor and Castle Ross fills its bedrooms. The parish fete
+      arrives at the month's last Saturday and the whole village turns
+      out, gentry and crofter, kirk and chapel.
+    notable_days:
+      - "1 — Lammas (Scottish quarter day; loaves blessed in the kirk; harvest is *about* to begin in the parish but not begun)"
+      - "12 — The Glorious Twelfth (the grouse season opens; Castle Ross is at its fullest; the laird in regimental dress for dinner)"
+      - "15 — Marymas (the Assumption — kept quietly at St Margaret's chapel by the Episcopal side; the kirk is busy elsewhere)"
+      - "(last Saturday) — the parish fete (white marquee in the meadow east of the kirk; the whole parish; the warm centre of the year)"
+
+  - number: 9
+    name: September
+    short: Sep
+    gaelic: An t-Sultain
+    days: 30
+    season: early_autumn
+    texture: >-
+      The harvest month. The crofts are bringing in oats and barley;
+      the Castle Ross home farm is working overtime. The visitors thin
+      a little after the fete but the sportsmen stay for the deer.
+      The school year resumes after the harvest holiday in the middle
+      of the month.
+    notable_days:
+      - "(movable, mid-month) — harvest home (an evening's eating and the minister giving thanks; the chapel does its own a week later)"
+      - "29 — Michaelmas (English quarter day; not a Scottish one, but the laird's English-side rents are due and his factor is on the lawn with a ledger)"
+
+  - number: 10
+    name: October
+    short: Oct
+    gaelic: An Dàmhair
+    days: 31
+    season: autumn
+    texture: >-
+      The russet month. Heather burnt back on the moor, bracken
+      brown, the inn fire reinstated on the first cold morning of the
+      month. The visitors are mostly gone by the end. The river runs
+      higher; the salmon beats close. The kirk steeple is repointed
+      every fifth year and 1908 is one such.
+    notable_days:
+      - "31 — Hallowe'en (the children go guising; the kirk is uneasy about it and pretends a moderate enthusiasm; the bonfire is in the schoolyard and the minister is officially absent)"
+
+  - number: 11
+    name: November
+    short: Nov
+    gaelic: An t-Samhain
+    days: 30
+    season: late_autumn
+    texture: >-
+      The shutting month. Visiting season closed. The village is the
+      village by itself, which is when most mysteries happen. The
+      Martinmas quarter day reorders the year's finances. The minister
+      begins the Advent sermon series; the schoolmistress is teaching
+      the children carols by candle.
+    notable_days:
+      - "5 — Bonfire Night (the schoolyard fire; the chapel boys throw the best squibs; the laird sends down a barrel of his second-best whisky)"
+      - "11 — Martinmas (Scottish quarter day — fee and rent day; the principal financial reckoning of the year; the laird's factor and the parish doctor both at the post office; the inn does its best midweek-evening trade)"
+      - "30 — St Andrew's Day (Scotland's patron; the kirk observes; the schoolmaster recites; the laird is at the Sutherland's in Inverness)"
+
+  - number: 12
+    name: December
+    short: Dec
+    gaelic: An Dùbhlachd
+    days: 31
+    season: early_winter
+    texture: >-
+      The short month. Dark before four, the inn fire roaring, the
+      kirk filling for the Advent services on a Sunday and emptying
+      again by Monday morning. Christmas is observed but it is the
+      English visitors and the kirk's incomers who make most of it;
+      the village is saving itself for Hogmanay.
+    notable_days:
+      - "21 — Midwinter (no parish observance; the schoolmaster mentions it; the laird's foreign guests notice the daylight)"
+      - "25 — Christmas (a kirk service, a quieter dinner; Highland Presbyterian Scotland has not historically made much of it — that is changing slowly; the chapel does more)"
+      - "26 — Boxing Day (the laird's tenants and staff are given their boxes; the village is muted)"
+      - "31 — Hogmanay (the year's loudest single night; the kirk bell at midnight; first-footing across the village; the inn is shut from ten until two on the proprietor's strict instruction so his own people can do the rounds)"
+
+# ────────────────────────────────────────────────────────────────────
+# Days of the week
+# ────────────────────────────────────────────────────────────────────
+# Standard seven-day week. Sabbath observance in the Highland parish
+# is strict — the Wee Free (the Free Presbyterian minority who meet in
+# the upper-glen barn) are stricter than the kirk, but the kirk is
+# stricter than the chapel, and the chapel is stricter than the inn.
+
+days_of_week:
+  - number: 1
+    name: Monday
+    short: Mon
+    gaelic: Diluain
+    texture: "Wash day at the manse. Working day in the village. The morning train at 9.40 carries the laird's Edinburgh post."
+  - number: 2
+    name: Tuesday
+    short: Tue
+    gaelic: Dimàirt
+    texture: "Working day. Market van comes up from Cullenmore in the morning. The doctor's surgery is open all day."
+  - number: 3
+    name: Wednesday
+    short: Wed
+    gaelic: Diciadain
+    texture: "Working day. The schoolmistress visits the outlying crofts in the afternoon. The minister calls on the bereaved."
+  - number: 4
+    name: Thursday
+    short: Thu
+    gaelic: Diardaoin
+    texture: "Working day. The post office stays open an hour later for the afternoon train."
+  - number: 5
+    name: Friday
+    short: Fri
+    gaelic: Dihaoine
+    texture: "Working day. The inn does its weekly stocktake. The schoolchildren are dismissed early in summer."
+  - number: 6
+    name: Saturday
+    short: Sat
+    gaelic: Disathairne
+    texture: "Half-working day. Cricket and shinty fixtures in season. The village shops are open until two. The inn does its busiest evening."
+  - number: 7
+    name: Sunday
+    short: Sun
+    gaelic: Didòmhnaich
+    texture: >-
+      The Sabbath. Kirk at eleven and at six. Chapel at ten and at four.
+      Wee Free at the upper-glen barn at eleven, on the third Sunday of
+      the month. No washing on the line, no whistling in the street, no
+      train (no train on Sundays at all in this part of Scotland), no
+      smithy. The inn is shut until evening. The Castle Ross gun-room
+      is locked. The village reads, walks, sleeps, and visits.
+    notes:
+      - "No trains run on Sundays anywhere on the Highland line; this isolates the parish completely from midnight Saturday until Monday's 9.40."
+      - "Sunday work is a kirk-session matter; a third infraction can be a public rebuke from the pulpit."
+
+# ────────────────────────────────────────────────────────────────────
+# Scottish quarter days
+# ────────────────────────────────────────────────────────────────────
+# The legal-and-financial spine of the rural Scottish year. Tenancies,
+# rents, hiring, and the kirk's stipend all turn on these four days.
+# Distinct from the English quarter days (which fall on Lady Day,
+# Midsummer, Michaelmas, and Christmas); Scotland kept the older
+# Celtic four.
+
+quarter_days:
+  - name: Candlemas
+    date: "2 February"
+    season: late_winter
+    role: "School spring term opens. Smaller half-quarter rents. A handful of crofts change hands."
+  - name: Whitsunday
+    date: "15 May"
+    season: spring
+    role: "Removal day — the principal annual tenant turnover. Term hiring of farm and household servants. Half-year rents."
+  - name: Lammas
+    date: "1 August"
+    season: late_summer
+    role: "Harvest is about to begin. Smaller half-quarter rents. A handful of crofts change hands."
+  - name: Martinmas
+    date: "11 November"
+    season: late_autumn
+    role: "The principal financial day of the parish year. Fee day for hired servants. Half-year rents. The laird's factor at the post office with the ledger."
+
+# ────────────────────────────────────────────────────────────────────
+# Moons
+# ────────────────────────────────────────────────────────────────────
+# Folk names the parish actually uses for the year's twelve full
+# moons. These are local — Highland Scots, not the American-Algonquian
+# names that began appearing in farmer's almanacs only later. The
+# narrator may name a moon when the night requires one named; the
+# crofters and the gillies will use them in conversation; the laird
+# will not, and the schoolmistress will note them with quiet interest.
+
+moons:
+  - month: 1
+    name: the Wolf Moon
+    folk_register: "The wolves are long gone from the Highlands but the name has outlived them — the deep-winter moon when the wind off the moor sounds like one."
+  - month: 2
+    name: the Hunger Moon
+    folk_register: "The last of the winter store. The moon the crofters speak of soberly."
+  - month: 3
+    name: the Lambing Moon
+    folk_register: "The home farm and the high crofts are out in the byres half the night."
+  - month: 4
+    name: the Plough Moon
+    folk_register: "The first turned furrow of the year, often by moonlight after a late thaw."
+  - month: 5
+    name: the Whitsun Moon
+    folk_register: "The moon nearest the quarter day. Tenancy changes. New faces in the parish."
+  - month: 6
+    name: the Long Moon
+    folk_register: "Barely a moon at all — the northern twilight outshines it. The shortest nights of the year."
+  - month: 7
+    name: the Hay Moon
+    folk_register: "Hay-cut by moonlight in a dry July. The midges are pitiless."
+  - month: 8
+    name: the Stag Moon
+    folk_register: "The grouse moor and then the deer forest. The Castle Ross gun-room sleeps with its windows open."
+  - month: 9
+    name: the Harvest Moon
+    folk_register: "The standard name; the parish does not improve on it. The brightest moon of the year for working into the evening."
+  - month: 10
+    name: the Reeking Moon
+    folk_register: "The first hard frosts; peat smoke from every cottage chimney; the moon hangs orange in it."
+  - month: 11
+    name: the Mourning Moon
+    folk_register: "Martinmas, leaves down, the kirkyard tidied for winter, the war memorial in Inverness re-wreathed."
+  - month: 12
+    name: the Yule Moon
+    folk_register: "Hogmanay's moon, full or not — the parish names it the Yule Moon regardless. First-footers walking by its light."
+
+# ────────────────────────────────────────────────────────────────────
+# Festivals
+# ────────────────────────────────────────────────────────────────────
+# The parish's recurring public occasions, in calendar order. Each is
+# a baited hook in the SOUL.md sense — a known annual moment the
+# narrator can place a body in the rose garden against, or a visitor's
+# arrival, or a will-reading, or a confession.
+
+festivals:
+  - id: hogmanay
+    name: Hogmanay
+    date: "31 December – 1 January"
+    fixed: true
+    register: civic_central
+    description: >-
+      The loudest single night of the year. The kirk bell at midnight,
+      first-footing across the village with whisky and shortbread and a
+      lump of coal for the hearth, the inn shut by the proprietor's
+      strict instruction so his own people can do the rounds. The village
+      keeps Hogmanay; the village does not keep Christmas the same way.
+    narrator_hooks:
+      - "A stranger first-foots a house with bad luck written on him."
+      - "The kirk bell rings out of season and the village knows something is wrong."
+      - "Someone is not where they should be when the rounds reach them."
+
+  - id: new_years_day
+    name: New Year's Day
+    date: "1 January"
+    fixed: true
+    register: civic_quiet
+    description: "A village holiday in fact, recovering from Hogmanay. The minister calls on the senior parishioners. The inn opens late."
+
+  - id: january_holiday
+    name: the January Holiday
+    date: "2 January"
+    fixed: true
+    register: civic_quiet
+    description: "Scotland's quieter second day of the year. The post office is closed; the school is closed; the laird's children sledge on the Castle Ross south slope."
+
+  - id: burns_night
+    name: Burns Night
+    date: "25 January"
+    fixed: true
+    register: cultural_social
+    description: >-
+      The Munros host a supper at the distillery — haggis, neeps,
+      tatties, the Selkirk Grace, the immortal memory, the toast to the
+      lassies, the reply. The laird does not attend (a long-standing
+      and quietly explained absence). The schoolmaster recites the
+      Address to a Haggis without notes.
+    narrator_hooks:
+      - "A toast goes wrong — a name is named that should not have been."
+      - "A guest at the supper is not on the original list."
+
+  - id: candlemas
+    name: Candlemas
+    date: "2 February"
+    fixed: true
+    register: kirk_quarter
+    description: "Scottish quarter day. School spring term opens. A subdued observance in the kirk; smaller half-year rents settled at the manse door."
+
+  - id: easter
+    name: Easter
+    date: "movable — first Sunday after the first full moon after the spring equinox"
+    fixed: false
+    typical_window: "late March to mid-April"
+    register: kirk_central
+    description: >-
+      The kirk's central festival. The chapel's too. Good Friday is
+      observed quietly by the chapel and almost not at all by the kirk
+      (Scots Presbyterianism has been historically wary of holy-day
+      keeping); Easter Sunday brings the largest kirk congregation of
+      the year after Hogmanay.
+
+  - id: may_day
+    name: May Day
+    date: "1 May"
+    fixed: true
+    register: village_folk
+    description: >-
+      Not a kirk observance. The schoolchildren's procession from the
+      schoolyard to the meadow east of the kirk, the maypole the
+      schoolmistress and the chapel boys put up the night before, a
+      garland for the prettiest crofter's daughter (which the
+      schoolmistress arranges to rotate, with a discretion the village
+      pretends not to notice).
+
+  - id: whitsunday
+    name: Whitsunday
+    date: "15 May"
+    fixed: true
+    register: kirk_quarter
+    description: >-
+      Scottish quarter day — the principal annual tenant turnover. Carts
+      on the road from before dawn. Hired servants change houses. The
+      kirk takes its Pentecost observance the same morning, which the
+      minister considers tidy and the chapel considers Presbyterian.
+
+  - id: empire_day
+    name: Empire Day
+    date: "24 May"
+    fixed: true
+    register: civic_imperial
+    description: >-
+      The school marks it with a Union Jack in the yard and a recitation
+      from one of the older children. The village politely. The laird
+      sends a wreath to the war memorial in Inverness and does not
+      attend in person.
+
+  - id: midsummer_st_johns
+    name: St John's Eve and Day
+    date: "23–24 June"
+    fixed: true
+    register: old_faith_folk
+    description: >-
+      Kept informally by the upper-glen old-faith families — a folk
+      survival of pre-Reformation midsummer that the Highland kirk
+      has neither suppressed nor blessed. A small hilltop fire on the
+      night of the 23rd that the kirk officially does not see and
+      unofficially knows about. On the 24th the families walk down
+      and St Margaret's rings a quiet Angelus for the Episcopal side
+      to acknowledge the day; the kirk passes the morning entirely.
+
+  - id: glorious_twelfth
+    name: the Glorious Twelfth
+    date: "12 August"
+    fixed: true
+    register: gentry_central
+    description: >-
+      The opening of the red-grouse season. Castle Ross is at its
+      fullest — twelve bedrooms in use rather than the off-season four.
+      The laird in regimental dress for dinner. Gillies and beaters
+      are working from before dawn. The village inn does a great
+      sandwich trade. The old laird (Iain's father) died of a chill
+      on the Twelfth a few years before; Iain therefore opens the
+      shoot with a brief speech and a brief glass and not much joy.
+    narrator_hooks:
+      - "A shot fired on the moor that was not a grouse."
+      - "A guest is found in the rose garden when he should have been on the line."
+      - "A gillie has noticed something he does not know how to report."
+
+  - id: lammas
+    name: Lammas
+    date: "1 August"
+    fixed: true
+    register: kirk_quarter
+    description: >-
+      Scottish quarter day. The kirk blesses the first loaves; the
+      harvest is about to begin but has not begun. Smaller half-year
+      rents settle at the manse door.
+
+  - id: marymas
+    name: Marymas
+    date: "15 August"
+    fixed: true
+    register: episcopal_high_church
+    description: >-
+      The Assumption — kept quietly at St Margaret's chapel by the
+      Episcopal side. The rector is English-educated and inclined to
+      the higher register, so the day is marked with a sung office
+      and the candles lit on the Lady chapel; the kirk takes no
+      notice. The upper-glen old-faith families walk down for the
+      service. Castle Ross attends, in summer best.
+
+  - id: parish_fete
+    name: the Parish Fete
+    date: "the last Saturday of August"
+    fixed: false
+    typical_window: "22–31 August"
+    register: village_central
+    description: >-
+      The warmest day of the parish year. White marquee in the meadow
+      east of the kirk, raised in the week before by joint volunteers
+      from kirk and chapel and laird's staff. A brass band up from
+      Cullenmore. Cake stalls, a coconut shy, a children's race, the
+      schoolmistress's flower show, the minister's wife judging the
+      jam. The whole village turns out — gentry, crofter, kirk, chapel,
+      visiting sportsmen — and stands together for the only afternoon
+      they reliably do.
+    narrator_hooks:
+      - "A guy-rope is cut. The marquee comes down on the wrong people."
+      - "A visitor is not who the laird's wife introduced him as."
+      - "A first prize is awarded to the wrong jar of jam."
+
+  - id: harvest_home
+    name: Harvest Home
+    date: "movable — a Saturday in mid-September after the last sheaf"
+    fixed: false
+    typical_window: "10–25 September"
+    register: kirk_village
+    description: >-
+      An evening's eating in the meadow when the home farm has finished.
+      The minister gives thanks. The chapel does its own a week later
+      and the kirk attends out of policy. The Munro distillery sends a
+      cask down for the long table.
+
+  - id: michaelmas
+    name: Michaelmas
+    date: "29 September"
+    fixed: true
+    register: english_quarter
+    description: >-
+      Not a Scottish quarter day, but the laird's English-side rents
+      and his London leases settle here. The factor is on the Castle
+      Ross lawn with a ledger; the schoolmaster makes a quiet joke
+      about it; the kirk does not observe.
+
+  - id: halloween
+    name: Hallowe'en
+    date: "31 October"
+    fixed: true
+    register: village_folk
+    description: >-
+      The children go guising — costumes, rhymes, a coin or a treat.
+      The kirk is uneasy about it and pretends a moderate enthusiasm.
+      The bonfire is in the schoolyard, lit at dusk, the chapel boys
+      throwing the best squibs. The minister is officially absent and
+      privately watching from the manse window with his wife.
+    narrator_hooks:
+      - "A guiser is not a child anyone knows."
+      - "The bonfire turns up something that should not have been on it."
+
+  - id: bonfire_night
+    name: Bonfire Night
+    date: "5 November"
+    fixed: true
+    register: civic_imperial
+    description: >-
+      The schoolyard fire again, smaller than Hallowe'en's, the chapel
+      boys with their best squibs again, the laird sending down a barrel
+      of his second-best whisky for the men. A muted observance — Scotland
+      keeps it but not loudly.
+
+  - id: martinmas
+    name: Martinmas
+    date: "11 November"
+    fixed: true
+    register: kirk_quarter
+    description: >-
+      Scottish quarter day. The principal financial day of the parish
+      year — fee day for hired servants, half-year rents due, the laird's
+      factor and the parish doctor both at the post office, the inn doing
+      its best midweek-evening trade. A working day pretending to be a
+      holiday and not quite getting away with it.
+    narrator_hooks:
+      - "A fee is not paid where everyone expected it would be."
+      - "A servant does not take the engagement she was offered."
+
+  - id: st_andrews
+    name: St Andrew's Day
+    date: "30 November"
+    fixed: true
+    register: civic_national
+    description: >-
+      Scotland's patron. The kirk observes with a sermon on the calling
+      of the disciples; the schoolmaster recites the Address to a
+      Haggis (Burns Night's understudy); the laird is conventionally
+      at the Sutherlands' in Inverness.
+
+  - id: christmas
+    name: Christmas
+    date: "25 December"
+    fixed: true
+    register: kirk_quiet
+    description: >-
+      Observed but not loudly. Highland Presbyterian Scotland has
+      historically not made much of Christmas (that is shifting in the
+      Edwardian decade, slowly, and the kirk is keeping pace with
+      caution). A morning kirk service for the willing; a quieter
+      dinner than an English household would set. The chapel makes
+      more of it, with a midnight mass on the 24th the kirk affects
+      not to notice. The village is saving itself for Hogmanay.
+
+  - id: boxing_day
+    name: Boxing Day
+    date: "26 December"
+    fixed: true
+    register: civic_quiet
+    description: "The laird's tenants and indoor staff are given their boxes (a coin, a bottle, a half-side of bacon for the larger families). The village is muted."
+
+# ────────────────────────────────────────────────────────────────────
+# Time precision
+# ────────────────────────────────────────────────────────────────────
+# How working people in the parish actually talk about hours. Watches
+# are gentry. The schoolmaster has a pocket watch and so does the doctor.
+# The crofters have a clock on the kitchen mantel and the kirk and the
+# school have bells. The railway has the only fully-trusted timepieces
+# in the parish — set daily from Inverness.
+
+time_precision:
+  registers:
+    gentry:
+      level: minute
+      example: "the laird's watch shows seven minutes past four"
+      notes: "Pocket watch or wristwatch (the latter rare; the laird's wife has one and it is noticed)."
+    professional:
+      level: quarter_hour
+      example: "the doctor will be there before the half-hour"
+      notes: "Pocket watch, sometimes set against the school bell."
+    village_working:
+      level: half_hour
+      example: "the morning train; the afternoon train; before tea; after tea"
+      notes: "The mantel clock and the church bell carry the day."
+    croft_working:
+      level: light_and_meal
+      example: "before the milking; at the milking; after the dinner; before the gloaming"
+      notes: "The sun and the kettle. A pocket watch in the family is a story."
+    sabbath:
+      level: service_anchored
+      example: "before the kirk; after the kirk; between the services"
+      notes: "Sunday hours are spoken in terms of kirk and chapel, not numbers."
+
+  bells:
+    school:
+      times: ["09:00 (in)", "12:00 (dinner)", "13:00 (in)", "15:30 (out)"]
+      rule: "Quarter-hours during the school day are sounded by the schoolmistress's smaller hand-bell."
+      audible_range: "the village centre and the railway halt"
+    kirk:
+      times: ["10:45 and 11:00 (morning service)", "17:45 and 18:00 (evening service)"]
+      rung_for: ["Sunday services", "funerals", "fires", "midnight at Hogmanay (New Year)"]
+      audible_range: "the village, the burn-side, the lower castle policies, the upper glen on a still day"
+    chapel:
+      times: ["09:45 and 10:00 (morning mass)", "15:45 and 16:00 (afternoon mass)"]
+      rung_for: ["Sunday and feast-day services", "weddings", "the Angelus (midday and 18:00 daily, quietly)"]
+      audible_range: "the village centre"
+
+  trains:
+    notes: "The railway clock and the station-master's watch are set daily from Inverness — the parish's authoritative time."
+    services:
+      - direction: "down (south, to Inverness)"
+        time: "09:40"
+        register: "the morning train"
+      - direction: "down (south, to Inverness)"
+        time: "16:15"
+        register: "the afternoon train"
+      - direction: "up (north, from Inverness)"
+        time: "08:55"
+        register: "the morning up-train"
+      - direction: "up (north, from Inverness)"
+        time: "17:30"
+        register: "the evening up-train"
+    sundays: "No service. The line is silent from midnight Saturday until Monday's 09:40 down-train."
+
+  meals:
+    - name: breakfast
+      window: "07:30 – 09:00 in the village, earlier on the crofts"
+    - name: midday dinner
+      window: "12:30 – 13:30; the principal hot meal in working houses"
+    - name: tea
+      window: "15:30 – 17:00; the principal social hour; cake-and-conversation in the manse, the surgery, the post office, the tea rooms"
+    - name: supper
+      window: "19:00 – 20:30 in the village; the gentry dine later (20:00 – 21:30)"
+
+  daylight:
+    notes: >-
+      Glenross sits at about 57° N — the daylight swings widely with
+      the year. Sunrise and sunset times the parish notices:
+    examples:
+      - "midwinter (late December): sunrise around 09:00, sunset around 15:30; the school day runs in lamplight at both ends"
+      - "equinox (March, September): sunrise around 06:30, sunset around 18:30"
+      - "midsummer (late June): sunrise around 04:20, sunset around 22:30; northern twilight all night, no full dark"
+
+# ────────────────────────────────────────────────────────────────────
+# Starting date suggestion
+# ────────────────────────────────────────────────────────────────────
+# The world.yaml `starting_time` is "late afternoon, autumn". The
+# campaign-start default below honours that and lands the party in
+# the parish's working year (visiting season closing, inn fire freshly
+# reinstated, the kirk steeple repointing scaffolding still up). The
+# session handler is free to override per-scene; this is the default
+# the bootstrap may pick up if no scene has set a date.
+
+starting_date:
+  year: 1908
+  month: 10
+  month_name: October
+  day: 17
+  day_of_week: Saturday
+  time_of_day: "late afternoon (about half past four)"
+  prose: "Saturday the seventeenth of October, nineteen-and-eight; the inn fire reinstated last week; the visiting season closed; the harvest home four weeks gone; the kirk steeple scaffolding still up."
+  season: autumn
+  nearest_festival_past:
+    id: harvest_home
+    date: "1908-09-19"
+    days_ago: 28
+  nearest_festival_future:
+    id: halloween
+    date: "1908-10-31"
+    days_ahead: 14
+
+# ────────────────────────────────────────────────────────────────────
+# Useful conversions for the narrator
+# ────────────────────────────────────────────────────────────────────
+# Quick lookups the grounding tool may surface alongside the current
+# date when a scene asks for context.
+
+useful:
+  twelve_hour_clock: true
+  twenty_four_hour_clock_in_prose: false
+  am_pm_notation: "the village says 'in the morning' / 'in the afternoon' / 'at night'; the railway says 9.40 a.m. or 4.15 p.m. when it must be precise"
+  weekend_concept: "Saturday is a half-working day; Sunday is the Sabbath; the modern 'weekend' is not yet a settled idea in 1908 rural Scotland"
+  bank_holidays_1908:
+    # The Bank Holidays Act 1871 gave Scotland a shorter statutory list than
+    # England and Wales. By 1908 the statutory Scottish bank holidays were:
+    statutory:
+      - "1 January — New Year's Day"
+      - "Good Friday (the post office and the bank close; the kirk does not close — the legal holiday and the kirk's holy-day-keeping diverge here, as they do throughout the Scottish calendar)"
+      - "first Monday in May — the spring bank holiday"
+      - "first Monday in August — the Scottish autumn bank holiday (England's August bank holiday will move to the last Monday in 1971; in 1908 both countries observe the first Monday)"
+    # Days the parish customarily observes but which are NOT statutory bank
+    # holidays in 1908. They became statutory later, but in 1908 the post
+    # office is technically open on these days even if the village pretends
+    # otherwise.
+    customary_not_statutory:
+      - "2 January — the post office honours it as a quieter second day; not statutory until 1974"
+      - "25 December (Christmas) — observed quietly by the kirk and more substantially by the chapel; not a Scottish bank holiday in 1908 (becomes one in 1958). Working folk traditionally work the morning"
+      - "26 December (Boxing Day) — the laird's staff are given their boxes; not a Scottish bank holiday in 1908 (becomes one in 1974)"
+      - "Easter Monday — observed by the English visitors; the village goes about its Monday"
