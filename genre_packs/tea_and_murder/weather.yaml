@@ -1,0 +1,307 @@
+# Tea & Murder — pack-level weather rules
+#
+# Schema: docs/schemas/world-grounding/weather.schema.json (pack level)
+# PRD §1.1 (Epic 24, Phase 1).
+#
+# Two climate zones cover the current single-world (glenross) cast:
+#
+#   - glen_floor: the village proper — sheltered by the surrounding bens,
+#     warmed by the river Allt Ross and the inn fires, milder than the
+#     ground above, peat smoke pooling on still days. This is where most
+#     scenes take place: the kirk, the post office, Mrs. Cameron's tea
+#     rooms, the bridge.
+#
+#   - highland_pass: the Long Pass and the shielings above — exposed,
+#     several degrees colder, the first to take snow and the last to lose
+#     it. This is where the chase scenes and the body discoveries happen
+#     (see cartography.yaml: the_long_pass). Winter exposure here is
+#     plausibly lethal — the village's folk memory carries a man "found
+#     in the spring at the high cairn, sitting upright, frozen" (see
+#     legends.yaml).
+#
+# Season ids match the conventional Edwardian four-season vocabulary
+# (spring/summer/autumn/winter); the future glenross calendar.yaml
+# (story 24-4) MUST use the same ids or prompt-zone alignment will fail.
+#
+# Temperature ranges are degrees Celsius (genre default per schema).
+# Conditions are the open-enum palette the narrator will receive verbatim
+# — they're intentionally Highland-specific (haar, smirr, gloaming-mist,
+# hill-fog) so the narrator gets local vocabulary rather than generic
+# "rain/cloudy".
+#
+# Special events fire rarely and override the season palette for their
+# duration — these are the named weathers the village talks about over
+# the bar: haar mornings, harvest gales, the Hogmanay blizzard, the
+# false-spring thaw that fools the moors into flower.
+
+climate_zones:
+
+  glen_floor:
+    seasons:
+
+      spring:
+        # March-May. Lengthening light, lambing on the hill, the burn
+        # full of snowmelt. Damp under everything; the kirk vestry is
+        # cold until Whitsun.
+        temp_range: [3, 13]
+        precipitation_chance: 0.55
+        conditions:
+          - drizzle
+          - overcast
+          - smirr
+          - showers
+          - clear
+          - bright_with_cloud
+          - fog
+        weights: [25, 25, 20, 15, 8, 5, 2]
+
+      summer:
+        # June-August. Midges. Long evenings — sunset after nine. The
+        # cricket and shinty ground sees use. Distillery starts in
+        # earnest from August (see lore.yaml). Heatwaves do happen;
+        # so do the Atlantic-driven thunderheads off the hills.
+        temp_range: [10, 21]
+        precipitation_chance: 0.40
+        conditions:
+          - bright_with_cloud
+          - clear
+          - showers
+          - overcast
+          - warm_haze
+          - thundery
+          - drizzle
+        weights: [28, 22, 18, 14, 10, 5, 3]
+
+      autumn:
+        # September-November. Heather purple and bracken ochre. The
+        # "long warm gold of an afternoon that means rain by evening"
+        # (world.yaml mood). Harvest, then the inn fire from October.
+        # Stags roar on the hill. Visiting season tails off in October.
+        temp_range: [4, 14]
+        precipitation_chance: 0.62
+        conditions:
+          - overcast
+          - rain
+          - smirr
+          - bright_with_cloud
+          - fog
+          - wind
+          - gold_afternoon
+          - frost
+        weights: [25, 22, 15, 12, 10, 8, 5, 3]
+
+      winter:
+        # December-February. Dark by four. Inn fire and manse fire and
+        # surgery fire all going. Snow on the tops most days, in the
+        # village some days. The kirk roof is patched annually for a
+        # reason.
+        temp_range: [-3, 6]
+        precipitation_chance: 0.55
+        conditions:
+          - overcast
+          - rain
+          - sleet
+          - frost
+          - snow
+          - clear_cold
+          - hill_fog
+          - wind
+        weights: [25, 18, 15, 12, 12, 8, 6, 4]
+
+    special_events:
+
+      - name: haar
+        # The east-coast sea fog driven inland on a still spring or
+        # early-summer morning. The village wakes up in cloud and the
+        # railway halt vanishes from the kirk. Burns off by midday on
+        # the glen floor, lingers in the pass. Suspect alibis become
+        # harder to verify when no one could see the next garden gate.
+        season: spring
+        chance: 0.06
+        duration_days: [1, 1]
+        effects:
+          - visibility_poor
+          - travel_slow
+
+      - name: harvest_gale
+        # The September-October Atlantic gale that takes the slates off
+        # the kirk roof and brings the apples down at the manse before
+        # they're ready. Trees down across the Long Pass; the doctor's
+        # trap won't go north until the road's cleared.
+        season: autumn
+        chance: 0.05
+        duration_days: [1, 2]
+        effects:
+          - travel_blocked_north
+          - visibility_poor
+          - structural_damage_minor
+
+      - name: hogmanay_blizzard
+        # The New Year storm. Trains cancelled at Inverness, the line
+        # under a foot of snow. The village is on its own until the
+        # plough comes through, which it does — eventually. No one
+        # arrives, no one leaves; whoever's in the village did it.
+        season: winter
+        chance: 0.07
+        duration_days: [2, 4]
+        effects:
+          - travel_blocked
+          - railway_closed
+          - visibility_poor
+          - heating_demand_high
+
+      - name: gold_afternoon
+        # The iconic Highland sun-shower afternoon. Heather lit, river
+        # silver, the pass standing out like an etching. Rain by
+        # evening guaranteed. Garden parties race the cloud bank.
+        season: autumn
+        chance: 0.10
+        duration_days: [1, 1]
+        effects:
+          - mood_warm
+          - rain_likely_by_evening
+
+      - name: false_spring
+        # February thaw — a week of mild westerlies that fool the
+        # snowdrops out and the lambs into being born early. Almost
+        # always followed by a hard frost that wrecks both.
+        season: winter
+        chance: 0.05
+        duration_days: [3, 7]
+        effects:
+          - mud_underfoot
+          - frost_warning_next
+
+      - name: midge_calm
+        # June-August. The still, warm, overcast evening with no breath
+        # of wind off the loch. Midges in clouds. Outdoor scenes
+        # become unbearable; everyone retreats indoors. Excellent for
+        # forcing a suspect into a parlour they wouldn't otherwise
+        # enter.
+        season: summer
+        chance: 0.18
+        duration_days: [1, 3]
+        effects:
+          - outdoor_scenes_painful
+          - drives_indoors
+
+  highland_pass:
+    # Several degrees colder than the glen floor, more exposed, snow
+    # earlier and longer. The shielings (summer pasture, abandoned by
+    # October) and the deer forest above. Body discoveries and chase
+    # scenes happen here.
+    seasons:
+
+      spring:
+        temp_range: [-1, 9]
+        precipitation_chance: 0.60
+        conditions:
+          - hill_fog
+          - showers
+          - smirr
+          - overcast
+          - clear_cold
+          - wind
+          - snow_lingering
+        weights: [22, 20, 18, 15, 12, 8, 5]
+
+      summer:
+        # Shielings in use; gillies on the deer forest. The pass is
+        # the village's evening walk in fine weather (see cartography:
+        # the_long_pass description).
+        temp_range: [7, 17]
+        precipitation_chance: 0.50
+        conditions:
+          - bright_with_cloud
+          - overcast
+          - showers
+          - hill_fog
+          - clear
+          - thundery
+          - wind
+        weights: [25, 20, 18, 12, 12, 8, 5]
+
+      autumn:
+        # Stalking season. Stags roaring. The deer-forest tenants come
+        # up from London. First snow on the tops in October most
+        # years. The pass becomes seriously cold after dark.
+        temp_range: [0, 11]
+        precipitation_chance: 0.65
+        conditions:
+          - overcast
+          - rain
+          - hill_fog
+          - wind
+          - sleet
+          - clear_cold
+          - early_snow
+        weights: [22, 20, 18, 15, 10, 8, 7]
+
+      winter:
+        # Lethal. The high cairn drifts over; the burnt shieling roof
+        # gone for fifty years offers no shelter. The village's
+        # collective memory of winter deaths on the pass is short and
+        # specific.
+        temp_range: [-8, 3]
+        precipitation_chance: 0.60
+        conditions:
+          - snow
+          - blizzard
+          - hill_fog
+          - clear_cold
+          - sleet
+          - overcast
+          - wind
+          - whiteout
+        weights: [22, 15, 15, 12, 12, 10, 8, 6]
+
+    special_events:
+
+      - name: early_snow
+        # The "snow came on early" of the burnt-shieling legend
+        # (legends.yaml). October snow that catches travellers on the
+        # pass without proper kit. Exposure casualties are plausible.
+        season: autumn
+        chance: 0.08
+        duration_days: [1, 3]
+        effects:
+          - travel_dangerous
+          - visibility_poor
+          - exposure_risk
+          - body_discovery_setup
+
+      - name: whiteout
+        # Mid-winter blizzard on the high ground. Nothing visible past
+        # an arm's length. You don't go up the pass in this; if you're
+        # already up there, you don't come down.
+        season: winter
+        chance: 0.10
+        duration_days: [1, 2]
+        effects:
+          - travel_blocked
+          - visibility_zero
+          - exposure_risk_severe
+
+      - name: hill_inversion
+        # Cold clear winter morning, fog filling the glen below while
+        # the pass stands above it in sun. The village vanishes; only
+        # the kirk spire shows. Two trains a day become one.
+        season: winter
+        chance: 0.06
+        duration_days: [1, 1]
+        effects:
+          - visibility_split
+          - glen_below_obscured
+          - photographic_clarity_above
+
+      - name: stalking_morning
+        # Autumn dawn, clear and cold and still. The deer-forest gillies
+        # take guests out at first light. A rifle shot from the hill
+        # carries clean to the village. Plenty of suspects with a rifle
+        # in hand and a reason to be on the pass.
+        season: autumn
+        chance: 0.12
+        duration_days: [1, 1]
+        effects:
+          - rifles_on_the_hill
+          - alibi_complications
