@@ -19,6 +19,7 @@ services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 | `mutant_wasteland` | Post-apocalyptic mutants | `flickering_reach` (fully spoilable) |
 | `road_warrior` | Late-70s / early-80s vehicle subcultures sharing one port city (bōsōzoku, mods, lowriders, dekotora, raggare, &c.) | `the_circuit` |
 | `space_opera` | Sci-fi space adventure | `coyote_star` |
+| `spaghetti_western` | Morally ambiguous anti-heroes — Leone/Corbucci/Kurosawa. Standoff as ritual, betrayal as inevitability. | `dust_and_lead` (Sangre Territory border town), `the_real_mccoy` (1878 industrial Pittsburgh) |
 | `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross` |
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters,
@@ -27,14 +28,14 @@ asset directories for portraits, POI landscapes, and music params.
 
 Stub / workshopping packs not yet wired into runtime live under
 `genre_workshopping/` (caverns_sunden — deprecated three-sins hub superseded
-by `beneath_sunden`; heavy_metal, low_fantasy, neon_dystopia, pulp_noir,
-spaghetti_western at various levels of completeness).
+by `beneath_sunden`; heavy_metal, low_fantasy, neon_dystopia, pulp_noir
+at various levels of completeness).
 `genre_workshopping/{elemental_harmony,space_opera,tea_and_murder}/worlds/`
 hold in-progress alternate worlds for the live packs of the same name.
 
-`genre_packs/heavy_metal/` and `genre_packs/spaghetti_western/` exist as
-empty scaffolding (no `pack.yaml`) and are skipped by the loader; promote
-the workshopping versions before listing them as live.
+`genre_packs/heavy_metal/` exists as empty scaffolding (no `pack.yaml`) and
+is skipped by the loader; promote the workshopping version before listing
+it as live.
 
 ## Layout
 
