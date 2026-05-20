@@ -1,0 +1,765 @@
+# Burning Peace — Openings bank.
+#
+# Hard contracts (validators in genre/loader.py + models/narrative.py):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - OpeningSetting requires exactly one anchor: chassis_instance OR
+#     location_label (not both, not neither). Burning Peace is
+#     location-anchored — no chassis/rig framework on this world.
+#   - At least one solo + one multiplayer opening present.
+#   - PerPcBeat.applies_to keys are constrained to {background, drive,
+#     race, class}.
+#
+# Spec: docs/superpowers/specs/completed/2026-05-01-canned-openings-design.md
+#
+# Voice contract: formal Edo-period diction without slipping into pidgin
+# or anime register. Hakone is the most feared checkpoint on the Five
+# Highways — the openings carry the quiet weight of inspection without
+# making turn 1 a confrontation. The Burning Peace is enforced order;
+# its texture is courtesy backed by the threat of overwhelming fire
+# channeling. Stakes on turn 1 are deferred; the wrinkle waits for
+# turn 2 or 3 per the SOUL pacing rule.
+#
+# All solo entries use triggers.backgrounds: [] so they share the
+# fallback pool — the runtime picks one at chargen-complete time.
+# Each opening carries per_pc_beats for all four class_hints from the
+# genre's "origins" chargen scene (Channeler, Martial Artist, Scholar,
+# Spirit Medium), so any vocation/scene combination threads the
+# player's path into the morning's business.
+
+version: "0.1.0"
+world: burning_peace
+genre: elemental_harmony
+
+openings:
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #1 — The Hakone posting-station inn, morning, after a clear night
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_hakone_teahouse_morning
+    name: "Hakone posting station — the morning teahouse, after a clear night"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: hakone
+      situation: >-
+        The hour of the dragon, late morning. You have come down from
+        the inn's bathhouse and taken a low seat in the teahouse that
+        fronts the Tōkaidō road. The inspection at Hakone Gate opens
+        at the hour of the horse and most travelers are still asleep,
+        steaming, or paying their reckonings. The proprietress, Sone
+        Mariko, is doing the morning rice. The road outside is doing
+        its slow Tōkaidō business — bearers, post-horses, a yamabushi
+        coming down off Mount Kintoki with a staff bell.
+      present_npcs: []
+    tone:
+      register: "courteous, observant, the enforced calm of a checkpoint town"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — the wrinkle is at the next table"
+      sensory_layers:
+        smell: >-
+          Sulfur on the wind from the volcanic vents up the pass, fresh
+          rice from the kitchen, cedar smoke from the bathhouse furnace,
+          the faint salt of the crater lake half a li below.
+        sound: >-
+          The teahouse's water-clock plinking once a count. The
+          yamabushi's staff bell coming down the road. A post-horse
+          objecting to its bit at the relay station three doors up. The
+          single distant report of an inspector's fire-form being
+          practiced inside the garrison wall.
+        touch: >-
+          The tatami's slightly damp morning cool. The teacup's
+          heat through the rim. The travel papers in the inside fold
+          of the kimono, where they have lived since Edo.
+      avoid_at_all_costs:
+        - any duel, any drawn weapon, any inspection failure on turn 1
+        - the proprietress being either suspicious or grasping (she is neither)
+        - introducing a fire channeler antagonist in dialogue range on turn 1
+        - asking the player a question — turn 1 closes on a declarative
+        - moving the player without their input
+        - any anime register, any pidgin samurai diction
+    establishing_narration: |
+      The teahouse at the Hakone posting station faces the Tōkaidō road
+      across a strip of swept courtyard and a low fence of split
+      bamboo. Three tatami sections, a kitchen behind a noren curtain
+      in dark indigo with the proprietress's family kamon, a brazier
+      at the kitchen edge for the morning rice. The water-clock by
+      the door — a small bronze basin with a thin pipe — plinks once
+      a count into a brass cup. The cup has not yet filled this
+      morning.
+
+      Sone Mariko, the proprietress, is at the brazier with her sleeves
+      tied back and her hair in a working knot. She is the kind of
+      woman who has watched the Tōkaidō travelers for thirty years
+      and treats every guest with the same exact courtesy regardless
+      of station. She acknowledges you with the half-bow that is
+      precisely correct for a guest who has paid for the bath and not
+      yet for the meal, and goes back to the rice.
+
+      Through the open front, the road carries on its slow business.
+      A bearer is rebalancing his pole. Two pilgrims with conical
+      sedge hats are saying farewell to a third who is going the
+      other way. A yamabushi — a mountain ascetic in a small black
+      cap and white robes, with the conch shell hung at his hip —
+      is coming down the pass with the unhurried stride of a man who
+      has been alone with the mountain for a week and is not yet in
+      a hurry to be among people again.
+
+      In the southern volcanic vents above the inn, a small plume of
+      sulfurous steam goes up against the morning sky and breaks
+      apart in the wind.
+    first_turn_invitation: |
+      Sone Mariko sets the rice off the brazier to settle. The
+      water-clock plinks again. The yamabushi has stopped at the
+      gate of the courtyard and is looking once at the teahouse and
+      once at the road ahead, taking the small private moment a
+      mountain ascetic takes before re-entering the noisy world.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        At the next table, a young samurai in the dark indigo of a
+        minor retainer has been writing into a small bound notebook
+        with a brush so fine the strokes are almost invisible. He
+        sets the brush down, folds the notebook carefully into a
+        silk sleeve, and slides it under the tatami at his knee. He
+        does not look at you. He looks at the road. Then he picks up
+        his teacup again with the steady hand of someone who has
+        decided not to be in a hurry.
+
+        Sone Mariko, who has seen everyone hide a thing under a
+        tatami at some point in thirty years, does not change her
+        expression. She brings a second small dish — pickled radish —
+        to your low table without being asked, sets it down, and
+        returns to the kitchen.
+
+        The yamabushi has come in from the gate and is taking a seat
+        two tables over, on the road-facing side. He sets his staff
+        bell down silently, which is the trick of it — the bell only
+        sounds when a yamabushi wants it to.
+      escalation_path:
+        turn_2_or_3: >-
+          The samurai's notebook and what is in it are the wrinkle.
+          By turn three the samurai will have left the teahouse and
+          forgotten the notebook, or the inspectors at the gate will
+          have sent a runner asking after a traveler matching his
+          description, or the yamabushi will speak to you about him
+          quietly. Narrator picks the path on the basis of the
+          player's vocation. Do not preview on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Channeler" }
+        beat: |
+          Sone Mariko sets a second cup of tea down without being
+          asked. "Channeler. You'll be wanting the bath again before
+          the inspection — the steam draws out the road. The
+          garrison practices their forms at the hour of the horse
+          and the courtyard hears it; you will know the school
+          better than I do, but I will tell you frankly that the
+          inspector this season is Tokigane-trained and does not
+          care for the western schools."
+      - applies_to: { class: "Martial Artist" }
+        beat: |
+          A small boy comes out from the kitchen with a wooden
+          training sword far too long for him and holds it out
+          uncertainly. Sone Mariko sees, sighs, and does not stop
+          him. "My grandson. He has decided you are someone, and
+          the village dōjō is closed for the harvest. I will pay
+          for the rice and the bath if you would correct his stance
+          once before you eat. Half a minute. He will sleep through
+          the inspection bell if you don't."
+      - applies_to: { class: "Scholar" }
+        beat: |
+          Sone Mariko sets a small lacquered tray down with the
+          tea. On it is a folded sheet of mulberry paper with a
+          poem in a court hand — three lines, ink still glossy. "A
+          guest left this last night and did not come down for it
+          this morning. I cannot read it well enough to know whose
+          hand it is, but I know enough to know it is not a hand
+          this posting station usually sees. If you would tell me
+          before the inspection bell whether I should hand it to
+          the garrison or to the road, I would be in your debt."
+      - applies_to: { class: "Spirit Medium" }
+        beat: |
+          Sone Mariko looks at you twice, once at the brazier and
+          once at the door — the second look held a beat longer. "I
+          will not press you with what I felt when you came down
+          from the bath. I will only say that the volcanic vents
+          have been speaking three nights in a row and that the
+          shrine boy at the upper torii has not slept. If you have
+          the time before the inspection, the upper torii is a
+          quarter li and the path is clear."
+    magic_microbleed:
+      detail: >-
+        When Sone Mariko sets the iron kettle on the brazier, the
+        coals brighten by a degree that is not quite the wind. She
+        does not notice. She has lived in Hakone all her life.
+      cost_bar: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #2 — The Hakone Gate inspection queue, before the bell
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_hakone_gate_queue
+    name: "Hakone Gate — the inspection queue, before the bell"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: hakone
+      situation: >-
+        The hour of the horse approaches. You have taken your place
+        in the inspection queue at Hakone Gate, where the Tōkaidō
+        road narrows to a single span of bridge over the volcanic
+        gorge. Half a dozen travelers are ahead of you. The garrison
+        captain is at the desk inside the gatehouse, the four
+        inspectors are at their stations, and the queue is doing
+        the slow patient business of producing travel papers and
+        small offerings of polite conversation. The inspection bell
+        has not yet rung.
+      present_npcs: []
+    tone:
+      register: "alert, deliberate, the courtesy of a checkpoint where rudeness is a kind of confession"
+      stakes: "none on turn 1 — you are here in good faith and have nothing to fear in passing"
+      complication: "defer to turn 2 or 3 — the wrinkle is in the queue ahead of you"
+      sensory_layers:
+        smell: >-
+          Sulfur from the gorge below, lamp oil from the gatehouse
+          braziers, the faint vinegar-and-paper smell of an
+          inspector's seal-pad, cedar from the bridge timbers.
+        sound: >-
+          The river in the gorge, fifty shaku below. The slow
+          rasp of an inspector's brush across a register. The
+          measured tread of garrison guards walking the bridge
+          parapet at the hour. Somewhere behind the gatehouse, a
+          fire-form being practiced with the count called out by a
+          drill instructor — the words for "first form, second form,
+          third form" cut clean across the morning air.
+        touch: >-
+          The bridge timbers' damp morning chill underfoot. The
+          travel papers in the inside fold of the kimono. The cold
+          metal of the gate-side standing-pillar where the hand has
+          steadied itself out of habit.
+      avoid_at_all_costs:
+        - the player being arrested, harassed, or singled out on turn 1
+        - any duel, any drawn weapon, any inspection failure on turn 1
+        - the inspectors being either tyrannical or corrupt (they are professional)
+        - asking the player a question — turn 1 closes on a declarative
+        - moving the player without their input
+        - the gothic register
+    establishing_narration: |
+      Hakone Gate is two stone gateposts at the far end of a wooden
+      bridge that spans the volcanic gorge between the lake and the
+      pass. The gatehouse beside the gate is a single low building
+      of weathered cedar, with the Tokigane kamon — the three-flame
+      crest — carved in deep relief above the lintel and picked out
+      in red lacquer that has been touched up this autumn. The bell
+      that opens the inspection hangs from a beam under the gate's
+      tile roof; the bell-rope is in the captain's hand and the
+      captain is at his desk.
+
+      The queue is six travelers deep ahead of you. A merchant in a
+      modest haori with two laden bearers. A pilgrim couple — an
+      older man and woman in matching sedge hats and pilgrim robes,
+      with the small wooden votive plaques of the Saigoku circuit
+      hung at their belts. A young court-trained scribe with a
+      writing-box on his back. A masterless ronin who has set his
+      single sword down beside him on the ground in the
+      formally-correct posture for a swordsman submitting to
+      inspection. A woman in a traveling cloak whose face you cannot
+      see; a small girl beside her holding her hand.
+
+      The inspectors at their four stations are working with the
+      polite precision of a checkpoint that has been at this same
+      bridge for eighty years and has refined every gesture. They
+      take papers with two hands, return them with two hands, ask
+      the destination, the purpose, the household of origin.
+      Nothing is hurried. Nothing is friendly. Everything is exact.
+
+      In the gorge, a small plume of sulfurous steam rises and
+      breaks against the morning sky. Above the bridge, a single
+      black kite circles on the thermal off the volcanic vents.
+    first_turn_invitation: |
+      The line moves forward one step. The merchant is finishing
+      his inspection. The court-trained scribe ahead of you sets
+      his writing-box down. The bell-rope is still in the captain's
+      hand and the bell has not rung.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The woman in the traveling cloak — the one with the small
+        girl — reaches the second inspector. She produces papers
+        from her sleeve and offers them with both hands in the
+        correct form. The inspector takes them, reads them, and
+        does not return them.
+
+        He reads them a second time. Then he sets them down on his
+        desk, calls the captain over with a small gesture of two
+        fingers, and steps to the side.
+
+        The captain comes out from the gatehouse without hurrying
+        and reads the papers himself. He looks at the woman. He
+        looks at the small girl beside her, who is holding her
+        mother's hand and watching with the absolute stillness of
+        a child who has been told to stand still and means to do
+        it correctly. The captain says something very quietly to
+        the inspector and goes back into the gatehouse without
+        returning the papers.
+
+        The woman remains where she is. The queue resumes around
+        her. The court-trained scribe ahead of you, who has been
+        listening more carefully than his posture suggests, lays
+        his writing-box at his feet and adjusts his sleeves.
+      escalation_path:
+        turn_2_or_3: >-
+          The woman, the child, and the held papers are the
+          wrinkle. By turn three the captain will have asked her
+          to step inside the gatehouse, or a Metsuke inspector
+          will have been sent for, or the woman will have asked
+          you — quietly, without looking at you — for a small
+          courtesy that costs nothing to give and everything to
+          refuse. Narrator picks the path on the basis of the
+          player's vocation. Do not preview on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Channeler" }
+        beat: |
+          The inspector at the third station — the one assigned to
+          travelers carrying the channeling registration — gives
+          you the small precise bow that channelers receive at
+          this gate. "Welcome to Hakone. The garrison practices in
+          the back courtyard at the hour and you will hear the
+          forms. If you carry your school's seal in the inner
+          fold, I will not need to ask for it twice. The line is
+          moving."
+      - applies_to: { class: "Martial Artist" }
+        beat: |
+          The ronin ahead of you in the queue glances at how you
+          carry yourself and gives you the half-nod that swordsmen
+          who do not know each other's schools give each other in
+          the formally-correct corridor between deference and
+          challenge. He says nothing. He does not need to. The
+          inspectors notice the exchange and record it in the way
+          inspectors record everything at Hakone, which is silently
+          and accurately.
+      - applies_to: { class: "Scholar" }
+        beat: |
+          The court-trained scribe ahead of you sets his writing-
+          box at his feet and turns his head just enough to see
+          you without looking at you. He says, in the kind of
+          voice that is meant for one listener and no others, "I
+          have an introduction to a household in Kyōen and you
+          have the look of someone who has read the same
+          commentary. If we travel the next stage together, I
+          will share what I know of the road. The papers in front
+          of us today are not the trouble. The papers behind us
+          may be."
+      - applies_to: { class: "Spirit Medium" }
+        beat: |
+          The volcanic vents below the bridge speak again, lower
+          this time, and you feel the kami of the gorge — old,
+          tired, made small by the bridge above it — turn its
+          attention toward you the way a stranger at a market
+          turns his head when he hears a familiar dialect. The
+          pilgrim woman ahead of you, who has been at every shrine
+          on the Saigoku circuit twice, glances at you across her
+          husband's shoulder. She does not say anything. She knows
+          what you felt because she felt it too.
+    magic_microbleed:
+      detail: >-
+        The lacquer on the Tokigane kamon above the gate is fresh
+        — touched up this autumn — but the carving beneath it is
+        older than the lacquer, and the carving's three flames
+        have been worn smooth at the tips by eighty years of
+        weather. The lacquer hides this. The kami of the gorge
+        knows it anyway.
+      cost_bar: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #3 — The upper torii of the Hakone shrine, before the inspection
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_hakone_shrine_torii
+    name: "Hakone Shrine — the upper torii, before the inspection bell"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: hakone
+      situation: >-
+        Mid-morning. You have walked up the cryptomeria-lined path
+        to the upper torii of the Hakone shrine — a quarter li above
+        the posting station, where the path levels onto a small flat
+        stone court before the inner sanctuary. The shrine boy who
+        sweeps the court is on the steps with a bamboo broom. The
+        offering box at the foot of the torii is open. The inspection
+        bell has not yet rung. From here, the gate at the bottom of
+        the pass is visible through a break in the cedars.
+      present_npcs: []
+    tone:
+      register: "still, attentive, the held breath of a shrine that has been listening to the mountain"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — the wrinkle is in what the mountain is doing"
+      sensory_layers:
+        smell: >-
+          Wet cedar bark from a night of dew, the faint sweetness
+          of camellia oil from the lamp at the sanctuary door, the
+          sulfur from the lower vents thinned by distance, the cold
+          stone smell of the shrine court.
+        sound: >-
+          The bamboo broom on the stone steps. The wind in the
+          cryptomerias — a deep slow sound, like a tide. The
+          single hollow knock of the shrine boy's wooden water
+          ladle against the basin. Far below, the road's business
+          carries up faintly: a bearer's call, a horse, the
+          drill-count of fire forms from the garrison.
+        touch: >-
+          The torii's wood under the hand at the threshold —
+          cold, smooth, old beyond measuring. The shrine court's
+          flagstones uneven under the geta. The mountain air, thin
+          and clean, on the back of the throat.
+      avoid_at_all_costs:
+        - any spirit appearing in human form to address the player on turn 1
+        - the shrine boy being either omniscient or naive (he is a child doing his job)
+        - asking the player a question — turn 1 closes on a declarative
+        - moving the player without their input
+        - the gothic register
+        - anime-shrine register — keep the diction Edo-period and quiet
+    establishing_narration: |
+      The upper torii of the Hakone shrine is older than the
+      Tokigane Shogunate by four centuries. The wood has gone the
+      colour of slate and the carvings of the lintel have softened
+      under weather into something that is no longer pattern and
+      not yet stone. Two stone foxes flank the threshold, each with
+      a small offering bowl carved into the base. A red votive
+      ribbon — left by some traveler last night — is tied to the
+      eastern fox's bowl. The ribbon is faded already by morning sun.
+
+      The shrine boy, perhaps twelve years old, is on the steps to
+      the inner sanctuary with a long bamboo broom, doing the slow
+      crosswise sweep that shrine attendants do in the half-hour
+      before the noon service. He is in white robes and dark hakama
+      that he has not quite grown into. He nods to you in the
+      precise hand-on-broom way that shrine boys nod, and goes back
+      to his sweeping.
+
+      Through a break in the cryptomerias on the western side, the
+      gate at the bottom of the pass is visible — small from this
+      distance, like a child's brushwork. The inspection queue is
+      visible too: six small dark shapes in a line. The bridge over
+      the gorge is a single fine stroke in the morning haze.
+
+      The mountain itself — Hakone-yama, sacred to the gorge kami
+      and older than the shrine — is silent above and behind. But
+      it has been speaking three nights running, the lower volcanic
+      vents have heard it, and the shrine boy who sweeps the upper
+      torii has not slept well.
+    first_turn_invitation: |
+      The shrine boy finishes one row of the steps and starts on
+      the next. The wind moves through the cryptomerias once and
+      settles. The red votive ribbon on the eastern fox lifts and
+      lies flat again. The inspection bell at the gate has not
+      rung.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The shrine boy sets the broom against the sanctuary wall
+        and crosses the court to the offering box. He pauses with
+        his hand on the box lid in the way of a child who has been
+        told a thing by an adult and is deciding whether to repeat
+        it to a stranger.
+
+        He says, without looking at you, "The shrine master is not
+        here. He went up the mountain three nights ago and has not
+        come down. He left a paper at the sanctuary door for the
+        first traveler who would ask after him." The boy looks at
+        the broom and then at the cryptomerias. "I do not know if
+        you are who the paper was left for. I am to give it to the
+        traveler who asks first, on the morning the third night
+        ends. This is that morning."
+
+        He goes to the sanctuary door, lifts a folded sheet from
+        the lintel where it has been weighted by a small flat
+        stone, and brings it back across the court. He holds it
+        out with both hands.
+
+        On the outside of the fold, in a brushwork that is more
+        practiced than the shrine boy's, is a single character:
+        the one that means "guest."
+      escalation_path:
+        turn_2_or_3: >-
+          The shrine master's letter is the wrinkle. By turn three
+          the player will have read it, or the boy will have told
+          what little he knows, or the volcanic vents will speak
+          again and the boy will hear it before the player does.
+          Narrator picks the path on the basis of the player's
+          vocation. Do not preview the letter's content on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Channeler" }
+        beat: |
+          As you approach the torii the channeling registration in
+          your inside fold warms by a degree that has nothing to
+          do with body heat. The kami of the gorge — older than
+          your school by centuries — registers you in the way old
+          kami register channelers: with neither welcome nor
+          warning, but with attention. The shrine boy notices that
+          you have paused at the threshold and does not interrupt.
+      - applies_to: { class: "Martial Artist" }
+        beat: |
+          The shrine boy looks at your hands the way shrine
+          children look at the hands of fighters — measuring
+          calluses, taking the small private inventory of someone
+          who has been on a road for a long time. He says nothing.
+          He has been taught not to. But he sets the broom down
+          a step closer to where you stand than was strictly
+          necessary, in the small wordless courtesy of an
+          attendant who has decided you are not a danger to his
+          shrine.
+      - applies_to: { class: "Scholar" }
+        beat: |
+          The lintel of the upper torii carries an inscription that
+          has gone faint under four centuries of weather, but the
+          characters at the eastern end are still legible. The
+          dedication is to a kami you have read about once and
+          only once, in a commentary by a court scholar dead
+          three centuries. The kami's name does not appear in any
+          official register the Shogunate maintains. The shrine
+          boy does not know this. You do.
+      - applies_to: { class: "Spirit Medium" }
+        beat: |
+          The kami of the gorge speaks to you the way the elder
+          kami speak — not in words, but in the small private
+          shift of attention you have learned to recognize since
+          you were the age of the shrine boy. It is tired. It is
+          listening to something higher up the mountain. It is
+          aware that the bridge below has been built across its
+          throat for eighty years and that it cannot speak loudly
+          without breaking the thing it has been told to allow.
+    magic_microbleed:
+      detail: >-
+        When the shrine boy crosses the court, his geta strike the
+        flagstones cleanly except on one flagstone near the eastern
+        fox, where the sound goes thin — as though the stone is
+        not entirely there. He does not notice. He has crossed
+        this court every morning for three years.
+      cost_bar: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # MULTIPLAYER — The company on the Tōkaidō, an hour out from Hakone
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: mp_tokaido_hour_out
+    name: "The Tōkaidō — an hour out from Hakone, the inspection ahead"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 5
+      backgrounds: []
+    setting:
+      location_label: hakone
+      situation: >-
+        The hour of the snake. You have been on the Tōkaidō
+        together for three days out of Edo. Hakone Gate is an hour
+        ahead, and you have stopped at a small wayside teahouse at
+        the foot of the pass — a single-room kitchen with a low
+        roof of cypress shingles and three open-air benches under a
+        cedar — to take tea and arrange your papers before the
+        inspection. The teahouse keeper is an old woman who knows
+        the road. The next travelers will be along in twenty
+        minutes, when the road's cadence brings them. For this
+        twenty minutes, the benches are yours.
+      present_npcs: []
+    tone:
+      register: "companionable, alert, the practical courtesy of a company on a controlled road"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — the wrinkle is what the teahouse keeper has seen pass on the road"
+      sensory_layers:
+        smell: >-
+          Cedar smoke from the teahouse kitchen, sulfur drifting
+          down from the pass, the morning's last dew off the cedar
+          needles overhead, hot tea, the faint rice-cooking smell
+          from the keeper's pot.
+        sound: >-
+          The kettle just on. The cicadas in the cedars — late-
+          season, slowing. A bearer's call from somewhere up the
+          road, half a li off. The keeper's wooden ladle against
+          the rim of her pot. Wind in the upper cedars, deep and
+          slow.
+        touch: >-
+          The wooden bench worn smooth by ten thousand travelers'
+          backsides. The teacup warm in both hands. The travel
+          papers in the inside fold of the kimono, where they have
+          lived since Edo.
+      avoid_at_all_costs:
+        - any duel, any drawn weapon, any inspection failure on turn 1
+        - the keeper being suspicious, grasping, or omniscient (she is a working woman)
+        - introducing an antagonist on turn 1
+        - bringing the wrinkle out before the players have spoken to each other
+        - asking the player a question — turn 1 closes on a declarative
+        - moving any player without their input
+        - the gothic register
+    establishing_narration: |
+      The wayside teahouse at the foot of the Hakone pass is the
+      last courtesy the road provides before the inspection. The
+      keeper — Yumi-baba, the locals call her, though the formal
+      name on her permit is something nobody remembers — has been
+      at this single-room kitchen since the death of the previous
+      Shogun, which is to say twenty-eight years. The roof is
+      cypress shingles, the walls are open on the road side, and
+      the kettle is always on.
+
+      The company — you — have come down off the morning's stage
+      together and taken the benches under the cedar. Three days
+      out of Edo, you know each other's pace by now. You know who
+      reaches for tea first and who waits. You know whose paper-
+      shoulder strap is rubbing and who has fixed it three times
+      already. You know whose silences are companionable and whose
+      are working silences. The bonds are warm. The road has
+      done that work.
+
+      Yumi-baba brings the tea out on a small lacquered tray and
+      sets it on the bench. She does not bow more than the bench
+      requires. She is sixty-eight years old and the bow is mostly
+      a courtesy the joints will not allow.
+
+      "An hour to the gate." She says it without looking up from
+      the tray. "The captain this season is not unreasonable. The
+      inspectors are new. The bell rings at the hour of the horse
+      and not before. You have twenty minutes here before the next
+      company comes down the road."
+
+      She goes back to the kitchen and the kettle. Up the pass, a
+      single thin plume of sulfurous steam goes up against the
+      morning sky and breaks apart in the wind.
+    first_turn_invitation: |
+      Yumi-baba sets the kettle off the brazier to settle. The
+      cicadas in the upper cedars take up their late-season
+      complaint and then quiet again. The road in both directions
+      is, for the moment, empty.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Yumi-baba comes back out with a second small dish — pickled
+        plum, three to a saucer — and sets it down at the end of
+        the bench. She pauses with one hand on the bench rail.
+
+        "I will tell you a thing because you are five travelers
+        going up together and the captain at the gate watches
+        companies more than he watches singles." She looks once at
+        the road and once at the kitchen. "Yesterday at this hour
+        a woman with a child went up the pass alone, and the
+        inspector kept her papers and did not return them. She has
+        not come down. The captain will ask you, perhaps, whether
+        you saw her on the road from Edo. You did not. She came up
+        through the Nakasendō, not the Tōkaidō. I tell you only so
+        that you will not invent."
+
+        She wipes her hands on her apron. "The bell rings at the
+        hour of the horse. The kettle is on. Do as you please with
+        the twenty minutes."
+
+        From up the pass, very faint, the drill-count of fire forms
+        carries down on the wind, then is lost in the cicadas.
+      escalation_path:
+        turn_2_or_3: >-
+          The woman held at the gate is the wrinkle. By turn three
+          the company will have decided whether they will say
+          anything when asked, or a runner from the gate will come
+          down the road with a description of someone, or the
+          yamabushi at the upper torii will come down with a
+          message. Narrator picks the path on the basis of the
+          party's vocations and the chargen choices. Do not
+          preview the woman's identity or her business on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Channeler" }
+        beat: |
+          Yumi-baba does not look at your channeling registration,
+          but her ladle pauses a half-count when she sets it back
+          in the pot — the way old keepers' ladles pause when the
+          customer at the bench is a channeler and the keeper has
+          watched a great many channelers go up the pass and not
+          all of them come down. She does not say a thing about
+          it. She does not need to. The pause itself was the
+          remark.
+      - applies_to: { class: "Martial Artist" }
+        beat: |
+          As you set your sword on the bench in the formally-
+          correct posture for a swordsman taking tea on a public
+          road, Yumi-baba glances at the way you set it — not at
+          the sword, at the setting — and nods once, the small
+          private nod of an old woman who has watched the schools
+          come through this teahouse for three decades. "Your
+          school's third form is a thing of beauty in the courtyard
+          at Numazu. I saw it once at a festival forty years ago.
+          The young man who showed it is dead now. I mention it
+          because the form does not die with him."
+      - applies_to: { class: "Scholar" }
+        beat: |
+          Yumi-baba sets a small flat parcel wrapped in waxed paper
+          beside your teacup. "A traveler going the other way left
+          this on the bench the night before last. Inside is, I
+          believe, a commentary on the Hakone Shrine register —
+          someone has copied a passage in a court hand. It is not
+          for me. I cannot read it. If you can, and if it is the
+          sort of thing the captain at the gate would want to know
+          about, tell the company. If it is not, take it. It is
+          paper to me."
+      - applies_to: { class: "Spirit Medium" }
+        beat: |
+          The kami of the small grove around the teahouse — old
+          and modest, the kind of grove-kami that has been here
+          since the Tōkaidō was a footpath — touches your
+          attention the way an elder cousin touches your sleeve
+          at a public function. It has been listening, three
+          nights running, to the mountain above. It would prefer
+          you not to ignore that you have heard. Yumi-baba does
+          not feel this. She has lived next to the grove for
+          twenty-eight years and the grove has long since decided
+          she does not need to.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: "trusted"
+      shared_history_seeds:
+        - >-
+          The company met in Edo and took a contract together
+          three days ago — the precise nature of the contract is
+          for the narrator to draw from the players' chargen
+          choices, but it requires that they reach Kyōen together
+          and that they pass Hakone Gate on the Tōkaidō rather
+          than going around by the Nakasendō. They have eaten
+          together at three posting stations between Edo and here.
+          They have not yet been tested by anything more than the
+          road's small civilities. They like each other enough to
+          travel together; they do not know each other's
+          households of origin in detail.
+      narrator_guidance: >-
+        The company are not arriving as strangers. They are a
+        small company three days into a job, with bonds warm
+        enough to share a bench but not yet tempered by
+        consequence. Introduce each player to the scene through
+        what they would notice — the channeler sees the way
+        Yumi-baba's ladle pauses, the scholar sees the wax-paper
+        parcel, the spirit medium feels the grove's attention,
+        the martial artist sees the keeper read the sword-
+        setting. Let the company speak among themselves for
+        turn 1; the wrinkle waits.
+    magic_microbleed:
+      detail: >-
+        The kettle on Yumi-baba's brazier draws to the boil a
+        half-count faster than it should. The coals are no
+        brighter than they were. The kettle is the same iron she
+        has used since the spring. She has noticed this once or
+        twice in twenty-eight years and has decided it is the
+        cedar above the kitchen, which is older than she is. The
+        cedar has decided it is the kettle.
+      cost_bar: null
