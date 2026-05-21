@@ -1,0 +1,1365 @@
+# Spaghetti Western Calendar
+#
+# The reckoning of time in the American year 1878 — shared across the two
+# worlds of the spaghetti_western pack:
+#
+#   - dust_and_lead   — the Sangre Territory, Texas–Mexico borderlands
+#   - the_real_mccoy  — Pittsburgh and the Allegheny coal-smoke metropolis
+#
+# Both worlds sit in the same Gregorian year and the same Hayes-administration
+# cultural frame. They share the federal calendar, the seasonal arc, the moon
+# the cattle drover sees over the chaparral and the millhand sees over the
+# Monongahela. They diverge in *texture* — what working people are doing in
+# any given month, what bell or whistle anchors the hour, which saints' days
+# are kept locally — so where that divergence is sharp the file carries a
+# `texture_by_world:` block. Where the year is the same year for everybody,
+# it is described once.
+#
+# Authored alongside (per-world):
+#   - world.yaml        — axis snapshot, era, starting region
+#   - cartography.yaml  — regions, named locations
+#   - lore.yaml         — economy, religion, transport, period texture
+#   - cultures.yaml     — language/heritage register
+#
+# Schema: pending — story 24-1 will formalise the shape across all
+# world-grounding files; until then this YAML is authored in the shape
+# the schema will enforce. Per ADR-059 (Monster Manual pattern), this
+# content is read at runtime by the `get_world_grounding` narrator tool
+# (story 24-6) and surfaced into the narrator's tool-result payload when
+# a scene needs grounding in date, season, or festival proximity. Loader
+# wiring for spaghetti_western lands with story 24-7; until then the file
+# is inert and `calendar_present` returns False (intentional, matches the
+# tea_and_murder / glenross precedent shipped in story 24-4).
+
+version: "0.1.0"
+genre_pack: spaghetti_western
+worlds_served:
+  - dust_and_lead
+  - the_real_mccoy
+shared_basis: >-
+  The Gregorian year 1878, observed identically across the United States.
+  Federal holidays, the seasonal arc, the moon, and the Christian liturgical
+  calendar are the same in both worlds. Local texture — saints' days, working
+  rhythms, what bell or whistle marks the hour, what the road is doing in a
+  given month — diverges, and is captured in per-month and per-festival
+  `texture_by_world` blocks where the difference matters.
+
+# ────────────────────────────────────────────────────────────────────
+# The system
+# ────────────────────────────────────────────────────────────────────
+# Plain Gregorian. The United States adopted it (via Britain) in 1752.
+# In 1878 there is no Standard Time yet — Standard Time Zones do not
+# arrive until 18 November 1883, when the railroads impose them. In 1878
+# every town keeps its own local solar noon, and every railroad keeps its
+# own division-superintendent's time. The Pennsylvania Railroad runs on
+# Philadelphia time; the Southern Pacific (when it arrives in 1881) will
+# run on San Francisco time. A pocket watch in 1878 is a pocket watch
+# locally — set against the town's noon-mark on the courthouse wall, or
+# the depot clock, or the church angelus. Two travellers comparing watches
+# in a saloon in El Paso are within minutes of each other and entirely
+# certain neither is wrong; both are right by their own town.
+
+system:
+  type: gregorian
+  era: Anno Domini
+  era_short: AD
+  era_in_prose: "the year of our Lord eighteen hundred and seventy-eight"
+  era_in_vernacular: "seventy-eight"
+  current_year: 1878
+  decade_register: >-
+    The Hayes administration. The Centennial (1876) two summers gone, the
+    bunting fading on the courthouse walls. Custer dead at the Little Bighorn
+    that same summer. The Great Railroad Strike of 1877 still fresh — the
+    Pittsburgh Roundhouse burning is one year past and not yet finished
+    arguing about. Reconstruction officially ended last year; the federal
+    troops are out of the South and the new West is filling the column-inches.
+    Edison has not yet built the lamp. The telegraph and the railroad are the
+    fast technology. The country is between things.
+  months_per_year: 12
+  days_per_week: 7
+  weeks_per_year: 52
+  first_day_of_week: Sunday
+  sabbath: Sunday
+  leap_status: "1878 is NOT a leap year. February has 28 days. The next leap year is 1880."
+  jan_1_day_of_week: Tuesday
+  notes:
+    - "Gregorian as adopted by the British North American colonies in 1752."
+    - "There is no Standard Time in 1878. Each town keeps local solar time; each railroad keeps its own division time. Standard Time Zones are five years away (November 1883)."
+    - "Daylight Saving Time does not exist anywhere yet — it is a 1916 invention."
+    - "Year-numbering is straightforward civil reckoning; the older Spanish and Mexican families along the border may still privately date letters by saints' days and feast days, but the post office reckons 1878."
+
+# ────────────────────────────────────────────────────────────────────
+# Months
+# ────────────────────────────────────────────────────────────────────
+# Standard Gregorian months, named in English everywhere the U.S. mail
+# delivers. The Spanish names persist on the Mexican side of the river and
+# in older Tejano households. Each month is described in its general
+# American register, then in per-world texture where the two worlds spend
+# the month differently.
+
+months:
+  - number: 1
+    name: January
+    short: Jan
+    spanish: enero
+    days: 31
+    season: deep_winter
+    texture: >-
+      The hard cold. Cattle stand hump-shouldered on the range; the rivers
+      run black under ice in the North and clear-cold under thin morning
+      crust in the South. The new year's contracts are signed; the year's
+      first columns of newspaper editorialising about the future of the
+      Republic appear; the year's first stagecoach robbery is committed by
+      someone who has not yet learned not to leave tracks.
+    texture_by_world:
+      dust_and_lead: >-
+        Dry cold. The desert nights kill the unprepared. The Rio Grande
+        runs low and clear. Cattle are wintered down in the brush country
+        of the lower Sangre; line riders move twice a week between camps.
+        The cantina is the warm room in town.
+      the_real_mccoy: >-
+        Steel-mill cold. The Monongahela freezes in the slack water; the
+        wharves crack underfoot. Coal smoke pools in the river valleys for
+        a week at a time. Pneumonia is the year's first reliable killer;
+        the public hospital fills. McCoy's shop is on extended hours.
+    notable_days:
+      - "1 — New Year's Day (federal observance; the courthouse closed; the post office closed; the workshops mostly not)"
+
+  - number: 2
+    name: February
+    short: Feb
+    spanish: febrero
+    days: 28
+    leap_days: 29
+    leap_rule: "29 days in leap years. 1878 is not a leap year — February has 28 days. Next leap year is 1880."
+    season: late_winter
+    texture: >-
+      The thin month. Cabin fever, accountants squaring last year's books
+      for the courts, a slow weariness of weather. The Republicans and the
+      Democrats are already fighting next November's midterm in the columns.
+    texture_by_world:
+      dust_and_lead: >-
+        The dry season at its driest. The arroyos are bone. The candelilla
+        wax pickers move into the canyons; the silver mines run two shifts.
+        The Mexican feast of Candelaria (2 February) is kept south of the
+        river, the procession with the candles, the *tamales* eaten cold
+        on the walk home. North of the river the Anglo town does not notice.
+      the_real_mccoy: >-
+        The valley in its grimmest. The sun is a coin in the soot. The
+        steel converters at Edgar Thomson run, run, run — there is no
+        season for steel. Children are kept home with the coughing sickness.
+        The Polish and German Catholic parishes keep Candlemas (2 February)
+        with candles blessed at the morning mass.
+    notable_days:
+      - "2 — Candlemas / La Candelaria (Christian feast — kept by Catholic parishes everywhere; the Mexican border keeps it warmly; Pittsburgh Polish and German Catholics keep it)"
+      - "12 — Lincoln's Birthday (a Union observance — kept in Pennsylvania and in any frontier town with a GAR post; not yet a federal holiday)"
+      - "22 — Washington's Birthday (widely observed by custom; becomes a federal holiday in 1879, but in 1878 already kept in schools and at courthouses)"
+
+  - number: 3
+    name: March
+    short: Mar
+    spanish: marzo
+    days: 31
+    season: late_winter
+    texture: >-
+      The breaking month. Mud in the North, dust in the South, lengthening
+      light everywhere. The election campaigning takes its first formal
+      shape. Ash Wednesday falls in March in 1878 — the sixth, by the
+      kirk's reckoning — and Lent begins. The Catholic parishes turn
+      sober and the cantinas adjust their hours; the Presbyterians and
+      Methodists go on as they always have.
+    texture_by_world:
+      dust_and_lead: >-
+        The wind month. The dust storms of the southern plains start their
+        seasonal rounds. The army re-provisions the border posts before
+        the summer campaigns. The Lipan Apache, what is left of them, are
+        seen moving south of the line in twos and threes.
+      the_real_mccoy: >-
+        The thaw. The Mon and the Allegheny crack and pile ice up against
+        the bridge piers; the city watches the river for ice-out, which
+        usually comes in the first week. The railroad yards are slick with
+        oil and meltwater. The first warm afternoon is celebrated by men
+        leaving their coats on the bench at lunch and the women noticing.
+    notable_days:
+      - "(movable) — Ash Wednesday (6 March in 1878). Lent begins. The Catholic parishes turn quiet for forty days."
+      - "17 — St Patrick's Day. Pittsburgh keeps it loudly (the Hibernian Society parade through downtown; the Irish bars open early); the border keeps it not at all unless an Irish-American sheriff happens to be in the territory."
+      - "(movable) — Palm Sunday (14 April in 1878). The week before Easter."
+
+  - number: 4
+    name: April
+    short: Apr
+    spanish: abril
+    days: 30
+    season: early_spring
+    texture: >-
+      The kind month. The country exhales. Easter falls in April in 1878
+      (the twenty-first), the latest it can decently land. The kirk's
+      and the chapel's congregations swell; the Catholic parishes light
+      the Paschal candle. The newspapers run their annual leaders on
+      renewal and forgetting last year.
+    texture_by_world:
+      dust_and_lead: >-
+        Wildflower season briefly — the bluebonnets in the Texas brush,
+        the desert primrose in the lower Sangre, the prickly-pear coming
+        into bud. The spring cattle work begins: gather, brand, count.
+        The mountain passes south of the line are passable again; the
+        cross-border trade resumes openly where it can and quietly where
+        it cannot.
+      the_real_mccoy: >-
+        The coal-smoke inversion lifts. For the first time since November
+        a Pittsburgher can see the river valley three miles end-to-end.
+        The bricklayers go back on the new buildings; the South Side
+        glassworks reopen the kilns banked through the worst of winter.
+        McCoy's shop runs its first outdoor test of the year.
+    notable_days:
+      - "(movable) — Easter Sunday (21 April in 1878). The Christian central feast. The largest church attendance of the year in most parishes."
+      - "(movable) — Easter Monday (22 April in 1878). Not a federal holiday; the Mexican and German Catholic parishes keep it; the railroads run; the mills run."
+
+  - number: 5
+    name: May
+    short: May
+    spanish: mayo
+    days: 31
+    season: spring
+    texture: >-
+      The unhurried month. School ends in the country one-room schoolhouses
+      that took on a winter term. The roads are passable; the cattle drives
+      that will reach Kansas in late summer set out. The federal courts
+      finish their spring sittings; the territorial circuit judges go on
+      the road to the smaller towns. Decoration Day at month-end closes
+      the month with the Union's principal civic ritual.
+    texture_by_world:
+      dust_and_lead: >-
+        Cinco de Mayo on the fifth is kept south of the border (it is
+        Puebla's day, not the Republic's, but the Mexican towns mark it);
+        the Anglo towns notice the music and not the meaning. The big
+        spring cattle drives begin moving north — herds of two and three
+        thousand on the Chisholm and Western trails, the dust hanging in
+        the morning light a mile behind. The Salt War's aftermath is
+        still being worked out in San Elizario.
+      the_real_mccoy: >-
+        The river opens to the heavy traffic. Coal barges go down the Mon
+        in strings. The German *Maifest* is kept in Birmingham and on the
+        North Side — beer gardens open their season, the *Liederkranz*
+        choirs sing, the mayor is photographed with a stein. Decoration
+        Day at month-end is huge — the GAR posts march, the Allegheny
+        Cemetery fills with wreaths, the steel mills bank the converters
+        for a half-day and the men go in their suits.
+    notable_days:
+      - "1 — May Day. Folk observance; children's processions and maypoles in country schools; the labour-political associations are not yet attached to the date (those start with the Haymarket affair, 1886)."
+      - "5 — Cinco de Mayo (Puebla's day, 1862). Kept warmly south of the border and by the Mexican-American towns on the Texas side; ignored by the Anglo administration."
+      - "30 — Decoration Day. The Union's principal civic ritual. GAR posts march; the soldier dead of the Rebellion are wreathed at every cemetery north of the line. Becomes Memorial Day in 1882. Federal observance in the District of Columbia and most Northern states."
+
+  - number: 6
+    name: June
+    short: Jun
+    spanish: junio
+    days: 30
+    season: early_summer
+    texture: >-
+      The light month. The longest days of the year. School-leaving in the
+      towns; the Methodists and Baptists hold their summer camp meetings
+      in the country; the courts go on circuit. The country is busy and
+      out-of-doors. The newspapers slow their political column and run
+      more travel writing.
+    texture_by_world:
+      dust_and_lead: >-
+        Roundup proper. The Spring Roundup of the Sangre cattlemen's
+        association is held at the south end of the valley in the first
+        full week — every brand on the territory gathered, sorted,
+        registered, the unbranded mavericks divided by the rules. The
+        heat begins to mean something by month-end; midday work shifts
+        to dawn-and-dusk schedules. The Apache campaigns of the year, if
+        there are to be any, begin in the high country.
+      the_real_mccoy: >-
+        The graduation processions; the academy parades; the colleges
+        send their classes down. On the nineteenth of June Eadweard
+        Muybridge takes his Palo Alto horse-gait plates a continent west,
+        and the Pittsburgh papers will note it three weeks later in their
+        scientific columns; McCoy reads the wire account in the public
+        library and has his apprentice fetch the *Scientific American*.
+        The Mon and Allegheny are warm enough for swimming on the South
+        Side beaches by the twentieth.
+    notable_days:
+      - "13 — St Anthony of Padua's Day. Kept by the Italian Catholic parishes (Pittsburgh has one; the border has Franciscan mission communities)."
+      - "29 — Saints Peter and Paul. Catholic feast; the Mexican parishes mark it with the priest's name day if his name is one of theirs."
+
+  - number: 7
+    name: July
+    short: Jul
+    spanish: julio
+    days: 31
+    season: summer
+    texture: >-
+      The republic's month. Independence Day on the fourth is the loudest
+      civic day in the year everywhere — flag, oration, bunting, parade,
+      barbecue. The heat is general; the cattle work shifts further into
+      the cool ends of the day; the mills run on against the heat with
+      windows knocked out and the men in shirtsleeves.
+    texture_by_world:
+      dust_and_lead: >-
+        The first hot month. The Rio Grande is low; the cattle ponds
+        algae over; the army's water details are doubled. The Salt Lakes
+        of San Elizario glitter in the heat. The mountain springs in
+        the upper Sangre run sweet and steady — they are property worth
+        killing for. The Fourth in town is fireworks at dusk and a brass
+        band on the courthouse steps; in the cattle camps it is whiskey
+        in a tin cup and a pistol fired at the moon.
+      the_real_mccoy: >-
+        The hot month in the river valley; the inversions return; the
+        coal smoke and the river damp combine; the cholera scare is the
+        annual ritual the Board of Health publishes a circular against.
+        The first anniversary of the Roundhouse Riot (19–22 July 1877)
+        is observed unofficially — the men who burned the yards a year
+        ago are still in the same houses; the railroad has not forgotten
+        and the men have not forgotten and the city steps lightly. The
+        Fourth itself is a vast Allegheny picnic with three brass bands.
+    notable_days:
+      - "4 — Independence Day. Federal observance. The civic day of the year. Every town's loudest parade; every railroad's quietest schedule."
+      - "(in the_real_mccoy only) — 19 to 22 July: the unmarked anniversary of the Great Railroad Strike of 1877 and the Pittsburgh Roundhouse Riot. Not a holiday. Not a forgetting either."
+
+  - number: 8
+    name: August
+    short: Aug
+    spanish: agosto
+    days: 31
+    season: late_summer
+    texture: >-
+      The waiting month. The summer drags. The political conventions for
+      the November midterm are mostly held; the newspapers settle into
+      their final campaign positions. The country is brown and the rivers
+      are low and the courts are largely dark.
+    texture_by_world:
+      dust_and_lead: >-
+        The roundup that began in June reaches its end at the railhead
+        if the drive made it. The first cattle to come up the trail are
+        being sorted into pens at Dodge, at Caldwell, at Abilene, at
+        Hays — the news travels back to the Sangre by telegraph and the
+        owners count their money on their fingers. The Sangre cattlemen
+        gather for the August meeting of the association in the second
+        week. Heat-of-the-year continues; afternoon storms break briefly
+        over the mountains.
+      the_real_mccoy: >-
+        The hottest week of the year is usually the second. The mills
+        run on. The German *Sängerfest* (a moving festival; this year
+        it is in Cincinnati, but Pittsburgh sends choirs) draws the
+        Liederkranz away for a fortnight. The Polish parish on the South
+        Side keeps the Feast of the Assumption (15 August) with the
+        blessing of the harvest baskets — wheat, herbs, fruit. The
+        Centennial fair is two summers gone but the Allegheny County
+        fair on the last week of August is the year's principal county
+        gathering.
+    notable_days:
+      - "15 — Feast of the Assumption. Catholic feast; kept by all Catholic parishes; the Polish keep it warmly with blessed baskets; the Mexican border keeps it with processions."
+
+  - number: 9
+    name: September
+    short: Sep
+    spanish: septiembre
+    days: 30
+    season: early_autumn
+    texture: >-
+      The harvest month. School returns in the towns that hold a winter
+      term. The first cool nights, the first quenching rains, the cycle
+      of country fairs gathering its momentum toward the October peak.
+      The midterm campaigning sharpens.
+    texture_by_world:
+      dust_and_lead: >-
+        The fall roundup begins — gather, brand, separate the beeves
+        going north against the cows going back to range. The trail
+        season's last drives leave for Kansas; some will not make it
+        before snow closes the Indian Territory. The Mexican Independence
+        Day on the sixteenth is the warmest civic day of the year south
+        of the river — *El Grito* at midnight, the priest at the church
+        door, the cantinas open until dawn. North of the river the
+        Anglo town allows it.
+      the_real_mccoy: >-
+        Fall colour begins on the ridges around Pittsburgh by month-end.
+        The mills run; the steel converters consume more coal as the days
+        shorten and the heat is wanted for itself. The Allegheny County
+        agricultural exhibition draws farmers from the Mon valley and
+        the Ohio bottomlands. The German Oktoberfest parties start in
+        the last week, two weeks ahead of the date in Munich, because
+        Pittsburgh keeps its own counsel.
+    notable_days:
+      - "(in dust_and_lead) — 16 September: Día de la Independencia / Mexican Independence Day. The civic day of the year on the Mexican side and warmly kept on the Tejano side. *El Grito* at midnight."
+      - "29 — Michaelmas. Christian feast; Catholic parishes mark it; the Anglo agricultural country sometimes uses it as a quarter-day for English-tradition leases (less common in 1878 America than in Britain)."
+
+  - number: 10
+    name: October
+    short: Oct
+    spanish: octubre
+    days: 31
+    season: autumn
+    texture: >-
+      The rust month. The country fairs reach their season peak in the
+      first week — the Texas State Fair (founded this very year, 1878,
+      in Dallas, in late October) is the South-West's principal new
+      gathering; the Allegheny County fair has just ended. The political
+      campaign reaches its final pitch. Halloween on the thirty-first is
+      a folk evening — Scottish-Irish guising in the small towns, German
+      *Kürbis* lanterns in the Pennsylvania country, an Anglo wariness
+      about it everywhere.
+    texture_by_world:
+      dust_and_lead: >-
+        The last drives are home or are not coming home. The cattle
+        association does its annual accounts. The first cool nights make
+        the desert pleasant again; the canyons of the upper Sangre are
+        cottonwood-gold. The Tejano towns prepare for Día de los Muertos
+        at month-end — the altars built, the pan de muerto baked, the
+        marigold petals laid down for the dead to find the door. The
+        cemeteries are tidied. The American settlers do not understand
+        and try not to interfere.
+      the_real_mccoy: >-
+        The river valley begins its long autumn. The first hard freeze
+        is usually mid-October; the coal-smoke season starts again as
+        every house lays in its winter coal. The river boats run their
+        last clear-water trips; the freight begins to bunch on the rail
+        yards ahead of the inevitable winter slow-down. The political
+        campaign is fierce in the Pittsburgh papers; the Roundhouse
+        anniversary still colours every editorial.
+    notable_days:
+      - "31 — Hallowe'en. Folk evening. Guising in the Scottish-Irish small towns; Jack-o'-lanterns in the Pennsylvania German country; Catholic All Hallows' Eve vigil at the parishes."
+
+  - number: 11
+    name: November
+    short: Nov
+    spanish: noviembre
+    days: 30
+    season: late_autumn
+    texture: >-
+      The civic month. All Saints' and All Souls' open the month for the
+      Catholic parishes; Election Day on the fifth (the first Tuesday
+      after the first Monday in November — this year a midterm, a House
+      of Representatives election and the third of every state's
+      Senators) is the year's principal civic act. Thanksgiving at
+      month-end — President Hayes will proclaim it for the twenty-eighth,
+      the last Thursday — closes the working country before the deep cold.
+    texture_by_world:
+      dust_and_lead: >-
+        The Day of the Dead opens the month south of the border and in
+        every Tejano town — graveyards bright with marigold and candle on
+        the night of the first into the second, the families eating at
+        the graveside, the children playing among the headstones, the
+        American visitors quiet. Election Day on the fifth is a federal
+        and territorial event — the territorial delegate to Congress,
+        local sheriffs, the county judges; the Sangre county elections
+        are decided by who can keep their voters alive at the courthouse
+        door. Thanksgiving is kept by the Anglo settlers with a turkey
+        if they can get one and a goose if not; the Mexicans do not
+        observe it.
+      the_real_mccoy: >-
+        Election Day is a fierce business in the river valley; the
+        Republicans hold most of the city machinery but the Democrats
+        are working hard among the Irish wards. The Allegheny County
+        ballot is long. Thanksgiving at month-end is enormous — the
+        German, Polish, Irish, Italian, and old-Anglo families all keep
+        it the same way (turkey, sausage, sauerkraut, depending on the
+        kitchen), the mills bank a half-day, the churches hold morning
+        services. The first deep snow of the year often arrives in the
+        last week.
+    notable_days:
+      - "1 — All Saints' Day. Christian feast; Catholic observance everywhere."
+      - "2 — All Souls' Day / Día de los Muertos. The Mexican border keeps it as the central feast of the family dead. Pittsburgh Catholic parishes keep it with requiem masses."
+      - "5 — Election Day (1878 midterm). First Tuesday after the first Monday in November. House of Representatives, one-third of every state's senators, territorial delegates, local offices."
+      - "28 — Thanksgiving Day (1878). President Hayes proclaims the last Thursday in November; in 1878 that is the twenty-eighth. Federal proclamation, not yet a fixed federal holiday — that comes in 1941."
+
+  - number: 12
+    name: December
+    short: Dec
+    spanish: diciembre
+    days: 31
+    season: early_winter
+    texture: >-
+      The closing month. The country shortens; the political year is
+      done; the courts wind down their fall sittings. Advent begins for
+      the Christian congregations; the Catholic parishes mark the
+      Immaculate Conception on the eighth; Christmas on the twenty-fifth
+      is the universal day, kept variously according to denomination and
+      heritage. New Year's Eve closes the year with a noisier observance
+      every decade.
+    texture_by_world:
+      dust_and_lead: >-
+        The Virgen de Guadalupe on the twelfth is the central December
+        observance south of the river and in the Tejano towns — the
+        candlelight procession, the *mañanitas* sung before dawn, the
+        ceremonial dancing of the *matachines* outside the church.
+        Posadas through the nine nights to Christmas Eve fill the
+        Mexican neighbourhoods with the processions of Mary and Joseph
+        seeking lodging. Christmas itself is kept in both languages.
+        The desert nights are clear and cold; the stars look close.
+      the_real_mccoy: >-
+        St Nicholas' Day on the sixth fills the German Catholic and
+        German Lutheran parishes with the saint's-day processions for
+        the children. The Polish *Wigilia* (Christmas Eve supper, with
+        the extra place set for the unexpected guest, the *opłatek*
+        wafer broken and shared) is the year's most observed family
+        evening on the South Side. The mills bank for Christmas morning
+        and resume by midnight. The coal-smoke is at its blackest. The
+        New Year's Eve revelry in downtown Pittsburgh is loud, with the
+        steamboat whistles up and down the rivers at midnight.
+    notable_days:
+      - "6 — St Nicholas' Day. German Catholic and Lutheran observance; gift-giving for children. (Father Christmas is not yet the universal American figure; he becomes so over the next two decades.)"
+      - "8 — Feast of the Immaculate Conception. Catholic feast; widely observed."
+      - "12 — Our Lady of Guadalupe. The central December feast of the Mexican Catholic year; observed warmly in dust_and_lead, less prominently in Pittsburgh's Mexican-immigrant community (small in 1878)."
+      - "16–24 — Las Posadas. The nine evenings of the Mary-and-Joseph procession; kept in the Mexican parishes."
+      - "24 — Christmas Eve. The Polish *Wigilia* supper; the German Christkindl; the Catholic midnight mass; the Anglican lessons-and-carols (the King's College ceremony does not yet exist — that is 1918)."
+      - "25 — Christmas Day. Federal observance. Universal."
+      - "26 — Boxing Day (the British observance — kept in some Anglo households of British origin; not a federal holiday in the United States, ever)."
+      - "31 — New Year's Eve. Loud and gettin' louder year by year."
+
+# ────────────────────────────────────────────────────────────────────
+# Days of the week
+# ────────────────────────────────────────────────────────────────────
+# Standard seven-day week, with Sunday as the sabbath in Protestant and
+# Anglo Catholic registers (so, both worlds). The Jewish sabbath (sundown
+# Friday to sundown Saturday) is kept in the small Jewish communities of
+# both worlds — Pittsburgh has Rodef Shalom (founded 1856) and the
+# beginning of the Lawrence County immigration wave; the Sangre Territory
+# has the German-Jewish merchant families along the border, the
+# *commission merchant* names painted on the El Paso storefronts.
+
+days_of_week:
+  - number: 1
+    name: Sunday
+    short: Sun
+    spanish: domingo
+    texture: >-
+      The sabbath. The Protestant churches morning and evening; the
+      Catholic parishes their schedule of masses. The mills bank to half
+      crews; the railroads run with reduced freight; the cantinas and
+      saloons close until afternoon by local ordinance or local custom.
+      Sunday work is a county-court matter in most jurisdictions.
+    texture_by_world:
+      dust_and_lead: >-
+        Mass and saloon. The Catholic parishes morning, the Protestant
+        chapels mid-morning. The Anglo town goes quiet between noon and
+        four; the Mexican side keeps a longer afternoon. Cattle camps
+        observe Sunday by tradition (no branding, no driving) but the
+        line riders ride.
+      the_real_mccoy: >-
+        The Polish, German, Irish, and Italian Catholic parishes are
+        full all morning. The Methodist and Presbyterian congregations
+        are large. The mills run skeleton shifts; the rivers are quiet;
+        the parks fill in the afternoon. Sunday liquor sales are
+        prohibited in the City of Pittsburgh (the blue laws are real and
+        enforced); the unincorporated boroughs are looser.
+  - number: 2
+    name: Monday
+    short: Mon
+    spanish: lunes
+    texture: "Wash day in the household register. Working day in every other. The courts open the week; the markets open. In Pittsburgh the mill payroll quietly turns over."
+  - number: 3
+    name: Tuesday
+    short: Tue
+    spanish: martes
+    texture: "Working day. Election Day falls on a Tuesday in November (in 1878 the fifth). The first Tuesday after the first Monday in November — federal arrangement, 1845."
+  - number: 4
+    name: Wednesday
+    short: Wed
+    spanish: miércoles
+    texture: "Working day. The Catholic parishes hold midweek devotions; the Protestants hold prayer-meeting in the evening."
+  - number: 5
+    name: Thursday
+    short: Thu
+    spanish: jueves
+    texture: "Working day. Thanksgiving falls on a Thursday by federal proclamation (the last in November). In Pittsburgh the German *Stammtisch* meets at the beer halls."
+  - number: 6
+    name: Friday
+    short: Fri
+    spanish: viernes
+    texture: "Working day. Catholic abstinence from meat — fish on Fridays in the Catholic households of both worlds. The mills run the long Friday; the courts close at five."
+  - number: 7
+    name: Saturday
+    short: Sat
+    spanish: sábado
+    texture: >-
+      Half-day in most working registers (towns, mills, banks); full
+      working day on the cattle range, on the railroad, in the cantina
+      and the saloon and the brothel. Payday in many trades. The
+      Saturday-night dance, the Saturday-night fight, the Saturday-night
+      arrest, the Saturday-night confession: these are reliable.
+
+# ────────────────────────────────────────────────────────────────────
+# Moons
+# ────────────────────────────────────────────────────────────────────
+# Folk names for the year's twelve full moons. The American almanac
+# tradition (Old Farmer's Almanac, since 1792) carries the Algonquian
+# names — Wolf, Snow, Worm, Pink, Flower, Strawberry, Buck, Sturgeon,
+# Harvest, Hunter's, Beaver, Cold. The cattle country and the desert
+# country know them but use their own as readily: the *vaquero* knows
+# the Cattle Moon, the line rider knows the Coyote Moon, the cantina
+# bartender knows the Drovers' Moon when the trail crews are in town.
+# Pittsburgh's working people know the almanac names from the papers and
+# the cheap printed almanacs; the Polish and German parishes also keep
+# their own — *Księżyc Kwietny*, *Erntemond* — which the priests will
+# announce in sermons.
+
+moons:
+  - month: 1
+    almanac_name: the Wolf Moon
+    western_alt: the Cold Moon (frontier) / the Hunger Moon (Mexican side)
+    folk_register: "Deep winter. The coldest moon. On the range you hear the coyotes and call them wolves; in the city you hear the river ice cracking and call it weather."
+  - month: 2
+    almanac_name: the Snow Moon
+    western_alt: the Lean Moon (frontier) / *La Luna del Hambre* (Spanish)
+    folk_register: "Last of the winter stores. The cattle are thin; the city Catholic parishes keep Candlemas under it."
+  - month: 3
+    almanac_name: the Worm Moon
+    western_alt: the Wind Moon (frontier) / the Lenten Moon (mission Catholic)
+    folk_register: "The earth thawing — worms in the ploughed ground in Pennsylvania; dust devils on the border."
+  - month: 4
+    almanac_name: the Pink Moon
+    western_alt: the Calving Moon (frontier) / the Paschal Moon (Christian)
+    folk_register: "The Easter moon — the Paschal full moon governs the date of Easter every year. In 1878 it fell on 17 April and Easter on the 21st."
+  - month: 5
+    almanac_name: the Flower Moon
+    western_alt: the Roundup Moon (cattle range) / *La Luna de Mayo* (Spanish, kept warmly)
+    folk_register: "Spring at its most generous. In the cattle country the gather begins under it; in Pittsburgh it lights the *Maifest* beer gardens."
+  - month: 6
+    almanac_name: the Strawberry Moon
+    western_alt: the Drovers' Moon (cattle range)
+    folk_register: "The shortest nights. The trail herds move under it; the Pittsburgh mill shifts shorten as the daylight runs late."
+  - month: 7
+    almanac_name: the Buck Moon
+    western_alt: the Thunder Moon (storm country) / the Republic's Moon (Independence Day)
+    folk_register: "Bucks in velvet; thunderstorms; flag bunting on the courthouse under it for the Fourth."
+  - month: 8
+    almanac_name: the Sturgeon Moon
+    western_alt: the Grain Moon (Pennsylvania country) / *La Luna de la Cosecha* (early harvest)
+    folk_register: "Late summer fullness. The Great Lakes sturgeon run; the Pittsburgh fairs; the brand registries."
+  - month: 9
+    almanac_name: the Harvest Moon
+    western_alt: the Hunter's Friend (the moon that rises soon after sunset for several nights running — old country wisdom)
+    folk_register: "The brightest moon of the year for working into the evening. The standard name everywhere; no improvement is needed."
+  - month: 10
+    almanac_name: the Hunter's Moon
+    western_alt: the Riders' Moon (cattle range) / the Dead's Moon (Mexican Catholic, around Día de los Muertos)
+    folk_register: "Game is fat for winter; the deer hunts in Pennsylvania country; the marigolds laid on the graveyards south of the river under it."
+  - month: 11
+    almanac_name: the Beaver Moon
+    western_alt: the Mourning Moon (post-Day-of-the-Dead) / the Election Moon (in newspaper rhetoric)
+    folk_register: "Beavers building lodges; the last open water in the small Pennsylvania creeks; the political campaigns in their closing days."
+  - month: 12
+    almanac_name: the Cold Moon
+    western_alt: the Long Nights Moon / the Yule Moon (German Lutheran)
+    folk_register: "The year's longest nights. The Christmas moon; the Pittsburgh steamboat whistles at midnight on New Year's Eve heard for ten miles up and down the rivers under it."
+
+# ────────────────────────────────────────────────────────────────────
+# Festivals
+# ────────────────────────────────────────────────────────────────────
+# The pack's recurring public occasions, in calendar order. Each is a
+# baited hook in the SOUL.md sense — a known annual moment the narrator
+# can place a betrayal against, or a marriage, or a killing, or a
+# confession. The `applies_to:` field marks which world's narrative
+# texture the festival principally serves; `both` means the day is the
+# same in both worlds and they observe it side by side; `dust_and_lead`
+# or `the_real_mccoy` alone means the day is local.
+
+festivals:
+  - id: new_years_day
+    name: New Year's Day
+    date: "1 January"
+    fixed: true
+    applies_to: both
+    register: federal_civic
+    description: >-
+      Federal observance. The courthouse closed, the post office closed,
+      the federal land office closed. The mills mostly run; the cattle
+      camps work as any other day; the cantinas and saloons are open
+      from the afternoon. The newspapers run their annual editorial
+      summing the old year and prophesying the new.
+
+  - id: candelaria
+    name: Candlemas / La Candelaria
+    date: "2 February"
+    fixed: true
+    applies_to: both
+    register: catholic_feast
+    description: >-
+      The blessing of the candles in the Catholic parishes; the procession
+      with candles in the Mexican border towns; the German and Polish
+      Catholic parishes of Pittsburgh keep it with the same ritual.
+      Forty days after Christmas; the Presentation of the Lord.
+
+  - id: lincolns_birthday
+    name: Lincoln's Birthday
+    date: "12 February"
+    fixed: true
+    applies_to: the_real_mccoy
+    register: union_civic
+    description: >-
+      Observed warmly in Pittsburgh — the GAR posts hold suppers, the
+      schools recite the Gettysburg Address, the *Pittsburgh Commercial
+      Gazette* runs a leader. Pennsylvania makes it a state holiday in
+      1909, but in 1878 it is already kept by custom across the Union
+      states. Frontier observance is sparser — a GAR post in a
+      garrison town will mark it; the Mexican-Texan towns will not.
+
+  - id: washingtons_birthday
+    name: Washington's Birthday
+    date: "22 February"
+    fixed: true
+    applies_to: both
+    register: civic_universal
+    description: >-
+      Observed by custom at every schoolhouse, every courthouse, every
+      militia muster. Becomes a federal holiday in 1879 (it is one of
+      the original federal holidays of the District of Columbia, taking
+      effect from 1880, with the President signing in 1879). In 1878
+      already kept everywhere — the Father of the Republic is the
+      Republic's universal saint.
+
+  - id: ash_wednesday
+    name: Ash Wednesday
+    date: "movable — 6 March in 1878"
+    fixed: false
+    applies_to: both
+    register: christian_solemn
+    description: >-
+      Lent begins. The Catholic parishes' ashes on the forehead at
+      morning mass; the Protestants who observe it (Anglican and some
+      Lutheran) likewise. Forty days of abstinence — meat-fasting on
+      Fridays through Lent is general in Catholic households on both
+      sides of the country.
+
+  - id: st_patricks_day
+    name: St Patrick's Day
+    date: "17 March"
+    fixed: true
+    applies_to: the_real_mccoy
+    register: ethnic_civic
+    description: >-
+      Pittsburgh keeps it loudly — the Hibernian Society parade down
+      Liberty Avenue, the Irish bars open early, the corned beef on the
+      counter at McGuire's. The Irish Republican Brotherhood meets in
+      back rooms about the Land League. In dust_and_lead the day is
+      kept only where an Irish sheriff or an Irish-born army officer
+      happens to be in the territory; the Mexican towns ignore it
+      entirely.
+    narrator_hooks:
+      - "A name spoken in a back room at McGuire's that should not have been said."
+      - "A green ribbon worn by a man who has no business wearing it."
+
+  - id: easter_sunday
+    name: Easter Sunday
+    date: "movable — 21 April in 1878"
+    fixed: false
+    applies_to: both
+    register: christian_central
+    description: >-
+      The Christian central feast. The largest church attendance of the
+      year in most parishes. The Mexican parishes process at dawn; the
+      Polish parishes keep the *Święconka* basket-blessing on the
+      Saturday before; the Anglican and Lutheran churches sing
+      *Easter Hymn* before noon; the cantinas and saloons remain shut
+      until afternoon by custom even where not by ordinance.
+
+  - id: cinco_de_mayo
+    name: Cinco de Mayo
+    date: "5 May"
+    fixed: true
+    applies_to: dust_and_lead
+    register: mexican_civic
+    description: >-
+      Puebla's day. The Mexican border towns mark the 1862 victory over
+      the French — small parades, a brass band, *charrería* exhibitions
+      where the corral is big enough. The Anglo towns notice the music
+      and not the meaning; the federal court does not close.
+
+  - id: decoration_day
+    name: Decoration Day
+    date: "30 May"
+    fixed: true
+    applies_to: both
+    register: union_civic
+    description: >-
+      The Union's principal civic ritual. The Grand Army of the Republic
+      posts march from the courthouse to the cemetery, the soldier dead
+      of the Rebellion are wreathed with whatever flowers are in bloom,
+      a chaplain reads a prayer, a bugler plays. Pittsburgh's
+      observance is enormous — the Allegheny Cemetery fills, the mills
+      bank a half-day, the men go in their suits. In the Sangre
+      Territory the Anglo town marks it at the army post's cemetery if
+      there is one, and the Tejano town does not — Mexico did not
+      fight in that war.
+    narrator_hooks:
+      - "A wreath laid on the wrong grave."
+      - "A veteran who refuses to march and will not say why."
+
+  - id: independence_day
+    name: Independence Day
+    date: "4 July"
+    fixed: true
+    applies_to: both
+    register: federal_central
+    description: >-
+      The civic day of the year. Federal observance. Flag, oration,
+      parade, barbecue, fireworks at dusk in the towns of any size,
+      pistols fired at the moon in the cattle camps. The Pittsburgh
+      observance is a vast Allegheny picnic with three brass bands; the
+      Sangre town observance is a courthouse-steps oration in the
+      morning and a fireworks display from the cattle pens at dusk.
+    narrator_hooks:
+      - "A speech given on the courthouse steps that names the wrong man as hero."
+      - "A pistol fired into the air that comes down where someone was standing."
+
+  - id: roundhouse_anniversary
+    name: the Roundhouse Anniversary
+    date: "19–22 July"
+    fixed: true
+    applies_to: the_real_mccoy
+    register: civic_unspoken
+    description: >-
+      Not a holiday and not a forgetting. The first anniversary of the
+      Pittsburgh Roundhouse Riot of 1877 — three nights when the city
+      burned a square mile of railroad yards in a wildcat strike that
+      cost forty-some lives and three thousand freight cars. The men
+      who burned the yards are mostly still in the same houses; the
+      Pennsylvania Railroad has not forgotten; the city steps lightly
+      through the week. The papers run their think-pieces. The
+      Pinkertons quietly double their detail on the South Side. McCoy's
+      shop loses a day to a railroad inspector who wants to look at
+      every flammable thing under the workshop car.
+    narrator_hooks:
+      - "An old hand at the mill remembering aloud what should not be remembered aloud."
+      - "A Pinkerton man at the back of a meeting that has no business being held."
+
+  - id: assumption
+    name: Feast of the Assumption
+    date: "15 August"
+    fixed: true
+    applies_to: both
+    register: catholic_feast
+    description: >-
+      The Catholic feast of the Virgin's bodily assumption into heaven.
+      The Polish South Side keeps it with the blessing of the harvest
+      baskets (wheat, herbs, fruit, sometimes meat); the Mexican
+      parishes process the statue through the town under flowers;
+      the German parishes mark it more quietly. A day of holy
+      obligation in the Catholic calendar.
+
+  - id: mexican_independence
+    name: Día de la Independencia / Mexican Independence Day
+    date: "16 September"
+    fixed: true
+    applies_to: dust_and_lead
+    register: mexican_civic
+    description: >-
+      The civic day of the year south of the river and warmly kept on
+      the Tejano side of the line. *El Grito* — the cry of Father
+      Hidalgo — at midnight from the church steps; the cantinas open
+      until dawn; mariachis where mariachis can be afforded; pistols
+      into the air. Some Anglo sheriffs leave town for the night and
+      let the deputy handle whatever needs handling.
+    narrator_hooks:
+      - "A man whose Spanish is too good for him to be the gringo he claims to be."
+      - "*El Grito* at midnight and a body found by the church door at dawn."
+
+  - id: halloween
+    name: Hallowe'en
+    date: "31 October"
+    fixed: true
+    applies_to: both
+    register: folk
+    description: >-
+      Scottish-Irish guising in the Pennsylvania country towns;
+      Pennsylvania-German *Kürbis* lanterns on the fence posts; the
+      Catholic All Hallows' Eve vigil. In the West it is a quieter
+      evening — the cattle camps do not observe it, but the towns will
+      pumpkin-light a porch and the schoolchildren will cut paper masks.
+      Trick-or-treating as a settled ritual is later in the century;
+      in 1878 it is closer to mischief night.
+
+  - id: all_saints_all_souls
+    name: All Saints' and All Souls' / Día de los Muertos
+    date: "1–2 November"
+    fixed: true
+    applies_to: both
+    register: catholic_central
+    description: >-
+      The Catholic remembrance of the holy dead and the family dead. In
+      Pittsburgh the parishes celebrate requiem masses; the South Side
+      Polish bring candles to the graves. In dust_and_lead and across
+      the border the days are *Día de los Muertos* in the warmer sense
+      — the altars built at home with the photographs and the *pan de
+      muerto* and the favourite foods of the dead; the cemeteries lit
+      with candles into the night of the second; the families eating
+      and laughing among the headstones. The Americans visiting are
+      quiet and the Mexicans are not.
+    narrator_hooks:
+      - "An altar at home with one new candle added that the family did not place."
+      - "A grave that has been visited at midnight by someone not in the family."
+
+  - id: election_day_1878
+    name: Election Day (1878 midterm)
+    date: "5 November"
+    fixed: true
+    applies_to: both
+    register: federal_civic
+    description: >-
+      First Tuesday after the first Monday in November (a federal
+      arrangement from 1845). In 1878 the midterm — the House of
+      Representatives, one-third of every state's senators (still
+      indirectly elected by state legislatures until the Seventeenth
+      Amendment, 1913), the territorial delegates, the county sheriffs
+      and judges. In Pittsburgh a fierce business — the Republican
+      machine against the rising Irish-Democratic wards. In the Sangre
+      Territory the territorial delegate to Congress is the principal
+      race; the county sheriff is the consequential one.
+    narrator_hooks:
+      - "A ballot box that arrives at the courthouse already heavier than it should be."
+      - "A poll-watcher who has not been seen since the polls opened."
+
+  - id: thanksgiving_1878
+    name: Thanksgiving Day (1878)
+    date: "28 November (last Thursday in November, by President Hayes's proclamation)"
+    fixed: false
+    applies_to: both
+    register: presidential_proclamation
+    description: >-
+      Proclaimed annually by the President — in 1878 by Rutherford B.
+      Hayes for the last Thursday in November, which is the
+      twenty-eighth. Not a fixed federal holiday in 1878 (becomes one
+      in 1941). The household day. Pittsburgh keeps it across every
+      heritage; the Sangre Anglo settlers keep it with a turkey if they
+      can get one and a goose if not; the Mexican households do not
+      observe it.
+    narrator_hooks:
+      - "A place set at the table for someone who will not arrive."
+      - "A grace said at the head of the table that the family has not heard before."
+
+  - id: st_nicholas_day
+    name: St Nicholas' Day
+    date: "6 December"
+    fixed: true
+    applies_to: the_real_mccoy
+    register: german_catholic
+    description: >-
+      German Catholic and German Lutheran observance — the saint in his
+      red cope visits the children with sweets for the good and (in the
+      older custom) the rod for the wicked. In Pittsburgh the German
+      churches process. In the Sangre this is not observed except
+      where an isolated German family keeps it privately.
+
+  - id: immaculate_conception
+    name: Feast of the Immaculate Conception
+    date: "8 December"
+    fixed: true
+    applies_to: both
+    register: catholic_central
+    description: >-
+      Catholic feast of holy obligation — the Virgin conceived without
+      sin. Patroness of the United States since 1846. Observed widely
+      in both worlds; in the Mexican parishes warmly, in Pittsburgh's
+      Polish, German, and Italian parishes solemnly.
+
+  - id: guadalupe
+    name: Our Lady of Guadalupe
+    date: "12 December"
+    fixed: true
+    applies_to: dust_and_lead
+    register: mexican_central
+    description: >-
+      The central December feast of the Mexican Catholic year. The
+      candlelight procession at the church before dawn; *las mañanitas*
+      sung at first light; the ceremonial dancing of the *matachines*
+      outside the doors; the Mass that follows. The patroness of
+      Mexico and of the Americas. Kept warmly in every Mexican and
+      Tejano parish; not observed in Pittsburgh in 1878 (the Mexican
+      population is too small).
+    narrator_hooks:
+      - "A stranger at the procession who knows the responses too well to be the stranger he claims."
+      - "A *matachín* dancer whose mask comes off when it should not."
+
+  - id: posadas
+    name: Las Posadas
+    date: "16–24 December"
+    fixed: true
+    applies_to: dust_and_lead
+    register: mexican_folk_catholic
+    description: >-
+      The nine evenings of the procession of Mary and Joseph seeking
+      lodging — each night a different house is the *posada*, the
+      procession arrives, the question is sung at the door, the answer
+      is sung back, the door opens, the company comes in for *tamales*
+      and *atole* and the *piñata* for the children. A communal ritual
+      that knits the neighbourhood together for the week before
+      Christmas. Not observed in Pittsburgh in 1878.
+
+  - id: wigilia
+    name: Wigilia (Polish Christmas Eve)
+    date: "24 December"
+    fixed: true
+    applies_to: the_real_mccoy
+    register: polish_household
+    description: >-
+      The supper that opens Christmas in the Polish parishes. An extra
+      place is set at the table for the unexpected guest (a stranger,
+      a soul of the dead, the Christ child himself — different families
+      tell it different ways); the *opłatek* wafer is broken and shared
+      around with wishes; twelve dishes are served (one for each
+      apostle); no meat. The Pittsburgh South Side keeps it. Not
+      observed in the Sangre.
+    narrator_hooks:
+      - "The extra place set at the *Wigilia* table — and a guest who arrives and is not who the family thinks."
+
+  - id: christmas_day
+    name: Christmas Day
+    date: "25 December"
+    fixed: true
+    applies_to: both
+    register: federal_christian
+    description: >-
+      Federal observance. The universal day. Kept variously by
+      heritage — German Christkindl, Mexican family Mass at dawn, Anglo
+      Protestant morning service and quiet dinner, Polish post-Wigilia
+      Mass, Irish midnight Mass — but kept everywhere. The mills bank
+      for the morning; the cantinas and saloons are open by afternoon;
+      the cattle camps observe it where they can.
+
+  - id: new_years_eve
+    name: New Year's Eve / La Víspera de Año Nuevo
+    date: "31 December"
+    fixed: true
+    applies_to: both
+    register: civic_loud
+    description: >-
+      The loud night. In Pittsburgh the steamboat whistles up and down
+      the rivers at midnight, heard for ten miles either way; the
+      churches ring; the German halls dance until dawn. In the Sangre
+      the cantinas and saloons run all night; pistols at midnight; the
+      Mexican side keeps it with family suppers and a midnight mass
+      where a priest is to be had. The year turns.
+
+# ────────────────────────────────────────────────────────────────────
+# Time precision
+# ────────────────────────────────────────────────────────────────────
+# How working people in the two worlds talk about hours. The fundamental
+# division is between the watched hour (precise, mechanical, expensive)
+# and the lived hour (anchored in light, meal, work, or bell). In 1878
+# this division also has a class register — watches are bought, bells
+# and whistles are public. The frontier and the industrial city use the
+# same hours but anchor them differently.
+
+time_precision:
+  registers:
+    gentry:
+      level: minute
+      example: "the ranch owner pulls out his pocket watch and says ten minutes past three; the mill superintendent's wife consults the parlour clock and asks Bridget to put the kettle on at four"
+      notes: >-
+        Pocket watches (railroad-grade, gold-cased) are universal among
+        the propertied class in both worlds. Wristwatches do not yet
+        exist commercially (1880s for the first models). A lady carries
+        a chatelaine watch on a chain at the waist.
+    professional:
+      level: quarter_hour
+      example: "the doctor will be there before the half-hour; the lawyer's clerk has the case called for ten-fifteen"
+      notes: >-
+        Pocket watch, sometimes set against the railway depot clock or
+        the courthouse clock. The county sheriff carries one; the bank
+        teller has one; the schoolteacher has a more modest version.
+    working_industrial:
+      level: shift_whistle
+      example: "the seven o'clock whistle; the noon whistle; the change-of-shift; the long whistle that means stop"
+      notes: >-
+        Pittsburgh. Each mill blows its own whistle on its own schedule;
+        the men of one mill know its voice from the others. The factory
+        clock in the boss's office is the only authoritative time on
+        the premises; the workers' time is the whistle. Within the
+        valley the whistles can be heard for two and three miles in
+        the right wind. (Applies to the_real_mccoy.)
+    working_frontier:
+      level: sun_and_landmark
+      example: "before the sun's off the bluff; with the sun overhead; before the long shadows; coming-on-dark"
+      notes: >-
+        The Sangre. Cattle work, line riding, freighting. The sun, the
+        meal, the shadow of the windmill, the position of a landmark
+        peak. A pocket watch is owned by the owner, the foreman, and
+        nobody else — and the foreman is asked the time when the owner
+        is not present. (Applies to dust_and_lead.)
+    domestic:
+      level: meal_and_bell
+      example: "before breakfast; after dinner; tea-time; supper; bedtime"
+      notes: >-
+        In both worlds — the kitchen clock anchors the day. Mealtimes
+        are the punctuation of the household; the church bell or
+        factory whistle the audible reference.
+    sabbath:
+      level: service_anchored
+      example: "before church; after the morning service; before evening prayer; first mass; high mass"
+      notes: >-
+        Sunday is named in services, not numbers. The Mexican Catholic
+        parishes count the day in masses; the Protestant congregations
+        in morning and evening services; the Polish parish in *prima*
+        and *summa* mass.
+
+  bells_and_whistles:
+    dust_and_lead:
+      mission_bells:
+        description: "Catholic mission and parish bells in every Mexican-side town and the larger Anglo towns with a Catholic parish."
+        times: ["dawn (Angelus)", "noon (Angelus)", "six p.m. (Angelus)", "service times"]
+        audible_range: "the town and a mile or two beyond on a still night"
+      protestant_chapels:
+        description: "Methodist, Baptist, Presbyterian chapels in the Anglo towns."
+        times: ["10:30 and 11:00 (Sunday morning)", "6:30 and 7:00 (Sunday evening)"]
+      schoolhouses:
+        description: "The one-room schoolhouse where a town has one. A hand-bell, rung by the schoolmistress."
+        times: ["09:00", "12:00", "13:00", "16:00"]
+      ranch_bell:
+        description: "Many cattle ranches have a triangle or iron bell rung from the cook's wagon or the ranch house."
+        times: ["dawn (coffee)", "breakfast", "noon dinner", "supper", "alarms"]
+      train_whistles:
+        description: "The Southern Pacific main line does not yet reach the Sangre Territory in 1878 (it arrives in 1881). The nearest railhead is variable — Kansas Pacific to the north, the Texas & Pacific reaching El Paso in 1881-82. Stagecoach is the principal long-haul timing."
+
+    the_real_mccoy:
+      mill_whistles:
+        description: >-
+          The dominant time-anchor of the river valley. Each major mill
+          has its own whistle on its own schedule — Carnegie's Edgar
+          Thomson (Braddock) blows differently from Jones & Laughlin
+          (South Side) blows differently from Park Brothers (Black
+          Diamond) blows differently from Crucible (the original mills
+          at Fourth and Cherry). Men of a mill know their whistle from
+          two miles off in a north wind.
+        times:
+          - "06:00 (start of day shift) — 'the morning whistle'"
+          - "12:00 (dinner pause, half an hour) — 'the noon whistle'"
+          - "12:30 (back to work)"
+          - "18:00 (end of day shift / start of night shift) — 'the change whistle'"
+          - "Sundays — most mills bank to half-crews; the whistles are quieter or silent for the morning"
+        audible_range: "two to three miles in the river valleys; further at night with cold air."
+      church_bells:
+        description: >-
+          Catholic and Protestant alike. The Polish Catholic of the
+          South Side, the Italian Catholic of Bloomfield, the German
+          Catholic of Strip District, the Irish Catholic of Lawrenceville
+          and the South Side, the German Lutheran in several
+          neighbourhoods, the Presbyterian downtown, the Methodist on
+          the North Side.
+        times:
+          - "Catholic: 06:00 (early mass), 08:00 (low mass), 10:30 (high mass), 18:00 (Angelus)"
+          - "Protestant: 10:45 and 11:00 (Sunday morning), 18:45 and 19:00 (Sunday evening)"
+          - "Angelus is rung daily at six, noon, and six in the Catholic parishes (a soft observance — the Polish keep it audibly, the Italian most consistently, the Irish in their own time)."
+      depot_clocks:
+        description: >-
+          The Pennsylvania Railroad's Union Depot at Liberty and 11th
+          carries the authoritative Pittsburgh time — set against the
+          Philadelphia office daily by telegraph. The Baltimore & Ohio
+          and the Pittsburgh & Lake Erie keep their own time, which is
+          within a minute of the Pennsylvania but is not the same time.
+          (Standard Time is five years away.)
+      bridge_bells:
+        description: >-
+          The drawbridges over the Mon, Allegheny, and Ohio ring a hand
+          bell before opening for steamboat traffic — pedestrians and
+          wagons get a half-minute's warning.
+
+  trains_and_long_haul:
+    dust_and_lead:
+      summary: >-
+        The Southern Pacific has not yet reached the Sangre Territory.
+        The nearest railhead is variable — Kansas Pacific (Dodge,
+        Caldwell) to the north for the cattle drives; the Texas &
+        Pacific eastbound from Fort Worth; the Mexican Central does
+        not yet exist. Within the Sangre Territory the long-haul time
+        is the stagecoach (Concord, Henry-built; the Sangre Stage Line
+        runs three days a week between the railhead at Toyah and the
+        town, twelve hours one way) and the freight wagon (slow, with
+        the muleskinner's own schedule). Mail rides the stage. A
+        message of consequence may telegraph from the depot at Toyah
+        and then ride a horse the last sixty miles.
+    the_real_mccoy:
+      summary: >-
+        The densest passenger and freight rail network in the United
+        States. The Pennsylvania Railroad main line east-west (the
+        principal artery), the Baltimore & Ohio south to Washington
+        and Wheeling, the Pittsburgh & Lake Erie up to Lake Erie, the
+        Pittsburgh & Connellsville south-east toward Cumberland.
+      sample_pennsylvania_services:
+        - direction: "eastbound (Philadelphia, New York)"
+          time: "06:45 (the early eastern)"
+        - direction: "eastbound (Philadelphia, New York)"
+          time: "12:50 (the noon eastern)"
+        - direction: "eastbound (Philadelphia, New York)"
+          time: "20:15 (the night express, with sleeping car)"
+        - direction: "westbound (Chicago, St Louis)"
+          time: "08:10 (the morning western)"
+        - direction: "westbound (Chicago, St Louis)"
+          time: "16:30 (the afternoon western)"
+        - direction: "westbound (Chicago, St Louis)"
+          time: "21:45 (the night western, with sleeping car)"
+      note: >-
+        Schedules above are representative for 1878. Sunday service is
+        reduced to one eastbound and one westbound; freight is local
+        only. McCoy's workshop car couples behind any of these as a
+        private convenience by arrangement with the division
+        superintendent.
+
+  meals:
+    dust_and_lead:
+      - name: breakfast (Anglo) / desayuno
+        window: "before sunup on the range (04:30–06:00); 07:00–08:30 in the towns"
+      - name: dinner (Anglo) / comida
+        window: "12:00–13:30 the principal hot meal in working houses; on the range, dinner is whatever the cook hands up between drives"
+      - name: supper / cena
+        window: "18:30–20:00; the Mexican households eat later, especially in summer (21:00 and later); the gentry dine at 19:30–21:00"
+    the_real_mccoy:
+      - name: breakfast
+        window: "05:00–06:00 in the mill houses; 07:30–09:00 in the gentry households"
+      - name: dinner
+        window: "12:00–12:30 the principal hot meal for millhands (the half-hour at the whistle); 13:00–14:00 in the gentry register, where it is luncheon and lighter"
+      - name: supper
+        window: "18:00–19:30 in the mill houses; 19:30–21:00 in the gentry register, where it is dinner and elaborate"
+
+  daylight:
+    dust_and_lead:
+      notes: >-
+        The Sangre sits at about 31° N — the daylight swings far less
+        than at higher latitudes; the seasonal change is more
+        temperature than light.
+      examples:
+        - "midwinter (late December): sunrise around 07:15, sunset around 17:45"
+        - "equinox (March, September): sunrise around 06:30, sunset around 18:30"
+        - "midsummer (late June): sunrise around 05:50, sunset around 20:00"
+    the_real_mccoy:
+      notes: >-
+        Pittsburgh sits at about 40° N — the daylight swings widely with
+        the year, and the river-valley smoke shortens the *visible* day
+        further from October through March.
+      examples:
+        - "midwinter (late December): sunrise around 07:40, sunset around 16:55; the coal-smoke makes the city dim from 15:00 on a still day"
+        - "equinox (March, September): sunrise around 06:50, sunset around 19:00"
+        - "midsummer (late June): sunrise around 05:50, sunset around 20:55; the river valleys hold the heat past midnight"
+
+# ────────────────────────────────────────────────────────────────────
+# Starting date suggestions (per world)
+# ────────────────────────────────────────────────────────────────────
+# Each world has its own starting date — the calendar is shared but the
+# campaign opening is local. The bootstrap may pick these up if no scene
+# has set a date.
+
+starting_dates:
+  dust_and_lead:
+    year: 1878
+    month: 8
+    month_name: August
+    day: 14
+    day_of_week: Wednesday
+    time_of_day: "late afternoon — about an hour before sundown; the sky already going gold"
+    prose: "Wednesday the fourteenth of August, eighteen-seventy-eight; the fall roundup three weeks off; the Trail crews back from Kansas a week and spending; the August meeting of the Cattlemen's Association on the Saturday; the heat coming off the long day in the sage."
+    season: late_summer
+    nearest_festival_past:
+      id: independence_day
+      date: "1878-07-04"
+      days_ago: 41
+    nearest_festival_future:
+      id: assumption
+      date: "1878-08-15"
+      days_ahead: 1
+    rationale: >-
+      Late summer puts the party in the desert at its most generative
+      narrative moment — drives back, money in town, the cattlemen
+      gathering, the heat justifying long siestas and slow saloon
+      afternoons, Apache activity in the high country, the August
+      Cattlemen's meeting on the horizon for political theatre. The
+      Assumption the day after gives a Catholic festival hook for the
+      Mexican side of the town.
+
+  the_real_mccoy:
+    year: 1878
+    month: 4
+    month_name: April
+    day: 18
+    day_of_week: Thursday
+    time_of_day: "four in the morning — the coal-smoke not yet lifted from the river; the first whistle still two hours off"
+    prose: "Thursday the eighteenth of April, eighteen-seventy-eight; the inversion lifting at last after a hard week; Easter Sunday three days hence; the Carnegie steel converters running through the night; the workshop car under the gas lamp on the Pittsburgh & Lake Erie siding."
+    season: spring
+    nearest_festival_past:
+      id: ash_wednesday
+      date: "1878-03-06"
+      days_ago: 43
+    nearest_festival_future:
+      id: easter_sunday
+      date: "1878-04-21"
+      days_ahead: 3
+    rationale: >-
+      Honours the world.yaml `time_anchor: "spring 1878, coal-smoke
+      inversion season"` and lands the party on a Maundy Thursday three
+      days before Easter — Lent in its last sober week, the city
+      religious-and-quiet around the secular workshop. The dawn opening
+      matches the cover_poi (`the_workshop_car_at_four_in_the_morning`).
+      Sets up the Muybridge horse-gait wire account in mid-June as a
+      near-term scientific hook.
+
+# ────────────────────────────────────────────────────────────────────
+# Useful conversions for the narrator
+# ────────────────────────────────────────────────────────────────────
+# Quick lookups the grounding tool may surface alongside the current
+# date when a scene asks for context.
+
+useful:
+  twelve_hour_clock: true
+  twenty_four_hour_clock_in_prose: false
+  am_pm_notation: >-
+    Spoken: 'in the morning' / 'in the afternoon' / 'at night'; or
+    'before noon' / 'after noon'. Written and printed: a.m. and p.m.,
+    italicised in the better newspapers. The railroads, in their
+    timetables, are precise to the minute — 6.45 a.m., 12.50 p.m. —
+    and consider themselves the only authority.
+  weekend_concept: >-
+    The modern 'weekend' is not yet a settled idea in 1878. Saturday
+    is a half-working day in most towns and a full one on the range
+    and in the mills. Sunday is the sabbath. The two words 'weekend'
+    do not yet travel together in print; the OED dates the noun to
+    1879 as English regional and to American common usage by the
+    nineties.
+  standard_time_status: >-
+    No Standard Time and no Time Zones. Each town keeps local solar
+    time; each railroad keeps its own division-superintendent's time;
+    the difference between two adjacent town clocks may be five
+    minutes or more. Standard Time is imposed by the railroads on
+    18 November 1883. Daylight Saving Time is a 1916 invention and
+    has nothing to do with 1878.
+  federal_holidays_1878:
+    # The Federal Holiday Act of 1870 originally created federal holidays
+    # for the District of Columbia only — extended to all federal
+    # employees in 1885. In 1878 the list is short and the observance is
+    # principally civic-by-custom in most jurisdictions.
+    statutory_DC_and_federal_employees:
+      - "1 January — New Year's Day"
+      - "4 July — Independence Day"
+      - "25 December — Christmas Day"
+      - "Thanksgiving Day — by annual presidential proclamation; in 1878 the last Thursday in November (the 28th)"
+    federal_observance_by_custom_but_not_yet_statutory:
+      - "22 February — Washington's Birthday (statutory federal holiday from 1879, effective 1880)"
+      - "30 May — Decoration Day (becomes Memorial Day; statutory federal holiday from 1882 for DC)"
+    regional_or_ethnic_observance:
+      - "12 February — Lincoln's Birthday (Union states only; Pennsylvania makes it a state holiday in 1909)"
+      - "17 March — St Patrick's Day (Irish-American observance; never a federal holiday)"
+      - "5 May — Cinco de Mayo (Mexican-American observance, regional)"
+      - "16 September — Día de la Independencia (Mexican-American observance, regional)"
+      - "1–2 November — Día de los Muertos (Mexican-American Catholic observance)"
+      - "12 December — Our Lady of Guadalupe (Mexican Catholic observance)"
+
+# ────────────────────────────────────────────────────────────────────
+# A note on accuracy
+# ────────────────────────────────────────────────────────────────────
+# This calendar is grounded in the real Gregorian year 1878 and in the
+# documented social texture of the two regions in that year. Specific
+# anchors verified or selected:
+#   - 1 January 1878 was a Tuesday.
+#   - 1878 was NOT a leap year (February 28 days).
+#   - Easter Sunday 1878 fell on 21 April.
+#   - Ash Wednesday 1878 fell on 6 March.
+#   - President Hayes's Thanksgiving for 1878 was 28 November (last Thursday).
+#   - The 1878 midterm Election Day was 5 November.
+#   - The Pittsburgh Roundhouse Riot of 1877 ran 19–22 July 1877.
+#   - Muybridge's Palo Alto horse-gait plates were taken 19 June 1878.
+#   - The Texas State Fair was founded in 1878 (Dallas, late October).
+#   - Standard Time Zones did not yet exist in 1878 (imposed 18 November 1883).
+#   - The Southern Pacific had not yet reached the Sangre Territory in 1878.
+# Where a narrative-detail festival hook or local custom is invented for
+# the fiction (the Sangre Cattlemen's Association meeting; the workshop
+# car arriving on a particular siding) it is consistent with the period
+# and the worlds' established lore, but not historically attested.
