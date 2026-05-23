@@ -81,6 +81,11 @@ nodes:
 
   - id: clue_red_herring_scarf
     type: physical
+    # Author note (2026-05-23): the original authoring carried a top-level
+    # `planted_by: "the real killer, using a stolen accessory"` field on
+    # this node. The ClueNode schema (extra="forbid") does not yet support
+    # planted_by; the metadata is preserved here in comment form for when
+    # the schema is extended.
     description: "A monogrammed silk scarf found near the victim's door — the initials match a passenger, but the scarf was reported stolen days ago"
     discovery_method: search
     visibility: obvious
@@ -88,29 +93,11 @@ nodes:
     implicates: [suspect_irina]
     requires: []
     red_herring: true
-    planted_by: "the real killer, using a stolen accessory"
 
-edges:
-  - from_node: clue_torn_letter
-    to_node: clue_deduction_motive
-    relationship: proves
-  - from_node: clue_financial_records
-    to_node: clue_deduction_motive
-    relationship: proves
-  - from_node: clue_argument_overheard
-    to_node: clue_locked_compartment
-    relationship: suggests
-  - from_node: clue_poison_vial
-    to_node: clue_sleeping_draught
-    relationship: suggests
-  - from_node: clue_red_herring_scarf
-    to_node: clue_corridor_witness
-    relationship: contradicts
-  - from_node: clue_corridor_witness
-    to_node: clue_torn_letter
-    relationship: suggests
-
-red_herrings:
+  # ── ex-red_herrings block, folded into nodes ────────────────────────
+  # Author note (2026-05-23): a separate top-level `red_herrings:` block
+  # held additional clue nodes that the schema does not recognize. They
+  # are already correctly marked `red_herring: true`; relocated here.
   - id: clue_phantom_ticket
     type: physical
     description: "A second-class ticket stub for a passenger who does not appear on the manifest"
@@ -120,3 +107,17 @@ red_herrings:
     implicates: []
     requires: []
     red_herring: true
+
+# ── ex-edges block ──────────────────────────────────────────────────
+# Author note (2026-05-23): the original authoring carried a top-level
+# `edges:` graph (from_node / to_node / relationship). The ClueGraph
+# schema does not yet support edges; no engine code consumes them.
+# Removed to unblock pack load; re-add when the schema lands. Preserved
+# below as comment for future restoration:
+#
+#   clue_torn_letter         → clue_deduction_motive    : proves
+#   clue_financial_records   → clue_deduction_motive    : proves
+#   clue_argument_overheard  → clue_locked_compartment  : suggests
+#   clue_poison_vial         → clue_sleeping_draught    : suggests
+#   clue_red_herring_scarf   → clue_corridor_witness    : contradicts
+#   clue_corridor_witness    → clue_torn_letter         : suggests

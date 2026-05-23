@@ -1,0 +1,1307 @@
+# The Long Foundry — World History & DM Prep
+#
+# Source of truth for chapter structure + points_of_interest.
+# Feeds: POI image generator, narrator campaign-maturity prompts.
+
+world_name: The Long Foundry
+
+overview: >-
+  A city four hundred years in the working, built on bedrock from an
+  older age, kept stable by a formal arrangement between its
+  thaumaturgic guild and the three feeding cults that maintain
+  temples in its central precinct. The high quarter holds the
+  declining Perault houses. The forge quarter holds the working
+  guild and the Orvinnic labor-kin households that make the guild's
+  work survivable. The eastern hills hold an excavation that has
+  recently begun to worry everyone. Every empire is ending. Every
+  account is a little overdue. The city is still working, for now,
+  and still magnificent.
+
+eras:
+  - name: The Guild That Founded
+    period: four centuries ago
+    summary: >-
+      A thaumaturgic guild whose name is no longer spoken in formal
+      settings established the first foundries on the span of the
+      Graslo, on bedrock that turned out to contain residues from a
+      First-Feeder site. The guild prospered for two hundred years
+      and then, in a manner that no current account fully explains,
+      dissolved. The foundries it built remained in working order.
+      Several of the senior guild-scribes went quietly to other
+      cities and their books were apparently never recovered.
+
+  - name: The Coil and Brand Succession
+    period: two centuries ago
+    summary: >-
+      The Coil and Brand Guild was founded by senior workshop
+      apprentices from the older guild, and took over the foundries
+      without ever fully explaining what had happened to their
+      predecessors. They stabilised the working practice, formalised
+      the rates-book, and began the tradition of publishing every
+      month's ledger as a public courtesy. The city's civic
+      thaumaturgy has run under Coil and Brand supervision ever
+      since, with remarkably few disputes.
+
+  - name: The Ascent of the High Seats
+    period: three centuries ago
+    summary: >-
+      The Perault houses of the high quarter, displaced from older
+      seats by the long cascade of covenants coming due across the
+      current age, began to relocate to the Long Foundry in
+      significant numbers. The high quarter's terraces were built
+      out within two generations, and by the end of the century the
+      city's political life was being conducted primarily in the
+      Perault council chambers rather than the Coil and Brand guild
+      hall. The arrangement has since quietly inverted back.
+
+  - name: The Astran Arrival
+    period: two centuries ago
+    summary: >-
+      The three feeding cults — Keepers of the Hour, Silent Patron's
+      House, and Grievance-Keepers — negotiated their formal
+      presence in the temple precinct over a thirty-year period of
+      patient diplomacy. The arrangement they struck with the Coil
+      and Brand and the High Seats is the formal basis of the city's
+      continuing stability, and is the document most often referred
+      to when anyone asks how the Long Foundry is still standing
+      when so many of its age-peers are not.
+
+  - name: The Quiet Century
+    period: one to two centuries ago
+    summary: >-
+      A long period during which very little happened that anyone
+      wished to record in detail. The foundries ran. The temples
+      were fed. The houses declined in an orderly manner. A small
+      number of covenants came due and were met. The Kin Lanes
+      established their stable households at the lower edge of the
+      forge quarter and became, quietly, indispensable.
+
+  - name: The Present Year
+    period: now
+    summary: >-
+      The Long Foundry is still working and still beautiful. The
+      Coil and Brand's ledgers remain balanced. The temples are
+      current on their offerings. The High Seats are operating on
+      borrowed time, which is a normal condition for them. The
+      only unusual development is the excavation in the eastern
+      hills, which began five years ago, was producing artifacts
+      two years ago, and has been producing progressively more
+      anxious correspondence for the past twelve months.
+
+# ─────────────────────────────────────────────────────────────────────
+# CAMPAIGN STRUCTURE
+# Three tiers: city-jobs → the quiet crack → the dig in the hills.
+# ─────────────────────────────────────────────────────────────────────
+
+chapters:
+  # ───────────────────────────────────────────────────────────────────
+  # EARLY (Sessions 1-5): Small work, honest rates
+  # ───────────────────────────────────────────────────────────────────
+  - id: early
+    label: "The Rates-Book"
+    session_range: [1, 5]
+    location: "The forge quarter and the Long Span"
+    atmosphere: >-
+      Smoke braided with the residue of the day's thaumaturgy, thin
+      and sweet over the Graslo. The Coil and Brand's rates-book is
+      posted fresh at the guild hall each dawn. The Kin Lanes smell
+      faintly of warm iron and clean linen. River Warden whistles
+      carry from the span in three tones — all clear, attention,
+      stand aside. The temple precinct across the river is
+      preternaturally quiet, and the air above it has measurable
+      weight.
+    active_stakes: >-
+      The Coil and Brand has posted a small-run of outsider
+      commissions: a misfiled tally to retrieve from a tavern, a
+      Thessil complaint to hear out at the Kin Lanes, a letter to
+      carry to a feed-keeper who prefers not to leave her temple.
+      None of the jobs look like anything. Most of them are. One
+      of them is the first loose thread of the next two chapters,
+      and the guild will not tell you which.
+    character:
+      archetype: Grey Thaumaturge
+      name: ""
+      culture: Kragmoor working-class or Orvinnic covenant-kin
+      level: 2
+      hp: 18
+      max_hp: 18
+      ac: 12
+      backstory: >-
+        Arrived in the Long Foundry with a small commission, a
+        smaller purse, and a letter of introduction to a junior
+        scribe at the Coil and Brand. Keeps honest books and a
+        longer memory than the job formally requires. Is starting
+        to understand that in this city every favor is recorded
+        and every silence is a balance.
+      personality: >-
+        Formal, careful, slow to spend a word twice. Believes that
+        the proper unit of thaumaturgic practice is the audit
+        trail.
+      items:
+        - travelling_cloak_grey
+        - brass_pen_nib_set
+        - calfskin_ledger_half_full
+        - warded_letter_sealed
+        - guild_lodgings_chit
+        - {catalog: ritual_knife_plain, name: "Accountant's Edge", lore: "Inherited from a grandmother who used it to draw circles, not blood."}
+      gold: 12
+      affinities:
+        Forge: {tier: 1, progress: 3}
+        Ledger: {tier: 1, progress: 5}
+        Rite: {tier: 0, progress: 2}
+        Covenant: {tier: 0, progress: 1}
+        Strata: {tier: 0, progress: 0}
+    npcs:
+      - archetype: Grey Thaumaturge
+        name: Senior Scribe Halvard Coil
+        location: Coil and Brand guild hall, the rates-book desk
+        disposition: 20
+        personality: >-
+          Thirty years at the desk. Keeps his cuffs clean through
+          any ledger work. Speaks to outsiders as equals until they
+          prove they aren't.
+      - archetype: Feed-keeper
+        name: Prefect Isola Hours-of-the-Hour
+        location: Temple precinct, Keepers of the Hour tally-hall
+        disposition: 10
+        personality: >-
+          Senior feed-keeper. Hands always clasped in front of her,
+          never behind. Speaks in the formal register and has for
+          so long it is no longer a register.
+      - archetype: River Warden
+        name: Warden-Captain Vos Graslo
+        location: The Long Span, north-bank guardhouse
+        disposition: 15
+        personality: >-
+          A Warden since before most Wardens. Hears everything that
+          passes the city and remembers all of it. Owes no one and
+          is owed by almost everyone.
+      - archetype: Kin Elder
+        name: Matriarch Enna of the Lower Lanes
+        location: Kin Lanes, the elder-house at the river's edge
+        disposition: 25
+        personality: >-
+          Orvinnic elder. Physiologically entangled with the foundry
+          residues; her skin is faintly iridescent in the right
+          light. Speaks for the Kin Lanes when the Kin Lanes choose
+          to speak, which is rarely.
+    points_of_interest:
+      - name: The Coil and Brand Guild Hall
+        slug: coil_and_brand_guild_hall
+        region: forge_quarter
+        type: guild_hall
+        description: >-
+          The senior working guild's hall at the head of the Long
+          Span. A wide publication wall at the entrance displays the
+          current rates-book and the previous month's ledger, both
+          maintained in a scribe-hand so regular it is nearly
+          printing. The back rooms are warded. The front rooms are
+          not. The difference is the whole shape of the city.
+        visual_prompt:
+          solo: >-
+            Wide ground-level landscape view of a Kragmoor guild
+            hall facade at the head of a great stone span. Foreground:
+            a wide publication wall of slate-dark stone set under a
+            colonnaded portico, the rates-book and a ledger pinned
+            open under hinged glass on a sloped iron-bracketed
+            reading-shelf, the surface marks regular and abstract,
+            two brass tally-boxes bolted to the stone beneath. Middle
+            ground: heavy iron-banded oak doors standing slightly
+            ajar with a guild-mark plaque of dark bronze above the
+            lintel — a coil through a brand-iron — and behind the
+            doors a flagged entrance hall lit by oil-lamps in iron
+            sconces, a clerk visible at a side-desk. Background: the
+            buttressed mass of the guild hall rising in coal-soot
+            stone with narrow shuttered windows, the river span
+            curving away to the south through morning mist. Overcast
+            grey dawn, no sun, smoke smudging the upper facade.
+          backdrop: >-
+            The slate-dark facade of a Kragmoor guild hall at the head
+            of a great stone span, a colonnaded publication wall
+            beneath iron-banded doors, narrow shuttered windows above,
+            dawn mist along the river.
+        environment:
+          solo: >-
+            Flat grey dawn light from frame-left, the sweet thin
+            smell of foundry-smoke threaded with sealing wax and
+            damp slate, a measured iron clanking from the foundries
+            uphill and the distant call of a River Warden's whistle
+            on three tones from the span.
+          backdrop: >-
+            Flat dawn light, foundry-smoke and damp stone, the muffled
+            iron rhythm of the morning shift.
+      - name: The Kin Lanes
+        slug: the_kin_lanes
+        region: forge_quarter
+        type: district
+        description: >-
+          A district of narrow stepped streets between the foundries
+          and the river, where the Orvinnic labor-kin households
+          keep quiet, orderly courts. The air carries a faint iron
+          sweetness; the walls are washed with a mineral solution
+          every dawn; the children play a counting game whose rules
+          have not changed in a hundred and fifty years.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape view down a narrow stepped
+            street between tall stone tenements at the river's edge.
+            Foreground: worn slate steps descending toward the
+            Graslo, the riser-stones still wet from a dawn washing
+            in pale mineral solution that has dried in faint bluish
+            efflorescence at the joints, a copper pail set
+            inverted on a doorstep, three small chalked counting-marks
+            on the wall in a hand a century-and-a-half regular.
+            Middle ground: timber-shuttered windows above stout iron-
+            studded doors, lintels of iron-flecked stone, a single
+            Orvinnic elder seated on a stoop with hands folded in
+            her lap, her skin faintly iridescent in the slant light.
+            Background: the bulk of a Kragmoor foundry rising
+            beyond the rooftops, its chimney braided with thin sweet
+            smoke. Pre-dawn blue-grey light, oil-lamps still lit in
+            wall-niches.
+          backdrop: >-
+            A narrow stepped street of dark tenement stone descending
+            toward a slow river, mineral-washed risers, iron-shuttered
+            windows above, a foundry chimney rising in the middle
+            distance under pre-dawn blue.
+        environment:
+          solo: >-
+            Cool blue light from frame-front mixed with the warm
+            spill of a single oil-lamp in a niche, the faint iron
+            sweetness of foundry-residue on damp stone, the smell of
+            clean linen drying somewhere unseen, and a children's
+            counting-rhyme in low voices carrying from the next
+            stair down.
+          backdrop: >-
+            Cool blue dawn, iron-sweet damp, the muffled rhythm of a
+            counting-game carried on still air.
+      - name: The Long Span
+        slug: the_long_span
+        region: forge_quarter
+        type: bridge
+        description: >-
+          The great stone arch that has carried the central axis of
+          the Long Foundry for longer than any current ledger
+          records. Three carts wide, lit at night by brass lanterns
+          maintained by the River Wardens, and watched from both
+          banks at all hours. The stone itself has been replaced
+          twice. The span has not.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of a great single-arch
+            stone bridge crossing a slow grey river at dusk.
+            Foreground: the rough cart-worn flagstones of the
+            span's deck, the centerline marked by an offering-stone
+            of dark basalt carved with the four overlaid sigils of
+            three cults and a guild — abstract, not legible —
+            polished smooth by generations of touching hands, a
+            brass lantern in an iron bracket lit and trembling on a
+            tall standard beside it. Middle ground: the parapet
+            stones each different in colour where the masonry has
+            been twice replaced, a River Warden in a blue-grey
+            liturgical coat leaning against the railing with a tin
+            whistle on a cord, two carts crossing in opposite
+            directions. Background: the temple precinct rising on
+            the south bank in raised terraces of pale stone, the
+            forge quarter's chimneys smoking on the north, the
+            Graslo reflecting last warm light beneath. Dusk amber
+            settling into blue.
+          backdrop: >-
+            A great single-arch stone bridge across a slow grey river
+            at dusk, brass lanterns lit on iron standards, a temple
+            precinct rising on the far bank, foundry smoke trailing on
+            the near.
+        environment:
+          solo: >-
+            Warm amber lantern-light from frame-right meeting cool
+            blue dusk from the river, the wet-stone smell of the
+            Graslo and the iron tang of the span's railings, the
+            three-tone whistle of a River Warden passing the
+            all-clear and the soft creak of cart-wheels on stone.
+          backdrop: >-
+            Mixed dusk amber and river-blue, wet stone and lantern
+            oil, the slow rhythm of evening traffic.
+      - name: The Temple Precinct (Threshold)
+        slug: temple_precinct_threshold
+        region: temple_precinct
+        type: precinct
+        description: >-
+          The raised southern terrace where the three feeding cults
+          hold their temples. Outsiders enter only through a single
+          north-facing gate and only during the formal visiting
+          window after the morning tally. The air inside the
+          precinct weighs visibly on the back of the tongue. No one
+          raises their voice here. No one has ever needed to.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape view of a raised terrace
+            precinct seen through the open arch of a north-facing
+            gate. Foreground: a single broad gate-arch of pale
+            limestone set into the precinct's outer wall, its
+            keystone carved with three nested sigils abstracted past
+            legibility, an Astran feed-keeper in a cold-white liturgical
+            cope and pale stole standing just inside the arch with
+            her hands clasped before her, a small offering-bowl of
+            tarnished brass set on a low pedestal beside her.
+            Middle ground: paved processional stone leading inward
+            and slightly up, its surface so smooth it does not
+            echo, three iron oil-lamp standards in a receding line
+            with flames burning quiet and unmoving, a single Astran
+            scribe seated at a low scribing-desk noting arrivals
+            in a waist-chained ledger. Background: the dim silhouettes
+            of three temples in pale stone rising in a half-circle
+            beyond, their facades carved with restrained ornament,
+            incense smoke caught in shafts of high pale window-light.
+            Overcast morning, the air visibly heavy.
+          backdrop: >-
+            A pale limestone gate-arch opening onto a raised terrace
+            precinct, three temple silhouettes beyond in soft pale
+            stone, iron lamp-standards burning still flames under an
+            overcast morning sky.
+        environment:
+          solo: >-
+            Pale grey overcast light from the high windows beyond
+            the arch, the close mineral smell of consecrated stone
+            and the faint smoke of cold incense, an unnatural hush
+            in which the only sound is the soft scratch of a
+            scribe's pen and the distant single toll of an Hour-bell.
+          backdrop: >-
+            Pale grey light, cold incense and dressed stone, the
+            preternatural hush of the precinct.
+      - name: The Western Gate
+        slug: the_western_gate
+        region: forge_quarter
+        type: gate
+        description: >-
+          A working gate in the old city wall at the western edge
+          of the forge quarter, opening onto the Path-Eater pilgrim
+          road. Supervised by the River Wardens and usually open in
+          daylight. The first mile of road beyond it is loud with
+          pilgrims. The second mile is quieter. The third mile does
+          not speak at all unless spoken to.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of an old working
+            city-gate set in a stretch of buttressed wall, opening
+            outward onto a rutted pilgrim road. Foreground: a small
+            River Warden's guard-shack in mortared stone beside the
+            archway, a brass lantern hung from an iron hook by the
+            door, a worn waymarker stone at the threshold carved
+            with a single pilgrim-token sigil rubbed smooth by
+            generations of hands, a Warden in blue-grey coat leaning
+            on a halberd's haft. Middle ground: the gate-arch itself
+            of dark dressed stone with the iron-banded leaves of
+            its doors folded back and bolted to the wall, two
+            pilgrims in road-worn brown coats and broad hats
+            passing through inward with bundles on their backs, the
+            ruts of the road descending past them. Background: the
+            pilgrim road curving away west between low stone walls
+            and thinning farmland, a half-mile waystation shrine
+            visible as a small lantern-flame in the morning mist.
+            Overcast morning, low pearl-grey light.
+          backdrop: >-
+            An old stone gate-arch set in a buttressed city wall,
+            iron-banded doors folded back, a rutted pilgrim road
+            descending west into morning mist, a small Warden's
+            guard-shack at the threshold.
+        environment:
+          solo: >-
+            Pearl-grey morning light from frame-front, the smell of
+            wet stone and road-dust and the cold lamp-oil of the
+            guard-shack, the soft tramp of pilgrim boots on packed
+            earth and the distant single tap of a Warden's whistle
+            answering itself from further down the wall.
+          backdrop: >-
+            Pearl-grey light, wet stone and road-dust, the slow tramp
+            of pilgrims passing the gate.
+      - name: The Ascending Way
+        slug: the_ascending_way
+        region: high_quarter
+        type: road
+        description: >-
+          A paved street climbing from the river span through the
+          temple precinct and up into the lower terraces of the
+          high quarter. The stones are older than most of the
+          houses on it. The house-guards nod to outsiders in guild
+          grey and do not nod to anyone else.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of a paved processional
+            street climbing a southern slope between old stone
+            houses at dusk. Foreground: large flagstones worn into
+            shallow centre-grooves by generations of foot-traffic,
+            a low retaining wall to the left in pale tarnished stone
+            topped with a wrought-iron rail of fading lacquer, an
+            iron lamp-bracket set into the wall holding a single
+            oil-lamp newly lit. Middle ground: a Perault house-guard
+            in muted indigo livery and a black braided coat standing
+            at the foot of a stair to a private courtyard, his hand
+            resting on the pommel of an ornate but unworn rapier,
+            two pedestrians in guild-grey passing him with formal
+            nods returned. Background: the terraces rising in
+            receding tiers of old stone facades, narrow shuttered
+            windows, ornate plaster cornices flaking at their edges,
+            a slow drift of foundry-smoke from far below catching
+            the last warm light. Dusk amber failing into blue.
+          backdrop: >-
+            A paved processional street climbing a southern slope at
+            dusk, old stone terraces rising in tiers, an iron lamp-
+            bracket lit on a retaining wall, drifting foundry-smoke
+            catching last warm light below.
+        environment:
+          solo: >-
+            Last amber dusk-light from frame-low-right meeting cool
+            blue rising shadow from above, the smell of cool
+            tarnished stone and the faint sourness of unwashed
+            plaster, the muffled tramp of a house-guard's boots and
+            a far-down bell ringing once for a death in a family.
+          backdrop: >-
+            Dusk amber failing to blue, cool stone and old plaster,
+            the single tolling of a death-bell carried up the slope.
+    tropes:
+      - id: the_three_cult_arrangement_cracks
+        status: dormant
+        progression: 0.05
+        notes:
+          - "A prefect of the Silent Patron's House was seen leaving the Keepers' temple wearing an expression."
+      - id: the_stratum_camp_goes_silent
+        status: dormant
+        progression: 0.03
+        notes:
+          - "A courier returned from the camp ordered two drinks at the Kin Lanes and did not speak to anyone."
+
+  # ───────────────────────────────────────────────────────────────────
+  # MID (Sessions 6-15): The arrangement develops a crack
+  # ───────────────────────────────────────────────────────────────────
+  - id: mid
+    label: "A Crack in the Arrangement"
+    session_range: [6, 15]
+    location: "The temple precinct and the high quarter"
+    atmosphere: >-
+      The rates-book is posted on time, but the second entry is a
+      correction the scribes won't discuss. The Grievance-Keepers
+      are rationing a small miraculous output in the Kin Lanes and
+      blaming "seasonal adjustment." A Perault house in the high
+      quarter has stopped receiving callers without explanation,
+      and the Ascending Way is quieter than it should be for this
+      week of the month. The Coil and Brand has called three
+      emergency sessions in a month, none of them minuted.
+    active_stakes: >-
+      A calendar dispute between the Keepers of the Hour and the
+      Silent Patron's House over the apportionment of the annual
+      refined-tally offering is no longer private. A senior
+      feed-keeper has spoken to an outsider — which is to say,
+      asked for help without asking. The High Seats are trying to
+      intervene, which is usually how the High Seats make things
+      worse. The River Wardens know more than they are saying.
+    character:
+      level: 5
+      hp: 36
+      max_hp: 36
+      ac: 14
+      milestones_earned:
+        - "triumph:Carried a warded document across the temple precinct and delivered it whole"
+        - "connection:Matriarch Enna now speaks to you without clearing her throat first"
+        - "discovery:Read a ledger entry that was supposed to have been struck through"
+        - "covenant:Accepted a small formal obligation from a High Seat"
+    npcs:
+      - archetype: Feed-keeper
+        name: Prefect Isola Hours-of-the-Hour
+        location: Temple precinct, Keepers of the Hour tally-hall
+        disposition: 25
+        personality: >-
+          Has begun to close her door for certain visitors. Has not
+          begun to close it for you.
+      - archetype: Feed-keeper
+        name: Under-Prefect Dannic of the Silent Patron
+        location: Temple precinct, Silent Patron's House
+        disposition: -5
+        personality: >-
+          Younger, ambitious, certain the Keepers have been over-
+          served for a century and willing to say so at the wrong
+          council. Brilliant at arithmetic. Clumsy at everything
+          else.
+      - archetype: High Seat
+        name: Lady Mireille of House Varant
+        location: High quarter, the Varant terrace
+        disposition: 5
+        personality: >-
+          Head of a declining house that has not yet admitted the
+          decline. Receives callers in a withdrawing room that has
+          not been repainted in a generation. Keeps her covenants
+          meticulously and her staff in poverty.
+    points_of_interest:
+      - name: The Keepers of the Hour Temple
+        slug: keepers_of_the_hour_temple
+        region: temple_precinct
+        type: temple
+        description: >-
+          The eldest of the three temples in the precinct, its
+          facade carved with nested calendar-wheels that turn at
+          dawn and dusk without visible mechanism. The tally-hall
+          inside holds the master register of the city's offerings,
+          kept in a bound volume so heavy it requires two scribes
+          to open. Prefect Isola presides. The door closes on its
+          own when an arbitration is being held.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape view of the interior tally-hall
+            of an Astran feeding-temple. Foreground: a long oak
+            tally-table polished by centuries of forearm-traffic,
+            the master register lying open across its centre — a
+            bound volume so heavy two leather scribe-pads support
+            its spine, its pages marked in abstract entry-strokes
+            rather than legible script, a brass quill-stand and a
+            row of iron tally-stones aligned beside it. Middle
+            ground: Prefect Isola in cold-white liturgical robes
+            and a pale stole standing with her hands clasped before
+            her, two junior scribes seated either side of the
+            register, the heavy iron-banded door of the hall
+            standing slightly open beyond them. Background: the
+            inner wall of the temple in pale dressed limestone
+            carved with nested calendar-wheels turning at the corners,
+            oil-lamps chained in pairs from the high vaulted ceiling,
+            incense smoke caught in a single shaft of pale window-
+            light high above. Dim devotional interior, mostly lamp-glow.
+          backdrop: >-
+            The interior of an Astran tally-hall in pale dressed
+            limestone, calendar-wheel carvings on the inner walls,
+            oil-lamps chained in pairs from a vaulted ceiling, the
+            master register open on a long oak table.
+        environment:
+          solo: >-
+            Warm oil-lamp light from the chained pair above frame-
+            centre meeting a single shaft of pale window-light from
+            high above, the dry-paper smell of old vellum and cold
+            incense, a soft regular ticking that has no visible
+            source and the muffled single toll of the Hour-bell
+            marking the third interval.
+          backdrop: >-
+            Warm chained lamplight, vellum and incense, the regular
+            ticking of an unseen Hour-mechanism.
+      - name: The Silent Patron's House
+        slug: the_silent_patrons_house
+        region: temple_precinct
+        type: temple
+        description: >-
+          The most politically connected of the three temples, its
+          approach paved in a stone that does not echo. The entrance
+          hall is hung with the silk records of every formal
+          arrangement the cult has entered since its founding, each
+          embroidered in threads that shift color if the terms are
+          violated. The threads have recently begun to darken.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of the entrance hall
+            of a temple to a name-eating cult. Foreground: a long
+            paved approach in dark non-echoing stone leading toward
+            the temple's open doors, a low offering-pedestal of
+            tarnished brass set to one side bearing a single sealed
+            envelope, the floor reflecting nothing. Middle ground:
+            the entrance hall itself rising into the temple's
+            interior — both walls hung with vertical silk records
+            in long banners, each silk embroidered in coloured
+            threads now darkening unevenly along one upper row,
+            the lower rows still bright, hung from polished brass
+            rods spanning the full height of the hall. A name-keeper
+            in soft dove-grey vestments stands halfway along the
+            row, hand raised toward but not touching one banner.
+            Background: a private silence-room visible through a
+            far archway, its threshold curtained in unbleached
+            linen, a single oil-lamp's soft glow within. Dim
+            devotional interior, lamp-lit, the air itself unmoved.
+          backdrop: >-
+            The dim entrance hall of a temple in non-echoing stone,
+            long silk-record banners hung from brass rods darkening
+            unevenly along one row, a curtained silence-room visible
+            through a distant archway.
+        environment:
+          solo: >-
+            Soft oil-lamp glow from low brass standards along both
+            walls, the cool faint smell of clean linen and dressed
+            stone, an absence of echo so complete the air seems
+            held, the only sound the soundless drift of a banner
+            in a draft that does not exist.
+          backdrop: >-
+            Soft lamp-glow, clean linen and cool stone, the
+            preternatural absence of echo.
+      - name: The Grievance-Keepers' Temple
+        slug: the_grievance_keepers_temple
+        region: temple_precinct
+        type: temple
+        description: >-
+          The least well-funded of the three temples, and
+          consequently the most anxious. Its interior courtyard
+          holds a ledger-tree — a living specimen trained to grow
+          in the shape of the temple's unresolved claims. The tree
+          is visibly healthier this season than it has been in
+          years, which is not a compliment.
+        visual_prompt:
+          solo: >-
+            Wide ground-level landscape view of the interior
+            courtyard of a small underfunded temple. Foreground:
+            cracked flagstones with weeds at the joints, a small
+            stack of un-collected complaint-scrolls in a pewter
+            tray on a low stone pedestal, an iron lamp-stand with
+            a single guttering tallow candle in a tin holder
+            beside it. Middle ground: the ledger-tree itself — a
+            living blackthorn trained against an iron espalier-
+            frame into the asymmetric shape of an unresolved
+            claim-ledger, its branches heavy with new dark leaves
+            and fresh blackthorn fruit this season, the espalier-
+            frame's iron rusted but the growth thick on it. A
+            grievance-eater in worn fawn-grey vestments stands at
+            its base running one hand along a low branch with a
+            tired expression. Background: the temple's inner walls
+            of weathered limestone with flaking plaster at the
+            cornices, narrow shuttered windows above, the courtyard
+            roofed only by the overcast sky. Overcast late
+            afternoon, low pearl-grey light.
+          backdrop: >-
+            The cracked-flag courtyard of a small temple under
+            overcast sky, a blackthorn ledger-tree trained against
+            a rusted iron espalier at the centre, weathered
+            limestone walls with flaking plaster cornices.
+        environment:
+          solo: >-
+            Pearl-grey overcast light from directly overhead, the
+            warm dry smell of dust and the cold green smell of
+            new blackthorn growth, the soft single drip of
+            yesterday's rain from a corner of the frame and the
+            distant city's foundry-hammer rhythm carried over the
+            precinct wall.
+          backdrop: >-
+            Pearl overcast, dust and new blackthorn, the muffled
+            foundry-hammer beyond the wall.
+      - name: The Varant Terrace
+        slug: the_varant_terrace
+        region: high_quarter
+        type: estate
+        description: >-
+          The formal seat of House Varant, halfway up the southern
+          slope. A walled garden, a narrow bell-tower that rings
+          only for deaths in the family, and a withdrawing room
+          where every ledger in the house is kept under a glass
+          dome that has not been opened in a year. The callers'
+          book by the front door is nearly empty.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of the front facade
+            of a declining Perault house on a southern slope at
+            dusk. Foreground: a wrought-iron gate of fading black
+            lacquer set in a low garden wall of pale dressed stone,
+            the gate standing closed but unlocked, a small brass
+            callers'-box mounted on its post with a leather-bound
+            book inside visible through a glass pane — the book
+            nearly closed, only one or two entries on the topmost
+            page in abstract pen-strokes. The walled garden visible
+            beyond shows trimmed boxwood gone slightly leggy and a
+            single statue of a kept ancestor on a moss-streaked
+            pedestal. Middle ground: the house facade itself in
+            tarnished pale stone, two stories with tall narrow
+            shuttered windows, the front door of oiled walnut with
+            a tarnished brass knocker, embroidered hems of a curtain
+            pulling from the inside of a downstairs window. A
+            narrow bell-tower rises to the left, a single iron bell
+            visible in its open belfry, silent. Background: the
+            terraced rooftops of the high quarter receding behind
+            the house, the river far below catching the last
+            warm light. Dusk amber failing to blue.
+          backdrop: >-
+            The front facade of a declining stone house on a southern
+            slope at dusk, wrought-iron gate fading to grey, a walled
+            garden visible beyond, a narrow bell-tower rising silent
+            against the dusk sky.
+        environment:
+          solo: >-
+            Last warm dusk-light from frame-low-right meeting cool
+            rising shadow over the upper facade, the dry cool smell
+            of tarnished stone and unopened lavender, the absolute
+            quiet of a house no longer receiving callers and the
+            faint creak of a shutter loose in an upstairs window.
+          backdrop: >-
+            Dusk amber to blue, cool stone and old lavender, the
+            absolute hush of a house no longer answering.
+      - name: The Terrace Stair
+        slug: the_terrace_stair
+        region: high_quarter
+        type: road
+        description: >-
+          The broad stone stair rising directly from the temple
+          precinct into the lower streets of the high quarter.
+          Used for formal processions from the cults to the
+          houses, and — less formally — by anyone who wants to
+          move between the precincts without crossing the Long
+          Span in public view.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape view looking up a broad
+            ceremonial stair of pale dressed stone climbing from
+            the temple precinct into the lower terraces of the
+            high quarter. Foreground: shallow risers worn into
+            shallow centre-grooves, a wide processional landing
+            at the base with a low offering-stone of dark basalt
+            in its centre carved with the abstract sigil of an
+            Astran procession, two iron lamp-standards at either
+            corner of the landing with oil-lamps newly lit. Middle
+            ground: the stair rising in three flights with
+            intermediate landings, a thin file of three Astran
+            clergy in cold-white liturgical vestments descending
+            in measured tread, their footfalls placed to the same
+            rhythm. Background: the lower facades of the high
+            quarter beyond the upper landing — narrow tall houses
+            of pale tarnished stone with shuttered upper windows,
+            ornate plaster cornices flaking in places — and the
+            slow drift of foundry-smoke caught on the air far
+            below. Dusk, the lamps the brightest light in frame.
+          backdrop: >-
+            A broad ceremonial stair of pale dressed stone rising in
+            three flights between iron lamp-standards, the lower
+            facades of a high quarter beyond, foundry-smoke drifting
+            below in the dusk.
+        environment:
+          solo: >-
+            Warm oil-lamp light from the corner standards at the
+            landing meeting cool blue dusk above, the smell of
+            dressed stone and the faint sweetness of incense
+            carried up from the precinct below, the measured
+            three-beat tread of a clergy procession and a single
+            soft Hour-bell completing its toll behind them.
+          backdrop: >-
+            Warm corner lamplight, dressed stone and faint incense,
+            the soft measured procession-tread.
+      - name: The Coil and Brand Back Rooms
+        slug: the_coil_and_brand_back_rooms
+        region: forge_quarter
+        type: chamber
+        description: >-
+          A series of warded chambers at the rear of the guild
+          hall where the guild's senior council holds its
+          unminuted sessions. Reached through a door that is not
+          a door. Reached more reliably with an invitation.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of a warded
+            council chamber at the rear of a Kragmoor guild hall.
+            Foreground: a long oak council-table dressed in unworked
+            black wool, twelve heavy chairs set evenly around it
+            with the foremost three pulled back as if recently
+            vacated, a row of brass tally-stones lined up on the
+            wool in front of each seat, an open ledger lying
+            closed-but-unsealed at the head of the table, residue-
+            salts of pale crystalline crust dusted along one
+            section of the table-edge from a recent working.
+            Middle ground: heavy iron-banded oak doors at the
+            chamber's rear with no visible handles, sigil-carvings
+            cut shallow into their face in nested wardings (abstract,
+            non-legible), a brass-and-iron tally-chest set against
+            the side wall with three lock-plates. Background: the
+            chamber's stone walls panelled in dark waxed oak,
+            three guttering tallow candles in a wrought-iron
+            standard providing the only light, the far corners
+            in deep ink shadow. Dim interior, candle-lit.
+          backdrop: >-
+            A warded council chamber in dark waxed oak panelling,
+            a long oak table dressed in black wool with twelve
+            chairs, iron-banded doors with shallow sigil-carvings,
+            a wrought-iron candle-standard providing the only light.
+        environment:
+          solo: >-
+            Warm candle-light from frame-front-right with deep ink
+            shadow in the far corners, the close dry smell of
+            beeswax and salt-residue and old waxed oak, an absolute
+            absence of street-sound and the soft regular drip of
+            tallow into a brass catch-tray.
+          backdrop: >-
+            Warm candle-light with ink-shadow, beeswax and salt-
+            residue, the close hush of a warded room.
+      - name: The Pilgrim Road (Second Mile)
+        slug: the_pilgrim_road_second_mile
+        region: pilgrim_road
+        type: road
+        description: >-
+          The stretch of the Path-Eater pilgrim road beyond the
+          busy first mile, where waystation shrines sit at half-
+          mile intervals and the quiet begins to sink into the
+          landscape. Pilgrims note, recently, that this stretch
+          feels longer than it was. They comment on this to each
+          other and not to anyone else.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape view down a rutted pilgrim
+            road in the elegiac hour. Foreground: twin parallel
+            cart-ruts pressed deep into pale earth, a single
+            waymarker stone at the verge carved with the
+            pilgrim-token sigil of the Path-Eater cult — abstract,
+            worn nearly smooth — and a small cairn of stacked
+            offering-pebbles built against its base by passing
+            devotees. A single hooded Path-Eater pilgrim walks
+            away from frame with a road-worn brown coat and a
+            wooden token on a cord at the neck, their stride long
+            and patient. Middle ground: a half-mile waystation
+            shrine of mortared stone with an iron lamp-bracket
+            holding an unlit oil-lamp, the shrine's open niche
+            empty save for a small wooden offering-bowl, the
+            road continuing past it between low dry-stone walls.
+            Background: the road receding into low rolling
+            farmland under a high pale sky, the next waystation
+            visible as a distant pale dot too far for the
+            half-mile it should be. Late afternoon, the light
+            failing to cool blue.
+          backdrop: >-
+            A rutted pilgrim road descending into low rolling
+            farmland between dry-stone walls, a waymarker carved
+            with a worn cult sigil, a half-mile waystation shrine
+            in mortared stone with an iron lamp-bracket.
+        environment:
+          solo: >-
+            Cool late afternoon light from frame-front meeting a
+            lower silver glow on the road's surface ahead, the
+            smell of dry earth and cold lamp-oil and crushed
+            roadside herbs, a windless silence in which only the
+            pilgrim's tread is audible and a single distant
+            footfall behind seems too far placed for its arrival
+            time.
+          backdrop: >-
+            Cool failing light, dry earth and lamp-oil, the windless
+            silence of a road longer than it was.
+    tropes:
+      - id: the_three_cult_arrangement_cracks
+        status: active
+        progression: 0.50
+        notes:
+          - "Emergency session at the Coil and Brand. Representatives of two cults leave without resolution."
+          - "Grievance-Keepers rationing miraculous output in the Kin Lanes."
+          - "Silent Patron's threads have darkened along one row of the entrance hall."
+      - id: the_stratum_camp_goes_silent
+        status: active
+        progression: 0.30
+        notes:
+          - "Coil and Brand quietly doubled the camp's rations allocation without a rationale entry."
+          - "A Thessil herder said the eastern hills 'sound different.'"
+
+  # ───────────────────────────────────────────────────────────────────
+  # VETERAN (Sessions 16+): The dig in the hills
+  # ───────────────────────────────────────────────────────────────────
+  - id: veteran
+    label: "What the Scholars Learned"
+    session_range: [16, 99]
+    location: "The Old Herding Track and the Stratum Camp"
+    atmosphere: >-
+      The week out of the city is long and quiet and each day
+      quieter than the last. The Thessil waystation is half-empty.
+      The track beyond it is not hostile, exactly, but the ground
+      is no longer cooperating — slopes that should be an hour's
+      climb take two, waymarkers appear in places nobody
+      remembers setting them, and the wind on the high ridges
+      sounds briefly, once per evening, like a name being read
+      from a list. At the camp, the scholars are still working.
+      That is the problem.
+    active_stakes: >-
+      The Coil and Brand has posted a private commission: travel
+      to the camp, carry a specific document back, and bring a
+      written assessment of whether the camp should be formally
+      closed. The reward is better than the work looks. The
+      temples are watching. The High Seats are offering — for
+      the first time in a generation — to underwrite a second
+      party with house gold. Something at the camp has begun
+      affecting visitors in a way no courier has been willing to
+      describe in writing.
+    character:
+      level: 9
+      hp: 62
+      max_hp: 62
+      ac: 16
+      milestones_earned:
+        - "covenant:Named in a formal arrangement between a cult and a High Seat"
+        - "discovery:Read a stratum layer nobody has read for six centuries"
+        - "betrayal:Watched a cult representative deliver a ruling they knew to be wrong"
+        - "connection:Accepted the Matriarch's mineral cup"
+        - "revelation:Learned what the older guild did not survive learning"
+    npcs:
+      - archetype: Refuser Scholar
+        name: Scholar-Chief Anesa Vardic
+        location: The Stratum Camp, main tent
+        disposition: 0
+        personality: >-
+          Head of the excavation. Composed, careful, and visibly
+          aware of a thing that she is not yet willing to name to
+          an outside party. Her correspondence to the city has
+          been drafted, over the last year, in a hand that grows
+          steadier the more it says nothing.
+      - archetype: Refuser Scholar
+        name: Cataloguer Pel Vornis
+        location: The Stratum Camp, artifact tent
+        disposition: 10
+        personality: >-
+          Junior scholar. Still cares about the work in the way
+          one cares about work when one has not yet understood
+          what the work is. The only person at the camp who will
+          show a visitor the stratum directly.
+      - archetype: Thessil Herder
+        name: Herd-Mother Kelu of the Northern Slopes
+        location: The Thessil Waystation, mid-route
+        disposition: 20
+        personality: >-
+          Fourth-generation Thessil. Runs the waystation as
+          courtesy and warning. Will trade news, shelter, and a
+          particular kind of tea that is supposed to help with
+          the ridge-wind. Believes the courtesy is in the
+          warning, not the tea.
+    points_of_interest:
+      - name: The Old Herding Track
+        slug: the_old_herding_track
+        region: stratum_hills
+        type: road
+        description: >-
+          A thin track climbing from the north bank into the
+          eastern hills, following routes laid down by Thessil
+          herders generations ago. A week's walk in good weather.
+          Every quarter-mile is marked by a small cairn, and
+          lately several cairns have appeared that the Thessil
+          say they did not place and cannot be persuaded to
+          remove.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape view of a thin herder's track
+            climbing across rolling hill-country. Foreground: a
+            single hand-laid Thessil cairn of seven flat stones
+            stacked beside the track, the topmost stone marked
+            with a single Thessil notation in a hand that predates
+            ledgers, a thin film of pale dust on the cairn's
+            shoulder undisturbed by recent feet. Middle ground:
+            the track itself a thin scar of compacted earth
+            curving between tussocks of dry hill-grass and low
+            wind-bent thorn, a second cairn visible thirty paces
+            on but built differently from the first — eleven
+            stones, stacked without the Thessil's measured
+            asymmetry, the top stone unmarked. Background: the
+            land rising in receding folded ridges toward the
+            stratum hills, a single Thessil herder in a long
+            felted coat visible as a small figure descending a
+            distant slope. Overcast late afternoon, the light
+            high and flat.
+          backdrop: >-
+            A thin herder's track climbing across folded hill-country
+            under flat overcast light, dry tussock-grass and low
+            thorn, two Thessil cairns marking the verge at uneven
+            intervals.
+        environment:
+          solo: >-
+            Flat pale overcast light from a high featureless sky,
+            the cold dry smell of hill-grass and wind-broken thorn,
+            a low wind across the track audible as a long
+            shouldering breath and, once per long minute, a sound
+            like a name being read from a list on the higher
+            ridge.
+          backdrop: >-
+            Flat overcast, cold grass and broken thorn, the long
+            shoulder of an unsettled wind.
+      - name: The Thessil Waystation
+        slug: the_thessil_waystation
+        region: stratum_hills
+        type: waystation
+        description: >-
+          A stone-walled herder's waystation at the halfway point
+          of the Old Herding Track, maintained by the Thessil for
+          the courtesy of travellers they do not necessarily
+          approve of. A low fire, a wooden bench, and a cup of
+          mineral tea for anyone who asks. The roof is reinforced
+          against a wind that, locally, has begun to carry words.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of a low stone-walled
+            herder's waystation at a ridge-bend. Foreground: a
+            wooden bench worn pale by weather set against the
+            outer wall of dry-stacked flat stones, a hand-fired
+            clay cup on the bench beside a brass kettle in a
+            covered niche, the cup containing a measured pour of
+            pale mineral tea. Middle ground: the waystation
+            itself, a single low rectangular structure with a
+            steeply pitched roof reinforced by heavy cross-beams
+            cut from older mountain timber and pinned with iron
+            bolts at every joint, the open doorway showing a small
+            interior with a banked turf fire on a flagged hearth
+            and an iron tripod over it. Herd-Mother Kelu stands
+            inside the doorway, an older Thessil woman in a long
+            felted coat with stem-name embroidery at the collar
+            and unusual irregular-shaped pupils caught in the
+            firelight. Background: the high stratum hills rising
+            beyond, the Old Herding Track curving up out of frame.
+            Overcast late afternoon, the sky low and grey.
+          backdrop: >-
+            A low stone-walled herder's waystation with a heavily
+            cross-beamed pitched roof at a ridge-bend, a worn
+            wooden bench against the outer wall, the stratum hills
+            rising beyond under overcast sky.
+        environment:
+          solo: >-
+            Cool grey overcast from frame-front meeting the warm
+            spill of a banked turf fire through the open doorway,
+            the smell of burnt turf and mineral tea and felted
+            wool, a steady low wind against the reinforced roof
+            and, once, a faint syllable in the wind that does not
+            belong to any local language.
+          backdrop: >-
+            Cool grey light, burnt turf and mineral tea, a steady
+            wind against a roof reinforced against words.
+      - name: The Stratum Camp (Outer)
+        slug: the_stratum_camp_outer
+        region: stratum_hills
+        type: camp
+        description: >-
+          The outer ring of the Refuser-site excavation: tents
+          arranged in a half-circle around a central fire pit
+          that is kept burning at all hours. Ropes strung between
+          tent poles carry notation-flags whose shorthand would
+          take a scholar a season to read. Everything in the
+          outer ring is normal. The wrongness begins at the
+          rope-line.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of a small academic
+            field camp in a high-valley clearing. Foreground: a
+            central fire pit ringed with flat field-stones, the
+            fire kept low and steady, a battered iron kettle
+            chained over it on a tripod, three folding camp-stools
+            arranged around with one occupied by a scholar in a
+            grey researcher's coat writing in a waist-chained
+            notebook. Middle ground: six waxed-canvas tents
+            arranged in a half-circle facing the fire, their
+            ridge-ropes strung between poles and hung with small
+            notation-flags of folded grey linen, each flag marked
+            in abstract shorthand strokes. Two scholars stand
+            near the central tent in conversation, their hands
+            clasped behind their backs. Background: a thin rope-
+            line of taut hemp marks the edge of the camp half-
+            way to a darker stand of timber where the rising
+            ground turns toward the dig site, the trees beyond
+            unnaturally still. Overcast late afternoon, the light
+            beginning to fail.
+          backdrop: >-
+            A small academic field camp of six waxed-canvas tents
+            ringing a low central fire pit, notation-flags strung
+            between tent-poles, a taut rope-line at the camp's
+            edge with a darker stand of timber rising beyond.
+        environment:
+          solo: >-
+            Cool overcast light from frame-front meeting the warm
+            steady glow of the central fire, the smell of waxed
+            canvas and turf-smoke and the faintly sour mineral
+            note of recent residue-handling, a low constant
+            scholarly murmur and an absolute silence from the
+            timber beyond the rope-line.
+          backdrop: >-
+            Cool overcast with central fire-glow, canvas and
+            turf-smoke, the silence beyond the rope.
+      - name: The Artifact Tent
+        slug: the_artifact_tent
+        region: stratum_hills
+        type: chamber
+        description: >-
+          The cataloguer's tent, lit by brass lanterns burning at
+          half the oil a brass lantern usually takes. The
+          artifacts are arranged on felt pads in the order they
+          came out of the stratum. The most recent pad is empty.
+          Pel Vornis can tell you, if you ask kindly, what was
+          on it yesterday.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of the interior of
+            a cataloguer's research tent. Foreground: a long
+            scholar's bench of unstained pine running the length
+            of the tent, covered in seven dark felt pads arranged
+            in sequence — the first six bearing Refuser-site
+            artifacts of pale fluted bone-coloured material in
+            unfamiliar non-symmetric shapes, the seventh pad bare
+            and slightly darker where something rested on it.
+            Two brass lanterns set on iron hooks at frame-left
+            burn with flames smaller than their oil-supply
+            warrants. Middle ground: the cataloguer Pel Vornis
+            seated on a folding stool at the bench, a junior
+            scholar in a grey coat with a waist-chained notebook
+            open across one knee, a pen-nib held above the page
+            unmoving. Background: the inner canvas of the tent
+            in waxed grey-brown, ridge-rope visible above with
+            a single small notation-flag pinned to it, the open
+            tent-flap at the rear admitting a thin strip of cool
+            outdoor light. Dim canvas interior, lantern-lit.
+          backdrop: >-
+            The waxed-canvas interior of a cataloguer's research
+            tent, a long pine bench covered with seven dark felt
+            artifact-pads, two brass lanterns on iron hooks
+            burning lower than they should.
+        environment:
+          solo: >-
+            Subdued warm lantern-light from frame-left meeting a
+            thin cool draft from the open rear flap, the dry
+            smell of unfamiliar pale mineral and waxed canvas
+            and old notebook-leather, an unnatural quality to
+            the silence in which the lantern-flames make no
+            sound and even the pen-nib does not scratch.
+          backdrop: >-
+            Subdued lantern-glow with cool draft, pale mineral
+            and waxed canvas, an unnaturally complete silence.
+      - name: The Open Face of the Stratum
+        slug: the_open_face_of_the_stratum
+        region: stratum_hills
+        type: dig_site
+        description: >-
+          The excavation face itself: a vertical cut into the
+          hillside where the Refuser layer has been exposed in
+          two meter-wide steps. The stratum reads, to anyone with
+          the training, like a ledger kept by something that had
+          good reasons to stop keeping ledgers. The deeper steps
+          are the worst. The deepest step is not a step.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape view of an excavated stratum-
+            face cut into the side of a hill. Foreground: the
+            uppermost cut step in pale crumbled earth, a single
+            iron pickaxe leaning against the riser, three scholar's
+            chalk-marks (abstract, non-legible) drawn along the
+            cut edge to mark a band of interest. Middle ground:
+            the stratum descending in two-metre-wide steps cut
+            cleanly into older and progressively darker bedded
+            stone, each riser a different layer of the deep past
+            — pale grey, then iron-red, then a curious near-black
+            band striated with thin pale lines that do not follow
+            the geology. A single Refuser scholar in a grey coat
+            stands on the second step holding a brass lantern
+            unlit, facing downward. Background: the deepest visible
+            cut at the bottom of frame — a vertical face of
+            absolute black where the stratum reads less as rock
+            than as edge, the surrounding earth pulled back from
+            it as if reluctant. Late afternoon, the high sky's
+            cool grey light not quite reaching the lowest face.
+          backdrop: >-
+            A stratum-face cut into a hillside in two-metre steps,
+            pale grey above iron-red above a near-black band, the
+            lowest visible cut a vertical face of absolute black
+            under cool grey afternoon light.
+        environment:
+          solo: >-
+            Cool late afternoon light from a high featureless sky
+            from frame-above, the dry mineral smell of pale earth
+            and the colder smell of something below that resembles
+            wet metal, a wind that the upper steps register and
+            the lower steps do not, and a silence at the deepest
+            face deeper than the silence above it.
+          backdrop: >-
+            Cool grey light failing into the cut, dry pale earth
+            above and cold wet-metal smell below, a wind that
+            does not reach the lowest step.
+      - name: The Counting Stones
+        slug: the_counting_stones
+        region: stratum_hills
+        type: landmark
+        description: >-
+          A ring of seven upright stones half a mile above the
+          camp on the ridge-line, each one marked with a single
+          notation in a hand that predates the Thessil by several
+          centuries. The scholars have not yet formally catalogued
+          them because they cannot agree on how many there are.
+          The Thessil do not go near them and will not explain.
+        visual_prompt:
+          solo: >-
+            Wide low-angle landscape view of a ring of upright
+            standing stones on an open ridge-line. Foreground:
+            three rough monoliths of weathered dark stone set
+            close together at the near edge of the ring, each
+            taller than a man, each bearing a single notation
+            mark carved deep at chest-height in a hand older
+            than any local language (abstract, geometric, non-
+            legible). The earth at their bases is bare in a
+            patch where neither grass nor moss grow. Middle
+            ground: four more uprights spaced unevenly across
+            the centre of the ridge, their relative positions
+            not quite forming a clean ring — possibly six, or
+            possibly eight, the eye unable to settle. A thin
+            ground-mist clings to the bases of all the stones
+            though not to the grass between them. Background:
+            the ridge falling away to either side into the
+            wider stratum hills, the camp's small fire-glow
+            visible as a distant point half a mile below in
+            the failing light. Dusk, the western sky a flat
+            bone-pale wash.
+          backdrop: >-
+            A ring of weathered dark standing stones on an open
+            ridge-line at dusk, the count unclear, thin ground-mist
+            clinging only to the stones' bases, the camp's fire a
+            distant point in the valley below.
+        environment:
+          solo: >-
+            Cool bone-pale dusk light from the western sky, the
+            cold smell of bare un-grassed earth and the absence
+            of any other smell at all, a windless quiet at the
+            ring's centre that is not the same quiet as the
+            wind-carrying ridges to either side, and the steady
+            silence of stones that have been counted often and
+            never twice the same.
+          backdrop: >-
+            Bone-pale dusk, cold bare earth, the silence of a
+            ring that resists counting.
+      - name: The Gone-Home Lodgings
+        slug: the_gone_home_lodgings
+        region: stratum_hills
+        type: ruin
+        description: >-
+          A set of five small stone lodgings at the edge of the
+          camp, built to house scholars on rotation back to the
+          city. All five are currently occupied. The names on
+          the doors match scholars who, according to every city
+          register, have been on return-rotation for six months.
+          The lodgings are very clean. The scholars inside do
+          not answer knocks.
+        visual_prompt:
+          solo: >-
+            Wide three-quarter landscape view of a row of five
+            small stone lodgings set at the upper edge of the
+            field camp. Foreground: a swept flagstone path
+            running the length of the row, the path utterly
+            clean of leaf-litter or grass despite the surrounding
+            tussocked hillside, a small offering-stone at the
+            path's near end with a single fresh-cut hill-flower
+            placed on it. Middle ground: the five lodgings
+            arranged in line — each a low single-roomed
+            structure of mortared dark stone with a slate-shingled
+            roof, a small shuttered window beside a closed iron-
+            banded plank door, a brass nameplate (abstract,
+            non-legible strokes) mounted at chest-height beside
+            each door. A faint warm glow shows in the chinks of
+            the third lodging's window-shutter. Each door is
+            polished. None bear the scuff-marks of normal use.
+            Background: the dark stand of timber that marks the
+            inner camp boundary rising behind the lodgings, the
+            trees absolutely motionless. Dusk, the failing light
+            cold and even.
+          backdrop: >-
+            A row of five small dark-stone lodgings in line at the
+            edge of a field camp under dusk, slate roofs, iron-
+            banded plank doors with brass nameplates, a swept
+            flagstone path running their length.
+        environment:
+          solo: >-
+            Cool even dusk-light from a high featureless sky
+            meeting the single warm chink of lamplight from the
+            third lodging's shutter, the smell of dressed stone
+            and the absolute absence of cookfire-smoke or boiled-
+            herb smell despite all five chimneys being lit, a
+            silence in which no footstep sounds inside any door
+            and the wind itself does not cross the row.
+          backdrop: >-
+            Cool dusk with a single warm chink of shuttered light,
+            dressed stone with no cookfire smell, the wind-stopped
+            silence of the row.
+    tropes:
+      - id: the_stratum_camp_goes_silent
+        status: active
+        progression: 0.85
+        notes:
+          - "First party returned without all its members. Coil and Brand recorded the observations and did not publish."
+          - "A symptom from the camp has now appeared in the forge quarter."
+      - id: the_three_cult_arrangement_cracks
+        status: active
+        progression: 0.75
+        notes:
+          - "An Astran prefect's ruling is imminent. One cult is drafting a formal re-negotiation."

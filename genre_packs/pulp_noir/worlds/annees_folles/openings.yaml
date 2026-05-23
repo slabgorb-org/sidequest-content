@@ -1,0 +1,162 @@
+# Les Années Folles — Openings bank.
+#
+# Hard contracts (validators in genre/loader.py + models/narrative.py):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - OpeningSetting requires exactly one anchor: chassis_instance OR
+#     location_label.
+#   - At least one solo + one MP opening present.
+#   - PerPcBeat.applies_to keys restricted to {background, drive, race,
+#     class}; this v1 bank omits per_pc_beats (fallback covers all
+#     chargen backgrounds via triggers.backgrounds: []).
+#
+# Spec: docs/superpowers/specs/completed/2026-05-01-canned-openings-design.md
+#
+# Voice contract: hardboiled but not parodic; the cafés are real; the
+# fascism is creeping but not arrived. Reference period writers are
+# Hemingway (clean declaratives), Stein (rhythm), Simenon (the room
+# before the body). The Tea Cup Test variant: the body lands on turn
+# 2 at the earliest, never turn 1. Turn 1 closes on the threshold —
+# the envelope, the empty chair, the bar bill, the rain on the
+# zinc roof — and gives the player the breath.
+
+version: "0.1.0"
+world: annees_folles
+genre: pulp_noir
+
+openings:
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #1 — La Rotonde, Montparnasse, the envelope on the marble
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_la_rotonde_envelope
+    name: "La Rotonde — late afternoon, an unopened envelope on the marble"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: montparnasse
+      situation: >-
+        Tuesday, late October 1926. La Rotonde on the Boulevard du
+        Montparnasse, the corner table by the window because it was
+        the only one open and the waiter knows the player by face if
+        not yet by name. The afternoon light is the long flat
+        Parisian autumn light that makes the zinc bar look like
+        pewter. The waiter has set down a Pernod the player did not
+        order, and a small envelope, and has not stayed to be
+        questioned. The envelope is on the marble between the glass
+        and the ashtray. Outside, a tram bell. Inside, the espresso
+        machine working in the standard rhythm.
+      present_npcs: []
+    tone:
+      register: "hardboiled French, observational, a little tired, no parody"
+      stakes: "implied — the envelope has not been opened"
+      complication: "defer to turn 2 — opening the envelope IS the complication"
+      avoid_at_all_costs:
+        - the envelope opening on turn 1
+        - the player ordering or drinking the Pernod
+        - a named villain at the next table
+        - exposition about the war, the fascists, or whose envelope it is
+        - the waiter returning to explain
+        - a body anywhere
+    establishing_narration: >-
+      La Rotonde at five-twenty in the afternoon. The waiter — Henri,
+      who has worked this corner since the second year of the war —
+      has set down a Pernod the player did not order, and a small
+      envelope, and has crossed to the kitchen without making eye
+      contact. The Pernod is the cheap kind, the kind a regular gets
+      when the bill is going on the slate. The envelope is heavy
+      paper, no return address, addressed to the player by the name
+      they are using this month, in a hand that is careful but not
+      practiced. The man two tables over is reading Le Figaro and
+      has not turned a page in seven minutes. The American girl by
+      the window is writing in a notebook and has not stopped
+      writing since the player sat down. Outside the zinc roof is
+      drumming faintly with the start of a rain that the morning
+      papers had said would not come.
+    first_turn_invitation: >-
+      The envelope is on the marble between the glass and the
+      ashtray. Henri is in the kitchen. The man with Le Figaro has
+      not turned a page. The rain has started. The Pernod is
+      sitting there, unwanted. The player has the table to themselves
+      until they don't.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: >-
+        If the player has not engaged with the envelope by the third
+        beat, Henri returns with a small saucer of olives nobody
+        ordered and sets it down beside the envelope, and does not
+        meet the player's eye, and goes back to the bar. The man
+        with Le Figaro folds the paper and signals for a check.
+
+  # ──────────────────────────────────────────────────────────────────
+  # MP — La Rotonde, a back table, the patron is forty minutes late
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: mp_la_rotonde_back_table
+    name: "La Rotonde — the back table, the patron forty minutes late, the small bill mounting"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 6
+      backgrounds: []
+    setting:
+      location_label: montparnasse
+      situation: >-
+        La Rotonde, the back-room table the patron always takes when
+        she is in Paris. Six in the evening. The patron — Madame de
+        Vigny, who is rich without explaining how, and who has used
+        the crew before — was due here at five-twenty and the small
+        bill is mounting. A telephone message was left at the bar for
+        the crew an hour ago: "I am detained. Wait." The waiter has
+        brought three carafes of the house red and has not asked who
+        is paying.
+      present_npcs: []
+    tone:
+      register: "the crew already a crew, conversational, the bar noise carrying"
+      stakes: "low at the bar, structural by turn 3"
+      complication: "defer to turn 2 — the patron's lateness IS the wrinkle"
+      avoid_at_all_costs:
+        - Madame de Vigny walking in on turn 1
+        - a body being discovered on turn 1
+        - the crew having already taken a side
+        - a known fascist at a nearby table being singled out
+        - exposition about Madame de Vigny's past with the crew
+        - one player monopolizing the table's attention
+    establishing_narration: >-
+      Six in the evening at La Rotonde. The back table the patron
+      always takes when she is in Paris. Madame de Vigny was due at
+      twenty past five and is forty minutes late, which is unlike
+      her. The telephone message at the bar reads simply: "I am
+      detained. Wait." The waiter has brought three carafes of the
+      house red and a basket of bread without being asked, in the
+      way the regulars are served, and the small bill is mounting.
+      The American girl by the front window is still writing in a
+      notebook. A man at the bar is buying a single Pernod with a
+      twenty-franc note and waiting for the change with his hand
+      flat on the zinc. Outside, a tram bell, then another, then
+      the start of a rain that will not last. The patron is not
+      here. The bill is mounting. The crew has been told to wait.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: trusted
+      shared_history_seeds:
+        - "you worked the Marais case together the spring before last"
+        - "Madame de Vigny paid in dollars that time, which was a clue"
+        - "one of you owes Henri the waiter for a tab the patron did not cover in June"
+      narrator_guidance: >-
+        Treat the crew as people who already know each other's tells
+        and have sat at this back table before. Don't introduce them
+        to each other. Let the table figure out who decides to wait,
+        who orders, who checks the door, who reads the message at
+        the bar.
+    first_turn_invitation: >-
+      The patron is not here. The message at the bar says wait. The
+      bill is mounting in the polite Parisian way. There are three
+      carafes on the table, a basket of bread, and forty minutes of
+      no patron. The crew decides what waiting means.
