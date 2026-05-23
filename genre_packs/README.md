@@ -36,7 +36,7 @@ will surface them to players as if they were finished.
 |------|-------|
 | `caverns_and_claudes` | Classic dungeon crawl with meta-humor; reference pack for new authors |
 | `elemental_harmony` | Martial arts / elemental magic |
-| `heavy_metal` | Baroque fantasy of pacts, decay, and blood-priced magic |
+| `heavy_metal` | Baroque fantasy of pacts, decay, and blood-priced magic — `evropi` + `long_foundry` |
 | `mutant_wasteland` | Post-apocalyptic mutants; `flickering_reach` world is the only spoilable canon |
 | `neon_dystopia` | Cyberpunk — `franchise_nations` |
 | `pulp_noir` | 1930s detective / pre-war pulp — `annees_folles` |
@@ -44,12 +44,16 @@ will surface them to players as if they were finished.
 | `spaghetti_western` | Frontier gunslinger |
 | `tea_and_murder` | Cosy Edwardian BritBox murder mystery; village amateur sleuths (Glenross) |
 
-> **Note:** `neon_dystopia` and `pulp_noir` were promoted 2026-05-23 with the
-> asset gate (portraits, POI landscapes, generated OGG) **not yet met**. YAML
-> is complete and `*_input_params.json` music specs are committed, but R2-side
-> rendered assets still need to be generated. Until they are, picking these
-> packs may surface missing-asset paths to players. Treat as live for authoring
-> and headless playtest; do not show to the playgroup until assets land.
+> **Note:** `neon_dystopia`, `pulp_noir`, and `heavy_metal` were promoted /
+> re-promoted 2026-05-23 with the asset gate (portraits, POI landscapes,
+> generated OGG) **not yet met**. YAML loads cleanly and `*_input_params.json`
+> music specs are committed, but R2-side rendered assets still need to be
+> generated. (`neon_dystopia` and `pulp_noir` also still need world-tier
+> `openings.yaml` authoring before they will load — see canned-openings spec
+> 2026-05-01 §1; `heavy_metal` already has world openings in both worlds.)
+> Until those gaps close, picking these packs may surface missing-asset paths
+> or load errors. Treat as live for authoring and headless playtest; do not
+> show to the playgroup until the gaps close.
 
 ## Spoiler protection
 

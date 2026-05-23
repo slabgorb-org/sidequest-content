@@ -42,7 +42,7 @@ production and staging is a footgun.
 | `road_warrior` | Active workshop — vehicular post-apocalypse |
 | `neon_dystopia` | Promoted 2026-05-23 to `../genre_packs/neon_dystopia/` (asset gate not yet met); workshop directory removed |
 | `pulp_noir` | Promoted 2026-05-23 to `../genre_packs/pulp_noir/` (asset gate not yet met); workshop directory removed |
-| `heavy_metal` | Stub leftover — promoted into `../genre_packs/heavy_metal/`; only stale `images/` remain here |
+| `heavy_metal` | Re-promoted 2026-05-23 to `../genre_packs/heavy_metal/` (loads clean — 2 worlds, world openings + new-schema confrontations present; asset gate not yet met); workshop directory removed |
 | `spaghetti_western` | Stub leftover — promoted into `../genre_packs/spaghetti_western/`; directory effectively empty |
 
 ## Editing rules
