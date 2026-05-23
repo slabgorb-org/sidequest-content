@@ -1,0 +1,474 @@
+# Shattered Accord — Openings bank.
+#
+# Hard contracts (validators in genre/loader.py + models/narrative.py):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - OpeningSetting requires exactly one anchor: chassis_instance OR
+#     location_label (not both, not neither). Shattered Accord is
+#     location-anchored — no chassis/rig framework on this world.
+#   - At least one solo + one multiplayer opening present.
+#   - PerPcBeat.applies_to keys are constrained to {background, drive,
+#     race, class}.
+#
+# Spec: docs/superpowers/specs/completed/2026-05-01-canned-openings-design.md
+#
+# Voice contract: post-Shattering classical pan-East-Asian / Indo-Pacific
+# register — the gravity of a Tang-dynasty court chronicle or a
+# Mahabharata aside. NOT Edo-Japanese (that is burning_peace). Sanskrit,
+# Tibetan, Chinese, Korean, and Polynesian source-names already populate
+# the cartography; the prose carries the same breadth. Fourteen centuries
+# after the Accord broke, the world is mourning-and-grudge-shaped. The
+# Anhuanzhou Wall and the Songnan Terrace are the two anchors —
+# fortification and capital, garrison and teahouse, the two faces of the
+# Jade Reclamation in the hour before its appetite is openly admitted.
+# Stakes on turn 1 are deferred; the wrinkle waits for turn 2 or 3 per
+# the SOUL pacing rule. No drawn weapon, no spirit attack, no inspection
+# failure on turn 1.
+
+version: "0.1.0"
+world: shattered_accord
+genre: elemental_harmony
+
+openings:
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO — Atop the Anhuanzhou Wall at the relief of the dawn watch
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_anhuanzhou_wall_west_gate_dawn_relief
+    name: "The Anhuanzhou Wall — west-gate watchtower, the relief of the dawn watch"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: anhuanzhou_wall_west_gate_tower
+      situation: >-
+        First light, the hour the Jade garrisons call the Opening of the
+        Pass. You have come up the watchtower stair at the west gate of
+        the Anhuanzhou Wall — the Celestial Wall, the great northern
+        fortification of the Jade Kingdoms — to wait out the changeover
+        between the night watch and the day. The relief-bell has rung
+        once; it rings twice more before the night-guards descend. The
+        wall runs east and west into mist on both sides, and below the
+        north parapet a small queue has formed at the closed sally-port:
+        a courier with a road-pony, two Sky-Temple novices in pale grey,
+        a Lotus-Provinces pedlar with a covered cart. The pass beyond
+        the wall is still dark.
+      present_npcs: []
+    tone:
+      register: "official, attentive, the cold civility of an imperial frontier — Tang chronicle in cadence, not Edo"
+      stakes: "none on turn 1 — you are in the watchtower by right of station or hospitality, not interrogation"
+      complication: "defer to turn 2 or 3 — the wrinkle is in the sally-port queue below"
+      sensory_layers:
+        smell: >-
+          Cold granite still holding the night, pine-resin from the
+          brazier the night-corporal has banked low, the iron-and-oil
+          smell of the wall's signal-lamps. From the far side of the
+          parapet the pass exhales a thin spirit-fog that carries no
+          smell of its own and makes the lamp-smoke go briefly transparent
+          where it crosses.
+        sound: >-
+          The slow stamp of the night-guards forming up below for relief
+          drill, the count called by a junior officer in the cadence
+          Jade garrisons use across every gate from Songnan to the Shou
+          Pass. A pony stamping at the sally-port. Somewhere west along
+          the wall, a deep-earth channeler practicing the second form
+          inside a guardroom — felt rather than heard, a slow regular
+          pulse the stone passes up through the boot-soles.
+        touch: >-
+          The watchtower's flagstone underfoot, ringing faintly with the
+          channeler's practice three towers down. The cold iron of the
+          arrow-slit's framing where a hand steadies out of habit. The
+          quilted lining of a campaign coat, holding the body's warmth
+          against the granite's draw.
+      avoid_at_all_costs:
+        - any spirit incursion, any rifted sky, any tear opening on turn 1
+        - the courier or the Sky-Temple novices being challenged, refused, or arrested on turn 1
+        - the watch-officer being either suspicious of the player or grasping (he is neither — he is doing his hour)
+        - any drawn weapon, any duel, any channeling demonstration in anger
+        - asking the player a question — turn 1 closes on a declarative
+        - moving the player without their input
+        - any anime register, any pidgin samurai diction, any Edo-Japanese inflection
+        - exposition-dumping the Shattering — the world IS this; do not explain it
+    establishing_narration: |
+      The watchtower at the west gate of the Anhuanzhou Wall is built
+      in the old Jade pattern: a square of fitted granite three stories
+      above the parapet walk, the upper room ringed with arrow-slits
+      narrow enough to refuse a drawn bow and wide enough to read a
+      flag through. The roof beams are cedar, blackened with two
+      centuries of brazier smoke. Anhuanzhou's name is cut into the
+      lintel above the inner door, as it is cut into every gate from
+      here to the Songnan Terrace — three small characters, deep, the
+      ink long since weathered out of the grooves.
+
+      The night-corporal is at the brazier, a man in the dark-jade
+      surcoat of the wall garrison, his helmet set on the bench beside
+      him and his hair tied back for sleep he will not yet get. He
+      acknowledges you with the half-bow that is exactly correct for a
+      guest who has been granted the watch-tower's hospitality and is
+      not the guest of any particular officer. The bow is courteous
+      and impersonal in the manner of the Jade frontier: hospitality
+      offered as a function of office, not as a private favour. He
+      goes back to writing the night's tally into a small bound
+      register with a hard brush.
+
+      Through the north slits the pass is visible only as an absence
+      of stars. The spirit-fog that drifts up from the Saṃdhāna Rifts
+      a hundred leagues away has thinned to nothing here at the wall,
+      but a faint elemental haze still lies along the pass-floor,
+      catching the sally-port lantern in odd places — once on a
+      pony's flank, once on the brass clasp of a pedlar's harness,
+      once on nothing at all. The deep pulse of the channeler's
+      practice three towers down comes up through the granite at the
+      pace of a man's breathing.
+
+      A small queue has formed at the sally-port below, the four
+      travellers waiting in the patient silence the wall imposes on
+      anyone who has business at its closed gates. The courier's pony
+      is the only one of them with the freedom to be impatient. The
+      relief-bell rings once: a single bronze note that travels along
+      the parapet eastward, picked up and repeated by the next tower,
+      and the next, and the next, until it dies in the mist somewhere
+      beyond the third bend.
+    first_turn_invitation: |
+      The night-corporal sets his brush down across the register and
+      stands. From the parapet walk below comes the measured tread of
+      the day-watch coming up the stair in column. The Lotus-Provinces
+      pedlar at the sally-port turns her covered cart to face the
+      gate; the courier has not moved at all in some time, standing
+      beside her pony with one hand on the bridle and the other
+      tucked inside her travel coat where a wax-sealed tube of
+      lacquered bamboo would ride against the ribs.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The two Sky-Temple novices at the sally-port are very young
+        and have not learned yet to wait without looking at one
+        another for reassurance. Their grey robes are the unbleached
+        wool of Dignagālavā Monastery — the Accord Reborn's house —
+        and the elder of the two is holding a sealed travel-writ in
+        both hands as one holds a bowl of water on uneven ground.
+
+        The courier with the road-pony has not looked at the novices
+        once. She is older, weather-cut, the cut of her travel coat
+        and the small earth-channeler's clasp at her collar putting
+        her, by the wall garrison's casual reckoning, somewhere in
+        the Jade Reclamation's irregular service. Her pony's bridle
+        bears no badge. Her stillness is the practised stillness of
+        someone who has waited a great many times at a great many
+        gates and does not expect to be hurried.
+
+        The night-corporal at the brazier glances down once through
+        the slit at the queue, makes a small mark in his register,
+        and does not glance again.
+      escalation_path:
+        turn_2_or_3: >-
+          The courier and the novices are travelling the same pass
+          in opposite directions, and the wall has not yet decided
+          who passes first. By turn three the gate-captain below
+          will have asked the courier to step aside for the
+          novices on grounds of Sky-Temple writ, or the novices
+          will have been refused passage on grounds of Jade
+          standing orders, or the night-corporal will have spoken
+          quietly to the player about a tally-mark that does not
+          balance against the previous watch's count. The narrator
+          chooses on the basis of the player's vocation. Do not
+          preview on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Channeler" }
+        beat: |
+          The night-corporal closes his register and sets a second
+          tin cup on the brazier-rim for the steeping. "The
+          channeler three towers down is Master Qing's pupil — the
+          deep-earth school, the formal Jade lineage. You will know
+          the second form better than I do. I will only say that he
+          has been practising at this hour for a fortnight, and the
+          stone under the tower has been answering. The day-captain
+          will ask you, before the second bell, whether the
+          answering is the form or the pass. I have no opinion. I
+          am a corporal."
+      - applies_to: { class: "Martial Artist" }
+        beat: |
+          The day-watch reaches the upper landing and a young
+          guardsman, helmet under his arm, ducks the lintel. He
+          recognises a martial-artist's bearing before he
+          recognises a face — looks once, looks away, then looks
+          back with the small steadiness of someone who has trained
+          and not yet been tested in the field. The night-corporal,
+          without lifting his eyes from his brush, says: "He is
+          Sansoku's nephew. He came up the wall last winter from a
+          monastery on the southern coast and has not yet had the
+          fight he was sent here for. He will not ask you for a
+          lesson. He will hope, very quietly, that you will offer
+          him a half-form before the second bell, and he will say
+          nothing if you do not."
+      - applies_to: { class: "Scholar" }
+        beat: |
+          The night-corporal turns the register a half-turn on the
+          bench so that the open page faces you, not aggressively,
+          only enough that a reader's eye might fall on it without
+          discourtesy. "The night-tally for this watch does not
+          balance against the previous corporal's count by two
+          travellers. The discrepancy is not large. It is the kind
+          of discrepancy that, if the day-captain notices, becomes
+          a forenoon of small interrogations and a runner sent to
+          the next gate east. If the discrepancy resolves before
+          the second bell, no runner is sent. I am not asking. I
+          am only saying that a reading eye is a useful eye at
+          this hour."
+      - applies_to: { class: "Spirit Medium" }
+        beat: |
+          The night-corporal does not turn from his brazier, but
+          his shoulders set in a particular way that anyone who
+          has lived around mediums learns to read. "I will not
+          press you with what I felt when you came up the stair.
+          I will only say that the spirit-fog along the pass has
+          been speaking three nights in a row in a register the
+          wall-channelers do not hear, and that the courier at the
+          sally-port has been waiting longer than the gate's
+          standing orders permit. The day-captain will not raise
+          it. I am raising it now, once, between us, and I will
+          not raise it again."
+    magic_microbleed:
+      detail: >-
+        When the relief-bell rings, the spirit-fog along the pass
+        thins for the length of three breaths in a perfect ring
+        around the bell's tone — wider at the wall, narrower at the
+        far slope, the way a stone's ripple opens on still water.
+        The night-corporal has lived on the wall for nineteen
+        years. He does not notice. The pony at the sally-port lifts
+        its head once, exactly when the ring crosses it, and lowers
+        it again.
+      cost_bar: null
+
+  # ──────────────────────────────────────────────────────────────────
+  # MULTIPLAYER — A Songnan Terrace teahouse at the second hour of trade
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: mp_songnan_terrace_teahouse_second_hour
+    name: "Songnan Terrace — the river-stair teahouse at the second hour of trade"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 5
+      backgrounds: []
+    setting:
+      location_label: songnan_terrace_river_stair_teahouse
+      situation: >-
+        Mid-morning at the Songnan Terrace, the Imperial Terrace of the
+        Jade Kingdoms — capital of Songnan the Silent's reach, seat of
+        the Reclamation, the jade-veined cliffs humming under it. You
+        have each come, by your own road, to the river-stair teahouse
+        that overlooks the second cataract — a long open-fronted room
+        on the stepped terrace above the water, where merchants from
+        the Lotus delta, pilgrims down from the Sky Temples, and the
+        Terrace's own household-clerks all take the second-hour tea
+        between the morning markets and the afternoon writs. The
+        message-stone at the head of the stair is busy. The water
+        below is loud enough to keep a conversation private at a
+        table's distance.
+      present_npcs: []
+    tone:
+      register: "civic, observant, the high-imperial calm of a capital that has not yet admitted it is at war — Mahabharata aside, not Edo"
+      stakes: "none on turn 1 — the second hour is the most public hour of the Terrace's day; no one will move against anyone here"
+      complication: "defer to turn 2 or 3 — the wrinkle is at the message-stone at the head of the stair"
+      sensory_layers:
+        smell: >-
+          Wet stone from the cataract spray, jasmine smoke from the
+          householders' tea-table at the back wall, the resinous
+          bittersweet of the Lotus-delta black tea the river-stair
+          house is known for, and from the open front the faint cool
+          mineral smell the jade-veined cliffs give off when the sun
+          first reaches them.
+        sound: >-
+          The cataract two stories below, steady and load-bearing.
+          The water-clock at the message-stone plinking its quarter.
+          A clerk's brush across a writ. A Sky-Temple pilgrim
+          reading aloud quietly to a companion from a folded
+          travel-sutra. The faint deep hum of the jade-veined cliff
+          itself, which channelers say can be heard with the chest
+          rather than the ear, and which the householders of the
+          Terrace have stopped noticing the way river-people stop
+          noticing the river.
+        touch: >-
+          The cool of the polished river-stone bench under the
+          palm. The teacup's heat. The faint thrum the cliff passes
+          up through the floor that, by the second hour, has
+          settled into the background of the body the way breath
+          does.
+      avoid_at_all_costs:
+        - any faction-agent confrontation, any drawn weapon, any channelled threat on turn 1
+        - the householders or the proprietress being either suspicious or grasping
+        - a Jade Reclamation officer entering and singling out anyone at the table on turn 1
+        - exposition-dumping the Reclamation, the Accord Reborn, or the Drowned Covenant by name
+        - asking the players a question — turn 1 closes on a declarative
+        - moving any player without their input
+        - splitting the party narratively on turn 1 — they have just converged; let them converge
+        - any anime register, any pidgin samurai diction, any Edo-Japanese inflection
+        - any spirit-tear, rifted sky, or visible spirit-incursion on turn 1
+    establishing_narration: |
+      The river-stair teahouse sits on the third step of the Songnan
+      Terrace, where the stepped public terraces of the Imperial
+      capital fall in five long courses down to the second cataract.
+      The teahouse is open-fronted in the high-imperial pattern: a
+      single deep room under cedar beams, the back wall hung with a
+      faded silk depicting a procession of channelers in the eight
+      colours, the front giving directly onto the terrace and the
+      cataract beyond. The river-stair itself is the broad flight of
+      polished river-stone that runs down the side of the building
+      and ends at the message-stone — a head-high standing tablet of
+      black basalt where the Terrace's couriers pin and read the
+      day's writs.
+
+      The proprietress is at the front counter with two of her
+      house-girls. She is a woman of the second generation in this
+      teahouse, the small jade earth-channeler's stud at her ear
+      marking her as Terrace-born; she has watched the river-stair
+      since her mother's time, and her courtesy is the impartial
+      courtesy of a capital that takes a Lotus pedlar's coin and a
+      Sky-Temple novice's coin and a Jade clerk's coin without
+      altering its smile by a hair. The house-girls move between
+      the tables with the long-trayed grace the Terrace teahouses
+      teach.
+
+      Three tables are occupied this morning. At the back, a small
+      household of Terrace clerks in the pale linen of minor
+      Reclamation office is taking the second-hour tea around a
+      shared pot, their writ-cases stacked on the bench beside them.
+      Mid-room, a Lotus-delta merchant in indigo travel-silks is
+      sharing a bowl of black tea with a Sky-Temple pilgrim in
+      unbleached grey, both of them quiet, the merchant doing most
+      of the talking with the gentle persistence of someone who has
+      decided the pilgrim's silence is worth the price of the tea.
+      And in the front-left, a single traveller in road-cut grey
+      that belongs to none of the eight shards exactly is taking
+      tea alone with their back to the cataract and their face to
+      the room.
+
+      You have come, each of you by your own road, to this teahouse
+      at this hour. The proprietress has shown you to the long
+      low bench at the front-right of the room, where the river-stone
+      catches the morning sun and where, by old Terrace habit, the
+      house seats travellers who have arrived without prior introduction
+      to one another. The first round of tea is on the small lacquered
+      tray between you — the river-stair house's black, in three or
+      four or five cups according to your number, the steam coming up
+      cleanly off the surface.
+
+      At the head of the stair, the message-stone is quiet now. The
+      morning's first writs have been pinned and read; the courier
+      who pinned them has gone back up to the Imperial Terrace for
+      the day's second packet. But one writ-tube — a small sealed
+      cylinder of lacquered bamboo, the wax dark green — has been
+      left in the message-stone's pinning-slot unattended, and no
+      one has come down the river-stair to claim it.
+    first_turn_invitation: |
+      The proprietress sets a small dish of candied citron between
+      you, the Terrace courtesy that means the second pot is on
+      the brazier and will arrive when you are ready. The Lotus
+      merchant at the middle table laughs once, softly, at something
+      the Sky-Temple pilgrim has said in a quiet voice. The
+      message-stone at the head of the stair plinks its quarter.
+      The dark-green wax of the unclaimed writ-tube catches the
+      sun for a single long moment as the angle finds it, and the
+      cataract goes on doing what cataracts do.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        The dark-green wax on the writ-tube is not the Terrace's
+        green and not the Sky-Temple grey-green either. It is the
+        deep ocean green the Tide Reaches' clan-houses used for
+        clan-internal correspondence before the Drowning of
+        Qalanolei, and which a few of the surviving Tide-Reaches
+        clans still use in the slow, decaying way old colours
+        survive when the work that made them has gone. None of
+        the householders in the teahouse has remarked on it. The
+        proprietress, who sees the message-stone forty times a
+        day, has glanced at the tube twice now and has not glanced
+        at it a third time.
+
+        The single traveller in road-cut grey at the front-left
+        table — the one with their back to the cataract — has not
+        glanced at the message-stone at all. They have been
+        watching the room, in the unhurried way of someone who is
+        not waiting for anyone in particular and is also not idle.
+        Their tea has gone untouched long enough that the steam
+        has stopped rising from the cup.
+      escalation_path:
+        turn_2_or_3: >-
+          The unclaimed writ-tube and the traveller in road-cut
+          grey are the wrinkle. By turn three either the
+          traveller will have risen and walked, deliberately, to
+          the message-stone and not taken the tube; or a Terrace
+          courier in Reclamation livery will have come down the
+          stair to collect the morning's unread writs and will
+          have stopped, briefly, when they reach the dark-green
+          tube; or the Lotus merchant at the middle table will
+          have come over with the gentleness of someone offering
+          a small kindness and will mention, quietly, that the
+          colour of the wax is one they have seen before and not
+          recently. Narrator chooses on the basis of the party's
+          composition. Do not preview on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Channeler" }
+        beat: |
+          One of the house-girls brings a second small dish — a
+          slice of the candied citron's preserved root, the sharp
+          companion to the sweet — and sets it down with the
+          slight added courtesy the river-stair teahouse pays to
+          a channeler at the long bench. "Master," she says, her
+          voice pitched only for your table, "the cliff has been
+          loud this morning. The proprietress thought you might
+          prefer the bench-end nearest the front. She did not ask
+          me to say. I am saying."
+      - applies_to: { class: "Martial Artist" }
+        beat: |
+          The Terrace clerks at the back-wall table fall briefly
+          quiet when a martial-artist's bearing crosses their
+          eye-line; one of them — a thin man with the close-cut
+          hair of a junior Reclamation assessor — does not look
+          up from his tea-bowl but adjusts the position of his
+          writ-case on the bench beside him by exactly a hand's
+          breadth, away from the aisle. It is the small
+          unconscious courtesy a city official pays to a fighter
+          whose school he cannot place at a glance. None of his
+          companions notices that he has done it.
+      - applies_to: { class: "Scholar" }
+        beat: |
+          The Lotus-delta merchant catches your eye across the
+          mid-room with the diffident smile of someone who has
+          decided to make an introduction and is giving you the
+          chance to refuse it before he stands. He does not
+          stand. He only inclines his head a degree and lifts his
+          teacup half an inch in salute. The Sky-Temple pilgrim
+          beside him follows his glance, registers a scholar's
+          bearing without seeming to, and goes back to the
+          folded sutra in their lap with the slow patience of a
+          reader who does not mind being seen reading.
+      - applies_to: { class: "Spirit Medium" }
+        beat: |
+          The proprietress brings the second pot herself rather
+          than send a house-girl with it, sets it on the warmer
+          at your bench-end, and pauses long enough that the
+          pause is not chance. "The cliff sings under this house
+          at the second hour," she says, low. "Most days it
+          settles. Today it has not settled. I will not press
+          you with it. I am only saying, because it is my
+          mother's teahouse and her mother's before her, and the
+          cliff has not been wrong in either of their times."
+    magic_microbleed:
+      detail: >-
+        The faint deep hum of the jade-veined cliff that the
+        Terrace households have stopped hearing has, this
+        morning, picked up a second tone half a step under the
+        first — a beat-frequency that the proprietress's mother
+        would have called the cliff's lower throat and that none
+        of the channeler-clerks at the back table has remarked
+        on. It comes and goes on the breath of the cataract. No
+        one in the teahouse looks up.
+      cost_bar: null
