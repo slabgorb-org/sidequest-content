@@ -39,9 +39,9 @@ production and staging is a footgun.
 | Pack | Status |
 |------|--------|
 | `low_fantasy` | Active workshop — gritty medieval; substantive YAML, audio, images |
-| `neon_dystopia` | Active workshop — cyberpunk |
-| `pulp_noir` | Active workshop — 1930s detective |
 | `road_warrior` | Active workshop — vehicular post-apocalypse |
+| `neon_dystopia` | Promoted 2026-05-23 to `../genre_packs/neon_dystopia/` (asset gate not yet met); workshop directory removed |
+| `pulp_noir` | Promoted 2026-05-23 to `../genre_packs/pulp_noir/` (asset gate not yet met); workshop directory removed |
 | `heavy_metal` | Stub leftover — promoted into `../genre_packs/heavy_metal/`; only stale `images/` remain here |
 | `spaghetti_western` | Stub leftover — promoted into `../genre_packs/spaghetti_western/`; directory effectively empty |
 
