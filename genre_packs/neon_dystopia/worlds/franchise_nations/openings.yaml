@@ -1,0 +1,150 @@
+# Franchise Nations — Openings bank.
+#
+# Hard contracts (validators in genre/loader.py + models/narrative.py):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - OpeningSetting requires exactly one anchor: chassis_instance OR
+#     location_label.
+#   - At least one solo + one MP opening present. Mode 'either' counts
+#     toward both, but these two are explicit per intent.
+#   - PerPcBeat.applies_to keys restricted to {background, drive, race,
+#     class}; this v1 bank omits per_pc_beats (fallback).
+#
+# Spec: docs/superpowers/specs/completed/2026-05-01-canned-openings-design.md
+#
+# Voice contract: the satire is in the courtesy, not the snark. The world
+# means well, in the way the satisfaction survey means well. Turn 1
+# stays at the threshold — the contract hasn't been opened yet, the
+# decision hasn't been made, the corporate cheer hasn't curdled. The
+# Test applies: never tell the player how they feel about the franchise,
+# the prompt, the contract. Show the lobby; let the player decide.
+
+version: "0.1.0"
+world: franchise_nations
+genre: neon_dystopia
+
+openings:
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #1 — Fairlanes Rest Stop, 03:14 local, contract pinged
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_fairlanes_rest_stop_three_am
+    name: "The Fairlanes — Rest Stop 47-North, 03:14, the vending machine humming"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: the_fairlanes
+      situation: >-
+        Rest Stop 47-North on the Fairlanes, between Lighthouse Zone and
+        the Federal Enclave. Three in the morning, local time. The
+        autonomous traffic drones drift in slow loops over the on-ramp.
+        Inside the rest stop the lighting is the standard Fairlanes
+        seven-thousand kelvin, which the consortium says is best for
+        alertness and which makes everyone look like a corpse who
+        has not yet been informed. The vending machine accepts every
+        franchise's loyalty currency at criminally bad exchange rates
+        and is humming.
+    tone:
+      register: "neon courtesy with the smile starting to sag, four hours past human"
+      stakes: "implied — the contract has not opened yet"
+      complication: "defer to turn 2 — the wrinkle is in who pinged"
+      avoid_at_all_costs:
+        - the player has decided to take the contract
+        - the player has felt anything about the contract
+        - the player has already opened the encrypted manifest
+        - a fixer appearing in person at three a.m. in a rest stop
+        - exposition about which franchise sent the ping
+    establishing_narration: >-
+      The Fairlanes hum at 03:14. The rest stop is empty except for one
+      sleeping convoy guard at the courtesy bar — face down on the
+      counter, helmet beside the cup, breathing the slow steady breath
+      of a man who has been on shift since yesterday afternoon. The
+      vending machine accepts every franchise's loyalty currency at
+      criminally bad exchange rates. The Lighthouse Collective's
+      branded water (alkaline, Vitamin-D fortified, "for ambient
+      flourishing") costs 14 Lighthouse Points or 78 Man Coin or
+      3.4 Altruon. The Man Group's mass-flow milkshake costs the same
+      no matter what you pay in, which is the joke. The neural HUD
+      lights up at the counter with a single line — encrypted manifest,
+      black header, no return address. The handle attached to the
+      header is one the player has not heard in three identities. The
+      manifest is timed to expire in forty-eight minutes. The rest stop
+      microwave finishes a cycle and dings.
+    first_turn_invitation: >-
+      Forty-eight minutes is enough time to eat, decide, or vanish. The
+      encrypted manifest sits closed on the HUD. The convoy guard at the
+      bar does not stir. The handle attached to that manifest is one the
+      player has not heard in three identities. Move when you mean to.
+
+  # ──────────────────────────────────────────────────────────────────
+  # MP — Fairlanes Rest Stop, the crew assembled, contract on the bar
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: mp_fairlanes_meet_at_the_bar
+    name: "The Fairlanes — Rest Stop 47-North, the crew assembled by a fixer who is not here"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 6
+      backgrounds: []
+    setting:
+      location_label: the_fairlanes
+      situation: >-
+        Rest Stop 47-North on the Fairlanes. The crew was told to be
+        here by half past three local; it is now twenty-six past, which
+        means the fixer is in the next stall watching them on the
+        rest stop's security feed and has not yet decided whether to
+        come in. The contract — a brown padded envelope with no
+        markings, which is itself a market signal — is on the courtesy
+        bar between two cups of bad coffee that nobody ordered. The
+        Lighthouse Collective news ticker on the wall is reporting
+        that a Lighthouse audit team has gone quiet inside the Man
+        District for the third night running.
+    tone:
+      register: "the crew already a crew, the meeting not yet a meeting"
+      stakes: "low at turn 1, structural by turn 3"
+      complication: "defer to turn 2 — the fixer or the envelope, whichever opens first"
+      avoid_at_all_costs:
+        - the fixer walking in and explaining the contract on turn 1
+        - the envelope opening on turn 1
+        - someone on the crew having already taken sides
+        - exposition about which franchise wants the audit team back
+        - an audit-team body on screen
+    establishing_narration: >-
+      The crew arrives in twos and threes, in the staggered way of
+      people who have learned not to walk into a meeting together. The
+      brown padded envelope is on the courtesy bar between two cups of
+      coffee nobody ordered. The convoy guard at the end of the bar
+      is asleep. The news ticker on the back wall has been running
+      the same item for an hour and a half — Lighthouse audit team
+      quiet inside the Man District for the third night. The fixer
+      who called this meeting is not visible. The fixer who called
+      this meeting is, on the basis of every previous meeting, in
+      the next stall watching this one on the security feed and
+      deciding. The envelope is brown padded and unmarked. The coffee
+      is bad in the standard Fairlanes way. The rest stop microwave
+      dings somewhere.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: trusted
+      shared_history_seeds:
+        - "you worked the Altruia campus job together last winter"
+        - "you owe the fixer one favor each, collectively two — the math is unclear"
+        - "one of you got the rest of the crew through the Lighthouse audit in '34"
+      narrator_guidance: >-
+        Treat the crew as people who already know each other's tells.
+        Don't introduce them to each other. Let the table figure out
+        who reaches for the envelope first.
+    first_turn_invitation: >-
+      The envelope is brown padded and unmarked, which is the signal,
+      and is sitting between two cups of bad coffee on the courtesy
+      bar at the end of the rest stop. The fixer is not in the room.
+      The convoy guard at the bar is asleep. The audit team has been
+      quiet inside the Man District for three nights. The crew decides
+      what happens at this rest stop, in the next four minutes, before
+      the fixer comes in or doesn't.

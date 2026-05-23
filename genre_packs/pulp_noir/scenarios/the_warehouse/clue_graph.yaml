@@ -71,6 +71,10 @@ nodes:
 
   - id: clue_nervous_tells
     type: behavioral
+    # Author note (2026-05-23): original authoring carried a top-level
+    # `planted_by: "genuine fear, not guilt — a red herring for paranoid
+    # accusers"` field. ClueNode schema (extra="forbid") does not yet
+    # support planted_by; preserved here as comment.
     description: "One crew member has been sweating through their shirt, flinching at every siren, and cannot maintain eye contact — textbook guilt response, or just fear"
     discovery_method: observe
     visibility: obvious
@@ -78,29 +82,11 @@ nodes:
     implicates: []
     requires: []
     red_herring: true
-    planted_by: "genuine fear, not guilt — a red herring for paranoid accusers"
 
-edges:
-  - from_node: clue_contradicts_timeline
-    to_node: clue_unaccounted_absence
-    relationship: proves
-  - from_node: clue_knew_east_entrance
-    to_node: clue_police_scanner_frequency
-    relationship: suggests
-  - from_node: clue_response_time_knowledge
-    to_node: clue_police_scanner_frequency
-    relationship: suggests
-  - from_node: clue_burner_phone
-    to_node: clue_knew_east_entrance
-    relationship: suggests
-  - from_node: clue_camera_footage_gap
-    to_node: clue_response_time_knowledge
-    relationship: suggests
-  - from_node: clue_nervous_tells
-    to_node: clue_contradicts_timeline
-    relationship: contradicts
-
-red_herrings:
+  # ── ex-red_herrings block, folded into nodes ────────────────────────
+  # Author note (2026-05-23): a separate top-level `red_herrings:` block
+  # held additional clue nodes the schema doesn't recognize. They are
+  # already marked `red_herring: true`; relocated here.
   - id: clue_outside_surveillance
     type: physical
     description: "A cigarette butt on the fire escape that doesn't match any brand the crew smokes — could be a cop, could be a homeless person"
@@ -110,3 +96,16 @@ red_herrings:
     implicates: []
     requires: []
     red_herring: true
+
+# ── ex-edges block ──────────────────────────────────────────────────
+# Author note (2026-05-23): top-level `edges:` graph (from_node / to_node
+# / relationship) is not in the ClueGraph schema and no engine code
+# consumes it. Removed to unblock load; re-add when schema lands.
+# Preserved below for future restoration:
+#
+#   clue_contradicts_timeline    → clue_unaccounted_absence      : proves
+#   clue_knew_east_entrance      → clue_police_scanner_frequency : suggests
+#   clue_response_time_knowledge → clue_police_scanner_frequency : suggests
+#   clue_burner_phone            → clue_knew_east_entrance       : suggests
+#   clue_camera_footage_gap      → clue_response_time_knowledge  : suggests
+#   clue_nervous_tells           → clue_contradicts_timeline     : contradicts
