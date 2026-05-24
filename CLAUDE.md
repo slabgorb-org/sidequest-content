@@ -208,3 +208,9 @@ Workshopping packs (not yet wired into runtime) live under `genre_workshopping/`
 Each pack contains YAML configs (archetypes, tropes, rules, encounters, factions, OCEAN profiles, conlang morphemes, audio cues, `visual_style.yaml`), world data, ACE-Step music params (`audio/music/*_input_params.json` — ADR-095, OGG lives in R2), and image prompts (portrait_manifest.yaml, POI yamls — rendered PNGs live in R2 at `cdn.slabgorb.com/genre_packs/<pack>/...`).
 
 See `README.md` in this repo for the full taxonomy.
+
+## Reference page anchors
+
+The running game wires hyperlinks from character sheets, knowledge entries, and (server-side) location entities into anchors on `/reference/rules/<pack>` and `/reference/lore/<pack>/<world>`. Anchor ids are derived from each entity's `name` (or `label`) field via a slugify function: lowercase, ASCII, hyphenated. Anchors on list-of-dict items are namespaced by file (`class-<slug>`, `culture-<slug>`, `legend-<slug>`, `location-<slug>`, etc.) so cross-file name collisions can't collide.
+
+Renaming a class, archetype, culture, legend, or location entry without coordinating with in-game consumers (party state, knowledge journal, location entities) breaks every inbound link to its anchor; the reference page will show a visible "Anchor not found" banner. There is no `slug:` override field — slug stability is name stability. If a rename is necessary, plan for old saves' attached URLs to bad-anchor (loudly, by design) until the player picks up new state.
