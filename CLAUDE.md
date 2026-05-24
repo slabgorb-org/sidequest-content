@@ -214,3 +214,13 @@ See `README.md` in this repo for the full taxonomy.
 The running game wires hyperlinks from character sheets, knowledge entries, and (server-side) location entities into anchors on `/reference/rules/<pack>` and `/reference/lore/<pack>/<world>`. Anchor ids are derived from each entity's `name` (or `label`) field via a slugify function: lowercase, ASCII, hyphenated. Anchors on list-of-dict items are namespaced by file (`class-<slug>`, `culture-<slug>`, `legend-<slug>`, `location-<slug>`, etc.) so cross-file name collisions can't collide.
 
 Renaming a class, archetype, culture, legend, or location entry without coordinating with in-game consumers (party state, knowledge journal, location entities) breaks every inbound link to its anchor; the reference page will show a visible "Anchor not found" banner. There is no `slug:` override field — slug stability is name stability. If a rename is necessary, plan for old saves' attached URLs to bad-anchor (loudly, by design) until the player picks up new state.
+
+## Reference page chrome
+
+Every `theme.yaml` must declare:
+
+- `web_font_family` — body / narrative serif. Already shipped.
+- `display_font_family` — hero title / `<h1>` font. **Required.** No silent fallback; missing field = pydantic `ValidationError` at server load (the server's `GenreTheme` model uses `extra="forbid"` for both directions, so misspellings here are also fatal — see `sidequest-server/sidequest/genre/models/theme.py`).
+- `dinkus.glyph.{light,medium,heavy}` — three ornamental glyphs used between sections. All three required.
+
+When picking `display_font_family`, prefer a Google Font that will be imported by the reference-page stylesheet so the chrome doesn't trigger an additional network fetch per page load. The chrome work in story 63-4 will land the static stylesheet and its font-import set; coordinate with that story if you need a font that isn't already there.
