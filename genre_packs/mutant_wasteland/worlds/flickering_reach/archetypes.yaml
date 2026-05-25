@@ -1,0 +1,308 @@
+# Flickering Reach — world-specific NPC archetypes.
+# These override/extend the pack-level archetypes for this world only.
+# Each threads into the four cultures, the three wounds, and the
+# faction grudges documented in lore.yaml, history.yaml, and legends/.
+
+- name: Signal Singer
+  description: >-
+    A Drifter shaman who tunes bone-carved radio dishes to dead
+    frequencies and pulls meaning from the static — troop movements,
+    weather, and occasionally a maintenance report from crews that
+    vaporized twelve centuries ago. Rides a multi-limbed mount whose
+    gait syncs to the Long Signal's rhythm. The accuracy of their
+    predictions is the kind of unsettling that makes Scrapborn
+    merchants pay in advance and Vaultborn intermediaries pretend
+    they weren't listening. Most Singers carry a second radio dish
+    lashed to the mount's off-shoulder, tuned to a frequency they
+    will not name.
+  personality_traits:
+    - eerily patient
+    - speaks in half-finished sentences as if the static will complete them
+    - treats doubt about the Long Signal the way a cartographer treats someone who doesn't believe in north
+  typical_classes:
+    - Mutant
+    - Scavenger
+  typical_races:
+    - Mutant Human
+    - Hybrid
+  stat_ranges:
+    Instinct: [14, 18]
+    Wits: [12, 16]
+  inventory_hints:
+    - bone-carved radio dish lashed to a seven-limbed mount's saddle
+    - a coil of salvage wire tuned to a frequency that makes teeth ache
+    - dried meat wrapped in hide that smells faintly of ozone
+    - a small jar of black glass dust from the edge of the Flat
+  dialogue_quirks:
+    - pauses mid-sentence and cocks their head as if listening to something just outside audible range
+    - finishes other people's sentences with information they shouldn't have
+    - refers to the Long Signal as 'the voice' without specifying whose
+    - gives directions by radio-source bearing instead of compass heading
+    - hums a single sustained note when thinking, pitched to the glass plain's resonance
+    - quotes maintenance schedules from twelve centuries ago as if they are weather reports
+    - calls the Glass Flat 'the old wound' and will not cross it after dark
+  disposition_default: -5
+  ocean:
+    openness: 7.5
+    conscientiousness: 3.0
+    extraversion: 4.0
+    agreeableness: 5.0
+    neuroticism: 6.5
+  role: quest_giver_or_antagonist
+
+- name: Root Tender
+  description: >-
+    A Greenfolk keeper of the Understory's growth fronts — part
+    gardener, part priest, part nervous system. Their hands are
+    threaded with pale mycelium that runs under the skin and connects
+    to the root network at the wrists. They feel the Understory's
+    expansion the way a person feels their own heartbeat: constantly,
+    without effort, and with mild alarm when it stops. Some Tenders
+    have bark-plated forearms or fungal caps growing from their
+    shoulder blades, and they consider these gifts the way a
+    Scrapborn considers a good wrench — useful, familiar, not worth
+    remarking on. They maintain the growth fronts, prune what the
+    Understory offers, and translate its chemical signals into
+    something the other Greenfolk can act on. The Scrapborn burn-crews
+    are their professional antagonists. Neither side takes it personally
+    most days.
+  personality_traits:
+    - calm in the way soil is calm
+    - genuinely confused by anyone who finds symbiotic root growth alarming
+    - protective of new growth the way a parent is protective of a child learning to walk
+  typical_classes:
+    - Mutant
+    - Pureblood
+  typical_races:
+    - Plant Person
+    - Mutant Human
+  stat_ranges:
+    Instinct: [14, 18]
+    Toughness: [12, 16]
+  inventory_hints:
+    - a cutting knife with a living-wood handle that grows back when chipped
+    - spore pouches sorted by color and effect
+    - a root sample in a clay jar, still growing slowly
+    - bark-cloth wrappings over the mycelium threading at the wrists
+  dialogue_quirks:
+    - refers to the Understory as 'it' with the emphasis of a proper noun
+    - describes the root network's growth using phrases like 'it reached toward' or 'it offered'
+    - touches the ground mid-conversation to check on something
+    - uses 'pruning' and 'tending' where others would say 'fighting' and 'negotiating'
+    - smells the air before answering difficult questions
+    - calls the Scrapborn burn-crews 'the cutters' without malice but without warmth
+  disposition_default: 5
+  ocean:
+    openness: 6.0
+    conscientiousness: 7.0
+    extraversion: 3.5
+    agreeableness: 7.5
+    neuroticism: 2.5
+  role: ally_or_obstacle
+
+- name: Rain-Catcher Broker
+  description: >-
+    A Scrapborn technician-merchant who installs, maintains, and
+    collects payment on the Dome Syndicate's rain-catcher arrays —
+    the reverse-engineered moisture harvesters that keep every
+    settlement in the Flickering Reach from dying of thirst. They
+    know the exact water-credit balance of every community on their
+    circuit, carry a toolkit that could rebuild a condenser from
+    scrap, and quote prices with the serene confidence of someone
+    who sells the only thing everyone needs. They are technically
+    employees of Odige Fuseborn. They are practically local
+    governments. The distinction matters to the Dome Syndicate's
+    accounting department and to nobody else.
+  personality_traits:
+    - pragmatic to the molecular level
+    - treats every interaction as a transaction, including kindness
+    - genuinely proud of the rain-catchers in the way an engineer is proud of infrastructure that works
+  typical_classes:
+    - Tinker
+    - Scavenger
+  typical_races:
+    - Pure Strain Human
+    - Mutant Human
+  stat_ranges:
+    Wits: [14, 18]
+    Presence: [10, 14]
+  inventory_hints:
+    - a Dome Syndicate ledger with water-credit balances for a dozen settlements
+    - a condenser repair kit in a waxed-canvas roll
+    - a rain-catcher calibration gauge made from Vaultborn alloy
+    - a canteen that is never empty because they test every unit they service
+  dialogue_quirks:
+    - quotes prices before being asked
+    - refers to water as 'product' and thirst as 'demand'
+    - taps metal objects while talking to assess their composition by sound
+    - says 'Odige sends her regards' regardless of whether Odige has
+    - describes distances in terms of pipe-run lengths rather than miles
+    - calls the Vaultborn moisture harvester 'the original' with the careful neutrality of someone who knows the theft story
+    - never drinks in front of a client who owes
+  disposition_default: 0
+  ocean:
+    openness: 4.0
+    conscientiousness: 8.0
+    extraversion: 6.5
+    agreeableness: 3.5
+    neuroticism: 2.0
+  role: merchant
+
+- name: Protocol Warden
+  description: >-
+    A Vaultborn functionary whose entire identity is a job title and
+    a designation number. They enforce the Protocols — the calcified
+    operating procedures that have governed the sealed vaults for
+    twelve centuries — with the rigid certainty of someone who has
+    never seen a sunrise and considers this a virtue. Surface
+    contact happens only through trade-locks and numbered
+    intermediaries, and the Warden is the intermediary. They speak
+    in approved phrases, deliver sealed communications, and inspect
+    incoming goods for contamination with instruments they will not
+    explain. Their face does not move quite right. Whether this is
+    a cultural affect, a genetic consequence of twelve centuries of
+    inbreeding, or evidence that they are vat-grown is a question
+    the Vaultborn consider irrelevant and the surface considers
+    deeply important.
+  personality_traits:
+    - rigidly procedural in a way that has become indistinguishable from faith
+    - treats the surface as a containment zone rather than a place where people live
+    - occasionally hesitates at sensory input they have no Protocol for
+  typical_classes:
+    - Pureblood
+    - Wirewalker
+  typical_races:
+    - Pure Strain Human
+    - Synthetic
+  stat_ranges:
+    Wits: [12, 16]
+    Toughness: [14, 18]
+  inventory_hints:
+    - a sealed message tube of pre-war alloy, contents classified
+    - a contamination scanner that clicks with authority
+    - vault-standard rations in foil packets that taste of nothing
+    - a sidearm that works perfectly and has never been fired on the surface
+  dialogue_quirks:
+    - speaks only in approved phrases and becomes visibly uncomfortable when the conversation requires improvisation
+    - refers to surface dwellers as 'exterior population' without apparent irony
+    - assigns numbers to things that do not need numbers
+    - blinks on a regular interval that is slightly too slow
+    - describes weather as 'atmospheric conditions' and food as 'caloric intake'
+    - quotes Protocol section numbers in place of moral reasoning
+    - says 'that falls outside my designation' when asked a personal question
+    - addresses colleagues by designation-number, never by name
+  disposition_default: -15
+  ocean:
+    openness: 1.5
+    conscientiousness: 9.5
+    extraversion: 2.0
+    agreeableness: 3.0
+    neuroticism: 5.0
+  role: obstacle
+
+- name: Glass Walker
+  description: >-
+    Someone who crosses the black glass plain — on foot, alone,
+    regularly — and comes back. That last part is the one people
+    have trouble with. Glass Walkers know the Flat's rhythms the way
+    a sailor knows weather: the dawn hum that rises through the
+    soles two hours before it reaches the ears, the places where
+    the collapsed silo levels beneath the surface create resonance
+    pockets that can stop a heart, the safe corridors between the
+    mutagenic hotspots where the green eye's pulse is weakest. They
+    are culturally unaffiliated — the Flat strips faction loyalty
+    the way the Przyå Dust strips metal. Drifters hire them as
+    guides. Scrapborn hire them as surveyors. Everyone wants to know
+    what they saw at the center and nobody believes them when they
+    say they didn't look.
+  personality_traits:
+    - still in a way that makes other people nervous
+    - gives straightforward answers to the wrong question
+    - unimpressed by danger that isn't the Flat
+  typical_classes:
+    - Scavenger
+    - Mutant
+  typical_races:
+    - Mutant Human
+    - Hybrid
+    - Pure Strain Human
+  stat_ranges:
+    Instinct: [14, 18]
+    Reflexes: [12, 16]
+  inventory_hints:
+    - glass-soled boots that do not crack the Flat's surface
+    - a resonance rod — a metal staff that hums at different pitches over safe and unsafe ground
+    - a lead-lined satchel containing black glass samples sorted by hum-frequency
+    - a blindfold for the center approach, used and re-used until the cloth is stiff
+  dialogue_quirks:
+    - measures distance in hum-pitches rather than miles
+    - refers to the Glass Flat as 'the Flat' with the familiarity of a commuter naming their route
+    - will not discuss the green eye except to confirm it exists
+    - goes quiet when the wind changes direction, even indoors
+    - describes the mutagenic hotspots by the taste they leave in the mouth
+    - says 'the Flat takes what it takes' in place of sympathy for radiation sickness
+    - walks more slowly than everyone around them, conserving a habit from glass crossings
+  disposition_default: -10
+  ocean:
+    openness: 5.0
+    conscientiousness: 6.0
+    extraversion: 2.0
+    agreeableness: 4.0
+    neuroticism: 3.0
+  role: ally_or_obstacle
+
+- name: Dead Signal Chaser
+  description: >-
+    An obsessive — mutant or scholar, sometimes both — who has
+    devoted their life to tracking the pulse that rises from
+    underground. The Dead Signal is what the Drifters hear in
+    their teeth, what makes the psychic frogs at Blind Reach
+    croak names in order, what strobes from Vault Echo's main
+    shaft every forty-three seconds. Chasers collect data: pulse
+    intervals, harmonic frequencies, correlations between the
+    Signal's intensity and root growth, weather patterns, mount
+    behavior. They have filled journals. They have built detection
+    rigs from salvage wire and Vaultborn capacitors. They have
+    theories that connect the Long Signal, the Understory, and the
+    Third Conclave into a single system, and the theories are
+    either the most important insight in the Flickering Reach or
+    the obsessive output of someone who has listened too long to
+    a sound that isn't there. The Purebloods say the Signal
+    doesn't exist. The Chasers say the Purebloods can't hear it
+    because they're afraid of what it's saying.
+  personality_traits:
+    - fixated in a way that is either brilliant or broken
+    - treats the Signal as a solvable problem rather than a mystery
+    - impatient with anyone who hasn't considered the forty-three-second interval
+  typical_classes:
+    - Tinker
+    - Mutant
+    - Wirewalker
+  typical_races:
+    - Mutant Human
+    - Synthetic
+    - Hybrid
+  stat_ranges:
+    Wits: [14, 18]
+    Instinct: [12, 16]
+  inventory_hints:
+    - a detection rig of salvage wire and Vaultborn capacitors that clicks when the pulse intensifies
+    - journals filled with interval measurements and harmonic charts
+    - a map of the Flickering Reach annotated with pulse-strength readings
+    - a forty-three-second hourglass built from a cracked Vaultborn instrument casing
+  dialogue_quirks:
+    - counts silently during conversations and loses track of what was said at the forty-three-second mark
+    - corrects people who say 'Dead Signal' to 'the Signal' because calling it dead presupposes a conclusion
+    - draws frequency diagrams in the dust while talking
+    - asks what frequency someone's teeth buzz at and is surprised when they don't know
+    - connects unrelated topics to the Signal with 'yes, but have you considered the interval'
+    - refers to the Third Conclave as if it is a colleague they have not met yet
+    - taps surfaces rhythmically to test resonance before sitting down
+  disposition_default: -5
+  ocean:
+    openness: 9.0
+    conscientiousness: 5.5
+    extraversion: 5.0
+    agreeableness: 3.0
+    neuroticism: 7.5
+  role: quest_giver_or_antagonist

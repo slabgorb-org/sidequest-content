@@ -1,0 +1,285 @@
+# Glenross — world-specific NPC archetypes.
+#
+# These supplement the genre-level archetypes in tea_and_murder/archetypes.yaml.
+# Where the genre provides the generic cosy-village cast (the minister, the
+# rector, the doctor, the publican, the constable, the laird, the distiller,
+# the gillie, the retired colonel, etc.), these six are the people you find
+# in THIS Highland village specifically — the supporting cast who make Glenross
+# feel like one place and not another.
+#
+# Authored alongside:
+#   - npcs.yaml         — the 12-strong warm cast (never the victim)
+#   - demographics.yaml — population, strata, anchor households
+#   - lore.yaml         — economy, transport, period texture
+#   - history.yaml      — fresh / early / mid maturity tiers
+#
+# Schema follows genre-level archetypes.yaml plus world-level extensions
+# (ocean, role) used by the NPC materialiser.
+
+- name: The Laird's Factor
+  description: >-
+    The estate's working memory. Manages the rents, the leases, the
+    tenant arrangements, the home farm accounts, and the quiet
+    accommodations that keep Castle Ross solvent and the village in
+    employment. Speaks for the laird on business the laird would
+    prefer not to conduct in person. Knows which cottages are
+    behind on rent, which crofts are failing, which tenancies are
+    contested — and which of these the laird has been told about
+    and which he has not.
+  personality_traits:
+    - methodical
+    - discreet
+    - unyielding on a deadline
+  typical_classes:
+    - Society
+    - Detective
+  typical_races:
+    - Trade
+    - Gentry
+  stat_ranges:
+    Cunning: [14, 18]
+    Nerve: [14, 16]
+    Pride: [12, 14]
+  inventory_hints:
+    - a rent book in a locked leather satchel he carries everywhere and opens for no one
+    - a heavy ring of estate keys worn on a chain inside the waistcoat
+    - a small silver pencil-case engraved with the Ross arms, a gift from the previous laird
+    - a pocket almanac with the quarter-days marked in red
+  dialogue_quirks:
+    - refers to cottages by their tenancy name rather than the occupant — "the Brae Croft" not "MacRae's place"
+    - answers a direct question about the estate's finances with a longer silence than the question deserved
+    - begins any sentence about money with "the estate's position is —" as though the estate were a third party in the room
+    - says "I have it in hand" in a tone that makes clear the matter is closed
+    - speaks to the laird's family by title and to tenants by surname, and never the reverse
+    - will not discuss a lease at the inn, at the kirk, or on the Sabbath — Monday through Saturday, in the estate office, or not at all
+  disposition_default: 0
+  ocean:
+    openness: 4.0
+    conscientiousness: 9.0
+    extraversion: 3.5
+    agreeableness: 4.5
+    neuroticism: 3.0
+  role: ally_or_obstacle
+
+- name: The Railway Porter
+  description: >-
+    Keeps the halt. Sells the tickets, loads the luggage, signals the
+    trains, sweeps the platform, and boils a kettle in the
+    stationmaster's office that is never quite off. Sees everyone who
+    arrives in the parish and everyone who departs it, and knows the
+    luggage — its weight, its labels, whether it was collected or
+    left on the platform, and whether the person who collected it was
+    the person whose name was on the tag.
+  personality_traits:
+    - observant
+    - cheerful
+    - incurious on the surface
+  typical_classes:
+    - Society
+    - Detective
+  typical_races:
+    - Trade
+    - Servant
+  stat_ranges:
+    Cunning: [12, 16]
+    Humour: [14, 16]
+    Nerve: [10, 14]
+  inventory_hints:
+    - a whistle on a brass chain, polished daily
+    - a dog-eared timetable with the margins full of pencilled notes on who was on which train
+    - a ring of platform keys including one for the goods siding padlock
+    - a thermos flask his wife fills at six and he empties by ten
+  dialogue_quirks:
+    - announces the weather and the train's punctuality in the same sentence, as though one caused the other
+    - describes strangers by their luggage — "the gentleman with the two brown cases and no hatbox"
+    - says "on time today" or "seven minutes" without being asked, every morning, to whoever is on the platform
+    - will tell you who got off the morning train but not who got on the afternoon one, unless pressed
+    - calls regular travellers by the day of the week they travel — "our Thursday gentleman"
+    - whistles tunelessly when he is thinking and stops abruptly when he has finished
+  disposition_default: 15
+  ocean:
+    openness: 5.5
+    conscientiousness: 7.0
+    extraversion: 7.0
+    agreeableness: 7.5
+    neuroticism: 3.5
+  role: ally
+
+- name: The Castle Housekeeper
+  description: >-
+    Runs Castle Ross's household — the twelve rooms in season, the
+    four in winter, the three upstairs maids, the two kitchen maids,
+    the cook, the silver, the linen, the visiting-guest arrangements,
+    and the invisible daily machinery that keeps the Big House turning
+    over. English by birth, Highland by long residence, impeccable on
+    protocol, and possessed of a memory for who slept in which room,
+    when, and what was said at breakfast the following morning.
+  personality_traits:
+    - precise
+    - formidable
+    - loyal to the household
+  typical_classes:
+    - Society
+    - Governess
+  typical_races:
+    - Servant
+    - Trade
+  stat_ranges:
+    Cunning: [14, 18]
+    Pride: [14, 16]
+    Nerve: [14, 16]
+  inventory_hints:
+    - a chatelaine of household keys at the waist, silent when she walks and audible when she means them to be
+    - a small black notebook of guest arrangements kept in a hand too neat to be hurried
+    - a silver thimble on a chain at her collar, her mother's
+    - a clean handkerchief folded into a square in the cuff, replaced at noon
+  dialogue_quirks:
+    - refers to Castle Ross as "the house" and to every other building in the parish as though it were a lesser structure
+    - addresses the family by title even when they are not in the room
+    - answers a question about a guest's movements with perfect recall and no editorial comment
+    - says "I could not say" when she means "I will not say" and the distinction is audible
+    - calls the maids by surname, the cook by her post, and the gillie by his first name only when Lady Annabel is not present
+    - pauses before any sentence about the household's private life as though consulting an internal register of what may be disclosed
+    - will offer tea as a courtesy and a second cup as a dismissal
+  disposition_default: 0
+  ocean:
+    openness: 3.5
+    conscientiousness: 9.5
+    extraversion: 3.0
+    agreeableness: 5.0
+    neuroticism: 4.0
+  role: ally_or_obstacle
+
+- name: The Distillery Cooper
+  description: >-
+    Thirty years at the Munro distillery, working oak. Makes the casks,
+    repairs the casks, knows the wood by grain and by smell, and can
+    tell a warehouse apart from a sherry butt at twenty paces in the
+    dark. Not a Munro by blood, but the family treats him as one of
+    the fixtures. Knows which barrels are spoken for by Edinburgh
+    buyers, which are being watched by London merchants, and which
+    have been quietly set aside by the distiller himself for reasons
+    the cooper has not been told and has not asked about.
+  personality_traits:
+    - patient
+    - proud of craft
+    - stubbornly private
+  typical_classes:
+    - Industrialist
+  typical_races:
+    - Trade
+    - Servant
+  stat_ranges:
+    Pride: [14, 18]
+    Nerve: [12, 16]
+    Cunning: [12, 14]
+  inventory_hints:
+    - a cooper's adze with a handle worn to the shape of his grip over thirty years
+    - a small spirit measure in a leather case, carried but never used outside the warehouse
+    - hands permanently darkened at the knuckles from charred oak, which no amount of washing removes
+    - a stub of chalk for marking cask-heads, kept behind the right ear
+  dialogue_quirks:
+    - refers to casks by their cooperage marks rather than their contents — "the number seven" rather than "the twelve-year"
+    - answers a question about whisky with a question about wood, and considers the redirect self-evident
+    - speaks about oak the way the minister speaks about scripture — with a reverence that does not expect to be shared but would be hurt by mockery
+    - says "it'll do" as the highest compliment he can offer a piece of work, his own or anyone else's
+    - will not discuss what is in a particular barrel with anyone who has not been introduced to him by the distiller personally
+    - takes a long time to answer a question, not because he is slow but because he is deciding how much of the answer the questioner deserves
+  disposition_default: 5
+  ocean:
+    openness: 4.0
+    conscientiousness: 9.0
+    extraversion: 2.5
+    agreeableness: 5.5
+    neuroticism: 2.5
+  role: ally_or_obstacle
+
+- name: The Crofter
+  description: >-
+    Tenant farmer on the laird's land, fourth generation on the same
+    holding, sheep and oats and a kitchen garden and a view of the
+    glen that has not changed since his grandfather's time. Knows the
+    weather by the hill, the parish by the kirkyard, and the estate's
+    business by what the factor tells him and what the factor does not.
+    Speaks slowly, decides quickly, and is trusted by the village in
+    the way that a man who has never left is trusted — which is to say,
+    absolutely on local matters and not at all on anything south of
+    Inverness.
+  personality_traits:
+    - taciturn
+    - shrewd
+    - loyal to kin
+  typical_classes:
+    - Explorer
+  typical_races:
+    - Servant
+    - Trade
+  stat_ranges:
+    Nerve: [14, 18]
+    Pride: [12, 16]
+    Cunning: [12, 14]
+  inventory_hints:
+    - a crook with a handle carved by his father from a rowan branch
+    - a tobacco pouch of waxed leather, nearly empty by Wednesday
+    - a pocketknife sharpened so often the blade has narrowed to half its original width
+    - brogues that have been resoled at the smithy more times than he could count and more times than the smith would charge for
+  dialogue_quirks:
+    - answers a question with a silence long enough that the questioner assumes he has not heard, then answers it precisely
+    - refers to the laird as "himself" and to the estate as "the hill"
+    - measures distance in time walked rather than miles — "an hour's walk" not "three miles"
+    - will not volunteer information about a neighbour's business but will confirm it if asked directly, with a single nod
+    - says "aye, well" at the start of any sentence that contains bad news
+    - speaks Scots-inflected English with a Gaelic cadence underneath that surfaces when he is tired or angry
+  disposition_default: 5
+  ocean:
+    openness: 3.5
+    conscientiousness: 7.5
+    extraversion: 2.5
+    agreeableness: 6.0
+    neuroticism: 3.0
+  role: ally
+
+- name: The Parish Nurse
+  description: >-
+    Not a trained nurse in the Edinburgh sense but the woman the glen
+    sends for when the doctor is three miles away and the child has a
+    fever now. Midwife, herbalist, keeper of remedies that predate the
+    surgery by a century, caller on the sick and the dying in the
+    upper crofts where the doctor's bicycle does not easily reach.
+    Crosses every threshold in the parish without knocking twice,
+    which is a privilege she shares only with the minister and the
+    doctor, and one she has held longer than either.
+  personality_traits:
+    - calm
+    - direct
+    - fiercely private about her patients
+  typical_classes:
+    - Doctor
+    - Governess
+  typical_races:
+    - Servant
+    - Trade
+  stat_ranges:
+    Cunning: [14, 16]
+    Nerve: [14, 18]
+    Humour: [10, 14]
+  inventory_hints:
+    - a basket covered with a clean cloth, containing remedies the surgery does not stock and the doctor does not ask about
+    - a ring of keys to three cottages in the upper glen whose owners are too old or too ill to answer the door
+    - hands reddened at the knuckles from carbolic soap, scrubbed four times a day
+    - a shawl that has been to every birth and every deathbed in the upper parish for twenty years
+  dialogue_quirks:
+    - speaks about a patient's condition in the third person even when the patient is in the room — "she has had a difficult night" — as though the illness were a visitor who might overhear
+    - says "I have seen worse" as comfort and means it every time
+    - calls the doctor "Doctor" to her face and "the lassie" to the older crofters, with no disrespect intended or taken
+    - will not discuss one household's illness with another household, and the refusal is delivered with a warmth that makes it impossible to take offence
+    - refers to remedies by their ingredients rather than their names — "the willow-bark" not "the tincture"
+    - ends a visit with "I'll be back in the morning" whether or not she has been asked to, and the household knows better than to protest
+  disposition_default: 10
+  ocean:
+    openness: 5.0
+    conscientiousness: 8.5
+    extraversion: 4.5
+    agreeableness: 7.0
+    neuroticism: 3.5
+  role: ally

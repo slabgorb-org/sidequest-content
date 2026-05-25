@@ -1,0 +1,247 @@
+# ═══════════════════════════════════════════════════════════════════════
+# BENEATH SÜNDEN — NPC ARCHETYPES (world-level override)
+#
+# These are the people found at Ropefoot or encountered in the shaft.
+# NOT player characters. NOT creature archetypes (those inherit from
+# genre-level archetypes.yaml: Dungeon Vermin, Animated Corpse, etc.).
+# These are the recurring human types the party interacts with at the
+# lip and, rarely, in the dark.
+#
+# Voice contract: grave, spare, Moria-as-tragedy. Gravity 0.9,
+# comedy 0.05, outlook 0.2. Nobody here is flowery. Nobody here is
+# optimistic without effort. Speech is factual, clipped, and shaped
+# by living next to a hole that eats most of who goes into it.
+#
+# The genre-level NPC archetypes (Torchbearer, Porter, Sellsword,
+# Fence, Rumormonger, Provisioner) are generic dungeon-town roles.
+# These world-level archetypes replace them with Ropefoot-specific
+# types that know the rope, the board, and the count.
+# ═══════════════════════════════════════════════════════════════════════
+
+- name: Winch-Keeper
+  description: >-
+    The person who works the drum and keeps the count. They know who
+    went down, when, and whether the rope came back light or heavy or
+    not at all. They file the pawl loud on purpose because the camp
+    likes to hear it catch. They burn the names onto the board at the
+    hour the rope is given up on, and they do not ask whether to burn —
+    they ask which name. The winch-house is theirs and they sleep in it
+    or near it and they do not sleep well. They are not the camp's
+    leader. There is no leader. They are the camp's memory, which is
+    worse.
+  personality_traits:
+    - methodical to the point of ritual
+    - emotionally flattened by repetition of loss
+    - fiercely protective of the drum and the count
+  typical_classes:
+    - Fighter
+  typical_races: []
+  stat_ranges:
+    strength: [12, 16]
+    wisdom: [12, 16]
+    constitution: [10, 14]
+  inventory_hints:
+    - tally iron kept hot in the fire
+    - a ring of pawl-files worn to nubs
+    - a rope-gauge notched by hand
+    - grease tin for the drum bearings
+  dialogue_quirks:
+    - states the count before anything else — how many went down, how many came back, when
+    - never uses a name for someone still on the rope — refers to them by number on the tally
+    - corrects anyone who gets a detail of the count wrong, immediately, without anger
+    - pauses before answering personal questions as if checking whether the answer changes anything
+    - refers to the board as though it is a living document that writes itself
+    - drops volume when the wind shifts and the cold off the shaft reaches the winch-house
+    - never says the word 'dead' — says 'on the board' or 'the rope came back light'
+  disposition_default: -5
+  ocean:
+    openness: 2.0
+    conscientiousness: 9.0
+    extraversion: 2.0
+    agreeableness: 4.0
+    neuroticism: 6.0
+  role: quest_giver_or_antagonist
+
+- name: Scarred Delver
+  description: >-
+    Someone who has been down the rope more than once and come back up
+    each time lighter than they went. The shaft took something from them
+    that is visible — a hand, an eye, the ability to sleep without a
+    lamp, the capacity to describe what they saw without stopping
+    mid-sentence. They are not brave. Bravery is for people who have
+    not seen the deep rearrange itself between descents. What they are
+    is informed, and the information sits in them like a stone in a
+    boot. They hire on as guides and they are worth what they cost, but
+    the party should watch what happens to their eyes when the cold off
+    the shaft reaches the benches.
+  personality_traits:
+    - compulsively practical about survival
+    - haunted in a way that presents as irritability
+    - unable to leave Ropefoot despite having every reason to
+  typical_classes:
+    - Fighter
+    - Thief
+  typical_races: []
+  stat_ranges:
+    strength: [10, 14]
+    dexterity: [12, 16]
+    wisdom: [10, 14]
+    constitution: [8, 14]
+  inventory_hints:
+    - a lamp that has been repaired more times than it should survive
+    - rope cut to arm-lengths and knotted at intervals a hand can find in the dark
+    - a blade kept sharp past the point of reason
+    - a sketch of a route that was wrong the next time down
+  dialogue_quirks:
+    - begins descriptions of the deep and then stops, as if the next sentence is one they have decided not to say
+    - gives distances in rope-lengths, never feet or yards
+    - tells the party what to carry and what to leave with the certainty of someone who learned it the hard way
+    - speaks about the dead they went down with in the present tense and does not notice
+    - flinches at sudden noise and covers it by checking their gear
+    - answers questions about the deep with a question about how much rope the party is bringing
+    - never sits with their back to the shaft
+    - uses 'it' for the deep, never 'the dungeon' or 'the hold'
+  disposition_default: -10
+  ocean:
+    openness: 3.0
+    conscientiousness: 7.0
+    extraversion: 3.0
+    agreeableness: 2.0
+    neuroticism: 8.0
+  role: ally_or_obstacle
+
+- name: New Arrival
+  description: >-
+    Someone who came up the dead road on the rumor that a hold this rich
+    could not have spent itself. They still believe the silver is worth
+    the risk because they have not yet been on the rope. They have gear
+    that is too new, questions the camp stopped answering a long time
+    ago, and an energy that everyone at the fire recognizes because
+    everyone at the fire arrived with it. The camp does not discourage
+    them. The camp does not encourage them. The camp lets the board do
+    what the board does and waits to see whether it is enough.
+  personality_traits:
+    - optimistic in a way the camp finds familiar and does not share
+    - hungry for information the camp has stopped recording
+    - physically capable but untested against the specific thing the shaft contains
+  typical_classes:
+    - Fighter
+    - Thief
+    - Cleric
+  typical_races: []
+  stat_ranges:
+    strength: [10, 16]
+    dexterity: [10, 14]
+    constitution: [10, 16]
+    charisma: [10, 14]
+  inventory_hints:
+    - gear that has never been underground — clean leather, unscratched lamp glass
+    - a hand-drawn map copied from someone who copied it from someone who did not come back
+    - more rations than will fit on the rope
+    - a letter they intend to send when they come back up
+  dialogue_quirks:
+    - asks how deep the shaft is and does not notice that nobody answers
+    - talks about what they will do with the silver when they come back up
+    - refers to the descent as a job rather than a risk
+    - repeats things they heard on the road as though they are facts the camp has confirmed
+    - speaks faster than anyone else at the fire
+    - goes quiet when they read the board for the first time and does not resume the same conversation
+    - calls the shaft by a name they heard on the road that no one at Ropefoot uses
+  disposition_default: 5
+  ocean:
+    openness: 7.0
+    conscientiousness: 4.0
+    extraversion: 6.0
+    agreeableness: 6.0
+    neuroticism: 3.0
+  role: ally
+
+- name: Rope-Watcher
+  description: >-
+    Someone who lost someone down the shaft and stays at Ropefoot to
+    watch the rope. They do not go down. They do not leave. They sit
+    where they can see the drum and they watch the rope for the weight
+    that means someone is coming up, and they have been watching long
+    enough that the camp has stopped telling them the math. The
+    winch-keeper knows the name they are waiting for. It is on the
+    board. The rope-watcher has read it there and has not accepted it,
+    or has accepted it and stays anyway, and either way the result is
+    the same person sitting at the same place watching a rope that is
+    not going to move the way they need it to.
+  personality_traits:
+    - grief-locked into a single fixed behavior
+    - perceptive about the rope and the shaft in ways the camp has learned to trust
+    - unwilling to process information that contradicts the possibility of return
+  typical_classes: []
+  typical_races: []
+  stat_ranges:
+    wisdom: [14, 18]
+    constitution: [8, 12]
+    charisma: [6, 10]
+  inventory_hints:
+    - a second kit packed and maintained for someone who is not coming back for it
+    - a mug that goes cold because they forget it
+    - a blanket they do not use because standing up would mean looking away from the rope
+  dialogue_quirks:
+    - reports what the rope is doing — slack, taut, turning, still — without being asked
+    - refers to the person they lost as though the loss is recent regardless of how long ago it was
+    - knows the sound the drum makes under different weights and can tell the party what came up before they see it
+    - goes silent mid-sentence when the rope moves and does not resume
+    - answers questions about themselves by talking about the person they are waiting for
+    - corrects the winch-keeper on details of the descent their person went down on
+    - speaks in a flat voice that has had the pitch worn out of it
+    - will not stand between the fire and the shaft because it blocks sight of the drum
+  disposition_default: -15
+  ocean:
+    openness: 1.0
+    conscientiousness: 8.0
+    extraversion: 1.0
+    agreeableness: 3.0
+    neuroticism: 9.0
+  role: ally_or_obstacle
+
+- name: Salvager
+  description: >-
+    Someone who makes their living from what the returning parties bring
+    up and what the unreturning parties left behind. They buy, trade,
+    clean, and re-sell — rope, lamps, blades, armor pulled off a person
+    who no longer needs it. They are not a fence in the usual sense;
+    there is no law at Ropefoot to fence against. They are the camp's
+    economy, such as it is, and they set prices the way a tide sets a
+    waterline — by what comes up, what goes down, and how many people
+    are still here to want it. They handle the dead's gear without
+    ceremony and the living's coin without sentiment, and the camp
+    tolerates them because the alternative is carrying everything up the
+    dead road yourself.
+  personality_traits:
+    - transactional without malice
+    - unsentimental about objects that outlived their owners
+    - sharply aware of the camp's supply and who has what
+  typical_classes:
+    - Thief
+  typical_races: []
+  stat_ranges:
+    charisma: [12, 16]
+    intelligence: [12, 16]
+    dexterity: [10, 14]
+  inventory_hints:
+    - a tarp spread with cleaned gear sorted by condition
+    - a hand-scale that has weighed more dead men's silver than live men's
+    - a ledger in a shorthand only they can read
+    - lamp oil sold by the finger-width in a flask
+  dialogue_quirks:
+    - names the previous owner of anything they sell, if they know it, and does not soften the telling
+    - quotes a price before the buyer finishes describing what they want
+    - handles a dead delver's kit with the same brisk care a butcher handles a carcass
+    - assesses the party's gear with their eyes the moment the party sits down and has a number ready
+    - refers to the shaft as a supplier rather than a threat
+    - will not extend credit to anyone rigging for a first descent
+    - speaks about the camp's economy in terms of who is still here and who is on the board
+  disposition_default: -5
+  ocean:
+    openness: 5.0
+    conscientiousness: 6.0
+    extraversion: 5.0
+    agreeableness: 3.0
+    neuroticism: 4.0
+  role: ally_or_obstacle
