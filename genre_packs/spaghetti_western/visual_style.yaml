@@ -1,45 +1,14 @@
-# Spaghetti Western — Genre-Level Visual Style
-#
-# Universal cinematic directives that apply to any world in this genre —
-# Leone's Almería, Kurosawa's Sengoku countryside, Corbucci's snowbound
-# revenge, a ronin_road Meiji Japan. The grammar is the same: extreme
-# close-ups on weathered faces, wide stillness, long silences rendered
-# visually as held stares and empty horizons, crushed blacks, high-contrast
-# sun, grain.
-#
-# World-specific styling (LoRA, location vocabulary, climate, architecture,
-# film stock analog) belongs in worlds/<world>/visual_style.yaml and
-# overrides these defaults. Dust_and_lead ships the Leone/Almería/Techniscope
-# 1966 look with the sw_style LoRA; a ronin_road world would ship Kurosawa
-# Tohoscope, Ifukube-era color palette, and a different LoRA trigger.
-
-# ── Universal Genre Directives ────────────────────────────────
-
 positive_suffix: >-
-  cinematic film still, extreme close-up framing on weathered face, long
-  lens compression, wide establishing stillness, crushed blacks, blown
-  highlights, heavy film grain, celluloid artifact, dust and particulate
-  in every frame, sweat and sun-damage, eye-contact composition, stillness
-  before violence, iconic silhouette against harsh sky. Period-appropriate
-  frontier wardrobe. Storefronts, posters, and signs in frame are weathered
-  blank wood or paper with abstract paint scars rather than legible
-  writing. No text, no caption, no writing, no lettering, no titles, no
-  signage, no posters with words, no film sprocket border, no film reel
-  edge, no camera info overlay, no date stamp, no subtitle, no production
-  credit, no watermark, no studio logo, no frame.
+  cinematic film still, crushed blacks, blown highlights, heavy film grain,
+  celluloid artifact. Storefronts, posters, and signs in frame are weathered
+  blank wood or paper with abstract paint scars rather than legible writing.
+  No text, no caption, no writing, no lettering, no titles, no signage, no
+  posters with words, no film sprocket border, no film reel edge, no camera
+  info overlay, no date stamp, no subtitle, no production credit, no
+  watermark, no studio logo, no frame.
 
-# Z-Image Turbo ignores negative_prompt at guidance_scale=0. All constraints
-# live in positive_suffix. See PROMPTING_Z_IMAGE.md.
 negative_prompt: ""
 
 preferred_model: dev
 
 base_seed: 1966
-
-# No genre-level LoRA — LoRA is world-flavor. Dust-and-Lead's Leone LoRA
-# lives at worlds/dust_and_lead/visual_style.yaml; a samurai world would
-# train and ship its own Kurosawa-derived LoRA.
-
-# No genre-level visual_tag_overrides — location vocabulary (saloon vs
-# cantina vs onsen; hacienda vs ryokan; hitching post vs torii) is world
-# flavor. Worlds supply their own visual_tag_overrides.
