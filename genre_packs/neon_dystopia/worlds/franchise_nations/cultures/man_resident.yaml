@@ -1,0 +1,63 @@
+name: MAN Resident
+summary: Mutual Aid Network community members
+description: Mutual Aid Network community members. Names are whatever you showed up
+  with. The culture is warm, polyglot, and slightly too familiar — everyone knows
+  your name, your schedule, and your Community Contribution Score.
+slots:
+  given_name:
+    corpora:
+    - corpus: english.txt
+      weight: 0.3
+    - corpus: french.txt
+      weight: 0.2
+    - corpus: hungarian.txt
+      weight: 0.2
+    - corpus: polish.txt
+      weight: 0.15
+    - corpus: finnish.txt
+      weight: 0.15
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: english.txt
+      weight: 0.3
+    - corpus: french.txt
+      weight: 0.3
+    - corpus: hungarian.txt
+      weight: 0.2
+    - corpus: polish.txt
+      weight: 0.2
+    lookback: 3
+  title:
+    word_list:
+    - Neighbor
+    - Block Captain
+    - Volunteer
+    - Community Elder
+    - Kitchen Lead
+    - Safety Vest
+    - First Responder
+  place_noun:
+    word_list:
+    - kitchen
+    - clinic
+    - commons
+    - block
+    - hall
+    - pantry
+    - workshop
+  adjective:
+    word_list:
+    - shared
+    - open
+    - free
+    - community
+    - neighborhood
+    - mutual
+    - together
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {given_name}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'

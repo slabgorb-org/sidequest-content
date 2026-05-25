@@ -1,0 +1,59 @@
+name: Perault
+summary: Inheritor aristocracy — baroque, geas-bound, old blood
+description: The houses who carry covenants their ancestors signed generations ago.
+  Names are long, melodic, and often include the honorifics of inherited debt. Every
+  Perault child learns which pact they were born into before they learn to read.
+slots:
+  given_name:
+    corpora:
+    - corpus: french.txt
+      weight: 0.7
+    - corpus: polish.txt
+      weight: 0.3
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: french.txt
+      weight: 0.6
+    - corpus: polish.txt
+      weight: 0.4
+    lookback: 3
+  honorific:
+    word_list:
+    - bound
+    - owed
+    - pledged
+    - kept
+    - heir
+    - ninth
+    - seventh
+    - last
+  place_noun:
+    word_list:
+    - seat
+    - house
+    - vault
+    - estate
+    - court
+    - demesne
+    - holding
+    - keep
+  adjective:
+    word_list:
+    - pale
+    - waning
+    - fallen
+    - hollow
+    - graven
+    - unkept
+    - slow
+    - long
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name} of House {family_name}'
+- '{given_name} the {honorific}'
+- '{given_name} {family_name}, {honorific} of the ledger'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{family_name} {place_noun}'
+- The {adjective} {place_noun} of {family_name}

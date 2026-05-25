@@ -1,0 +1,51 @@
+name: Thessil
+summary: Stratum remnant — descendants of a buried civilization still paying its contract
+description: A diminished people descended from one of the civilizations older than
+  history. Their ancestors signed something that is still in the bedrock, and the
+  Thessil live on the slow edge of that older debt. They speak a language no one else
+  understands properly, use names with more syllables than courtesy permits, and seem
+  to know things about certain ruins that no one has told them.
+slots:
+  given_name:
+    corpora:
+    - corpus: hungarian.txt
+      weight: 0.5
+    - corpus: finnish.txt
+      weight: 0.5
+    lookback: 4
+  stem_name:
+    corpora:
+    - corpus: hungarian.txt
+      weight: 1.0
+    lookback: 4
+  place_noun:
+    word_list:
+    - stones
+    - drift
+    - bones
+    - road
+    - march
+    - reach
+    - vigil
+    - silt
+    - teeth
+    - sleepers
+  adjective:
+    word_list:
+    - buried
+    - forgotten
+    - older
+    - waking
+    - slow
+    - patient
+    - deep
+    - un-named
+    - first
+person_patterns:
+- '{given_name} of the {stem_name}'
+- '{given_name}-of-{stem_name}'
+- '{stem_name}''s {given_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {place_noun} of {stem_name}
+- The {adjective} {place_noun} beneath {stem_name}

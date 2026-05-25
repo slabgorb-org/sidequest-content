@@ -1,0 +1,44 @@
+name: Emishi Northern People
+summary: The indigenous people of the northern island
+description: The indigenous people of the northern island — earth and water channelers
+  with naming patterns distinct from the fire-culture mainstream. Their names carry
+  the weight of forest, river, and mountain.
+slots:
+  given_name:
+    corpora:
+    - corpus: earth_kingdom.txt
+      weight: 0.5
+    - corpus: water_tribe.txt
+      weight: 0.5
+    lookback: 2
+  clan_name:
+    corpora:
+    - corpus: water_tribe.txt
+      weight: 1.0
+    lookback: 3
+  place_noun:
+    word_list:
+    - forest
+    - river
+    - ridge
+    - hollow
+    - spring
+    - clearing
+    - stone
+    - falls
+  adjective:
+    word_list:
+    - deep
+    - ancient
+    - frozen
+    - singing
+    - hidden
+    - mossy
+    - grey
+    - silent
+person_patterns:
+- '{given_name} of {clan_name}'
+- '{given_name} {clan_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{clan_name} {place_noun}'

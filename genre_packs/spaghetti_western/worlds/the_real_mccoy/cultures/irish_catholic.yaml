@@ -1,0 +1,66 @@
+name: Irish Catholic
+summary: Post-Famine Pittsburgh — mill puddlers, streetcar conductors, police, domestics,
+  Strip and Lower Hill
+description: 'The mass Irish-Catholic cohort arriving Pittsburgh 1847 onward. Mill
+  puddlers (the elite), streetcar conductors, police, domestics, saloon-keepers, drayage.
+  Shantytown housing on the Hill''s north slope, South Side flats, rail-adjacent North
+  Side. St. Patrick''s in the Strip (1808) is the mother parish; St. Paul Cathedral
+  the bishop''s seat. Wakes, rosaries, whiskey, and union cards. The "Bridget" domestic
+  stereotype runs through Scots-Irish households like a parallel economy.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_irish_catholic_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: irish.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Father
+    - Sister
+    - Officer
+    - Sergeant
+    - Mister
+    - Missus
+    - Miss
+  adjective:
+    word_list:
+    - Big
+    - Black
+    - Red
+    - Long
+    - Whiskey
+    - Fighting
+    - Silent
+    - Mad
+    - Happy
+    - Lucky
+    - Holy
+  place_noun:
+    word_list:
+    - parish
+    - alley
+    - row
+    - yard
+    - flats
+    - corner
+    - saloon
+    - hall
+    - chapel
+    - crossing
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{given_name} ''{adjective}'' {family_name}'
+- '{adjective} {given_name} {family_name}'
+- '{family_name}, {given_name}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{adjective} {family_name} {place_noun}'
+- '{place_noun} of Saint {given_name}'

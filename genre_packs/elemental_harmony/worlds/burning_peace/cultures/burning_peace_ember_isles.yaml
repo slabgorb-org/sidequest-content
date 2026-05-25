@@ -1,0 +1,52 @@
+name: Burning Peace Ember Isles
+summary: The dominant culture of the Tokigane era
+description: The dominant culture of the Tokigane era — rigid social hierarchy, family
+  name before given name, honorifics expressing status. Fire channeler families carry
+  names referencing flame, forge, and iron. Commoner names are simpler, drawn from
+  nature and seasons.
+slots:
+  family_name:
+    corpora:
+    - corpus: fire_nation.txt
+      weight: 1.0
+    lookback: 3
+  given_name:
+    corpora:
+    - corpus: fire_nation.txt
+      weight: 1.0
+    lookback: 2
+  place_noun:
+    word_list:
+    - castle
+    - shrine
+    - gate
+    - bridge
+    - harbor
+    - forge
+    - temple
+    - hall
+    - pass
+    - peak
+    - well
+    - market
+  adjective:
+    word_list:
+    - burning
+    - crimson
+    - iron
+    - golden
+    - ash
+    - obsidian
+    - eternal
+    - sacred
+    - silent
+    - hidden
+    - moonlit
+    - ancient
+person_patterns:
+- '{family_name} {given_name}'
+- '{family_name} no {given_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{family_name} {place_noun}'
+- '{given_name} {place_noun}'

@@ -1,0 +1,67 @@
+name: Bōsōzoku
+summary: Formation riders
+description: Formation riders. Japanese-punk youth rebellion. Their conlang blends
+  Japanese phonemes with Germanic harshness — the sound of engine culture meeting
+  precision engineering.
+slots:
+  given_name:
+    corpora: &id001
+    - corpus: japanese.txt
+      weight: 0.6
+    - corpus: german.txt
+      weight: 0.4
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  family_name:
+    corpora:
+    - corpus: japanese.txt
+      weight: 0.4
+    - corpus: german.txt
+      weight: 0.6
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  title:
+    word_list:
+    - Souchou
+    - Fukuchou
+    - Tokkoutai
+    - Sempai
+    - Aniki
+  place_noun:
+    word_list:
+    - douro
+    - kaido
+    - toge
+    - tonneru
+    - kyokusen
+    - kousa
+    - hashira
+    - mon
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  adjective:
+    word_list:
+    - kuro
+    - aka
+    - tetsu
+    - kaminari
+    - yami
+    - chi
+    - hagane
+    - arashi
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+person_patterns:
+- '{given_name}'
+- '{title} {given_name}'
+- '{given_name} no {family_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{given_name} {place_noun}'
+- '{adjective} no {place_noun}'

@@ -1,0 +1,60 @@
+name: Kragmoor
+summary: Guild-trade thaumaturgists — industrial, wrought, craft-bound
+description: The working-guild sorcerers and laborer-thaumaturges of the forge quarters.
+  Names are hard, short, and nearly always followed by a craft-sign — the guild mark
+  that says what they make and what their making costs them. A Kragmoor introduces
+  themselves by trade before they introduce themselves by blood.
+slots:
+  given_name:
+    corpora:
+    - corpus: polish.txt
+      weight: 0.6
+    - corpus: hungarian.txt
+      weight: 0.4
+    lookback: 2
+  craft_sign:
+    word_list:
+    - wright
+    - hammer
+    - smelt
+    - tally
+    - scrive
+    - brand
+    - forge
+    - leach
+    - cant
+    - flint
+    - press
+    - coil
+  place_noun:
+    word_list:
+    - works
+    - quarter
+    - yard
+    - row
+    - stacks
+    - bellows
+    - foundry
+    - pits
+    - gate
+    - span
+  adjective:
+    word_list:
+    - iron
+    - soot
+    - brass
+    - coal
+    - wet
+    - hot
+    - scored
+    - hammered
+    - long
+    - grim
+person_patterns:
+- '{given_name} {craft_sign}'
+- '{given_name} of the {craft_sign}s'
+- '{given_name} the {craft_sign}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{craft_sign}-{place_noun}'
+- The {adjective} {place_noun}

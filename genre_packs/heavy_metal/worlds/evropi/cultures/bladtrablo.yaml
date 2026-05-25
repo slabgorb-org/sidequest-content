@@ -1,0 +1,53 @@
+name: Bladtrablo
+summary: Aquatic undersea elves — seaturtle cavalry, volcanic-vent forges, blood enemies
+  of Jambiendo
+description: Aquatic elves with fair skin and white hair, living in undersea cities
+  of coral and basalt around the volcanic vents of the Řeknu deep. They breathe through
+  small gill-membranes on their necks in salt, brackish, or fresh water, but prefer
+  salt; out of water for too long, the membranes dry and their gill-breathing fails,
+  a condition they can delay by sluicing buckets of seawater through their mouths
+  and out their gills, uncomfortably. Their nobility ride domesticated seaturtles
+  through coral cities with hand-worked saddles, and their metallurgists forge steel
+  at the volcanic vents, making them the best undersea smiths in the known world.
+  They are blood enemies of the Jambiendo — a feud so old no one remembers its origin,
+  kept alive by periodic raids, abductions, and the occasional gull-ship sinking.
+  They are the most alien of Evrópí's peoples to land politics, and the most indifferent
+  to its authoritarian tides.
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_bladio.txt
+      weight: 1.0
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: evropi_bladio.txt
+      weight: 1.0
+    lookback: 3
+  place_noun:
+    word_list:
+    - vent
+    - reef
+    - cavern
+    - spire
+    - current
+    - shoal
+    - trench
+    - coral
+    - bladewarm
+  adjective:
+    word_list:
+    - deep
+    - salt-lit
+    - coral
+    - vent-warmed
+    - pearled
+    - silent
+    - surging
+    - old-tide
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name}-of-the-{place_noun}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {place_noun} of {family_name}

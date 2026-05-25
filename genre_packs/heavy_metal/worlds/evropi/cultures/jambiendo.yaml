@@ -1,0 +1,57 @@
+name: Jambiendo
+summary: Seafaring elves of the Sabulous Islands — gull-ship traders, tralbotura-silk
+  wearers, spice merchants
+description: Dark-skinned seafaring elves with long pointed ears, which they decorate
+  with hoops of gold and silver carrying tiny bells that jingle as they work the rigging
+  of their gull-ships. They wear delicate, light-coloured clothing woven from tralbotura
+  — a seaweed native to the Sabulous Islands, beaten by the elders on resonant logs
+  and spun into cloth that catches the wind. Their diet is fish, breadfruit (ipesat`il),
+  sea salt from secret beaches, and a dozen spices that grow only on their islands.
+  They are master sailors who visit every port on the Řeknu and return home with holds
+  full of stories. They are mortal rivals of the Bladtrablo, an elvish cousin-race
+  that lives beneath the waves, and — unknown to most landsfolk — they share their
+  language family (Trosse) with the Mistos junta, though the accents have drifted
+  so far that neither side likes to admit the connection. No one knows how the two
+  peoples were separated. The Jambiendo do not speculate publicly and the Mistos do
+  not speculate at all.
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_jambiendo.txt
+      weight: 1.0
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: evropi_jambiendo.txt
+      weight: 1.0
+    lookback: 3
+  place_noun:
+    word_list:
+    - bay
+    - quay
+    - reef
+    - wharf
+    - beach
+    - cove
+    - tide
+    - wind
+    - sail
+    - spice
+    - gull
+  adjective:
+    word_list:
+    - tralboturan
+    - silver
+    - bell-rung
+    - salted
+    - far-roamed
+    - spicewind
+    - sunlit
+    - singing
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name} e''{family_name}'
+- '{given_name} c''{family_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {place_noun} of {family_name}

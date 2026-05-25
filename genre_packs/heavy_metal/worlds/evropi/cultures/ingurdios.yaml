@@ -1,0 +1,30 @@
+name: Ingurdios
+chargen: false
+summary: LORE ONLY — subjugated people of the Mistos; native language canonically
+  dead, preserved only in Tismenni scholarly tomes
+description: The people the Mistos conquered long enough ago that no living Ingurdios
+  remembers their original culture. Their native language is dead, banned on pain
+  of death, preserved only in fragments inside ancient Tismenni scholarly texts —
+  the lingua franca of the old dead empire, which is the only archive the Mistos did
+  not know how to burn. The Ingurdios speak accented Trosse now, the language of their
+  tormentors, and are forced to labour in the Mistos mines in the Zbóźny Mountains.
+  The older Ingurdios tell stories of a once vibrant and rich culture, and of a messiah
+  who will come to the mines and speak the old language aloud for the first time in
+  generations. The messianic stories are not officially forbidden by the Mistos. The
+  General considers them harmless. The Ingurdios who believe them know this means
+  the General is wrong about something.
+slots:
+  given_name_current:
+    corpora:
+    - corpus: evropi_jambiendo.txt
+      weight: 1.0
+    lookback: 3
+  given_name_old:
+    corpora:
+    - corpus: evropi_tismenni.txt
+      weight: 1.0
+    lookback: 4
+person_patterns:
+- '{given_name_current}'
+- '{given_name_current} (born {given_name_old})'
+place_patterns: []

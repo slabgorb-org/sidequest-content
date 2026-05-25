@@ -1,0 +1,63 @@
+name: Parisian French
+summary: Native Parisians
+description: Native Parisians — from market porters to aristocrats. Names are French,
+  titles matter, and the arrondissement you live in says more about you than your
+  surname.
+slots:
+  given_name:
+    corpora:
+    - corpus: french.txt
+      weight: 1.0
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: french.txt
+      weight: 1.0
+    lookback: 3
+  title:
+    word_list:
+    - Monsieur
+    - Madame
+    - Mademoiselle
+    - Professeur
+    - Docteur
+    - Commissaire
+    - Inspecteur
+    - Comte
+    - Comtesse
+    - Baron
+    - Baronne
+  place_noun:
+    word_list:
+    - rue
+    - boulevard
+    - passage
+    - impasse
+    - quai
+    - pont
+    - place
+    - jardin
+    - marché
+    - gare
+    - café
+    - hôtel
+  adjective:
+    word_list:
+    - vieux
+    - noir
+    - blanc
+    - petit
+    - grand
+    - beau
+    - rouge
+    - ancien
+    - sombre
+    - perdu
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{place_noun} de {family_name}'
+- Chez {given_name}

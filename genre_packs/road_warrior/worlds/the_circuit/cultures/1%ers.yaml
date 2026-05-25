@@ -1,0 +1,69 @@
+name: 1%ers
+summary: Outlaw motorcycle club hierarchy
+description: Outlaw motorcycle club hierarchy. Their conlang blends English road grit
+  with Germanic weight — heavy, blunt syllables that sound like they were earned in
+  a bar fight.
+slots:
+  given_name:
+    corpora: &id001
+    - corpus: english.txt
+      weight: 0.6
+    - corpus: german.txt
+      weight: 0.4
+    lookback: 2
+    reject_files:
+    - reject_common.txt
+  family_name:
+    corpora:
+    - corpus: german.txt
+      weight: 0.5
+    - corpus: english.txt
+      weight: 0.5
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  title:
+    word_list:
+    - Prez
+    - VP
+    - Sarge
+    - Road Captain
+    - Prospect
+    - Nomad
+    - Full Patch
+  place_noun:
+    word_list:
+    - clubhouse
+    - run
+    - stretch
+    - mile
+    - crossing
+    - rally
+    - den
+    - yard
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  adjective:
+    word_list:
+    - iron
+    - dead
+    - lost
+    - bloody
+    - outlaw
+    - black
+    - lonesome
+    - burnt
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+person_patterns:
+- '{given_name}'
+- '{title} {given_name}'
+- '{given_name} of the {family_name}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'
+- '{family_name} {place_noun}'

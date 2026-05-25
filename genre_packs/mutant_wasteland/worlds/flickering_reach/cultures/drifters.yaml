@@ -1,0 +1,58 @@
+description: Nomadic steppe-wanderers on mutant mounts. Names blend Slavic harshness
+  with open-sky poetry.
+name: Drifters
+summary: Nomadic steppe-wanderers on mutant mounts
+person_patterns:
+- '{given_name} {patronymic}kin'
+- '{given_name} the {adjective}'
+- '{given_name} of the {adjective} {place_noun}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {patronymic} {place_noun}
+slots:
+  adjective:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - red
+    - salt
+    - bone
+    - glass
+    - storm
+    - long
+    - burnt
+    - far
+    - blind
+    - cold
+  given_name:
+    corpora:
+    - corpus: polish.txt
+      weight: 1.0
+    - corpus: swedish.txt
+      weight: 1.0
+    lookback: 2
+    reject_files: []
+    word_list: []
+  patronymic:
+    corpora:
+    - corpus: polish.txt
+      weight: 1.0
+    lookback: 2
+    reject_files: []
+    word_list: []
+  place_noun:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - crossing
+    - camp
+    - ridge
+    - dust
+    - wind
+    - reach
+    - mark
+    - flat
+    - run
+    - trail

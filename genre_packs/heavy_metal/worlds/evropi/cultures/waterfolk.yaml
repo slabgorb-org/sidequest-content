@@ -1,0 +1,53 @@
+name: Waterfolk
+summary: Marsh-halfling people of the Hvoru salt marshes — eel-herders, crane-riders,
+  enslaved by Zkęd
+description: Small marsh people who live in stilt-huts raised above the Hvoru salt
+  marshes, cultivate domesticated eels in the estuaries below, and ride domesticated
+  cranes across the open water. Their clothing is eel-skin — tanned like leather and
+  beaten translucent, then stitched into garments with a texture other races prize
+  and pay badly for. They carry short tridents for fish, eel, and the occasional frog.
+  Their language, Zypič, belongs to the Zkęd language family, which is either a cruelty
+  of history or a clue to a shared ancestry neither side wants to acknowledge. The
+  Waterfolk are at war with the Pakook`rook. Both sides are enslaved by the same Zkęd
+  masters. The Wazdia profits from both.
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_zypic.txt
+      weight: 1.0
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: evropi_zypic.txt
+      weight: 1.0
+    lookback: 3
+  place_noun:
+    word_list:
+    - stilt
+    - reed
+    - bank
+    - mouth
+    - shallow
+    - eelhold
+    - roost
+    - float
+    - channel
+    - wade
+  adjective:
+    word_list:
+    - salt
+    - damp
+    - hushed
+    - translucent
+    - slow
+    - tidal
+    - brackish
+    - patient
+    - folded
+person_patterns:
+- '{given_name}'
+- '{given_name} of the {place_noun}'
+- '{given_name} {family_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {place_noun} of {family_name}

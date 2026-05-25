@@ -1,0 +1,54 @@
+name: Russian Émigré
+summary: White Russians who fled the Revolution
+description: White Russians who fled the Revolution — former aristocrats driving taxis,
+  ex-officers waiting tables, countesses selling jewelry. They cluster in the 16th
+  arrondissement and around the Russian Orthodox cathedral on Rue Daru.
+slots:
+  given_name:
+    corpora:
+    - corpus: polish.txt
+      weight: 0.4
+    - corpus: hungarian.txt
+      weight: 0.3
+    - corpus: french.txt
+      weight: 0.3
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: polish.txt
+      weight: 0.5
+    - corpus: hungarian.txt
+      weight: 0.5
+    lookback: 3
+  title:
+    word_list:
+    - Count
+    - Countess
+    - Prince
+    - Princess
+    - Colonel
+    - Doctor
+    - Madame
+  place_noun:
+    word_list:
+    - cathedral
+    - salon
+    - restaurant
+    - club
+    - école
+    - pension
+  adjective:
+    word_list:
+    - ancien
+    - russe
+    - impérial
+    - blanc
+    - perdu
+    - dernier
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name}'
+place_patterns:
+- Le {adjective} {place_noun}
+- '{place_noun} {family_name}'

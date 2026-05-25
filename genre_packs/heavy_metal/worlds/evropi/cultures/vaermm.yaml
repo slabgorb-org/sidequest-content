@@ -1,0 +1,63 @@
+name: Vaermm
+summary: Scripture-totalitarian stocky humanoids — Book of Aest, 'right-thinking',
+  all non-mandatory behaviour forbidden
+description: 'Short, stocky humanoids who live in the marginal lands between the other
+  peoples of Evrópí — dry foothills, rocky scrubland, the places no one else wants.
+  Their society is ruled by the Book of Aest, a scripture whose central doctrine is
+  right- thinking: Aest taught that if a person''s thoughts always follow a prescribed
+  traditional pattern, there is no need for ethics, because original thought has been
+  made unthinkable, and with it, crime and deviance. Every Vaermm copies out their
+  own Book of Aest at coming-of-age. The book is checked for errors in a ceremony
+  lasting hours, and any error delays the ceremony by a year and costs another copy.
+  The side-effect of right-thinking is near-total stagnation of invention, magic,
+  and art — the Vaermm are magic-poor not by genre-mechanics but by scripture. The
+  Book''s opening tenet: "There are two kinds of interactions, those among the right-thinking,
+  and those between the right- thinking and the enemies of the right-thinking. These
+  are different in their nature."'
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_dwarf.txt
+      weight: 1.0
+    lookback: 4
+  family_name:
+    corpora:
+    - corpus: evropi_dwarf.txt
+      weight: 1.0
+    lookback: 4
+  book_rank:
+    word_list:
+    - Copyist
+    - Checker
+    - Tenth-Reader
+    - Mandatory
+    - Right-Thinking
+    - Unerred
+    - Kept
+  place_noun:
+    word_list:
+    - hold
+    - book-house
+    - scriptorium
+    - reach
+    - tenet
+    - margin
+    - scribe-hall
+    - correction
+  adjective:
+    word_list:
+    - right-thinking
+    - un-erred
+    - mandatory
+    - scripted
+    - checked
+    - kept
+    - silent
+    - stoic
+person_patterns:
+- '{given_name} {family_name}, {book_rank}'
+- '{given_name} {book_rank} of the {place_noun}'
+- '{given_name}, {book_rank}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {book_rank}'s {place_noun}

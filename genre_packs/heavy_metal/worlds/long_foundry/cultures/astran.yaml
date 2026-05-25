@@ -1,0 +1,69 @@
+name: Astran
+summary: Clergy-officiant bureaucracy — priestly, liturgical, feeding the gods
+description: The administrative priesthood of the feeding cults. An Astran is not
+  a prophet or a mystic — they are a clerk. They balance the ledgers of sacrifice,
+  supervise tithes, and keep the records that prove the god was fed this month. Their
+  names are half-Latin, half-liturgical, and always include a rite-rank indicating
+  which feeding they are qualified to administer.
+slots:
+  given_name:
+    corpora:
+    - corpus: french.txt
+      weight: 0.5
+    - corpus: swedish.txt
+      weight: 0.5
+    lookback: 3
+  rite_rank:
+    word_list:
+    - first
+    - second
+    - third
+    - fourth
+    - fifth
+    - sixth
+    - lesser
+    - greater
+    - morning
+    - evening
+  rite_name:
+    word_list:
+    - feeding
+    - offering
+    - tally
+    - watch
+    - vigil
+    - rite
+    - hour
+    - breath
+    - naming
+    - ledger
+  place_noun:
+    word_list:
+    - temple
+    - precinct
+    - altar
+    - nave
+    - vault
+    - scriptorium
+    - cellarium
+    - rood
+    - sanctum
+  adjective:
+    word_list:
+    - cold
+    - quiet
+    - clean
+    - marked
+    - fasted
+    - sated
+    - pale
+    - slow
+    - kept
+person_patterns:
+- '{given_name} of the {rite_rank} {rite_name}'
+- '{given_name}, {rite_rank} of the {rite_name}'
+- '{given_name} the {rite_rank}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {rite_name}-{place_noun}
+- '{place_noun} of the {rite_rank} {rite_name}'

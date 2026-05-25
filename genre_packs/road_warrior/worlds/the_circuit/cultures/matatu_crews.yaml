@@ -1,0 +1,68 @@
+name: Matatu Crews
+summary: Kenyan minibus culture
+description: Kenyan minibus culture. Their conlang blends Swahili rhythm with English
+  transit slang — the sound of Nairobi Sheng, a real creole that already mixes Swahili,
+  English, and street invention.
+slots:
+  given_name:
+    corpora: &id001
+    - corpus: swahili.txt
+      weight: 0.5
+    - corpus: english.txt
+      weight: 0.5
+    lookback: 2
+    reject_files:
+    - reject_common.txt
+  family_name:
+    corpora:
+    - corpus: swahili.txt
+      weight: 0.6
+    - corpus: english.txt
+      weight: 0.4
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  title:
+    word_list:
+    - Tout
+    - Makanga
+    - Driver
+    - Boss
+    - Chairman
+    - Manamba
+  place_noun:
+    word_list:
+    - stage
+    - terminus
+    - route
+    - stop
+    - depot
+    - stand
+    - junction
+    - yard
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  adjective:
+    word_list:
+    - kali
+    - kubwa
+    - mpya
+    - safi
+    - haraka
+    - nzuri
+    - kuu
+    - bora
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+person_patterns:
+- '{given_name}'
+- '{title} {given_name}'
+- '{given_name} wa {family_name}'
+place_patterns:
+- '{given_name} {place_noun}'
+- '{adjective} {place_noun}'
+- '{family_name} {place_noun}'

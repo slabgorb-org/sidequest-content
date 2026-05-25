@@ -1,0 +1,50 @@
+name: Sangre Anglo
+summary: Anglo settlers, lawmen, and company men
+description: Anglo settlers, lawmen, and company men — hard consonants, functional
+  names
+slots:
+  given_name:
+    names_file: frontier_given.txt
+  family_name:
+    names_file: frontier_surnames.txt
+  place_noun:
+    word_list:
+    - gulch
+    - creek
+    - crossing
+    - flat
+    - springs
+    - station
+    - junction
+    - depot
+    - siding
+    - claims
+  adjective:
+    word_list:
+    - dead
+    - dry
+    - rattlesnake
+    - copper
+    - devil
+    - bone
+    - alkali
+    - bitter
+    - hangman
+    - shotgun
+  title:
+    word_list:
+    - Captain
+    - Judge
+    - Doc
+    - Colonel
+    - Reverend
+    - Major
+    - Professor
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{given_name} ''{adjective}'' {family_name}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{adjective} {place_noun}'
+- '{title}''s {place_noun}'

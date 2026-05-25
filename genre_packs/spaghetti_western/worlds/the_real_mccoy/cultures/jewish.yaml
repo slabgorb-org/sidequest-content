@@ -1,0 +1,71 @@
+name: Jewish
+summary: Bavarian-Reform Pittsburgh — Rodef Shalom (1856), Tree of Life (1864), Concordia
+  Club, Wood Street merchants and tailors
+description: 'The established Pittsburgh Jewish community in 1878 is predominantly
+  German-speaking Bavarian and Alsatian, arrived 1840s-1860s. Reform by the 1860s
+  — Rodef Shalom on Eighth Street, with Tree of Life (founded 1864) the more traditional
+  counterpoint. Merchants, tailors, jewelers, scrap dealers, and dry-goods importers
+  on Wood Street, Diamond Street, Fifth Avenue, and the Strip. The Concordia Club
+  (1874) as the civic social anchor. Naming: Biblical Hebrew in German/English assimilated
+  forms (Aaron, Samuel, Moses, Rachel, Miriam) alongside German secular names (Lippman,
+  Herman, Max, Louis, Bertha, Clara) that signal Bavarian-Reform respectability. The
+  Eastern European Yiddish-speaking wave has NOT yet arrived in force — a small vanguard
+  in 1878-1880, the mass after the 1881 pogroms. This culture reflects 1878''s established
+  community, not the Hill-District Yiddish community that will dominate by 1900.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_jewish_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_jewish_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Rabbi
+    - Reb
+    - Herr
+    - Frau
+    - Herr Doktor
+    - Kantor
+    - Mister
+    - Missus
+    - Doctor
+  adjective:
+    word_list:
+    - Old
+    - Young
+    - Elder
+    - Reform
+    - Reb
+    - Cantor
+    - Wood-Street
+    - Diamond-Street
+    - Fifth-Avenue
+    - Concordia
+  place_noun:
+    word_list:
+    - Shul
+    - Synagogue
+    - Temple
+    - Street
+    - House
+    - Club
+    - Hall
+    - Works
+    - Shop
+    - Haus
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{given_name} {family_name}, {title}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{adjective} {place_noun}'
+- '{family_name} & {family_name}'

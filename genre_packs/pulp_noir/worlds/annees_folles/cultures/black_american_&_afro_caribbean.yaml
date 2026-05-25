@@ -1,0 +1,50 @@
+name: Black American & Afro-Caribbean
+summary: African Americans who came to Paris to escape Jim Crow and found a
+description: African Americans who came to Paris to escape Jim Crow and found a city
+  that, if not free of racism, at least didn't have sundown laws. Jazz musicians,
+  dancers, singers, soldiers who stayed after the war. Also West Indian and North
+  African performers and workers from the French colonial empire.
+slots:
+  given_name:
+    corpora:
+    - corpus: english.txt
+      weight: 0.7
+    - corpus: french.txt
+      weight: 0.3
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: english.txt
+      weight: 0.7
+    - corpus: french.txt
+      weight: 0.3
+    lookback: 3
+  title:
+    word_list:
+    - Mr.
+    - Mrs.
+    - Miss
+    - Madame
+    - Monsieur
+  place_noun:
+    word_list:
+    - club
+    - stage
+    - bar
+    - hotel
+    - studio
+    - salon
+  adjective:
+    word_list:
+    - hot
+    - blue
+    - midnight
+    - golden
+    - smoky
+    - uptown
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'

@@ -1,0 +1,67 @@
+name: Lowriders
+summary: Chicano car culture
+description: Chicano car culture. Their conlang blends Spanish warmth with English
+  street cadence — the real bilingual flow of East LA cruising talk.
+slots:
+  given_name:
+    corpora: &id001
+    - corpus: spanish.txt
+      weight: 0.6
+    - corpus: english.txt
+      weight: 0.4
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  family_name:
+    corpora:
+    - corpus: spanish.txt
+      weight: 0.7
+    - corpus: english.txt
+      weight: 0.3
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  title:
+    word_list:
+    - Don
+    - Veterano
+    - O.G.
+    - Jefe
+    - Hermano
+    - Padrino
+  place_noun:
+    word_list:
+    - boulevard
+    - esquina
+    - parque
+    - tienda
+    - mural
+    - plaza
+    - garaje
+    - taller
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  adjective:
+    word_list:
+    - viejo
+    - sagrado
+    - dorado
+    - perdido
+    - santo
+    - grande
+    - bonito
+    - dulce
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+person_patterns:
+- '{given_name}'
+- '{given_name} {family_name}'
+- '{title} {given_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{given_name}''s {place_noun}'
+- La {place_noun} de {family_name}

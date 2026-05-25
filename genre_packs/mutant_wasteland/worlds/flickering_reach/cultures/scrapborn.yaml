@@ -1,0 +1,61 @@
+description: Urban ruin-dwellers who build from salvage. Names sound like corrupted
+  English tech-jargon.
+name: Scrapborn
+summary: Urban ruin-dwellers who build from salvage
+person_patterns:
+- '{given_name} {clan_name}'
+- '{given_name} of the {adjective} {place_noun}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'
+slots:
+  adjective:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - rusted
+    - burning
+    - humming
+    - dead
+    - bright
+    - cracked
+    - singing
+    - buried
+  clan_name:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - Voltkin
+    - Rustblood
+    - Wirebound
+    - Copperjaw
+    - Glowvein
+    - Sparkhand
+    - Ironlung
+    - Fuseborn
+  given_name:
+    corpora:
+    - corpus: english.txt
+      weight: 1.0
+    - corpus: german.txt
+      weight: 1.0
+    lookback: 2
+    reject_files: []
+    word_list: []
+  place_noun:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - heap
+    - stack
+    - junction
+    - node
+    - grid
+    - hub
+    - works
+    - yard
+    - pit
+    - dome

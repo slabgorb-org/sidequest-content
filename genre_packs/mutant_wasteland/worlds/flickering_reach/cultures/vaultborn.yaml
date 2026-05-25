@@ -1,0 +1,64 @@
+description: Descendants of sealed bunker communities. Clinical naming, numbers mixed
+  with corrupted pre-war surnames.
+name: Vaultborn
+summary: Descendants of sealed bunker communities
+person_patterns:
+- '{given_name}-{designation}'
+- '{designation} {given_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{place_noun} {designation}'
+slots:
+  adjective:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - sealed
+    - deep
+    - sterile
+    - lost
+    - breached
+    - silent
+    - cold
+    - bright
+    - clean
+  designation:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - Seven
+    - Twelve
+    - Third
+    - Prime
+    - Nul
+    - Echo
+    - Delta
+    - Sigma
+    - Kappa
+    - Zed
+  given_name:
+    corpora:
+    - corpus: french.txt
+      weight: 1.0
+    - corpus: english.txt
+      weight: 1.0
+    lookback: 3
+    reject_files: []
+    word_list: []
+  place_noun:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - vault
+    - bunker
+    - level
+    - sector
+    - wing
+    - lab
+    - archive
+    - lock
+    - chamber
+    - silo
