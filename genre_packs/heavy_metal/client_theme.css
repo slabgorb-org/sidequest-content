@@ -1,0 +1,110 @@
+/* Heavy Metal — pact-dark, blood-priced, baroque decay */
+
+:root[data-genre] {
+  /* Genre identity */
+  --primary: #8B0000;
+  --secondary: #2A1A1A;
+  --accent: #B8860B;
+  --background: #0F0A0A;
+  --surface: #1C1414;
+  --text: #E8DFC8;
+
+  /* Tailwind tokens */
+  --foreground: #E8DFC8;
+  --card: #1C1414;
+  --card-foreground: #E8DFC8;
+  --popover: #1C1414;
+  --popover-foreground: #E8DFC8;
+  --primary-foreground: #E8DFC8;
+  --secondary-foreground: #E8DFC8;
+  --muted: #2A1A1A;
+  --muted-foreground: #7A6A55;
+  --accent-foreground: #0F0A0A;
+  --border: #2A1A1A;
+  --input: #1C1414;
+  --ring: #8B0000;
+  --destructive: oklch(0.55 0.22 22);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&family=IM+Fell+English:ital@0;1&display=swap');
+
+
+/* Body text — vellum and ink, age-worn cursive */
+.narration-block p {
+  font-family: 'IM Fell English', 'Georgia', serif;
+  letter-spacing: 0.02em;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+/* Drop cap — blood-dark shadow, gilt edge */
+.drop-cap-block img {
+  filter: drop-shadow(2px 3px 6px rgba(139, 0, 0, 0.55)) contrast(1.1) brightness(0.92);
+}
+
+/* Dinkus — ritual glyphs, dried blood */
+.dinkus {
+  color: var(--accent);
+  letter-spacing: 0.6em;
+  opacity: 0.75;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(139, 0, 0, 0.4);
+}
+
+/* Pull quote — pact-ink, dark gold rule */
+.pull-quote {
+  border-left: 3px solid var(--primary);
+  color: var(--accent);
+  font-family: 'IM Fell English', 'Georgia', serif;
+  font-style: italic;
+  font-size: 1.1em;
+  letter-spacing: 0.03em;
+  padding-left: 1em;
+  opacity: 0.9;
+}
+
+/* Session opener — heavy rule, ember glow */
+.session-opener {
+  border-bottom: 2px solid var(--primary);
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0px,
+      transparent 5px,
+      rgba(139, 0, 0, 0.04) 5px,
+      rgba(139, 0, 0, 0.04) 6px
+    );
+}
+
+/* Card and panel — dark iron border, faint grain */
+.card, .panel {
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 3px,
+      rgba(139, 0, 0, 0.03) 3px,
+      rgba(139, 0, 0, 0.03) 4px
+    );
+}
+
+/* Danger state — blood-deep pulse */
+.danger-state {
+  box-shadow: inset 0 0 24px rgba(139, 0, 0, 0.25);
+}
+
+/* Pact-fire flicker — for indicators tied to bargains and magic */
+@keyframes pactflicker {
+  0%, 100% { opacity: 0.8; }
+  20% { opacity: 0.95; }
+  45% { opacity: 0.65; }
+  70% { opacity: 0.85; }
+  90% { opacity: 0.5; }
+}
+
+.keeper-indicator {
+  animation: pactflicker 4s ease-in-out infinite;
+  color: var(--primary);
+  text-shadow: 0 0 6px rgba(139, 0, 0, 0.5);
+}
