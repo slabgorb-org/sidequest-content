@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""Relocate POIs and creatures from pack-level legacy `images/` to the
+"""Relocate POIs and creatures from pack-level `assets/images/` to the
 canonical `worlds/<world>/assets/` layout.
 
 Historical context: `scripts/render_common.py` only bridges POIs (image_subdir
 == "poi") to the world-tier layout; creatures and any older POI renders that
-predated that bridge ended up at `genre_packs/<pack>/images/poi/*.png` or
-`images/creatures/*.png`. The server's POI resolver only reads
+predated that bridge ended up at `genre_packs/<pack>/assets/images/poi/*.png`
+or `assets/images/creatures/*.png`. The server's POI resolver only reads
 `worlds/<world>/assets/poi/`, so these files are invisible to runtime even
 though they exist on disk.
 
-Portraits are intentionally NOT touched — `images/portraits/` is still where
-the portrait renderer writes today and where the portrait_manifest loader
+Portraits are intentionally NOT touched — `assets/images/portraits/` is still
+where the portrait renderer writes today and where the portrait_manifest loader
 expects them.
 
 This script:
-  1. Walks every `<pack>/images/<kind>/*.png` (kind = poi or creatures)
+  1. Walks every `<pack>/assets/images/<kind>/*.png` (kind = poi or creatures)
      under --src-root.
   2. For each file, computes an ASCII-folded slug from the filename.
   3. Looks up which world in that pack owns a matching slug (collected from
@@ -29,7 +29,7 @@ destination already exists are reported and skipped — fix manually.
 Defaults to dry-run. Pass --apply to actually copy.
 
 Usage:
-    # In-place oq-1 cleanup (POIs and creatures from oq-1's own images/)
+    # In-place oq-1 cleanup (POIs and creatures from oq-1's own assets/images/)
     python3 tools/relocate_legacy_pack_images.py
     python3 tools/relocate_legacy_pack_images.py --apply --delete-source
 
@@ -164,7 +164,7 @@ def main() -> int:
 
         header_printed = False
         for kind in kinds:
-            src_dir = pack_dir / "images" / kind
+            src_dir = pack_dir / "assets" / "images" / kind
             if not src_dir.is_dir():
                 continue
             for src_file in sorted(src_dir.glob("*.png")):
@@ -176,13 +176,13 @@ def main() -> int:
                     header_printed = True
 
                 if not candidate_worlds:
-                    print(f"  ORPHAN: images/{kind}/{src_file.name}  "
+                    print(f"  ORPHAN: assets/images/{kind}/{src_file.name}  "
                           f"(no matching slug in any world)")
                     orphan += 1
                     continue
                 if len(set(candidate_worlds)) > 1:
                     print(
-                        f"  AMBIGUOUS: images/{kind}/{src_file.name}  "
+                        f"  AMBIGUOUS: assets/images/{kind}/{src_file.name}  "
                         f"(matches: {', '.join(sorted(set(candidate_worlds)))})"
                     )
                     ambiguous += 1
@@ -213,7 +213,7 @@ def main() -> int:
                 if canonical_slug != src_file.stem:
                     rename_note = f"  [slug-normalized: {canonical_slug}]"
                 print(
-                    f"  {verb}: images/{kind}/{src_file.name}  "
+                    f"  {verb}: assets/images/{kind}/{src_file.name}  "
                     f"→ worlds/{world}/assets/{kind}/{canonical_slug}.png"
                     f"{rename_note}"
                 )
@@ -225,7 +225,7 @@ def main() -> int:
                 moved += 1
 
     print(
-        f"\nSummary: {'moved' if args.apply else 'would-move'}={moved}  "
+        f"\nSummary: {'copied' if args.apply else 'would-copy'}={moved}  "
         f"collisions={collided}  ambiguous={ambiguous}  orphans={orphan}"
         + ("" if args.apply else "  (dry-run; pass --apply)")
     )
