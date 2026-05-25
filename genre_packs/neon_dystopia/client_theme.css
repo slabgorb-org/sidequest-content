@@ -32,31 +32,6 @@
   font-display: swap;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    /* CRT scanlines */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 255, 255, 0.015) 2px,
-      rgba(0, 255, 255, 0.015) 4px
-    ),
-    /* Neon bloom from center */
-    radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.03) 0%, transparent 50%),
-    /* Dark corners */
-    radial-gradient(ellipse at center, transparent 40%, rgba(5, 5, 8, 0.6) 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-#narrative {
-  position: relative;
-  z-index: 1;
-}
 
 /* Body text — slight digital glow */
 .narration-block p {

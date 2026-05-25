@@ -32,27 +32,6 @@
   font-display: swap;
 }
 
-/* Paper texture via SVG noise filter — seamless, no external image needed */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    /* Subtle warm vignette from edges */
-    radial-gradient(ellipse at center, transparent 50%, rgba(13, 10, 5, 0.4) 100%),
-    /* Faint yellowed tint to simulate aged paper */
-    linear-gradient(180deg, rgba(201, 169, 110, 0.03) 0%, rgba(139, 105, 20, 0.02) 100%);
-  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E#n");
-  mix-blend-mode: soft-light;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Ensure content sits above the texture */
-#narrative {
-  position: relative;
-  z-index: 1;
-}
 
 /* Warm the text color slightly for pulp feel */
 .narration-block p {
