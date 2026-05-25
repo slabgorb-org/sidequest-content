@@ -1,0 +1,61 @@
+name: Span Aristocracy
+summary: The human upper class of the Aureate Span
+description: 'The human upper class of the Aureate Span — courtiers, artists, duelists,
+  and aesthetes who live by the Doctrine of Radiance. Names are melodramatic and multi-syllabic,
+  drawn from Romance and Latin roots with a baroque flair. Titles are earned through
+  artistic achievement or arena victory, not birth. A name like "Solenne Veradaine,
+  Champion Resplendent" tells you everything: where they live, that they fight, and
+  that they won beautifully.'
+slots:
+  given_name:
+    corpora:
+    - corpus: latin.txt
+      weight: 0.5
+    - corpus: spanish.txt
+      weight: 0.5
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: latin.txt
+      weight: 0.7
+    - corpus: spanish.txt
+      weight: 0.3
+    lookback: 3
+  title:
+    word_list:
+    - Resplendent
+    - Aureate
+    - Luminant
+    - Radiant
+    - Prismatic
+    - Incandescent
+    - Illustrious
+    - Effulgent
+  place_noun:
+    word_list:
+    - salon
+    - gallery
+    - terrace
+    - atrium
+    - belvedere
+    - rotunda
+    - arcade
+    - loggia
+  adjective:
+    word_list:
+    - golden
+    - radiant
+    - luminous
+    - prismatic
+    - gilded
+    - brilliant
+    - solar
+    - blazing
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name} {family_name}, {title}'
+- '{given_name} the {title}'
+place_patterns:
+- '{family_name} {place_noun}'
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'

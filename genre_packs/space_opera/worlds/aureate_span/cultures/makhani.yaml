@@ -1,0 +1,53 @@
+name: Makhani
+summary: Insectoid hive-beings with amber-resin architecture and a religion built
+  around stellar death
+description: Insectoid hive-beings with amber-resin architecture and a religion built
+  around stellar death. Their names are untranslatable click-patterns rendered into
+  human speech as harsh, percussive syllables. Individual Makhani are identified by
+  function within the hive; the closest human equivalent would be if your name was
+  your job title followed by a serial number, but somehow dignified.
+slots:
+  given_name:
+    corpora:
+    - corpus: georgian.txt
+      weight: 0.7
+    - corpus: russian.txt
+      weight: 0.3
+    lookback: 2
+  caste:
+    word_list:
+    - Tender
+    - Keeper
+    - Listener
+    - Builder
+    - Speaker
+    - Watcher
+    - Singer
+    - Shaper
+  place_noun:
+    word_list:
+    - chamber
+    - cell
+    - gallery
+    - tunnel
+    - vault
+    - comb
+    - spire
+    - nest
+  adjective:
+    word_list:
+    - warm
+    - deep
+    - old
+    - vast
+    - amber
+    - sealed
+    - humming
+    - sacred
+person_patterns:
+- '{given_name}'
+- '{given_name} {caste}'
+- The {caste} {given_name}
+place_patterns:
+- The {adjective} {place_noun}
+- '{caste}''s {place_noun}'
