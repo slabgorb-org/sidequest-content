@@ -1,0 +1,49 @@
+name: Orvinnic
+summary: Covenant-people — their biology is a continuing pact
+description: A people whose ancestors struck a bargain that is still being paid with
+  the bodies of every generation. They are not a race in the old sense — they are
+  a population whose physiology is a contract still in force. Names are doubled in
+  formal use, because every Orvinnic child carries both the name they were given and
+  the name the pact gave them. One of those names should never be spoken in the wrong
+  room.
+slots:
+  given_name:
+    corpora:
+    - corpus: finnish.txt
+      weight: 0.6
+    - corpus: swedish.txt
+      weight: 0.4
+    lookback: 3
+  bound_name:
+    corpora:
+    - corpus: finnish.txt
+      weight: 1.0
+    lookback: 4
+  place_noun:
+    word_list:
+    - hollow
+    - sanctum
+    - grove
+    - fold
+    - hearth
+    - circle
+    - well
+    - stone
+    - stand
+  adjective:
+    word_list:
+    - bound
+    - shared
+    - patient
+    - slow
+    - held
+    - changed
+    - long-kept
+    - quiet
+person_patterns:
+- '{given_name}-{bound_name}'
+- '{given_name} of the {bound_name} kin'
+- '{given_name}, whose other name is {bound_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {place_noun} of the {bound_name}

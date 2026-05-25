@@ -1,0 +1,68 @@
+name: Tuk-Tuk Syndicate
+summary: Southeast Asian three-wheeler culture
+description: Southeast Asian three-wheeler culture. Their conlang blends Thai-Khmer
+  tonal flow with Japanese precision — the sound of Pacific Rim alley culture where
+  two street languages collided.
+slots:
+  given_name:
+    corpora: &id001
+    - corpus: thai_khmer.txt
+      weight: 0.6
+    - corpus: japanese.txt
+      weight: 0.4
+    lookback: 2
+    reject_files:
+    - reject_common.txt
+  family_name:
+    corpora:
+    - corpus: japanese.txt
+      weight: 0.5
+    - corpus: thai_khmer.txt
+      weight: 0.5
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  title:
+    word_list:
+    - Phi
+    - Nai
+    - Lung
+    - Pii
+    - Khun
+    - Ajarn
+  place_noun:
+    word_list:
+    - soi
+    - trok
+    - talat
+    - thanon
+    - saphan
+    - khlong
+    - tung
+    - pak
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  adjective:
+    word_list:
+    - lek
+    - meut
+    - ngoi
+    - reo
+    - luk
+    - luang
+    - dam
+    - deng
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+person_patterns:
+- '{given_name}'
+- '{title} {given_name}'
+- '{given_name} the {family_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{given_name}''s {place_noun}'
+- '{place_noun} {given_name}'

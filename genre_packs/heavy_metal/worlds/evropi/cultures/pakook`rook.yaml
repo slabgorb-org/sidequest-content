@@ -1,0 +1,51 @@
+name: Pakook`rook
+summary: Frog-humanoid knotsong bards — throat-sac singers, swamp dwellers, enslaved
+  by Zkęd, at war with Waterfolk
+description: Frog-humanoid people who live in the swamps south of the Egzami, equally
+  at home above and below the waterline. They wear lily-pad collars and clothing woven
+  from beaten rushes, and carry long tridents they use to pole-vault across muddy
+  stretches. Their most famous artform is the knotsong — a written form called Hrooukpookrook,
+  a syllabary of tied-off reeds bound to a stick, each knot a word. A trained J`rook
+  bard inflates his throat-sac until he can exhale through two voices at once, harmonising
+  with himself in the peculiar croaking cadence of the Pakook language. The Zkęd call
+  them Pako or froggies, enslave them, and ship them drugged on reniksnad to the Pę
+  slave markets. The Pakook`rook are at war with the Waterfolk; neither side remembers
+  who started it, but the Wazdia makes sure both sides continue it.
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_pakook.txt
+      weight: 1.0
+    lookback: 4
+  family_name:
+    corpora:
+    - corpus: evropi_pakook.txt
+      weight: 1.0
+    lookback: 4
+  place_noun:
+    word_list:
+    - pond
+    - hollow
+    - reedbed
+    - croak
+    - pool
+    - rise
+    - lilypad
+    - knotgrove
+    - shallow
+  adjective:
+    word_list:
+    - croaking
+    - lilypad
+    - knotted
+    - deep-voiced
+    - stilled
+    - pondbound
+    - echoed
+person_patterns:
+- '{given_name}'
+- '{given_name}`{family_name}'
+- '{given_name} the {adjective}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {place_noun} of {family_name}

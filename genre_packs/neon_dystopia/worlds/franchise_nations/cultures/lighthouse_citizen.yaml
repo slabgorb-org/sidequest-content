@@ -1,0 +1,58 @@
+name: Lighthouse Citizen
+summary: Lighthouse Collective citizens
+description: Lighthouse Collective citizens. Names are algorithmically assigned at
+  enrollment for "optimal phonemic distinctiveness." Most people keep their birth
+  names as a private nickname. Official names tend toward the aspirational and vaguely
+  Nordic.
+slots:
+  given_name:
+    corpora:
+    - corpus: finnish.txt
+      weight: 0.4
+    - corpus: english.txt
+      weight: 0.4
+    - corpus: french.txt
+      weight: 0.2
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: finnish.txt
+      weight: 0.3
+    - corpus: english.txt
+      weight: 0.5
+    - corpus: french.txt
+      weight: 0.2
+    lookback: 3
+  title:
+    word_list:
+    - Coordinator
+    - Facilitator
+    - Wellbeing Lead
+    - Safety Liaison
+    - Impact Analyst
+    - Flourishing Director
+    - Nudge Architect
+  place_noun:
+    word_list:
+    - campus
+    - commons
+    - atrium
+    - hub
+    - sanctuary
+    - greenhouse
+    - garden
+  adjective:
+    word_list:
+    - serene
+    - optimal
+    - flourishing
+    - verdant
+    - aligned
+    - mindful
+    - resilient
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{family_name} {place_noun}'

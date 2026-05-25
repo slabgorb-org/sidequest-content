@@ -1,0 +1,63 @@
+name: Relay Operator
+summary: Independent couriers and logistics contractors
+description: Independent couriers and logistics contractors. Names are handles — part
+  callsign, part brand. Most operators haven't used their legal name in years. The
+  Mesh knows them by their reputation score; the Fairlanes know them by their silhouette.
+slots:
+  given_name:
+    corpora:
+    - corpus: english.txt
+      weight: 0.6
+    - corpus: french.txt
+      weight: 0.2
+    - corpus: finnish.txt
+      weight: 0.2
+    lookback: 2
+  family_name:
+    word_list:
+    - Razor
+    - Switch
+    - Drift
+    - Axle
+    - Spoke
+    - Volt
+    - Throttle
+    - Circuit
+    - Bypass
+    - Clutch
+    - Torque
+    - Swerve
+    - Gauge
+    - Piston
+    - Crank
+  title:
+    word_list:
+    - Runner
+    - Rider
+    - Driver
+    - Operator
+    - Courier
+  place_noun:
+    word_list:
+    - stop
+    - waypoint
+    - depot
+    - garage
+    - rest
+    - cache
+    - drop
+  adjective:
+    word_list:
+    - last
+    - fast
+    - free
+    - open
+    - dead
+    - live
+    - hot
+person_patterns:
+- '{given_name} ''{family_name}'''
+- '''{family_name}'''
+place_patterns:
+- The {adjective} {place_noun}
+- '{family_name}''s {place_noun}'

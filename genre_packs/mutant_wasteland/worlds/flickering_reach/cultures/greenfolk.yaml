@@ -1,0 +1,59 @@
+description: Plant-mutant communities in overgrown ruins. Names have an organic, growing
+  quality.
+name: Greenfolk
+summary: Plant-mutant communities in overgrown ruins
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name} the {adjective}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{family_name} {place_noun}'
+slots:
+  adjective:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - blooming
+    - rotting
+    - overgrown
+    - sunlit
+    - tangled
+    - spored
+    - creeping
+    - ancient
+  family_name:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - Thornwall
+    - Rootdeep
+    - Mossback
+    - Vinecrawl
+    - Sporecap
+    - Bloomheart
+    - Saplimb
+    - Fernwalk
+  given_name:
+    corpora:
+    - corpus: finnish.txt
+      weight: 1.0
+    - corpus: hungarian.txt
+      weight: 1.0
+    lookback: 2
+    reject_files: []
+    word_list: []
+  place_noun:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - grove
+    - thicket
+    - canopy
+    - garden
+    - hollow
+    - tangle
+    - bower
+    - nursery

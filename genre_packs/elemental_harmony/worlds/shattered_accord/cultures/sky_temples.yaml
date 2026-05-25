@@ -1,0 +1,54 @@
+description: Mountain monasteries — air channelers, wandering monks, Tibetan-Nepali
+  aesthetic
+dictionary: {}
+name: Sky Temples
+summary: Mountain monasteries
+person_patterns:
+- '{given_name} {dharma_name}'
+- '{dharma_name} of the {adjective} {place_noun}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{dharma_name} {place_noun}'
+slots:
+  adjective:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - soaring
+    - serene
+    - hollow
+    - singing
+    - sacred
+    - thin
+    - eternal
+    - clear
+  dharma_name:
+    corpora:
+    - corpus: air_nomad.txt
+      weight: 0.7
+    - corpus: hindi_sanskrit.txt
+      weight: 0.3
+    lookback: 3
+    reject_files: []
+    word_list: []
+  given_name:
+    corpora:
+    - corpus: air_nomad.txt
+      weight: 1.0
+    lookback: 2
+    reject_files: []
+    word_list: []
+  place_noun:
+    corpora: []
+    lookback: 2
+    reject_files: []
+    word_list:
+    - peak
+    - temple
+    - pass
+    - spire
+    - monastery
+    - aerie
+    - cloud
+    - wind

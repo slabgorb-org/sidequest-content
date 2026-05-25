@@ -1,0 +1,72 @@
+name: Zkęd
+summary: Slavic authoritarian humans of Zkędzała — secret-police state, lost-heir
+  cult, slave traders
+description: Light-skinned humans with dark hair and eyes. The men wear braided beards
+  threaded with small metal beads; the women braid matching beads into their hair,
+  so a Zkęd crowd makes a faint rattling sound when it moves. They dress in somber
+  cold-weather clothing for the mountain borderlands and the Egzami forest interior.
+  They are ruled hereditarily by a Waz — currently Isku the Eighth, old and sharp
+  of tongue, with three sons positioning for the succession. Beneath the Waz sits
+  the Wazdia, the secret police whose motto is "mind before heart," and beneath the
+  Wazdia sits the Daggereyes, the contract killers the Wazdia disavows in public.
+  The Zkęd are a downtrodden people ruling an even more downtrodden people — they
+  enslave the Waterfolk and the Pakook`rook and ship them to the Pę slave markets
+  drugged on reniksnad.
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_zked.txt
+      weight: 1.0
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: evropi_zked.txt
+      weight: 1.0
+    lookback: 3
+  noble_house:
+    word_list:
+    - Zblášzed
+    - Zężebyloz
+    - Uzlůemar
+    - Smrtvámi
+  commoner_name:
+    word_list:
+    - Które
+    - Smutně
+    - Smrte
+    - Ztam
+    - Snadz
+    - Woleste
+  place_noun:
+    word_list:
+    - hold
+    - seat
+    - court
+    - keep
+    - mark
+    - gate
+    - watch
+    - ford
+    - lodge
+    - dworek
+  adjective:
+    word_list:
+    - somber
+    - braided
+    - binding
+    - heavy
+    - cold
+    - dark
+    - wazdian
+    - hushed
+    - bound
+    - old
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name} na {family_name}'
+- '{given_name} {commoner_name}'
+- '{given_name} of House {noble_house}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{family_name} {place_noun}'
+- The {adjective} {place_noun} of {noble_house}

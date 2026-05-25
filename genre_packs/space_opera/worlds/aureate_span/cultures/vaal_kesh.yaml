@@ -1,0 +1,64 @@
+name: Vaal-Kesh
+summary: Amphibious traders with chromatophore skin that shifts color with mood and
+  intent
+description: Amphibious traders with chromatophore skin that shifts color with mood
+  and intent. Their names are liquid — soft consonants, long vowels, syllables that
+  flow like the tidal pools of their homeworld. They don't use family names; instead,
+  a Vaal-Kesh carries a trade-name that describes their specialty. "Mivaan of the
+  Blue Tincture" means Mivaan makes dyes. "Kelossa of the Quiet Drop" means Kelossa
+  makes poisons, and isn't that the same thing.
+slots:
+  given_name:
+    corpora:
+    - corpus: polynesian.txt
+      weight: 0.6
+    - corpus: finnish.txt
+      weight: 0.4
+    lookback: 2
+  trade_name:
+    word_list:
+    - Tincture
+    - Essence
+    - Distillation
+    - Infusion
+    - Precipitate
+    - Elixir
+    - Vapor
+    - Philter
+  modifier:
+    word_list:
+    - Blue
+    - Quiet
+    - Slow
+    - Deep
+    - Warm
+    - Bright
+    - Salt
+    - Amber
+  place_noun:
+    word_list:
+    - pool
+    - basin
+    - spring
+    - cistern
+    - grotto
+    - well
+    - channel
+    - estuary
+  adjective:
+    word_list:
+    - tidal
+    - still
+    - brackish
+    - warm
+    - deep
+    - clear
+    - flowing
+    - dark
+person_patterns:
+- '{given_name}'
+- '{given_name} of the {modifier} {trade_name}'
+place_patterns:
+- The {modifier} {place_noun}
+- '{given_name}''s {place_noun}'
+- '{adjective} {place_noun}'

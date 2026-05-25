@@ -1,0 +1,65 @@
+name: Café Racers
+summary: Speed purists
+description: Speed purists. Their conlang blends English precision with French elegance
+  — clipped, fast syllables that sound like wind through a visor.
+slots:
+  given_name:
+    corpora: &id001
+    - corpus: english.txt
+      weight: 0.5
+    - corpus: french.txt
+      weight: 0.5
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  family_name:
+    corpora:
+    - corpus: french.txt
+      weight: 0.6
+    - corpus: english.txt
+      weight: 0.4
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  title:
+    word_list:
+    - The Ton
+    - Nobody
+    - Just
+    - Old
+    - Quick
+  place_noun:
+    word_list:
+    - cafe
+    - stretch
+    - straight
+    - bend
+    - mark
+    - timing
+    - point
+    - line
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  adjective:
+    word_list:
+    - quick
+    - long
+    - blind
+    - fast
+    - dark
+    - flat
+    - open
+    - dawn
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+person_patterns:
+- '{given_name}'
+- '{given_name} {family_name}'
+- '{title} {given_name}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'

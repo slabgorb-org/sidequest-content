@@ -1,0 +1,47 @@
+name: American Expatriate
+summary: The Lost Generation and their hangers-on
+description: The Lost Generation and their hangers-on. Americans in Paris — writers,
+  journalists, drunks, and the occasional heiress slumming it on the Left Bank.
+slots:
+  given_name:
+    corpora:
+    - corpus: english.txt
+      weight: 1.0
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: english.txt
+      weight: 1.0
+    lookback: 3
+  title:
+    word_list:
+    - Mr.
+    - Mrs.
+    - Miss
+    - Dr.
+    - Professor
+    - Captain
+    - Sergeant
+  place_noun:
+    word_list:
+    - bar
+    - hotel
+    - bookshop
+    - studio
+    - club
+    - room
+    - office
+  adjective:
+    word_list:
+    - old
+    - little
+    - back
+    - corner
+    - upstairs
+    - downtown
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{family_name}''s {place_noun}'

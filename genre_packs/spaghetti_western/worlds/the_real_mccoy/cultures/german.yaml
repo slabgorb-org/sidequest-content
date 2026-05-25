@@ -1,0 +1,66 @@
+name: German
+summary: Deutschtown and South Side — brewers, bakers, machinists, cabinetmakers,
+  Turnverein and Sängerbund
+description: 'The 48er and post-1865 German-American community centered on Deutschtown
+  (East End of Allegheny City), Lower Hill, and the South Side. Skilled craftsmen
+  and industrialists — Iron City Brewing (Frauenheim), Eberhardt & Ober, H. J. Heinz,
+  H. C. Frick, George Westinghouse. Bilingual homes, Pittsburger Volksblatt on the
+  breakfast table, Turnverein gymnastics and Sängerbund choral societies as civic
+  cornerstones. St. Mary of the Mount on the ridgetop for the Catholic cohort; Smithfield
+  Street German Evangelical for the Protestants.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_german_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_german_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Herr
+    - Frau
+    - Fräulein
+    - Herr Doktor
+    - Herr Professor
+    - Kapellmeister
+    - Braumeister
+    - Meister
+  adjective:
+    word_list:
+    - alt
+    - jung
+    - gross
+    - klein
+    - neu
+    - schwarz
+    - weiss
+    - roth
+    - eisern
+    - golden
+  place_noun:
+    word_list:
+    - Brauerei
+    - Garten
+    - Halle
+    - Platz
+    - Strasse
+    - Werk
+    - Kirche
+    - Verein
+    - Markt
+    - Gasse
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{family_name}, {given_name}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{family_name}-{place_noun}'
+- '{adjective} {place_noun}'

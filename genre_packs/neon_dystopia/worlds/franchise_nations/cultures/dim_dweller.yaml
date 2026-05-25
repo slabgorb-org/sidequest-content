@@ -1,0 +1,63 @@
+name: Dim Dweller
+summary: People living in the unmonitored gaps
+description: People living in the unmonitored gaps. No franchise affiliation, no Mesh
+  score, no algorithmic name assignment. Just names — passed down, chosen, borrowed,
+  or stolen. The last people on the continent who introduce themselves without a title.
+slots:
+  given_name:
+    corpora:
+    - corpus: english.txt
+      weight: 0.3
+    - corpus: french.txt
+      weight: 0.2
+    - corpus: hungarian.txt
+      weight: 0.2
+    - corpus: polish.txt
+      weight: 0.15
+    - corpus: finnish.txt
+      weight: 0.15
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: english.txt
+      weight: 0.3
+    - corpus: french.txt
+      weight: 0.3
+    - corpus: hungarian.txt
+      weight: 0.2
+    - corpus: polish.txt
+      weight: 0.2
+    lookback: 3
+  title:
+    word_list:
+    - Elder
+    - Doc
+    - Chief
+    - Sister
+    - Brother
+    - Old
+    - Boss
+  place_noun:
+    word_list:
+    - camp
+    - squat
+    - shelter
+    - market
+    - yard
+    - pit
+    - hollow
+  adjective:
+    word_list:
+    - old
+    - dark
+    - lost
+    - free
+    - dead
+    - last
+    - quiet
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {given_name}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'

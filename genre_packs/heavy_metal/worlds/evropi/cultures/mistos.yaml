@@ -1,0 +1,74 @@
+name: Mistos
+summary: Elf-supremacist military junta — beauty-eugenics, red-and-black silks, puppet
+  states, conscription
+description: 'Elves with fine light hair and pale skin who dress in red and black
+  dyed silks and leather. They are convinced they are the master race, and the conviction
+  is grounded — in their own reasoning — on their objectively superior beauty. The
+  logic closes on itself: a Mistos born with any blemish, even a wen or a winestain
+  birthmark, is by definition no longer Mistos, and is banished to the Ingurdios mines
+  or worse. The culture is ruled by the military; every able-bodied adult serves,
+  and the General of Mistos is also the ruler of Mistos. They conquer their neighbours
+  and hold them as puppet-states, installing local rulers that take their orders from
+  the General. They share a language family (Trosse) with the Jambiendo, but centuries
+  of divergence have given Mistos speech a harsh military accent — short, clipped,
+  front-loaded with hard consonants — that no Jambiendo would confuse with their own.
+  Neither people remembers how the split happened. Neither wants to.'
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_jambiendo.txt
+      weight: 1.0
+    lookback: 4
+  family_name:
+    corpora:
+    - corpus: evropi_jambiendo.txt
+      weight: 1.0
+    lookback: 4
+  accent_prefix:
+    word_list:
+    - Kr
+    - St
+    - Gr
+    - Vr
+    - Ts
+    - Sk
+    - Sp
+    - Dr
+  rank_title:
+    word_list:
+    - General
+    - Marshal
+    - Captain
+    - Lieutenant
+    - Standard-Bearer
+    - Inquisitor
+    - Warden
+    - Field-Corrector
+  place_noun:
+    word_list:
+    - barracks
+    - parade
+    - mine
+    - puppet-seat
+    - garrison
+    - field
+    - march
+    - camp
+  adjective:
+    word_list:
+    - red
+    - black
+    - silk
+    - iron
+    - mirror-bright
+    - flawless
+    - inspected
+    - conscripted
+    - sealed
+person_patterns:
+- '{accent_prefix}{given_name} {family_name}'
+- '{rank_title} {given_name} {family_name}'
+- '{given_name} the {adjective}'
+place_patterns:
+- '{adjective} {place_noun}'
+- The {rank_title}'s {place_noun}

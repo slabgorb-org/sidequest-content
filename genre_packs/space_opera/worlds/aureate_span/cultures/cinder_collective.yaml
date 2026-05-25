@@ -1,0 +1,64 @@
+name: Cinder Collective
+summary: The Underlevel resistance
+description: The Underlevel resistance — humans, Vaal-Kesh defectors, and a few rogue
+  Makhani workers who've broken from the hive. Their names are deliberately unglamorous,
+  a rejection of the Doctrine of Radiance. They use short, blunt names — often occupational
+  or geographic — and refuse titles. A Cinder might be called "Breck" or "Tav" or
+  "Nine-South" (their Underspine section number). The aesthetic is anti-aesthetic.
+  That's the point.
+slots:
+  given_name:
+    corpora:
+    - corpus: english.txt
+      weight: 0.5
+    - corpus: russian.txt
+      weight: 0.5
+    lookback: 2
+  section:
+    word_list:
+    - North
+    - South
+    - Deep
+    - Ring
+    - Pipe
+    - Vent
+    - Grid
+    - Core
+  number:
+    word_list:
+    - One
+    - Two
+    - Three
+    - Four
+    - Five
+    - Six
+    - Seven
+    - Eight
+    - Nine
+  place_noun:
+    word_list:
+    - den
+    - cache
+    - squat
+    - shop
+    - hole
+    - bay
+    - stack
+    - junction
+  adjective:
+    word_list:
+    - rust
+    - cold
+    - dark
+    - low
+    - dry
+    - bare
+    - burnt
+    - sharp
+person_patterns:
+- '{given_name}'
+- '{number}-{section}'
+- '{given_name} {number}-{section}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{number}-{section} {place_noun}'

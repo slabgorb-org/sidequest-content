@@ -1,0 +1,68 @@
+name: Eastern European Slavs
+summary: The new arrivals — Polish, Slovak, Hungarian, Rusyn, Lithuanian single-man
+  labor cohort in the South Side and Braddock boarding houses
+description: 'The emerging 1870s wave — Galician Poles, Slovaks from Upper Hungary,
+  Magyars, Carpatho-Rusyns, Lithuanians. Mostly single men on labor contracts, boarding-house
+  living on the South Side and in Braddock. The most dangerous mill and coke-oven
+  jobs at the lowest pay. 1878 is early — the mass wave follows 1880. Greek Catholic
+  (Rusyn), Roman Catholic (Polish, Slovak, Magyar), Lutheran (some Slovak), boarding-house
+  diets of kielbasa, haluski, kapusta, rye bread. Foremen and clerks Anglicize the
+  names at the hiring line — Jan becomes John, Mikolaj becomes Nicholas, Štefan becomes
+  Steve — but home and parish keep the original.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_slav_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_slav_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Pan
+    - Pani
+    - Ojciec
+    - Otec
+    - Atyám
+    - Batyushka
+    - Foreman
+    - Mister
+    - Missus
+  adjective:
+    word_list:
+    - Stary
+    - Młody
+    - Starý
+    - Nový
+    - Nagy
+    - Kis
+    - Black
+    - Iron
+    - Coke
+    - Big
+  place_noun:
+    word_list:
+    - ulica
+    - parish
+    - kolonia
+    - dom
+    - patch
+    - row
+    - chapel
+    - hall
+    - works
+    - borough
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{family_name}, {given_name}'
+place_patterns:
+- '{family_name} {place_noun}'
+- '{adjective} {place_noun}'
+- Saint {given_name}'s {place_noun}

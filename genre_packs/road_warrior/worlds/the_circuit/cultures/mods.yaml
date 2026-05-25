@@ -1,0 +1,67 @@
+name: Mods
+summary: Style-obsessed scooter riders
+description: Style-obsessed scooter riders. Their conlang blends English clipped consonants
+  with Italian vowel flow — the sound of London kids who chose continental sophistication.
+slots:
+  given_name:
+    corpora: &id001
+    - corpus: english.txt
+      weight: 0.5
+    - corpus: italian.txt
+      weight: 0.5
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  family_name:
+    corpora:
+    - corpus: italian.txt
+      weight: 0.6
+    - corpus: english.txt
+      weight: 0.4
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  title:
+    word_list:
+    - Top
+    - Original
+    - Number One
+    - The Face
+    - The Ticket
+  place_noun:
+    word_list:
+    - club
+    - corner
+    - alley
+    - arcade
+    - lane
+    - cafe
+    - cellar
+    - floor
+    - step
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+  adjective:
+    word_list:
+    - silver
+    - neon
+    - all-night
+    - velvet
+    - mod
+    - electric
+    - mirror
+    - sharp
+    corpora: *id001
+    lookback: 3
+    reject_files:
+    - reject_common.txt
+person_patterns:
+- '{given_name}'
+- '{given_name} {family_name}'
+- '{title} {given_name}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'
+- '{family_name} {place_noun}'

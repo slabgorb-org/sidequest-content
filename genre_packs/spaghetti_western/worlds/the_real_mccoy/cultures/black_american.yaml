@@ -1,0 +1,75 @@
+name: Black American
+summary: Hill District and Arthursville — Bethel AME, Monongahela House staff, Pullman
+  porters, barbers, the small professional class
+description: 'The established Black Pittsburgh community — 3,700 in the 1880 census,
+  rooted in the Hill District and Arthursville since the Underground Railroad era.
+  Bethel AME on Wylie Avenue (founded 1808, among the oldest Black congregations west
+  of the Alleghenies). Pullman porters (highly respected after 1868), barbers (who
+  dress for white-elite clientele and carry the community''s surest foothold in commercial
+  life), riverboat men (Cumberland Posey Sr. archetype), the Monongahela House all-Black
+  staff, a small professional class of physicians and teachers. The Allegheny Argus
+  muckrakes Raubritter and claims McCoy from the pages of every issue. Biblical-classical
+  and virtue naming traditions strong; Anglo surnames skewed toward former-enslaver
+  lineages (Washington, Jefferson, Carrington) and locative/occupational adoptions
+  (Freeman, Woods, Hunter, Carpenter).
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_black_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_black_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Reverend
+    - Deacon
+    - Elder
+    - Bishop
+    - Brother
+    - Sister
+    - Mother
+    - Professor
+    - Doctor
+    - Captain
+    - Mister
+    - Missus
+  adjective:
+    word_list:
+    - Old
+    - Young
+    - Big
+    - Tall
+    - Brother
+    - Uncle
+    - Auntie
+    - Deacon
+    - Preaching
+    - Singing
+  place_noun:
+    word_list:
+    - Avenue
+    - Street
+    - Alley
+    - Hall
+    - Chapel
+    - House
+    - Lodge
+    - Parish
+    - Row
+    - Quarter
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{adjective} {given_name} {family_name}'
+- '{family_name}, {given_name}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{title} {family_name}''s {place_noun}'
+- Bethel {place_noun}

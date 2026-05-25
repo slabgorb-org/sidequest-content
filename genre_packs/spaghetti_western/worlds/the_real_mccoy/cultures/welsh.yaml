@@ -1,0 +1,67 @@
+name: Welsh
+summary: The technical aristocracy — puddlers and rollers imported from the South
+  Wales valleys, Braddock and South Side chapels
+description: 'The imported technical aristocracy of Pittsburgh iron — puddlers and
+  rollers recruited from Merthyr Tydfil, Dowlais, Rhondda, Aberdare because the American
+  skill base couldn''t yet match them. Small, chapel-focused, Welsh-language at home.
+  Calvinistic Methodist and Welsh Congregational chapels in Braddock and on the South
+  Side. Clog-shod on the puddling floor (steel-toed boots cost more than a day''s
+  wage; the clogs keep feet above the cinders). Eisteddfods on Christmas and July
+  4. Patronymic naming skew: Jones, Williams, Davies, Evans, Thomas, Lewis dominate.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_welsh_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_welsh_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Reverend
+    - Deacon
+    - Parch.
+    - Foreman
+    - Roller
+    - Puddler
+    - Mister
+    - Missus
+  adjective:
+    word_list:
+    - Old
+    - Black
+    - White
+    - Red
+    - Little
+    - Big
+    - Iron
+    - Chapel
+    - Singing
+    - Quiet
+  place_noun:
+    word_list:
+    - chapel
+    - valley
+    - hollow
+    - mill
+    - furnace
+    - terrace
+    - row
+    - lane
+    - crossing
+    - cwm
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name} {family_name} the {title}'
+- '{title} {family_name}'
+- '{given_name} {family_name}, {adjective}'
+- '{given_name} the {adjective}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{adjective} {place_noun}'
+- Bethania {place_noun}

@@ -1,0 +1,49 @@
+name: Corsican & Mediterranean
+summary: The men who run the Milieu
+description: The men who run the Milieu — Corsicans, Sicilians, Marseillais. They
+  came to Paris from the south and took over the vice trade with a combination of
+  family loyalty, extreme violence, and business acumen. Their names sound like the
+  sun, but their business happens in the dark.
+slots:
+  given_name:
+    corpora:
+    - corpus: french.txt
+      weight: 0.5
+    - corpus: italian.txt
+      weight: 0.5
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: italian.txt
+      weight: 0.6
+    - corpus: french.txt
+      weight: 0.4
+    lookback: 3
+  title:
+    word_list:
+    - Monsieur
+    - Signore
+    - Don
+    - Patron
+  place_noun:
+    word_list:
+    - bistro
+    - arrière-salle
+    - bureau
+    - entrepôt
+    - cave
+    - garage
+  adjective:
+    word_list:
+    - vieux
+    - noir
+    - fermé
+    - dernier
+    - sud
+    - corse
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+place_patterns:
+- Le {place_noun} {adjective}
+- Chez {given_name}

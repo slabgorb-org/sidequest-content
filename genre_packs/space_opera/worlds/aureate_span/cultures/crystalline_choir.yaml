@@ -1,0 +1,51 @@
+name: Crystalline Choir
+summary: Silicon-based entities that communicate through harmonic resonance
+description: Silicon-based entities that communicate through harmonic resonance. Their
+  names are frequencies translated into human-pronounceable syllables — sharp consonants
+  and ringing vowels that approximate the pitches they actually use. A Choir member's
+  name is also a musical note; saying it correctly is a courtesy, humming it is a
+  compliment, and singing it wrong is an insult that can shatter your teeth.
+slots:
+  given_name:
+    corpora:
+    - corpus: finnish.txt
+      weight: 0.5
+    - corpus: japanese.txt
+      weight: 0.5
+    lookback: 2
+  harmonic:
+    word_list:
+    - Resonant
+    - Harmonic
+    - Tonal
+    - Chordal
+    - Overtone
+    - Keynote
+    - Dissonant
+    - Sympathetic
+  place_noun:
+    word_list:
+    - chamber
+    - bell
+    - spire
+    - arch
+    - vault
+    - dome
+    - column
+    - nave
+  adjective:
+    word_list:
+    - ringing
+    - clear
+    - deep
+    - high
+    - 'true'
+    - bright
+    - hollow
+    - sustained
+person_patterns:
+- '{given_name}'
+- '{given_name} {harmonic}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{given_name}''s {place_noun}'

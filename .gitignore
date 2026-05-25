@@ -22,9 +22,24 @@ runs/
 
 # Generated images live in R2 (cdn.slabgorb.com), not in this repo.
 # Render scripts (scripts/generate_portrait_images.py, generate_poi_images.py,
-# generate_creature_images.py) write PNGs into these paths as local workspace
-# only; the canonical home is R2. r2_sync_packs.py uploads from here.
+# generate_creature_images.py) write PNGs into assets/images/<kind>/ as local
+# workspace only; the canonical home is R2. r2_sync_packs.py uploads from here.
 # Manifests (portrait_manifest.yaml, POI yaml files) ARE the spec and stay in git.
+# Canonical layout: genre_packs/<pack>/assets/images/{portraits,poi,creatures,scenes}/
+genre_packs/**/assets/images/portraits/*.png
+genre_packs/**/assets/images/portraits/*.jpg
+genre_packs/**/assets/images/portraits/*.webp
+genre_packs/**/assets/images/poi/*.png
+genre_packs/**/assets/images/poi/*.jpg
+genre_packs/**/assets/images/poi/*.webp
+genre_packs/**/assets/images/scenes/*.png
+genre_packs/**/assets/images/scenes/*.jpg
+genre_packs/**/assets/images/scenes/*.webp
+genre_packs/**/assets/images/creatures/*.png
+genre_packs/**/assets/images/creatures/*.jpg
+genre_packs/**/assets/images/creatures/*.webp
+# Legacy path patterns (kept for cross-clone compatibility — old local renders
+# may still exist at the pre-consolidation images/ path on other machines)
 genre_packs/**/images/portraits/*.png
 genre_packs/**/images/portraits/*.jpg
 genre_packs/**/images/portraits/*.webp

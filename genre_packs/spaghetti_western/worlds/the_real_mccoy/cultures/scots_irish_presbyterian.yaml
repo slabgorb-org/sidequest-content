@@ -1,0 +1,77 @@
+name: Scots-Irish Presbyterian
+summary: Pittsburgh old-stock — law, banking, business ownership, East Liberty and
+  Shadyside homes
+description: 'The founding Anglo-Scots-Ulster Presbyterian families established in
+  Pittsburgh since the 1770s. Dominant in law, banking, manufacturing ownership, and
+  the civic-reform establishment. Brick and stone homes in Allegheny City, East Liberty,
+  Shadyside. Mellon, Negley, Denny, Carnegie, Wilkins, Scaife. First Presbyterian
+  on Wood Street is the mother congregation. Austere Calvinist registers — sermons
+  quoted at dinner, Latin mottoes on the stationery, Burns recited ironically.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_scots_irish_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_scots_irish_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Judge
+    - Colonel
+    - Captain
+    - Reverend
+    - Doctor
+    - Professor
+    - Elder
+    - Esquire
+    - Major
+    - Alderman
+  honorific:
+    word_list:
+    - Old
+    - Young
+    - the Elder
+    - the Younger
+    - III
+    - Sr.
+    - Jr.
+  place_noun:
+    word_list:
+    - avenue
+    - hill
+    - estate
+    - works
+    - bank
+    - hall
+    - square
+    - terrace
+    - heights
+    - grove
+  adjective:
+    word_list:
+    - old
+    - East
+    - West
+    - North
+    - upper
+    - lower
+    - new
+    - fine
+    - stone
+    - Presbyterian
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{given_name} {family_name}, {honorific}'
+- '{family_name} the {honorific}'
+place_patterns:
+- '{family_name} {place_noun}'
+- '{adjective} {family_name} {place_noun}'
+- '{family_name}''s {place_noun}'

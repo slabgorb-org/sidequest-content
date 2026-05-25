@@ -1,0 +1,73 @@
+name: Aldkin
+summary: Steppe-nomad humans of the Klas — herders of Anta horses, worshippers of
+  the Herdsman, Njörkte clerics
+description: 'The pastoral humans of the Klas Steppes, west of the river Jälv. They
+  are not one tribe but dozens — clans ranging from a few dozen to several thousand
+  — following their herds across endless grasslands under the Herdsman''s watch. Their
+  signature animal is the Anta, a proud black horse with a glossy coat and a stiff
+  cropped ruff-mane; an Anta is worth fifty percent more than an ordinary horse, twice
+  as fast, and twice as enduring. The Aldkin have one permanent structure in all the
+  steppes: the Epäässä, the Townhill, where all tribes are welcome and violence is
+  punishable by death — even drawing a weapon is an insult to the ancestor spirits.
+  The Epäässä is a trading ground, a neutral peace-ground, and the only place in the
+  Klas an outsider is strictly protected. The Aldkin are led, loosely, by their clerics
+  — the Njörkte, who tell the tribes when to move pastures and speak with the Herdsman''s
+  authority. The Mäinkin clan is the richest; the Päänkin are the poorest; the Törkin
+  are famously predictable in their summer and winter pastures.'
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_aldkin.txt
+      weight: 1.0
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: evropi_aldkin.txt
+      weight: 1.0
+    lookback: 3
+  clan_name:
+    word_list:
+    - Mäinkin
+    - Päänkin
+    - Törkin
+    - Jälvskin
+    - Epäkin
+    - Oerkin
+    - Björnkin
+    - Nöydkin
+  njorkte_rank:
+    word_list:
+    - Njörkte
+    - Njörkte Bädd
+    - Njörkte Nachen
+    - Nachen
+    - Ohja
+  place_noun:
+    word_list:
+    - steppe
+    - pasture
+    - ford
+    - camp
+    - hearth
+    - hill
+    - wind
+    - stand
+    - drift
+    - vårn
+  adjective:
+    word_list:
+    - broad
+    - silent
+    - far-riding
+    - grass-lit
+    - wind-worn
+    - patient
+    - steady
+    - open
+person_patterns:
+- '{given_name} of the {clan_name}'
+- '{given_name} {njorkte_rank}'
+- '{given_name} {family_name}, {clan_name}'
+place_patterns:
+- '{adjective} {place_noun}'
+- '{clan_name} {place_noun}'
