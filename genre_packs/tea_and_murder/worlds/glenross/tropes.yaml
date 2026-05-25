@@ -1,0 +1,418 @@
+# World-specific tropes — extends genre tropes for Glenross.
+#
+# These are the village's own quietly accumulated tensions, not the
+# mystery mechanics. They run underneath and between the per-session
+# mysteries as background threads the narrator can draw on. Each is
+# a simmering question the village lives with; none has a scripted
+# answer. The table discovers the resolution.
+#
+# Tension levels are deliberately low (0.3–0.45). This is cosy
+# mystery — the background hum of a village that is changing slowly
+# and not entirely comfortably, not a thriller.
+
+- id: the_lairds_uncertain_succession
+  name: The Laird's Uncertain Succession
+  description: >-
+    Sir Iain Ross was not raised to inherit Castle Ross. His elder
+    brother died of rheumatic fever at twelve; Iain was the second
+    son, expected to take the regiment. He completed his commission,
+    resigned, came home, and has managed the estate courteously and
+    well for twelve years — but the village has noticed that the
+    question of what comes next has not been answered. Hugo, the heir,
+    is twenty-six, called to the bar but practising not at all,
+    dividing his time between London chambers and the glen with no
+    clear plan for either. The estate awaits him; he has not asked it
+    to wait, but it does. And the older crofters, who remember the
+    brother who died, and the brother before that, and the uncle
+    before that, have a word for families whose heirs do not settle —
+    they call it the curse, and they say it quietly, and they do not
+    entirely mean it, and they do not entirely not.
+  category: tension
+  triggers:
+    - the laird's finances are mentioned or hinted at
+    - Hugo's plans or lack of plans surface in conversation
+    - a visitor with legal or financial business calls at Castle Ross
+    - the curse on the heirs is mentioned by a villager
+    - a death or illness in any landed family in the parish
+  narrative_hints:
+    - Sir Iain turning the signet ring on his hand while the conversation moves to rents
+    - Hugo laughing at the wrong moment when his father mentions the estate
+    - Lady Annabel's studied indifference to a question about the household's London expenses
+    - a letter from the Edinburgh solicitor arriving at the post office in a hand Mrs. Buchan knows by sight
+    - the guineas the laird sends at Christmas to the school coal fund — a gesture more affordable ten years ago
+  tension_level: 0.4
+  resolution_hints:
+    - Hugo settles — at the estate, at the bar, at the surgery — and the village absorbs the fact
+    - the financial pressure eases through the distillery or a fortunate season
+    - the financial pressure worsens and the estate begins to contract quietly
+    - a visitor with business at the castle forces the question into the open
+  tags: [estate, succession, family, finance, laird]
+  escalation:
+    - at: 0.2
+      event: >-
+        A small sign of the pressure — a tradesman's account settled
+        late, a shooting party not invited this season, the gardener's
+        under-gardener not replaced when he leaves. The village notices
+        in the way villages notice: by what is not said at the tea
+        rooms rather than what is.
+      npcs_involved: [Sir Iain Ross, Mrs. Cameron]
+      stakes: The estate's comfort is not what it was. The village is watching the edges.
+    - at: 0.35
+      event: >-
+        Hugo is observed doing something that looks like deciding —
+        a long conversation with his mother in the walled garden, a
+        morning at the distillery office with Donald Munro, a letter
+        written to his London chambers that the postmistress can see
+        is in his hand. The village reads intentions into movements
+        the way a parish always has.
+      npcs_involved: [Hugo Ross, Lady Annabel Ross, Mrs. Buchan]
+      stakes: The heir is stirring. The direction is not yet clear.
+    - at: 0.5
+      event: >-
+        The Edinburgh solicitor arrives on the afternoon train with
+        a case of papers. He is at Castle Ross for two nights. The
+        household does not discuss the visit. The minister calls at
+        the castle on the second morning, which is unusual.
+      npcs_involved: [Sir Iain Ross, Rev. Murchison]
+      stakes: Legal business is afoot. The village can feel the weight of it in the household's courtesy.
+    - at: 0.7
+      event: >-
+        A proposal surfaces — to sell the home farm, to lease the
+        salmon beats to a syndicate, to let the south wing to a
+        London family for the summer. The village's relationship with
+        the castle shifts by a degree that is measurable only in the
+        way Mrs. Cameron seats people at the tea rooms.
+      npcs_involved: [Sir Iain Ross, Hugo Ross, Donald Munro]
+      stakes: The estate is rearranging. The village must decide how it feels about it.
+    - at: 1.0
+      event: >-
+        The succession question resolves — not in a single dramatic
+        scene but in the accumulation of small settled facts the
+        village absorbs across a season. Hugo takes a position, or
+        does not. The estate contracts, or does not. The curse,
+        such as it was, is spoken of less, or spoken of differently.
+      npcs_involved: [Sir Iain Ross, Hugo Ross, Lady Annabel Ross]
+      stakes: The shape of the next generation of the glen is decided. The village adjusts.
+  passive_progression:
+    rate_per_turn: 0.003
+    rate_per_day: 0.012
+    accelerators:
+      - legal business at Castle Ross
+      - Hugo observed making decisions
+      - financial pressure mentioned
+      - the curse discussed
+      - a landed family elsewhere suffers a loss
+    decelerators:
+      - the estate runs smoothly
+      - Hugo is absent from the village
+      - a good season's rent
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
+
+- id: the_distillerys_growing_name
+  name: The Distillery's Growing Name
+  description: >-
+    Three generations of Munros have run the distillery on a licence
+    the laird's grandfather granted. For most of that time it was
+    a local operation — twelve hands, two copper stills named Caelidh
+    and Brigid, three bonded warehouses, and a reputation that did
+    not travel much past Inverness. That has changed. The current
+    vintage is well-spoken-of in Edinburgh. A London merchant ordered
+    three casks last spring — the largest single order in the
+    distillery's history. Donald Munro has been quietly excited about
+    this in his own register, which is nearly invisible from outside.
+    But a London order brings a London eye, and a London eye brings
+    questions about capacity, and capacity brings questions about
+    labour and water rights and the arrangement between the distillery
+    and the estate, and those questions bring outsiders, and outsiders
+    bring the kind of change the village has opinions about.
+  category: social
+  triggers:
+    - the distillery's business is discussed at the inn or the tea rooms
+    - a buyer or agent arrives from Edinburgh or London
+    - Donald Munro is observed in unusual conversation with the laird
+    - the distillery is running at unusual hours
+    - a new face is seen at the distillery yard
+  narrative_hints:
+    - Donald bringing out the tasting glass from the velvet pouch at the inn, which he does only when the subject is serious
+    - lamps at the distillery past midnight when the mash is not at that stage
+    - Mrs. Buchan noting a new commercial address on the distillery's outgoing post
+    - Hamish at the bar hearing a rumour about an Edinburgh buyer and polishing a glass harder than the glass requires
+    - the Munros' eldest son at the still room door at an hour that used to be his father's alone
+  tension_level: 0.35
+  resolution_hints:
+    - the London connection prospers and the distillery grows carefully under Donald's hand
+    - the growth attracts a takeover offer that tests the family's independence
+    - the arrangement with the estate is renegotiated and the village watches to see who benefits
+    - the buyer's business turns out to be more complicated than whisky
+  tags: [distillery, commerce, outsider, village_economy, ambition]
+  escalation:
+    - at: 0.2
+      event: >-
+        The distillery's good year is a topic at the tea rooms. Mrs.
+        Cameron has heard from her nephew — who labours at the
+        distillery — that the bonded warehouses are fuller than they
+        have been in a decade. Donald says nothing when asked. Donald's
+        wife Mhairi, at the kirk gate, allows herself a small smile.
+      npcs_involved: [Donald Munro, Mrs. Cameron]
+      stakes: A modest prosperity is forming. The village is pleased and curious.
+    - at: 0.35
+      event: >-
+        A visitor arrives at the inn with a card from an Edinburgh or
+        London firm and asks directions to the distillery. Hamish
+        notices. Mrs. Buchan notices. By tea the village knows a
+        buyer has called. Donald does not confirm or deny.
+      npcs_involved: [Donald Munro, Hamish Sinclair, Mrs. Buchan]
+      stakes: Outside interest has arrived in person. The distillery's business is becoming the village's business.
+    - at: 0.5
+      event: >-
+        Donald is seen at Castle Ross — not on the laird's invitation
+        but on his own errand, at the estate office, with papers. The
+        arrangement between the distillery and the estate — the
+        licence, the water rights, the terms that have not been
+        reviewed since 1882 — is on the table.
+      npcs_involved: [Donald Munro, Sir Iain Ross]
+      stakes: The original compact between the two families is under quiet renegotiation.
+    - at: 0.7
+      event: >-
+        A formal offer arrives — a partnership, an investment, a
+        takeover bid from a Lowland firm. Donald takes it home
+        and does not come to the inn for three evenings. His elder
+        son is seen at the bonded warehouse at dawn, counting barrels.
+      npcs_involved: [Donald Munro, Hamish Sinclair]
+      stakes: The distillery's independence is on the table. The family must choose.
+    - at: 1.0
+      event: >-
+        The matter resolves. Donald makes his decision at his own
+        pace, in his own register, and the village learns of it the
+        way villages learn of anything — by what is said at the post
+        office on a Tuesday morning and confirmed at the tea rooms
+        by Thursday.
+      npcs_involved: [Donald Munro, Sir Iain Ross, Mrs. Buchan]
+      stakes: The village's outward-facing industry is settled — for now. The glen's economy has shifted by a degree.
+  passive_progression:
+    rate_per_turn: 0.004
+    rate_per_day: 0.015
+    accelerators:
+      - a buyer visits the distillery
+      - commercial correspondence at the post office
+      - Donald in conversation with the laird
+      - the distillery running at unusual hours
+    decelerators:
+      - the distillery runs its normal rhythm
+      - Donald is at the inn at his usual hour
+      - no outside visitors this fortnight
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
+
+- id: the_railway_and_its_changes
+  name: The Railway and Its Changes
+  description: >-
+    The railway came to Glenross thirty years ago and the village
+    rearranged itself around the halt. Two trains a day — the morning
+    up from the south at twenty to ten, the afternoon down from
+    Inverness at quarter past four — are the village's two daily
+    appointments with the world outside. The platform has become the
+    village's threshold: visitors arrive on it, mysteries depart from
+    it, the distillery's casks are loaded onto its goods siding, and
+    the world's news arrives in the form of Mrs. Buchan's morning
+    post. The railway brought Dr. Ross back from Edinburgh
+    with a medical degree. It brought the London merchant who ordered
+    Donald's casks. It brought the retired colonel who is building his
+    cottage on the Long Pass. It will bring whoever steps off the
+    morning train next Tuesday and changes someone's week. The village
+    has not entirely decided whether this is progress or intrusion, and
+    it has had thirty years to decide.
+  category: social
+  triggers:
+    - a stranger arrives on the morning or afternoon train
+    - the railway halt or the stationmaster is part of a scene
+    - a villager takes the train to Inverness or beyond
+    - the goods siding is busy with distillery freight
+    - a discussion about the village's connection to the outside world
+  narrative_hints:
+    - the stationmaster Albert MacGregor knowing the time of the next train the way the minister knows the time of the next service
+    - the whistle audible at the bridge at twenty to ten, which means the morning post is nine minutes away
+    - a luggage tag addressed to a destination further on, left at the halt by accident or design
+    - Mrs. Buchan's morning shift beginning ten minutes before the first train, because the post is what connects the village to the empire
+    - the schoolchildren on the stile watching the four-fifteen pull in, which is the closest thing to theatre the village offers on a Wednesday
+  tension_level: 0.3
+  resolution_hints:
+    - the railway brings someone whose presence improves the village's fortunes
+    - the railway brings a change the village absorbs with difficulty
+    - the railway's connection is taken for granted at last — the novelty is over
+    - the railway becomes the means of a departure that changes the village's composition
+  tags: [railway, transport, outsider, modernity, connection]
+  escalation:
+    - at: 0.2
+      event: >-
+        A new timetable is posted at the halt — a third train,
+        perhaps, or a Sunday service, or a goods connection that
+        would let the distillery ship direct to Edinburgh. The
+        stationmaster is pleased. The minister is reserving judgement
+        about the Sunday service.
+      npcs_involved: [Rev. Murchison, Donald Munro]
+      stakes: The village's connection to the world is about to change by a small degree.
+    - at: 0.35
+      event: >-
+        A stranger arrives who is not a sportsman, not a solicitor,
+        not a relative of anyone in the parish. Their luggage is
+        professional. Their questions at the halt are about the
+        village's capacity — rooms, water, road quality. The
+        stationmaster sends word to the inn. The inn sends word
+        to Mrs. Buchan. By tea the village is considering the
+        implications.
+      npcs_involved: [Hamish Sinclair, Mrs. Buchan]
+      stakes: Someone is assessing the village for something. The village would like to know what.
+    - at: 0.5
+      event: >-
+        A proposal reaches the kirk session or the laird's office —
+        a hotel, a tourist connection, a commercial development that
+        would use the halt as its base. The village divides quietly
+        along lines that were already there: the tradespeople who
+        would benefit, the crofters who would not, the minister who
+        sees both sides and says so.
+      npcs_involved: [Rev. Murchison, Sir Iain Ross, Hamish Sinclair, Donald Munro]
+      stakes: The village's character is at stake in a way that is new enough to be uncomfortable.
+    - at: 0.7
+      event: >-
+        The proposal advances or is refused, and the village's
+        reaction reveals something about itself that was not visible
+        before — a conservatism deeper than courtesy, or a hunger
+        for change that surprises the minister.
+      npcs_involved: [Rev. Murchison, Miss Ferguson, Sir Iain Ross]
+      stakes: The village is learning what it values by watching what it is willing to change.
+    - at: 1.0
+      event: >-
+        The railway remains what it has been for thirty years — a
+        threshold, a convenience, a connection to the world that the
+        village uses on its own terms. The question of whether the
+        village is changing or the world is reaching in is, as it
+        has always been, a question for the tea rooms on a Thursday
+        afternoon.
+      npcs_involved: [Mrs. Cameron, Mrs. Buchan, Hamish Sinclair]
+      stakes: The village has absorbed another chapter of its own modernisation. The kettle is on.
+  passive_progression:
+    rate_per_turn: 0.002
+    rate_per_day: 0.008
+    accelerators:
+      - a stranger arrives by train
+      - a commercial proposal surfaces
+      - the timetable changes
+      - the goods siding is busy
+    decelerators:
+      - the trains run their usual two-a-day
+      - no strangers this fortnight
+      - the halt is quiet
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
+
+- id: the_old_glen_and_the_new
+  name: The Old Glen and the New
+  description: >-
+    The largest single class in the parish is the crofters and tenant
+    farmers — a dozen households on the laird's home farm, smallholders
+    along the glen, sheep families who have worked the same shieling
+    for four generations. They are the village's stock, and they are
+    aware that the village is changing around them in ways that do not
+    always serve their interests. The distillery is growing and will
+    need water that the crofts also need. The estate is under financial
+    pressure and the rents have not been reviewed since the laird's
+    father's time — which means they may go up. The schoolmistress
+    reads pamphlets from the Women's Social and Political Union and
+    does not advertise the fact, but the pamphlets are in the cottage
+    and the cottage is attached to the school and the children see
+    what the children see. The gas company has run a line as far as
+    the school. The post office has the wireless telegraph. The world
+    is arriving, one improvement at a time, and the older crofters
+    who still have the Gaelic at home are watching it arrive with the
+    patience of people who have seen improvements before and know
+    that not all of them improve.
+  category: tension
+  triggers:
+    - a rent review or estate business affecting the crofters
+    - the distillery's water use is discussed
+    - modernisation of any kind reaches the village
+    - Miss Ferguson's politics surface directly or indirectly
+    - a crofter's grievance or a tenant's complaint is aired
+    - the Gaelic-speaking older generation is present in a scene
+  narrative_hints:
+    - Old Tam answering a question about the village's future a beat after most people would, and in fewer words
+    - the schoolmistress correcting an adult's grammar and apologising, and the adult noticing that the correction came from a woman who reads suffrage pamphlets
+    - a gas lamp at the school burning where an oil lamp burned last term, and the constable noting the change in his notebook without being asked
+    - the kirk session discussing whether the parish charity should extend to a crofter whose rent is in arrears, and the minister letting the silence do the work
+    - Mhairi Munro at the kirk gate in conversation with a crofter's wife about water, in Gaelic, which means the conversation is serious
+  tension_level: 0.4
+  resolution_hints:
+    - the crofters and the commercial village find a working accommodation
+    - the rent review passes without hardship and the tension eases
+    - a crofting family leaves the glen and the village absorbs the loss
+    - the schoolmistress's quiet politics bear fruit in a parish vote or a petition
+    - the old glen and the new prove to be the same glen, seen from different windows
+  tags: [crofters, modernisation, class, suffrage, gaelic, village_politics]
+  escalation:
+    - at: 0.2
+      event: >-
+        A small friction surfaces — a water dispute between a crofter
+        and the distillery, a rent notice delivered by the estate
+        factor, a kirk session discussion about the charity roll that
+        goes on longer than the minister expected. Nothing that would
+        make the newspaper. Everything that would make the tea rooms.
+      npcs_involved: [Donald Munro, Rev. Murchison, Mrs. Cameron]
+      stakes: The village's oldest tension is audible again, at the frequency of a kettle coming to the boil.
+    - at: 0.35
+      event: >-
+        Miss Ferguson says something at a public occasion — the
+        parish fete, the school prize-giving, the kirk session — that
+        is carefully measured and lands harder than she intended, or
+        exactly as hard as she intended. The pamphlets are not
+        mentioned. The pamphlets do not need to be mentioned.
+      npcs_involved: [Miss Ferguson, Rev. Murchison, Sir Iain Ross]
+      stakes: The schoolmistress has expressed a view that the village must now have an opinion about.
+    - at: 0.5
+      event: >-
+        A delegation of tenants — not a formal one, not with a
+        letter, just three men at the estate office door on a Monday
+        morning when they ought to be at the croft — makes the
+        pressure visible. Sir Iain receives them courteously, as he
+        receives everything. The village waits to see what he does.
+      npcs_involved: [Sir Iain Ross, Old Tam, Sgt. MacRae]
+      stakes: The compact between the estate and the tenantry is being tested for the first time in a generation.
+    - at: 0.7
+      event: >-
+        The dispute reaches a point where someone outside the village
+        is involved — a solicitor, a county official, a newspaper
+        correspondent who has heard about the parish from a source
+        the village would like to identify. The village closes ranks
+        reflexively, then wonders whether closing ranks is still the
+        right response.
+      npcs_involved: [Sir Iain Ross, Rev. Murchison, Miss Ferguson, Sgt. MacRae]
+      stakes: The village's internal business is in danger of becoming external news.
+    - at: 1.0
+      event: >-
+        The tension resolves in the way village tensions resolve —
+        not in a vote or a verdict but in a season of adjustments
+        too small to name, until one morning the water runs where it
+        ought and the rent is what it ought and the schoolmistress's
+        pamphlets are still in the cottage and the crofters are still
+        on the hill and the gas lamp at the school still burns, and
+        the village has changed without anyone being able to say
+        exactly when.
+      npcs_involved: [Rev. Murchison, Miss Ferguson, Sir Iain Ross, Donald Munro]
+      stakes: The glen has adjusted. The adjustment will last until the next pressure arrives.
+  passive_progression:
+    rate_per_turn: 0.003
+    rate_per_day: 0.01
+    accelerators:
+      - a rent review or estate business
+      - the distillery's expansion affects the crofts
+      - a modernisation reaches the village
+      - a political view is expressed publicly
+      - a crofter's grievance is aired
+    decelerators:
+      - the estate runs smoothly
+      - no external attention
+      - a good harvest
+      - the kirk session meets without incident
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02

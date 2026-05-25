@@ -1,0 +1,297 @@
+# Beneath Sunden -- world-level tropes.
+#
+# These are unique to the single-shaft descent of Sunden Deep and do NOT
+# duplicate the four genre-level tropes already referenced in history.yaml
+# (the_deeper_dark, the_keeper_stirs, extraction_panic, hireling_mutiny).
+# The genre tropes cover the dungeon's hostility and the party's resource
+# clock. These world tropes cover the SURFACE: the camp, the board, the
+# fire, the rope, and the fact that the deep rewrites itself between
+# descents. They are the campaign's memory and its one observed certainty.
+#
+# Voice contract: grave, spare, Moria-as-tragedy. Gravity 0.9, comedy
+# 0.05, outlook 0.2. No winking. The name is never explained. Hope is
+# not absent but it is expensive and quiet.
+#
+# Loader: _load_yaml_raw_optional(world_path / "tropes.yaml") in
+# loader.py:779; expects a top-level list of TropeDefinition dicts.
+# Model: extra="forbid", so no invented fields.
+
+- id: the_count_on_the_board
+  name: The Count on the Board
+  description: >-
+    The board of the unreturned keeps the only record this camp trusts.
+    Names are burned in with a heated iron at the hour the rope is given
+    up on, and nothing is carved because no one here has the tools or the
+    stomach for permanence. The length of the board is how the camp
+    measures how long this has been going on. It grows, and the party
+    watches it grow, and eventually the party puts names on it that the
+    party knew.
+  category: tension
+  triggers:
+    - a name the party knew is burned onto the board
+    - the party returns from a descent lighter than it went
+    - the winch-keeper closes out a tally with no return
+    - the party reads the board after a loss
+  narrative_hints:
+    - the iron is already in the fire when the party comes up the rope
+    - the winch-keeper does not ask whether to burn the name in; the winch-keeper asks which name
+    - the lower boards are full and someone has nailed a new plank at the bottom
+    - a name near the top is older than the camp and nobody here knows whose it was
+  tension_level: 0.5
+  resolution_hints:
+    - carry a name the board does not have yet and decide whether it goes on
+    - count the names the party put there against the names the party came with
+    - stop reading the board and learn what that costs the party's standing at the fire
+  tags: [board, loss, memory, camp, surface, count]
+  escalation:
+    - at: 0.25
+      event: >-
+        The first name the party recognizes goes onto the board. The
+        winch-keeper burns it in the same hand they burn every name in,
+        and the iron hisses the same note it always hisses, and the camp
+        does not pause for it because the camp has never paused for it.
+        The party is the only one here for whom this name is new.
+      npcs_involved: []
+      stakes: The count is no longer about strangers. The board now measures the party's own cost.
+    - at: 0.5
+      event: >-
+        The board is long enough that the party can see its own time at
+        the lip measured out in burned marks. The names near the bottom
+        are the party's vintage. The names near the top belong to crews
+        nobody here remembers, and the distance between the two is not
+        as far as it was.
+      npcs_involved: []
+      stakes: The campaign's attrition is legible. The party can count what it has spent and what it has left.
+    - at: 0.75
+      event: >-
+        Someone at the fire asks who is going to burn the name in if the
+        party does not come back. The question is not rhetorical. The camp
+        is thinning, and the board is now longer than the list of people
+        who can read it.
+      npcs_involved: []
+      stakes: The camp's continuity is in question. The board may outlast the people who keep it.
+    - at: 1.0
+      event: >-
+        A name the party did not expect goes onto the board. Someone the
+        party counted on as permanent at Ropefoot went onto the rope
+        while the party was down, and what came back was not enough to
+        keep from burning in. The camp is smaller now than the party has
+        ever seen it.
+      npcs_involved: []
+      stakes: The surface is no longer safe harbor. The count runs in both directions.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.0
+    accelerators:
+      - casualty
+      - loss
+      - board
+      - return_light
+
+- id: the_kept_fire
+  name: The Kept Fire
+  description: >-
+    The fire at Ropefoot is fed in rota and never let go out. It is not
+    ceremony. The cold that climbs the rope thins where the fire is, and
+    that is the one observed fact the camp possesses, so it is the one
+    thing never neglected. What the fire is holding off is not named and
+    is not debated. It does not need to be. Everyone at the lip has felt
+    the line where the warmth stops and the cold starts, and everyone
+    feeds the fire on their turn without being asked twice.
+  category: tension
+  triggers:
+    - the fire is low or untended
+    - the cold from the shaft is stronger than usual
+    - the party's fuel is short
+    - something from below is closer to the surface than it should be
+  narrative_hints:
+    - the cold off the collar reaches further into the firelight than it did last night
+    - the rota has a gap because the person whose turn it was is on the board now
+    - the fire throws less heat than the wood should account for, as if something is drawing it off
+    - a delver at the bench closest to the shaft cannot stop shivering and the fire is three steps away
+  tension_level: 0.6
+  resolution_hints:
+    - feed the fire higher than the rota calls for and accept the cost in fuel
+    - find out what is drawing the warmth and decide whether to answer it
+    - let the fire go low and learn what the cold does when it is not opposed
+  tags: [fire, cold, camp, surface, ward, cosmology]
+  escalation:
+    - at: 0.3
+      event: >-
+        The cold is further up the shaft than the camp has measured it
+        before. The fire is fed on schedule and at the usual height, but
+        the line where the warmth thins has moved a handspan toward the
+        benches since the party last sat here. No one says it. Everyone
+        has felt it.
+      npcs_involved: []
+      stakes: The camp's one certainty is under pressure. The fire still works but it works less.
+    - at: 0.6
+      event: >-
+        The rota fails. Not because anyone refuses it, but because there
+        are not enough hands at the fire to keep it covered, and the gap
+        between one feeding and the next is longer than the fire can hold.
+        Something in the shaft settles a few feet higher while the coals
+        are low, and does not settle back when the fire is built up again.
+      npcs_involved: []
+      stakes: Ground lost to the cold is not regained. The fire's perimeter is smaller than it was.
+    - at: 1.0
+      event: >-
+        The fire is high and fed and the cold is at the benches anyway.
+        Whatever the fire held off has found a way to be present without
+        crossing the line the camp trusted. The one observed fact the camp
+        built its whole world on is no longer sufficient, and there is
+        nothing to replace it with.
+      npcs_involved: []
+      stakes: The camp's cosmology breaks. The fire is still kept because there is nothing else to do, but it is no longer enough.
+  passive_progression:
+    rate_per_turn: 0.015
+    rate_per_day: 0.0
+    accelerators:
+      - cold
+      - shaft
+      - fire_low
+      - loss
+
+- id: the_rope_is_all_there_is
+  name: The Rope Is All There Is
+  description: >-
+    One shaft, one rope, one way down and one way up. The rope runs over
+    the winch's lip, wet for the first arm's length and then gone. It is
+    checked twice a day by people who are not going down it. Every
+    descent trusts this rope and every ascent depends on it, and when
+    the rope is compromised there is no second way out of the deep. The
+    party knows this the way anyone who has hung their weight on a thing
+    over a hole knows it: completely, and in the body, and without
+    comfort.
+  category: conflict
+  triggers:
+    - the rope is damaged or frayed
+    - something below pulls or works the rope
+    - the winch fails or the pawl slips
+    - the party is on the rope and the rope moves wrong
+    - something is on the rope that the party did not send down
+  narrative_hints:
+    - the rope comes up with a fiber pattern that was not in the weave when it went down
+    - the winch-keeper finds the pawl filed, not by use but by intent
+    - the drum turns a quarter-notch under load that should not move it
+    - wet on the rope that is not water, further down than the wet should reach
+  tension_level: 0.8
+  resolution_hints:
+    - inspect and repair the rope before the next descent and accept the lost time
+    - descend on a compromised rope because the alternative is not descending
+    - find out what is working the rope from below and decide whether that changes anything
+  tags: [rope, winch, descent, lifeline, camp, lethal]
+  escalation:
+    - at: 0.25
+      event: >-
+        The rope comes up wrong. Not broken, not cut, but bearing a mark
+        or a wear that was not there when it went down. The winch-keeper
+        studies it the way the winch-keeper studies everything that comes
+        up, and does not say what conclusion they reach, and re-rigs it,
+        and checks the pawl twice.
+      npcs_involved: []
+      stakes: The rope is still sound but something below has touched it. Trust in the line takes its first cost.
+    - at: 0.5
+      event: >-
+        The drum moves at night. Not much. A quarter-turn against the
+        pawl, as if something far below shifted its weight on the line
+        and the weight was enough to seat the hemp deeper into the drum's
+        groove. The winch-keeper locks off and doubles the pawl and does
+        not sleep near it anymore.
+      npcs_involved: []
+      stakes: Something below is using the rope or testing it. The party's only exit is shared.
+    - at: 0.75
+      event: >-
+        The rope parts. Not all at once and not clean -- a strand at a
+        time over a length the winch-keeper can measure but cannot explain,
+        as if something with patience and no blade is working the fibers
+        apart from below. The spare line is shorter. There has always been
+        less spare than the shaft needs.
+      npcs_involved: []
+      stakes: The lifeline is failing. Repair is possible but the repair will not be as strong as the original, and the thing that is working the line has not stopped.
+    - at: 1.0
+      event: >-
+        The rope fails under load. The party is on it or someone the
+        party sent down is on it, and the failure is heard at the lip as
+        a sound the winch makes once and the drum spinning free and the
+        line going slack the wrong way. What was on the rope is in the
+        shaft. The spare, if there is one, has never been tested at this
+        depth.
+      npcs_involved: []
+      stakes: Terminal. The party's way out is broken and whatever is below now has no reason to be patient.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.0
+    accelerators:
+      - rope
+      - winch
+      - descent
+      - sabotage
+      - weight
+
+- id: the_way_down_is_never_the_same
+  name: The Way Down Is Never the Same
+  description: >-
+    Every party that has come back up has come back up describing a
+    different way down. The camp writes none of it. Maps drawn by one
+    crew are contradicted by the next crew's account, and the
+    contradiction is not error -- the deep rearranges itself between
+    descents the way a body shifts in sleep, slowly, without witness,
+    and with no regard for what was built or found the last time. The
+    party's knowledge of the route expires the moment the party leaves
+    it, and every descent is the first descent.
+  category: discovery
+  triggers:
+    - the party descends and finds the route changed from last time
+    - a landmark the party relied on is absent or relocated
+    - two party members describe the same stretch differently
+    - the party attempts to retrace a known path and fails
+  narrative_hints:
+    - a gallery the party mapped last descent opens onto a wall that was not there
+    - the draught comes from a different direction than it did six hours ago
+    - a cairn the party stacked is present but in a place the party did not stack it
+    - the echo-shape of a chamber has changed and the party can hear it without seeing it
+  tension_level: 0.5
+  resolution_hints:
+    - stop mapping and navigate by sound and air current instead of stone
+    - accept that every descent is new and plan for the unknown rather than the remembered
+    - find the one fixed point the deep does not move and orient from it
+  tags: [deep, map, change, disorientation, discovery]
+  escalation:
+    - at: 0.3
+      event: >-
+        The party's map from the last descent is wrong. Not in the small
+        ways a hurried sketch is wrong, but in the structural way that
+        means the passage itself has moved. A junction that branched left
+        now branches right, and the stone at the joint is seamless, as if
+        it was always this way and the party's memory is the error.
+      npcs_involved: []
+      stakes: The party's preparation is void. What they learned last time buys them nothing this time.
+    - at: 0.6
+      event: >-
+        The deep changes while the party is in it. A passage the party
+        walked through an hour ago is not the same passage when the party
+        turns to go back. The change is not violent -- no grinding, no
+        collapse -- just a quiet fact that the stone behind them is no
+        longer the stone they walked through. The route out is now a
+        route the party has never taken.
+      npcs_involved: []
+      stakes: Retreat is no longer retracing. Every direction is forward now, including back.
+    - at: 1.0
+      event: >-
+        The deep moves around the party. The walls do not close and the
+        floor does not shift and nothing visible happens, but the room
+        the party is in is no longer connected to the rooms it was
+        connected to, and the air from the shaft has stopped reaching
+        this far down, and the party's only navigation -- the draught,
+        the echo, the gradient of the cold -- is gone.
+      npcs_involved: []
+      stakes: The party is unmapped in a place that refuses to be mapped. The way out exists but it is not the way they came in, and finding it is the only task that matters.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.0
+    accelerators:
+      - descent
+      - deep
+      - backtrack
+      - lost

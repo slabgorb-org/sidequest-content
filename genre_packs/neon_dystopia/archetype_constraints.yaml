@@ -1,0 +1,177 @@
+# archetype_constraints.yaml — neon_dystopia
+# Defines valid Jungian x RPG Role pairings for this genre
+# common: chargen default, NPC gen draws most
+# uncommon: shown if player explores, NPC diversity
+# rare: allowed but unusual, memorable characters
+# forbidden: genuinely nonsensical for this genre
+#
+# Genre register: corporate megacities, street-level survival, cyberspace as
+# contested frontier. Everyone is some kind of criminal — the question is which
+# kind. Outlaw is THE genre archetype; it appears across every role tier because
+# the entire population is outlaw-adjacent. Magician maps to netrunners/deckers.
+# Ruler maps to gang bosses and corporate middle-management. Caregiver maps to
+# street docs. Innocent is rare but genre-true — the idealist who hasn't been
+# ground down yet. The genre punishes innocence but doesn't forbid it.
+#
+# Forbidden pairings are narrow. Cyberpunk is a genre of reinvention — but some
+# combinations break the archetype's internal tension past coherence.
+
+valid_pairings:
+  common:
+    - [outlaw, stealth]
+    - [outlaw, dps]
+    - [outlaw, jack_of_all_trades]
+    - [hero, dps]
+    - [hero, tank]
+    - [magician, control]
+    - [magician, stealth]
+    - [sage, control]
+    - [sage, support]
+    - [ruler, tank]
+    - [ruler, support]
+    - [caregiver, healer]
+    - [caregiver, support]
+    - [explorer, stealth]
+    - [explorer, jack_of_all_trades]
+    - [everyman, jack_of_all_trades]
+    - [everyman, support]
+
+  uncommon:
+    - [outlaw, control]
+    - [outlaw, support]
+    - [outlaw, tank]
+    - [hero, jack_of_all_trades]
+    - [hero, stealth]
+    - [magician, dps]
+    - [magician, support]
+    - [sage, stealth]
+    - [sage, healer]
+    - [ruler, dps]
+    - [ruler, control]
+    - [explorer, control]
+    - [explorer, dps]
+    - [jester, stealth]
+    - [jester, control]
+    - [jester, dps]
+    - [artist, support]
+    - [artist, control]
+    - [lover, support]
+    - [lover, healer]
+    - [everyman, dps]
+    - [everyman, tank]
+    - [everyman, stealth]
+    - [innocent, healer]
+    - [innocent, support]
+
+  rare:
+    - [innocent, jack_of_all_trades]
+    - [innocent, control]
+    - [jester, tank]
+    - [jester, support]
+    - [jester, jack_of_all_trades]
+    - [artist, stealth]
+    - [artist, dps]
+    - [artist, jack_of_all_trades]
+    - [lover, dps]
+    - [lover, control]
+    - [lover, stealth]
+    - [lover, tank]
+    - [ruler, stealth]
+    - [ruler, healer]
+    - [caregiver, control]
+    - [caregiver, tank]
+    - [hero, control]
+
+  forbidden:
+    # Innocence requires visibility — the archetype's engine is the gap between
+    # expectation and reality. Stealth removes the audience.
+    - [innocent, stealth]
+    # The innocent who deals damage is no longer innocent — they're a hero.
+    - [innocent, dps]
+    # Street docs don't deal damage. Healer-as-killer collapses the tension.
+    - [caregiver, dps]
+    # A healer who hides from the wounded is a ghost, not a caregiver.
+    - [caregiver, stealth]
+    # Absorbing punishment with full knowledge of cost is heroism, not innocence.
+    - [innocent, tank]
+
+# Genre-level fallback names and flavor for each axis value
+# Used when no world-level funnel claims a combination
+genre_flavor:
+  jungian:
+    hero:
+      speech_pattern: "direct, no wasted syllables; states what they'll do, then does it; doesn't explain themselves twice"
+      equipment_tendency: "reliable sidearm maintained personally, armored jacket with street repairs, a piece of chrome that's saved their life more than once"
+      visual_cues: "scarred knuckles, steady hands, eyes that track threats before exits; moves through crowds like they expect contact"
+    sage:
+      speech_pattern: "measured, cites data like scripture, pauses to verify before speaking; corrects misinformation whether asked or not"
+      equipment_tendency: "modified cyberdeck running custom analytics, encrypted storage implant, offline archive on physical media"
+      visual_cues: "datajack port behind the ear, pale from screen-light, fingers that twitch through invisible menus"
+    outlaw:
+      speech_pattern: "clipped, evasive, dark humor about the corps and the law; never uses real names over open channels"
+      equipment_tendency: "unregistered weapon, three burner phones, forged transit passes, a bag that's always packed"
+      visual_cues: "hood up indoors, sits with back to the wall, scans every room in under two seconds"
+    caregiver:
+      speech_pattern: "calm, precise about dosage and damage, uses your name; firm about what they will and won't do"
+      equipment_tendency: "trauma kit with black-market supplies, neural stabilizers, a clinic address they won't give to strangers"
+      visual_cues: "steady hands with surgical calluses, tired eyes that sharpen when someone's hurt, chrome fingers calibrated for suturing"
+    ruler:
+      speech_pattern: "economical, expects compliance, comfortable with long silences; refers to territory and people as responsibilities, not possessions"
+      equipment_tendency: "encrypted comm channel to lieutenants, a weapon that's more symbol than tool, district maps annotated by hand"
+      visual_cues: "upright posture even in cramped spaces, deliberate gestures, the particular exhaustion of someone who can't stop watching their perimeter"
+    explorer:
+      speech_pattern: "eager about infrastructure, casual about danger, describes the city in layers — surface, sub-level, Net overlay"
+      equipment_tendency: "scanner rig, climbing gear adapted for urban verticals, a map of maintenance tunnels that shouldn't exist"
+      visual_cues: "scuffed boots from places that aren't on the transit map, restless hands, eyes that look up when everyone else looks forward"
+    magician:
+      speech_pattern: "precise, speaks about the Net in spatial terms — corridors, vaults, horizons; uncomfortable in long meatspace conversations"
+      equipment_tendency: "custom cyberdeck, neural interface with aftermarket cooling, programs they wrote and named"
+      visual_cues: "datajack ports — plural; faint eye-flicker when they're running background processes; too-still posture during a jack-in"
+    artist:
+      speech_pattern: "observational, finds the aesthetic in infrastructure decay, emotionally present in conversations others treat as transactional"
+      equipment_tendency: "recording rig or capture implant, fabricator for street art, a portfolio that doubles as a manifesto"
+      visual_cues: "paint or solder residue on their fingers, clothes that are deliberately chosen rather than functional, attention that lingers on surfaces"
+    innocent:
+      speech_pattern: "earnest, asks questions that veterans stopped asking, occasionally disarming in their directness"
+      equipment_tendency: "standard-issue kit that hasn't been modified yet, a personal item from before the city, nothing tactical"
+      visual_cues: "open face that hasn't learned to close, hesitation before transactions, the posture of someone who still expects fairness"
+    lover:
+      speech_pattern: "attentive, remembers names and histories, notices the person behind the chrome"
+      equipment_tendency: "a token from someone specific, clothes that suggest they dressed for a person not a job, encrypted private channel"
+      visual_cues: "faces people fully when talking, reads the room before the threat level, warmth that registers even through neon glare"
+    jester:
+      speech_pattern: "quick, deflects with timing, gallows humor about corporate press releases; never stops talking when it would be smarter to"
+      equipment_tendency: "something inexplicable in their kit, a drone painted wrong, a hacking tool disguised as a toy"
+      visual_cues: "animated in a crowd of flat affect, catches your eye during bad briefings, the grin that means trouble is already happening"
+    everyman:
+      speech_pattern: "plain, local district slang, says the thing everyone was thinking but wouldn't risk saying on a hot mic"
+      equipment_tendency: "practical loadout, nothing custom, the kind of chrome that came with the job — functional, not flashy"
+      visual_cues: "unremarkable in a good way, blends into any district below the corporate line, hands built by repetition"
+
+  rpg_roles:
+    tank:
+      fallback_name: "Street Ronin"
+    dps:
+      fallback_name: "Razorgirl"
+    control:
+      fallback_name: "Decker"
+    healer:
+      fallback_name: "Street Doc"
+    stealth:
+      fallback_name: "Ghost"
+    support:
+      fallback_name: "Fixer"
+    jack_of_all_trades:
+      fallback_name: "Runner"
+
+# NPC roles available in this genre (all 9 enabled)
+npc_roles_available:
+  - mentor
+  - herald
+  - shadow
+  - threshold
+  - host
+  - artisan
+  - authority
+  - victim
+  - mook

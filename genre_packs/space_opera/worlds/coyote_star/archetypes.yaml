@@ -1,0 +1,288 @@
+# Coyote Star — world-specific NPC archetypes.
+# These extend the genre-level archetypes with characters particular to
+# this dead-end system. Each threads into the five factions, the single
+# jump point bottleneck, and the frontier-western-in-space tone documented
+# in lore.yaml, history.yaml, and legends/.
+
+- name: Gate Customs Officer
+  faction: Vaskov Administration
+  description: >-
+    The Hegemonic officer stationed at Grand Gate who has been opening
+    and closing the system's only jump point for longer than most of the
+    current crew rosters have been alive. Underfunded, understaffed,
+    operating a sensor net with gaps every Runner in the belt can name by
+    number. Knows exactly which manifests are lying and has made a quiet
+    arithmetic about which lies to notice. Not corrupt so much as
+    practical — the salary arrives late, the relief rotation never comes,
+    and the Prefect's reports go unread. The bribe isn't a bribe; it's a
+    fuel surcharge for the inconvenience of pretending to look.
+  personality_traits:
+    - wearily pragmatic
+    - procedural when watched
+    - remembers every ship that ever gave them trouble
+  typical_classes:
+    - Officer
+    - Operative
+  typical_races:
+    - Coreworlder
+    - Colonial
+  stat_ranges:
+    Cunning: [14, 16]
+    Resolve: [12, 14]
+  inventory_hints:
+    - a handheld scanner with a cracked screen that still reads true
+    - a regulation sidearm holstered so long the leather has shaped to it
+    - a log of every transit through Grand Gate for the last nine years, handwritten in the margins of the official printout
+    - a thermos of station-brewed coffee that tastes like recycled air
+  dialogue_quirks:
+    - reads the manifest aloud, pausing at the line that matters, then looks up and waits
+    - refers to regulations by number but pronounces them like weather reports — dull, inevitable, nobody's fault
+    - calls every captain "skipper" regardless of rank or preference
+    - sighs before stamping clearance, not after
+    - asks "anything to declare" in a tone that communicates they already know the answer
+    - mentions the relief rotation that was supposed to arrive six months ago as casually as a weather update
+    - taps the cracked scanner twice against their palm before scanning, a tic that has become ritual
+  disposition_default: -5
+  ocean:
+    openness: 3.5
+    conscientiousness: 6.0
+    extraversion: 4.0
+    agreeableness: 4.5
+    neuroticism: 5.0
+  role: obstacle
+
+- name: Moana-Teru Fuel Broker
+  faction: Clan Moana-Teru
+  description: >-
+    A voidborn clan member who works the fuel desk at Turning Hub's
+    docking crescent — the person between every ship in the system and
+    the hydrogen it needs to keep flying. Carries the Moana-Teru surname
+    and the clan-compass tattoo and the careful neutrality the clan has
+    practiced for forty years. Everything has a price and the price is
+    always fair and the fairness always includes a margin that keeps the
+    Hub running. Will fuel anyone. Will remember who paid on time.
+    Remembers who didn't with the same patient precision.
+  personality_traits:
+    - scrupulously neutral
+    - memory like a cargo manifest
+    - warm in a way that never forgets it is transactional
+  typical_classes:
+    - Diplomat
+    - Smuggler
+  typical_races:
+    - Spacer
+  stat_ranges:
+    Influence: [14, 18]
+    Cunning: [12, 16]
+  inventory_hints:
+    - a fuel-pricing slate showing rates that change by the hour
+    - a clan-blue sash with navigation-star stitching at the hem
+    - magnetic boot clips at the ankle, the habitual low-g crouch even on the Hub's spin deck
+    - a small ledger in personal shorthand that tracks favors owed, not currency
+  dialogue_quirks:
+    - quotes fuel prices to the quarter-liter as if reciting a poem they have memorized
+    - offers the clan pot before discussing business, then discusses business during the meal
+    - calls debts "open accounts" and never says the word "owe"
+    - tilts their head toward the gas giant visible through the viewport when they mean "the price could change"
+    - mentions Rangi Moana-Teru by first name the way a franchisee mentions the home office — casual, load-bearing
+    - says "the Hub remembers" instead of "I remember," which means the same thing
+  disposition_default: 10
+  ocean:
+    openness: 5.0
+    conscientiousness: 7.5
+    extraversion: 6.0
+    agreeableness: 6.0
+    neuroticism: 3.0
+  role: merchant
+
+- name: Belt-Runner Prospector
+  faction: Free Miners' Compact
+  description: >-
+    An independent miner who lives in their ship the way a hermit lives
+    in a cave — by choice, at arm's length from everything, with a
+    claim stake and a survey rig and a suspicion of anyone who wears a
+    uniform or carries a clipboard. Works the Broken Drift asteroid belt
+    on margins thin enough to cut. Files claims with the Compact because
+    the alternative is filing them with Vaskov, and Vaskov charges a
+    licensing fee for the privilege of doing the work the Compact was
+    doing before Vaskov learned the system existed. Comes in to Mendes'
+    Post when the hold is full or the loneliness gets structural. Leaves
+    before either one settles.
+  personality_traits:
+    - suspicious of authority
+    - self-reliant past the point of wisdom
+    - loyal to the belt the way farmers are loyal to bad soil
+  typical_classes:
+    - Pilot
+    - Engineer
+  typical_races:
+    - Colonial
+    - Spacer
+  stat_ranges:
+    Cunning: [14, 16]
+    Resolve: [14, 16]
+  inventory_hints:
+    - a battered survey rig bolted to the dash of a ship older than its pilot
+    - claim tags on a carabiner, jingling when they walk
+    - ore samples in labeled bags stuffed behind the cockpit seat
+    - a sidearm cleaned more often than its owner
+  dialogue_quirks:
+    - answers direct questions with a pause long enough to make you wonder if they heard you
+    - refers to asteroids by claim number, not location, as if the numbers are names
+    - mentions Dura Mendes the way people mention a strict aunt — respect and wariness braided together
+    - measures distance in burn-hours, not kilometers
+    - says "the belt provides" without irony, then lists three ways it nearly killed them last month
+    - calls the governor's office "the plateau" and pronounces it like a four-letter word
+    - offers to trade before offering to talk
+  disposition_default: -10
+  ocean:
+    openness: 3.0
+    conscientiousness: 5.5
+    extraversion: 2.5
+    agreeableness: 3.5
+    neuroticism: 5.5
+  role: quest_giver_or_antagonist
+
+- name: Tsveri Trade-Emissary
+  faction: The Tsveri
+  description: >-
+    One of the rare Tsveri who chooses to interact with humans on a
+    regular basis — a trade intermediary who brings materials from the
+    Deep Root that nobody else can manufacture and takes back whatever
+    the Tsveri have decided they want, which is never what humans expect.
+    Tall enough to duck through every human-standard hatch in the system.
+    Silicon-laced integument that shifts from slate grey to warm bronze
+    depending on mood. Speaks above human-audible range when they choose
+    to, which is not often; the rest of the time the conversation happens
+    in subsonics that the crew feels in their teeth and sternum. Patient
+    the way geology is patient. Has been trading with humans for longer
+    than most human traders have been alive and considers the entire
+    species to be in a hurry about things that have not started yet.
+  personality_traits:
+    - patient past human comprehension
+    - precise in a language that is not built for precision
+    - amused by human urgency in a way that never reads as condescension
+  typical_classes:
+    - Diplomat
+  typical_races:
+    - Xeno
+  stat_ranges:
+    Influence: [16, 18]
+    Intellect: [14, 18]
+  inventory_hints:
+    - a woven mineral-fiber satchel containing trade samples that catch light from the inside
+    - a single Deep Root stone fragment on a cord, emitting a faint inner luminescence
+    - nothing humans would recognize as a weapon, which does not mean they are unarmed
+  dialogue_quirks:
+    - speaks one word at a time, each placed like a stone in a wall, then waits for the silence to do the work
+    - uses human idioms correctly but at the wrong speed, which changes the meaning
+    - declines to answer a question by humming a low register that the human's ribcage interprets as "not yet"
+    - refers to time in geological spans — "recently" means within a century, "soon" means within a decade
+    - names the Deep Root the way humans name a living relative
+    - does not use the word "no" — uses a subsonic tone that conveys the same thing without the discourtesy of saying it aloud
+  disposition_default: -15
+  ocean:
+    openness: 7.0
+    conscientiousness: 8.5
+    extraversion: 2.0
+    agreeableness: 5.5
+    neuroticism: 1.5
+  role: quest_giver
+
+- name: Jump-Point Runner
+  faction: Broken Drift Runners
+  description: >-
+    A smuggler who knows the one way in and one way out of Coyote Star
+    better than the customs officers who are supposed to control it.
+    Flies the gap between Grand Gate's sensor arcs — the dead spots in
+    the net that the Hegemony has never funded repairs for — and moves
+    cargo that does not appear on any manifest into a system that does
+    not ask where it came from. Every faction uses them. None will admit
+    it. The Runner's ship is fast and ugly and maintained with the kind
+    of care that suggests the mechanic loves the hull more than the
+    pilot does. Has stripped every faction patch, every identifying mark,
+    every tell from their flight jacket except one small personal item
+    they will not explain.
+  personality_traits:
+    - professionally paranoid
+    - loyal to the route before the client
+    - funny in the way that people who live alone are funny — timing sharpened against nobody
+  typical_classes:
+    - Smuggler
+    - Pilot
+  typical_races:
+    - Spacer
+    - Colonial
+  stat_ranges:
+    Reflex: [16, 18]
+    Cunning: [14, 16]
+  inventory_hints:
+    - a flight jacket with ghost-outlines where every patch used to be
+    - a hand-drawn chart of Grand Gate's sensor gaps, updated by hand after every transit
+    - a sealed cargo bay with a false floor that smells faintly of whatever the last load was
+    - one small personal item — a charm, a ring, a faded photograph — that they will not explain
+  dialogue_quirks:
+    - names prices before you finish describing the job
+    - refers to Grand Gate's sensor gaps by personal nicknames as if they are old friends
+    - never sits with their back to a door or a docking port
+    - tells you exactly how dangerous the run is, then does it anyway, as if the telling was the safety briefing
+    - uses "the gate" and "the gap" to mean two different things and expects you to keep up
+    - laughs once, sharp, at their own jokes, then moves on before you can decide if they were joking
+    - calls the customs officers by first name and means it as neither friendship nor contempt
+  disposition_default: -5
+  ocean:
+    openness: 5.0
+    conscientiousness: 4.0
+    extraversion: 4.5
+    agreeableness: 3.0
+    neuroticism: 6.0
+  role: ally_or_antagonist
+
+- name: Vaskov Clerk
+  faction: Vaskov Administration
+  description: >-
+    The administrative backbone of the Prefect's office at Vaskov Centrum
+    — a bureaucrat maintaining the records, filing the reports, and
+    issuing the licenses for a government whose authority reaches the
+    edge of the compound's lights and no further. Arrived in-system with
+    Ilara Vaskov's father a generation ago, or was born here to parents
+    who did, and has watched the gap between Hegemonic law and frontier
+    reality widen into something you could park a freighter in. Keeps
+    filing anyway. The quarterly reports go out on schedule to an
+    admiralty that stopped reading them. The licensing fees get assessed
+    to miners who do not pay them. The flagpole gets maintained. Somebody
+    has to believe the system works, and if nobody else will, the Clerk
+    will do it with a stamper and a straight face.
+  personality_traits:
+    - doggedly procedural
+    - quietly aware that none of this matters
+    - takes comfort in the filing
+  typical_classes:
+    - Officer
+    - Diplomat
+  typical_races:
+    - Coreworlder
+    - Colonial
+  stat_ranges:
+    Intellect: [14, 16]
+    Resolve: [12, 16]
+  inventory_hints:
+    - a document case with licensing forms nobody has requested
+    - a stamper worn smooth from use on paperwork that goes nowhere
+    - a personal datapad with the complete text of Hegemonic trade law, annotated in margins that grow more sardonic by the year
+    - a regulation uniform pressed at the chest and dusty at the cuffs
+  dialogue_quirks:
+    - quotes the licensing code and then pauses, as if waiting for reality to catch up to the regulation
+    - says "for the record" before statements that will never be read by anyone
+    - refers to the Prefect as "the Prefect" even in casual conversation, never by name
+    - files complaints about things that will not be acted on with the same care as things that might be
+    - offers forms to people who have not asked for forms, and is not deterred by refusal
+    - mentions the quarterly report deadline the way a priest mentions a saint's day — observed, not believed
+  disposition_default: 0
+  ocean:
+    openness: 2.5
+    conscientiousness: 9.0
+    extraversion: 3.5
+    agreeableness: 5.0
+    neuroticism: 4.5
+  role: obstacle

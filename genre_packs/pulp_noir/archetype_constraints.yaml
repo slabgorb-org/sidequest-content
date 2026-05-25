@@ -1,0 +1,192 @@
+# archetype_constraints.yaml — pulp_noir
+# Defines valid Jungian x RPG Role pairings for this genre
+# common: chargen default, NPC gen draws most
+# uncommon: shown if player explores, NPC diversity
+# rare: allowed but unusual, memorable characters
+# forbidden: genuinely nonsensical for this genre
+#
+# Pulp noir is morally compromised by design. Everybody's working an angle.
+# The outlaw is the default protagonist — bootleggers, shady detectives,
+# grifters who'd sell their grandmother's address for the right price.
+# The hero exists but arrives pre-tarnished, bourbon on the breath, doing
+# the right thing for the wrong reasons. Rulers pull strings from backrooms
+# full of cigar smoke. Sages know things that get people killed. The
+# innocent is a lamb in a slaughterhouse — present only as the victim whose
+# disappearance kicks off the plot, or the kid who hasn't learned yet.
+# The magician is the occult angle: tunable from "rational con artist" to
+# "the séance actually worked." The jester is the fast-talking nightclub
+# comic, the con man whose patter never stops.
+
+valid_pairings:
+  common:
+    - [outlaw, stealth]
+    - [outlaw, dps]
+    - [outlaw, jack_of_all_trades]
+    - [hero, dps]
+    - [hero, tank]
+    - [hero, jack_of_all_trades]
+    - [sage, control]
+    - [sage, support]
+    - [ruler, support]
+    - [ruler, control]
+    - [caregiver, healer]
+    - [caregiver, support]
+    - [explorer, stealth]
+    - [explorer, jack_of_all_trades]
+    - [everyman, jack_of_all_trades]
+    - [everyman, tank]
+
+  uncommon:
+    - [magician, control]
+    - [magician, support]
+    - [magician, jack_of_all_trades]
+    - [jester, stealth]
+    - [jester, support]
+    - [jester, dps]
+    - [artist, support]
+    - [artist, control]
+    - [lover, support]
+    - [lover, healer]
+    - [outlaw, control]
+    - [outlaw, support]
+    - [outlaw, tank]
+    - [sage, stealth]
+    - [sage, healer]
+    - [sage, dps]
+    - [sage, jack_of_all_trades]
+    - [hero, stealth]
+    - [hero, control]
+    - [hero, support]
+    - [ruler, tank]
+    - [ruler, dps]
+    - [explorer, dps]
+    - [explorer, support]
+    - [explorer, control]
+    - [everyman, dps]
+    - [everyman, support]
+    - [everyman, stealth]
+
+  rare:
+    - [innocent, healer]
+    - [innocent, support]
+    - [innocent, jack_of_all_trades]
+    - [innocent, tank]
+    - [lover, dps]
+    - [lover, control]
+    - [lover, tank]
+    - [lover, stealth]
+    - [lover, jack_of_all_trades]
+    - [artist, dps]
+    - [artist, stealth]
+    - [artist, jack_of_all_trades]
+    - [jester, tank]
+    - [jester, control]
+    - [jester, jack_of_all_trades]
+    - [magician, stealth]
+    - [magician, dps]
+    - [magician, healer]
+    - [magician, tank]
+    - [ruler, stealth]
+    - [ruler, jack_of_all_trades]
+    - [hero, healer]
+    - [outlaw, healer]
+    - [sage, tank]
+    - [explorer, tank]
+    - [explorer, healer]
+    - [caregiver, stealth]
+    - [caregiver, jack_of_all_trades]
+    - [caregiver, control]
+    - [caregiver, tank]
+    - [everyman, healer]
+    - [everyman, control]
+
+  forbidden:
+    - [innocent, dps]       # guileless killers don't exist in noir
+    - [innocent, stealth]   # naivety requires visibility to function
+    - [innocent, control]   # manipulation collapses the archetype
+    - [caregiver, dps]      # the sawbones doesn't pull the trigger
+    - [ruler, healer]       # power and care don't share a floor
+    - [jester, healer]      # humor is armor, not medicine
+    - [artist, healer]      # art in noir is witness, not remedy
+    - [artist, tank]        # the artist's role is to see, not absorb
+
+# Genre-level fallback names and flavor for each axis value
+# Used when no world-level funnel claims a combination
+genre_flavor:
+  jungian:
+    hero:
+      speech_pattern: "clipped, declarative, talks like a man writing his own epitaph — short sentences, no adjectives he hasn't earned"
+      equipment_tendency: "trench coat with deep pockets, service revolver, a hat pulled low enough to mean something"
+      visual_cues: "jaw set like concrete, cigarette burning forgotten between two fingers, rain on the shoulders of the coat"
+    sage:
+      speech_pattern: "precise, pedantic under fire, quotes dead languages when a normal person would swear"
+      equipment_tendency: "leather satchel, annotated field journal, reading glasses, a reference book too specific to be innocent"
+      visual_cues: "ink on the cuffs, squinting under bad light, fingers that have turned more pages than doorknobs"
+    outlaw:
+      speech_pattern: "evasive, never answers the question you asked, dark humor about things that should terrify a decent person"
+      equipment_tendency: "lockpicks in the hatband, snub-nose in an ankle holster, a roll of bills and three sets of identification"
+      visual_cues: "sits with back to the wall, eyes on the door, collar turned up — not for the cold"
+    caregiver:
+      speech_pattern: "steady, uses first names, speaks softly enough that you lean in — and then says the hard thing"
+      equipment_tendency: "medical bag, hip flask of medicinal whiskey, clean bandages in a coat pocket"
+      visual_cues: "rolled sleeves, careful hands, the particular exhaustion of someone who has cleaned up after other people's messes"
+    ruler:
+      speech_pattern: "quiet, expects the room to come to them, says less than anyone and means more"
+      equipment_tendency: "tailored suit, signet ring, nothing in their hands — other people carry things"
+      visual_cues: "seated while everyone else stands, cigar smoke like a second conversation, eyes that appraise everything and approve of nothing"
+    explorer:
+      speech_pattern: "enthusiastic about the wrong things at the wrong time, trail-worn idiom in a dinner-jacket crowd"
+      equipment_tendency: "battered compass, expedition journal, pith helmet or its urban equivalent — a hat that has been somewhere"
+      visual_cues: "sunburn that does not belong in this latitude, calloused hands, pockets full of things collected from places that weren't on the map"
+    magician:
+      speech_pattern: "allusive, speaks around things rather than at them, comfortable with ambiguity that makes everyone else itch"
+      equipment_tendency: "a deck of cards that isn't for playing, a locked case, books in languages the bookseller wouldn't stock"
+      visual_cues: "still hands, too-steady gaze, faint smell of incense or chemicals — you can't tell which, and that's the point"
+    artist:
+      speech_pattern: "observational, describes what is dying in terms of what it sounded like alive, finds the poetry in a crime scene"
+      equipment_tendency: "sketch pad, camera, a pen that has written things nobody wanted published"
+      visual_cues: "paint under the nails or ink on the fingers, distracted focus, the look of someone memorizing the room before it changes"
+    innocent:
+      speech_pattern: "earnest, asks the question everyone stopped asking three drinks ago, hasn't learned to lie convincingly"
+      equipment_tendency: "nothing tactical — a family photograph, a return ticket, a letter they keep rereading"
+      visual_cues: "open face, posture that hasn't learned to guard itself, clean shoes in a dirty city"
+    lover:
+      speech_pattern: "attentive, remembers your drink and your dead brother's name, warmth that could be genuine or could be the best grift in the room"
+      equipment_tendency: "a locket or photograph, clothes chosen for someone's eyes, perfume that lingers after they leave"
+      visual_cues: "faces you fully, touches your arm when making a point, beauty that is a weapon they may or may not know they're carrying"
+    jester:
+      speech_pattern: "rapid-fire, patter that never stops, deflects grief with a punchline timed to the millisecond"
+      equipment_tendency: "trick deck, flask, a prop or two — nothing is what it looks like"
+      visual_cues: "grin that arrives before the joke, animated hands, the manic energy of someone who stops being funny when they stop moving"
+    everyman:
+      speech_pattern: "plain, local dialect, says what the room is thinking but won't say, no performance"
+      equipment_tendency: "work clothes, a wrench or a lunch pail, nothing that costs more than a week's pay"
+      visual_cues: "tired eyes, calloused hands from an honest trade, the kind of face that disappears in a police lineup"
+
+  rpg_roles:
+    tank:
+      fallback_name: "Bruiser"
+    dps:
+      fallback_name: "Triggerman"
+    control:
+      fallback_name: "Spymaster"
+    healer:
+      fallback_name: "Sawbones"
+    stealth:
+      fallback_name: "Shadow"
+    support:
+      fallback_name: "Fixer"
+    jack_of_all_trades:
+      fallback_name: "Operative"
+
+# NPC roles available in this genre (all 9 enabled)
+npc_roles_available:
+  - mentor
+  - herald
+  - shadow
+  - threshold
+  - host
+  - artisan
+  - authority
+  - victim
+  - mook
