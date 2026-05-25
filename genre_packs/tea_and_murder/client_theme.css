@@ -28,29 +28,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
-/* Watercolour-paper texture — soft warm wash from upper-left, faint grain */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    /* Sunlit wash — the light comes from the tall window upper-left */
-    radial-gradient(ellipse at 30% 25%, rgba(201, 169, 110, 0.18) 0%, transparent 55%),
-    /* Heather-green hint at lower-right — the glen beyond the garden */
-    radial-gradient(ellipse at 80% 85%, rgba(92, 122, 79, 0.08) 0%, transparent 60%),
-    /* Cream paper wash */
-    linear-gradient(180deg, rgba(244, 235, 218, 0.0) 0%, rgba(236, 223, 196, 0.25) 100%);
-  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E#n");
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Content above the texture */
-#narrative {
-  position: relative;
-  z-index: 1;
-}
 
 /* Body text — warm, light, readable like a hand-written postcard */
 .narration-block p {
