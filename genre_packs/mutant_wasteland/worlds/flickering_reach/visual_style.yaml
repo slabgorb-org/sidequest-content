@@ -1,40 +1,7 @@
-# Flickering Reach — World Visual Style
-#
-# Three wounds, twelve centuries old. The Dead Signal hums under every
-# horizon. Phosphor green is this world's accent — not the generic toxic
-# green of the genre baseline, but something closer to a radio-glow seen
-# through dust. The Reach is older, drier, and stranger than the rest of
-# the mutant_wasteland template.
-#
-# WIRING: positive_suffix is the field the daemon's StyleCatalog reads
-# (sidequest-daemon/sidequest_daemon/media/catalogs.py::StyleCatalog.load).
-# World-level positive_suffix layers ON TOP of the genre-level
-# mutant_wasteland positive_suffix via the explicit-recipes
-# PromptComposer's ART_SENSIBILITY.WORLD slot. The genre already
-# carries the broad identity (gritty post-apocalyptic digital painting,
-# desaturated earth tones with bioluminescent accent, bruised amber and
-# toxic-green sky, weathered surfaces and rust, salvage wardrobe,
-# anti-text/UI clauses). DO NOT DUPLICATE genre material here —
-# duplication makes the world layer compete with the genre instead of
-# specializing it.
-#
-# IMPORTANT: the world-level suffix is INJECTED INTO EVERY RENDER IN
-# THIS WORLD — including transient encounter scenes that have no POI
-# resolution. Earlier worlds (caverns_sunden) shipped subject text in
-# this slot and the suffix dominated dungeon prompts where the named
-# subjects had no business existing. This file therefore restricts
-# itself to *tonal art discipline*: how light, haze, age, and the
-# Signal manifest in any render. Subject specifics — which faction,
-# which architecture, which props, which named POI — belong on
-# per-POI ``visual_prompt`` blocks inside ``history.yaml``.
-#
-# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt
-# entirely (see sidequest-content/PROMPTING_Z_IMAGE.md). Rejection
-# clauses are folded into positive_suffix as "No X, no Y" rather than
-# authored as a separate negative_prompt.
-
 positive_suffix: >-
-  Atmospheric haze carries a faint phosphor-green radio undertone —
+  post-apocalyptic digital painting, gritty painterly texture, visible
+  brush strokes, desaturated bone-and-rust earth tones. Atmospheric haze
+  carries a faint phosphor-green radio undertone —
   the Dead Signal humming under the static — a barely perceptible
   green tint at the edges of light sources and a whisper of scan-line
   interference in deep distance. Age reads twelve centuries: weathering
@@ -44,31 +11,18 @@ positive_suffix: >-
   atmospheric depth, never as overlay. No CRT screens, no radar
   overlays, no on-screen readouts, no game HUD, no UI elements rendered
   literally in the scene — the Signal is felt in the haze, never
-  pictured as hardware.
+  pictured as hardware. No text, no caption, no title, no writing,
+  no labels, no signage, no watermark, no border, no frame.
 
-# Z-Image ignores this; rejection clauses are in positive_suffix above.
 negative_prompt: ""
 
 color_palette:
-  primary: "#8E8473"      # bone-bleached salt-dust, twelve centuries old
-  secondary: "#5A5641"    # rust-tarnish over irradiated soil
-  accent: "#7CC472"       # phosphor-green Long Signal glow
-  shadow: "#1F1A14"       # deep mutagenic ash-black
-  highlight: "#D8E2C0"    # pale pre-war moonlight diffused through haze
+  primary: "#8E8473"
+  secondary: "#5A5641"
+  accent: "#7CC472"
+  shadow: "#1F1A14"
+  highlight: "#D8E2C0"
 
-# ============================================================
-# Atmosphere — per-region tonal reference
-# ============================================================
-#
-# Mirrors the schema in caverns_sunden/visual_style.yaml: keys are
-# region/POI clusters; values are tonal descriptions for authorial
-# reference and (future) region-layer prompt injection. The daemon's
-# StyleCatalog currently reads only positive_suffix above; this block
-# is reference material for per-POI ``visual_prompt`` authors and
-# placeholder for the REGION layer when wired through PromptComposer.
-#
-# These describe MOOD AND TONAL DISCIPLINE — not subject specifics.
-# Subject specifics live in history.yaml per-POI visual_prompt blocks.
 
 atmosphere:
   glass_flat: >-

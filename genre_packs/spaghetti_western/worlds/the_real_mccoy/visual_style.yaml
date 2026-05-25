@@ -1,34 +1,3 @@
-# The Real McCoy — World-Specific Visual Style
-#
-# Overrides spaghetti_western genre defaults for 1878-1880 Pittsburgh.
-# This is Pittsburgh industrial Gilded Age — coal-smoke sepia, gaslight amber,
-# Bessemer-fire orange, river-fog grey-white. NOT frontier Chihuahuan desert,
-# NOT Leone Almería. The spaghetti_western structural grammar (stillness
-# before violence, held stares, iconic silhouettes against harsh skies)
-# still applies, but the sky is smoke-stained and the silhouettes are
-# frock-coated against blast-furnace light.
-#
-# Visual register anchors:
-#   PORTRAITS    → Napoleon Sarony 1870s cabinet-card studio work,
-#                  Southworth & Hawes Boston daguerreotype tonal range
-#   INDUSTRIAL   → Harper's Weekly 1878 Mon Valley steel-mill engravings
-#                  by William Allen Rogers + Alfred R. Waud
-#   LANDSCAPE    → Currier & Ives 1870s lithograph composition + Underwood
-#                  & Underwood stereograph card industrial-scene framing
-#   ACTION       → Eadweard Muybridge 1878 Palo Alto plate (The Horse in
-#                  Motion) — frozen-instant clarity, collodion-plate grain
-#   REPLICANT    → Albert Robida's 1886 illustrations for Villiers de
-#                  l'Isle-Adam's *L'Ève future*; Jules Worms engravings;
-#                  the uncanny-still-doll register of Cameron's posthumous
-#                  daguerreotypes
-#
-# Anti-references (things this world is NOT):
-#   - Girl Genius / Abney Park brass-goggle steampunk cosplay
-#   - Wild Wild West 1999 or League of Extraordinary Gentlemen pastiche
-#   - Leone Almería desert (that's dust_and_lead's lane)
-#   - 1890s-1910s Gilded Age maturity (too late — stay 1878)
-#   - Post-Tesla AC-electric visual cues (Brush arc-light DC only)
-
 positive_suffix: >-
   1870s newspaper engraving, lines, ink on sepia, fine lines, engraved
   detail, monochrome sepia tonality, 1870s period costume. Storefronts,
@@ -39,43 +8,35 @@ positive_suffix: >-
   newspaper text, no masthead, no headline, no street sign, no signature,
   no watermark, no border, no frame.
 
-# Z-Image Turbo runs at guidance_scale=0 and ignores negative_prompt
-# entirely (see sidequest-content/PROMPTING_Z_IMAGE.md). All constraints
-# live in positive_suffix above. Field kept for pipeline compatibility.
 negative_prompt: ""
 
 preferred_model: dev
 
 base_seed: 1878
 
-# ── Palette ───────────────────────────────────────────────────
-# Named hex values with semantic labels. The world reads as sepia +
-# amber + smoke, punctuated by rare Bessemer-orange sublime moments.
 palette:
-  coal_smoke_sepia:    "#5a4a3a"   # dominant mid-tone; sky, distance, facades
-  gaslight_amber:      "#d9a34a"   # interior warmth; lamp halos, lit windows
-  bessemer_orange:     "#e8692b"   # rare punch; furnace flare, sublime moments
-  mahogany_walnut:     "#3d2418"   # interior wood; train cars, libraries
-  brass_warm:          "#a8803a"   # fittings, fixtures, watch chains
-  fog_grey_white:      "#c7c2b8"   # river fog, Monongahela morning, alkaline mist
-  cemetery_slate:      "#4a4e52"   # Allegheny Cemetery, mourning, Raubritter cold
-  coal_black:          "#12100e"   # crushed shadows, soot, absolute dark
-  parchment_cream:     "#e8dcc0"   # newspaper, telegram, dispatch paper
-  ink_iron_gall:       "#2a1f18"   # handwriting, printed text, iron-gall ink
-  bethel_ame_gold:     "#b8882e"   # warm ceremonial highlight, AME pulpit brass
+  coal_smoke_sepia:    "#5a4a3a"
+  gaslight_amber:      "#d9a34a"
+  bessemer_orange:     "#e8692b"
+  mahogany_walnut:     "#3d2418"
+  brass_warm:          "#a8803a"
+  fog_grey_white:      "#c7c2b8"
+  cemetery_slate:      "#4a4e52"
+  coal_black:          "#12100e"
+  parchment_cream:     "#e8dcc0"
+  ink_iron_gall:       "#2a1f18"
+  bethel_ame_gold:     "#b8882e"
 
-# Semantic palette usage
 palette_usage:
-  sky_default: coal_smoke_sepia     # never blue — always smoke-tinted
-  sky_dramatic: bessemer_orange     # Mon Valley at night, furnace-lit
+  sky_default: coal_smoke_sepia
+  sky_dramatic: bessemer_orange
   interior_warm: gaslight_amber
-  interior_cold: cemetery_slate     # Raubritter's study, Pinkerton office
+  interior_cold: cemetery_slate
   wood_tone: mahogany_walnut
-  metal_tone: brass_warm            # NOT chrome, NOT polished steel
-  shadow: coal_black                # crushed, Leone-style, no soft fill
+  metal_tone: brass_warm
+  shadow: coal_black
   mist: fog_grey_white
 
-# ── Medium ────────────────────────────────────────────────────
 medium_primary: >-
   1870s carte-de-visite and cabinet-card studio portraiture engraving, 
   lines, ink on sepia, fine lines, engraved detail, monochrome, sepia, 
@@ -86,7 +47,6 @@ medium_secondary_replicant_reveal: >-
   stillness of posthumous daguerreotype portraiture; the female
   automaton in Charles Babbage's 1840s salon anecdote visualized
 
-# ── Period Anchor ─────────────────────────────────────────────
 period_anchor: "1878-1880 Pittsburgh industrial Gilded Age"
 
 period_constraints:
@@ -96,9 +56,6 @@ period_constraints:
   photography_medium: "albumen print from wet-collodion plate; cabinet card format (4.25x6.5 in) and carte-de-visite (2.5x4 in); early dry-plate appearing late-decade"
   illumination_real: "gaslight (interior), Brush arc-light (exterior, 1878 rollout), kerosene lamp, candle, firelight — NO incandescent, NO fluorescent"
 
-# ── Per-Scene-Type Visual Tag Overrides ──────────────────────
-# Override the genre-level + sibling-world vocabulary. None of the
-# dust_and_lead tags (saloon, adobe, desert, canyon) apply here.
 visual_tag_overrides:
 
   the_point: >-
@@ -215,16 +172,13 @@ visual_tag_overrides:
   the_train_exterior: >-
     a matte-black Baldwin 4-4-0 locomotive at the head of a private consist,
     parked at a rail siding at dusk, polished brass fittings on the
-    running board and a varnished wood cab, the brass nameplate MCCOY
-    INDUSTRIES on the boiler jacket, six trailing mahogany Pullman-type
-    cars with brass railings and small gold-leaf lettering on the flanks,
+    running board and a varnished wood cab, a blank brass nameplate on the
+    boiler jacket, six trailing mahogany Pullman-type cars with brass
+    railings and small blank gold-leaf cartouches on the flanks,
     a steam plume rising from the stack, coal-smoke trailing along the
     rooflines, a single Brush arc-lamp standard casting hard white light
     on the yard from the left, crushed shadows beneath the trucks
 
-# ── Train Interior Sub-tags ──────────────────────────────────
-# The train is a location with its own internal room graph. Each
-# car has a distinct visual register under the world's master palette.
 train_interior_tags:
 
   engine_cab: >-
@@ -340,11 +294,6 @@ train_interior_tags:
     open door at the rear framing the receding rails in coal-smoke sepia,
     warm amber lamplight on mahogany
 
-# ── Per-Scene-Register Visual Grammar ────────────────────────
-# The register changes by the emotional tenor of the scene. All
-# registers use the same palette; they differ in lighting, grain,
-# framing, and reference medium.
-
 scene_registers:
 
   interior_domestic: >-
@@ -420,23 +369,11 @@ scene_registers:
     monuments rolling away across the lawns behind, a pair of cast-iron
     lions at a distant gatehouse, soft diffused overcast light
 
-# ── Typography (non-Flux — for in-world artifacts) ──────────
-# When rendering newspaper clippings, telegrams, broadsides, etc.,
-# these fonts govern. Per design brief Section (f) Font notes.
 typography:
-  newspaper_headlines:     "Clarendon bold"           # slab serif, period-correct
-  newspaper_body:          "Century Schoolbook"        # readable, period-appropriate
-  newspaper_masthead_de:   "Fette Fraktur"             # Pittsburger Volksblatt style
+  newspaper_headlines:     "Clarendon bold"
+  newspaper_body:          "Century Schoolbook"
+  newspaper_masthead_de:   "Fette Fraktur"
   telegram:                "Courier (teletype face)"
   mccoy_broadside:         "Clarendon bold + Victorian ornamental trim"
   ame_argus_masthead:      "Caslon display + engraved ornament"
   raubritter_stationery:   "engraved copperplate script + Fraktur monogram"
-
-# ── Consistency Contract ──────────────────────────────────────
-# Every image generated for this world MUST:
-#   1. honor the period ceiling (no post-1900 visual elements)
-#   2. honor the palette (coal-smoke sepia dominant, never default-blue sky)
-#   3. honor the medium (albumen/carte-de-visite/engraving/stereograph)
-#   4. exclude the leone_style LoRA (wrong place, wrong period)
-#   5. render replicants at the L'Ève future illustration register
-#      (never show visible mechanism — the point is indistinguishability)

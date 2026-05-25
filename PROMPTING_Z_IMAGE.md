@@ -205,6 +205,62 @@ Scaffold:
 Always say "adult" for every human subject. Always specify clothing. Always
 end with the safety clause.
 
+### Interpretive face-language causes cartoon drift
+
+(Learned from the pulp_noir/annees_folles portrait set, 2026-05-25.)
+
+When a character description editorializes the face into an *impression* or
+*expression* rather than a physical fact, Z-Image reads it as "caricature
+this" and shifts the whole render from painterly illustration to comic-book
+or grotesque cel style. The rest of the set stays painterly; the editorialized
+ones drift cartoony.
+
+The tell is adjectives that describe how a face *makes you feel* or *what it
+suggests*, not what it physically *is*:
+
+| Drifts cartoony (cut) | Renders painterly (keep) |
+|---|---|
+| "eyes magnified into something **owlish and unsettling**" | "pale blue eyes behind thick wire-rimmed lenses" |
+| "a scar pulling his face into a **permanent half-smile that isn't one**" | "a scar from ear to mouth" |
+| "**wild** hair that defies any comb," "**manic** expression" | "untidy grey hair," "alert expression" |
+| "**bloodshot** eyes that still catch everything" | "tired blue eyes, dark circles" |
+
+Rule: in the `appearance` field, describe the **physical fact** (the scar, the
+lens thickness, the hair length/color, the brow shape) and let the face be
+what it is. Interpretation ("unsettling," "manic," "owlish") belongs in lore
+the narrator reads — never in the render prompt. A grotesque or exaggerated
+*physical* feature (broken nose, heavy brow) is fine; it's the emotional/
+impressionistic gloss on top of it that tips the medium.
+
+### Non-visual sentences become painted captions
+
+A description that ends with sentences Z-Image **cannot render** — character
+judgments, backstory, personality — will be painted as a literal text caption
+across the image. Observed: an `appearance` ending "His French is flawless.
+His patience is not." rendered those two sentences as a caption strip along
+the bottom of the portrait.
+
+- Every sentence in a render prompt must describe something a camera could
+  see. "His French is flawless" is not visual — cut it.
+- The same applies to `element_visual` props that *carry text*: "a student
+  identity card," "a letter in Vietnamese script," "banned pamphlets" all
+  invite the model to render writing. Replace with the visual archetype
+  ("a worn book bag," "a folded paper") or drop them.
+
+This is the same root cause as the proper-noun rule (Z-Image renders text it
+sees in the prompt) — it just shows up through *whole non-visual sentences*
+rather than single proper nouns.
+
+### World style suffix bleeds concrete nouns into every portrait
+
+(Cross-reference: the visual_style.yaml authoring rule.) If a world's
+`positive_suffix` names concrete objects or locations ("rain-slicked streets,
+Montmartre rooftops, Seine reflections"), those get layered onto **every**
+render in the world — so a head-and-shoulders portrait ends up with a rainy
+Paris street behind it whether the shot wanted one or not. The world suffix
+must be style/medium/palette vocabulary only. Concrete setting belongs in the
+per-portrait `element_visual` (for the ones that want it), not the world layer.
+
 ## Prompting for POI landscapes
 
 Scaffold:

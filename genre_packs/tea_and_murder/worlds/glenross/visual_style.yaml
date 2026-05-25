@@ -1,32 +1,14 @@
-# Glenross — World Visual Style
-#
-# WIRING: positive_suffix layers onto genre's positive_suffix.
-#
-# AUTHORING RULE (learned from coyote_star playtest 2026-05-03):
-# This file describes HOW to render, not WHAT to render. Every render
-# (portrait, interior, exterior, POI landscape) layers this on top of
-# its own subject. Object-nouns here become artifacts the model paints
-# into every scene — "lamp" puts a lamp in the lawn party, "kettle"
-# puts a kettle in the chase scene, "rose garden" puts roses behind
-# every portrait.
-#
-# So: only style, medium, palette, light, and composition vocabulary.
-# Abstract qualifiers ("sunlit", "soft-edged", "watercolour-bleed") are
-# fine — they describe a surface treatment for whatever subject is
-# rendered. Concrete nouns ("kettle", "lamp", "kirk", "bridge") are
-# NOT — they crystallize as objects in every frame regardless of subject.
-#
-# Concrete subject vocabulary belongs in per-POI / per-portrait prompts
-# (portrait_manifest.yaml entries, /sq-poi landscape prompts), not here.
-#
-# Negative-style instructions ("no thatch, no kilt") do NOT work —
-# Z-Image runs at guidance_scale=0 and ignores negation. The only
-# working defense against an unwanted object is to never name it.
-
 positive_suffix: >-
-  Highland register: heather-purple and bracken-russet accents over the
-  genre's warm-cream and honey-gold base, slate-grey supporting tone,
-  the single warm honey-gold note saved not spent.
+  Edwardian-era watercolour painting on heavy paper, visible paper-grain
+  texture, soft pigment bleed at edges, fine drawn line beneath the
+  colour, in the painterly lineage of Helen Allingham and Sutton Palmer.
+  Highland register: a warm-cream and honey-gold base with heather-purple
+  and bracken-russet accents and slate-grey as supporting tone, the single
+  warm honey-gold note saved not spent. Light is golden-afternoon
+  directional, warm rather than cool, shadows pooling warm umber.
+  Atmosphere pastoral, never gothic, with soft distance and gentle bleed
+  at horizons. No text, no caption, no title, no writing, no label, no
+  signature, no watermark, no border, no frame.
 
 negative_prompt: ""
 
