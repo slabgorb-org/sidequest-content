@@ -61,6 +61,12 @@ genre_packs/**/worlds/*/rooms/*.png
 genre_packs/**/worlds/*/rooms/*.jpg
 genre_packs/**/worlds/*/rooms/*.webp
 
+# Purchased / generated audio lives in R2 (cdn.slabgorb.com), not in this repo
+# — same policy as the images above (ADR-095). The audio.yaml manifests and
+# audio/music/*_input_params.json specs ARE tracked; the .ogg binaries are
+# R2-bound and uploaded via scripts/r2_sync_packs.py.
+genre_packs/**/audio/**/*.ogg
+
 # Procedurally-materialized room YAMLs (ADR-106 megadungeon expansion output) —
 # canonical state lives in the save db; on-disk files are runtime artifacts.
 genre_packs/**/worlds/*/rooms/*.yaml
