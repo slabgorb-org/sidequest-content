@@ -8,6 +8,93 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Individual `pack.yaml` files carry their own per-pack version; this file
 tracks the repo as a whole.
 
+## [1.3.0] - 2026-05-26
+
+### Added
+- **elemental_harmony/shattered_accord** — world promoted from workshopping
+  to production.
+- **pulp_noir** + **neon_dystopia** — promoted from workshopping to
+  production.
+- **tea_and_murder** — `seed_tropes.yaml` with 24 short-arc Glenross hooks
+  (story 22-2).
+- **Reference-page chrome** — `display_font_family` and `archetype` fields
+  added to every `theme.yaml` across all 10 genre packs (stories 63-3,
+  63-4).
+- **Music** — purchased TableTop Audio tracks wired into 6 packs, plus
+  recovered tea_and_murder classical set.
+- **HP / lethality (ADR-114)** — space_opera canary: weapon damage dice
+  and strike-beat `damage_channel`; verdict key renamed
+  `verdicts_on_zero_edge` → `verdicts_on_zero_hp`.
+
+### Changed
+- **Music** — raised ACE-Step `infer_step` 60 → 120 for heavy_metal,
+  neon_dystopia, pulp_noir, and road_warrior.
+- **Visual style** — genre-level suffixes now carry universal safety only;
+  worlds self-complete their own style.
+- **heavy_metal** — world descriptions decoupled from the pack catchphrase
+  (story 62-1).
+- **Pack filesystem schema** — new genre-pack schema with content migration,
+  plus validator gaps closed for world files and extensions (stories 64,
+  256).
+
+### Fixed
+- **flickering_reach** — opening anchors bound to cartography `region_id`.
+
+### Removed
+- CSS overlay removal (alongside POI enrichment cleanup).
+- Genre-pack audio `.ogg` binaries now gitignored (R2-bound, like images).
+
+## [1.2.0] - 2026-05-21
+
+### Added
+- **tea_and_murder** — rebrand from `victoria/` to an Edwardian cosy-crime
+  pack, with the new **Glenross** Highland-village world, an 8-opening
+  vocation-anchored opening bank, per-calling `class_kit` starting
+  inventories (story 49-4), pack-level `weather.yaml` (story 24-2), and a
+  Glenross calendar — months, days, moons, festivals, time precision
+  (story 24-4).
+- **tea_and_murder/glenross** — demographics baseline (cast counts,
+  castle_ross household arithmetic, story 24-3), 13 Edwardian Highland NPC
+  portraits + culture layers, 14 POI landscapes with image manifest, and
+  Highland ACE-Step music params.
+- **beneath_sunden** — new caverns_and_claudes world (Moria-as-tragedy
+  descent): `world.yaml` manifest, `cartography.yaml` + `openings.yaml`
+  (Ropefoot, the Dropmouth), `lore.yaml`, five RACE definitions, looks /
+  affinities / special_rooms tables, a vendored BTMorton SRD corpus, a
+  5-theme palette scaffold, and a world-truth gate.
+- **spaghetti_western** — pack promoted from workshopping to live, with an
+  1878 calendar (dust_and_lead + the_real_mccoy), `client_theme.css` for
+  the theme_css transport, and expanded `the_real_mccoy` (mccoy_*) corpora.
+- **caverns_and_claudes** — 4 genre-level set-piece tropes (Plan 7 §14.A).
+- **Rules** — `on_intent_mismatch` + `intent_verbs` authored across 7 packs.
+- **road_warrior** — restored to playable with a Rig two-pool overhaul.
+- Typed `entities[]` backfill for **beneath_sunden** cartography (story
+  54-5) and across all 14 **glenross** regions (story 54-4).
+
+### Changed
+- **victoria → tea_and_murder** — pack renamed; `space_opera`/
+  `tea_and_murder` `pack.yaml` versions follow the rename.
+- **caverns_and_claudes** — caverns_sunden deprecated in favor of
+  beneath_sunden; new beneath_sunden visual anchor landed.
+- **caverns_and_claudes** — Cleric/Thief signature flavor made
+  pronoun-safe (2nd person).
+- **caverns_sunden** — `dawn_at_the_approach` opener re-anchored at the
+  Threshold Stone (not inside the vault); items catalog expanded with
+  reliquaries, Crimson remnants, and consumables.
+- **beneath_sunden** — fourth-wall engine vocabulary stripped from
+  set-piece outcomes; corpus regenerated with sentence-case rarity and a
+  fixed item-type parse.
+
+### Fixed
+- **tea_and_murder** — Lora font loaded via Google Fonts `@import` rather
+  than a dead local woff2.
+- **history.yaml** — trope notes + narrator log entries wrapped in the
+  correct YAML shape (story 244).
+
+### Removed
+- 46 image PNGs stripped from git-LFS — R2 is the canonical home (story
+  215).
+
 ## [1.1.0] - 2026-05-11
 
 ### Added
