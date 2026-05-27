@@ -10,6 +10,16 @@ ability_score_names:
   - Resolve
   - Influence
 
+ruleset: swn
+swn:
+  attribute_map:
+    STRENGTH: Physique
+    CONSTITUTION: Resolve
+    DEXTERITY: Reflex
+    INTELLIGENCE: Intellect
+    WISDOM: Cunning
+    CHARISMA: Influence
+
 allowed_classes:
   - Officer
   - Operative
@@ -209,29 +219,41 @@ confrontations:
     intent_verbs: [fire, broadside, ram, board, evade, cannon]
     on_intent_mismatch: reprompt
     category: combat
-    # ship_combat uses resolution_mode: opposed_check (sealed_letter_lookup
-    # applies only to dogfight). Calibrated alongside the other opposed_check
-    # confrontations per ADR-093.
-    resolution_mode: opposed_check
+    # ship_combat resolves via attack-vs-AC + hp_depletion under the SWN
+    # ruleset (Task 8). Win on a side's combatant reaching 0 HP; no dials.
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
     opponent_default_stats:
       Intellect: 10
       Reflex: 10
       Resolve: 10
       Cunning: 10
-    player_metric:
-      name: engagement_range
-      starting: 0
-      threshold: 7
-    opponent_metric:
-      name: engagement_range
-      starting: 0
-      threshold: 7
+      # Reserved combat-seed keys (not ability scores) — seed the enemy
+      # ship's runtime CreatureCore for hp_depletion. hp = HULL pool;
+      # armor_class = ship's ascending AC the attack rolls against.
+      # Calibrated (Task 11): raider-frigate, mid-band ship AC 14. Hull 30 lasts
+      # ~3-4 solid hits — broadside 2d6 (avg 7) / close_range 3d6 (avg 10.5),
+      # accounting for misses vs AC 14 at a +2-skill L1 gunner. A satisfying
+      # handful of rounds, not a one-salvo kill.
+      hp: 30
+      armor_class: 14
     beats:
       - id: broadside
         label: "Broadside"
         kind: strike
         base: 2
         stat_check: Intellect
+        attack_bonus: 1
+        combat_skill: 1
+        # ship_combat hull is HP under SWN hp_depletion (Task 8). Strike beats
+        # must declare damage_channel=strike so the dispatch damage path fires
+        # and ablates the enemy ship's hull pool. Ship guns aren't carried
+        # inventory items, so the damage dice live on the beat as a
+        # damage_override (priority-1 "natural attack" path in
+        # resolve_damage_spec_from_beat_and_actor). Calibrated (Task 11): 2d6
+        # (avg 7) — the workhorse volley. ~4-5 hits to chew through hull 30.
+        damage_channel: strike
+        damage_override: {dice: "2d6", bonus: 0}
         effect: "full weapons volley at current range"
         narrator_hint: "All guns fire. The bridge shakes with each salvo."
       # evasive_maneuver: reduce incoming, open distance — defensive sustain
@@ -247,6 +269,15 @@ confrontations:
         kind: strike
         base: 3
         stat_check: Resolve
+        attack_bonus: 1
+        combat_skill: 1
+        # Killing-blow strike: heavier dice than broadside, more risk. Same
+        # damage_channel/damage_override seam as broadside (see note above).
+        # Calibrated (Task 11): 3d6 (avg 10.5) — the closing kill-shot that
+        # ends a hull-30 frigate in ~3 hits if it lands, at the cost of the
+        # "shields take double if it fails" risk below.
+        damage_channel: strike
+        damage_override: {dice: "3d6", bonus: 0}
         risk: "overextended — shields take double if it fails"
         narrator_hint: "Push engines to maximum. Close the gap for a killing blow."
       # target_systems: scan for a weakness — sets up a leverage tag for follow-on attack
@@ -284,23 +315,26 @@ confrontations:
     intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
     on_intent_mismatch: reprompt
     category: combat
-    resolution_mode: opposed_check
+    # Personal combat resolves via attack-vs-AC + hp_depletion under the SWN
+    # ruleset (Task 8). Win on a side's combatant reaching 0 HP; no dials.
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
     # Opponent stats calibrated to mod +0 per ADR-093 (was 12 / mod +1).
     opponent_default_stats:
       Physique: 10
       Reflex: 10
       Resolve: 10
-    # Personal combat (not ship_combat — that one uses engagement_range).
-    # Momentum-based. Shoot-outs in corridors, station bars, airlock
-    # standoffs. HP on character state; momentum on the engagement.
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 7
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 7
+      # Reserved combat-seed keys (not ability scores) — seed the
+      # opponent's runtime CreatureCore for hp_depletion. hp = HP pool;
+      # armor_class = SWN ascending AC the attack rolls against.
+      # Calibrated (Task 11): basic corsair/raider mook. AC 12 = SWN
+      # light/partial armor; a +2-skill L1 shooter hits on ~8+ (~65%). HP 7
+      # is SWN mook-fragile — a 1d6 blaster (avg 3.5) drops it in ~2 hits, or
+      # an overload 2d6 (avg 7) can one-shot it. ~2-3 successful hits to drop.
+      hp: 7
+      armor_class: 12
+    # Personal combat (not ship_combat). Shoot-outs in corridors, station
+    # bars, airlock standoffs. HP on character state.
     beats:
       - id: shoot
         label: Shoot
@@ -308,6 +342,8 @@ confrontations:
         base: 2
         stat_check: Physique
         damage_channel: strike
+        attack_bonus: 1
+        combat_skill: 1
         effect: "Target takes damage this round"
         narrator_hint: Blaster bolts sear the corridor. Sparks off bulkheads.
       - id: take_cover
@@ -321,6 +357,14 @@ confrontations:
         label: Overload Weapon
         kind: strike
         base: 4
+        attack_bonus: 1
+        combat_skill: 1
+        # Calibrated (Task 11): the "dump shot" must out-damage a normal shoot
+        # (1d6 blaster from inventory). damage_override 2d6 (avg 7) ablates via
+        # the same strike damage_channel — enough to one-shot a 7-HP mook on a
+        # hit, justifying the "-2 momentum on any failure" risk in deltas below.
+        damage_channel: strike
+        damage_override: {dice: "2d6", bonus: 0}
         deltas:
           # Both Fail and CritFail dock the player — the prose promises a
           # consequence "on failure" without distinguishing tier, and the
