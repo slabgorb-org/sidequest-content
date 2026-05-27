@@ -26,16 +26,17 @@ system generalizes beyond the merge starting state.
 6. **GM narrates.** 2-3 sentences per cockpit, using the cell's
    `narration_hint` as the beat. Red hears Red's narration, Blue hears Blue's.
    Same event, two POVs.
-7. **Resolve shots:**
-   - If one pilot has `gun_solution: true` and the other does not, the firing
-     pilot scores a hit. Check `hit_severity` for damage level.
-   - If both have `gun_solution: true`, each rolls a d6. Higher roll fires
-     first and scores. The lower-roll pilot still fires, but at a damaged
-     target — halve the damage.
+7. **Resolve shots (SWN gunnery):**
+   - If a pilot has `gun_solution: true`, the engine fires a SWN attack roll:
+     d20 + gunnery skill + DEX modifier + attack_bonus vs target fighter AC.
+     Hit on equal-or-over AC. Damage on a hit: roll the weapon's dice (e.g.
+     1d6 for a light fighter's guns), apply AP vs armor if any.
+   - If both have `gun_solution: true`, both shots resolve (simultaneous fire
+     is the default; the GM may narrate winner-goes-first for dramatic effect).
    - If neither has a gun solution, no shots this turn.
 8. **Win conditions.**
-   - Hull damage per severity: graze = 5, clean = 15, devastating = 30.
-   - Starting hull: 10 (light fighter). Two grazes = kill.
+   - Fighter HP per frame: 6 (light fighter). HP tracks frame damage across turns.
+   - When a fighter's HP reaches 0, it is disabled/destroyed.
    - If a pilot runs out of energy (<=0), they cannot choose `loop` next turn.
 9. **Extend-and-return rule:** After any turn where no hit landed AND at least
    one pilot's closure is `opening_fast`, both pilots reset to the tail-chase
@@ -132,8 +133,8 @@ Red has positional advantage. Blue must evade or reverse to fight.
 ### Result
 
 - Shots fired:
-- Hit severity:
-- Hull damage:
+- SWN roll (d20 + modifiers vs AC):
+- HP damage:
 - Notes:
 
 ---
@@ -184,8 +185,8 @@ Red has positional advantage. Blue must evade or reverse to fight.
 ### Result
 
 - Shots fired:
-- Hit severity:
-- Hull damage:
+- SWN roll (d20 + modifiers vs AC):
+- HP damage:
 - Notes:
 
 ---
@@ -236,8 +237,8 @@ Red has positional advantage. Blue must evade or reverse to fight.
 ### Result
 
 - Shots fired:
-- Hit severity:
-- Hull damage:
+- SWN roll (d20 + modifiers vs AC):
+- HP damage:
 - Notes:
 
 ---
