@@ -242,6 +242,15 @@ confrontations:
         stat_check: Intellect
         attack_bonus: 1
         combat_skill: 1
+        # ship_combat hull is HP under SWN hp_depletion (Task 8). Strike beats
+        # must declare damage_channel=strike so the dispatch damage path fires
+        # and ablates the enemy ship's hull pool. Ship guns aren't carried
+        # inventory items, so the damage dice live on the beat as a
+        # damage_override (priority-1 "natural attack" path in
+        # resolve_damage_spec_from_beat_and_actor). Placeholder dice; Task 11
+        # calibrates alongside the hull/AC numbers.
+        damage_channel: strike
+        damage_override: {dice: "2d6", bonus: 0}
         effect: "full weapons volley at current range"
         narrator_hint: "All guns fire. The bridge shakes with each salvo."
       # evasive_maneuver: reduce incoming, open distance — defensive sustain
@@ -259,6 +268,10 @@ confrontations:
         stat_check: Resolve
         attack_bonus: 1
         combat_skill: 1
+        # Killing-blow strike: heavier dice than broadside, more risk. Same
+        # damage_channel/damage_override seam as broadside (see note above).
+        damage_channel: strike
+        damage_override: {dice: "3d6", bonus: 0}
         risk: "overextended — shields take double if it fails"
         narrator_hint: "Push engines to maximum. Close the gap for a killing blow."
       # target_systems: scan for a weakness — sets up a leverage tag for follow-on attack
