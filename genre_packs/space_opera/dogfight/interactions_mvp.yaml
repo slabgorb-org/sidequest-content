@@ -44,16 +44,6 @@ version: "0.1.0"
 starting_state: merge
 maneuvers_consumed: [straight, bank, loop, kill_rotation]
 
-# Hull damage per hit severity tier (story 38-7).
-# Values are the baseline for the paper playtest's "2 grazes = kill"
-# rule on a standard light fighter (starting_hull: 10).
-# Calibration is deferred to story 38-9 (paper playtest runs).
-damage_increments:
-  graze: 5
-  clean: 15
-  devastating: 30
-starting_hull: 10
-
 # Starting descriptor (both pilots see this at the top of turn 1):
 #   target_bearing: "12"
 #   target_range:   close
@@ -126,7 +116,6 @@ cells:
       target_aspect: tail_on
       closure: opening
       gun_solution: true
-      hit_severity: clean
     narration_hint: >-
       Red powers through the merge, engines wide open. Blue pulls hard into
       a vertical loop — inverted over the top, nose coming down — and rolls
@@ -148,7 +137,6 @@ cells:
       target_aspect: tail_on
       closure: opening_fast
       gun_solution: true
-      hit_severity: devastating
     narration_hint: >-
       Red holds course. Blue's attitude jets cough — the ship flips 180
       degrees on its axis, still drifting in the original direction. Guns
@@ -256,7 +244,6 @@ cells:
       target_aspect: tail_on
       closure: opening
       gun_solution: true
-      hit_severity: clean
     blue_view:
       target_bearing: "06"
       target_range: close
@@ -321,14 +308,12 @@ cells:
       target_aspect: head_on
       closure: opening
       gun_solution: true
-      hit_severity: graze
     blue_view:
       target_bearing: "12"
       target_range: close
       target_aspect: head_on
       closure: opening
       gun_solution: true
-      hit_severity: clean
     narration_hint: >-
       Red's loop brings the nose back on line at the exact instant Blue's
       attitude jets flare — and both ships are suddenly staring down each
@@ -349,7 +334,6 @@ cells:
       target_aspect: tail_on
       closure: opening_fast
       gun_solution: true
-      hit_severity: devastating
     blue_view:
       target_bearing: "06"
       target_range: close
@@ -392,14 +376,12 @@ cells:
       target_aspect: head_on
       closure: opening
       gun_solution: true
-      hit_severity: clean
     blue_view:
       target_bearing: "12"
       target_range: close
       target_aspect: head_on
       closure: opening
       gun_solution: true
-      hit_severity: graze
     narration_hint: >-
       Red fires the attitude jets at the same instant Blue pulls into the
       vertical. When the arcs resolve, both pilots are looking down each
@@ -416,14 +398,12 @@ cells:
       target_aspect: head_on
       closure: stable
       gun_solution: true
-      hit_severity: graze
     blue_view:
       target_bearing: "12"
       target_range: close
       target_aspect: head_on
       closure: stable
       gun_solution: true
-      hit_severity: graze
     narration_hint: >-
       Both pilots fire attitude jets simultaneously. Both ships drift
       through each other's space on pure inertia, both flipped, both guns
