@@ -432,7 +432,7 @@ confrontations:
     mood: tension
 
   - type: dogfight
-    label: Dogfight
+    label: Fighter Duel
     # Spec 2026-05-20 confrontation-intent-validator
     intent_verbs: [dogfight, intercept, pursue, engage, lock, missile, gun]
     on_intent_mismatch: reprompt
@@ -443,9 +443,43 @@ confrontations:
     # (red, blue) pair in the interaction table and applies the two
     # descriptor deltas to each pilot's view. Table lives in its own file
     # adjacent to this one — see dogfight/interactions_mvp.yaml.
-    # Legacy: energy was a descending pool (starting 60, threshold_low 0).
-    # Dual-dial: each pilot has an energy dial; threshold=30 represents
-    # energy advantage (scoring hits while opponent drains down).
+    # SWN statline (Task 5): opponent seeded with SWN-calibrated pilot stats.
+    # Geometry modifiers feed the sealed-letter lookup — aspect/range bonuses
+    # adjust attack_bonus at resolution time.
+    win_condition: dial_threshold
+    opponent_weapon: multifocal_laser
+    player_weapon: multifocal_laser
+    opponent_default_stats:
+      Physique: 10
+      Reflex: 12
+      Intellect: 10
+      Cunning: 10
+      Resolve: 10
+      # Reserved combat-seed keys (not ability scores) — SWN strike-fighter frame + gunnery
+      hp: 8
+      armor_class: 16
+      armor: 5  # SWN ship flat damage soak (distinct from worn-armor mitigation and from armor_class); AP reduces it
+      dexterity: 12  # SWN P4 initiative (1d8+DEX); placeholder, feel-calibrate in playtest
+      pilot_skill: 1
+      attack_bonus: 1
+    # PC strike-fighter frame (HP/AC/armor/gunnery defaults). The pilot's real DEX/attributes + Pilot skill come from the character sheet at instantiation.
+    player_default_stats:
+      hp: 8
+      armor_class: 16
+      armor: 5  # SWN ship flat damage soak (distinct from worn-armor mitigation and from armor_class); AP reduces it
+      pilot_skill: 0
+      attack_bonus: 0
+    geometry_modifiers:
+      aspect:
+        tail_on: 2
+        quartering: 1
+        crossing: -1
+        head_on: -2
+      range:
+        gun: 2
+        close: 0
+        medium: -2
+        far: -4
     player_metric:
       name: energy
       starting: 0
@@ -485,4 +519,4 @@ confrontations:
         narrator_hint: Flip 180 on attitude jets. Back-shot on inertia.
     interaction_table:
       _from: dogfight/interactions_mvp.yaml
-    mood: combat
+    mood: tense
