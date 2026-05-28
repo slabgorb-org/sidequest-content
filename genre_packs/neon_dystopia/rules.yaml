@@ -19,6 +19,10 @@ cwn:
     INTELLIGENCE: Tech
     WISDOM: Instinct
     CHARISMA: Cool
+  system_strain:
+    max_source: CONSTITUTION
+    rest_recovery_per_night: 1
+    first_aid_cost: 1
 
 allowed_classes:
   - Netrunner
@@ -56,15 +60,15 @@ custom_rules:
   injury_system: temporary
   rest_variant: standard
   encumbrance: none
-  humanity_tracker: >-
-    Every piece of cyberware installed costs Humanity. Start at 100.
-    Minor implants cost 5-10. Major chrome costs 15-25. Full limb
-    replacement costs 30. At 50 Humanity, NPCs notice something off
-    about you — you move wrong, your eyes don't track naturally. At
-    25, you're more machine than meat and social interactions suffer
-    mechanical penalties. At 0, cyberpsychosis — the character becomes
-    an NPC. Humanity can be restored slowly through genuine human
-    connection, but the chrome doesn't come out easy.
+  system_strain: >-
+    Cyberware has a bodily cost: System Strain (capped by the Body attribute,
+    starts at 0). Installing chrome adds PERMANENT strain; activating cyber,
+    using combat drugs, or applying first aid adds TEMPORARY strain. Call the
+    adjust_system_strain tool — kind "permanent" on install, "temporary" on
+    activation/drugs, "first_aid" when patching wounds, "rest" for a night's
+    recovery. An action that would push strain over max simply fails (no
+    benefit, no install). A night's rest removes 1 strain down to the permanent
+    floor. Never narrate strain you did not record with the tool.
   street_cred: >-
     Reputation on the street. Starts at 0, grows through completed
     jobs, displayed competence, and word of mouth. High Street Cred
@@ -78,25 +82,6 @@ custom_rules:
     as creatures. Net combat uses Net stat instead of Body/Reflex.
     Never ask players to solve technical puzzles — the character
     is the expert, not the player.
-
-resources:
-  - name: humanity
-    label: Humanity
-    min: 0.0
-    max: 100.0
-    starting: 100.0
-    voluntary: false
-    decay_per_turn: 0.0
-    thresholds:
-      - at: 50.0
-        event_id: humanity_cold
-        narrator_hint: "Your chrome is showing. NPCs notice the emotional detachment."
-      - at: 25.0
-        event_id: humanity_critical
-        narrator_hint: "More machine than human. People recoil instinctively."
-      - at: 0.0
-        event_id: humanity_lost
-        narrator_hint: "No trace of humanity remains. You are a machine wearing skin."
 
 encounter_base_tension:
   random: 0.10
