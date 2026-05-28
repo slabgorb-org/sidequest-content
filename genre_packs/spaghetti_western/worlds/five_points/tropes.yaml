@@ -1,0 +1,404 @@
+# Five Points — World-level tropes.
+# Sixth Ward, Lower Manhattan, 1856–1857. Bowery Boys vs. Roach Guards ("Dead
+# Rabbits") flying ethnic banners over a Wood-vs-anti-Wood patronage machine;
+# the Metropolitan-vs-Municipal police war; the Five Points Mission; the Floor
+# at Almack's. The Fuse to the Fourth is the A-plot, climaxing at the
+# July 4–5, 1857 Dead Rabbits Riot.
+#
+# Four-tier escalation (FRESH / EARLY / MID / VETERAN) mapped to
+# at: 0.25 / 0.5 / 0.75 / 1.0 to match the sibling world
+# (worlds/the_real_mccoy/tropes.yaml) schema exactly.
+#
+# All checks use the genre stat vocabulary (GRIT, DRAW, NERVE, CUNNING,
+# PRESENCE, LUCK) and the genre `luck` resource from rules.yaml. Reputation
+# deltas reference the genre reputation_factions (rules.yaml) re-skinned to the
+# ward's blocs by name in narration; no new resource pool is introduced.
+#
+# BANNER/HAND: each faction beat exposes the gap between the myth a member
+# believes (Banner) and the patronage interest that actually moves them (Hand).
+# Mechanics surface the Hand; the narrator plays the Banner straight.
+#
+# NOTE: narrative prose (richer event copy, narrative_hints flavor) is the
+# writer's lane; the descriptions below are mechanical scaffolding — the
+# escalation arrays, stat checks, stakes, and progression are load-bearing.
+
+# ── THE FUSE TO THE FOURTH (A-plot; all factions → the riot) ───────────────
+- id: fuse_to_the_fourth
+  name: The Fuse to the Fourth
+  description: >-
+    The ward's master clock. Beneath the holy-ethnic-war myth, a cynical
+    Wood-vs-anti-Wood patronage fight is heating Paradise Square toward the
+    July 4–5, 1857 Dead Rabbits Riot. Every faction beat widens the gap between
+    the Banner its members fly and the Hand that moves them. The player cannot
+    stop the Fourth; they can only choose where they stand when it arrives.
+  category: conflict
+  triggers:
+    - tension in Paradise Square
+    - a gang grievance goes unanswered
+    - the police war spills into the Sixth Ward
+    - the Fourth of July approaches
+  narrative_hints:
+    - a hydrant fought over in the mud as if it were a flag
+    - a hare-on-a-pike standard raised at the green-grocery corner
+    - bills posted for a ward muster nobody admits calling
+  tension_level: 0.4
+  resolution_hints:
+    - broker a truce that holds only until the next provocation
+    - pick a banner and fight under it when the barricades go up
+    - work the Hand beneath the Banner — buy off the muscle, not the myth
+    - stand on the Floor and refuse the war entirely (costly, rarely clean)
+  tags: [riot, faction, patronage, banner_hand, a_plot]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. A turf scuffle over a hydrant and a green-grocery corner. The
+        Bowery Boys fly native-pride; the Roach Guards fly defense-of-our-own.
+        Neither says aloud that both are on retainer. The player reads the
+        street and is marked as leaning one way.
+      npcs_involved: [The B'hoy / Fire Laddie, The Roach Brawler]
+      stakes: >-
+        CUNNING check to read which grievance is real and which is staged. On a
+        miss the player is publicly sorted into a faction and loses the neutral
+        read; reputation +1 with the leaning bloc, -1 with its rival.
+    - at: 0.5
+      event: >-
+        EARLY. A killing that won't stay quiet — an echo of Bill Poole's
+        martyrdom. The press names it an ethnic outrage; the ward boss knows it
+        was a contract over votes. Both stories run at once.
+      npcs_involved: [The Ward Boss, The Keening Woman]
+      stakes: >-
+        NERVE check to keep your own name out of the inquest. Failure spends
+        1 Luck or pins the player into the next escalation a beat early. Success
+        reveals the Hand — who paid, in which faction's coin.
+    - at: 0.75
+      event: >-
+        MID. The Metropolitan-vs-Municipal police war erupts at City Hall
+        (June 1857). The law is openly at war with itself; calling "the cops"
+        forces a choice of which law is real this week. The Fuse jumps.
+      npcs_involved: [The Divided Copper, The Ward Boss]
+      stakes: >-
+        Decision point. Side with a police faction (reputation +2 with it, -2
+        with its rival), exploit the gap (CUNNING; the ward goes ungoverned for
+        a scene — every other faction trope ticks +0.05), or stay out (1 Luck to
+        avoid being conscripted by whichever force finds you first).
+    - at: 1.0
+      event: >-
+        VETERAN. July 4–5, 1857. Barricades go up across Paradise Square; the
+        8th and 71st Regiments march in; Isaiah Rynders is stoned mid-mediation —
+        the machine's limit, reached in the open. The operatic set piece.
+      npcs_involved: [The Ward Boss, The Divided Copper, The Free Black Proprietor]
+      stakes: >-
+        The riot resolves per rules.yaml standoff/combat at the barricade. Spend
+        2 Luck to Cheat Death if caught in the militia volley. Permanent
+        world-state: the ward's faction map is redrawn by who held which corner,
+        and the Hand each player served is now common knowledge.
+  passive_progression:
+    rate_per_turn: 0.018
+    rate_per_day: 0.04
+    accelerators: [riot, hydrant, banner, muster, provocation, poole, vote, barricade]
+    decelerators: [broker truce, lay low, leave the ward, pay the rounds]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# ── THE DIVIDED LAW (the police pair; the signature hazard) ────────────────
+- id: the_divided_law
+  name: The Divided Law
+  description: >-
+    Mayor Wood ran two police forces at once — the Municipals (the city's own)
+    and the Metropolitans (Albany's new force). Calling the law forces a choice
+    of which law is legal this week. The two forces may brawl each other.
+    People v. Draper (July 1857) eventually broke Wood; until then, the badge
+    means whatever the man wearing it can enforce.
+  category: conflict
+  triggers:
+    - a crime needs reporting
+    - a copper demands papers or a cut
+    - two badges meet on the same corner
+    - a warrant of contested authority is served
+  narrative_hints:
+    - two patrolmen in different brass arguing whose collar it is
+    - a roundsman who pockets the fee and books nothing
+    - a courthouse summons nobody can confirm is valid
+  tension_level: 0.5
+  resolution_hints:
+    - back the Metropolitans (reform Banner / Republican power-grab Hand)
+    - back the Municipals (the city's own Banner / the machine's enforcers Hand)
+    - play the two against each other and slip the charge entirely
+    - get the case to the one honest copper before either faction buries it
+  tags: [police, law, banner_hand, divided]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. A copper stops the player and it is unclear whose badge it is.
+        He wants the fee either way. The player must guess the force from the
+        brass and the beat — and guess what calling the wrong one will cost.
+      npcs_involved: [The Divided Copper]
+      stakes: >-
+        CUNNING check to read which force holds this corner today. A miss pays
+        the fee twice or earns a roughing — 1 Luck or a GRIT brace to walk it off.
+    - at: 0.5
+      event: >-
+        EARLY. The player needs the law for something real — a theft, a missing
+        person, a threat. Reporting it to one force means the other treats the
+        player as the rival's informant.
+      npcs_involved: [The Divided Copper, The Fence / Fixer]
+      stakes: >-
+        Choose a force. Reputation +1 with it and -1 with the other (the genre
+        `law` faction splits in narration). PRESENCE check to keep the Fence as
+        an off-books alternative if the player trusts neither badge.
+    - at: 0.75
+      event: >-
+        MID. The two forces brawl on the player's corner (the June 1857 City
+        Hall pattern, ward-scale). Whatever crime the player was chasing goes
+        unwatched while the badges fight each other.
+      npcs_involved: [The Divided Copper, The Ward Boss]
+      stakes: >-
+        The law is absent for the scene. NERVE-contested Sizing Up (rules.yaml
+        standoff) to act under cover of the brawl; success advances the player's
+        own business uncaught, failure draws both forces' attention at once.
+    - at: 1.0
+      event: >-
+        VETERAN. People v. Draper lands — one force is ruled the only legal
+        police. Every favor, fee, and grudge the player banked with the losing
+        force is now worthless or worse. The Divided Law was a window; it closes.
+      npcs_involved: [The Divided Copper]
+      stakes: >-
+        Permanent world-state. The player's police reputation collapses into a
+        single faction; debts to the dissolved force become liabilities. Spend
+        1 Luck to convert one banked Municipal favor before it sours.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.03
+    accelerators: [police, badge, warrant, copper, metropolitan, municipal, draper]
+    decelerators: [avoid the law, bribe both, settle privately]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+# ── THE FLOOR AT ALMACK'S (amalgamation under the closing tide) ────────────
+- id: the_floor_at_almacks
+  name: The Floor at Almack's
+  description: >-
+    Pete Williams's dance cellar is the one free space — mixed, ecstatic,
+    fragile — where the wholly disenfranchised hold the only democracy the city
+    refuses them: the dance floor. The nativist tide and the Mission's reform
+    raids press on it. The Floor has no machine and no ballot; its power is
+    cultural, moral, informational — sanctuary and knowledge, never brawn.
+  category: protection
+  triggers:
+    - the player seeks sanctuary or word the factions won't give
+    - a reform raid or nativist mob threatens the cellar
+    - a debt of welcome is owed to the Floor
+    - the closing tide reaches Baxter Street
+  narrative_hints:
+    - tap and juba rhythm under a low candlelit ceiling
+    - a doorway that lets anyone in and remembers everyone
+    - a constable's whistle two streets off, drawing nearer
+  tension_level: 0.45
+  resolution_hints:
+    - stand at the door when the raid comes (costly; no faction backs you)
+    - trade the Floor's knowledge for protection without selling out its people
+    - get the proprietor and the dancers clear before the tide arrives
+    - let it close and carry what the Floor taught you out into the ward
+  tags: [floor, sanctuary, power_denied, amalgamation]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. The player is welcomed to the Floor — the one room in the ward
+        that asks no banner. The proprietor reads them faster than any boss has.
+        A debt of welcome is incurred whether the player notices or not.
+      npcs_involved: [The Free Black Proprietor]
+      stakes: >-
+        PRESENCE check to be trusted with the Floor's word. Success opens the
+        cellar as an information source no faction can match; a miss leaves the
+        player a guest, not a confidant.
+    - at: 0.5
+      event: >-
+        EARLY. The Mission Lady arrives with an offer of "uplift" that would
+        close the cellar to save its patrons from it. She means it. It would
+        still erase them. The Banner is salvation; the Hand is cultural erasure.
+      npcs_involved: [The Mission Lady, The Free Black Proprietor]
+      stakes: >-
+        CUNNING check to name the erasure beneath the charity without burning
+        the Mission as an ally. On a miss the player is read as either a raider's
+        scout or a sentimentalist; reputation -1 with whichever side they slight.
+    - at: 0.75
+      event: >-
+        MID. A reform raid or a nativist mob moves on the cellar while the
+        divided police are busy elsewhere. The Floor has no muscle to call. The
+        player's body at the door is the only defense it gets.
+      npcs_involved: [The Mission Lady, The Free Black Proprietor]
+      stakes: >-
+        Defend the door per rules.yaml combat/standoff with no faction backing —
+        the Floor cannot reciprocate with force, only with sanctuary and word.
+        Spend 1 Luck to get the dancers out a back way instead of fighting.
+    - at: 1.0
+      event: >-
+        VETERAN. The tide decides the cellar's fate. If the player held the
+        door and the word, the Floor survives one more season as the ward's only
+        democracy; if not, it closes, and what it taught walks out into the
+        Points in the bodies that learned it.
+      npcs_involved: [The Free Black Proprietor]
+      stakes: >-
+        Permanent world-state. Floor-open keeps the sanctuary/word resource live
+        for later tropes; Floor-closed converts it into a one-time PRESENCE
+        bonus the player carries and a standing grief the proprietor never names.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.025
+    accelerators: [almacks, cellar, raid, reform, amalgamation, floor, dance]
+    decelerators: [guard the door, move the dancers, buy the tide off]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+# ── THE FIXED ELECTION (Tammany muscle; the no-secret-ballot turf war) ─────
+- id: the_fixed_election
+  name: The Fixed Election
+  description: >-
+    There is no secret ballot. A vote is a public act performed at a turf-held
+    poll, and the gangs are on retainer to harvest it. Tammany's Banner is the
+    only friend the immigrant has — jobs, naturalization, protection; its Hand
+    is the patronage racket that monetizes the ward. The player is courted as
+    muscle, fraud, or witness.
+  category: political
+  triggers:
+    - an election or naturalization drive approaches
+    - the player is offered work at the polls
+    - a repeat-voting or poll-blocking scheme surfaces
+    - a fast-track citizenship is brokered
+  narrative_hints:
+    - a green-grocery back room counting names against a ledger
+    - new citizens walked from the courthouse to the poll in a line
+    - a poll-window held by men who are not officials
+  tension_level: 0.45
+  resolution_hints:
+    - take Tammany's coin and harvest the ward (lucrative; the Hand owns you)
+    - expose the fraud (no clean authority will hear it; the press might)
+    - protect a single honest vote against the muscle (small, costly, real)
+    - sell your read of the ward to the highest faction and walk
+  tags: [election, tammany, patronage, banner_hand, fraud]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. The ward boss offers the player poll work — naturalization
+        escort, name-counting, a hydrant-corner to "keep orderly." The Banner is
+        helping immigrants vote; the Hand is manufacturing the count.
+      npcs_involved: [The Ward Boss, The Runner]
+      stakes: >-
+        PRESENCE check to negotiate terms without being collared as owned muscle.
+        Accepting banks reputation +1 with the machine and -1 with the Reformers;
+        a botched refusal marks the player as a rival's man.
+    - at: 0.5
+      event: >-
+        EARLY. The scheme shows its shape — repeat voting, fast-track papers,
+        a rival bloc's poll to be blocked. The player learns whose votes are
+        being made and whose are being stopped.
+      npcs_involved: [The Ward Boss, The Fence / Fixer]
+      stakes: >-
+        CUNNING check to map the fraud (who pays, who counts, who is barred).
+        Success reveals the Hand and a lever; failure costs 10 dollars to the
+        Fence for the same intelligence, or 1 Luck to get it free.
+    - at: 0.75
+      event: >-
+        MID. Election day. The polls are turf, the ballot is public, and the
+        muscle is deployed. The player must act — harvest, block, expose, or
+        guard one vote — while the rival gang contests the same window.
+      npcs_involved: [The B'hoy / Fire Laddie, The Roach Brawler]
+      stakes: >-
+        Confrontation at the poll per rules.yaml (negotiation escalating to
+        standoff). Reputation swings ±2 across the machine, the Reformers, and
+        the rival bloc by the player's choice. 1 Luck to keep a guarded honest
+        vote from being voided.
+    - at: 1.0
+      event: >-
+        VETERAN. The count is certified — and in Dec 1857 the alignments prove
+        tactical, not holy: Know-Nothing money fuses with Tammany Irish to beat
+        Wood. The ethnic war was always a banner over a ledger. The player's
+        role in the count is now leverage someone holds over them.
+      npcs_involved: [The Ward Boss]
+      stakes: >-
+        Permanent world-state. The certified result shifts which faction holds
+        the ward's patronage for the campaign; the player's recorded part in the
+        fraud (or its exposure) becomes a standing reputation modifier.
+  passive_progression:
+    rate_per_turn: 0.011
+    rate_per_day: 0.03
+    accelerators: [election, vote, poll, tammany, naturalization, ballot, repeat]
+    decelerators: [refuse poll work, expose quietly, leave before the count]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+# ── THE RUNNER'S GAUNTLET (arrival; overrides the genre's stranger-rides-in) ─
+- id: the_runners_gauntlet
+  name: The Runner's Gauntlet
+  description: >-
+    Castle Garden opened Aug 1855 as a fenced depot to protect bewildered
+    arrivals — and the runners waiting outside are Tammany shoulder-hitters
+    turning fresh immigrants into rent, debt, and votes. The same gangway is a
+    humane checkpoint, a vote-farm intake, and (in the Famine-Irish telling) the
+    landing of people already keened over at their own American wake. This world's
+    arrival trope; it overrides the genre's "A Stranger Rides In."
+  category: arrival
+  triggers:
+    - arrive at Castle Garden or the Battery
+    - born to the ward and first walking it with adult eyes
+    - a newcomer is steered toward a boarding house
+    - a runner offers help that is not help
+  narrative_hints:
+    - a tout at the depot fence reciting a relative's name he could not know
+    - a boarding-house card pressed into a shaking hand
+    - the fee for a trunk's "safe carriage" rising with each block
+  tension_level: 0.3
+  resolution_hints:
+    - read the runner's game and keep your purse and your vote
+    - take the offered roof and owe the machine from day one
+    - get a fellow newcomer clear of the gauntlet (costly, makes an ally)
+    - learn the ward's banners before anyone sorts you under one
+  tags: [arrival, castle_garden, runner, power_denied, override]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. The runner makes contact at the fence with impossible warmth and
+        a name he should not have. The Banner is a countryman's welcome; the
+        Hand is the first link of a debt chain to the machine.
+      npcs_involved: [The Runner]
+      stakes: >-
+        NERVE check to refuse the warmth without giving offense the runner can
+        weaponize. A miss starts the player one rung down — a debt, a marked
+        boarding house, or a vote already promised.
+    - at: 0.5
+      event: >-
+        EARLY. The boarding house, the job, the "naturalization help" — each is
+        real and each tightens the line. The player learns who flies which
+        banner as the price of every favor is named.
+      npcs_involved: [The Runner, The Ward Boss]
+      stakes: >-
+        CUNNING check to take what is useful and decline what binds. Success
+        leaves the player free with the lay of the ward; failure banks one
+        machine obligation that surfaces in the_fixed_election.
+    - at: 0.75
+      event: >-
+        MID. The gauntlet's grip is tested — the debt called early, a vote
+        demanded, a fellow newcomer about to be swallowed whole. The player
+        chooses whether the ward's first lesson is solidarity or self-preservation.
+      npcs_involved: [The Runner, The Keening Woman]
+      stakes: >-
+        Confrontation per rules.yaml negotiation/standoff. Freeing a fellow
+        arrival makes a loyal ally and costs the player a reputation rung with
+        the machine; paying the debt down costs dollars or 1 Luck.
+    - at: 1.0
+      event: >-
+        VETERAN. The arrival is over — the player is a creature of the ward now,
+        sorted or unsorted by their own choices at the fence. The American wake
+        is finished; whatever walked ashore is what the Points has to work with.
+      npcs_involved: [The Runner]
+      stakes: >-
+        Permanent world-state. The player enters the wider ward tropes with a
+        starting reputation posture (machine-owed, machine-defiant, or unsorted)
+        set by this trope's resolutions; unsorted carries a one-time CUNNING edge.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.03
+    accelerators: [castle garden, runner, boarding house, arrival, debt, newcomer]
+    decelerators: [lay low, refuse the roof, learn the banners first]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03

@@ -1,0 +1,68 @@
+name: Jewish
+summary: The Baxter Street old-clothes trade — German and early Polish Jews working
+  the secondhand-clothing and pawn economy of the Sixth Ward; light touch
+description: 'A light-touch presence — the German-speaking and early Polish Jewish
+  traders who worked the secondhand-clothing economy of the Sixth Ward in the
+  1850s. Baxter Street (lately Orange) was the old-clothes market of the city: rows
+  of clothing stalls and basement shops, pawnbrokers, peddlers with their packs,
+  tailors and patchers turning rags back into wearable coats. Mostly Bavarian and
+  Posen arrivals of the 1840s and early 1850s, German-speaking, ahead of the great
+  Eastern European Yiddish wave still decades off. Naming runs to assimilated
+  Biblical Hebrew forms (Aaron, Samuel, Moses, Rachel, Miriam) beside German
+  secular names (Lippman, Herman, Max, Louis, Bertha) that signal the established
+  merchant. Synagogues uptown; the ward itself is the workplace, not the home of
+  the comfortable. They sell the ward its coats and lend against its pledges.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_jewish_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_jewish_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Rabbi
+    - Reb
+    - Herr
+    - Frau
+    - Kantor
+    - Mister
+    - Missus
+    - Doctor
+  adjective:
+    word_list:
+    - Old
+    - Young
+    - Elder
+    - Reb
+    - Baxter-Street
+    - Chatham-Square
+    - Honest
+    - Reform
+  place_noun:
+    word_list:
+    - Shul
+    - Synagogue
+    - Stall
+    - Street
+    - Shop
+    - Cellar
+    - Stand
+    - Pawn
+    - Market
+    - Haus
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{given_name} {family_name}, {title}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{adjective} {place_noun}'
+- '{family_name} & {family_name}'

@@ -1,0 +1,70 @@
+name: German
+summary: Kleindeutschland — the Avenue A and B Germans east of the Bowery; skilled
+  trades, lager halls, cabinetmakers; pointedly neutral, the third presence that
+  proves the two-sided war is a lie
+description: 'The German-American community of Kleindeutschland — the Eleventh and
+  Seventeenth Wards east of the Bowery, along Avenues A and B and the cross streets
+  of the old Dry Dock district — at the edge of the Sixth Ward world. Forty-eighters
+  and earlier arrivals: cabinetmakers and joiners, machinists, bakers, brewers and
+  lager-beer saloon-keepers, tailors, grocers, and cigar-makers. The Turnverein
+  gymnasium, the Sängerbund choral hall, the Volksgarten and the beer garden as
+  civic anchors; the German-language press on the breakfast table. Lutheran and
+  German-Catholic both. They keep clear of the Bowery Boy and the Roach Guard
+  alike — a place to flee to, to drink in, to buy a coffin or a chest of drawers
+  from, not a party to the holy-ethnic war the press pretends the ward is fighting.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_german_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_german_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Herr
+    - Frau
+    - Fräulein
+    - Herr Doktor
+    - Kapellmeister
+    - Braumeister
+    - Meister
+    - Wirt
+  adjective:
+    word_list:
+    - alt
+    - jung
+    - gross
+    - klein
+    - neu
+    - schwarz
+    - weiss
+    - roth
+    - golden
+    - lustig
+  place_noun:
+    word_list:
+    - Brauerei
+    - Garten
+    - Halle
+    - Platz
+    - Strasse
+    - Werkstatt
+    - Kirche
+    - Verein
+    - Markt
+    - Bierstube
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{family_name}, {given_name}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{family_name}-{place_noun}'
+- '{adjective} {place_noun}'

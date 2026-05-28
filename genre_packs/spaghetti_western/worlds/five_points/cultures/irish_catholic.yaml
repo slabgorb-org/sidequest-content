@@ -1,0 +1,77 @@
+name: Irish Catholic
+summary: The ward majority — Famine emigrants from Munster and Connacht packed into
+  the Sixth Ward; laborers, cartmen, hod-carriers, domestics, groggery-keepers, and
+  the gang muscle of the Roach Guards
+description: 'The mass Irish-Catholic cohort that filled the Sixth Ward after the
+  Great Hunger — Munster and Connacht country people landed at Castle Garden from
+  1847 onward, crowded into the rear tenements of Mulberry Bend, the rookeries of
+  Cow Bay, and the cellars off Baxter and Worth Streets. Day laborers and hod-carriers,
+  longshoremen on the docks, cartmen, washerwomen and domestics, groggery and
+  green-grocery keepers around Paradise Square. Old St. Patrick''s on Mott Street
+  is the mother parish and Archbishop "Dagger John" Hughes its militant shepherd.
+  The wake, the rosary, the keening woman (bean caointe), poteen and the union of
+  the parish against the nativist and the reformer alike. The "Dead Rabbit" was a
+  slur the press pinned on them and they flew it back on a pike. The Bridget domestic
+  and the Paddy laborer were the cartoons the native-born drew of them; the ward
+  was the answer they made.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_irish_catholic_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: irish.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Father
+    - Sister
+    - Officer
+    - Sergeant
+    - Mister
+    - Missus
+    - Miss
+    - Widow
+  adjective:
+    word_list:
+    - Big
+    - Black
+    - Red
+    - Long
+    - Wee
+    - Whiskey
+    - Fighting
+    - Silent
+    - Mad
+    - Lucky
+    - Holy
+    - Bowery
+  place_noun:
+    word_list:
+    - parish
+    - alley
+    - row
+    - bend
+    - yard
+    - cellar
+    - corner
+    - groggery
+    - hall
+    - chapel
+    - crossing
+    - rookery
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{given_name} ''{adjective}'' {family_name}'
+- '{adjective} {given_name} {family_name}'
+- '{family_name}, {given_name}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{adjective} {family_name} {place_noun}'
+- '{place_noun} of Saint {given_name}'

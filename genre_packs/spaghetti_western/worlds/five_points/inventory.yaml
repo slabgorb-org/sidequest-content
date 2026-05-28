@@ -1,0 +1,165 @@
+# Five Points — Folk-Charm Item Table (world-level override/extension)
+#
+# GOVERNING LAW: Magic is FOLK-CHARM tier ONLY. Small, situational, modest
+# bonuses. NO cosmology, NO apocalypse, NO charge-accrual / "paying the rounds"
+# relic ladder. Folk superstition explains *why* each object is lucky (blessed,
+# killed-a-man, paid-the-rounds-over-it) — that is FLAVOR, never a power ladder.
+# Ambiguity preserved: maybe it is just luck.
+#
+# Mechanically these are catalog items in the genre inventory.yaml CatalogItem
+# shape (id/name/description/category/value/weight/rarity/power_level/tags/lore/
+# narrative_weight — the model is extra="forbid", so the charm's mechanical bite
+# lives inside `lore`, never in an invented field). Bonuses route through the
+# genre stat vocabulary (GRIT/DRAW/NERVE/CUNNING/PRESENCE/LUCK) and the genre
+# `luck` resource and reputation_factions from rules.yaml — NO new resource pool.
+# power_level stays 0–1 across the whole table: these are charms, not arsenals.
+#
+# WORLD/GENRE SPLIT: like worlds/the_real_mccoy/inventions.yaml, this is a
+# world item file. Currency restated as Dollars (NYC 1850s) to match the genre.
+
+currency:
+  name: Dollars
+  denominations:
+    cents: 1
+    dollars: 100
+    eagles: 1000
+
+item_catalog:
+
+  - id: blackthorn_shillelagh
+    name: Blackthorn Shillelagh
+    description: "A fire-hardened blackthorn cudgel, knob worn smooth. Munster men swear it knows a nativist by smell."
+    category: weapon
+    value: 150
+    weight: 2
+    rarity: uncommon
+    power_level: 1
+    tags: [melee, charm, irish]
+    lore: "Cut from a Connacht hedge, carried across the water, blessed by a priest now dead. CHARM: +1 to hit vs Bowery Boys in a brawl or standoff; no bonus against anyone else. Maybe it knows them; maybe it is just luck."
+    narrative_weight: notable
+
+  - id: bill_pooles_cleaver
+    name: Bill Poole's Cleaver
+    description: "A butcher's cleaver said to be Poole's own. The b'hoys touch it like a relic; the Irish flinch from it."
+    category: weapon
+    value: 400
+    weight: 2
+    rarity: rare
+    power_level: 1
+    tags: [melee, charm, nativist, relic]
+    lore: "'Goodbye boys, I die a true American.' The cleaver outlives the man and carries the words. CHARM: +1 to hit while wielded; once per scene a Bowery Boy who sees it bared takes a small NERVE-break check (rules.yaml standoff nerve_break), and it rattles the nativists' enemies the same beat. A notable item, not a wrath engine."
+    narrative_weight: notable
+
+  - id: hare_on_a_pike_standard
+    name: The Hare-on-a-Pike Standard
+    description: "A dead hare lashed to a pike — the slur 'Dead Rabbits' reclaimed as a battle emblem. Two hands to carry; not worn."
+    category: tool
+    value: 0
+    weight: 4
+    rarity: rare
+    power_level: 1
+    tags: [banner, charm, irish, rally]
+    lore: "Whether the Dead Rabbits were ever one gang is contested; the standard is realer than the gang. CHARM: once per scene, raise it to rally Roach Guards / Irish allies (a morale/initiative nudge, like Mose's trumpet) and impose a small fear effect on facing nativists. Drawing it flags the bearer to every nativist in sight."
+    narrative_weight: notable
+
+  - id: moses_fire_trumpet
+    name: Mose's Fire-Trumpet
+    description: "A battered brass speaking-trumpet from a volunteer fire company, dented from old runs to the hydrant."
+    category: tool
+    value: 100
+    weight: 2
+    rarity: uncommon
+    power_level: 1
+    tags: [charm, fire_company, rally]
+    lore: "Named for Mose the b'hoy of the penny-stage stories. CHARM: once per scene, rally your company — a morale/initiative nudge to allies in the same brawl, turf scuffle, or barricade. No effect on strangers."
+    narrative_weight: standard
+
+  - id: miraculous_medal
+    name: Miraculous Medal
+    description: "A small oval medal of the Virgin, worn thin against the skin on a bit of twine."
+    category: tool
+    value: 25
+    weight: 0
+    rarity: common
+    power_level: 0
+    tags: [charm, irish, catholic, faith]
+    lore: "Pressed into a hand at old St. Patrick's on Mott Street; the Famine-Irish do not leave the house without it. CHARM: reroll one death save per session (the genre Cheat-Death register, no Luck cost). Maybe faith; maybe luck."
+    narrative_weight: standard
+
+  - id: brown_scapular
+    name: Brown Scapular
+    description: "Two squares of brown wool on cords, worn over the shoulders under the shirt."
+    category: tool
+    value: 20
+    weight: 0
+    rarity: common
+    power_level: 0
+    tags: [charm, irish, catholic, faith]
+    lore: "The promise sewn into it: who dies wearing it does not die unshriven. CHARM: once per session, when the bearer would spend Luck to Cheat Death, the scapular covers it instead (no Luck spent). Does not stack with another death-charm in the same instant."
+    narrative_weight: standard
+
+  - id: keening_womans_shawl
+    name: The Keening-Woman's Shawl
+    description: "A black wool shawl that smells of turf smoke and grave-clay, lent by the bean caointe who keens the ward's dead."
+    category: tool
+    value: 50
+    weight: 1
+    rarity: rare
+    power_level: 0
+    tags: [charm, irish, death_rite, omen]
+    lore: "She keens for the marked before they know they are marked. CHARM: once, wrap it round your shoulders and know whether a single named NPC is 'marked' — the GM signals whether lethal danger hangs on them this arc. One use, then it is just a shawl."
+    narrative_weight: notable
+
+  - id: marked_deck_five_points
+    name: Marked Deck
+    description: "A deck of cards with imperfections only the dealer who marked them can read; favored in the Baxter Street cellars."
+    category: tool
+    value: 50
+    weight: 0
+    rarity: uncommon
+    power_level: 0
+    tags: [charm, gambling, deception]
+    lore: "Honest until it is needed; the marks are on the edges. CHARM: edge on one cheat or gamble check per scene (the rules.yaml poker `cheat` beat). If caught, the table turns — and a marked deck found on you is its own crime in the ward."
+    narrative_weight: minor
+
+  - id: loaded_bones
+    name: Loaded Bones
+    description: "A pair of dice weighted with a fleck of lead, run in the green-grocery back rooms off Paradise Square."
+    category: tool
+    value: 30
+    weight: 0
+    rarity: uncommon
+    power_level: 0
+    tags: [charm, gambling, deception]
+    lore: "The fixer who sold them swore they only rolled lucky for honest men; he was not an honest man. CHARM: edge on one gamble check per scene. Mutually exclusive with the marked deck in the same game — palm one or the other, not both."
+    narrative_weight: minor
+
+  - id: hot_corn_girls_basket
+    name: The Hot-Corn Girl's Basket
+    description: "A shawl-lined basket that sold roasted corn on the night streets; its girl knows every doorway in the Points."
+    category: tool
+    value: 40
+    weight: 2
+    rarity: common
+    power_level: 0
+    tags: [charm, street, information]
+    lore: "'Hot corn, all hot!' — the cry heard everywhere by everyone. CHARM: once per scene, carrying the basket through a region grants a small CUNNING edge to gather street word or pass a corner uncollared; a hot-corn girl is invisible the way the powerless are invisible."
+    narrative_weight: standard
+
+  - id: masters_worn_taps
+    name: Master Juba's Worn Taps
+    description: "A pair of hard-worn dancing shoes from the Floor at Almack's, soles slick from the cellar boards."
+    category: armor
+    value: 60
+    weight: 1
+    rarity: rare
+    power_level: 0
+    tags: [charm, floor, dance, amalgamation]
+    lore: "Said to have danced the juba against the Irish step until the two made one new thing; the Floor's only relic. CHARM: once per scene on the Floor or in any crowd, a small PRESENCE edge to move, read a room, or carry the floor — the body that learned the cellar's rhythm is hard to corner. No bonus to violence."
+    narrative_weight: notable
+
+# Charms are FOUND, inherited, lent, or pressed into a hand — never bought as a
+# loadout. A charm changing hands is a FRESH-tier beat in tropes.yaml. They are
+# not assigned as class starting gear; world archetypes that carry one reference
+# it in their starting_inventory in _archetypes_mech.yaml. No starting_equipment
+# / starting_gold blocks here — the genre inventory.yaml supplies class loadouts.
