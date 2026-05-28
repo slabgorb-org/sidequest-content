@@ -1,0 +1,401 @@
+# Five Points — World-level Archetype Funnels
+#
+# GOVERNING LAW: World OVERRIDES genre. The genre's frontier archetypes (The
+# Stranger, The Hunter, The Desperate Bandit, …) must NEVER surface for this
+# world. The resolver (sidequest/genre/archetype/shim.py) falls back to the
+# GENRE fallback for any (jungian, rpg_role) pair NOT claimed by a funnel's
+# `absorbs`. Therefore EVERY pair must be claimed here.
+#
+# Coverage: 12 jungian × 7 rpg_role = 84 pairs. All 84 are absorbed below.
+#   jungian:   caregiver ruler artist innocent sage explorer outlaw magician
+#              hero lover jester everyman
+#   rpg_role:  tank dps control healer stealth support jack_of_all_trades
+#
+# The genre (spaghetti_western) ships no archetype_constraints.yaml, so there
+# are NO genre-forbidden pairs to dodge; additional_constraints.forbidden stays
+# empty. Funnels resolve a pair to a NAMED Five Points archetype + faction +
+# Banner/Hand lore. `faction` strings match the world factions from the design
+# brief. Narrative `lore` here is terse mechanical scaffolding — the writer owns
+# the richer faction prose in lore.yaml / archetypes.yaml; what is load-bearing
+# is that every pair lands on a ward archetype, not a frontier one.
+
+funnels:
+
+  # ── THE BOWERY BOYS (native-pride Banner / anti-Wood turf-labor Hand) ──────
+  - name: The B'hoy / Fire Laddie
+    absorbs:
+      - [hero, tank]
+      - [hero, dps]
+      - [everyman, tank]
+      - [everyman, dps]
+    faction: The Bowery Boys
+    lore: >-
+      Soaplocks, stovepipe hat, red fire-shirt. Banner: native-born American
+      Protestant pride, the fire-company brotherhood, Bill Poole's memory.
+      Hand: a turf and labor bloc, anti-Wood, exploitable by Know-Nothing
+      money — and not cleanly nativist (the company has Irish on the rolls).
+    cultural_status: street royalty on the Bowery, rentable muscle to the machine
+    disposition_toward:
+      The Roach Guards: hostile
+      Tammany Hall: wary
+      The Reformers: dismissive
+      The Metropolitans: opportunistic
+      The Municipals: aligned
+
+  - name: The Fire-Company Foreman
+    absorbs:
+      - [ruler, tank]
+      - [ruler, dps]
+      - [hero, control]
+      - [hero, support]
+    faction: The Bowery Boys
+    lore: >-
+      The man who runs the engine house and the hydrant claim. Banner: he keeps
+      the company first to the fire and first to the brawl. Hand: he delivers
+      the b'hoy vote and the b'hoy fists to whoever is paying the company's
+      bills this season.
+    cultural_status: a power on the Bowery, courted by every faction with a poll to win
+    disposition_toward:
+      The Roach Guards: hostile
+      Tammany Hall: transactional
+      The Reformers: contemptuous
+
+  # ── THE ROACH GUARDS / "DEAD RABBITS" (Irish-defense Banner / Wood-muscle Hand) ─
+  - name: The Roach Brawler
+    absorbs:
+      - [outlaw, tank]
+      - [outlaw, dps]
+      - [everyman, stealth]
+      - [hero, stealth]
+    faction: The Roach Guards
+    lore: >-
+      Irish-Catholic gang tough under the reclaimed hare-on-a-pike. Banner:
+      defense of our own, the parish, the famine kin. Hand: pro-Wood electoral
+      muscle on retainer — and "Dead Rabbits" was the press's slur, worn now
+      like a flag.
+    cultural_status: feared on Baxter and Mulberry, owned by the machine that needs the votes
+    disposition_toward:
+      The Bowery Boys: hostile
+      Tammany Hall: used_by
+      The Reformers: resentful
+      The Metropolitans: hostile
+
+  - name: The Parish Defender
+    absorbs:
+      - [caregiver, tank]
+      - [caregiver, dps]
+      - [hero, healer]
+      - [everyman, healer]
+    faction: The Roach Guards
+    lore: >-
+      The one who stands at the church door and the tenement stair. Banner:
+      protecting the parish, the women, the children of the famine ships. Hand:
+      the same body Wood's machine calls out on election day, the line between
+      guardian and gangster never drawn aloud.
+    cultural_status: the parish's shield, the machine's reserve
+    disposition_toward:
+      The Bowery Boys: hostile
+      The Reformers: hostile
+      Tammany Hall: dependent
+
+  # ── TAMMANY HALL / THE EMPIRE CLUB (immigrant's-friend Banner / racket Hand) ─
+  - name: The Ward Boss
+    absorbs:
+      - [ruler, control]
+      - [ruler, support]
+      - [ruler, healer]
+      - [ruler, jack_of_all_trades]
+    faction: Tammany Hall
+    lore: >-
+      Banner: the only friend the immigrant has — jobs, naturalization,
+      protection. Hand: the patronage racket — vote-harvest, franchise graft,
+      gangs on retainer (Rynders to Morrissey). Delivers the ward, monetizes
+      the city.
+    cultural_status: the machine incarnate, friend to your face and ledger to your back
+    disposition_toward:
+      The Roach Guards: uses
+      The Bowery Boys: rivalrous
+      The Reformers: dismissive
+      The Metropolitans: hostile
+      The Municipals: allied
+
+  - name: The Empire Club Fixer
+    absorbs:
+      - [outlaw, control]
+      - [outlaw, support]
+      - [magician, control]
+      - [magician, support]
+    faction: Tammany Hall
+    lore: >-
+      The naturalization-mill clerk and the poll-window operator. Banner: he
+      helps honest men become citizens and voters. Hand: he manufactures the
+      count — repeat votes, fast-track papers, rival polls blocked. The fraud
+      wears the face of charity.
+    cultural_status: indispensable to the machine, invisible to the law that can't decide if it's legal
+    disposition_toward:
+      The Reformers: adversarial
+      The Metropolitans: evasive
+      The Roach Guards: directs
+
+  - name: The Naturalization Tout
+    absorbs:
+      - [outlaw, stealth]
+      - [jester, stealth]
+      - [jester, jack_of_all_trades]
+    faction: Tammany Hall
+    lore: >-
+      The Runner's machine cousin — works the courthouse line and the Castle
+      Garden fence. Banner: a countryman steering you to a roof and a job.
+      Hand: the first link of a debt chain that ends at the poll. Predator in
+      a friend's coat.
+    cultural_status: the fence's gauntlet, profitable and despised
+    disposition_toward:
+      The power-floor: predatory
+      The Reformers: avoidant
+      Tammany Hall: serves
+
+  # ── THE DIVIDED LAW — METROPOLITANS (reform Banner / Republican-grab Hand) ──
+  - name: The Metropolitan Roundsman
+    absorbs:
+      - [hero, jack_of_all_trades]
+      - [ruler, stealth]
+      - [sage, tank]
+      - [sage, control]
+    faction: The Metropolitans
+    lore: >-
+      Albany's new force. Banner: reform, order, clean the city. Hand: a
+      partisan Republican power-grab reaching over the city's head. Unsure, on
+      any given corner, whether his own badge is legal this week.
+    cultural_status: resented as Albany's reach, uncertain of its own authority
+    disposition_toward:
+      The Municipals: mutually_hostile
+      Tammany Hall: adversarial
+      The Bowery Boys: wary
+
+  # ── THE DIVIDED LAW — MUNICIPALS (city's-own Banner / machine-enforcer Hand) ─
+  - name: The Municipal Patrolman
+    absorbs:
+      - [everyman, control]
+      - [everyman, support]
+      - [caregiver, control]
+      - [caregiver, support]
+    faction: The Municipals
+    lore: >-
+      Mayor Wood's force. Banner: the city's own police, accountable to the
+      city. Hand: the machine's enforcers, the badge that books nothing and
+      pockets the fee. Brawls the Metropolitans on the same corner.
+    cultural_status: the ward's familiar law, owned by the mayor it answers to
+    disposition_toward:
+      The Metropolitans: mutually_hostile
+      Tammany Hall: aligned
+      The Roach Guards: tolerant
+
+  - name: The Divided Copper
+    absorbs:
+      - [innocent, tank]
+      - [innocent, control]
+      - [everyman, jack_of_all_trades]
+      - [sage, support]
+    faction: The Divided Law
+    lore: >-
+      The patrolman caught between two forces, unsure his own collar will hold
+      in court tomorrow. Banner: he keeps the peace. Hand: he keeps his job,
+      and that means guessing right which law is real this week. People v.
+      Draper is coming for half of them.
+    cultural_status: the man in the gap, trusted by neither force fully
+    disposition_toward:
+      The Metropolitans: divided
+      The Municipals: divided
+      Tammany Hall: cautious
+
+  # ── THE REFORMERS (salvation Banner / soft-nativist-erasure Hand) ──────────
+  - name: The Mission Lady
+    absorbs:
+      - [caregiver, healer]
+      - [caregiver, jack_of_all_trades]
+      - [innocent, healer]
+      - [innocent, support]
+    faction: The Reformers
+    lore: >-
+      Five Points Mission and House of Industry. Banner: salvation, uplift, a
+      way out for the women and children. Hand: soft-nativist cultural erasure —
+      to "save" the Irish is to scrub the Catholic and the Irish out of them.
+      She means the charity. It still erases.
+    cultural_status: genuinely feeds and houses, quietly aligned with the nativist tide
+    disposition_toward:
+      The Roach Guards: feared_by
+      The power-floor: paternal
+      The Bowery Boys: sympathetic
+
+  - name: The Reform Visitor
+    absorbs:
+      - [sage, healer]
+      - [sage, jack_of_all_trades]
+      - [magician, healer]
+      - [innocent, jack_of_all_trades]
+    faction: The Reformers
+    lore: >-
+      The tract-bearing visitor who climbs the tenement stair with soup and a
+      hymnal. Banner: she brings hope into the worst rooms in the ward. Hand:
+      every ladle is a lever — convert, enroll, reform; close the groggeries
+      and the dance cellars. Salvation with a condition attached.
+    cultural_status: welcomed for the soup, watched for the hook beneath it
+    disposition_toward:
+      The power-floor: encroaching
+      The Roach Guards: resented_by
+
+  # ── THE POWER-FLOOR (Almack's; cultural/moral/informational, NEVER brawn) ──
+  - name: The Free Black Proprietor
+    absorbs:
+      - [sage, dps]
+      - [sage, stealth]
+      - [caregiver, stealth]
+      - [explorer, support]
+    faction: The power-floor
+    lore: >-
+      Keeper of the Floor (the Pete Williams shape). Banner: the one free space,
+      the dance cellar where the disenfranchised hold the only democracy the
+      city refuses them. Hand: there is no Hand — and that is the point. No
+      machine, a barred ballot, power that is cultural and moral, never muscle.
+    cultural_status: the moral center, keeper of the barred-ballot ward's one free floor, denied the franchise
+    disposition_toward:
+      The Reformers: wary
+      Tammany Hall: unowned
+      The Bowery Boys: cautious
+      The Roach Guards: shared_ground
+
+  - name: The Floor Dancer
+    absorbs:
+      - [artist, tank]
+      - [artist, dps]
+      - [artist, control]
+      - [artist, healer]
+      - [artist, stealth]
+      - [artist, support]
+      - [artist, jack_of_all_trades]
+    faction: The power-floor
+    lore: >-
+      The juba-and-Irish-step dancer of Almack's (the Master Juba shape, kept
+      alive in 1856). Banner: the floor where Irish step and African rhythm
+      made one new thing — amalgamation as shared ritual. Hand: none; the
+      dancer's only power is the room's joy and the city cannot tax it.
+    cultural_status: living legend of the Floor, invisible to the ledger, watched by the tide
+    disposition_toward:
+      The Reformers: endangered_by
+      The power-floor: heart_of
+
+  - name: The Keening Woman
+    absorbs:
+      - [magician, dps]
+      - [magician, stealth]
+      - [magician, jack_of_all_trades]
+      - [explorer, control]
+    faction: The power-floor
+    lore: >-
+      The bean caointe who keens the ward's dead and knows who is marked. The
+      Witness. Banner: she carries the famine-Irish death-rite into a city that
+      buries its cholera dead unwaked in the fill beneath the Points. Hand:
+      none — her power is sight and sorrow, never force; the supernatural stays
+      ambiguous, belief and atmosphere only.
+    cultural_status: the death-rite seer, feared and needed, holding no machine
+    disposition_toward:
+      The Reformers: opposed
+      Tammany Hall: unbought
+
+  # ── KLEINDEUTSCHLAND (skilled trades, pointedly neutral; the third presence) ─
+  - name: The Kleindeutschland Tradesman
+    absorbs:
+      - [explorer, tank]
+      - [explorer, dps]
+      - [explorer, healer]
+    faction: Kleindeutschland
+    lore: >-
+      Avenue A and B — cabinetmaker, brewer, lager-hall keeper. Banner: the
+      skilled German who keeps his head down and his trade clean. Hand: a
+      pointed neutrality that is itself a politics — the third presence whose
+      existence proves the two-sided holy war is a lie.
+    cultural_status: prosperous, insular, a place to flee to or buy from
+    disposition_toward:
+      The Bowery Boys: distant
+      The Roach Guards: distant
+      Tammany Hall: transactional
+
+  # ── UNALIGNED WARD FIGURES (no faction; the connective tissue) ─────────────
+  - name: The Runner
+    absorbs:
+      - [outlaw, healer]
+      - [outlaw, jack_of_all_trades]
+      - [jester, dps]
+      - [jester, control]
+    faction: null
+    lore: >-
+      The freelance Castle Garden tout who works the gauntlet for himself
+      before any machine. Banner: a helping hand at the fence. Hand: your purse,
+      your trunk-fee, and your vote, fleeced block by block. Predator-broker,
+      loyal to no banner.
+    cultural_status: the newcomer's first lesson in the ward, owned by no one
+    disposition_toward:
+      The power-floor: predatory
+      Tammany Hall: freelance_for
+
+  - name: The Fence / Fixer
+    absorbs:
+      - [magician, tank]
+      - [explorer, stealth]
+      - [explorer, jack_of_all_trades]
+    faction: null
+    lore: >-
+      Baxter Street — moves stolen goods and the information that travels with
+      them. Banner: an honest dealer in second-hand cloth and odd lots. Hand:
+      the broker of every secret in the ward, who sells your move to whoever
+      pays and never flies a flag of his own.
+    cultural_status: the broker of secrets, useful to every faction, loyal to none
+    disposition_toward:
+      Tammany Hall: transactional
+      The Metropolitans: evasive
+      The power-floor: known_quantity
+
+  - name: The Medium
+    absorbs:
+      - [lover, control]
+      - [lover, support]
+      - [lover, healer]
+      - [lover, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The Fox-sisters-era spiritualist who trades on grieving mothers. Banner:
+      she carries the new gospel of the rapping dead — comfort for the bereaved
+      ward. Hand: an ambiguous fraud who reads the room and sells the séance;
+      maybe a seer, maybe a cold-read artist, never confirmed either way.
+    cultural_status: parlor-celebrated, ward-doubted, profiting from the unwaked dead
+    disposition_toward:
+      The Reformers: opposed
+      The power-floor: parasitic
+
+  - name: The Ward Drifter
+    absorbs:
+      - [jester, tank]
+      - [jester, healer]
+      - [jester, support]
+      - [lover, tank]
+      - [lover, dps]
+      - [lover, stealth]
+      - [innocent, dps]
+      - [innocent, stealth]
+    faction: null
+    lore: >-
+      Not everyone in the Points flies a banner. The ward drifter arrived
+      through Castle Garden or was born to the mud, stayed for reasons they
+      stopped examining, and works the angles between every faction. Banner:
+      whatever today requires. Hand: survival, and the freedom of belonging to
+      no machine — a freedom the ward erodes by the season.
+    cultural_status: unsorted, underestimated, the player's likeliest mirror
+    disposition_toward:
+      Tammany Hall: unowned
+      The power-floor: at_home
+
+additional_constraints:
+  # The genre ships no archetype_constraints.yaml, so there are no
+  # genre-forbidden pairs to reinforce. Every (jungian, rpg_role) pair is
+  # claimed by a funnel above — genre fallback is unreachable for this world.
+  forbidden: []
