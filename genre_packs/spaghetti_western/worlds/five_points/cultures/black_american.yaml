@@ -1,0 +1,78 @@
+name: Black American
+summary: The floor — free Black residents of the Sixth Ward; Pete Williams's dance
+  cellar, the oyster and dance cellars off Orange and Baxter, the one free space;
+  power that is cultural, moral, and informational, never brawn
+description: 'The free Black community of the Sixth Ward — denied the ballot by a
+  property qualification that bound no white man, shut out of the gangs'' patronage
+  and the machine''s favor, and so holding a power that is never martial. Pete
+  Williams''s dance cellar on Orange Street and the oyster and dance cellars of the
+  Points are the floor: the one mixed, free, ecstatic space in the ward, where the
+  juba is danced and Master Juba (William Henry Lane) is a living legend. Waiters,
+  whitewashers, sailors and longshoremen, oyster-house keepers, barbers, ragpickers,
+  laundresses, and a thin professional thread of preachers and teachers. The AME
+  and Zion churches; the abolition press uptown; the spiritualist circle. Naming
+  runs to Biblical and virtue traditions and to Anglo surnames — some carried out
+  of slavery from former enslavers (Washington, Jefferson), many chosen as free
+  declarations (Freeman, Liberty) or taken from trade and place (Hunter, Carpenter,
+  Woods). They have no machine and a barred ballot; that powerlessness is the point.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_black_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_black_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Reverend
+    - Deacon
+    - Elder
+    - Brother
+    - Sister
+    - Mother
+    - Professor
+    - Doctor
+    - Mister
+    - Missus
+    - Madame
+  adjective:
+    word_list:
+    - Old
+    - Young
+    - Big
+    - Free
+    - Brother
+    - Uncle
+    - Auntie
+    - Deacon
+    - Preaching
+    - Dancing
+    - Singing
+  place_noun:
+    word_list:
+    - Cellar
+    - Street
+    - Alley
+    - Hall
+    - Chapel
+    - House
+    - Lodge
+    - Room
+    - Row
+    - Corner
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{adjective} {given_name} {family_name}'
+- '{family_name}, {given_name}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{title} {family_name}''s {place_noun}'
+- '{adjective} {place_noun}'

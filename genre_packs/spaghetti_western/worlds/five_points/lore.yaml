@@ -1,0 +1,390 @@
+# Five Points — World Lore
+# In-world artifacts. Broadsides, ward gossip, police orders, mission tracts,
+# tickets, wakes. Short, stake-bearing, info-dense. Period-correct: post-1854
+# street names (Worth, Baxter, Park), old St. Patrick's on Mott is the live
+# cathedral, the Old Brewery is already a year and a half demolished and lives
+# on only as legend. The supernatural is BELIEF, never confirmed.
+
+world_truth: >-
+  The Sixth Ward in the autumn of 1856 is the most-storied square mile in
+  America and the one that lies to itself hardest. Everyone here tells the
+  same story — a holy war: the native-born Protestant against the Romanist
+  flood, the Irish against the nativist who would scrub the Faith out of
+  them. People have killed for that story and died for it; Bill Poole said
+  "I die a true American" and a year later they still drink to it. But the
+  machinery underneath the story is not holy at all. It is a Democratic
+  patronage racket fractured into rival factions, and the gangs are its
+  rented muscle at the ballot box. Every banner flown over the ward is real
+  to the man who carries it. Every hand that works the banner from behind is
+  also real, and it wants votes, contracts, and the streets. Both are true
+  at once. That is the engine of the place. You will be invited to fight the
+  myth. The men who profit run the machine.
+
+the_ward: >-
+  The five corners are where Worth, Baxter, and Park streets meet, with
+  Little Water feeding in — renamed in '54 to scrub the stink off Anthony,
+  Orange, and Cross, though no rename has changed what the mud smells like.
+  It is all built on the Collect Pond, drained and filled at the turn of the
+  century by men who did not know that buried marsh-grass rots and breathes
+  methane up through the floorboards. The houses lean. New tenements tilt on
+  their sills within five years. The streets are unpaved and run a foot deep
+  in slop the pigs work over by day. Croton water reaches the rich uptown;
+  down here it is the street pump and the standing pool. The cholera took the
+  ward in '49 and again in '54, and the conditions that fed it never left.
+
+the_dead_below: >-
+  The Irish say the ground itself is wrong. The cholera dead of '49 and '54
+  went into hurried mass pits, coffins stacked, no priest to spare and no
+  keening woman to sing them across — the unwaked dead, restless, dangerous.
+  Pave a slum over a marsh full of the unconsecrated and the old people will
+  tell you the ground gives the wailing back at night. Whether the wailing is
+  the bean sí or a settling joist or a keener two courts over, no two
+  neighbors agree, and the priest of old St. Patrick's says it is the wind off
+  the river and would you please go home. Nobody in the ward has settled it.
+
+the_banner_and_the_hand: >-
+  Learn this fast or you will not last the winter. Every faction shows you a
+  banner — the thing its own members believe, the thing it will recruit you
+  with. The Bowery Boys fly native pride and Poole's memory. The Roach Guards
+  fly defense of their own and the old Faith. Tammany flies "the only friend
+  the immigrant has." The Mission flies salvation. But behind each banner is a
+  hand that does not get spoken aloud: a turf-and-labor bloc the Know-Nothing
+  money can rent; pro-Wood electoral muscle; a vote-harvest and a franchise
+  racket; a soft erasure that calls scrubbing the Catholic out of a child
+  "uplift." There are no clean factions in this ward. Every one of them has a
+  real claim you will sympathize with and a real crime you will have to swallow.
+
+the_law_divided: >-
+  The strangest fact in the ward this winter is the one nobody downtown has
+  felt yet: the law is about to split in two. Albany means to take the police
+  away from Mayor Wood and run them itself, under the banner of reform — and
+  the hand under that banner is a Republican grab over the city's own head.
+  Wood means to keep his own force under the banner of home rule — and the
+  hand there is the machine's own enforcers. By next summer two police
+  departments will operate at once, and they will brawl each other on the City
+  Hall steps. When the ward finally burns on the Fourth of July, it will burn
+  because both laws are too busy fighting over which of them is real to put a
+  single fire out.
+
+# ── Factions: Banner (the myth members believe) / Hand (what it really wants) ──
+# No clean factions. Every banner is real to its carriers; every hand is real
+# under it. Each faction has a true claim AND a true crime.
+
+factions:
+  - name: The Bowery Boys
+    summary: "Native-born American Protestant pride, the fire-company brotherhood, Poole's memory."
+    reputation_id: power_brokers
+    banner: >-
+      The native-born American's last redoubt. The fire-laddie brotherhood —
+      red shirt, soaplock, stovepipe hat — that runs to every blaze and holds
+      the Bowery line. Bill Poole's heirs, who keep the flag they laid on his
+      bier and say his last words like a creed.
+    hand: >-
+      A turf-and-labor bloc, anti-Wood by temper, that the Know-Nothing money
+      can rent by the election. Not the cartoon nativists the press makes them
+      — there are Irish names on the rolls — but a fighting interest that will
+      take the American Party's coin to hold its hydrants and its votes.
+    description: >-
+      Grown out of the volunteer fire companies, where rival crews raced to
+      seize the nearest hydrant and brawled over the water. Their heart is up
+      the Bowery, in the engine houses and the theaters; their grievance is
+      Poole, dead a year and his killers walking. They will recruit you with
+      brotherhood and a clean fight and mean it.
+    leader: "(contested; no single boss — the fire-company captains)"
+    base: The Bowery
+    goals:
+      - Hold the Bowery line and the hydrants
+      - Avenge Poole; keep the native-born vote
+      - Take Know-Nothing money without admitting they take orders with it
+    relationships:
+      the_roach_guards: hostile
+      tammany_hall: wary
+      the_reformers: dismissive
+
+  - name: The Roach Guards (the "Dead Rabbits")
+    summary: "Irish-Catholic defense of their own; the reclaimed slur and the hare on a pike."
+    reputation_id: power_brokers
+    banner: >-
+      Defense of their own — the parish, the Famine kin, the family the
+      nativist would scrub the Faith out of. The "Dead Rabbits" name was a slur
+      the Bowery press pinned on them, and they ran a dead hare up a pike and
+      flew it defiant: if that is what you call us, then come and take the
+      colors.
+    hand: >-
+      Pro-Wood electoral muscle. The men who guard the right boxes on election
+      day and repeat the right names. Whether the "Dead Rabbits" are even one
+      organized gang is contested in the ward itself — but the muscle is real
+      and it answers, by retainer, to the machine.
+    description: >-
+      Loose associations of journeymen and apprentices out of the Sixth Ward
+      parishes, called up faction by faction. The standard — the hare on the
+      pike — is attested where the gang's own roster is not; men rally to a
+      relic realer than the thing it commemorates. They will recruit you with
+      the old Faith and a wrong that needs answering, and both are true.
+    leader: "(contested; pro-Wood ward captains under Rynders's reach)"
+    base: Mulberry Bend / the parish of old St. Patrick's
+    goals:
+      - Control the ward's votes and streets
+      - Protect the parish and the Famine arrivals
+      - Deliver for Wood without saying so aloud
+    relationships:
+      the_bowery_boys: hostile
+      tammany_hall: used_by
+      the_reformers: resentful
+
+  - name: Tammany Hall / the Empire Club
+    summary: "The only friend the immigrant has — and the patronage racket beneath it."
+    reputation_id: power_brokers
+    banner: >-
+      The only friend the immigrant has. Jobs on the docks, a fast road to
+      naturalization, a word with the alderman, protection from the landlord
+      and the law. You come off the boat with nothing and Tammany is the hand
+      that lifts you — and remembers, on election day, that it lifted you.
+    hand: >-
+      The patronage racket: vote-harvest through fraudulent fast naturalization,
+      franchise and contract graft through the Common Council, and gangs on
+      retainer as ballot-box muscle. Rynders runs the Sixth Ward out of the
+      green-groceries; Morrissey is the coming man. By 1857 the machine is
+      itself split, Wood against the rest.
+    description: >-
+      The Empire Club, founded by Isaiah Rynders, is the ward's political hub —
+      sluggers, repeaters, and the green-grocery saloons that ring Paradise
+      Square. Power flows down through bosses to gangs because there is no
+      secret ballot and the man who guards the box owns it. The claim is true:
+      they are the immigrant's only institutional friend. The crime is also
+      true: the friendship is a price on a vote.
+    leader: Isaiah Rynders (with John Morrissey ascendant)
+    base: Paradise Square / the Empire Club
+    goals:
+      - Deliver the ward's vote
+      - Monetize the city through franchise and contract
+      - Keep the gangs fed and loyal
+    relationships:
+      the_roach_guards: uses
+      the_bowery_boys: rival
+      the_reformers: tolerant_contempt
+
+  - name: The Divided Law
+    summary: "A faction-PAIR — the Metropolitans and the Municipals, two police forces at war."
+    reputation_id: lawmen
+    banner: >-
+      Each force flies a banner of legitimacy. The Metropolitans (Albany's new
+      commissioners) fly reform and order — clean the city, break the machine.
+      The Municipals (Mayor Wood's own) fly home rule — the city's police,
+      answering to the city, not to a Republican legislature reaching over its head.
+    hand: >-
+      The Metropolitans' hand is a partisan Albany power-grab. The Municipals'
+      hand is the machine's enforcers under another name. Calling "the cops"
+      forces you to choose which law is real this week, and the two forces will
+      brawl each other rather than answer a third party.
+    description: >-
+      Wood kept his Municipal force when Albany created the Metropolitan
+      District over his head; for a season two police departments operate at
+      once. People v. Draper (July 1857) eventually breaks Wood, but in the
+      meantime the law is openly at war with itself. The riot of July 4-5 1857
+      happens BECAUSE the two forces are too busy fighting each other to put it down.
+    leader: "Metropolitans: the Albany commissioners. Municipals: Mayor Fernando Wood."
+    base: City Hall (the police-war theater)
+    goals:
+      - "(Metropolitan) Break Wood; assert state authority over the city"
+      - "(Municipal) Defy Albany; keep the machine's force in the field"
+      - "(both) Win the war with the other force first; the ward comes second"
+    relationships:
+      tammany_hall: entangled
+      the_bowery_boys: courted_by_both
+      the_roach_guards: courted_by_both
+
+  - name: The Reformers
+    summary: "Five Points Mission & House of Industry — salvation, uplift, and erasure."
+    reputation_id: clergy
+    banner: >-
+      Salvation and uplift. A way out for the women and the children — the
+      needle, the schoolroom, a clean room and a clean Scripture, a soul lifted
+      out of the dance cellar and the groggery into the light. They mean it.
+      They feed and house people no one else will.
+    hand: >-
+      Soft-nativist cultural erasure. To "save" the Irish is, in the Maria Monk
+      climate, to scrub the Catholic and the Irish out of them — close the
+      groggeries and dance cellars, take the rosary at the door, make the
+      children new. The aid is real. So is the cost.
+    description: >-
+      The Ladies' Home Missionary Society tore down the Old Brewery in '52 and
+      raised the Mission and the House of Industry on its footprint. The sewing
+      shop, school, and subsidized rooms are real charity in a ward that has
+      none. The evangelical Protestant mission underneath is, against the
+      anti-Catholic panic of the age, a quiet war on the Faith of the saved.
+      Dismissed by the gangs, resented by the parish, quietly aligned with
+      nativist sentiment it would never name.
+    leader: "(the Mission's lady superintendents and the House of Industry's reverend)"
+    base: The Mission Block, Park Street
+    goals:
+      - Convert and reform the ward's women and children
+      - Close the groggeries and the dance cellars
+      - Be seen as charity, not as colonization
+    relationships:
+      the_roach_guards: resented_by
+      tammany_hall: in_contempt_of
+      the_bowery_boys: quiet_alignment
+
+  - name: The Floor (the disenfranchised)
+    summary: "NOT a martial faction. The free Black ward, Almack's, the spiritualists — power that is cultural, moral, informational, never brawn."
+    reputation_id: outsiders
+    banner: >-
+      No banner to fly and no machine to fly it. The free Black residents of
+      the ward have a property-barred ballot and no patronage pipeline while
+      Irish arrivals are naturalized into the electorate around them. What they
+      hold instead is Almack's — the one floor where the most powerless share
+      joy and rhythm — and sanctuary, knowledge, and the trust of those the
+      machine ignores.
+    hand: >-
+      There is no hidden hand here, and that absence is the point. This is a
+      presence and a place, not a faction with a war-aim. Pete Williams keeps
+      the floor; Master Juba cuts it. Their power is moral, cultural, and
+      informational — the one free space, the man who has seen it all — never
+      muscle. Powerlessness, made visible, is the world's sharpest fault line.
+    description: >-
+      Treat as a location-bound community surfaced through its people, not a
+      bloc with goals to win. The dance cellar off Baxter is the only democracy
+      its patrons hold; the closing nativist tide and the reform raids press on
+      it from two sides. The Kleindeutschland Germans sit adjacent and pointedly
+      neutral — the third presence that proves the two-sided holy war is a lie.
+    leader: Pete Williams
+    base: Almack's / the Baxter Street cellars
+    goals:
+      - Keep the floor open and the one free space free
+      - Hold sanctuary, knowledge, and trust
+      - "(no war-aim — this is the point)"
+    relationships:
+      the_reformers: pressed_by
+      the_bowery_boys: threatened_by
+      tammany_hall: ignored_by
+
+# ── In-world artifacts ────────────────────────────────────────────────
+# Broadsides, gossip, orders, tracts, tickets, wakes. Format tags in-world.
+
+dispatches:
+
+  - id: handbill_poole_anniversary
+    format: broadside
+    publication: "Printed for the Order of United Americans, Bowery"
+    dateline: "NEW YORK — MARCH 1856"
+    headline: "ONE YEAR. WE HAVE NOT FORGOTTEN. — A TRUE AMERICAN"
+    body: >-
+      Brothers and Americans. One year is gone since the dastard pistols of
+      foreign hire laid low our champion WILLIAM POOLE at the Stanwix Hall,
+      and his murderers walk the Broadway free, three juries having failed of
+      a verdict the whole city knows. His last words are graven on every
+      American heart: GOODBYE BOYS, I DIE A TRUE AMERICAN. We will gather at
+      Green-Wood at the appointed hour. We will lay the flag upon him as we
+      laid it at his bier. And we will remember that the same hand that fired
+      at the Stanwix is the hand that herds the foreign vote at every box in
+      the Sixth Ward. The ballot is the last redoubt of the native-born. Hold it.
+
+  - id: gossip_dead_rabbit_name
+    format: ward_gossip
+    publication: "Overheard, a green-grocery counter on Baxter Street"
+    dateline: "SIXTH WARD — OCTOBER 1856"
+    body: >-
+      Now here is the thing about the "Dead Rabbits," and you'll get a
+      different answer at every bar on Baxter. The Bowery papers print it like
+      it's a regiment with officers. The Roach lads will tell you there's no
+      such gang, never was, that some Bowery reporter pinned the name on them
+      like a slur and they took it up out of spite — caught a dead hare and run
+      it up a pike and said, well, if we're the Dead Rabbits then HERE'S our
+      colors, come and take them. Old Nellie at the counter swears she's danced
+      with a Dead Rabbit. Her son swears there's no such man. Both of them are
+      telling you the truth. The standard is realer than the gang it stands for.
+
+  - id: notice_municipal_police
+    format: police_order
+    publication: "Office of the Mayor, City of New York"
+    dateline: "NEW YORK — SUMMER 1856"
+    headline: "TO THE CAPTAINS AND ROUNDSMEN OF THE MUNICIPAL POLICE"
+    body: >-
+      The Mayor reminds the force that its commissions issue from this office
+      and from no other. Any man presenting himself in the Sixth Ward under a
+      warrant or a star not countersigned at the Mayor's office is to be
+      regarded as without lawful authority therein, whatever the colour of his
+      paper from Albany. Roundsmen will maintain the peace of the ward, will
+      protect the lawful polls, and will render no assistance to any rival body
+      claiming jurisdiction. The Mayor will stand behind every officer who
+      stands behind the city. — By order, F. WOOD.
+
+  - id: tract_five_points_mission
+    format: tract
+    publication: "Ladies' Home Missionary Society, Five Points Mission, Park Street"
+    dateline: "NEW YORK — 1856"
+    headline: "WHAT WAS THE OLD BREWERY; WHAT IS NOW IN ITS PLACE"
+    body: >-
+      On this very ground, but four years gone, stood the OLD BREWERY, that
+      sink of vice where, it was reliably said, a murder was done every night
+      for fifteen years and the bodies passed out through the cellar to the
+      Cow Bay. We tore it stone from stone in December of '52 and raised upon
+      its grave this MISSION and, across the way, the HOUSE OF INDUSTRY, where
+      the fallen daughter of Erin may learn the needle, the child may learn his
+      letters and a cleaner Scripture than the one he was taught, and a soul
+      may be lifted out of the darkness of Rome into the light. We ask only
+      that they leave at the door the rosary, the whiskey, and the wake. Bring
+      us your children. We will make them new.
+
+  - id: ticket_almacks_shilling
+    format: handbill
+    publication: "Pete Williams's, Baxter Street cellar"
+    dateline: "SIXTH WARD — AUTUMN 1856"
+    headline: "DANCING NIGHTLY — A SHILLING AT THE STAIR"
+    body: >-
+      Down the stair off Baxter, below the oyster cellar, a shilling at the
+      door and no questions as to who you came in beside. Fiddle and bones and
+      the best floor in the Points. They say the dancing that is done here was
+      done nowhere on earth before — the Irish step and the African shuffle
+      married on one set of boards, and the man who married them, Master Juba
+      himself, still cutting the floor when the spirit takes the room. Black
+      and Irish, sailor and seamstress, the gentleman come slumming and the
+      ragpicker come to forget — all of them the same height on this floor and
+      no taller. It is the only ballot some of them will ever cast.
+
+  - id: gossip_keening_on_little_water
+    format: ward_gossip
+    publication: "Told at a back-court pump, Cow Bay"
+    dateline: "SIXTH WARD — NOVEMBER 1856"
+    body: >-
+      Bridget Walsh heard it three nights running off the Little Water end, the
+      keening, where there's no wake laid and no woman crying that anyone can
+      find. She'll tell you it's the bean sí and a death is coming to the court.
+      Father Lynch at old St. Patrick's says there is no such thing and would
+      she stop frightening the children. Maggie Doyle, who keens for hire and
+      knows the trade, says it is no living woman's voice she ever taught — and
+      Maggie has a shawl she'll let you hold, for a consideration, that she
+      says lets you know when a man is marked. Maybe it does. The court has
+      buried two this month who held the shawl and laughed.
+
+  - id: runner_card_castle_garden
+    format: ward_gossip
+    publication: "Worked at the Castle Garden gate, the Battery"
+    dateline: "THE BATTERY — AUTUMN 1856"
+    body: >-
+      They fenced the Garden off in '55 to keep the runners out, and the
+      runners work the rail of the fence now like gulls at a wharf. A clean man
+      in a good coat takes your arm at the gate, has the soft Cork in his voice,
+      knows a boarding-house, knows a money-changer, knows a man who'll see you
+      naturalized and voting by the spring — and every one of those men pays
+      him a cut, and the vote he's selling you was bought before your boots
+      were dry. Inside the fence they'll change your money honest and tell you
+      the true fare. Outside it they'll have your whole purse by the Bowery.
+      The same gate is a mercy and a harvest. Which one you meet is luck.
+
+  - id: empire_club_word
+    format: ward_gossip
+    publication: "The word from Rynders's, Paradise Square"
+    dateline: "SIXTH WARD — AUTUMN 1856"
+    body: >-
+      Captain Rynders holds the ward out of the green-groceries and the
+      saloons that ring the Square, and he holds it the only way it can be
+      held — he is the friend you go to when the landlord, the alderman, or
+      the law has you, and he remembers on election day who he was a friend
+      to. There is no secret ballot in this country; the man who guards the
+      box owns the box. Young Morrissey, Old Smoke, the prizefighter that
+      did for Poole's friends, is the Captain's man and the coming man both.
+      Fly Tammany's banner — the only friend the immigrant has — and do not
+      ask too loud whose hand is in the till, because it is the same hand
+      that got your cousin his place on the docks.

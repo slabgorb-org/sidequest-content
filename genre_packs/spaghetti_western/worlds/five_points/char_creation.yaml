@@ -1,0 +1,266 @@
+# Five Points — World-level character creation override.
+#
+# The genre pack's spaghetti_western/char_creation.yaml has 5 scenes (origins,
+# crucible, reputation, the_ride, confirmation). This world overrides the
+# `origins` scene ONLY — because in the 1857 Sixth Ward the genre's
+# "Territory / Back East / Across the Border / The War" origin vocabulary does
+# not map. Origins here are the five cohorts of the ward: the Famine arrival,
+# the native-born b'hoy, the free Black resident, the Mission reformer, and the
+# uptown runaway. Each origin sets a `background:` id that gates the world's
+# session-1 openings (off_the_boat_at_castle_garden, the_red_shirt_and_the_
+# anniversary, the_stair_at_almacks, the_runaway_and_the_tract).
+#
+# The other four chargen scenes (crucible, reputation, the_ride, confirmation)
+# are inherited UNCHANGED from the genre pack. This file is a BARE LIST of
+# scenes per the world loader contract (loader.py validates
+# `isinstance(char_creation_raw, list)`); a top-level `scenes:` mapping would
+# silently load nothing.
+#
+# Class/race hints draw ONLY from genre rules.yaml allowed_classes
+# (Gunslinger, Bounty Hunter, Outlaw, Drifter, Gambler, Marshal) and
+# allowed_races (Frontier Born, City Exile, Border Crosser, War Survivor).
+# Stat keys are the genre's six: GRIT, DRAW, NERVE, CUNNING, PRESENCE, LUCK.
+# Folk-charm tier only — no invented powers, no Gangs of New York (2002).
+
+- id: origins
+  title: Where Did You Come From?
+  narration: |
+    The groggery off Paradise Square is close with pipe-smoke and wet wool, and the rain on Baxter Street comes down the way it always does on the Sixth Ward — straight into the mud and no farther. A tallow dip gutters on the plank between you. Outside, a fire-bell somewhere up the Bowery, then nothing.
+
+    The old man across the table is a ward fixture — the kind who knows which copper has a lawful star this week and which alderman owes whom. He has been buying the drink and asking the questions, not from kindness, and not from idle curiosity. He is taking your measure for a use.
+
+    "Everybody in this ward come down to it from somewhere," he says. "Off a boat, down a stair, in off the street with the cold still on you. Where'd you come down from?"
+  loading_text: "The old man waits, turning his glass on the scarred plank..."
+  choices:
+    - label: Off the boat — Famine Irish
+      description: >-
+        You came down the gangway at Castle Garden with the Hunger still
+        in your bones — Munster or Connacht country folk, landed into the
+        rear tenements of Mulberry Bend and the cellars off Worth Street.
+        A rosary, a temper, a memory for debts, and a name the parish
+        already keens. America is one smiling runner deep, so far.
+      mechanical_effects:
+        race_hint: City Exile
+        background: fresh_famine_immigrant
+        personality_trait: Devout
+    - label: Native-born — a Bowery b'hoy
+      description: >-
+        You were born here, native and Protestant and loud about it —
+        soaplocks at the temple, stovepipe hat, the red flannel shirt of
+        the volunteer fire company. The engine-house is your parish and
+        Bill Poole's memory the creed. Loyal to the company before sense,
+        and your pride is for rent to men you do not quite see counting.
+      mechanical_effects:
+        class_hint: Outlaw
+        race_hint: Frontier Born
+        background: native_born_bhoy
+        personality_trait: Loyal
+    - label: Free of the ward — Black resident
+      description: >-
+        You are a free man or woman of the Sixth Ward, barred from the
+        ballot by a property law that bound no white man, shut out of the
+        machine's favor and the gangs' patronage. What you hold instead is
+        the floor — Pete Williams's cellar, the one free space, where the
+        powerless stand the same height — and the trust of everyone the
+        ward would rather not see.
+      mechanical_effects:
+        class_hint: Drifter
+        race_hint: City Exile
+        background: free_black_resident
+        personality_trait: Steadfast
+    - label: The Mission — reformer's instrument
+      description: >-
+        You serve the Ladies' Home Missionary Society or the House of
+        Industry — you feed the hungry, house the fallen, teach the child
+        his letters, and you believe every word of it. You are brave; you
+        walk courts the police will not. You have not yet let yourself
+        hear that "making them new" means scrubbing the old faith out.
+      mechanical_effects:
+        class_hint: Marshal
+        race_hint: City Exile
+        background: reformer_missionary
+        personality_trait: Earnest
+    - label: Down off the street — uptown runaway
+      description: >-
+        You came in off the cold tonight, fled from an uptown house and
+        something you will not name. Proud, half-frozen, and done being
+        somebody's property in good linen. The ward is hard, but it never
+        once called itself your home, which is more than the house you ran
+        from could say. You know what "made new" cost the last time.
+      mechanical_effects:
+        race_hint: City Exile
+        background: uptown_runaway
+        personality_trait: Guarded
+  allows_freeform: true
+
+# ---------------------------------------------------------------------------
+# Scenes below are copied VERBATIM from the genre pack
+# (spaghetti_western/char_creation.yaml). The world loader does NOT merge
+# genre + world scenes (char_creation_resolve.py returns world scenes wholesale
+# when non-empty), so the full flow must be present world-tier. Only `origins`
+# above is the five_points override; these four are the standard genre flow.
+# ---------------------------------------------------------------------------
+
+- id: crucible
+  title: What Made You Dangerous?
+  narration: |
+    The old man nods slowly — not surprised, not sympathetic. He has heard every origin story the frontier produces. He refills your glass without being asked.
+
+    "Out here, everyone is dangerous or everyone is dead." He turns his glass on the scarred wood of the table, watching the liquid catch the firelight. "Some are born to it. Some are taught. Some just wake up one morning and discover that the thing they feared most is the thing they are best at."
+
+    He meets your eyes. "What was it for you?"
+  choices:
+    - label: The Gun
+      description: >-
+        You have a gift for violence — fast hands, steady nerve, the
+        ability to see a fight three moves ahead. Whether it is a
+        revolver, a rifle, or a blade, the weapon is an extension of
+        your will.
+      mechanical_effects:
+        class_hint: Gunslinger
+        personality_trait: Lethal
+    - label: The Hunt
+      description: >-
+        You learned to track and find. People, animals, fugitives — it
+        does not matter. Patience is your weapon. The territory is your
+        map. Everyone leaves a trail.
+      mechanical_effects:
+        class_hint: Bounty Hunter
+        personality_trait: Patient
+    - label: The Take
+      description: >-
+        You learned that the world does not give — it only has things
+        that can be taken. Theft, robbery, rustling — you found your
+        talent outside the law and the law never caught up.
+      mechanical_effects:
+        class_hint: Outlaw
+        personality_trait: Reckless
+    - label: The Road
+      description: >-
+        You survived by moving. Never staying long enough to owe anyone,
+        never settling long enough to lose anything. The road itself
+        became your skill — reading strangers, finding shelter, knowing
+        when to run.
+      mechanical_effects:
+        class_hint: Drifter
+        personality_trait: Adaptable
+    - label: The Table
+      description: >-
+        Cards, dice, confidence games — you learned to read people
+        before you learned to read books. Every conversation is a hand
+        being played. Every room is a pot to be won.
+      mechanical_effects:
+        class_hint: Gambler
+        personality_trait: Perceptive
+    - label: The Badge
+      description: >-
+        Someone pinned authority on you — or you pinned it on yourself.
+        The law out here is whatever the person with the badge says it
+        is, and you discovered you have opinions about justice that a
+        gun can enforce.
+      mechanical_effects:
+        class_hint: Marshal
+        personality_trait: Authoritative
+  allows_freeform: true
+
+- id: reputation
+  title: What Do People Say About You?
+  narration: |
+    The old man pushes back his chair. From inside his coat he produces a folded piece of paper — a wanted poster, or a handbill, or a letter of introduction. Hard to tell in the dim light. He smooths it on the table between you.
+
+    "Word travels," he says. "Even out here — especially out here. A man's name arrives before he does. By the time you ride into a town, they already know something about you."
+
+    He taps the paper. "What do they know?"
+  choices:
+    - label: The stories are worse than the truth
+      description: >-
+        Your reputation has outrun your reality. People expect a monster,
+        a legend, a force of nature. The real you is smaller than the
+        myth, but the myth opens doors — and closes others.
+      mechanical_effects:
+        personality_trait: Mythologized
+        reputation_bonus: intimidation
+    - label: Nobody knows my name
+      description: >-
+        You are a ghost. No wanted posters, no war stories, no debts
+        and no credit. Every town is a fresh start — and every person
+        you meet has to take you at face value.
+      mechanical_effects:
+        personality_trait: Anonymous
+        reputation_bonus: stealth
+    - label: I am owed favors
+      description: >-
+        You have done things for people — saved lives, covered debts,
+        kept secrets. The frontier remembers its debts, and yours are
+        scattered across the territory like hidden water.
+      mechanical_effects:
+        personality_trait: Connected
+        reputation_bonus: network
+    - label: There is a price on my head
+      description: >-
+        Someone wants you found. Maybe the law, maybe a family, maybe
+        someone you wronged. The bounty follows you like a shadow, and
+        every bounty hunter in the territory knows the number.
+      mechanical_effects:
+        personality_trait: Hunted
+        reputation_bonus: notoriety
+  allows_freeform: true
+
+- id: the_ride
+  title: Why Are You Here?
+  narration: |
+    The old man folds the paper and returns it to his coat. He finishes his drink in one pull, sets the glass down with the finality of a gavel, and stands.
+
+    "Last question," he says from the doorway, his silhouette framed against a sky full of hard white stars. "Every drifter, every killer, every fool who rides into this territory has a reason. A debt, a name, a number, a grave they are looking for."
+
+    The wind picks up. Somewhere a shutter bangs.
+
+    "What is yours?"
+  choices:
+    - label: Revenge
+      description: >-
+        Someone took something that cannot be replaced. A person, a
+        life, a future. You are here to find them and balance the
+        ledger in the only currency the frontier accepts.
+      mechanical_effects:
+        goals: Vengeance
+        emotional_state: Cold
+    - label: Gold
+      description: >-
+        Somewhere in this territory there is a fortune — buried, stolen,
+        promised, or simply waiting for someone bold enough to take it.
+        You are here because poverty is a death sentence and wealth is
+        the only freedom.
+      mechanical_effects:
+        goals: Wealth
+        emotional_state: Hungry
+    - label: A fresh start
+      description: >-
+        You are running from something — a crime, a failure, a life that
+        closed around you like a fist. The frontier is the last place
+        where a person can become someone new.
+      mechanical_effects:
+        goals: Redemption
+        emotional_state: Guarded
+    - label: Someone needs finding
+      description: >-
+        A name. A face. Someone who disappeared into the territory and
+        did not come back. Whether you are bringing them home or bringing
+        them to justice, the search is all that matters.
+      mechanical_effects:
+        goals: The Search
+        emotional_state: Driven
+  allows_freeform: true
+
+- id: confirmation
+  title: The Road Ahead
+  narration: |
+    The old man is gone. You are alone in the cantina with the dying fire and the empty bottle and the sound of your own breathing.
+
+    Outside, your horse waits at the rail. The road forks south toward the border towns and north toward the high country. East is where you came from. West is where the maps stop making promises.
+
+    You stand. You check your weapon. You step into the night.
+
+    The territory does not care who you are. But it is about to find out.
+  choices: []
+  allows_freeform: false

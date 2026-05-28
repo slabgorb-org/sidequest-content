@@ -1,0 +1,191 @@
+# Five Points — Session 1 Openings
+# Situations, not scenes. The player in motion, stakes visible, a question on
+# the table. Each opening sets a banner-choice before the player without
+# scripting which banner is "right." Solo + multiplayer per triggers.mode.
+#
+# Schema mirrors spaghetti_western/worlds/the_real_mccoy/openings.yaml.
+
+version: "0.1.0"
+world: five_points
+genre: spaghetti_western
+
+openings:
+  - id: off_the_boat_at_castle_garden
+    name: "Off the Boat at Castle Garden"
+    triggers:
+      mode: solo
+      backgrounds:
+        - fresh_famine_immigrant
+    setting:
+      location_label: "The Castle Garden gate, the Battery, a wet October morning"
+    tone:
+      register: bewildered, salt-and-soot, slowly tightening
+      avoid_at_all_costs:
+        - a narrator who explains the patronage machine to the player
+        - a kindly stranger who turns out to be secretly good
+        - the runner twirling a moustache
+    establishing_narration: >-
+      You came down the gangway at Castle Garden with your name keened over
+      already, back home, at the wake they held the night before you sailed —
+      you are, as the old people say, your own ghost walking ashore. Inside the
+      stone fort they changed your few coins honest and told you the true fare
+      to the Sixth Ward and a doctor looked at your eyes. Now you are at the
+      gate, and the fence ends here, and the men work the rail of it like gulls.
+      One of them already has your name — soft Cork in his voice, a good coat, a
+      boarding-house he knows, a money-changer he knows, a man who'll see you
+      voting by spring. He has your trunk-rope in his hand before you have agreed
+      to anything. Somewhere past the Battery the ward is a foot deep in mud and
+      the rents are dear and the work is scarce, and this smiling man is the only
+      person in America who knows your name.
+    first_turn_invitation: >-
+      The runner says, warm as a brother, "Come on now, I've a clean room and a
+      friend at the docks — you'll not stand at this gate all day." He has not
+      let go of the rope. A girl crying hot corn passes; a Mission lady with a
+      tract works the new arrivals at the far rail; two men in red shirts watch
+      the gate from a dray and miss nothing. You have a trunk, a few shillings,
+      and no friend you can prove. Decide who gets your name.
+
+  - id: the_red_shirt_and_the_anniversary
+    name: "The Red Shirt and the Anniversary"
+    triggers:
+      mode: solo
+      backgrounds:
+        - native_born_bhoy
+    setting:
+      location_label: "An engine-house off the Bowery, the night of a Poole remembrance"
+    tone:
+      register: proud, smoky, brotherhood with a hook in it
+      avoid_at_all_costs:
+        - the b'hoys written as cartoon bigots
+        - a speech that explains Know-Nothing politics out loud
+        - the player handed a villain to hate
+    establishing_narration: >-
+      The engine-house is full of red shirts and the smell of lamp oil and beer,
+      and the captain has the flag out — the same flag, they say, that lay on
+      Bill Poole at the Stanwix and at the bier, a year ago and a few months
+      more. You are one of them: native-born, a fire-laddie, soaplock and
+      stovepipe, and tonight is the remembrance. They drink to Poole. They say
+      his words like a creed. The captain has been good to you, got you your
+      place, stood at your back in two brawls over the hydrant, and tonight there
+      is talk of a man come up from the American Party with money for the company
+      and a job that wants doing in the Sixth Ward before the next election. The
+      brotherhood is real. The grief is real. And somewhere under the toast to a
+      true American there is a hand counting what the company is worth to a buyer.
+    first_turn_invitation: >-
+      The captain puts a hand on your shoulder and a fresh beer in front of you
+      and says, low, "There's a man wants to meet you. Quiet work, good money,
+      and it's for the company — for Bill." The flag is on the wall. The brothers
+      are watching to see if you're sound. You owe these men, and you believe
+      half of what they believe. The other half you have never said out loud.
+      Decide what you'll take, and from whom.
+
+  - id: the_stair_at_almacks
+    name: "The Stair at Almack's"
+    triggers:
+      mode: solo
+      backgrounds:
+        - free_black_resident
+    setting:
+      location_label: "The cellar off Baxter Street, Pete Williams's floor, late on a dance night"
+    tone:
+      register: warm, ecstatic, pressed from above
+      avoid_at_all_costs:
+        - the dance hall written as doomed or pitiable
+        - a white savior at the top of the stair
+        - the player's powerlessness narrated at them as a lecture
+    establishing_narration: >-
+      Down the stair off Baxter the candles are burning and the fiddle is going
+      tooth and nail and the floor is full — black and Irish, sailor and
+      seamstress, the gentleman come slumming and the ragpicker, every one of
+      them the same height on these boards and not one taller. You belong here as
+      few belong anywhere: a free man or woman of the ward, with no machine
+      behind you and a ballot the property law has barred, holding instead the
+      one free space in the Sixth Ward and the trust of everyone the machine
+      ignores. Master Juba is cutting the floor. Pete Williams is at the bottom of
+      the stair taking shillings. And at the top of the stair tonight there is a
+      Mission deputation with a closing-order, and a nativist handbill pasted to
+      the door, and a copper at the corner who cannot say this week whether his
+      star is lawful. The best floor in the Points, and the tide come up to it.
+    first_turn_invitation: >-
+      Pete Williams catches your eye across the room — the look of a man who has
+      seen every kind of trouble come down a stair and is asking you, without a
+      word, what this one is. The music has not stopped. It does not have to stop.
+      But the deputation is not leaving, and the handbill is fresh, and the floor
+      is yours to defend or to let go quiet. Decide what the one free space is
+      worth tonight, and what you will spend to keep it open.
+
+  - id: the_runaway_and_the_tract
+    name: "The Runaway and the Tract"
+    triggers:
+      mode: multiplayer
+      backgrounds:
+        - reformer_missionary
+        - uptown_runaway
+      min_players: 2
+      max_players: 5
+    setting:
+      location_label: "The House of Industry sewing-shop, Park Street, on the Mission Block"
+    tone:
+      register: earnest, charitable, quietly coercive
+      avoid_at_all_costs:
+        - the Mission written as simple villains
+        - the runaway written as simply rescued
+        - the rosary-at-the-door cost left unspoken
+    establishing_narration: >-
+      The sewing-shop of the House of Industry is warm and clean and well-lit,
+      which is more than the ward outside can say — rows of women at the needle,
+      children at their letters in the next room, a pot of something honest on
+      the stove. A girl has come in off the street tonight: a runaway from an
+      uptown house, fled from something she will not name, half-frozen and
+      proud. The Mission means to take her in entirely — feed her, house her,
+      teach her the needle and a cleaner Scripture than she was raised on, make
+      her new. They mean every word of it. The price, never said aloud, is the
+      rosary at the door and the self she came in with. Among you are those who
+      serve the Mission and believe in it, and those who came in off the same
+      cold street and remember what "made new" cost the last time. The stove is
+      warm. The offer is real. So is what it asks.
+    first_turn_invitation: >-
+      The lady superintendent folds the runaway's chilled hands in hers and says,
+      gently, "You'll stay. We'll see to everything. You've only to leave the old
+      life at the door — all of it." The girl looks from the warm room to the
+      cold stair and does not answer. The needle-women have stopped sewing to
+      watch. Whatever you are to this Mission — its instrument, its convert, or
+      its quiet doubter — the next hour decides what the girl signs away for the
+      warmth, and whether any of you say the part the Mission leaves unsaid.
+
+  - id: a_body_on_the_square
+    name: "A Body on the Square"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+      min_players: 2
+      max_players: 6
+    setting:
+      location_label: "Paradise Square at the five corners, a cold grey morning, a crowd gathering"
+    tone:
+      register: tense, muddy, every banner already telling its story
+      avoid_at_all_costs:
+        - a clean answer to who did it
+        - one faction revealed as the obvious culprit
+        - the law arriving to fix it
+    establishing_narration: >-
+      There is a body on the Square. A man down in the frozen mud at the five
+      corners, where Worth and Baxter and Park come together, and a crowd already
+      thick around him and thickening — and every banner in the ward is already
+      telling the story its own way. The Bowery men say it was the Roach lads
+      over a box; the Roach men say it was the b'hoys avenging Poole on the wrong
+      Irishman; Rynders's green-grocers say it was no faction at all, only a
+      robbery, and would everyone please go home. Whoever the dead man is, he is
+      about to belong to whichever story shouts loudest, and that story will be
+      worth votes, or a brawl, or both. You are in the crowd — your reasons your
+      own — and the law is not coming, because the law this winter is two forces
+      that will not answer each other. The mud is sinking a little under the press
+      of the crowd. The Square has held bodies before.
+    first_turn_invitation: >-
+      Maggie Doyle the keener pushes to the front, looks at the dead man's face,
+      and goes still in a way that quiets the nearest ranks — she knows him, or
+      she knows what's coming. A Bowery voice and a Baxter Street voice are
+      already shouting across the body. Someone has gone to fetch Rynders. The
+      first true thing said over this corpse will set which way the ward leans
+      for a month. Decide what you came here knowing, what you'll say, and whose
+      story you'll let win.

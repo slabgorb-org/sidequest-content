@@ -1,0 +1,480 @@
+# Audio configuration for Five Points (spaghetti_western / five_points)
+#
+# WORLD-LEVEL HARD OVERRIDE. This world is URBAN IRISH-AMERICAN LOWER
+# MANHATTAN, 1856–1857 — the Sixth Ward, Paradise Square, Almack's, the
+# Fourth-of-July Dead Rabbits Riot. It does NOT inherit the genre pack's
+# arid-frontier Morricone palette. NO whistling-over-electric-guitar, NO
+# harmonica wails, NO reverb twang, NO desert wind. All instrumentation is
+# acoustic and strictly pre-1860 period-plausible.
+#
+# THE FOUR IDIOMS (every cue draws from exactly these, no fusion outside them):
+#   1. IRISH TRAD — uilleann pipes (the regulators/drone, not Highland war
+#      pipes), fiddle (single-row reel/air ornamentation), bodhrán (goatskin
+#      frame drum, tipper), tin whistle, the slow air (sean-nós lament). This
+#      is the ward majority — Famine Munster/Connacht emigrants.
+#   2. MINSTREL / JUBA — the floor at Almack's: rhythm-bones (rib-bones
+#      clappers), banjo (gourd/fretless, four-string downstroke "stroke
+#      style"), fiddle, hand-clap "patting juba" body percussion, ecstatic
+#      mixed-race dance — Master Juba / William Henry Lane's idiom.
+#   3. BRASS-BAND MARTIAL — militia, the riot, the police war: cornet/E-flat
+#      keyed bugle, over-the-shoulder saxhorns, snare + bass drum (the
+#      8th & 71st Regiment regimental band template), quickstep marches.
+#   4. PARLOR-PIANO SPIRITUALISM — the séance, the medium, the grieving
+#      mother: square piano (rosewood, c.1850 New York Nunns & Clark),
+#      melodeon/reed organ, parlor-song sentimentality, table-rapping rhythm
+#      (the Fox-sisters 1848 spiritualist craze idiom).
+#
+# Tonal target — "Leone grey, Corbucci weight, Kurosawa mercy" (axis: gravity
+# 0.80, comedy 0.12, mythic 0.60). Grounded grit by default; operatic ONLY at
+# the riot. The score never romanticizes the slum. The narrator never winks.
+#
+# Film-score behavior (cue-driven, not BGM loop) — overtures, one-shots, long
+# silences are part of the score, same as the genre baseline. Music enters as
+# punctuation.
+#
+# Leitmotifs are generated via ACE-Step audio2audio (a2a) from a per-leitmotif
+# source.wav seed under themed/{leitmotif}/source.wav. a2a is the validated
+# approach for real thematic variation. Seed provenance is preserved: each
+# themed/ dir holds source.wav + its own input_params.json documenting the
+# seed recipe.
+#
+# Reference tracks are cited at the *instance* level (specific tune + tradition
+# + period), per cliche-granularity discipline. Named tunes are real and
+# pre-1860 (or near). NO *Gangs of New York* (2002) soundtrack pastiche —
+# the film's score (Howard Shore + the U2/Sigur Rós "The Hands That Built
+# America") is explicitly EXCLUDED as a reference.
+
+world: five_points
+genre: spaghetti_western
+inherits_from: genre_packs/spaghetti_western/audio.yaml
+override_policy: replace_mood_tracks  # world replaces genre mood_tracks; SFX additions layer over inherited library
+
+# ---------------------------------------------------------------------------
+# Mixer — genre baseline volumes; crossfade lengthened for the cue-driven
+# pacing and the long ward-ambience holds.
+# ---------------------------------------------------------------------------
+mixer:
+  music_volume: 0.08
+  sfx_volume: 0.15
+  crossfade_default_ms: 4000
+
+# ---------------------------------------------------------------------------
+# Mood palette — 8 moods, cue-style, world-scoped paths:
+#   worlds/five_points/audio/music/<mood>_<variant>.ogg
+# Variant roles (music-director spec): overture, full, sparse, ambient,
+# tension_build, resolution. The brief's mood-map binds variant ROLES to
+# dramatic functions:
+#   overture = arrival at Castle Garden | full = riot/standoff |
+#   ambient = the ward day-to-day | tension_build = the fuse to the Fourth |
+#   resolution = the breath after.
+# Not every mood takes every variant — only what the pacing calls for.
+# ---------------------------------------------------------------------------
+mood_tracks:
+
+  ward_day:
+    # The Sixth Ward, day-to-day. The DEFAULT bed. Low uilleann-pipe drone
+    # (regulators held under), a fiddle picking out a fragment of a slow
+    # reel, distant bodhrán pulse like a heartbeat under the mud. Street
+    # life, hawkers, the hot-corn girl's cry. Never pretty — the drone sits
+    # slightly flat. Reference idiom: the sean-nós air over a pipe drone, as
+    # in the Munster lament tradition (not festive session music).
+    - path: audio/music/ward_day_ambient.ogg
+      title: "The Sixth Ward Wakes"
+      bpm: 0
+      tempo: "ambient, drone-bed, no fixed pulse"
+    - path: audio/music/ward_day_sparse.ogg
+      title: "Mud and Hot Corn"
+      bpm: 72
+      tempo: "slow, sparse fiddle over drone"
+
+  almacks_floor:
+    # THE FLOOR. Pete Williams's dance cellar — the one free space, ecstatic,
+    # mixed-race, fragile. Minstrel/juba idiom: rhythm-bones at speed,
+    # downstroke gourd banjo, fiddle, patting-juba hand-claps. This is Master
+    # Juba / William Henry Lane's floor — the jig-meets-shuffle that became
+    # tap. Joyful but with a held breath: the reform tide is at the door.
+    - path: audio/music/almacks_floor_full.ogg
+      title: "Juba on the Boards"
+      bpm: 132
+      tempo: "fast, driving bones + banjo"
+    - path: audio/music/almacks_floor_sparse.ogg
+      title: "Bones in the Dark"
+      bpm: 96
+      tempo: "medium, bones + fiddle only"
+    - path: audio/music/almacks_floor_resolution.ogg
+      title: "Last Reel Before the Raid"
+      bpm: 84
+      tempo: "slowing, the floor emptying"
+
+  the_fuse:
+    # The fuse to the Fourth. Tension_build is the signature variant. A
+    # militia snare begins a slow quickstep roll, far off; a bodhrán answers
+    # from the ward; the two rhythms refuse to sync — the police war as
+    # audible arrhythmia. A single cornet holds one note too long. Builds,
+    # does not resolve. The dread on the horizon (the 1863 Draft Riots) is
+    # never named, only felt as the snare grows.
+    - path: audio/music/the_fuse_tension_build.ogg
+      title: "The Snare and the Bodhrán Won't Agree"
+      bpm: 100
+      tempo: "slow accelerando, dual-rhythm against itself"
+    - path: audio/music/the_fuse_sparse.ogg
+      title: "A Rumor Uptown"
+      bpm: 60
+      tempo: "slow, distant snare, near-silent"
+
+  the_riot:
+    # July 4–5, 1857. The Dead Rabbits Riot — the VETERAN operatic set piece,
+    # the ONLY place the score goes full-operatic. Full brass-band martial
+    # (cornet, saxhorns, snare + bass drum) collides head-on with the
+    # bodhrán-and-fiddle ward fury and the hare-on-a-pike rally. The two
+    # idioms — brass militia vs Irish trad — are scored AGAINST each other,
+    # neither winning, until both are buried under the bass drum. Rynders gets
+    # stoned mid-mediation; the brass falters here.
+    - path: audio/music/the_riot_full.ogg
+      title: "Bayard Street Barricade"
+      bpm: 144
+      tempo: "fast, martial, two idioms in collision"
+    - path: audio/music/the_riot_overture.ogg
+      title: "The Regiments Form on Centre Street"
+      bpm: 120
+      tempo: "march-tempo open, brass fanfare into chaos"
+
+  the_standoff:
+    # The contested heart — Paradise Square, the standoff ground; Stanwix Hall
+    # where Poole was shot. Leone-tight framing in audible form: near-total
+    # silence, one fiddle string bent and held, a single bodhrán thud like a
+    # heartbeat, the creak of a cellar door. The genre's "Ecstasy of Gold"
+    # standoff DNA, re-instrumented for the ward — NO whistle, NO twang. A
+    # blackthorn cane taps once on cobbles. Long silences ARE the cue.
+    - path: audio/music/the_standoff_full.ogg
+      title: "Paradise Square, Nobody Moves"
+      bpm: 48
+      tempo: "very slow, suspended, silence-driven"
+    - path: audio/music/the_standoff_tension_build.ogg
+      title: "Stanwix Hall, the Cane Taps"
+      bpm: 54
+      tempo: "slow build, single held fiddle bend"
+
+  the_seance:
+    # The medium, the grieving mother, the spiritualist parlor. Parlor square
+    # piano (Nunns & Clark c.1850, slightly out of tune in the upper octave),
+    # melodeon drone, the table-rap rhythm of the 1848 Fox-sisters craze used
+    # as a percussive tell. A parlor-song sentimentality that is ALSO a con —
+    # ambiguous fraud-or-seer. The banshee / keening woman bleeds in: a
+    # wordless sean-nós keen (bean caointe) under the piano, so the séance
+    # and the real Irish death-rite are never cleanly separable.
+    - path: audio/music/the_seance_sparse.ogg
+      title: "Three Raps for Yes"
+      bpm: 56
+      tempo: "slow, square piano + rap-rhythm"
+    - path: audio/music/the_seance_ambient.ogg
+      title: "The Keen Under the Parlor"
+      bpm: 0
+      tempo: "ambient, melodeon drone + wordless keen"
+
+  the_wake:
+    # The breath after — resolution is the signature variant. The American
+    # wake (the emigrant mourned alive in Ireland), the funeral on the ward,
+    # the morning after the riot. A solo uilleann-pipe slow air (the regulator
+    # chords entering late), fiddle answering, bodhrán silent. Grief without
+    # melodrama — the Munster caoineadh tradition. Kurosawa mercy: redemption
+    # reachable, never forced. This is where a costly choice lands.
+    - path: audio/music/the_wake_resolution.ogg
+      title: "The American Wake"
+      bpm: 52
+      tempo: "slow, reverent, solo pipe air"
+    - path: audio/music/the_wake_sparse.ogg
+      title: "One Candle on Mott Street"
+      bpm: 46
+      tempo: "very slow, fiddle + pipe drone only"
+
+  castle_garden_arrival:
+    # The overture — arrival at Castle Garden (opened Aug 1855), fresh off the
+    # boat. The map's entry point. A full uilleann-pipe set tune rising into
+    # the open air of the Battery — hope, vertigo, the runner gauntlet waiting.
+    # The brightest cue in the world, and it curdles: the pipes are answered
+    # by a distant brass quickstep (the city's machine already circling) and
+    # the bodhrán speeds the pulse toward the ward. This is the only OVERTURE
+    # that opens warm.
+    - path: audio/music/castle_garden_arrival_overture.ogg
+      title: "Castle Garden, First Morning"
+      bpm: 88
+      tempo: "medium, pipe set tune, brightening then shadowing"
+    - path: audio/music/castle_garden_arrival_full.ogg
+      title: "The Runner's Gauntlet"
+      bpm: 104
+      tempo: "medium-fast, pipes vs encroaching brass"
+
+# ---------------------------------------------------------------------------
+# Leitmotif themes — each a2a-generated from a seed source.wav. These are the
+# thematic variations the narrator layers over mood cues. Each leitmotif has a
+# base_prompt (ACE-Step text conditioning) + variations (a2a outputs, roles per
+# music-director spec). Seed provenance under themed/{name}/source.wav.
+# ---------------------------------------------------------------------------
+themes:
+
+  - name: ward_theme
+    # The ward itself — the immigrant Irish majority, the mud, the parish. A
+    # slow Munster sean-nós air carried on uilleann pipes (regulator drone
+    # under), fiddle answering in heterophony. The tune is "An Mhaighdean
+    # Mhara" (The Mermaid / The Sea-Maiden, trad. Donegal/Connacht lament) used
+    # as harmonic template, NOT quoted — a song of one taken from her people,
+    # apt for the emigrant. Never festive; the drone is the homesickness.
+    leitmotif_for: "the Sixth Ward / the Irish-Catholic majority"
+    seed: audio/music/themed/ward_theme/source.wav
+    seed_params: audio/music/themed/ward_theme/input_params.json
+    base_prompt: >
+      solo uilleann pipes slow air with regulator drone underneath, single
+      fiddle answering in heterophony, Munster Connacht sean-nos lament idiom
+      circa 1850, melodic template of the traditional Irish air An Mhaighdean
+      Mhara (not quoted, harmonic frame only), D minor modal, slow 52 bpm,
+      no fixed bodhran pulse, mournful homesick quality, dry close-mic
+      acoustic, period-authentic pre-1860 Irish traditional aesthetic, no
+      electric instruments, no reverb, no modern production, no whistle-twang
+    variations:
+      - type: ambient
+        path: audio/music/themed/ward_theme/ambient.ogg
+      - type: full
+        path: audio/music/themed/ward_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/ward_theme/sparse.ogg
+      - type: resolution
+        path: audio/music/themed/ward_theme/resolution.ogg
+
+  - name: floor_theme
+    # The Floor at Almack's — the disenfranchised, Pete Williams, Master Juba.
+    # Minstrel/juba idiom played STRAIGHT and ecstatic, reclaimed from the
+    # minstrel-show caricature: rhythm-bones lead, downstroke gourd banjo
+    # (stroke style, pre-bluegrass), fiddle, patting-juba hand-claps. Built on
+    # the rhythmic template of "Juba" / "Pattin' Juba" (the hambone pattern,
+    # African-American body-percussion tradition, 1840s-50s). Joy with a
+    # held breath — this is the one free space and it is under siege.
+    leitmotif_for: "the Floor / Almack's dance cellar / Pete Williams"
+    seed: audio/music/themed/floor_theme/source.wav
+    seed_params: audio/music/themed/floor_theme/input_params.json
+    base_prompt: >
+      rhythm-bones rib-bone clappers leading at speed, fretless gourd banjo
+      downstroke stroke-style 1850s, fiddle, patting-juba hambone hand-clap
+      body percussion, ecstatic mixed-race dance-cellar idiom of William
+      Henry Lane Master Juba, rhythmic template of Pattin Juba hambone
+      pattern (African-American body-percussion tradition 1840s-1850s), G
+      major, driving 132 bpm, raw candlelit cellar recording aesthetic,
+      period-authentic pre-1860, no electric instruments, no minstrel-show
+      caricature, no modern production
+    variations:
+      - type: full
+        path: audio/music/themed/floor_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/floor_theme/sparse.ogg
+      - type: resolution
+        path: audio/music/themed/floor_theme/resolution.ogg
+
+  - name: machine_theme
+    # Tammany / the machine / the Divided Law — the patronage racket and the
+    # police war. Brass-band martial rendered COLD: cornet and saxhorns in a
+    # parade quickstep, but the two halves of the band play a half-beat out of
+    # phase (the Metropolitan-vs-Municipal split made audible — two forces,
+    # one city, neither in time). Template: a generic 1850s militia quickstep
+    # march (the regimental-band idiom of the 8th/71st NY), not a named anthem.
+    # Correct, cultivated, menacing in its very orderliness.
+    leitmotif_for: "Tammany / the patronage machine / the Divided Law (police war)"
+    seed: audio/music/themed/machine_theme/source.wav
+    seed_params: audio/music/themed/machine_theme/input_params.json
+    base_prompt: >
+      brass band quickstep march, cornet and E-flat keyed bugle and
+      over-the-shoulder saxhorns, snare drum and bass drum, 1850s American
+      militia regimental band idiom, B-flat major, 112 bpm, two halves of the
+      band scored a half-beat out of phase against each other (audible
+      arrhythmia, two forces never in time), cold and cultivated and
+      menacing in its orderliness, period-authentic pre-1860 brass band
+      recording aesthetic, no electric instruments, no modern production
+    variations:
+      - type: full
+        path: audio/music/themed/machine_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/machine_theme/sparse.ogg
+      - type: tension_build
+        path: audio/music/themed/machine_theme/tension_build.ogg
+
+  - name: poole_theme
+    # The DEAD-who-rule-by-legend: Bill Poole, the martyred nativist b'hoy,
+    # the cleaver. His ghost flies the Bowery Boys' banner. A native-born
+    # Protestant idiom against the Irish trad: a fife-and-drum martyr's tune
+    # (the Anglo-American fife tradition, NOT Irish pipes) — the template is
+    # "Hail Columbia" (1798, the de-facto national air pre-1931) rendered in
+    # minor and broken, a flag half-furled. "I die a true American" carried as
+    # a wordless fife line. Plays at Stanwix Hall, his grave, Bowery turf.
+    leitmotif_for: "Bill Poole (martyr) / the Bowery Boys' nativist banner"
+    seed: audio/music/themed/poole_theme/source.wav
+    seed_params: audio/music/themed/poole_theme/input_params.json
+    base_prompt: >
+      Anglo-American fife and rope-tension snare drum, martyr's lament, melodic
+      template of Hail Columbia 1798 (the de-facto pre-1931 American national
+      air) transposed to minor and fragmented, a flag half-furled, native-born
+      Protestant b'hoy idiom set deliberately against Irish pipes, A minor,
+      slow 64 bpm, mournful and defiant, period-authentic 1850s fife-and-drum
+      recording aesthetic, no electric instruments, no Irish pipes, no modern
+      production
+    variations:
+      - type: full
+        path: audio/music/themed/poole_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/poole_theme/sparse.ogg
+      - type: tension_build
+        path: audio/music/themed/poole_theme/tension_build.ogg
+
+  - name: hare_theme
+    # The Roach Guards / "Dead Rabbits" rally — the hare-on-a-pike standard
+    # (the dead rabbit raised on a pole, the slur defiantly reclaimed). A
+    # bodhrán-driven Irish march, fiddle screaming a reel at battle-tempo, the
+    # uilleann pipes pushed to their loud register for once. Template: "O'Donnell
+    # Abú" (the 1843 Irish rallying anthem) used as harmonic frame — a clan war
+    # cry, apt for "defend our own." This is the ward's answer to Poole's fife.
+    leitmotif_for: "the Roach Guards / Dead Rabbits rally (hare-on-a-pike)"
+    seed: audio/music/themed/hare_theme/source.wav
+    seed_params: audio/music/themed/hare_theme/input_params.json
+    base_prompt: >
+      bodhran goatskin frame drum driving a battle-tempo Irish march, fiddle
+      playing a reel at full intensity, uilleann pipes pushed to loud register,
+      harmonic template of O'Donnell Abu 1843 Irish rallying anthem (frame only,
+      not quoted), a defiant clan war cry, E minor, 140 bpm, raw and furious,
+      period-authentic mid-19th-century Irish traditional aesthetic, no
+      electric instruments, no Highland war pipes, no modern production
+    variations:
+      - type: full
+        path: audio/music/themed/hare_theme/full.ogg
+      - type: tension_build
+        path: audio/music/themed/hare_theme/tension_build.ogg
+
+  - name: parlor_theme
+    # The spiritualist parlor / the Medium / the grieving mother. Square parlor
+    # piano (Nunns & Clark c.1850, upper octave slightly out of true for the
+    # con-or-seer ambiguity), melodeon, the table-rap percussive tell. A
+    # sentimental parlor-song template: "Hard Times Come Again No More"
+    # (Stephen Foster, 1854) — a genuine song of the poor's grief, here
+    # weaponized into a séance lure. Beneath it a wordless bean-caointe keen
+    # bleeds in so the fraud and the real death-rite never fully separate.
+    leitmotif_for: "the Medium / spiritualist parlor / the keening woman (bean caointe)"
+    seed: audio/music/themed/parlor_theme/source.wav
+    seed_params: audio/music/themed/parlor_theme/input_params.json
+    base_prompt: >
+      1850s parlor square piano Nunns and Clark New York rosewood, upper octave
+      slightly out of tune, melodeon reed organ drone, table-rapping percussive
+      tell (1848 Fox-sisters spiritualist idiom), sentimental parlor-song
+      template of Stephen Foster Hard Times Come Again No More 1854 (harmonic
+      frame, not quoted), a wordless Irish bean-caointe keen bleeding in
+      underneath, F major turning ambiguous, slow 56 bpm, fraud-or-seer
+      uncanny quality, period-authentic 1850s domestic parlor recording
+      aesthetic, no electric instruments, no modern production
+    variations:
+      - type: sparse
+        path: audio/music/themed/parlor_theme/sparse.ogg
+      - type: ambient
+        path: audio/music/themed/parlor_theme/ambient.ogg
+      - type: tension_build
+        path: audio/music/themed/parlor_theme/tension_build.ogg
+
+# ---------------------------------------------------------------------------
+# SFX library — world-scoped additions for 1856–57 Five Points. The genre-pack
+# SFX library is INHERITED but most of it is frontier-irrelevant; the entries
+# below are the world layer. The genre's gunshot_revolver, crowd_murmur, and
+# church_bell remain usable (the ward had revolvers, mobs, and St. Patrick's
+# bells). spur_jingle, whip_crack, horse_whinny, coyote_howl, wind_desert are
+# inherited-but-unused here — scene_bindings never reference them.
+# ---------------------------------------------------------------------------
+sfx_library_additions:
+  cobble_footsteps:
+    - path: audio/sfx/cobble_footsteps_1.ogg
+      description: "Boots on wet cobblestone and ankle-deep mud, Paradise Square"
+  shillelagh_strike:
+    - path: audio/sfx/shillelagh_strike_1.ogg
+      description: "Blackthorn shillelagh / cane crack on bone and on cobble (faction brawl)"
+  bones_clack:
+    - path: audio/sfx/bones_clack_1.ogg
+      description: "Rhythm-bones rib-clappers, a single fast triplet roll (Almack's tell)"
+  fire_bell_company:
+    - path: audio/sfx/fire_bell_company_1.ogg
+      description: "Volunteer fire-company alarm bell + the rumble of a hand-pumper engine (b'hoy turf)"
+  table_rap:
+    - path: audio/sfx/table_rap_1.ogg
+      description: "Spirit-rap on a parlor table, three knocks (séance, 1848 Fox-sisters idiom)"
+  ship_arrival_battery:
+    - path: audio/sfx/ship_arrival_battery_1.ogg
+      description: "Emigrant ship at Castle Garden — creaking hull, gulls, the runners' shouting gauntlet"
+  hot_corn_cry:
+    - path: audio/sfx/hot_corn_cry_1.ogg
+      description: "The hot-corn girl's street cry, single phrase (diegetic ward ambience)"
+  groggery_din:
+    - path: audio/sfx/groggery_din_1.ogg
+      description: "Cellar groggery interior — crowd, tin cups, a fiddle scraping under (the dance cellar bed)"
+  riot_brick_glass:
+    - path: audio/sfx/riot_brick_glass_1.ogg
+      description: "Paving-stone and brick impacts, window glass shattering (the riot — also when Rynders is stoned)"
+  militia_volley:
+    - path: audio/sfx/militia_volley_1.ogg
+      description: "8th/71st Regiment musket volley, ragged, with the snare's roll-off (riot suppression)"
+  uilleann_drone_sting:
+    - path: audio/sfx/uilleann_drone_sting_1.ogg
+      description: "Single uilleann-pipe regulator chord, held and released (transition / keening sting)"
+
+# ---------------------------------------------------------------------------
+# Scene → mood binding hints (for narrator audio-cue dispatch). Region and
+# trope-beat names mirror the design brief §4 cartography and §7 trope arcs.
+# ---------------------------------------------------------------------------
+scene_bindings:
+  castle_garden_arrival: castle_garden_arrival   # prefer overture variant
+  the_battery_intake: castle_garden_arrival
+  paradise_square_hub: ward_day
+  mulberry_bend: ward_day
+  cow_bay: ward_day
+  ward_street_life: ward_day                      # prefer ambient variant
+  almacks_dance_cellar: almacks_floor
+  the_floor_under_pressure: almacks_floor         # prefer resolution variant
+  mission_block: the_seance                       # reform turf reads cold-parlor adjacent
+  spiritualist_seance: the_seance
+  the_medium_parlor: the_seance
+  police_war_brewing: the_fuse                    # prefer tension_build variant
+  fuse_to_the_fourth: the_fuse
+  city_hall_confrontation: the_fuse
+  paradise_square_standoff: the_standoff
+  stanwix_hall_pilgrimage: the_standoff           # Poole shooting site
+  faction_standoff: the_standoff
+  dead_rabbits_riot: the_riot
+  bayard_street_barricade: the_riot
+  militia_arrives: the_riot                        # prefer overture variant
+  rynders_stoned: the_riot
+  american_wake: the_wake                          # prefer resolution variant
+  funeral_or_memorial: the_wake
+  green_wood_cemetery_visit: the_wake
+  the_breath_after_riot: the_wake
+
+# ---------------------------------------------------------------------------
+# Theme → scene/faction leitmotif binding hints (narrator layers these OVER
+# the mood cue when the relevant entity is on-scene).
+# ---------------------------------------------------------------------------
+theme_bindings:
+  irish_catholic_ward: ward_theme
+  almacks_floor: floor_theme
+  pete_williams: floor_theme
+  tammany_hall: machine_theme
+  the_divided_law: machine_theme
+  metropolitan_municipal_war: machine_theme
+  bill_poole: poole_theme
+  bowery_boys: poole_theme
+  roach_guards: hare_theme
+  dead_rabbits_rally: hare_theme
+  the_medium: parlor_theme
+  the_keening_woman: parlor_theme
+
+# ---------------------------------------------------------------------------
+# Fail-loud contract
+# ---------------------------------------------------------------------------
+# Per music-director core principles: if a path listed above does not exist on
+# disk / in R2 at runtime, the engine MUST fail loudly. This manifest declares
+# NO track as optional — every entry is a contract. The ACE-Step pipeline run
+# (operator: `python scripts/generate_music.py --genre spaghetti_western`,
+# world-scoped) is a SEPARATE step; until tracks are generated and uploaded to
+# R2 under worlds/five_points/audio/, this manifest is the spec, and the loader
+# should refuse to bind this world rather than silently fall back to the
+# genre's frontier/Morricone mood_tracks. The override is total: NONE of the
+# genre's desert mood beds may sound in this world.

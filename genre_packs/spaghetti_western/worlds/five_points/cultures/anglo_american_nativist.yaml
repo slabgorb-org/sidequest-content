@@ -1,0 +1,73 @@
+name: Anglo-American Nativist
+summary: The native-born Protestant b'hoys — the Bowery fire-laddies, soaplocks and
+  red shirts; old-stock American surnames; the Bowery Boys and Bill Poole's memory
+description: 'The native-born American Protestant cohort of the Bowery and its
+  fringes — the b''hoys: volunteer firemen and fire-company runners, butchers and
+  market men, mechanics and shipwrights, prizefighters and shoulder-hitters, in
+  soaplocks, stovepipe hats, and the red flannel shirt. Old-stock English and
+  Yankee descent, generations in America, Protestant, and loud about it. The
+  fire-company brotherhood and the engine house are their parish; the Bowery
+  theater, the saloon, and the political club their halls. They fly the banner of
+  native-born American pride and the memory of Bill Poole, shot at Stanwix Hall —
+  the martyr-cleaver of the cause. Beneath it, a turf-and-labor bloc, anti-Wood,
+  ready to be bought by Know-Nothing money. Not cartoon haters: the b''hoy world
+  could carry Irish names in its own ranks. Naming runs to the plain Anglo-American
+  register — William, George, Henry, Andrew — over old English and Yankee surnames:
+  Poole, Walling, Baker, Turner, Walker, Stevens.
+
+  '
+slots:
+  given_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_anglo_american_given.txt
+      weight: 1.0
+  family_name:
+    lookback: 3
+    corpora:
+    - corpus: mccoy_anglo_american_surnames.txt
+      weight: 1.0
+  title:
+    word_list:
+    - Mister
+    - Missus
+    - Miss
+    - Captain
+    - Foreman
+    - Alderman
+    - Boss
+    - Reverend
+  adjective:
+    word_list:
+    - Big
+    - Old
+    - Young
+    - "True"
+    - Native
+    - Bowery
+    - Iron
+    - Fighting
+    - Honest
+    - Mose
+  place_noun:
+    word_list:
+    - Engine House
+    - Hall
+    - Saloon
+    - Market
+    - Theater
+    - Club
+    - Street
+    - Yard
+    - Corner
+    - Ward
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{given_name} ''{adjective}'' {family_name}'
+- '{adjective} {given_name} {family_name}'
+- '{family_name}, {given_name}'
+place_patterns:
+- '{family_name}''s {place_noun}'
+- '{adjective} {family_name} {place_noun}'
+- '{given_name} {family_name} {place_noun}'
