@@ -1,0 +1,331 @@
+# Five Points — the named "diamond" NPCs.
+#
+# Persistent disposition + OCEAN backing for the world's real, documented
+# figures, so the narrator does not re-register them with random naming each
+# session. Every name here is REAL period record (Anbinder's de-Asbury
+# anchor); NONE of the 2002 film's inventions appear. Master Juba is kept
+# alive in 1856 as an intentional fidelity relaxation (he is documented at
+# Almack's via Dickens, 1842).
+#
+# STATUS NOTE — Bill Poole is NOT seated here. He was shot at Stanwix Hall
+# (Feb 1855) and buried at Green-Wood (Mar 1855), a year before the campaign
+# opens. The AuthoredNpc loader pre-loads every entry as a PRESENT runtime
+# NPC; a man a year in his grave cannot be present. Poole rules the ward by
+# legend, not by body — he lives in legends/i_die_a_true_american.yaml and in
+# the relic (the cleaver). Seating him would contradict canon. Six living
+# diamonds are hydrated below; the seventh is a grave the ward still toasts.
+#
+# OCEAN convention matches the shipped npcs.yaml precedent (coyote_star,
+# glenross): { O, C, E, A, N } on a 0.0–1.0 scale. initial_disposition per
+# ADR-020, integer -100..100, threaded to the history.yaml chapter values
+# where a figure appears there (Rynders fresh +10, Morrissey early 0,
+# Pete Williams mid +15). Voice tics live in history_seeds as prose; the
+# narrator extracts them.
+
+version: "0.1.0"
+world: five_points
+
+npcs:
+  - id: isaiah_rynders
+    name: "Isaiah Rynders"
+    pronouns: "he/him"
+    role: "Sixth Ward Tammany boss; founder of the Empire Club"
+    ocean: { O: 0.45, C: 0.65, E: 0.85, A: 0.4, N: 0.35 }
+    appearance: >-
+      A Southern-mannered man past fifty, heavy through the shoulders, dressed
+      a cut better than the ward around him — good broadcloth coat, a watch
+      chain he lets you notice, boots that have not seen the mud they walk
+      through. A gambler's stillness in the face and a duelist's history behind
+      it; he came up on the Mississippi boats before he came up in the Sixth
+      Ward, and both show. Holds court from a chair in the back of a Paradise
+      Square green-grocery with a coal stove at his elbow and two ledgers in his
+      head — one of favors done, one of debts owed. Never raises his voice. Lets
+      the room raise it for him.
+    age: "early fifties"
+    distinguishing_features:
+      - "the watch chain he lets a man notice before he lets the man notice anything else"
+      - "a bowie knife and a pistol both somewhere on him, neither ever drawn in the room"
+      - "the habit of answering a hard ask with a small kindness offered sideways, the price unspoken"
+    history_seeds:
+      - >-
+        Runs the ward out of the green-groceries and saloons that ring Paradise
+        Square — the Empire Club he founded in '43 is the hub, the sluggers and
+        repeaters are the muscle, and there is no secret ballot in this country,
+        so the man who guards the box owns the box. He delivered New York for
+        Polk and Pierce and, this autumn, for Buchanan, and Washington has just
+        made him US Marshal for the Southern District for the trouble. He is the
+        friend you go to when the landlord, the alderman, or the law has you,
+        and he is the friend who remembers, on election day, exactly who he was
+        a friend to.
+      - >-
+        Voice in his own register — genial, unhurried, Southern-soft, never a
+        threat spoken aloud. Calls every useful man "my friend" and means it as
+        a contract. Tells a man his own story back to him, improved, to find out
+        what the man wants. Speaks of the ward as a family he happens to bill.
+        Reads a stranger's usefulness in the first thirty seconds and prices it
+        before the stranger has sat down.
+      - >-
+        Does not yet show the player his hand in the autumn — he is only learning
+        the face, pouring the small kindness with the cost hidden in it. The
+        green-grocery is open; the back room is where the ward is actually run.
+        Young Morrissey is his man and his coming successor both, and Rynders
+        watches him the way a boss watches the protégé who will one day no longer
+        need him.
+      - >-
+        Has fed the gangs and bought the votes for years and believes, in the
+        autumn of '56, that the ward is his. On the night the fuse reaches the
+        Fourth he will step into the gap to mediate the riot — the boss who owns
+        the ward — and the ward he owns will drive him off with its own paving
+        stones. He does not know that yet. No man who has been obeyed for a
+        decade believes the obedience can simply stop.
+    initial_disposition: 10
+
+  - id: john_morrissey
+    name: "John Morrissey"
+    pronouns: "he/him"
+    role: "Prizefighter; Rynders's protégé, the ward's coming man"
+    ocean: { O: 0.5, C: 0.6, E: 0.8, A: 0.4, N: 0.4 }
+    appearance: >-
+      Old Smoke. Twenty-five and built like the bare-knuckle champion he is —
+      broad, scarred across the knuckles, a heavyweight's neck above a good
+      coat he wears like he is still surprised to own it. Famine-born in Tipperary,
+      raised rough in Troy, came down to the city and took the championship off
+      Yankee Sullivan in thirty-seven rounds three autumns gone. The nickname is
+      from a fight where he was pinned over a bed of burning coals and came up
+      grinning. Carries the grin still, and the menace under it, and the new
+      careful politeness of a brawler who has decided to become a power.
+    age: "twenty-five"
+    distinguishing_features:
+      - "the burn-scars on his back from the fight that gave him the name, never spoken of, never quite hidden"
+      - "the fighter's habit of measuring the distance to every man in the room without seeming to look"
+      - "a gambler's roll of notes — the casino money, the parallel fortune that funds the political one"
+    history_seeds:
+      - >-
+        Rynders's protégé and the Sixth Ward's ascendant man. It was his men who
+        shot Bill Poole at Stanwix Hall — Lew Baker and Jim Turner, after the
+        confrontation Morrissey himself walked into — and they stood three trials
+        and walked on three hung juries, the whole city knowing who fired and no
+        jury saying so. The native-born will not let it go; to the Bowery he is
+        the Irish prizefighter who did for their champion. He offers the player
+        the dock job in the winter, charming and dangerous both, the hand under
+        Tammany's banner made flesh.
+      - >-
+        Voice in his own register — quick, warm, a Troy-rough Irish under a new
+        layer of acquired polish, the menace kept in the back of the mouth.
+        Sizes a man up the way he sizes a man across the ropes. Speaks of the
+        ward and the machine as the ring he means to win next. Makes the offer
+        sound like a favor between friends and lets the friend work out, later,
+        that he has just been bought a little.
+      - >-
+        The gambling fortune funds everything — the casinos, the stakes, the
+        respectability he is buying by the year. He is climbing out of the gang
+        and into the machine and means, eventually, to climb out of Rynders's
+        shadow too. Ambition is the whole engine of him. He is not cruel for its
+        own sake; he is simply a man who has never lost a fight he could not buy
+        or beat his way out of, and has not yet met the one he cannot.
+    initial_disposition: 0
+
+  - id: fernando_wood
+    name: "Fernando Wood"
+    pronouns: "he/him"
+    role: "Mayor of the City of New York; commander of the Municipal Police"
+    ocean: { O: 0.55, C: 0.7, E: 0.7, A: 0.35, N: 0.45 }
+    appearance: >-
+      The handsomest scoundrel in the city, and he knows it — tall, silver
+      coming into the dark hair, a face built for a daguerreotype and a manner
+      built for a room he means to own. Dresses like the merchant prince he
+      began as before he discovered the till was deeper in politics. A mayor who
+      will look a poor man in the eye and convince him, sincerely, that the
+      machine is his only friend, and then sign the franchise that bleeds him.
+      You meet him uptown, never in the mud — at the Mayor's office, behind the
+      desk from which the Municipal commissions issue and from no other, as his
+      own order says.
+    age: "mid-forties"
+    distinguishing_features:
+      - "the practiced sincerity — he believes whatever the room needs him to believe, completely, for as long as it serves"
+      - "a merchant's memory for sums and a politician's memory for grievances"
+      - "the signature, F. WOOD, on the police orders that tell the ward which star is lawful this week"
+    history_seeds:
+      - >-
+        Mayor, machine-builder, and — by the spring of '57 — the man who will
+        not give up his police. When Albany raises the Metropolitan force over
+        his head under the banner of reform, Wood keeps his own Municipals under
+        the banner of home rule, and for a season two police departments operate
+        at once, each calling the other unlawful. He helped build the system of
+        municipal corruption the city will spend a generation perfecting. The
+        ward feels him not as a man but as a name on an order and a star on a
+        coat that may or may not arrest you legally tonight.
+      - >-
+        Voice in his own register — polished, warm, merchant-smooth, the
+        sincerity total and the calculation underneath it deeper. Speaks of the
+        city as a thing he loves and is owed by in equal measure. Frames every
+        grab as a defense of the city's own rights against Albany's reach — and
+        is, infuriatingly, half right, because the Republican legislature's hand
+        under its reform banner is a partisan power-grab too. No clean side. He
+        is the proof of it at the top of the ladder.
+      - >-
+        By the Fourth of July the ward burns in the gap his stubbornness helped
+        open — two forces too busy fighting each other on the City Hall steps to
+        put a single fire out. People v. Draper is coming for his Municipals in
+        July and will eventually break them. He does not appear in the mud of the
+        Points; his hand reaches into it through the divided copper, the retainer
+        paid to the Roach men, the order that tells a patrolman whose warrant to
+        honor. Power, to Wood, is the city itself, held against all comers.
+    initial_disposition: -10
+
+  - id: archbishop_hughes
+    name: "Archbishop John Hughes"
+    pronouns: "he/him"
+    role: "Roman Catholic Archbishop of New York; the militant sacred authority of the ward"
+    ocean: { O: 0.5, C: 0.85, E: 0.6, A: 0.4, N: 0.35 }
+    appearance: >-
+      Dagger John — the cross he sets before his signature gave the name, and
+      the temper kept it. Past sixty now, Famine-Ireland born, risen from a
+      hired gardener's son to the first archbishop the city has known, and he
+      carries every step of the climb in the set of the jaw. Black cassock, the
+      pectoral cross, the ring men kneel to kiss. A face that has stared down a
+      nativist mob and a hostile press and a school board and did not blink at
+      any of them. You find him at old St. Patrick's on Mott Street, the live
+      cathedral of the ward, walled brick and cold stone and Latin, the seat of
+      the only authority in the Sixth Ward that answers to no machine at all.
+    age: "early sixties"
+    distinguishing_features:
+      - "the cross set before the signature — '✝ John' — that named him Dagger John"
+      - "the militant stillness of a man who has already decided he will meet violence with violence if he must"
+      - "a brogue worn smooth by decades of pulpit English but never gone"
+    history_seeds:
+      - >-
+        The embodiment of a sacred authority that claims to stand equal to the
+        state. When the nativists threatened to burn Catholic churches he warned
+        the city he would make New York "another Moscow" before he would see one
+        stone of his thrown down, and posted armed Hibernians on the cathedral
+        walls to prove he meant it. He is the parish the Roach men defend and the
+        Faith the Mission means, gently, to scrub out of the ward's children. To
+        the nativist he is the Romanist menace incarnate. To the Famine Irish he
+        is the one great man who is theirs and answers to none of the others.
+      - >-
+        Voice in his own register — exact, combative, scriptural and political
+        in the same breath, a debater who has never conceded a point and does not
+        intend to start. Speaks of the Church as a power, not merely a comfort.
+        Disapproves of the keening and the merry wake as pagan survivals and
+        cannot suppress either, and knows it, and the knowing does not soften
+        him. Treats a soul and a vote as two things he will not see traded, which
+        puts him crosswise to every faction that trades in both.
+      - >-
+        Stands deliberately above the ward's machinery — Rynders's racket, Wood's
+        police, the Bowery's grievance — and yet his blessing or his rebuke moves
+        more of the Sixth Ward than any boss's coin, because the parish is real
+        in a way the gangs only pretend to be. He is beginning the great new
+        cathedral uptown; the cornerstone is two years off. Here in '56 it is old
+        St. Patrick's that holds the ward's Faith, and Hughes who holds old
+        St. Patrick's, and no banner in the Points flies higher than the cross
+        over Mott Street.
+    initial_disposition: 5
+
+  - id: pete_williams
+    name: "Pete Williams"
+    pronouns: "he/him"
+    role: "Free Black proprietor of the Baxter Street dance cellar; keeper of the Floor"
+    ocean: { O: 0.7, C: 0.8, E: 0.55, A: 0.65, N: 0.3 }
+    appearance: >-
+      A free Black man who keeps the only floor in the Sixth Ward where the
+      most powerless people in America stand exactly the same height. Solid,
+      unhurried, a proprietor's eye that reads a room from the stairhead before
+      a man is three steps down. Plain good clothes kept clean against the cellar
+      damp, a ring of keys at the belt that has locked and unlocked that door for
+      more years than the gangs upstairs have had names. Stands at the foot of
+      the stair off Baxter, below the oyster cellar, taking a shilling and asking
+      no question who you came in beside, while the fiddle and the bones go at it
+      behind him and the candles burn brighter than the ward outside deserves.
+    age: "indeterminate; a man who has kept the door a long while"
+    distinguishing_features:
+      - "the ring of keys at the belt — he holds the only door in the ward that opens equally to everyone with a shilling"
+      - "a ballot the property law has barred him from, while the Irish are naturalized into the vote around him"
+      - "the habit of asking a stranger one quiet question at the stairhead that turns out to be the whole measure of them"
+    history_seeds:
+      - >-
+        Keeps the Floor — the dance cellar Dickens wrote up a dozen years gone,
+        where the Irish step married the African shuffle on one set of boards and
+        made a thing danced nowhere on earth before. He has no machine behind him
+        and a vote the law has taken, and what he holds instead is the one free
+        space in the Sixth Ward and the trust of everyone the machine ignores. He
+        is pressed from two sides — the Mission's deputation at the top of the
+        stair, the nativist handbill on the door — and each night he chooses to
+        open the stair anyway, because the one free space stays free only as long
+        as somebody is willing to dance in it.
+      - >-
+        Voice in his own register — calm, spare, every word weighed before it is
+        spent. "We keep the floor open. That's all we keep." Speaks of the
+        dancing as a right, never as a charity, and of the people on his boards
+        as equals, never as a crowd. Measures a stranger by how they treat the
+        ones with the least — the hot-corn girl, the ragpicker, the seamstress
+        come to forget a hard week — and remembers the answer for years. Says far
+        less than he knows, and knows more of the ward's quiet truth than the
+        boss in the back room ever will.
+      - >-
+        Master Juba cuts the floor in his cellar; the fiddle and the bones are
+        his; the relic men whisper that a plank prised from his boards or Juba's
+        worn-out shoes carry the floor's own charge, and Pete will not say
+        whether it is the relic or only the plain truth of the place — that here
+        and nowhere else above it the powerless are equal. He has watched every
+        kind of trouble come down that stair: the slummer, the runner, the cop
+        with a doubtful star, the reformer with a soup ladle and a hook beneath
+        it. He keeps the door regardless. The keeping is the whole of his power
+        and he spends it deliberately.
+      - >-
+        Through the spring the Floor comes under real pressure — Mission raids on
+        the cellars, the nativist tide, a copper at the corner who may or may not
+        have a lawful star this week — and Pete Williams opens the stair one more
+        night. In the breath after the riot he is the moral measure of it: the
+        man with no banner and no machine, asking the player, without ever quite
+        saying it, what the banner they flew was finally worth to the people who
+        had none.
+    initial_disposition: 15
+
+  - id: master_juba
+    name: "William Henry Lane"
+    pronouns: "he/him"
+    role: "The dancer of the Floor — Master Juba, who married the Irish step to the African shuffle"
+    ocean: { O: 0.85, C: 0.6, E: 0.7, A: 0.65, N: 0.4 }
+    appearance: >-
+      Master Juba. A young Black man, light on his feet past the point of belief,
+      the greatest dancer the cellar has known and the cellar knows it the moment
+      the fiddle finds him. The English novelist wrote him up a dozen years gone
+      as the wit of the assembly; he is the wit still, the eyes rolling, the
+      fingers snapping, the knees turning in — single shuffle and double shuffle,
+      cut and cross-cut and snap — until the room tips over into something the
+      priest would call possession and the dancers would call only the best night
+      of a hard week. Worn taps on worn shoes. A grin that pulls the whole cellar
+      up onto its feet behind him.
+    age: "early thirties"
+    distinguishing_features:
+      - "the worn-out dancing shoes the relic men swear carry the floor's own charge — hold them and for one turn no man in the room outranks you"
+      - "the trance-build in the dance: the fiddle goes at it tooth and nail, new brightness comes into the very candles, and the room follows him over the edge"
+      - "the fusion in his feet — Irish step and African rhythm made one new thing, danced nowhere on earth before these boards"
+    history_seeds:
+      - >-
+        Kept alive on the Floor in 1856 — a fidelity relaxation; the record has
+        him on these boards a dozen years before, and the world keeps him cutting
+        the floor still, the living legend of Pete Williams's cellar. He married
+        the Irish step to the African shuffle here and made the thing that had
+        been danced nowhere on earth before. He has no banner and no machine and
+        wants neither; his only power is the room's joy, and the city has not yet
+        found a way to tax it. The Mission would close the cellar that holds him;
+        the nativist tide would empty it; he dances on.
+      - >-
+        Voice in his own register — quick, light, more in the feet than the
+        mouth, a performer's warmth and a survivor's wariness held together. He
+        speaks the way he dances, in bursts, with the room half-watching. He calls
+        the floor "the floor" the way Pete does — as a right, not a charity — and
+        he treats the slummer come down to gawk and the ragpicker come to forget
+        with the same even courtesy, because on the boards they are the same
+        height and he learned long ago that the boards are where the truth is.
+      - >-
+        He is the heart of the one free space and knows the cost of being it. The
+        relic men whisper about his shoes; he lets them whisper, and keeps
+        dancing, because the floor stays free only as long as the dance does. In
+        the spring, with the deputation at the stairhead and the handbill on the
+        door, he cuts the floor as if nothing presses — and everyone in the room
+        knows what is coming, and stays to dance anyway, which is the whole point
+        of him.
+    initial_disposition: 10
