@@ -3,12 +3,22 @@ point_buy_budget: 27
 magic_level: none
 
 ability_score_names:
-  - Body
+  - Brawn
   - Reflex
+  - Body
   - Tech
-  - Net
+  - Instinct
   - Cool
-  - Edge
+
+ruleset: cwn
+cwn:
+  attribute_map:
+    STRENGTH: Brawn
+    DEXTERITY: Reflex
+    CONSTITUTION: Body
+    INTELLIGENCE: Tech
+    WISDOM: Instinct
+    CHARISMA: Cool
 
 allowed_classes:
   - Netrunner
@@ -125,7 +135,7 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Edge
+        stat_check: Cool
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "Escalate tension. The threat should feel dangerous."
@@ -161,7 +171,7 @@ confrontations:
         label: "Breach Node"
         kind: strike
         base: 2
-        stat_check: Net
+        stat_check: Tech
         effect: "crack open the next layer of ICE"
         narrator_hint: "Describe the virtual architecture crumbling as the runner punches through."
       - id: bypass_ice
@@ -172,7 +182,7 @@ confrontations:
           crit_fail:
             own: -2
             opponent: 2
-        stat_check: Net
+        stat_check: Tech
         risk: "trace spike — trace jumps by 2 on failure"
         narrator_hint: "Elegant or brute-force, the runner slips past intrusion countermeasures."
       # spoof: throw the trace off — brace reduces opponent dial
@@ -191,7 +201,7 @@ confrontations:
         narrator_hint: "Yank the cable. Reality slams back. Did you get what you came for?"
     secondary_stats:
       - name: programs
-        source_stat: Net
+        source_stat: Tech
         spendable: false
       - name: firewall
         source_stat: Tech
@@ -233,7 +243,7 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Net
+        stat_check: Tech
         risk: "ICE counterattack — lose 2 momentum and take neural damage on failure"
         effect: "Cripple target's implants or nearby environment"
         narrator_hint: Jack in mid-firefight. Fry their implants from cyberspace.
