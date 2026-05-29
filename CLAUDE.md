@@ -193,14 +193,14 @@ Live, wired packs (loaded by server + daemon at runtime):
 genre_packs/
 ├── caverns_and_claudes/  # Classic dungeon crawl (meta-humor on D&D tropes)
 ├── elemental_harmony/    # Martial arts / elemental magic
-├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic — evropi + long_foundry (re-promoted 2026-05-23, asset gate pending)
-├── mutant_wasteland/     # Post-apocalyptic mutants
-├── neon_dystopia/        # Cyberpunk — franchise_nations (promoted 2026-05-23, asset gate pending, world openings still needed)
-├── pulp_noir/            # 1930s detective / pre-war pulp — annees_folles (promoted 2026-05-23, asset gate pending, world openings still needed)
-├── road_warrior/         # Late-70s / early-80s vehicle subcultures sharing one port city
-├── space_opera/          # Sci-fi space adventure
-├── spaghetti_western/    # Morally ambiguous anti-heroes — dust_and_lead (Mexican border) + the_real_mccoy (1878 Pittsburgh)
-└── tea_and_murder/       # Cosy Edwardian BritBox murder mystery (Glenross — Highland village amateur sleuths)
+├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic — evropi (assets complete) + long_foundry (portraits pending render)
+├── mutant_wasteland/     # Post-apocalyptic mutants — flickering_reach (fully spoilable)
+├── neon_dystopia/        # Cyberpunk — franchise_nations (assets complete)
+├── pulp_noir/            # 1930s detective / pre-war pulp — annees_folles (assets complete)
+├── road_warrior/         # Late-70s / early-80s vehicle subcultures sharing one port city — the_circuit
+├── space_opera/          # Sci-fi space adventure — aureate_span (baroque corona megastation, live) + coyote_star + perseus_cloud
+├── spaghetti_western/    # Morally ambiguous anti-heroes — dust_and_lead (Mexican border) + five_points (1850s NYC Sixth Ward) + the_real_mccoy (1878 Pittsburgh)
+└── tea_and_murder/       # Cosy Edwardian BritBox murder mystery — glenross (Highland village) + blackthorn_moor (draft, assets pending)
 ```
 
 Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — caverns_sunden (deprecated three-sins hub, superseded by beneath_sunden), low_fantasy at various levels of completeness. `genre_workshopping/{elemental_harmony,space_opera,tea_and_murder}/worlds/` hold in-progress alternate worlds for the live packs of the same name.
