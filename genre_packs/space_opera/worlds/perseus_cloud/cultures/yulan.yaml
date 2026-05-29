@@ -1,0 +1,37 @@
+name: Yulan
+summary: The hypercapitalist churnworld culture of Yula — corporate above, scrapper
+  below
+description: >-
+  The people of Yula, the churnworld the Praetorium once used as an
+  interstellar junkyard and that deregulation turned into a corporate
+  power after the GHE. Yulan culture is split hard by class: above, the
+  corporate ruling order of New Kowloon's neon superblocks, where a
+  person's worth is their position in a company and the Yulan Governance
+  Conglomerate's rules exist for the benefit of the ruling class; below,
+  the scrappers of Santa Abraham, who mount expeditions into the junk
+  seas chasing the one lucky pretech find that might buy them out. Above
+  it all, Glitter's orbital Spacers broker the trade. A vertical city
+  breeds a vertical culture.
+# PROVISIONAL naming — "New Kowloon" implies a Cantonese-corporate
+# substrate; available corpora best approximate it with korean +
+# industrial-English corporate surnames. Pending Jade's table convention.
+slots:
+  given_name:
+    corpora:
+      - corpus: korean.txt
+        weight: 0.6
+      - corpus: english_industrial_first.txt
+        weight: 0.4
+    lookback: 2
+  corporate_surname:
+    corpora:
+      - corpus: english_industrial_family.txt
+        weight: 0.6
+      - corpus: korean.txt
+        weight: 0.4
+    lookback: 2
+person_patterns:
+  - '{given_name} {corporate_surname}'
+place_patterns:
+  - '{corporate_surname} Tower'
+  - The {corporate_surname} Block
