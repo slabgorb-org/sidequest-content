@@ -245,50 +245,49 @@ confrontations:
         narrator_hint: "Strategic silence. Let them overplay their hand."
     mood: tension
   - type: auction
-    label: "Auction"
+    label: "The Auction"
     # Spec 2026-05-20 confrontation-intent-validator (cosy-genre: all warn)
     intent_verbs: [bid, raise, outbid, hammer, lot]
     on_intent_mismatch: warn
     category: social
-    player_metric:
-      name: bid
-      starting: 0
-      threshold: 8
-    opponent_metric:
-      name: bid
-      starting: 0
-      threshold: 8
+    # free-for-all N-seat table — dual dials dropped (table_state drives resolution)
+    resolution_mode: table_resolution
+    win_condition: table_showdown
+    table_game: auction
+    max_decision_points: 3
+    # NOTE: for table_resolution the engine dispatches on the beat `id` ONLY.
+    # `kind`/`stat_check`/`base`/`target_tag` below are present solely to satisfy
+    # the BeatDef schema — they are INERT for table resolution (the dial /
+    # apply_beat path never runs for table types). Editing them does not change
+    # table behavior; the table_game ("auction") drives the mechanics.
     beats:
-      - id: raise
+      - id: raise_bid
         label: "Raise the Bid"
         kind: strike
-        base: 2
-        stat_check: Cunning
+        base: 1
+        stat_check: CHA
         effect: "push the price higher — pressure opponents to fold"
         narrator_hint: "A discreet signal to the auctioneer. The bid climbs."
       - id: bluff
         label: "Bluff"
         kind: strike
-        base: 3
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Nerve
-        risk: "called out — lose credibility and 2 bid points"
+        base: 2
+        stat_check: CHA
+        risk: "called out — lose credibility"
         narrator_hint: "Feign deeper pockets than you possess. Convince them you'll go higher."
       - id: read_room
         label: "Read the Room"
         kind: angle
         target_tag: "Tell"
-        stat_check: Cunning
-        reveals: opponent_intent
-        effect: "spot the bluffing or desperate bidder — sets a tag the next raise can spend"
+        base: 1
+        stat_check: WIS
+        effect: "spot the bluffing or desperate bidder"
         narrator_hint: "Study the other bidders. Who is bluffing? Who is desperate?"
       - id: withdraw
         label: "Withdraw"
         kind: push
         base: 0
-        stat_check: Nerve
+        stat_check: WIS
         consequence: "bow out gracefully — reputation intact, item lost"
         narrator_hint: "A subtle shake of the head. The bid is yours no longer."
     secondary_stats:

@@ -258,95 +258,66 @@ confrontations:
     intent_verbs: [bet, raise, call, fold, bluff, ante, wager]
     on_intent_mismatch: warn
     category: social
-    player_metric:
-      name: edge
-      starting: 0
-      threshold: 8
-    opponent_metric:
-      name: edge
-      starting: 0
-      threshold: 8
+    # free-for-all N-seat table — dual dials dropped (table_state drives resolution)
+    resolution_mode: table_resolution
+    win_condition: table_showdown
+    table_game: poker
+    max_decision_points: 3
+    # NOTE: for table_resolution the engine dispatches on the beat `id` ONLY.
+    # `kind`/`stat_check`/`base`/`target_tag` below are present solely to satisfy
+    # the BeatDef schema — they are INERT for table resolution (the dial /
+    # apply_beat path never runs for table types). Editing them does not change
+    # table behavior; the table_game ("poker") drives the mechanics.
     beats:
+      - id: fold
+        label: "Fold"
+        kind: push
+        base: 0
+        stat_check: WIS
+        narrator_hint: "Live to play another hand."
+      - id: call
+        label: "Call"
+        kind: push
+        base: 0
+        stat_check: WIS
+        narrator_hint: "Match the bet. See what they've got."
       - id: bet
         label: "Bet"
         kind: strike
         base: 1
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: NERVE
-        risk: "bad hand — lose 2 edge on fail"
+        stat_check: CHA
         narrator_hint: "Push chips forward. Confidence or bluff?"
-        gold_delta: -5
       - id: raise
         label: "Raise"
         kind: strike
-        base: 3
-        deltas:
-          crit_fail:
-            own: -3
-        stat_check: CUNNING
-        risk: "overplayed — lose 3 edge if called and weak"
+        base: 2
+        stat_check: CHA
         narrator_hint: "Escalate the stakes. Make them sweat."
-        gold_delta: -15
-      # bluff: deception for table leverage — angle
       - id: bluff
         label: "Bluff"
-        kind: angle
-        target_tag: "Opponent Tell"
-        deltas:
-          crit_fail:
-            own: -4
-        stat_check: CUNNING
-        risk: "called bluff — lose 4 edge, table reads you"
-        reveals: opponent_tell
+        kind: push
+        base: 2
+        stat_check: CHA
         narrator_hint: "Stone face. Sell the lie."
-        gold_delta: -10
-      # call: match the bet, see what they hold — angle (reveals hand_strength)
-      - id: call
-        label: "Call"
-        kind: angle
-        target_tag: "Hand Revealed"
-        stat_check: CUNNING
-        reveals: hand_strength
-        narrator_hint: "Match the bet. See what they've got."
-        gold_delta: -5
-      # fold: live to play another hand — brace (accept small loss to preserve position)
-      - id: fold
-        label: "Fold"
-        kind: brace
-        base: 1
-        stat_check: NERVE
-        narrator_hint: "Live to play another hand."
-      # read_table: watch for tells — angle (information gathering, no direct delta)
       - id: read_table
         label: "Read the Table"
         kind: angle
         target_tag: "Opponent Tell"
-        stat_check: CUNNING
-        reveals: opponent_tell
+        base: 1
+        stat_check: WIS
         narrator_hint: "Watch their eyes. Everyone's got a tell."
       - id: cheat
         label: "Cheat"
         kind: strike
-        base: 4
-        stat_check: DRAW
-        risk: "caught cheating — loss of all edge, possible gunfight"
-        consequence: "if caught, opponent draws on you — standoff escalation"
+        base: 3
+        stat_check: DEX
         narrator_hint: "Palm a card. Bottom deal. The Card Shark's specialty."
-        requires: "Card Shark archetype or class ability"
-        gold_delta: -5
-      # accuse_cheating: confrontation that surfaces evidence — angle
-      - id: accuse_cheating
+      - id: accuse
         label: "Accuse of Cheating"
         kind: angle
         target_tag: "Cheat Exposed"
-        deltas:
-          crit_fail:
-            own: -3
-        stat_check: CUNNING
-        risk: "wrong accusation — lose 3 edge, table turns on you"
-        reveals: cheat_evidence
+        base: 2
+        stat_check: WIS
         narrator_hint: "Call them out. If you're right, they're done. If you're wrong, so are you."
     mood: saloon
   - type: combat
