@@ -1,16 +1,28 @@
 # Five Points — visual style (urban 1850s wet-collodion gaslight override of the genre frontier look)
-# Z-Image Turbo: negative_prompt inert; exclusions live in positive_suffix.
+# Z-Image Turbo: negative_prompt is inert at guidance_scale=0, so every "don't" must live in the
+#   positive text. Two consequences (see ../../../PROMPTING_Z_IMAGE.md): (1) object-negations BACKFIRE
+#   — "no cactus / no cowboy hat" can SUMMON the thing — so we keep the frontier out via the positive
+#   "1850s New York wet-collodion" anchor, NOT a "no frontier" list. (2) The only tail clause is
+#   META-ARTIFACT suppression (no watermark / caption / title / page-numbers / signature), NOT a
+#   blanket "no text": this world WANTS painted in-world signage, so text is not suppressed.
+#   The suffix is STYLE/MEDIUM/PALETTE ONLY — no scene content.
+#   All scene content (what a place IS, its props, signage, crowds, staging) lives in the per-POI
+#   visual_prompt fields in history.yaml and the visual_tag_overrides / scene_registers blocks below
+#   — NOT here. Do NOT add signage or crowds to this always-applied suffix: it would wrongly inject
+#   shop signs and street mobs into the interior scenes (the cellar wake, the club back room).
+# Signage is WELCOME period texture, not suppressed. The 1850s Sixth Ward was visually dense —
+#   painted shop boards, hanging trade signs (a gilded boot, a pawnbroker's three balls, a mortar
+#   and pestle), grog and oyster-cellar boards, layered peeling broadsides and ballad sheets. Author
+#   it into the per-POI prompts as painted period lettering, weathered and overlapping; plausible
+#   gibberish lettering is fine and reads as a teeming slum. The ONE hard rule: NEVER put a literal
+#   snake_case slug or the POI's name rendered as a title/caption into any prompt — describe scenes,
+#   not labels.
 # Slugs canonicalized by world-builder to match cartography region keys.
 
-positive_suffix: period 1850s New York City, wet-collodion albumen photographic plate, fine silver-grain,
-  slightly soft daguerreotype focus, monochrome sepia tonality with cool grey shadows, gaslight and coal-soot,
-  damp muddy streets, soot-stained brick, overcast sky, lantern-lit and candle-lit interiors. Storefronts,
-  posters, broadsides, shop signs, and printed matter in frame are weathered blank wood or paper with
-  abstract ink and paint scars rather than legible writing. No text, no caption, no title, no writing,
-  no lettering, no inscription, no signage, no posters with words, no newspaper text, no masthead, no
-  headline, no street sign, no signature, no watermark, no logo, no border, no frame, no date stamp, no
-  modern signage, no clean pavement, no color film, no desert, no mesa, no cactus, no cowboy hat, no open
-  frontier, no film still.
+positive_suffix: 1850s New York City, wet-collodion albumen photographic plate, fine silver-grain,
+  slightly soft daguerreotype focus, monochrome sepia tonality with cool grey shadows, gaslight and
+  coal-soot ambient light, overcast pall. No watermark, no caption, no title, no page numbers, no
+  signature.
 negative_prompt: ''
 preferred_model: dev
 base_seed: 1856
