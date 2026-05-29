@@ -187,7 +187,11 @@ confrontations:
         combat_skill: 1
         stat_check: Tech
         deltas:
-          crit_fail:
+          # A failed Program check (2d6 < security DC) is the "botched call":
+          # the engine resolves it as RollOutcome.Fail (there is no CritFail
+          # tier on a 2d6 pool — that's d20-nat-1 only), so the alert spike
+          # rides `fail`, not `crit_fail`. This is what lets the network win.
+          fail:
             own: -1
             opponent: 2
         effect: "execute an offensive program — advance toward the objective"
