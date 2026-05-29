@@ -207,7 +207,10 @@ confrontations:
         narrator_hint: "Throw the trace off the scent. Buy room to breathe before the ICE closes in."
       - id: move_nodes
         label: "Move Nodes"
-        kind: push
+        # strike (advance the data dial by base on success), NOT push: a push
+        # resolves the confrontation on success — move_nodes is an incremental
+        # advance toward extraction, not an exit. jack_out is the exit beat.
+        kind: strike
         base: 2
         combat_skill: 1
         stat_check: Tech
