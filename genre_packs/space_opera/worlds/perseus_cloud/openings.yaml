@@ -1,0 +1,128 @@
+# sidequest-content/genre_packs/space_opera/worlds/perseus_cloud/openings.yaml
+#
+# Perseus Cloud openings — minimal authored bank (>=1 solo + >=1 MP) to
+# satisfy the opening validator and let a session start. Both entries are
+# location-anchored on Yula (the world's starting_region): no flagship rig
+# in this draft slice.
+#
+# These openings are deliberately SECTOR-situated, not campaign-specific.
+# Jade & Sebastien's Season 1 ("The Jailbreak" and onward) is their canon
+# and lives in CAMPAIGN_NOTES.md — it is NOT baked in here, so this world
+# can be played from a cold start or dropped into their campaign.
+#
+# Register: grounded, grimy, post-collapse — Yula is neon over scrap, not
+# gilded spectacle. Lower swagger than aureate_span by design.
+
+version: "0.1.0"
+world: perseus_cloud
+genre: space_opera
+
+openings:
+  - id: solo_new_kowloon_arrival
+    name: "New Kowloon, After the Last Lighter"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      location_label: "a rain-slick mezzanine off the New Kowloon docks, three levels under the corporate towers"
+      situation: >-
+        Late night, the hour after the last cargo lighter has gone up
+        the Tether to Glitter and before the early scrapper crews come
+        down from Santa Abraham. The neon is on; the crowd is thin.
+    tone:
+      register: grounded, grimy, neon-lit
+      stakes: low for now — but in the Cloud, work always finds the people standing still
+      complication: a Conglomerate floor-boss two tiers up has been watching you for
+        longer than idle interest explains
+      sensory_layers:
+        smell: "ozone off the elevator cables, fryer oil, the chemical sweetness of cheap Dust-cut"
+        sound: "the bass-hum of the Tether under everything, a vendor's loop in three languages, rain on plate steel"
+        touch: "warm runoff underfoot, the cold of a railing that has never once been dry"
+      avoid_at_all_costs:
+        - ending the turn with a question
+        - moving the player without their input
+        - dropping them straight into combat dice
+        - presuming any Season 1 campaign beat (The Jailbreak, etc.)
+    establishing_narration: |
+      New Kowloon never goes fully dark, but this is as close as it gets —
+      the hour after the last lighter has climbed the Tether and before
+      the scrapper crews come grinding down out of Santa Abraham. The
+      towers above you are corporate light, cold and clean. Down here on
+      the mezzanine it's the other kind: vendor-loops, runoff, a
+      Yulan Broadcast billboard cycling Dust ads to nobody.
+
+      This is the lesson the Cloud teaches first, and Yula teaches it
+      hardest. The galaxy is gone — the Great Hyperspace Explosion took
+      the lanes out a long time before you were born — and what's left
+      runs on scrap, on pretech, and on Dust. Everyone here is selling
+      one of the three.
+
+      Two tiers up, against the rail where the corporate light spills
+      over, a floor-boss in Conglomerate grey has been watching you. Not
+      the bored sweep a guard gives a crowd. The longer kind. The kind
+      that has already decided you're useful and is working out for what.
+    first_turn_invitation: |
+      The rain keeps coming. The floor-boss keeps watching, and has begun,
+      unhurried, to make their way toward the stairs down.
+
+  - id: mp_glitter_consignment
+    name: "Glitter, the Consignment That Wasn't There"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 6
+      backgrounds: []
+    setting:
+      location_label: "a hired bay on Glitter, the orbital city above Yula, where a consignment was supposed to be waiting"
+      situation: >-
+        Ship-night on Glitter. Your group came up the Tether on separate
+        manifests but the same instruction: a bay number, an hour, and a
+        consignment to collect and move on. The bay is here. The hour is
+        now. The consignment is not.
+    tone:
+      register: grounded, grimy, orbital
+      stakes: imminent — somebody paid to gather you, and somebody else got here first
+      complication: the consignment is missing and a Spacer dock-warden is already
+        logging your faces against the empty bay
+      sensory_layers:
+        smell: "recycled air gone slightly metallic, coolant, the cold-nothing smell of vacuum past the lock"
+        sound: "the station's spin-hum, a warden's slate clicking, the distant clang of a berth cycling"
+        touch: "the just-too-light pull of orbital gravity, a deckplate cold through your boots"
+      avoid_at_all_costs:
+        - ending the turn with a question
+        - re-introducing the PCs to one another
+        - moving the party without their input
+        - dropping the party straight into combat dice
+        - presuming any Season 1 campaign beat (The Jailbreak, etc.)
+    establishing_narration: |
+      Glitter turns slow above Yula, and the planet fills the bay's one
+      long viewport — arid, rust-and-amber, the scrapyards catching the
+      last of the daylight terminator. You all came up the Tether tonight
+      on separate manifests. You all got the same instruction: this bay,
+      this hour, a consignment to collect and carry on.
+
+      The bay is here. The hour is now.
+
+      The consignment is not. Nothing on the cradle but its own shadow and
+      a strap somebody cut rather than unbuckled. Whoever was supposed to
+      hand it over isn't here either, and the only person paying you any
+      attention is a Spacer dock-warden at the hatch, slate up, quietly
+      logging each of your faces against an empty bay and a contract that
+      now reads very differently than it did an hour ago.
+    first_turn_invitation: |
+      The warden lowers the slate and looks the group over, unhurried, the
+      way a Spacer looks at a problem that has just become several people's
+      problem at once.
+    party_framing:
+      already_a_crew: false
+      bond_tier_default: neutral
+      shared_history_seeds:
+        - "you do not all necessarily know each other — the consignment job is the common thread"
+        - "whoever hired you knew all your names; none of you were told the others were coming"
+      narrator_guidance: >-
+        These PCs were gathered, not necessarily bonded. Perseus Cloud's
+        MP register is hired-strangers-in-a-sealed-sector: nobody is going
+        anywhere (the lanes out are gone), so the relationships forced by a
+        bad job tend to stick. Treat the missing consignment as live work —
+        the warden is a third party, and the empty bay is a question every
+        PC now owns.

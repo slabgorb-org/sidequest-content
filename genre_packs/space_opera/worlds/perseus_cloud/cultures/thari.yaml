@@ -1,0 +1,36 @@
+name: Thari
+summary: The old-blooded feudal culture of the Regency of Thar — stone, hierarchy,
+  and post-GHE certainty
+description: >-
+  The people of the Regency of Thar, who rebuilt human order out of the
+  rubble the Great Hyperspace Explosion left behind. Thari culture is
+  feudal and deliberately backward-looking: it raises stone keeps in an
+  age of pretech, prizes bloodline and rank above competence, and exerts
+  a strongly regressive cultural force across the Regency's holdings —
+  Coelitha, Lazzaro, and Occum as well as Thar itself. The navy is an
+  arm of the aristocracy; an admiral like Aliya Dad is a political force,
+  not merely a military one. Names carry the weight of house and station.
+# PROVISIONAL naming — the vault's Thari names (Restra Velmont, Eritrea
+# Velmar, Aliya Dad) read as invented-romance + given. This slot is a
+# best-fit placeholder pending Jade & Sebastien's table convention.
+slots:
+  given_name:
+    corpora:
+      - corpus: latin.txt
+        weight: 0.5
+      - corpus: italian.txt
+        weight: 0.5
+    lookback: 2
+  house_name:
+    corpora:
+      - corpus: italian.txt
+        weight: 0.6
+      - corpus: latin.txt
+        weight: 0.4
+    lookback: 2
+person_patterns:
+  - '{given_name} {house_name}'
+  - '{given_name} of House {house_name}'
+place_patterns:
+  - The {house_name} Keep
+  - '{house_name} Hold'

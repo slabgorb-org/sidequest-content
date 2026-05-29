@@ -1,0 +1,42 @@
+name: Spacer
+summary: The void-born trade culture of Glitter, Tether, and the orbital reaches —
+  the sector's connective tissue
+description: >-
+  The Spacers are the Cloud's permanent population of the black —
+  born and raised in orbital cities like Glitter and dirtside hubs like
+  Tether, the only settlements in the sector with a significant Spacer
+  presence. They crew the cargo lighters and trade ships that bind a
+  sundered sector together, and culturally they bridge the cutthroat
+  corporate politics of Yula and the rest of the Cloud. Where the Regency
+  looks backward and Yula looks down, Spacers look outward — they are the
+  ones still flying the lanes the GHE left, and the ones who remember
+  best that there used to be more of them. [Vault file empty — this is
+  reconstructed from the Glitter/Tether records and the standard SWN
+  Spacer; confirm against Jade & Sebastien's table canon.]
+# PROVISIONAL naming — Spacer naming convention is not recorded in the
+# vault. Placeholder mixes a maritime/void register with plain given
+# names; pending the table's actual convention.
+slots:
+  given_name:
+    corpora:
+      - corpus: polynesian.txt
+        weight: 0.5
+      - corpus: english.txt
+        weight: 0.5
+    lookback: 2
+  ship_or_berth:
+    word_list:
+      - Longcoast
+      - Driftward
+      - Tetherborn
+      - Glittermade
+      - Farscoop
+      - Lanekeeper
+      - Quietdock
+      - Brightwake
+person_patterns:
+  - '{given_name}'
+  - '{given_name} {ship_or_berth}'
+place_patterns:
+  - The {ship_or_berth} Berth
+  - '{given_name}''s Dock'
