@@ -122,6 +122,34 @@ Use this deliberately:
   the same prompt will give you a bright red jacket in a desaturated world,
   not a muted red jacket.
 
+## Style anchors and stray domain words are taken literally
+
+Z-Image honors the *associations* of the words you feed it, not just their
+denotation. Two failure modes from the aureate_span set (2026-05-29):
+
+**A style anchor imports its whole medium.** Naming a comic-anthology lineage —
+"European retro-futurist comic art," "Métal Hurlant," "Moebius," "Druillet" —
+together with "bold confident contour linework with strong weight variation,
+flat planar color fields" rendered flat comic-book cel: heavy black ink
+outlines, flat fills, exaggerated faces. The intent was lush painterly Art
+Nouveau. Fix: name painterly sources only (Mucha, Privat-Livemont) and describe
+the rendering itself — "soft painterly rendering, luminous gradient shading and
+rich tonal modeling, delicate fine linework subordinate to the painted form."
+If you name a comic, you get a comic. Don't try to undo it with "no comic, no
+cartoon" — style negations backfire like object negations do; steer with
+positive painterly vocabulary instead.
+
+**A common noun imports its real-world setting.** A spaceport POI that used
+"docking berth," "yachts," and "berth" rendered a present-day water marina with
+a moored motor yacht — despite "riveted steel decking," "freighter,"
+"plasma-shielded dome," and "the corona of a dying star" in the same prompt.
+"Berth / dock / yacht" are nautical, so the model drew water. Fix: medium-correct
+nouns — "docking cradle," "private starcruiser," "space freighter," "hull
+clamped in armatures above a dry metal deck," "thruster nacelles." This is the
+proper-noun rule extended to *common* nouns: a word that belongs to another
+setting or era drags the render toward that setting. Scan for them and swap in
+the genre's own archetype.
+
 ## The mandatory safety clause
 
 Every prompt ends with a cleanup clause. Tune which items you include, but
@@ -261,6 +289,16 @@ Paris street behind it whether the shot wanted one or not. The world suffix
 must be style/medium/palette vocabulary only. Concrete setting belongs in the
 per-portrait `element_visual` (for the ones that want it), not the world layer.
 
+### Scars and other tiny features render unreliably
+
+Z-Image renders a thin facial scar as a jagged white crack or gash across the
+cheek, not a fine line (observed on Commander Aurien Vex, aureate_span). Small,
+precise features are low-confidence. Use scars sparingly — and in a high-tech
+setting they're also a worldbuilding mismatch (cosmetic regeneration would
+erase them; an unscarred face is the default). If a character genuinely needs
+one, expect the artifact or choose a more render-friendly distinctive (bone
+structure, an augment, a marking).
+
 ## Prompting for POI landscapes
 
 Scaffold:
@@ -299,5 +337,6 @@ schema in use.
 6. Did I end with the safety clause (`no text, no caption, no watermark`)?
 7. For humans: did I say "adult", specify clothing, and add the SOUL clause?
 8. Is it 80–250 words and all of it is renderable?
+9. Does any style anchor or common noun import the wrong medium/setting (comic → cel, nautical → water)? Swap it for the genre's own vocabulary.
 
 If all yes: generate. If not: rewrite.
