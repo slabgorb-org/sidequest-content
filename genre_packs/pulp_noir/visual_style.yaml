@@ -12,14 +12,21 @@
 
 # ── Core Style ────────────────────────────────────────────────
 #
-# positive_suffix is the genre STYLE/MEDIUM/PALETTE floor: it is always
-# applied and never evicted (ART_SENSIBILITY.GENRE sits in the daemon's
-# identity floor). Style vocabulary only — no concrete setting/weather
-# nouns. "atmospheric rain and fog" was removed 2026-05-28 (story 65-3): it
-# put a rainy backdrop behind every portrait. Rain belongs in the layer that
-# wants it — a POI's visual_prompt or a portrait's element_visual — not in
-# the genre floor. See PROMPTING_Z_IMAGE.md "World style suffix bleeds
-# concrete nouns into every portrait".
+# positive_suffix is the genre STYLE/MEDIUM/PALETTE *fallback* — NOT a floor
+# that always applies. Per the 2026-04-29 visual-style decomposition the
+# world layer carries the art-movement lineage, so whenever a world ships its
+# own positive_suffix (every live world does) the daemon suppresses this
+# genre layer at resolution (prompt_composer.py _resolve_art_sensibility:
+# "if world_text.strip(): continue") and the world suffix is authoritative.
+# This genre suffix is emitted only for a world that ships no visual_style of
+# its own. ART_SENSIBILITY.GENRE is in the identity floor, so on the rare
+# render where it IS emitted it is never evicted — but under normal override
+# it is never created in the first place (genre_style_applied is False).
+# Style vocabulary only — no concrete setting/weather nouns. "atmospheric
+# rain and fog" was removed 2026-05-28 (story 65-3): it put a rainy backdrop
+# behind every portrait. Rain belongs in the layer that wants it — a POI's
+# visual_prompt or a portrait's element_visual. See PROMPTING_Z_IMAGE.md
+# "World style suffix bleeds concrete nouns into every portrait".
 
 positive_suffix: >-
   noir ink wash illustration, heavy dramatic shadows with hard edges,
