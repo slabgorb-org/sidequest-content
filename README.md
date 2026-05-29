@@ -15,27 +15,30 @@ services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 | Pack | Theme | Worlds present |
 |------|-------|----------------|
 | `caverns_and_claudes` | Classic dungeon crawl (meta-humor on D&D tropes) | `beneath_sunden` (single-shaft procedural megadungeon, ADR-106; surface anchor authored, deep is runtime) |
-| `elemental_harmony` | Martial arts / elemental magic | — |
+| `elemental_harmony` | Martial arts / elemental magic | `burning_peace`, `shattered_accord` |
+| `heavy_metal` | Baroque fantasy of pacts, decay, and blood-priced magic | `evropi`, `long_foundry` (portraits pending render) |
 | `mutant_wasteland` | Post-apocalyptic mutants | `flickering_reach` (fully spoilable) |
+| `neon_dystopia` | Cyberpunk | `franchise_nations` |
+| `pulp_noir` | 1930s detective / pre-war pulp | `annees_folles` |
 | `road_warrior` | Late-70s / early-80s vehicle subcultures sharing one port city (bōsōzoku, mods, lowriders, dekotora, raggare, &c.) | `the_circuit` |
-| `space_opera` | Sci-fi space adventure | `coyote_star` |
-| `spaghetti_western` | Morally ambiguous anti-heroes — Leone/Corbucci/Kurosawa. Standoff as ritual, betrayal as inevitability. | `dust_and_lead` (Sangre Territory border town), `the_real_mccoy` (1878 industrial Pittsburgh) |
-| `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross` |
+| `space_opera` | Sci-fi space adventure | `aureate_span` (baroque corona megastation), `coyote_star`, `perseus_cloud` |
+| `spaghetti_western` | Morally ambiguous anti-heroes — Leone/Corbucci/Kurosawa. Standoff as ritual, betrayal as inevitability. | `dust_and_lead` (Sangre Territory border town), `five_points` (1850s NYC Sixth Ward), `the_real_mccoy` (1878 industrial Pittsburgh) |
+| `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross`, `blackthorn_moor` (draft) |
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters,
 factions, OCEAN profiles, conlang morphemes, audio cues, visual style), and
 asset directories for portraits, POI landscapes, and music params.
 
+All ten packs above have a `pack.yaml` and are loaded at runtime. Worlds
+default to live; `draft: true` in a world's `world.yaml` hides it from
+selection until its asset gate (portraits + POI landscapes rendered to R2) is
+met. `blackthorn_moor` is currently the only draft world.
+
 Stub / workshopping packs not yet wired into runtime live under
 `genre_workshopping/` (caverns_sunden — deprecated three-sins hub superseded
-by `beneath_sunden`; heavy_metal, low_fantasy, neon_dystopia, pulp_noir
-at various levels of completeness).
+by `beneath_sunden`; low_fantasy at various levels of completeness).
 `genre_workshopping/{elemental_harmony,space_opera,tea_and_murder}/worlds/`
 hold in-progress alternate worlds for the live packs of the same name.
-
-`genre_packs/heavy_metal/` exists as empty scaffolding (no `pack.yaml`) and
-is skipped by the loader; promote the workshopping version before listing
-it as live.
 
 ## Layout
 
