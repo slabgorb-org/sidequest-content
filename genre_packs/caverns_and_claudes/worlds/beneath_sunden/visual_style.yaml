@@ -6,9 +6,15 @@
 #
 # WIRING: positive_suffix is the field the daemon's StyleCatalog reads
 # (sidequest-daemon/sidequest_daemon/media/catalogs.py::StyleCatalog.load).
-# World-level positive_suffix layers on top of the genre's B&W ink
-# suffix via the explicit-recipes PromptComposer's ART_SENSIBILITY.WORLD
-# slot.
+# World-level positive_suffix REPLACES the genre suffix — it does not layer
+# on top of it. Per the 2026-04-29 visual-style decomposition the
+# explicit-recipes PromptComposer suppresses the genre layer whenever a world
+# ships its own suffix (prompt_composer.py _resolve_art_sensibility:
+# "if world_text.strip(): continue"), so ART_SENSIBILITY.WORLD is
+# authoritative and ART_SENSIBILITY.GENRE never fires here. This world suffix
+# must therefore be self-complete: it restates the B&W Otus/Trampier ink
+# lineage and carries its own no-text/safety clause, because nothing from the
+# genre floor is inherited.
 #
 # DOCTRINE (caverns_sunden playtest 2026-05-06 fix, applied here from
 # the start): the world-level suffix is INJECTED INTO EVERY RENDER IN

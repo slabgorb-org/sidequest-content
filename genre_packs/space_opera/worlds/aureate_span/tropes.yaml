@@ -171,3 +171,316 @@
     decelerators: [cancel, boycott, negotiate, distraction]
     accelerator_bonus: 0.05
     decelerator_penalty: 0.03
+
+- id: the_waking_geometry
+  name: The Thing in the Core
+  description: >-
+    The Makhani are not maintaining the tethers. They are aiming them.
+    Coiled in Solenne's core, older than the star that grew up around
+    it, is a vast patient geometry the hive has worshipped for longer
+    than the station has existed — and as the star fails, it is beginning
+    to stir. The Makhani intend to throw the entire Aureate Span into it
+    like a coin into a wishing well. They are absolutely certain it will
+    catch them. They will not say what "catch" means.
+  category: revelation
+  triggers:
+    - investigating why the Makhani adjust the tethers
+    - the Calcifier granting or demanding an audience
+    - Solfire users describing a shape in the star's song
+  narrative_hints:
+    - the tether-songs resolving toward a single sustained note
+    - star charts that show the tethers aimed at the core, not holding position
+    - Makhani workers facing the star in unison at unscheduled hours
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        A Solfire dealer's best customer comes back raving that the star
+        isn't a melody, it's a face — and it turned to look. The Vaal-Kesh
+        quietly pull the batch. The Makhani buy every vial.
+      npcs_involved: [The Calcifier]
+      stakes: Something in the star may be aware.
+    - at: 0.5
+      event: >-
+        The Calcifier breaks three centuries of silence and requests an
+        audience with the Imperatrix. She brings a gift: a crystallized
+        sliver of tether-energy that hums a note no instrument can sustain.
+        She calls it "an invitation." She does not say to what.
+      npcs_involved: [The Calcifier, Imperatrix Celestine VII]
+      stakes: The hive's plan is no longer a secret — only its purpose is.
+    - at: 0.75
+      event: >-
+        The tethers lock into their final alignment. Every Makhani on the
+        Span stops working at once and turns to face the core. The thing
+        answers — a pulse felt in the teeth, in the gold underfoot, in the
+        fillings of everyone on the Promenade. It knows the station is coming.
+      npcs_involved: [The Calcifier]
+      stakes: The Span is now a thrown coin mid-arc.
+    - at: 1.0
+      event: >-
+        The Communion. As the star tears itself open, the Makhani fling the
+        whole station toward the waking geometry, singing the hymn they have
+        rehearsed for two hundred years. Whether the thing in the core is a
+        god, a door, or an appetite is about to stop being a theological
+        question.
+      npcs_involved: [The Calcifier]
+      stakes: Transcendence, annihilation, or something with no human word.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.025
+    accelerators: [core, tether, makhani, calcifier, solfire, song, aim]
+    decelerators: [holdposition, recalibrate, ignore, dismiss]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+
+- id: the_supernova_opera
+  name: The Supernova Opera
+  description: >-
+    The Imperatrix has commissioned the greatest work of art ever attempted:
+    an opera with a dying star for its finale and the entire station for its
+    chorus. She is not in denial. She has read the Observatory's suppressed
+    numbers. She has simply decided that if a civilization must end, it will
+    end on the most beautiful note it can hold — and that anyone who flees is
+    walking out of the performance of their life.
+  category: political
+  triggers:
+    - attending or hearing about the Imperatrix's new commission
+    - the Doctrine of Radiance invoked to justify staying
+    - artists conscripted into the production
+  narrative_hints:
+    - the Palace Solaris rehearsing day and night
+    - Doctrine Artists vanishing into the production and not coming back
+    - the libretto quoting the very decay data the court denies
+  tension_level: 0.4
+  escalation:
+    - at: 0.25
+      event: >-
+        The Imperatrix announces the commission from her balcony, gilded and
+        radiant, and the Promenade weeps with joy. In the same breath she
+        declares evacuation "an aesthetic failure." The applause is genuine.
+        That is the frightening part.
+      npcs_involved: [Imperatrix Celestine VII]
+      stakes: Beauty is being weaponized against survival itself.
+    - at: 0.5
+      event: >-
+        Conscription begins, dressed as honor. The finest performers on the
+        Span are invited to roles they cannot refuse without insulting the
+        Doctrine. Commander Aurien Vex makes sure the invitations are
+        accepted. Some artists are thrilled. Some are terrified. The line
+        between is invisible from outside.
+      npcs_involved: [Imperatrix Celestine VII, Commander Aurien Vex]
+      stakes: The court is turning its people into instruments.
+    - at: 0.75
+      event: >-
+        A dress rehearsal staged in the Corona Arena, the star's surface
+        painted across the dome, ten thousand voices in the chord. It is,
+        objectively, the most beautiful thing anyone present has ever seen.
+        Several attendees cancel their evacuation passages on the spot.
+      npcs_involved: [Imperatrix Celestine VII]
+      stakes: The opera is winning hearts faster than the lifeboats are.
+    - at: 1.0
+      event: >-
+        Opening night is the supernova. The Imperatrix takes the podium as
+        the shields begin to fail, raises her baton to the dying star, and
+        invites everyone still aboard to make their ending magnificent. She
+        means it as a gift. The terrible thing is how many accept.
+      npcs_involved: [Imperatrix Celestine VII]
+      stakes: The most beautiful mass suicide in the history of the sector — or art's final triumph.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.03
+    accelerators: [opera, doctrine, radiance, beauty, imperatrix, finale, spectacle]
+    decelerators: [evacuate, flee, refuse, sabotage]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: the_unfinished_song
+  name: The Unfinished Song
+  description: >-
+    For forty years the Crystalline Choir has been singing a structure into
+    existence in the Resonance Quarter — a hollow crystalline lattice the
+    size of a cathedral that matches no known architecture. They call it a
+    "response." It is, in fact, a seed-ship: an ark of pure sound meant to
+    leap clear of the Span on the supernova's shockwave and carry the finale
+    somewhere the universe can still hear it. It is held together by a single
+    chord the entire Choir is singing at once. If they stop, it falls.
+  category: mystery
+  triggers:
+    - entering the Resonance Quarter or the Seed-Chamber
+    - the Choir refusing to evacuate
+    - new frequencies threading through the Grand Resonator
+  narrative_hints:
+    - the unfinished spire growing visibly during certain chords
+    - visitors without dampeners experiencing rapture or seizure
+    - the Choir recruiting passengers through tests no human understands
+  tension_level: 0.45
+  escalation:
+    - at: 0.25
+      event: >-
+        Kaelith Resonant invites the players into the Seed-Chamber and asks,
+        with no irony, whether they can hold a note. It is not small talk.
+        It is an audition. The Choir is choosing who boards, and the
+        criterion is not money, rank, or beauty. It is whether you can
+        sustain something.
+      npcs_involved: [Kaelith Resonant]
+      stakes: An ark exists, and the boarding pass is sung, not bought.
+    - at: 0.5
+      event: >-
+        The Grand Resonator — which also holds the station's structure
+        together — begins devoting more of its chord to the seed-ship and
+        less to the Span. Sections of the upper decks start to groan. The
+        Choir considers this an acceptable trade. The engineers do not.
+      npcs_involved: [Kaelith Resonant]
+      stakes: The ark is being built out of the station's own integrity.
+    - at: 0.75
+      event: >-
+        The seed-ship reaches full size, growing up through the Quarter's
+        ceiling into the void. The Choir announces it will separate when the
+        first shockwave hits the tethers — and that everyone aboard must hold
+        the note through the impact, or the lattice shatters. There are no
+        seats. There is only the chord.
+      npcs_involved: [Kaelith Resonant]
+      stakes: Salvation that requires the saved to perform it perfectly.
+    - at: 1.0
+      event: >-
+        The shockwave arrives. The Choir and every passenger who can hold it
+        sing the single sustained chord that is the ship, and the lattice
+        tears free of the dying Span into the light. Whether it holds depends
+        on whether a cathedral of strangers can keep one note through the end
+        of a world.
+      npcs_involved: [Kaelith Resonant]
+      stakes: The ark flies on a held breath, or it does not fly at all.
+  passive_progression:
+    rate_per_turn: 0.009
+    rate_per_day: 0.025
+    accelerators: [choir, resonator, chord, seed, song, crystalline, harmonic]
+    decelerators: [silence, dampener, shatter, discord]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+
+- id: the_uncollected_debt
+  name: The Uncollected Debt
+  description: >-
+    Three centuries ago the Calcifier spared Celestine I in the Arena and
+    took a time-debt instead of her life: one favor, owed by the dynasty,
+    collectable when the star required it. Seven Imperatrixes have inherited
+    that debt and feared it. Now the star requires something, and the oldest
+    living thing on the station is finally ready to name her price. The
+    Imperatrix cannot refuse — the legitimacy of her entire line rests on the
+    fight her ancestor lost.
+  category: political
+  triggers:
+    - the Calcifier referencing the old Arena fight
+    - the Imperatrix's authority over the Makhani being tested
+    - the time-debt invoked or threatened
+  narrative_hints:
+    - the unresurfaced First Arena tiles drawing Makhani visitors
+    - the Imperatrix unable to give the hive a direct order
+    - the Calcifier's carapace pattern that records the debt being read aloud
+  tension_level: 0.35
+  escalation:
+    - at: 0.25
+      event: >-
+        The Calcifier sends a worker to stand, silently, on the old Arena
+        tiles during a Festival match — a gesture every aristocrat
+        recognizes and no commoner notices. The Imperatrix's smile does not
+        change. Her grip on the balcony rail does.
+      npcs_involved: [The Calcifier, Imperatrix Celestine VII]
+      stakes: The hive is reminding the throne who really won.
+    - at: 0.5
+      event: >-
+        The Calcifier formally signals intent to collect. The court scrambles
+        for any precedent to delay; there is none, because the debt predates
+        the dynasty's own laws. Commander Aurien Vex quietly asks the
+        Imperatrix whether the Guard should "resolve the irregularity." She
+        tells him no. He is not sure she means it.
+      npcs_involved: [The Calcifier, Imperatrix Celestine VII, Commander Aurien Vex]
+      stakes: Honor the debt and lose control, or break it and lose legitimacy.
+    - at: 0.75
+      event: >-
+        The price is named at last: the Makhani want the station itself —
+        the right to do with the Span whatever the star requires, no
+        questions, no veto. It is the Communion, asked as a courtesy the
+        Imperatrix is bound to grant.
+      npcs_involved: [The Calcifier, Imperatrix Celestine VII]
+      stakes: A three-hundred-year-old debt comes due as ownership of everyone's fate.
+    - at: 1.0
+      event: >-
+        The Imperatrix must answer. Pay the debt and the Makhani steer the
+        Span into the thing in the core; refuse and shatter the only law
+        older than her throne, in front of a station that has always known
+        her family lost the fight. Either way, the Arena's oldest match
+        finally ends.
+      npcs_involved: [The Calcifier, Imperatrix Celestine VII]
+      stakes: The dynasty's founding lie, called in at the end of the world.
+  passive_progression:
+    rate_per_turn: 0.007
+    rate_per_day: 0.02
+    accelerators: [debt, calcifier, arena, makhani, favor, time, owed]
+    decelerators: [delay, refuse, precedent, stall]
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
+
+- id: the_cinder_rising
+  name: The Cinder Rising
+  description: >-
+    Beneath the gold, the Underspine has had enough. Breck's Cinder
+    Collective — workers, Vaal-Kesh defectors, rogue Makhani — has stopped
+    asking the court to care and started building lifeboats out of scrap and
+    spite. To them the Doctrine of Radiance is a death cult in a beautiful
+    mask, and survival is the only honest art left. Their revolt is not
+    grim. It is the most defiant, ridiculous, magnificent gesture on the
+    Span: ordinary people refusing to die beautifully on schedule.
+  category: conflict
+  triggers:
+    - encountering Cinder Collective propaganda or recruiters
+    - the Solarium Guard cracking down on the Underspine
+    - the suppressed Observatory data spreading
+  narrative_hints:
+    - graffiti quoting the classified decay paper in three-metre letters
+    - escape pods welded from market carts and hull plating
+    - Underlevel sections re-shading the gold light to a rebel red
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        Breck's people sabotage a perfume exhibition to broadcast the real
+        decay numbers across the Promenade's screens. For ninety seconds the
+        beautiful people read exactly how long they have. Then the feed cuts,
+        the band resumes, and almost everyone decides to forget. Almost.
+      npcs_involved: [Breck]
+      stakes: The truth is out; the question is whether anyone will keep it.
+    - at: 0.5
+      event: >-
+        Commander Aurien Vex sends the Solarium Guard into the Underspine to
+        "restore aesthetic order." The Collective answers with barricades of
+        salvaged hull and a wall of recorded star-data played at deafening
+        volume. The first real blood of the crisis is spilled under
+        fluorescent light, far from any audience.
+      npcs_involved: [Breck, Commander Aurien Vex]
+      stakes: The cold war under the Span turns hot.
+    - at: 0.75
+      event: >-
+        The Vaal-Kesh, sensing the end, quietly bankroll the Collective's
+        shipyard before sealing their own markets and leaving. Suddenly the
+        rebels have real pods, real thrusters, and a rolling launch schedule.
+        Breck starts interviewing passengers — not by wealth, but by what
+        they did before the truth went public.
+      npcs_involved: [Breck, Tivaanu of the Amber Essence]
+      stakes: The Underspine becomes the only exit that doesn't require a religion.
+    - at: 1.0
+      event: >-
+        As the star opens, the Collective launches its ragged armada straight
+        through a wall of dying starlight — welded pods full of mechanics and
+        cooks and nobodies, punching out while the opera plays and the ark
+        sings and the hive prays. Survival itself, performed as the loudest
+        refusal in the sector's history.
+      npcs_involved: [Breck]
+      stakes: A beautiful, defiant escape — or a swarm of coffins lit by a supernova.
+  passive_progression:
+    rate_per_turn: 0.013
+    rate_per_day: 0.035
+    accelerators: [cinder, revolt, underspine, breck, evacuate, pod, truth]
+    decelerators: [crackdown, suppress, pacify, distract]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
