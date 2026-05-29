@@ -27,6 +27,13 @@ cwn:
     default_trauma_target: 6
     mortal_injury_rounds: 6
     major_injury_save: physical
+  hacking:
+    default_tier: office
+    security_tiers:
+      home: 7
+      office: 9
+      facility: 11
+      black_site: 12
 
 allowed_classes:
   - Netrunner
@@ -90,13 +97,15 @@ custom_rules:
     opens doors — fixers offer better jobs, gangs respect you, corps
     fear you. Negative Street Cred means nobody will work with you.
     Different factions track your rep independently.
-  net_combat: >-
-    Cyberspace encounters are narrative, not technical. When a
-    Netrunner jacks in, describe the virtual architecture as
-    physical space — ice walls, data streams, guardian programs
-    as creatures. Net combat uses Net stat instead of Body/Reflex.
-    Never ask players to solve technical puzzles — the character
-    is the expert, not the player.
+  net_run: >-
+    Cyberspace is a CWN net run: a dial confrontation, not a technical puzzle.
+    When a runner jacks in, name a security tier (home/office/facility/
+    black_site) — the engine sets the Program-check DC (7/9/11/12). Describe
+    the virtual architecture as physical space — ICE walls, data streams,
+    guardian programs as creatures. Each verb (Run Program, Spoof, Move Nodes,
+    Jack Out) is a 2d6 + Program + Tech check vs that DC; the network fights
+    back by raising the alert. Never narrate a breach the dice did not earn —
+    the character is the expert, not the player.
 
 encounter_base_tension:
   random: 0.10
@@ -154,58 +163,58 @@ confrontations:
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player jacks out of the conversation. No deal."
     mood: tension
-  - type: net_combat
-    label: "Net Combat"
-    category: combat
-    # Player extracts; the system traces. First side to threshold wins.
+  - type: net_run
+    label: "Net Run"
+    category: hacking
+    # CWN cyberspace as a dial confrontation. player_metric = objective
+    # progress (data extracted); opponent_metric = network alert/trace.
+    # Alert reaching threshold = CWN "Alert the Network x2" — the run is lost.
+    # Each beat resolves as 2d6 + Program(combat_skill) + INT(Tech) vs the
+    # security-tier DC; the cwn ruleset module fires cwn.hacking.security_check.
     player_metric:
-      name: extraction
+      name: data
       starting: 0
       threshold: 10
     opponent_metric:
-      name: trace
+      name: alert
       starting: 0
       threshold: 10
     beats:
-      - id: breach
-        label: "Breach Node"
+      - id: run_program
+        label: "Run Program"
         kind: strike
         base: 2
+        combat_skill: 1
         stat_check: Tech
-        effect: "crack open the next layer of ICE"
-        narrator_hint: "Describe the virtual architecture crumbling as the runner punches through."
-      - id: bypass_ice
-        label: "Bypass ICE"
-        kind: strike
-        base: 3
         deltas:
           crit_fail:
-            own: -2
+            own: -1
             opponent: 2
-        stat_check: Tech
-        risk: "trace spike — trace jumps by 2 on failure"
-        narrator_hint: "Elegant or brute-force, the runner slips past intrusion countermeasures."
-      # spoof: throw the trace off — brace reduces opponent dial
+        effect: "execute an offensive program — advance toward the objective"
+        risk: "a botched call spikes the network alert"
+        narrator_hint: "Describe the program tearing through the data architecture; failure trips an alarm."
       - id: spoof
-        label: "Spoof Identity"
+        label: "Spoof / Unlock Barrier"
         kind: brace
         base: 1
+        combat_skill: 1
         stat_check: Tech
-        effect: "reset trace by 1"
-        narrator_hint: "Mask your signal. Buy time before the hounds find you."
+        effect: "mask your signal or open a barrier — drop the network alert"
+        narrator_hint: "Throw the trace off the scent. Buy room to breathe before the ICE closes in."
+      - id: move_nodes
+        label: "Move Nodes"
+        kind: push
+        base: 2
+        combat_skill: 1
+        stat_check: Tech
+        effect: "push deeper toward extraction"
+        narrator_hint: "The runner traverses the lattice, closer to the prize."
       - id: jack_out
         label: "Jack Out"
         kind: push
-        stat_check: Reflex
-        consequence: "escape the net — lose any data not yet extracted"
+        stat_check: Tech
+        consequence: "exit the run — keep extracted data, end the confrontation"
         narrator_hint: "Yank the cable. Reality slams back. Did you get what you came for?"
-    secondary_stats:
-      - name: programs
-        source_stat: Tech
-        spendable: false
-      - name: firewall
-        source_stat: Tech
-        spendable: false
     mood: tension
 
   - type: combat
