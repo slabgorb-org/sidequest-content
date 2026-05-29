@@ -165,6 +165,11 @@ confrontations:
         attack_bonus: 1
         combat_skill: 1
         damage_channel: none
+        # class_filter restricts this beat to caster Disciplines only.
+        # Mirrors caverns_and_claudes cast_spell: class_filter: [Mage].
+        # Without this, the WWN cast resource gate never fires — the beat
+        # would be offered to every class and the gate check skipped.
+        class_filter: [Channeler, Spirit Medium]
         effect: "Cast a prepared spell — damage rolled by the spell engine"
         narrator_hint: The character reaches inward, pulls on prepared elemental form, releases it.
       - id: guard
