@@ -1,0 +1,94 @@
+# sidequest-content/genre_packs/space_opera/worlds/perseus_cloud/npcs.yaml
+#
+# World-authored NPCs for Perseus Cloud — FAITHFUL IMPORT from Jade &
+# Sebastien's Master Lore vault (Characters/ folder, transcribed 2026-05-29).
+# Five named NPCs: two "Central" (the Princess and the Poisoner) and three
+# "Hook" NPCs that, in the table's Season-1 canon, bridged the Jailbreak to
+# its Session-2 branches.
+#
+# IMPORT DISCIPLINE (matches the rest of perseus_cloud — transcribe, don't
+# fabricate):
+#   - Names are VAULT CANON, not design-time inventions. The AuthoredNpc
+#     contract ("names produced via namegen, never invented at authoring
+#     time") is honored because these are TRANSCRIBED from the table's
+#     existing canon, not generated here.
+#   - history_seeds carry ONLY in-world facts the vault actually states.
+#     Where the vault is silent (pronouns, appearance, age, OCEAN, voice,
+#     disposition toward the party) the field is left empty and the gap is
+#     flagged in a comment — NEVER written as prose in history_seeds, which
+#     the narrator reads and would otherwise narrate aloud.
+#   - The Jailbreak / Session-2 branch structure is preserved in comments
+#     only. Per CAMPAIGN_NOTES.md it is NOT to be baked into runtime prose,
+#     so it stays out of history_seeds.
+#
+# PRESENCE: authoring an NPC here RESERVES its canonical name/id in the
+# registry (so the narrator never auto-generates a random name when they
+# surface); it does NOT place them in the opening scene. None of these five
+# are present at session start — each is met in their own system/scenario.
+# (Same pattern as coyote_star's Dura Mendes.)
+#
+# initial_disposition is left at 0 (neutral) for all five: the vault states
+# none of their dispositions toward the party. Aliya Dad's "regressive
+# cultural force" is a political stance, not a disposition toward the PCs.
+
+version: "0.1.0"
+world: perseus_cloud
+
+npcs:
+  # === Central NPCs — "The Princess and the Poisoner" ===
+
+  # Vault: Characters/Central NPC - Aliya Dad.md
+  # STUB for Jade: pronouns, appearance, age, OCEAN, voice, disposition
+  # toward the party. Faction (Thari Navy) and her regressive role are
+  # vault canon, already echoed in lore.yaml's Regency description.
+  - id: aliya_dad
+    name: "Aliya Dad"
+    role: "Admiral, Thari Navy"
+    history_seeds:
+      - >-
+        An Admiral in the Thari Navy whose conservatism exerts a strongly
+        regressive cultural force on the administration of the Regency of
+        Thar.
+      - >-
+        A pivotal figure in the affair the sector remembers as the Princess
+        and the Poisoner.
+
+  # Vault: Characters/Central NPC - Restra Velmont.md
+  # STUB for Jade: role, faction, pronouns, appearance, age, OCEAN, voice,
+  # disposition. The vault records only that Restra is central to the
+  # Princess and the Poisoner.
+  - id: restra_velmont
+    name: "Restra Velmont"
+    role: "central figure — the Princess and the Poisoner"
+    history_seeds:
+      - >-
+        A central figure in the affair the sector remembers as the Princess
+        and the Poisoner.
+
+  # === Hook NPCs — bridged the Jailbreak to its Session-2 branches ===
+  # (Branch structure is campaign canon, kept in comments per
+  #  CAMPAIGN_NOTES.md; deliberately not narrated.)
+
+  # Vault: Characters/Hook NPC - Barial Fen.md  (tags: Hassam, ChurchOfRecreation)
+  # Campaign role: drew the party from the Jailbreak toward the Hassam system.
+  # STUB for Jade: pronouns, appearance, age, OCEAN, voice, disposition.
+  - id: barial_fen
+    name: "Barial Fen"
+    role: "Church of Recreation contact"
+    history_seeds:
+      - >-
+        Affiliated with the Church of Recreation.
+
+  # Vault: Characters/Hook NPC - Eritrea Velmar.md  (tag: Halgerd)
+  # Campaign role: drew the party from the Jailbreak toward the Halgerd system.
+  # STUB for Jade: role, faction, pronouns, appearance, age, OCEAN, voice,
+  # disposition — the vault records only the name and the branch.
+  - id: eritrea_velmar
+    name: "Eritrea Velmar"
+
+  # Vault: Characters/Hook NPC - Felra Amberton.md  (tag: Victory)
+  # Campaign role: drew the party from the Jailbreak toward the Victory system.
+  # STUB for Jade: role, faction, pronouns, appearance, age, OCEAN, voice,
+  # disposition — the vault records only the name and the branch.
+  - id: felra_amberton
+    name: "Felra Amberton"

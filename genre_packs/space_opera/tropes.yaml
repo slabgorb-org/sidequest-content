@@ -222,6 +222,102 @@
     accelerator_bonus: 0.04
     decelerator_penalty: 0.03
 
+# ---------------------------------------------------------------------------
+# aristocratic_reaction — GENRE-LEVEL, world-agnostic.
+#
+# Prompted by the perseus_cloud import (2026-05-29): the Regency of Thar
+# plays the "regressive authority tightening its grip" role, but
+# `hegemonic_tightening` is keyed to a galaxy-spanning bureaucratic
+# Hegemony that does not exist in a sector sealed off from the galaxy.
+# The underlying beat — a hereditary / feudal order reasserting hierarchy
+# as destiny — is a generic SWN staple (noble houses, old-blood navies,
+# eugenic cults, the unlanded kept in their place), so it lives at the
+# PACK level and applies to any space_opera world. perseus_cloud's
+# Regency (and House Akkad's "Eugenic Cult / Cultural Power" profile) is
+# one instance, not the definition — no world flavor is encoded here.
+# Distinct from hegemonic_tightening: that trope is bureaucratic state
+# EXPANSION; this one is reactionary, cultural, and about BLOODLINE.
+#
+# PENDING JADE'S SIGN-OFF — this is a proposal against the shared pack
+# (coyote_star also inherits it). Tune or cut before treating as canon.
+# ---------------------------------------------------------------------------
+- id: aristocratic_reaction
+  name: The Old Blood Closes Ranks
+  description: >-
+    A hereditary order is reasserting itself. Not a bureaucracy expanding
+    its paperwork — an old-blooded aristocracy, a feudal court, a house
+    that counts bloodline as destiny, deciding that the unlanded and the
+    self-made have forgotten their place. Rank is inherited, standing is
+    refused, and the crew — spacers, freelancers, people who earned what
+    they have — are upstarts at a table that was set before they were born.
+  category: political
+  triggers:
+    - arrival at a world ruled by hereditary nobility
+    - a hereditary authority asserting rank or bloodline
+    - the unlanded or self-made being denied standing
+  narrative_hints:
+    - titles demanded before names are offered
+    - an old-blood navy patrolling under house colors
+    - the self-made treated as upstarts at court
+  tension_level: 0.5
+  resolution_hints:
+    - find a reformer or black sheep inside the hierarchy
+    - expose a bloodline's claim as hollow
+    - earn standing the order cannot publicly deny
+    - leave for somewhere birth does not decide worth
+  tags: [political, faction, hierarchy, authority, tradition]
+  escalation:
+    - at: 0.2
+      event: >-
+        A petty snub. The crew is made to wait, sent to the servants'
+        entrance, or addressed by a rank they don't hold. The order is
+        measuring where they fit — and making sure they feel it.
+      npcs_involved: [Diplomat]
+      stakes: Indignity. Nothing more — yet.
+    - at: 0.4
+      event: >-
+        A door closes on merit. A berth, a contract, or a hearing is
+        denied not for cause but for blood — the crew lacks the right
+        name, and everyone is too polite to pretend otherwise.
+      npcs_involved: [Diplomat]
+      stakes: Opportunity lost to birthright.
+    - at: 0.6
+      event: >-
+        The order's enforcers take an interest. A house retainer or an
+        old-blood officer leans on the crew to remember their place, with
+        the quiet authority of someone who has never been refused.
+      npcs_involved: [Company Officer]
+      stakes: Coercion backed by rank.
+    - at: 0.8
+      event: >-
+        The hierarchy moves to make an example. The crew's standing,
+        contract, or liberty is threatened to prove the order alone
+        decides who is permitted to rise.
+      npcs_involved: [Company Officer, Diplomat]
+      stakes: Standing or liberty on the line.
+    - at: 1.0
+      event: >-
+        The old blood closes ranks in full — a decree, a reprisal, a
+        court that leaves no room for the unlanded. Bend the knee,
+        break the order open, or pass beyond its reach.
+      npcs_involved: [Diplomat]
+      stakes: Submit to bloodline rule or defy it in the open.
+  passive_progression:
+    rate_per_turn: 0.005
+    rate_per_day: 0.01
+    accelerators:
+      - defy
+      - upstart
+      - refuse title
+      - challenge rank
+    decelerators:
+      - defer
+      - observe custom
+      - pay tribute
+      - bow
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
 - id: ghost_ship
   name: Ghost Ship
   description: >-
