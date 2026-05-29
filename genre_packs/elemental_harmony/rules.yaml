@@ -119,9 +119,18 @@ confrontations:
     resolution_mode: beat_selection
     win_condition: hp_depletion
     opponent_default_stats:
+      # ALL SIX ability scores must be authored so the WWN defender-save path
+      # can resolve any prepared spell's save. cinder_lance/tide_lash use the
+      # evasion save (DEXTERITY→Agility, INTELLIGENCE→Insight); the mental and
+      # physical saves reach Spirit/Harmony and Strength/Endurance. The SWN
+      # module fails loud on a missing save attribute (no neutral-10 fallback),
+      # so an incomplete block KeyErrors the first time a spell targets the mook.
       Strength: 10
       Agility: 10
       Endurance: 10
+      Insight: 10
+      Spirit: 10
+      Harmony: 10
       # Reserved combat-seed keys (not ability scores) — seed the runtime
       # CreatureCore for hp_depletion. hp = HP pool; armor_class = ascending AC
       # the attack rolls against; dexterity = initiative (1d8+DEX).
