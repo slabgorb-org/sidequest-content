@@ -23,6 +23,10 @@ cwn:
     max_source: CONSTITUTION
     rest_recovery_per_night: 1
     first_aid_cost: 1
+  trauma:
+    default_trauma_target: 6
+    mortal_injury_rounds: 6
+    major_injury_save: physical
 
 allowed_classes:
   - Netrunner
@@ -69,6 +73,17 @@ custom_rules:
     recovery. An action that would push strain over max simply fails (no
     benefit, no install). A night's rest removes 1 strain down to the permanent
     floor. Never narrate strain you did not record with the tool.
+  combat_lethality: >-
+    CWN combat is fast and deadly. Attacks roll to-hit vs the target's Armor
+    Class; on a hit the weapon's damage ablates HP after armor soak. Lethal
+    weapons also roll Trauma — a Traumatic Hit multiplies damage (a shotgun or
+    monoblade can gib a mook). At 0 HP a character takes a Mortal Injury: they
+    die within 6 rounds unless someone stabilizes them (a Heal check vs 8 +
+    rounds elapsed) — call the stabilize_mortal_injury tool. If a Traumatic Hit
+    landed in the fight, a downed character also risks a Major Injury (a Physical
+    save; on failure, a permanent table result — lost eye, severed limb, worse).
+    Never narrate a kill, a Trauma multiplier, or an injury you did not let the
+    engine roll. The dice and the tools are the truth; your prose dramatizes them.
   street_cred: >-
     Reputation on the street. Starts at 0, grows through completed
     jobs, displayed competence, and word of mouth. High Street Cred
@@ -195,25 +210,46 @@ confrontations:
 
   - type: combat
     label: Street Combat
+    intent_verbs: [shoot, fire, attack, fight, stab, slash, gun, kill]
+    on_intent_mismatch: reprompt
     category: combat
-    # Momentum-based. Real HP lives on character state. The netrun
-    # beat is the genre-distinct move: hack and shoot at the same time.
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 10
+    # CWN personal combat: attack-vs-AC + hp_depletion on the ablative HpPool.
+    # Trauma/Shock/Mortal/Major Injury layer on via the cwn ruleset module.
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
+    opponent_default_stats:
+      Brawn: 10
+      Reflex: 10
+      Body: 10
+      Instinct: 10
+      # Reserved combat-seed keys (not ability scores) — seed the runtime
+      # CreatureCore for hp_depletion. hp = HP pool; armor_class = ascending AC
+      # the attack rolls against; dexterity = SWN 1d8+DEX initiative.
+      # Street mook: AC 13 (armored jacket), HP 8, drops in ~2-3 solid hits.
+      hp: 8
+      armor_class: 13
+      dexterity: 11
     beats:
       - id: shoot
         label: Shoot
         kind: strike
         base: 2
-        stat_check: Body
-        effect: "Target takes damage this round"
-        narrator_hint: Muzzle flash in neon rain. Describe the chrome and the concrete.
+        stat_check: Reflex
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
+        effect: "Target takes weapon damage"
+        narrator_hint: Muzzle flash in neon rain. Chrome and concrete.
+      - id: melee
+        label: Blade Work
+        kind: strike
+        base: 2
+        stat_check: Brawn
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
+        effect: "Close-quarters strike; a miss with a Shock weapon still chips"
+        narrator_hint: Monowire and mantis blades. Up close it's wet work.
       - id: take_cover
         label: Take Cover
         kind: brace
@@ -221,17 +257,6 @@ confrontations:
         stat_check: Reflex
         effect: "Reduce incoming damage behind urban debris"
         narrator_hint: Dumpster, concrete pillar, burned-out car — the city is cover.
-      - id: netrun
-        label: Netrun Strike
-        kind: strike
-        base: 4
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Tech
-        risk: "ICE counterattack — lose 2 momentum and take neural damage on failure"
-        effect: "Cripple target's implants or nearby environment"
-        narrator_hint: Jack in mid-firefight. Fry their implants from cyberspace.
       - id: disengage
         label: Disengage
         kind: push
