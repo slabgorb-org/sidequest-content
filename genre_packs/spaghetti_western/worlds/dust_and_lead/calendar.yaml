@@ -1,0 +1,95 @@
+# Dust and Lead — Calendar (1878, Sangre Territory)
+#
+# Slimmed to world-tier from the former pack-tier
+# spaghetti_western/calendar.yaml on 2026-05-30. Shared-basis, moon detail,
+# time-precision, and pack scaffolding were cut; the border/Tejano/
+# Catholic-Mexican texture was moved here. Read at runtime by the
+# get_world_grounding narrator tool (date / season / festival proximity).
+
+version: "0.1.0"
+world: dust_and_lead
+genre_pack: spaghetti_western
+
+system:
+  type: gregorian
+  era_in_prose: "the year of our Lord eighteen hundred and seventy-eight"
+  era_in_vernacular: "seventy-eight"
+  current_year: 1878
+  leap_status: "1878 is not a leap year; February has 28 days. The next leap year is 1880."
+  decade_register: >-
+    The Hayes administration; the Centennial two summers gone, Custer dead at
+    the Little Bighorn, Reconstruction ended last year and the federal troops
+    out of the South. No Standard Time yet — each town keeps its own solar
+    noon. The older Spanish and Mexican families still privately date their
+    letters by saints' days, but the post office reckons 1878.
+
+months:
+  - { number: 1, name: January, short: Jan, spanish: enero, days: 31, season: deep_winter,
+      texture: "Dry cold; the desert nights kill the unprepared. The Rio Grande runs low and clear, cattle are wintered down in the lower-Sangre brush, and the cantina is the warm room in town." }
+  - { number: 2, name: February, short: Feb, spanish: febrero, days: 28, season: late_winter,
+      texture: "The dry season at its driest — arroyos bone, candelilla pickers in the canyons, the mines on two shifts. Candelaria (2 Feb) kept south of the river with candle procession and cold tamales; the Anglo town does not notice." }
+  - { number: 3, name: March, short: Mar, spanish: marzo, days: 31, season: late_winter,
+      texture: "The wind month; dust storms begin their rounds and the army re-provisions the border posts. Ash Wednesday falls 6 March and the cantinas adjust their hours." }
+  - { number: 4, name: April, short: Apr, spanish: abril, days: 30, season: early_spring,
+      texture: "Wildflower season — bluebonnets, desert primrose, prickly-pear in bud. Spring cattle work begins, the southern passes open, and cross-border trade resumes openly where it can and quietly where it cannot. Easter on the 21st." }
+  - { number: 5, name: May, short: May, spanish: mayo, days: 31, season: spring,
+      texture: "Cinco de Mayo kept south of the river; the Anglo towns notice the music and not the meaning. The big spring drives start north on the Chisholm and Western trails. Decoration Day closes the month at the army-post cemetery." }
+  - { number: 6, name: June, short: Jun, spanish: junio, days: 30, season: early_summer,
+      texture: "Roundup proper — the Spring Roundup gathers every brand at the south end of the valley in the first full week. The heat begins to mean something; work shifts to dawn and dusk, and the year's Apache campaigns, if any, begin in the high country." }
+  - { number: 7, name: July, short: Jul, spanish: julio, days: 31, season: summer,
+      texture: "The first hot month; the river low, the cattle ponds algae over, the army doubling its water details. The upper-Sangre springs run sweet — property worth killing for. The Fourth is fireworks and a brass band; in the camps a pistol fired at the moon." }
+  - { number: 8, name: August, short: Aug, spanish: agosto, days: 31, season: late_summer,
+      texture: "The drives reach the railheads and the news travels back by telegraph. The cattlemen's association holds its August meeting in the second week. Afternoon storms break over the mountains; Assumption (15th) is kept with processions." }
+  - { number: 9, name: September, short: Sep, spanish: septiembre, days: 30, season: early_autumn,
+      texture: "The fall roundup begins; the season's last drives leave for Kansas racing snow. Mexican Independence on the 16th is the warmest civic day south of the river — El Grito at midnight, cantinas open until dawn." }
+  - { number: 10, name: October, short: Oct, spanish: octubre, days: 31, season: autumn,
+      texture: "The last drives are home or are not coming home. Cool nights, the upper canyons cottonwood-gold. The Tejano towns prepare for Día de los Muertos — altars built, pan de muerto baked, marigold laid down, cemeteries tidied." }
+  - { number: 11, name: November, short: Nov, spanish: noviembre, days: 30, season: late_autumn,
+      texture: "Día de los Muertos opens the month, graveyards bright with marigold and candle. Election Day (5th) decides the territorial delegate and the county sheriff, often at the courthouse door. Thanksgiving the Anglo settlers keep; the Mexicans do not." }
+  - { number: 12, name: December, short: Dec, spanish: diciembre, days: 31, season: early_winter,
+      texture: "The Virgen de Guadalupe (12th) is the central December observance — procession before dawn, las mañanitas, the matachines. Las Posadas fill the neighbourhoods the nine nights to Christmas Eve. The desert nights are clear and the stars look close." }
+
+days_of_week:
+  names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+  spanish: [domingo, lunes, martes, miércoles, jueves, viernes, sábado]
+  sabbath: >-
+    Sunday — mass and saloon. Catholic parishes morning, Protestant chapels
+    mid-morning; the Anglo town quiet noon to four, the Mexican side keeping a
+    longer afternoon. Cattle camps observe Sunday by tradition but the line
+    riders ride. Catholic abstinence keeps fish on Fridays; Saturday is a
+    half-day in town and a full one on the range, and payday in many trades.
+
+festivals:
+  - { date: "2 February", name: La Candelaria, note: "Candle procession kept warmly south of the river; cold tamales on the walk home." }
+  - { date: "5 May", name: Cinco de Mayo, note: "Puebla's day, 1862 — small parades in the Mexican towns; ignored by the Anglo administration." }
+  - { date: "30 May", name: Decoration Day, note: "The Union's civic ritual, marked at the army-post cemetery. The Tejano town does not — Mexico did not fight that war." }
+  - { date: "4 July", name: Independence Day, note: "Courthouse-steps oration in the morning; fireworks from the cattle pens at dusk; pistols at the moon in the camps." }
+  - { date: "16 September", name: Día de la Independencia, note: "The civic day of the year south of the river — El Grito at midnight, cantinas open until dawn." }
+  - { date: "1–2 November", name: Día de los Muertos, note: "Altars at home, cemeteries lit with candles, families eating among the headstones." }
+  - { date: "5 November", name: Election Day (1878 midterm), note: "Territorial delegate and county sheriff; decided at the courthouse door." }
+  - { date: "12 December", name: Our Lady of Guadalupe, note: "The central feast of the Mexican Catholic year — procession before dawn, las mañanitas, the matachines." }
+  - { date: "16–24 December", name: Las Posadas, note: "Nine evenings of the Mary-and-Joseph procession, house to house, tamales and the piñata." }
+
+starting_date:
+  year: 1878
+  month: 8
+  month_name: August
+  day: 14
+  day_of_week: Wednesday
+  time_of_day: "late afternoon — about an hour before sundown; the sky already going gold"
+  season: late_summer
+  prose: >-
+    Wednesday the fourteenth of August, eighteen-seventy-eight; the fall
+    roundup three weeks off; the Trail crews back from Kansas a week and
+    spending; the August meeting of the Cattlemen's Association on the
+    Saturday; the heat coming off the long day in the sage.
+  nearest_festival_past: { name: Independence Day, date: "1878-07-04", days_ago: 41 }
+  nearest_festival_future: { name: Feast of the Assumption, date: "1878-08-15", days_ahead: 1 }
+
+useful: >-
+  No Standard Time and no time zones — each town keeps local solar noon. The
+  twelve-hour clock is universal; the hour is spoken as 'in the morning' or
+  'coming-on-dark', anchored to the sun, the meal, or the mission Angelus
+  (dawn, noon, six). The nearest railhead is a stage ride away; the Southern
+  Pacific has not yet reached the Sangre. At roughly 31° N the seasons swing
+  more in heat than in daylight.
