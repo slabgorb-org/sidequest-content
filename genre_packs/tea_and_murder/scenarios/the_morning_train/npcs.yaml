@@ -1,0 +1,359 @@
+# Scenario NPCs for "The Man Off the Morning Train".
+#
+# `name` MUST match the Glenross world npcs.yaml exactly — bind_scenario
+# seeds belief_state by name equality (n.core.name == snpc.name).
+#
+# `id` for the six suspects matches assignment_matrix.yaml. The five
+# witnesses carry ids not present in the matrix, so the engine can never
+# select them guilty; their when_guilty blocks are alibi statements with
+# empty breaking_evidence (reference pattern).
+#
+# Every NPC carries suspicions so the engine assigns them the Witness
+# role and seeds the gossip graph — except where an empty suspicion list
+# is dramatically right. Suspicion `target` references suspect ids.
+
+# ─────────────────────────── SUSPECTS ───────────────────────────
+
+- id: suspect_donald
+  archetype_ref: distiller
+  name: "Donald Munro"
+  initial_beliefs:
+    facts:
+      - "A letter in a Halifax hand came to the distillery a fortnight ago"
+      - "The stranger called himself the son of my brother Magnus and claimed the still"
+      - "The London order is the largest in the firm's history and it is not yet shipped"
+    suspicions:
+      - target: suspect_iain
+        confidence: 0.35
+        basis: "The licence is the laird's to renew; a disputed claim threatens him as much as me"
+  when_guilty:
+    truth: >-
+      Donald gave the stranger a celebratory dram in the still room — and cut
+      it with the foreshots, the methanol heads he draws off every run and
+      knows to the ounce. He did it to keep thirty-five years and his sons'
+      inheritance, and because the man wore his dead brother's claim like a
+      theft. He carried the flask to the bridge himself when the spirit did
+      its work and let the dark water take the rest of the story.
+    cover_story: >-
+      "I met the man, aye. I told him to bring his papers to my solicitor in
+      Edinburgh and I sent him on his way. I was at the still room till gone
+      eleven — my foreman will tell you. I never went near the bridge."
+    breaking_evidence: [clue_foreshots_flask, clue_body_examination, clue_postmark_testimony]
+  when_innocent:
+    actual_activity: >-
+      Was at the still room until late, genuinely, sick with worry over a claim
+      he believed was real and could not afford — and grieving, privately, the
+      brother whose son had come and gone before they could speak properly.
+    suspicion: "Thinks the laird may have acted to protect the licence and the estate"
+    secret: >-
+      Believes the claim was very likely genuine, and has told no one — not his
+      wife, not his sons — that he would rather have lost the distillery than
+      his brother's boy, had he been given the night over again.
+
+- id: suspect_iain
+  archetype_ref: laird
+  name: "Sir Iain Ross of Glenross"
+  initial_beliefs:
+    facts:
+      - "The stranger called at Castle Ross the afternoon before he died"
+      - "The distillery sits on a licence my grandfather granted and I renew"
+      - "The estate's one good year rests on the distillery's good year"
+    suspicions:
+      - target: suspect_donald
+        confidence: 0.4
+        basis: "Munro had a fortnight's warning and the most to lose; the man died of the trade's own poison"
+  when_guilty:
+    truth: >-
+      Sir Iain understood, before the stranger had finished speaking in the
+      castle library, what a proven Munro heir would do to the licence and to
+      the year that had bought the estate its breathing room. He poured the
+      parting dram himself, drew the foreshots from a flask he had taken from
+      the distillery's slop-room weeks before against exactly such a need, and
+      walked the man as far as the avenue with a soldier's courtesy.
+    cover_story: >-
+      "I received the fellow, heard him out, and told him the law would decide
+      what he was owed. I dined at home with Lady Annabel and did not leave
+      the house again. I am sorry he is dead. I had no need to wish it."
+    breaking_evidence: [clue_castle_stirrup_cup, clue_distillery_ledger, clue_body_examination]
+  when_innocent:
+    actual_activity: >-
+      Dined at home with his wife, troubled, and sat late over the rent book
+      and a glass he did not finish, doing the sums a disputed licence would
+      force and finding no answer he liked.
+    suspicion: "Thinks the distiller acted to protect the still — the man died of the trade's own poison"
+    secret: >-
+      The estate is under quieter financial pressure than the village imagines,
+      and a reopened licence would have exposed it. He has discussed the true
+      figures with no one but his Edinburgh solicitor and, in fragments, his wife.
+
+- id: suspect_annabel
+  archetype_ref: lady_of_the_house
+  name: "Lady Annabel Ross"
+  initial_beliefs:
+    facts:
+      - "I keep the estate's correspondence and I read the Edinburgh post first"
+      - "A proven heir to the distillery would reopen the licence and the estate's accounts"
+      - "Hugo's future, and the match I hope for him, rests on the estate holding"
+    suspicions:
+      - target: suspect_donald
+        confidence: 0.3
+        basis: "The distiller had the means and the warning; it is the obvious answer"
+  when_guilty:
+    truth: >-
+      Lady Annabel saw the danger to the pound and the acre — and to Hugo's
+      future — a full day before Iain admitted it aloud. She poured the
+      stranger's stirrup-cup with her own hand at the side door, having
+      prepared it from a flask she had quietly taken from the distillery slop-
+      room on a flower-committee visit, and she did it so well that her husband
+      believes to this hour that the man left the house unharmed.
+    cover_story: >-
+      "I saw the poor man to the side door — one does — and went up to dress
+      for dinner. I keep the correspondence, yes; that is hardly a crime. Ask
+      the maids when I came down. Ask my husband where I sat all evening."
+    breaking_evidence: [clue_solicitor_letter, clue_castle_stirrup_cup]
+  when_innocent:
+    actual_activity: >-
+      Saw the stranger out, then dressed and dined with Iain and sat with him
+      over the accounts she understood better than he did, saying little and
+      thinking hard about a future suddenly less certain.
+    suspicion: "Thinks the distiller the likeliest hand, though she will not say so where it can be repeated"
+    secret: >-
+      Has privately decided the Hugo–Eilidh match would steady both her son
+      and the estate, and would do a great deal to protect it — though murder,
+      she would say, is not a thing she has in her. She allows the village to
+      underestimate her, and it does.
+
+- id: suspect_hamish
+  archetype_ref: publican
+  name: "Hamish Sinclair"
+  initial_beliefs:
+    facts:
+      - "The stranger took a room and a supper and asked the way to the distillery"
+      - "There were hard words in the snug the evening before he died"
+      - "Caley would not settle the whole while the stranger was under my roof"
+    suspicions:
+      - target: suspect_donald
+        confidence: 0.45
+        basis: "It was Munro in the snug with him, and it was the still and the name they quarrelled over"
+  when_guilty:
+    truth: "Cannot be the killer — was behind his own bar in full view until close, with a taproom of witnesses."
+    cover_story: "Was serving, as he is every night of his life."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Kept the bar until close, watched the quarrel without seeming to, and
+      gave the stranger an extra blanket against the cold he never came back to
+      use.
+    suspicion: "Thinks the distiller, and is sorry to think it, for he likes Donald Munro"
+    secret: >-
+      Carries a small kindness he will not advertise: the stranger could not
+      pay the full reckoning and Hamish waved the difference, which is why the
+      man went up the glen with a little more in his pocket than he should have.
+
+- id: suspect_buchan
+  archetype_ref: postmistress
+  name: "Mrs. Catriona Buchan"
+  initial_beliefs:
+    facts:
+      - "A Halifax letter came to the distillery a fortnight ago; a wire followed it"
+      - "I have read that same hand before, years back, from the same far place"
+      - "The stranger came to my counter to ask if a reply had been left poste restante"
+    suspicions:
+      - target: suspect_donald
+        confidence: 0.4
+        basis: "He had the letter, the warning, and the fortnight to sit with it"
+      - target: suspect_iain
+        confidence: 0.2
+        basis: "The licence is the laird's, and the laird's post has been heavier of late"
+  when_guilty:
+    truth: "Cannot be the killer — was at her counter and her telephone all that evening, with the constable's wife for company."
+    cover_story: "Was minding the office, as she has for thirty years."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Minded the office, took two trunk calls, and noted — as she notes
+      everything — the comings and goings of a busy evening she did not yet
+      know was the eve of a murder.
+    suspicion: "Thinks the distiller, but keeps a careful second eye on the castle's post"
+    secret: >-
+      Held the Halifax wire back half a day, not from malice but from a
+      postmistress's caution about a stranger's claim — a delay she now fears
+      gave someone the time they needed, and which she has confessed to no one.
+
+- id: suspect_hugo
+  archetype_ref: the_heir
+  name: "Hugo Ross"
+  initial_beliefs:
+    facts:
+      - "The stranger's claim, if true, would unsettle the estate I am to inherit"
+      - "I said something hot to the man in the lane and wish to God I had not"
+      - "My mother keeps the correspondence and my father keeps his counsel"
+    suspicions:
+      - target: suspect_donald
+        confidence: 0.3
+        basis: "It was the distillery he came for, and the distillery is Munro's life"
+  when_guilty:
+    truth: "Cannot be the killer — was at the surgery with Dr. Ross until late, a fact each of them would rather the village did not weigh too closely."
+    cover_story: "Was out with the Riley, and then not, and would rather not say where."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Spent the evening at the surgery on no medical pretext at all, talking to
+      Eilidh Ross about everything except the thing he means to ask her, and
+      walked home the long way past the bridge without seeing a soul.
+    suspicion: "Thinks the distiller, and says so too loudly, the way he does"
+    secret: >-
+      Quarrelled with the stranger in the lane that morning over a careless
+      word about his father's solvency, and is privately terrified the village
+      will make a murderer of a hot temper and a motor-car.
+
+# ─────────────────────────── WITNESSES ───────────────────────────
+
+- id: witness_dr_ross
+  archetype_ref: country_doctor
+  name: "Dr. Eilidh Ross"
+  initial_beliefs:
+    facts:
+      - "This was not drowning and not drink — the eyes and the blood say wood-spirit"
+      - "The poison was the foreshots of a still, given as if it were whisky"
+      - "I will not sign this death as misadventure and I will say why to anyone who asks"
+    suspicions:
+      - target: suspect_donald
+        confidence: 0.35
+        basis: "Only the trade handles foreshots; it points first at the still, however little I like it"
+      - target: suspect_iain
+        confidence: 0.2
+        basis: "The laird has access to the distillery and a licence to protect"
+  when_guilty:
+    truth: "Cannot be the killer — was at the surgery with Hugo Ross until late, and was the one who refused the easy verdict."
+    cover_story: "Was attending to a patient, and need say no more than that."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Examined the body at first light, recognised the wood-spirit signs at
+      once, and set herself against the whole village's wish to call it an
+      accident — the still, clinical centre the mystery turns on.
+    suspicion: >-
+      Reaches no conclusion she cannot defend, but will not let the distillery
+      be ruled out for sentiment, nor ruled in for convenience.
+    secret: >-
+      Was with Hugo Ross at the surgery the evening of the death, which clears
+      them both and which neither will volunteer, the village being the village.
+
+- id: witness_cameron
+  archetype_ref: tea_room_proprietress
+  name: "Mrs. Janet Cameron"
+  initial_beliefs:
+    facts:
+      - "The stranger took the corner table behind the screen — the discreet one — and read his papers"
+      - "He left a creased pamphlet on the table that was not his when he sat down"
+      - "He met no one at the tea rooms, which was itself a thing worth noting"
+    suspicions:
+      - target: suspect_donald
+        confidence: 0.3
+        basis: "He asked me the way to the distillery and went there grim"
+  when_guilty:
+    truth: "Cannot be the killer — kept the tea rooms till closing with a full house and her notebook to prove who sat where."
+    cover_story: "Was serving seed cake and shortbread, as on any Thursday."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Kept the rooms, seated the stranger at the discreet table out of long
+      habit, and recorded the day in the black notebook above the bread oven
+      that is the village's truest gazetteer.
+    suspicion: "Thinks the distiller, and seats anyone who asks at the gossip table to find out more"
+    secret: >-
+      The pamphlet the stranger pocketed at her table is the same one later
+      found at the bridge — a thread she can unknot for anyone who thinks to
+      ask her what he carried away.
+
+- id: witness_tam
+  archetype_ref: head_gillie
+  name: "Old Tam Cattanach"
+  initial_beliefs:
+    facts:
+      - "There was a figure on the hill path above the bridge at the gloaming"
+      - "It was my own Calum, out after a wounded hind on my word, back before the dark"
+      - "No stranger has business on that path after the light goes"
+    suspicions:
+      - target: suspect_iain
+        confidence: 0.15
+        basis: "Says nothing against the family he serves, but the laird walked out late himself that night"
+  when_guilty:
+    truth: "Cannot be the killer — was at the kennels and the bench by the kitchen door, reporting to the laird as every evening."
+    cover_story: "Was where he is every evening, and says no more than four sentences about it."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Was on the estate, sent Calum after the hind, and saw more of the
+      evening's comings and goings than he will offer unasked — the source of
+      the poacher red herring, and the man who can dissolve it.
+    suspicion: "Will not speak ill of the family, and will not name a thing he has not seen with his own eyes"
+    secret: >-
+      Knows the laird walked out alone after dinner and came back without his
+      dram-flask, and will say so only to the constable, and only if asked the
+      same question three times.
+
+- id: witness_quill
+  archetype_ref: episcopal_rector
+  name: "Reverend Alistair Quill"
+  initial_beliefs:
+    facts:
+      - "The stranger came to the chapel porch the morning he arrived, asking after the Munro family"
+      - "He was frightened under his confidence, the way a man is who has gambled everything on one card"
+      - "Three households in this glen had reason to dread his claim, and I can name them"
+    suspicions:
+      - target: suspect_annabel
+        confidence: 0.25
+        basis: "The danger to the estate was legal and financial — and it is she who reads those letters first"
+      - target: suspect_iain
+        confidence: 0.2
+        basis: "The licence is his to lose, and a soldier knows how to make a thing look like an accident"
+  when_guilty:
+    truth: "Cannot be the killer — was at evening prayer and then at the manse with the minister over a chessboard until late."
+    cover_story: "Was about his calling, and apologises for being so dull an alibi."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Kept his offices, played chess with the minister, and turned the matter
+      over in the careful, novel-reading way the village underestimates —
+      the natural ally for a player who will let him finish his sentences.
+    suspicion: >-
+      Will not commit to a verdict before the evidence is complete, but
+      privately watches the castle more closely than the still.
+    secret: >-
+      Has noticed what no one else has — that the danger to the estate was
+      grasped fastest by the one who keeps its books — and is waiting, in his
+      diffident way, for someone to ask him the right question.
+
+- id: witness_macrae
+  archetype_ref: village_constable
+  name: "Sergeant Findlay MacRae"
+  initial_beliefs:
+    facts:
+      - "The county inspector comes up on the morning train; I have until then"
+      - "Dr. Ross will not sign it an accident, and Dr. Ross is not often wrong"
+      - "Three doors in this glen have a reason, and I'll not knock the wrong one first"
+    suspicions:
+      - target: suspect_donald
+        confidence: 0.3
+        basis: "The poison is the trade's own, and the trade is Munro's"
+      - target: suspect_annabel
+        confidence: 0.2
+        basis: "Old Tam's flask, the stirrup-cup, and a lady who reads the post — I ask three times before I proceed"
+  when_guilty:
+    truth: "Cannot be the killer — is the investigating officer, on his bicycle from the bridge to the surgery to the post office all that day."
+    cover_story: "Was about the county's business, notebook in hand."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Worked the death methodically from first light — the bridge, the body,
+      the surgery, the inn — accumulating fact the slow way and refusing to be
+      hurried by the inspector's train. The player's natural foil and partner.
+    suspicion: >-
+      Holds three suspects open and will not close on one until the evidence
+      forces it — and it will, for he misses very little.
+    secret: >-
+      Will not arrest a man in his own home before his wife and children; has
+      already decided that whoever it proves to be, he will take them at the
+      inn, the post office, or the bridge — never at their own hearth.

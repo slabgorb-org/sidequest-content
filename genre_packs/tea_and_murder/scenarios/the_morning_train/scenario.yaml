@@ -1,0 +1,108 @@
+name: The Man Off the Morning Train
+version: "1.0.0"
+description: >-
+  A stranger steps off the 9:14 from Inverness with a Nova Scotia accent, a
+  leather document-wallet held a little too carefully, and a question for the
+  way to the Munro distillery. By the following morning he is dead — found in
+  the shallows below the bridge over the Allt Ross, his wallet lighter by the
+  papers it carried. The village would like very much to call it an accident:
+  a stranger, the dark and quick water, a man who had plainly been drinking.
+  Dr. Ross, who examines the body, will not sign it so. The dead man came to
+  press a claim — that he was the son of Magnus Munro, the distiller's elder
+  brother who took a London train in 1881 and was never seen again, and that
+  the distillery, suddenly and conspicuously valuable, was his by right. The
+  claim threatened the distiller, entangled the laird whose grandfather granted
+  the licence, and unsettled the lady who keeps the estate's correspondence and
+  guards its future. The puzzle is fair: the answer is on the page before it is
+  named.
+duration_minutes: 180
+max_players: 4
+
+player_roles:
+  - id: visiting_guest
+    archetype_hint: "A traveller lodging at the Glenross Arms with time, manners, and a noticing eye"
+    narrative_position: "You took a room at the Arms for the quiet, and the quiet has just ended."
+    required_hooks:
+      - type: MOTIVATION
+        prompt: "What keeps you in Glenross now that a man has died — duty, curiosity, or a debt of your own?"
+    constraints:
+      - "An outsider, with no prior stake in the distillery or the estate"
+      - "Cannot be the killer in solo mode"
+    suggested_flavors:
+      - "A solicitor on a walking holiday"
+      - "A retired colonial magistrate taking the waters"
+      - "A naturalist up to paint the glen in autumn"
+
+  - id: village_confidante
+    archetype_hint: "A trusted member of the village's circle — someone the cast will speak plainly to"
+    narrative_position: "You belong here. The village brings you its troubles before it brings them to the constable."
+    required_hooks:
+      - type: RELATIONSHIP
+        prompt: "Which of the village's standing cast do you count a genuine friend, and what do they owe you?"
+    constraints:
+      - "Must have a place in the village's social fabric (standing, not gentry)"
+    suggested_flavors:
+      - "The doctor's dispensing assistant"
+      - "A cousin of the publican, home from the city"
+      - "The session clerk who keeps the kirk's books"
+
+  - id: clerical_ally
+    archetype_hint: "A churchman or churchwoman who works alongside Reverend Quill — the village's underestimated mind"
+    narrative_position: "You read people for a living, and you have learned to let them finish."
+    required_hooks:
+      - type: MOTIVATION
+        prompt: "What in your calling will not let you leave a wrong unanswered?"
+    constraints:
+      - "Aligned with the chapel or the manse; carries moral, not legal, authority"
+    suggested_flavors:
+      - "A curate newly arrived to assist at St. Margaret's"
+      - "A deaconess up from Edinburgh on parish work"
+      - "A visiting canon with a weakness for detective novels"
+
+  - id: professional_eye
+    archetype_hint: "A person whose trade is noticing — press, insurance, the law, or the railway"
+    narrative_position: "You came to Glenross on business, and the business has turned to murder."
+    required_hooks:
+      - type: MOTIVATION
+        prompt: "Whose interest do you serve, and where does it stop being theirs and start being yours?"
+    constraints:
+      - "Has a professional reason to document what happened"
+    suggested_flavors:
+      - "A correspondent for a Glasgow paper"
+      - "An assessor for the distillery's London insurers"
+      - "A railway company agent investigating the halt"
+
+pacing:
+  scene_budget: 14
+  acts:
+    - id: act_1
+      name: The Arrival
+      scenes: 4
+      trope_range: [0.0, 0.35]
+      narrator_tone: "Warm and golden, the long autumn afternoon — the wrong note sounding faintly against the village's ease"
+    - id: act_2
+      name: The Inquiry
+      scenes: 7
+      trope_range: [0.35, 0.75]
+      narrator_tone: "Cosy turned careful — every cup of tea is also a question, every alibi has a seam"
+    - id: act_3
+      name: The Naming
+      scenes: 3
+      trope_range: [0.75, 1.0]
+      narrator_tone: "Quiet and exact — the parlour gathers, the evidence is laid out, and a name is spoken aloud"
+  pressure_events:
+    - at_scene: 4
+      event: "Dr. Ross asks to see you privately at the surgery. She will not sign the death as misadventure, and she wants a witness to say why."
+    - at_scene: 9
+      event: "The county CID inspector wires that he will come up on the morning train — Sergeant MacRae has until then to have the thing in hand, or it leaves the glen."
+    - at_scene: 12
+      event: "The dead man's document-wallet surfaces where it should not be, emptied of the one paper that mattered."
+  escalation_beats:
+    - at: 0.50
+      inject: "Halfway. The accident story will not hold, and three households have a reason to wish it would."
+    - at: 0.75
+      inject: "Three-quarters. Someone has tidied a detail that was not theirs to tidy. They are still in the village."
+    - at: 0.95
+      inject: "The inspector's train is due. Name the truth now, in the village's own parlour, or hand it to a stranger who will get it wrong."
+
+allows_split_party: false

@@ -1,0 +1,84 @@
+# Suspect/motive/method/opportunity matrix.
+#
+# Three suspects carry `can_be_guilty: true` — the engine selects the
+# session's killer from these (ScenarioState.from_genre_pack, seedable).
+# Each must be fully solvable, so each has a complete when_guilty truth
+# and a breaking_evidence chain in npcs.yaml. The other three are
+# can_be_guilty: false — present, motivated enough to suspect, but
+# innocent (their npcs.yaml when_guilty blocks are alibi statements).
+
+suspects:
+  - id: suspect_donald
+    archetype_ref: distiller
+    can_be_guilty: true
+    motives: [protect_the_distillery, buried_grief, the_record_order]
+    methods: [foreshots_poison]
+    opportunities: [knew_he_was_coming, run_of_the_still_room, the_snug_quarrel]
+
+  - id: suspect_iain
+    archetype_ref: laird
+    can_be_guilty: true
+    motives: [protect_the_estate, the_disputed_licence, family_standing]
+    methods: [foreshots_poison, the_stirrup_cup]
+    opportunities: [the_castle_visit, access_to_the_distillery, the_evening_walk]
+
+  - id: suspect_annabel
+    archetype_ref: lady_of_the_house
+    can_be_guilty: true
+    motives: [protect_the_estate, protect_her_son, the_disputed_licence]
+    methods: [foreshots_poison, the_stirrup_cup]
+    opportunities: [the_castle_visit, keeps_the_correspondence, poured_in_the_house]
+
+  - id: suspect_hamish
+    archetype_ref: publican
+    can_be_guilty: false
+    motives: [a_debt_kept_quiet]
+    methods: [the_snug_dram]
+    opportunities: [the_stranger_lodged_at_the_arms]
+
+  - id: suspect_buchan
+    archetype_ref: postmistress
+    can_be_guilty: false
+    motives: [a_letter_she_should_have_passed]
+    methods: [none_credible]
+    opportunities: [handled_the_correspondence]
+
+  - id: suspect_hugo
+    archetype_ref: the_heir
+    can_be_guilty: false
+    motives: [the_estate_he_will_inherit, the_match_he_hopes_for]
+    methods: [an_impulsive_quarrel]
+    opportunities: [argued_with_the_stranger_about_the_estate]
+
+motives:
+  - protect_the_distillery
+  - protect_the_estate
+  - protect_her_son
+  - buried_grief
+  - the_record_order
+  - the_disputed_licence
+  - family_standing
+  - the_estate_he_will_inherit
+  - the_match_he_hopes_for
+  - a_debt_kept_quiet
+  - a_letter_she_should_have_passed
+
+methods:
+  - foreshots_poison
+  - the_stirrup_cup
+  - the_snug_dram
+  - an_impulsive_quarrel
+  - none_credible
+
+opportunities:
+  - knew_he_was_coming
+  - run_of_the_still_room
+  - the_snug_quarrel
+  - the_castle_visit
+  - access_to_the_distillery
+  - the_evening_walk
+  - keeps_the_correspondence
+  - poured_in_the_house
+  - the_stranger_lodged_at_the_arms
+  - handled_the_correspondence
+  - argued_with_the_stranger_about_the_estate

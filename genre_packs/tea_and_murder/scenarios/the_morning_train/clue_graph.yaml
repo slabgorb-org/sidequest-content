@@ -1,0 +1,188 @@
+# Clue graph for "The Man Off the Morning Train".
+#
+# DAG note: `requires` is enforced at the engine entry point
+# (ScenarioState.discover_clue raises PrerequisiteNotSatisfiedError +
+# emits SPAN_SCENARIO_CLUE_PREREQUISITE_VIOLATION when a prerequisite is
+# unmet). The two gated nodes — clue_solicitor_letter and
+# clue_pocketknife_meaning — therefore cannot be discovered before their
+# prerequisites are in `discovered_clues`. Every other node is a free
+# entry point so an investigation turn always has something true to find.
+#
+# `implicates` references suspect ids in assignment_matrix.yaml.
+# `locations` are scenario-local place tags derived from the Glenross
+# cartography (free strings — the engine does not validate them).
+
+nodes:
+  # ── The forensic spine — the #G6 fix. Dr. Ross's examination yields a
+  #    real, reproducible clue instead of narrator-improvised forensics. ──
+  - id: clue_body_examination
+    type: physical
+    description: >-
+      Dr. Ross's examination contradicts the accident: the dead man did not
+      drown and did not simply fall. The blood is wrong, the pupils fixed and
+      wide, the optic discs swollen — the signature of wood-spirit poisoning.
+      He was given new-make spirit cut with the foreshots, the methanol-rich
+      heads of a distillation run that a craftsman draws off and discards. A
+      stranger drinking rough whisky would not die of this. A man who knew
+      exactly which part of the run to pour would.
+    discovery_method: forensic
+    visibility: hidden
+    locations: [the_surgery, the_bridge]
+    implicates: [suspect_donald, suspect_iain, suspect_annabel]
+    requires: []
+    red_herring: false
+
+  - id: clue_foreshots_flask
+    type: physical
+    description: >-
+      A plain hip-flask, rinsed but not clean, found tucked where it was not
+      dropped. What clings to it is not whisky as the village drinks it: the
+      sharp solvent reek of feints and foreshots, the cut a distiller throws
+      away. Whoever filled this flask had the run of a still room.
+    discovery_method: search
+    visibility: hidden
+    locations: [glenross_arms, munro_distillery]
+    implicates: [suspect_donald]
+    requires: []
+    red_herring: false
+
+  - id: clue_halifax_papers
+    type: physical
+    description: >-
+      The contents of the dead man's leather wallet: an emigration certificate
+      for one Magnus Munro, Glenross to Halifax, 1881; a marriage line; a
+      faded photograph of a young man at a still; and a lawyer's letter naming
+      the bearer as Magnus's son and only heir. The claim is to the distillery
+      — and it is documented, not raved.
+    discovery_method: search
+    visibility: obvious
+    locations: [glenross_arms, post_office]
+    implicates: [suspect_donald, suspect_iain]
+    requires: []
+    red_herring: false
+
+  - id: clue_distillery_ledger
+    type: physical
+    description: >-
+      The distillery's order book, left open to the spring: three casks to a
+      London merchant, the largest single order in the firm's history, against
+      a vintage Edinburgh is already talking about. Pinned beside it, the
+      original licence — granted by the laird's grandfather, renewable, and
+      silent on what happens if the founding family's line is disputed.
+    discovery_method: search
+    visibility: requires_skill
+    locations: [munro_distillery, castle_ross]
+    implicates: [suspect_donald, suspect_iain]
+    requires: []
+    red_herring: false
+
+  - id: clue_postmark_testimony
+    type: testimonial
+    description: >-
+      Mrs. Buchan, who reads stamps the way other people read newspapers,
+      recalls the Halifax hand. A letter in that same hand came to the
+      distillery a fortnight past — she noted it, as she notes everything —
+      and a wire followed it three days before the stranger arrived. The
+      distiller knew he was coming. He had a fortnight to think about it.
+    discovery_method: interrogate
+    visibility: obvious
+    locations: [post_office]
+    implicates: [suspect_donald]
+    requires: []
+    red_herring: false
+
+  - id: clue_inn_quarrel
+    type: behavioral
+    description: >-
+      Hamish Sinclair heard it from behind his own bar, and Caley the inn dog
+      would not settle the whole while: low voices in the snug gone suddenly
+      hard, the stranger and a village man, the words "the name" and "the
+      still" surfacing twice. The stranger left first. The village man stayed
+      to finish a dram he had not ordered.
+    discovery_method: observe
+    visibility: obvious
+    locations: [glenross_arms]
+    implicates: [suspect_donald]
+    requires: []
+    red_herring: false
+
+  - id: clue_castle_stirrup_cup
+    type: testimonial
+    description: >-
+      The stranger called at Castle Ross the afternoon before he died, and did
+      not stay to tea. He left by the side door, agitated, having been offered
+      and having taken a parting dram at the step — a stirrup-cup, poured in
+      the house, by a hand that lives in the house. He was steady on his feet
+      when he went down the avenue. He was not steady by the bridge.
+    discovery_method: interrogate
+    visibility: hidden
+    locations: [castle_ross]
+    implicates: [suspect_iain, suspect_annabel]
+    requires: []
+    red_herring: false
+
+  # ── Gated deduction node — requires two physical clues first. ──
+  - id: clue_solicitor_letter
+    type: deduction
+    description: >-
+      Set the Halifax lawyer's letter beside the estate's own solicitor
+      correspondence and the shape of the thing appears. A proven Munro heir
+      reopens the licence; a reopened licence unpicks the one good year that
+      eased the estate's quiet trouble. The person who keeps that
+      correspondence — who knows the rent book by heart and reads the
+      Edinburgh post before her husband does — understood the danger to the
+      pound and the acre faster than any man at the table.
+    discovery_method: forensic
+    visibility: requires_skill
+    locations: [castle_ross]
+    implicates: [suspect_annabel, suspect_iain]
+    requires: [clue_halifax_papers, clue_distillery_ledger]
+    red_herring: false
+
+  # ── Gated motive-amplifier — only legible once the claim is known. ──
+  - id: clue_pocketknife_meaning
+    type: behavioral
+    description: >-
+      The distiller wears an old pocketknife on his belt, every day, and has
+      for as long as anyone has thought to notice — which is to say no one
+      has. It was Magnus's. Knowing now whose son lay dead below the bridge,
+      the knife stops being a habit and becomes a confession of how much the
+      brother who left still weighed on the brother who stayed.
+    discovery_method: observe
+    visibility: hidden
+    locations: [munro_distillery]
+    implicates: [suspect_donald]
+    requires: [clue_halifax_papers]
+    red_herring: false
+
+  # ── Red herrings ──
+  - id: clue_red_herring_poacher
+    type: testimonial
+    description: >-
+      Old Tam saw a figure on the hill path above the bridge at the gloaming,
+      moving without a lantern where an honest man would carry one. It feels
+      like the answer. It is not: the figure was Calum the under-gillie, out
+      after a wounded hind on the head gillie's own instruction, and he was
+      back at the kennels before the stranger ever reached the water.
+    discovery_method: interrogate
+    visibility: obvious
+    locations: [the_long_pass, the_bridge]
+    implicates: []
+    requires: []
+    red_herring: true
+
+  - id: clue_red_herring_pamphlet
+    type: physical
+    description: >-
+      A creased suffrage pamphlet, snagged in the bridge railing, in a hand
+      the village would place at the school. It points at the schoolmistress
+      and her quiet politics — and points wrong. The stranger pocketed it
+      himself at the tea rooms that morning, the way travellers pocket any
+      paper left on a table, and carried it to the bridge with everything
+      else he was carrying.
+    discovery_method: search
+    visibility: obvious
+    locations: [tea_rooms, the_bridge]
+    implicates: [suspect_hugo]
+    requires: []
+    red_herring: true
