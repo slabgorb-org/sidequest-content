@@ -12,23 +12,23 @@ description: >-
   seas chasing the one lucky pretech find that might buy them out. Above
   it all, Glitter's orbital Spacers broker the trade. A vertical city
   breeds a vertical culture.
-# PROVISIONAL naming — "New Kowloon" implies a Cantonese-corporate
-# substrate; available corpora best approximate it with korean +
-# industrial-English corporate surnames. Pending Jade's table convention.
+# Naming — "New Kowloon" is a Cantonese-corporate substrate. The Yulan
+# corpora (yulan_given / yulan_surname) are HK-romanized Cantonese given
+# names + Cantonese surnames blended with a corporate-register family
+# form, matching the churnworld's "your worth is your company position"
+# culture. Replaces the earlier korean + industrial-English placeholder,
+# which was a shared tea_and_murder (Edwardian) pool and the wrong flavor.
+# Pending Jade's table convention.
 slots:
   given_name:
     corpora:
-      - corpus: korean.txt
-        weight: 0.6
-      - corpus: english_industrial_first.txt
-        weight: 0.4
+      - corpus: yulan_given.txt
+        weight: 1.0
     lookback: 2
   corporate_surname:
     corpora:
-      - corpus: english_industrial_family.txt
-        weight: 0.6
-      - corpus: korean.txt
-        weight: 0.4
+      - corpus: yulan_surname.txt
+        weight: 1.0
     lookback: 2
 person_patterns:
   - '{given_name} {corporate_surname}'
