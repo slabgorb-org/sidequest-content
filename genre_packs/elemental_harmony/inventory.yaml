@@ -18,6 +18,7 @@ item_catalog:
     tags: [melee, blade, one-handed, martial]
     lore: The jian is the scholar's sword — precision over brute force.
     narrative_weight: 0.2
+    damage: {dice: "1d8", bonus: 0, shock: 2, shock_ac: 15}
 
   - id: dao_broad
     name: Broad Dao
@@ -30,6 +31,7 @@ item_catalog:
     tags: [melee, blade, one-handed, martial]
     lore: Soldiers carry dao. Bandits carry dao. Everyone carries dao.
     narrative_weight: 0.2
+    damage: {dice: "1d8", bonus: 0, shock: 2, shock_ac: 15}
 
   - id: staff_ironwood
     name: Ironwood Staff
@@ -42,6 +44,7 @@ item_catalog:
     tags: [melee, blunt, two-handed, focus]
     lore: The staff is the first weapon and the last — the one you practice with when all others are lost.
     narrative_weight: 0.2
+    damage: {dice: "1d6", bonus: 0, shock: 1, shock_ac: 13}
 
   - id: war_fan
     name: Iron War Fan
@@ -54,6 +57,7 @@ item_catalog:
     tags: [melee, blade, one-handed, concealable]
     lore: Favoured by courtiers who attend meetings they may not leave alive.
     narrative_weight: 0.4
+    damage: {dice: "1d6", bonus: 0, shock: 1, shock_ac: 13}
 
   - id: throwing_knives
     name: Throwing Knives (set of 6)
@@ -66,6 +70,20 @@ item_catalog:
     tags: [ranged, thrown, blade]
     lore: Silent and recoverable, if you know where they land.
     narrative_weight: 0.1
+    damage: {dice: "1d4", bonus: 0}
+
+  - id: unarmed_strike
+    name: Open Hand
+    description: Palm, fist, elbow, knee — the body trained into a weapon that is never confiscated at the gate.
+    category: weapon
+    value: 0
+    weight: 0.0
+    rarity: common
+    power_level: 1
+    tags: [melee, unarmed, martial]
+    lore: The Vowed carry no blade. They do not need one — the form is the weapon, and the weapon is always with them.
+    narrative_weight: 0.2
+    damage: {dice: "1d4", bonus: 0}
 
   - id: spirit_bell
     name: Spirit Bell
@@ -163,6 +181,47 @@ item_catalog:
     lore: Stick it on a door, a coffin, or a forehead. The dead respect the calligraphy, if not the calligrapher.
     narrative_weight: 0.3
 
+  - id: silk_robes
+    name: Silk Robes
+    description: Layered silk robes, loose enough for high kicks and tight enough to look deliberate.
+    category: armor
+    value: 15
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [light, torso, robes]
+    lore: The wandering monk's uniform. Offers nothing but dignity — and sometimes dignity is enough.
+    narrative_weight: 0.1
+    armor_class: 11
+
+  - id: padded_war_robe
+    name: Padded War Robe
+    description: Quilted cotton over leather panels, worn by soldiers and serious duelists.
+    category: armor
+    value: 35
+    weight: 2.5
+    rarity: common
+    power_level: 2
+    tags: [light, torso, padded]
+    lore: Stops a knife. Slows a sword. Won't stop an arrow — but it will make the archer feel guilty.
+    narrative_weight: 0.2
+    armor_class: 13
+    mitigation: 1
+
+  - id: lamellar_armor
+    name: Lamellar Armor
+    description: Overlapping lacquered iron plates laced together in the ancient style, worn over a padded underrobe.
+    category: armor
+    value: 90
+    weight: 5.0
+    rarity: uncommon
+    power_level: 3
+    tags: [medium, torso, lamellar]
+    lore: The armor of officers and heroes. Heavy enough to matter, light enough to move.
+    narrative_weight: 0.3
+    armor_class: 16
+    mitigation: 1
+
 starting_equipment:
   Channeler:
     - staff_ironwood
@@ -170,6 +229,7 @@ starting_equipment:
     - spirit_ward_paper
     - calligraphy_set
   Martial Artist:
+    - unarmed_strike
     - dao_broad
     - herbal_compress
     - silk_rope
@@ -189,7 +249,6 @@ starting_equipment:
     - travel_tea_set
   Guardian:
     - jian_steel
-    - herbal_compress
     - herbal_compress
     - silk_rope
 

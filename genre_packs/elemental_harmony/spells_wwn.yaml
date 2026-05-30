@@ -1,0 +1,115 @@
+version: "1.0"
+spells:
+  # --- Level 1 ---
+
+  - id: cinder_lance
+    name: Cinder Lance
+    level: 1
+    save: evasion
+    damage_die: "1d6"
+    damage_per_level: true
+    range: far
+    target: single
+    genre_description: >
+      The caster hurls a compressed bolt of living flame that sears the air
+      as it crosses the distance between wielder and foe.
+    mechanical_effect: >
+      Ranged attack against a single target. Evasion save halves damage.
+      Deals caster_level × 1d6 fire damage on a failed save.
+
+  - id: still_the_breath
+    name: Still the Breath
+    level: 1
+    save: mental
+    range: near
+    target: single
+    genre_description: >
+      The caster speaks a word of command that winds its way into a creature's
+      lungs and silences the vital rhythm that drives action.
+    mechanical_effect: >
+      Mental save or the target cannot take an action this round. Does not
+      affect creatures that do not breathe.
+
+  - id: river_step
+    name: River Step
+    level: 1
+    range: self
+    target: self
+    genre_description: >
+      The caster's body becomes as supple as running water, flowing through
+      gaps and around obstacles that would halt any solid form.
+    mechanical_effect: >
+      Until the end of the round, the caster may pass through any opening
+      wide enough for water and ignores difficult terrain.
+
+  - id: ember_veil
+    name: Ember Veil
+    level: 1
+    range: self
+    target: self
+    genre_description: >
+      The caster wraps themselves in a shimmering curtain of slow-burning
+      embers that sting attackers who venture too close.
+    mechanical_effect: >
+      Until the start of the caster's next turn, any creature that strikes
+      the caster in melee takes 1d4 fire damage (no save). Lasts until
+      triggered or the round ends.
+
+  - id: stone_tongue
+    name: Stone Tongue
+    level: 1
+    save: physical
+    range: near
+    target: single
+    genre_description: >
+      A ripple of earth rises at the caster's direction, wrapping around
+      an opponent's legs and locking them in place like a vise of granite.
+    mechanical_effect: >
+      Physical save or target is immobilized until the start of the caster's
+      next turn. They may still act but cannot move.
+
+  # --- Level 2 ---
+
+  - id: spirit_echo
+    name: Spirit Echo
+    level: 2
+    range: near
+    target: single
+    genre_description: >
+      The caster reaches into the veil between the living and the ancestral
+      and calls a fragment of a departed spirit to deliver a message or
+      answer a single question.
+    mechanical_effect: >
+      Summons a spirit echo that can answer one question about events it
+      witnessed during its life. The echo dissipates after answering or
+      at the end of the scene. Cannot reveal information it never knew.
+
+  - id: tide_lash
+    name: Tide Lash
+    level: 2
+    save: evasion
+    damage_die: "1d8"
+    damage_per_level: true
+    range: near
+    target: single
+    genre_description: >
+      The caster calls up a crashing column of water from the moisture in
+      the air and earth, driving it forward like a breaking wave.
+    mechanical_effect: >
+      Ranged attack against a single target. Evasion save halves damage.
+      Deals caster_level × 1d8 bludgeoning damage and pushes the target
+      five feet back on a failed save.
+
+  - id: iron_ward
+    name: Iron Ward
+    level: 2
+    range: near
+    target: single
+    genre_description: >
+      The caster channels the unyielding patience of stone, drawing it up
+      through the ground and into a companion's body to harden their
+      resolve against harm.
+    mechanical_effect: >
+      One touched creature gains 4 temporary HP for the rest of the scene.
+      These absorb damage before the target's normal HP pool. Does not stack
+      with itself.
