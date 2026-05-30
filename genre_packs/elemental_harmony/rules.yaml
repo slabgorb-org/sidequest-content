@@ -13,6 +13,29 @@ ability_score_names:
   - Spirit
   - Harmony
 
+ruleset: wwn
+wwn:
+  attribute_map:
+    STRENGTH: Strength
+    DEXTERITY: Agility
+    CONSTITUTION: Endurance
+    INTELLIGENCE: Insight
+    WISDOM: Spirit
+    CHARISMA: Harmony
+  system_strain:
+    max_source: CONSTITUTION
+    rest_recovery_per_night: 1
+    first_aid_cost: 1
+  trauma:
+    default_trauma_target: 6
+    mortal_injury_rounds: 6
+    major_injury_save: physical
+  magic:
+    effort_base: 1
+    killing_blow_divisor: 2
+    day_reclaim_requires_comfort: true
+    default_spell_save: mental
+
 allowed_classes:
   - Channeler
   - Martial Artist
@@ -91,49 +114,80 @@ confrontations:
     intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
     on_intent_mismatch: reprompt
     category: combat
-    resolution_mode: opposed_check
-    # Opponent stats calibrated to mod +0 per ADR-093 (was 12 / mod +1).
+    # WWN personal combat: attack-vs-AC + hp_depletion on the ablative HpPool.
+    # Trauma/Mortal Injury layer on via the wwn ruleset module.
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
     opponent_default_stats:
+      # ALL SIX ability scores must be authored so the WWN defender-save path
+      # can resolve any prepared spell's save. cinder_lance/tide_lash use the
+      # evasion save (DEXTERITY→Agility, INTELLIGENCE→Insight); the mental and
+      # physical saves reach Spirit/Harmony and Strength/Endurance. The SWN
+      # module fails loud on a missing save attribute (no neutral-10 fallback),
+      # so an incomplete block KeyErrors the first time a spell targets the mook.
       Strength: 10
       Agility: 10
       Endurance: 10
-    # Momentum as "flow of the exchange" — who currently holds harmony.
-    # Beats push the flow one way or the other. Damage lives on character
-    # state; momentum tracks narrative command of the fight.
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 7
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 7
+      Insight: 10
+      Spirit: 10
+      Harmony: 10
+      # Reserved combat-seed keys (not ability scores) — seed the runtime
+      # CreatureCore for hp_depletion. hp = HP pool; armor_class = ascending AC
+      # the attack rolls against; dexterity = initiative (1d8+DEX).
+      # Wuxia mook: AC 12 (unarmored martial artist), HP 8, killable in 2-3 hits.
+      hp: 8
+      armor_class: 12
+      dexterity: 11
     beats:
       - id: strike
         label: Strike
         kind: strike
         base: 2
         stat_check: Strength
-        effect: "Target takes damage this round"
-        narrator_hint: A flowing combination — describe the elemental energy behind the blow.
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
+        effect: "A flowing combination — elemental energy behind the blow"
+        narrator_hint: Describe the elemental force channeled through the strike.
+      - id: elemental_burst
+        label: Elemental Burst
+        kind: strike
+        base: 4
+        stat_check: Strength
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
+        damage_override: {dice: "2d6", bonus: 0}
+        deltas:
+          crit_fail:
+            own: -2
+          fail:
+            own: -2
+        risk: "Spirit flares wide — lose 2 momentum on any failure"
+        effect: "Unleash raw elemental force on the target"
+        narrator_hint: Channel raw elemental force. The air shimmers with heat or frost or lightning.
+      - id: cast_spell
+        label: Channel a Spell
+        kind: strike
+        base: 2
+        stat_check: Spirit
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: none
+        # class_filter restricts this beat to caster Disciplines only.
+        # Mirrors caverns_and_claudes cast_spell: class_filter: [Mage].
+        # Without this, the WWN cast resource gate never fires — the beat
+        # would be offered to every class and the gate check skipped.
+        class_filter: [Channeler, Spirit Medium]
+        effect: "Cast a prepared spell — damage rolled by the spell engine"
+        narrator_hint: The character reaches inward, pulls on prepared elemental form, releases it.
       - id: guard
-        label: Guard Stance
+        label: Guard
         kind: brace
         base: 1
         stat_check: Endurance
         effect: "Reduce incoming damage, channel harmony back into stance"
         narrator_hint: Weight sinks. Breath steadies. The element answers.
-      - id: elemental_burst
-        label: Elemental Burst
-        kind: strike
-        base: 4
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Strength
-        risk: "Spirit drain — lose 2 momentum and harmony on failure"
-        effect: "Unleash elemental force on the target"
-        narrator_hint: Channel raw elemental force. The air shimmers.
       - id: yield
         label: Yield
         kind: push
