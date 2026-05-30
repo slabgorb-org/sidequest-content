@@ -1,0 +1,98 @@
+# The Real McCoy — Calendar (1878, Pittsburgh)
+#
+# Slimmed to world-tier from the former pack-tier
+# spaghetti_western/calendar.yaml on 2026-05-30. Shared-basis, moon detail,
+# time-precision, and pack scaffolding were cut; the steel-mill/coal-smoke/
+# immigrant-parish texture was moved here. Read at runtime by the
+# get_world_grounding narrator tool (date / season / festival proximity).
+
+version: "0.1.0"
+world: the_real_mccoy
+genre_pack: spaghetti_western
+
+system:
+  type: gregorian
+  era_in_prose: "the year of our Lord eighteen hundred and seventy-eight"
+  era_in_vernacular: "seventy-eight"
+  current_year: 1878
+  leap_status: "1878 is not a leap year; February has 28 days. The next leap year is 1880."
+  decade_register: >-
+    The Hayes administration; the Centennial two summers gone, Reconstruction
+    ended last year. The Great Railroad Strike of 1877 is still fresh — the
+    Pittsburgh Roundhouse burning one year past and not finished arguing
+    about. Edison has not built the lamp. No Standard Time yet — each railroad
+    keeps its own division clock, the Pennsylvania on Philadelphia time set
+    daily by telegraph.
+
+months:
+  - { number: 1, name: January, short: Jan, days: 31, season: deep_winter,
+      texture: "Steel-mill cold; the Monongahela freezes in the slack water, the wharves crack underfoot, coal smoke pools in the valleys a week at a time. Pneumonia is the year's first reliable killer and McCoy's shop runs extended hours." }
+  - { number: 2, name: February, short: Feb, days: 28, season: late_winter,
+      texture: "The valley at its grimmest — the sun a coin in the soot, the Edgar Thomson converters running on (there is no season for steel), children kept home coughing. The Polish and German parishes keep Candlemas (2 Feb) at morning mass." }
+  - { number: 3, name: March, short: Mar, days: 31, season: late_winter,
+      texture: "The thaw; the Mon and Allegheny crack and pile ice against the bridge piers, the city watching for ice-out. Ash Wednesday falls 6 March; St Patrick's is loud — the Hibernian parade down Liberty Avenue, the Irish bars open early." }
+  - { number: 4, name: April, short: Apr, days: 30, season: early_spring,
+      texture: "The coal-smoke inversion lifts; for the first time since November the valley is visible three miles end to end. The bricklayers go back up, the South Side glassworks reopen banked kilns, McCoy's shop runs its first outdoor test. Easter on the 21st." }
+  - { number: 5, name: May, short: May, days: 31, season: spring,
+      texture: "The river opens to heavy traffic, coal barges down the Mon in strings. The German Maifest opens the beer gardens. Decoration Day at month-end is huge — the GAR posts march, Allegheny Cemetery fills, the mills bank a half-day and the men go in their suits." }
+  - { number: 6, name: June, short: Jun, days: 30, season: early_summer,
+      texture: "The graduation processions; the longest days. On the 19th Muybridge takes his Palo Alto horse-gait plates a continent west, and the wire account reaches McCoy through the papers three weeks on. The rivers are warm for swimming by the 20th." }
+  - { number: 7, name: July, short: Jul, days: 31, season: summer,
+      texture: "The hot month; the inversions return, the Board of Health publishes its cholera circular. The 19th–22nd is the unmarked first anniversary of the Roundhouse Riot — not a holiday, not a forgetting; the city steps lightly. The Fourth is a vast Allegheny picnic with three brass bands." }
+  - { number: 8, name: August, short: Aug, days: 31, season: late_summer,
+      texture: "The hottest week is usually the second; the mills run on. The Liederkranz choirs travel to the German Sängerfest. The Polish South Side keeps the Assumption (15th) with blessed harvest baskets; the Allegheny County fair closes the month." }
+  - { number: 9, name: September, short: Sep, days: 30, season: early_autumn,
+      texture: "Fall colour begins on the ridges. The mills run, the converters consuming more coal as the days shorten. The county agricultural exhibition draws Mon and Ohio farmers; the German Oktoberfest parties start the last week, two weeks ahead of Munich." }
+  - { number: 10, name: October, short: Oct, days: 31, season: autumn,
+      texture: "The first hard freeze is usually mid-month; the coal-smoke season starts again as every house lays in winter coal. The river boats run their last clear-water trips. The campaign is fierce in the papers, the Roundhouse anniversary still colouring every editorial. Hallowe'en is guising and Kürbis lanterns." }
+  - { number: 11, name: November, short: Nov, days: 30, season: late_autumn,
+      texture: "Election Day (5th) — the Republican machine against the rising Irish-Democratic wards, the county ballot long. All Souls' brings requiem masses and candles to the graves. Thanksgiving at month-end is enormous across every heritage; the mills bank a half-day. The first deep snow often arrives." }
+  - { number: 12, name: December, short: Dec, days: 31, season: early_winter,
+      texture: "St Nicholas' Day (6th) fills the German parishes with processions for the children. The Polish Wigilia — the extra place set, the opłatek broken — is the year's most observed family evening on the South Side. The New Year's Eve steamboat whistles carry ten miles up and down the rivers." }
+
+days_of_week:
+  names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+  sabbath: >-
+    Sunday — the Polish, German, Irish, and Italian Catholic parishes full all
+    morning, the Methodist and Presbyterian congregations large. The mills run
+    skeleton shifts, the rivers go quiet, the parks fill. Sunday liquor sales
+    are prohibited in the City of Pittsburgh (the blue laws are real and
+    enforced); the boroughs are looser. Catholic abstinence keeps fish on
+    Fridays; the mill payroll turns over Monday.
+
+festivals:
+  - { date: "2 February", name: Candlemas, note: "Candles blessed at morning mass in the Polish and German Catholic parishes." }
+  - { date: "12 February", name: Lincoln's Birthday, note: "GAR suppers, the Gettysburg Address recited in the schools; kept warmly though not yet statutory." }
+  - { date: "17 March", name: St Patrick's Day, note: "The Hibernian parade down Liberty Avenue; the Irish bars open early; Land League talk in the back rooms." }
+  - { date: "30 May", name: Decoration Day, note: "The GAR posts march to Allegheny Cemetery; the mills bank a half-day and the men go in their suits." }
+  - { date: "4 July", name: Independence Day, note: "A vast Allegheny picnic with three brass bands." }
+  - { date: "19–22 July", name: the Roundhouse Anniversary, note: "Not a holiday, not a forgetting. The Pinkertons quietly double their South Side detail; the city steps lightly." }
+  - { date: "15 August", name: Feast of the Assumption, note: "The Polish South Side blesses the harvest baskets — wheat, herbs, fruit." }
+  - { date: "5 November", name: Election Day (1878 midterm), note: "Republican machine against the Irish-Democratic wards; a long county ballot." }
+  - { date: "6 December", name: St Nicholas' Day, note: "German Catholic and Lutheran processions; sweets for the good children, the rod for the wicked." }
+  - { date: "24 December", name: Wigilia, note: "The Polish Christmas Eve supper — the extra place set, the opłatek broken, twelve meatless dishes." }
+
+starting_date:
+  year: 1878
+  month: 4
+  month_name: April
+  day: 18
+  day_of_week: Thursday
+  time_of_day: "four in the morning — the coal-smoke not yet lifted from the river; the first whistle still two hours off"
+  season: spring
+  prose: >-
+    Thursday the eighteenth of April, eighteen-seventy-eight; the inversion
+    lifting at last after a hard week; Easter Sunday three days hence; the
+    Carnegie steel converters running through the night; the workshop car under
+    the gas lamp on the Pittsburgh & Lake Erie siding.
+  nearest_festival_past: { name: Ash Wednesday, date: "1878-03-06", days_ago: 43 }
+  nearest_festival_future: { name: Easter Sunday, date: "1878-04-21", days_ahead: 3 }
+
+useful: >-
+  No Standard Time and no time zones — the Pennsylvania Railroad's Union Depot
+  carries the authoritative Pittsburgh time, set daily against Philadelphia by
+  telegraph, within a minute of the B&O and P&LE clocks but not the same. The
+  working hour is the mill whistle (06:00 start, the noon dinner pause, the
+  18:00 change), heard two to three miles down the valley and further on cold
+  air. At roughly 40° N daylight swings widely, and the river-valley smoke
+  shortens the visible day from October to March.
