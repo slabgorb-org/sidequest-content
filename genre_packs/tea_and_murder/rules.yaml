@@ -195,6 +195,11 @@ confrontations:
         kind: push
         base: 0
         stat_check: Nerve
+        # Walking out is a voluntary exit — it must ALWAYS end the negotiation,
+        # not gate on a roll (same soft-lock class as social_duel's concede,
+        # playtest 59-8). Without this a failed `push` left no terminal
+        # transition. `resolution` forces resolution on any outcome tier.
+        resolution: true
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player excuses themselves. The matter is dropped — for now."
     mood: tension
@@ -301,16 +306,42 @@ confrontations:
     intent_verbs: [insult, riposte, parry, slight, retort, snub]
     on_intent_mismatch: warn
     category: social
+    # A Duel of Wits is a genuine two-sided contest: BOTH duellists roll their
+    # wits against each other each beat (playtest 59-8, Keith's call). Under the
+    # default beat_selection mode only the PLAYER rolled and the opponent's dial
+    # could only move via the narrator's advance_confrontation tool — which had a
+    # lost-update bug (wrote a throwaway snapshot the end-of-turn save clobbered),
+    # so the Other's dial froze at 0 and the duel could never resolve on his side.
+    # opposed_check makes the opponent roll d20+modifier each beat; his dial
+    # advances mechanically from the result (ADR-093 bands) — no narrator-fiat,
+    # and the GM panel sees a real opposed roll instead of "Claude said delta=2".
+    resolution_mode: opposed_check
+    # opposed_check resolves each side's roll against opponent_default_stats when
+    # the Other carries no per-actor sheet (the location-fallback case — Sir Iain
+    # is seated off the roster, not a stat-blocked NPC). Keyed by the same stat
+    # names the beats' stat_check uses (Cunning/Nerve/Humour). Per ADR-093
+    # calibration (enforced by tests/genre/test_confrontation_calibration.py) every
+    # opponent_default_stats value on an opposed_check confrontation must be ≤ 10 —
+    # opponent challenge comes from the dial/DC geometry, NOT stat inflation. 10
+    # gives the +0 modifier of a competent-but-fair adversary; Sir Iain's edge is
+    # the room and the writing, not a fat bonus. Without these resolve_opponent_modifier
+    # fails loud (No Silent Fallbacks).
+    opponent_default_stats:
+      Cunning: 10
+      Nerve: 10
+      Humour: 10
     # Both duellists try to land barbs on the other's composure. The first
     # to absorb threshold worth of cuts breaks first. Drawing-room blood sport.
+    # Threshold 7 per ADR-093 opposed_check calibration (was 5 under the old
+    # beat_selection authoring; opposed_check shares the calibrated tie band → 7).
     player_metric:
       name: barbs_landed
       starting: 0
-      threshold: 5
+      threshold: 7
     opponent_metric:
       name: barbs_landed
       starting: 0
-      threshold: 5
+      threshold: 7
     beats:
       - id: riposte
         label: Verbal Riposte
@@ -335,6 +366,14 @@ confrontations:
         kind: push
         base: 0
         stat_check: Humour
+        # A concession is a voluntary forfeit, not a contested action — it must
+        # ALWAYS end the duel, regardless of the d20 outcome tier. Without this
+        # flag a `push` only resolves on Success (apply_beat line 860), so a
+        # failed concede roll left the player soft-locked in a duel the fiction
+        # had already closed (playtest 59-8 BLOCKING, Glenross). `resolution`
+        # is the declarative always-resolves flag (BeatDef.resolution); the
+        # engine honors it on any tier and emits ENCOUNTER_RESOLVED.
+        resolution: true
         consequence: "Duel ends — withdraw with dignity intact"
     mood: mystery
   - type: scandal
