@@ -1,0 +1,41 @@
+# Free Miners — name-generation Culture for coyote_star (the Free Miners' Compact).
+# Crunch in the Genre, Flavor in the World (ADR-003 / SOUL). Visual art overlay
+# lives in `free_miners.yaml` (daemon, stem-keyed); this is the namegen/seeding Culture.
+name: Free Miners
+summary: The frontier prospectors who were here before the Hegemony — ore, salvage, and no questions.
+description: >-
+  Wildcatters and prospectors who jumped into Coyote Star looking for claims
+  too far from authority to attract attention, found decent ore in the belt
+  and an ugly-but-breathable world, and stayed. The Compact is loose — a
+  miners' mutual-aid pact with more grievances than bylaws — but they were
+  here first and the authority is in the wear, not the rank. Practical,
+  independent, suspicious of the governor, loyal to the people who jumped the
+  lanes beside them. First-name basis, calluses, claim tags on a carabiner.
+  Anglo-Hispanic frontier stock weathered into something local.
+slots:
+  given_name:
+    corpora:
+      - corpus: english.txt
+        weight: 0.5
+      - corpus: spanish.txt
+        weight: 0.5
+    lookback: 3
+  family_name:
+    corpora:
+      - corpus: spanish.txt
+        weight: 0.5
+      - corpus: english.txt
+        weight: 0.5
+    lookback: 3
+  place_noun:
+    word_list: [claim, reach, prospect, drift, dig, gulch, post, flat, strike, lode]
+  adjective:
+    word_list: [dry, far, lost, deep, broken, last, free, lean, hard]
+person_patterns:
+  - "{given_name} {family_name}"
+  - "{given_name}"
+  - "{given_name} '{adjective}' {family_name}"
+place_patterns:
+  - "{family_name}'s {place_noun}"
+  - "{adjective} {place_noun}"
+  - "{given_name}'s {place_noun}"

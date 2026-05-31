@@ -1,0 +1,53 @@
+# Hegemonic — name-generation Culture for coyote_star (Vaskov Administration).
+# Crunch in the Genre, Flavor in the World (ADR-003 / SOUL): the naming crunch
+# now lives at the world tier, grounded in Coyote Star's canon rather than the
+# old genre-default "Barrayaran officer". The visual_tokens art overlay for this
+# culture lives alongside in `hegemonic.yaml` (daemon image pipeline, keyed by
+# file stem); this file is the namegen/seeding Culture (server, keyed by `name`).
+name: Hegemonic
+summary: The distant empire's administration — Vaskov Centrum, customs, and the patrol cruiser.
+description: >-
+  Core-world imperial culture as it presents on the frontier: Prefect Ilara
+  Vaskov's administration, the customs staff at the jump point, and the crew
+  of the aging patrol cruiser that has not left in twenty-three years. Formal,
+  hierarchical, old names and old protocol — military and bureaucratic titles
+  matter even when the authority behind them has stopped reading the reports.
+  Russo-Latin core-world stock; here it reads as regulation cloth in alien
+  country, an order delivered by people who expect it to be ignored.
+slots:
+  given_name:
+    corpora:
+      - corpus: latin.txt
+        weight: 0.5
+      - corpus: russian.txt
+        weight: 0.5
+    lookback: 3
+  family_name:
+    corpora:
+      - corpus: latin.txt
+        weight: 0.4
+      - corpus: russian.txt
+        weight: 0.6
+    lookback: 3
+  title:
+    word_list:
+      - Prefect
+      - Commander
+      - Customs Agent
+      - Administrator
+      - Legate
+      - Minister
+      - Captain
+      - Inspector
+  place_noun:
+    word_list: [centrum, citadel, prime, customs, station, spire, bastion, dock]
+  adjective:
+    word_list: [imperial, high, inner, old, grand, sovereign, regulation, sanctioned]
+person_patterns:
+  - "{family_name}, {given_name}"
+  - "{title} {family_name}"
+  - "{title} {given_name} {family_name}"
+place_patterns:
+  - "{family_name} {place_noun}"
+  - "{adjective} {place_noun}"
+  - "{family_name}'s {place_noun}"

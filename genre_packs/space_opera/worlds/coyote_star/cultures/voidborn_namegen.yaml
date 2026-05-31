@@ -1,0 +1,48 @@
+# Voidborn — name-generation Culture for coyote_star (Clan Moana-Teru station clans).
+# Crunch in the Genre, Flavor in the World (ADR-003 / SOUL). Visual art overlay
+# lives in `voidborn.yaml` (daemon, stem-keyed); this is the namegen/seeding Culture.
+name: Voidborn
+summary: The station clans who run Turning Hub — Clan Moana-Teru and the spacer underclass.
+description: >-
+  Born on ships and stations, the void is home. Clan Moana-Teru brought three
+  station hulls through the jump point a generation ago and built Turning Hub
+  into a proper freeport at the gas giant; they take a cut of everything that
+  moves through the system, and they run a fight that's bad for business out
+  of everyone's way. Tight-knit crews, ship-name and clan-name as identity,
+  wayfinder discipline. Polynesian voyaging mapped onto star-faring — clan
+  tattooing, navigation-star markings, the long memory of a people who carry
+  their home with them.
+slots:
+  given_name:
+    corpora:
+      - corpus: polynesian.txt
+        weight: 0.6
+      - corpus: japanese.txt
+        weight: 0.4
+    lookback: 3
+  clan_name:
+    corpora:
+      - corpus: polynesian.txt
+        weight: 0.7
+      - corpus: japanese.txt
+        weight: 0.3
+    lookback: 2
+  ship_name:
+    corpora:
+      - corpus: polynesian.txt
+        weight: 0.7
+      - corpus: japanese.txt
+        weight: 0.3
+    lookback: 2
+  place_noun:
+    word_list: [hub, berth, ring, anchor, waypoint, gate, lane, freeport]
+  adjective:
+    word_list: [turning, deep, far, still, bright, long, open, drifting]
+person_patterns:
+  - "{given_name} of {ship_name}"
+  - "{given_name} {clan_name}"
+  - "{clan_name} {given_name}"
+place_patterns:
+  - "{clan_name} {place_noun}"
+  - "{adjective} {place_noun}"
+  - "{ship_name} {place_noun}"

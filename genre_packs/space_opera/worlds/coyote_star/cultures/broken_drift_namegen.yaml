@@ -1,0 +1,63 @@
+# Broken Drift — name-generation Culture for coyote_star (the salvage runners).
+# Crunch in the Genre, Flavor in the World (ADR-003 / SOUL). Visual art overlay
+# lives in `broken_drift.yaml` (daemon, stem-keyed); this is the namegen/seeding Culture.
+# Their identity is identification-refusal: no clan, no family name, no rank.
+# The naming reflects that — a chosen handle and, at most, a where-from, never a who-from.
+name: Broken Drift
+summary: Salvage runners who erased their own signatures — every patch stripped, every tell smoothed.
+description: >-
+  Not a clan and not a crew but a way of moving through the system: runners
+  who work the wrecks and the grey edges of salvage law and have made the
+  absence of signatures their signature. Every faction patch removed, every
+  identifying tell smoothed away; the one small personal mark each carries is
+  the captain's tell, and the rest is unsigned. They take handles, not names —
+  a sound that travels, a place they passed through once — and they do not give
+  the name behind it. Where a Free Miner inherits a family and a Voidborn a
+  clan, the Broken Drift inherit only what they refuse to say.
+slots:
+  handle:
+    word_list:
+      - Quiet
+      - Smoke
+      - Ghost
+      - Patch
+      - Cinder
+      - Tally
+      - Hush
+      - Drift
+      - Sable
+      - Rust
+      - Nine
+      - Sparrow
+      - Cutter
+      - Echo
+      - Lean
+      - Grin
+      - Salt
+      - Wire
+  drift_marker:
+    word_list:
+      - off Tether
+      - out of Turning Hub
+      - from the belt
+      - no fixed berth
+      - last seen Mendes
+      - lane-side
+      - off the wrecks
+      - parts unknown
+  given_name:
+    corpora:
+      - corpus: english.txt
+        weight: 0.6
+      - corpus: spanish.txt
+        weight: 0.4
+    lookback: 2
+  place_noun:
+    word_list: [wreck, drift, scrap, hull, lane, shadow, dark, edge]
+person_patterns:
+  - "{handle}"
+  - "{handle}, {drift_marker}"
+  - "{given_name} '{handle}'"
+place_patterns:
+  - "the {place_noun}"
+  - "{handle}'s {place_noun}"
