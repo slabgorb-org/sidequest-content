@@ -83,50 +83,15 @@
       mechanical_effects:
         pronoun_hint: "they/them"
 
-- id: element
-  title: "Your Element"
-  narration: >-
-    Every channeler has an affinity — the element that resonates with
-    their spirit. Some discover it young, in a moment of emotion or
-    danger. Others train for years before the connection ignites.
-    What calls to you?
-  choices:
-    - label: "Fire"
-      description: "Will. Ambition. The drive to create and destroy. Your forms are aggressive, explosive, forward."
-      mechanical_effects:
-        affinity_hint: Fire
-        jungian_hint: hero
-        rpg_role_hint: dps
-    - label: "Earth"
-      description: "Endurance. Truth. The stubbornness that holds the world together. Your forms are rooted, immovable, patient."
-      mechanical_effects:
-        affinity_hint: Earth
-        jungian_hint: everyman
-        rpg_role_hint: tank
-    - label: "Water"
-      description: "Adaptation. Healing. The patience that wears mountains to sand. Your forms flow, redirect, transform."
-      mechanical_effects:
-        affinity_hint: Water
-        jungian_hint: caregiver
-        rpg_role_hint: healer
-    - label: "Air"
-      description: "Freedom. Wisdom. The breath between thoughts. Your forms evade, deflect, and turn force against itself."
-      mechanical_effects:
-        affinity_hint: Air
-        jungian_hint: sage
-        rpg_role_hint: control
-    - label: "Spirit"
-      description: "The connection between worlds. You see what others cannot. Your power is not of the elements but of the space between them."
-      mechanical_effects:
-        affinity_hint: Spirit
-        jungian_hint: magician
-        rpg_role_hint: support
-    - label: "None"
-      description: "You do not channel. Your power is your body, your mind, your will. And that is enough."
-      mechanical_effects:
-        affinity_hint: none
-        jungian_hint: outlaw
-        rpg_role_hint: dps
+# NOTE: The pre-WWN "Your Element" (affinity) step was removed (2026-05-31).
+# Channeling is determined by the WWN class system, not a separate affinity
+# pick: each Origin maps to a Discipline via class_hint (Ember Isles/Sky
+# Temples -> Channeler, Monsoon/Saffron -> Spirit Medium, Iron Peaks -> Martial
+# Artist, Jade -> Guardian, Tide Reaches -> Wanderer, Lotus -> Scholar), and
+# seed_wwn_magic() seeds Effort/spellcasting from that class's wwn_magic block.
+# A standalone affinity choice was mechanically inert for non-caster origins
+# (it only tagged an ability) and falsely implied channeling — see classes.yaml
+# and docs/superpowers/plans/2026-05-29-wwn-content-binding.md.
 
 - id: path
   title: "Your Path"
