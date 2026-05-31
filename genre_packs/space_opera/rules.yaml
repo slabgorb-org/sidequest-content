@@ -298,6 +298,9 @@ confrontations:
         label: "Disengage"
         kind: push
         stat_check: Reflex
+        # resolution beat — see combat::retreat. ship_combat is hp_depletion too,
+        # so without this the only exit was hull-to-0.
+        resolution: true
         consequence: "break contact — escape to hyperspace or retreat"
         narrator_hint: "Full power to engines. The stars blur as the ship makes its escape."
     secondary_stats:
@@ -389,6 +392,12 @@ confrontations:
         label: Fall Back
         kind: push
         stat_check: Reflex
+        # resolution beat: the engine ends the confrontation when this resolves
+        # (beat_kinds.apply_beat, ungated by win_condition). Without the flag the
+        # prose ``consequence`` is inert and combat has no voluntary exit —
+        # hp_depletion combat could only end by a kill, a hard soft-lock
+        # (playtest 67-10 / 59-26 "unexitable").
+        resolution: true
         consequence: "Combat ends — seal a bulkhead, reach the airlock"
         narrator_hint: Covering fire, sprinting for the bulkhead, slam it shut.
     mood: combat
@@ -433,6 +442,9 @@ confrontations:
         label: Microjump
         kind: push
         stat_check: Reflex
+        # resolution beat — see combat::retreat. The chase dial could otherwise
+        # only end by reaching threshold; this is the clean voluntary exit.
+        resolution: true
         consequence: "Chase ends — short hyperspace hop, gone"
     mood: tension
 
