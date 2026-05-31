@@ -2,6 +2,23 @@ name: Perseus Cloud
 slug: perseus_cloud
 draft: false
 cover_poi: new_kowloon
+# Live-but-incomplete waiver (honored by the pack validator). This world is a
+# faithfully-imported campaign skeleton from Jade & Sebastien's Master Lore
+# vault (see CAMPAIGN_NOTES.md). It LOADS and is wired into the engine
+# (cultures, namegen, culture-doctrine) — it is NOT a draft — but the vault was
+# silent on the artifacts below and the import policy is to NOT fabricate canon
+# (npcs.yaml carries "STUB for Jade" markers; the Season 1 trope structure is
+# the table's to author, not the importer's). Each waived artifact is one the
+# loader treats as OPTIONAL, so the world is fully playable without it. The
+# validator emits a WARNING for each (loud, never silent) and still hard-errors
+# on any OTHER missing required file. Remove an entry here the moment Jade
+# authors that artifact.
+incomplete_files:
+  - portrait_manifest.yaml   # awaiting Jade's NPC visual canon (npcs.yaml has STUB markers)
+  - tropes.yaml              # Season 1 trope beats are the table's, not the importer's
+  - archetypes.yaml          # recurring-NPC templates await Jade's faction canon
+incomplete_dirs:
+  - legends                  # vault was silent on deep-history legends; do not fabricate
 description: >-
   A sector of human space sealed off from the rest of the galaxy by the
   Great Hyperspace Explosion — the cataclysm that severed the jump lanes

@@ -22,8 +22,89 @@
 # writer's lane; the descriptions below are mechanical scaffolding — the
 # escalation arrays, stat checks, stakes, and progression are load-bearing.
 
+# ── ARRIVAL IN THE WARD (FRESH onboarding; learn to read banner from hand) ──
+- id: arrival_in_the_ward
+  name: Arrival in the Ward
+  description: >-
+    The newcomer's first reading of the Sixth Ward. The player comes off the
+    Castle Garden emigrant depot into a place where every kindness has a price
+    folded inside it and every grievance flies a banner that is not its real
+    cause. The runner who offers a boarding-house and a fast vote, the boss who
+    offers the small mercy with a ledger behind it, the keening woman who offers
+    a lucky shawl — each is a lesson in the ward's grammar: read the Hand beneath
+    the Banner before you owe a debt you didn't know you took. This trope teaches
+    the table the ward's rules before any faction asks the player to choose.
+  category: discovery
+  triggers:
+    - the player steps off the Castle Garden fence into the ward
+    - a stranger offers a kindness with the price hidden in it
+    - the player must read whether a grievance is real or staged
+    - a debt of welcome is incurred before the player notices
+  narrative_hints:
+    - a soft-coated runner steering the newcomer toward a boarding-house bed
+    - a green-grocery saloon where the boss keeps a ledger of small mercies
+    - a covered mirror and a stopped clock in a cellar wake by candlelight
+  tension_level: 0.15
+  resolution_hints:
+    - take the runner's bed knowing the vote is mortgaged with it
+    - refuse the boss's mercy and stay a stranger longer (harder, cleaner)
+    - learn the merry-wake courtesies and be read as ward, not greenhorn
+    - hold the keener's shawl and hear which men she says are marked
+  tags: [arrival, onboarding, banner_hand, castle_garden, merry_wake]
+  escalation:
+    - at: 0.25
+      event: >-
+        FRESH. The Castle Garden gate is a mercy on the inside and a harvest on
+        the outside. Cornelius Mulligan, the runner, fleeces the newcomer in a
+        soft voice and a good coat — the first Hand the player sees plainly,
+        because a predator-broker does not trouble to hide it.
+      npcs_involved: [The Runner]
+      stakes: >-
+        CUNNING check to keep the boarding-house bed without mortgaging the vote
+        that comes with it. On a miss the player owes the runner a fast vote and
+        a week's rent before they have read the ward; reputation -1 with the
+        anti-Wood bloc whose box the vote was promised against.
+    - at: 0.5
+      event: >-
+        EARLY. Isaiah Rynders offers a small kindness from the green-grocery —
+        useful, friendly, and entered in a ledger of who he was friendly to. The
+        Banner is hospitality; the Hand is a debt the player cannot yet price.
+      npcs_involved: [The Ward Boss]
+      stakes: >-
+        PRESENCE check to take the mercy without being marked as the boss's man.
+        Success keeps the player legible to all blocs a while longer; a miss
+        sorts them early and the rival faction reads them as already bought.
+    - at: 0.75
+      event: >-
+        MID. At a cellar wake in Cow Bay, Maggie Doyle keens for hire and tells
+        the player she knows when a man is marked. She offers a lucky shawl for a
+        consideration — the Witness's death-rite truth under the ward's lies.
+      npcs_involved: [The Keening Woman]
+      stakes: >-
+        NERVE check to hear the keener out without flinching from the corpse on
+        the table. Success makes her the player's first honest source in the
+        ward; a miss leaves them a greenhorn the wake laughs at, no shawl given.
+    - at: 1.0
+      event: >-
+        VETERAN. The ward is read. The player can now tell a banner from the hand
+        that flies it on sight, and the runners, bosses, and keeners deal with
+        them as ward, not as fresh meat off the boat. The onboarding closes; the
+        Fuse to the Fourth is the player's clock now, not a rumor about strangers.
+      npcs_involved: [The Ward Boss, The Runner, The Keening Woman]
+      stakes: >-
+        Permanent world-state. The player holds a "reads-the-ward" standing that
+        opens later faction tropes a beat sooner and removes the greenhorn penalty
+        on first contact with each bloc.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.05
+    accelerators: [castle_garden, runner, boarding_house, wake, boss, banner, hand]
+    decelerators: [stay a stranger, refuse the mercy, leave the ward]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
 # ── THE FUSE TO THE FOURTH (A-plot; all factions → the riot) ───────────────
-- id: fuse_to_the_fourth
+- id: the_fuse_to_the_fourth
   name: The Fuse to the Fourth
   description: >-
     The ward's master clock. Beneath the holy-ethnic-war myth, a cynical

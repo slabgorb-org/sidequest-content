@@ -12,7 +12,11 @@ genre_pack:
     # visual_style.yaml remains mandatory because every world is self-contained).
     - audio.yaml
     - rules.yaml
-    - cultures.yaml
+    # cultures.yaml is OPTIONAL at genre level (epic-74 genre→world flavor
+    # migration — ALL flavor, including cultures, lives in worlds; genre tier is
+    # mechanics-only). space_opera/cultures.yaml was deliberately deleted and its
+    # cultures now live under worlds/<world>/cultures/. Packs MAY still ship a
+    # genre cultures.yaml (most still do) and it validates normally when present.
     - char_creation.yaml
     - inventory.yaml
     - lethality_policy.yaml
