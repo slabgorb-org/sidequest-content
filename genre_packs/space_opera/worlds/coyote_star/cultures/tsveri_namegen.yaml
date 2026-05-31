@@ -1,0 +1,45 @@
+# Tsveri — name-generation Culture for coyote_star (the Deep Root species).
+# Crunch in the Genre, Flavor in the World (ADR-003 / SOUL). Visual art overlay
+# lives in `tsveri.yaml` (daemon, stem-keyed); this is the namegen/seeding Culture.
+# The Tsveri are NOT human — their naming is deliberately non-human phonemics
+# built from stone, root, and the long patience of a species older than the colony.
+name: Tsveri
+summary: The silicon-laced species of the Deep Root — here for thousands of years, in no hurry.
+description: >-
+  An alien people the frontier miners found on the second world, settled in a
+  single mountain range they call the Deep Root long before any human jumped
+  in-system. Quiet, patient, geological in their stillness; they claim no
+  territory but the Root, trade occasionally in materials nobody else can
+  manufacture, and have said no to the surveys pushing under their sacred
+  ground. Their names braid a personal stone-syllable to a Root-lineage and,
+  for elders, a held epithet — spoken slowly, the way they do everything.
+  Names should read foreign to every human culture in the system.
+slots:
+  stone_name:
+    corpora:
+      - corpus: georgian.txt
+        weight: 0.6
+      - corpus: finnish.txt
+        weight: 0.4
+    lookback: 2
+  root_lineage:
+    corpora:
+      - corpus: finnish.txt
+        weight: 0.6
+      - corpus: georgian.txt
+        weight: 0.4
+    lookback: 2
+  epithet:
+    word_list: [the Patient, the Unmoved, Deep-Rooted, Stone-Listener, the Slow, Far-Seeing, the Settled, Root-Keeper]
+  place_noun:
+    word_list: [root, vault, seam, crest, deep, hollow, stone, range]
+  adjective:
+    word_list: [deep, old, slow, still, vast, buried, patient, sacred]
+person_patterns:
+  - "{stone_name} of the {root_lineage} Root"
+  - "{stone_name}-{root_lineage}"
+  - "{stone_name}, {epithet}"
+place_patterns:
+  - "the {adjective} {place_noun}"
+  - "{root_lineage} {place_noun}"
+  - "the {place_noun} of {root_lineage}"
