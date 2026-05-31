@@ -343,6 +343,13 @@ confrontations:
       hp: 7
       armor_class: 12
       dexterity: 13  # SWN P4 initiative (1d8+DEX); placeholder, feel-calibrate in playtest
+    # Opponent reprisal damage. `shoot` (the strike beat the enemy borrows for
+    # its to-hit) resolves damage from the ACTOR's inventory — which the seeded
+    # mook has none of — so without this the enemy hits but deals 0 HP and the
+    # player never takes damage (playtest 67-10). 1d6 = a basic corsair blaster,
+    # matching the PC's Sidearm Blaster. Read only on the opponent's turn, so it
+    # never caps the player's own weapon.
+    opponent_damage: {dice: "1d6", bonus: 0}
     # Personal combat (not ship_combat). Shoot-outs in corridors, station
     # bars, airlock standoffs. HP on character state.
     beats:
