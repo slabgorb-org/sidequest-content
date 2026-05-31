@@ -163,6 +163,25 @@ confrontations:
     intent_verbs: [haggle, bargain, barter, offer, deal, price, sell, buy, negotiate]
     on_intent_mismatch: warn
     category: social
+    # Story 73-1: a Polite Negotiation is a two-sided contest — both parties press
+    # for leverage. Under the old beat_selection mode only the PLAYER rolled and
+    # the opponent's leverage dial moved solely via the narrator's
+    # advance_confrontation tool (the 59-8 social_duel unfairness). opposed_check
+    # makes the Other roll d20+modifier each beat so their dial advances
+    # mechanically (ADR-093 bands) — the GM panel sees a real opposed roll, not a
+    # narrator-fiat delta. Mirrors the social_duel recipe below.
+    resolution_mode: opposed_check
+    # Keyed by the same stat names the beats' stat_check uses (Cunning/Nerve).
+    # Per ADR-093 every opponent_default_stats value on an opposed_check
+    # confrontation must be ≤ 10 (challenge comes from dial/DC geometry, not stat
+    # inflation; 10 → +0 modifier). Without these resolve_opponent_modifier fails
+    # loud (No Silent Fallbacks).
+    opponent_default_stats:
+      Cunning: 10
+      Nerve: 10
+    # Thresholds stay 7/7 (ADR-093 opposed_check calibration). The opponent's
+    # starting: 3 is a deliberate start-line edge (the other party comes to the
+    # table already holding cards), not a frozen-dial artifact.
     player_metric:
       name: leverage
       starting: 0
@@ -389,17 +408,38 @@ confrontations:
     intent_verbs: [whisper, gossip, expose, slander, accuse, rumor]
     on_intent_mismatch: warn
     category: social
-    # Player races to contain the scandal before exposure becomes public
-    # knowledge. Player builds containment; the gossip itself builds exposure
-    # in the background as turns pass.
+    # Story 73-1: the player races to contain the scandal before exposure becomes
+    # public knowledge; the gossip pushes back. That is a genuine two-sided
+    # contest, so it converts from beat_selection to opposed_check — the Other
+    # (the gossip's champion) rolls d20+modifier each beat and the exposure dial
+    # advances mechanically (ADR-093 bands), GM-panel auditable, no narrator fiat.
+    resolution_mode: opposed_check
+    # Keyed by the stats the beats roll (Cunning/Pride/Nerve), all ≤ 10 per the
+    # ADR-093 parity ceiling. resolve_opponent_modifier fails loud without them.
+    opponent_default_stats:
+      Cunning: 10
+      Pride: 10
+      Nerve: 10
+    # DELIBERATE asymmetric-dial recalibration (Story 73-1, AC-2). Scandal's dials
+    # were intentionally asymmetric — containment threshold 5, exposure threshold 8
+    # (the gossip has a head start). But ADR-093 v1 owns the opposed_check
+    # threshold: every opposed_check confrontation must be 7/7 (the calibrated tie
+    # band assumes symmetric finish lines, enforced by
+    # tests/genre/test_confrontation_calibration.py). Asymmetric *thresholds* are
+    # explicit ADR-093 v2 territory. So both thresholds move to 7, and the fiction's
+    # head start is PRESERVED by moving the asymmetry from the finish line to the
+    # START line: exposure starts at 3, containment at 0. The gossip still has its
+    # lead; both sides now share the calibrated tie-band threshold the resolver and
+    # guardrail require. (The asymmetry moved from unequal finish lines to unequal
+    # start lines — see Story 73-1 AC-2.)
     player_metric:
       name: containment
       starting: 0
-      threshold: 5
+      threshold: 7
     opponent_metric:
       name: exposure
-      starting: 0
-      threshold: 8
+      starting: 3
+      threshold: 7
     beats:
       - id: deflect
         label: Deflect Rumour
@@ -427,6 +467,13 @@ confrontations:
         kind: push
         base: 0
         stat_check: Nerve
+        # Story 73-1: weathering the storm is a voluntary exit — it must ALWAYS
+        # end the scandal, regardless of the d20 outcome tier. Without this flag a
+        # `push` only resolves on Success (DEFAULT_DELTAS in beat_kinds.py), so a
+        # failed weather_it left the player soft-locked in a scandal the fiction
+        # had already closed (the 59-8 soft-lock class — see social_duel.concede
+        # and negotiation.walk_away). `resolution` forces resolution on any tier.
+        resolution: true
         consequence: "Scandal passes — Standing may have shifted"
     mood: mystery
 
