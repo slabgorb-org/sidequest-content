@@ -59,6 +59,16 @@ stat_display_fields:
 survivability_pool_label: Composure
 
 
+# Playtest 2026-06-01 (blackthorn_moor shakedown): tea_and_murder has no combat.
+# The survivability pool is Composure and every confrontation is `category:
+# social`. The Monster Manual must NOT pre-generate or inject combat encounters
+# — without this flag, encountergen falls back to humanoid "enemies" built from
+# the social `allowed_classes` (Governess, Detective, Society…) and seeds
+# drawing-room guests as hostile -20 combatants with Strike/Power-Strike
+# abilities. See RulesConfig.combat_encounters.
+combat_encounters: false
+
+
 default_class: Detective
 default_race: Gentry
 default_location: "The bar of a village inn, the fire going, the rain just easing off"
