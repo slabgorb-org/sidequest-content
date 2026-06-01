@@ -1,0 +1,142 @@
+# Spaghetti Western — Classes (the genre's mechanical archetypes).
+#
+# These are real classes (per rules.yaml allowed_classes), but the engine reads
+# them through the same ClassDef the other packs use, so the field name stays
+# `classes`. Each class drives:
+#   - the player-facing signature moves surfaced in the Abilities tab, via
+#     `encounter_beat_choices` (the load-bearing list — every id here MUST be a
+#     real beat in rules.yaml's confrontation pool, or pack load fails loud).
+#   - prime_requisite / minimum_score for chargen stat guidance, mapped to the
+#     six spaghetti_western stats: GRIT / DRAW / NERVE / CUNNING / PRESENCE / LUCK.
+#
+# NOTE ON kit_table: this pack does NOT use `equipment_generation: class_kit`.
+# Starting gear flows through inventory.yaml's `starting_equipment:` block,
+# keyed by class display_name (Gunslinger, Bounty Hunter, ...). There is no
+# equipment_tables.yaml here, so the kit_table id below is a required-by-schema
+# label, inert at runtime (no class_kit scene resolves it). It is kept honest by
+# matching the class's starting_equipment block name. If a future world adds a
+# class_kit chargen scene, build an equipment_tables.yaml with these ids.
+#
+# Beat-choice provenance (confrontation → available beats), from rules.yaml:
+#   standoff:    size_up, bluff, flinch, draw
+#   negotiation: persuade, threaten, concede_point, walk_away
+#   poker:       fold, call, bet, raise, bluff, read_table, cheat, accuse
+#   combat:      draw, fan_hammer, duck, walk_away
+#   chase:       spur, canyon, ford_river, go_to_ground
+
+- id: gunslinger
+  display_name: Gunslinger
+  rpg_role: striker
+  jungian_default: hero
+  prime_requisite: DRAW
+  minimum_score: 12
+  kit_table: gunslinger_kit
+  flavor: >-
+    Fast hands, steady nerve, a fight read three moves ahead. The standoff
+    is your church and the quick-draw is your sermon — when leather clears,
+    the conversation is already over.
+  # Spotlight on the standoff/quick-draw and the all-in ace (fan_hammer).
+  encounter_beat_choices:
+    - draw
+    - fan_hammer
+    - size_up
+    - duck
+    - walk_away
+
+- id: bounty_hunter
+  display_name: Bounty Hunter
+  rpg_role: hunter
+  jungian_default: explorer
+  prime_requisite: CUNNING
+  minimum_score: 12
+  kit_table: bounty_hunter_kit
+  flavor: >-
+    Patience is your weapon, the territory is your map, and everyone leaves
+    a trail. You don't chase a man — you herd him, close the country around
+    him a canyon at a time, and meet him where he runs out of ground.
+  # Spotlight on the pursuit (corner/press the target) + reading them before the kill.
+  encounter_beat_choices:
+    - spur
+    - canyon
+    - ford_river
+    - size_up
+    - draw
+
+- id: outlaw
+  display_name: Outlaw
+  rpg_role: skirmisher
+  jungian_default: outlaw
+  prime_requisite: NERVE
+  minimum_score: 12
+  kit_table: outlaw_kit
+  flavor: >-
+    The world only has things that can be taken. You take them — with a
+    threat that lands harder than a fist, a bluff that buys a heartbeat,
+    and a willingness to fight dirtier than the man across from you.
+  # Spotlight on intimidation, the ambush bluff, dirty-fighting volume, and vanishing.
+  encounter_beat_choices:
+    - threaten
+    - bluff
+    - fan_hammer
+    - duck
+    - go_to_ground
+
+- id: drifter
+  display_name: Drifter
+  rpg_role: survivor
+  jungian_default: everyman
+  prime_requisite: GRIT
+  minimum_score: 12
+  kit_table: drifter_kit
+  flavor: >-
+    You survived by moving — never owing, never settling, never staying
+    long enough to lose anything. You read a room before you enter it,
+    take the blow that has to be taken, and are gone before anyone decides
+    what to do about you.
+  # Spotlight on endurance/evasion and reading the room — the wandering survivor.
+  encounter_beat_choices:
+    - flinch
+    - size_up
+    - ford_river
+    - go_to_ground
+    - walk_away
+
+- id: gambler
+  display_name: Gambler
+  rpg_role: trickster
+  jungian_default: trickster
+  prime_requisite: LUCK
+  minimum_score: 12
+  kit_table: gambler_kit
+  flavor: >-
+    Every conversation is a hand being played; every room is a pot to be
+    won. You read tells before you read books, sell a stone-faced lie, and
+    when the table turns ugly you already have a card up your sleeve — or
+    an accusation ready for the man who does.
+  # Spotlight on the table showdown — bluff, tells, the marked-deck edge, the call-out.
+  encounter_beat_choices:
+    - bluff
+    - read_table
+    - cheat
+    - accuse
+    - raise
+
+- id: marshal
+  display_name: Marshal
+  rpg_role: leader
+  jungian_default: ruler
+  prime_requisite: PRESENCE
+  minimum_score: 12
+  kit_table: marshal_kit
+  flavor: >-
+    The law out here is whatever the person with the badge says it is. You
+    talk a mob down before it becomes a mob, name the price of crossing the
+    line, give a little ground to take the room — and when it's over, you
+    turn your back and let them wonder whether you'd have drawn.
+  # Spotlight on authority and de-escalation — hold the line, defuse the standoff.
+  encounter_beat_choices:
+    - persuade
+    - threaten
+    - concede_point
+    - size_up
+    - walk_away
