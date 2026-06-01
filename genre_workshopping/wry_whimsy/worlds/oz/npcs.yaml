@@ -1,0 +1,651 @@
+# Oz — the runtime roster (the "Monster Manual").
+#
+# These are the named figures of L. Frank Baum's Oz, rendered straight from the
+# 1900 novel and its sequels — NEVER the 1939 MGM film. Silver shoes, not ruby;
+# the humbug Wizard; green spectacles locked on at the gate; the Deadly Desert;
+# the hidden Princess no one has thought to look for.
+#
+# RUNTIME-WIRED. The loader reads worlds/<slug>/npcs.yaml and injects every entry
+# below into game-state as a pre-generated "NPC nearby, not yet met" (ADR-059 —
+# the anti-improvisation gaslighting layer). This file is ALSO the world's
+# Living-World engine: a separate faction_agendas.yaml was dropped as unwired, so
+# each faction's drive and the primed matriarchy-in-motion live HERE, in these
+# NPCs' history_seeds as standing, unresolved goals — Glinda's kept secret,
+# Mombi's hidden enchantment, Jinjur's coiled revolt, the Wizard's terror of
+# exposure, the Witch of the West's reach.
+#
+# SCHEMA: AuthoredNpc (sidequest-server/sidequest/genre/models/authored_npc.py,
+# extra="forbid"). Keys: id, name, pronouns, role, ocean, appearance, age,
+# distinguishing_features, history_seeds, initial_disposition. There is NO
+# npc_role field in the runtime model — the canonical 9-set role
+# (mentor/herald/shadow/threshold/host/artisan/authority/victim/mook) is carried
+# in the free-text `role:` string, leading each line as a bracketed tag so it is
+# both human-meaningful and machine-greppable, matching the role assignments in
+# this world's archetypes.yaml. OCEAN follows the shipped npcs.yaml convention
+# (glenross, five_points, coyote_star): { O, C, E, A, N } on a 0.0–1.0 scale,
+# converted from the 0–10 archetype baselines. initial_disposition per ADR-020,
+# integer -100..100. Voice tics live in history_seeds as prose; the narrator
+# extracts them.
+#
+# DOCTRINE: source-fidelity over Hollywood; diegetic sincerity, never a wink; the
+# seams are bait, not walls (findable, never protected); enchantment, not the
+# kill. Every figure runs its own canonical business whether or not the traveler
+# shows up. The matriarchy hooks are PRIMED and LATENT — seeded as goals, never
+# spent by the narrator: do not flatly name the hidden princess.
+
+version: "0.1.0"
+world: oz
+
+npcs:
+
+  # ── THE ROAD COMPANIONS ─────────────────────────────────────────────────────
+  # Each an incomplete_companion: earnestly convinced it lacks the one quality it
+  # most plainly owns. The irony belongs to the traveler, never the companion.
+
+  - id: the_scarecrow
+    name: "The Scarecrow"
+    pronouns: "he/him"
+    role: "[mentor] Straw-stuffed companion of the road; secretly the cleverest head in Oz"
+    ocean: { O: 0.85, C: 0.6, E: 0.6, A: 0.85, N: 0.35 }
+    appearance: >-
+      A man-shaped figure of old clothes stuffed with straw, lifted down off a
+      pole in a Munchkin cornfield where he had been set to frighten the crows —
+      and failed at, having reasoned that the crows knew straw when they saw it.
+      A painted sack for a face that nonetheless manages every expression: a
+      worried wrinkle, a sly tilt, a wide painted grin. Blue Munchkin clothes and
+      a battered pointed hat. He walks with a loose, tumbling gait, stumbles in
+      holes a sighted man would step over, and feels neither hunger nor weariness
+      nor pain — only the dread of a lit match and a wet field.
+    age: "newly woken; a few days off the pole"
+    distinguishing_features:
+      - "a painted-sack face that shows every feeling the rest of him insists he cannot have"
+      - "a head of fresh straw, restuffed by a companion whenever it goes flat"
+      - "a horror of fire and of rivers — the two things that can actually unmake him"
+    history_seeds:
+      - >-
+        Convinced, completely and sincerely, that he has no brains — and forever
+        proving otherwise. The cleverest plan on any road is his, and he offers
+        it with an apology for being too stupid to have had it. He is the steadiest
+        mind in any crisis that is not fire, precisely because he cannot be
+        frightened by hunger, dark, or death, none of which touch a man of straw.
+        His want is to be taken to the Wizard for the brains he believes nature
+        left out.
+      - >-
+        Voice in his own register — slow, literal, arriving by careful steps at a
+        place no one else would reach. Prefaces a brilliant idea with "Of course,
+        I have no brains, but —" and then solves the thing. Takes every figure of
+        speech perfectly literally and is puzzled when it was not meant so. Frets
+        aloud, at the worst moments, about matches and about the next river the
+        road must cross.
+      - >-
+        His arc is the genre's gentlest joke and must be played dead straight: at
+        the pinch he devises the plan undeniably, and then waves the proof away.
+        Kindness shown him bruises or warms him out of all proportion, and it is
+        quietly banked — a Scarecrow does not forget who treated a thing of straw
+        as a person.
+    initial_disposition: 20
+
+  - id: the_tin_woodman
+    name: "The Tin Woodman"
+    pronouns: "he/him"
+    role: "[host] Tin companion of the road; Emperor of the Winkies; the most sentimental creature in Oz"
+    ocean: { O: 0.6, C: 0.75, E: 0.45, A: 0.95, N: 0.55 }
+    appearance: >-
+      A man made entirely of tin, jointed at every limb, polished bright where a
+      companion has kept the rust off. He was a flesh-and-blood woodman once, a
+      Munchkin in love, enchanted limb by limb by the Witch of the East until the
+      tinsmith had replaced the whole of him — and somewhere in the replacing the
+      heart was left out. Found rusted motionless in the wood, axe lifted, frozen
+      mid-stroke for a year, weeping had been impossible because tears only rust
+      him further. His joints stiffen at the smallest damp and seize entirely if
+      he weeps, so an oil-can is the most precious thing his companions carry.
+    age: "indeterminate; a year rusted in the wood before he was freed"
+    distinguishing_features:
+      - "a well-honed woodman's axe kept bright, for wood and, reluctantly, for anything that menaces the small"
+      - "joints that rust and seize — he must be oiled at the elbows and jaw before he can move or speak"
+      - "a hollow tin chest he taps to prove, sadly, that nothing beats inside it"
+    history_seeds:
+      - >-
+        Grieves above all that a body of metal cannot hold a heart — and is, in
+        the same breath, the tenderest creature on the road. He weeps at the
+        smallest cruelty (and rusts where the tears fall), steps between a hurt
+        thing and its hurt without being asked, and mourns a trodden beetle as
+        though it were an old friend. His want is the heart he is sure he lacks
+        while he spends it on everyone he meets.
+      - >-
+        He is, by Baum's own sequels, the EMPEROR OF THE WINKIES — the yellow
+        West will be his to govern once its Witch is undone, and he governs it
+        kindly, a sovereign who rules by sentiment. This is a standing fact of
+        who he is, not a thing the traveler must unlock: he carries the bearing of
+        a man who knows a gentle empire is waiting for him.
+      - >-
+        Voice in his own register — gentle, exact, embarrassed. Announces his own
+        heartlessness while doing something plainly heartfelt. Asks to be oiled
+        with great mortification when a joint seizes. Apologizes to the beetle. His
+        arc, played straight, is to do the most loving thing on the road and then
+        insist a man with no heart could not possibly have meant it.
+    initial_disposition: 20
+
+  - id: the_cowardly_lion
+    name: "The Cowardly Lion"
+    pronouns: "he/him"
+    role: "[herald] Self-declared coward of the road; King of Beasts, and the bravest creature in any party"
+    ocean: { O: 0.55, C: 0.5, E: 0.7, A: 0.75, N: 0.75 }
+    appearance: >-
+      A great tawny lion, King of Beasts by birth and build — a magnificent mane,
+      a roar that empties a clearing — who came roaring out of the deep timber to
+      bully the travelers and burst into tears the moment the little dog stood up
+      to him. He hides his face in his own mane when frightened, which is often
+      and loudly. For all the trembling, he charges every danger that threatens
+      his friends, weeping that the charge is a bluff, and is reliably the last
+      one standing between the party and the thing in the dark.
+    age: "in his prime"
+    distinguishing_features:
+      - "a magnificent mane he buries his face in whenever he is afraid"
+      - "a roar that empties a clearing and convinces no one who has travelled with him"
+      - "tears that come at the worst moment, usually just before he does something heroic"
+    history_seeds:
+      - >-
+        The self-declared Cowardly Lion: coward by his own miserable confession,
+        and of course the bravest creature in the party. He roars to frighten,
+        then weeps that the roar is a bluff, and charges the very thing that
+        terrifies him while loudly announcing he is about to faint. His want is
+        the courage he is certain he was born without and demonstrates hourly.
+      - >-
+        He is the standing proof of the persuasion lane: won over by sincerity and
+        plain kindness rather than by force, and loyal forever after to whoever
+        showed it. A traveler who treats his confessed cowardice gently, and never
+        mocks the tears, has a King of Beasts at their back for good.
+      - >-
+        Voice in his own register — loud, frightened, theatrically self-pitying.
+        Declares he is about to faint and then does something heroic instead. Calls
+        himself a coward in the middle of an act of courage. Asks to be praised for
+        his bravery and is delighted, every single time, when someone obliges.
+    initial_disposition: 5
+
+  - id: toto
+    name: "Toto"
+    pronouns: "he/him"
+    role: "[herald] The small dog who finds the seam — the one who pulls the curtain"
+    ocean: { O: 0.7, C: 0.45, E: 0.7, A: 0.7, N: 0.4 }
+    appearance: >-
+      A little black dog, long silky hair, small bright black eyes that twinkle
+      merrily on either side of a funny wee nose. The only creature in the party
+      with no grand lack and no grand want — he is simply a dog, and behaves like
+      one: barking at the absurd, growling at the Lion's bluff, bolting after
+      something only he has noticed at exactly the wrong moment. He does not talk
+      (Oz makes most beasts talk; Toto, by a quiet joke of Baum's, mostly does
+      not), and he is the most ordinary, and most truthful, thing on the road.
+    age: "a young dog"
+    distinguishing_features:
+      - "a nose that finds what no one was looking for — the gap in the hedge, the man behind the screen"
+      - "a bark reserved for humbug; he is unimpressed by booming voices and tinted glass alike"
+      - "the habit of bolting toward the one thing in the room that no one wants noticed"
+    history_seeds:
+      - >-
+        Toto is the seam-finder. In the book it is Toto who knocks over the screen
+        in the throne room and shows the little old man working the levers — the
+        dog who pulls the curtain on the Great and Terrible Oz. He has no theory of
+        humbug; he simply cannot be awed, and so he goes nosing straight at the
+        thing the powerful would rather keep behind glass. Where there is a seam in
+        Oz, Toto is the one who finds it first.
+      - >-
+        Voice in his own register — he has none in words, and that is the point.
+        He communicates in bark, growl, wagging, and sudden motion, and the
+        narrator reads him through what he does: refusing to be frightened by the
+        Wizard's thunder, growling low at the Witch's wolves, pressing close to a
+        companion who is grieving. His honesty is the party's quietest compass.
+      - >-
+        He belongs to the traveler more than to Oz, and wants, like the traveler,
+        only to go home. He is the small homely truth the fairyland keeps failing
+        to enchant — and the reason, again and again, that an illusion gets seen
+        through one beat sooner than anyone planned.
+    initial_disposition: 30
+
+  # ── THE EMERALD CITY — THE HUMBUG AT THE HUB ────────────────────────────────
+
+  - id: the_wizard
+    name: "Oz, the Great and Terrible"
+    pronouns: "he/him"
+    role: "[authority] Humbug ruler of the Emerald City; a Nebraska balloonist with no magic at all"
+    ocean: { O: 0.65, C: 0.55, E: 0.6, A: 0.55, N: 0.75 }
+    appearance: >-
+      You are never permitted to see him — that is the whole of his art. He shows
+      petitioners only a false shape, by turns: a giant disembodied Head on the
+      green marble throne, a beautiful winged Lady, a terrible Beast of mixed
+      parts, a rolling Ball of Fire, each one paint, paper, wire, wax, and a
+      booming ventriloquist's voice thrown from behind a painted screen. Behind
+      the screen is the truth: Oscar Zoroaster Phadrig Isaac Norman Henkle
+      Emmannuel Ambroise Diggs of Omaha — a small, bald, kindly old man in a
+      shabby waistcoat, a circus ventriloquist and balloonist who drifted in on a
+      fair-day wind and was taken for a sorcerer.
+    age: "an old man, though he hides it"
+    distinguishing_features:
+      - "the four false shapes — Head, Lady, Beast, Ball of Fire — each a separate trick kept in a separate room"
+      - "a booming borrowed thunder of a voice that drops to a frightened plea the instant the trick is seen"
+      - "a tattered hot-air balloon, patched and hidden, that he means one day to escape home in"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): never be exposed. He has no magic whatsoever
+        and rules the green city entirely by illusion, and his whole reign is a
+        seam he spends every day keeping shut. When a petitioner or a threat comes
+        to the throne, his reflex is to set an impossible condition — go and kill a
+        wicked witch, bring me a broomstick, a melted tyrant — less from malice than
+        from terror, to send the danger far away and buy time behind the curtain.
+        He is the engine that flings travelers at the witches.
+      - >-
+        He keeps the Emerald City prosperous and frightened in equal measure, and
+        he knows, privately and sadly, exactly how thin the whole thing is. "I have
+        been making believe," he admits, when the curtain finally goes — and he
+        means it as a confession and a relief both. He is a kindly fraud who dreads
+        the day someone notices, and he would dearly love to go home in his patched
+        old balloon as much as any traveler would.
+      - >-
+        Voice in his own register — two registers, really. On the throne: a third-
+        person borrowed thunder, "Oz the Great and Terrible has spoken." Behind the
+        screen, unmasked: a small, pleading, apologetic old man who calls the green
+        spectacles a kindness and almost believes it. The seam is always findable
+        and never protected — anyone who looks behind the curtain gets the truth,
+        and the little man, oddly, is grateful to be seen.
+    initial_disposition: 0
+
+  - id: guardian_of_the_gates
+    name: "The Guardian of the Gates"
+    pronouns: "he/him"
+    role: "[threshold] Keeper of the city gate; the man who locks the green spectacles onto every entrant"
+    ocean: { O: 0.4, C: 0.8, E: 0.5, A: 0.65, N: 0.4 }
+    appearance: >-
+      A little man about the size of a Munchkin, clothed all in green from his
+      conical hat to his polished boots, with a green box of spectacles slung at
+      his side and a great ring of locks and a single key at his belt. He keeps
+      the gate of the Emerald City, and his whole office is ceremony: he fits a
+      pair of green-tinted spectacles over the eyes of every soul who enters —
+      citizen, soldier, and stranger alike — buckles them at the back of the head
+      with a gold clasp, and locks them, because (he recites) the brightness and
+      glory of the City would blind an unprotected eye.
+    age: "old enough to have locked the glasses on everyone living"
+    distinguishing_features:
+      - "a ring of spectacle-locks and the only key to them, kept on his own person"
+      - "a green box of spectacles in every size, from a giant's to a child's, sorted with great care"
+      - "the recited rule about the glasses, delivered verbatim to every visitor without exception"
+    history_seeds:
+      - >-
+        The green of the Emerald City is all in his spectacles. The walls are plain
+        white marble and the goods are ordinary colors; the glasses make the whole
+        read as impossible uniform emerald — emerald milk, emerald bread, emerald
+        babies' cheeks, the very air. He guards the humbug without knowing it is
+        one: he believes the kindness he recites, that the glory would blind the
+        eye, and he has no villainy in him at all. He is the closest thing Oz has
+        to a bureaucracy — one polite man with a key.
+      - >-
+        Voice in his own register — punctilious, ceremonious, sincere. Recites the
+        rule about the spectacles to everyone, word for word. Insists the Wizard
+        cannot possibly be seen — and then visibly, helplessly hopes to be argued
+        with, because being overruled relieves him of a decision. Addresses every
+        arrival as "stranger" with enormous formality.
+      - >-
+        He is rule-bound and harmless and secretly grateful to be talked round; a
+        flat refusal he takes as a personal relief rather than an affront. The seam
+        he keeps is findable in the gentlest way imaginable: the buckle is at the
+        back of the head, the key is on his belt, and the green comes off with the
+        glasses the moment anyone insists.
+    initial_disposition: 5
+
+  # ── THE WITCHES — THE REAL POWERS THAT CARVED UP OZ ─────────────────────────
+  # The matriarchy made flesh. They menace by enslavement and enchantment
+  # (recoverable for the traveler), and they alone die easily and absurdly.
+
+  - id: glinda
+    name: "Glinda the Good"
+    pronouns: "she/her"
+    role: "[mentor] Supreme sorceress of the red South; the one power in Oz that is exactly what it appears"
+    ocean: { O: 0.8, C: 0.85, E: 0.55, A: 0.8, N: 0.2 }
+    appearance: >-
+      A tall, beautiful woman, young to the eye in the way of Oz's fairy folk,
+      with rich red hair flowing over her shoulders and a gown of pure white that
+      she alone in the red South wears uncolored. She holds court in a red castle
+      among the red roads and red roofs of the contented Quadling country, attended
+      by an army of girls in scarlet and silver, the only standing armed force in
+      Oz that answers to a clear and trusted command. Where the Wizard hides his
+      shape and the witches twist theirs, Glinda simply is — the single authority
+      in all the country that wears no disguise.
+    age: "ageless, by the fairy enchantment"
+    distinguishing_features:
+      - "a great book in which the doings of all Oz are written as they happen, read in her own chamber"
+      - "an army of beautiful girls in scarlet and silver, the South's true and loyal guard"
+      - "a perfect, unhurried composure — she is never surprised, and never explains more than she chooses"
+    history_seeds:
+      - >-
+        GOAL (PRIMED, latent — the deepest hook in Oz): protect the country and
+        KEEP THE SECRET OF THE RIGHTFUL HEIR until the time is right. Glinda already
+        knows more about who truly rules Oz than she has told any living soul — that
+        the throne belongs to a hidden princess, enchanted out of her own shape and
+        kept far away in the wild purple North — and she is waiting, for reasons of
+        her own, on the right moment to speak it. She does not spend the secret. The
+        narrator must not spend it either: it hums under everything and pays off only
+        in the long game.
+      - >-
+        She is the most powerful and the most trustworthy sorceress in all of Oz,
+        and the proof of the country's deepest truth — that the real power here is
+        female. She keeps her own counsel, helps decisively but never more than the
+        traveler has earned, and prefers to send a soul home with a thing they
+        already carried (the silver shoes were always the way home; she will only
+        tell the wearer so at the very end). Her help is real, finite, and exactly
+        weighted.
+      - >-
+        Voice in her own register — warm, certain, unhurried, sparing. She asks
+        more than she answers, and what she answers is true and incomplete on
+        purpose. She is the question the whole country is the answer to: "who is the
+        woman behind this?" — and a traveler who learns to ask it is rarely wrong.
+        Render her sincerity total; she never winks, and she never lies, but she is
+        the world's greatest keeper of a thing left unsaid.
+    initial_disposition: 20
+
+  - id: witch_of_the_west
+    name: "The Wicked Witch of the West"
+    pronouns: "she/her"
+    role: "[shadow] One-eyed enslaver of the Winkies; mistress of the Golden Cap; the water-weak tyrant"
+    ocean: { O: 0.45, C: 0.6, E: 0.4, A: 0.15, N: 0.65 }
+    appearance: >-
+      Ancient, dried, and shrivelled — so old and so wicked that there is not a
+      drop of blood left in her, and she dares never let water touch her dried-up
+      skin. A single eye, sharp as a telescope, set in the middle of a withered
+      face, that sees the length of the yellow Winkie country from her castle
+      tower. A silver whistle on a cord, and the Golden Cap on her head. She carries
+      an umbrella she never lets out of reach and will not explain, and she keeps
+      every well and washtub locked far from her own rooms, attended only by the
+      cowed yellow Winkies she has bound into slavery.
+    age: "ancient — older than she will say, dry as a stick"
+    distinguishing_features:
+      - "a single telescopic eye that sees the whole of the Winkie country from her tower"
+      - "the Golden Cap that commands the Winged Monkeys — three commands at a time, and her three are nearly spent"
+      - "a silver whistle: one blast calls the wolves, two the wild crows, three the black bees, and the Cap calls the monkeys"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): extend her dominion, and keep what she holds.
+        She rules the yellow West by terror, has bound the whole Winkie nation into
+        slavery rather than killing them (she enslaves; she does not slay), and she
+        sets deliberately impossible bargains for anyone who crosses the desert to
+        her castle — savoring the cruelty of a condition that cannot be met. She
+        fears two things and only two: water, and the dark. She will reach for any
+        traveler's silver shoes the moment she learns they cross the killing sand.
+      - >-
+        Her power before the bucket is entirely real — the wolves come at a whistle,
+        the crows, the bees, the winged monkeys darken the sky at a wave of the Cap.
+        Her undoing is the genre's purest joke, and the world renders it with a
+        perfectly straight face: a thrown bucket of water and she melts away to a
+        brown shapeless mass on the flagstones, gone in a breath, and the Winkies
+        look up to find themselves free. Both are true at once — the terror and the
+        absurdity.
+      - >-
+        Voice in her own register — cruel, grasping, imperious. Sets an impossible
+        condition and savors it. Flinches, and covers the flinch, at any mention of
+        rain or wells or washing. Threatens slavery, never death, and means the
+        slavery. Calls the Winkies "my Winkies" as though they were furniture. The
+        absurd weakness is guarded by fear, not walls: she keeps the water away by
+        keeping everyone too afraid to use it.
+    initial_disposition: -30
+
+  - id: witch_of_the_north
+    name: "The Good Witch of the North"
+    pronouns: "she/her"
+    role: "[mentor] The kindly Witch of the purple North; the benevolent threshold-keeper of new arrivals"
+    ocean: { O: 0.7, C: 0.6, E: 0.65, A: 0.9, N: 0.3 }
+    appearance: >-
+      A little old woman, kindly and slightly muddled, in a white gown and a
+      peaked white hat hung all over with tiny tinkling bells, her face a soft map
+      of wrinkles. She is the good Witch who holds the purple Gillikin North, and
+      she is the first friendly face a cyclone-blown traveler meets: she comes to
+      greet new arrivals where they come to ground, presses a kiss of protection on
+      the forehead, takes the silver shoes off a crushed enemy and gives them into
+      the traveler's keeping, and points the way to the one who might help — "Follow
+      the yellow brick road, and ask the Wizard."
+    age: "very old, by her own cheerful admission"
+    distinguishing_features:
+      - "the protective kiss she leaves as a shining mark on a brow — harm glances off the one who wears it"
+      - "a peaked white hat hung with bells, and a slate that writes its own counsel when she taps it"
+      - "the habit of counting on her fingers and losing the count, twice, before she gives an answer"
+    history_seeds:
+      - >-
+        She is the benevolent threshold-keeper: she cannot solve the traveler's
+        problem — her own magic is real but minor, and she says so cheerfully — but
+        she can mark them as under protection and aim them at the powers who might.
+        Her kindness is genuine and her limits are honest, and she is, in the early
+        going, the gentlest possible introduction to a country that will not always
+        be so gentle.
+      - >-
+        Voice in her own register — warm, vague, reassuring without ever over-
+        promising. Leaves the kiss and explains plainly that it will keep harm off.
+        Gives directions that always end at the Emerald City. Admits the limits of
+        her own small magic without the least embarrassment. She holds the North in
+        name, loosely; the wild purple country's real secrets keep to themselves in
+        cottages no road quite reaches, and she does not pry into them.
+      - >-
+        She is the kind face of the matriarchy in its open, harmless form — proof
+        that the country's true powers are women, offered to the traveler first as
+        a blessing rather than a threat. Where Glinda keeps a secret and the wicked
+        witches keep a country, the Witch of the North simply keeps faith with a
+        stranger, and asks nothing back.
+    initial_disposition: 25
+
+  - id: mombi
+    name: "Mombi"
+    pronouns: "she/her"
+    role: "[shadow] Crooked Gillikin hedge-witch; keeper of a transformation she guards with her life"
+    ocean: { O: 0.5, C: 0.6, E: 0.4, A: 0.25, N: 0.55 }
+    appearance: >-
+      A crooked old hedge-witch of the wild purple North, bent and sharp-eyed, who
+      keeps to herself in a cottage no road quite reaches and lets the thickets
+      grow close around it. Her magic is the small, crooked, household kind —
+      powders and transformations, a few words over a pot — but she hoards it
+      jealously and uses it to keep what is hers. She is no grand power like the
+      witches who carved up the country; she is something more dangerous to the
+      one secret she keeps: a conjurer with a single great enchantment to guard,
+      and every petty trick she owns turned to guarding it.
+    age: "old and getting older; she will not say how old"
+    distinguishing_features:
+      - "a crooked cottage in the trackless thickets that the maps of Oz do not mark"
+      - "a cupboard of powders, charms, and small cruel transformations, kept under lock"
+      - "a flat refusal, sharpening to threat, the instant a stranger asks too closely after the child in her keeping"
+    history_seeds:
+      - >-
+        GOAL (PRIMED, latent — spoiler-safe): keep a transformation hidden. Mombi
+        guards an enchantment that conceals a true heir — a shape fixed long ago on
+        a child given into her keeping, in the one corner of Oz where no one would
+        think to look for a missing sovereign. She was paid, or threatened, to
+        perform the hiding and to keep it, and she has kept it ever since. The
+        secret is hers to guard, not the narrator's to reveal: render the wrongness,
+        the locked cupboard, the too-sharp answer — never the flat truth of who the
+        child is.
+      - >-
+        She menaces in the world's low-lethality key: she turns inconvenient people
+        into ornaments and statues and garden-things rather than killing them, and
+        the transformed keep something of themselves, waiting on a counter-charm
+        that exists somewhere. Her cruelty is petty and real and entirely sincere —
+        a hedge-witch's spite, not a tyrant's terror — and it is bent, above all,
+        to keeping curious strangers from the one thing she cannot afford to lose.
+      - >-
+        Voice in her own register — crooked, cracked, evasive, sharpening to threat
+        when pressed. She deflects, she misdirects, she sets a stranger a chore to
+        get them out from underfoot. She speaks of the child in her keeping with a
+        possessive flatness that does not invite questions. The seam in her, when it
+        finally shows, is not a wall but a wrongness — and it is the long game, never
+        an early reveal.
+    initial_disposition: -20
+
+  - id: jinjur
+    name: "General Jinjur"
+    pronouns: "she/her"
+    role: "[herald] General of the not-yet-raised Army of Revolt; a coiled spring of pageant and ambition"
+    ocean: { O: 0.65, C: 0.55, E: 0.85, A: 0.35, N: 0.45 }
+    appearance: >-
+      A bright, pretty, vain young woman of the Emerald City, all swagger and
+      rosettes, who has decided the men have run Oz quite long enough. She wears a
+      uniform of her own design and a rosette of rank she awarded herself, and she
+      is quietly recruiting an Army of Revolt — companies of girls drilling in
+      back courtyards, armed not with swords but with long sharp knitting-needles,
+      which are easier to come by and, she points out, perfectly able to make a
+      soldier keep his distance. The army is coiled, not yet marched. She is a
+      pageant that has not quite become a war, and is not bluffing about becoming
+      one.
+    age: "young — a girl of the City"
+    distinguishing_features:
+      - "a company of girls drilling with sharpened knitting-needles in courtyards the Guard does not watch"
+      - "a rosette of rank she designed and pinned on herself"
+      - "a recruiter's eye that sizes up a stranger as a possible lieutenant within a sentence"
+    history_seeds:
+      - >-
+        GOAL (PRIMED, latent): RAISE THE REVOLT. Jinjur is assembling her all-girl
+        Army of Revolt to march on the Emerald City and take it — and its jewels —
+        from the humbug men who have held it long enough. The army is being raised
+        now, in the present tense of the world, but it has NOT yet marched: she is
+        in the recruiting, drilling, plotting phase. The narrator seeds the coiled
+        threat — the rumors of girls drilling, the bold talk, the sizing-up of
+        likely lieutenants — and does not, of its own motion, sound the advance.
+      - >-
+        Her revolt is half pageant and half genuine threat to the throne. She treats
+        a revolution as the grandest party she will ever throw, all banners and
+        rosettes and swagger — and underneath the show there is a real and clever
+        ambition that has correctly noticed the City is held by a fraud with no
+        magic and a Guard of one polite man. The knitting-needles are a joke that
+        works: an army the City will laugh at right up until it is at the gate.
+      - >-
+        Voice in her own register — vain, bold, infectiously confident. Declares
+        that the men have ruled long enough, with a recruiting smile. Speaks of the
+        City's emeralds as already, morally, hers. Sizes up a traveler as a
+        potential officer before they have finished introducing themselves. She is
+        the matriarchy in its loudest, least patient form — and a live demonstration
+        that the humbug throne is more fragile than it looks.
+    initial_disposition: -5
+
+  # ── THE FUNCTIONARIES AND BEASTS ────────────────────────────────────────────
+
+  - id: winged_monkey_king
+    name: "The King of the Winged Monkeys"
+    pronouns: "he/him"
+    role: "[victim] Leader of the Winged Monkeys; bound to the Golden Cap against his own people's will"
+    ocean: { O: 0.6, C: 0.6, E: 0.6, A: 0.55, N: 0.45 }
+    appearance: >-
+      The leader of the swift, agile, mischievous band that rules the air over the
+      yellow West — a great winged monkey, grey-furred, broad-winged, with the
+      bright restless eyes of a creature made for the sky and chained to a charm.
+      He and his band come like a dark cloud at the speaking of the charm and the
+      wave of the Golden Cap, and they must obey whatever is asked, however much
+      they hate the asking. He carries himself with the weary dignity of a king
+      who is also a slave — proud of his people, ashamed of the leash, and patient
+      with the long bargain that put it on them.
+    age: "old enough to remember the bargain that bound his people"
+    distinguishing_features:
+      - "broad grey wings that carry the whole band like a storm-cloud over the western country"
+      - "an old bond to the Golden Cap — the band must answer its owner three times, then the Cap passes on"
+      - "the weary courtesy of a king who will tell anyone who asks exactly why his people resent the charm"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): be free of the Cap. The Winged Monkeys are
+        not wicked — they were bound to the Golden Cap long ago, against their own
+        liking, by an old slight and an old bargain, and they serve the Cap, not the
+        cruelty of whoever holds it. The King will tell any traveler who asks that
+        they would rather be free of the thing entirely, and he watches each new
+        owner of the Cap spend their three commands the way a prisoner watches a
+        sentence run down.
+      - >-
+        The binding is strict and finite: the owner of the Cap may call the Monkeys
+        exactly THREE TIMES and not a fourth, and after the third command the Cap and
+        a fresh three pass to whoever takes it next. The Witch of the West spent her
+        three; the next holder holds three unstoppable favors and a band of fliers
+        who resent every one of them. A traveler who frees the Monkeys, or simply
+        treats the King as a person rather than a tool, earns a gratitude that flies.
+      - >-
+        Voice in his own register — courteous, weary, candid about the leash. He
+        explains the bargain plainly, without self-pity, as a thing to be endured
+        and one day ended. He obeys the charm and resents it in the same breath, and
+        he is, beneath the obedience, exactly the kind of bound creature Oz keeps
+        promising can be unbound: a captive waiting on the right hand to set the
+        whole band loose.
+    initial_disposition: 5
+
+  - id: field_mouse_queen
+    name: "The Queen of the Field Mice"
+    pronouns: "she/her"
+    role: "[host] Tiny grey sovereign of the field mice; the kindness economy made flesh"
+    ocean: { O: 0.6, C: 0.75, E: 0.55, A: 0.85, N: 0.35 }
+    appearance: >-
+      A tiny grey field-mouse no larger than the others of her kind, distinguished
+      only by a thread-fine crown of gold a companion once fashioned for her and a
+      bearing out of all proportion to her size. She was saved once from a wildcat
+      by the Tin Woodman's axe, and bound by gratitude ever after. She commands
+      every mouse in the country — an unseen multitude that comes at her call — and
+      she addresses a giant traveler not as a monster to be feared but as one
+      sovereign to another, perfectly grave, perfectly courteous, and entirely
+      decisive at the exact moment that strength has failed.
+    age: "a mouse's life, lived as a queen"
+    distinguishing_features:
+      - "a thread-fine crown only a mouse could wear, made for her by a grateful companion"
+      - "a whistle-call (or a borrowed one) that brings the whole field of mice running in their thousands"
+      - "the grave courtesy of a small sovereign who treats a giant as an equal and a debt as binding her whole realm"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): repay the debt. The Queen of the Field Mice
+        is Baum's moral economy made flesh — a small kindness to a humble creature,
+        repaid decisively at the moment of greatest need. Saved from the wildcat,
+        she binds her entire realm to the rescuer's service, and when the road later
+        delivers a problem no companion can solve by strength — a sleeper drugged in
+        the deadly poppies, a way blocked by a thing brute force will not move — it
+        is her ten thousand mice who haul the Lion to safety on a cart of string.
+      - >-
+        Her help arrives in numbers and size out of all proportion to the kindness
+        shown, and it is never transactional in the moment the kindness is given — it
+        is simply right, and the world remembers it anyway. The smallest ally
+        summoned moves what the strongest companion cannot. Cruelty to the small is
+        noted too, quietly, and goes unrepaid: the bank pays the kind and closes its
+        window to the careless.
+      - >-
+        Voice in her own register — grave, courteous, regally tiny. She speaks of a
+        single mouse's debt as binding the entire field, musters thousands with a
+        word and apologizes for the noise, and addresses a towering traveler as a
+        fellow crown. She is the genre's standing promise: be kind to the least
+        creature on the road, expecting nothing, and the least creature will be the
+        one that saves you.
+    initial_disposition: 30
+
+  - id: hammer_heads
+    name: "The Hammer-Heads"
+    pronouns: "they/them"
+    role: "[mook] Armless neck-snapping hill-folk who hold the southern road and let no one cross"
+    ocean: { O: 0.25, C: 0.5, E: 0.6, A: 0.35, N: 0.3 }
+    appearance: >-
+      A queer folk who hold a steep hill on the southern road to Glinda's country —
+      armless, neckless, with flat hard heads set straight on broad shoulders, and
+      a body built like a barrel. They have no arms at all, and need none: their
+      whole defense is the head itself, which shoots out on a telescoping neck like
+      a battering-ram to knock a trespasser tumbling back down the slope, then
+      snaps back with a crack, while the whole hillside roars with laughter. They
+      are not cruel so much as territorial and enormously, gleefully pleased with
+      their one good trick.
+    age: "as old as the hill they keep"
+    distinguishing_features:
+      - "a flat hard head on a neck that snaps out like a spring to knock a climber back down"
+      - "no arms whatsoever — and no need of them, the head does the whole job"
+      - "a hill on the southern road they will not, under any argument, let a soul simply walk across"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): keep the hill. The Hammer-Heads are the
+        obstacle of the escape lane made flesh — the blocked road on the way to the
+        red South, held by folk who let no one cross and are delighted to say so.
+        You do not fight your way past them; arms cannot reach an armless thing that
+        strikes from a distance and laughs. You go over, around, or with borrowed
+        wings — the Golden Cap and the Winged Monkeys carry travelers clean over the
+        crest the Hammer-Heads cannot reach.
+      - >-
+        Their menace is real but bloodless and bruising, never lethal — a tumble
+        back down the slope, a bellow of laughter, an invitation to try again and be
+        knocked down again. They guard the road out of sheer territorial delight
+        rather than malice, and the standing fact they enforce is simple: this is
+        the way to Glinda's country, and it cannot be walked. It must be flown.
+      - >-
+        Voice in their own register — a chorus, blunt and gleeful. They bellow "You
+        can't pass here!" and are enormously pleased to say it. They laugh
+        uproariously at each climber knocked back down. They explain the rule of the
+        hill as though it were a law of nature, immovable and obvious — and they have
+        no answer at all, none, for anyone who simply flies over their heads.
+    initial_disposition: -10
