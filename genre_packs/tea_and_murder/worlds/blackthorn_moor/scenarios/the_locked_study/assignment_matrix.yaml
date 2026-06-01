@@ -1,0 +1,89 @@
+# Suspect/motive/method/opportunity matrix for "The Locked Study".
+#
+# Three suspects carry `can_be_guilty: true` — the engine selects the
+# session's killer from these (ScenarioState.from_genre_pack, seedable).
+# Each must be fully solvable, so each has a complete when_guilty truth and a
+# breaking_evidence chain in npcs.yaml. The other three are can_be_guilty:
+# false — present, motivated enough to suspect, but innocent (their npcs.yaml
+# when_guilty blocks are alibi statements with empty breaking_evidence).
+#
+# Sir Edmund Blackthorn is the VICTIM and never a suspect. The method is the
+# same in every solution (digitalis overdose in the evening brandy, the scene
+# dressed afterward) — what differs is the hand, the motive, and the key.
+
+suspects:
+  - id: suspect_hale
+    archetype_ref: the_heir
+    can_be_guilty: true
+    motives: [the_old_will, the_debts, the_month_clause]
+    methods: [digitalis_in_the_brandy]
+    opportunities: [the_early_arrival, the_moor_gate, knew_the_evening_drops]
+
+  - id: suspect_catherine
+    archetype_ref: lady_of_the_house
+    can_be_guilty: true
+    motives: [the_acknowledged_ward, grenville_pride, the_settlement_over_her]
+    methods: [digitalis_in_the_brandy]
+    opportunities: [the_master_key, ran_the_household, the_evening_ritual]
+
+  - id: suspect_poole
+    archetype_ref: housekeeper
+    can_be_guilty: true
+    motives: [loyalty_to_the_house, a_secret_kept_for_the_family, what_she_was_promised]
+    methods: [digitalis_in_the_brandy]
+    opportunities: [the_master_key, the_official_account, the_back_stairs]
+
+  - id: suspect_ashworth
+    archetype_ref: country_doctor
+    can_be_guilty: false
+    motives: [the_refused_loan, the_signed_certificate]
+    methods: [knew_the_dose]
+    opportunities: [attended_the_body]
+
+  - id: suspect_graves
+    archetype_ref: solicitor
+    can_be_guilty: false
+    motives: [the_instructions_that_predate_the_death]
+    methods: [none_credible]
+    opportunities: [holds_the_will]
+
+  - id: suspect_fairfax
+    archetype_ref: governess
+    can_be_guilty: false
+    motives: [devotion_to_the_child]
+    methods: [none_credible]
+    opportunities: [her_room_above_the_study, awake_that_night]
+
+motives:
+  - the_old_will
+  - the_debts
+  - the_month_clause
+  - the_acknowledged_ward
+  - grenville_pride
+  - the_settlement_over_her
+  - loyalty_to_the_house
+  - a_secret_kept_for_the_family
+  - what_she_was_promised
+  - the_refused_loan
+  - the_signed_certificate
+  - the_instructions_that_predate_the_death
+  - devotion_to_the_child
+
+methods:
+  - digitalis_in_the_brandy
+  - knew_the_dose
+  - none_credible
+
+opportunities:
+  - the_early_arrival
+  - the_moor_gate
+  - knew_the_evening_drops
+  - the_master_key
+  - ran_the_household
+  - the_evening_ritual
+  - the_official_account
+  - the_back_stairs
+  - attended_the_body
+  - holds_the_will
+  - her_room_above_the_study
+  - awake_that_night

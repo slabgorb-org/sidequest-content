@@ -1,0 +1,272 @@
+# Blackthorn Moor — character creation (world override).
+#
+# A world char_creation list REPLACES the genre char_creation wholesale
+# (no merge — see server dispatch/char_creation_resolve.py). This file is
+# the genre tea_and_murder/char_creation.yaml reskinned from Edwardian
+# Highland Scotland to mid-Victorian Yorkshire ENGLAND, c. 1860s West
+# Riding. The Scottish leaks in the genre file are corrected here:
+#   kirkyard            → churchyard
+#   the glen            → the dale / the moor
+#   Church of Scotland  → Church of England
+#   Scottish Episcopal  → Nonconformist chapel / Roman Catholic mission
+#   in the glen         → on the moor
+# Mechanical effects (race_hint, class_hint, personality_trait, etc.) are
+# UNCHANGED from the genre file — only flavor text is reskinned, per
+# "Crunch in the Genre, Flavor in the World."
+
+- id: origins
+  title: How Do You Come to Blackthorn?
+  narration: |
+    The snug of the Blackthorn Arms is half a foot of polished oak that has
+    been polished by hands going back before the railway came. The fire is
+    going. The rain has just eased off the moor. The landlord has set down a
+    cup in front of you without asking — strong tea, the kind that gets you
+    through to supper.
+
+    He wipes his hands on the cloth tucked into his apron. He has the way
+    Yorkshire publicans have of looking at strangers — friendly, unhurried,
+    taking your measure for the next ten years.
+
+    "Settling in, then. You'll be wanting your supper before long." He folds
+    the cloth. "Where do your people come from?"
+  loading_text: "The landlord sets a second cup down and listens..."
+  choices:
+    - label: Old Family Hereabouts
+      description: >-
+        Your name belongs to this dale. Your grandfather is in the churchyard
+        and your aunt is in the second pew at St. Michael's. You may have been
+        away — school, the regiment, the city — but the parish knew you as a
+        child and treats you, more or less, as one of its own.
+      mechanical_effects:
+        race_hint: Gentry
+        background: Local
+    - label: The Rectory or the Surgery
+      description: >-
+        You were born into a respectable household — the doctor's, the vicar's,
+        the country solicitor's. Educated, not landed. Comfortable rather than
+        wealthy. You learned early that professional courtesy opens doors that
+        money cannot.
+      mechanical_effects:
+        race_hint: Clergy
+        background: Professional
+    - label: Trade or the Mills
+      description: >-
+        Your family built something — a mill, a shop, a foundry in the valley.
+        The money is recent and was earned in coal-smoke and cotton-lint. The
+        old county families are polite to your face and gossip behind it. You
+        do not entirely mind.
+      mechanical_effects:
+        race_hint: Trade
+        background: New Money
+    - label: The Village Itself
+      description: >-
+        You are of the place in the truest sense — a tenant farmer, a
+        farmhand, a shopkeeper, a railwayman's daughter. You know every
+        footpath across the moor and which farms hold a grudge. The squire
+        nods to you in the lane.
+      mechanical_effects:
+        race_hint: Servant
+        background: Village
+    - label: From Down South
+      description: >-
+        London, Manchester, the southern shires — you were educated south of
+        the moors and have come north to work, to recover, or to settle. The
+        parish is patient with your manners. You are learning to be patient
+        with the parish.
+      mechanical_effects:
+        race_hint: Bohemian
+        background: Returner
+    - label: From Away
+      description: >-
+        India, the Cape, Canada, the Caribbean — you have lived in places
+        these neighbours can barely imagine. You came back with stories, a
+        slight tan, and a habit of standing at windows that troubles the
+        housekeeper.
+      mechanical_effects:
+        race_hint: Colonial
+        background: Returned
+  allows_freeform: true
+
+- id: vocation
+  title: What Do You Do for a Living?
+  narration: |
+    The landlord refills your cup without being asked. The fire pops. A dog
+    has settled itself across your feet without consulting you on the matter.
+
+    "Working folk, then." He says it as observation, not question. "There's
+    plenty of work in a parish like this if you've a trade for it. What's
+    yours?"
+  loading_text: "The landlord nods slowly, as though placing you..."
+  choices:
+    - label: Country Doctor
+      description: >-
+        Surgery hours posted on the door, house calls across the dale, a black
+        bag with brass clasps. You enter any household at any hour without
+        being asked twice. You have seen everyone in their dressing-gown and
+        know what their hands look like when they are lying.
+      mechanical_effects:
+        class_hint: Doctor
+        personality_trait: observant
+    - label: Parish Vicar
+      description: >-
+        The vicarage, the parish register, Sunday twice and Wednesday evening,
+        weddings and funerals and the awkward bit in between. Church of England
+        by default. You sit with the dying, the bereaved, and the merely
+        guilty. People tell you things they will tell no one else.
+      mechanical_effects:
+        class_hint: Clergyman
+        personality_trait: discreet
+    - label: Chapel Minister
+      description: >-
+        The Nonconformist chapel down in Millbridge for the mill folk and the
+        temperance men — Methodist or Congregational, a plain meeting-house, an
+        outsider's eye on the parish church. The unobtrusive sort of clergyman:
+        attentive, patient, harder to fool than you look.
+      mechanical_effects:
+        class_hint: Clergyman
+        personality_trait: perceptive
+    - label: Postmistress
+      description: >-
+        The post office, the telegraph, the parcel counter. Every letter that
+        enters or leaves the parish passes through your hands. You know who
+        writes to whom, in what frequency, and from where. You see the
+        village's correspondence as a single long conversation about which you
+        are the only complete witness.
+      mechanical_effects:
+        class_hint: Society
+        personality_trait: attentive
+    - label: Schoolmistress
+      description: >-
+        The village school, thirty children, the slate and the bell. You have
+        taught every adult under forty. You know which marriages are going well
+        by what the children draw at break. The children tell you things they
+        will not tell their parents.
+      mechanical_effects:
+        class_hint: Governess
+        personality_trait: principled
+    - label: Country Veterinary Surgeon
+      description: >-
+        Large-animal practice across every farm and sporting estate on the
+        moor. You see the back kitchen of every household and the inside of
+        every byre. You know whose horses are kept well and whose are not, and
+        what that says about the rest of the household.
+      mechanical_effects:
+        class_hint: Doctor
+        personality_trait: pragmatic
+    - label: Village Constable
+      description: >-
+        The county constabulary, one sergeant, one bicycle. Official authority
+        that is utterly dependent on village cooperation. You know which lies
+        are habitual and which are new. You can tell from a man's coat whether
+        his Sunday was where he said it was.
+      mechanical_effects:
+        class_hint: Detective
+        personality_trait: methodical
+    - label: Retired Colonial Officer
+      description: >-
+        Half-pay, a cottage you are still painting, three months on the moor
+        and already restless. India or the Cape or the West Indies — you came
+        back with a bad leg, several decorations, and an inability to ignore a
+        stranger who does not move like a civilian.
+      mechanical_effects:
+        class_hint: Explorer
+        personality_trait: watchful
+  allows_freeform: true
+
+- id: eye
+  title: What Do You Always Notice?
+  narration: |
+    The landlord is wiping a glass slowly, the way a man does when he is
+    listening to something he wants to remember. The fire has settled. The dog
+    has begun to snore.
+
+    "Folk in a parish," he says, conversational, to the glass rather than to
+    you. "They all see different things. The doctor sees hands. The vicar sees
+    faces. The schoolmistress sees the children of folk who haven't said a
+    word." He sets the glass down. "What about you. What do you always notice?"
+  loading_text: "The landlord is no longer wiping the glass..."
+  choices:
+    - label: What's Out of Place
+      description: >-
+        The stain on the glove. The chair drawn up to a desk it doesn't belong
+        at. The umbrella by the door that doesn't match anyone in the house.
+        You see what doesn't fit, and once you've seen it you can't stop seeing
+        it.
+      mechanical_effects:
+        personality_trait: observant
+    - label: What Isn't Said
+      description: >-
+        The pause before the answer. The subject changed too smoothly. The
+        condolence offered to the wrong person. You read silence the way other
+        people read newspapers.
+      mechanical_effects:
+        personality_trait: perceptive
+    - label: The Children
+      description: >-
+        Children watch everything and tell most of it to whoever asks nicely. A
+        child's sudden fear of a particular adult is a fact worth its weight. A
+        child's sudden knowledge of a word they shouldn't have is a clue.
+      mechanical_effects:
+        personality_trait: patient
+    - label: The Money
+      description: >-
+        Sudden frugality. Sudden flush. A new hat on a wife whose husband is
+        meant to be in debt. A pew rebuilt by a family that swore they had
+        nothing. You follow the money because the money has never lied to you
+        yet.
+      mechanical_effects:
+        personality_trait: shrewd
+    - label: The Room Before the People
+      description: >-
+        You take a room in before you take its occupants in. What's on the
+        mantel. Which book is half-read. Whether the windows have been opened
+        today. By the time you greet your host you already know more than they
+        intend.
+      mechanical_effects:
+        personality_trait: attentive
+    - label: I Won't Let It Go
+      description: >-
+        It isn't that you notice more than other people. It's that you don't
+        stop noticing. Once something has caught your attention you will return
+        to it until it gives way, however long that takes, however gentle you
+        have to be.
+      mechanical_effects:
+        personality_trait: tenacious
+  allows_freeform: true
+
+- id: the_satchel
+  title: What You Brought
+  narration: |
+    The landlord pauses, glancing down at the satchel by your stool.
+
+    "Country folk travel light," he says, with a small approving nod. "But
+    you'll have come with the things of your trade. The pockets of a calling
+    carry their own ledger."
+
+    He sets a fresh cup on the bar and lets you settle the bag at your feet —
+    the working contents of a {class}'s working life.
+  loading_text: "The landlord glances at your satchel..."
+  choices: []
+  allows_freeform: false
+  mechanical_effects:
+    equipment_generation: class_kit
+
+- id: confirmation
+  title: Settling In
+  narration: |
+    The landlord nods slowly, as though placing the last piece of you on the
+    shelf where you belong.
+
+    "You'll be wanting a room, then, I expect. The back bedroom looks over the
+    moor — better than the front, the carriages come past at six on their way
+    up to the Hall. Supper is at the half-hour." He picks up the cloth again.
+
+    "And {name}? Welcome to Blackthorn. They'll have you up the lane for tea
+    before the week's out — though up at the Hall, mind, the tea has gone
+    cold lately."
+
+    {name} — fresh case, steady eye, the watchful air of a {class} sleuth
+    lately come up from a {race} household — follows the landlord's gesture
+    toward the stairs.
+  choices: []
+  allows_freeform: false

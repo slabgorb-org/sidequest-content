@@ -1,0 +1,107 @@
+name: The Locked Study
+version: "1.0.0"
+description: >-
+  Sir Edmund Blackthorn died three weeks ago in his locked study — heart
+  failure, the certificate says, signed by Dr. Ashworth, accepted by the
+  county, the man buried with full rites a fortnight since. The fire had been
+  built up as though he meant to sit the night; a glass of brandy stood
+  untouched on the desk; the door was locked from within. Then a letter came
+  from London, unsigned, suggesting the death was no such thing — and the
+  solicitor, Mr. Graves, called the household back to the Hall for the reading
+  of a will that Sir Edmund changed six weeks before he died. Everyone under
+  this roof was here the night he died, and every one of them had a reason to
+  wish the old will read, or the new one, or no will at all. The player arrives
+  as the outsider who sees what the household has stopped seeing. The puzzle is
+  fair: the brandy, the will, the ward, and the letter are all on the page
+  before a name is spoken in the library.
+duration_minutes: 180
+max_players: 4
+
+player_roles:
+  - id: invited_outsider
+    archetype_hint: "A guest or professional admitted to the Hall for the reading, with manners and a noticing eye"
+    narrative_position: "You came up to Blackthorn on the eve of the reading, and the house has been wrong since you crossed the threshold."
+    required_hooks:
+      - type: MOTIVATION
+        prompt: "What keeps you at the Hall now the death looks like murder — duty, conscience, or a stake of your own in the will?"
+    constraints:
+      - "An outsider, with no prior claim on the Blackthorn estate"
+      - "Cannot be the killer in solo mode"
+    suggested_flavors:
+      - "A country doctor asked to give a second opinion"
+      - "A distant cousin of the Grenvilles, down for the reading"
+      - "A retired colonial magistrate breaking a journey north"
+
+  - id: household_confidante
+    archetype_hint: "Someone the household and the servants will speak plainly to — between upstairs and down"
+    narrative_position: "You have a place in this house, or near it, and you hear what the family forgets you can hear."
+    required_hooks:
+      - type: RELATIONSHIP
+        prompt: "Whose trust in the household have you earned, and what do they fear you already know?"
+    constraints:
+      - "Has a foothold in the Hall's daily life — governess, companion, upper servant, or family friend"
+    suggested_flavors:
+      - "A companion engaged for Lady Catherine's mourning"
+      - "A cousin of the housekeeper, come to help with the reading"
+      - "A tutor sent up to assess the ward's schooling"
+
+  - id: clerical_ally
+    archetype_hint: "A churchman or churchwoman of the parish — the vicar's circle, carrying moral rather than legal authority"
+    narrative_position: "You read people for a living, and you have learned to let them finish."
+    required_hooks:
+      - type: MOTIVATION
+        prompt: "What in your calling will not let a death be buried under a lie, however respectable?"
+    constraints:
+      - "Aligned with St. Michael's or the Millbridge chapel; moral, not legal, weight"
+    suggested_flavors:
+      - "A curate newly arrived to assist Mr. Lancaster"
+      - "A deaconess up on parish work among the mill folk"
+      - "A visiting canon with a weakness for detective novels"
+
+  - id: professional_eye
+    archetype_hint: "A person whose trade is noticing — the law, the press, insurance, or the railway"
+    narrative_position: "You came to Blackthorn on business, and the business has turned to murder."
+    required_hooks:
+      - type: MOTIVATION
+        prompt: "Whose interest do you serve, and where does it stop being theirs and start being yours?"
+    constraints:
+      - "Has a professional reason to document what truly happened"
+    suggested_flavors:
+      - "A junior partner sent up to assist Mr. Graves"
+      - "An assessor for the life office that insured Sir Edmund"
+      - "A correspondent for a Leeds paper, smelling a story"
+
+pacing:
+  scene_budget: 14
+  acts:
+    - id: act_1
+      name: The Arrival
+      scenes: 4
+      trope_range: [0.0, 0.35]
+      narrator_tone: "Low gold autumn light on a house in mourning — the wrong note sounding faintly beneath the careful courtesy"
+    - id: act_2
+      name: The Inquiry
+      scenes: 7
+      trope_range: [0.35, 0.75]
+      narrator_tone: "Cosy turned careful — every cup of cold tea is also a question, every alibi has a seam, every door was locked or was it"
+    - id: act_3
+      name: The Reading
+      scenes: 3
+      trope_range: [0.75, 1.0]
+      narrator_tone: "Quiet and exact — the library gathers for the will, the evidence is laid out, and a name is spoken aloud"
+  pressure_events:
+    - at_scene: 4
+      event: "Dr. Ashworth asks to see you alone. He cannot keep the certificate's lie any longer, and he wants a witness to what he should have written."
+    - at_scene: 9
+      event: "The will is to be read tomorrow at eleven; the county coroner has been wired about the London letter and may reopen the death. Whoever acts, acts tonight."
+    - at_scene: 12
+      event: "The anonymous letter from London surfaces where it should not be — and the hand that wrote it is a hand in this house."
+  escalation_beats:
+    - at: 0.50
+      inject: "Halfway. The heart-failure story will not hold, and three people under this roof had reason to wish it would."
+    - at: 0.75
+      inject: "Three-quarters. Someone has tidied a detail in the study that was not theirs to tidy. They are still in the house."
+    - at: 0.95
+      inject: "The will is about to be read. Name the truth now, in the library, before the lawyer's words make it too late to matter."
+
+allows_split_party: false

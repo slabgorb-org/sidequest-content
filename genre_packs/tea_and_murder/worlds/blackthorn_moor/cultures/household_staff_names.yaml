@@ -1,0 +1,29 @@
+# Household Staff — NAME-GENERATION culture for Blackthorn Moor.
+# World-tier override (see english_gentry_names.yaml header). Below-stairs
+# service at Blackthorn Hall: housekeeper, butler, footmen, maids, cook,
+# the governess where she sits to the staff register. Known by surname or
+# role, rarely by first name in company. Mid-Victorian English service,
+# c. 1860s. Shares the genre's English servant corpus. Visual identity
+# for the same set lives in household_staff.yaml.
+
+name: Household Staff
+summary: "Below stairs at the Hall — the people who keep the house standing"
+description: "Below stairs at Blackthorn Hall — the housekeeper with her chatelaine of keys, the butler, the footmen, the maids, the cook. They are known by surname or by role and rarely by first name in company. They see everything the family forgets they are there to see."
+slots:
+  given_name:
+    names_file: english_servant_first.txt
+  family_name:
+    names_file: english_servant_family.txt
+  title:
+    word_list: [Mrs., Mr., Cook, Nurse, Nanny]
+  place_noun:
+    word_list: [kitchen, pantry, scullery, cellar, attic, servants' hall, back stairs, still-room, laundry, boot-room]
+  adjective:
+    word_list: [lower, upper, east, west, old, back, night, early, cold, quiet]
+person_patterns:
+  - "{family_name}"
+  - "{title} {family_name}"
+  - "{given_name}"
+place_patterns:
+  - "the {adjective} {place_noun}"
+  - "the {place_noun}"

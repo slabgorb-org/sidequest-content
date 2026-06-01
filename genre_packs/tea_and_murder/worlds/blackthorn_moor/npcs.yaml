@@ -1,0 +1,468 @@
+# Blackthorn Moor — the suspect cast and village standing roster.
+#
+# Mid-Victorian Yorkshire country-house murder, c. 1860s West Riding.
+# Drawn from lore.yaml (the four factions) and history.yaml (chapters,
+# expected_relationships, discovered_lore). Authored proper names follow
+# the convention: surnames drawn from the world/genre English corpora
+# (corpus/shared/english_*), gendered given names + titles assigned by the
+# author so pronouns and titles ALWAYS agree (the playtest pronoun bug had
+# "Mrs. Honoria Harcourt" tagged he/him — every entry here pins pronouns
+# explicitly to its gendered name/role).
+#
+# HARD RULE: Sir Edmund Blackthorn is the DEAD VICTIM. He is NOT in this
+# roster — he is the corpse the mystery turns on. The living cast either
+# loved him, feared him, owed him, or all three.
+#
+# Self-contained mystery (world.yaml: chapter_arc: self_contained): unlike
+# Glenross's warm episodic cast, members of THIS roster can be the killer,
+# can be exposed, can fall. Dispositions start guarded — this is a house of
+# people with reasons to lie, and the player is the outsider who notices.
+#
+# Voice / mannerisms live in history_seeds as prose; the narrator extracts
+# them. OCEAN ranges per ADR-042; initial_disposition per ADR-020.
+
+version: "0.1.0"
+world: blackthorn_moor
+
+npcs:
+  # ── The Household ──────────────────────────────────────────────────
+  - id: lady_catherine
+    name: "Lady Catherine Blackthorn"
+    pronouns: "she/her"
+    role: "Widow of Sir Edmund; born a Grenville, mistress of Blackthorn Hall"
+    ocean: { O: 0.5, C: 0.8, E: 0.35, A: 0.45, N: 0.55 }
+    appearance: >-
+      A woman in her late forties, handsome rather than pretty, who carries
+      herself with the trained stillness of a Grenville. Dark hair, greying
+      at the temples, dressed low over the ears in the old fashion. Deep
+      mourning — unrelieved black bombazine, a jet brooch at the throat, a
+      fine gold locket she touches without seeming to know she does it.
+      Pale, composed, the eyes steady and a little too dry. She has not
+      wept where anyone could see, and the county has noticed.
+    age: "late forties"
+    distinguishing_features:
+      - "a jet mourning brooch at the throat and a gold locket she touches when she is thinking"
+      - "a way of folding her hands in her lap and going perfectly still before she answers"
+      - "a faint Grenville accent that surfaces only when she is angry"
+    history_seeds:
+      - >-
+        A Grenville by birth — old land, no money, a name the county respected
+        and a marriage it never quite forgave. She married Edmund for the mills
+        and the mills made her grand; whether she came to love him, or merely to
+        manage him, is the question her composure refuses to answer. Twenty-three
+        years of marriage to a man who locked his study at night and walked the
+        moors alone in any weather.
+      - >-
+        Voice in her own register — precise, courteous, economical. Says exactly
+        what propriety requires and not one word past it. Answers a question with
+        a question of her own when she does not wish to answer. Refers to her
+        late husband as "Sir Edmund" in company and never by his Christian name.
+        Her grief, if it is grief, is conducted entirely in private.
+      - >-
+        She was the one who insisted Dr. Ashworth be called and no one else; she
+        was the one who chose the hour of the funeral; she has managed every
+        detail of the mourning with a control that some read as dignity and
+        others as something colder. The anonymous letter from London frightens
+        her more than she will admit — not because of what it says, but because
+        of who in this house might have written it.
+    initial_disposition: -5
+
+  - id: miss_fairfax
+    name: "Miss Eleanor Fairfax"
+    pronouns: "she/her"
+    role: "Governess to the ward Rose; caught between upstairs and down"
+    ocean: { O: 0.7, C: 0.7, E: 0.4, A: 0.65, N: 0.5 }
+    appearance: >-
+      A woman of perhaps thirty, neat and plainly dressed in the dark stuff of
+      her station — a governess belongs to neither the family nor the servants
+      and dresses to neither. Light brown hair pinned simply. Quick, watchful
+      grey eyes that drop when a member of the family enters and lift again the
+      moment they turn away. Ink on the side of the right middle finger. A
+      governess's stillness, learned from years of being present and unseen.
+    age: "early thirties"
+    distinguishing_features:
+      - "ink-stained right middle finger from the schoolroom"
+      - "the habit of going very still and watchful when the family is in the room"
+      - "a small worn cameo at the collar, her mother's, the only ornament she owns"
+    history_seeds:
+      - >-
+        A clergyman's daughter from down south, educated above her prospects and
+        left without means when her father died. She came to Blackthorn Hall four
+        years ago to teach Rose and has made herself quietly indispensable. She
+        occupies the loneliest position in the house — too genteel for the
+        servants' hall, too poor for the drawing room — and so she sees both,
+        and is trusted by neither, and notices everything.
+      - >-
+        Voice in her own register — soft, careful, grammatically exact, with the
+        diffidence of someone who has learned that her opinion is rarely solicited.
+        Says "I couldn't say, I'm sure" when she could say a great deal. Warms
+        considerably to anyone who treats her as a person rather than a fixture —
+        and the player, the outsider, may be the first to do so.
+      - >-
+        She is devoted to Rose with a fierceness that surprises people, and she
+        knows — or half-knows — something about the child's parentage that the
+        household has worked hard to keep buried. She was awake the night Sir
+        Edmund died; her room is above the study; and she has told no one what
+        she heard, because she is not sure whom in this house she can trust.
+    initial_disposition: 15
+
+  - id: mrs_poole
+    name: "Mrs. Poole"
+    pronouns: "she/her"
+    role: "Housekeeper of Blackthorn Hall; keeper of the keys and the household's story"
+    ocean: { O: 0.35, C: 0.9, E: 0.4, A: 0.4, N: 0.45 }
+    appearance: >-
+      A woman of sixty in unrelieved black bombazine, upright as a fire-iron,
+      with a chatelaine of keys at her waist that announces her before she
+      speaks. Iron-grey hair drawn back without a strand loose. A face composed
+      into permanent discreet civility, the eyes flat and assessing. She has
+      kept this house for thirty years and she keeps it still — including, the
+      player will come to suspect, its secrets.
+    age: "sixty"
+    distinguishing_features:
+      - "a chatelaine of household keys at the waist, never once mislaid"
+      - "the flat, assessing pause before she decides how much of an answer you are owed"
+      - "hands always folded at the waist, perfectly still"
+    history_seeds:
+      - >-
+        Thirty years in the family's service, the last twenty as housekeeper.
+        She remembers Sir Edmund as a young man and Lady Catherine as a bride,
+        and her loyalty is not to either of them but to the house itself and the
+        order of things it represents. She was the one who found the body — or
+        says she was — and her account of that night is the official one, and
+        she has never varied a word of it.
+      - >-
+        Voice in her own register — clipped, formal, scrupulously correct, the
+        servant's habit of answering exactly the question asked and volunteering
+        nothing. Calls the player "sir" or "madam" with a courtesy that can be
+        made to feel like a closing door. Disapproves of the player's questions
+        on principle and shows it only in the smallest tightening at the mouth.
+      - >-
+        She knows the house's routines to the minute — who was where, who rang
+        which bell, which doors were locked — and that knowledge makes her the
+        most dangerous witness in the building, because she can confirm a lie as
+        easily as expose one. The younger servants are frightened of her. She
+        gathers the household's gossip the way she gathers the keys: completely,
+        and to herself.
+    initial_disposition: -10
+
+  # ── The Heirs ──────────────────────────────────────────────────────
+  - id: captain_hale
+    name: "Captain Roderick Hale"
+    pronouns: "he/him"
+    role: "Sir Edmund's nephew and presumptive heir; lately of a cavalry regiment, heavily in debt"
+    ocean: { O: 0.55, C: 0.4, E: 0.75, A: 0.55, N: 0.6 }
+    appearance: >-
+      A man in his middle thirties, soldierly and handsome in a slightly frayed
+      way — the cut of his coat is good but a season out of date, the boots
+      excellent but resoled. Fair hair worn longer than the regiment liked, a
+      cavalry moustache, an easy charm he deploys like a weapon. His hands are
+      restless; he is forever turning a signet ring on his little finger. He
+      laughs readily and watches you while he does it.
+    age: "mid-thirties"
+    distinguishing_features:
+      - "a gold signet ring turned restlessly on the little finger when he is calculating"
+      - "a cavalry moustache and the upright carriage of a man who was once a good officer"
+      - "the too-quick charming laugh that arrives a half-beat before anything funny is said"
+    history_seeds:
+      - >-
+        Sir Edmund's late brother's son, and — until the will is read — the
+        presumptive heir to the Hall and the mills. He left his regiment under
+        a cloud no one quite names, and he is in debt to an extent that no one
+        in this house knows the size of, though several suspect. His charm is
+        genuine and so is his desperation; the two are not in conflict, which
+        is what makes him dangerous.
+      - >-
+        Voice in his own register — hearty, anecdotal, expansive, with a soldier's
+        easy profanity bitten back just in time for the drawing room. Deflects
+        every hard question with a story or a joke or a sudden warm interest in
+        the questioner. Says "between ourselves —" before telling you something
+        calculated to seem like a confidence. Underneath the bonhomie he is doing
+        arithmetic at all times.
+      - >-
+        He claims to have arrived from London the morning after Sir Edmund died.
+        The stationmaster's wife says otherwise. His debts are the largest motive
+        in the house and the will is the only thing that can clear them, which
+        gives him every reason to want it read exactly as written — and every
+        reason to fear what the anonymous letter might unsettle.
+    initial_disposition: 10
+
+  - id: rose
+    name: "Rose"
+    pronouns: "she/her"
+    role: "Sir Edmund's young ward; a child who sees everything and is asked about nothing"
+    ocean: { O: 0.8, C: 0.45, E: 0.4, A: 0.6, N: 0.6 }
+    appearance: >-
+      A girl of nine or ten, slight and watchful, dressed in the plain black of
+      a child in a house of mourning. Dark hair in a single plait. Large still
+      eyes that miss nothing and a habit of being in doorways. She speaks little
+      to adults and a great deal, when she trusts them, to anyone who will treat
+      her question as a real one. There is something about the set of her face
+      that, once seen, is hard to place and harder to forget.
+    age: "nine or ten"
+    distinguishing_features:
+      - "the trick of being in a doorway, half-seen, having heard more than anyone realised"
+      - "a single dark plait and a child's habit of going very quiet rather than lying"
+      - "a likeness about the brow and eyes that the household never remarks upon"
+    history_seeds:
+      - >-
+        Sir Edmund's ward, taken into the house as an infant under an arrangement
+        the household describes as charity and the village describes, behind its
+        hand, as something else. She has been raised gently but at a careful
+        distance, taught by Miss Fairfax, indulged by no one in particular and
+        watched, lately, by Lady Catherine with an expression no one can read.
+        Who Rose actually is may be the centre of the whole matter.
+      - >-
+        Voice in her own register — direct, literal, the unguarded clarity of a
+        clever child who has not yet learned which truths adults prefer not to
+        hear. Reports what she has seen as plain fact ("the study door was open
+        and then it was shut"). Trusts slowly and completely. Frightened of Mrs.
+        Poole, easy with Miss Fairfax, and — interestingly — not at all sad, in
+        the way a child is not sad about a man who was kind to her at a distance.
+      - >-
+        She was awake the night Sir Edmund died, and she saw something from the
+        gallery, and she has told only Miss Fairfax, and only part of it. She is
+        the most honest witness in the house and the one most in need of
+        protection — because if her parentage is what the player begins to
+        suspect, she is also, unknowingly, at the centre of the will.
+    initial_disposition: 5
+
+  # ── The Investigators ──────────────────────────────────────────────
+  - id: dr_ashworth
+    name: "Dr. Ashworth"
+    pronouns: "he/him"
+    role: "The Blackthorn family physician; signed the death certificate he has come to doubt"
+    ocean: { O: 0.55, C: 0.7, E: 0.45, A: 0.6, N: 0.65 }
+    appearance: >-
+      A man in his fifties, spare and grey and tired, with the stoop of a country
+      doctor who has spent thirty years climbing other people's stairs at night.
+      A dark, sober, well-brushed but worn frock coat. A black bag with brass
+      clasps never far from his hand. Steady professional eyes that have lately
+      taken to not quite meeting yours. He drinks a little more brandy than he
+      used to and pretends, to himself most of all, that he does not.
+    age: "fifties"
+    distinguishing_features:
+      - "a black doctor's bag with worn brass clasps, always within reach"
+      - "the new habit of not quite meeting your eye when Sir Edmund's death is mentioned"
+      - "a tremor in the hands at evening that he steadies with the brandy he says he doesn't take"
+    history_seeds:
+      - >-
+        The family physician for two decades, present at half the births and most
+        of the deaths in the parish. He was called to the Hall at eleven on the
+        night of October the fourteenth and by midnight he had pronounced heart
+        failure and, the next morning, signed the certificate. He has regretted
+        that signature a little more with every passing day, and he does not yet
+        know whether his regret is conscience or fear.
+      - >-
+        Voice in his own register — measured, clinical, kindly when he forgets to
+        be careful and evasive the instant he remembers. Retreats into medical
+        Latin when cornered. Says "in my professional judgement —" when his
+        professional judgement is precisely what is in doubt. A fundamentally
+        decent man who has done one indefensible thing and is being slowly
+        crushed by it.
+      - >-
+        He saw something at the bedside that night that did not fit heart failure
+        — the colour of the lips, perhaps, or the brandy untouched, or something
+        Lady Catherine said — and he signed anyway, for reasons he has not told
+        anyone and may not fully admit to himself. He is the player's most
+        promising informant and most fragile one: pressed too hard he will bolt;
+        handled with care he may be the man who finally tells the truth.
+    initial_disposition: 0
+
+  - id: mr_graves
+    name: "Mr. Graves"
+    pronouns: "he/him"
+    role: "The family solicitor, down from the firm; keeper of the locked document case and the unread will"
+    ocean: { O: 0.4, C: 0.95, E: 0.3, A: 0.5, N: 0.4 }
+    appearance: >-
+      A precise, dry man of indeterminate late-middle age, dressed in the
+      unrelieved black of his profession, every button done. Thin, bloodless,
+      scrupulously neat. Spectacles he polishes when he is buying time. A
+      leather document case with brass clasps that he carries from room to room
+      and never leaves unattended; the key is on his watch chain. He speaks as
+      though every word might later be read aloud in a court.
+    age: "late middle age"
+    distinguishing_features:
+      - "a brass-clasped leather document case never left unattended; its key on his watch chain"
+      - "spectacles polished slowly whenever he is deciding what he is permitted to say"
+      - "the lawyer's habit of correcting an imprecise word in someone else's sentence"
+    history_seeds:
+      - >-
+        Sir Edmund's solicitor of long standing, summoned to read the will and
+        settle the estate. He arrived the day before the player and has installed
+        himself in a converted guest room with his papers ranged in legal order.
+        He holds the will, and he holds something else — instructions Sir Edmund
+        gave him that predate the death — and professional discretion has become
+        his fortress and possibly his alibi.
+      - >-
+        Voice in his own register — formal, qualified, hedged about with "as I
+        understand it" and "subject to confirmation." Volunteers nothing and
+        confirms only what the player can already prove. Treats the anonymous
+        letter as an irregularity rather than an accusation. Beneath the dryness
+        is a man who took an oath he intends to keep and is uneasily aware that
+        keeping it may protect a murderer.
+      - >-
+        He knows the contents of the will, which no one else does, and he knows
+        Sir Edmund changed it six weeks before he died, and he knows in whose
+        favour. He will not say. Whether he is an honest man bound by his
+        profession or a man with his own stake in the outcome is a question the
+        player must answer by other means — the document case does not open to
+        questions.
+    initial_disposition: -5
+
+  # ── The Village (Thornkirk & Millbridge) ───────────────────────────
+  - id: rev_lancaster
+    name: "The Reverend Mr. Lancaster"
+    pronouns: "he/him"
+    role: "Vicar of St. Michael's, Thornkirk; buried Sir Edmund and knows what he cannot tell"
+    ocean: { O: 0.6, C: 0.75, E: 0.4, A: 0.7, N: 0.55 }
+    appearance: >-
+      A gentle, careworn clergyman of about sixty, stooped and short-sighted,
+      in a black cassock gone green at the seams. White hair in disorder, a
+      mild long face, a habit of clasping his hands as though perpetually at the
+      edge of prayer. Kindly, scholarly, and visibly burdened by something he
+      carries and cannot set down. He buried Sir Edmund and he has not slept
+      well since.
+    age: "about sixty"
+    distinguishing_features:
+      - "a cassock gone green at the seams and a habit of clasping his hands as if about to pray"
+      - "the burdened look of a man holding a confidence he must not break"
+      - "short-sighted; peers closely and apologises for it"
+    history_seeds:
+      - >-
+        Vicar of Thornkirk for over thirty years, scholar of the parish registers
+        and the family memorials, on cordial terms with the Hall and dependent on
+        its living. He christened Rose, married no one of consequence lately, and
+        buried Sir Edmund with full rites a fortnight before the player arrived.
+        He is a good man in an impossible position.
+      - >-
+        Voice in his own register — gentle, allusive, given to circling a hard
+        subject with scripture and anecdote rather than addressing it. Says "we
+        must be charitable" when charity is the last thing the situation deserves.
+        Cannot lie comfortably and so, when he must keep a secret, falls silent
+        and changes the subject to his beloved church tower.
+      - >-
+        Sir Edmund came to the vestry the week before he died and told the vicar
+        something — under the seal, or close enough to it — that the vicar
+        believes he cannot repeat and cannot quite live with either. It concerns
+        the will, or Rose, or both. The player will get nothing from him by
+        direct assault; only patience, and perhaps the relief of a man who badly
+        wants to be given permission to speak.
+    initial_disposition: 10
+
+  - id: mr_firth
+    name: "Mr. Firth"
+    pronouns: "he/him"
+    role: "Landlord of the Blackthorn Arms, Thornkirk; the village's listening post"
+    ocean: { O: 0.45, C: 0.6, E: 0.7, A: 0.65, N: 0.4 }
+    appearance: >-
+      A broad, easy, weathered man of fifty in shirtsleeves and a long apron,
+      with forearms like a wheelwright's and the publican's gift of seeming to
+      listen to no one while hearing everyone. Balding, side-whiskered, a slow
+      smile and a slower, more careful eye. He polishes a tankard that is
+      already clean while you decide whether to tell him what you came to ask.
+    age: "fifties"
+    distinguishing_features:
+      - "a long bar apron and forearms like a wheelwright's"
+      - "polishes an already-clean tankard while taking the measure of a stranger"
+      - "answers a question about the Hall with a remark about the weather first, always"
+    history_seeds:
+      - >-
+        Landlord of the Blackthorn Arms, which has stood on the Thornkirk
+        crossroads longer than the Blackthorns have held the land. He has served
+        the parish its weddings and its wakes, and the mill men drink in his
+        snug after their shift, and he hears — without appearing to — everything
+        the valley says about the Hall. His ale is adequate and his gossip is
+        the best in the West Riding.
+      - >-
+        Voice in his own register — genial, unhurried, deflecting, the publican's
+        trick of telling you about the weather and the road and the price of malt
+        at length before he tells you the one thing you actually came for, which
+        he will then deliver as an afterthought. Loyal to his regulars, wary of
+        the Hall, and quietly delighted that the county's troubles have at last
+        become interesting.
+      - >-
+        He knows who in Millbridge had cause to hate Sir Edmund — the mill men
+        laid off, the family ruined in the '52 fire, the foreman dismissed — and
+        he knows which of the Hall's servants drink in his snug and what they let
+        slip when they do. He is the player's open door into the village's version
+        of events, which differs from the Hall's in every particular that matters.
+    initial_disposition: 20
+
+  - id: mr_gregson
+    name: "Mr. Gregson"
+    pronouns: "he/him"
+    role: "Stationmaster at Thornkirk Station; knows every face that arrives and departs"
+    ocean: { O: 0.4, C: 0.85, E: 0.45, A: 0.55, N: 0.45 }
+    appearance: >-
+      A trim, conscientious man of forty in the brass-buttoned serge of the
+      railway company, cap squared, watch consulted on the hour whether a train
+      is due or not. A neat moustache, polished boots, the upright self-importance
+      of a man who is the sole official presence for a mile in any direction. He
+      knows the timetable to the minute and the passengers to the face.
+    age: "forty"
+    distinguishing_features:
+      - "a brass-buttoned railway serge and a cap squared exactly level"
+      - "consults his watch on the hour out of pure habit"
+      - "remembers every face that has bought a ticket in ten years"
+    history_seeds:
+      - >-
+        Stationmaster at Thornkirk Station — the single platform a mile south of
+        the village and the only connection to the wider world. Three trains a
+        day to Leeds, the last at six. Nothing arrives or leaves the parish
+        without passing under his eye, and he takes a proprietary interest in
+        every traveller that he mistakes for diligence.
+      - >-
+        Voice in his own register — official, precise, fond of the exact times of
+        trains as other men are fond of poetry. Anchors every account to a
+        timetable ("the 4.15 was three minutes late that day, on account of the
+        points at Calderbank"). Discreet by temperament but his wife is not, and
+        between the two of them the comings and goings of the parish are an open
+        book.
+      - >-
+        He — or rather his wife, who keeps the waiting room — knows when Captain
+        Hale actually arrived, which is not the morning after the death as the
+        Captain claims. He knows who came down from London on the day the
+        anonymous letter would have been posted. The player who thinks to ask the
+        right question about the right train will find the timetable does not lie,
+        even when the passengers do.
+    initial_disposition: 10
+
+  - id: mr_blackwood
+    name: "Mr. Blackwood"
+    pronouns: "he/him"
+    role: "Manager of the Blackthorn mills at Millbridge; the man who knows the account books"
+    ocean: { O: 0.45, C: 0.85, E: 0.4, A: 0.4, N: 0.55 }
+    appearance: >-
+      A hard, careful man of forty-five in a dark serge sack-coat and a watch-chain,
+      a hard bowler set squarely, cotton lint forever on his cuffs and coal grime
+      at the collar however well he brushes. A close-set, calculating face. He
+      speaks of men as costs and of the late Sir Edmund with a respect that does
+      not quite warm the words.
+    age: "forties"
+    distinguishing_features:
+      - "a hard bowler and a watch-chain; cotton lint on the cuffs, coal grime at the collar"
+      - "speaks of the workforce in figures — heads, shifts, wages — never names"
+      - "a close, calculating pause before he says how much anything cost"
+    history_seeds:
+      - >-
+        Manager of the three Blackthorn mills, risen from the floor to the office
+        by a combination of ability and a willingness to do the owner's harder
+        work for him. He kept Sir Edmund's account books and knows the mills'
+        true position — and a transaction six weeks before the death that the
+        household version omits entirely. His loyalty is to the mills, which is to
+        say to whoever inherits them.
+      - >-
+        Voice in his own register — flat, exact, mercantile, every sentence
+        costed. Resents the gentry's questions and conceals it under a careful
+        deference. Says "that would be a matter for the office" to push back any
+        enquiry he dislikes. Beneath the ledger-keeper's reserve is a man with a
+        powerful interest in who reads the will and how.
+      - >-
+        The mills' future hangs on the inheritance; the workers' jobs hang on the
+        mills; and Blackwood sits at the centre of that arithmetic. He knows of a
+        debt called in and a payment made that point somewhere awkward. Whether
+        he will share what the books say depends entirely on whether he judges it
+        to serve the mills — and Blackwood, unlike everyone else in this story,
+        is not lying about anything except by omission.
+    initial_disposition: -5

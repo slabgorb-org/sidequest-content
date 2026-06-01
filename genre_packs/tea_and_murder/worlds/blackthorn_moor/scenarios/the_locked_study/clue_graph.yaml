@@ -1,0 +1,242 @@
+# Clue graph for "The Locked Study".
+#
+# DAG note: `requires` is enforced at the engine entry point
+# (ScenarioState.discover_clue raises PrerequisiteNotSatisfiedError +
+# emits SPAN_SCENARIO_CLUE_PREREQUISITE_VIOLATION when a prerequisite is
+# unmet). The gated deduction nodes therefore cannot be discovered before
+# their prerequisites are in `discovered_clues`. Every other node is a free
+# entry point so an investigation turn always has something true to find.
+#
+# `implicates` references suspect ids in assignment_matrix.yaml.
+# `locations` are scenario-local place tags derived from the Blackthorn
+# cartography + history POIs (free strings — the engine does not validate
+# them): the_study, the_drawing_room, the_servants_hall, the_solicitors_room,
+# blackthorn_hall, thornkirk, the_blackthorn_arms, railway_station,
+# the_church_vestry, churchyard, millbridge, the_mill_office.
+#
+# THE TRUTH OF THE METHOD (the fair-play spine): Sir Edmund's heart was
+# genuinely failing; Dr. Ashworth had prescribed digitalis (foxglove) drops.
+# The killer poured a fatal overdose of the drops into the brandy — which Sir
+# Edmund, who took his medicine in brandy of an evening, drank. The "untouched"
+# brandy on the desk was a SECOND glass, poured and set out afterward to make
+# the scene read as a quiet heart-failure death; the real glass was rinsed.
+# The built-up fire was to keep the body warm and confuse the hour of death.
+# The door was locked from within because the killer had a second key. Dr.
+# Ashworth saw the bottle was near-empty and the pupils wrong, and signed
+# anyway. Every guilty suspect had access to the drops, the brandy, and a key.
+
+nodes:
+  # ── The forensic spine — Dr. Ashworth's suppressed examination yields a
+  #    real, reproducible clue instead of narrator-improvised forensics. ──
+  - id: clue_body_examination
+    type: physical
+    description: >-
+      What Dr. Ashworth saw at the bedside and did not write: this was not a
+      quiet failing of the heart. The pupils were fixed and the skin had the
+      wrong colour; the pulse, before it stopped, had run slow and then wildly
+      irregular — the signature of the very drug he had prescribed to steady
+      that failing heart. Digitalis in a fatal dose looks, to a frightened or a
+      willing eye, almost like the disease it treats. Almost.
+    discovery_method: forensic
+    visibility: hidden
+    locations: [the_study, blackthorn_hall]
+    implicates: [suspect_hale, suspect_catherine, suspect_poole]
+    requires: []
+    red_herring: false
+
+  - id: clue_two_brandy_glasses
+    type: physical
+    description: >-
+      The glass of brandy on the desk stood untouched — the household made much
+      of it, the master taken before he could drink. But the decanter is down
+      by two measures, not one, and there is a second glass, rinsed and dried
+      and set back in the cabinet out of its row, that no servant would have
+      misplaced. Someone poured two, cleaned one, and arranged the other to be
+      found full. Sir Edmund's evening glass was the one that was emptied.
+    discovery_method: search
+    visibility: hidden
+    locations: [the_study, the_drawing_room]
+    implicates: [suspect_hale, suspect_catherine, suspect_poole]
+    requires: []
+    red_herring: false
+
+  - id: clue_digitalis_bottle
+    type: physical
+    description: >-
+      Dr. Ashworth's tincture of digitalis, prescribed for the master's heart,
+      kept in the study cabinet where Sir Edmund took his evening drops in
+      brandy. The bottle is all but empty. By the doctor's own dosing it should
+      have been half full the night he died. The missing measure is exactly the
+      measure that would stop a weak heart in an hour.
+    discovery_method: search
+    visibility: requires_skill
+    locations: [the_study, blackthorn_hall]
+    implicates: [suspect_hale, suspect_catherine, suspect_poole]
+    requires: []
+    red_herring: false
+
+  - id: clue_changed_will
+    type: physical
+    description: >-
+      The will Sir Edmund signed six weeks before he died, in Mr. Graves's
+      strongbox: the old bequest to Captain Hale struck down to a pittance, the
+      bulk of the estate and the mills settled instead on the ward, Rose, with
+      Lady Catherine as trustee — and a clause that the settlement fails, and
+      the old will stands, if the new one is not read within the month of his
+      death. Three people are made or unmade by which will is read, and when.
+    discovery_method: search
+    visibility: hidden
+    locations: [the_solicitors_room, blackthorn_hall]
+    implicates: [suspect_hale, suspect_catherine]
+    requires: []
+    red_herring: false
+
+  - id: clue_second_key
+    type: physical
+    description: >-
+      The study door was locked from within — the household's proof that no one
+      could have entered. But Sir Edmund kept one key on his chain and there was
+      always a second, the housekeeper's master, which opens every door in the
+      Hall and locks them again from the passage with a turn and a steady hand.
+      The locked door does not mean no one left. It means someone had the means
+      to lock it behind them.
+    discovery_method: search
+    visibility: requires_skill
+    locations: [the_servants_hall, blackthorn_hall]
+    implicates: [suspect_poole, suspect_catherine]
+    requires: []
+    red_herring: false
+
+  - id: clue_hale_early_arrival
+    type: testimonial
+    description: >-
+      The stationmaster's wife, who keeps the waiting room and misses nothing,
+      is certain of it: Captain Hale came up not the morning after the death, as
+      he tells it, but on the 4.15 the afternoon before — and did not go up to
+      the Hall by the lane, but walked the long way round by the moor gate, the
+      private gate that Sir Edmund used and that opens straight onto the study
+      side of the house.
+    discovery_method: interrogate
+    visibility: obvious
+    locations: [railway_station, thornkirk]
+    implicates: [suspect_hale]
+    requires: []
+    red_herring: false
+
+  - id: clue_vestry_confession
+    type: testimonial
+    description: >-
+      Mr. Lancaster, the vicar, will not break a confidence — but a careful
+      hand can lead him to the edge of it. Sir Edmund came to the vestry the
+      week before he died, not to confess but to ask: how a man might right an
+      old wrong to a child, and whether it was too late. He spoke of Rose, and
+      of a name, and of a wife who would never agree. He went away resolved. The
+      will changed three days later.
+    discovery_method: interrogate
+    visibility: hidden
+    locations: [the_church_vestry, churchyard]
+    implicates: [suspect_catherine]
+    requires: []
+    red_herring: false
+
+  - id: clue_servants_hall_account
+    type: behavioral
+    description: >-
+      Below stairs, the housekeeper's account of that night has held to the
+      word for three weeks — and that is the trouble with it. The younger
+      servants, pressed gently, remember small disagreements with the official
+      hour: a bell rung that Mrs. Poole says was not rung, a tray taken up that
+      she says was taken down, a quarter-hour when no one can quite place her on
+      the back stairs. Her account is too smooth, and she is the only one who
+      could make it so.
+    discovery_method: observe
+    visibility: obvious
+    locations: [the_servants_hall, blackthorn_hall]
+    implicates: [suspect_poole]
+    requires: []
+    red_herring: false
+
+  - id: clue_london_letter
+    type: physical
+    description: >-
+      The anonymous letter from London that began it all — and it did not begin
+      in London. The paper is the Hall's own cream laid stock; the postmark is a
+      London receiving office, but a letter posted in Thornkirk on the down
+      train reaches London and is re-franked by morning. The hand is disguised,
+      but the spelling of one word — "physick," in the old way — is a spelling
+      only one person in this house still uses.
+    discovery_method: search
+    visibility: obvious
+    locations: [the_solicitors_room, post_office, thornkirk]
+    implicates: [suspect_catherine, suspect_poole]
+    requires: []
+    red_herring: false
+
+  # ── Gated deduction — the will + the brandy together name the motive. ──
+  - id: clue_motive_of_the_month
+    type: deduction
+    description: >-
+      Set the changed will beside the two glasses and the month-clause does the
+      work. If Sir Edmund had simply died, the new will stood and the ward
+      inherited. But to one person the new will was ruin and the old will was
+      rescue — and the old will stands only if the new one is NOT read in the
+      month. A death is not enough for them; the reading must be delayed,
+      disputed, reopened. The anonymous letter does not seek justice. It seeks
+      time.
+    discovery_method: forensic
+    visibility: requires_skill
+    locations: [the_solicitors_room, blackthorn_hall]
+    implicates: [suspect_hale]
+    requires: [clue_changed_will, clue_two_brandy_glasses]
+    red_herring: false
+
+  # ── Gated deduction — the vestry + the key name a different hand. ──
+  - id: clue_the_mothers_hand
+    type: deduction
+    description: >-
+      Knowing now what Sir Edmund resolved in the vestry — to acknowledge Rose,
+      whose likeness about the brow no one remarks upon, and to settle the
+      estate on her over his wife's certain refusal — the second key and the
+      Hall's own letter-paper change colour. The one person who could not bear
+      that acknowledgement, who had the master key, who writes "physick" in the
+      old way, and whose composure has never once cracked, is the one the
+      evidence has been circling from the first.
+    discovery_method: forensic
+    visibility: hidden
+    locations: [blackthorn_hall, the_drawing_room]
+    implicates: [suspect_catherine]
+    requires: [clue_vestry_confession, clue_second_key, clue_london_letter]
+    red_herring: false
+
+  # ── Red herrings ──
+  - id: clue_red_herring_mill_grudge
+    type: testimonial
+    description: >-
+      The talk in Millbridge is that a mill man ruined in the dismissals had
+      sworn at the Blackthorn Arms to see Sir Edmund in the ground, and was seen
+      on the Thornkirk road the night of the death. It feels like the answer. It
+      is not: the man was three sheets to the wind in Mr. Firth's snug till
+      closing, with a taproom to swear to it, and could no more have crossed a
+      locked study than flown.
+    discovery_method: interrogate
+    visibility: obvious
+    locations: [the_blackthorn_arms, millbridge]
+    implicates: []
+    requires: []
+    red_herring: true
+
+  - id: clue_red_herring_doctors_debt
+    type: physical
+    description: >-
+      A demand from Dr. Ashworth's own creditors, found among his papers, and a
+      note that Sir Edmund had lately refused him a loan — motive enough, the
+      village would say, and the doctor signed the very certificate that buried
+      the question. It points at Ashworth and points wrong: the doctor's crime
+      is cowardice, not murder. He signed because he was afraid of whom the
+      truth would name, and has hated himself for it every day since.
+    discovery_method: search
+    visibility: obvious
+    locations: [thornkirk, blackthorn_hall]
+    implicates: [suspect_ashworth]
+    requires: []
+    red_herring: true
