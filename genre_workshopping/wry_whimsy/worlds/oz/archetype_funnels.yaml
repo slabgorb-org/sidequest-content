@@ -1,0 +1,305 @@
+# Oz — World-Level Archetype Funnels
+#
+# GOVERNING LAW (mirrors five_points): World OVERRIDES genre. The resolver
+# (sidequest/genre/archetype/shim.py) falls back to the GENRE Traveler for any
+# (jungian, rpg_role) pair NOT claimed by a funnel's `absorbs`. To keep every
+# arriving traveler dressed in Oz flavor rather than the bare genre coping-style,
+# EVERY pair is claimed below.
+#
+# Coverage: 12 jungian × 7 rpg_role = 84 pairs. All 84 are absorbed.
+#   jungian:  caregiver ruler artist innocent sage explorer outlaw magician
+#             hero lover jester everyman
+#   rpg_role: tank dps control healer stealth support jack_of_all_trades
+#
+# WIT-FIRST GENRE NOTE: tank/dps map to NON-violent shapes. In Oz, tank = the
+# one who plants their feet and stands between (nerve, not muscle); dps = the one
+# who presses an authority hardest by argument, sincerity, or wonder. No funnel
+# here is a brawler — force is the priced exception, never the identity.
+#
+# The five genre Travelers (the anchors each funnel is a flavored instance of):
+#   Innocent = innocent / support / HEART   (the Dorothy shape)
+#   Wit      = sage / control / WIT          (the Alice shape)
+#   Surveyor = explorer / stealth / GUILE    (the Gulliver shape)
+#   Scrapper = hero / tank / NERVE           (the weary-soldier shape)
+#   Dreamer  = magician / dps / WONDER       (the risk archetype)
+#
+# `lore` here is terse mechanical scaffolding (the writer owns richer prose in
+# lore.yaml / archetypes.yaml). `disposition_toward` keys reference the five
+# faction_agendas powers. Render straight Baum — silver shoes, not ruby.
+
+funnels:
+
+  # ── THE GATHERED-IN STRANGER (Innocent anchor: innocent/support/HEART) ──────
+  # The traveler who fell through the seal and disarms Oz with plain sincerity.
+  - name: The Gathered-In Stranger
+    absorbs:
+      - [innocent, support]
+      - [innocent, healer]
+      - [innocent, jack_of_all_trades]
+      - [innocent, dps]
+      - [innocent, stealth]
+      - [caregiver, support]
+      - [caregiver, healer]
+      - [everyman, support]
+      - [everyman, healer]
+    faction: null
+    lore: >-
+      The Dorothy shape — a sensible visitor who wants only to go home and meets
+      a country of humbug with honesty so unguarded that witches and wizards
+      forget to take them seriously until it is too late. Gathers friends among
+      the small and strange; those friendships are the thing that saves everyone.
+    cultural_status: a marvel and a mascot, underestimated by every power in Oz
+    disposition_toward:
+      Glinda's Court: blessed_by
+      The Wizard's Regime: tasked_by
+      The Wicked Witch of the West: hunted_by
+      The Northern Hedge-Witchcraft: unnoticed_by
+      Jinjur's Army of Revolt: courted_by
+
+  - name: The Kind-Handed Helper
+    absorbs:
+      - [caregiver, control]
+      - [caregiver, jack_of_all_trades]
+      - [caregiver, tank]
+      - [caregiver, dps]
+      - [caregiver, stealth]
+      - [innocent, tank]
+      - [everyman, jack_of_all_trades]
+      - [lover, healer]
+      - [lover, support]
+    faction: null
+    lore: >-
+      The traveler whose first instinct in any scene is to mend, oil, or comfort
+      — the one who carries the Woodman's oil-can and pulls sleepers from the
+      poppies. Their care is banked by the helpful beasts and repaid at the
+      eleventh hour. HEART-forward, the persuasion lane made flesh.
+    cultural_status: trusted by beasts and servants, invisible to thrones
+    disposition_toward:
+      Glinda's Court: aligned
+      The Wicked Witch of the West: pitied_by
+      The Northern Hedge-Witchcraft: tolerated_by
+
+  # ── THE STUBBORN ARGUER (Wit anchor: sage/control/WIT) ──────────────────────
+  # The traveler who argues with the nonsense and wins.
+  - name: The Stubborn Arguer
+    absorbs:
+      - [sage, control]
+      - [sage, support]
+      - [sage, jack_of_all_trades]
+      - [sage, healer]
+      - [ruler, control]
+      - [innocent, control]
+      - [everyman, control]
+    faction: null
+    lore: >-
+      The Alice shape — refuses to be bullied by a country that contradicts
+      itself, catching the humbug Wizard and the card-court of beasts in their
+      own invented rules. Insists, against all the evidence, that things ought to
+      make sense. The wit-duel and audience lanes are their home ground.
+    cultural_status: maddening to authorities, quietly admired by the clever
+    disposition_toward:
+      The Wizard's Regime: sees_through
+      Glinda's Court: respected_by
+      The Wicked Witch of the West: outwits
+      Jinjur's Army of Revolt: skeptical_of
+
+  - name: The Sharp-Tongued Skeptic
+    absorbs:
+      - [sage, dps]
+      - [sage, stealth]
+      - [outlaw, control]
+      - [outlaw, support]
+      - [jester, control]
+      - [jester, support]
+    faction: null
+    lore: >-
+      The arguer with an edge — the one who answers a riddle with a sharper
+      riddle and spots the seam in a decree before the decree is finished. Less
+      patient than the Stubborn Arguer, quicker to puncture. The Wizard dreads
+      this traveler most: they are the kind who pulls back curtains.
+    cultural_status: feared by frauds, loved by the floor of any tavern
+    disposition_toward:
+      The Wizard's Regime: unmasks
+      The Northern Hedge-Witchcraft: suspicious_of
+      Jinjur's Army of Revolt: heckles
+
+  # ── THE PATIENT SURVEYOR (Surveyor anchor: explorer/stealth/GUILE) ──────────
+  # The traveler who reasons, measures, documents — and is slowly humbled.
+  - name: The Patient Surveyor
+    absorbs:
+      - [explorer, stealth]
+      - [explorer, control]
+      - [explorer, support]
+      - [explorer, jack_of_all_trades]
+      - [explorer, tank]
+      - [explorer, dps]
+      - [sage, tank]
+      - [everyman, stealth]
+    faction: null
+    lore: >-
+      The Gulliver shape — treats the impossible as a system to be catalogued,
+      taking careful notes on a country that resents being understood, and
+      learning, humblingly, to turn its own rules against it. The escape lane is
+      theirs: they have already mapped where the corridor of doors loops back.
+    cultural_status: a curious cartographer of a country that won't hold still
+    disposition_toward:
+      The Wizard's Regime: documents
+      Glinda's Court: studied_by
+      The Northern Hedge-Witchcraft: investigates
+
+  - name: The Quiet Slipper
+    absorbs:
+      - [explorer, healer]
+      - [outlaw, stealth]
+      - [outlaw, jack_of_all_trades]
+      - [jester, stealth]
+      - [lover, stealth]
+      - [everyman, tank]
+    faction: null
+    lore: >-
+      The surveyor's furtive cousin — the one who goes to ground in a crowd of
+      things stranger than themselves and is simply gone when the pursuit sweeps
+      past. GUILE over force; the dirty-trick angle in the violence lane and the
+      blend-in beat in the escape lane both belong to this traveler.
+    cultural_status: never quite where the witch's monkeys last looked
+    disposition_toward:
+      The Wicked Witch of the West: evades
+      The Wizard's Regime: slips_past
+      Jinjur's Army of Revolt: avoids
+
+  # ── THE STANDING SCRAPPER (Scrapper anchor: hero/tank/NERVE) ────────────────
+  # The traveler who meets menace head-on, but with nerve, not muscle.
+  - name: The Standing Scrapper
+    absorbs:
+      - [hero, tank]
+      - [hero, control]
+      - [hero, support]
+      - [hero, jack_of_all_trades]
+      - [ruler, tank]
+      - [everyman, dps]
+    faction: null
+    lore: >-
+      The weary-soldier shape — when the nonsense turns genuinely cruel, the one
+      who plants their feet and refuses to break. Not a hero of force (force
+      rarely works in Oz) but a person whose nerve outlasts the world's worst
+      spectacle. Holds the line in the wonder-shock lane and stands between the
+      witch and the small.
+    cultural_status: the steady one the party hides behind when the sky goes wrong
+    disposition_toward:
+      The Wicked Witch of the West: defies
+      Glinda's Court: enlisted_by
+      The Hammerhead Hill-Folk: stymied_by
+
+  - name: The Last-Resort Fighter
+    absorbs:
+      - [hero, dps]
+      - [hero, stealth]
+      - [hero, healer]
+      - [outlaw, tank]
+      - [outlaw, dps]
+      - [outlaw, healer]
+    faction: null
+    lore: >-
+      The Scrapper pushed to the priced-violence lane — the traveler who, when
+      every clever option is spent, picks up the Woodman's axe or throws the
+      bucket of water and ends it. The genre frames the blow as a failure of wit
+      even when it works; this traveler carries that knowledge and the axe both.
+    cultural_status: respected and a little feared for being willing
+    disposition_toward:
+      The Wicked Witch of the West: ends
+      The Wizard's Regime: tasked_by
+      The Northern Hedge-Witchcraft: wary_of
+
+  # ── THE OPEN DREAMER (Dreamer anchor: magician/dps/WONDER) ──────────────────
+  # The traveler who embraces the wonder — and risks being kept by it.
+  - name: The Open Dreamer
+    absorbs:
+      - [magician, dps]
+      - [magician, control]
+      - [magician, support]
+      - [magician, jack_of_all_trades]
+      - [artist, dps]
+      - [lover, dps]
+    faction: null
+    lore: >-
+      The risk archetype — leans INTO Oz's dream-logic, opening to the country's
+      strangeness to see and do impossible things, paying for each step with a
+      piece of home. The genre's sharpest instrument and its quiet tragedy: every
+      good bargain is one bargain closer to never going back. The let-the-wonder-
+      in beat is their signature, and their hazard.
+    cultural_status: half-native already, watched fondly by the witches who keep souls
+    disposition_toward:
+      The Northern Hedge-Witchcraft: tempted_by
+      Glinda's Court: protected_by
+      The Wicked Witch of the West: coveted_by
+
+  - name: The Half-Native Visionary
+    absorbs:
+      - [magician, tank]
+      - [magician, stealth]
+      - [magician, healer]
+      - [artist, control]
+      - [artist, support]
+      - [artist, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The Dreamer who has gone furthest in — already sees a little by Oz's rules,
+      already answers the country in its own register. An asset and a warning:
+      the half-native sight banks real angles in the wonder-shock lane, but the
+      homesickness anchor frays a little looser every time it is spent.
+    cultural_status: spoken of as someone the dream has nearly finished claiming
+    disposition_toward:
+      The Northern Hedge-Witchcraft: half_belongs_to
+      Glinda's Court: guided_by
+      The Wizard's Regime: unimpressed_by
+
+  # ── THE WANDERING PLAYER (the connective tissue: artist/jester/lover spread) ─
+  - name: The Wandering Player
+    absorbs:
+      - [artist, tank]
+      - [artist, stealth]
+      - [artist, healer]
+      - [jester, dps]
+      - [jester, tank]
+      - [jester, healer]
+      - [jester, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler who meets Oz as a stage — the China Country shepherdess, the
+      patchwork performer, the one who plays along with the country's pageantry
+      and turns its absurdity into an act. Disarms by delight rather than
+      sincerity or argument. Belongs to no power and is welcome at every door.
+    cultural_status: a delight in every colored country, owned by none
+    disposition_toward:
+      Jinjur's Army of Revolt: amused_by
+      The Wizard's Regime: plays_to
+      Glinda's Court: welcomed_by
+
+  - name: The Smitten Wayfarer
+    absorbs:
+      - [lover, tank]
+      - [lover, control]
+      - [lover, jack_of_all_trades]
+      - [ruler, dps]
+      - [ruler, stealth]
+      - [ruler, healer]
+      - [ruler, support]
+      - [ruler, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler bound by a love or a loyalty — to a companion, a lost home, a
+      person on the wrong shelf — and the one who arrives carrying authority from
+      the ordinary world that means nothing here. Oz humbles the ruler and tests
+      the lover: rank is illusion, but devotion is banked currency with the
+      helpful beasts.
+    cultural_status: a deposed sovereign of somewhere that does not exist in Oz
+    disposition_toward:
+      Glinda's Court: drawn_to
+      The Northern Hedge-Witchcraft: searching_near
+      The Wicked Witch of the West: defied_by
+
+additional_constraints:
+  # The genre ships archetype_constraints.yaml, but every (jungian, rpg_role)
+  # pair is claimed by a funnel above, so the genre fallback is unreachable for
+  # Oz and there are no world-forbidden pairs to declare.
+  forbidden: []
