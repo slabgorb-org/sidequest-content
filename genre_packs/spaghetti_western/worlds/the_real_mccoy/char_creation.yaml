@@ -1,128 +1,284 @@
-# The Real McCoy — World-level character creation override.
+# The Real McCoy — World-level character creation (complete scene set).
 #
-# The genre pack's spaghetti_western/char_creation.yaml has 5 scenes (origins,
-# crucible, reputation, the_ride, confirmation). This world overrides the
-# `origins` scene ONLY — because in 1878 Pittsburgh the "Frontier Born /
-# City Exile / Border Crosser / War Survivor" race vocabulary doesn't map.
-# Origins in this world are the immigrant-American cultures of the Hill
-# District, Braddock, Deutschtown, Arthursville, and the South Side.
+# Per the engine contract, a world's char_creation.yaml is the COMPLETE,
+# self-contained list of chargen scenes — it REPLACES the genre pack's
+# scenes wholesale (no merge, no inheritance). So this file owns ALL five
+# scenes for the_real_mccoy, each reskinned to 1878 Pittsburgh: the steel
+# mills, the three rivers, coal smoke and gaslight, immigrant labor, and
+# Dr. McCoy's armored Pullman workshop train.
 #
-# Party size: variable 1–4, sweet spot 2. McCoy is firmly NPC.
+# Mechanical structure (every `mechanical_effects:` block, the choice
+# count, and all scene/choice ids) is preserved from the genre pack —
+# only the prose flavor (title, narration, loading_text, labels,
+# descriptions) is Pittsburgh-specific. SOUL principle: crunch in the
+# genre, flavor in the world.
 #
-# Other chargen scenes (crucible, reputation, the_ride, confirmation)
-# inherit from the genre pack unchanged.
+# Party size: variable 1–4, sweet spot 2. McCoy is firmly NPC. (Party
+# size is sourced elsewhere in the loader, not from this file.)
 
-party_size:
-  min: 1
-  max: 4
-  sweet_spot: 2
-  notes: >-
-    One player runs a lean crew-of-one; two players are the intended
-    register (McCoy + Tabitha + Prudence are the permanent NPC ensemble,
-    the PC crew is the mobile complement); three or four works at
-    Monongahela House banquet scenes and mill-floor confrontations but
-    sealed-turn pacing is slower.
+- id: origins
+  title: Where Did You Come From?
+  narration: |
+    Gaslight warm on mahogany. The observation car's windows show the coal-smoke haze over the Point, the river glow of a Bessemer heat seven miles east at Braddock. Tabitha McCoy sets down the logistics ledger she has been updating since Altoona. Her father is in the workshop car again, humming something not-quite Joplin. Outside, the Argus folds itself onto the breakfast table on schedule.
 
-inherits_scenes_from_genre_pack:
-  - crucible
-  - reputation
-  - the_ride
-  - confirmation
+    Across from you, a man in a pressed black suit — Mordecai Carrington, editor of the Allegheny Argus — studies you over the rim of his coffee. He is not conducting an interview. He is deciding whether to quote you, and in what cause.
 
-scenes:
-  - id: origins
-    title: Where Did You Come From?
-    narration: |
-      Gaslight warm on mahogany. The observation car's windows show the coal-smoke haze over the Point, the river glow of a Bessemer heat seven miles east at Braddock. Tabitha McCoy sets down the logistics ledger she has been updating since Altoona. Her father is in the workshop car again, humming something not-quite Joplin. Outside, the Argus folds itself onto the breakfast table on schedule.
+    "Mr. McCoy has a gift for assembling people," he says, "the way he assembles devices. Every one has a use he did not foresee. Before I can write about you, I need to know where you came from — so I can tell the reader what to expect of you."
 
-      Across from you, a man in a pressed black suit — Mordecai Carrington, editor of the Allegheny Argus — studies you over the rim of his coffee. He is not conducting an interview. He is deciding whether to quote you, and in what cause.
+    Somewhere, a telegraph key chatters. Tabitha picks up a pencil.
+  loading_text: "Carrington waits with the careful patience of a working editor..."
+  choices:
+    - label: Hill District, Black American
+      description: >-
+        You come from the Hill — Arthursville, Wylie Avenue, Bethel AME.
+        Your people have been here since the thirties, since the railroad
+        stations with the hidden compartments. You grew up with barbers
+        who talked politics in three languages and porters who knew
+        more than any senator. Carrington is family, in the civic sense.
+      mechanical_effects:
+        race_hint: Frontier Born
+        background: Hill_Professional
+    - label: Deutschtown, German-American
+      description: >-
+        You came up across the Allegheny in Deutschtown — the 48ers'
+        grandchildren, the brewers and cabinetmakers and machinists.
+        Lutheran or Catholic, Turnverein on Saturday nights, singing
+        club on Sundays. You speak both languages but the workshop
+        tongue is the one that matters. You have opinions about
+        Raubritter you will share only with people you trust.
+      mechanical_effects:
+        race_hint: City Exile
+        background: German_Craftsman
+    - label: The Point, Irish Catholic
+      description: >-
+        Your family came during the Famine, or right after. You grew up
+        in shantytown on the Hill's north slope or in the Strip, your
+        father a puddler or a streetcar conductor or a policeman, your
+        mother minding seven and burying two. Parish is St. Patrick's
+        or St. Mary of Mercy. You have a rosary and a temper and a
+        memory for debts.
+      mechanical_effects:
+        race_hint: City Exile
+        background: Irish_Laborer
+    - label: Braddock, Welsh Puddler Stock
+      description: >-
+        Your people were the technical aristocracy — imported from
+        the South Wales valleys because the US didn't have the skill
+        yet. You know the mills the way other people know scripture.
+        Calvinistic Methodist chapel, Welsh at home, English at work,
+        steel in between. Bill Jones is your godfather or close enough.
+      mechanical_effects:
+        race_hint: Frontier Born
+        background: Welsh_Mill_Family
+    - label: East Liberty, Scots-Irish Old-Stock
+      description: >-
+        You grew up in the brick Queen Anne houses of East Liberty or
+        Shadyside — old-stock Presbyterian, the Mellons and the Negleys
+        and the Dennys and their orbit. Law, banking, business ownership.
+        You are here because the professional world is open to you and
+        you chose McCoy over a Pittsburgh firm. That choice costs you
+        something at every family dinner.
+      mechanical_effects:
+        race_hint: City Exile
+        background: Old_Stock_Professional
+    - label: The South Side, Eastern European Slav
+      description: >-
+        Your family came in the last wave — Poles, Slovaks, Rusyns,
+        Hungarians. Boarding-house on the South Side flats, your father
+        at Jones & Laughlin or in a Frick coke-field crew. You are
+        younger than the others here because your community is new;
+        the 1881 pogrom-wave is still three years out and most of your
+        neighbors arrived in the last five. You speak four languages
+        badly and the Pittsburgh steel shift-whistle perfectly.
+      mechanical_effects:
+        race_hint: Border Crosser
+        background: Slavic_Laborer
+    - label: Monongahela River, Born Crew
+      description: >-
+        You grew up on the rivers — Mon, Ohio, Allegheny. Towboat
+        families, packet-steamer crews, coal-barge hands. You are as
+        likely Black as white (the rivers have been integrated labor
+        since before the war) and as likely to have visited New Orleans
+        as Braddock. You know currents, locks, ice breakups, and every
+        bartender from here to Cincinnati.
+      mechanical_effects:
+        race_hint: Border Crosser
+        background: Riverboat_Crew
+  allows_freeform: true
 
-      "Mr. McCoy has a gift for assembling people," he says, "the way he assembles devices. Every one has a use he did not foresee. Before I can write about you, I need to know where you came from — so I can tell the reader what to expect of you."
+- id: crucible
+  title: What Made You Dangerous?
+  narration: |
+    Carrington nods slowly — not surprised, not sympathetic. He has heard every kind of Pittsburgh story the mills produce. He tops up your coffee from the silver pot without being asked.
 
-      Somewhere, a telegraph key chatters. Tabitha picks up a pencil.
-    loading_text: "Carrington waits with the careful patience of a working editor..."
-    choices:
-      - label: Hill District, Black American
-        description: >-
-          You come from the Hill — Arthursville, Wylie Avenue, Bethel AME.
-          Your people have been here since the thirties, since the railroad
-          stations with the hidden compartments. You grew up with barbers
-          who talked politics in three languages and porters who knew
-          more than any senator. Carrington is family, in the civic sense.
-        mechanical_effects:
-          culture: hill_district_black
-          race_hint: Frontier Born
-          background: Hill_Professional
-      - label: Deutschtown, German-American
-        description: >-
-          You came up across the Allegheny in Deutschtown — the 48ers'
-          grandchildren, the brewers and cabinetmakers and machinists.
-          Lutheran or Catholic, Turnverein on Saturday nights, singing
-          club on Sundays. You speak both languages but the workshop
-          tongue is the one that matters. You have opinions about
-          Raubritter you will share only with people you trust.
-        mechanical_effects:
-          culture: deutschtown_german
-          race_hint: City Exile
-          background: German_Craftsman
-      - label: The Point, Irish Catholic
-        description: >-
-          Your family came during the Famine, or right after. You grew up
-          in shantytown on the Hill's north slope or in the Strip, your
-          father a puddler or a streetcar conductor or a policeman, your
-          mother minding seven and burying two. Parish is St. Patrick's
-          or St. Mary of Mercy. You have a rosary and a temper and a
-          memory for debts.
-        mechanical_effects:
-          culture: point_irish_catholic
-          race_hint: City Exile
-          background: Irish_Laborer
-      - label: Braddock, Welsh Puddler Stock
-        description: >-
-          Your people were the technical aristocracy — imported from
-          the South Wales valleys because the US didn't have the skill
-          yet. You know the mills the way other people know scripture.
-          Calvinistic Methodist chapel, Welsh at home, English at work,
-          steel in between. Bill Jones is your godfather or close enough.
-        mechanical_effects:
-          culture: braddock_welsh
-          race_hint: Frontier Born
-          background: Welsh_Mill_Family
-      - label: East Liberty, Scots-Irish Old-Stock
-        description: >-
-          You grew up in the brick Queen Anne houses of East Liberty or
-          Shadyside — old-stock Presbyterian, the Mellons and the Negleys
-          and the Dennys and their orbit. Law, banking, business ownership.
-          You are here because the professional world is open to you and
-          you chose McCoy over a Pittsburgh firm. That choice costs you
-          something at every family dinner.
-        mechanical_effects:
-          culture: east_liberty_scots_irish
-          race_hint: City Exile
-          background: Old_Stock_Professional
-      - label: The South Side, Eastern European Slav
-        description: >-
-          Your family came in the last wave — Poles, Slovaks, Rusyns,
-          Hungarians. Boarding-house on the South Side flats, your father
-          at Jones & Laughlin or in a Frick coke-field crew. You are
-          younger than the others here because your community is new;
-          the 1881 pogrom-wave is still three years out and most of your
-          neighbors arrived in the last five. You speak four languages
-          badly and the Pittsburgh steel shift-whistle perfectly.
-        mechanical_effects:
-          culture: south_side_slavic
-          race_hint: Border Crosser
-          background: Slavic_Laborer
-      - label: Monongahela River, Born Crew
-        description: >-
-          You grew up on the rivers — Mon, Ohio, Allegheny. Towboat
-          families, packet-steamer crews, coal-barge hands. You are as
-          likely Black as white (the rivers have been integrated labor
-          since before the war) and as likely to have visited New Orleans
-          as Braddock. You know currents, locks, ice breakups, and every
-          bartender from here to Cincinnati.
-        mechanical_effects:
-          culture: river_crew
-          race_hint: Border Crosser
-          background: Riverboat_Crew
-    allows_freeform: true
+    "In this city, a man is useful or a man is spent." He turns the cup on the white linen, watching the gaslight catch the surface. "Some are born into a trade. Some are taught it on a mill floor. And some just wake one morning and find that the thing they feared most is the thing they do better than anyone in the works."
+
+    He meets your eyes. "Which was it for you?"
+  choices:
+    - label: The Shop
+      description: >-
+        You have a gift for the working of metal and machine — sure
+        hands, a steady eye, the ability to see a mechanism three
+        moves before it fails. A lathe, a pistol, a press, a Bessemer
+        charge: the iron does what your will tells it to do.
+      mechanical_effects:
+        class_hint: Gunslinger
+        personality_trait: Lethal
+    - label: The Search
+      description: >-
+        You learned to find what is hidden — a debtor skipped to
+        Allegheny City, a missing barge hand, a stolen plan. Patience
+        is your instrument. The rail yards and tenement wards are your
+        map. Everyone leaves a trail in a city this dense.
+      mechanical_effects:
+        class_hint: Bounty Hunter
+        personality_trait: Patient
+    - label: The Take
+      description: >-
+        You learned that the city does not give — it only holds things
+        that a quick hand can lift. The fence, the warehouse job, the
+        skimmed payroll: you found your talent outside the law, and the
+        law never closed its fingers on you.
+      mechanical_effects:
+        class_hint: Outlaw
+        personality_trait: Reckless
+    - label: The Road
+      description: >-
+        You survived by moving — packet to packet, yard to yard,
+        boarding-house to boarding-house. Never staying long enough to
+        owe anyone, never settling long enough to lose anything. The
+        moving itself became your skill: reading strangers, finding a
+        bunk, knowing the hour to slip the rent.
+      mechanical_effects:
+        class_hint: Drifter
+        personality_trait: Adaptable
+    - label: The Table
+      description: >-
+        Cards in the back of a Penn Avenue saloon, dice, the
+        confidence game — you learned to read a man before you learned
+        to read a paper. Every conversation is a hand being played.
+        Every parlor is a pot to be won.
+      mechanical_effects:
+        class_hint: Gambler
+        personality_trait: Perceptive
+    - label: The Badge
+      description: >-
+        Someone pinned authority on you — a city policeman's star, a
+        railroad special's commission, a Pinkerton's letter — or you
+        pinned it on yourself. The law in this town is whatever the man
+        holding the writ says it is, and you found you have opinions
+        about justice that a strong arm can enforce.
+      mechanical_effects:
+        class_hint: Marshal
+        personality_trait: Authoritative
+  allows_freeform: true
+
+- id: reputation
+  title: What Do People Say About You?
+  narration: |
+    Carrington pushes back his chair. From inside his coat he produces a folded sheet — a press clipping, a handbill, a letter of introduction; hard to tell in the gaslight. He smooths it on the linen between you.
+
+    "Word travels," he says. "Especially in this city — three rivers, one rumor mill. A man's name reaches the next ward before his streetcar does. By the time you walk into a mill office or a Wylie Avenue parlor, they already know something about you."
+
+    He taps the paper. "What do they know?"
+  choices:
+    - label: The stories are worse than the truth
+      description: >-
+        Your reputation has outrun your reality. People expect a brute,
+        a legend, a name the Leader prints in heavy type. The real you
+        is smaller than the myth, but the myth opens doors along Fourth
+        Avenue — and bars others.
+      mechanical_effects:
+        personality_trait: Mythologized
+        reputation_bonus: intimidation
+    - label: Nobody knows my name
+      description: >-
+        You are nobody on the city books. No clipping, no Pinkerton
+        intake photograph, no debts and no credit. Every ward is a
+        fresh start — and every man you meet has to take you at face
+        value.
+      mechanical_effects:
+        personality_trait: Anonymous
+        reputation_bonus: stealth
+    - label: I am owed favors
+      description: >-
+        You have done things for people — covered a debt, kept a
+        secret, pulled a man off a cast floor before the heat took him.
+        This city remembers what it owes, and your debts are scattered
+        across the wards like clean water in a typhoid season.
+      mechanical_effects:
+        personality_trait: Connected
+        reputation_bonus: network
+    - label: There is a price on my head
+      description: >-
+        Someone wants you found. Maybe the city, maybe a mill agent,
+        maybe a man you wronged across a card table. A Pinkerton has
+        your description in a Fourth Avenue file, and the bounty
+        follows you like coal smoke off the Point.
+      mechanical_effects:
+        personality_trait: Hunted
+        reputation_bonus: notoriety
+  allows_freeform: true
+
+- id: the_ride
+  title: Why Are You Here?
+  narration: |
+    Carrington folds the sheet and returns it to his coat. He finishes his coffee in one pull, sets the cup down with the finality of a press going to bed, and stands.
+
+    "Last question," he says, his silhouette framed against the observation-car window and the smudged orange glow of the night-shift furnaces upriver. "Every hand who signs onto this train — every machinist, every fugitive, every fool — has a reason. A debt, a name, a fortune, or a grave they keep coming back to."
+
+    A switch-engine couples somewhere down the yard. The whole car shudders once and settles.
+
+    "What is yours?"
+  choices:
+    - label: Revenge
+      description: >-
+        Someone took something that cannot be replaced — a brother lost
+        on a cast floor, a life, a future. You are here to find the man
+        responsible and balance the ledger in the only currency this
+        city honors when the courts will not.
+      mechanical_effects:
+        goals: Vengeance
+        emotional_state: Cold
+    - label: Money
+      description: >-
+        Somewhere in this city there is a fortune — a patent royalty, a
+        stolen plan, a payroll, or simply wages better than any mill
+        will pay a man with your name. You are here because poverty in
+        Pittsburgh is a slow death sentence and money is the only door
+        that opens both ways.
+      mechanical_effects:
+        goals: Wealth
+        emotional_state: Hungry
+    - label: A fresh start
+      description: >-
+        You are running from something — a charge, a failure, a life
+        that closed around you like a foreman's fist. McCoy's train is
+        the last place in this city where a person can sign on under a
+        new name and be measured only by the work.
+      mechanical_effects:
+        goals: Redemption
+        emotional_state: Guarded
+    - label: Someone needs finding
+      description: >-
+        A name. A face. Someone who vanished into the wards, the yards,
+        or a Paris cipher and did not come back. Whether you are
+        bringing them home or bringing them to account, the search is
+        all that matters.
+      mechanical_effects:
+        goals: The Search
+        emotional_state: Driven
+  allows_freeform: true
+
+- id: confirmation
+  title: The Road Ahead
+  narration: |
+    Carrington is gone — back down the platform toward Wylie Avenue and the morning edition. You are alone in the observation car with the cooling coffee and the slow tick of the Pintsch-gas lamps.
+
+    Outside, the 28th Street yards stretch under coal smoke and gaslight. The main line runs west toward the Ohio and the works at Braddock, east toward the mountains and Washington's wires. Behind you, the city you came from. Ahead, the next commission and whatever it turns into in other men's hands.
+
+    You stand. You take up your kit. You step down onto the platform.
+
+    Pittsburgh does not care who you are. But it is about to find out.
+  choices: []
+  allows_freeform: false
