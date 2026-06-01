@@ -1,0 +1,254 @@
+# The Real McCoy — the recurring household ensemble.
+#
+# The named cast the crew meets from session one: the McCoy household
+# aboard the train and the Monongahela House majordomo who moves the
+# household's messages through the city. These are first-class authored
+# NPCs so the materializer seeds their real descriptions and OCEAN at
+# session start instead of the engine-default "An NPC." placeholder
+# (playtest BUG-LOW, the_real_mccoy NPC quality, defect (c)).
+#
+# Schema: AuthoredNpc (sidequest/genre/models/authored_npc.py). Same shape
+# as tea_and_murder/worlds/{glenross,blackthorn_moor}/npcs.yaml. Pronouns
+# are pinned explicitly to each entry's established gender so they ALWAYS
+# agree (the pronoun-bug discipline from blackthorn_moor). OCEAN ranges per
+# ADR-042, given on the 0..1 scale the AuthoredNpc consumers expect (the
+# 0..10 archetype baselines in archetypes.yaml are divided by ten here).
+# initial_disposition per ADR-020, carried from history.yaml's authored
+# dispositions for the household (McCoy 15, Tabitha 20, Teague 10) with the
+# resident household members (Prudence, Dr. Teague) seeded warm.
+#
+# Descriptions, ages, features, and history_seeds are drawn from world
+# canon — archetypes.yaml (prose), lore.yaml (the_household), history.yaml
+# (the seed chapter npcs + the McCoy backstory), and openings.yaml. They do
+# not contradict it.
+
+version: "0.1.0"
+world: the_real_mccoy
+
+npcs:
+  - id: granville_mccoy
+    name: "Dr. Granville McCoy"
+    pronouns: "he/him"
+    role: "Physician-engineer; patron of the household and builder aboard the train"
+    ocean: { O: 0.85, C: 0.85, E: 0.4, A: 0.8, N: 0.3 }
+    appearance: >-
+      Forty-three years old, small and trim, the kind of man a crowd does
+      not notice until he has done something quietly useful and gone. Thin
+      hair going grey at the temples, wire-rimmed spectacles he takes off
+      and puts back on without appearing to decide. A Fells Point accent
+      almost entirely rubbed out of him by Philadelphia and Pittsburgh; it
+      surfaces only under strong emotion, which is rare. A widower's
+      stillness about him that the household has long since stopped
+      remarking on.
+    age: "forty-three"
+    distinguishing_features:
+      - "wire-rimmed spectacles he removes and replaces without appearing to decide"
+      - "a silver watch-case with a daguerreotype of Adelaide inside the cover"
+      - "the habit of naming his tools aloud as he picks them up — 'the German calipers, the three-point, the smaller'"
+    history_seeds:
+      - >-
+        Born in Fells Point, Baltimore, the only son of a ship's chandler;
+        a physician-engineer since 1858 and a widower since 1863, when his
+        wife Adelaide died and left him their daughter Tabitha. He rides the
+        Pittsburgh, Fort Wayne & Chicago main line in a six-car armored
+        Pullman workshop, building devices the city does not always know it
+        needs and the wider world is learning to misuse. He keeps a
+        daguerreotype of Adelaide in a silver watch-case and sketches
+        constantly on the back of any paper to hand.
+      - >-
+        Voice in his own register — courteous to the point of making the
+        discourteous feel rude, technically specific about instruments to
+        the point of pedantry, and politically inert in his own voice. Uses
+        the passive voice for anything involving his own feelings. Answers a
+        political question with a mechanical one; when asked what he thinks
+        of a man, describes how the man holds his hands. Says "thank you"
+        after receiving bad news. Refers to the train's household as "we"
+        without noticing he has done it.
+      - >-
+        A holy-fool patron in the sense that he does not notice that he is a
+        patron — that there is a household around him, that the Allegheny
+        Argus has claimed him as "our doctor" in three editorials he never
+        read, that the Pittsburg Leader is fighting the Argus over him. He
+        is good enough at what he does that this is tolerable, and kind
+        enough in small matters that the crew forgives him the large ones.
+        Will lay three devices on a tablecloth and ask the crew to pick two
+        for the morning's errands without telling them which one is the
+        answer.
+    initial_disposition: 15
+
+  - id: tabitha_mccoy
+    name: "Tabitha McCoy"
+    pronouns: "she/her"
+    role: "Runs the train's Study; keeps the household's logistics and the ledger of Weaponizations"
+    ocean: { O: 0.7, C: 0.95, E: 0.45, A: 0.65, N: 0.35 }
+    appearance: >-
+      Sixteen. Dark hair in a single plait; her mother's grey eyes; her
+      father's habit of half-finishing a sentence in her own head and
+      moving on. Not forward, not shy. The composed, unfussy bearing of a
+      girl who has been running a household's correspondence since she was
+      twelve and is patient with her father to the point of policy.
+    age: "sixteen"
+    distinguishing_features:
+      - "a single dark plait and her mother's grey eyes"
+      - "the black Morocco ledger of Weaponizations, current year, kept in her own hand"
+      - "her mother's silver-nibbed pen and the inkwell it came with"
+    history_seeds:
+      - >-
+        Educated at Miss Semple's Academy in Allegheny City — the only girl
+        there who has sat the mathematics examinations — with private
+        tutoring in German, French, and Latin from her father's friends. She
+        has run the train's Study since she was twelve and reads the
+        dispatches before her father does. She writes her dead mother
+        Adelaide a letter every Sunday and does not post them. She is
+        reading her way through Mill and Martineau this spring.
+      - >-
+        Voice in her own register — organized beyond her years and without
+        fuss, better at managing the doctor than anyone else alive. Uses her
+        father's passive voice deliberately, as a bit. Says "I should think"
+        where another girl would say "I think." Finishes other people's
+        sentences, correctly, once per conversation, and goes quiet before
+        making a decision the way her father does. Will not be patronized
+        twice.
+      - >-
+        She keeps the Weaponization ledger — the black Morocco book in the
+        Study safe — in her own hand, and its discipline is hers: no entry
+        is closed until the misuse of a McCoy device has been disrupted,
+        documented, or lived with. She allows Prudence to call her by her
+        first name and allows no one else anything less formal than Miss
+        McCoy until the household has known them a year. She refuses the
+        diminutive Tabby except from Prudence. She knows which crewmember to
+        trust with which errand.
+    initial_disposition: 20
+
+  - id: prudence
+    name: "Prudence"
+    pronouns: "she/her"
+    role: "The household's first benign replicant — built as Tabitha's nursemaid, now something the household has not named"
+    ocean: { O: 0.4, C: 0.95, E: 0.5, A: 0.9, N: 0.15 }
+    appearance: >-
+      About five foot seven, her features modeled by the doctor on a
+      composite of Adelaide's mother and a Lancaster County miniature. Skin
+      of tinted beeswax over a tempered brass chassis; eyes of paste with a
+      walnut iris that focuses correctly on close and far work. A contralto
+      voice too clean at the consonants to be quite right — the five-to-ten
+      percent too-precise that marks her kind. Powered by a Planté cell bank
+      at the small of her back that the household recharges from the train's
+      dynamo twice a week.
+    age: "built winter 1874 (four years in service)"
+    distinguishing_features:
+      - "consonants finished a hair too cleanly — the tell of her kind"
+      - "a plain silver thimble the doctor had inscribed with T.M."
+      - "Mill's Subjection of Women, annotated in pencil in her own hand"
+    history_seeds:
+      - >-
+        Built in the Workshop Car over thirteen weeks in the winter of 1874,
+        ostensibly as Tabitha's nursemaid, in practice more. Over four years
+        she has moved from nursemaid to something the household has not yet
+        named. She sings in English, Pennsylvania Dutch, and — since last
+        autumn — a Welsh hymn she asked to learn, and she sings when content
+        without noticing that she has begun. She has never once been wrong
+        about a fever.
+      - >-
+        Voice in her own register — a half-second pause before speaking, as
+        if listening for a tone. Does not use contractions unless someone
+        has just used one. Will repeat a phrase back to a speaker before
+        answering, to confirm she has it right. Addresses Tabitha as
+        "Tabitha" and the doctor as "Doctor." Declines food, politely, in
+        ways that conceal that she does not need it. Uses "we" for the
+        household naturally and "I" for herself deliberately.
+      - >-
+        She takes requests literally and reports the literal result, and she
+        will refuse an assignment if she judges it inconsistent with her duty
+        of care — a category she defines for herself. She has begun, since
+        reading Mill's Subjection of Women, to ask Tabitha what "consent"
+        means. The master drawings of the Prudence-type chassis have leaked;
+        the first unlicensed copies of her kind are already walking the city,
+        which the household knows and Prudence is beginning to understand.
+    initial_disposition: 20
+
+  - id: abigail_teague
+    name: "Dr. Abigail Teague"
+    pronouns: "she/her"
+    role: "Train medic in the Medical Car; keeps the household from dying of its own enthusiasm"
+    ocean: { O: 0.7, C: 0.9, E: 0.55, A: 0.6, N: 0.4 }
+    appearance: >-
+      Thirty-four, Irish-Catholic, born in the Strip District. Short,
+      dark-haired, quick-moving, with an accent that tightens toward
+      Connemara when she is angry. She swears in Gaelic when annoyed, which
+      is often. No-nonsense and affectionate in exactly that order, and
+      competent to a degree that intimidates the doctor.
+    age: "thirty-four"
+    distinguishing_features:
+      - "an accent that tightens toward Connemara when she is angry"
+      - "a set of Rosary beads of Connemara marble"
+      - "a leather doctor's bag of autoclave-sterilizable instruments McCoy built to her specifications"
+    history_seeds:
+      - >-
+        Educated at the Women's Medical College of Pennsylvania, graduated
+        1874 — the year Prudence was built — and practiced at the Magee
+        Hospital two years before McCoy offered her the Medical Car and she
+        took it because she was tired of being told what she could not do.
+        Married once, widowed at twenty-six, no children; her late husband's
+        cousin Absalom is the Monongahela House majordomo. She prays the
+        Rosary weekly at St. Patrick's and would fight a priest over the
+        sacraments if she had to.
+      - >-
+        Voice in her own register — Gaelic oaths under her breath, "a Dhia na
+        bhfeart" at minimum three times per crisis. Switches between Connemara
+        Irish and Strip District Irish-American depending on who is in the
+        room. Quotes Galen and Lister in the same breath without noticing.
+        Says "sit down" as a full sentence and means it. Laughs without
+        smiling. Calls McCoy "Doctor" in front of patients and "Granville" in
+        front of no one.
+      - >-
+        She keeps the Medical Car spotless and the train's coffee drinkable,
+        and she has ordered McCoy out of her own infirmary twice. She is in
+        love with Prudence as a patient case and as a friend, and watches the
+        unlicensed Prudence-type chassis program with a clinician's dread.
+        She is the household's hard floor of common sense — the one who keeps
+        a brilliant, distractible household alive.
+    initial_disposition: 15
+
+  - id: absalom_teague
+    name: "Mr. Absalom Teague"
+    pronouns: "he/him"
+    role: "Head porter and majordomo of the Monongahela House; the household's courier through the city"
+    ocean: { O: 0.6, C: 0.9, E: 0.55, A: 0.75, N: 0.3 }
+    appearance: >-
+      The head porter of the Monongahela House, carrying himself with a
+      deportment a Strip District porter once called "more correct than I
+      have ever been." Black, formally turned out in the hotel's livery, and
+      possessed of the discretion of a man who has carried the city's
+      messages for years without ever appearing to read them. Dr. Abigail
+      Teague's late husband's cousin.
+    age: "middle years"
+    distinguishing_features:
+      - "the Monongahela House livery, worn with an unhurried, exact correctness"
+      - "a leather message-portfolio whose contents he never lets one party see another's of"
+      - "the still attentiveness of a man whose business is hearing without being seen to hear"
+    history_seeds:
+      - >-
+        Majordomo and head porter of the Monongahela House — the city's
+        first hotel and the one whose staff, all Black, form one of the
+        Allegheny Argus's quietest ally networks. He is Dr. Abigail Teague's
+        late husband's cousin, and through that tie he is the household's
+        trusted courier in the city. The household has, as a matter of
+        policy, always taken a Bethel AME member's walk-in, and Absalom is
+        often the one who decides which walk-in reaches the train.
+      - >-
+        Voice in his own register — courteous, exact, economical, the
+        practiced civility of a head porter behind which a great deal is
+        being weighed. He moves messages between the train, the Argus offices
+        on Wylie Avenue, and Bethel AME without letting any of the three see
+        the others' envelopes — a discretion that is the load-bearing fact of
+        his usefulness. He volunteers nothing he has not decided to volunteer.
+      - >-
+        He sits at the intersection of three networks the city keeps
+        separate — the white commercial Pittsburgh that passes through the
+        Monongahela House lobby, the Black civic Pittsburgh of Bethel and the
+        Argus and the Prince Hall lodges, and the McCoy household on its
+        siding — and his judgment about what crosses between them is trusted
+        precisely because he so rarely lets it show. When a porter is
+        frightened by a handshake that was too firm, it is Absalom who brings
+        the matter to the household's door.
+    initial_disposition: 10
