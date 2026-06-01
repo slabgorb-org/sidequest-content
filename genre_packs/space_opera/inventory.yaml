@@ -32,6 +32,22 @@ item_catalog:
     narrative_weight: 0.2
     damage: {dice: "1d8", bonus: 1}
 
+  - id: vibroblade
+    name: Vibroblade
+    description: Full-length oscillating blade for serious close work. Vicious.
+    category: weapon
+    value: 150
+    weight: 1.5
+    rarity: uncommon
+    power_level: 2
+    tags: [melee, blade, one-handed, lethal]
+    lore: When a vibroknife won't do. Station close-combat specialists swear by them.
+    narrative_weight: 0.2
+    # Story 71-24: melee weapons need a damage spec or the new `melee` bank's
+    # weapon-derived `slash` beat ablates 0 HP (a decorative bank). 1d6 matches
+    # the Firefight blaster_sidearm baseline (rules.yaml melee opponent AC4 calib).
+    damage: {dice: "1d6", bonus: 0}
+
   - id: vibroknife
     name: Vibroknife
     description: Oscillating blade for close work. Quiet. Personal.
@@ -43,6 +59,9 @@ item_catalog:
     tags: [melee, blade, one-handed, silent]
     lore: Operatives carry them. So do cooks. Hard to tell which is which.
     narrative_weight: 0.1
+    # Story 71-24: was damage-less — an Operative/Smuggler swinging their starting
+    # blade through the melee bank dealt 0. A small fast blade: 1d4+1.
+    damage: {dice: "1d4", bonus: 1}
 
   - id: stun_baton
     name: Stun Baton
@@ -55,6 +74,8 @@ item_catalog:
     tags: [melee, electric, one-handed, non-lethal]
     lore: Station security's best friend. Leaves bruises, not bodies.
     narrative_weight: 0.1
+    # Story 71-24: blunt-channel melee weapon needs a damage spec to ablate HP.
+    damage: {dice: "1d6", bonus: 0}
 
   - id: multifocal_laser
     name: "Multifocal Laser"
