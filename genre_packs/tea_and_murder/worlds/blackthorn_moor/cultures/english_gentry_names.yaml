@@ -1,0 +1,36 @@
+# English Gentry — NAME-GENERATION culture for Blackthorn Moor.
+# World-tier override: when this world declares any name-gen culture
+# (a file with a `name:` key), the loader uses the world's cultures
+# wholesale and never falls back to the genre cultures.yaml — which is
+# how the Scottish "Highland Scots" culture (and "gillie"/Gaelic place
+# names) stopped leaking into this Yorkshire-England world.
+#
+# Mid-Victorian English county-gentry register, c. 1860s West Riding.
+# Shares the genre's English corpus files (corpus/shared/english_*).
+# Visual identity for the same set lives in english_gentry.yaml (the
+# visual_tokens overlay the art pipeline reads); this file is the
+# name draw only. Z-Image / no-proper-noun discipline does not apply
+# to name generation.
+
+name: English Gentry
+summary: "The county families, the great house, old land and new mill money"
+description: "The landed county families of the Yorkshire moors — the Blackthorns and the Grenvilles, the families with their name on the church memorial and their pew at the front. Names that appear in the parish register in copperplate and on the gates of the great houses."
+slots:
+  given_name:
+    names_file: english_gentry_first.txt
+  family_name:
+    names_file: english_gentry_family.txt
+  title:
+    word_list: [Mr., Mrs., Miss, Lady, Lord, Sir, The Honourable, Dowager, Reverend, Dr., Captain]
+  place_noun:
+    word_list: [Hall, Manor, Park, House, Lodge, Grange, Court, Abbey, Cottage, Rectory]
+  adjective:
+    word_list: [Blackthorn, Thornfield, Wuthering, Ashworth, Ferndale, Netherfield, Briarwood, Whitmore, Harrowgate, Ravensby]
+person_patterns:
+  - "{given_name} {family_name}"
+  - "{title} {family_name}"
+  - "{title} {given_name} {family_name}"
+place_patterns:
+  - "{adjective} {place_noun}"
+  - "{family_name} {place_noun}"
+  - "The {adjective} {place_noun}"

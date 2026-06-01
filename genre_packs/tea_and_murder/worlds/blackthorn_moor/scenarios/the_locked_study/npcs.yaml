@@ -1,0 +1,376 @@
+# Scenario NPCs for "The Locked Study".
+#
+# `name` MUST match the Blackthorn Moor world npcs.yaml exactly — bind_scenario
+# seeds belief_state by name equality (n.core.name == snpc.name).
+#
+# `id` for the six suspects matches assignment_matrix.yaml. The five witnesses
+# carry ids not present in the matrix, so the engine can never select them
+# guilty; their when_guilty blocks are alibi statements with empty
+# breaking_evidence (reference pattern).
+#
+# Sir Edmund Blackthorn is the VICTIM — he is not an NPC here.
+#
+# Every NPC carries suspicions so the engine assigns them the Witness role and
+# seeds the gossip graph — except where an empty suspicion list is dramatically
+# right. Suspicion `target` references suspect ids.
+
+# ─────────────────────────── SUSPECTS ───────────────────────────
+
+- id: suspect_hale
+  archetype_ref: the_heir
+  name: "Captain Roderick Hale"
+  initial_beliefs:
+    facts:
+      - "My uncle changed his will six weeks before he died and cut me to nothing"
+      - "The new will fails and the old one stands if it is not read within the month"
+      - "I am in debt past my regiment, my name, and my prospects"
+    suspicions:
+      - target: suspect_catherine
+        confidence: 0.4
+        basis: "She loses everything to the ward under the new will; she has the household and the keys"
+  when_guilty:
+    truth: >-
+      Hale came up on the 4.15 the afternoon before, walked round by the moor
+      gate to the study side unseen, and found his uncle at the evening ritual
+      he knew of old — the digitalis drops in a glass of brandy. He emptied the
+      bottle into the glass, watched it done, rinsed the true glass and set out
+      a fresh full one, built up the fire to muddle the hour, and locked the
+      door behind him. Then he wrote the London letter himself, to muddy the
+      reading and buy the month-clause the time it needed to ruin the new will
+      and restore the old.
+    cover_story: >-
+      "I came up the morning after, the moment the wire reached me in town. I'd
+      not seen my uncle in a twelvemonth. I'm as shocked as anyone — and as for
+      the will, I'd no notion he'd changed it. Ask my creditors how that's
+      served me."
+    breaking_evidence: [clue_hale_early_arrival, clue_motive_of_the_month, clue_body_examination]
+  when_innocent:
+    actual_activity: >-
+      Did come up early and did slip round by the moor gate — but to plead with
+      his uncle for a loan to cover his debts, was refused, and left in a temper
+      the same night by the last train, returning openly the morning after. His
+      lie about the timing is the lie of a frightened debtor, not a murderer.
+    suspicion: "Thinks the widow did it — she had the most to lose and the coldest nerve in the house"
+    secret: >-
+      His debts are larger and uglier than anyone knows, and he forged his
+      uncle's signature on a note of hand two years ago that the new solicitor
+      may yet find — which is why he dreads any close reading of the estate,
+      guilty of murder or not.
+
+- id: suspect_catherine
+  archetype_ref: lady_of_the_house
+  name: "Lady Catherine Blackthorn"
+  initial_beliefs:
+    facts:
+      - "My husband meant to acknowledge the ward and settle the estate over my head"
+      - "I keep this house and its name, and I have kept worse than this quiet"
+      - "The letter from London is the work of someone under this roof"
+    suspicions:
+      - target: suspect_hale
+        confidence: 0.4
+        basis: "He is ruined by the new will and the old one rescues him; he lies about when he came"
+  when_guilty:
+    truth: >-
+      Lady Catherine learned what her husband resolved in the vestry — to own
+      the child Rose before the county and settle Blackthorn on her, over a
+      Grenville's certain refusal. She could not bear it. She had the master key
+      and the run of the evening ritual; she put the bottle's measure in his
+      brandy with her own steady hand, dressed the scene, and wrote the London
+      letter on the Hall's own paper — "physick," in the old spelling she has
+      never dropped — to delay the reading and keep her trusteeship and her
+      pride intact.
+    cover_story: >-
+      "I was in the drawing room until I retired, as Mrs. Poole will tell you. I
+      had no hand in my husband's medicine and no key to his study. Whatever he
+      resolved in the vestry he never told me. I am his widow, sir. I am not
+      his murderer."
+    breaking_evidence: [clue_the_mothers_hand, clue_vestry_confession, clue_second_key]
+  when_innocent:
+    actual_activity: >-
+      Sat the evening out in the drawing room, composed and cold over a grief
+      she would let no one see, and went up to a bed she did not sleep in,
+      turning over a marriage she had managed for twenty-three years and never
+      quite understood.
+    suspicion: "Thinks the nephew the likeliest hand, and despises him too much to say so plainly"
+    secret: >-
+      Knows perfectly well whose child Rose is, and has known for years, and her
+      composure is the labour of a woman who decided long ago to suffer the fact
+      in silence rather than break the house — a restraint the village reads as
+      coldness and the player may learn to read as something harder.
+
+- id: suspect_poole
+  archetype_ref: housekeeper
+  name: "Mrs. Poole"
+  initial_beliefs:
+    facts:
+      - "I found the master, and I have told the truth of that night the same way three weeks running"
+      - "I hold the keys to every door in this house, as a housekeeper must"
+      - "There are things this family has trusted me to keep, and I keep them"
+    suspicions:
+      - target: suspect_hale
+        confidence: 0.3
+        basis: "The Captain came and went that night by the moor gate; I am not so blind as the family thinks"
+  when_guilty:
+    truth: >-
+      Mrs. Poole did it for the house, and for what she had been promised. She
+      knew the master meant to overturn the order of things — the ward raised
+      over the family, the Grenville set aside, the household she had ruled for
+      thirty years turned upside down. She had the master key and the evening
+      tray; she measured the drops into the brandy, set the scene she then
+      "discovered," and locked the door from the passage. Her too-smooth account
+      is the account of the only person who could have made it smooth.
+    cover_story: >-
+      "I found him at half past eleven, sir, cold in his chair, the fire still
+      bright. I called Dr. Ashworth and her ladyship at once. I have served this
+      family thirty years. I'll not be made a poisoner for keeping a house in
+      order."
+    breaking_evidence: [clue_servants_hall_account, clue_second_key, clue_body_examination]
+  when_innocent:
+    actual_activity: >-
+      Took up the evening tray, found nothing amiss, retired below stairs, and
+      was roused near midnight to a death she has been managing the appearance
+      of ever since — out of pure habit of loyalty, not guilt.
+    suspicion: "Thinks the Captain, whose comings by the moor gate she marked and has told no one"
+    secret: >-
+      Has known the truth of Rose's parentage longer than anyone, was sworn to
+      silence by the late master himself, and is keeping that oath past his
+      death — which is why her account is so guarded that it reads, to the
+      suspicious, exactly like the account of a murderer.
+
+- id: suspect_ashworth
+  archetype_ref: country_doctor
+  name: "Dr. Ashworth"
+  initial_beliefs:
+    facts:
+      - "I signed the certificate as heart failure and it was not heart failure"
+      - "The pupils and the pulse were the signs of his own digitalis in a fatal measure"
+      - "I have not slept properly since, and I cannot keep the lie much longer"
+    suspicions:
+      - target: suspect_catherine
+        confidence: 0.3
+        basis: "It was she who insisted I be called and no other, and she who chose every detail after"
+      - target: suspect_poole
+        confidence: 0.2
+        basis: "She found him, she holds the keys, and her account has never varied by a word"
+  when_guilty:
+    truth: "Cannot be the killer — was at his surgery in Thornkirk until summoned, with his housekeeper to swear to it."
+    cover_story: "Was at home of an evening, as a country doctor is between calls."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Was called to the Hall at eleven, saw at once that this was no natural
+      death, and signed it natural anyway — out of fear of whom the truth would
+      name and a creditor's pressure he is ashamed of. The forensic spine of the
+      whole case, and the man whose conscience can be reached.
+    suspicion: >-
+      Suspects the household more than the heir, but has been too frightened and
+      too compromised to say so — until a player gives him the cover to.
+    secret: >-
+      His own debts, and Sir Edmund's recent refusal to relieve them, give him a
+      motive the village would seize on — which is precisely why he signed the
+      certificate and prayed the question would die with the man. His crime is
+      cowardice; it is not murder.
+
+- id: suspect_graves
+  archetype_ref: solicitor
+  name: "Mr. Graves"
+  initial_beliefs:
+    facts:
+      - "I hold the will Sir Edmund signed six weeks before his death"
+      - "I hold instructions from him that predate the death and bind me still"
+      - "The will fails and the prior will stands if it is not read within the month"
+    suspicions:
+      - target: suspect_hale
+        confidence: 0.3
+        basis: "The new will ruins him; only delay past the month restores him; he had reason to want it disputed"
+  when_guilty:
+    truth: "Cannot be the killer — arrived from the firm the day before the player, a full fortnight after the death, with the firm's clerks to vouch for his every prior day."
+    cover_story: "Was at his chambers, where a solicitor is to be found."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Came up only for the reading, knowing the will's contents and the
+      month-clause and the danger they carried, and has wrapped himself in
+      professional discretion that protects the estate and, he uneasily
+      suspects, a murderer.
+    suspicion: "Holds the heir likeliest, on the cold logic of who the will makes and unmakes"
+    secret: >-
+      Sir Edmund's standing instructions to him concern the acknowledgement of
+      Rose and are to be acted on only if the new will is read in time — a fact
+      that, once known, turns the month-clause from a curiosity into the motive
+      at the centre of the case.
+
+- id: suspect_fairfax
+  archetype_ref: governess
+  name: "Miss Eleanor Fairfax"
+  initial_beliefs:
+    facts:
+      - "My room is above the study, and I was awake the night the master died"
+      - "I heard a step on the back stairs and a door turned that should not have been"
+      - "Rose saw something from the gallery, and has told only me, and only part"
+    suspicions:
+      - target: suspect_poole
+        confidence: 0.3
+        basis: "The step on the back stairs was a heavy, certain tread, and only one person in this house walks so"
+      - target: suspect_catherine
+        confidence: 0.2
+        basis: "Her ladyship's grief has never once looked like grief to me, and I know what grief looks like"
+  when_guilty:
+    truth: "Cannot be the killer — was in the schoolroom wing with the wakeful ward, and the child's own account places her there."
+    cover_story: "Was with Rose, who would not settle; a governess's night, and a dull alibi."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Lay awake in the room above the study, heard the back-stairs tread and the
+      turn of a key, and has said nothing for three weeks because she does not
+      know whom in this house she dares to trust — until, perhaps, the outsider
+      who treats her as a person rather than a fixture.
+    suspicion: >-
+      Believes it was someone of the household, not the heir, and is closer to
+      the truth than anyone but is too frightened for her place and the child to
+      name it unprompted.
+    secret: >-
+      Knows, or half-knows, the truth of Rose's parentage and the danger it puts
+      the child in, and is fiercely resolved to protect her whatever the cost —
+      which makes her the player's most valuable ally and most fragile witness.
+
+# ─────────────────────────── WITNESSES ───────────────────────────
+
+- id: witness_lancaster
+  archetype_ref: vicar
+  name: "The Reverend Mr. Lancaster"
+  initial_beliefs:
+    facts:
+      - "Sir Edmund came to the vestry the week before he died, troubled in his soul"
+      - "He asked me how a man might right an old wrong to a child before it was too late"
+      - "I buried him with full rites and have not slept easy since"
+    suspicions:
+      - target: suspect_catherine
+        confidence: 0.2
+        basis: "What he resolved in the vestry, his lady would never have allowed; I say no more than that"
+  when_guilty:
+    truth: "Cannot be the killer — was at the vicarage and then at evening prayer, with his housekeeper and the sexton to vouch for the hours."
+    cover_story: "Was about his offices, and is a dull alibi, and thanks God for it."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Kept his offices and his counsel, carrying a confidence from the vestry he
+      believes he cannot break — and longing, in his careworn way, to be given
+      leave to share enough of it to see justice done.
+    suspicion: >-
+      Watches the family more closely than the village, but will commit to no
+      verdict and break no confidence until conscience and the right question
+      meet.
+    secret: >-
+      Holds what Sir Edmund told him of his resolve to acknowledge Rose — the
+      hinge of the whole motive — and will yield the edge of it to a patient,
+      principled player who lets him reach it in his own time.
+
+- id: witness_firth
+  archetype_ref: publican
+  name: "Mr. Firth"
+  initial_beliefs:
+    facts:
+      - "The mill men talk of nothing else, and they talk in my snug"
+      - "A ruined mill man swore against Sir Edmund, but he was in my taproom till close that night"
+      - "What the gentry won't tell you, the servants who drink here let slip"
+    suspicions:
+      - target: suspect_hale
+        confidence: 0.25
+        basis: "The stationmaster's wife has the Captain up a day early and round by the moor gate; that's worth a thought"
+  when_guilty:
+    truth: "Cannot be the killer — was behind his own bar in full view of a taproom until close, every night including that one."
+    cover_story: "Was pulling pints, as he is every night of his life."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Kept the bar, marked the mill man's drunken oath and his cast-iron alibi,
+      and gathered without seeming to the village's whole version of the Hall's
+      bad business — the player's open door to the parish's truth.
+    suspicion: "Thinks it a Hall matter, not a village one, and is quietly delighted to be proved interesting"
+    secret: >-
+      Can dissolve the mill-grudge red herring on a word, having watched the
+      ruined man drink himself harmless the very night he was supposed to be
+      committing murder.
+
+- id: witness_gregson
+  archetype_ref: stationmaster
+  name: "Mr. Gregson"
+  initial_beliefs:
+    facts:
+      - "I know every face that takes a ticket on this line, and the times to the minute"
+      - "The Captain came up on the 4.15 the day before the death, whatever he says since"
+      - "Someone took the down train to post a letter the night the master died"
+    suspicions:
+      - target: suspect_hale
+        confidence: 0.3
+        basis: "He arrived a day early and walked off toward the moor gate, not the village lane"
+  when_guilty:
+    truth: "Cannot be the killer — was on the platform for the last train and home to his wife by the waiting-room clock, which he trusts above all things."
+    cover_story: "Was at his post, where a stationmaster is to be found."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Worked the platform and the timetable as ever, and he — or his wife, who
+      keeps the waiting room — noted both the Captain's early arrival and the
+      late posting of a letter on the down train, the two facts that crack two
+      alibis open.
+    suspicion: "Holds the Captain's timing the suspicious thing, the timetable being the one witness that does not lie"
+    secret: >-
+      His wife saw who carried the letter to the down train the night of the
+      death, and will say so — to a player who thinks to ask about the post and
+      not only the passengers.
+
+- id: witness_blackwood
+  archetype_ref: mill_manager
+  name: "Mr. Blackwood"
+  initial_beliefs:
+    facts:
+      - "I keep the mills' books and I know the firm's true position to the pound"
+      - "Six weeks before he died, Sir Edmund called in a private debt and made a payment that is not the firm's business"
+      - "The mills' future hangs on which will is read and who holds the purse after"
+    suspicions:
+      - target: suspect_hale
+        confidence: 0.2
+        basis: "A man drowning in debt does desperate sums; I have seen the Captain's kind in the ledger before"
+  when_guilty:
+    truth: "Cannot be the killer — was at the mill office in Millbridge over the month's accounts, with the night-watchman and the gas-bill to prove the hours."
+    cover_story: "Was at the office, where the work does not stop for a death."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Worked the mills' accounts as the trade requires, neither liking nor
+      grieving the late master, and holds in his ledgers the private payment and
+      the called-in debt that point — for those who can read figures — at the
+      shape of the family's quiet trouble.
+    suspicion: "Reaches no verdict he cannot cost; suspects only that money is at the bottom of it, as money usually is"
+    secret: >-
+      The payment Sir Edmund made six weeks before his death was a settlement
+      toward providing for Rose — a figure that, set beside the changed will,
+      confirms the master's resolve and the motive it raised against him.
+
+- id: witness_rose
+  archetype_ref: the_ward
+  name: "Rose"
+  initial_beliefs:
+    facts:
+      - "I was awake the night the kind sad man died, and I looked down from the gallery"
+      - "The study door was open and then it was shut, and someone I knew was on the stairs"
+      - "Miss Fairfax told me to say nothing, so I have said nothing, mostly"
+    suspicions: []
+  when_guilty:
+    truth: "Cannot be the killer — is a child of nine, and was at her window and then on the gallery, seeing more than she has been asked to tell."
+    cover_story: "Was meant to be asleep, and was not, the way children are not."
+    breaking_evidence: []
+  when_innocent:
+    actual_activity: >-
+      Lay awake, crept to the gallery, and saw from above a fragment of the
+      truth no adult witness can supply — reporting it, when she trusts the
+      asker, with the literal clarity of a clever child who has not learned
+      which truths grown people prefer unspoken.
+    suspicion: "Suspects no one; only knows what she saw, and saves it for a grown-up who treats her question as a real one"
+    secret: >-
+      Is, though no one says it to her, very likely Sir Edmund's own daughter —
+      the likeness about her brow and the wrong it was his last resolve to right
+      are the still centre the whole mystery turns upon, and the reason she must
+      be protected before she is believed.

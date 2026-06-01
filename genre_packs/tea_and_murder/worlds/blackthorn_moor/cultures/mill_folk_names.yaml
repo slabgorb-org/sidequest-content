@@ -1,0 +1,28 @@
+# Mill Folk — NAME-GENERATION culture for Blackthorn Moor.
+# World-tier override (see english_gentry_names.yaml header). The Millbridge
+# cotton trade: the mill manager and foremen, the spinners and weavers, the
+# high-street tradesmen and chapel folk of the valley town. Mid-Victorian
+# Industrial North, c. 1860s West Riding. Shares the genre's English
+# industrial corpus. Visual identity for the same set lives in mill_folk.yaml.
+
+name: Mill Folk
+summary: "The Millbridge cotton trade — the valley that the Hall built"
+description: "The cotton-mill town of Millbridge in the valley below the Hall — the mill manager and his foremen, the spinners and weavers, the draper and the chemist on the high street, the chapel and the temperance hall. The Blackthorn mills employ half the town; the other half wishes they did. Plain-spoken, chapel-going, and they do not forget a slight."
+slots:
+  given_name:
+    names_file: english_industrial_first.txt
+  family_name:
+    names_file: english_industrial_family.txt
+  title:
+    word_list: [Mr., Mrs., Miss, Master, Foreman, Alderman, Overlooker]
+  place_noun:
+    word_list: [Mill, Works, Foundry, Yard, Exchange, Warehouse, Wharf, Terrace, Chapel, Row]
+  adjective:
+    word_list: [Thornton, Darkshire, Blackstone, Millgate, Grimshaw, Ashton, Coalfield, Ironbridge, Calderbank, Ravensgill]
+person_patterns:
+  - "{given_name} {family_name}"
+  - "{title} {family_name}"
+place_patterns:
+  - "{adjective} {place_noun}"
+  - "{family_name}'s {place_noun}"
+  - "The {family_name} {place_noun}"

@@ -1,0 +1,447 @@
+# Blackthorn Moor — Openings bank.
+#
+# Mid-Victorian Yorkshire country-house murder, c. 1860s. The player is the
+# outsider who arrives at Blackthorn Hall as the will is about to be read,
+# three weeks after Sir Edmund's death, and sees what the household has
+# stopped seeing.
+#
+# Hard contracts (validators in genre/loader.py + models/narrative.py):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     "[authored", "[TBD", "[migrated", "[placeholder"
+#   - OpeningSetting requires exactly one anchor: location_label (we use it)
+#     OR chassis_instance. We use location_label for every entry.
+#   - setting.region_id (optional) MUST resolve to a real cartography region
+#     (blackthorn_hall / grounds / thornkirk / millbridge / railway_station /
+#     moors / churchyard). We set it on every opening so current_region binds
+#     at chargen-complete and the Location + Map tabs populate (region_init).
+#   - present_npcs entries MUST resolve to AuthoredNpc ids in npcs.yaml.
+#   - At least one solo + one multiplayer opening present.
+#   - PerPcBeat.applies_to keys constrained to {background, drive, race, class}.
+#
+# Selection: every solo entry uses triggers.backgrounds: [] so they share the
+# fallback pool — the runtime picks one at random at chargen-complete. Each
+# carries per_pc_beats for all six chargen class_hints (Doctor, Clergyman,
+# Society, Governess, Detective, Explorer).
+#
+# Voice: low golden autumn light, brown-and-purple moor, wind in every window,
+# rain frequent, tea constant, nobody says what they mean. The Tea Cup Test
+# applies — Sir Edmund is already dead and buried (off-stage, three weeks gone);
+# turn 1 never carries a fresh body. Stakes on turn 1 are gentle; the
+# complication waits for turn 2 or 3 per the SOUL pacing rule.
+
+version: "0.1.0"
+world: blackthorn_moor
+genre: tea_and_murder
+
+openings:
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #1 — The Drawing Room (arrival at the Hall, the widow receiving)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_drawing_room_arrival
+    name: "The Drawing Room — arrival at the Hall, the widow receiving, the tea going cold"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: "Blackthorn Hall — The Drawing Room"
+      region_id: blackthorn_hall
+      situation: >-
+        Late afternoon, autumn, three weeks after Sir Edmund's death and the
+        day before the will is to be read. You have been shown into the
+        south-facing drawing room to wait. Lady Catherine receives you with
+        perfect, dry composure; the governess, Miss Fairfax, sits a little
+        apart with the ward's sampler in her lap; the housekeeper, Mrs. Poole,
+        has brought the tea and not yet decided to leave. The fire is lit
+        against the chill the room never quite loses.
+      present_npcs:
+        - lady_catherine
+        - miss_fairfax
+        - mrs_poole
+    tone:
+      register: "careful, composed, the studied dignity of a house watched by the county"
+      stakes: "none on turn 1 — only the prickle of a room where conversation stops when you enter"
+      complication: "defer to turn 2 or 3 — the wrinkle is the anonymous letter, or what the doctor signed"
+      sensory_layers:
+        smell: >-
+          Cold tea and old upholstery, woodsmoke from a fire that never quite
+          warms the room, the faint funeral sweetness of hothouse lilies past
+          their best, beeswax on the gilt frames.
+        sound: >-
+          Rain murmuring at the tall windows. The mantel clock, loud in the
+          careful silences. The small chime of a cup set down too precisely.
+          Somewhere above, a child's step and then a governess's hush.
+        touch: >-
+          The chill the dying fire never lifts. The chair-arm worn smooth under
+          the hand. The cup, when it comes, a half-degree too cool to be quite
+          welcoming.
+      avoid_at_all_costs:
+        - any fresh body, any forensic detail, any graveside scene on turn 1
+        - asking the player a question — turn 1 closes on a declarative
+        - moving the player to another room without their input
+        - the gothic register — no ghosts, no curses, this is human-scaled
+        - making Lady Catherine weep; her composure is the point
+    establishing_narration: |
+      The drawing room faces the valley, and at this hour the low autumn light
+      comes in gold and thin across a carpet that has not been walked on much
+      of late. The fire is lit but the room holds its chill the way some rooms
+      do, regardless of fire. Heavy curtains of faded rose silk are drawn half
+      across the tall windows; a piano stands closed in the corner; family
+      portraits in tarnished gilt watch from the wall above the cold marble
+      mantel.
+
+      Lady Catherine Blackthorn rises to receive you in unrelieved black, a jet
+      brooch at her throat and a gold locket her hand finds without her seeming
+      to know it. Her face is composed, pale, dry-eyed — the face of a Grenville
+      who has been watched by the county for twenty-three years and does not
+      mean to give it anything now. "You are very good to come," she says, in a
+      voice that gives nothing either. "Please. Sit. Mrs. Poole has brought the
+      tea."
+
+      Apart from her, near the window, a plainly dressed woman of thirty sits
+      very still with a child's half-worked sampler in her lap — Miss Fairfax,
+      the governess, who looks up at you for a moment with quick grey eyes and
+      then down again. And by the door, upright as a fire-iron in black
+      bombazine with a chatelaine of keys at her waist, the housekeeper has set
+      down the tray and has not quite decided whether her duty is finished.
+    first_turn_invitation: |
+      The tea is poured and already cooling. The rain finds the window. Lady
+      Catherine has folded her hands in her lap and gone perfectly still,
+      waiting, in the way of a woman who has decided to let the silence do her
+      work for her.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        Mrs. Poole, gathering the milk-jug she does not need to gather, says to
+        the room in general and to no one: "The post came up from the village
+        at three, my lady. There was the one from London again." A small
+        stillness. Lady Catherine's hand closes on the locket and opens again.
+
+        "Thank you, Mrs. Poole," she says, and the housekeeper inclines her head
+        and does not move. By the window, Miss Fairfax has stopped sewing and is
+        looking at her sampler as though she has forgotten what it is for. The
+        clock on the mantel ticks into the pause.
+      escalation_path:
+        turn_2_or_3: >-
+          The anonymous letter from London is the wrinkle. By turn three it
+          will have been mentioned outright, or left where the player can see
+          it, or be the reason Dr. Ashworth calls at the Hall. The narrator
+          picks the path on the basis of the player's vocation. Do not preview
+          on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          "You will have known Ashworth, perhaps," Lady Catherine says, "by
+          reputation, if not in person. He attended my husband." A pause exactly
+          one beat too long. "He has not been quite himself since. I am sure it
+          is only the strain."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "Mr. Lancaster did everything that was proper," Lady Catherine says of
+          the vicar, "and a great deal that was kind. My husband thought well of
+          him." She smooths the black silk over her knee. "He came up to the
+          vestry, you know, the week before. I never learned what about."
+      - applies_to: { class: "Society" }
+        beat: |
+          "You will have heard the talk in the village," Lady Catherine says,
+          with the faintest cool courtesy. "One cannot stop a parish talking.
+          I find it best to let them, and to give them as little fresh as one
+          can." Mrs. Poole, by the door, says nothing at all, very loudly.
+      - applies_to: { class: "Governess" }
+        beat: |
+          Miss Fairfax glances up at you with something almost like recognition
+          — one genteel woman without means meeting another. "Rose has been
+          asking after the will," she says quietly, before she can think better
+          of it. "Children hear everything, and understand more than we credit."
+      - applies_to: { class: "Detective" }
+        beat: |
+          "We have had no trouble with the constabulary," Lady Catherine says,
+          a touch too readily, "the certificate being quite in order." She
+          studies you with new attention. "You will find Blackthorn very quiet,
+          I think. We are a settled household."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          "You have been abroad," Lady Catherine observes, placing your bearing
+          at once. "My nephew, Captain Hale, has too — the regiment, India.
+          You may find you have acquaintance in common. He is here for the
+          reading, of course. As are we all."
+
+  # ──────────────────────────────────────────────────────────────────
+  # SOLO #2 — The Blackthorn Arms (the village's version, the open door)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: solo_village_arms_evening
+    name: "The Blackthorn Arms — the fire lit, the mill men in, the parish taking your measure"
+    triggers:
+      mode: solo
+      min_players: 1
+      max_players: 1
+      backgrounds: []
+    setting:
+      location_label: "Thornkirk — The Blackthorn Arms"
+      region_id: thornkirk
+      situation: >-
+        Dusk, autumn. You have come down to the village before going up to the
+        Hall, or instead of it, and the snug of the Blackthorn Arms is the
+        warmest room in the parish. The landlord, Mr. Firth, has your measure
+        before your coat is off. A few mill men are in from Millbridge, low over
+        their ale; the talk falls off a little when a stranger comes in, and
+        then resumes, a degree more careful.
+      present_npcs:
+        - mr_firth
+    tone:
+      register: "warm, broad, watchful — the village in its weekday courtesy"
+      stakes: "none on turn 1"
+      complication: "defer to turn 2 or 3 — the wrinkle is what the village thinks really happened up at the Hall"
+      sensory_layers:
+        smell: >-
+          Peat and coal smoke, spilled ale soaked into old oak, wet wool
+          steaming by the fire, the tallow of the lamps, a mutton pie somewhere
+          in the back.
+        sound: >-
+          The fire shifting. Low talk that drops a half-tone when the door
+          opens. A settle creaking. Rain off the moor against the small
+          mullioned windows. The tick of the landlord's cloth on an already-
+          clean tankard.
+        touch: >-
+          The settle's high back hard against the shoulders, the fire too hot on
+          one side, the tankard warm and honest in the hand.
+      avoid_at_all_costs:
+        - any fresh body or graveside scene on turn 1
+        - asking the player a question — turn 1 closes on a declarative
+        - the gothic register
+        - moving the player up to the Hall without their input
+    establishing_narration: |
+      The Blackthorn Arms has stood on the Thornkirk crossroads longer than the
+      Blackthorns have held the land, and on a wet autumn dusk its snug is the
+      warmest room for a mile. The fire is well in. A handful of Millbridge mill
+      men are low over their ale in the corner, caps still on, talking the way
+      men talk when the day's shift is behind them and the rain is ahead.
+
+      Behind the bar, a broad weathered man of fifty in a long apron is
+      polishing a tankard that is already clean — Mr. Firth, the landlord, who
+      has taken your measure between the door and the bar and set a cup of
+      strong tea before you without being asked. "Settling in, then," he says,
+      friendly and unhurried, in the way of a man weighing you up for the next
+      ten years. "Bad time to come up to Blackthorn, if you've come up to
+      Blackthorn." The talk in the corner drops a half-tone, and resumes.
+    first_turn_invitation: |
+      The fire shifts. Mr. Firth folds his cloth and leans his forearms on the
+      bar, in no hurry at all, and lets the rain on the window do the talking
+      for a moment.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        One of the mill men in the corner says, not quietly enough, "Heart
+        failure," and another answers, "Aye, and brandy untouched, and the
+        fire built up like he meant to sit the night," and a third says
+        "Hush," and they hush. Mr. Firth does not look round. He wipes the bar
+        that does not need wiping.
+
+        "Folk will talk," he says, to you, mildly. "It's the village's only
+        proper industry." He sets the cloth down. "What they'll not tell you —
+        what they'll not tell the gentry, any road — is what the doctor's face
+        looked like coming down them steps that night."
+      escalation_path:
+        turn_2_or_3: >-
+          The village's version is the wrinkle — that Sir Edmund's death was not
+          what the certificate says, and that Dr. Ashworth knows it. By turn
+          three a mill man will say more than he meant to, or the landlord will
+          name who in Millbridge had cause, or the player will be pointed up the
+          hill to the Hall. Narrator picks on the basis of vocation. Do not
+          preview on turn one.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          "You'll be a medical man," Mr. Firth says, reading your bag. "Then
+          you'll know Ashworth, or know of him. Good doctor, mind. Steady hand,
+          thirty year." He pauses. "Steady hand till lately."
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "Chapel or church?" Mr. Firth asks, and at your answer nods. "Mr.
+          Lancaster up at St. Michael's buried him proper. White as his own
+          surplice, the vicar was, all through it. Grief, I dare say. He's a
+          feeling sort of man."
+      - applies_to: { class: "Society" }
+        beat: |
+          "You'll want the talk, then," Mr. Firth says, not unkindly. "Sit by
+          the fire and let it come to you. A stranger asking gets nowt. A
+          stranger listening gets the lot, given a night and a second cup."
+      - applies_to: { class: "Governess" }
+        beat: |
+          "Teaching, is it? Up at the Hall, happen — they've a little maid up
+          there, the ward." Mr. Firth lowers his voice without seeming to. "Odd
+          arrangement, that child. Village had its own notion where she came
+          from. Best not repeated."
+      - applies_to: { class: "Detective" }
+        beat: |
+          Mr. Firth's slow eye rests on you a moment longer than on most. "You've
+          the look of a man who counts the doors in a room," he says. "We've a
+          sergeant for that hereabouts, but he took the certificate at its word,
+          same as the county. Some of us thought he might've counted twice."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          "Soldiering man," Mr. Firth says, placing your bearing. "We've another
+          of those up at the Hall — the Captain, the nephew. Came up for the
+          reading. Or," and he lets it hang, "came up a deal sooner than he
+          lets on, by what the stationmaster's wife reckons."
+
+  # ──────────────────────────────────────────────────────────────────
+  # MP — The Library, the eve of the reading (the party gathered as guests)
+  # ──────────────────────────────────────────────────────────────────
+
+  - id: mp_library_eve_of_reading
+    name: "The Library — the eve of the will-reading, the household and its guests assembled"
+    triggers:
+      mode: multiplayer
+      min_players: 2
+      max_players: 4
+      backgrounds: []
+    setting:
+      location_label: "Blackthorn Hall — The Library"
+      region_id: blackthorn_hall
+      situation: >-
+        The evening before the will is read. The solicitor, Mr. Graves, has
+        asked that all the interested parties be under one roof; the library has
+        been opened and lit for the purpose. Lady Catherine presides; Captain
+        Hale is expansive by the fire; the doctor has stayed to dinner and not
+        quite settled; the governess hovers at the edge with the ward sent up to
+        bed. The party — you — are here, each for your own reason, and have not
+        yet quite found one another.
+      present_npcs:
+        - lady_catherine
+        - captain_hale
+        - dr_ashworth
+        - mr_graves
+        - miss_fairfax
+    tone:
+      register: "formal, banked, the courtesy of people who all want different things from tomorrow"
+      stakes: "none on turn 1 — only the close air of a room where everyone is calculating"
+      complication: "defer to turn 2 or 3 — the wrinkle is the locked document case, or the doctor's nerves, or the letter"
+      sensory_layers:
+        smell: >-
+          Lamp-oil and old leather bindings, woodsmoke, the brandy on the
+          decanter tray, the dry scent of legal paper from the solicitor's case.
+        sound: >-
+          The fire. The careful clink of a decanter stopper. The Captain's
+          ready laugh arriving a half-beat too soon. Rain on the long windows.
+          The mantel clock. The small dry cough of the solicitor clearing his
+          throat to say nothing.
+        touch: >-
+          Warmth from the hearth on the front, the room's chill at the back of
+          the neck, the cracked leather of a wing-chair, a brandy glass cool in
+          the hand.
+      avoid_at_all_costs:
+        - any fresh body or forensic detail on turn 1
+        - bringing the wrinkle out before the players have found one another
+        - asking the players a question — turn 1 closes on a declarative
+        - moving any player without their input
+        - the gothic register
+    establishing_narration: |
+      The library has been opened for the occasion — a long room, lamp-lit and
+      fire-lit, walls of leather bindings going dark at the ceiling, the rain
+      steady on the tall windows that face the black moor. On the desk at the
+      far end sits a brass-clasped leather document case that the solicitor, Mr.
+      Graves, has not once let leave his side, and will not, until tomorrow.
+
+      Lady Catherine presides from a wing-chair by the fire, composed in her
+      black, the firelight finding the jet at her throat. Captain Hale stands
+      with his back to the hearth and a brandy in his hand, telling a regimental
+      story that is going better than the room deserves, turning a signet ring
+      on his little finger as he talks. Dr. Ashworth has stayed to dinner and
+      sits a little apart, grey and tired, declining a second glass and then
+      taking it. By the door, Miss Fairfax has just come down from settling the
+      ward and lingers at the edge of the lamplight, present and unseen, the way
+      a governess learns to be.
+
+      You are here, each of you, for your own reasons — invited, or sent, or
+      simply unwilling to be elsewhere on the eve of such a reading. You have
+      not yet quite found one another in the crowd of the household's grief.
+    first_turn_invitation: |
+      The Captain's story lands its punchline to a courtesy laugh from no one in
+      particular. Mr. Graves clears his throat and says nothing. The fire
+      settles, and the rain goes on, and the document case waits on the desk in
+      the lamplight.
+    soft_hook:
+      kind: pull_not_push
+      timing: "surfaces if conversation lulls; otherwise wait for turn 2"
+      narration: |
+        "Tomorrow at eleven, then," Mr. Graves says, into a lull, polishing his
+        spectacles, "if that is convenient to the family. The instructions are
+        — quite particular." He lets the word sit. Captain Hale's laugh does not
+        quite arrive this time. Lady Catherine's hand finds the locket at her
+        throat. And Dr. Ashworth, by the wall, sets down his glass with a small
+        click and looks at the fire as though it has asked him something.
+
+        From the doorway, unnoticed by all of them but perhaps not by you, Miss
+        Fairfax watches the doctor's face and then, very deliberately, looks
+        away.
+      escalation_path:
+        turn_2_or_3: >-
+          The reading itself — and what the case contains — is tomorrow's
+          business; tonight the wrinkle is the tension among the people in the
+          room. By turn three the doctor will have said too much or fled the
+          room, or the Captain will have asked the solicitor one question too
+          many, or the letter from London will surface. Narrator picks on the
+          basis of the party's vocations. Do not preview on turn one.
+    party_framing:
+      already_a_crew: false
+      bond_tier_default: neutral
+      shared_history_seeds:
+        - >-
+          The party need not have known one another before tonight. Some are
+          guests of the family, some are professional men called for the
+          reading, some are villagers admitted on sufferance — but all have a
+          reason to be under this roof on the eve of the will, and the evening
+          will throw them together whether they wished it or not.
+      narrator_guidance: >-
+        Let the players find each other in the first turn or two before the
+        mystery presses. The household's grief and the looming reading are the
+        shared ground; the differences in why each player is present are the
+        seeds of party dynamics. No body, no accusation, on turn one — only the
+        banked pressure of a house where everyone wants something from tomorrow.
+    per_pc_beats:
+      - applies_to: { class: "Doctor" }
+        beat: |
+          Dr. Ashworth's tired eyes find you across the room with the wary
+          relief of one medical man spotting another in a house of laymen. He
+          half-rises, thinks better of it, and settles — but he has marked you,
+          and you him.
+      - applies_to: { class: "Clergyman" }
+        beat: |
+          "We had Mr. Lancaster to dinner on the Sunday," Lady Catherine remarks
+          to you, "before — before all this. He and my husband had grown quite
+          close at the end. I confess I never knew the subject of it." Across the
+          room, the doctor's glass pauses at his lip.
+      - applies_to: { class: "Society" }
+        beat: |
+          Captain Hale turns the full warmth of his attention on you the moment
+          he places you as someone who moves in the world. "Then you'll have
+          heard the nonsense that's going about," he says, easy and charming.
+          "Anonymous letters. London. As if my uncle's heart were anyone's
+          business but God's."
+      - applies_to: { class: "Governess" }
+        beat: |
+          Miss Fairfax, at the door, catches your eye with the brief frank
+          recognition of one person without standing for another. "The child is
+          asleep," she says softly, as though you had asked, "or pretending to
+          be. She does that, when there are too many people in the house."
+      - applies_to: { class: "Detective" }
+        beat: |
+          Mr. Graves regards you over his spectacles with a careful, professional
+          neutrality, the look of a man cataloguing who in the room might make
+          his discreet evening less discreet. "I trust," he says quietly, "that
+          we are all here simply to mourn, and to listen, tomorrow."
+      - applies_to: { class: "Explorer" }
+        beat: |
+          Captain Hale's eye lights on you with genuine pleasure — a fellow
+          soldier in a room of civilians. "Service?" he asks, naming your
+          bearing at a glance, and at your answer grips your hand. "Thank God.
+          One sane man at least. Come and have a brandy and tell me you've seen
+          worse than a roomful of solicitors."
