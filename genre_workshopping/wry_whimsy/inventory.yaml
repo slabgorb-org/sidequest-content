@@ -1,0 +1,197 @@
+# Wry Whimsy — Genre Item Vocabulary
+#
+# GENRE TIER — world-agnostic item vocabulary for the portal fairytale. A traveler
+# survives this genre by WIT and NERVE, not by gear; the catalog reflects that. Items
+# are either (a) the ordinary, sensible things a traveler happened to be carrying when
+# the world swallowed them, or (b) the small, strange, FORM-level oddments a Secondary
+# World hands a stranger. Specific named relics (a Golden Cap, a DRINK ME bottle) are
+# WORLD flavor and live at the world tier; nothing here names a particular source.
+#
+# CatalogItem schema is strict (extra=forbid): only id/name/description/category/value/
+# weight/rarity/power_level/tags/lore/narrative_weight are used below. No weapons carry
+# a `damage` block — violence is the priced exception, improvised, never a stat-block
+# loadout (rules.yaml). starting_equipment keys match allowed_classes in rules.yaml.
+
+currency:
+  name: Oddments
+  abbreviation: odd
+  description: >-
+    There is no real economy in a place run on dream-logic, and a sensible traveler's
+    home coin is worthless here. What passes for currency is whatever the local
+    nonsense decides has value — a curtsey, a riddle answered, a favour owed, a pretty
+    button. "Oddments" is the catch-all the engine tracks; a world may rename it to its
+    own absurd specie.
+  denominations:
+    button: 1
+    favour: 10
+    boon: 100
+
+item_catalog:
+  # ── Things from the ordinary world (what the traveler brought across) ──
+  - id: sensible_shoes
+    name: Sensible Shoes
+    description: "Sturdy, ordinary, broken-in footwear from home. Not magical. Reassuringly real."
+    category: armor
+    value: 10
+    weight: 1
+    rarity: common
+    power_level: 0
+    tags: [ordinary, anchor, footwear]
+    lore: "A traveler's shoes are an anchor to the world that makes sense. Keep them. A world like this loves to swap them for slippers you cannot take off."
+    narrative_weight: standard
+
+  - id: pocket_handkerchief
+    name: Pocket Handkerchief
+    description: "A clean square of cloth from home. Dries tears, signals surrender, hides a small object, wraps a cut."
+    category: tool
+    value: 2
+    weight: 0
+    rarity: common
+    power_level: 0
+    tags: [ordinary, utility, anchor]
+    lore: "The most sensible object a person can carry into nonsense. It does exactly one thing and never argues about it."
+    narrative_weight: minor
+
+  - id: bit_of_food
+    name: A Bit of Food from Home
+    description: "A heel of bread, a wrapped sweet, an apple — whatever was in a pocket at the threshold. Honest, ordinary nourishment."
+    category: consumable
+    value: 3
+    weight: 1
+    rarity: common
+    power_level: 0
+    tags: [ordinary, consumable, anchor]
+    resource_ticks: 1
+    lore: "Eat the food you brought. The food this world offers is always marked EAT ME for a reason."
+    narrative_weight: minor
+
+  - id: ordinary_keepsake
+    name: Ordinary Keepsake
+    description: "A locket, a photograph, a coin, a child's toy — a small thing from home that means something only to the traveler."
+    category: misc
+    value: 5
+    weight: 0
+    rarity: common
+    power_level: 0
+    tags: [ordinary, anchor, sentimental]
+    lore: "Anchors the traveler to who they were before the threshold. In a Wonder-Shock, a memory held in the hand is worth more than a weapon."
+    narrative_weight: notable
+
+  # ── Oddments the strange world hands a stranger (FORM-level, not source-named) ──
+  - id: talking_trinket
+    name: Talking Trinket
+    description: "A small object that has opinions and shares them — a button, a thimble, a whistle that comments on your decisions whether asked or not."
+    category: misc
+    value: 10
+    weight: 0
+    rarity: uncommon
+    power_level: 0
+    tags: [strange, talking_object, companion]
+    lore: "Everything in a place like this might talk. Some of it is even helpful. Most of it merely has views."
+    narrative_weight: standard
+
+  - id: changeable_map
+    name: Changeable Map
+    description: "A map of the Secondary World that is honest about being useless — the roads rearrange, the labels rewrite themselves, and it is right exactly often enough to be trusted."
+    category: tool
+    value: 20
+    weight: 1
+    rarity: uncommon
+    power_level: 0
+    tags: [strange, navigation, dream_logic]
+    lore: "A map of a place run on dream-logic cannot help but lie. The trick is learning the grammar of its lies."
+    narrative_weight: notable
+
+  - id: token_of_passage
+    name: Token of Passage
+    description: "A pass, a seal, a sprig, a feather — some small credential the local authorities recognise and the right doors respect."
+    category: tool
+    value: 25
+    weight: 0
+    rarity: uncommon
+    power_level: 0
+    tags: [strange, authority, social]
+    lore: "In a world of impossible officials, the right scrap of nonsense opens more doors than any key. Authorities here trust ceremony over sense."
+    narrative_weight: notable
+
+  - id: borrowed_finery
+    name: Borrowed Finery
+    description: "An absurd costume the world pressed on the traveler — a coat the wrong colour, a hat with a function nobody will explain. Lets a stranger pass as one more strange citizen."
+    category: armor
+    value: 15
+    weight: 1
+    rarity: uncommon
+    power_level: 0
+    tags: [strange, disguise, social, concealment]
+    lore: "The fastest way to stop being the one sensible person in the room is to dress like you belong to the nonsense. It works disturbingly well."
+    narrative_weight: standard
+
+  - id: small_kindness_owed
+    name: A Small Kindness, Owed
+    description: "Not a thing you carry but a thing you hold — a favour banked with a creature you were good to. Redeemable, in this genre's moral economy, exactly when it is needed most."
+    category: misc
+    value: 50
+    weight: 0
+    rarity: rare
+    power_level: 0
+    tags: [strange, favour, kindness_economy, intangible]
+    lore: "Baum's rule and every fairytale's: be gentle to the small, frightened creature, and it returns when the giant's hand is closing. Kindness is the only currency that reliably pays out here."
+    narrative_weight: notable
+
+  - id: improvised_weapon
+    name: Improvised Weapon
+    description: "A frying pan, a fallen branch, a bucket, an umbrella — whatever was to hand when wit ran out. Violence here is desperate, improvised, and a failure of cleverness, never a chosen loadout."
+    category: weapon
+    value: 5
+    weight: 2
+    rarity: common
+    power_level: 1
+    tags: [improvised, last_resort, priced_exception]
+    lore: "The traveler who reaches for this has, in the genre's terms, already lost the argument. Sometimes a bucket of the right substance is absurdly decisive — but that is the world's joke, not the traveler's plan."
+    narrative_weight: minor
+
+# Coping-style classes from rules.yaml. A traveler carries only what an ordinary person
+# happened to have at the threshold — sensible, human, never a war loadout.
+starting_equipment:
+  Curious Child:
+    - sensible_shoes
+    - bit_of_food
+    - ordinary_keepsake
+  Practical Servant:
+    - sensible_shoes
+    - pocket_handkerchief
+    - bit_of_food
+  Earnest Scholar:
+    - sensible_shoes
+    - pocket_handkerchief
+    - changeable_map
+  Weary Soldier:
+    - sensible_shoes
+    - improvised_weapon
+    - bit_of_food
+  Wayward Dreamer:
+    - sensible_shoes
+    - talking_trinket
+    - ordinary_keepsake
+  Stubborn Skeptic:
+    - sensible_shoes
+    - pocket_handkerchief
+    - changeable_map
+
+starting_gold:
+  Curious Child: 5
+  Practical Servant: 8
+  Earnest Scholar: 6
+  Weary Soldier: 4
+  Wayward Dreamer: 3
+  Stubborn Skeptic: 7
+
+philosophy:
+  carry_mode: count
+  carry_limit: 8
+  notes: >-
+    A traveler is not a pack mule. The genre is survived by what is in the head, not the
+    pack — keep inventory light, human, and largely sentimental. Items matter as anchors
+    to the ordinary world and as keys to the nonsense, rarely as power. The most valuable
+    things the traveler "carries" are intangible: a kindness owed, a contradiction
+    spotted, the way home half-remembered.
