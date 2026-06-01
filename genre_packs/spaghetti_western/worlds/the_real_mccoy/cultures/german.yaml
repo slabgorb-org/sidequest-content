@@ -12,15 +12,9 @@ description: 'The 48er and post-1865 German-American community centered on Deuts
   '
 slots:
   given_name:
-    lookback: 3
-    corpora:
-    - corpus: mccoy_german_given.txt
-      weight: 1.0
+    names_file: mccoy_german_given.txt
   family_name:
-    lookback: 3
-    corpora:
-    - corpus: mccoy_german_surnames.txt
-      weight: 1.0
+    names_file: mccoy_german_surnames.txt
   title:
     word_list:
     - Herr
@@ -59,7 +53,6 @@ person_patterns:
 - '{given_name} {family_name}'
 - '{title} {family_name}'
 - '{title} {given_name} {family_name}'
-- '{family_name}, {given_name}'
 place_patterns:
 - '{family_name}''s {place_noun}'
 - '{family_name}-{place_noun}'

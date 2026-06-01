@@ -11,15 +11,9 @@ description: 'The mass Irish-Catholic cohort arriving Pittsburgh 1847 onward. Mi
   '
 slots:
   given_name:
-    lookback: 3
-    corpora:
-    - corpus: mccoy_irish_catholic_given.txt
-      weight: 1.0
+    names_file: mccoy_irish_catholic_given.txt
   family_name:
-    lookback: 3
-    corpora:
-    - corpus: irish.txt
-      weight: 1.0
+    names_file: irish.txt
   title:
     word_list:
     - Father
@@ -59,7 +53,6 @@ person_patterns:
 - '{title} {family_name}'
 - '{given_name} ''{adjective}'' {family_name}'
 - '{adjective} {given_name} {family_name}'
-- '{family_name}, {given_name}'
 place_patterns:
 - '{family_name}''s {place_noun}'
 - '{adjective} {family_name} {place_noun}'

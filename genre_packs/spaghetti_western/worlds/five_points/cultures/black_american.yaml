@@ -19,15 +19,9 @@ description: 'The free Black community of the Sixth Ward — denied the ballot b
   '
 slots:
   given_name:
-    lookback: 3
-    corpora:
-    - corpus: mccoy_black_given.txt
-      weight: 1.0
+    names_file: mccoy_black_given.txt
   family_name:
-    lookback: 3
-    corpora:
-    - corpus: mccoy_black_surnames.txt
-      weight: 1.0
+    names_file: mccoy_black_surnames.txt
   title:
     word_list:
     - Reverend
@@ -71,7 +65,6 @@ person_patterns:
 - '{title} {family_name}'
 - '{title} {given_name} {family_name}'
 - '{adjective} {given_name} {family_name}'
-- '{family_name}, {given_name}'
 place_patterns:
 - '{family_name}''s {place_noun}'
 - '{title} {family_name}''s {place_noun}'
