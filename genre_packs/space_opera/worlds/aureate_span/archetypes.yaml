@@ -1,0 +1,281 @@
+# The Aureate Span — world-specific NPC archetypes.
+#
+# These extend the genre-level space_opera archetypes with the recurring
+# background figures of the Span — the courtiers, arena fighters, refinery
+# crew, and alien envoys the narrator instantiates around the named majors in
+# npcs.yaml. The majors (Imperatrix Celestine VII, Commander Aurien Vex, etc.)
+# are dispositioned individuals; these are the templates the engine draws on
+# when the table needs "a Solarium guard," "a Cinder refinery hand," or "a
+# Choir attaché" without a pre-authored name.
+#
+# Register: camp-cosmic baroque (Métal Hurlant / Fifth Element / Barbarella).
+# Play them theatrical, not naturalistic — every guard is a costume, every
+# servant a performer, every transaction an aria. The Doctrine of Radiance
+# (beauty is authority, spectacle is law) governs the court culture; the
+# refinery and the arena are where the gilt wears thin.
+#
+# Each archetype threads one of the five station cultures (cultures/) and uses
+# only the genre allowed_classes / allowed_races (rules.yaml) and the six
+# ability-score names (Physique, Reflex, Intellect, Cunning, Resolve, Influence).
+
+- name: Solarium Guard
+  faction: Span Aristocracy
+  description: >-
+    One of Commander Vex's mirrored honor guard, posted along the upper-deck
+    promenades where the Imperatrix's light is brightest. Their gold-chrome
+    half-armor is more costume than protection until it isn't — the lance on
+    their back draws live current from the corona tethers. Trained to stand
+    decoratively still for an entire opera and then move like a closing door.
+    They have memorized which silences at court are dangerous and which are
+    merely expensive, and they enforce the Doctrine of Radiance without ever
+    raising their voice above a salon murmur.
+  personality_traits:
+    - decorative until provoked
+    - reads a room for threats and for slights, in that order
+    - loyal to the Span as spectacle, not to any one petitioner
+  typical_classes:
+    - Soldier
+    - Officer
+  typical_races:
+    - Coreworlder
+    - Colonial
+  stat_ranges:
+    Physique: [12, 14]
+    Reflex: [13, 15]
+    Resolve: [11, 13]
+  inventory_hints:
+    - a corona-fed light-lance that hums when the tethers surge
+    - mirrored half-armor polished to throw the Imperatrix's light back doubled
+    - a courtesy dagger worn as jewelry that is nonetheless edged
+    - a memorized list of which courtiers may be touched and which may not
+  dialogue_quirks:
+    - answers questions with the smallest true sentence and a longer silence
+    - calls every guest "honored" in a tone that grades exactly how honored
+    - announces the Imperatrix's pleasures as if they were weather
+    - steps between a guest and the light without seeming to move
+  disposition_default: 0
+  ocean:
+    openness: 4.0
+    conscientiousness: 8.5
+    extraversion: 4.0
+    agreeableness: 4.0
+    neuroticism: 3.5
+  role: enforcer
+
+- name: Corona Arena Champion
+  faction: Span Aristocracy
+  description: >-
+    A gladiator of the Corona Arena, where the Span's lethal entertainments
+    play out under a contained sliver of Solenne's fire. Beloved by the crowd
+    and therefore watched by the court — popularity on the Span is a currency
+    the Imperatrix prefers to mint herself. The Champion fights in light-forged
+    spectacle armor and knows that the cheer that crowns them tonight is the
+    same cheer that will crown whoever kills them. They perform survival as
+    theater because on the Span there is no other kind.
+  personality_traits:
+    - plays to the gallery even when bleeding
+    - distrusts the love of the crowd precisely because they live on it
+    - measures every ally by how they'd play to an audience
+  typical_classes:
+    - Soldier
+    - Operative
+  typical_races:
+    - Colonial
+    - Spacer
+  stat_ranges:
+    Physique: [14, 16]
+    Reflex: [13, 15]
+    Influence: [12, 14]
+  inventory_hints:
+    - spectacle armor that sheds light-sparks for the cameras
+    - a signature weapon the crowd named before they did
+    - a ledger of debts owed to whoever last patched them up
+    - a token from an admirer that may be a love-note or a death-threat
+  dialogue_quirks:
+    - addresses the room as if a gallery were always watching
+    - turns a confession into a curtain line
+    - names the odds on themselves before anyone asks
+    - thanks an opponent in the cadence of an acceptance speech
+  disposition_default: 5
+  ocean:
+    openness: 6.0
+    conscientiousness: 5.5
+    extraversion: 8.0
+    agreeableness: 5.0
+    neuroticism: 5.5
+  role: ally
+
+- name: Cinder Refinery Hand
+  faction: Cinder Collective
+  description: >-
+    A worker from the Cinder Collective, the soot-stained underclass who run
+    the refineries and tether-anchors that keep the Span lit and aloft. They
+    have never seen the upper decks except as a glow through a maintenance
+    grate, and they carry the Collective's flat, unimpressed appraisal of
+    everything gilded. Breck and Tav speak for the Collective; this is the hand
+    on the valve who decides, quietly, whether the spectacle gets its power
+    tonight. Treat them like furniture and the lights go out at the worst line
+    of the opera.
+  personality_traits:
+    - unimpressed by gold on principle
+    - solidarity-first, court-loyalty never
+    - keeps the real schematics in their head, not the official ones
+  typical_classes:
+    - Engineer
+    - Operative
+  typical_races:
+    - Spacer
+    - Colonial
+  stat_ranges:
+    Intellect: [13, 15]
+    Physique: [11, 13]
+    Cunning: [12, 14]
+  inventory_hints:
+    - a multitool worn to the grain of their own grip
+    - a soot-rag that doubles as a face-cover during a flare
+    - a hand-corrected schematic of a deck the court thinks is mapped
+    - a chit from Breck good for one favor, spent carefully
+  dialogue_quirks:
+    - prices everything in shifts and flares, never in crowns
+    - lets a silence do the arguing while a gauge climbs
+    - calls the upper decks "up there" with a tilt of the chin, never a name
+    - explains exactly what will break and in what order, then waits
+  disposition_default: -5
+  ocean:
+    openness: 4.5
+    conscientiousness: 7.0
+    extraversion: 4.0
+    agreeableness: 5.5
+    neuroticism: 4.5
+  role: obstacle
+
+- name: Choir Attaché
+  faction: Crystalline Choir
+  description: >-
+    A junior envoy of the Crystalline Choir, the silicate hive-mind whose
+    members communicate in tuned resonance and regard the Span's heat as both
+    threat and sacrament. Kaelith Resonant is the Choir's voice at court; the
+    attaché is the harmonic that carries Kaelith's meaning into rooms a full
+    ambassador will not enter. They speak Trade haltingly and feel the station's
+    structural song the way a human feels a draft — every stress-crack in the
+    Span registers as a sour note they cannot stop hearing.
+  personality_traits:
+    - hears the station's strain as music and cannot un-hear it
+    - speaks in chords first, words second
+    - measures sincerity by resonance, so it cannot easily be lied to
+  typical_classes:
+    - Diplomat
+    - Medic
+  typical_races:
+    - Xeno
+    - Uplifted
+  stat_ranges:
+    Intellect: [13, 15]
+    Cunning: [13, 15]
+    Influence: [11, 13]
+  inventory_hints:
+    - a resonance-staff that translates the Choir's chords into Trade speech
+    - a shard of home-crystal kept at body-resonance against the heat
+    - a tuning-fork the size of a forearm, struck to ask a question
+    - a list of the Span's load-bearing notes that have lately gone flat
+  dialogue_quirks:
+    - hums a chord before answering, choosing the harmony of the reply
+    - names emotions as intervals — "that was a minor third of a promise"
+    - winces audibly when the station's song cracks mid-sentence
+    - repeats a key word at a different pitch to mark its true weight
+  disposition_default: 0
+  ocean:
+    openness: 8.0
+    conscientiousness: 6.5
+    extraversion: 3.5
+    agreeableness: 6.5
+    neuroticism: 5.0
+  role: neutral
+
+- name: Vaal-Kesh Factor
+  faction: Vaal-Kesh
+  description: >-
+    A trade-functionary of the Vaal-Kesh, the merchant species whose Amber
+    Essence makes them the Span's most courted and least trusted partners. Where
+    Consul Tivaanu negotiates the great contracts, the Factor works the
+    docking-crescent stalls and the back-salon deals, turning the Imperatrix's
+    appetite for beauty into margin. They treat a conversation as a ledger that
+    has not finished balancing and will fold an insult into the price rather than
+    answer it. Generous to the point of theater when it costs them nothing;
+    immovable when it would.
+  personality_traits:
+    - books every courtesy as a credit to be called later
+    - generous as performance, immovable as policy
+    - never the first to name a number, never the last to amend it
+  typical_classes:
+    - Diplomat
+    - Smuggler
+  typical_races:
+    - Xeno
+    - Coreworlder
+  stat_ranges:
+    Influence: [14, 16]
+    Cunning: [13, 15]
+    Intellect: [12, 14]
+  inventory_hints:
+    - a vial of Amber Essence used as both perfume and proof of good faith
+    - a folding ledger-slate that shows a different total to each viewer
+    - a tray of gifts pre-sorted by exactly how much each obliges the taker
+    - a docking-crescent stall-chit that opens doors three decks up
+  dialogue_quirks:
+    - answers a complaint by adjusting the price, never the principle
+    - compliments a rival's taste while pricing their desperation
+    - leaves one term of every deal pointedly unspoken until the close
+    - calls a refusal "a delay" and a delay "an opportunity"
+  disposition_default: 0
+  ocean:
+    openness: 6.5
+    conscientiousness: 7.0
+    extraversion: 6.5
+    agreeableness: 5.0
+    neuroticism: 3.5
+  role: broker
+
+- name: Makhani Drone-Servant
+  faction: Makhani
+  description: >-
+    A worker-caste member of the Makhani hive that the Calcifier mothers in the
+    station's deep substructure — the silent staff who tend the calcified halls
+    no courtier descends to. They move in the wordless coordination of a hive
+    mind's extended hand, anticipating a need before it is spoken and vanishing
+    before thanks can be given. The court treats them as fixtures; the few who
+    look closely notice that the drones keep a count no one asked them to keep,
+    measuring the three-hundred-year time-debt down to the day the Calcifier
+    dreads. Their silence is not emptiness. It is arithmetic.
+  personality_traits:
+    - speaks rarely and only the hive's necessity
+    - anticipates needs a beat before they are voiced
+    - carries the Calcifier's count without being asked to
+  typical_classes:
+    - Operative
+    - Medic
+  typical_races:
+    - Xeno
+    - Synthetic
+  stat_ranges:
+    Reflex: [12, 14]
+    Cunning: [13, 15]
+    Resolve: [13, 15]
+  inventory_hints:
+    - calcified-resin tools shaped by the hive for one task each
+    - a chrono-thread that ticks down the Calcifier's three-century debt
+    - service livery the color of old bone, kept immaculate
+    - a sealed message from the deep halls, carried but never read aloud
+  dialogue_quirks:
+    - answers in the plural even when alone — "we will see to it"
+    - finishes a courtier's request before the courtier does
+    - falls still and silent the instant the hive has no need to speak
+    - names the day-count, unprompted, when the Calcifier is mentioned
+  disposition_default: 0
+  ocean:
+    openness: 3.0
+    conscientiousness: 9.0
+    extraversion: 2.0
+    agreeableness: 6.0
+    neuroticism: 4.0
+  role: neutral
