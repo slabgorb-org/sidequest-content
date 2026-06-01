@@ -3,10 +3,10 @@ slug: oz
 genre: wry_whimsy
 cover_poi: the_emerald_city_gate
 
-# DRAFT — portraits, POI landscapes, and visual_style.yaml are deferred to a
-# later render pass. draft:true makes those asset gaps WARNINGS, not errors,
-# at pack-load time (loader.py skips draft worlds at runtime).
-draft: true
+# NOTE: NOT draft. draft:true would make the loader SILENTLY SKIP this world at
+# pack-load time (loader.py:924/1377) — i.e. the world becomes unplayable. Image
+# renders (portraits/POIs) are deferred to a later R2 pass; their absence is a
+# warning, never a load error, so the world ships live without the draft flag.
 
 description: >-
   L. Frank Baum's Oz, rendered straight from the 1900 novel and its sequels —
