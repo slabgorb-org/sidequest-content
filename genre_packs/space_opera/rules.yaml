@@ -321,7 +321,10 @@ confrontations:
   - type: combat
     label: Firefight
     # Spec 2026-05-20 confrontation-intent-validator
-    intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
+    # Story 71-24: melee-flavored verbs (strike, swing, stab) moved to the new
+    # `melee` type below so a knife-fight no longer matches the ranged blaster
+    # bank. Firefight keeps ranged + generic combat verbs only.
+    intent_verbs: [attack, fight, kill, slay, shoot, hit]
     on_intent_mismatch: reprompt
     category: combat
     # Personal combat resolves via attack-vs-AC + hp_depletion under the SWN
@@ -407,6 +410,95 @@ confrontations:
         resolution: true
         consequence: "Combat ends — seal a bulkhead, reach the airlock"
         narrator_hint: Covering fire, sprinting for the bulkhead, slam it shut.
+    mood: combat
+
+  - type: melee
+    label: Melee
+    # Story 71-24: personal-melee bank, DISTINCT from the ranged Firefight
+    # (`combat`) bank and the ship_combat/dogfight vehicle banks. Melee verbs
+    # route HERE, not into Firefight's blaster beats — a vibroblade duel no
+    # longer surfaces "Blaster bolts sear the corridor". Resolves through the
+    # same SWN attack-vs-AC + hp_depletion path (ADR-114 ablative HP) as
+    # Firefight, so a melee fight depletes HP exactly the way a shoot-out does.
+    # Genre-tier (not a perseus_cloud override): personal-melee crunch is
+    # mechanics, inherited by every space_opera world ("Crunch in the Genre").
+    intent_verbs: [swing, stab, strike, slash, lunge, grapple, thrust, parry, hack, cleave, melee]
+    on_intent_mismatch: reprompt
+    category: combat
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
+    # Calibrated to the Firefight baseline: a basic corsair/raider mook at close
+    # quarters. Same hp 7 / AC 12 / 1d6 reprisal as the ranged bank — no separate
+    # melee balancing pass this sprint. Reserved combat-seed keys (hp/armor_class)
+    # seed the opponent's runtime CreatureCore for hp_depletion; dexterity seeds
+    # 1d8+DEX initiative (SWN P4 — no silent +0 fallback).
+    opponent_default_stats:
+      Physique: 10
+      Reflex: 10
+      Resolve: 10
+      hp: 7
+      armor_class: 12
+      dexterity: 13
+    # Opponent reprisal damage, mirroring Firefight: the enemy borrows the strike
+    # beat for its to-hit, which resolves damage from the ACTOR's inventory — the
+    # seeded mook has none — so without this the enemy hits for 0. 1d6 = a basic
+    # blade/club. Read only on the opponent's turn, so it never caps the player's
+    # own weapon.
+    opponent_damage: {dice: "1d6", bonus: 0}
+    # Knife fights, vibroblade duels, boarding-axe brawls in corridors and station
+    # bars. HP on character state, ablated through the strike damage_channel.
+    beats:
+      - id: slash
+        label: Slash
+        kind: strike
+        base: 2
+        stat_check: Physique
+        damage_channel: strike
+        attack_bonus: 1
+        combat_skill: 1
+        effect: "Target takes damage this round"
+        narrator_hint: A blade flashes in — sparks where edge meets bulkhead.
+      - id: parry
+        label: Parry
+        kind: brace
+        base: 1
+        stat_check: Reflex
+        effect: "Turn the incoming blow aside, reduce damage taken"
+        narrator_hint: Catch the strike on a forearm guard, deflect it wide.
+      - id: overhand
+        label: Overhand Strike
+        kind: strike
+        base: 4
+        attack_bonus: 1
+        combat_skill: 1
+        # The committed swing: out-damages a basic slash (mirrors Firefight's
+        # `overload` dump shot). 2d6 (avg 7) ablates via the same strike channel —
+        # enough to drop a 7-HP mook on a hit, justifying the failure-momentum cost.
+        damage_channel: strike
+        damage_override: {dice: "2d6", bonus: 0}
+        deltas:
+          # Both Fail and CritFail dock momentum — the prose promises a
+          # consequence "on failure" without distinguishing tier (mirrors the
+          # Firefight overload calibration).
+          fail:
+            own: -2
+          crit_fail:
+            own: -2
+        stat_check: Physique
+        risk: "Overcommit — lose 2 momentum on any failure"
+        effect: "Target takes heavy damage from the committed swing"
+        narrator_hint: Both hands on the haft, a downward blow with all your weight.
+      - id: withdraw
+        label: Break Away
+        kind: push
+        stat_check: Reflex
+        # Voluntary melee exit (parity with Firefight's `retreat` resolution beat).
+        # Without it an hp_depletion melee could only end on a kill — a soft-lock
+        # (cf. playtest 67-10 / 59-26 "unexitable"). Distinct id from ship_combat's
+        # `disengage` and Firefight's `retreat` — this is its own bank.
+        resolution: true
+        consequence: "Combat ends — break contact, put a bulkhead between you"
+        narrator_hint: Shove off, spin clear, and sprint for the hatch.
     mood: combat
   - type: chase
     label: Spaceflight Pursuit
