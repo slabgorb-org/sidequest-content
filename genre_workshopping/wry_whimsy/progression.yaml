@@ -1,0 +1,211 @@
+# Wry Whimsy — Savvy Progression
+# A traveler does not grow stronger; they grow WISER ABOUT THE WORLD. Progression
+# is savvy/insight: learning which authorities are hollow, which weaknesses are
+# absurd, which kindnesses pay off, and how far you can lean on the dream-logic
+# before it claims you. No combat levels — these affinities are about reading and
+# surviving a place that runs on rules nobody will explain.
+#
+# Triggers fire on the FICTION (arguing with an authority, befriending a creature,
+# spotting a contradiction), not on damage dealt. Named-tier convention
+# (novice / journeyman / expert / master), matching spaghetti_western.
+
+affinities:
+  - name: The Rules of the Place
+    description: >-
+      Insight into how this world actually works — which laws are real, which are
+      bluff, where cause and effect have quietly come apart, and how to reason
+      inside nonsense well enough to turn it. The savvy of a traveler who has
+      stopped expecting the world to make sense and started learning its grammar.
+    triggers:
+      - spot a contradiction
+      - deduce a hidden rule
+      - outwit an authority
+      - refuse a false premise
+      - learn how the dream-logic works
+    tier_thresholds: [10, 25, 50, 100]
+    unlocks:
+      novice:
+        name: Sensible Footing
+        description: "You have stopped panicking at the impossible. You can think while the world misbehaves."
+        abilities:
+          - name: Read the Nonsense
+            experience: "You notice when a rule has just been invented to inconvenience you. Half the time you can name it aloud, and naming it weakens it."
+            limits: "Works only when there is a moment to observe. In flat-out flight or a shouting court, the seam stays hidden."
+      journeyman:
+        name: Lawyer of Dreams
+        description: "You have catalogued enough of this world's contradictions to use them against it."
+        abilities:
+          - name: Turn Their Own Rule
+            experience: "An authority that lives by a rule can be bound by it. You catch the king breaking his own decree and make the room watch."
+            limits: "Requires you to have first witnessed the rule. Cannot conjure a contradiction that was never established."
+          - name: Plain Speech
+            experience: "You describe an impossible thing so flatly that it loses some of its menace. The sea of tears is, after all, only water."
+            limits: "Tames wonder-shock and enchantment; useless against an authority that already knows it is absurd and likes it."
+      expert:
+        name: Native Reasoner
+        description: "You reason in the world's own logic without losing your own. You can predict the nonsense."
+        abilities:
+          - name: Anticipate the Whim
+            experience: "You know which way a capricious authority will lurch before it does. You are already standing where the verdict lands."
+            limits: "Once per confrontation, declare the authority's next move; the narrator honours it or explains why the whim broke pattern."
+          - name: Exploit the Seam
+            experience: "Every dream-logic world has a load-bearing absurdity. You have learned to lean on it."
+            limits: "Requires a banked 'rule turned' or contradiction tag. Spending it can end a confrontation in your favour outright."
+      master:
+        name: The One Who Understands
+        description: "You understand this place better than most of its inhabitants. The nonsense answers to you — a little."
+        abilities:
+          - name: Name the True Rule
+            experience: "Once, when it matters most, you state the one rule the whole world is secretly built on, and for a moment everything obeys it."
+            limits: "Once per session. Resolves the standing confrontation on your terms, or unsticks an impossible obstacle entirely."
+
+  - name: The Kindness Ledger
+    description: >-
+      The hard-won knowledge that sincerity is a strategy here. Travelers who are
+      kind to the small, the strange, and the frightened accumulate allies the
+      world's authorities never see coming. This affinity tracks the friendships
+      that turn out, much later, to be the thing that saves you.
+    triggers:
+      - befriend a creature
+      - keep a promise
+      - show mercy
+      - help the small or strange
+      - speak honestly under pressure
+    tier_thresholds: [10, 25, 50, 100]
+    unlocks:
+      novice:
+        name: Worth Trusting
+        description: "Creatures and outcasts have begun to sense you mean what you say. In a world of humbug, that is rare."
+        abilities:
+          - name: An Honest Face
+            experience: "The frightened thing decides, against its better judgement, to trust you. Sincerity lands where cleverness would slide off."
+            limits: "Advantage on HEART checks when the offer is genuinely honest. The world can tell when it is not."
+      journeyman:
+        name: Friend to the Small
+        description: "Word travels among the overlooked. A mouse remembers; a scarecrow tells a crow."
+        abilities:
+          - name: A Debt Recalled
+            experience: "Someone you were kind to, scenes ago, turns up exactly when you need them — because you were kind to them."
+            limits: "Once per world, a past act of kindness pays off as timely aid. Requires an actual earlier kindness on the record."
+          - name: Gentle the Frightened
+            experience: "You can talk a panicking creature down from its terror, and it will do almost anything for whoever stopped the fear."
+            limits: "Works on the genuinely frightened, not the merely hostile or the gleefully cruel."
+      expert:
+        name: The Stranger Who Stayed Kind
+        description: "Your reputation precedes you among the world's gentle and powerless — which is more of the world than its kings admit."
+        abilities:
+          - name: A Quiet Network
+            experience: "In any new region, something small and overlooked already knows you by reputation and is inclined to help."
+            limits: "Roll HEART on arrival in a new region to determine whether a local ally surfaces."
+          - name: Mercy Means Something
+            experience: "You can spare a defeated foe and have it matter — they remember, and so does the world."
+            limits: "A spared opponent may return as an ally. HEART check to plant the seed; not guaranteed."
+      master:
+        name: The Heart of the Tale
+        description: "You have become the kind of traveler these stories are secretly about — the one whose kindness rewrites the ending."
+        abilities:
+          - name: The Friend at the End
+            experience: "When all your cleverness has failed and your Composure is nearly gone, the smallest ally you ever made arrives and changes everything."
+            limits: "Once per session. When you are at the edge of a Composure break, an earned ally intervenes and resets the stakes of the scene."
+
+  - name: The Traveler's Nerve
+    description: >-
+      The endurance of a sensible person in an insensible place — the grip that
+      keeps you yourself while the world works to unmake you. This affinity is
+      your defence of your own Composure: the deeper it runs, the longer you can
+      stare down the impossible without breaking.
+    triggers:
+      - hold your nerve under absurdity
+      - survive a wonder-shock
+      - refuse to be rattled
+      - recover from a near-break
+      - keep your head in a hostile court
+    tier_thresholds: [10, 25, 50, 100]
+    unlocks:
+      novice:
+        name: Unflappable
+        description: "The first wave of impossibility no longer knocks you flat. You wobble; you do not fall."
+        abilities:
+          - name: Steady On
+            experience: "When the world lurches, you breathe and stay standing. The vertigo passes through you instead of taking you."
+            limits: "Advantage on NERVE checks against the first wonder-shock of a scene. Repeated shocks still bite."
+      journeyman:
+        name: Deep Composure
+        description: "Your grip on yourself has thickened. It takes more to break you than it used to."
+        abilities:
+          - name: Second Wind
+            experience: "When you think you are spent, you find one more refusal in you, and the dream's pull stalls against it."
+            limits: "Once per confrontation, when your Composure would break, recover a measure of it instead. Once per scene only."
+          - name: Borrowed Calm
+            experience: "Your steadiness is contagious. Allies near you find it easier to keep their own heads."
+            limits: "Allies in the same confrontation gain a small bonus to NERVE checks while you remain unbroken."
+      expert:
+        name: The Eye of the Storm
+        description: "You are the still point the nonsense breaks against. Authorities find you maddeningly hard to frighten."
+        abilities:
+          - name: Cannot Be Rattled
+            experience: "Bluster, threat, and spectacle wash over you. The authority shouting at you slowly realises it is not working."
+            limits: "Once per confrontation, negate an opponent's attempt to press your Composure outright."
+          - name: Stand Between
+            experience: "You can plant yourself in front of someone weaker and take the world's pressure so they do not have to."
+            limits: "Redirect a Composure debit aimed at an ally onto yourself, once per round, while you have grip to spare."
+      master:
+        name: Anchored to the Ordinary
+        description: "Nothing this world can do will make you forget who you are. Your nerve has become a fixed point the dream cannot move."
+        abilities:
+          - name: Unbreakable
+            experience: "Once, when the whole scene bends to unmake you, you simply do not break. You look the impossible in the eye and remain."
+            limits: "Once per session. Ignore a Composure break that would otherwise end the confrontation; you stay in the fight."
+
+  - name: The Pull of Wonder
+    description: >-
+      The dangerous, double-edged savvy of leaning INTO the dream-logic rather
+      than against it. A traveler who opens to the world's strangeness can see and
+      do impossible things — but every step toward the dream is a step away from
+      home. This affinity grows on WONDER, the risk stat: power bought with a
+      piece of yourself.
+    triggers:
+      - lean into the dream-logic
+      - see by the world's rules
+      - take a strange bargain
+      - trust the impossible
+      - go a little native
+    tier_thresholds: [10, 25, 50, 100]
+    unlocks:
+      novice:
+        name: Half-Open Eyes
+        description: "You have stopped insisting the world is wrong and started, sometimes, seeing what it sees."
+        abilities:
+          - name: Dream-Sight
+            experience: "For a moment you look at the impossible thing and understand it from the inside. It shows you a way through it does not show outsiders."
+            limits: "WONDER check to gain insight into a dream-logic obstacle. Each use leaves a faint pull toward staying."
+      journeyman:
+        name: Walking the Logic
+        description: "You can step into the world's rules on purpose and use them — and step back out, mostly."
+        abilities:
+          - name: Take the Wrong Door on Purpose
+            experience: "You trust the nonsense to carry you where sense cannot. A door that should lead nowhere leads exactly where you need."
+            limits: "Once per escape, the dream-logic grants a shortcut. On a failure it loops you back AND deepens the pull of wonder."
+          - name: Speak the World's Tongue
+            experience: "You can answer a riddling authority in its own register, nonsense for nonsense, and win."
+            limits: "Advantage on WIT/GUILE in a wit-duel — but a critical success here costs a tick toward going native."
+      expert:
+        name: One Foot in the Dream
+        description: "You move between the ordinary and the impossible with unsettling ease. People who know you have begun to worry."
+        abilities:
+          - name: Bend a Small Rule
+            experience: "You have learned the world will let you change one little thing if you ask it in the right strange way."
+            limits: "Once per scene, alter a minor element of a dream-logic obstacle. Spending WONDER this way accrues the pull."
+          - name: Native Sight
+            experience: "You see the seams and the secret machinery the way the world's own creatures do."
+            limits: "Automatically perceive the hidden rule of an obstacle or confrontation — at the cost of a step toward staying forever."
+      master:
+        name: Almost of This Place
+        description: >-
+          You can do nearly anything the dream allows — which is the danger. The
+          master of Wonder is one good bargain away from never going home, and
+          knows it. The genre's sharpest blade and its quietest tragedy.
+        abilities:
+          - name: Rewrite the Scene
+            experience: "Once, you reach all the way into the dream-logic and reshape the moment as if you belonged here. Because, now, you almost do."
+            limits: "Once per session. Resolve any confrontation or obstacle by fiat in your favour — but it costs a permanent measure of WONDER-pull the narrator tracks toward going native."

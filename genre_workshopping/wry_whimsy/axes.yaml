@@ -1,0 +1,141 @@
+# Wry Whimsy — Tone Alignment Axes
+# Four axes tuned for the portal-fairytale chassis. Values range from 0.0 (first
+# pole) to 1.0 (second pole). Defaults set the genre baseline; per-world presets
+# walk the deliberate light -> savage gradient (Oz / Wonderland / Gulliver).
+
+definitions:
+  - id: whimsy
+    name: Whimsy
+    description: >-
+      How playful the world feels. At the low end the fairytale curdles —
+      menace is plain, jokes die in the throat. At the high end the place
+      delights in its own absurdity: talking creatures, cheerful nonsense, a
+      world that is fun to be lost in even when it is dangerous.
+    poles:
+      - grim
+      - whimsical
+    default: 0.7
+
+  - id: sense
+    name: Sense
+    description: >-
+      How much the world obeys logic. At the low end nothing follows — rules
+      change mid-sentence, cause and effect part ways, authorities answer
+      riddles with riddles. At the high end the dream-logic settles into
+      something a sensible traveler can actually reason about and exploit.
+    poles:
+      - nonsense
+      - logical
+    default: 0.35
+
+  - id: gravity
+    name: Gravity
+    description: >-
+      The weight of consequences. Low gravity means a lost scene is a story you
+      laugh about later — Composure breaks heal, nothing sticks. High gravity
+      means a break leaves a mark, a bargain binds, and the world remembers what
+      the traveler did and failed to do.
+    poles:
+      - light
+      - heavy
+    default: 0.3
+
+  - id: menace
+    name: Menace
+    description: >-
+      How cruel the world is willing to be. At the cosy end the danger is
+      enchantment and embarrassment — you are unmade gently. At the savage end
+      the satire bites, the authorities are genuinely vicious, and the place
+      would happily make a meal or a slave or a fool of a stranger.
+    poles:
+      - cosy
+      - savage
+    default: 0.3
+
+modifiers:
+  whimsy:
+    grim: >-
+      Strip the cheer. The talking creatures are unsettling, not charming; the
+      nonsense has an edge of cruelty. Describe the fairytale as something that
+      has gone wrong and knows it. Laughter, when it comes, is nervous.
+    whimsical: >-
+      Lean into delight. The world is genuinely fun to wander — colour, song,
+      eccentric creatures running their own peculiar businesses. Danger is real
+      but wrapped in wonder. The narrator may be wry, never cynical.
+
+  sense:
+    nonsense: >-
+      Let logic fail on purpose. Authorities contradict themselves; rules
+      appear only to be broken; questions are answered with questions. The
+      traveler's reason is a tool the world keeps confiscating. Reward players
+      who stop fighting the absurdity and start playing along with it.
+    logical: >-
+      Let the dream-logic be consistent enough to outwit. The world is strange
+      but its strangeness has rules, and a clever traveler can learn them and
+      turn them. Reward deduction: the seam in the nonsense is findable.
+
+  gravity:
+    light: >-
+      Consequences are soft and recoverable. A Composure break is a fright the
+      traveler shakes off by the next doorway. Bargains can be wriggled out of;
+      the world forgives. Keep the stakes about dignity and wonder, not survival.
+    heavy: >-
+      Consequences bind. A break leaves the traveler changed; a deal struck with
+      a strange authority holds; the world keeps a ledger. Frame failures so they
+      cost something the traveler will carry forward, even here.
+
+  menace:
+    cosy: >-
+      The world unmakes strangers gently. The worst that waits is enchantment,
+      condemnation to a comfortable cage, or being laughed out of the room. No
+      gore, no real cruelty — the danger is losing yourself by degrees, kindly.
+    savage: >-
+      The world is willing to be vicious. The satire has teeth; the authorities
+      are petty tyrants who mean harm; a stranger is fair game for the giant's
+      table or the slaver's pen. Keep it within the recoverable-break baseline,
+      but let the menace be genuinely frightening, not decorative.
+
+presets:
+  - name: Oz
+    description: >-
+      The light end of the gradient. An earnest American fairyland — kind where
+      it can be, where male authority is humbug and menace enchants rather than
+      kills. Whimsical, mostly sensible, gentle stakes, low cruelty.
+    values:
+      whimsy: 0.85
+      sense: 0.5
+      gravity: 0.25
+      menace: 0.2
+
+  - name: Wonderland
+    description: >-
+      The funky-dark middle. Nonsense as the antagonist — capricious courts,
+      trials with no rules, a logic that will not hold still. Whimsical on the
+      surface with a cold draft underneath; stakes that can bite.
+    values:
+      whimsy: 0.7
+      sense: 0.2
+      gravity: 0.4
+      menace: 0.45
+
+  - name: Gulliver
+    description: >-
+      The savage end. The absurd society IS the antagonist, and the satire turns
+      its mirror on the traveler. Drier wit, harder logic, heavier consequences,
+      and a world genuinely willing to make a stranger into a curiosity, a
+      prisoner, or a meal.
+    values:
+      whimsy: 0.45
+      sense: 0.5
+      gravity: 0.6
+      menace: 0.7
+
+  - name: Baseline
+    description: >-
+      The genre default — whimsical, a touch nonsensical, light-stakes and
+      cosy. The starting tone before a world dials it.
+    values:
+      whimsy: 0.7
+      sense: 0.35
+      gravity: 0.3
+      menace: 0.3

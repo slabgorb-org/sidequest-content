@@ -1,0 +1,237 @@
+# Character creation scenes — Wry Whimsy
+# The Traveler flow. Five scenes: the_threshold (origin/race), the_crossing
+# (what kind of person you are / class), the_keepsake (what you carried over +
+# temperament), the_reason (why you cannot simply stay), the_first_step.
+#
+# A sensible person from the ordinary world wakes on the far side of a threshold
+# they did not mean to cross. Chargen is framed as the last quiet moment before
+# the nonsense begins — a voice, half-remembered, asking who you were before.
+# mechanical_effects keys are drawn from the engine's fixed allow-list
+# (class_hint, race_hint, background, personality_trait, goals, emotional_state).
+
+- id: the_threshold
+  title: Who Were You, Before?
+  narration: |
+    You are sitting on grass that is too green, under a sky that is the wrong
+    blue, and you cannot for the life of you remember how you got here. A moment
+    ago there was a door, or a rabbit-hole, or a great grey wave — and now there
+    is this.
+
+    Something is watching you from the hedge. It is small, and it is wearing a
+    waistcoat, and it has clearly decided you are interesting. It tilts its head.
+
+    "You're not from here," it observes, not unkindly. "You've got that look.
+    Everyone who washes up here came from somewhere ordinary. Where was yours?"
+  loading_text: "The creature in the waistcoat considers you..."
+  choices:
+    - label: The plain ordinary world
+      description: >-
+        You came from somewhere entirely sensible — a kitchen, a schoolroom, a
+        rainy afternoon — and you have never once in your life believed in places
+        like this. Which makes you, here, refreshingly hard to fool and badly
+        out of your depth.
+      mechanical_effects:
+        race_hint: Ordinary-Born
+        background: Ordinary
+    - label: You have crossed before
+      description: >-
+        This is not your first threshold. You have stepped through before and
+        come back changed, and a part of you has been half-here ever since. You
+        know the danger of these places — and the pull of them.
+      mechanical_effects:
+        race_hint: Threshold-Touched
+        background: Returned
+    - label: You were born inside a dream
+      description: >-
+        You are not a visitor at all. You were born somewhere like this and only
+        feel like a stranger because you have always been the one sensible head in
+        a senseless place. You belong here, which is its own kind of trap.
+      mechanical_effects:
+        race_hint: Native Dreamer
+        background: Native
+  allows_freeform: true
+
+- id: the_crossing
+  title: What Kind of Person Are You?
+  narration: |
+    The creature hops closer and inspects you with the frank rudeness of small
+    things that have never been told not to stare.
+
+    "It matters what sort you are," it says. "The place will test you, and it
+    tests everyone differently. The brave ones, the clever ones, the kind ones,
+    the ones who simply refuse to believe in it — they each get out a different
+    way. Or don't."
+
+    It produces, from somewhere it could not possibly have kept it, a tiny pair
+    of spectacles, and peers at you through them. "So. What sort are you?"
+  choices:
+    - label: A curious child
+      description: >-
+        You are young, and you meet the impossible with questions instead of
+        fear. The world disarms you and you disarm it right back; authorities
+        forget to take you seriously until it is much too late for them.
+      mechanical_effects:
+        class_hint: Curious Child
+        personality_trait: Curious
+    - label: A practical servant
+      description: >-
+        You are the sort who keeps things running. While everyone else marvels or
+        panics, you are already tidying, fixing, feeding, finding the sensible
+        thing to do. Nonsense is just one more mess to be sorted.
+      mechanical_effects:
+        class_hint: Practical Servant
+        personality_trait: Capable
+    - label: An earnest scholar
+      description: >-
+        You believe that anything can be understood if you only observe it
+        closely enough. You will reason your way through this place — or be
+        humbled, hard, learning that some logic must be played along with, not
+        solved.
+      mechanical_effects:
+        class_hint: Earnest Scholar
+        personality_trait: Inquisitive
+    - label: A weary soldier
+      description: >-
+        You came from a real war and you carry its wariness. Here you will learn,
+        slowly, that the local battles are not won with force — they are won by
+        keeping your nerve when the absurdity turns dangerous, and you can do that
+        better than anyone.
+      mechanical_effects:
+        class_hint: Weary Soldier
+        personality_trait: Steady
+    - label: A wayward dreamer
+      description: >-
+        You took to this place far too easily. You delight in the impossible and
+        lean into its logic with an open, unwary heart — which is your great gift
+        and your great danger, because the dream would so love to keep you.
+      mechanical_effects:
+        class_hint: Wayward Dreamer
+        personality_trait: Dreamy
+    - label: A stubborn skeptic
+      description: >-
+        You flatly refuse to believe in any of this, and you will say so, loudly,
+        to a talking rabbit's face. It is maddening to everyone — and it turns out
+        that an authority which runs on belief has no power over someone who
+        declines to grant it.
+      mechanical_effects:
+        class_hint: Stubborn Skeptic
+        personality_trait: Skeptical
+  allows_freeform: true
+
+- id: the_keepsake
+  title: What Did You Bring Across?
+  narration: |
+    The creature folds the spectacles away. "Everyone carries something over,"
+    it says, more quietly now. "A thing from the ordinary side. It's never the
+    useful thing you'd have packed if you'd known you were coming. But it's
+    yours, and out here a thing that's truly yours is worth more than gold."
+
+    It waits, with the patience of a creature that has watched a hundred
+    travelers reach into their pockets.
+
+    "What did you find on you, when you woke?"
+  choices:
+    - label: Something practical and ordinary
+      description: >-
+        A pocketknife, a handkerchief, half a sandwich, a length of string — a
+        plain useful thing from a plain useful world. It steadies you. As long as
+        you have it, you remember exactly who and what you are.
+      mechanical_effects:
+        personality_trait: Grounded
+        emotional_state: Composed
+    - label: Something precious to you
+      description: >-
+        A locket, a letter, a photograph, a small worn toy — a thing with a
+        person attached to it. It is your anchor to home and your soft spot both;
+        the world cannot frighten you out of it, but it can ache.
+      mechanical_effects:
+        personality_trait: Devoted
+        emotional_state: Homesick
+    - label: Something strange you can't explain
+      description: >-
+        A key that fits no lock you own, a coin in no currency, a thing you do not
+        remember picking up. It hums faintly here in a way it never did at home.
+        It frightens you a little. You suspect it is why you crossed.
+      mechanical_effects:
+        personality_trait: Marked
+        emotional_state: Unsettled
+    - label: Nothing at all
+      description: >-
+        Your pockets were empty. You came across with only yourself — no anchor,
+        no comfort, no excuse. It is a lonely way to arrive, but it means there is
+        nothing the world can take from you that you have not already lost.
+      mechanical_effects:
+        personality_trait: Unburdened
+        emotional_state: Adrift
+  allows_freeform: true
+
+- id: the_reason
+  title: Why Can't You Just Stay?
+  narration: |
+    The creature studies you a long moment, and for the first time it looks
+    almost sad. "Most travelers, you know, could stay," it says. "The place
+    would let you. It's not unkind, in its way. It would give you a little house
+    and a strange little life and you'd forget, by degrees, that you ever had
+    another."
+
+    A wind moves through the too-green grass. Somewhere, far off, something
+    enormous is laughing.
+
+    "But you've got a reason not to. They always do. What's pulling you back
+    through?"
+  choices:
+    - label: Someone is waiting for you
+      description: >-
+        There is a person on the other side who will be frightened sick when you
+        do not come home. You will not do that to them. Their face is the rope you
+        will haul yourself back along, no matter how far this place takes you.
+      mechanical_effects:
+        goals: Get Home
+        emotional_state: Resolved
+    - label: You came in looking for someone
+      description: >-
+        You did not fall through by accident — you followed somebody. A sister, a
+        friend, a child who crossed before you and never came back. You will find
+        them in this nonsense and you will not leave without them.
+      mechanical_effects:
+        goals: The Search
+        emotional_state: Driven
+    - label: Something here needs setting right
+      description: >-
+        You have seen, already, that this place is hurt — a fraud on a throne, a
+        cruelty dressed as a law, a kindness it has forgotten. You are a stranger
+        and it is none of your business, and you are going to fix it anyway.
+      mechanical_effects:
+        goals: Set It Right
+        emotional_state: Indignant
+    - label: You're afraid of what staying would make you
+      description: >-
+        You can feel it already — the pull, the way the dream would love to keep
+        you, the person you would slowly become if you let it. You are going back
+        because you have seen what staying costs, and you would rather go home a
+        stranger than stay here a ghost.
+      mechanical_effects:
+        goals: Stay Yourself
+        emotional_state: Wary
+  allows_freeform: true
+
+- id: the_first_step
+  title: The Nonsense Begins
+  narration: |
+    The creature in the waistcoat straightens, satisfied, and produces a watch it
+    does not check. "Well," it says. "That'll do. You know who you were. The
+    trick now is staying that person."
+
+    It points down a road that was not there a moment ago, winding off between
+    impossible trees toward a horizon that keeps changing its mind.
+
+    "Keep your wits about you," it says. "Keep your nerve. And whatever you do —"
+    it is already fading, waistcoat and watch and all — "don't let them tell you
+    the rules. There aren't any. That's the only rule."
+
+    You stand. You brush the too-green grass from your ordinary clothes. You take
+    the first step.
+
+    The world leans in to see what you will do.
+  choices: []
+  allows_freeform: false
