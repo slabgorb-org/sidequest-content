@@ -1,0 +1,69 @@
+name: Wonderland
+slug: wonderland
+genre: wry_whimsy
+cover_poi: queens_croquet_ground
+
+# draft:true is REQUIRED for now — the loader (loader.py:924/1377) will SILENTLY
+# SKIP this world at pack-load time while it is set, i.e. the world is not yet
+# playable. It stays drafted until portraits and POI landscapes are rendered to
+# R2; flip to a live world (drop this flag) only after the asset pass lands.
+draft: true
+
+description: >-
+  Lewis Carroll's Wonderland, taken straight from Alice's Adventures in
+  Wonderland (1865) and Through the Looking-Glass (1871) and treated as one
+  dream-country. A sensible traveler falls down a rabbit-hole — or steps through
+  a mirror — into a place where nonsense itself is the authority. Two capricious
+  queens rule by terror and tantrum: the Queen of Hearts, who answers every
+  difficulty with "Off with their heads!", and the Red Queen, who runs you
+  breathless to keep you standing still. A King of Hearts dozes on the bench and
+  quietly pardons everyone behind her back; a Red King sleeps under a tree, and
+  the dreadful rumour is that the whole country is only a thing in his dream — and
+  so are you. The court is a pack of playing-cards; the far country is a board of
+  chesspieces. The way home is not a road but WAKING: you leave by refusing the
+  dream decisively, as Alice does when she rises in the dock and declares the
+  court "nothing but a pack of cards," or seizes the Red Queen at the feast and
+  shakes her awake. And here is the trap — the more you reshape the place, the
+  more it wants to keep you, and the harder the waking comes.
+
+era: "Carroll's Wonderland — the rabbit-hole and the looking-glass as one country"
+
+tone: >-
+  Earnest English nonsense, played dead straight — Tenniel's woodcuts, never
+  Disney's 1951. The humour and the horror both come from the world being
+  sincerely, relentlessly itself: nobody winks, nobody explains, and the most
+  absurd cruelties are delivered with perfect courtesy. The menace is sharper
+  than Oz — a country that runs on broken logic is a country where the ground
+  can give way under reason itself — but the threats are mostly theatre, terror
+  without follow-through, until the one thing that is genuinely lethal comes
+  whiffling through the tulgey wood. The deep dread is dislocation: being
+  rescaled, being out-argued by drivel, being told you are only someone else's
+  dream. Keep the women raging and ruling and the men asleep or useless — that
+  is honest to Carroll, not a gloss on him.
+
+# Wry Whimsy preset, walked to the brief's locked overrides. Where Oz sits at the
+# LIGHT end (whimsy high, menace low), Wonderland is darker and stranger: nonsense
+# is the ANTAGONIST, so the sense axis sits low (toward nonsense) while menace and
+# gravity climb above Oz's settings.
+axis_snapshot:
+  whimsy: 0.75
+  sense: 0.2
+  gravity: 0.45
+  menace: 0.5
+
+# The traveler comes to ground at the bottom of the rabbit-hole: the long low
+# hall lined with locked doors of every size, the three-legged glass table, the
+# little golden key, and the curtain hiding the fifteen-inch door to the loveliest
+# garden the traveler cannot yet fit through.
+starting_location: the_hall_of_doors
+
+# Lethality is MEDIUM. Higher than Oz (low), because a world that has abandoned
+# sense can turn dangerous without warning — but most of Wonderland's threats are
+# terror-theatre that never lands the blow (see the_capricious_sentence). The one
+# genuinely lethal thing, the Jabberwock, is encoded as its own trope, and
+# violence answering it leaves a mark everywhere else (see the_jabberwock).
+lethality: medium
+
+extensions:
+  - archetype_funnels
+  - npcs

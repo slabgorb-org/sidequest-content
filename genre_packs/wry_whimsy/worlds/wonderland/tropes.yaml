@@ -1,0 +1,653 @@
+# Wonderland — World Tropes (Wry Whimsy)
+#
+# WORLD TIER for the `wonderland` world of the `wry_whimsy` pack. Rendered straight
+# from Lewis Carroll's Alice's Adventures in Wonderland (1865) and Through the
+# Looking-Glass (1871), treated as ONE dream-territory — never the Disney 1951
+# film. Eat-me/drink-me; the tea-party stopped at six o'clock; painted roses; "all
+# the running you can do, to keep in the same place"; the vorpal sword and the
+# tulgey wood. Tone is MEDIUM-lethality: most menace is terror-theatre that never
+# lands the blow, but the Jabberwock genuinely kills, and the world will not blink.
+#
+# Three of these tropes EXTEND genre-tier abstract tropes via `extends:` (matched on
+# the parent trope's NAME, slugified): nonsense_as_authority ← Impossible Authority,
+# the_truth_telling_cat ← Helpful Companion, the_pack_of_cards ← The Seam Reveal. The
+# Wonderland escalation arrays fully override the generic parent beats with Carroll's
+# particulars. The remaining six (the_capricious_sentence, the_size_game,
+# stuck_in_the_nonsense, only_a_thing_in_his_dream, run_to_stay_in_place,
+# the_jabberwock) are standalone Wonderland tropes with no genre parent.
+#
+# Doctrine: source-fidelity over Hollywood; diegetic sincerity, never a wink; the
+# gender current is honest to Carroll — the women rage and rule, the men sleep or
+# dither. The way home is WAKING: you leave by refusing the dream decisively, and
+# reshaping the world raises the cost of leaving.
+
+# 1 — NONSENSE AS AUTHORITY  (specializes Impossible Authority)
+- id: nonsense_as_authority
+  name: Nonsense as Authority
+  extends: Impossible Authority
+  description: >-
+    The rules are invented on the spot and weaponized. In Wonderland the antagonist
+    is logic itself: a trial proceeds with no procedure — the verdict demanded before
+    the evidence, "sentence first, verdict afterwards," the jury writing down their
+    own names so they don't forget them. Humpty Dumpty keeps a private dictionary in
+    which a word means just what he chooses it to mean, neither more nor less, and
+    pays the words extra when he makes them work overtime. The Queen of Hearts hands
+    down sentences with no relation to any crime. There is no appeal to reason,
+    because reason has no standing here — it is the foreigner in the dock. Played
+    dead straight: the absurdity is delivered with perfect gravity, and everyone but
+    the traveler treats it as the most ordinary thing in the world.
+  category: confrontation
+  triggers:
+    - put on trial with no procedure
+    - sentence first verdict afterwards
+    - a word means what I choose it to mean
+    - a rule invented to trap the traveler
+    - the queen hands down an arbitrary sentence
+    - logic used as a weapon against you
+  narrative_hints:
+    - the proceeding has all the furniture of justice — jury, witnesses, a sentence — and none of its substance
+    - whoever holds power simply decides what words and rules mean, and dares the traveler to object
+    - the room treats the nonsense as self-evident; the traveler's reason is the thing on trial
+  tension_level: 0.5
+  resolution_hints:
+    - out-nonsense the nonsense, or hold to plain sense so stubbornly the invented rule cannot grip
+    - refuse the premise of the proceeding entirely rather than arguing inside it
+    - catch the authority contradicting its own made-up rule and name the contradiction aloud
+  tags: [wonderland, confrontation, authority, nonsense, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler is hauled into a proceeding that wears the costume of law — a
+        court, a contract, a lesson, a dictionary — and the rules turn out to be made
+        up as they go. A demand is put, a verdict is wanted, and no one explains by
+        what right.
+      stakes: The traveler is inside a system that answers to nothing, and is expected to play along.
+    - at: 0.6
+      event: >-
+        The nonsense tightens into a weapon. Sentence is called for before any verdict;
+        a word is redefined mid-sentence to mean its opposite; a rule appears precisely
+        to catch the traveler out. To argue by reason is to be laughed at by the whole
+        room.
+      stakes: The invented logic is closing around the traveler, and ordinary sense is no defence.
+    - at: 1.0
+      event: >-
+        The traveler stops arguing inside the nonsense and acts on it from outside —
+        refusing the premise, naming the contradiction, declining to be bound by a rule
+        that was never real. The authority's invented logic has nothing to grip, because
+        the traveler stopped agreeing it was logic at all.
+      stakes: Whether the traveler is held by the nonsense or steps clear of it — and is remembered for which.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.02
+    accelerators:
+      - on trial
+      - sentence first
+      - verdict
+      - the queen demands
+      - it means what I choose
+      - the rules
+      - your majesty
+    decelerators:
+      - bow
+      - obey
+      - say nothing
+      - flee the court
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 2 — THE CAPRICIOUS SENTENCE  (standalone)
+- id: the_capricious_sentence
+  name: The Capricious Sentence
+  description: >-
+    "Off with their heads!" — the constant terror-theatre of the Queen of Hearts,
+    who orders an execution roughly once a minute over a misplaced word, a botched
+    croquet stroke, a rose the wrong colour. The threat is sincere and the fear it
+    produces is real: gardeners flatten themselves on the path, courtiers go pale,
+    the whole game stops. But it is rarely carried out — the King of Hearts, the
+    do-nothing man on the bench, follows quietly behind her and pardons everyone she
+    condemns, "in a low voice, to the company generally," so that by the day's end
+    nobody has actually been beheaded at all. The terror is the weapon; the sentence
+    is mostly noise. But the traveler does not know which is which, and the not-
+    knowing is the point — the threat bites whether or not the axe ever falls.
+  category: confrontation
+  triggers:
+    - the queen shouts off with their heads
+    - condemned to death over a trifle
+    - a sentence handed down in a rage
+    - courtiers flatten themselves in terror
+    - the king quietly pardons the condemned
+  narrative_hints:
+    - the raging woman gives the order; the dithering man unsays it where she cannot hear
+    - the condemned are led off and never quite arrive at the block — the executions outnumber the dead by everyone
+    - the fear is total in the moment, which is exactly why the threat keeps its power without ever being kept
+  tension_level: 0.5
+  resolution_hints:
+    - read whether this is theatre or the real thing — the King is the tell, trailing behind with quiet pardons
+    - do not flatter the rage or feed it; the sentence is cheap and the next one is already coming
+    - get the condemned out of sight long enough for the Queen to forget she ordered it
+  tags: [wonderland, confrontation, terror_theatre, gender_current, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The Queen of Hearts takes offence at something trivial — a wrong answer, a
+        spilled thing, a rose painted the wrong colour — and roars "Off with their
+        heads!" The whole company freezes; the accused goes white; the order hangs in
+        the air as if it were already done.
+      stakes: A death sentence over nothing, delivered in earnest, with the terror landing instantly.
+    - at: 0.6
+      event: >-
+        The sentences pile up faster than anyone could carry them out — a beheading a
+        minute, the soldiers leading off the condemned in a steady file. And trailing
+        behind, unnoticed by the Queen, the King murmurs pardon after pardon to the
+        company at large.
+      stakes: The traveler glimpses the seam — the terror is constant, the executions are not — but cannot be sure it holds for them.
+    - at: 1.0
+      event: >-
+        The truth of it lands: the Queen's sentences are weather, not law, undone as
+        fast as she pronounces them by the mild useless man at her heel — yet the fear
+        was real every time, and the one moment the traveler had counted on a pardon is
+        the moment they could not be sure one was coming.
+      stakes: Whether the traveler learns to weather the threat or is broken by the not-knowing.
+  passive_progression:
+    rate_per_turn: 0.035
+    rate_per_day: 0.02
+    accelerators:
+      - off with their heads
+      - the queen of hearts
+      - beheaded
+      - condemned
+      - executioner
+      - pardon
+    decelerators:
+      - keep your head down
+      - flatter the queen
+      - stay out of the garden
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 3 — THE SIZE GAME  (standalone)
+- id: the_size_game
+  name: The Size Game
+  description: >-
+    Eat-me, drink-me: the world rescales the traveler, growing and shrinking them as
+    both tool and hazard. A bottle labelled DRINK ME shrinks the traveler to ten
+    inches; a cake marked EAT ME shoots them up to nine feet; a fan, a mushroom (one
+    side up, one side down), a pebble that turns to cake — the body is never a fixed
+    fact here. Smallness lets you through the fifteen-inch door to the garden but
+    drops the golden key out of reach on the glass table; bigness reaches the key but
+    jams you in a corridor or fills the White Rabbit's house until an arm comes out
+    the window. The traveler weeps a pool of tears when large and nearly drowns in it
+    when small. Size is a puzzle and a peril at once, and you almost never get the one
+    you want at the moment you want it.
+  category: hazard
+  triggers:
+    - a bottle or cake labelled drink me or eat me
+    - the traveler grows or shrinks
+    - too big to fit or too small to reach
+    - one side of the mushroom makes you grow
+    - stuck in a room having grown too large
+  narrative_hints:
+    - the label is an instruction the world expects to be obeyed, and the dose is never quite right
+    - smallness and bigness each solve one problem and create the next — the key on the table, the door in the corridor
+    - the change is bodily and disorienting, telescoping up or shutting up like a spyglass, never merely cosmetic
+  tension_level: 0.4
+  resolution_hints:
+    - treat size as a tool to be dosed deliberately — a bite from each side of the mushroom, a careful sip
+    - solve the puzzle in the right order: small to pass, large to reach, and mind what you drop in between
+    - the hazard is overshooting; a flood of your own tears, a jammed limb, a fall — measure the dose
+  tags: [wonderland, hazard, transformation, puzzle, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler finds the world's first instruction to the body — DRINK ME, EAT
+        ME, a nibble of mushroom — and takes it, and abruptly is not the size they
+        were. The room, the furniture, the very animals rescale around them.
+      stakes: The traveler's own body has become a variable the world controls.
+    - at: 0.6
+      event: >-
+        The size that solved one problem makes the next one worse. Small enough for the
+        little door, the traveler cannot reach the key left on the glass table; large
+        enough to reach it, they cannot fit the door — or have filled a whole house and
+        jammed a foot up the chimney.
+      stakes: Every change is half a solution and half a new trap; overshoot floods the floor with tears or wedges a limb fast.
+    - at: 1.0
+      event: >-
+        The traveler learns to dose it — a measured bite from each side of the
+        mushroom, a careful sip, an order of operations — and works the size puzzle
+        through to the thing on the far side of it, body wrenching up and down like a
+        telescope until it fits the moment.
+      stakes: Whether the traveler masters the rescaling or is left flooded, jammed, or stranded by it.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.01
+    accelerators:
+      - drink me
+      - eat me
+      - grow
+      - shrink
+      - too big
+      - too small
+      - mushroom
+    decelerators:
+      - leave the bottle alone
+      - stay your size
+      - dont eat anything
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 4 — STUCK IN THE NONSENSE  (standalone)
+- id: stuck_in_the_nonsense
+  name: Stuck in the Nonsense
+  description: >-
+    The perpetual-present trap. The Mad Tea-Party is frozen at six o'clock forever:
+    the Hatter quarrelled with Time and now Time will not move for him, so it is
+    always tea-time, the clean cups always one place down the table, the riddle with
+    no answer always being asked. To sit down is to enter a loop with no exit — the
+    same questions, the same moving round, the Dormouse forever falling asleep
+    mid-story. The danger is not violence; it is enclosure. The nonsense is so total
+    and so self-consistent that a traveler who engages it on its own terms, who tries
+    to win the argument or wait for the round to come back to clean cups, simply joins
+    the loop and stops moving through the story at all. Breaking out means refusing to
+    play — getting up and walking off, as Alice does, never to be invited back.
+  category: hazard
+  triggers:
+    - a gathering frozen at one moment forever
+    - it is always tea time
+    - a riddle with no answer
+    - moving round the table to the next clean cup
+    - caught in a loop you cannot argue your way out of
+  narrative_hints:
+    - time itself has stopped here, by grudge, and the clock will not be argued with
+    - every exchange circles back to where it began; progress is an illusion the loop offers
+    - the way out is not a better answer but refusing the question and standing up
+  tension_level: 0.4
+  resolution_hints:
+    - recognise the loop for what it is — no answer will close it, because it was built to never close
+    - refuse to play: get up, walk off, decline the next round of the same nonsense
+    - do not try to out-argue the loop; engaging on its terms is how it keeps you
+  tags: [wonderland, hazard, perpetual_present, loop, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler is drawn into a gathering that runs in a circle — a tea-party
+        stopped at six o'clock, a conversation that loops, a game whose rules return
+        every move to its start. It is welcoming, and entirely without exit.
+      stakes: The traveler has sat down inside a thing that does not move forward.
+    - at: 0.6
+      event: >-
+        The traveler tries to make progress — answer the riddle, win the argument, wait
+        for the clean cups to come round again — and discovers each effort feeds the
+        loop. Time does not pass; the same exchange returns wearing a new face.
+      stakes: Engaging the nonsense on its own terms is binding the traveler into it; staying longer is becoming part of it forever.
+    - at: 1.0
+      event: >-
+        The traveler stops playing. Not a cleverer answer but a flat refusal — rising
+        from the table, turning away from the riddle, walking off down the wood — and
+        the loop, which had no hold but the traveler's willingness to keep sitting in
+        it, lets go.
+      stakes: Whether the traveler walks free of the loop or settles into the perpetual present and stops moving through the story.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.015
+    accelerators:
+      - tea party
+      - six o'clock
+      - always tea time
+      - riddle
+      - the hatter
+      - the dormouse
+      - move round
+    decelerators:
+      - get up and leave
+      - walk off
+      - refuse to play
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.04
+
+# 5 — THE TRUTH-TELLING CAT  (specializes Helpful Companion)
+- id: the_truth_telling_cat
+  name: The Truth-Telling Cat
+  description: >-
+    The Cheshire Cat: the one creature in Wonderland who speaks plain truth amid the
+    nonsense, and the guide who refuses to guide. It tells the traveler the most
+    useful and the most unsettling fact in the country — "we're all mad here. I'm mad.
+    You're mad" — and that whichever way the traveler walks they are sure to get
+    somewhere if only they walk long enough. But it will not be pinned down: it
+    appears and vanishes a tail-tip at a time, leaving the grin behind after the cat
+    is gone, and answers a direct request for direction with "that depends a good deal
+    on where you want to get to." Unlike the genre's earnest companions, the Cat lacks
+    nothing and pretends nothing; its help is real but never reliable, given on its own
+    terms and withdrawn the moment you lean on it. It is the rarest thing here — a
+    sane voice — and it will not stay to be one.
+  category: bonding
+  triggers:
+    - a grinning cat appears and vanishes
+    - we're all mad here
+    - asking the way and getting a riddle for an answer
+    - a creature speaks plain truth amid nonsense
+    - the grin remains after the cat is gone
+  narrative_hints:
+    - it is the only voice that tells the truth, which is exactly why it is the hardest to hold onto
+    - it materialises and dissolves at will — an ear, a grin, then nothing — never where you can grab it
+    - its truths are accurate and useless at once: where you'll end up depends on where you want to go, and it won't decide that for you
+  tension_level: 0.3
+  resolution_hints:
+    - take the Cat's plain words seriously even when they unsettle — they are the truest you'll hear here
+    - do not try to pin it down or make it lead; it gives what it gives and then it's gone
+    - use the one honest reading of the country it offers, then make your own choice about where to go
+  tags: [wonderland, bonding, guide, plain_truth, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        A grin resolves into a cat in the branches, and it does something nothing else
+        in Wonderland has done — it tells the truth. We're all mad here, it says,
+        pleasantly, and means it as helpfully as it means everything.
+      stakes: The traveler has found, at last, a creature that does not talk nonsense — and cannot keep it.
+    - at: 0.6
+      event: >-
+        The traveler asks the Cat for the thing they most need — a direction, a verdict,
+        a way through — and the Cat answers truly and unhelpfully at once, then begins
+        to fade, tail-first, the grin lingering after the rest of it has gone.
+      stakes: The only reliable truth-teller in the country will not be relied upon; its help slips through the fingers.
+    - at: 1.0
+      event: >-
+        The traveler stops trying to hold the Cat and starts using it — taking its plain
+        reading of the place, its one honest map of the madness, and making the choice
+        the Cat declined to make for them. The grin obliges with the truth and leaves the
+        going to the traveler.
+      stakes: Whether the traveler learns to take the sane voice's truth without depending on the sane voice to stay.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.015
+    accelerators:
+      - cheshire cat
+      - we're all mad here
+      - which way
+      - the grin
+      - the cat vanished
+      - tell me the truth
+    decelerators:
+      - ignore the cat
+      - it makes no sense
+      - chase it off
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+# 6 — ONLY A THING IN HIS DREAM  (standalone)
+- id: only_a_thing_in_his_dream
+  name: Only a Thing in His Dream
+  description: >-
+    The deepest dread of Wonderland: the sleeping Red King, and the suggestion that
+    the whole country — and the traveler in it — may be only something he is dreaming.
+    Tweedledum and Tweedledee point him out asleep under his tree, snoring, and put
+    the horror plainly: he's dreaming now, and what do you think he's dreaming about?
+    Why, about you. You're only a sort of thing in his dream. If he were to wake,
+    you'd go out — bang! — like a candle. The traveler insists they are real and weeps
+    at the thought, and the twins only ask, reasonably, what they suppose their tears
+    are made of, since they aren't real. It is unanswerable. The world will not confirm
+    whether it is real, whether the traveler is real, or whose dream is dreaming whom —
+    and the question, once asked, will not stop humming under everything.
+  category: mystery
+  triggers:
+    - a sleeping king under a tree
+    - you're only a thing in his dream
+    - the dread that none of it is real
+    - if he woke you'd go out like a candle
+    - asking whose dream this is
+  narrative_hints:
+    - the man who might be dreaming the whole world is the most useless figure in it, fast asleep
+    - the threat is not a sword but a vertigo — that the traveler's own reality is borrowed and could be switched off
+    - no one will settle the question; the locals find it obvious and the obvious answer is unbearable
+  tension_level: 0.4
+  resolution_hints:
+    - sit with the dread rather than solving it — the source leaves it open, and so should the table
+    - let it colour everything quietly, a wrongness under the wonder, never a puzzle with a clean key
+    - the only steady ground is the traveler's own resolve to act as real, whatever the dream
+  tags: [wonderland, mystery, existential_dread, deep_hook, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler is shown a sleeping figure — a King snoring under a tree — and told,
+        as though it were the plainest fact, that he is dreaming, and dreaming the whole
+        country, and that the traveler is a part of what he dreams.
+      stakes: The ground of the traveler's own reality is quietly pulled into question.
+    - at: 0.6
+      event: >-
+        The traveler protests that they are real, and the protest is turned back on them
+        without malice — what do you suppose your tears are made of, then? — leaving no
+        answer that does not concede the point. If the sleeper woke, the traveler would go
+        out like a snuffed candle.
+      stakes: The dread sharpens into vertigo: the traveler may be borrowed, switched on, snuffable at another's waking.
+    - at: 1.0
+      event: >-
+        The question never resolves — the King sleeps on, the world does not confirm
+        whose dream it is — and the traveler is left to carry the dread as a fact of the
+        place, choosing to act as real and to want home as if home were real, with no
+        proof either way.
+      stakes: Whether the traveler is hollowed by the doubt or steadies on their own resolve in the face of it.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.005
+    accelerators:
+      - red king
+      - sleeping
+      - his dream
+      - only a thing in his dream
+      - whose dream
+      - go out like a candle
+    decelerators:
+      - it doesn't matter
+      - ask no questions
+      - leave the king sleeping
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02
+
+# 7 — RUN TO STAY IN PLACE  (standalone)
+- id: run_to_stay_in_place
+  name: Run to Stay in Place
+  description: >-
+    The Red Queen's race, and the satire of striving it carries. The Red Queen seizes
+    the traveler by the hand and runs — faster and faster, the trees and everything
+    around them never changing place — until the traveler is gasping, and when they
+    stop they are exactly where they started. "Now, here, you see, it takes all the
+    running you can do, to keep in the same place. If you want to get somewhere else,
+    you must run at least twice as fast as that." This is effort that yields nothing,
+    motion mistaken for progress, the whole exhausting machinery of trying-hard turned
+    into a joke with teeth. The hazard is not the running but the lesson it tempts the
+    traveler to draw — that one must run, and run, and run, when the country is built
+    so that running keeps you precisely still and only a different kind of move gets
+    you anywhere at all.
+  category: hazard
+  triggers:
+    - seized by the hand and made to run
+    - running as fast as you can and staying still
+    - all the running you can do to keep in place
+    - effort that yields no progress
+    - the red queen's race
+  narrative_hints:
+    - the faster the traveler goes the more the scenery refuses to change
+    - the woman in charge sets a frantic pace and calls it the only sensible one
+    - the trap is believing the answer to getting nowhere is running harder
+  tension_level: 0.4
+  resolution_hints:
+    - notice that running faster is the country's joke, not its solution — the board moves you, not your legs
+    - in the looking-glass land you advance by squares and rules, not by sprinting; find the move that actually changes the square
+    - refuse the frantic pace; the breathless striving is the satire, and stopping to think is the heresy that works
+  tags: [wonderland, hazard, satire, futile_effort, gender_current, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The Red Queen takes the traveler by the hand and breaks into a run, dragging
+        them along faster and faster — and yet the trees, the ground, everything around
+        them, stays exactly where it was, as though the world ran backward to match.
+      stakes: The traveler is pouring out effort and the country is quietly cancelling all of it.
+    - at: 0.6
+      event: >-
+        They stop, the traveler gasping, and find themselves precisely where they began.
+        Here, the Queen explains, it takes all the running you can do to keep in the same
+        place; to get anywhere you must run twice as fast — and she means it as plain good
+        advice.
+      stakes: The traveler is tempted toward the trap of running harder, which is the one thing guaranteed to keep them still.
+    - at: 1.0
+      event: >-
+        The traveler stops running and changes the kind of move instead — advancing by
+        the square, by the rule, by the thing the breathless sprint was hiding — and the
+        scenery finally moves, because in this country progress was never a matter of
+        speed.
+      stakes: Whether the traveler is run ragged to no end or sees through the satire to the move that actually advances them.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.015
+    accelerators:
+      - the red queen
+      - run faster
+      - all the running
+      - keep in the same place
+      - twice as fast
+      - the race
+    decelerators:
+      - stop running
+      - sit down to think
+      - refuse the pace
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 8 — THE PACK OF CARDS  (specializes The Seam Reveal)
+- id: the_pack_of_cards
+  name: The Pack of Cards
+  description: >-
+    The climactic refusal that ends the dream. At the trial's height, with the Queen
+    screaming for sentence and the court closing in, Alice — grown to her full height —
+    looks at the whole raging assembly and names it for what it is: "You're nothing but
+    a pack of cards!" And the cards rise up into the air and come flying down upon her,
+    and she wakes. So too at the looking-glass feast, when the nonsense reaches its
+    pitch, she seizes the Red Queen and shakes her — and shakes her, and shakes her —
+    until the dream comes apart in her hands. This is the genre's seam-reveal carried to
+    its end: the authority of Wonderland is, finally, NOTHING — painted pasteboard,
+    chess pieces, a kitten — and to say so out loud, decisively, refusing to be
+    frightened a moment longer, is to dissolve the dream and wake. It is the way home.
+    But it cannot be faked or rushed; the refusal only works when the traveler truly
+    stops believing the nonsense has any power over them.
+  category: revelation
+  triggers:
+    - naming the court a pack of cards
+    - the cards rise up and fly down
+    - shaking the red queen awake
+    - refusing the dream's authority outright
+    - declaring the nonsense to be nothing
+  narrative_hints:
+    - the authority is, at bottom, pasteboard and chess pieces — and the reveal is to say so to its face
+    - the refusal is not an argument but a stance: the traveler simply stops being afraid, all at once
+    - the dream comes apart the instant it is denied power, flying up like scattered cards, shaking loose like a feast upset
+  tension_level: 0.6
+  resolution_hints:
+    - the move is decisive refusal, not cleverness — name the authority the nothing it is and mean it
+    - it only lands when the fear is genuinely gone; a half-hearted denial leaves the dream intact
+    - this is the door home — refusing the dream wakes the traveler, where no road ever could
+  tags: [wonderland, revelation, the_way_home, refusal, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The nonsense reaches its loudest pitch — the trial roaring, the feast collapsing
+        into chaos, the Queen shrieking — and somewhere under the noise the traveler feels
+        the first flicker of having simply had enough of being frightened by pasteboard.
+      stakes: The traveler stands at the edge of refusing the whole thing, if they can find the nerve.
+    - at: 0.6
+      event: >-
+        The traveler begins to name it — to see the court as cards, the Queen as a
+        scolding piece, the terror as theatre — and the world resists, the authority
+        screaming louder, the dream tightening its grip exactly as the traveler's belief
+        in it loosens.
+      stakes: The dream fights hardest at the moment of waking; a flinch now lets it reassert its hold.
+    - at: 1.0
+      event: >-
+        The traveler says it and means it — "you're nothing but a pack of cards!" — or
+        seizes the authority and shakes it, refusing the dream's power utterly, without
+        fear and without appeal. The cards fly up; the feast comes down; the dream lets
+        go, and the traveler wakes.
+      stakes: The way home itself — the dream dissolved by decisive refusal, or, if the nerve fails, the dream closing back over.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.0
+    accelerators:
+      - pack of cards
+      - nothing but
+      - shake the queen
+      - i'm not afraid
+      - wake up
+      - this isn't real
+    decelerators:
+      - play along
+      - stay afraid
+      - believe the dream
+    accelerator_bonus: 0.06
+    decelerator_penalty: 0.04
+
+# 9 — THE JABBERWOCK  (standalone)
+- id: the_jabberwock
+  name: The Jabberwock
+  description: >-
+    The one genuinely lethal monster in a world of harmless terror, and the rare moment
+    violence is the right answer. The Jabberwock — jaws that bite, claws that catch,
+    eyes of flame — comes whiffling through the tulgey wood and burbling as it comes,
+    and it is not theatre and not nonsense: it kills. Against it there is the vorpal
+    sword, which goes snicker-snack and takes the monster's head, and the hero comes
+    galumphing back with it: "O frabjous day!" This is the single threat in Wonderland
+    that cannot be out-argued, refused, or woken away from — it must be met with the
+    blade. But the world is built for waking, not killing, and a traveler who answers
+    it with steel is marked by it: the vorpal stroke is remembered everywhere else, and
+    the country that runs on nonsense recoils from the one who has truly drawn blood in
+    it. Violence works here exactly once, and it costs.
+  category: confrontation
+  triggers:
+    - a monster comes whiffling through the wood
+    - jaws that bite and claws that catch
+    - the vorpal sword
+    - a threat that cannot be argued or woken away
+    - the jabberwock burbling as it comes
+  narrative_hints:
+    - this is the threat that is exactly what it appears — no humbug, no pardon coming behind it
+    - the vorpal blade is the answer, and only the blade; wit and refusal do not touch it
+    - the kill marks the traveler — the nonsense-country flinches from one who has drawn real blood
+  tension_level: 0.7
+  resolution_hints:
+    - meet it with the vorpal sword and nothing else; this is the one fight that must be a fight
+    - take the head, come galumphing back, and know the victory is real and the day frabjous
+    - accept the mark it leaves — the killing answer works once, and the rest of Wonderland remembers it
+  tags: [wonderland, confrontation, lethal, the_one_lethal_thing, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        Something moves in the tulgey wood that is not playing — the traveler is warned
+        to beware the Jabberwock, the jaws that bite, the claws that catch, and the warning
+        carries a weight nothing else in Wonderland has carried.
+      stakes: For the first time the country offers a threat that means to kill, and knows it.
+    - at: 0.6
+      event: >-
+        The Jabberwock comes — eyes of flame, whiffling, burbling through the wood — and
+        every Wonderland reflex fails against it. It cannot be out-talked, refused, dosed,
+        or woken away from. Only one thing will answer it.
+      stakes: The traveler faces the single problem in the dream that wit and refusal cannot solve.
+    - at: 1.0
+      event: >-
+        The vorpal blade goes snicker-snack and takes the head, and the traveler comes
+        galumphing back — the kill is real, the day is frabjous, and the victory is
+        earned in blood. And the country marks them for it: wherever the traveler goes
+        after, the nonsense-world remembers the one who drew true blood in it.
+      stakes: The monster dead and the traveler alive — and changed, marked everywhere else for having truly killed.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.01
+    accelerators:
+      - jabberwock
+      - vorpal sword
+      - tulgey wood
+      - jaws that bite
+      - snicker-snack
+      - the monster
+    decelerators:
+      - avoid the wood
+      - flee the monster
+      - lay down the sword
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
