@@ -1,0 +1,79 @@
+name: Gulliver
+slug: gulliver
+genre: wry_whimsy
+cover_poi: mildendo_capital
+
+# draft:true is REQUIRED for now — the loader (loader.py:924/1377) will SILENTLY
+# SKIP this world at pack-load time while it is set, i.e. the world is not yet
+# playable. It stays drafted until portraits and POI landscapes are rendered to
+# R2; flip to a live world (drop this flag) only after the asset pass lands.
+draft: true
+
+description: >-
+  Jonathan Swift's Gulliver's Travels (1726), taken dead straight as one savage
+  voyage-country. A sensible ship's-surgeon is wrecked, again and again, into
+  four absurd societies, and each of them puts him — and the civilization he
+  comes from — on trial. In Lilliput he is the giant, Quinbus Flestrin the
+  Great Man-Mountain, tangled in the petty court of an emperor six inches tall;
+  in Brobdingnag he is the pet, a curiosity named Grildrig, displayed for coin
+  and nearly killed by a cat, a monkey, the reapers' scythes; in Laputa and the
+  lands below he is the bemused tourist among projectors extracting sunbeams
+  from cucumbers and immortals who only rot; in the country of the Houyhnhnms he
+  is the Yahoo, taken for the filthy brute he resembles by horses who have no
+  word for lying. The more clearly he sees them, the more clearly they — and he —
+  see that he is the monster, and the horror is that they are largely right. And
+  here is the savage joke that runs under everything: you can always get home.
+  Every voyage ends with a real boat, a real rescue, a real road back to Redriff.
+  He takes it every time, and every time he sets sail again, until the last
+  homecoming — where he cannot bear the smell of his own wife and children, and
+  keeps horses, and prefers the stable. Home is not the reward. Home is the thing
+  he can no longer stand.
+
+era: "Swift's four voyages — Lilliput, Brobdingnag, Laputa, and the country of the Houyhnhnms, c. 1699–1715"
+
+tone: >-
+  Savage satire played dead straight — Thomas Morten's 1865 wood-engravings,
+  never the cute children's-book Gulliver, never a wink, never explaining the
+  joke. Every society is internally, relentlessly logical, and that is exactly
+  the horror: nobody is mad here, nobody is merely capricious, and when the
+  Brobdingnag King calls the traveler's countrymen the most pernicious race of
+  little odious vermin he is being reasonable. The satire is not a costume the
+  world wears; it is the verdict, and the verdict is mostly correct. Where
+  Wonderland's terror is theatre that rarely lands, here the sentences are real
+  and are not commuted — execution, ownership, exile, the body made grotesque by
+  scale. Violence answers nothing: every brute act only confirms that the
+  traveler is the Yahoo the satire says he is. Keep the politics male and savage —
+  the Lilliput court of jealous treasurers and admirals, the judging King, the
+  vain male projectors, the cold rational Grand Assembly — and let the women be
+  fond and powerless to save him. Play it straight from Swift and let it cut.
+
+# Wry Whimsy preset, walked to the brief's locked Gulliver overrides. Where Oz
+# sits LIGHT (whimsy high, menace low) and Wonderland low on sense (nonsense is
+# the antagonist), Gulliver is the SAVAGE end: sense sits at the midpoint because
+# the societies genuinely MAKE SENSE — that is the horror, not their madness but
+# their logic — while menace climbs to the top of the gradient and whimsy falls
+# below both prior worlds.
+axis_snapshot:
+  whimsy: 0.45
+  sense: 0.5
+  gravity: 0.6
+  menace: 0.7
+
+# The traveler comes to ground on the Lilliput shore: washed up from the wreck of
+# the Antelope, waking to find himself staked to the grass by a hundred slender
+# threads, his hair pegged down, an army of six-inch men swarming over his chest
+# with bows drawn. He cannot move a finger before he has been judged.
+starting_location: the_lilliput_shore
+
+# Lethality is HIGH — above both Oz (low) and Wonderland (medium). Here the
+# sentences are not theatre and they are not commuted: Lilliput's articles of
+# impeachment really do mean blinding and slow starvation, Brobdingnag really
+# will own and display a man until exhaustion kills him, the Grand Assembly
+# really does debate exterminating his kind, and the sea, the scythe, the eagle,
+# and the monkey kill outright. The world is genuinely willing to make a stranger
+# into a curiosity, a prisoner, or a meal — and to find the verdict just.
+lethality: high
+
+extensions:
+  - archetype_funnels
+  - npcs

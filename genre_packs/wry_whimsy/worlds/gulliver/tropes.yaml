@@ -1,0 +1,719 @@
+# Gulliver — World Tropes (Wry Whimsy)
+#
+# WORLD TIER for the `gulliver` world of the `wry_whimsy` pack. Rendered dead
+# straight from Jonathan Swift's Gulliver's Travels (1726), all four voyages as
+# one savage country — never the cute children's-book Gulliver, never a wink,
+# never explaining the joke. Quinbus Flestrin and Mildendo; the articles of
+# impeachment (blinding, then starvation); Lorbrulgrud and Grildrig and
+# Glumdalclitch; the Academy of Lagado and sunbeams from cucumbers; the flying
+# island dropped on rebel cities; the Struldbruggs; "the thing which is not"; the
+# Yahoos and "the perfection of nature". Tone is HIGH-lethality: the societies are
+# internally logical, the sentences are real and uncommuted, and the satire's
+# verdict on the traveler is mostly correct.
+#
+# Three of these tropes EXTEND genre-tier abstract tropes via `extends:` (matched on
+# the parent trope's NAME, slugified): the_satire_turns_on_you ← The Seam Reveal,
+# the_petty_holy_war ← Impossible Authority, the_compulsion_to_reembark ←
+# Threshold Crossing. The Gulliver escalation arrays fully override the generic
+# parent beats with Swift's particulars. The remaining six (the_scale_reveal,
+# reason_without_sense, the_struldbrugg_curse, the_thing_which_is_not,
+# the_yahoo_within, priced_violence_marks_the_yahoo) are standalone Gulliver
+# tropes with no genre parent.
+#
+# Helpful Companion is deliberately LEFT UNEXTENDED. In savage Swift there is no
+# true companion who can save you: Glumdalclitch is kind but cannot protect her
+# pet from the cat, the monkey, or the eagle; the sorrel nag is fond of you but
+# you are still expelled. That absence is the doctrine, not an omission.
+#
+# Doctrine: source-fidelity over Hollywood; diegetic sincerity, never a wink; the
+# antagonist IS the verdict; the gender current is savage male court-politics. The
+# way home is always open — and that is the horror.
+
+# 1 — THE SATIRE TURNS ON YOU  (specializes The Seam Reveal)
+- id: the_satire_turns_on_you
+  name: The Satire Turns on You
+  extends: The Seam Reveal
+  description: >-
+    The central engine of the whole country. The traveler arrives believing he is
+    the reasonable man among absurd people, the civilized visitor cataloguing
+    quaint foreign customs — and at some point each society quietly turns the
+    instrument round and examines HIM. The Brobdingnag King hears out a proud
+    account of England's parliaments, courts, armies, and wars, and delivers his
+    verdict in a level voice: that the bulk of the traveler's countrymen are "the
+    most pernicious race of little odious vermin that nature ever suffered to
+    crawl upon the surface of the earth." The Houyhnhnm master, hearing the same
+    history, can scarcely believe a creature with a pretence to reason could be so
+    depraved. The seam-reveal here is not pasteboard behind painted scenery — it
+    is the mirror, and the thing it shows is real. The more clearly the traveler
+    sees how strange and cruel these societies are, the more clearly they (and,
+    fatally, he) see that he is the monster. There is no refusing this reveal,
+    because the satire is largely RIGHT, and the traveler knows it.
+  category: revelation
+  triggers:
+    - a king or master passes judgment on the traveler's civilization
+    - the most pernicious race of little odious vermin
+    - explaining Europe's wars and laws and being found monstrous
+    - the satire turns the instrument on the traveler
+    - realizing you are the brute in the room
+    - the mirror shows you are the monster
+  narrative_hints:
+    - the society treats its own logic as self-evident; the traveler's ordinary civilization is the thing on trial
+    - the judgment is delivered calmly, reasonably, without malice — which is exactly why it cannot be shrugged off
+    - the horror is not that the verdict is cruel but that it is accurate, and the traveler cannot honestly dispute it
+  tension_level: 0.7
+  resolution_hints:
+    - do not defend the indefensible; the proud account of Europe's glories is what damns the traveler
+    - honest humility — conceding what is true in the verdict — is the only thing that earns any regard here
+    - the reveal cannot be refused, only survived; the best outcome is bleak self-knowledge, never vindication
+  tags: [gulliver, revelation, the_verdict, mirror, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler is invited to describe where he comes from — his country, its
+        government, its laws, its wars — and does so with pride, expecting to impress.
+        His host listens with grave, terrible attention, asking small reasonable
+        questions that the traveler answers without yet seeing where they lead.
+      stakes: The traveler has handed the society the material of its judgment, and does not yet know he is the one being weighed.
+    - at: 0.6
+      event: >-
+        The instrument turns. The King, the master, the assembly renders its verdict —
+        that the traveler's countrymen are vermin, or a depraved animal with a pretence
+        to reason that only makes the depravity worse — and lays out the case so plainly,
+        from the traveler's own words, that there is no honest rebuttal.
+      stakes: The satire is revealed to be a mirror, and the traveler sees himself in it as the society sees him.
+    - at: 1.0
+      event: >-
+        The traveler stops arguing for the glory of his civilization and reckons with
+        the verdict instead — conceding what is true in it, refusing the vain defence
+        that would only prove the point. The reveal is not refuted; it is borne. He
+        leaves knowing something about his species he can never unknow.
+      stakes: Whether the traveler is hollowed by the verdict or carries it as hard-won self-knowledge — refuted it can never be.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.02
+    accelerators:
+      - describe your country
+      - the most pernicious race
+      - little odious vermin
+      - europe
+      - our wars
+      - our laws
+      - pretence to reason
+    decelerators:
+      - say nothing of home
+      - admit the fault
+      - concede the point
+      - humble silence
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.04
+
+# 2 — THE SCALE REVEAL  (standalone)
+- id: the_scale_reveal
+  name: The Scale Reveal
+  description: >-
+    Size as horror and comedy at once. In Lilliput the traveler is the giant —
+    Quinbus Flestrin, the Great Man-Mountain — and his ordinary body becomes a
+    geography: his pockets are inventoried by the state, his appetite feeds a
+    nation, the fire he must put out at the palace can only be quenched by the one
+    gross means he has to hand. In Brobdingnag the reckoning reverses and he is the
+    tiny thing, and here scale turns from comedy to disgust: the magnified pores
+    and stubble of the Maids of Honour, the lice crawling like swine on a beggar's
+    clothes, the cancerous breast of a woman with a hole the traveler could have
+    crept into, every human surface enlarged until it is a horror. The lesson is
+    Swift's cruellest small one — that beauty and dignity are only a trick of
+    distance, that magnified or shrunk, the human body is grotesque. The wonder of
+    being rescaled never stops being a wonder; it also never stops being a peril,
+    and it never stops quietly insulting the species.
+  category: mystery
+  triggers:
+    - the traveler is a giant among tiny people
+    - the traveler is tiny among giants
+    - magnified skin, pores, stubble, lice
+    - the body made grotesque by scale
+    - the man-mountain inventoried by the state
+    - a wonder of size that is also a disgust
+  narrative_hints:
+    - the change of scale is rendered bodily and exact, never cosmetic — the traveler measures and is measured
+    - on the giant side the traveler's ordinary acts become catastrophes; on the tiny side every surface enlarges into horror
+    - the marvel and the disgust arrive together; Swift never lets the wonder stay clean
+  tension_level: 0.5
+  resolution_hints:
+    - read the scale as both a tool and a hazard — what saves you at one size endangers you at the next
+    - on the giant side, the danger is the gross size of your own acts; on the tiny side, it is being crushed, snatched, or kept
+    - let the body's grotesquerie land as Swift's verdict on human vanity, not as a gag
+  tags: [gulliver, mystery, scale, wonder_shock, the_body, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler wakes to a world rescaled — staked down by an army he could
+        crush, or set on a table beside a cat the size of an ox — and his own body is
+        suddenly the wrong size for everything: a marvel to be gawked at, measured,
+        inventoried, displayed.
+      stakes: The traveler's body has become the central problem of the place, too vast or too small to be safe.
+    - at: 0.6
+      event: >-
+        Scale turns from spectacle to peril and disgust. The giant traveler's least act —
+        a step, a meal, a fire he must quench — becomes a public catastrophe; or the
+        tiny traveler sees the human surface magnified into horror, the pores, the lice,
+        the diseased flesh he can no longer un-see.
+      stakes: The size that fascinated now threatens to crush, snatch, or sicken the traveler — and to shame the species in the bargain.
+    - at: 1.0
+      event: >-
+        The traveler comes to terms with the scale — wielding his size where it serves,
+        guarding against it where it kills, and absorbing the quiet insult Swift folds
+        into it: that magnified or shrunk, dignity is only distance, and the human
+        animal is grotesque at any honest range.
+      stakes: Whether the traveler masters the rescaling or is crushed, snatched, or undone by it — and what it teaches him about his own kind.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.015
+    accelerators:
+      - man-mountain
+      - quinbus flestrin
+      - the giant
+      - tiny
+      - magnified
+      - pores
+      - the cat
+      - the rats
+    decelerators:
+      - keep still
+      - stay hidden
+      - mind your size
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 3 — THE PETTY HOLY WAR  (specializes Impossible Authority)
+- id: the_petty_holy_war
+  name: The Petty Holy War
+  extends: Impossible Authority
+  description: >-
+    Men kill in earnest over which end of an egg to crack. The empire of Lilliput
+    and the empire of Blefuscu have warred for thirty-six moons over the Big-Endian
+    heresy: an old emperor's grandfather once cut his finger breaking an egg at the
+    larger end, whereupon it was decreed that all loyal subjects should break the
+    smaller end, and eleven thousand have since chosen death rather than submit.
+    Within Lilliput itself the court is split between the Tramecksan and Slamecksan —
+    the High-Heels and the Low-Heels — who will not so much as eat or drink
+    together, and the Emperor signals his party by wearing one heel lower than the
+    other, so that he limps. This is Impossible Authority at its most savage: not a
+    capricious sentence but a deadly serious politics built entirely on a triviality,
+    administered by jealous men — the Treasurer Flimnap, the Admiral Skyresh
+    Bolgolam — who weaponize it against the traveler. Played dead straight: every
+    Lilliputian treats the height of a heel and the end of an egg as matters worth
+    blinding and starving a man over, and they are not joking.
+  category: confrontation
+  triggers:
+    - war over which end of an egg to crack
+    - the Big-Endians and the Little-Endians
+    - the High-Heels and the Low-Heels
+    - Tramecksan and Slamecksan
+    - court factions weaponize a triviality against you
+    - Flimnap or Skyresh Bolgolam moves against the traveler
+  narrative_hints:
+    - the stakes are absurd and the deaths are real; eleven thousand have died over the end of an egg
+    - the men of the court are deadly serious, and treat the heretic on heels or eggs as a genuine enemy of the state
+    - the traveler is drawn into the faction-game whether he wishes it or not — neutrality is read as the other side
+  tension_level: 0.55
+  resolution_hints:
+    - refuse to take the trivial side seriously without saying so aloud — open contempt makes you the next heretic
+    - read which jealous minister is using the quarrel against you; the war is the weapon, the rivalry is the hand
+    - the only safe ground is to be too useful to execute and too modest to threaten — and even that runs out
+  tags: [gulliver, confrontation, authority, court_politics, gender_current, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler learns the shape of the quarrel — the height of a heel, the end of
+        an egg — and is amazed that anyone could kill over it, and more amazed to find
+        that they do, in their thousands, with the gravest possible faces and the full
+        machinery of law behind them.
+      stakes: The traveler stands inside a deadly politics built on a triviality he cannot take seriously and dare not mock.
+    - at: 0.6
+      event: >-
+        The faction-game closes around the traveler. A jealous minister — the Treasurer,
+        the Admiral — turns the quarrel into a charge against him; his neutrality is read
+        as treachery, his usefulness as a threat, and articles begin to be drawn up in
+        the gravest legal earnest.
+      stakes: The absurd war has found a use for the traveler as its next heretic, and the men prosecuting it mean it.
+    - at: 1.0
+      event: >-
+        The traveler navigates the holy war without dying of it — neither mocking it to
+        its face nor truly joining it, naming the rivalry behind the charge, and getting
+        clear before the articles ripen into a sentence. The quarrel grinds on behind
+        him over the end of an egg, exactly as deadly and exactly as petty as he found it.
+      stakes: Whether the traveler escapes the faction-game intact or is blinded and starved by a politics about breakfast.
+  passive_progression:
+    rate_per_turn: 0.035
+    rate_per_day: 0.02
+    accelerators:
+      - big-endian
+      - little-endian
+      - which end of the egg
+      - high-heels
+      - low-heels
+      - tramecksan
+      - slamecksan
+      - flimnap
+      - skyresh bolgolam
+    decelerators:
+      - take no side
+      - hold your tongue
+      - flee to blefuscu
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 4 — REASON WITHOUT SENSE  (standalone)
+- id: reason_without_sense
+  name: Reason Without Sense
+  description: >-
+    Intellect divorced entirely from use. On the flying island of Laputa the court
+    is so absorbed in mathematics and music that no one can attend to a word said to
+    them; servants called flappers must strike their masters on the mouth and ears
+    with a bladder of pebbles to recall their attention to the conversation, and the
+    island itself can be lowered onto a rebellious city below to crush it or to cut
+    off its sun and rain. Down in Balnibarbi the grand Academy of Lagado labours at
+    its projects: extracting sunbeams from cucumbers to be bottled against cold
+    summers, reducing human excrement to its original food, softening marble to make
+    pillows, building houses from the roof down, ploughing fields with hogs. The
+    projectors are starving in ruined houses while their ruined country starves
+    around them, and they will not stop, because the reasoning is impeccable and only
+    the results are catastrophic. This is the Laputan horror: reason that has lost
+    sight of the ground, theory that has forgotten the body must eat, the clever
+    mind grinding gloriously to no purpose at all.
+  category: hazard
+  triggers:
+    - sunbeams extracted from cucumbers
+    - the Academy of Lagado and its projectors
+    - flappers striking masters on the ear to recall attention
+    - the flying island lowered to crush a rebel city
+    - softening marble for pillows, building houses from the roof down
+    - brilliant reasoning that produces ruin
+  narrative_hints:
+    - the abstraction is total — no one on the island can hold a thought of the world that produced their dinner
+    - the projects are perfectly reasoned and perfectly useless, pursued amid the starvation they cause
+    - the menace is not malice but indifference; the island can drop on a city as casually as a man swats a fly
+  tension_level: 0.45
+  resolution_hints:
+    - do not try to reason the projectors out of their projects; their logic is sound and only their premises are mad
+    - find the one sane man — the lord who keeps his estate the old way and is mocked for prospering — and learn from him
+    - keep your feet on the ground the abstracted have forgotten; survival here is remembering the body must eat
+  tags: [gulliver, hazard, abstraction, satire, laputa, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler enters a world that has cut reason loose from use — a court that
+        cannot attend to speech without being struck to attention, an academy of
+        glorious projects, a flying island that hangs over the land like a verdict — and
+        is treated as a curious specimen by minds too abstracted to truly see him.
+      stakes: The traveler is among brilliant men who have lost the thread between thought and the world, and cannot reach them.
+    - at: 0.6
+      event: >-
+        The cost of the abstraction shows itself. The country below is in ruins, its
+        people starving, its fields wrecked by the Academy's perfect theories; or the
+        flying island descends to crush a city for its insolence, the reasoning behind
+        the slaughter as cool and clean as a proof.
+      stakes: Reason without sense reveals its toll — ruin, starvation, a city threatened from the air — and none of it can be argued with.
+    - at: 1.0
+      event: >-
+        The traveler stops trying to correct the unmovable abstraction and navigates it
+        instead — heeding the one sane lord who keeps the old ways and prospers, keeping
+        his own feet on the forgotten ground, surviving the island's indifference by
+        never mistaking its cleverness for sense.
+      stakes: Whether the traveler keeps his footing among the abstracted or is starved, crushed, or driven mad by reason that forgot the world.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.015
+    accelerators:
+      - laputa
+      - lagado
+      - the academy
+      - sunbeams from cucumbers
+      - the projectors
+      - the flying island
+      - flappers
+    decelerators:
+      - keep to the ground
+      - heed the sane lord
+      - leave the academy
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 5 — THE STRULDBRUGG CURSE  (standalone)
+- id: the_struldbrugg_curse
+  name: The Struldbrugg Curse
+  description: >-
+    Immortality as decay, not gift. In Luggnagg the traveler hears of the
+    Struldbruggs — children born now and then with a red spot above the left
+    eyebrow, the certain mark of one who will never die — and his heart leaps: what
+    might a man not learn, amass, and become with all of time before him? He pours
+    out a rapturous vision of the wisdom and wealth and counsel an immortal would
+    command. And then they tell him the truth. The Struldbruggs do not stay young;
+    they only stop dying. They age into the full misery of the very old and then
+    keep going — toothless, friendless, opinionated, despised, their memories
+    failing so they cannot even finish a sentence or recognize the children of their
+    children, the language drifting until the world they survived into can no longer
+    be spoken to. At eighty they are reckoned legally dead so their heirs may inherit,
+    and they live on as paupers, hated by all, envied by none, praying for the death
+    that will never come. It is the cruellest reveal Swift gives: the thing every man
+    most wants is the thing he should most dread.
+  category: mystery
+  triggers:
+    - immortals who never die
+    - the red spot above the eyebrow
+    - the Struldbruggs of Luggnagg
+    - longing for immortality and learning its true cost
+    - the immortal who only ages and rots
+    - be careful what you wish for
+  narrative_hints:
+    - the traveler's first response is envy and a rapturous plan; the reveal lands hardest on the one who wanted it
+    - the Struldbruggs are not wise elders but the despised, decaying, memory-stripped old who cannot even die
+    - the dread is slow and existential; this is not a threat that strikes but a truth that settles and will not lift
+  tension_level: 0.5
+  resolution_hints:
+    - let the longing for immortality run its full rapturous course before the reveal — the wish is the trap
+    - sit with the horror rather than solving it; there is no cure for the Struldbruggs and no rescue, only the lesson
+    - carry the truth onward as a corrective to every later temptation to want more time than a man should
+  tags: [gulliver, mystery, existential_dread, be_careful_what_you_wish_for, luggnagg, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler hears that some are born in this country who never die, marked from
+        birth, and his blood quickens — he begins, unbidden, to imagine what he would do
+        with endless time: the learning, the fortune, the counsel he would give a
+        grateful age across the centuries.
+      stakes: The traveler is seduced by the oldest wish, and has not yet asked what immortality without youth would actually be.
+    - at: 0.6
+      event: >-
+        The truth is laid before him, gently and completely. The immortals do not stay
+        young; they rot. They outlive their teeth, their friends, their memories, their
+        very language, and are declared dead at eighty so the living may go on without
+        them — despised, decaying, begging for the death that will never come.
+      stakes: The traveler's dearest wish is revealed as the worst of fates, and the revelation lodges where it cannot be dislodged.
+    - at: 1.0
+      event: >-
+        The traveler carries the Struldbruggs' truth away with him — no longer envying
+        the deathless but understanding them as Swift's bleakest mercy turned curse, and
+        letting the knowledge temper every later hunger to grasp at more than a mortal
+        share. The wish is cured by the granting of it to others.
+      stakes: Whether the traveler absorbs the lesson or is haunted by it — the curse cannot be lifted, only understood.
+  passive_progression:
+    rate_per_turn: 0.015
+    rate_per_day: 0.008
+    accelerators:
+      - struldbrugg
+      - immortal
+      - never die
+      - the red spot
+      - luggnagg
+      - live forever
+    decelerators:
+      - ask no more
+      - leave them be
+      - want no more time
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+
+# 6 — THE THING WHICH IS NOT  (standalone)
+- id: the_thing_which_is_not
+  name: The Thing Which Is Not
+  description: >-
+    The Houyhnhnms have no word for lying. To convey the idea the traveler must call
+    it "saying the thing which is not," because in a society founded wholly on reason
+    and truth there has never been cause to name the act — speech exists to inform,
+    and a creature who used it to deceive would be using a faculty against its own
+    purpose, an absurdity these rational horses can barely grasp. They have no words,
+    either, for power, government, war, law, punishment, lust, or the other engines
+    of human affairs, and must invent compounds to hold them. Living among them, the
+    traveler comes to see his own species through their unclouded eyes: a creature
+    that lies, makes war for the smallest difference of opinion, hires others to
+    speak falsehood for money, and dresses its appetites in reasons. The master
+    listens to all of it with grave wonder and concludes that the traveler's people
+    have only enough reason to multiply their natural vices. The horror is structural:
+    a society built on truth makes the lying, lawyering, warring human into the
+    monster — not by cruelty, but by the simple measure of holding him to the truth.
+  category: confrontation
+  triggers:
+    - the Houyhnhnms have no word for lying
+    - saying the thing which is not
+    - a society that cannot conceive of deceit
+    - explaining war, law, and money to creatures of pure reason
+    - the human revealed as a liar by the truthful
+    - reason holding the traveler to the truth
+  narrative_hints:
+    - the absence of a word for lying is not naivety but a different foundation; deceit has no place to live here
+    - the traveler must explain his own civilization in a language with no words for its vices, and the gaps indict him
+    - the judgment comes from holding him to plain truth, which his every defence of Europe fails
+  tension_level: 0.6
+  resolution_hints:
+    - speak only the truth here; a single shading or evasion confirms the worst the master fears about your kind
+    - do not soften Europe's vices into virtues; the lie is what damns you, the honest account merely shames you
+    - the reveal cannot be argued away — the most you can do is be the rare human who, here at least, does not lie
+  tags: [gulliver, confrontation, truth, houyhnhnm, the_verdict, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler learns that his hosts have no word for lying, and must teach them
+        the concept by calling it "the thing which is not" — and as he does, he begins
+        to grasp how strange he is to them, a creature whose very speech can be turned
+        against the truth it was made to serve.
+      stakes: The traveler discovers he lives among minds that cannot conceive of deceit, and that he is the thing they cannot conceive.
+    - at: 0.6
+      event: >-
+        Pressed to describe his world in a language with no words for its engines, the
+        traveler must build them from scratch — war, law, money, lust — and each
+        invented compound exposes a vice, until the master concludes, with grave wonder,
+        that the traveler's kind have only reason enough to multiply their corruptions.
+      stakes: The traveler's whole civilization is being weighed against plain truth, and is found to be a machinery of lies.
+    - at: 1.0
+      event: >-
+        The traveler resolves to be, here at least, the rare human who does not say the
+        thing which is not — telling the whole truth of his species without softening it,
+        and bearing the verdict that follows. He cannot refute it; he can only be honest
+        in the one place where honesty is the law, and let that be his sole defence.
+      stakes: Whether the traveler meets the standard of truth or proves the master's verdict by shading it — refute it he cannot.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.015
+    accelerators:
+      - the thing which is not
+      - no word for lying
+      - houyhnhnm
+      - the master
+      - explain war
+      - explain the law
+      - pure reason
+    decelerators:
+      - speak only truth
+      - confess the vice
+      - hide nothing
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 7 — THE YAHOO WITHIN  (standalone)
+- id: the_yahoo_within
+  name: The Yahoo Within
+  description: >-
+    The savage losing-the-thread-of-home. Living among the Houyhnhnms, the traveler
+    comes to see the Yahoos — the filthy, malicious, greedy human-shaped brutes the
+    horses keep as cattle — not as a foreign species but as a mirror of his own
+    kind, and then of himself. He learns to walk and trot in imitation of his hosts,
+    to neigh his approval, to flinch from his own reflection in a pool. He would
+    gladly have passed the rest of his life among the perfection of nature and never
+    returned. When the Grand Assembly, in its cold reason, decides he must be
+    expelled — a Yahoo with a tincture of reason is more dangerous than a plain one —
+    it breaks him. And the curse follows him home: back in Redriff he cannot endure
+    the smell of his own wife and children, swoons when his wife kisses him, keeps two
+    horses and converses with them four hours a day, and prefers the stable to his
+    own table. He has not forgotten who he is. He has learned the truth about what he
+    is, and cannot unlearn it, and so can no longer bear his own kind. This is the
+    bleak terminus of the whole country — the homecoming that is no home at all.
+  category: mystery
+  triggers:
+    - coming to despise your own kind
+    - going native among the Houyhnhnms
+    - the Yahoos as a mirror of humanity
+    - cannot bear the smell of wife and children
+    - preferring the stable to the table
+    - the bleak homecoming
+  narrative_hints:
+    - the traveler does not lose his memory but his allegiance; he comes to love the horses and loathe his own species
+    - the expulsion is reasoned and merciful by the Assembly's lights, and lands on the traveler as the cruellest blow
+    - the homecoming is the terminus, not the reward — he is home and cannot stand it, and prefers the company of horses
+  tension_level: 0.6
+  resolution_hints:
+    - this trope has no clean cure; the most the traveler can do is keep some thread of his humanity against the contempt
+    - let the homecoming be bleak — softening it into reconciliation betrays Swift; the horror is that home is unbearable
+    - the Innocent's faint mercy is to hold honest humility without going native; the Dreamer who worships the horses cannot come back
+  tags: [gulliver, mystery, the_bleak_homecoming, going_native, the_verdict, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler, living among creatures of pure reason, begins to see the brutish
+        Yahoos not as alien beasts but as his own kind stripped of pretence — and
+        catches, in a pool or a gesture, the first sick glimpse of the Yahoo in himself.
+      stakes: The traveler's loyalty to his own species begins to come loose; he is starting to side with the horses against humanity.
+    - at: 0.6
+      event: >-
+        The traveler goes further in — imitating his hosts, neighing assent, flinching
+        from his reflection, wishing never to leave — and then the Assembly, in cold
+        reason, expels him: a Yahoo with a tincture of reason is the more dangerous beast.
+        The one place he wished to stay casts him out.
+      stakes: The traveler has come to loathe his kind and love the horses, and is exiled from the only world he wanted — broken by both.
+    - at: 1.0
+      event: >-
+        The traveler comes home, and cannot bear it. The smell of his own family
+        sickens him; he keeps to the stable and the company of horses; he has learned
+        what he is and cannot unlearn it. He keeps, at most, a thin thread of his
+        humanity against the contempt — and that thread, not reconciliation, is the
+        only victory the country allows.
+      stakes: Whether the traveler salvages a thread of his own humanity or is wholly lost to the Yahoo verdict — home will never be home again.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.012
+    accelerators:
+      - the yahoos
+      - going native
+      - the perfection of nature
+      - the smell of my own kind
+      - prefer the stable
+      - i am a yahoo
+      - the homecoming
+    decelerators:
+      - hold to your humanity
+      - remember your family
+      - resist the contempt
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+# 8 — PRICED VIOLENCE MARKS THE YAHOO  (standalone)
+- id: priced_violence_marks_the_yahoo
+  name: Priced Violence Marks the Yahoo
+  description: >-
+    The priced-violence inversion, the world's hardest mechanic-flavor delta.
+    Wonderland prices violence high but grants ONE sanctioned kill — the Jabberwock,
+    the vorpal-sword exception. Gulliver grants none. Every violent act here, even
+    the necessary ones, even the absurdly decisive ones, only confirms the Yahoo
+    verdict — that the traveler is the brute the satire says he is. He extinguishes
+    the palace fire at Mildendo by the one gross means at hand and is impeached for
+    it. He kills the rats in the farmer's house with his hanger and is admired as a
+    fighting curiosity, a clever beast. He fends off the wasps, the monkey, the
+    Yahoos who fling their filth — and each time the violence WORKS, and each time it
+    marks him, because the societies that judge him define the human animal precisely
+    by its appetite for force. The murderhobo lane exists and is sometimes the only
+    thing that keeps him alive; it is never clean, never free, and never anything but
+    proof. To act the brute is to become the brute. The only move that does not
+    confirm the verdict is restraint — and restraint, here, will sometimes get you
+    killed.
+  category: confrontation
+  triggers:
+    - extinguishing the palace fire by the only gross means
+    - killing the rats in the farmer's house
+    - fighting off the wasps, the monkey, the Yahoos
+    - violence that works but marks the traveler
+    - there is no sanctioned kill here
+    - acting the brute confirms the brute
+  narrative_hints:
+    - violence is genuinely effective here — and that is the trap, because every effective act of it proves the verdict
+    - there is no vorpal exception; no kill is clean, no force is free, the brute act always names you the brute
+    - restraint is the only move that does not confirm the satire, and restraint is sometimes the move that gets you killed
+  tension_level: 0.65
+  resolution_hints:
+    - reach for force last and least; the murderhobo lane is real and lethal-decisive, and it always turns the mirror on you
+    - where violence is unavoidable, name its cost — it kept you alive and it confirmed what they think you are
+    - the cleanest survival is the one that needed no brutality; restraint is the only act the verdict cannot use against you
+  tags: [gulliver, confrontation, priced_violence, the_inversion, the_verdict, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler faces a threat that force would plainly solve — rats the size of
+        mastiffs, a fire, a flinging Yahoo, a monkey carrying him up a gable — and feels
+        the pull toward violence, the one tool that has never yet failed a man of his
+        kind.
+      stakes: The traveler is offered the brute's solution to a real danger, and it will work — that is exactly the problem.
+    - at: 0.6
+      event: >-
+        He uses it, and it works — the rats dead, the fire out, the monkey driven off —
+        and the society watches and draws its conclusion. Admiration, impeachment,
+        disgust: whatever the form, the verdict is the same, that here is the violent
+        animal behaving as violent animals do.
+      stakes: The violence has saved the traveler and marked him; he has bought survival with proof of the brute they took him for.
+    - at: 1.0
+      event: >-
+        The traveler learns the only move the verdict cannot use against him — restraint,
+        the brutality declined, the threat met by some means that is not force, even at
+        real risk to himself. Where he must strike he names the cost honestly; where he
+        can hold his hand he holds it, and that withheld blow is the nearest thing to
+        clean the country allows.
+      stakes: Whether the traveler bears the mark of his violence or finds the harder, riskier path of restraint that alone leaves no proof.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.015
+    accelerators:
+      - draw your hanger
+      - kill the rats
+      - put out the fire
+      - fight the monkey
+      - strike the yahoo
+      - use force
+    decelerators:
+      - stay your hand
+      - find another way
+      - restraint
+      - refuse to strike
+    accelerator_bonus: 0.06
+    decelerator_penalty: 0.04
+
+# 9 — THE COMPULSION TO REEMBARK  (specializes Threshold Crossing)
+- id: the_compulsion_to_reembark
+  name: The Compulsion to Reembark
+  extends: Threshold Crossing
+  description: >-
+    The savage go-home spine. Oz seals the traveler in and makes him yearn for home;
+    Wonderland's exit is to wake by refusing the dream. Gulliver's inversion is that
+    you can ALWAYS get home — a real boat at Blefuscu, the travelling-box snatched by
+    an eagle and dropped in the sea and picked up by a passing ship, a Dutch vessel
+    off Luggnagg, a canoe built with his own hands — and that is the horror, not the
+    mercy. For the threshold home is no sooner crossed than the traveler crosses it
+    again the wrong way, signing onto another voyage, leaving wife and children, going
+    back to the sea that has nearly killed him four times. He never learns. After the
+    last and worst voyage the compulsion finally exhausts itself against a homecoming
+    he cannot bear — and the player who keeps choosing the sea is choosing, turn by
+    turn, the satire's verdict on himself: that a creature who cannot stay home, who
+    flees the company of his own kind for the next absurd shore, has agreed with the
+    Houyhnhnms about what he is. Crossing back to the sea is not adventure. It is the
+    Yahoo confessing.
+  category: revelation
+  triggers:
+    - a real boat, a rescue, an open road home
+    - setting sail again after barely surviving
+    - leaving wife and children for the next voyage
+    - he never learns, he goes back to sea
+    - choosing the sea over home
+    - re-crossing the threshold the wrong way
+  narrative_hints:
+    - the way home is genuinely open every time; the compulsion is not being trapped but choosing to leave again
+    - each re-embarkation is the satire's hook — adventure on its face, self-condemnation underneath
+    - the homecoming is the terminus the compulsion runs toward and cannot endure; the sea is the confession
+  tension_level: 0.5
+  resolution_hints:
+    - present the open way home plainly each time — the boat is real, the choice is real, the leaving is the traveler's own
+    - let re-embarking feel like adventure and read, in hindsight, as the Yahoo verdict accepted one more time
+    - the only escape from the compulsion is the bleak terminus — to stop sailing is to face the homecoming he cannot bear
+  tags: [gulliver, revelation, the_way_home, the_threshold, the_verdict, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The voyage ends and the way home appears, real and reachable — a seaworthy boat,
+        a passing ship, a rescuing crew. The traveler is delivered, against the odds,
+        back toward Redriff and his family, the danger behind him and home plainly ahead.
+      stakes: The traveler has survived and the road home is open; the only question is whether he will stay on it.
+    - at: 0.6
+      event: >-
+        Home does not hold him. Within a season — a restlessness, an offer, a ship
+        needing a surgeon — the traveler is at the quay again, leaving his wife and
+        children, crossing the threshold back toward the sea that has four times nearly
+        killed him, telling himself it is duty or fortune or fate.
+      stakes: The traveler is choosing the sea over home once more, and the choice is beginning to look less like courage than confession.
+    - at: 1.0
+      event: >-
+        The compulsion runs out at last against the homecoming it always fled toward —
+        the traveler home from the worst voyage and unable to bear it, the sea no longer
+        an escape because there is nothing left at home to escape from. To stop sailing
+        is to face the verdict; to sail is to confess it. Either way, the country has him.
+      stakes: Whether the traveler breaks the compulsion and faces the bleak homecoming, or keeps sailing and keeps confessing what he is.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.012
+    accelerators:
+      - set sail again
+      - back to sea
+      - a ship needing a surgeon
+      - leave Redriff
+      - another voyage
+      - the open boat
+    decelerators:
+      - stay home
+      - stay with your family
+      - swallow no more anchor
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
