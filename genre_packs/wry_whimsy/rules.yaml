@@ -67,6 +67,13 @@ encounter_base_tension:
   boss: 0.40
   final: 0.50
 
+# Per-subsystem intent-router engagement thresholds (ADR-113). A witnessed act
+# that reshapes a society's belief in its authority should be EARNED: require
+# higher router confidence than the 0.6 default, so a low-confidence guess
+# degrades to a narrator hint instead of moving the political dials.
+dispatch_confidence_thresholds:
+  witnessed_act: 0.7
+
 # ── Confrontations ──────────────────────────────────────────
 # Six confrontation types across the wit-first spectrum. Five resolve on nerve
 # and cleverness; the sixth (violence) is the priced exception.
