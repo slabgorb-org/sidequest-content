@@ -1,0 +1,43 @@
+# Wry Whimsy — lethality policy (Composure substrate, recoverable-break baseline)
+#
+# Composure is the ablative pool that stands in for HP. When it is exhausted the
+# traveler does not die — they BREAK: they panic, flee, are condemned, enchanted,
+# or surrender, and lose the scene. This baseline leans RECOVERABLE: a break is a
+# setback you wake up from, not an ending. Per-world lethality dials may harden
+# this (Oz stays soft; later worlds, e.g. Gulliver, may make a break terminal).
+#
+# genre_key MUST match the pack directory name (loader-validated).
+#
+# ── ENGINE-FINDING / CONCERN (routed to a developer) ─────────────────────────
+# The LethalityVerdictKind enum is a CLOSED literal:
+#   dead | dying | maimed | defeated | captured | humiliated | unscathed
+# There is no dedicated "broke / enchanted / condemned / went-native" verdict.
+# A Composure break is most faithfully a NON-LETHAL, RECOVERABLE loss-of-scene,
+# so `defeated` is the closest honest fit (the traveler is bested and out of the
+# confrontation, but alive and able to recover). `captured` fits the trial/audience
+# path; `humiliated` fits the wit-duel. We pick `defeated` as the genre default and
+# let must_narrate / must_not_narrate carry the actual texture of a break. This is
+# a faithful approximation, NOT a stub — but the absence of a break/transformation
+# verdict is a real content-vs-engine gap worth a developer's attention if this
+# genre graduates from workshopping. The break itself is fully mechanical at
+# runtime: the confrontation engine's composure_break (ADR-078 §4) fires when a
+# side's Composure/Edge pool hits 0 and resolves the encounter as a break.
+
+genre_key: wry_whimsy
+default_reversibility: narrative_only
+verdicts_on_zero_hp:
+  pc: defeated
+  npc: defeated
+soul_md_constraint: "genre_truth:composure_break_not_death_recoverable"
+must_narrate: >-
+  The traveler's grip finally goes. Render a BREAK, not a wound: they panic and
+  bolt, burst into tears, are seized and condemned, enchanted into stillness, or
+  simply surrender and let the nonsense have its way for now. It is a loss of the
+  scene and of dignity, frightening in the moment, but they are alive and whole.
+  They come back from it — shaken, a little changed, ready to try the world again
+  from the next doorway.
+must_not_narrate: >-
+  death; a corpse; a graphic killing blow; permanent maiming; a grim eulogy;
+  any framing that treats the loss as final or fatal at this lethality baseline.
+  Do not have a rescuer swoop in to erase the break — the traveler owns the
+  failure and recovers on their own terms.

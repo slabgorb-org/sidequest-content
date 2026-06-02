@@ -1,0 +1,84 @@
+# Beat vocabulary — Wry Whimsy
+# Dream-logic obstacles the traveler meets while moving through a Secondary World
+# that refuses to behave. These feed the chase / escape / not-getting-caught beat
+# engine (BeatVocabulary.obstacles). The SIX confrontation types and their exit
+# beats live in rules.yaml (confrontations[].beats[]); this file is the texture of
+# the landscape between confrontations.
+#
+# stat_check uses the locked WW axes: WIT (cleverness), NERVE (composure),
+# HEART (sincerity), GUILE (cunning), WONDER (going-native risk stat).
+# failure_penalty stays non-lethal and recoverable per the Composure baseline —
+# a fumble here costs grip, time, or dignity, never a life.
+
+obstacles:
+  - name: The door that argues
+    description: A door (with a face) that will not open until you answer it to its satisfaction — and it moves the goalposts
+    stat_check: WIT
+    failure_penalty: The door sulks shut; you lose ground and a sliver of Composure to sheer frustration
+    tags: [wonderland, nonsense, threshold, talking_object]
+
+  - name: The garden that rearranges
+    description: A hedge maze whose paths quietly swap themselves the moment you look away
+    stat_check: GUILE
+    failure_penalty: You loop back to where you started; the pursuit gains, your patience frays
+    tags: [oz, maze, movement, shifting]
+
+  - name: The wrong size
+    description: A passage, chair, or doorway scaled for a giant or a mouse — and you are exactly the wrong one
+    stat_check: WONDER
+    failure_penalty: You wedge, dangle, or tower absurdly; embarrassment and a lost turn while the world laughs
+    tags: [wonderland, gulliver, scale, dream_logic]
+
+  - name: The sea of tears
+    description: A flood of your own (or someone's) weeping, deep enough to swim, salt enough to sting
+    stat_check: NERVE
+    failure_penalty: You go under, swallow grief, and surface gasping; Composure tick and gear soaked
+    tags: [wonderland, water, emotional, hazard]
+
+  - name: The road that forks forever
+    description: A path that splits into two identical roads at every step, each insisting it is the only true way
+    stat_check: WIT
+    failure_penalty: Decision paralysis; you waste precious minutes and the hunt closes in
+    tags: [oz, choice, movement, repetition]
+
+  - name: The cheerful mob
+    description: A crowd of citizens so delighted to meet a stranger that they will not let you leave
+    stat_check: HEART
+    failure_penalty: You are swept into a parade, a tea, a coronation — anything but your escape
+    tags: [oz, social, crowd, delay]
+
+  - name: The painted-over truth
+    description: Gardeners frantically painting the roses red (or the sky green) to hide a mistake from an authority — and you saw
+    stat_check: GUILE
+    failure_penalty: You are pressed into the cover-up or fingered as the witness; suspicion follows you
+    tags: [wonderland, deception, complicity, court]
+
+  - name: The very polite guards
+    description: Tiny officials who block your way with exquisite courtesy and a bottomless supply of forms
+    stat_check: NERVE
+    failure_penalty: You are bound in bureaucracy; an afternoon vanishes into stamps and signatures
+    tags: [gulliver, satire, bureaucracy, delay]
+
+  - name: The tempting smallness
+    description: A bottle marked DRINK ME, a cake marked EAT ME — a fix that obviously works and obviously costs
+    stat_check: WIT
+    failure_penalty: You take the easy magic and pay for it — wrong size, woozy, or worse at the worst moment
+    tags: [wonderland, temptation, transformation, dream_logic]
+
+  - name: The flattering courtier
+    description: A silken official who wants to befriend the fascinating foreigner — and to learn everything about you
+    stat_check: GUILE
+    failure_penalty: You give away more than you meant; the authority now knows your weakness
+    tags: [gulliver, social, intrigue, satire]
+
+  - name: The unhelpful signpost
+    description: A signpost whose arms point everywhere at once, each labelled in a script that rewrites itself
+    stat_check: WONDER
+    failure_penalty: You trust the wrong arm and lose your bearings entirely; separated from any landmark
+    tags: [oz, navigation, nonsense, movement]
+
+  - name: The creature underfoot
+    description: A small, talkative animal who has attached itself to you and will not be hurried, and whose feelings bruise easily
+    stat_check: HEART
+    failure_penalty: You hurt its feelings and it stops helping — or starts wailing and gives you away
+    tags: [oz, companion, social, emotional]

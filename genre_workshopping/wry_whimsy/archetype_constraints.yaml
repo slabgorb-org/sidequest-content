@@ -1,0 +1,168 @@
+# archetype_constraints.yaml — wry_whimsy
+# Valid Jungian x RPG Role pairings + genre flavor for the portal fairytale.
+#
+# common: chargen default, NPC gen draws most
+# uncommon: shown if player explores, NPC diversity
+# rare: allowed but unusual, memorable characters
+# forbidden: genuinely nonsensical for this genre
+#
+# CONTRACT (validator-enforced against the repo-global archetypes_base.yaml):
+#   - valid_pairings use ONLY canonical jungian + rpg_role ids
+#   - genre_flavor.jungian covers EXACTLY the 12 canonical jungian ids
+#   - genre_flavor.rpg_roles covers EXACTLY the 7 canonical rpg_role ids
+#
+# GENRE NOTE: this is a wit/Composure-first world. "Combat" rpg_roles (tank, dps)
+# map onto the fairytale's NON-violent shapes — the tank is the traveler who
+# holds their NERVE and stands between others and the world's menace; the dps is
+# the traveler who presses an authority hardest (with argument, sincerity, or
+# wonder, not a weapon). Force is the priced exception, so tank/dps pairings lean
+# uncommon/rare rather than common.
+
+valid_pairings:
+  common:
+    # The five playable coping-styles and their nearest neighbours.
+    - [innocent, support]      # The Innocent — sincerity that disarms
+    - [innocent, healer]       # the kind traveler who mends frightened things
+    - [sage, control]          # The Wit — out-logics the nonsense
+    - [sage, support]
+    - [explorer, stealth]      # The Surveyor — measures and slips through
+    - [explorer, jack_of_all_trades]
+    - [hero, tank]             # The Scrapper — holds nerve, stands between
+    - [magician, dps]          # The Dreamer — leans into wonder to press hardest
+    - [magician, control]
+    - [everyman, jack_of_all_trades]   # the plain sensible traveler
+    - [jester, support]        # the world's own delightful nonsense-creatures
+
+  uncommon:
+    - [innocent, jack_of_all_trades]
+    - [sage, stealth]
+    - [explorer, support]
+    - [explorer, control]
+    - [hero, support]
+    - [hero, jack_of_all_trades]
+    - [magician, support]
+    - [magician, stealth]
+    - [caregiver, healer]      # the gentle protector among the strange
+    - [caregiver, support]
+    - [lover, support]         # the traveler pulled by someone left behind
+    - [lover, healer]
+    - [jester, control]        # nonsense weaponized against an authority
+    - [jester, stealth]
+    - [everyman, support]
+    - [everyman, tank]
+    - [ruler, support]         # a humbug authority of the Secondary World
+    - [ruler, control]
+    - [artist, support]        # the dreamer who makes rather than fights
+    - [artist, control]
+    - [outlaw, stealth]        # the rule-breaker loose in a rule-bound nonsense
+
+  rare:
+    # Force-forward shapes are rare in a wit-first world; so are the genuinely
+    # cruel ones, which belong mostly to the world's villains, not the travelers.
+    - [innocent, dps]
+    - [sage, dps]
+    - [hero, dps]
+    - [magician, tank]
+    - [caregiver, tank]
+    - [lover, control]
+    - [artist, stealth]
+    - [jester, dps]
+    - [everyman, dps]
+    - [ruler, tank]            # a tyrant who actually fights — Gulliver-end menace
+    - [ruler, dps]
+    - [outlaw, dps]
+    - [outlaw, control]
+
+  forbidden:
+    # The innocent traveler cannot be a creature of pure stealth-and-strike —
+    # sincerity and ambush-instinct are mutually exclusive in this genre, where
+    # the Innocent's whole power is being seen plainly.
+    - [innocent, stealth]
+    # A genre that resolves on wit and nerve has no place for a pure damage-dealer
+    # whose only mode is force — the Scrapper is a tank (endurance of nerve), never
+    # a glass-cannon hero. Heroic dps exists but only as the rare exception above;
+    # the caregiver, whose whole shape is protection, is forbidden as a dps.
+    - [caregiver, dps]
+
+# Genre-level fallback names and flavor for each axis value. Covers EXACTLY the
+# canonical jungian (12) and rpg_role (7) sets from archetypes_base.yaml.
+genre_flavor:
+  jungian:
+    hero:
+      speech_pattern: "plain and steady, refuses a threat once and means it, no boasting"
+      equipment_tendency: "a weapon from home that does little good here, a habit carried over from a real war"
+      visual_cues: "plants their feet, steps in front of the weaker, reads the exits before answering"
+    sage:
+      speech_pattern: "corrects an authority's logic mid-decree, answers riddles with sharper riddles"
+      equipment_tendency: "a notebook of crossed-out rules, a pocket of useless sensible objects"
+      visual_cues: "mutters 'but that doesn't follow', insists on the literal meaning of figurative things"
+    outlaw:
+      speech_pattern: "cheerfully refuses the rules the world keeps inventing, talks their way sideways"
+      equipment_tendency: "a stolen key that fits no lock, something palmed from an authority's table"
+      visual_cues: "loose and unbothered where everyone else is anxious, eyes on the unguarded door"
+    caregiver:
+      speech_pattern: "counts heads reflexively, soothes a frightened creature in a low voice"
+      equipment_tendency: "a mended bundle of comforts, a thing kept warm for whoever needs it"
+      visual_cues: "positions between the small and the looming, gentle hands, watches the weak ones"
+    ruler:
+      speech_pattern: "decrees rather than discusses, expects the room to already agree"
+      equipment_tendency: "a crown, a sceptre, or a sash that is grander than its wearer's actual power"
+      visual_cues: "performs authority for an audience, deflates when a traveler simply declines to be impressed"
+    explorer:
+      speech_pattern: "narrates observations aloud, quotes the dimensions of impossible things"
+      equipment_tendency: "a measuring instrument the world defies, a notebook of pressed specimens"
+      visual_cues: "pauses at every strange threshold, sketches the nonsense, leans in to listen to it"
+    magician:
+      speech_pattern: "answers the world in its own dreamlike register, speaks of home as the unreal place"
+      equipment_tendency: "a strange object that hums here, a small gift from the world best not accepted"
+      visual_cues: "delights at what should terrify, trails off listening to something nobody else hears"
+    artist:
+      speech_pattern: "describes the impossible as beauty, metaphor-heavy, half-singing"
+      equipment_tendency: "charcoal and paper, an instrument, something carved from this world's wood"
+      visual_cues: "stops to render a wonder mid-flight, tilts head at the architecture of nonsense"
+    innocent:
+      speech_pattern: "asks the honest question everyone is avoiding, thanks rude creatures sincerely"
+      equipment_tendency: "a keepsake from home clutched at bad moments, a creature's small gift of thanks"
+      visual_cues: "wide unguarded eyes, apologizes to the furniture, says exactly what they feel"
+    lover:
+      speech_pattern: "speaks of the person they left behind, remembers everyone's name and hurt"
+      equipment_tendency: "a locket or letter from home, a token kept presentable even here"
+      visual_cues: "watches companions more than the wonders, warmth that the cold world cannot chill"
+    jester:
+      speech_pattern: "delights in the nonsense, never stops talking, names the absurdity before it lands"
+      equipment_tendency: "motley that belongs to this world, props, a joke kept up a sleeve"
+      visual_cues: "mischievous eyes, animated by the impossible, grins at exactly the wrong moment"
+    everyman:
+      speech_pattern: "plain, no-nonsense, loudly skeptical that any of this is really happening"
+      equipment_tendency: "practical ordinary gear from home, nothing magical, worn and sensible"
+      visual_cues: "unremarkable and out of place, exactly the sort the world expects to make a fool of"
+
+  rpg_roles:
+    tank:
+      fallback_name: "The Steadfast"
+    dps:
+      fallback_name: "The Forceful"
+    control:
+      fallback_name: "The Reasoner"
+    healer:
+      fallback_name: "The Comforter"
+    stealth:
+      fallback_name: "The Quiet One"
+    support:
+      fallback_name: "The Companion"
+    jack_of_all_trades:
+      fallback_name: "The Traveler"
+
+# NPC roles available in this genre (all 9 enabled — a portal fairytale needs the
+# guide-creature, the herald-rabbit, the threshold-guardian, the humbug authority,
+# the helpless captive, and the disposable card-soldier alike).
+npc_roles_available:
+  - mentor
+  - herald
+  - shadow
+  - threshold
+  - host
+  - artisan
+  - authority
+  - victim
+  - mook

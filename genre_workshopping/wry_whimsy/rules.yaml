@@ -1,0 +1,441 @@
+# Wry Whimsy — core rules
+# The golden-age literary portal fairytale. A sensible traveler crosses into a
+# Secondary World run on dream-logic and survives its impossible authorities by
+# WIT and NERVE far more than by force.
+#
+# Chassis decisions (locked):
+#   - ruleset: native  (the default dial/confrontation engine; no custom module)
+#   - resolution is wit/Composure-first; physical violence is the priced exception
+#   - ability axes replace STR/DEX/CON entirely (see ability_score_names)
+#   - Composure is the lethality substrate (see lethality_policy.yaml). It is
+#     carried at runtime by the ablative HP/Edge pool (ADR-078/ADR-114): beats
+#     debit it via edge_delta / target_edge_delta, and a drop to 0 fires the
+#     engine's composure_break — a *break*, not a death. Per-world lethality
+#     dials decide whether a break is recoverable (Oz) or terminal (later worlds).
+#     This genre baseline leans recoverable.
+
+ruleset: native
+
+# No combat-sim variants. A fairytale is not survived by counting rations or
+# tracking encumbrance — it is survived by keeping your head. Deliberately omit
+# rest_variant / encumbrance / injuries custom rules.
+stat_generation: point_buy
+point_buy_budget: 27
+magic_level: none
+
+allowed_classes:
+  - Curious Child
+  - Practical Servant
+  - Earnest Scholar
+  - Weary Soldier
+  - Wayward Dreamer
+  - Stubborn Skeptic
+
+allowed_races:
+  - Ordinary-Born
+  - Threshold-Touched
+  - Native Dreamer
+
+banned_spells: []
+
+default_class: Curious Child
+default_race: Ordinary-Born
+default_location: "The far side of a threshold you did not mean to cross"
+default_time_of_day: afternoon
+
+# Locked ability axes. WIT=cleverness/argument; NERVE=composure under absurdity;
+# HEART=sincerity/conviction; GUILE=cunning/misdirection; WONDER=openness to
+# dream-logic (the risk stat — high WONDER means going native).
+ability_score_names:
+  - WIT
+  - NERVE
+  - HEART
+  - GUILE
+  - WONDER
+
+# Composure is the tracked ablative pool. It rides the runtime HP/Edge slot
+# (ADR-078/ADR-114), so the standard hp / max_hp display fields surface it; the
+# reference sheet relabels them as Composure at the world/theme layer.
+stat_display_fields:
+  - hp
+  - max_hp
+
+encounter_base_tension:
+  random: 0.10
+  ambush: 0.25
+  audience: 0.35
+  boss: 0.40
+  final: 0.50
+
+# ── Confrontations ──────────────────────────────────────────
+# Six confrontation types across the wit-first spectrum. Five resolve on nerve
+# and cleverness; the sixth (violence) is the priced exception.
+#
+# Dual-track schema (2026-04-25 dual-track-momentum): each side carries an
+# independent ascending dial (player_metric / opponent_metric, name+starting+
+# threshold). Beats declare a `kind` (strike / brace / push / angle) that drives
+# the per-outcome delta table; `base` scales the magnitude.
+#
+# COMPOSURE & THE BREAK: any beat that spends the traveler's grip debits
+# Composure via `edge_delta` (self) or presses the opponent's via
+# `target_edge_delta`. When a side's Composure hits 0 the engine fires
+# composure_break and ends the confrontation as a *break*, not a death.
+#
+# RESOLUTION TRAP (authoring): an exit beat MUST carry `resolution: true`. A
+# prose `consequence:` field is inert narrator flavor and will NOT end the
+# confrontation. Every exit beat below is kind=push AND carries resolution:true
+# (belt-and-suspenders — push auto-resolves on Success, the flag resolves on any
+# outcome).
+
+confrontations:
+  # 1. AUDIENCE / TRIAL — you stand before an impossible authority (a humbug
+  #    king, a card-court, a council of little men) whose verdict is the danger.
+  - type: audience
+    label: "Audience / Trial"
+    intent_verbs: [argue, plead, object, testify, appeal, defend, address, petition]
+    on_intent_mismatch: reprompt
+    category: social
+    # player dial = standing / sway over the court; opponent dial = the verdict
+    # tightening against you.
+    player_metric:
+      name: standing
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: verdict
+      starting: 0
+      threshold: 10
+    beats:
+      - id: state_your_case
+        label: "State Your Case"
+        kind: strike
+        base: 2
+        stat_check: WIT
+        effect: "the court weighs your reasoning against its own nonsense"
+        narrator_hint: "Show the authority forced, briefly, to follow an argument it did not author."
+      - id: appeal_to_fairness
+        label: "Appeal to Fairness"
+        kind: strike
+        base: 3
+        stat_check: HEART
+        risk: "a sincere appeal in a court that does not value sincerity can deepen the verdict"
+        consequence: "the room's sympathy turns — for you or sharply against you"
+        narrator_hint: "Earnest conviction lands hard in a place built on whim. High stakes either way."
+      - id: spot_the_contradiction
+        label: "Spot the Contradiction"
+        kind: angle
+        target_tag: "Court's Own Rule Turned"
+        base: 1
+        stat_check: GUILE
+        effect: "you catch the authority breaking its own absurd rule and bank it for later"
+        narrator_hint: "The traveler notices the seam in the nonsense. Set it up; do not spring it yet."
+      - id: hold_your_nerve
+        label: "Hold Your Nerve"
+        kind: brace
+        base: 2
+        stat_check: NERVE
+        effect: "you absorb the court's bluster without flinching — the verdict stalls"
+        narrator_hint: "The pressure mounts; the traveler simply does not break under it."
+      - id: refuse_the_premise
+        label: "Refuse the Premise"
+        kind: push
+        stat_check: WIT
+        resolution: true
+        consequence: "you decline to play the game by its rules and walk out of the proceeding"
+        narrator_hint: "Sentence first, verdict after? The traveler rejects the whole frame and leaves."
+    escalates_to: chase
+    mood: courtroom
+
+  # 2. WIT-DUEL — a battle of riddles, retorts, and contradictions with a
+  #    capricious interlocutor (a Cat, a Caterpillar, a talking door).
+  - type: wit_duel
+    label: "Wit-Duel"
+    intent_verbs: [riddle, retort, quip, outwit, banter, puzzle, counter, answer]
+    on_intent_mismatch: reprompt
+    category: social
+    player_metric:
+      name: upper_hand
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: upper_hand
+      starting: 0
+      threshold: 10
+    beats:
+      - id: sharp_retort
+        label: "Sharp Retort"
+        kind: strike
+        base: 2
+        stat_check: WIT
+        effect: "you turn their words back on them"
+        narrator_hint: "A clean, fast reversal. The interlocutor did not expect to be answered so well."
+      - id: pose_a_riddle
+        label: "Pose a Riddle"
+        kind: strike
+        base: 3
+        stat_check: GUILE
+        risk: "a riddle that misfires hands them the upper hand"
+        consequence: "they either stall on your riddle or skewer it instantly"
+        narrator_hint: "High-variance. A good riddle traps them; a bad one is a gift."
+      - id: feign_confusion
+        label: "Feign Confusion"
+        kind: angle
+        target_tag: "Lulled Opponent"
+        base: 1
+        stat_check: GUILE
+        effect: "you play the simpleton to draw out their real reasoning"
+        narrator_hint: "The traveler plays dumb on purpose. Banked leverage, not an immediate hit."
+      - id: keep_a_straight_face
+        label: "Keep a Straight Face"
+        kind: brace
+        base: 2
+        stat_check: NERVE
+        effect: "you refuse to be rattled by the nonsense — their momentum drains"
+        narrator_hint: "Unflappable. The absurdity rolls off and leaves the opponent looking foolish."
+      - id: concede_the_game
+        label: "Concede the Game"
+        kind: push
+        stat_check: HEART
+        resolution: true
+        consequence: "you bow out of the contest gracefully — no upper hand won, none lost"
+        narrator_hint: "The traveler declines to win, and the contest simply ends. Dignity intact."
+    mood: nonsense
+
+  # 3. ESCAPE / NOT-GETTING-CAUGHT — slipping a pursuing authority through a
+  #    shifting, dream-logic landscape (a garden that rearranges, a corridor of
+  #    doors). Distinct from the priced violence path.
+  - type: escape
+    label: "Escape / Not-Getting-Caught"
+    intent_verbs: [flee, run, slip, hide, evade, dodge, escape, vanish]
+    on_intent_mismatch: reprompt
+    category: movement
+    # player dial = distance gained; opponent dial = the pursuit closing.
+    player_metric:
+      name: distance
+      starting: 0
+      threshold: 8
+    opponent_metric:
+      name: pursuit
+      starting: 0
+      threshold: 8
+    beats:
+      - id: bolt
+        label: "Bolt"
+        kind: push
+        base: 2
+        stat_check: NERVE
+        narrator_hint: "Flat-out flight through a landscape that will not hold still."
+      - id: take_the_wrong_door
+        label: "Take the Wrong Door"
+        kind: push
+        base: 3
+        deltas:
+          crit_fail:
+            own: -2
+        stat_check: WONDER
+        risk: "trusting the dream-logic can open a shortcut — or a dead end that loops back"
+        narrator_hint: "The traveler leans INTO the nonsense to escape it. Reward or trap."
+      - id: blend_in
+        label: "Blend In"
+        kind: angle
+        target_tag: "Lost in the Crowd"
+        base: 1
+        stat_check: GUILE
+        effect: "you pass yourself off as one more strange citizen of this place"
+        narrator_hint: "Hide in plain sight among things stranger than you. Set up a clean break."
+      - id: catch_your_breath
+        label: "Catch Your Breath"
+        kind: brace
+        base: 2
+        stat_check: NERVE
+        effect: "you steady yourself behind cover — the pursuit loses the thread"
+        narrator_hint: "A held breath in a doorway. The hunt sweeps past."
+      - id: go_to_ground
+        label: "Go to Ground"
+        kind: push
+        stat_check: GUILE
+        resolution: true
+        consequence: "you vanish into the strangeness — the pursuit gives up the chase"
+        narrator_hint: "The traveler is simply gone. The authority is left turning in circles."
+    escalates_to: violence
+    mood: tension
+
+  # 4. WONDER-SHOCK — the world overwhelms the traveler with the sheer
+  #    impossibility of itself (a sea of tears, a field of living chess, a giant's
+  #    table). The contest is internal: keep your grip vs. let the dream take you.
+  #    This is the one confrontation where the *traveler's own Composure* is the
+  #    primary battlefield, so the player's strike beats debit their own pool.
+  - type: wonder_shock
+    label: "Wonder-Shock"
+    intent_verbs: [endure, marvel, ground, steady, resist, anchor, behold, withstand]
+    on_intent_mismatch: warn
+    category: social
+    # player dial = grip kept; opponent dial = the dream pulling you under.
+    player_metric:
+      name: grip
+      starting: 0
+      threshold: 8
+    opponent_metric:
+      name: dream_pull
+      starting: 0
+      threshold: 8
+    beats:
+      - id: name_what_you_see
+        label: "Name What You See"
+        kind: strike
+        base: 2
+        stat_check: WIT
+        effect: "you describe the impossible thing plainly and rob it of some of its power"
+        narrator_hint: "The traveler's stubborn ordinariness is a weapon. Naming the absurd tames it a little."
+      - id: anchor_to_a_memory
+        label: "Anchor to a Memory"
+        kind: strike
+        base: 3
+        stat_check: HEART
+        risk: "reaching for home in a place that erodes it can make the homesickness worse"
+        consequence: "the memory steadies you — or the contrast nearly undoes you"
+        narrator_hint: "A held thread to the ordinary world. Comfort and ache at once."
+      - id: let_the_wonder_in
+        label: "Let the Wonder In"
+        kind: angle
+        target_tag: "Half-Native Sight"
+        base: 1
+        stat_check: WONDER
+        risk: "opening to the dream-logic grants insight at the cost of a little of yourself"
+        effect: "you stop fighting the impossibility and briefly see by its rules"
+        narrator_hint: "Dangerous WONDER play: the traveler goes a little native to gain an angle. Bank it."
+      - id: breathe
+        label: "Breathe"
+        kind: brace
+        base: 2
+        stat_check: NERVE
+        effect: "you simply hold on — the dream's pull stalls against your nerve"
+        narrator_hint: "No cleverness, just refusal. The vertigo crests and passes."
+      - id: look_away
+        label: "Look Away"
+        kind: push
+        stat_check: NERVE
+        resolution: true
+        consequence: "you tear your eyes from the impossible thing and the spell over you breaks"
+        narrator_hint: "The traveler chooses not to look. The wonder-shock ends; they keep themselves."
+    mood: dreamlike
+
+  # 5. PERSUASION — winning over an eccentric ally, a frightened creature, or a
+  #    minor functionary through sincerity rather than force.
+  - type: persuasion
+    label: "Persuasion"
+    intent_verbs: [persuade, convince, reassure, befriend, coax, charm, entreat, win-over]
+    on_intent_mismatch: warn
+    category: social
+    player_metric:
+      name: rapport
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: resistance
+      starting: 0
+      threshold: 10
+    beats:
+      - id: speak_plainly
+        label: "Speak Plainly"
+        kind: strike
+        base: 2
+        stat_check: HEART
+        effect: "honest words land where flattery would not"
+        narrator_hint: "Sincerity is rare here and it shows. The NPC softens."
+      - id: clever_promise
+        label: "Clever Promise"
+        kind: strike
+        base: 3
+        stat_check: WIT
+        risk: "a promise too clever may read as a trick and harden them"
+        consequence: "they take the bargain — or smell the angle in it"
+        narrator_hint: "A deal shaped to their want. Persuasive, but it can look like manipulation."
+      - id: find_their_fear
+        label: "Find Their Fear"
+        kind: angle
+        target_tag: "What They Truly Want"
+        base: 1
+        stat_check: GUILE
+        effect: "you read what the creature is really frightened of, and bank it"
+        narrator_hint: "Quiet observation. Learn the real need under the bluster; do not spend it yet."
+      - id: wait_them_out
+        label: "Wait Them Out"
+        kind: brace
+        base: 2
+        stat_check: NERVE
+        effect: "you let their objections spend themselves against your patience"
+        narrator_hint: "The traveler simply outlasts the protest. Resistance drains."
+      - id: let_them_decide
+        label: "Let Them Decide"
+        kind: push
+        stat_check: HEART
+        resolution: true
+        consequence: "you step back and leave the choice to them — and they come around, or you part on good terms"
+        narrator_hint: "No pressure at the end. The traveler trusts them, and the matter resolves cleanly."
+    mood: warm
+
+  # 6. VIOLENCE — the priced exception. Force exists in this world but it is
+  #    rarely the smart move and the genre frames it as a failure of wit. This is
+  #    the only confrontation whose beats carry a real Composure (HP/Edge) channel:
+  #    blows debit the traveler's own pool (self_edge) and press the opponent's,
+  #    and a drop to 0 is a *break* (subdued, fled, condemned), not a death — the
+  #    per-world lethality dial decides recoverability.
+  - type: violence
+    label: "Violence (Last Resort)"
+    intent_verbs: [strike, attack, fight, hit, swing, kick, throw, shove, fend]
+    on_intent_mismatch: reprompt
+    category: combat
+    player_metric:
+      name: footing
+      starting: 0
+      threshold: 10
+    opponent_metric:
+      name: footing
+      starting: 0
+      threshold: 10
+    beats:
+      - id: scrappy_blow
+        label: "Scrappy Blow"
+        kind: strike
+        base: 3
+        stat_check: NERVE
+        target_edge_delta: 2
+        effect: "an inelegant, desperate strike that presses the opponent's Composure"
+        narrator_hint: "Not a warrior's blow — a frightened person fighting back. It costs the opponent their footing."
+      - id: throw_everything
+        label: "Throw Everything"
+        kind: strike
+        base: 4
+        deltas:
+          crit_fail:
+            own: -2
+        stat_check: HEART
+        risk: "an all-out, reckless effort — overcommit and you lose your own footing and grip"
+        edge_delta: 1
+        target_edge_delta: 3
+        effect: "you spend yourself in one wild push against the opponent"
+        narrator_hint: "Everything at once. Big swing, real cost to the traveler's own Composure."
+      - id: ward_it_off
+        label: "Ward It Off"
+        kind: brace
+        base: 2
+        stat_check: NERVE
+        effect: "you cover up and weather the assault — the opponent's footing slips"
+        narrator_hint: "Arms up, eyes shut, holding on. Defensive, not heroic."
+      - id: dirty_trick
+        label: "Dirty Trick"
+        kind: angle
+        target_tag: "Off-Balance"
+        base: 1
+        stat_check: GUILE
+        effect: "a handful of sand, an upended table — you set up an opening"
+        narrator_hint: "Cleverness even inside a brawl. Bank an advantage; do not spend it yet."
+      - id: break_off
+        label: "Break Off"
+        kind: push
+        stat_check: NERVE
+        resolution: true
+        consequence: "you disengage and put the fight behind you — nobody has to be a corpse"
+        narrator_hint: "The traveler stops fighting and gets out. Violence ends without a body, the genre default."
+    mood: combat

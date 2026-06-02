@@ -1,0 +1,430 @@
+map_resolution: null
+map_style: >-
+  A hand-tinted storybook map of the Land of Oz in the manner of a 1900 color
+  plate — the four colored countries laid out as four quarters around a green
+  hub, each rendered flatly in its own single color (blue East, yellow West, red
+  South, purple Gillikin North). The Yellow Brick Road winds in gold from the
+  blue country to the green city at the center. A broad band of pale, shifting
+  sand rings the whole square of country on every side, drawn in fine ochre
+  stipple and labeled in a careful hand. Talking beasts and round-roofed cottages
+  dot the quarters. No compass rose is needed; the colors are the directions.
+navigation_mode: region
+starting_region: munchkin_country
+world_name: Oz
+
+regions:
+
+  # ── EAST — the blue Munchkin country (starting region) ─────────────────────
+  munchkin_country:
+    name: The Munchkin Country
+    summary: "The blue East — tidy farms, round-roofed cottages, a freed and grateful folk"
+    description: >-
+      The Munchkin country is the blue East of Oz, and everything in it that can
+      be blue is: blue cottages with round roofs, blue fences in neat rows, blue
+      clothes on small tidy people, blue flowers in the fields. The Munchkins are
+      careful farmers and timid souls, freed only recently from the bondage of
+      the Wicked Witch of the East and not yet sure what to do with being
+      unafraid. This is where a cyclone-blown traveler most often comes to ground,
+      and where the Yellow Brick Road begins its run to the Emerald City. The
+      silver shoes of the dead Witch of the East are loose somewhere in this
+      country.
+    terrain: farmland
+    controlled_by: munchkins
+    adjacent:
+      - the_yellow_brick_road
+      - the_emerald_city
+      - the_deadly_desert
+    landmarks:
+      - the round-roofed blue cottages and their neat fenced fields
+      - the start of the Yellow Brick Road at the village edge
+      - the field of blue flowers where travelers come to ground
+      - the good Witch of the North, who appears to greet new arrivals
+    entities:
+      - id: silver_shoes
+        label: the silver shoes
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: munchkin_silver_shoes
+        affordances:
+          - inspect
+          - take
+          - wear
+      - id: yellow_brick_road_start
+        label: the start of the Yellow Brick Road
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: munchkin_road_start
+        affordances:
+          - follow
+      - id: blue_cottage
+        label: a round-roofed blue cottage
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: munchkin_blue_cottage
+        affordances:
+          - enter
+          - knock
+      - id: witch_of_the_north
+        label: the good Witch of the North
+        tier: real_object
+        binding:
+          kind: npc
+          ref: witch_of_the_north
+      - id: blue_flowers
+        label: the field of blue flowers
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE YELLOW BRICK ROAD — the safe spine to the hub ──────────────────────
+  the_yellow_brick_road:
+    name: The Yellow Brick Road
+    summary: "The golden spine from the blue East to the green hub — the traveler's safe first journey"
+    description: >-
+      A road paved in smooth golden brick, well-laid and easy to follow, running
+      from the Munchkin country in the East to the Emerald City at the country's
+      hub. It is the safe spine of any new traveler's journey and the place where
+      the first companions are met: a Scarecrow on his pole in a cornfield, a Tin
+      Woodman rusted motionless in the wood, a Lion in the deep timber. The road
+      passes a field of deadly-sweet scarlet poppies whose perfume puts the living
+      to sleep, and crosses a river or two, before it brings the traveler to the
+      gate of the green city. It is whimsy with the occasional wrinkle, never a
+      grave.
+    terrain: road
+    controlled_by: open_country
+    adjacent:
+      - munchkin_country
+      - the_emerald_city
+    landmarks:
+      - the cornfield where the Scarecrow stands on his pole
+      - the wood where the Tin Woodman rusted weeping over a beetle
+      - the deadly-sweet field of scarlet poppies
+      - the deep timber where the Cowardly Lion keeps to himself
+    entities:
+      - id: scarecrow
+        label: the Scarecrow on his pole
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_scarecrow
+        affordances:
+          - help_down
+          - speak_to
+      - id: tin_woodman
+        label: the rusted Tin Woodman
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_tin_woodman
+        affordances:
+          - oil
+          - speak_to
+      - id: cowardly_lion
+        label: the Cowardly Lion
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_cowardly_lion
+        affordances:
+          - speak_to
+      - id: poppy_field
+        label: the field of scarlet poppies
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: road_poppy_field
+        affordances:
+          - cross
+          - avoid
+      - id: golden_brick
+        label: the golden brick of the road
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── CENTER — the green Emerald City (cover POI lives here) ──────────────────
+  the_emerald_city:
+    name: The Emerald City
+    summary: "The green hub — plain white marble seen through locked green glass, ruled by a humbug"
+    description: >-
+      The Emerald City stands at the exact hub of the four colored countries, and
+      it is the most dazzling place in Oz — a glory of green walls, green towers,
+      green streets, green goods, green light. The green is a lie: the City is
+      plain white marble, and every eye that enters is fitted at the gate with
+      green-tinted spectacles, buckled and locked, so the white reads as emerald.
+      Behind a curtain in the great throne room sits the Wizard — a humbug with no
+      magic, who rules the City by illusion and a booming voice and never shows
+      his true shape. The City is prosperous and frightened in equal measure, and
+      its central enchantment is a seam anyone can take off with the glasses.
+    terrain: city
+    controlled_by: the_wizard
+    adjacent:
+      - the_yellow_brick_road
+      - munchkin_country
+      - winkie_country
+      - quadling_country
+      - gillikin_country
+    landmarks:
+      - the great gate where the Guardian fits the locked green spectacles
+      - the throne room where the Wizard appears in false shapes
+      - the green-lit streets of plain white marble
+      - the wall of spectacles on their pegs at the gate
+    entities:
+      - id: emerald_city_gate
+        label: the gate of the Emerald City
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: emerald_city_gate
+        affordances:
+          - approach
+          - enter
+      - id: guardian_of_the_gates
+        label: the Guardian of the Gates
+        tier: real_object
+        binding:
+          kind: npc
+          ref: guardian_of_the_gates
+        affordances:
+          - speak_to
+      - id: green_spectacles
+        label: the locked green spectacles
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: emerald_city_spectacles
+        affordances:
+          - wear
+          - unbuckle
+          - remove
+      - id: throne_room
+        label: the Wizard's throne room
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: emerald_city_throne_room
+        affordances:
+          - enter
+          - look_behind_the_curtain
+      - id: the_wizard
+        label: the Wizard of Oz
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_wizard
+      - id: white_marble
+        label: the plain white marble under the green
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── WEST — the yellow Winkie country ───────────────────────────────────────
+  winkie_country:
+    name: The Winkie Country
+    summary: "The yellow West — a whole nation lately enslaved by the Witch of the West"
+    description: >-
+      The Winkie country is the yellow West of Oz: yellow fields, yellow brick,
+      yellow-clad folk who are kindly, skilled with their hands, and lately bowed
+      down. The whole Winkie nation was held in slavery by the Wicked Witch of the
+      West, mistress of the Golden Cap and the Winged Monkeys, who ruled them by
+      terror from a yellow castle and dared not let water near her own dried-up
+      skin. The Winkies are tinsmiths and metalworkers without equal, and they
+      remember kindness. Whoever frees them earns a loyalty out of all proportion
+      to the asking.
+    terrain: farmland
+    controlled_by: witch_of_the_west
+    adjacent:
+      - the_emerald_city
+      - the_deadly_desert
+    landmarks:
+      - the yellow castle of the Witch of the West
+      - the courtyard well the Witch keeps far away from
+      - the workshops of the Winkie tinsmiths
+      - the sky where the Winged Monkeys answer the Golden Cap
+    entities:
+      - id: witch_of_the_west
+        label: the Wicked Witch of the West
+        tier: real_object
+        binding:
+          kind: npc
+          ref: witch_of_the_west
+      - id: golden_cap
+        label: the Golden Cap
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: winkie_golden_cap
+        affordances:
+          - inspect
+          - take
+          - speak_the_charm
+      - id: castle_well
+        label: the courtyard well
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: winkie_castle_well
+        affordances:
+          - draw_water
+      - id: winkie_workshops
+        label: the Winkie tinsmiths' workshops
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: winkie_workshops
+        affordances:
+          - enter
+      - id: winged_monkeys
+        label: the Winged Monkeys
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── SOUTH — the red Quadling country (Glinda's domain) ─────────────────────
+  quadling_country:
+    name: The Quadling Country
+    summary: "The red South — the domain of Glinda the Good, the country's truest power"
+    description: >-
+      The Quadling country is the red South of Oz: red roads, red roofs, red-clad
+      folk, and at its heart the castle of Glinda the Good — the most powerful and
+      the most trustworthy sorceress in all the country, and the only authority in
+      Oz who is exactly what she appears to be. The Quadlings are well-governed and
+      content under her, which makes the South the one quarter where the traveler
+      meets power that is neither humbug nor cruelty. Glinda keeps her own counsel,
+      and she already knows more of Oz's hidden rightful ruler than she has told a
+      living soul.
+    terrain: farmland
+    controlled_by: glinda
+    adjacent:
+      - the_emerald_city
+      - the_deadly_desert
+    landmarks:
+      - the red castle of Glinda the Good
+      - the red roads and red-roofed villages of the contented South
+      - Glinda's chamber, where she sees the country in a great book
+    entities:
+      - id: glinda
+        label: Glinda the Good
+        tier: real_object
+        binding:
+          kind: npc
+          ref: glinda
+      - id: glindas_castle
+        label: the red castle of Glinda
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: quadling_glindas_castle
+        affordances:
+          - approach
+          - enter
+      - id: book_of_records
+        label: Glinda's great book of the country
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: quadling_book_of_records
+        affordances:
+          - inspect
+      - id: red_villages
+        label: the red-roofed villages of the South
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── NORTH — the purple Gillikin country (Mombi's wild quarter) ─────────────
+  gillikin_country:
+    name: The Gillikin Country
+    summary: "The purple North — wild, least-traveled, where hedge-witches keep an old secret"
+    description: >-
+      The Gillikin country is the purple North of Oz, and it is the wildest and
+      least-traveled of the four quarters: purple hills, purple thickets, scattered
+      folk, and crooked hedge-witches who keep to themselves in cottages no road
+      quite reaches. It is held loosely by the kindly Witch of the North, but its
+      real character is its secrets. Somewhere in this wild purple country an old
+      hedge-witch named Mombi guards an enchantment the rest of Oz does not even
+      know to ask after — and an overlooked child in her keeping is more than
+      anyone, the child included, has any idea of.
+    terrain: wilderness
+    controlled_by: gillikin_hedge_witches
+    adjacent:
+      - the_emerald_city
+      - the_deadly_desert
+    landmarks:
+      - the purple hills and trackless thickets of the wild North
+      - the crooked cottage of the hedge-witch Mombi
+      - the scattered holdings of the kindly Witch of the North
+    entities:
+      - id: mombi
+        label: the hedge-witch Mombi
+        tier: real_object
+        binding:
+          kind: npc
+          ref: mombi
+      - id: mombis_cottage
+        label: the crooked cottage of Mombi
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: gillikin_mombis_cottage
+        affordances:
+          - approach
+          - knock
+      - id: purple_thickets
+        label: the trackless purple thickets
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE BORDER — the Deadly Desert (the one lethal thing) ──────────────────
+  the_deadly_desert:
+    name: The Deadly Desert
+    summary: "The killing sand that rings all Oz — the one genuinely lethal thing in the country"
+    description: >-
+      The Deadly Desert — the Shifting Sands, the Impassable Desert — is the band
+      of pale, restless sand that rings the whole of Oz on every side and seals it
+      off from the gray world beyond. Its sand turns any living thing that touches
+      it instantly to dry dust: a bird that settles on it crumbles, a tossed leaf
+      powders in mid-fall. It cannot be walked, ridden, swum, or out-waited. This
+      is the lethal border that makes Oz a place to be stuck wandering rather than
+      a level to exit — the way home is not a direction across this sand but a
+      magic that can survive it. The desert is the single thing in all the gentle
+      country that the world will not soften, and it earns Oz the right to be kind
+      everywhere else.
+    terrain: desert
+    controlled_by: no_one
+    adjacent:
+      - munchkin_country
+      - winkie_country
+      - quadling_country
+      - gillikin_country
+    landmarks:
+      - the shimmering edge where the colored country simply ends in sand
+      - the far side that no eye can make out across the heat-haze
+      - the place where a careless creature touches the sand and is gone to powder
+    entities:
+      - id: shifting_sands
+        label: the shifting killing sands
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: desert_shifting_sands
+        affordances:
+          - approach
+          - turn_back
+      - id: deserts_edge
+        label: the shimmering edge of Oz
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: desert_edge
+        affordances:
+          - inspect
+      - id: heat_haze
+        label: the heat-haze over the far side
+        tier: flavor_only
+    rivers: []
+    settlements: []

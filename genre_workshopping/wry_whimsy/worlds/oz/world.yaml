@@ -1,0 +1,58 @@
+name: Oz
+slug: oz
+genre: wry_whimsy
+cover_poi: the_emerald_city_gate
+
+# NOTE: NOT draft. draft:true would make the loader SILENTLY SKIP this world at
+# pack-load time (loader.py:924/1377) — i.e. the world becomes unplayable. Image
+# renders (portraits/POIs) are deferred to a later R2 pass; their absence is a
+# warning, never a load error, so the world ships live without the draft flag.
+
+description: >-
+  L. Frank Baum's Oz, rendered straight from the 1900 novel and its sequels —
+  silver shoes, not ruby. A sealed fairyland ringed by the Deadly Desert and
+  quartered into four colored countries: the blue East of the Munchkins, the
+  yellow West of the Winkies, the red South of the Quadlings, the purple North
+  of the Gillikins, with the green Emerald City at the hub. The humbug Wizard
+  rules the City from behind a curtain on illusion alone; the real powers of
+  the land are all women — the good witch Glinda of the South, the wicked
+  witches who carved up the country, and a rightful Princess no one has thought
+  to look for. Menace here enchants, enslaves, or sends-you-on-a-task; it does
+  not kill. The one genuinely lethal thing is the border. The traveler arrives
+  by accident, wants only to go home, and finds the way home is not a road but
+  a magic.
+
+era: "Wizard-era Oz"
+
+tone: >-
+  Earnest American fairyland. Bright, kind where it can be, gently absurd, and
+  played dead straight — the narrator never winks. Colour everywhere; talking
+  creatures running their own businesses; danger wrapped in wonder. Authority
+  is humbug and the seams in it are findable, never protected. The stakes are
+  about dignity, transformation, and getting home — not survival. Keep the
+  menace sincere even when death is off the table; an ornament on a witch's
+  shelf is still a person who has lost themselves.
+
+# Oz preset, walked to the brief's locked overrides: whimsy HIGH, sense LOW,
+# gravity LOW, menace LOW. This is the light end of the genre's
+# light-to-savage gradient.
+axis_snapshot:
+  whimsy: 0.8
+  sense: 0.3
+  gravity: 0.25
+  menace: 0.25
+
+# The traveler comes to ground where Dorothy did — the blue East Country,
+# fresh from the fall of the Witch of the East. The Yellow Brick Road begins
+# at the door.
+starting_location: munchkin_country
+
+# Lethality is LOW everywhere inside the seal. The lone exception — the Deadly
+# Desert border — is encoded as its own hazard trope (deadly_desert) and a
+# lethal cartography region, not as a world-wide lethality setting. Within Oz,
+# defeat is enchantment, bondage, or a long way round, never a grave.
+lethality: low
+
+extensions:
+  - archetype_funnels
+  - npcs

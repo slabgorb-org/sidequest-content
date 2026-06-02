@@ -1,0 +1,497 @@
+# Oz — World Tropes (Wry Whimsy)
+#
+# WORLD TIER for the `oz` world of the `wry_whimsy` pack. Rendered straight from
+# L. Frank Baum's Oz (the 1900 novel and its sequels) — never the 1939 MGM film.
+# Silver shoes, not ruby; the humbug Wizard; green spectacles locked on at the gate;
+# the Deadly Desert; the hidden Princess Ozma. Tone is LIGHT and LOW-lethality:
+# menace enchants, enslaves, or sends-on-a-task rather than kills, and the world
+# mostly wants the traveler to win.
+#
+# Three of these tropes EXTEND genre-tier abstract tropes via `extends:` (matched on
+# the parent trope's NAME, slugified): incomplete_companion ← Helpful Companion,
+# green_spectacles ← The Seam Reveal, lost_princess ← Impossible Authority. The Oz
+# escalation arrays fully override the generic parent beats with Baum's particulars.
+# The remaining four (water_weak_tyrant, helpful_beasts, deadly_desert,
+# enchantment_not_kill) are standalone Oz tropes with no genre parent.
+#
+# Doctrine: source-fidelity over Hollywood; diegetic sincerity, never a wink; the
+# seams are bait, not walls (findable, never protected); enchantment, not the kill.
+
+# 1 — INCOMPLETE COMPANION  (specializes Helpful Companion)
+- id: incomplete_companion
+  name: The Incomplete Companion
+  extends: Helpful Companion
+  description: >-
+    A creature of Oz joins the traveler, earnestly convinced it lacks the one
+    quality it most plainly possesses. The Scarecrow, stuffed with straw, frets
+    that he has no brains, and reasons his way out of every difficulty while he
+    frets. The Tin Woodman, who rusted himself motionless weeping over a beetle,
+    mourns that he has no heart. The Cowardly Lion, who will charge anything that
+    threatens his friends, is sure he is a coward and trembles as he does it. The
+    irony belongs to the traveler and the reader, never to the companion: each
+    believes its own lack completely, and asks to be taken to the Wizard so the
+    missing thing can be supplied. Played dead straight — the joke is never
+    spoken aloud at the companion's expense.
+  category: bonding
+  triggers:
+    - a scarecrow asks for brains
+    - a tin man asks for a heart
+    - a lion confesses he is a coward
+    - a creature joins you certain it lacks something
+    - take me to the wizard so he can give me
+  narrative_hints:
+    - the companion names its deficiency before it names itself
+    - it solves the riddle, weeps the tear, or fights the beast, then waves the proof away
+    - its feelings bruise at a careless word, and the kindness shown to it is quietly banked
+  tension_level: 0.2
+  resolution_hints:
+    - take the companion's worry at face value and let it earn the proof on its own terms
+    - lean on the very quality it denies, at the moment the road turns hard
+    - the Wizard's "gift" is a humbug — bran, a silk heart, a draught of courage — and it works anyway, because the thing was always there
+  tags: [oz, companion, bonding, kindness_economy, low_lethality, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The companion attaches itself and at once confesses its great want — no
+        brains in the straw, no heart in the tin, no courage in the great chest —
+        and begs to be taken to the Emerald City, certain the Wizard can supply
+        what nature left out.
+      stakes: A loyal bond forms around a quest for a thing the companion already owns.
+    - at: 0.6
+      event: >-
+        The road demands exactly the missing quality. The brainless one devises
+        the plan; the heartless one weeps for a hurt creature and will not move
+        until it is helped; the coward places himself between his friends and the
+        danger. Each does the thing, then insists it does not count.
+      stakes: The companion is more than it believes — and the traveler can see what it cannot.
+    - at: 1.0
+      event: >-
+        At the pinch the companion does the thing undeniably, and the Wizard's
+        gift arrives as a humbug — a head of bran and pins, a heart of silk and
+        sawdust, a green draught of "courage" — which satisfies completely,
+        because the want was never real. The companion is content; the kindness
+        is repaid.
+      stakes: A proven ally, and the small true thing about the gap between what we lack and what we fear we lack.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.02
+    accelerators:
+      - companion
+      - i have no brains
+      - i have no heart
+      - i am a coward
+      - take me to the wizard
+      - travel together
+    decelerators:
+      - send it away
+      - travel alone
+      - mock its feelings
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+# 2 — WATER-WEAK TYRANT  (standalone)
+- id: water_weak_tyrant
+  name: The Water-Weak Tyrant
+  description: >-
+    A fearsome power undone by an absurd, trivial weakness. The Wicked Witch of
+    the West — one eye, sharp as a telescope; a whistle that calls wolves, crows,
+    bees, and the winged monkeys; the Golden Cap that commands them — rules the
+    yellow Winkie country by terror, and is so old and dry that she has not a drop
+    of blood in her and dares not let water touch her. A thrown bucket ends her:
+    she melts like brown sugar, "a shapeless mass," and the slavery ends with her.
+    The boss can die to a bucket, and the world renders it with a perfectly
+    straight face. The danger before the bucket is real; the undoing is ridiculous;
+    both are true at once.
+  category: confrontation
+  triggers:
+    - a tyrant rules by fear over enslaved people
+    - a power flinches from water or some trivial thing
+    - the witch sends wolves crows bees or monkeys
+    - a bucket of water is to hand
+    - throw water on the fearsome one
+  narrative_hints:
+    - the tyrant's terror is total until the absurd tell shows itself
+    - the weakness is guarded by fear, not by walls — she keeps water away by keeping you afraid to use it
+    - the undoing is small, instant, and irreversible, and the world does not blink at how silly it was
+  tension_level: 0.5
+  resolution_hints:
+    - notice the tell — what the fearsome one will not go near — and bring it to the confrontation
+    - the bucket is the answer; the courage to throw it is the obstacle
+    - the tyrant melts and stays melted; the enslaved go free the instant the power dies
+  tags: [oz, confrontation, rule_of_cool, absurd_weakness, low_lethality, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        The tyrant's power is displayed in full — a whistle, and the wolves come;
+        a second, and the crows; the winged monkeys darken the sky at a wave of
+        the Golden Cap. Resistance looks hopeless, and the enslaved keep their
+        heads down.
+      stakes: The terror is established as real. No one in the yellow country dares lift a hand.
+    - at: 0.6
+      event: >-
+        The traveler catches the tell: the dried-up tyrant keeps far from the
+        well, locks the water away, never lets a drop near her skin. The thing
+        she fears is the most ordinary thing in the kitchen.
+      stakes: The fearsome one has an absurd seam, and it is sitting in a bucket by the door.
+    - at: 1.0
+      event: >-
+        Goaded past caution — a stolen shoe, a cruelty too far — the traveler (or
+        a desperate captive) flings the water. The tyrant melts away to a brown
+        shapeless mass on the flagstones, gone in a breath, and the Winkies look
+        up to find themselves free.
+      stakes: A reign of terror ended by a bucket; an enslaved country freed in an instant.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.015
+    accelerators:
+      - witch
+      - tyrant
+      - winged monkeys
+      - golden cap
+      - enslaved
+      - water
+      - bucket
+    decelerators:
+      - submit
+      - keep your head down
+      - flee the country
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 3 — GREEN SPECTACLES  (specializes The Seam Reveal)
+- id: green_spectacles
+  name: The Green Spectacles
+  description: >-
+    A standing illusion with no villain behind it. The Emerald City is only
+    "emerald" because every soul who enters — citizen and stranger alike — is
+    fitted at the gate with green-tinted spectacles, locked on with a gold buckle,
+    and the key kept by the Guardian of the Gates. The story given is that the
+    glory of the place would blind the unprotected eye. In truth the white walls,
+    the marble, the merchandise are plain; the green is all in the glass. This
+    humbug stands whether or not the Wizard is at home — it is the city's
+    permanent condition, and the seam is FINDABLE, never protected: take off the
+    glasses and the green goes with them.
+  category: revelation
+  triggers:
+    - locked into green spectacles at the city gate
+    - everything in the city is green
+    - the guardian keeps the key to the glasses
+    - take off the spectacles
+    - the emerald city is not really emerald
+  narrative_hints:
+    - the buckle locks behind the head and the Guardian pockets the only key
+    - the green is impossibly uniform — emerald milk, emerald lemonade, emerald popcorn
+    - the city is dazzling exactly as long as no one questions why it must be viewed through glass
+  tension_level: 0.4
+  resolution_hints:
+    - name it aloud — the green is in the glasses, not the city — and it stays named
+    - get the buckle off and look with a bare eye; the marble is white and plain
+    - hold the truth quietly and let the city's enforced wonder become a thing you can simply step out of
+  tags: [oz, revelation, humbug, illusion, never_protected, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        At the gate the Guardian buckles green spectacles over every traveler's
+        eyes — "or the brightness and glory would blind you" — and locks them with
+        a key he alone keeps. The city beyond glows uniformly, impossibly green.
+      stakes: The wonder is admitted only on the city's terms, through glass it controls.
+    - at: 0.6
+      event: >-
+        The green is too perfect — the bread, the babies' cheeks, the very air
+        the same shade. A traveler who tilts the glasses, or glimpses past the
+        rim, catches a flat white wall where an emerald one should be.
+      stakes: Suspicion hardens. The seam is the buckle at the back of the head.
+    - at: 1.0
+      event: >-
+        The spectacles come off — slipped, unbuckled, or simply refused — and the
+        green goes with them. The Emerald City is revealed as a plain white city
+        of ordinary marble, lovely enough on its own, dressed in a lie of tinted
+        glass. The illusion, once named, does not come back.
+      stakes: The city's central enchantment is exposed as a humbug anyone could have taken off.
+  passive_progression:
+    rate_per_turn: 0.04
+    rate_per_day: 0.01
+    accelerators:
+      - spectacles
+      - green glasses
+      - the guardian
+      - locked on
+      - take them off
+      - not really green
+    decelerators:
+      - leave the glasses on
+      - admire the city
+      - take it at face value
+    accelerator_bonus: 0.06
+    decelerator_penalty: 0.03
+
+# 4 — HELPFUL BEASTS  (standalone)
+- id: helpful_beasts
+  name: The Helpful Beasts
+  description: >-
+    Baum's moral economy: a small kindness to a humble creature is repaid,
+    decisively, at the moment of greatest need. The traveler who spares a field
+    mouse, frees a creature from a hedge, or treats the least beast with courtesy
+    finds that courtesy come back grown enormous. The Queen of the Field Mice,
+    saved by the Tin Woodman from the Wildcat, summons thousands of her people to
+    drag the sleeping Lion from the deadly poppy field on a cart. A stork lifts the
+    Scarecrow from the river. The kindness is never transactional in the moment —
+    it is simply right — and the world remembers it anyway.
+  category: bonding
+  triggers:
+    - show kindness to a small or humble creature
+    - rescue an animal in distress
+    - the queen of the field mice offers aid
+    - a creature repays an earlier kindness
+    - storks or beasts come to help
+  narrative_hints:
+    - the creature helped is too small to matter, which is exactly the point
+    - the help arrives in numbers or in size out of all proportion to the kindness shown
+    - cruelty to the small is quietly noted too, and goes unrepaid
+  tension_level: 0.2
+  resolution_hints:
+    - bank the kindness for its own sake, not expecting return, and let the return surprise you
+    - call in the debt of gratitude when the road turns impossible — the beast remembers
+    - the smallest ally summoned can move what the strongest companion cannot
+  tags: [oz, bonding, kindness_economy, low_lethality, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        A small creature is in danger or in need — a field mouse under a wildcat's
+        paw, a beast tangled in a hedge — and the traveler stops to help, asking
+        nothing. The creature, astonished, gives its name and its promise.
+      stakes: A debt of gratitude is created, easy to forget and quietly remembered.
+    - at: 0.6
+      event: >-
+        The road delivers a problem no companion can solve by strength — a
+        sleeping ally in the poppies, a friend stranded mid-river, a way blocked
+        by something brute force will not move.
+      stakes: The journey stalls on an obstacle the party cannot push through alone.
+    - at: 1.0
+      event: >-
+        The kindness is repaid out of all proportion. The Queen of the Field Mice
+        brings ten thousand of her people to haul the Lion to safety; a stork
+        carries the Scarecrow to the bank; the small ally does what the strong
+        could not. The debt is honored in full, and then some.
+      stakes: The party is saved by the least creature it ever troubled to be kind to.
+  passive_progression:
+    rate_per_turn: 0.025
+    rate_per_day: 0.015
+    accelerators:
+      - field mice
+      - kindness
+      - rescue
+      - small creature
+      - gratitude
+      - repay
+    decelerators:
+      - cruelty
+      - ignore the creature
+      - trample it
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+# 5 — DEADLY DESERT  (standalone)
+- id: deadly_desert
+  name: The Deadly Desert
+  description: >-
+    The one genuinely lethal thing in a low-lethality world. Oz is a sealed
+    fairyland, ringed on every side by a great shifting waste of sand — the Deadly
+    Desert (the Shifting Sands, the Impassable Desert) — whose sands turn any
+    living thing that touches them instantly to dust. It cannot be walked, ridden,
+    or simply crossed; it is why the silver shoes, the Magic Belt, the Wizard's
+    balloon, or a charmed bird are needed to come and go. You cannot walk home.
+    The border kills, plainly and without malice, and the world does not soften it
+    — this is the trope that earns Oz the right to be gentle everywhere else.
+  category: hazard
+  triggers:
+    - reaching the edge of Oz and finding only sand
+    - the desert that rings the country
+    - sand that turns the living to dust
+    - trying to walk out of Oz
+    - needing magic to cross the border
+  narrative_hints:
+    - the desert has no far shore visible — only heat-shimmer and shifting grit
+    - a bird, a leaf, a stray creature touches the sand and is gone to powder
+    - everyone who knows Oz speaks of the desert the way mortals speak of a cliff edge in the dark
+  tension_level: 0.6
+  resolution_hints:
+    - accept that the way home is not a direction but a magic — silver shoes, a Belt, a balloon, a charm
+    - turn back from the sand; the border is not negotiable and not a route
+    - seek the one power (Glinda, the Wizard, the Magic Belt) that can carry the living across
+  tags: [oz, hazard, sealed_world, lethal_border, the_one_lethal_thing]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler, set on going home, reaches the edge of the colored country
+        and finds the road simply ends in sand — a vast, pale, shifting waste with
+        no far side in sight.
+      stakes: Home is on the other side of something that has no other side you can reach on foot.
+    - at: 0.6
+      event: >-
+        The lethality is made plain. A bird settles on the sand and crumbles to
+        dust; a tossed leaf powders mid-fall; a local recounts, gravely, what the
+        Deadly Desert does to anything alive that touches it.
+      stakes: The border is not a hardship to endure but a death to avoid. Walking out is suicide.
+    - at: 1.0
+      event: >-
+        The truth lands: Oz is sealed, and the only crossings are magical — the
+        silver shoes that step three times, Glinda's word, the Magic Belt, a
+        balloon on a fair wind. The way home was never a road; it is a power to be
+        won, borrowed, or learned.
+      stakes: Getting home is reframed from a journey into a quest for the magic that can survive the sand.
+  passive_progression:
+    rate_per_turn: 0.02
+    rate_per_day: 0.01
+    accelerators:
+      - deadly desert
+      - shifting sands
+      - the border
+      - turn to dust
+      - cannot cross
+      - go home
+    decelerators:
+      - stay in oz
+      - settle here
+      - stop looking for the border
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+# 6 — ENCHANTMENT, NOT THE KILL  (standalone)
+- id: enchantment_not_kill
+  name: Enchantment, Not the Kill
+  description: >-
+    The low-lethality dial of Oz expressed as a trope. Within the sealed country
+    (the Deadly Desert excepted) menace does not slay — it transforms, enslaves,
+    binds, or sends-on-a-task, and almost always recoverably. The witch Mombi
+    turns inconvenient people into ornaments and statues; the Wicked Witch of the
+    West enslaves the whole Winkie nation rather than killing them; a princess is
+    hidden in another shape rather than put to death; troublesome heads are merely
+    locked in a cupboard. Defeat in Oz is rarely an ending; it is a condition to
+    be reversed — the right word, the right water, the right rescuer undoes it.
+    Render the menace seriously; the stakes are real even when death is not on
+    the table.
+  category: confrontation
+  triggers:
+    - a foe transforms a person rather than killing them
+    - someone is turned to an ornament statue or animal
+    - a people is enslaved rather than slain
+    - a captive is bound by enchantment
+    - an enchantment might be reversed
+  narrative_hints:
+    - the threat is "you will be changed / kept / bound," never simply "you will die"
+    - the transformed retain something of themselves, waiting to be restored
+    - every enchantment has a counter — a word, a water, a kiss, a deed — somewhere in the world
+  tension_level: 0.5
+  resolution_hints:
+    - treat capture and transformation as the real danger they are, not as a soft option
+    - the win condition is the counter-charm or the rescuer, not the killing blow
+    - free the enslaved, restore the transformed, and the menace unravels with its enchantment
+  tags: [oz, confrontation, low_lethality, transformation, recoverable, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        A power makes its threat, and the threat is not death — it is change. Be
+        turned to an ornament, be kept as a statue, be bound to a task, be made
+        one of the enslaved. The menace is grave and entirely sincere.
+      stakes: Defeat here means losing oneself, not one's life — which is its own kind of terror.
+    - at: 0.6
+      event: >-
+        Someone falls to it — a companion ornamented on a shelf, a people yoked,
+        a friend wearing a borrowed shape. The loss is real and present, and the
+        enchanter holds the captive as leverage or trophy.
+      stakes: The party is diminished and the foe strengthened, but the lost are kept, not killed.
+    - at: 1.0
+      event: >-
+        The counter is found — the bucket of water, the right word, the Magic
+        Belt's wish, the rescuer's hand — and the enchantment is undone. The
+        ornaments stand up as people; the enslaved straighten; the borrowed shape
+        falls away. What menace took, the right deed gives back.
+      stakes: The defeated are restored; the menace ends not in graves but in undoing.
+  passive_progression:
+    rate_per_turn: 0.025
+    rate_per_day: 0.015
+    accelerators:
+      - turned to
+      - ornament
+      - statue
+      - enslaved
+      - enchanted
+      - transformed
+      - counter-charm
+    decelerators:
+      - leave them changed
+      - abandon the captive
+      - it cannot be undone
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+# 7 — LOST PRINCESS  (specializes Impossible Authority) — PRIMED BUT LATENT
+- id: lost_princess
+  name: The Lost Princess
+  extends: Impossible Authority
+  description: >-
+    Rightful female rule, hidden under enchantment, while a humbug or usurper
+    keeps the throne warm. This is Oz's deep truth and its deepest secret: the
+    true ruler is the Princess Ozma, and she has been concealed by the witch
+    Mombi in the shape of a boy named Tip, who does not know what he is. The
+    famous men hold the public power and are frauds or inadequates — the Wizard a
+    humbug, the throne otherwise empty — while the real claimant lives disguised
+    and unaware. This trope is PRIMED but LATENT: a deep hook seeded for the long
+    game, not a confrontation to be triggered early. It hums beneath the others —
+    a wrongness about who truly rules — and pays off only when the disguise is
+    found and the right name spoken. Until then it waits.
+  category: mystery
+  triggers:
+    - questioning who truly rules Oz
+    - a hint that the throne's rightful heir is hidden
+    - the witch Mombi's old secret
+    - a child or servant who is more than they seem
+    - the true princess concealed in another shape
+  narrative_hints:
+    - the men in power are humbugs or stand-ins; the throne's true claim lies elsewhere
+    - an ordinary boy, an overlooked servant, carries a hidden royalty even from themselves
+    - an old witch guards a transformation she was paid — or threatened — to perform and keep
+  tension_level: 0.3
+  resolution_hints:
+    - let it stay latent — a wrongness sensed, not yet solved — until the long game is ready
+    - follow the thread of who really rules, and who was hidden to keep them from ruling
+    - "the payoff is restoration: the disguise undone, the right name spoken, the true ruler crowned"
+  tags: [oz, mystery, hidden_heir, matriarchy, deep_hook, latent, played_straight]
+  escalation:
+    - at: 0.3
+      event: >-
+        A wrongness about authority surfaces. The Wizard is a humbug; the great
+        men are inadequate or absent; and yet Oz is plainly meant to be ruled by
+        someone, and is not, quite. A question forms: who is the rightful ruler,
+        and where are they?
+      stakes: The throne's legitimacy is quietly in doubt. Someone is missing from it.
+    - at: 0.6
+      event: >-
+        The thread leads to an old enchantment and an old witch. Someone close at
+        hand — a boy, a servant, an overlooked figure — is more than they appear,
+        hidden in a borrowed shape by a power that wanted the true heir kept off
+        the throne.
+      stakes: The rightful ruler is alive, near, and disguised — even from themselves.
+    - at: 1.0
+      event: >-
+        The disguise is undone and the truth named: the lost Princess Ozma stands
+        revealed where the boy Tip stood, the witch's enchantment broken, the
+        rightful matriarch restored to a throne the humbugs only ever kept warm.
+      stakes: Oz's true rule is restored; the long-hidden princess takes the crown that was always hers.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.005
+    accelerators:
+      - rightful ruler
+      - hidden heir
+      - mombi
+      - true princess
+      - who really rules
+      - lost princess
+    decelerators:
+      - the wizard rules
+      - leave the throne be
+      - ask no questions
+    accelerator_bonus: 0.03
+    decelerator_penalty: 0.02

@@ -1,0 +1,511 @@
+# Oz — World-Level NPC Archetypes
+#
+# The named supporting cast you find in THIS world specifically. The genre tier
+# (wry_whimsy/archetypes.yaml) supplies the five PLAYABLE Traveler coping-styles
+# (Innocent / Wit / Surveyor / Scrapper / Dreamer); these are the Oz-particular
+# NPCs the materialiser dresses scenes with — the humbug Wizard, the road
+# companions, the witches, the helpful beasts.
+#
+# SCHEMA: genre NpcArchetype (name + description required; stat_ranges keyed on
+# the locked WW ability axes WIT/NERVE/HEART/GUILE/WONDER; ocean 0-10 baselines;
+# role drawn from the canonical npc_roles set: mentor herald shadow threshold
+# host artisan authority victim mook). typical_classes / typical_races are drawn
+# ONLY from rules.yaml allowed sets (classes: Curious Child, Practical Servant,
+# Earnest Scholar, Weary Soldier, Wayward Dreamer, Stubborn Skeptic; races:
+# Ordinary-Born, Threshold-Touched, Native Dreamer). Native Oz NPCs read as
+# Native Dreamer — they ARE the dream.
+#
+# LOW lethality is the world dial: every menace here enchants, enslaves, dismisses,
+# or sends-on-a-task. The witches are the exception only in that THEY die easily
+# and absurdly (a bucket of water), never the traveler.
+#
+# jungian_hint / rpg_role_hint are authoring cross-references to the canonical
+# axes (extra fields; NpcArchetype allows extra). Render straight Baum (1900+),
+# NEVER the 1939 film — silver shoes, not ruby.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE ROAD COMPANIONS — the Innocent's gathered fellowship. Each wants the one
+# thing they already embody; their arc is the genre's gentlest joke.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Strawman Scholar
+  description: >-
+    A scarecrow lifted off his pole, convinced he has no brains and forever
+    proving otherwise — the cleverest plans on the road are his, offered with an
+    apology for being too stupid to have them. A Native Dreamer in the most
+    literal sense: a thing the world simply decided to wake. He fears only a
+    lit match and a wet field, and feels neither hunger nor weariness, which
+    makes him the steadiest mind in any crisis that isn't fire.
+  personality_traits:
+    - inventive
+    - self-deprecating to the point of comedy
+    - tireless and sleepless
+  typical_classes:
+    - Earnest Scholar
+    - Wayward Dreamer
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [15, 18]
+    HEART: [13, 16]
+    NERVE: [11, 14]
+  jungian_hint: sage
+  rpg_role_hint: control
+  inventory_hints:
+    - a head of fresh straw, restuffed whenever it goes flat
+    - painted-on features that nonetheless manage every expression
+  dialogue_quirks:
+    - prefaces a brilliant idea with "of course, I have no brains, but —"
+    - takes every figure of speech perfectly literally
+    - frets aloud about matches and rivers
+    - thinks out loud, slowly, arriving somewhere nobody else would
+  disposition_default: 20
+  ocean:
+    openness: 8.5
+    conscientiousness: 6.0
+    extraversion: 6.0
+    agreeableness: 8.5
+    neuroticism: 3.5
+  role: mentor
+  named_individual: true
+
+- name: The Hollow Woodman
+  description: >-
+    A man of tin who was once a man of flesh, enchanted limb by limb until
+    nothing of him remained but the kindness — and who grieves, above all, that
+    a body of metal cannot hold a heart. He is the tenderest creature on the
+    road and weeps at the smallest cruelty, then rusts where the tears fall and
+    must be oiled at the joints before he can move again. His axe is for wood
+    and, reluctantly, for anything that menaces the small.
+  personality_traits:
+    - gentle to a fault
+    - prone to rusting tears
+    - quietly capable with the axe
+  typical_classes:
+    - Weary Soldier
+    - Practical Servant
+  typical_races:
+    - Native Dreamer
+    - Threshold-Touched
+  stat_ranges:
+    HEART: [15, 18]
+    NERVE: [13, 16]
+    GUILE: [9, 12]
+  jungian_hint: caregiver
+  rpg_role_hint: tank
+  inventory_hints:
+    - a well-honed woodman's axe, kept bright
+    - an oil-can a companion carries for his stiffened joints
+  dialogue_quirks:
+    - announces his own heartlessness while doing something heartfelt
+    - asks to be oiled with great embarrassment
+    - steps between a cruelty and its target without being asked
+    - mourns a crushed beetle as though it were a friend
+  disposition_default: 20
+  ocean:
+    openness: 6.0
+    conscientiousness: 7.5
+    extraversion: 4.5
+    agreeableness: 9.5
+    neuroticism: 5.5
+  role: host
+  named_individual: true
+
+- name: The Trembling Lion
+  description: >-
+    The self-declared Cowardly Lion — King of Beasts by birth, coward by his own
+    miserable confession, who roars to frighten and then weeps that the roar is
+    a bluff. He is, of course, the bravest creature in the party, charging every
+    danger while loudly insisting he is about to faint. He is also the standing
+    proof of the persuasion lane: won over by sincerity rather than force, and
+    loyal forever after.
+  personality_traits:
+    - loud and frightened
+    - braver than his confession
+    - loyal once won
+  typical_classes:
+    - Weary Soldier
+    - Wayward Dreamer
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [14, 18]
+    HEART: [13, 16]
+    WONDER: [10, 13]
+  jungian_hint: hero
+  rpg_role_hint: tank
+  inventory_hints:
+    - a magnificent mane he hides his face in when afraid
+    - a roar that empties a clearing and convinces no one who knows him
+  dialogue_quirks:
+    - declares he is about to faint, then does something heroic instead
+    - calls himself a coward in the middle of an act of courage
+    - asks others to praise his bravery and is delighted when they do
+    - roars first and apologizes after
+  disposition_default: 5
+  ocean:
+    openness: 5.5
+    conscientiousness: 5.0
+    extraversion: 7.0
+    agreeableness: 7.5
+    neuroticism: 7.5
+  role: herald
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE EMERALD CITY — the humbug at the hub. The Wizard reads as ruler+support/
+# control, NEVER a brawler: his only weapon is illusion, and the win-state of
+# his audience is seeing the little man behind the curtain.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Humbug Wizard
+  description: >-
+    Oz, the Great and Terrible — a balloon-borne carnival ventriloquist from
+    Omaha who drifted in, was mistaken for a sorcerer, and has ruled the Emerald
+    City ever since on nothing but stagecraft and green spectacles. Behind the
+    booming throne he is a small, anxious, kindly fraud who knows he is a fraud
+    and dreads the day someone notices. His power is entirely theatre; the seam
+    in it is always findable, never protected. He sends petitioners on unfair
+    tasks (kill a witch) less from malice than from terror of being unmasked.
+  personality_traits:
+    - theatrically fearsome, privately timid
+    - a kindly fraud who knows it
+    - desperate to keep the curtain shut
+  typical_classes:
+    - Stubborn Skeptic
+    - Earnest Scholar
+  typical_races:
+    - Ordinary-Born
+    - Threshold-Touched
+  stat_ranges:
+    GUILE: [15, 18]
+    WIT: [13, 16]
+    NERVE: [9, 12]
+  jungian_hint: ruler
+  rpg_role_hint: support
+  inventory_hints:
+    - a booming-head apparatus and a battery of stage illusions
+    - green spectacles locked onto every citizen at the gate
+    - a tattered hot-air balloon he means, one day, to escape in
+  dialogue_quirks:
+    - speaks of himself in the third person and in a borrowed thunder
+    - sets an impossible condition to buy time, then frets behind the curtain
+    - drops the booming voice the instant the trick is seen and pleads
+    - calls the green spectacles a kindness and almost believes it
+  disposition_default: 0
+  ocean:
+    openness: 6.5
+    conscientiousness: 5.5
+    extraversion: 6.0
+    agreeableness: 5.5
+    neuroticism: 7.5
+  role: authority
+  named_individual: true
+
+- name: The Spectacle-Guard of the Gate
+  description: >-
+    The Guardian of the Gates and the green-liveried Soldier with the Green
+    Whiskers — the City's whole apparatus of menace, which consists of locking a
+    pair of green spectacles onto every visitor and announcing the Wizard cannot
+    possibly be seen. Punctilious, harmless, and entirely sincere in a job that
+    is pure ceremony. The closest Oz comes to a bureaucracy, and it is a
+    bureaucracy of one polite man with a key.
+  personality_traits:
+    - ceremonious
+    - rule-bound
+    - secretly relieved when overruled
+  typical_classes:
+    - Practical Servant
+    - Weary Soldier
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [11, 14]
+    GUILE: [9, 12]
+    WIT: [8, 11]
+  jungian_hint: everyman
+  rpg_role_hint: support
+  inventory_hints:
+    - a ring of spectacle-locks and the only key to them
+    - a magnificent green beard brushed to a point
+  dialogue_quirks:
+    - recites the rule about the spectacles to everyone, verbatim
+    - insists the Wizard cannot be seen, then visibly hopes to be argued with
+    - takes a flat refusal as a personal relief
+    - addresses every visitor as "stranger" with great formality
+  disposition_default: 5
+  ocean:
+    openness: 4.0
+    conscientiousness: 8.0
+    extraversion: 5.0
+    agreeableness: 6.5
+    neuroticism: 4.0
+  role: threshold
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE WITCHES — the real, deadly powers that carved up Oz. They menace by
+# enslavement and enchantment (recoverable for the traveler), and they alone
+# die easily and absurdly. Played dead straight even at their silliest.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Water-Weak Tyrant
+  description: >-
+    The Wicked Witch of the West — one-eyed, sharp-toothed, ancient, and so dried
+    out by her own wickedness that she has not a drop of blood and dares not let
+    water touch her. She enslaves the yellow Winkies, commands a Golden Cap that
+    binds the Winged Monkeys to three wishes, and sets impossible bargains for
+    anyone who crosses the desert to her. Her menace is real — bondage, not death
+    — and her end is the genre's purest joke: a thrown bucket of water and a
+    puddle where a tyrant stood.
+  personality_traits:
+    - cruel and grasping
+    - terrified of water she will never admit to
+    - a bully undone by an accident
+  typical_classes:
+    - Stubborn Skeptic
+    - Wayward Dreamer
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    GUILE: [15, 18]
+    WONDER: [13, 16]
+    NERVE: [11, 14]
+  jungian_hint: outlaw
+  rpg_role_hint: control
+  inventory_hints:
+    - a Golden Cap that commands the Winged Monkeys, three wishes only
+    - an umbrella she never lets out of reach and will not explain
+    - a single telescopic eye that sees the length of the Winkie country
+  dialogue_quirks:
+    - sets a deliberately impossible condition and savours it
+    - flinches at any mention of rain, wells, or washing
+    - threatens slavery, never death, and means the slavery
+    - calls the Winkies "my Winkies" as though they were furniture
+  disposition_default: -30
+  ocean:
+    openness: 4.5
+    conscientiousness: 6.0
+    extraversion: 4.0
+    agreeableness: 1.5
+    neuroticism: 6.5
+  role: shadow
+  named_individual: true
+
+- name: The Good Witch of the North
+  description: >-
+    A little old Witch of the good North country, kindly and slightly muddled,
+    who greets a newly-arrived traveler with a kiss of protection on the
+    forehead, a pair of silver shoes off a crushed enemy, and directions that
+    amount to "follow the yellow brick road and ask the Wizard." She is the
+    benevolent threshold-keeper: she cannot solve the traveler's problem, but she
+    can mark them as under protection and point them at the one who might.
+  personality_traits:
+    - kindly and a little vague
+    - quietly powerful
+    - reassuring without over-promising
+  typical_classes:
+    - Earnest Scholar
+    - Practical Servant
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    HEART: [14, 17]
+    WONDER: [13, 16]
+    WIT: [10, 13]
+  jungian_hint: caregiver
+  rpg_role_hint: healer
+  inventory_hints:
+    - a slate that writes its own counsel when she taps it
+    - a peaked white hat hung with tinkling bells
+    - the protective kiss she leaves as a shining mark on a brow
+  dialogue_quirks:
+    - leaves a kiss of protection and explains it will keep harm off
+    - gives directions that always end at the Emerald City
+    - admits cheerfully the limits of her own magic
+    - counts on her fingers and loses the count, twice
+  disposition_default: 25
+  ocean:
+    openness: 7.0
+    conscientiousness: 6.0
+    extraversion: 6.5
+    agreeableness: 9.0
+    neuroticism: 3.0
+  role: mentor
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE HELPFUL BEASTS — sincerity, paid back. Won by the persuasion lane, they
+# return at the eleventh hour. The genre's promise: kindness to the small is
+# banked, and the bank always pays.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Field-Mouse Queen
+  description: >-
+    Queen of the Field Mice, a tiny grey sovereign rescued once from a wildcat
+    and bound by gratitude ever after. She commands every mouse in the country
+    and will, at a whistle, muster ten thousand of them to drag a sleeper from
+    the poppies or gnaw a path through a snare. The model helpful-beast:
+    small, easily underestimated, decisive at the exact moment force fails.
+  personality_traits:
+    - regally tiny
+    - faithful to a debt
+    - commands an unseen multitude
+  typical_classes:
+    - Practical Servant
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    HEART: [13, 16]
+    WIT: [11, 14]
+    NERVE: [10, 13]
+  jungian_hint: ruler
+  rpg_role_hint: support
+  inventory_hints:
+    - a thread-fine crown only a mouse could wear
+    - a whistle-call that brings the whole field running
+  dialogue_quirks:
+    - speaks of a single mouse's debt as binding the entire realm
+    - musters thousands with a word and apologizes for the noise
+    - addresses a giant traveler as an equal sovereign
+    - repays a kindness at exactly the moment it is needed most
+  disposition_default: 30
+  ocean:
+    openness: 6.0
+    conscientiousness: 7.5
+    extraversion: 5.5
+    agreeableness: 8.5
+    neuroticism: 3.5
+  role: host
+  named_individual: true
+
+- name: The Hammerhead Hill-Folk
+  description: >-
+    The Hammer-Heads — armless, neckless folk who hold a hill in the south and
+    let no one cross it, snapping their flat hard heads out on telescoping necks
+    to knock trespassers tumbling back down the slope, then roaring with laughter.
+    Not malicious so much as territorial and delighted with their one trick. The
+    obstacle of the escape lane in physical form: you do not fight your way past
+    them, you go over, around, or with borrowed wings.
+  personality_traits:
+    - territorial
+    - gleefully obstinate
+    - proud of one good trick
+  typical_classes:
+    - Weary Soldier
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [13, 16]
+    GUILE: [9, 12]
+    WONDER: [9, 12]
+  jungian_hint: everyman
+  rpg_role_hint: tank
+  inventory_hints:
+    - a flat hard head on a neck that snaps out like a spring
+    - a hill they will not, under any argument, let you simply walk across
+  dialogue_quirks:
+    - bellows "you can't pass here!" and is enormously pleased to say it
+    - laughs uproariously at each visitor knocked back down
+    - explains the rule of the hill as though it were a law of nature
+    - has no answer at all for anyone who simply flies over
+  disposition_default: -10
+  ocean:
+    openness: 2.5
+    conscientiousness: 5.0
+    extraversion: 6.0
+    agreeableness: 3.5
+    neuroticism: 3.0
+  role: mook
+  named_individual: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE LATENT MATRIARCHY — seeded, never resolved. The Living World drifts these
+# toward the eventual reveal that the true powers of Oz are all women and the
+# rightful ruler is a hidden princess. Authored as flavor for faction_agendas'
+# primed hooks; the materialiser may surface them, the narrator must NOT spend
+# the secret.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Boy Who Is Not
+  description: >-
+    A Gillikin farm-boy in the purple North, sharp and restless and entirely
+    unaware that the hedge-witch who raised him fixed this shape on him in the
+    cradle — that under the boy is a girl, and under the girl is the rightful
+    ruler of all Oz. He chafes at the witch's chores, runs small rebellions, and
+    carries himself like someone owed a larger life he cannot name. A PRIMED,
+    LATENT hook: the narrator seeds the wrongness, never names the truth.
+  personality_traits:
+    - restless and quick
+    - mischievous against the witch
+    - haunted by a largeness he can't place
+  typical_classes:
+    - Curious Child
+    - Wayward Dreamer
+  typical_races:
+    - Native Dreamer
+    - Threshold-Touched
+  stat_ranges:
+    WIT: [13, 16]
+    NERVE: [13, 16]
+    WONDER: [11, 14]
+  jungian_hint: innocent
+  rpg_role_hint: jack_of_all_trades
+  inventory_hints:
+    - a farm-boy's knife and a pocket of small stolen freedoms
+    - a sense, never examined, that this body is on the wrong shelf
+  dialogue_quirks:
+    - bristles at being told what a boy may and may not do
+    - speaks of leaving the farm as though owed somewhere grander
+    - plays a prank on the hedge-witch and half-expects to be recognized
+    - falls silent at the word "Ozma" and cannot say why
+  disposition_default: 10
+  ocean:
+    openness: 7.5
+    conscientiousness: 4.5
+    extraversion: 6.5
+    agreeableness: 6.0
+    neuroticism: 5.0
+  role: victim
+  named_individual: true
+
+- name: The Needle-and-Knitting General
+  description: >-
+    A bright, vain, ambitious girl of the Emerald City who has decided the men
+    have run Oz long enough and is quietly recruiting an army of girls armed with
+    knitting-needles to take the City and its jewels for themselves. Played as a
+    coiled spring: all swagger and rosettes, a revolt that is half pageant and
+    half genuine threat to the humbug throne. A PRIMED, LATENT hook — she is
+    raising the army; the narrator does not march it.
+  personality_traits:
+    - vain and ambitious
+    - a born recruiter
+    - more pageant than bloodshed, but not bluffing
+  typical_classes:
+    - Stubborn Skeptic
+    - Wayward Dreamer
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [13, 16]
+    GUILE: [13, 16]
+    NERVE: [12, 15]
+  jungian_hint: ruler
+  rpg_role_hint: control
+  inventory_hints:
+    - a company of girls drilling with sharpened knitting-needles
+    - a rosette of rank she designed and awarded to herself
+  dialogue_quirks:
+    - declares the men have ruled long enough, with a recruiting smile
+    - sizes up a stranger as a potential lieutenant within a sentence
+    - speaks of the City's jewels as already, morally, hers
+    - treats a revolution as the grandest party she will ever throw
+  disposition_default: -5
+  ocean:
+    openness: 6.5
+    conscientiousness: 5.5
+    extraversion: 8.5
+    agreeableness: 3.5
+    neuroticism: 4.5
+  role: shadow
+  named_individual: true

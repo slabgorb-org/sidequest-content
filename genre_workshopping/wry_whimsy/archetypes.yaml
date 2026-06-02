@@ -1,0 +1,217 @@
+# Wry Whimsy — Genre-Level Traveler Archetypes
+#
+# The FIVE coping-styles: how a sensible visitor from the ordinary world copes
+# with a Secondary World run on dream-logic. These are the mythic playable shapes
+# of the portal fairytale — sincerity, argument, measurement, nerve, and wonder —
+# independent of which world you fall into. Worlds supply concrete named NPCs
+# (worlds/oz/archetypes.yaml adds the Scarecrow, the humbug Wizard, etc.); this
+# genre tier is the rulebook skeleton.
+#
+# Each coping-style maps to the classes/races defined in rules.yaml. The stat
+# axes are the locked WW set: WIT (cleverness), NERVE (composure), HEART
+# (sincerity), GUILE (cunning), WONDER (going-native risk stat).
+#
+# OCEAN baselines (0-10 scale) are mechanical: they seed the personality engine.
+# They are tuned per coping-style, loosely tracking the genre-agnostic jungian
+# tendencies in archetypes_base.yaml (Innocent->innocent, Wit->sage,
+# Surveyor->explorer, Scrapper->hero, Dreamer->magician/artist).
+#
+# jungian_hint / rpg_role_hint are authoring cross-references to the canonical
+# archetype axes (NpcArchetype allows extra fields); chargen and the world-tier
+# Oz archetype author key flavor off these. They are drawn ONLY from the
+# canonical id sets in archetypes_base.yaml.
+
+- name: The Innocent
+  description: >-
+    The traveler who disarms the world with plain sincerity. Where the place runs
+    on humbug and whim, the Innocent meets it with honesty so unguarded that
+    authorities forget to take them seriously until it is too late. They make
+    friends of the small and strange, and those friendships, much later, are the
+    thing that saves everyone. HEART-forward — the Dorothy shape.
+  personality_traits:
+    - sincere
+    - kind to the overlooked
+    - braver than they know
+  typical_classes:
+    - Curious Child
+    - Practical Servant
+  typical_races:
+    - Ordinary-Born
+  stat_ranges:
+    HEART: [14, 18]
+    NERVE: [11, 14]
+    WIT: [9, 12]
+  jungian_hint: innocent
+  rpg_role_hint: support
+  inventory_hints:
+    - a keepsake from home, clutched at bad moments
+    - something small a creature gave them in thanks
+  dialogue_quirks:
+    - asks the honest question everyone else is avoiding
+    - thanks creatures and objects sincerely, even rude ones
+    - says exactly what they feel, to their own frequent peril
+    - apologizes to the furniture
+  disposition_default: 10
+  ocean:
+    openness: 6.5
+    conscientiousness: 6.5
+    extraversion: 6.0
+    agreeableness: 9.0
+    neuroticism: 5.0
+
+- name: The Wit
+  description: >-
+    The traveler who argues with the nonsense and wins. The Wit refuses to be
+    bullied by a world that contradicts itself, catching authorities in their own
+    invented rules and answering riddles with sharper riddles. Their stubborn
+    insistence that things ought to make sense is both their armour and the thing
+    the world most wants to break. WIT-forward — the Alice shape.
+  personality_traits:
+    - quick-tongued
+    - logical to a fault
+    - unwilling to be talked down to
+  typical_classes:
+    - Curious Child
+    - Stubborn Skeptic
+  typical_races:
+    - Ordinary-Born
+    - Threshold-Touched
+  stat_ranges:
+    WIT: [15, 18]
+    NERVE: [12, 15]
+    GUILE: [11, 14]
+  jungian_hint: sage
+  rpg_role_hint: control
+  inventory_hints:
+    - a tidy pocket of utterly useless sensible objects
+    - a remembered rule of etiquette deployed like a weapon
+  dialogue_quirks:
+    - corrects an authority's logic mid-decree
+    - answers a riddle with a better one
+    - mutters "but that doesn't follow" at the worst moment
+    - insists on the literal meaning of a figurative threat
+  disposition_default: 0
+  ocean:
+    openness: 8.0
+    conscientiousness: 6.5
+    extraversion: 5.0
+    agreeableness: 5.0
+    neuroticism: 4.5
+
+- name: The Surveyor
+  description: >-
+    The traveler who reasons, measures, and documents. The Surveyor treats the
+    impossible as a system to be catalogued, taking careful notes on a world that
+    resents being understood — and slowly, humblingly, learning to use its rules
+    against it. Their detachment is a shield and a flaw: the satire turns its
+    mirror on the measurer. GUILE/WIT — the Gulliver shape.
+  personality_traits:
+    - methodical
+    - observant
+    - drily superior until humbled
+  typical_classes:
+    - Earnest Scholar
+    - Weary Soldier
+  typical_races:
+    - Ordinary-Born
+    - Threshold-Touched
+  stat_ranges:
+    GUILE: [14, 17]
+    WIT: [13, 16]
+    NERVE: [11, 14]
+  jungian_hint: explorer
+  rpg_role_hint: stealth
+  inventory_hints:
+    - a notebook fattening with pressed impossible specimens
+    - a measuring instrument the world keeps defying
+  dialogue_quirks:
+    - narrates observations aloud as if dictating a report
+    - quotes the dimensions of impossible things
+    - prefaces opinions with "by my reckoning"
+    - revises an earlier conclusion with visible reluctance
+  disposition_default: 0
+  ocean:
+    openness: 8.0
+    conscientiousness: 7.0
+    extraversion: 3.5
+    agreeableness: 4.5
+    neuroticism: 4.0
+
+- name: The Scrapper
+  description: >-
+    The traveler who meets menace head-on. When the nonsense turns genuinely
+    cruel, the Scrapper is the one who plants their feet and refuses to break —
+    not a hero of force (force rarely works here) but a person whose nerve outlasts
+    the world's worst spectacle. Theirs is the priced-violence lane, used as a last
+    resort and framed as the failure of wit it usually is. NERVE-forward — the
+    weary-soldier shape.
+  personality_traits:
+    - steady under pressure
+    - protective of the weaker
+    - slow to draw, hard to break
+  typical_classes:
+    - Weary Soldier
+    - Practical Servant
+  typical_races:
+    - Ordinary-Born
+    - Threshold-Touched
+  stat_ranges:
+    NERVE: [15, 18]
+    HEART: [12, 15]
+    GUILE: [10, 13]
+  jungian_hint: hero
+  rpg_role_hint: tank
+  inventory_hints:
+    - a weapon from home that does little good here
+    - a scar or a habit carried over from a real war
+  dialogue_quirks:
+    - stays calm precisely when everyone else panics
+    - steps in front of someone weaker without comment
+    - states a refusal once, flatly, and means it
+    - sizes up an exit before answering a threat
+  disposition_default: 5
+  ocean:
+    openness: 5.0
+    conscientiousness: 7.5
+    extraversion: 5.0
+    agreeableness: 6.0
+    neuroticism: 3.0
+
+- name: The Dreamer
+  description: >-
+    The traveler who embraces the wonder — and risks being kept by it. The Dreamer
+    leans INTO the dream-logic, opening to the world's strangeness to see and do
+    impossible things, paying for each step with a piece of themselves. They are
+    the genre's sharpest instrument and its quiet tragedy: every good bargain is
+    one bargain closer to never going home. WONDER-forward — the risk archetype.
+  personality_traits:
+    - open to the impossible
+    - unwary of the cost
+    - half in love with the dream
+  typical_classes:
+    - Wayward Dreamer
+    - Earnest Scholar
+  typical_races:
+    - Threshold-Touched
+    - Native Dreamer
+  stat_ranges:
+    WONDER: [15, 18]
+    HEART: [12, 15]
+    WIT: [10, 13]
+  jungian_hint: magician
+  rpg_role_hint: dps
+  inventory_hints:
+    - a strange object that hums here and never did at home
+    - a small gift from the world they should not have accepted
+  dialogue_quirks:
+    - delights aloud at things that ought to terrify
+    - answers the world in its own dreamlike register
+    - speaks of home as if it were the unreal place
+    - trails off mid-sentence, listening to something nobody else hears
+  disposition_default: 5
+  ocean:
+    openness: 9.0
+    conscientiousness: 4.0
+    extraversion: 5.5
+    agreeableness: 6.0
+    neuroticism: 6.0

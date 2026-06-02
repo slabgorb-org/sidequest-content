@@ -1,0 +1,264 @@
+# Wry Whimsy — Structural Genre Tropes
+#
+# GENRE TIER — world-agnostic structural tropes. Stable ids: world tropes EXTEND these
+# (TropeDefinition.extends), so the ids below are a contract. These describe the
+# portal-fairytale FORM; specific-world tropes (a particular humbug, a particular court,
+# a particular weakness) live at the world tier and inherit from these. Keyword wiring
+# (triggers / accelerators) is pitched at words the narrator will actually encounter.
+
+- id: threshold_crossing
+  name: Threshold Crossing
+  description: >-
+    The arrival. A sensible traveler from the ordinary world is taken across a
+    threshold — a cyclone, a fall, a shipwreck, a rabbit-hole — into a Secondary World
+    that runs on dream-logic. The crossing is sudden, accidental, and irreversible: by
+    the time the traveler understands they have left, they are already on the far side,
+    and the way home is no longer a door they can simply walk back through.
+  category: arrival
+  triggers:
+    - cross the threshold
+    - arrive in the strange world
+    - fall through
+    - wake up somewhere impossible
+    - shipwreck ashore
+  narrative_hints:
+    - the sky is the wrong colour and the ground is the wrong texture
+    - the first creature to speak is one that should not be able to
+    - the way back is already gone — no door, no road, no cyclone returning
+  tension_level: 0.2
+  resolution_hints:
+    - accept that home is a problem to solve, not a direction to walk, and start exploring
+    - latch onto the first sensible-seeming guide, who is anything but
+    - try to go straight back and learn the world is sealed
+  tags: [structural, arrival, portal, sealed_world]
+  escalation:
+    - at: 0.3
+      event: >-
+        The traveler's first attempt to make sense of the place fails. A question gets
+        answered with a question; a direction turns out to mean nothing; the locals
+        speak as if the impossible were ordinary and the ordinary were impossible.
+      stakes: The traveler realises their own reason is not enough here.
+    - at: 0.6
+      event: >-
+        The traveler tries to go home — back through the way they came — and discovers
+        the world is sealed. The threshold is one-way; the border is a hazard; there is
+        no walking out.
+      stakes: Going home becomes a quest, not a step. The wandering begins in earnest.
+    - at: 1.0
+      event: >-
+        The traveler commits to the world on its own terms — stops fighting the
+        strangeness and starts moving through it, looking for the one who might know
+        the way home or the rule that governs the place.
+      stakes: The campaign's shape is set — a place to be wandered, not a level to exit.
+  passive_progression:
+    rate_per_turn: 0.04
+    rate_per_day: 0.0
+    accelerators:
+      - threshold
+      - sealed
+      - go home
+      - the way back
+      - lost
+    decelerators:
+      - settle in
+      - stop looking for the door
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: impossible_authority
+  name: Impossible Authority
+  description: >-
+    A ruler, court, or official who governs by nonsense. The authority's power rests on
+    ceremony, fear, and other people's deference far more than on anything real — they
+    answer riddles with decrees, hand down impossible tasks, and expect to be obeyed
+    because they always have been. Standing before them is the genre's signature
+    danger: the verdict, the bargain, the dismissal, the enchantment. The traveler
+    survives by wit and nerve, not by submission.
+  category: confrontation
+  triggers:
+    - stand before a ruler
+    - summoned to court
+    - face an official
+    - granted an audience
+    - put on trial
+    - the king demands
+  narrative_hints:
+    - the authority's first words are a demand or a riddle, never a greeting
+    - the courtiers watch the traveler, not the ruler — they already know the verdict can go anywhere
+    - a rule is invented on the spot, specifically to inconvenience the traveler
+  tension_level: 0.4
+  resolution_hints:
+    - out-argue the nonsense — make the authority follow reasoning it did not author
+    - refuse the premise entirely and walk out of the proceeding
+    - accept the impossible task and turn it to your own ends
+    - read the authority correctly and act on what they actually are
+  tags: [structural, authority, court, social, trial]
+  escalation:
+    - at: 0.25
+      event: >-
+        The audience opens on the authority's terms. A demand, a riddle, or a charge is
+        put to the traveler, and the whole room waits to see whether the stranger will
+        flinch, flatter, or fold.
+      stakes: First impression sets the verdict's starting line. Deference invites contempt.
+    - at: 0.5
+      event: >-
+        The authority tightens — a rule changes mid-sentence, the task grows a second
+        impossible clause, the court murmurs against the traveler. The nonsense is being
+        used as a weapon.
+      stakes: The verdict is closing. The traveler must find the seam in the logic or break under it.
+    - at: 0.75
+      event: >-
+        The traveler catches the authority in its own contradiction, or refuses the
+        frame outright. The room shifts — the deference that propped the ruler up
+        wavers when someone declines to play along.
+      stakes: The authority's power is exposed as a thing made of obedience. It can be withdrawn.
+    - at: 1.0
+      event: >-
+        The audience resolves. The traveler walks out free, bound to a task, enchanted,
+        condemned, or — if they pulled the right thread — having quietly unmade the
+        authority's hold over the room.
+      stakes: How the traveler is remembered here, and whether the authority still stands.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.02
+    accelerators:
+      - decree
+      - verdict
+      - the king
+      - the queen
+      - the court
+      - your majesty
+      - on trial
+    decelerators:
+      - bow
+      - obey
+      - flee the court
+      - say nothing
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: helpful_companion
+  name: Helpful Companion
+  description: >-
+    A creature of the Secondary World attaches itself to the traveler and joins the
+    journey — often one earnestly convinced it lacks the very quality it most plainly
+    has. The companion self-deprecates, frets over its supposed shortcoming, and then,
+    when it counts, demonstrates exactly the thing it swore it did not possess. Played
+    straight: the irony belongs to the traveler and the reader, never to the companion,
+    who believes its own lack completely.
+  category: bonding
+  triggers:
+    - a creature joins you
+    - meet a talking animal
+    - befriend a local
+    - a companion offers help
+    - a creature follows you
+  narrative_hints:
+    - the companion introduces itself by what it lacks, not what it is
+    - it does the very thing it claims it cannot, then insists that did not count
+    - its feelings bruise easily, and kindness to it pays off in ways the traveler cannot yet see
+  tension_level: 0.2
+  resolution_hints:
+    - take the companion's worry seriously and let them prove themselves on their own terms
+    - lean on the quality they deny having, at the moment it is needed
+    - the kindness banked early returns when the journey turns dangerous
+  tags: [structural, companion, bonding, social, kindness_economy]
+  escalation:
+    - at: 0.3
+      event: >-
+        The companion attaches itself and immediately names its great deficiency — no
+        brains, no heart, no courage, no manners, no sense. It asks the traveler, more
+        or less, to help it acquire the thing it already obviously has.
+      stakes: A bond forms. The companion's stated quest is a quest for something it owns.
+    - at: 0.6
+      event: >-
+        A moment arrives that calls for exactly the quality the companion swears it
+        lacks — and the companion supplies it without noticing, then waves the proof
+        away as luck or accident.
+      stakes: The companion is more than it believes. The traveler can see it even when the companion cannot.
+    - at: 1.0
+      event: >-
+        At the journey's pinch, the companion does the thing — undeniably, this time —
+        and either comes to believe in itself or, just as fitting, never quite does. The
+        bond is proven; the kindness is repaid.
+      stakes: A loyal ally, and a small truth about the gap between what we lack and what we fear we lack.
+  passive_progression:
+    rate_per_turn: 0.03
+    rate_per_day: 0.02
+    accelerators:
+      - companion
+      - i have no
+      - if only i had
+      - befriend
+      - travel together
+      - help me find
+    decelerators:
+      - send it away
+      - travel alone
+      - hurt its feelings
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: the_seam_reveal
+  name: The Seam Reveal
+  description: >-
+    The moment a hollow authority or a standing illusion is exposed. Every source in
+    this genre builds in an "the emperor has no clothes" — a fraud-king, a manufactured
+    spectacle, a fearsome power that is mostly fear. The seam is FINDABLE and never
+    protected: when the traveler points at the curtain, the world yields the truth,
+    because the truth is in the book. The reveal is not a guarded twist. It is the
+    promise the genre keeps to the perceptive player.
+  category: revelation
+  triggers:
+    - pull the curtain
+    - call the bluff
+    - expose the fraud
+    - the emperor has no clothes
+    - see through the illusion
+    - demand proof
+  narrative_hints:
+    - the authority's grandeur depends on the traveler not looking too closely — so the traveler looks closely
+    - a small, overlooked detail (a hidden lever, a frightened man, a painted-over truth) gives the whole thing away
+    - the spectacle deflates the instant it is named for what it is
+  tension_level: 0.5
+  resolution_hints:
+    - name the fraud aloud and let it deflate — it stays deflated
+    - expose the seam publicly and watch the deference that propped it up drain away
+    - hold the truth quietly and use the authority's hollowness as leverage
+  tags: [structural, revelation, humbug, illusion, never_protected]
+  escalation:
+    - at: 0.3
+      event: >-
+        Something does not add up. The great authority's power has a tell — a detail
+        that does not fit, a question it will not answer, a curtain it does not want
+        looked behind. The traveler notices.
+      stakes: Suspicion, not yet proof. The world will reward the player who pulls the thread.
+    - at: 0.6
+      event: >-
+        The traveler tests the seam — points at the curtain, demands the proof, catches
+        the contradiction. The authority resists, blusters, threatens — the reflex of a
+        thing that has never been challenged.
+      stakes: The bluster is the last defence of a hollow power. Press, and it cracks.
+    - at: 1.0
+      event: >-
+        The curtain comes down. The fraud is revealed plainly — a small frightened
+        person, a clever machine, a war over nothing — and it STAYS revealed. The
+        authority's hold over the room is broken by the simple fact of being seen.
+      stakes: The hollow power is finished as a power. What fills the vacuum it leaves is the next question.
+  passive_progression:
+    rate_per_turn: 0.04
+    rate_per_day: 0.01
+    accelerators:
+      - curtain
+      - humbug
+      - fraud
+      - fake
+      - prove it
+      - behind the
+      - who are you really
+    decelerators:
+      - look away
+      - take it at face value
+      - leave the great one be
+    accelerator_bonus: 0.06
+    decelerator_penalty: 0.03
