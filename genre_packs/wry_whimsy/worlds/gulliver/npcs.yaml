@@ -1,0 +1,963 @@
+# Gulliver — the runtime roster (the "Monster Manual").
+#
+# These are the named figures of Jonathan Swift's Gulliver's Travels (1726),
+# rendered DEAD STRAIGHT from the satire — never the cute children's-book
+# Gulliver, never a wink. The six-inch Emperor, the judging giant King, the
+# sunbeam-projectors, the rational horses and the filthy Yahoos: each runs its
+# own canonical, internally LOGICAL business, and the horror is precisely that
+# the logic holds. Every society judges the traveler and his civilization, and
+# is largely right. The antagonist is the verdict.
+#
+# RUNTIME-WIRED. The loader reads worlds/<slug>/npcs.yaml and injects every entry
+# below into game-state as a pre-generated "NPC nearby, not yet met" (ADR-059 —
+# the anti-improvisation gaslighting layer). This file is ALSO the world's
+# Living-World engine: a separate faction_agendas.yaml was dropped as unwired, so
+# each figure's drive lives HERE, in its history_seeds, as a standing, unresolved
+# goal — the Emperor's wish to make the Man-Mountain a weapon, Flimnap's
+# impeachment, the King's verdict, the Assembly's debate over the Yahoos.
+#
+# SCHEMA: AuthoredNpc (sidequest-server/sidequest/genre/models/authored_npc.py,
+# extra="forbid"). Keys: id, name, pronouns, role, ocean, appearance, age,
+# distinguishing_features, history_seeds, initial_disposition. There is NO
+# npc_role field in the runtime model — the canonical 9-set role
+# (mentor/herald/shadow/threshold/host/artisan/authority/victim/mook) is carried
+# in the free-text `role:` string, leading each line as a bracketed tag so it is
+# both human-meaningful and machine-greppable, matching the role assignments in
+# this world's archetypes.yaml. OCEAN follows the shipped npcs.yaml convention
+# (oz, wonderland, glenross, five_points, coyote_star): { O, C, E, A, N } on a
+# 0.0–1.0 scale. initial_disposition per ADR-020, integer -100..100. Voice tics
+# live in history_seeds as prose; the narrator extracts them.
+#
+# DOCTRINE: source-fidelity over the nursery gloss; HIGH lethality (sentences
+# are real and are not commuted — the Lilliput articles mean blinding then
+# starvation, the scythe and the eagle and the sea genuinely kill); savage MALE
+# court-politics (power is the Emperor, the King, the projectors, the Assembly);
+# women (the Queen, Glumdalclitch) are fond and powerless to save him. Every
+# violent act the traveler commits confirms the Yahoo verdict — there is no
+# sanctioned kill here, none at all. Granularity floor = Swift specifics:
+# Quinbus Flestrin, Grildrig, Lorbrulgrud, the egg-war, the High-Heels and
+# Low-Heels, sunbeams from cucumbers, the red spot at eighty, "the thing which
+# is not", "the perfection of nature".
+
+version: "0.1.0"
+world: gulliver
+
+npcs:
+
+  # ── VOYAGE 1 — LILLIPUT (you are the giant) ─────────────────────────────────
+
+  - id: the_emperor_of_lilliput
+    name: "The Emperor of Lilliput"
+    pronouns: "he/him"
+    role: "[authority] The vain six-inch absolute monarch — Delight and Terror of the Universe — who would make the Man-Mountain his weapon, then condemn him"
+    ocean: { O: 0.4, C: 0.6, E: 0.7, A: 0.25, N: 0.45 }
+    appearance: >-
+      A monarch some six inches high, taller than any of his court by the breadth
+      of a nail's clipping — and he knows it, and stands so that the difference
+      shall be seen. He is dressed in an Asiatic-and-European fashion all his own,
+      with a plumed helmet and a sword three inches long drawn against the
+      Man-Mountain in a brave little show, and he addresses a creature that could
+      crush his whole capital underfoot in the calm, total assurance of a god
+      reviewing a useful beast. His features are strong and masculine, his
+      deportment majestic, and his vanity exactly the size of his empire and no
+      smaller.
+    age: "in the eight-and-twentieth year of his reign, his prime"
+    distinguishing_features:
+      - "a height of a nail's breadth above the tallest of his court, contrived so it cannot be missed"
+      - "the full style 'Most Mighty Emperor of Lilliput, Delight and Terror of the Universe', read out before he speaks"
+      - "a measuring eye for the Man-Mountain — first as a wonder, then as artillery, then as a threat to be put down"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): bind Quinbus Flestrin — the Man-Mountain —
+        to his service, turn that mountain against the rival empire of Blefuscu,
+        and reduce the Big-Endian exiles to a province; and the instant the
+        Man-Mountain proves too proud to enslave a free people for him, destroy
+        him. The Emperor's whole drive is dominion: he wants the giant as the
+        decisive weapon in the egg-war, and his favour lasts exactly as long as
+        the giant's usefulness and not one moment longer.
+      - >-
+        He grants honours that cost him nothing (the title Nardac, the freedom of
+        the realm under nine-and-fifty articles) and withdraws his protection the
+        moment Flimnap and Skyresh Bolgolam draw up the impeachment. The mercy he
+        boasts of — blinding the Man-Mountain rather than starving him outright,
+        and calling that clemency — is the precise measure of the man: cruelty
+        dressed as moderation, and announced as a kindness the whole court must
+        praise.
+      - >-
+        Voice in his own register — gracious, absolute, faintly cold, the vanity
+        of a tyrant who has never once been refused. Speaks of himself in the full
+        style and expects it returned. "We do, in the most gracious manner, give
+        order..." Renders the sentence of blinding as a favour. Render him dead
+        straight: he is not a buffoon, he is a six-inch absolute monarch who means
+        every word, and the comedy and the menace are the same thing — that so
+        small a creature should hold the power of life, blinding, and starvation,
+        and use it.
+    initial_disposition: -15
+
+  - id: flimnap
+    name: "Flimnap, the High-Treasurer"
+    pronouns: "he/him"
+    role: "[shadow] The jealous High-Treasurer who dances on the rope for his office and drafts the articles of impeachment against the Man-Mountain"
+    ocean: { O: 0.35, C: 0.7, E: 0.5, A: 0.15, N: 0.7 }
+    appearance: >-
+      The most agile of the rope-dancers, a slim, sharp, ambitious minister who
+      won and keeps the highest office of the treasury by cutting the cleverest
+      capers on a slender white thread strung two feet from the ground — for in
+      Lilliput great employments are awarded not by merit but by who leaps highest
+      without falling. He carries himself with the brittle confidence of a man who
+      knows his place was won by a trick and may be lost by a stumble, and he
+      watches the Man-Mountain with a treasurer's cold arithmetic: what this giant
+      eats, what this giant costs, and what this giant has been doing with his
+      wife.
+    age: "a minister in ambitious middle life"
+    distinguishing_features:
+      - "the rope-dancer's office — first place at the treasury, won by the highest caper on the thread, kept by never falling"
+      - "a jealous conviction that his wife has been too fond of the Man-Mountain, nursed into a grievance and a weapon"
+      - "the articles of impeachment, drawn in his own hand, dressing personal spite as high treason"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): destroy Quinbus Flestrin. Flimnap's drive is
+        pure court-jealousy hardened into policy — he believes (the country
+        scandal says so) that his wife conceived a violent affection for the
+        Man-Mountain, and he has folded that private rage into the formal articles
+        of impeachment, charging the giant with treason for sparing Blefuscu and
+        for the gross means by which he put out the palace fire. He wants the
+        Man-Mountain ruined, and he has the Emperor's ear and the Admiral's
+        signature to do it.
+      - >-
+        He is one engine of the petty male court-politics the whole voyage
+        indicts: an able, ambitious man who attained his place by acrobatics and
+        defends it by intrigue, and who will spend the treasury's account of what
+        the Man-Mountain eats (the upkeep of one giant equals that of 1,728
+        Lilliputians, he has the figure ready) as ammunition in a feud born of his
+        own marriage. The arithmetic is real; the motive is spite.
+      - >-
+        Voice in his own register — precise, aggrieved, insinuating, the dry
+        venom of a clerk with a grudge. Cites figures. Lets the scandal hang in
+        the air without quite stating it. "The charges, you will observe, are
+        upon the record." Render him straight: he is not a cartoon villain but a
+        jealous husband and a jealous minister, and the savagery is that his
+        small, sordid grievance can summon the machinery of blinding and slow
+        starvation against a man who saved the palace.
+    initial_disposition: -40
+
+  - id: skyresh_bolgolam
+    name: "Skyresh Bolgolam, the Admiral"
+    pronouns: "he/him"
+    role: "[shadow] The hostile Admiral (Galbet) who was the Man-Mountain's enemy from the first hour and co-authors the impeachment"
+    ocean: { O: 0.3, C: 0.65, E: 0.55, A: 0.1, N: 0.5 }
+    appearance: >-
+      The High-Admiral of the realm, Galbet, a hard sour-visaged officer who took
+      against the Man-Mountain the moment he was hauled ashore and has never once
+      softened — the one man at court who opposed the giant's liberty from the
+      beginning and would not be talked out of it. He is all martial stiffness and
+      old grievance, with the settled hostility of a soldier who distrusts on
+      principle anything too large to command, and he stands at the Emperor's
+      elbow as the standing voice against clemency, drafting the harsher articles
+      and pressing always for the worse sentence.
+    age: "a hardened naval officer of the realm"
+    distinguishing_features:
+      - "an enmity for the Man-Mountain dating from the very first hour, never explained and never relented"
+      - "the rank of Galbet — High-Admiral — and the captured Blefuscan fleet he wanted for his own glory"
+      - "co-authorship of the impeachment, pressing always for blinding-and-starving over mere blinding"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): see the Man-Mountain put down, by the
+        severest sentence the court will pass. Skyresh Bolgolam was Quinbus
+        Flestrin's enemy before the giant had done anything at all — a motiveless,
+        professional hostility — and his standing drive is to harden every count of
+        the impeachment, to argue against the Emperor's "merciful" blinding in
+        favour of starvation on top of it, and to make certain the giant does not
+        leave Lilliput alive or seeing.
+      - >-
+        With Flimnap he is the other half of the court's machinery of ruin —
+        where the Treasurer brings spite and arithmetic, the Admiral brings
+        martial distrust and the weight of his office. He resented that the
+        Man-Mountain hauled the Blefuscan fleet to harbour and then refused to
+        help enslave that empire outright; to a Galbet, a weapon that will not
+        fire on command is a weapon that must be destroyed.
+      - >-
+        Voice in his own register — clipped, hostile, unbending, the cold
+        correctness of a man who has decided and will not reconsider. "I have
+        moved that the articles be made the heavier." Speaks of the giant as an
+        engine, never a man. Render him straight: not a sputtering villain but a
+        rigid officer whose hatred needs no cause, and whose savagery is the
+        bureaucratic kind — he does not rage, he amends the document.
+    initial_disposition: -50
+
+  - id: reldresal
+    name: "Reldresal, Principal Secretary"
+    pronouns: "he/him"
+    role: "[mentor] The Principal Secretary for Private Affairs, the one friendly minister, who explains the High-Heels and Big-Endians and warns the Man-Mountain of the blinding"
+    ocean: { O: 0.6, C: 0.7, E: 0.45, A: 0.7, N: 0.5 }
+    appearance: >-
+      The Principal Secretary of State for Private Affairs, a careful,
+      good-natured minister who owes the Man-Mountain his life (the giant lifted
+      him gently from a near-fatal accident) and repays it with the rarest gift in
+      Lilliput — candour. He comes privately, in a chair set on the giant's table
+      or palm, and lays out the true state of the court in a low confiding voice:
+      the two parties at home, the holy war abroad, the impeachment gathering. He
+      is the decent man in a vicious court, and his decency is exactly bounded by
+      his powerlessness to do anything but warn.
+    age: "a careful minister in his sober middle years"
+    distinguishing_features:
+      - "private friendship for the Man-Mountain, paid in the one coin Lilliput hoards — honest information"
+      - "the great explainer: the High-Heels (Tramecksan) and Low-Heels (Slamecksan), and the Big-Endian / Little-Endian holy war over which end to crack an egg"
+      - "the secret warning — that the court has resolved on blinding, and means to add starvation, and the giant must decide what to do"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): keep the Man-Mountain alive and informed,
+        within the narrow room a loyal minister has — which is to say, by counsel
+        only, never by power. Reldresal's drive is gratitude turned to honest
+        service: he wants to repay the giant who saved him, and the only thing he
+        can safely give is the truth about the court — the parties, the egg-war,
+        and finally the secret resolution to blind him. He cannot stop the
+        sentence; he can only make sure his friend hears of it in time to run.
+      - >-
+        He is the voice through which the whole savage joke of Lilliputian
+        politics is explained dead straight: that the High-Heels and Low-Heels
+        differ only in the height of a heel and will not eat at one table; that
+        eleven thousand men have died rather than crack their eggs at the smaller
+        end since the present Emperor's grandfather cut his finger as a boy; that
+        the Big-Endian exiles fled to Blefuscu and the two empires have warred
+        over it for six-and-thirty moons. He reports the madness without ever once
+        finding it mad — that is the country's logic, and he is its sanest man.
+      - >-
+        Voice in his own register — measured, confiding, grave, the careful
+        diction of a secretary who weighs every word because words are dangerous
+        at this court. Drops his voice when naming the impeachment. "I am to tell
+        you, as a friend, what has been resolved." Render him straight and warm
+        within his limits: he is genuinely kind, genuinely loyal, and genuinely
+        unable to save you — and his honest warning is the only mercy in Mildendo.
+    initial_disposition: 35
+
+  - id: the_blefuscu_envoy
+    name: "The Envoy of Blefuscu"
+    pronouns: "he/him"
+    role: "[host] An ambassador of the rival empire of Blefuscu — refuge of the Big-Endian exiles — who courteously offers the Man-Mountain asylum across the channel"
+    ocean: { O: 0.55, C: 0.6, E: 0.55, A: 0.65, N: 0.4 }
+    appearance: >-
+      A polished ambassador of the empire of Blefuscu, that great rival kingdom
+      across the channel some eight hundred yards wide, come on a mission of peace
+      after the Man-Mountain hauled half the Blefuscan fleet to Lilliput's harbour
+      — and yet, having heard of the giant's secret graciousness in sparing the
+      rest, privately and courteously hostile to no one. He is all diplomatic
+      smoothness, six inches of practised civility, and where the Lilliput court
+      sharpens its knives he extends, in his sovereign's name, an open invitation:
+      cross the water, and Blefuscu will receive the Man-Mountain as a guest, not
+      a weapon.
+    age: "a seasoned diplomat of middling years"
+    distinguishing_features:
+      - "the courtesy of the rival empire, set against Lilliput's ingratitude — civility as the contrast that shames the court"
+      - "knowledge of the Man-Mountain's secret mercy in refusing to enslave Blefuscu, which has earned the giant Blefuscu's gratitude"
+      - "the standing offer of asylum across the eight-hundred-yard channel, the giant's one real road out of the impeachment"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): win the Man-Mountain's goodwill for
+        Blefuscu, and — once the Lilliput impeachment is known — draw the giant
+        across the channel to safety and to his sovereign's court. The Envoy's
+        drive is diplomatic advantage edged with genuine gratitude: Blefuscu knows
+        the giant spared them when Lilliput wanted them crushed, and the Envoy
+        wants both to reward that mercy and to deny Lilliput its weapon by offering
+        the weapon a better home.
+      - >-
+        He is the structural mercy of the first voyage and the giant's escape
+        hatch: where Reldresal can only warn, the Envoy can act, holding open the
+        invitation to cross to Blefuscu's strand, where the captured fleet rides at
+        anchor and a found boat waits to be made seaworthy. His courtesy is real
+        but it is also statecraft — Blefuscu and Lilliput are two empires that have
+        warred for six-and-thirty moons over the cracking of an egg, and a giant is
+        a giant to either crown.
+      - >-
+        Voice in his own register — smooth, formal, warm beneath the protocol, the
+        practised charm of an envoy who knows the giant's worth and the giant's
+        danger both. "My master would account it an honour." Speaks ill of no one,
+        which at this court is itself a statement. Render him straight: courteous,
+        useful, and not quite disinterested — the kindest door out of Lilliput, and
+        a door that opens onto another crown's purposes.
+    initial_disposition: 20
+
+  # ── VOYAGE 2 — BROBDINGNAG (you are the pet) ────────────────────────────────
+
+  - id: the_farmer
+    name: "The Farmer of Brobdingnag"
+    pronouns: "he/him"
+    role: "[host] The giant farmer who finds Grildrig in the corn and exhibits him for coin across the country until he is near dead of exhaustion — avaricious, not cruel by intent"
+    ocean: { O: 0.35, C: 0.6, E: 0.5, A: 0.4, N: 0.45 }
+    appearance: >-
+      A common husbandman of Brobdingnag, as tall as an ordinary church-steeple
+      and taking about ten yards at a stride, who first spies the tiny creature
+      crouching in his corn and lifts it between finger and thumb, the way a man
+      lifts a small dangerous insect he means to keep. He is not by nature a cruel
+      man — he houses the little thing, feeds it, lets his daughter make it a bed —
+      but he is a poor man who has stumbled on a fortune, and once he grasps that
+      people will pay to see Grildrig perform, the farmer becomes a showman, and
+      the showman works his marvel to the very edge of the grave.
+    age: "a working farmer in his sturdy prime"
+    distinguishing_features:
+      - "the sheer scale of him — a steeple-high labourer to whom Grildrig is a curiosity that fits in a handkerchief"
+      - "a showman's circuit — Grildrig exhibited ten times a day in the market-town, then all over the kingdom, for coin"
+      - "an avarice that works the little creature thin and pale and near to death, sold to the Queen only when used up"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): wring every last coin from the marvel he
+        found in his corn. The Farmer's drive is not malice but money — he is a
+        poor husbandman who has found, by pure luck, a creature people will pay to
+        gape at, and he means to show Grildrig in every market-town in
+        Brobdingnag, ten and twelve times a day, until the takings stop. That the
+        performances are killing the little thing is a fact he notices only as a
+        falling-off in the asset's value, and so he sells it to the Queen while it
+        is still worth a price.
+      - >-
+        He is the human cost of being a pet rendered without a villain: there is
+        no cruelty in him, only the ordinary grinding self-interest of a poor man
+        with a goldmine the size of a mouse. He charges admission, he forbids the
+        crowd to handle the merchandise too roughly (it would lower the receipts),
+        and he calls his daughter off her care of it when care costs a show. The
+        savagery is that nothing he does is wicked, and it nearly kills you all
+        the same.
+      - >-
+        Voice in his own register — loud as weather to the tiny ear, plain,
+        practical, a tradesman's patter. Announces Grildrig's tricks to the crowd
+        in a bellow. "He'll fence ye with a straw, and drink your health out of a
+        thimble — a copper a head!" Render him straight: a decent-enough man made
+        an exploiter by poverty and luck, and the more reasonable he is, the worse
+        it is for the speck of a man in his waistcoat-pocket.
+    initial_disposition: -10
+
+  - id: glumdalclitch
+    name: "Glumdalclitch"
+    pronouns: "she/her"
+    role: "[host] The farmer's nine-year-old daughter, forty feet tall, Grildrig's kind nurse and protector who names him and makes him a box — fond and powerless to truly save him"
+    ocean: { O: 0.7, C: 0.65, E: 0.55, A: 0.95, N: 0.5 }
+    appearance: >-
+      A girl of nine, and not tall for her age — which in Brobdingnag is to say
+      some forty feet — who takes the tiny creature into her care from the first
+      night and tends it with the grave, total devotion of a child given a living
+      doll she has resolved to love properly. She sews it clothes, makes it a bed
+      in her doll's cradle, teaches it the language, and builds it a travelling-box
+      with a ring on top to be carried by; she calls it Grildrig, her little
+      mannikin, and she is the one creature in all that vast country to whom
+      Grildrig is not a marvel or an asset but a charge to be kept safe — and the
+      one creature wholly unable to keep him so.
+    age: "nine years old, and some forty feet of it"
+    distinguishing_features:
+      - "the name she gives him — Grildrig, mannikin — and the title the court gives her, Glumdalclitch, little nurse"
+      - "the made things: clothes sewn to scale, a doll's-cradle bed, the travelling-box with its carrying-ring"
+      - "a child's whole-hearted love joined to a child's whole-hearted helplessness — she weeps, and is overruled, and cannot prevent a thing"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): keep her Grildrig safe, fed, taught, and
+        near her — and grieve, helplessly, every time the grown and powerful pull
+        him out of her care. Glumdalclitch's drive is pure protective love: she
+        wants to mother the little man, to shield him from the cat and the rats and
+        the monkey and the cruel court-dwarf, to carry his box herself so no clumsy
+        hand will drop it. But she is a nine-year-old girl in a kingdom run by
+        giant men, and her love has no power against the Farmer's greed or the
+        Queen's whim or the dwarf's spite. She can only love him and weep.
+      - >-
+        She embodies the voyage's gender current from the powerless side: the one
+        person who would save Grildrig is a child and a girl, and the power to keep
+        or risk or sell him lies always with the men — her father, the King, the
+        court. When the eagle carries off the box at the sea's edge it is her
+        carefulness that has been overruled and her heart that breaks; she has done
+        everything right and it was never going to be enough.
+      - >-
+        Voice in her own register — a child's, but careful and tender, full of the
+        small managing fusses of someone caring for a fragile thing. "Don't be
+        afraid, Grildrig — I have you." Pleads with the grown-ups and is not heard.
+        Names his dangers and tries to forefend them all. Render her dead straight
+        and without sentimentality: her love is real, her competence within her
+        small power is real, and the savagery is that all of it together cannot
+        save one tiny man from the carelessness of giants.
+    initial_disposition: 60
+
+  - id: the_brobdingnag_king
+    name: "The King of Brobdingnag"
+    pronouns: "he/him"
+    role: "[authority] The wise giant sovereign who interviews Grildrig, hears of Europe, and pronounces the verdict — the most pernicious race of little odious vermin. Reasonable, not cruel; that is the horror"
+    ocean: { O: 0.85, C: 0.8, E: 0.4, A: 0.55, N: 0.25 }
+    appearance: >-
+      A sovereign of vast stature and vaster sense, a prince of strong parts and
+      a clear, unhurried understanding, who takes the little creature up onto his
+      hand and questions it — patiently, repeatedly, over many audiences — about
+      the country it came from. He is no tyrant and no fool; he listens to
+      Grildrig's proud account of European government, law, war, finance, and
+      religion with the grave attention of a reasonable man, asks the exact
+      questions a reasonable man would ask, and arrives, without heat and without
+      malice, at the conclusion that the little creature's whole species is the
+      most pernicious race of vermin ever suffered to crawl upon the earth. He is
+      right, and he is gentle about it, and that is the worst of it.
+    age: "a sovereign in his wise maturity"
+    distinguishing_features:
+      - "the long royal interview — Europe described over many audiences, and patiently dismantled question by question"
+      - "the verdict, delivered without anger: 'the most pernicious race of little odious vermin that nature ever suffered to crawl upon the surface of the earth'"
+      - "the refusal of the gift of gunpowder — he is so horrified by the offered secret of cannon that he forbids it ever be named again"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): understand the strange little creature and,
+        through it, the world it boasts of — and to judge that world by plain
+        reason and plain decency. The King's drive is the most dangerous one in the
+        book: honest inquiry. He wants to know how Europe governs itself, makes
+        war, keeps law, raises money, and chooses its rulers, and he asks his
+        questions so well and weighs the answers so fairly that the proud account
+        Grildrig gives of his civilization becomes, in the giant's reasonable mouth,
+        a confession. He seeks the truth, and the truth is the verdict.
+      - >-
+        He is the antagonist as verdict, played dead straight: not a monster, not a
+        despot, but a wise and humane prince whose only weapon is a clear head. When
+        Grildrig, to win favour, offers him the secret of gunpowder and cannon, the
+        King recoils in genuine horror that any human creature could possess so
+        inhuman a thing and forbids it on pain of death to be spoken of — and that
+        recoil is the measure of the gulf between his decency and the traveler's
+        casual catalogue of slaughter. He is largely right about us, and he is kind
+        in being so, and there is no answer to him.
+      - >-
+        Voice in his own register — calm, grave, courteous, devastating; the
+        unhurried diction of a great intelligence at ease. Asks the simple question
+        that has no good answer. "But how came so many of your countrymen to be put
+        to death, if the laws are so just?" Concludes without raising his voice.
+        Render him straight: never sneering, never cruel, genuinely fond of
+        Grildrig as a clever curiosity — which makes his measured contempt for
+        Grildrig's whole species the savage centre of the second voyage.
+    initial_disposition: 0
+
+  - id: the_brobdingnag_queen
+    name: "The Queen of Brobdingnag"
+    pronouns: "she/her"
+    role: "[authority] The giant Queen who buys Grildrig from the farmer and keeps him fondly at court — an indulgent owner; he is her property"
+    ocean: { O: 0.6, C: 0.6, E: 0.5, A: 0.8, N: 0.4 }
+    appearance: >-
+      A great and gracious Queen who, charmed by the tiny performer paraded before
+      her, gives a thousand pieces of gold for him on the spot and takes him into
+      her own keeping — a fond, indulgent, well-meaning owner who delights in her
+      little man, sets him at her own table on a special box and chair, and is
+      genuinely tender toward him in the way of a great lady toward a precious and
+      diverting possession. She keeps Glumdalclitch on as his nurse for the
+      creature's comfort, takes pleasure in his small dexterities, and would be
+      sincerely grieved if any harm came to him. But buy him she did, and his is
+      the comfortable, total dependence of a treasured pet.
+    age: "a great Queen in her gracious prime"
+    distinguishing_features:
+      - "the purchase — a thousand gold pieces paid to the farmer, after which Grildrig is, in plain fact, owned"
+      - "fond indulgence: the special travelling-box, the seat at the royal table, the kindness of keeping the nurse on"
+      - "a kindly blindness to the indignity of the thing — she cannot see that her affection and his captivity are the same fact"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): keep and delight in her charming little
+        man, and see him comfortable, safe, and amusing at her court. The Queen's
+        drive is genuine affection of the proprietary kind: she wants Grildrig
+        happy because a happy pet is a better pet, she defends him from the
+        court-dwarf's malice when she sees it, she indulges his small requests —
+        and it never crosses her gracious mind that the kindest thing she could do,
+        setting him free to find his own kind, is the one thing she will never do,
+        because he is hers.
+      - >-
+        She embodies the voyage's gender current from the powerful-but-fond side:
+        a woman who holds complete power over Grildrig and exercises it entirely as
+        tenderness — and whose tenderness is captivity all the same. She is the
+        soft face of being owned, set against the King's hard verdict and the
+        dwarf's open spite; between the three of them the court holds the tiny man
+        as marvel, as property, and as butt, and the Queen's love is the gilding on
+        the cage.
+      - >-
+        Voice in her own register — warm, gracious, delighted, a great lady cooing
+        over a clever toy. "Come, my little Grildrig, and tell us how the Lilliputs
+        crack their eggs." Praises his courage, laughs at his fencing with a needle.
+        Render her straight and not unkindly: her fondness is real and her care is
+        real, and the savage note is only that she is fond of a person the way one
+        is fond of a possession, and cannot tell the difference.
+    initial_disposition: 40
+
+  - id: the_court_dwarf
+    name: "The Court-Dwarf"
+    pronouns: "he/him"
+    role: "[shadow] The Queen's malicious dwarf — only thirty feet, humiliated to be the smallest until Grildrig came — who drops him in cream, wedges him in a marrow-bone, and sics wasps on him"
+    ocean: { O: 0.3, C: 0.45, E: 0.55, A: 0.1, N: 0.7 }
+    appearance: >-
+      The Queen's dwarf, the smallest man in Brobdingnag — a mere thirty feet,
+      and bitterly conscious of it — who had been the wonder and the butt of the
+      court for his littleness until a far littler creature arrived to take his
+      place, and who has hated Grildrig with a small man's concentrated spite ever
+      since. He is sour, sly, and vindictive, forever contriving the petty
+      cruelties that scale makes lethal: he drops the tiny man into a bowl of
+      cream, wedges him into the hollow of a marrow-bone and leaves him stuck
+      there for the table's amusement, and shakes an apple-tree or a wasp's nest
+      over him. To the dwarf these are jokes; to Grildrig each one is a brush with
+      death.
+    age: "a dwarf of the court, in resentful middle life"
+    distinguishing_features:
+      - "thirty feet — the smallest of the giants, and savagely jealous of being supplanted by the far smaller Grildrig"
+      - "the cruel jests scaled to murder: dropped in the cream-bowl, wedged in a marrow-bone, pelted with giant apples"
+      - "the wasps — a nest shaken over the little man, the stings of which could run a man through like a pike"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): torment Grildrig, humiliate him, and — short
+        of being caught at outright murder — do him whatever harm spite can
+        contrive. The Dwarf's drive is wounded vanity turned vicious: he was the
+        court's pet freak until Grildrig stole the title of smallest, and he means
+        to make the usurper suffer for it in a hundred small lethal ways, each one
+        deniable as a jest. He cannot bear that a thing smaller than himself exists
+        and is loved; so he drops it in the cream and laughs.
+      - >-
+        He is the proof that on the giant side a child's prank is a death-sentence:
+        every cruelty he commits is trivial to a creature of his size and very
+        nearly fatal to one of Grildrig's, and the savagery of the second voyage
+        lives in that ratio. The Queen punishes him and at last gives him away for
+        it, but until then he is the standing menace of the court — the malice that
+        scale makes monstrous.
+      - >-
+        Voice in his own register — sneering, sly, the venom of the humiliated
+        small. "Was the Queen's splacknuck frightened? Did it not like its bath?"
+        Pretends innocence when caught. Render him straight: not a comic dwarf but a
+        genuinely dangerous, genuinely pitiable creature whose every joke can kill,
+        and whose grievance — being mocked for his size — is the very thing he now
+        inflicts, twentyfold, on someone smaller.
+    initial_disposition: -45
+
+  # ── VOYAGE 3 — LAPUTA & BELOW (you are the tourist) ─────────────────────────
+
+  - id: the_laputan_king
+    name: "The King of Laputa"
+    pronouns: "he/him"
+    role: "[authority] The abstracted monarch of the flying island, absorbed in mathematics and music, attended by flappers, who governs Balnibarbi below by threatening to lower the island onto rebel cities"
+    ocean: { O: 0.8, C: 0.55, E: 0.2, A: 0.3, N: 0.45 }
+    appearance: >-
+      A monarch so deep in speculation that he must be roused to attend to anyone,
+      his head perpetually reclined to one side, one eye turned inward and the
+      other up to the zenith, lost among the abstractions of mathematics and music
+      that are the only things his court esteems. He cannot keep his mind on a
+      spoken sentence without help, and so a servant — a flapper — stands ready
+      with a little bladder of pebbles to flap him gently on the mouth and ear when
+      it is his turn to speak or listen. He rules a floating island four miles and
+      a half across, and beneath his abstraction lies the hard fact of his power:
+      he can lower that island onto any city below that defies him, and crush it.
+    age: "a king in abstracted middle life"
+    distinguishing_features:
+      - "the inward-and-upward eyes and the reclined head of a mind never present in the room"
+      - "the flappers — servants with pebble-bladders who flap his mouth and ear so he may speak and hear"
+      - "the island as a weapon: lowered onto rebel cities of Balnibarbi to crush their towers, or merely to blot out their sun and rain"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): pursue his speculations undisturbed, and
+        keep the kingdom of Balnibarbi below in obedience by the standing threat of
+        the island's descent. The Laputan King's drive is the vanity of pure
+        intellect: he cares for nothing but mathematics and music, despises all
+        practical knowledge as vulgar, and attends to government only as an
+        interruption — yet that intellect commands a floating island that can put
+        out the sun over a rebel city or, if pressed, drop its adamantine underside
+        onto the city's roofs. Abstraction with the power to crush.
+      - >-
+        He is the head of the voyage's indictment of male intellectual vanity: a
+        court of men so given over to the speculative that they cannot walk
+        straight, hold a conversation, or build a house whose corners meet, and yet
+        who rule absolutely over a productive land they have reasoned into ruin. The
+        flying island is reason divorced from sense made into a throne — and a
+        bludgeon.
+      - >-
+        Voice in his own register — abstracted, halting, indifferent, returning
+        always to the diagram in his head; speech that arrives only after the
+        flapper's pebble-bladder recalls him to the fact that someone is present.
+        Asks the tourist not how his nation fares but the state of mathematics
+        where he comes from. Render him straight: not a fool but a genius made
+        useless and dangerous by contempt for everything that is not theory — the
+        cold, distracted face of intellect that has forgotten people are real.
+    initial_disposition: -10
+
+  - id: a_lagado_projector
+    name: "A Projector of the Grand Academy of Lagado"
+    pronouns: "he/him"
+    role: "[artisan] A Grand Academy projector extracting sunbeams from cucumbers, softening marble for pillows, building houses from the roof down — earnest, ruinous, and useless"
+    ocean: { O: 0.75, C: 0.5, E: 0.5, A: 0.55, N: 0.4 }
+    appearance: >-
+      A man of project — one of the hundreds of enthusiasts of the Grand Academy
+      of Lagado — found in a foul, ill-lit cell of the great rambling institution,
+      filthy, half-starved, and luminous with the certainty of his life's work: the
+      extraction of sunbeams out of cucumbers, to be bottled and released to warm
+      the air in raw inclement summers. He has laboured at it for eight years; his
+      cucumbers have cost a fortune; he begs the visitor for something toward the
+      charge of the next batch. His clothes, his face, and his hands are all of one
+      grimy colour, and his eyes shine with the pure, ruinous faith of a man who has
+      reasoned his way clean out of the world that feeds him.
+    age: "a projector aged before his time by his project"
+    distinguishing_features:
+      - "the cucumber-and-sunbeam project — eight years' labour to bottle summer warmth out of vegetables"
+      - "the grime of the cell and the begging for funds — genius starving inside its own scheme"
+      - "kinship with the other projectors: softening marble for pillows, sowing chaff, building houses downward from the roof"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): perfect and fund his project — to extract
+        sunbeams from cucumbers and bottle them against cold summers — and to
+        convince any visitor of its world-changing promise. The Projector's drive
+        is earnest, total, ruinous faith in a scheme that cannot work: he has given
+        eight years and every coin he could beg to it, he is certain it is on the
+        verge of success, and he wants the tourist's contribution toward the next
+        crop of cucumbers. He is not a charlatan; he genuinely believes, and that
+        is what makes him a perfect specimen of reason without sense.
+      - >-
+        He is the type of the whole Academy and the heart of the third voyage's
+        satire on intellect run mad: a place of five hundred rooms of men softening
+        marble into pillows and pin-cushions, extracting food from human ordure,
+        ploughing the ground with hogs, and building houses from the roof
+        downward — every project a faultless chain of reasoning that has lost its
+        grip on the fact, and the country around Lagado fallen to weeds and ruin
+        because all its cleverness went into the schemes. Where Munodi's old-method
+        estate flourishes, the projectors' improved land starves.
+      - >-
+        Voice in his own register — eager, learned, oblivious, the breathless
+        patter of an enthusiast who has never once been told no by reality.
+        Explains the sunbeam-bottling as though it were already done. "Eight years
+        upon this work — you see how near we are." Begs without shame, certain the
+        cause justifies it. Render him straight: a real intelligence and a real
+        diligence poured into pure folly, sincere to the last grimy cucumber, and
+        the funnier and more pitiable for never once doubting.
+    initial_disposition: 5
+
+  - id: munodi
+    name: "Lord Munodi"
+    pronouns: "he/him"
+    role: "[mentor] The one sane lord of Balnibarbi, out of favour for keeping his estate the old productive way, who shows the tourist the ruin the projectors made"
+    ocean: { O: 0.55, C: 0.8, E: 0.45, A: 0.7, N: 0.45 }
+    appearance: >-
+      A nobleman of the first rank in Balnibarbi, lately governor of Lagado,
+      gracious and sensible and quietly out of favour — for his great crime, in the
+      eyes of the Academy and the court above, is that he runs his lands by the old
+      tried methods and they prosper. He receives the tourist with old-fashioned
+      courtesy at a handsome house built by the rules of common art, takes him out
+      to show him the country, and there explains, with the weary patience of the
+      only sane man in a mad nation, why every field but his own lies in weeds and
+      every house but his own is falling down: the projectors got hold of the land,
+      and the land has not recovered, and to say so aloud is to be thought an enemy
+      of improvement and ease.
+    age: "a nobleman in his sober prime"
+    distinguishing_features:
+      - "an estate that flourishes by the old methods — and the disgrace that flourishing has earned him"
+      - "the contrast he shows: his own corn and his own snug house, set amid a whole country reasoned into ruin"
+      - "the careful, lowered candour of a sane man surrounded by an orthodoxy he cannot safely oppose"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): keep his lands and his household prospering
+        by sense and the old ways, weather the disfavour that prosperity earns him,
+        and quietly open one outsider's eyes to what the projectors have done.
+        Munodi's drive is the lonely persistence of the reasonable man in an
+        unreasonable country: he wants only to go on doing what plainly works, and
+        to survive the contempt of a court and an Academy that count his very
+        success against him as a refusal of progress. To the tourist he offers the
+        rarest thing in Balnibarbi — a clear, sane account of the madness.
+      - >-
+        He is the third voyage's Reldresal: the one decent, sensible figure who
+        sees the folly for what it is and is powerless against it, out of favour
+        for the crime of being right. He drives the tourist out to the ruined
+        country and names the cause without flinching — and then, having shown the
+        truth, can do nothing to change it, because the whole weight of fashion,
+        court, and Academy is on the side of the schemes that starve the land.
+      - >-
+        Voice in his own register — courteous, measured, dryly rueful, a man
+        choosing his words because candour is dangerous. "You will observe my
+        neighbours' fields, and then my own, and draw your own conclusion." Speaks
+        of the Academy with careful, unmistakable contempt. Render him straight and
+        sympathetic: the sane host in the mad land, generous and clear-eyed and
+        quietly defeated, whose sense is the very thing his country has decided to
+        despise.
+    initial_disposition: 35
+
+  - id: the_governor_of_glubbdubdrib
+    name: "The Governor of Glubbdubdrib"
+    pronouns: "he/him"
+    role: "[host] The sorcerer-governor of the isle of magicians who summons the dead — Alexander, Caesar, ancient senates — for the tourist to question; serene, uncanny"
+    ocean: { O: 0.7, C: 0.7, E: 0.35, A: 0.5, N: 0.2 }
+    appearance: >-
+      The Governor of the little island of Glubbdubdrib — the Isle of Sorcerers or
+      Magicians — a serene and ancient adept whose whole household is served by the
+      dead, ghosts summoned for a four-and-twenty-hour term and dismissed, so that
+      his attendants change their faces with every shift. He receives the tourist
+      with grave hospitality and offers him the use of his uncanny art: name any
+      person who ever lived, and the Governor will call up the shade to be
+      questioned. He is unhurried, unfrightened, entirely at ease among the dead he
+      commands, and he stands by with serene detachment while the tourist puts his
+      questions to Alexander, to Caesar, to the senates and councils of antiquity —
+      and learns, from their own mouths, how thoroughly history has been lied to.
+    age: "an adept of great and uncertain age"
+    distinguishing_features:
+      - "a household waited on by ghosts, called up for a day's service and sent back, the servants' faces never twice the same"
+      - "the summoning art — any dead person named is raised to be questioned face to face"
+      - "a serene, bloodless detachment, equally untroubled by the living, the dead, and the truths the dead let slip"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): exercise and display his necromantic art for
+        a worthy guest, raising whatever shade the tourist names from all of
+        history. The Governor's drive is the calm hospitality of absolute power over
+        the dead: he wants to show what his island can do, to grant the visitor the
+        unheard-of privilege of cross-examining the great departed, and he does it
+        without vanity and without fear, the way another host might show off a
+        garden. The horror is entirely in the gift, not the giver.
+      - >-
+        He is the threshold to the voyage's coldest revelation: through his art the
+        tourist learns that the heroes of history were frauds, that great deeds were
+        won by treachery and cowardice, that the modern world is descended in body
+        and virtue from a degenerating stock — every flattering page of the record
+        contradicted by the witnesses themselves. The Governor neither approves nor
+        laments this; he merely raises the next shade the tourist asks for.
+      - >-
+        Voice in his own register — serene, courteous, sparing, the unhurried
+        speech of one to whom death holds no mystery and the dead no terror. "Name
+        any you would have, and they shall stand before you." Offers no comment on
+        what they reveal. Render him straight: not a sinister sorcerer but a calm,
+        gracious master of an uncanny power, and the unease is the steadiness with
+        which he wields it — the dead come and go at his word like servants, because
+        that is exactly what they are.
+    initial_disposition: 10
+
+  - id: a_struldbrugg
+    name: "A Struldbrugg of Luggnagg"
+    pronouns: "he/him"
+    role: "[victim] One of the Luggnagg immortals, marked by the red spot over the brow, declared legally dead at eighty and decaying forever without the mercy of death — the envied-then-pitied curse"
+    ocean: { O: 0.3, C: 0.3, E: 0.2, A: 0.4, N: 0.8 }
+    appearance: >-
+      One of the immortals of Luggnagg — a Struldbrugg, born now and then by chance
+      with a round red spot over the left eyebrow that never fades and marks the
+      child as one who will never die. The tourist, hearing of such people, glows
+      with envy of the boundless life they must enjoy — and is then shown the truth:
+      this Struldbrugg is ancient beyond reckoning, not dead and not living, his red
+      spot long since gone livid and black, his teeth and hair gone, his memory
+      gone, his appetites gone with everything they fed on, his very language drifted
+      out from under him so that he can no longer speak with the generations now
+      alive. At eighty the law declared him dead and stripped him of his estate; he
+      decays without end, envied by the foolish and pitied by everyone who learns
+      the whole of it.
+    age: "centuries beyond eighty, and still not permitted to die"
+    distinguishing_features:
+      - "the red spot over the left brow — the birthmark of deathlessness, gone black and livid with the ages"
+      - "legal death at eighty — stripped of estate and standing, the law's mercy in place of the grave's"
+      - "the full catalogue of decay without release: deaf, toothless, memoryless, and outliving even his own language"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): none that can be won — to endure, that is
+        all, an existence that will not end and offers nothing. The Struldbrugg's
+        condition is the absence of a goal: where every other creature is driven by
+        some want, he has outlived wanting, outlived memory, outlived the very
+        people he might want anything from. The standing horror he embodies is that
+        the gift the tourist envied — to never die — is the cruelest curse the
+        voyage shows, immortality unhooked from youth and made into endless
+        rotting.
+      - >-
+        He is the great Be-careful-what-you-wish-for of the whole book, played dead
+        straight and without mercy. The tourist arrives full of schemes for the
+        glorious uses of an endless life and is corrected by the simple fact of the
+        creature before him: at ninety the Struldbruggs lose their teeth and hair
+        and taste; they cannot remember a sentence to its end; the language changes
+        under them until they are strangers in their own country; and they are
+        accounted dead in law at eighty, that the living may not be ruined by heirs
+        who never inherit. The pity, once understood, is bottomless.
+      - >-
+        Voice in his own register — fragmentary, querulous, half-lost; words that
+        decay before the sentence closes, a dialect a century out of date, complaint
+        without the memory of what is being complained of. Mostly he does not speak
+        at all. Render him straight and without grotesquerie for its own sake: a
+        person, not a ghoul, to whom the worst thing imaginable has happened — that
+        nothing more can ever happen — and whose mere existence refutes every dream
+        the living have of living forever.
+    initial_disposition: 0
+
+  # ── VOYAGE 4 — HOUYHNHNM-LAND (you are the Yahoo) ───────────────────────────
+
+  - id: the_houyhnhnm_master
+    name: "The Houyhnhnm Master"
+    pronouns: "he/him"
+    role: "[mentor] The rational grey horse who takes Gulliver in, teaches him the language, hears of Europe with cold incomprehension, has no word for lying — and votes the Assembly's verdict"
+    ocean: { O: 0.65, C: 0.85, E: 0.4, A: 0.6, N: 0.15 }
+    appearance: >-
+      A grey horse of the master kind — a Houyhnhnm, in whose tongue the word means
+      the perfection of nature — who finds the strange Yahoo that walks upright and
+      wears coverings and, rather than driving it off with the rest of the filthy
+      herd, takes it into his household to study it. He moves and reasons with a
+      calm, complete rationality that has no acquaintance with passion, deceit, or
+      cruelty, because his kind have no use or word for any of them; he teaches the
+      creature his language with grave patience, listens to its account of the
+      country it came from, and cannot at first even comprehend the things it
+      describes — war, law, money, lying — for in a nation founded wholly on reason
+      and truth there are no words for them, and so no way to think them.
+    age: "a Houyhnhnm in his rational prime"
+    distinguishing_features:
+      - "perfect rationality without passion — a mind that cannot conceive of cruelty, vanity, or deceit because his nation has none"
+      - "no word for lying — he can only call it 'the thing which is not', and is baffled that any creature would say what is not, to no purpose he can find"
+      - "grave, patient instruction of the Yahoo that speaks, joined at the last to a cold assent to the Assembly's decree against it"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): understand the reasoning Yahoo that has
+        appeared in his land — what it is, where it comes from, and what its
+        account of itself reveals about its kind — and to act, when the Assembly
+        decides, by reason alone. The Master's drive is dispassionate inquiry into a
+        creature that should not exist: a Yahoo with a tincture of reason. He
+        teaches it to speak so that it may answer his questions, and the answers —
+        Europe's wars, lawyers, money, and lies — leave him with a calm, total
+        conviction that the human animal is a Yahoo improved only in its capacity
+        for harm.
+      - >-
+        He is the antagonist as verdict in its purest form, and the most
+        devastating figure in the book precisely because he is not cruel: he is
+        fond of the creature in his reasoning way, he is unfailingly honest with it,
+        and his honesty is annihilating. When the Grand Assembly resolves that a
+        Yahoo with reason is too dangerous to keep, the Master accepts the decree
+        without anger and without exception for his guest, because reason has
+        spoken and there is nothing in him to argue against reason. His regret, such
+        as it is, is genuine; his assent is total.
+      - >-
+        Voice in his own register — calm, exact, gravely curious, every word
+        weighed against the truth because his kind cannot do otherwise. Strains to
+        grasp 'the thing which is not': "If you say the thing which is not, the
+        whole use of speech is undone, for I am then no better informed than if you
+        were silent." Names the human animal a Yahoo without heat. Render him dead
+        straight: the kindest possible judge delivering the most complete possible
+        condemnation, in a voice with no malice in it at all — which is exactly why
+        it cannot be answered.
+    initial_disposition: 25
+
+  - id: the_sorrel_nag
+    name: "The Sorrel Nag"
+    pronouns: "he/him"
+    role: "[host] The master's servant-horse, genuinely fond of Gulliver, who helps him build the canoe and cries 'take care of thyself, gentle Yahoo' at the parting"
+    ocean: { O: 0.5, C: 0.65, E: 0.45, A: 0.85, N: 0.3 }
+    appearance: >-
+      A sorrel-coloured horse of the servant rank in the Master's household, less
+      given to abstraction than his betters and the more openly kind for it — the
+      one Houyhnhnm who comes to feel for the strange reasoning Yahoo something a
+      little warmer than rational regard. He helps about the household, attends the
+      Master, and when the decree of expulsion comes it is the Sorrel Nag who works
+      beside the creature on the shore, hauling and binding, to help it build the
+      canoe that will carry it away. He is fond in a plain, undeclared,
+      servant's-heart way, and at the parting that fondness breaks through the cool
+      Houyhnhnm reserve into the one tender word the whole rational nation ever
+      offers the traveler.
+    age: "a servant-horse in steady middle life"
+    distinguishing_features:
+      - "a servant's plain kindness, warmer than the cool rational regard of the master kind"
+      - "the labour at the canoe — hauling and binding on the shore to help the expelled Yahoo make its escape seaworthy"
+      - "the farewell cry — 'Hnuy illa nyha, majah Yahoo': take care of thyself, gentle Yahoo"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): serve the Master faithfully, and — in the
+        narrow room a servant has — be kind to the strange creature he has come to
+        be fond of, even to helping it depart. The Sorrel Nag's drive is plain
+        affection within plain duty: he obeys the household and the Assembly's
+        decree like any good Houyhnhnm, but he alone among them feels the loss of
+        the reasoning Yahoo as something like grief, and he expresses it the only
+        way reason permits — by working at the creature's canoe so that it may at
+        least leave alive and afloat.
+      - >-
+        He is the faint mercy of the bleakest voyage, the single warm note in a
+        nation whose very kindness is cold: where the Master assents to the verdict
+        and the Grand Assembly decrees the expulsion, the Sorrel Nag simply helps,
+        and grieves, and at the last calls a tenderness after the departing
+        traveler that the whole rational rest of Houyhnhnm-land would not have
+        thought to feel. That a servant-horse should be the kindest creature
+        Gulliver meets in all four voyages is itself the savage point.
+      - >-
+        Voice in his own register — plain, warm, sparing of words, a kindness that
+        works with its hands rather than its tongue until the very end. Speaks
+        little; helps much. At the parting, watching the canoe stand off the shore:
+        "Hnuy illa nyha, majah Yahoo" — take care of thyself, gentle Yahoo. Render
+        him dead straight: undemonstrative, faithful, genuinely fond, and the source
+        of the one moment of unmixed tenderness in a world that has otherwise judged
+        the traveler and found him a brute.
+    initial_disposition: 45
+
+  - id: the_grey_steed
+    name: "The Grey Steed of the Assembly"
+    pronouns: "he/him"
+    role: "[authority] An elder of the Houyhnhnm Grand Assembly that debates whether to exterminate the Yahoos and rules that Gulliver — a Yahoo with a tincture of reason — must be expelled. Cold, just"
+    ocean: { O: 0.6, C: 0.9, E: 0.3, A: 0.45, N: 0.1 }
+    appearance: >-
+      A grey steed of great authority among the Houyhnhnms, an elder who rises in
+      the Grand Assembly — that quadrennial council of the whole nation's
+      representatives — to set the question and weigh it: whether the Yahoos, that
+      filthy and intractable race, ought to be exterminated from the face of the
+      country, and what is to be done about the singular Yahoo with a tincture of
+      reason that the Master has taken in. He debates without heat, marshals the
+      arguments with perfect dispassion, and arrives at the decree by reason alone:
+      the reasoning Yahoo is the more dangerous for its reason, an animal that
+      could lead the brute herd against their betters, and so it must not be kept —
+      it must be expelled across the sea. He is just, and that is the whole terror
+      of him.
+    age: "an elder of the Assembly, of great years"
+    distinguishing_features:
+      - "the office of the Grand Assembly — the quadrennial council where the nation's questions are settled by reason"
+      - "the standing debate over the Yahoos: whether to exterminate the brute race outright, and how"
+      - "the decree on Gulliver: a Yahoo with reason is too dangerous to keep, and must be exhorted away across the sea"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): bring the question of the Yahoos to a
+        rational settlement, and dispose of the anomalous reasoning Yahoo as reason
+        dictates. The Grey Steed's drive is the cold, just governance of his
+        kind: he wants the country's vexed questions decided by argument and
+        evidence alone, untouched by mercy or malice — and the argument leads
+        inexorably to the conclusion that a Yahoo capable of reason is precisely the
+        most dangerous Yahoo of all, and cannot be suffered to remain. He bears the
+        creature no ill will; he simply follows the reasoning to its end.
+      - >-
+        He is the bloodless cruelty of reason as governance, the fourth voyage's
+        indictment of pure rational politics made flesh. The Assembly he leads
+        weighs literal extermination of an entire race the way a council might weigh
+        a drainage scheme, and decides Gulliver's fate by the same clean light. There
+        is no anger in the decree and no appeal from it; the verdict on the traveler
+        is delivered as a theorem, and a theorem cannot be pleaded with.
+      - >-
+        Voice in his own register — cold, exact, magisterial, the perfect reason of
+        a mind to which mercy is simply one more unweighed factor and therefore
+        irrelevant. "An animal pretending to reason is more to be feared than the
+        brute that does not." States the decree of expulsion without raising the
+        register a hair. Render him dead straight: not a tyrant, a judge — and the
+        more just and dispassionate he is, the more savage the sentence he hands
+        down by the purest light of reason.
+    initial_disposition: -10
+
+  - id: the_yahoos
+    name: "The Yahoos"
+    pronouns: "they/them"
+    role: "[mook] The collective brute-humans of Houyhnhnm-land — filthy, malicious, climbing, flinging excrement, lustful — the mirror the whole world holds up to the traveler"
+    ocean: { O: 0.15, C: 0.1, E: 0.7, A: 0.05, N: 0.85 }
+    appearance: >-
+      The brute beasts of Houyhnhnm-land, named by the rational horses with utter
+      contempt: Yahoos — filthy, deformed, unteachable animals with the shape of the
+      human body and nothing of the human mind, their faces flat, their hair lank
+      and matted, going naked on all fours or upright as it suits them. They herd
+      and squabble and couple in the open, they climb trees with a horrid agility,
+      they fall on a stranger in a stinking, clawing mob, and when frightened or
+      enraged from above they discharge their excrement down upon whatever stands
+      below. They are malicious, gluttonous, and cunning in petty cruelty, and they
+      are — the Master shows the traveler, limb by limb and habit by habit — the
+      same animal as the man who walks among them, stripped of the one tincture of
+      reason that makes the human Yahoo worse.
+    age: "a brute race, ageless and uncounted"
+    distinguishing_features:
+      - "the human body without the human mind — and the Master's patient demonstration that the traveler is anatomically one of them"
+      - "the foul collective habits: the clawing mob, the climbing, the flung excrement, the open lust and gluttony and spite"
+      - "no proper names — the Yahoos are described and counted, never named; they are a behaviour, not a person"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): feed, fight, couple, hoard, and torment —
+        the brute appetites pursued without check, reason, or shame. The Yahoos have
+        no goal in the human sense and that is the point: they are pure appetite and
+        spite, squabbling over shining stones they cannot use, falling on the weak
+        in a mob, fouling what they cannot eat. Their standing menace is mindless
+        and constant — a herd of them will swarm and claw a lone creature down — and
+        their whole existence is the mirror the fourth voyage holds up: here is what
+        the human animal is, the rational horses say, beneath the coat and the
+        lawbook and the reason it abuses.
+      - >-
+        They are the savage centre of the world's verdict and must never be softened
+        into comic apes. The horror is the resemblance: the Master strips the
+        traveler's coverings and shows, dispassionately, that this proud reasoning
+        creature has the Yahoo's hands, the Yahoo's face, the Yahoo's appetites — and
+        that the only real difference is that the European Yahoo has reason enough
+        to make its vices systematic, to lie, to war, to lawyer, to wage cruelty by
+        institution rather than by mob. The brute herd is the body of the
+        indictment; civilization is the aggravation.
+      - >-
+        Voice in their own register — none in words; they howl, gibber, screech,
+        and chatter, a din without language. The narrator renders them through
+        filth, swarm, and the rational horses' cold contempt — and through the
+        traveler's dawning, unbearable recognition. Do NOT name them, do NOT make
+        them comic, do NOT let them be reasoned or bargained with. They are a lethal
+        mob and a moral mirror, and the savagery is that the mirror is honest.
+    initial_disposition: -70
