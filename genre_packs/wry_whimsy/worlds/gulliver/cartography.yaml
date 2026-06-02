@@ -1,0 +1,1081 @@
+map_resolution: null
+map_style: >-
+  A Thomas Morten 1865 wood-engraving plate of four sea-separated lands, ringed
+  by open ocean with a wrecked ship riding the swell between them. Lower left, a
+  manicured toy-kingdom of six-inch hedges, painted rose-walks, and miniature
+  palaces — Lilliput, with a narrow channel to a second toy-empire across the
+  water. Lower right, a vast country of grain-stalk forests tall as cathedrals and
+  cyclopean masonry — Brobdingnag. Upper left, a perfect circular island hanging
+  in the air above the ruined experimental farms and weed-choked fields of a land
+  below it — Laputa over Balnibarbi, with lesser isles strung out toward a distant
+  court. Upper right, a clean ordered grassland, fenced and tended, fouled at its
+  ragged edges by a filthy climbing herd — Houyhnhnm-land. Dense cross-hatched
+  black line, dramatic scale contrast between the giant lands and the tiny,
+  restrained or no tint, the four lobes drawn as separate plates joined only by
+  the engraved sea. No compass rose; the wrecked ship and the four shores carry
+  the eye.
+navigation_mode: region
+starting_region: the_lilliput_shore
+world_name: Gulliver
+
+regions:
+
+  # ══ THE SEAM ═══════════════════════════════════════════════════════════════
+
+  # ── THE OPEN SEA — the shipwreck / re-embark hub ───────────────────────────
+  the_open_sea:
+    name: The Open Sea
+    summary: "The shipwreck and re-embark hub — the savage 'set sail again' that joins all four voyages"
+    description: >-
+      The open ocean, and the only road between the four lands — for there is no
+      walking from one to another; there is only the sea, and the wreck, and the
+      setting-out again. Here a longboat swamps in a storm, or a ship is driven off
+      its reckoning, or a man is set adrift in a small craft and washed toward a
+      shore he could not have found on any chart. This is the seam of the whole
+      world and its bleakest joke: each voyage ends with a real escape across this
+      water — the Blefuscan boat, the eagle-dropped box plucked from the waves, the
+      Dutch ship, the canoe of stitched skins — and each escape brings the traveler
+      home, and home he cannot bear, and so he comes back here and embarks once
+      more. He never learns. The sea takes him out again every time.
+    terrain: ocean
+    controlled_by: no_one
+    adjacent:
+      - the_lilliput_shore
+      - blefuscu_strand
+      - the_giant_cornfield
+      - the_seaside_box
+      - laputa_flying_island
+      - luggnagg_court
+      - the_yahoo_field
+      - the_canoe_shore
+      - the_homecoming
+    landmarks:
+      - the wrecked hull half-foundered in the swell, the way in to every voyage
+      - a waiting ship standing off under shortened sail, the way out and the way back
+      - the small drifting craft — longboat, box, and canoe — by which each land is left
+      - the open horizon that always offers one more voyage to a man who should go home
+    entities:
+      - id: the_wreck
+        label: the foundered wreck
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: sea_the_wreck
+        affordances:
+          - cling_to
+          - salvage
+          - strike_for_shore
+      - id: the_waiting_ship
+        label: the ship standing off under shortened sail
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: sea_the_waiting_ship
+        affordances:
+          - hail
+          - embark
+          - set_sail_again
+      - id: the_open_horizon
+        label: the open horizon and its standing offer of one more voyage
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ══ VOYAGE 1 — LILLIPUT (you are the giant) ════════════════════════════════
+
+  # ── THE LILLIPUT SHORE — wake bound by threads ─────────────────────────────
+  the_lilliput_shore:
+    name: The Lilliput Shore
+    summary: "Where you wake staked to the ground by a thousand threads, the giant washed ashore among a six-inch people"
+    description: >-
+      A smooth shelving beach where you come to your senses flat on your back in
+      the blazing sun, and find that you cannot stir — for in the hours you lay
+      insensible a whole nation six inches high has swarmed over you and pegged you
+      to the ground, your arms, your legs, your long hair, lashed down with a
+      thousand slender threads and ranks of little stakes. They have built a stage
+      by your ear to harangue you from, they shoot volleys of needle-arrows into
+      your hand when you struggle, and they feed you, once they judge you tame, with
+      baskets of meat and hogsheads of wine no bigger than thimbles. You are Quinbus
+      Flestrin, the Great Man-Mountain, and you are their prisoner before you have
+      so much as learned their name.
+    terrain: shore
+    controlled_by: the_lilliput_court
+    adjacent:
+      - the_open_sea
+      - mildendo_capital
+    landmarks:
+      - the bank where you wake pegged flat by a thousand threads and ranks of little stakes
+      - the stage built level with your ear, from which the officers harangue the Man-Mountain
+      - the volleys of needle-arrows loosed into your hand and face when you strain at the threads
+      - the baskets of thimble-sized meat and the hogshead casks of wine hauled up to feed you
+    entities:
+      - id: lilliput_thread_stakes
+        label: the threads and stakes that peg you to the shore
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: lilliput_thread_stakes
+        affordances:
+          - strain_against
+          - lie_still
+          - snap_the_threads
+      - id: the_haranguing_stage
+        label: the stage built level with your ear
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: shore_haranguing_stage
+        affordances:
+          - listen
+          - speak_down_to
+      - id: the_needle_arrows
+        label: the volleys of needle-arrows
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── MILDENDO CAPITAL — the toy capital and the court ───────────────────────
+  mildendo_capital:
+    name: Mildendo, the Capital
+    summary: "The walled toy-capital of Lilliput and its court — the Emperor, the jealous Treasurer, the hostile Admiral, the one friendly minister"
+    description: >-
+      Mildendo, the metropolis of Lilliput: a walled city two feet and a half square,
+      its houses three to five storeys high, its shops and markets thronged, its
+      streets so narrow you must step over the rooftops and pick your way through the
+      capital as through a child's model of a town. At the centre stands the imperial
+      palace, and through these streets parade the great men of the realm — the
+      Emperor in his three-inch majesty, styled Delight and Terror of the Universe;
+      Flimnap the High-Treasurer who won his office dancing on a rope and watches you
+      with a jealous husband's eye; Skyresh Bolgolam the Admiral who hated you from
+      the first hour; and Reldresal the Principal Secretary, the one honest man, who
+      comes privately to explain the High-Heels and the Low-Heels, the Big-Endians and
+      the Little-Endians, and the holy war they all entail.
+    terrain: city
+    controlled_by: the_lilliput_court
+    adjacent:
+      - the_lilliput_shore
+      - the_imperial_palace
+    landmarks:
+      - the city wall two feet and a half high, its towers level with your knee
+      - the chamberpot-sized streets you must step over the houses to cross
+      - the court where the High-Heels and Low-Heels will not sit at one table
+      - the parade-ground where Reldresal explains the egg-war between you on the table
+    entities:
+      - id: the_emperor_of_lilliput
+        label: the Emperor of Lilliput
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_emperor_of_lilliput
+        affordances:
+          - speak_to
+          - kneel_to
+      - id: flimnap
+        label: Flimnap, the High-Treasurer
+        tier: real_object
+        binding:
+          kind: npc
+          ref: flimnap
+        affordances:
+          - speak_to
+      - id: skyresh_bolgolam
+        label: Skyresh Bolgolam, the Admiral
+        tier: real_object
+        binding:
+          kind: npc
+          ref: skyresh_bolgolam
+        affordances:
+          - speak_to
+      - id: reldresal
+        label: Reldresal, the Principal Secretary
+        tier: real_object
+        binding:
+          kind: npc
+          ref: reldresal
+        affordances:
+          - speak_to
+          - hear_the_state_of_the_court
+      - id: mildendo_city_walls
+        label: the city walls and chamberpot-sized streets of Mildendo
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: mildendo_city_walls
+        affordances:
+          - step_over
+          - peer_into
+      - id: the_rope_dancers
+        label: the rope-dancers cutting capers for high office
+        tier: flavor_only
+    rivers: []
+    settlements:
+      - Mildendo
+
+  # ── THE IMPERIAL PALACE — the fire and the impeachment ─────────────────────
+  the_imperial_palace:
+    name: The Imperial Palace
+    summary: "Belfaborac, the palace you save from fire by the only gross means — and where the articles of impeachment are drawn against you"
+    description: >-
+      Belfaborac, the imperial palace at the centre of Mildendo, where in the dead
+      of night a fire breaks out in the Empress's apartment and the whole toy-city
+      cannot fetch water fast enough to save it. There is one means to hand, gross
+      and immediate, and you employ it, and the fire is out — and the saving of the
+      palace by so unseemly an expedient becomes, in time, one of the charges
+      against you. For it is here that your enemies do their real work: Flimnap, the
+      jealous Treasurer, draws up the articles of impeachment in his own hand, the
+      Admiral hardens every count, and the Emperor — calling it mercy — resolves that
+      the Man-Mountain shall be blinded, and then quietly starved. The palace you
+      saved is the palace that condemns you.
+    terrain: palace
+    controlled_by: the_lilliput_court
+    adjacent:
+      - mildendo_capital
+      - blefuscu_strand
+    landmarks:
+      - the Empress's apartment ablaze in the night, beyond the reach of the little fire-buckets
+      - the gross expedient by which you put the fire out, never to be forgiven
+      - the council-chamber where the articles of impeachment are drawn and hardened
+      - the sentence pronounced as clemency — blinding first, and slow starvation after
+    entities:
+      - id: flimnap_at_the_palace
+        label: Flimnap drawing up the articles of impeachment
+        tier: real_object
+        binding:
+          kind: npc
+          ref: flimnap
+        affordances:
+          - speak_to
+          - confront
+      - id: the_burning_apartment
+        label: the burning royal apartment
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: palace_burning_apartment
+        affordances:
+          - put_out_the_fire
+          - inspect
+      - id: the_articles_of_impeachment
+        label: the articles of impeachment
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: palace_articles_of_impeachment
+        affordances:
+          - read
+          - answer
+      - id: belfaborac_palace
+        label: the palace of Belfaborac itself
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── BLEFUSCU STRAND — the rival empire and the escape ──────────────────────
+  blefuscu_strand:
+    name: Blefuscu Strand
+    summary: "The shore of the rival empire across the channel — refuge of the Big-Endian exiles, the captured fleet at anchor, and the boat by which you escape"
+    description: >-
+      The strand of Blefuscu, that great rival empire across a channel eight hundred
+      yards wide — the refuge to which the Big-Endian heretics fled when Lilliput
+      made it death to crack an egg at the larger end, and the haven you make for
+      yourself when the sentence of blinding is decreed. Here ride the very
+      men-of-war you once waded out and hauled to Lilliput's harbour by their anchor-
+      cables, and here the Envoy of Blefuscu has offered you, in his sovereign's
+      name, the welcome Lilliput withdrew. And here, by the greatest fortune of the
+      first voyage, you spy a real boat — a full-sized ship's boat, overturned and
+      driven ashore — and set the whole resources of an empire to refitting it, so
+      that you may at last put to sea and go home, and forget nothing, and learn
+      nothing.
+    terrain: shore
+    controlled_by: the_lilliput_court
+    adjacent:
+      - the_imperial_palace
+      - the_open_sea
+    landmarks:
+      - the eight-hundred-yard channel between the two warring empires
+      - the captured fleet of Blefuscan men-of-war you once towed away by their cables
+      - the overturned full-sized boat driven ashore, your one road home
+      - the Big-Endian exiles' quarter, peopled by heretics over the cracking of an egg
+    entities:
+      - id: the_blefuscu_envoy
+        label: the Envoy of Blefuscu
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_blefuscu_envoy
+        affordances:
+          - speak_to
+          - accept_asylum
+      - id: the_captured_fleet
+        label: the captured Blefuscan fleet at anchor
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: blefuscu_captured_fleet
+        affordances:
+          - inspect
+          - haul
+      - id: the_found_boat
+        label: the overturned full-sized boat driven ashore
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: blefuscu_found_boat
+        affordances:
+          - right
+          - refit
+          - put_to_sea
+      - id: the_big_endian_exiles
+        label: the Big-Endian exiles' quarter
+        tier: flavor_only
+    rivers: []
+    settlements:
+      - Blefuscu
+
+  # ══ VOYAGE 2 — BROBDINGNAG (you are the pet) ═══════════════════════════════
+
+  # ── THE GIANT CORNFIELD — arrival among the reapers ────────────────────────
+  the_giant_cornfield:
+    name: The Giant Cornfield
+    summary: "Where you arrive among corn-stalks tall as trees and reapers whose scythes nearly kill you — the giant land, and now you are the speck"
+    description: >-
+      A field of standing corn in the country of Brobdingnag, where every stalk
+      rises forty feet over your head like the trunk of a tree and the ears of grain
+      hang heavy as roof-beams in the wind far above. You crouch and stumble through
+      this towering harvest, and then the ground shakes — the reapers are coming,
+      giants tall as steeples taking ten yards at a stride, and their scythes sweep
+      through the corn in arcs that would shear you in two without their once knowing
+      you were there. Here the whole proportion of the world is reversed: where in
+      Lilliput you were the Man-Mountain, here you are the insect in the grain, and
+      it is the farmer, stooping to peer at the curious creature in his field, who
+      lifts you between finger and thumb and carries you off to be displayed.
+    terrain: field
+    controlled_by: the_brobdingnag_crown
+    adjacent:
+      - the_open_sea
+      - the_farmers_house
+    landmarks:
+      - the corn-stalks rising forty feet like the trunks of trees
+      - the reapers tall as steeples, their scythes sweeping arcs that would shear you in two
+      - the furrow where you cower and shout unheard beneath the harvest
+      - the vast finger and thumb that close upon you and lift you from the field
+    entities:
+      - id: the_farmer
+        label: the farmer who finds you in the corn
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_farmer
+        affordances:
+          - speak_to
+          - be_lifted
+      - id: the_giant_scythes
+        label: the giant scythes and tree-tall corn-stalks
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: cornfield_giant_scythes
+        affordances:
+          - flee
+          - shelter_under
+      - id: the_harvest_din
+        label: the earth-shaking tread of the reapers
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE FARMER'S HOUSE — displayed for coin ────────────────────────────────
+  the_farmers_house:
+    name: The Farmer's House
+    summary: "Where you are housed, named Grildrig by the farmer's kind daughter, and shown for money to crowds — among a cat, the rats, and the baby, all turned to monsters by scale"
+    description: >-
+      The house of the farmer who found you, where every common thing of a kitchen
+      is a deadly wonder: a house-cat three times the bulk of an ox that fixes you
+      with its enormous eye; rats the size of mastiffs that you must fight off with
+      your hanger; a baby that snatches you up and crams your head into its mouth.
+      Here the farmer's nine-year-old daughter — forty feet of careful tenderness —
+      takes you into her keeping, sews you clothes, makes you a bed in her doll's
+      cradle, teaches you the language, and names you Grildrig, her little mannikin;
+      and here too the farmer, grasping that the crowds will pay, sets you to
+      performing ten times a day in the market-town and then all over the kingdom,
+      working his marvel thin and pale and near to death.
+    terrain: dwelling
+    controlled_by: the_brobdingnag_crown
+    adjacent:
+      - the_giant_cornfield
+      - the_kings_court
+    landmarks:
+      - the doll's cradle Glumdalclitch makes into your bed and the clothes she sews to your scale
+      - the house-cat three times the bulk of an ox, watching you across the table
+      - the mastiff-sized rats you fight off with your hanger drawn
+      - the market-town platform where the farmer shows you ten times a day for coin
+    entities:
+      - id: the_farmer_at_home
+        label: the farmer exhibiting you for money
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_farmer
+        affordances:
+          - speak_to
+          - perform_for_the_crowd
+      - id: glumdalclitch
+        label: Glumdalclitch, the farmer's daughter
+        tier: real_object
+        binding:
+          kind: npc
+          ref: glumdalclitch
+        affordances:
+          - speak_to
+          - be_tended
+      - id: the_giant_cat
+        label: the ox-sized house-cat
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: farmhouse_giant_cat
+        affordances:
+          - keep_still
+          - hide_from
+      - id: the_giant_rats
+        label: the mastiff-sized rats
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: farmhouse_giant_rats
+        affordances:
+          - fight_off
+          - flee
+      - id: the_paying_crowds
+        label: the paying crowds at the market-town
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE KING'S COURT — the verdict on Europe ───────────────────────────────
+  the_kings_court:
+    name: The King's Court
+    summary: "Lorbrulgrud — the royal court where the Queen buys you, the malicious dwarf torments you, and the wise King interviews you and names your whole species odious vermin"
+    description: >-
+      The court at Lorbrulgrud, the Pride of the Universe, where the Queen, charmed
+      by the little performer, pays a thousand pieces of gold for you and takes you
+      into her own fond keeping — a treasured pet, set on a box at the royal table.
+      Here the Queen's malicious dwarf, sole sufferer until you came of being the
+      smallest in the land, drops you in the cream and wedges you in a marrow-bone
+      for the table's sport; and here the King, a sovereign of vast sense, takes you
+      up on his hand and questions you, audience upon audience, about the country you
+      came from — your government, your wars, your laws, your money — and, weighing
+      your proud answers with perfect reason and no malice at all, pronounces the
+      verdict of the whole second voyage: that your kind is the most pernicious race
+      of little odious vermin that nature ever suffered to crawl upon the earth.
+    terrain: palace
+    controlled_by: the_brobdingnag_crown
+    adjacent:
+      - the_farmers_house
+      - the_seaside_box
+    landmarks:
+      - the royal table where you sit on your box and the King takes you onto his hand
+      - the King's long interview, where your account of Europe becomes its own indictment
+      - the cream-bowl and the marrow-bone, the dwarf's cruel jests turned by scale to murder
+      - the moment the King forbids the offered secret of gunpowder ever to be named again
+    entities:
+      - id: the_brobdingnag_king
+        label: the King of Brobdingnag
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_brobdingnag_king
+        affordances:
+          - speak_to
+          - answer_the_interview
+      - id: the_brobdingnag_queen
+        label: the Queen of Brobdingnag
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_brobdingnag_queen
+        affordances:
+          - speak_to
+          - amuse
+      - id: the_court_dwarf
+        label: the Queen's malicious dwarf
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_court_dwarf
+        affordances:
+          - speak_to
+          - evade
+      - id: the_royal_table
+        label: the royal table and the King's interviewing hand
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: court_royal_table
+        affordances:
+          - sit
+          - testify_about_europe
+      - id: the_courtiers
+        label: the watching courtiers of Lorbrulgrud
+        tier: flavor_only
+    rivers: []
+    settlements:
+      - Lorbrulgrud
+
+  # ── THE SEASIDE BOX — the eagle and the rescue ─────────────────────────────
+  the_seaside_box:
+    name: The Seaside Box
+    summary: "The coast where your travelling-box is snatched up by an eagle and dropped into the sea — and you are plucked from the waves and carried home"
+    description: >-
+      A stretch of coast where the court has come down to the seaside, and you with
+      it, shut for safety in your travelling-box — the snug little chamber
+      Glumdalclitch had made for you, with its ring on top to be carried by. Left
+      for a moment in the open air, the box is seized: an eagle, taking the ring for
+      something edible, snatches the whole chamber up into the sky and bears you off
+      over the water, and when other birds set upon it the eagle lets go, and you
+      fall, box and all, into the open sea. There you float and pitch and bail and
+      shout, sealed in a wooden room upon the waves, until at the last a passing ship
+      hears the noise, hoists the box aboard, and breaks it open to find a tiny man —
+      and so the second voyage ends, as the first did, in a rescue at sea and a road
+      home you will not learn from.
+    terrain: coast
+    controlled_by: the_brobdingnag_crown
+    adjacent:
+      - the_kings_court
+      - the_open_sea
+    landmarks:
+      - the travelling-box with its carrying-ring, your chamber and your prison both
+      - the eagle that takes the ring for food and bears the whole box into the sky
+      - the long fall and the open sea, the box pitching and shipping water on the swell
+      - the passing ship that hears you, hoists the box aboard, and breaks it open
+    entities:
+      - id: the_travelling_box
+        label: the travelling-box adrift on the swell
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: seaside_travelling_box
+        affordances:
+          - bail
+          - shout_for_rescue
+          - brace
+      - id: the_eagle
+        label: the eagle that snatches the box
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: seaside_the_eagle
+        affordances:
+          - watch
+          - endure_the_flight
+      - id: the_open_swell
+        label: the open swell beneath the falling box
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ══ VOYAGE 3 — LAPUTA & BELOW (you are the tourist) ════════════════════════
+
+  # ── LAPUTA FLYING ISLAND — the abstracted court ────────────────────────────
+  laputa_flying_island:
+    name: Laputa, the Flying Island
+    summary: "The circular island that hangs in the air — the abstracted court of mathematicians and musicians, the flappers, and the threat to drop the island on rebel cities"
+    description: >-
+      Laputa, an exact circle of land four miles and a half across, hanging in the
+      air over the kingdom of Balnibarbi and moved about the realm at the King's
+      pleasure by the great loadstone in its core. Its court is given over wholly to
+      two studies, mathematics and music, and to nothing else: the men go about with
+      their heads reclined to one side, one eye turned in and one turned up, so lost
+      in speculation that each must be attended by a servant — a flapper — with a
+      pebble-bladder to flap his mouth and ear when it is his turn to speak or hear.
+      The King himself must be so roused. And beneath all this abstraction lies the
+      hard fact of the island's power: it can be lowered onto the cities of
+      Balnibarbi below to blot out their sun and rain, or, if they rebel outright,
+      let down upon their roofs to crush them — though the city of Lindalino once
+      raised four towers and a loadstone to hole the adamantine floor and very nearly
+      brought the island down. Reason without sense, throned and armed.
+    terrain: sky_island
+    controlled_by: the_lagado_academy
+    adjacent:
+      - the_open_sea
+      - lagado_academy
+    landmarks:
+      - the circular island four miles and a half across, hanging in the air on its loadstone
+      - the court of mathematicians and musicians, heads reclined, eyes turned in and up
+      - the flappers with their pebble-bladders, who flap a man's mouth and ear so he may speak
+      - the adamantine underside, lowered onto rebel cities to crush them or starve them of sun
+    entities:
+      - id: the_laputan_king
+        label: the King of Laputa
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_laputan_king
+        affordances:
+          - speak_to
+          - wait_for_the_flapper
+      - id: the_flappers
+        label: the flappers with their pebble-bladders
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: laputa_the_flappers
+        affordances:
+          - observe
+          - be_flapped_to_attention
+      - id: the_adamantine_underside
+        label: the adamantine underside and the loadstone
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: laputa_adamantine_underside
+        affordances:
+          - inspect
+          - dread
+      - id: the_abstracted_court
+        label: the abstracted mathematicians and musicians of the court
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── LAGADO ACADEMY — the projectors and the ruined land ────────────────────
+  lagado_academy:
+    name: The Grand Academy of Lagado
+    summary: "The Academy of projectors in Balnibarbi below — sunbeams from cucumbers, marble softened for pillows, houses built from the roof down — and Munodi's one sane estate amid the ruin"
+    description: >-
+      Lagado, the chief city of Balnibarbi below the flying island, and its Grand
+      Academy of Projectors — five hundred rooms of earnest, filthy, half-starved
+      enthusiasts, each labouring with total faith at a scheme that cannot work. One
+      has spent eight years extracting sunbeams out of cucumbers, to be bottled
+      against cold summers; another softens marble into pillows and pin-cushions;
+      another would build houses from the roof downward, as the bee and the spider do;
+      another sows the fields with chaff and ploughs them with hogs. And all around
+      the Academy the country lies in ruin — the fields choked with weeds, the houses
+      falling down — because every project failed and the old methods were forbidden
+      as backward. Only one estate prospers: that of Lord Munodi, the one sane man,
+      out of favour for the crime of keeping his lands the way that works.
+    terrain: ruin
+    controlled_by: the_lagado_academy
+    adjacent:
+      - laputa_flying_island
+      - glubbdubdrib_isle
+    landmarks:
+      - the Grand Academy of five hundred rooms, each a project that cannot work
+      - the projector's cell where eight years go to bottling sunbeams out of cucumbers
+      - the ruined country round about, weed-choked and falling down, reasoned into famine
+      - Lord Munodi's flourishing estate, the one sane field in a mad nation
+    entities:
+      - id: a_lagado_projector
+        label: a projector of the Grand Academy
+        tier: real_object
+        binding:
+          kind: npc
+          ref: a_lagado_projector
+        affordances:
+          - speak_to
+          - be_shown_the_project
+      - id: munodi
+        label: Lord Munodi
+        tier: real_object
+        binding:
+          kind: npc
+          ref: munodi
+        affordances:
+          - speak_to
+          - be_shown_the_ruin
+      - id: the_grand_academy
+        label: the Grand Academy of Projectors
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: lagado_grand_academy
+        affordances:
+          - tour
+          - inspect_the_projects
+      - id: the_ruined_fields
+        label: the weed-choked ruined fields of Balnibarbi
+        tier: flavor_only
+    rivers: []
+    settlements:
+      - Lagado
+
+  # ── GLUBBDUBDRIB ISLE — the governor who summons the dead ──────────────────
+  glubbdubdrib_isle:
+    name: The Isle of Glubbdubdrib
+    summary: "The little Isle of Sorcerers, where the governor summons the dead — Alexander, Caesar, the ancient senates — for the tourist to question face to face"
+    description: >-
+      Glubbdubdrib, the little Island of Sorcerers or Magicians, where the Governor
+      keeps a household waited on entirely by the dead — ghosts called up for a term
+      of four-and-twenty hours and dismissed, so that no servant wears the same face
+      two days running. He receives the tourist with grave hospitality and grants him
+      the use of his art: name any person who ever lived, and the shade is raised to
+      be questioned. So the dead come and stand and answer — Alexander, who confesses
+      he died not of a wound but of drink; Caesar and the senates of Rome; the great
+      men of every age — and from their own mouths the tourist learns how thoroughly
+      the histories have lied, how mean the springs of famous deeds, and how far the
+      modern stock has fallen from the ancient. The Governor neither boasts nor
+      laments; he merely raises the next shade you ask for.
+    terrain: isle
+    controlled_by: the_lagado_academy
+    adjacent:
+      - lagado_academy
+      - luggnagg_court
+    landmarks:
+      - the household waited on by ghosts, the servants' faces never twice the same
+      - the chamber where the dead are summoned and dismissed at a day's term
+      - the shades of Alexander and Caesar, raised to answer the tourist's questions
+      - the ancient senates and councils, called up and set against their flattering histories
+    entities:
+      - id: the_governor_of_glubbdubdrib
+        label: the Governor of Glubbdubdrib
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_governor_of_glubbdubdrib
+        affordances:
+          - speak_to
+          - request_a_summoning
+      - id: the_summoned_dead
+        label: the summoned dead — Caesar and the ancient senates
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: glubbdubdrib_summoned_dead
+        affordances:
+          - question
+          - hear_the_truth
+      - id: the_ghost_servants
+        label: the ghost-servants of the household
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── LUGGNAGG COURT — the floor-licking and the Struldbruggs ────────────────
+  luggnagg_court:
+    name: The Court of Luggnagg
+    summary: "The court where suppliants lick the floor to approach the throne — and where the immortal Struldbruggs, red-spotted and undying, reveal that endless life is endless decay"
+    description: >-
+      The court of Luggnagg, where to approach the throne a suppliant must crawl on
+      his belly and lick the dust of the floor as he comes — and if the King means a
+      man ill, the floor is strewn beforehand with a brown poisonous powder that
+      kills him as he licks. Here the tourist hears of the Struldbruggs, the
+      immortals born now and again among the people, marked from birth by a round red
+      spot over the left brow that never fades; and here he glows with envy of the
+      boundless life they must enjoy, and frames a hundred glorious schemes for the
+      use of his own — until he is shown the truth of them. For the Struldbruggs do
+      not stay young: they age into deaf, toothless, memoryless, friendless decay,
+      declared dead in law at eighty, stripped of all they had, and left to rot for
+      centuries without the mercy of the grave. Envied by the foolish, pitied by all
+      who learn the whole.
+    terrain: court
+    controlled_by: the_lagado_academy
+    adjacent:
+      - glubbdubdrib_isle
+      - the_open_sea
+    landmarks:
+      - the floor a suppliant must lick to crawl toward the throne, poisoned if the King wills it
+      - the red-spotted Struldbruggs, marked from birth as those who will never die
+      - the envied gift of deathlessness, and the schemes the tourist frames before he learns the truth
+      - the catalogue of immortal decay — deaf, toothless, memoryless, and dead in law at eighty
+    entities:
+      - id: a_struldbrugg
+        label: a Struldbrugg of Luggnagg
+        tier: real_object
+        binding:
+          kind: npc
+          ref: a_struldbrugg
+        affordances:
+          - speak_to
+          - pity
+      - id: the_throne_floor
+        label: the floor that must be licked to approach the throne
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: luggnagg_throne_floor
+        affordances:
+          - crawl
+          - lick
+      - id: the_red_spotted_immortals
+        label: the red-spotted immortals of Luggnagg
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ══ VOYAGE 4 — HOUYHNHNM-LAND (you are the Yahoo) ══════════════════════════
+
+  # ── THE YAHOO FIELD — taken for a Yahoo ────────────────────────────────────
+  the_yahoo_field:
+    name: The Yahoo Field
+    summary: "Where you are set upon as one of the filthy brute Yahoos amid their kennel and their filth — and a rational grey horse intervenes"
+    description: >-
+      The open ground where you first come ashore in the land of the Houyhnhnms, and
+      are at once taken for what the masters of this country reckon you: a Yahoo, one
+      of the filthy, deformed, brute beasts that have the shape of a man and nothing
+      of his mind. They herd here in their kennel of filth, climbing, squabbling,
+      coupling, and falling on you in a stinking clawing mob; when frightened from a
+      tree above they discharge their excrement down upon you. You fight them off in
+      horror and disgust — and only the arrival of a grey horse, a Houyhnhnm, who
+      regards you with calm astonishment as a Yahoo that walks clothed and upright,
+      lifts you out of the herd and away. The horror of the fourth voyage begins here,
+      in the moment you are sorted, without appeal, into the brute race.
+    terrain: grassland
+    controlled_by: the_houyhnhnm_assembly
+    adjacent:
+      - the_open_sea
+      - the_masters_house
+    landmarks:
+      - the kennel of filth where the Yahoos herd, climb, squabble, and couple in the open
+      - the clawing mob that falls upon you, and the excrement flung down from the branches
+      - the grey horse that comes upon the commotion and regards you with calm astonishment
+      - the dawning, unbearable likeness between you and the brute beasts you are fighting off
+    entities:
+      - id: the_yahoos
+        label: the brute Yahoos of the field
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_yahoos
+        affordances:
+          - fight_off
+          - flee
+          - recognize
+      - id: the_yahoo_kennel
+        label: the Yahoo kennel and its filth
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: field_yahoo_kennel
+        affordances:
+          - avoid
+          - endure
+      - id: the_flung_filth
+        label: the excrement flung down from the branches
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE MASTER'S HOUSE — the reasoning host ────────────────────────────────
+  the_masters_house:
+    name: The Master's House
+    summary: "The clean rational household of the grey Houyhnhnm who takes you in, teaches you the language, and hears your account of Europe with cold incomprehension"
+    description: >-
+      The household of the grey Houyhnhnm who took you out of the Yahoo herd — a
+      clean, ordered, rational dwelling unlike anything in the brute country around
+      it, where the horses live by reason alone and have no acquaintance with vice,
+      passion, or deceit because their nation has never needed words for them. Here
+      the Master studies you as a Yahoo with a strange tincture of reason; he teaches
+      you his whinnying language with grave patience, and hears, audience by
+      audience, your account of the country you came from. And as you describe
+      Europe — its wars, its laws, its money, its lying — he cannot at first even
+      comprehend you, for he has no word for war or law or lie, and must strain to
+      grasp what you call "the thing which is not"; and the Sorrel Nag, his fond
+      servant, looks on. The more honestly you answer, the more plainly the Master
+      concludes that the human animal is a Yahoo, improved only in its genius for harm.
+    terrain: dwelling
+    controlled_by: the_houyhnhnm_assembly
+    adjacent:
+      - the_yahoo_field
+      - the_grand_assembly
+    landmarks:
+      - the clean rational household, ordered wholly by reason and ignorant of vice
+      - the long instruction in the whinnying language, and the audiences on the state of Europe
+      - the Master's struggle to grasp 'the thing which is not' — a nation with no word for a lie
+      - the Sorrel Nag, the fond servant who looks on and comes to feel for the reasoning Yahoo
+    entities:
+      - id: the_houyhnhnm_master
+        label: the Houyhnhnm Master
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_houyhnhnm_master
+        affordances:
+          - speak_to
+          - recount_europe
+      - id: the_sorrel_nag
+        label: the Sorrel Nag, the master's servant
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_sorrel_nag
+        affordances:
+          - speak_to
+      - id: the_rational_household
+        label: the clean rational household
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: masters_rational_household
+        affordances:
+          - dwell
+          - learn_the_language
+      - id: the_whinnying_tongue
+        label: the whinnying Houyhnhnm tongue
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE GRAND ASSEMBLY — the cold debate ───────────────────────────────────
+  the_grand_assembly:
+    name: The Grand Assembly
+    summary: "The quadrennial council of the Houyhnhnms that debates whether to exterminate the Yahoos and rules that you, a Yahoo with reason, must be expelled"
+    description: >-
+      The Grand Assembly of the Houyhnhnms, the council of the whole nation's
+      representatives that meets once in four years to settle the country's
+      questions by reason alone — and that has before it now two questions touching
+      you. The first is the standing one: whether the Yahoos, that filthy and
+      intractable race, ought to be exterminated from the face of the country
+      altogether, and by what means. The second is the new one your arrival has
+      raised: what is to be done about the singular Yahoo with a tincture of reason
+      that the grey Master has kept in his house. An elder grey steed sets the
+      question and weighs it without heat, and the Assembly arrives by pure argument
+      at its decree — that a Yahoo capable of reason is the most dangerous Yahoo of
+      all, and so cannot be suffered to remain, but must be exhorted to swim back
+      across the sea whence it came. There is no anger in the verdict, and no appeal.
+    terrain: grassland
+    controlled_by: the_houyhnhnm_assembly
+    adjacent:
+      - the_masters_house
+      - the_canoe_shore
+    landmarks:
+      - the quadrennial council of the whole nation, settling all questions by reason alone
+      - the standing debate over the Yahoos — whether to exterminate the brute race, and how
+      - the new question of the reasoning Yahoo kept in the grey Master's house
+      - the decree, delivered as a theorem and beyond appeal: the reasoning Yahoo must be expelled
+    entities:
+      - id: the_grey_steed
+        label: the Grey Steed of the Assembly
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_grey_steed
+        affordances:
+          - speak_to
+          - hear_the_decree
+      - id: the_houyhnhnm_master_at_assembly
+        label: the Houyhnhnm Master at the Assembly
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_houyhnhnm_master
+        affordances:
+          - speak_to
+          - plead_with
+      - id: the_assembly_gathering
+        label: the gathered representatives of the nation
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: assembly_the_gathering
+        affordances:
+          - attend
+          - be_judged
+      - id: the_cold_debate
+        label: the bloodless debate over extermination and expulsion
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE CANOE SHORE — expelled, forced to sea ──────────────────────────────
+  the_canoe_shore:
+    name: The Canoe Shore
+    summary: "The shore where, expelled by the Assembly's decree, you build a canoe of stitched Yahoo skins and are forced to sea — the Sorrel Nag at your side, and his farewell"
+    description: >-
+      The shore from which you are expelled. The Assembly has decreed it and the
+      Master, fond of you as reason permits but bound by reason absolutely, will not
+      gainsay it: a Yahoo with reason cannot stay, and so you must go. There is no
+      ship; there is only what you can build, and so on this beach you fashion a
+      canoe — a small craft skinned, of all the materials this country offers, with
+      the stitched hides of Yahoos, your own kind — and the Sorrel Nag, the one
+      creature in all four voyages to feel for you a plain warm fondness, works
+      beside you, hauling and binding, to help the thing you have become depart
+      alive. When at last you stand off from the shore he calls a tenderness after
+      you across the water — take care of thyself, gentle Yahoo — and you go, knowing
+      now what you are, and unable to unlearn it.
+    terrain: shore
+    controlled_by: the_houyhnhnm_assembly
+    adjacent:
+      - the_grand_assembly
+      - the_open_sea
+    landmarks:
+      - the beach of expulsion, where the decree leaves you nothing to do but build and go
+      - the canoe you fashion of stitched Yahoo skins, your own kind made into a hull
+      - the Sorrel Nag working at your side to launch the thing you have become
+      - the farewell cry across the water — 'take care of thyself, gentle Yahoo'
+    entities:
+      - id: the_sorrel_nag_at_the_shore
+        label: the Sorrel Nag helping you build the canoe
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_sorrel_nag
+        affordances:
+          - speak_to
+          - work_beside
+      - id: the_half_built_canoe
+        label: the half-built canoe of stitched skins
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: canoe_half_built
+        affordances:
+          - build
+          - launch
+          - put_to_sea
+      - id: the_departing_water
+        label: the open water you stand off into, knowing what you are
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ══ THE BLEAK TERMINUS ═════════════════════════════════════════════════════
+
+  # ── THE HOMECOMING — Redriff; you prefer the stable ────────────────────────
+  the_homecoming:
+    name: The Homecoming
+    summary: "Redriff, your own house — reached only after the fourth voyage, where you cannot bear your family and prefer the company of horses in the stable"
+    description: >-
+      Redriff, and your own house, and your own wife and children — and you cannot
+      bear them. This shore opens only after the fourth voyage; before it, the sea
+      always offers another land, and you always take it. But there is no land beyond
+      the Houyhnhnms, only the going home, and home is the thing you can no longer
+      stand. The smell of your own family is the smell of the Yahoo to you now; you
+      cannot suffer your wife to take you by the hand, you keep two horses and talk
+      to them some hours a day, and you spend your time in the stable, where the air
+      is clean and the company is rational and does not lie. This is the bleakest
+      homecoming Swift gives: you got home every time, and that was always the horror —
+      the win is the knowledge you brought back, and you cannot put it down.
+    terrain: dwelling
+    controlled_by: no_one
+    adjacent:
+      - the_open_sea
+    landmarks:
+      - your own house at Redriff, reached at last after the fourth voyage and unbearable
+      - your wife and children, whose touch and smell you can no longer suffer
+      - the two horses you keep and converse with some hours of every day
+      - the stable you retreat to, for clean air and rational company that does not lie
+    entities:
+      - id: the_stable
+        label: the stable where you keep your horses
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: homecoming_the_stable
+        affordances:
+          - retreat_to
+          - converse_with_the_horses
+      - id: the_house_at_redriff
+        label: your own house at Redriff
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: homecoming_the_house
+        affordances:
+          - enter
+          - endure
+      - id: your_family
+        label: your wife and children, whom you can no longer bear
+        tier: flavor_only
+    rivers: []
+    settlements:
+      - Redriff
