@@ -1,0 +1,134 @@
+# =============================================================================
+# Wonderland — PREMISE / BLOC IDENTITIES  ·····  DRAFT — NOT LOADED
+# =============================================================================
+# STATUS: DRAFT. This file is NOT read by any consumer and is NOT a declared
+#   pack/world extension. The `.draft.yaml` suffix keeps the loader from
+#   ingesting it. Do NOT add it to any `extensions:` list and do NOT rename it
+#   to `premises.yaml` until the engine schema lands.
+#
+# WHY IT EXISTS: The "Connecticut-Yankee" belief-flow substrate (a sensible
+#   outsider reroutes belief to expose a humbug authority and awaken an
+#   oppressed bloc) is ENGINE work in flight in the oq-3 lane — see
+#   docs/superpowers/specs/2026-06-02-wry-whimsy-premise-belief-flow-design.md.
+#   That spec ships OZ as the v1 reference implementation; the Premise/Bloc
+#   YAML schema is NOT yet locked (genre-level vs per-world is an open question).
+#   This file captures Wonderland's two authority-illusions and their two
+#   populations NOW, as design intent, so they can be promoted to the real
+#   schema with zero re-derivation once it exists. Field names below are
+#   PROVISIONAL and mirror the oq-3 draft model only.
+#
+# AUTHORITATIVE FLAVOR meanwhile lives, fully loaded, in:
+#   - worlds/wonderland/lore.yaml  (the two illusions as in-world open secrets)
+#   - worlds/wonderland/tropes.yaml (the_capricious_sentence, run_to_stay_in_place,
+#     the_pack_of_cards, nonsense_as_authority, only_a_thing_in_his_dream)
+#   - worlds/wonderland/npcs.yaml  (the authorities + their dispositions)
+#   - worlds/wonderland/cartography.yaml (`controlled_by:` marks which lobe each
+#     region answers to — the_queens_terror / the_rigged_game)
+# =============================================================================
+
+world: wonderland
+schema_status: draft_unwired
+
+# ---------------------------------------------------------------------------
+# CARD COUNTRY — the Queen of Hearts' terror
+# ---------------------------------------------------------------------------
+premises:
+
+  - premise_id: the_queens_terror
+    authority: the_queen_of_hearts          # → npcs.yaml id
+    claim: >-
+      The Queen's word is law, her sentences are real, and any card or creature
+      who crosses her will lose its head.
+    belief_reserve: 70                       # provisional 0..100 starting power
+    propped_by:
+      - the_card_court
+    # Witnessed-act archetypes that CONTRADICT the claim and drain belief.
+    drained_by:
+      - act: defy_a_sentence_and_survive
+        note: "Refuse an 'off with your head' order in public and walk away whole."
+      - act: expose_the_king_commutes
+        note: "Show the court that the mild King quietly pardons everyone she condemns."
+      - act: refuse_the_trials_authority
+        note: "Deny the courtroom's right to try you at all (no procedure, no jurisdiction)."
+      - act: name_the_pack_of_cards
+        note: >-
+          The canonical collapse — call the whole court what it is to its face:
+          'You're nothing but a pack of cards!'
+    collapse: >-
+      At exhausted belief the court scatters into flat pasteboard; the Queen's
+      terror is revealed as theater the King was always undoing. Power vacuum:
+      the freed Card-Folk, and the question of who (if anyone) the cards now obey.
+    related_tropes:
+      - the_capricious_sentence
+      - nonsense_as_authority
+      - the_pack_of_cards
+
+  # -------------------------------------------------------------------------
+  # LOOKING-GLASS LAND — the Red Queen's rigged game
+  # -------------------------------------------------------------------------
+  - premise_id: the_rigged_game
+    authority: the_red_queen                 # → npcs.yaml id
+    claim: >-
+      The board's rules are fate; you must run as hard as you can merely to keep
+      your square, and only the Queen says how a piece may advance.
+    belief_reserve: 70
+    propped_by:
+      - the_chesspieces
+    drained_by:
+      - act: refuse_the_race
+        note: "Stop running on command; show the race goes nowhere."
+      - act: reach_the_eighth_square_on_your_own_terms
+        note: "Cross the board and be crowned without obeying her drilling."
+      - act: name_the_sleepers_dream
+        note: >-
+          Say aloud that the whole game may be only the sleeping Red King's dream
+          — that the board's 'fate' rests on a snore.
+    collapse: >-
+      At exhausted belief the feast erupts and the traveler seizes and shakes the
+      queen, who dwindles to a kitten; the board's fate is shown to be a game one
+      could always leave. Power vacuum: a country of chesspieces with no hand to
+      move them.
+    related_tropes:
+      - run_to_stay_in_place
+      - only_a_thing_in_his_dream
+
+# ---------------------------------------------------------------------------
+# BLOCS — the populations the outsider can move
+# ---------------------------------------------------------------------------
+blocs:
+
+  - bloc_id: the_card_court
+    summary: "The painted playing-card courtiers, soldiers, and gardeners of Card Country."
+    defiance: 10                             # provisional 0..100, starts low
+    grants_belief_to:
+      - the_queens_terror
+    awakening_acts:
+      - act: show_a_sentence_can_be_survived
+        note: "Witnessing someone defy the Queen and live emboldens the cards."
+      - act: organize_a_first_small_refusal
+        note: "Help one card (e.g. a terrified gardener) refuse one order and survive."
+    tipping_threshold: 75
+    tipped_outcome: >-
+      The cards stop flattening at her shout; the court will not carry out the
+      next sentence — and, pushed further, simply scatter.
+    flavor: >-
+      They are two-dimensional and terrified, and they know in their pasteboard
+      hearts that they are only cards; they need to be shown it is safe to say so.
+
+  - bloc_id: the_chesspieces
+    summary: "The living Red and White chess pieces of Looking-Glass Land."
+    defiance: 10
+    grants_belief_to:
+      - the_rigged_game
+    awakening_acts:
+      - act: show_the_race_is_optional
+        note: "Demonstrate that one can stop running and lose nothing real."
+      - act: wake_a_piece_to_the_dream
+        note: "Make a piece doubt whether the board's rules are fate at all."
+    tipping_threshold: 75
+    tipped_outcome: >-
+      Pieces step off their squares of their own accord; the orderly game
+      dissolves into a board that no longer plays itself.
+    flavor: >-
+      They move by rule and can see the whole board, which makes them obedient —
+      and which makes a single demonstrated exception spread fast across the squares.
