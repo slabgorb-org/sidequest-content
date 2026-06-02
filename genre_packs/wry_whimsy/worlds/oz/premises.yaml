@@ -1,0 +1,62 @@
+# Oz reference implementation (spec 2026-06-02). The Wizard's power is a Premise:
+# a humbug sustained by belief. Munchkins and Winkies are blocs that prop it and
+# can be awakened. Magnitudes are tuned here, per-world.
+premises:
+  - premise_id: the_wizards_humbug
+    authority: the_wizard
+    claim:
+      subject: the_wizard
+      proposition: "The Wizard is great and terrible, and only he decides Oz."
+    belief_reserve: 90
+    propped_by: [munchkins, winkies]
+    drained_by:
+      - act: expose_the_humbug
+        belief_delta: 35
+        cost: "Must be done publicly — pulling the curtain in an empty room moves nothing."
+      - act: refuse_the_premise
+        belief_delta: 20
+        cost: "Refuse his decree to his face, before witnesses."
+      - act: do_the_forbidden_and_survive
+        belief_delta: 15
+        cost: "Defy a thing he forbade and be seen unharmed after."
+    collapse:
+      threshold: 20
+      outcome: >-
+        Oz the Great and Terrible is revealed as a Nebraska balloonist with no magic
+        at all; he loses the city's deference and prepares his balloon to flee.
+      vacuum_hook: >-
+        The Emerald City has no ruler. General Jinjur's not-yet-raised Army of Revolt
+        sees its moment; Glinda watches from the South.
+
+blocs:
+  - bloc_id: munchkins
+    defiance: 5
+    grants_belief_to: [the_wizards_humbug]
+    awakening_acts:
+      - act: show_defiance_survives
+        defiance_delta: 20
+      - act: organize_a_first_small_refusal
+        defiance_delta: 25
+    tipping_threshold: 70
+    tipped_outcome: >-
+      The Munchkins — only just freed from the Witch of the East — stop deferring to
+      the Emerald City and raise their own banner.
+    flavor: >-
+      Newly unchained and blinking in the light; quick to follow anyone who proves the
+      tyrant can be defied.
+
+  - bloc_id: winkies
+    defiance: 0
+    grants_belief_to: [the_wizards_humbug]
+    awakening_acts:
+      - act: show_defiance_survives
+        defiance_delta: 15
+      - act: organize_a_first_small_refusal
+        defiance_delta: 20
+    tipping_threshold: 75
+    tipped_outcome: >-
+      The Winkies, freed of the Witch of the West, refuse to bow to a second distant
+      master and rally to the Tin Woodman.
+    flavor: >-
+      Long enslaved, slow to trust a new voice — but immovable once they decide a
+      master's authority was never real.
