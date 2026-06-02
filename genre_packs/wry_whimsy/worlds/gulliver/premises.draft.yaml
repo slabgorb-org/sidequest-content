@@ -1,0 +1,194 @@
+# =============================================================================
+# Gulliver — PREMISE / BLOC IDENTITIES  ·····  DRAFT — NOT LOADED
+# =============================================================================
+# STATUS: DRAFT. This file is NOT read by any consumer and is NOT a declared
+#   pack/world extension. The `.draft.yaml` suffix keeps the loader from
+#   ingesting it. Do NOT add it to any `extensions:` list and do NOT rename it
+#   to `premises.yaml` until the engine schema lands.
+#
+# WHY IT EXISTS: The "Connecticut-Yankee" belief-flow substrate (a sensible
+#   outsider reroutes belief to expose a humbug authority and awaken an
+#   oppressed bloc) is ENGINE work in flight in the oq-3 lane — see
+#   docs/superpowers/specs/2026-06-02-wry-whimsy-premise-belief-flow-design.md.
+#   That spec ships OZ as the v1 reference implementation; the Premise/Bloc
+#   YAML schema is NOT yet locked (genre-level vs per-world is an open question).
+#   This file captures Gulliver's single spanning verdict and its four judging
+#   authorities NOW, as design intent, so they can be promoted to the real
+#   schema with zero re-derivation once it exists. Field names below are
+#   PROVISIONAL and mirror the oq-3 draft model only.
+#
+# AUTHORITATIVE FLAVOR meanwhile lives, fully loaded, in:
+#   - worlds/gulliver/lore.yaml  (the four absurd societies + the savage-mirror thesis)
+#   - worlds/gulliver/tropes.yaml (the_satire_turns_on_you, the_thing_which_is_not,
+#     the_yahoo_within, priced_violence_marks_the_yahoo, and the rest of the nine)
+#   - worlds/gulliver/npcs.yaml  (the authorities + their dispositions and goals)
+#   - worlds/gulliver/cartography.yaml (`controlled_by:` marks which voyage-Bloc each
+#     region answers to — the_lilliput_court / the_brobdingnag_crown /
+#     the_lagado_academy / the_houyhnhnm_assembly)
+#
+# DELIBERATE DIVERGENCE FROM WONDERLAND'S DRAFT MODEL (read before promoting):
+#   Wonderland authored TWO per-lobe Premises, each propped by an OPPRESSED
+#   POPULATION (the Card-Folk, the Chesspieces) that the outsider AWAKENS to a
+#   clean COLLAPSE (the pack scatters; the queen dwindles to a kitten). Gulliver
+#   inverts this on purpose, because the savage core of Swift is one indictment
+#   delivered four ways:
+#     (1) ONE spanning Premise (`the_yahoo_verdict`), not four per-voyage Premises.
+#     (2) Its "blocs" are NOT oppressed populations to be liberated — they are the
+#         four JUDGING AUTHORITIES (the courts) that PROP the verdict. They cannot
+#         be awakened or freed; at most they are out-survived. See `cannot_be_awakened`
+#         on each bloc below.
+#     (3) There is NO clean collapse. The verdict is RESISTIBLE but never REFUTABLE.
+#         Draining its belief to zero earns no liberated country and no triumphant
+#         waking — only the traveler's bleak self-knowledge and a homecoming he can
+#         bear a very little better. Wonderland's `collapse:` is therefore replaced
+#         by `resistance:` below.
+# =============================================================================
+
+world: gulliver
+schema_status: draft_unwired
+
+# ---------------------------------------------------------------------------
+# THE ONE SPANNING VERDICT — delivered four ways across the four voyages
+# ---------------------------------------------------------------------------
+premises:
+
+  - premise_id: the_yahoo_verdict
+    # The spanning verdict has no single NPC author — every court pronounces a
+    # version of it. We seat the Houyhnhnm master as `authority` because he
+    # delivers the definitive, naked form ("you are a Yahoo"); the other three
+    # courts (Lilliput, Brobdingnag, Lagado) pronounce softer-worded versions of
+    # the same indictment. → npcs.yaml id.
+    authority: the_houyhnhnm_master
+    claim: >-
+      You are a brute like all your kind — a Yahoo with at best a tincture of
+      reason — and the more you act, the more you prove it.
+    belief_reserve: 80                       # provisional 0..100; high — the satire is largely right
+    propped_by:
+      - the_lilliput_court
+      - the_brobdingnag_crown
+      - the_lagado_academy
+      - the_houyhnhnm_assembly
+    # Witnessed-act archetypes that CONTRADICT the claim and drain its belief.
+    # In Gulliver these are acts of humility, honesty, restraint, and refusing
+    # violence — the only things that argue against the verdict.
+    drained_by:
+      - act: endure_judgment_without_defending_the_indefensible
+        note: >-
+          Stand before a court and hear its verdict on your civilization without
+          lying for Europe's wars, law, and avarice. Honest humility, not pride.
+      - act: refuse_violence_when_violence_is_offered
+        note: >-
+          Decline the brute solution when it is the obvious one — do not kill the
+          rats, do not crush the foe, do not extinguish the fire by the gross means.
+      - act: tell_plain_truth_to_a_court
+        note: >-
+          Answer a royal or assembly interview with exact truth even when it
+          condemns you — the Houyhnhnm cannot lie; matching that argues you are not
+          all Yahoo.
+      - act: show_one_genuine_mercy
+        note: >-
+          Spare or aid one creature at real cost to yourself, with no advantage in
+          it — a thing no Yahoo would do.
+    # Replaces Wonderland's `collapse:`. The savage inversion: resistible, never refutable.
+    resistance: >-
+      There is no "pack of cards" moment here, no queen dwindling to a kitten. At
+      exhausted belief the verdict is RESISTED, not REFUTED — held off, drained,
+      robbed of its grip on you — but it is never disproved, because in its bones it
+      is true. The reward is not a liberated country and never a triumphant waking:
+      it is the traveler's bleak, clear-eyed self-knowledge, and a homecoming he can
+      bear a very little better than the alternative — to keep horses, to abide the
+      smell of his own family by degrees, to have looked in the mirror and not
+      flinched away into either pride or despair. The best ending Gulliver offers is
+      knowing exactly what you are and going home anyway.
+    related_tropes:
+      - the_satire_turns_on_you
+      - the_thing_which_is_not
+      - the_yahoo_within
+      - priced_violence_marks_the_yahoo
+
+# ---------------------------------------------------------------------------
+# BLOCS — the FOUR judging authorities (NOT oppressed populations).
+# These are the courts that PROP the verdict. The Wonderland field
+# `grants_belief_to:` is renamed `props_up:` here to mark the inversion: these
+# blocs do not GRANT belief to a humbug from below (as an oppressed population
+# would) — they ARE the authority, propping the verdict from above. We keep the
+# `[premise_id]` list shape for schema parallelism with Wonderland's
+# `grants_belief_to:` so promotion is a rename, not a re-model.
+# Each carries `cannot_be_awakened: true` (provisional field) because, unlike
+# Wonderland's blocs, these are not liberated when belief drains — only
+# out-survived.
+# ---------------------------------------------------------------------------
+blocs:
+
+  - bloc_id: the_lilliput_court
+    summary: >-
+      The six-inch imperial court of Lilliput — the Emperor "Delight and Terror of
+      the Universe," the jealous Treasurer Flimnap, the hostile Admiral Skyresh
+      Bolgolam, the High-Heel and Low-Heel parties, the Big-Endian holy war.
+    props_up:
+      - the_yahoo_verdict
+    verdict_delivered: >-
+      Man is a petty schemer — a creature who wages war and ruins his fellows over
+      the height of a heel and the right end of an egg, and dresses the whole sorry
+      business in the grandest titles he can find.
+    cannot_be_awakened: true                 # provisional: an authority, not a population — out-survived, never freed
+    flavor: >-
+      They are tiny and grave and absolutely in earnest, and their pettiness is
+      exactly ours seen small enough to take in at a glance. You do not free
+      Lilliput by draining its claim on you; you flee it for Blefuscu and carry the
+      mirror with you.
+
+  - bloc_id: the_brobdingnag_crown
+    summary: >-
+      The giant kingdom of Brobdingnag and its judging King — sixty-foot people of a
+      well-governed land who keep the traveler as a curiosity and weigh his
+      civilization in a plain, unhurried balance.
+    props_up:
+      - the_yahoo_verdict
+    verdict_delivered: >-
+      Man is odious vermin — "the most pernicious race of little odious vermin that
+      nature ever suffered to crawl upon the surface of the earth," pronounced not in
+      caprice but in the giant King's calm, accurate eye.
+    cannot_be_awakened: true                 # provisional: an authority, not a population — out-survived, never freed
+    flavor: >-
+      The horror is the King's reasonableness; there is no humbug to expose and no
+      tyranny to overthrow, only a larger creature seeing you whole and finding the
+      sum of you contemptible. You leave Brobdingnag by an eagle's mischance, not by
+      winning the argument.
+
+  - bloc_id: the_lagado_academy
+    summary: >-
+      The flying island of Laputa and the Academy of Lagado below it — the abstracted
+      court of mathematicians and the male projectors straining to draw sunbeams from
+      cucumbers, ruling a country they have ruined with their reason.
+    props_up:
+      - the_yahoo_verdict
+    verdict_delivered: >-
+      Man's reason is folly — vanity dressed as intellect, eight years spent
+      extracting sunbeams from cucumbers while the barns stand empty and the one sane
+      lord is despised for keeping the old ways.
+    cannot_be_awakened: true                 # provisional: an authority, not a population — out-survived, never freed
+    flavor: >-
+      Here the verdict is delivered by spectacle rather than sentence — the
+      floor-licking court, the projectors, the immortal Struldbruggs rotting in
+      envied agony. You see what reason without sense makes of a people, and the
+      mirror shows you your own learned vanities. You sail on; you do not reform them.
+
+  - bloc_id: the_houyhnhnm_assembly
+    summary: >-
+      The Grand Assembly of the rational horses — the cold patriarchal council of
+      Houyhnhnms that debates, in an even tone, whether to exterminate the Yahoos and
+      whether to expel the talking Yahoo who is the traveler.
+    props_up:
+      - the_yahoo_verdict
+    verdict_delivered: >-
+      Man is a Yahoo — the definitive and naked form of the verdict: a brute in
+      shape and appetite, distinguished from the dung-flinging beast in the field
+      only by a dangerous tincture of reason that makes him worse, not better.
+    cannot_be_awakened: true                 # provisional: an authority, not a population — out-survived, never freed
+    flavor: >-
+      This is the bloc that cannot be argued down, because it has no word for the
+      thing which is not and will not lie to spare you. The Assembly expels you in
+      perfect reason and perfect coldness. You leave loving the horses and unable to
+      bear your own kind — the verdict resisted to the last drop of belief, and never
+      once refuted.

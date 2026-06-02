@@ -1,0 +1,363 @@
+# Gulliver — World-Level Archetype Funnels
+#
+# GOVERNING LAW (mirrors wonderland / oz / five_points): World OVERRIDES genre.
+# The resolver (sidequest/genre/archetype/shim.py) falls back to the GENRE
+# Traveler for any (jungian, rpg_role) pair NOT claimed by a funnel's `absorbs`.
+# To keep every arriving traveler dressed in Gulliver flavor rather than the bare
+# genre coping-style, EVERY pair is claimed below.
+#
+# Coverage: 12 jungian x 7 rpg_role = 84 pairs. All 84 are absorbed exactly once.
+#   jungian:  caregiver ruler artist innocent sage explorer outlaw magician
+#             hero lover jester everyman
+#   rpg_role: tank dps control healer stealth support jack_of_all_trades
+#
+# THE SAVAGE GENRE NOTE: in Gulliver, the Bang catalog leans Audience/Trial (the
+# royal interview, the impeachment, the Grand Assembly) and Wonder-Shock (the
+# scale reveals, the talking horses, the Struldbruggs), with Persuasion secondary
+# and usually LOST (you plead your humanity and the verdict stands). Violence is
+# priced higher than anywhere on the gradient — see the anchor reversals below.
+#
+# The five genre Travelers (the anchors each funnel is a flavored instance of),
+# and how each TINTS to Gulliver per the design spec (sec.11):
+#   Surveyor = explorer / stealth / GUILE — Gulliver's LITERAL home turf (he
+#       measures and documents everything) AND its trap: careful cataloguing
+#       cannot save you, and admiring the Houyhnhnms' cold reason makes you
+#       COMPLICIT in the verdict on your own species. The measurer measured.
+#   Scrapper = hero / tank / NERVE — the MOST PUNISHED. The priced-violence
+#       inversion: where Wonderland grants exactly ONE sanctioned kill (the
+#       Jabberwock, the vorpal-sword exception), Gulliver grants NONE. Every
+#       violent act confirms the Yahoo verdict. There is no Jabberwock-Slayer
+#       here; there is no monster it is right to kill, only the brute you become.
+#   Wit      = sage / control / WIT — FAILS here. The King out-judges your
+#       defenses; the Houyhnhnms have no concept of 'the thing which is not', so
+#       your cleverness reads as Yahoo deceit. Cleverness is no shield against a
+#       verdict that is correct.
+#   Dreamer  = magician / dps / WONDER — goes NATIVE among the Houyhnhnms,
+#       worships their cold reason, despises his own kind, and cannot come home.
+#       The savage never-waking: you don't forget your name, you learn the truth
+#       about your species and cannot unlearn it.
+#   Innocent = innocent / support / HEART — fares BEST. Swift's faint mercy:
+#       honest humility — NOT defending Europe's atrocities — wins the Brobdingnag
+#       King's regard. The one coping-style the verdict half-spares.
+#
+# `lore` here is terse mechanical scaffolding (the writer owns richer prose in
+# lore.yaml / archetypes.yaml). Render straight Swift — Morten 1865, never the
+# children's-book Gulliver, never a wink.
+
+funnels:
+
+  # ── THE PATIENT SURVEYOR (Surveyor anchor: explorer/stealth/GUILE) ───────────
+  # Gulliver's home turf: the ship's-surgeon who measures and records everything.
+  - name: The Patient Surveyor
+    absorbs:
+      - [explorer, stealth]
+      - [explorer, control]
+      - [explorer, support]
+      - [explorer, jack_of_all_trades]
+      - [explorer, tank]
+      - [explorer, dps]
+      - [explorer, healer]
+    faction: null
+    lore: >-
+      The Gulliver shape at its purest, and his literal trade: a ship's-surgeon who
+      maps every shore, counts the threads that peg him down, paces off the height
+      of a Lilliputian wall and the span of a corn-stalk, and sets it all down in a
+      careful journal. The measuring is real skill and real comfort — and it is the
+      country's quiet trap. No catalogue of customs ever saved a man from the
+      articles of impeachment or the Grand Assembly's decree; the measurer is the
+      thing being measured, and his cold accurate eye is the same eye the satire
+      turns back on him. He documents the verdict; he cannot document his way out of
+      it.
+    cultural_status: a solemn cartographer cataloguing the society that is judging him
+    disposition_toward: {}
+
+  - name: The Complicit Measurer
+    absorbs:
+      - [sage, stealth]
+      - [outlaw, stealth]
+      - [magician, stealth]
+      - [ruler, stealth]
+      - [artist, stealth]
+      - [lover, stealth]
+      - [jester, stealth]
+      - [everyman, stealth]
+    faction: null
+    lore: >-
+      The surveyor's colder cousin — the one who watches from the edge, slips
+      unnoticed through the court and the herd, and reasons about what he sees with
+      a detachment that curdles into something worse than indifference. This is the
+      Surveyor's savage second face: the more clearly and dispassionately you take
+      the measure of the Houyhnhnms' cold reason, the more you come to share their
+      verdict on your own kind, until the quiet observer is no longer a witness to
+      the indictment but a party to it. Stealth and GUILE keep you out of the worst,
+      and complicity in the worst is the price.
+    cultural_status: unnoticed at the edge of the room, and slowly of one mind with the judges
+    disposition_toward: {}
+
+  # ── THE UNSANCTIONED BRUTE (Scrapper anchor: hero/tank/NERVE) ────────────────
+  # The priced-violence inversion: every blow confirms the Yahoo. NO sanctioned kill.
+  - name: The Unsanctioned Brute
+    absorbs:
+      - [hero, tank]
+      - [hero, dps]
+      - [hero, control]
+      - [hero, healer]
+      - [hero, stealth]
+      - [hero, support]
+      - [hero, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The Scrapper, and the most punished traveler in the savage country. There is
+      no Jabberwock here — no monster it is right and clean to kill, no vorpal blade
+      that earns an 'O frabjous day'. There is only the body the satire says you
+      are. Crush the men-of-war, kill the rats with your hanger, beat off the
+      clawing herd, put out the palace fire by the one gross means to hand — every
+      blow lands, and every blow confirms the verdict: you are the Yahoo, the brute
+      improved only in its genius for harm. The hero's nerve is real and sometimes
+      absurdly decisive, and it always turns the mirror on him. Force answers
+      nothing in Gulliver. There is no sanctioned kill, none at all.
+    cultural_status: dangerous, decisive, and proving the verdict with every act
+    disposition_toward: {}
+
+  - name: The Marked Aggressor
+    absorbs:
+      - [outlaw, tank]
+      - [outlaw, dps]
+      - [outlaw, control]
+      - [outlaw, healer]
+      - [outlaw, support]
+      - [outlaw, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The violence-lane traveler who does not even pretend to heroism — the one who
+      takes by force, threatens, schemes harm, and trusts the strong arm over the
+      fair word. In a country whose whole charge against humanity is that we are
+      brutes with reason enough to make our brutishness systematic, this is the
+      traveler who proves the charge fastest and most completely. Every outlawed
+      act — the threat, the theft, the casual cruelty scaled to murder — is another
+      page of the indictment the King and the Master read aloud. The Marked
+      Aggressor is the Yahoo the satire has been describing all along, and the
+      country knows it on sight.
+    cultural_status: the brute the satire was waiting for, recognized at once
+    disposition_toward: {}
+
+  # ── THE OUT-ARGUED WIT (Wit anchor: sage/control/WIT) ────────────────────────
+  # Cleverness FAILS: the King out-judges you; the horses have no word for a lie.
+  - name: The Out-Argued Wit
+    absorbs:
+      - [sage, control]
+      - [sage, dps]
+      - [sage, support]
+      - [sage, healer]
+      - [sage, tank]
+      - [sage, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The clever traveler who means to argue his way through — and meets the one
+      country where cleverness is no shield. The Brobdingnag King out-judges every
+      proud defense with a single quiet question that has no good answer; the
+      Houyhnhnms, having no concept of 'the thing which is not', cannot even parse a
+      flattering half-truth and hear only a Yahoo saying what is not, to no purpose
+      they can find. Where Wonderland was the Wit's home turf and torment, Gulliver
+      is the Wit's defeat: the verdict is correct, and you cannot out-talk a
+      correct verdict. Your wit dismantles the others' nonsense in Lagado and Laputa
+      with ease, and against the two judges who matter it is exactly worthless.
+    cultural_status: brilliant against the foolish, helpless before the judges who are right
+    disposition_toward: {}
+
+  # ── THE HONEST INNOCENT (Innocent anchor: innocent/support/HEART) ────────────
+  # Fares BEST — Swift's faint mercy. Honest humility wins the King's regard.
+  - name: The Honest Innocent
+    absorbs:
+      - [innocent, support]
+      - [innocent, healer]
+      - [innocent, tank]
+      - [innocent, dps]
+      - [innocent, control]
+      - [innocent, stealth]
+      - [innocent, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler who fares best in the savage country — Swift's one faint mercy.
+      Where the Wit defends Europe's wars and laws and is condemned for them, and
+      the Brute confirms the verdict by acting it out, the Honest Innocent simply
+      tells the truth and does not pretend his civilization is better than it is.
+      That plain humility — not boasting of gunpowder, not dressing the slaughter up
+      as glory, owning the shameful answer to the King's quiet question — is the one
+      thing the judges of this world respect. It does not win; nothing wins here.
+      But honest humility earns the Brobdingnag King's genuine regard, and that
+      regard is the closest thing to grace the four voyages offer.
+    cultural_status: the rare traveler the verdict half-spares, for telling the truth
+    disposition_toward: {}
+
+  # ── THE TENDER HELPLESS (caregiver: the women fond and powerless) ────────────
+  - name: The Tender Helpless
+    absorbs:
+      - [caregiver, healer]
+      - [caregiver, support]
+      - [caregiver, tank]
+      - [caregiver, dps]
+      - [caregiver, control]
+      - [caregiver, stealth]
+      - [caregiver, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler whose first instinct is to mend, shield, and comfort — and who
+      runs hard against the savage gender current of every voyage, where the power
+      to keep or risk or sell a life lies always with the men and the loving have no
+      leverage at all. This is Glumdalclitch's shape: real, total, competent care,
+      joined to a total helplessness against the Farmer's greed, the Queen's whim,
+      the Assembly's decree. The Tender Helpless can soothe the cat-frightened, nurse
+      the half-killed, carry the box safely down to the sea — and cannot prevent the
+      eagle. Their love is the gentlest thing in the four voyages, and it saves no
+      one.
+    cultural_status: fond, faithful, and overruled by every power that matters
+    disposition_toward: {}
+
+  # ── THE GONE-NATIVE DREAMER (Dreamer anchor: magician/dps/WONDER) ────────────
+  # Goes native among the horses, despises his own kind, cannot come home.
+  - name: The Gone-Native Dreamer
+    absorbs:
+      - [magician, dps]
+      - [magician, control]
+      - [magician, support]
+      - [magician, healer]
+      - [magician, tank]
+      - [magician, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The risk archetype, and in the savage country the risk is the bleakest on the
+      whole gradient. The Dreamer leans into the wonder of the rational horses —
+      their order, their honesty, their freedom from passion and greed — and comes
+      to worship it, and to loathe by comparison his own howling, lying, warring
+      kind. This is the savage never-waking: not Wonderland's gentle forgetting of
+      your name, but learning the truth about your species and being unable to
+      unlearn it. The Gone-Native Dreamer is the traveler who can no longer come
+      home — who gets home every time, every voyage, and finds the smell of his own
+      family unbearable, and keeps to the stable for the clean rational company of
+      horses.
+    cultural_status: half a Houyhnhnm in his own eyes, and unfit ever after for his own kind
+    disposition_toward: {}
+
+  # ── THE RUINOUS PROJECTOR (artist: earnest, useless, world-starving schemes) ─
+  - name: The Ruinous Projector
+    absorbs:
+      - [artist, dps]
+      - [artist, control]
+      - [artist, support]
+      - [artist, healer]
+      - [artist, tank]
+      - [artist, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The maker and schemer, tinted to the third voyage's reason-without-sense: the
+      traveler with a grand project and total faith in it, who would extract
+      sunbeams from cucumbers, soften marble into pillows, or build the house from
+      the roof downward. Real intelligence and real diligence poured into pure
+      folly, sincere to the last grimy cucumber and never once told no by reality.
+      In Lagado this is the native condition and the traveler fits right in; in
+      Brobdingnag and Houyhnhnm-land the same earnest ingenuity that bottles
+      sunbeams is exactly the genius for elaborate uselessness the judges find
+      damning. The Projector's faith is genuine, and that is what makes it the
+      perfect specimen of intellect run clean out of the world that feeds it.
+    cultural_status: a faultless chain of reasoning with no grip on the fact
+    disposition_toward: {}
+
+  # ── THE HUMBLED SOVEREIGN (ruler: rank from the waking world means nothing) ──
+  - name: The Humbled Sovereign
+    absorbs:
+      - [ruler, tank]
+      - [ruler, dps]
+      - [ruler, control]
+      - [ruler, healer]
+      - [ruler, support]
+      - [ruler, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler who arrives carrying authority from home — rank, command, the
+      habit of being obeyed — and finds it worth precisely nothing in a country that
+      will not be impressed. To the six-inch Emperor you are a useful beast; to the
+      Brobdingnag King your whole proud civilization is vermin; to the Grand
+      Assembly your reason is the most dangerous thing about you. Every voyage
+      humbles the ruler the same way: the bearing that commanded a quarterdeck or a
+      household commands nothing here, and the more you stand on your dignity the
+      more the satire enjoys reducing it. Authority is the first thing the four
+      voyages strip away, and the slowest thing the ruler-traveler learns to let go.
+    cultural_status: a sovereign of somewhere these societies have no reason to respect
+    disposition_toward: {}
+
+  # ── THE FOND BYSTANDER (lover: devotion, the keeper of the thread home) ──────
+  - name: The Fond Bystander
+    absorbs:
+      - [lover, tank]
+      - [lover, dps]
+      - [lover, control]
+      - [lover, healer]
+      - [lover, support]
+      - [lover, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler bound by a love or a loyalty — to a companion, to a kindness met
+      on a foreign shore, to the home and the family waiting at Redriff — and the
+      one for whom the savage go-home spine cuts deepest. Devotion is the thread
+      that should pull a man home and keep him human; in Gulliver it is the thread
+      the verdict frays. The Fond Bystander treasures the Queen's indulgence and the
+      Sorrel Nag's plain warmth, the few tendernesses the four voyages allow — and
+      arrives at the last homecoming to find that the people he loved most are the
+      ones whose mere touch and smell he can no longer bear. The cruelest thing the
+      world takes from the lover is the capacity to come home to what he loves.
+    cultural_status: devoted to a home the journey teaches him he can no longer stand
+    disposition_toward: {}
+
+  # ── THE OUT-OF-PLACE JESTER (jester: the wit that lands nowhere here) ─────────
+  - name: The Out-of-Place Jester
+    absorbs:
+      - [jester, tank]
+      - [jester, dps]
+      - [jester, control]
+      - [jester, healer]
+      - [jester, support]
+      - [jester, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler who meets the absurd by playing along — the fencer with a needle,
+      the diving and tumbling for the giant court's amusement, the one who treats
+      each impossible society as the grandest farce ever staged. In Wonderland this
+      shape was welcome at every mad table; in the savage country it curdles. The
+      Brobdingnag court that laughs at the little man's tricks is laughing AT a pet,
+      and the laughter is the indignity; the Houyhnhnms have no humour and read the
+      antics as one more Yahoo capering. The Out-of-Place Jester learns the savage
+      difference between charming a court and amusing it as its possession — that
+      here the joke is nearly always on him, and the louder the laughter the lower
+      his place.
+    cultural_status: a diverting performance whose audience owns the performer
+    disposition_toward: {}
+
+  # ── THE PLAIN EVERYMAN (everyman: the ordinary traveler the world weighs) ────
+  - name: The Plain Everyman
+    absorbs:
+      - [everyman, tank]
+      - [everyman, dps]
+      - [everyman, control]
+      - [everyman, healer]
+      - [everyman, support]
+      - [everyman, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The ordinary traveler, neither clever nor heroic nor devoted past the common
+      measure — the plain ship's-company man the savage country weighs as a fair
+      specimen of his kind, and finds wanting like all the rest. This is the
+      everyman the verdict is really about: not the exceptional sinner but the
+      average human animal, decent enough by his own lights and damned by the same
+      reasonable inquiry that damns the whole species. The Plain Everyman has no
+      special shield — not wit, not force, not love, not innocence held hard enough
+      to win regard — and so he meets the four societies as Swift's reader is meant
+      to, square on, as the thing being judged. He is the measure the satire takes.
+    cultural_status: a fair specimen of the kind on trial, and judged as one
+    disposition_toward: {}
+
+additional_constraints:
+  # The genre ships archetype_constraints.yaml, but every (jungian, rpg_role) pair
+  # is claimed by exactly one funnel above, so the genre fallback is unreachable
+  # for Gulliver and there are no world-forbidden pairs to declare.
+  forbidden: []

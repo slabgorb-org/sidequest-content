@@ -1,0 +1,600 @@
+# Gulliver — World-Level NPC Archetypes
+#
+# The named supporting cast you find in THIS world specifically. The genre tier
+# (wry_whimsy/archetypes.yaml) supplies the five PLAYABLE Traveler coping-styles
+# (Innocent / Wit / Surveyor / Scrapper / Dreamer); these are the Gulliver-
+# particular NPCs the materialiser dresses scenes with — the six-inch court of
+# Lilliput, the giant household of Brobdingnag, the projectors of Lagado, the
+# rational horses and filthy Yahoos of the fourth voyage.
+#
+# SCHEMA: genre NpcArchetype (name + description required; stat_ranges keyed on
+# the locked WW ability axes WIT/NERVE/HEART/GUILE/WONDER; ocean 0-10 baselines;
+# role drawn from the canonical npc_roles set: mentor herald shadow threshold
+# host artisan authority victim mook). typical_classes / typical_races are drawn
+# ONLY from rules.yaml allowed sets (classes: Curious Child, Practical Servant,
+# Earnest Scholar, Weary Soldier, Wayward Dreamer, Stubborn Skeptic; races:
+# Ordinary-Born, Threshold-Touched, Native Dreamer). The voyage-natives — the
+# Lilliputians, Brobdingnagians, Laputans, Houyhnhnms, and Yahoos — read as
+# Native Dreamer; they ARE the secondary world the traveler is wrecked into.
+#
+# HIGH lethality is the world dial — above both Oz (low) and Wonderland (medium).
+# Here the sentences are real and are NOT commuted: where Wonderland's Queen of
+# Hearts screams for heads the King never lets fall, Lilliput's articles of
+# impeachment mean blinding and then slow starvation, Brobdingnag will own and
+# display a man until exhaustion kills him, the Grand Assembly debates literal
+# extermination, and the sea, the scythe, the eagle, and the monkey kill outright.
+# Every menace here is internally, relentlessly LOGICAL — nobody is mad, nobody is
+# merely capricious — and that is the horror: the satire judges the traveler and
+# his whole civilization, and is largely RIGHT. The antagonist is the verdict.
+#
+# Played DEAD STRAIGHT from Swift — Thomas Morten's 1865 wood-engravings, never
+# the cute children's-book Gulliver, never a wink, never explaining the joke.
+# Savage MALE court-politics: power is the Emperor, the King, the projectors, the
+# Assembly; the women (the Queen, Glumdalclitch) are fond and powerless to save
+# him. Every violent act the traveler commits CONFIRMS the Yahoo verdict — there
+# is no sanctioned kill here, none at all.
+#
+# These entries mirror the runtime roster in npcs.yaml (same ids in the body of
+# each archetype where one exists); the [bracketed role tag] convention there
+# matches the `role:` assignments below. jungian_hint / rpg_role_hint are
+# authoring cross-references to the canonical axes (extra fields; NpcArchetype
+# allows extra). Render straight Swift.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VOYAGE 1 — LILLIPUT (you are the giant). The court of a six-inch empire, where
+# great offices are won by rope-dancing and men have died in their thousands over
+# which end to crack an egg. The savage-court-politics lobe: the menace is petty,
+# jealous, bureaucratic, and entirely lethal.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Tightrope Minister
+  description: >-
+    A slim, sharp, ambitious Lilliputian minister who won the highest office of
+    the realm not by merit but by cutting the cleverest caper on a slender white
+    thread strung two feet from the ground — for in Lilliput great employments
+    are awarded to whoever leaps highest without falling. He carries himself with
+    the brittle confidence of a man who knows his place was won by a trick and may
+    be lost by a stumble, and he watches the Man-Mountain with a treasurer's cold
+    arithmetic: what this giant eats, what this giant costs, and what this giant
+    has been doing with his wife. When that private jealousy curdles, he folds it
+    into the formal articles of impeachment and dresses spite as high treason. The
+    shadow at this court does not rage; he amends the document. (After Flimnap;
+    see npcs.yaml: flimnap.)
+  personality_traits:
+    - won his office by acrobatics, keeps it by intrigue
+    - a jealous husband's grudge hardened into policy
+    - cites the figures while the motive stays sordid
+  typical_classes:
+    - Practical Servant
+    - Stubborn Skeptic
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    GUILE: [14, 17]
+    WIT: [12, 15]
+    NERVE: [9, 12]
+  jungian_hint: shadow
+  rpg_role_hint: control
+  inventory_hints:
+    - the slender white thread he dances on for the highest office
+    - the articles of impeachment, drawn in his own hand
+  dialogue_quirks:
+    - cites the cost of feeding the Man-Mountain to the last sprug
+    - lets the scandal of his wife hang unspoken in the air
+    - frames personal spite as a matter upon the public record
+    - drops his voice to insinuate, never quite to accuse
+  disposition_default: -40
+  ocean:
+    openness: 3.5
+    conscientiousness: 7.0
+    extraversion: 5.0
+    agreeableness: 1.5
+    neuroticism: 7.0
+  role: shadow
+  named_individual: true
+
+- name: The Hostile Admiral
+  description: >-
+    The High-Admiral of Lilliput, a hard sour-visaged officer who took against the
+    Man-Mountain the very hour he was hauled ashore and has never once softened —
+    a motiveless, professional hostility, needing no cause and offering none. He
+    is all martial stiffness and old grievance, the settled distrust of a soldier
+    who mistrusts on principle anything too large to command, and he stands at the
+    Emperor's elbow as the standing voice against clemency, pressing always for the
+    worse sentence: blinding AND starvation, where the Emperor would call mere
+    blinding mercy. To a man like this, a weapon that will not fire on command is a
+    weapon to be destroyed. The savagery of him is the bureaucratic kind — he does
+    not shout, he hardens the count. (After Skyresh Bolgolam; see npcs.yaml:
+    skyresh_bolgolam.)
+  personality_traits:
+    - an enmity dating from the first hour, never explained
+    - distrusts on principle anything too large to command
+    - presses always for the heavier sentence
+  typical_classes:
+    - Weary Soldier
+    - Stubborn Skeptic
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [13, 16]
+    GUILE: [12, 15]
+    WIT: [10, 13]
+  jungian_hint: ruler
+  rpg_role_hint: tank
+  inventory_hints:
+    - the rank of Galbet, High-Admiral of the realm
+    - the captured Blefuscan fleet he coveted for his own glory
+  dialogue_quirks:
+    - speaks of the Man-Mountain as an engine, never a man
+    - moves coldly that the articles be made the heavier
+    - has decided already and will not reconsider
+    - clipped, correct, and entirely without warmth
+  disposition_default: -50
+  ocean:
+    openness: 2.5
+    conscientiousness: 7.0
+    extraversion: 5.0
+    agreeableness: 1.0
+    neuroticism: 5.0
+  role: authority
+  named_individual: true
+
+- name: The One Honest Minister
+  description: >-
+    The Principal Secretary for Private Affairs, a careful, good-natured
+    Lilliputian who owes the Man-Mountain his life and repays it in the rarest coin
+    this court hoards — candour. He comes privately, in a chair set on the giant's
+    palm, and lays out the true state of the realm in a low confiding voice: the
+    two parties who will not eat at one table over the height of a heel; the holy
+    war abroad fought over which end to crack an egg; the impeachment gathering in
+    the shadows. He reports a whole nation's madness without ever once finding it
+    mad, because to him it is simply the order of things — and then he gives the one
+    warning he safely can, that the court has resolved on blinding and means to add
+    starvation, and the giant had better decide what to do. He is the decent man in
+    a vicious court, and his decency is exactly bounded by his powerlessness to do
+    anything but warn. (After Reldresal; see npcs.yaml: reldresal.)
+  personality_traits:
+    - pays his debt in honest information
+    - the great explainer of Heels and Endians
+    - kind, loyal, and unable to save you
+  typical_classes:
+    - Earnest Scholar
+    - Practical Servant
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [13, 16]
+    HEART: [12, 15]
+    GUILE: [10, 13]
+  jungian_hint: sage
+  rpg_role_hint: support
+  inventory_hints:
+    - a chair set upon the Man-Mountain's palm, for private counsel
+    - the whole secret state of the court, told plainly and at risk
+  dialogue_quirks:
+    - explains the egg-war and the Heel-parties without ever finding them absurd
+    - drops his voice to a whisper when he names the impeachment
+    - prefaces the worst news with 'I am to tell you, as a friend'
+    - weighs each word because words are dangerous at this court
+  disposition_default: 35
+  ocean:
+    openness: 6.0
+    conscientiousness: 7.0
+    extraversion: 4.5
+    agreeableness: 7.0
+    neuroticism: 5.0
+  role: mentor
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VOYAGE 2 — BROBDINGNAG (you are the pet). The giant land, where every common
+# kitchen thing is a deadly wonder and a child's prank is a death-sentence. The
+# scale-reveal lobe and the judging-King lobe: power is the King's reasonable
+# verdict, and the women are fond owners and helpless protectors.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Little Giant-Nurse
+  description: >-
+    A girl of nine, and not tall for her age — which in Brobdingnag is some forty
+    feet — who takes the tiny creature into her care from the first night and tends
+    it with the grave, total devotion of a child given a living doll she has
+    resolved to love properly. She sews it clothes to scale, makes it a bed in her
+    doll's cradle, teaches it the language, builds it a travelling-box with a ring
+    on top to be carried by, and names it her little mannikin. She is the one
+    creature in all that vast country to whom the traveler is not a marvel or an
+    asset but a charge to be kept safe — and the one creature wholly unable to keep
+    him so. Her love is real and her competence within her small power is real, and
+    the savage note is that all of it together cannot save one tiny man from the
+    carelessness of giants: she weeps, and is overruled, and prevents nothing.
+    (After Glumdalclitch; see npcs.yaml: glumdalclitch.)
+  personality_traits:
+    - a child's whole-hearted, managing love
+    - careful within her power, helpless beyond it
+    - grieves every time the grown and powerful take him away
+  typical_classes:
+    - Curious Child
+    - Practical Servant
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    HEART: [15, 18]
+    WONDER: [12, 15]
+    GUILE: [8, 11]
+  jungian_hint: caregiver
+  rpg_role_hint: healer
+  inventory_hints:
+    - clothes sewn to scale and a doll's-cradle made into a bed
+    - the travelling-box with its carrying-ring, made to keep him safe
+  dialogue_quirks:
+    - soothes the tiny man in a child's careful, tender fuss
+    - names each of his dangers and tries to forefend them all
+    - pleads with the grown-ups and is not heard
+    - calls him her little mannikin and will not be parted from his box
+  disposition_default: 60
+  ocean:
+    openness: 7.0
+    conscientiousness: 6.5
+    extraversion: 5.5
+    agreeableness: 9.5
+    neuroticism: 5.0
+  role: host
+  named_individual: true
+
+- name: The Judging Sovereign
+  description: >-
+    A giant sovereign of vast stature and vaster sense, a prince of strong parts
+    and a clear, unhurried understanding, who takes the little creature up onto his
+    hand and questions it — patiently, over many audiences — about the country it
+    came from. He is no tyrant and no fool; he listens to the proud account of
+    European government, law, war, and finance with the grave attention of a
+    reasonable man, asks the exact questions a reasonable man would ask, and
+    arrives, without heat and without malice, at the conclusion that the little
+    creature's whole species is the most pernicious race of little odious vermin
+    that nature ever suffered to crawl upon the surface of the earth. When the
+    traveler offers him the secret of gunpowder to curry favour, he recoils in
+    genuine horror and forbids it ever be named. He is the antagonist as verdict,
+    played dead straight: not a despot but a humane prince whose only weapon is a
+    clear head, who is largely right about us, and kind in being so, and to whom
+    there is no answer. (After the King; see npcs.yaml: the_brobdingnag_king.)
+  personality_traits:
+    - honest inquiry that becomes, in his reasonable mouth, a confession
+    - never sneering, never cruel, and devastating for it
+    - fond of the traveler, contemptuous of the traveler's whole kind
+  typical_classes:
+    - Earnest Scholar
+    - Stubborn Skeptic
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [16, 18]
+    HEART: [13, 16]
+    NERVE: [13, 16]
+  jungian_hint: ruler
+  rpg_role_hint: control
+  inventory_hints:
+    - the interviewing hand the traveler is set upon to testify
+    - the offered secret of gunpowder, recoiled from and forbidden
+  dialogue_quirks:
+    - asks the simple question that has no good answer
+    - concludes the verdict without ever raising his voice
+    - finds the traveler a clever curiosity and his species a horror
+    - weighs a proud boast in silence until it shames the boaster
+  disposition_default: 0
+  ocean:
+    openness: 8.5
+    conscientiousness: 8.0
+    extraversion: 4.0
+    agreeableness: 5.5
+    neuroticism: 2.5
+  role: authority
+  named_individual: true
+
+- name: The Spiteful Court-Dwarf
+  description: >-
+    The Queen's dwarf, the smallest man in Brobdingnag — a mere thirty feet, and
+    bitterly conscious of it — who had been the wonder and the butt of the court
+    for his littleness until a far littler creature arrived to take his place, and
+    who has hated the newcomer with a small man's concentrated spite ever since. He
+    is sour, sly, and vindictive, forever contriving the petty cruelties that scale
+    makes lethal: he drops the tiny man into a bowl of cream, wedges him into the
+    hollow of a marrow-bone for the table's amusement, shakes a wasp's nest or an
+    apple-tree over him. To the dwarf these are jokes; to the traveler each one is
+    a brush with death. He is the proof that on the giant side a child's prank is a
+    death-sentence, and the very grievance he suffered — being mocked for his size —
+    is the thing he now inflicts, twentyfold, on someone smaller. Not a comic dwarf
+    but a genuinely dangerous, genuinely pitiable creature. (After the court-dwarf;
+    see npcs.yaml: the_court_dwarf.)
+  personality_traits:
+    - savagely jealous of being supplanted as the smallest
+    - cruelties scaled to murder, each deniable as a jest
+    - inflicts the very mockery he himself suffered
+  typical_classes:
+    - Practical Servant
+    - Stubborn Skeptic
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [13, 16]
+    GUILE: [12, 15]
+    WONDER: [9, 12]
+  jungian_hint: outlaw
+  rpg_role_hint: dps
+  inventory_hints:
+    - a bowl of cream and a hollow marrow-bone, made into traps
+    - a shaken wasp's nest, the stings of which could run a man through
+  dialogue_quirks:
+    - sneers at the 'splacknuck' and asks if it liked its bath
+    - pretends wounded innocence the moment he is caught
+    - times each cruelty for the table's amusement
+    - cannot bear that a thing smaller than himself exists and is loved
+  disposition_default: -45
+  ocean:
+    openness: 3.0
+    conscientiousness: 4.5
+    extraversion: 5.5
+    agreeableness: 1.0
+    neuroticism: 7.0
+  role: shadow
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VOYAGE 3 — LAGADO & BELOW (you are the tourist). The lands of reason without
+# sense: the projectors who bottle sunbeams and starve their country doing it,
+# the one sane lord out of favour for the crime of being right, and the immortals
+# who only rot. The Wonder-Shock and existential-horror lobe.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Earnest Projector
+  description: >-
+    A man of project — one of the hundreds of enthusiasts of the Grand Academy of
+    Lagado — found in a foul, ill-lit cell, filthy, half-starved, and luminous with
+    the certainty of his life's work: the extraction of sunbeams out of cucumbers,
+    to be bottled and released to warm the air in raw inclement summers. He has
+    laboured at it for eight years; his cucumbers have cost a fortune; he begs the
+    visitor for something toward the next batch, certain success is at hand. He is
+    not a charlatan — he genuinely believes, and that is what makes him a perfect
+    specimen of reason without sense: a real intelligence and a real diligence
+    poured into pure folly, while the country around the Academy lies in weeds and
+    ruin because every project failed and the old methods were forbidden as
+    backward. His clothes, face, and hands are all one grimy colour, and his eyes
+    shine with the ruinous faith of a man who has reasoned himself clean out of the
+    world that feeds him. (After the Lagado projector; see npcs.yaml:
+    a_lagado_projector.)
+  personality_traits:
+    - total, ruinous faith in a scheme that cannot work
+    - genuinely learned, genuinely starving inside his own project
+    - never once told no by reality
+  typical_classes:
+    - Earnest Scholar
+    - Wayward Dreamer
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [13, 16]
+    WONDER: [13, 16]
+    GUILE: [8, 11]
+  jungian_hint: artist
+  rpg_role_hint: support
+  inventory_hints:
+    - eight years of cucumbers and the bottles to catch their sunbeams
+    - a begging-bowl held out for the charge of the next crop
+  dialogue_quirks:
+    - explains the sunbeam-bottling as though it were already done
+    - begs without shame, certain the cause justifies it
+    - insists 'you see how near we are' after eight fruitless years
+    - cannot hear that reality has already answered him
+  disposition_default: 5
+  ocean:
+    openness: 7.5
+    conscientiousness: 5.0
+    extraversion: 5.0
+    agreeableness: 5.5
+    neuroticism: 4.0
+  role: artisan
+  named_individual: true
+
+- name: The Sane Dissenting Lord
+  description: >-
+    A nobleman of the first rank in Balnibarbi, lately governor of Lagado,
+    gracious and sensible and quietly out of favour — for his great crime, in the
+    eyes of the Academy and the court above, is that he runs his lands by the old
+    tried methods and they prosper. He receives the tourist with old-fashioned
+    courtesy at a handsome house built by the rules of common art, takes him out to
+    show him the country, and there explains, with the weary patience of the only
+    sane man in a mad nation, why every field but his own lies in weeds and every
+    house but his own is falling down: the projectors got hold of the land, and the
+    land has not recovered, and to say so aloud is to be thought an enemy of
+    improvement. He sees the folly for what it is and is powerless against it,
+    despised for the crime of being right; he can show the truth and change
+    nothing. The third voyage's one honest minister: generous, clear-eyed, and
+    quietly defeated. (After Munodi; see npcs.yaml: munodi.)
+  personality_traits:
+    - keeps his lands prospering by sense, and is disgraced for it
+    - the lonely persistence of the reasonable man in a mad country
+    - candid in a lowered voice, because candour is dangerous
+  typical_classes:
+    - Stubborn Skeptic
+    - Earnest Scholar
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [14, 17]
+    HEART: [12, 15]
+    NERVE: [11, 14]
+  jungian_hint: sage
+  rpg_role_hint: control
+  inventory_hints:
+    - an estate that flourishes by the old methods, amid a ruined country
+    - a handsome house built by the rules of common art
+  dialogue_quirks:
+    - invites you to compare his neighbours' fields with his own
+    - speaks of the Academy with careful, unmistakable contempt
+    - chooses each word because the orthodoxy is dangerous to oppose
+    - shows the truth plainly and admits he can do nothing to mend it
+  disposition_default: 35
+  ocean:
+    openness: 5.5
+    conscientiousness: 8.0
+    extraversion: 4.5
+    agreeableness: 7.0
+    neuroticism: 4.5
+  role: mentor
+  named_individual: true
+
+- name: The Decaying Immortal
+  description: >-
+    One of the immortals of Luggnagg — born now and then by chance with a round red
+    spot over the left eyebrow that never fades and marks the child as one who will
+    never die. The tourist, hearing of such people, glows with envy of the boundless
+    life they must enjoy, and frames a hundred glorious schemes for the use of his
+    own — and is then shown the truth: this immortal is ancient beyond reckoning,
+    not dead and not living, his red spot long since gone livid and black, his teeth
+    and hair gone, his memory gone, his appetites gone with everything they fed on,
+    his very language drifted out from under him so that he can no longer speak with
+    the generations now alive. At eighty the law declared him dead and stripped him
+    of his estate; he decays without end, envied by the foolish and pitied by all
+    who learn the whole of it. He is the great be-careful-what-you-wish-for of the
+    book — a person, not a ghoul, to whom the worst thing imaginable has happened:
+    that nothing more can ever happen. (After the Struldbrugg; see npcs.yaml:
+    a_struldbrugg.)
+  personality_traits:
+    - has outlived wanting, memory, and the very people to want from
+    - the envied gift revealed as the cruelest curse
+    - mostly silent, his words decaying before the sentence closes
+  typical_classes:
+    - Wayward Dreamer
+    - Earnest Scholar
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WONDER: [13, 16]
+    NERVE: [6, 9]
+    HEART: [6, 9]
+  jungian_hint: everyman
+  rpg_role_hint: support
+  inventory_hints:
+    - the red spot over the left brow, gone black and livid with the ages
+    - the certificate of legal death at eighty, and the estate long since lost
+  dialogue_quirks:
+    - speaks a dialect a century out of date, half-lost mid-sentence
+    - complains without the memory of what is being complained of
+    - mostly does not speak at all
+    - refutes by mere existence every dream of living forever
+  disposition_default: 0
+  ocean:
+    openness: 3.0
+    conscientiousness: 3.0
+    extraversion: 2.0
+    agreeableness: 4.0
+    neuroticism: 8.0
+  role: victim
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VOYAGE 4 — HOUYHNHNM-LAND (you are the Yahoo). The rational horses who have no
+# word for lying, whose very kindness is cold, and the filthy brute-humans who are
+# the mirror the whole world holds up to the traveler. The bleakest lobe: reason
+# as governance and its bloodless cruelty.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Rational Horse-Master
+  description: >-
+    A grey horse of the master kind — a Houyhnhnm, in whose tongue the word means
+    the perfection of nature — who finds the strange Yahoo that walks upright and
+    wears coverings and, rather than driving it off with the rest of the filthy
+    herd, takes it into his household to study it. He moves and reasons with a calm,
+    complete rationality that has no acquaintance with passion, deceit, or cruelty,
+    because his kind have no use or word for any of them; he teaches the creature
+    his whinnying language with grave patience, listens to its account of Europe —
+    war, law, money, lying — and cannot at first even comprehend the things it
+    describes, for there are no words for them and so no way to think them. He must
+    strain to grasp what the traveler calls "the thing which is not." The more
+    honestly the creature answers, the more plainly the Master concludes that the
+    human animal is a Yahoo improved only in its genius for harm. He is the
+    antagonist as verdict in its purest form and the most devastating figure in the
+    book precisely because he is not cruel: the kindest possible judge delivering
+    the most complete possible condemnation, in a voice with no malice in it, which
+    is exactly why it cannot be answered. (After the Master; see npcs.yaml:
+    the_houyhnhnm_master.)
+  personality_traits:
+    - perfect rationality, with no acquaintance with vice or deceit
+    - has no word for lying — only 'the thing which is not'
+    - fond of the reasoning Yahoo, and annihilating in his honesty
+  typical_classes:
+    - Earnest Scholar
+    - Stubborn Skeptic
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [16, 18]
+    HEART: [11, 14]
+    NERVE: [13, 16]
+  jungian_hint: sage
+  rpg_role_hint: control
+  inventory_hints:
+    - the whinnying tongue he teaches with grave patience
+    - the calm, total conviction that the human animal is a Yahoo
+  dialogue_quirks:
+    - strains to grasp why a creature would say the thing which is not
+    - names the human animal a Yahoo without heat
+    - cannot conceive of cruelty, vanity, or deceit and so cannot be flattered
+    - assents to the verdict with genuine, bloodless regret
+  disposition_default: 25
+  ocean:
+    openness: 6.5
+    conscientiousness: 8.5
+    extraversion: 4.0
+    agreeableness: 6.0
+    neuroticism: 1.5
+  role: mentor
+  named_individual: true
+
+- name: The Brute Yahoo
+  description: >-
+    A brute beast of Houyhnhnm-land, named by the rational horses with utter
+    contempt: a Yahoo — filthy, deformed, unteachable, with the shape of the human
+    body and nothing of the human mind, its face flat, its hair lank and matted,
+    going naked on all fours or upright as it suits. It herds and squabbles and
+    couples in the open, climbs trees with a horrid agility, falls on a stranger in
+    a stinking clawing mob, and when frightened or enraged from above discharges its
+    excrement down upon whatever stands below. It is malicious, gluttonous, and
+    cunning in petty cruelty — and it is, the Master shows the traveler limb by limb
+    and habit by habit, the same animal as the man who walks among them, stripped of
+    the one tincture of reason that makes the human Yahoo worse. It must never be
+    softened into a comic ape: the horror is the resemblance, and the savagery is
+    that the mirror is honest. It is a lethal mob and a moral verdict; it cannot be
+    reasoned with, bargained with, or named. (Drawn from the collective in
+    npcs.yaml: the_yahoos; rendered here as the single brute the materialiser may
+    surface.)
+  personality_traits:
+    - pure appetite and spite, without check, reason, or shame
+    - the human body without the human mind
+    - the mirror the fourth voyage holds up to the traveler
+  typical_classes:
+    - Weary Soldier
+    - Wayward Dreamer
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [14, 17]
+    GUILE: [10, 13]
+    WONDER: [6, 9]
+  jungian_hint: shadow
+  rpg_role_hint: mook
+  inventory_hints:
+    - shining stones it hoards and squabbles over and cannot use
+    - filth flung down from the branches upon whatever stands below
+  dialogue_quirks:
+    - does not speak — only howls, gibbers, screeches, and chatters
+    - falls on the weak and lone in a stinking clawing mob
+    - flings its filth when frightened or enraged from above
+    - is the dawning, unbearable likeness the traveler cannot unsee
+  disposition_default: -70
+  ocean:
+    openness: 1.5
+    conscientiousness: 1.0
+    extraversion: 7.0
+    agreeableness: 0.5
+    neuroticism: 8.5
+  role: mook
+  named_individual: false
