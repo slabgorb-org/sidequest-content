@@ -1,0 +1,836 @@
+map_resolution: null
+map_style: >-
+  A hand-engraved Tenniel-plate map of one dream-territory drawn in black line
+  and dense cross-hatching, with a restrained period hand-tint. The lower half is
+  Card Country, laid out as a heraldic playing-card garden — clipped hedge-maze
+  paths, painted rose-trees in rows, a flat croquet lawn, a court like a printed
+  card. The upper half is Looking-Glass Land, a vast green-and-white chessboard
+  divided into squares by little brooks ruled across the plate like staves. The two
+  halves meet at a tall mantelpiece mirror engraved edge-on, its silver face
+  reflecting one country softly into the other, so the garden and the board seem to
+  lean into each other across the glass. No compass rose; the doors below and the
+  squares above carry the eye.
+navigation_mode: region
+starting_region: the_hall_of_doors
+world_name: Wonderland
+
+regions:
+
+  # ══ CARD COUNTRY ═══════════════════════════════════════════════════════════
+
+  # ── THE HALL OF DOORS — the start ──────────────────────────────────────────
+  the_hall_of_doors:
+    name: The Hall of Doors
+    summary: "A long low hall of locked doors, a glass table, and the bottle and cake that change your size"
+    description: >-
+      A long, low hall lit all round with a row of lamps hanging from the roof,
+      and every door in it locked. You have come down the rabbit-hole into the
+      middle of it, and there is no way out but the doors. Low down behind a curtain
+      is a little door, no more than fifteen inches high, and through its keyhole
+      lies the loveliest garden you ever saw — and you are far too big to follow your
+      eye through it. On a little three-legged table of solid glass stand the two
+      cures for being the wrong size: a bottle labelled DRINK ME in large letters,
+      and under it, in a small glass box, a very small cake marked EAT ME in
+      currants. Neither is poison; both are nonsense; both work at once.
+    terrain: hall
+    controlled_by: the_queens_terror
+    adjacent:
+      - the_pool_of_tears
+    landmarks:
+      - the row of locked doors all the way round the long low hall
+      - the little fifteen-inch door behind the curtain to the garden
+      - the three-legged glass table that holds the bottle and the cake
+      - the keyhole through which the loveliest garden can be seen but not reached
+    entities:
+      - id: little_garden_door
+        label: the little fifteen-inch door to the garden
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: hall_little_garden_door
+        affordances:
+          - peer_through_keyhole
+          - try_to_open
+          - pass_through_when_small
+      - id: drink_me_bottle
+        label: the bottle labelled DRINK ME
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: hall_drink_me_bottle
+        affordances:
+          - inspect
+          - drink
+          - shrink
+      - id: eat_me_cake
+        label: the cake marked EAT ME
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: hall_eat_me_cake
+        affordances:
+          - inspect
+          - eat
+          - grow
+      - id: glass_table
+        label: the three-legged glass table
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: hall_glass_table
+        affordances:
+          - search
+          - take_the_key
+      - id: the_locked_doors
+        label: the row of locked doors
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE POOL OF TEARS — the salt shore and the Rabbit's house ──────────────
+  the_pool_of_tears:
+    name: The Pool of Tears
+    summary: "A salt pool of your own giant weeping, a caucus-race shore, and the White Rabbit's house"
+    description: >-
+      A great pool of salt water spreads across the bottom of the hall, nine inches
+      deep and stretching off into the dark — and it is all your own, wept while you
+      were nine feet tall and now nearly drowning you at three inches. Soaked,
+      bewildered creatures swim and paddle in it: a Mouse, a Duck, a Dodo, a Lory, an
+      Eaglet. On the shore beyond they wring themselves out and run a Caucus-race, a
+      race with no start, no finish, and prizes for everyone. Past the shore stands a
+      neat little house with a brass plate reading W. RABBIT, where the White Rabbit,
+      forever late, mistakes you for his housemaid Mary Ann — and where one more sip
+      of the wrong bottle leaves you grown so huge you fill the house and put an arm
+      out the window.
+    terrain: shore
+    controlled_by: the_queens_terror
+    adjacent:
+      - the_hall_of_doors
+      - the_tulgey_wood
+    landmarks:
+      - the salt pool wept while you were nine feet tall
+      - the dripping shore where the Caucus-race runs round and round
+      - the little house with the brass plate marked W. RABBIT
+      - the upstairs window you fill with an arm when you grow too big
+    entities:
+      - id: white_rabbit
+        label: the White Rabbit
+        tier: real_object
+        binding:
+          kind: npc
+          ref: white_rabbit
+        affordances:
+          - follow
+          - speak_to
+      - id: rabbits_house
+        label: the White Rabbit's little house
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: pool_rabbits_house
+        affordances:
+          - enter
+          - get_stuck_inside
+      - id: caucus_race_shore
+        label: the Caucus-race shore
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: pool_caucus_race_shore
+        affordances:
+          - join_the_race
+          - dry_off
+      - id: the_salt_pool
+        label: the pool of your own tears
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE TULGEY WOOD — the deep nonsense wood and its dangers ───────────────
+  the_tulgey_wood:
+    name: The Tulgey Wood
+    summary: "The deep nonsense wood — the Caterpillar's mushroom, the pepper-kitchen, the grinning Cat, and the Jabberwock"
+    description: >-
+      A deep, close wood where the trees meet overhead and the rules of the world
+      grow thin. On a great mushroom sits a blue Caterpillar three inches high, smoking
+      a hookah and asking, with no warmth at all, who you are — and the two sides of his
+      mushroom will set you any size you please. Off through the trees a kitchen
+      smokes with pepper enough to make the very air sneeze, where a Duchess nurses a
+      howling baby and a Cook flings the crockery. Overhead, on a bough, a Cat with an
+      enormous grin appears and vanishes a piece at a time, and will tell you that
+      everyone here is mad, including you. And somewhere in the deepest part of the
+      wood, with eyes of flame and jaws that bite, the Jabberwock comes whiffling — the
+      one thing in this country that means you real harm.
+    terrain: forest
+    controlled_by: the_queens_terror
+    adjacent:
+      - the_pool_of_tears
+      - the_mad_tea_party
+      - the_queens_croquet_ground
+    landmarks:
+      - the great mushroom where the blue Caterpillar smokes his hookah
+      - the pepper-kitchen where the Duchess nurses the baby and the Cook throws crockery
+      - the bough where the Cheshire-Cat grins and vanishes a piece at a time
+      - the deepest tangle of the wood where the Jabberwock comes whiffling through
+    entities:
+      - id: the_caterpillar
+        label: the blue Caterpillar on the mushroom
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_caterpillar
+        affordances:
+          - speak_to
+          - eat_the_mushroom
+      - id: caterpillar_mushroom
+        label: the Caterpillar's great mushroom
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: wood_caterpillar_mushroom
+        affordances:
+          - eat_one_side
+          - shrink
+          - grow
+      - id: the_duchess
+        label: the Duchess
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_duchess
+        affordances:
+          - speak_to
+      - id: the_cook
+        label: the pepper-Cook
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_cook
+        affordances:
+          - speak_to
+          - dodge_the_crockery
+      - id: duchess_kitchen
+        label: the Duchess's pepper-kitchen
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: wood_duchess_kitchen
+        affordances:
+          - enter
+      - id: the_cheshire_cat
+        label: the Cheshire-Cat
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_cheshire_cat
+        affordances:
+          - speak_to
+          - ask_the_way
+      - id: the_jabberwock
+        label: the Jabberwock
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_jabberwock
+        affordances:
+          - flee
+          - confront
+      - id: tulgey_trees
+        label: the close-met trees of the tulgey wood
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE MAD TEA-PARTY — six o'clock forever ────────────────────────────────
+  the_mad_tea_party:
+    name: The Mad Tea-Party
+    summary: "A table set under a tree, stuck forever at six o'clock, where the tea never ends"
+    description: >-
+      A large table set out under a tree before the Hatter's house, laid for a great
+      many and crowded into one corner by three. The Hatter, with a price-ticket still
+      in his hatband, and the March Hare, with straw woven through his fur, take their
+      tea between a Dormouse fast asleep, whom they use for a cushion and an elbow-rest.
+      Time has quarrelled with the Hatter and stopped his watch dead, so it is always
+      six o'clock, always tea-time, and they move round and round the table to find clean
+      cups rather than wash up. The questions have no answers, the riddles have no
+      solutions, and you may be told quite firmly there is no room when the table is
+      three-quarters empty.
+    terrain: garden
+    controlled_by: the_queens_terror
+    adjacent:
+      - the_tulgey_wood
+    landmarks:
+      - the long table laid for many and crowded into one corner
+      - the Hatter's stopped watch fixed forever at six o'clock
+      - the teapot the Dormouse is at last stuffed into
+      - the tree before the Hatter's house where the party never breaks up
+    entities:
+      - id: the_hatter
+        label: the Hatter
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_hatter
+        affordances:
+          - speak_to
+          - ask_a_riddle
+      - id: the_march_hare
+        label: the March Hare
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_march_hare
+        affordances:
+          - speak_to
+      - id: the_dormouse
+        label: the Dormouse
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_dormouse
+        affordances:
+          - wake
+          - speak_to
+      - id: the_tea_table
+        label: the table laid for the endless tea
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: tea_party_table
+        affordances:
+          - sit
+          - move_round
+      - id: stopped_watch
+        label: the Hatter's stopped watch
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE QUEEN'S CROQUET-GROUND — the painted roses and the living game ─────
+  the_queens_croquet_ground:
+    name: The Queen's Croquet-Ground
+    summary: "A living croquet-game of flamingoes and hedgehogs, painted roses, and a Queen who cries off with all heads"
+    description: >-
+      A wide, smooth lawn where the Queen of Hearts plays croquet with everything
+      alive: the mallets are live flamingoes that twist their necks to look at you, the
+      balls are curled hedgehogs that uncurl and crawl off, and the hoops are soldiers
+      of the pack bent double on their hands and feet. By the entrance, three flat
+      card-gardeners — Two, Five, and Seven — slap red paint over a rose-tree they
+      planted white by mistake, in terror of the Queen finding it out. The whole game is
+      chaos, no one keeps to turns, and the Queen storms about the ground crying "Off
+      with his head!" at every other moment. Aside from it, a Gryphon dozes in the sun,
+      and will haul you off to a weeping Mock Turtle at the edge of the lawn to hear his
+      history.
+    terrain: lawn
+    controlled_by: the_queens_terror
+    adjacent:
+      - the_tulgey_wood
+      - the_hall_of_justice
+    landmarks:
+      - the croquet-lawn of flamingo mallets, hedgehog balls, and soldier hoops
+      - the rose-tree the gardeners are painting red before the Queen sees it
+      - the sunny bank where the Gryphon dozes
+      - the lawn's edge where the Mock Turtle sits weeping his history
+    entities:
+      - id: the_queen_of_hearts
+        label: the Queen of Hearts
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_queen_of_hearts
+        affordances:
+          - speak_to
+          - play_croquet
+      - id: the_gardeners
+        label: the card-gardeners Two, Five, and Seven
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_gardeners
+        affordances:
+          - speak_to
+          - help_paint
+      - id: painted_rose_tree
+        label: the rose-tree being painted red
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: croquet_painted_rose_tree
+        affordances:
+          - inspect
+          - paint
+      - id: croquet_lawn
+        label: the living croquet-ground
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: croquet_living_ground
+        affordances:
+          - play
+      - id: the_gryphon
+        label: the Gryphon
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_gryphon
+        affordances:
+          - speak_to
+          - follow_to_the_mock_turtle
+      - id: the_mock_turtle
+        label: the Mock Turtle
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_mock_turtle
+        affordances:
+          - speak_to
+          - hear_his_history
+      - id: flamingo_mallets
+        label: the flamingo mallets and hedgehog balls
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE HALL OF JUSTICE — the card climax ──────────────────────────────────
+  the_hall_of_justice:
+    name: The Hall of Justice
+    summary: "The trial of the Knave over the stolen tarts — a court with a verdict but no procedure"
+    description: >-
+      A court-room packed with the whole pack: the King and Queen of Hearts on their
+      throne, the twelve jurors scribbling on slates, the witnesses called in turn, and
+      the Knave of Hearts in chains before them, accused of stealing the Queen's tarts.
+      It is a court that has every form of justice and none of its substance — the King,
+      a mild and muddled judge, would rather pardon everyone and quietly does so under
+      his breath, while the Queen wants the sentence first and the verdict afterwards. The
+      tarts sit on the table in plain sight. The evidence is nonsense read out as
+      poetry, and as the case collapses into pure absurdity it is here, growing back to
+      your full size, that you may at last say it plainly: they are nothing but a pack of
+      cards. And the whole country flies up about you.
+    terrain: court
+    controlled_by: the_queens_terror
+    adjacent:
+      - the_queens_croquet_ground
+      - the_looking_glass
+    landmarks:
+      - the throne where the King and Queen of Hearts preside over the trial
+      - the jury-box of twelve creatures scribbling on slates
+      - the table where the stolen tarts sit in plain sight
+      - the witness-stand where the evidence is read out as nonsense verse
+    entities:
+      - id: the_king_of_hearts
+        label: the King of Hearts
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_king_of_hearts
+        affordances:
+          - speak_to
+          - appeal_to
+      - id: the_knave_of_hearts
+        label: the Knave of Hearts
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_knave_of_hearts
+        affordances:
+          - speak_to
+          - defend
+      - id: the_court_table
+        label: the table of stolen tarts and evidence
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: justice_court_table
+        affordances:
+          - inspect
+          - testify
+      - id: the_jury_box
+        label: the jury-box of twelve scribbling creatures
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: justice_jury_box
+        affordances:
+          - inspect
+          - upset
+      - id: the_packed_court
+        label: the whole pack crowded into the court
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ══ THE SEAM ═══════════════════════════════════════════════════════════════
+
+  # ── THE LOOKING-GLASS — the mirror threshold between the two countries ─────
+  the_looking_glass:
+    name: The Looking-Glass
+    summary: "The tall mantelpiece mirror whose silver surface goes soft, the one passage between the two countries"
+    description: >-
+      A tall mirror over a mantelpiece, in a quiet room of clocks and china and a
+      dying fire. The card country lies behind you and something else waits on the other
+      side of the glass, where everything is reversed — the books read backwards, the
+      clock has a little face, and the room beyond is the same room turned the wrong way
+      round. Touch the surface and it does not stop you: the silvery glass goes soft and
+      bright as a gauze, and melts away like a haze, so that you step clean through the
+      mantelpiece into the room beyond. This is the one threshold between Card Country
+      and Looking-Glass Land, and it is never a wall — only a passage that asks to be
+      stepped through.
+    terrain: threshold
+    controlled_by: no_one
+    adjacent:
+      - the_hall_of_justice
+      - the_garden_of_live_flowers
+    landmarks:
+      - the tall mirror over the mantelpiece, its surface gone soft as gauze
+      - the looking-glass room beyond, the same room turned the wrong way round
+      - the clock with a little face and the books printed backwards
+      - the dying fire and the chessmen walking on the hearth
+    entities:
+      - id: the_mirror
+        label: the looking-glass over the mantelpiece
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: glass_the_mirror
+        affordances:
+          - inspect
+          - touch
+          - step_through
+      - id: the_mantelpiece
+        label: the mantelpiece beneath the glass
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ══ LOOKING-GLASS LAND ═════════════════════════════════════════════════════
+
+  # ── THE GARDEN OF LIVE FLOWERS — the glass entry ───────────────────────────
+  the_garden_of_live_flowers:
+    name: The Garden of Live Flowers
+    summary: "A garden of talking, gossiping flowers, and the hill from which the whole country is a chessboard"
+    description: >-
+      The first ground of the looking-glass country: a garden of flowers in a bed,
+      every one of them able to talk and most of them inclined to be rude. A Tiger-lily
+      runs the conversation and keeps the others in order; a Rose passes remarks on your
+      colour and the thinness of your petals; a Daisy chimes in until the Tiger-lily
+      hushes the whole bed. The path here will not go where you point it and brings you
+      back to the door however you walk away — until you give up and walk the other way.
+      Beyond the garden rises a low hill, and from its top the whole country is spread
+      out below you, marked off into squares by little brooks and low green hedges, for
+      all the world like a great chessboard with a game in play across it.
+    terrain: garden
+    controlled_by: the_rigged_game
+    adjacent:
+      - the_looking_glass
+      - the_chessboard_country
+    landmarks:
+      - the flower-bed where the Tiger-lily, the Rose, and the Daisy hold forth
+      - the path that will not go where you point it
+      - the low hill from whose top the country lies out as a chessboard
+      - the little brooks and hedges that rule the land into squares
+    entities:
+      - id: the_live_flowers
+        label: the bed of talking flowers
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: flowers_live_bed
+        affordances:
+          - speak_to
+          - listen
+      - id: the_chessboard_hill
+        label: the hill overlooking the chessboard country
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: flowers_chessboard_hill
+        affordances:
+          - climb
+          - survey
+      - id: the_contrary_path
+        label: the path that brings you back to the door
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE CHESSBOARD COUNTRY — the squares, the brooks, the queens ───────────
+  the_chessboard_country:
+    name: The Chessboard Country
+    summary: "The open country ruled into squares by brooks, where the chess-game runs and the queens set the moves"
+    description: >-
+      The great country itself, laid out in squares of green and white, each square
+      divided from the next by a little brook you must leap or a low hedge you must
+      clamber. To cross a brook is to advance a square, and crossing the first puts you in
+      a railway-carriage that leaps clean over the next while a chorus of passengers
+      frets that you have no ticket and your time is worth a thousand pounds a minute.
+      The Red Queen meets you here, sharp and quick, and runs you breathless hand-in-hand
+      only to leave you exactly where you started, for here it takes all the running you
+      can do to keep in the same place. She sets out the game and the squares you must
+      pass to reach the eighth and be crowned. The White Queen drifts through it the other
+      way, gentle and muddled, living backwards and bleeding before she pricks her finger.
+    terrain: chessboard
+    controlled_by: the_rigged_game
+    adjacent:
+      - the_garden_of_live_flowers
+      - the_tweedle_wood
+      - humpty_dumptys_wall
+    landmarks:
+      - the squares of green and white divided by leaping-brooks and hedges
+      - the railway-carriage that leaps you clean over a brook
+      - the Red Queen's hill, where all the running keeps you in the same place
+      - the road across the board toward the eighth square and the crown
+    entities:
+      - id: the_red_queen
+        label: the Red Queen
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_red_queen
+        affordances:
+          - speak_to
+          - run_with
+      - id: the_white_queen
+        label: the White Queen
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_white_queen
+        affordances:
+          - speak_to
+      - id: the_leaping_brook
+        label: a brook between the squares
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: chessboard_leaping_brook
+        affordances:
+          - leap
+          - advance_a_square
+      - id: the_railway_carriage
+        label: the railway-carriage over the brook
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: chessboard_railway_carriage
+        affordances:
+          - board
+          - ride
+      - id: the_green_and_white_squares
+        label: the squares of green and white
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE TWEEDLE WOOD — the brothers and the sleeping King ──────────────────
+  the_tweedle_wood:
+    name: The Tweedle Wood
+    summary: "A wood where two fat brothers recite a poem and a Red King sleeps the whole country into being"
+    description: >-
+      A wood off the high road where two stout little men stand under a tree, marked
+      DEE and DUM on their collars, exactly alike and forever contradicting each other.
+      Tweedledum and Tweedledee will shake your hand both at once, agree to recite, and
+      give you the whole of the Walrus and the Carpenter — a long, sad, gluttonous tale of
+      oysters lured up the beach and eaten — before falling to quarrel over a spoilt
+      rattle and arming themselves with bolsters and saucepans for a battle the crows put
+      off. Deeper among the trees the Red King lies asleep under a tree, snoring like a
+      kettle, and the brothers will tell you the thing you least want to hear: that you
+      are only a sort of thing in his dream, and if he were to wake, you would go out — bang
+      — like a candle.
+    terrain: forest
+    controlled_by: the_rigged_game
+    adjacent:
+      - the_chessboard_country
+      - the_wood_of_no_names
+    landmarks:
+      - the tree where Tweedledum and Tweedledee stand collared DEE and DUM
+      - the spot where they recite the whole of the Walrus and the Carpenter
+      - the heap of bolsters and saucepans for their put-off battle
+      - the tree deeper in where the Red King sleeps and snores like a kettle
+    entities:
+      - id: tweedledum_and_tweedledee
+        label: Tweedledum and Tweedledee
+        tier: real_object
+        binding:
+          kind: npc
+          ref: tweedledum_and_tweedledee
+        affordances:
+          - speak_to
+          - hear_the_recitation
+      - id: the_sleeping_red_king
+        label: the sleeping Red King
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_sleeping_red_king
+        affordances:
+          - approach
+          - try_to_wake
+      - id: the_kings_tree
+        label: the tree where the Red King sleeps
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── HUMPTY DUMPTY'S WALL — the egg and the fighting beasts ─────────────────
+  humpty_dumptys_wall:
+    name: Humpty Dumpty's Wall
+    summary: "The great egg balanced on a narrow wall, master of words, and the Lion and Unicorn fighting for the crown"
+    description: >-
+      A high, narrow wall, so narrow you wonder how he keeps his balance, on top of
+      which sits a great egg with a face, arms, and a cravat — Humpty Dumpty himself, who
+      takes your word for an egg as an insult and your conversation as a contest. He is
+      master of all words: he pays them extra to mean what he chooses, unpacks the hard
+      ones of Jabberwocky for you, and never doubts that if he fell the King would send
+      all his horses and all his men to set him up again. Below the wall, on the open
+      ground, the Lion and the Unicorn are fighting for the crown all round the town, drum
+      and all, pausing only to share out cake that must be handed round before it is cut.
+    terrain: open
+    controlled_by: the_rigged_game
+    adjacent:
+      - the_chessboard_country
+      - the_coronation_feast
+    landmarks:
+      - the high narrow wall where Humpty Dumpty sits balanced
+      - the place below where the Lion and the Unicorn fight for the crown
+      - the looking-glass cake that must be handed round before it is cut
+      - the King's men waiting in case the great egg should fall
+    entities:
+      - id: humpty_dumpty
+        label: Humpty Dumpty
+        tier: real_object
+        binding:
+          kind: npc
+          ref: humpty_dumpty
+        affordances:
+          - speak_to
+          - ask_the_meaning_of_a_word
+      - id: the_lion_and_the_unicorn
+        label: the Lion and the Unicorn
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_lion_and_the_unicorn
+        affordances:
+          - speak_to
+          - hand_round_the_cake
+      - id: the_narrow_wall
+        label: Humpty Dumpty's narrow wall
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: wall_narrow_wall
+        affordances:
+          - inspect
+          - steady
+      - id: the_fighting_beasts
+        label: the Lion and Unicorn at their drum-and-all battle
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE WOOD OF NO NAMES — the menace of forgetting, and the Knight ────────
+  the_wood_of_no_names:
+    name: The Wood of No Names
+    summary: "A wood where you forget your own name and the names of things, and the gentle White Knight escorts you through"
+    description: >-
+      A dark little wood where the names of things will not stay. Step under its
+      branches and your own name slips away from you, and so do the words for tree and
+      bird and the very thought of what you came to do; a Fawn walks fearless beside you
+      here only because neither of you can remember to be afraid of the other. To stay too
+      long is to lose the thread altogether — to go native in the dream, forget you ever
+      had a waking life to return to, and never come out the far side at all. Through it
+      comes the White Knight, gentle and clumsy and always tumbling off his horse, hung
+      about with his own foolish inventions, who appoints himself your escort and sees you
+      safe to the edge and the last square beyond.
+    terrain: forest
+    controlled_by: the_rigged_game
+    adjacent:
+      - the_tweedle_wood
+      - the_coronation_feast
+    landmarks:
+      - the line of branches under which all names slip away
+      - the Fawn that walks beside you because neither can remember fear
+      - the far edge where the names come back and the last square waits
+      - the White Knight's track, strewn with his fallen foolish inventions
+    entities:
+      - id: the_white_knight
+        label: the White Knight
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_white_knight
+        affordances:
+          - speak_to
+          - be_escorted
+      - id: the_namelessness
+        label: the wood's stealing-away of all names
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: nonames_the_forgetting
+        affordances:
+          - resist
+          - lose_the_thread
+      - id: the_fearless_fawn
+        label: the Fawn that has forgotten to fear
+        tier: flavor_only
+    rivers: []
+    settlements: []
+
+  # ── THE CORONATION FEAST — the glass climax ────────────────────────────────
+  the_coronation_feast:
+    name: The Coronation Feast
+    summary: "The eighth square — you are crowned, the feast erupts into chaos, and you wake by shaking the Queen"
+    description: >-
+      The eighth square at last, and a golden crown that fastens itself upon your head:
+      you are a Queen now, with a Red Queen and a White Queen seated stiff and sharp to
+      either side of you, putting you through your catechism of nonsense. Then the great
+      coronation feast: a leg of mutton that is introduced and bows, a pudding that
+      objects to being cut, candles grown up to the roof, and guests who climb into the
+      dishes and the soup. The Red Queen shrinks and the White Queen vanishes into the
+      tureen; the whole table tilts and rises in an uproar, plates and all taking wing.
+      In the middle of the wreck you seize the Red Queen and shake her with all your might —
+      and she dwindles small and soft in your hands, and you are awake, and it was all a
+      dream, and the kitten is on your knee.
+    terrain: hall
+    controlled_by: the_rigged_game
+    adjacent:
+      - humpty_dumptys_wall
+      - the_wood_of_no_names
+    landmarks:
+      - the eighth square where the crown fastens itself on your head
+      - the high seats where the Red Queen and White Queen put you through your catechism
+      - the feast of bowing mutton, objecting pudding, and roof-high candles
+      - the moment of uproar where you seize and shake the Queen and wake
+    entities:
+      - id: the_red_queen
+        label: the Red Queen at the feast
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_red_queen
+        affordances:
+          - speak_to
+          - seize_and_shake
+      - id: the_white_queen
+        label: the White Queen at the feast
+        tier: real_object
+        binding:
+          kind: npc
+          ref: the_white_queen
+        affordances:
+          - speak_to
+      - id: the_feast_table
+        label: the coronation feast that rises into uproar
+        tier: real_object
+        binding:
+          kind: location_feature
+          ref: feast_coronation_table
+        affordances:
+          - sit
+          - overturn
+      - id: the_self_crowning_crown
+        label: the crown that fastens itself on your head
+        tier: flavor_only
+    rivers: []
+    settlements: []

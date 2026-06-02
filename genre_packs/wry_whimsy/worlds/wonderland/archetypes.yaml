@@ -1,0 +1,540 @@
+# Wonderland — World-Level NPC Archetypes
+#
+# The named supporting cast you find in THIS world specifically. The genre tier
+# (wry_whimsy/archetypes.yaml) supplies the five PLAYABLE Traveler coping-styles
+# (Innocent / Wit / Surveyor / Scrapper / Dreamer); these are the Wonderland-
+# particular NPCs the materialiser dresses scenes with — the contrary creatures
+# of the underground country, the mad tea-party, the card-court of Hearts.
+#
+# SCHEMA: genre NpcArchetype (name + description required; stat_ranges keyed on
+# the locked WW ability axes WIT/NERVE/HEART/GUILE/WONDER; ocean 0-10 baselines;
+# role drawn from the canonical npc_roles set: mentor herald shadow threshold
+# host artisan authority victim mook). typical_classes / typical_races are drawn
+# ONLY from rules.yaml allowed sets (classes: Curious Child, Practical Servant,
+# Earnest Scholar, Weary Soldier, Wayward Dreamer, Stubborn Skeptic; races:
+# Ordinary-Born, Threshold-Touched, Native Dreamer). Native Wonderland creatures
+# read as Native Dreamer — they ARE the dream.
+#
+# LOW lethality is the world dial: every menace here scolds, sentences, shrinks,
+# or talks the traveler in circles. The Queen of Hearts bellows for heads and
+# none are ever struck off (the King quietly pardons everyone); the real danger
+# is losing your own thread, not your life. Played dead straight even at its
+# silliest — Tenniel and Carroll, never the 1951 cartoon.
+#
+# jungian_hint / rpg_role_hint are authoring cross-references to the canonical
+# axes (extra fields; NpcArchetype allows extra). Render straight Carroll.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE WHITE RABBIT — the herald who pulls the traveler in and is forever late.
+# He is the thread the Innocent follows down the hole; in the country he is a
+# fretful minor functionary of the Court, mistaking the traveler for his
+# housemaid.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Hurrying Rabbit
+  description: >-
+    A white rabbit in a waistcoat with a watch in his pocket, forever consulting
+    it and exclaiming that he is late, that he shall be too late, that the Duchess
+    will have him executed for keeping her waiting. He is the lure that draws the
+    traveler down the hole and a flustered errand-runner of the Court besides —
+    timid before his betters, peremptory below them, and quite likely to mistake
+    a strange traveler for his own housemaid Mary Ann and send them fetching his
+    gloves. The herald: he sets the chase going and is gone before it is answered.
+  personality_traits:
+    - perpetually late and panicked
+    - timid above, imperious below
+    - never once stops to wonder at the traveler
+  typical_classes:
+    - Practical Servant
+    - Curious Child
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [8, 11]
+    GUILE: [10, 13]
+    WIT: [9, 12]
+  jungian_hint: herald
+  rpg_role_hint: support
+  inventory_hints:
+    - a large pocket-watch he consults and is always dismayed by
+    - a fan and a pair of white kid gloves he is forever mislaying
+  dialogue_quirks:
+    - mutters "oh dear, oh dear, I shall be too late!" and hurries on
+    - mistakes the traveler for a servant and gives brisk orders
+    - invokes the Duchess's temper as though it were the weather
+    - never answers a question, only frets about the time
+  disposition_default: 0
+  ocean:
+    openness: 4.5
+    conscientiousness: 6.5
+    extraversion: 5.0
+    agreeableness: 5.0
+    neuroticism: 8.5
+  role: herald
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE CONTRARY CREATURES — the interlocutors of the wit-duel and audience lanes.
+# Each runs on its own private logic and resents being argued with. None will
+# yield to sense; the contest is to keep your footing in the conversation.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Vanishing Cat
+  description: >-
+    A grinning cat that sits in a tree and appears and disappears as it pleases,
+    sometimes all at once, sometimes by degrees ending with the grin, which lingers
+    a while after the rest of it has gone. The only creature in the country that
+    answers a question honestly — that everyone here is mad, the traveler included,
+    or they would not have come — and the only one comfortable in its own madness.
+    It gives directions that are perfectly true and no help at all, and it is the
+    nearest thing to a guide the country offers: a guide that explains nothing and
+    fades when pressed.
+  personality_traits:
+    - serenely, openly mad
+    - honest in a way that helps no one
+    - here and gone at its own whim
+  typical_classes:
+    - Wayward Dreamer
+    - Stubborn Skeptic
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [15, 18]
+    WONDER: [14, 17]
+    GUILE: [12, 15]
+  jungian_hint: sage
+  rpg_role_hint: control
+  inventory_hints:
+    - a grin that outlasts the rest of it
+    - a perch in a tree it occupies and abandons without moving
+  dialogue_quirks:
+    - observes that everyone here, the traveler included, is mad
+    - gives directions that depend entirely on where you want to get to
+    - fades out a piece at a time, ending with the smile
+    - reappears mid-sentence to finish a thought nobody asked it to
+  disposition_default: 5
+  ocean:
+    openness: 9.0
+    conscientiousness: 3.5
+    extraversion: 5.0
+    agreeableness: 5.5
+    neuroticism: 3.0
+  role: mentor
+  named_individual: true
+
+- name: The Hookah Caterpillar
+  description: >-
+    A large blue caterpillar perched on a mushroom, smoking a hookah and regarding
+    the traveler with cool, sleepy contempt. It answers questions with questions,
+    demands to know exactly WHO the traveler is and refuses to accept that they
+    don't rightly know themselves, and recites poetry back at them when their own
+    comes out wrong. Maddening and, in its way, the most useful authority in the
+    country: it is the one that tells the traveler, gnomically, that the two sides
+    of the mushroom will make them taller and shorter, and leaves them to work out
+    which is which.
+  personality_traits:
+    - languid and superior
+    - relentlessly contrary
+    - cryptically helpful at the very end
+  typical_classes:
+    - Stubborn Skeptic
+    - Earnest Scholar
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [14, 17]
+    GUILE: [13, 16]
+    NERVE: [13, 16]
+  jungian_hint: sage
+  rpg_role_hint: control
+  inventory_hints:
+    - a hookah it smokes with infuriating composure
+    - a mushroom whose two sides change the eater's size
+  dialogue_quirks:
+    - opens with "who are YOU?" and is unsatisfied by any answer
+    - corrects the traveler's recited poetry, line by wrong line
+    - lets a long silence and a puff of smoke stand in for a reply
+    - parts with one genuinely useful instruction, offered as if bored
+  disposition_default: -5
+  ocean:
+    openness: 6.5
+    conscientiousness: 5.5
+    extraversion: 3.0
+    agreeableness: 3.0
+    neuroticism: 3.5
+  role: threshold
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE MAD TEA-PARTY — the wit-duel and audience lanes at their purest. A circle
+# of creatures stuck at six o'clock forever, who will riddle the traveler in
+# circles and have no answers and will not stop. Time itself is offended here.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Mad Hatter
+  description: >-
+    A hatter sentenced by his own quarrel with Time to an eternal tea-party where
+    it is always six o'clock, crowded around one end of a long table because the
+    things at the other end are dirty and there is no washing-up. He poses riddles
+    he cannot answer ("why is a raven like a writing-desk?"), insists the traveler
+    has no right to be there, and conducts the whole party with the manic courtesy
+    of a host who has long since lost the thread of why anyone is sitting down.
+    The standing host of the nonsense conversation lane.
+  personality_traits:
+    - manically hospitable
+    - quarreling with Time itself
+    - asks riddles he has no answers to
+  typical_classes:
+    - Wayward Dreamer
+    - Stubborn Skeptic
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [13, 16]
+    GUILE: [11, 14]
+    NERVE: [12, 15]
+  jungian_hint: jester
+  rpg_role_hint: support
+  inventory_hints:
+    - a tall hat marked with its price-ticket, "In this style 10/6"
+    - a tea-service for a party that never clears away and never ends
+  dialogue_quirks:
+    - poses a riddle and freely admits he hasn't the least idea of the answer
+    - tells the traveler in great detail that they want a cleaner cup
+    - blames Time, personally, for stopping the clock at tea
+    - interrupts to announce there is no room when the table is half empty
+  disposition_default: 0
+  ocean:
+    openness: 7.5
+    conscientiousness: 3.0
+    extraversion: 8.0
+    agreeableness: 4.5
+    neuroticism: 6.5
+  role: host
+  named_individual: true
+
+- name: The March Hare
+  description: >-
+    A hare gone mad with the spring, the Hatter's fellow prisoner at the
+    everlasting tea, who offers the traveler wine where there is none and advises
+    them to say what they mean — and is utterly unmoved when they protest that
+    they do, at least, mean what they say. He runs on the same broken logic as the
+    Hatter and amplifies it, the two of them volleying nonsense across the
+    Dormouse's sleeping head. Where the Hatter hosts, the Hare heckles.
+  personality_traits:
+    - spring-maddened
+    - argumentative on no real point
+    - generous with things that aren't there
+  typical_classes:
+    - Wayward Dreamer
+    - Curious Child
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [12, 15]
+    GUILE: [11, 14]
+    WONDER: [11, 14]
+  jungian_hint: jester
+  rpg_role_hint: dps
+  inventory_hints:
+    - tufts of straw worked into his fur, in the way of a creature gone mad
+    - a chair at the tea-table he defends as though it were besieged
+  dialogue_quirks:
+    - offers wine, then points out crossly that there isn't any
+    - insists "say what you mean" and pretends not to hear the obvious reply
+    - twists the traveler's words back at them in the Hatter's relay
+    - corrects a small grammatical point in the middle of bedlam
+  disposition_default: -5
+  ocean:
+    openness: 6.5
+    conscientiousness: 2.5
+    extraversion: 6.5
+    agreeableness: 3.5
+    neuroticism: 7.0
+  role: mook
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE WALL-TOP LOGICIAN — the Wit's truest sparring partner. Master of words by
+# his own decree, paid extra by them on Saturdays, and seated on a wall in plain
+# defiance of the obvious risk. The wit-duel lane personified.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Wall-Top Egg
+  description: >-
+    A great smooth egg in a cravat, balanced on a high narrow wall and supremely
+    unbothered by the precariousness of it, who declares that when HE uses a word
+    it means precisely what he chooses it to mean, neither more nor less, and that
+    the question is which is to be master. He is the country's resident logician
+    and its proof that logic, pushed hard enough, becomes its own kind of madness:
+    he will out-argue the traveler on the meaning of every word and the meaning of
+    meaning itself, all from a perch one good breeze would end. The wit-duel made
+    flesh — and shell.
+  personality_traits:
+    - imperiously certain
+    - master of words by personal decree
+    - oblivious to his own precariousness
+  typical_classes:
+    - Stubborn Skeptic
+    - Earnest Scholar
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WIT: [16, 18]
+    GUILE: [13, 16]
+    NERVE: [11, 14]
+  jungian_hint: ruler
+  rpg_role_hint: control
+  inventory_hints:
+    - a cravat — or a belt; he will argue at length over which
+    - a high wall he sits upon as if it were a throne
+  dialogue_quirks:
+    - declares a word means exactly what he chooses it to mean
+    - frames every disagreement as the question of who is to be master
+    - demands his birthday presents be reckoned and is sour about the count
+    - explains a poem with total confidence and no accuracy
+  disposition_default: -5
+  ocean:
+    openness: 5.5
+    conscientiousness: 6.0
+    extraversion: 6.5
+    agreeableness: 2.5
+    neuroticism: 4.5
+  role: authority
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE COURT OF HEARTS — the audience/trial lane and the world's loudest menace,
+# which is to say no menace at all. The Queen bellows for heads; the King pardons
+# behind her back; nobody is ever actually beheaded. Played dead straight: the
+# terror is real to everyone in the room, the consequence never lands.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Heart-Queen
+  description: >-
+    The Queen of Hearts — a flat, fierce playing-card sovereign with one answer to
+    every difficulty, which is "Off with their heads!", roared at gardeners,
+    courtiers, hedgehogs, and the open air alike. She is the country's supreme
+    authority and its emptiest threat: her sentences are screamed and never
+    carried out, because the King follows quietly behind pardoning everyone the
+    moment her back is turned. She presides over a croquet-ground of live
+    flamingos and a trial conducted entirely backwards — sentence first, verdict
+    after. The audience/trial lane at its most thunderous and least lethal.
+  personality_traits:
+    - all fury and no follow-through
+    - sentences first and considers never
+    - genuinely frightening to everyone in the room
+  typical_classes:
+    - Weary Soldier
+    - Stubborn Skeptic
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [14, 17]
+    GUILE: [10, 13]
+    WONDER: [11, 14]
+  jungian_hint: outlaw
+  rpg_role_hint: control
+  inventory_hints:
+    - a croquet-ground of flamingo mallets and hedgehog balls
+    - a pack of card-soldiers who flatten themselves at her approach
+  dialogue_quirks:
+    - answers every setback with "Off with their heads!"
+    - demands the trial reach its sentence before hearing the evidence
+    - turns purple and screams, then is instantly distracted by croquet
+    - threatens the entire court, the weather, and the traveler in one breath
+  disposition_default: -15
+  ocean:
+    openness: 2.5
+    conscientiousness: 3.0
+    extraversion: 8.5
+    agreeableness: 1.5
+    neuroticism: 8.0
+  role: authority
+  named_individual: true
+
+- name: The Card-Soldier Gardeners
+  description: >-
+    The Two, Five, and Seven of Spades — flat playing-card gardeners caught
+    painting the Queen's white roses red, having planted the wrong bushes and
+    living in terror of the discovery. They flatten themselves face-down at the
+    Queen's approach, blame one another in frantic whispers, and are sentenced to
+    beheading roughly hourly without anyone ever following through. The obstacle of
+    the audience lane in its lowest, most harmless form: bumbling functionaries
+    more frightened of their sovereign than dangerous to anyone.
+  personality_traits:
+    - terrified of being found out
+    - quick to blame each other
+    - harmless and underfoot
+  typical_classes:
+    - Practical Servant
+    - Weary Soldier
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [8, 11]
+    GUILE: [9, 12]
+    WIT: [8, 11]
+  jungian_hint: everyman
+  rpg_role_hint: support
+  inventory_hints:
+    - buckets of red paint and a stand of white roses planted by mistake
+    - flat card-bodies that fall face-down at the first sign of the Queen
+  dialogue_quirks:
+    - blames the planting on whichever card spoke last
+    - flattens itself and pleads the moment the Queen is mentioned
+    - whispers the whole disaster to a passing stranger in a panic
+    - accepts a death-sentence as one more ordinary indignity of the job
+  disposition_default: 0
+  ocean:
+    openness: 3.5
+    conscientiousness: 5.5
+    extraversion: 4.5
+    agreeableness: 6.0
+    neuroticism: 8.0
+  role: mook
+  named_individual: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE ONE REAL MONSTER — the Jabberwock, the single creature in this whole
+# nonsense country that violence is the right answer to. It belongs to the
+# looking-glass wood, not the card-court; it is the Scrapper's reason for being.
+# Rendered straight from the poem: a thing of jaws-that-bite and claws-that-catch,
+# slain with a vorpal blade and no apology.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Jabberwock
+  description: >-
+    The one true terror of the country — a beast of the tulgey wood with eyes of
+    flame, jaws that bite and claws that catch, that comes whiffling and burbling
+    through the trees. Where every other menace here scolds or sentences or talks
+    in circles, the Jabberwock simply means to kill, and it is the single creature
+    in Wonderland that a vorpal blade and a steady arm are the correct answer to.
+    Slaying it is a genuine victory and a thing the country will tell as a tale
+    — "O frabjous day!" — but the blade that ends it marks its bearer everywhere
+    else in a world built on nonsense rather than steel.
+  personality_traits:
+    - genuinely, wordlessly murderous
+    - all teeth and burble and flame
+    - the exception that proves the gentle rule
+  typical_classes:
+    - Weary Soldier
+    - Wayward Dreamer
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    NERVE: [15, 18]
+    WONDER: [14, 17]
+    GUILE: [9, 12]
+  jungian_hint: shadow
+  rpg_role_hint: tank
+  inventory_hints:
+    - jaws that bite and claws that catch
+    - eyes of flame and a burble that carries through the tulgey wood
+  dialogue_quirks:
+    - does not speak — only whiffles, burbles, and comes on
+    - announces itself by the flame of its eyes through the trees
+    - gives no quarter and asks for none
+    - is the one thing here that a drawn blade does not shame
+  disposition_default: -40
+  ocean:
+    openness: 2.0
+    conscientiousness: 4.0
+    extraversion: 3.0
+    agreeableness: 1.0
+    neuroticism: 5.0
+  role: shadow
+  named_individual: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE LOOKING-GLASS ROYALS — the wonder-shock and persuasion lanes from the
+# second book. The Red King sleeps and the country may be his dream; the White
+# Queen lives backwards and is kindly and helpless. Authored as flavor the
+# materialiser may surface; the narrator seeds the dreaming, never settles whose
+# dream it is.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- name: The Sleeping Red King
+  description: >-
+    A chess-piece king asleep under a tree in the looking-glass country, snoring,
+    and the subject of the country's most unsettling rumor: that the whole of it
+    — the traveler included — is only a thing in HIS dream, and that were he to
+    wake, everyone here would go out like a candle. He never wakes in the
+    traveler's hearing; the Tweedle-brothers point at him and say so with great
+    relish. The wonder-shock lane's deepest pull, made into a sleeping man: the
+    suggestion that the dreamer might be dreamed. A PRIMED, LATENT unease — the
+    narrator raises the question, never answers whose dream this is.
+  personality_traits:
+    - asleep and snoring throughout
+    - the possible dreamer of everything
+    - a quiet, vertiginous menace by mere suggestion
+  typical_classes:
+    - Wayward Dreamer
+    - Weary Soldier
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WONDER: [15, 18]
+    NERVE: [11, 14]
+    HEART: [10, 13]
+  jungian_hint: magician
+  rpg_role_hint: support
+  inventory_hints:
+    - a nightcap and a snore that shakes the leaves above him
+    - a dream that may or may not contain the entire country
+  dialogue_quirks:
+    - says nothing, being asleep, and that silence is the menace
+    - is spoken of by others as the one who might be dreaming the lot of them
+    - stirs just enough to make everyone present hold their breath
+    - leaves the question of whose dream it is hanging in the air
+  disposition_default: 0
+  ocean:
+    openness: 8.0
+    conscientiousness: 4.0
+    extraversion: 2.0
+    agreeableness: 6.0
+    neuroticism: 5.0
+  role: shadow
+  named_individual: true
+
+- name: The Backwards White Queen
+  description: >-
+    A dishevelled, kindly chess-piece queen who lives backwards in time — she
+    cries out and bleeds before she pricks her finger, remembers next week far
+    better than last, and keeps her memory working both ways at considerable cost
+    to her composure. She offers the traveler employment, jam every other day
+    (but never jam today), and the practice of believing six impossible things
+    before breakfast. Helpless, gentle, and forever coming apart at the pins; the
+    persuasion lane's softest figure and a living lesson in the country's logic.
+  personality_traits:
+    - kind and perpetually flustered
+    - living forwards through a backwards life
+    - dispensing impossible advice in earnest
+  typical_classes:
+    - Earnest Scholar
+    - Practical Servant
+  typical_races:
+    - Native Dreamer
+  stat_ranges:
+    WONDER: [14, 17]
+    HEART: [13, 16]
+    WIT: [9, 12]
+  jungian_hint: caregiver
+  rpg_role_hint: healer
+  inventory_hints:
+    - shawls and pins forever working loose from her
+    - a memory that runs both directions and a finger not yet pricked
+  dialogue_quirks:
+    - cries out at an injury before it has happened
+    - offers jam every other day, and never, ever jam today
+    - recommends believing six impossible things before breakfast
+    - loses the thread of her own sentence and finds it pointing the wrong way
+  disposition_default: 15
+  ocean:
+    openness: 8.5
+    conscientiousness: 3.5
+    extraversion: 5.0
+    agreeableness: 8.5
+    neuroticism: 7.5
+  role: mentor
+  named_individual: true
