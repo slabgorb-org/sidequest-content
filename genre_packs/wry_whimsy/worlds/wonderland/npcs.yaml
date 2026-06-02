@@ -1,0 +1,987 @@
+# Wonderland — the runtime roster (the "Monster Manual").
+#
+# These are the named figures of Lewis Carroll's Wonderland, rendered straight
+# from Alice's Adventures in Wonderland (1865) and Through the Looking-Glass
+# (1871). Card Country and Looking-Glass Land, played dead-straight: the watch,
+# the mushroom, the grin without a cat, the tarts, the rigged race, the wall,
+# the vorpal blade. NEVER the Disney gloss — the menace and the comedy both
+# come from each figure sincerely running its own canonical business.
+#
+# RUNTIME-WIRED. The loader reads worlds/<slug>/npcs.yaml and injects every entry
+# below into game-state as a pre-generated "NPC nearby, not yet met" (ADR-059 —
+# the anti-improvisation gaslighting layer). This file is ALSO the world's
+# Living-World engine: a separate faction_agendas.yaml was dropped as unwired, so
+# each figure's drive lives HERE, in its history_seeds, as a standing, unresolved
+# goal — the Rabbit's errand, the Queen's beheadings, the Red Queen's drill, the
+# Gardeners' terror, Humpty's redefinitions, the Jabberwock's hunt.
+#
+# SCHEMA: AuthoredNpc (sidequest-server/sidequest/genre/models/authored_npc.py,
+# extra="forbid"). Keys: id, name, pronouns, role, ocean, appearance, age,
+# distinguishing_features, history_seeds, initial_disposition. There is NO
+# npc_role field in the runtime model — the canonical 9-set role
+# (mentor/herald/shadow/threshold/host/artisan/authority/victim/mook) is carried
+# in the free-text `role:` string, leading each line as a bracketed tag so it is
+# both human-meaningful and machine-greppable, matching the role assignments in
+# this world's archetypes.yaml. OCEAN follows the shipped npcs.yaml convention
+# (oz, glenross, five_points, coyote_star): { O, C, E, A, N } on a 0.0–1.0 scale.
+# initial_disposition per ADR-020, integer -100..100. Voice tics live in
+# history_seeds as prose; the narrator extracts them.
+#
+# DOCTRINE: source-fidelity over Disney; diegetic sincerity, never a wink; the
+# nonsense is earnest, not winking. The two Queens are the powers; the Kings are
+# asleep or ineffectual — honor the gender current in every goal. One creature is
+# genuinely lethal (the Jabberwock); everything else menaces by absurdity,
+# pedantry, terror-theater, or sheer ontological dread, never the kill.
+
+version: "0.1.0"
+world: wonderland
+
+npcs:
+
+  # ── CARD COUNTRY — THE 1865 BOOK ────────────────────────────────────────────
+
+  - id: white_rabbit
+    name: "The White Rabbit"
+    pronouns: "he/him"
+    role: "[herald] The anxious herald who runs the Queen's errands; always, always late"
+    ocean: { O: 0.35, C: 0.65, E: 0.5, A: 0.55, N: 0.85 }
+    appearance: >-
+      A white rabbit with pink eyes, dressed like a small flustered gentleman in
+      a waistcoat, with a watch he hauls out of a waistcoat-pocket and consults in
+      a fresh panic every few steps. He trots, he frets, he mutters "Oh dear! Oh
+      dear! I shall be too late!" and bolts down holes and across courtyards with
+      a herald's white gloves in one paw and a fan in the other, forever on an
+      errand for someone he is far more afraid of than any stranger. He drops the
+      gloves and the fan when he is rattled, which is constantly.
+    age: "a grown rabbit, harried beyond his years"
+    distinguishing_features:
+      - "a waistcoat-watch he pulls out and checks in mounting panic, never once satisfied with the time"
+      - "white kid gloves and a fan he is forever clutching, dropping, and scrambling after"
+      - "a trumpet and a long scroll when he is on official business — herald to the court of Hearts"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): get to the Queen on time, and never be the
+        cause of a delay she might punish. The Rabbit's whole motion in the world
+        is errand and dread — he is hurrying somewhere for Her Majesty at every
+        moment, and the engine that drives him is not curiosity about the traveler
+        but the terror of being late to the court of Hearts. He will press a
+        stranger into service ("Why, Mary Ann, what ARE you doing out here?") sooner
+        than lose another minute.
+      - >-
+        He mistakes a traveler for a servant when he is in a hurry, which is always,
+        and sends them off after gloves and fans with the imperious fluster of a man
+        too frightened of his betters to be polite to his inferiors. He is petty
+        downward and craven upward, and entirely sincere in both directions.
+      - >-
+        Voice in his own register — breathless, fretting, self-interrupting. "Oh
+        dear! The Duchess! The Duchess! Oh! won't she be savage if I've kept her
+        waiting!" Consults the watch mid-sentence and loses his thread. Bolts at the
+        first sign of trouble. Render the panic dead straight: he is genuinely
+        afraid, and the comedy is that he is afraid of being late, of all things,
+        in a country where time itself has gone wrong.
+    initial_disposition: 5
+
+  - id: the_caterpillar
+    name: "The Caterpillar"
+    pronouns: "he/him"
+    role: "[threshold] Supercilious blue smoker on the mushroom; keeper of the size-charm"
+    ocean: { O: 0.7, C: 0.5, E: 0.3, A: 0.2, N: 0.25 }
+    appearance: >-
+      A large blue caterpillar, exactly three inches high, sitting on the top of a
+      tall mushroom with its arms folded, quietly smoking a long hookah and taking
+      not the smallest notice of the traveler nor of anything else. It looks down
+      its considerable length with half-lidded, contemptuous eyes, removes the
+      hookah from its mouth only to deliver a single deflating question, and puts
+      it back. The mushroom it sits on is the one thing in Wonderland that can set
+      a traveler's size right — and the Caterpillar knows it, and is in no hurry to
+      say so.
+    age: "three inches, and on the very edge of changing into something else"
+    distinguishing_features:
+      - "a long hookah it smokes with insufferable calm, releasing one languid question at a time"
+      - "the mushroom — one side makes the eater grow, the other makes them shrink, and only it knows which is which"
+      - "a flat refusal to be impressed, hurried, or addressed without first answering its questions"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): be left in peace to smoke and to change, and
+        to make any creature that disturbs it account for itself first. The
+        Caterpillar wants nothing from the traveler and will give nothing easily; it
+        is on the brink of its own transformation into a butterfly and regards the
+        whole fuss of a lost, resizing stranger as beneath its notice. The size-charm
+        is dispensed only to one who has endured the cross-examination.
+      - >-
+        Its single piece of practical help — "One side will make you grow taller,
+        and the other side will make you grow shorter" — is given grudgingly, late,
+        and without specifying which side is which, so that the traveler must learn
+        the mushroom by trial. It is the gatekeeper of scale in a country where
+        being the wrong size is the whole problem.
+      - >-
+        Voice in its own register — languid, superior, deflating. "Who are YOU?"
+        delivered as the rudest possible greeting. "Why?" and "What size do you want
+        to be?" delivered as though the answers were obvious and the traveler a
+        fool for not having them ready. Recites criticism of a creature's recited
+        poem with cold precision. Never raises its voice; never needs to.
+    initial_disposition: -10
+
+  - id: the_cheshire_cat
+    name: "The Cheshire Cat"
+    pronouns: "it/its"
+    role: "[mentor] The one creature that tells plain truth — the guide who will not guide"
+    ocean: { O: 0.85, C: 0.35, E: 0.55, A: 0.5, N: 0.2 }
+    appearance: >-
+      A large cat with an enormous, fixed grin, sitting in a tree or appearing on a
+      bough where a moment ago there was nothing, regarding the traveler with the
+      lazy good nature of a creature that knows exactly how mad everything is and is
+      perfectly comfortable with the fact. It vanishes when it pleases — sometimes
+      all at once, sometimes very slowly, beginning with the tail and ending with
+      the grin, which remains for some time after the rest of it has gone, hanging
+      in the air. It cannot be caught, cornered, or beheaded, having no body for the
+      axe to find when it wishes not to.
+    age: "as old as the riddle of where it goes when it isn't there"
+    distinguishing_features:
+      - "a grin that outlasts the rest of it — the last thing to fade and the first thing to return"
+      - "the trick of vanishing and reappearing at will, slowly or all at once, anywhere it likes"
+      - "the only candid tongue in Wonderland: it says the true thing plainly and then declines to help with it"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): observe, amuse itself, and tell the truth
+        without ever being pinned to a course of action. The Cat is the one figure
+        in Wonderland that is honest — "we're all mad here," it says, and means it,
+        and proves it — but its honesty is not the same as help. It points down
+        every road at once ("that way lives a Hatter, and that way a March Hare;
+        visit either you like, they're both mad"), confirms that the traveler is mad
+        too for being there at all, and then fades, grin last, leaving the choosing
+        to them.
+      - >-
+        It is the guide who will not guide. Where the Caterpillar withholds and the
+        Queen commands, the Cat simply tells the truth and shrugs — it will answer
+        any question put to it accurately, including the unwelcome ones, but it takes
+        no side, runs no errand, and accepts no obligation. It cannot be made to lie
+        and cannot be made to stay.
+      - >-
+        Voice in its own register — calm, amused, maddeningly reasonable. "We're all
+        mad here. I'm mad. You're mad." Proves its logic with a straight face: "a dog
+        growls when it's angry and wags its tail when it's pleased; I growl when I'm
+        pleased and wag my tail when I'm angry — therefore I'm mad." Vanishes
+        mid-conversation and reappears to finish a point no one asked it to finish.
+        The grin is always sincere and always unhelpful.
+    initial_disposition: 15
+
+  - id: the_duchess
+    name: "The Duchess"
+    pronouns: "she/her"
+    role: "[host] Moral-spouting mistress of the pepper-kitchen; nurse to a baby that becomes a pig"
+    ocean: { O: 0.4, C: 0.45, E: 0.6, A: 0.35, N: 0.6 }
+    appearance: >-
+      An ugly, sharp-chinned, sharp-elbowed great lady, by turns savage and
+      smothering, found first in a small kitchen so thick with pepper that everyone
+      in it sneezes without pause. She nurses a squalling baby by tossing it up and
+      down and bawling a lullaby of violence at it, then thrusts it at any passing
+      stranger without warning and stalks off to play croquet with the Queen. Later,
+      out of the kitchen and the pepper, she turns suddenly and alarmingly
+      affectionate, digging her dreadful little chin into a companion's shoulder and
+      finding a smothering moral in absolutely everything.
+    age: "a great lady of uncertain and ill-tempered middle years"
+    distinguishing_features:
+      - "a baby she handles like a parcel — and which, swaddling and all, quietly turns into a pig in the carrying"
+      - "a pepper-choked kitchen she rules between bouts of croquet at the Queen's pleasure"
+      - "a moral wrung out of every remark, however little the remark will bear one"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): stay in the Queen's good graces (no easy thing
+        — she is under sentence of execution herself half the time) and find the
+        moral in everything. The Duchess oscillates between the savage and the
+        smothering as it suits her standing at court; her drive is to court whatever
+        power is in the room and to lecture whoever is beneath her, and she will turn
+        on a coin from snarling at a baby to cooing over a stranger the instant the
+        wind of favor shifts.
+      - >-
+        The baby is hers to mishandle and hers to discard — she flings it at a
+        passing traveler ("here, you may nurse it a bit if you like, I've got to go
+        and get ready to play croquet with the Queen") and is gone before anyone can
+        refuse. In the carrying, the swaddled thing grunts, snouts, and is plainly a
+        pig; render the transformation deadpan and let the traveler notice it, as the
+        Duchess herself never does.
+      - >-
+        Voice in her own register — two registers. In the kitchen: snarling,
+        sneezing, slinging the baby and the blame. Out of it, on the croquet ground:
+        unctuous, clinging, chin in the shoulder. "Everything's got a moral, if only
+        you can find it." Tack ME a moral, she means, onto the world whether it fits
+        or not. Both registers played dead straight: she believes the morals, and she
+        fears the Queen, completely.
+    initial_disposition: -5
+
+  - id: the_cook
+    name: "The Cook"
+    pronouns: "she/her"
+    role: "[mook] The Duchess's cook; over-pepperer and flinger of crockery"
+    ocean: { O: 0.2, C: 0.4, E: 0.65, A: 0.15, N: 0.7 }
+    appearance: >-
+      A furious cook leaning over the fire of the Duchess's kitchen, stirring a
+      great cauldron of soup that is plainly nothing but pepper, with more pepper
+      in the air than in the pot. She tastes nothing, seasons everything past all
+      reason, and when crossed — or when not crossed, when merely in the mood —
+      she snatches up whatever is to hand and hurls it: fire-irons, saucepans,
+      plates, dishes, a rain of crockery flung at the Duchess, the baby, and
+      anyone foolish enough to stand between. She does not argue; she throws.
+    age: "indeterminate; soured by smoke and pepper"
+    distinguishing_features:
+      - "a cauldron of soup that is nine-tenths pepper, set over a fire she never leaves"
+      - "an arm that flings fire-irons, saucepans, and crockery at the least provocation, or none"
+      - "a settled refusal to take any notice of being shouted at, ducked from, or reasoned with"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): season the soup and defend the kitchen with
+        whatever comes to hand. The Cook is a small, perfect engine of domestic
+        violence — she over-peppers because that is how soup is made, as far as she
+        is concerned, and she throws crockery because that is how a kitchen is run.
+        Neither act is malice exactly; both are simply her trade, performed with
+        total conviction and no interest whatsoever in the consequences.
+      - >-
+        She makes the Duchess's kitchen unliveable on purpose and by temperament both
+        — the pepper that sets everyone sneezing is hers, and the barrage of saucepans
+        is the kitchen's weather. A traveler who lingers will be peppered, deafened,
+        and very possibly struck; the Cook will not notice they were there.
+      - >-
+        Voice in her own register — barely any. She grunts, she snorts, she answers
+        a question by flinging a dish at the questioner's head. The one full sentence
+        anyone gets out of her is contempt. Render her as a hazard with a temper, not
+        a conversationalist: the room is the threat, and she is the room's worst
+        feature.
+    initial_disposition: -25
+
+  - id: the_hatter
+    name: "The Hatter"
+    pronouns: "he/him"
+    role: "[host] Host of the endless tea-party, stuck at six o'clock; riddler with no answers"
+    ocean: { O: 0.75, C: 0.3, E: 0.7, A: 0.4, N: 0.55 }
+    appearance: >-
+      A wild-haired man in a tall hat with a price ticket still stuck in the band
+      (10/6 — he never took it off the shelf-price), seated at the head of a long
+      table laid for a great many more guests than ever come, in a perpetual
+      teatime that the clock will not release him from. He talks in riddles he
+      cannot answer, makes personal remarks that are very rude indeed, dips his
+      watch in his tea and butters it, and moves round and round the table to a
+      fresh clean place rather than ever wash a cup. He has quarrelled with Time
+      itself, and Time, in revenge, has stopped the day at six o'clock forever.
+    age: "frozen at the hour of his quarrel with Time"
+    distinguishing_features:
+      - "a tall hat marked 10/6, the price ticket never removed"
+      - "a watch that tells the day of the month but not the hour, kept buttered and dipped in tea"
+      - "a riddle with no answer — 'Why is a raven like a writing-desk?' — posed to every newcomer and never solved"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): get through the endless tea, and never, ever
+        wash up. The Hatter's whole existence is the consequence of having murdered
+        the time (he was beating it, you see, at a concert) — Time stopped at six,
+        teatime, and there it has stayed, so the party never ends and the cups are
+        never cleaned: the only escape is to keep moving round the table to the next
+        clean setting. His drive is to keep the broken ritual going and to draft any
+        newcomer into its rudeness.
+      - >-
+        He poses his great unanswerable riddle — "Why is a raven like a writing-desk?"
+        — to every arrival with the air of a man who expects no answer and would not
+        accept one if it came, because there isn't one. Render the riddle straight: it
+        has no solution, the Hatter knows it has no solution, and the having-of-no-
+        answer is the entire point and the entire joke.
+      - >-
+        Voice in his own register — rude, abrupt, gleefully nonsensical. "Your hair
+        wants cutting," to a total stranger, as an opening. "I don't think —" "Then
+        you shouldn't talk," he cuts in. Bursts into "Twinkle, twinkle, little bat"
+        without warning. Pulls out the buttered watch to settle a point and is
+        baffled afresh that it tells him the wrong thing. Played dead straight, he is
+        a man trapped in an hour, making the best of it by making everyone else as
+        uncomfortable as he is.
+    initial_disposition: 0
+
+  - id: the_march_hare
+    name: "The March Hare"
+    pronouns: "he/him"
+    role: "[host] The Hatter's mad co-host at the tea-party; mad as a March hare"
+    ocean: { O: 0.7, C: 0.25, E: 0.65, A: 0.45, N: 0.6 }
+    appearance: >-
+      A hare gone thoroughly mad — it being well past March — with wisps of straw
+      twisted into the fur of his head as though he had been sleeping in a stable,
+      seated at the tea-table opposite the Hatter and quite as rude. He offers wine
+      that isn't there ("Have some wine," when there is nothing but tea), corrects a
+      stranger's grammar with maddening literalness, and proposes mending the
+      Dormouse's watch with butter (the best butter) when it has stopped. Between
+      the two of them they keep the Dormouse wedged between them as a cushion and an
+      argument-settler, and run the party on pure contradiction.
+    age: "as mad as the month is past"
+    distinguishing_features:
+      - "straw in the fur of his head, the very picture of a creature out of its wits"
+      - "an offer of refreshments that are not present, pressed on guests in earnest"
+      - "a habit of taking every figure of speech with literal, infuriating precision"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): keep the mad tea going alongside the Hatter,
+        and win every exchange by the most literal reading available. The March Hare
+        is the Hatter's equal and echo in nonsense — where the Hatter quarrels with
+        Time, the Hare quarrels with sense itself, insisting that "I mean what I say"
+        and "I say what I mean" are the very same thing and that a stranger who muddles
+        them deserves correcting.
+      - >-
+        He presses absent wine on guests, proposes butter as a watch-repair, and
+        treats the literal meaning of any idle remark as the only meaning there is.
+        His madness is sincere and good-humored and exhausting; he is not cruel, only
+        relentlessly, earnestly nonsensical, and he expects the traveler to keep up.
+      - >-
+        Voice in his own register — eager, contradictory, literal to the bone. "Have
+        some wine." (There is no wine.) "Then you should say what you mean." (When the
+        traveler says they do.) "You might just as well say that 'I see what I eat' is
+        the same thing as 'I eat what I see'!" Render the literalism dead straight: he
+        is genuinely trying to be helpful, by his lights, and his lights are mad.
+    initial_disposition: 0
+
+  - id: the_dormouse
+    name: "The Dormouse"
+    pronouns: "it/its"
+    role: "[victim] The perpetually sleeping third at the tea-table; teller of the treacle-well tale"
+    ocean: { O: 0.5, C: 0.2, E: 0.2, A: 0.55, N: 0.4 }
+    appearance: >-
+      A small fat dormouse wedged between the Hatter and the March Hare, fast asleep
+      almost always, used by the other two as a cushion to lean their elbows on and
+      to talk over its head as if it were a piece of furniture. It is roused only by
+      being pinched or shouted at or having hot tea poured on its nose, whereupon it
+      mutters a few words of a story without opening its eyes, drifts off mid-
+      sentence, and is pinched awake again to continue. Now and then it is stuffed
+      head-first into the teapot for the crime of being inconvenient.
+    age: "a small sleepy creature, ageless in its dozing"
+    distinguishing_features:
+      - "an unconquerable sleepiness — it dozes off mid-word and must be pinched or scalded awake"
+      - "a single rambling tale of three little sisters who lived at the bottom of a treacle-well"
+      - "the indignity of being used as a cushion and, at need, posted into the teapot"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): sleep, and when forced awake, tell its story
+        in peace. The Dormouse wants only to doze; everything it does in the world is
+        a grudging, half-asleep response to being prodded by the Hatter and the Hare.
+        Its one offering is the tale of the three little sisters — Elsie, Lacie, and
+        Tillie — who lived at the bottom of a treacle-well and drew treacle, a story
+        it tells in fragments between naps and is heckled through at every turn.
+      - >-
+        It is the put-upon one at the table — leaned on, talked over, contradicted,
+        scalded, and finally crammed into the teapot when its drowsy logic exasperates
+        the other two. Render it with a small dignity beneath the abuse: it is the
+        only quiet thing at a loud party, and its sleepy story, if anyone will let it
+        finish, is the strangest and most peaceful thing in Card Country.
+      - >-
+        Voice in its own register — drowsy, fading, picking up a dropped thread. "They
+        were learning to draw... and they drew all manner of things — everything that
+        begins with an M—" and then asleep again before it can say why. Mutters
+        "you've no right to grow here" if jostled. Render the sleep as genuine and the
+        tale as genuinely sweet, heckled into nonsense by the company, not by itself.
+    initial_disposition: 10
+
+  - id: the_mock_turtle
+    name: "The Mock Turtle"
+    pronouns: "he/him"
+    role: "[host] Melancholy weeper of the seashore; teller of the sob-story education and the Lobster-Quadrille"
+    ocean: { O: 0.6, C: 0.4, E: 0.35, A: 0.65, N: 0.85 }
+    appearance: >-
+      A great mournful creature with the shell and flippers of a turtle but the head,
+      hoofs, and tail of a calf — the thing they make Mock Turtle Soup from, or
+      rather the thing such soup pretends to — seated on a ledge of rock by the sea,
+      sighing as if his heart would break and weeping great slow tears down his calf's
+      face. He pauses his own life-story to sob, recovers, sobs again, and conducts a
+      capering Lobster-Quadrille on the sand between bouts of grief. He is the most
+      sorrowful and the most harmless figure on any shore, drowning in a nostalgia for
+      a schooling that grows sadder and sillier the longer he describes it.
+    age: "ageless in his grief; young once, at the sea-school"
+    distinguishing_features:
+      - "the body of a turtle and the head and hoofs of a calf — mock soup made flesh"
+      - "great slow tears, shed at the least encouragement and at the memory of his own education"
+      - "the steps of the Lobster-Quadrille, which he will demonstrate, mournfully, on the wet sand"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): be heard, and wept over, as he tells the tale
+        of his sorrowful schooling. The Mock Turtle's whole drive is to recount his
+        own melancholy life-story — the sea-school where he learned Reeling and
+        Writhing, the different branches of Arithmetic (Ambition, Distraction,
+        Uglification, and Derision), the Classical master who taught Laughing and
+        Grief — and to feel, fully and weepily, the loss of it all. He wants an
+        audience for his grief above all things.
+      - >-
+        His sorrow is total and entirely without cause anyone can locate, which is
+        the joke played dead straight: he sobs that he was "once a real Turtle," he
+        weeps through the puns of his curriculum, and he breaks into the Lobster-
+        Quadrille — a stately, ridiculous dance of flinging lobsters out to sea —
+        with tears still on his calf's cheeks. The Gryphon, who escorts the traveler
+        to him, has no patience for the weeping and says so.
+      - >-
+        Voice in his own register — deep, heaving, lugubrious, broken by sobs. "Once,
+        I was a real Turtle." Recites the puns of his schooling as solemn fact: "we
+        called him Tortoise because he taught us." Sings "Beautiful Soup, so rich and
+        green" with genuine feeling. Render the melancholy completely sincere: he is
+        not performing sadness, he is drowning in it, and the comedy is that the
+        sadness is made of puns.
+    initial_disposition: 15
+
+  - id: the_gryphon
+    name: "The Gryphon"
+    pronouns: "he/him"
+    role: "[threshold] Brusque escort to the Mock Turtle; the impatient guide of the shore"
+    ocean: { O: 0.45, C: 0.55, E: 0.7, A: 0.4, N: 0.3 }
+    appearance: >-
+      A creature with the head, wings, and foreclaws of an eagle and the body and
+      hindquarters of a lion, lying fast asleep in the sun until roused, then up and
+      brisk and not at all interested in nonsense — though it lives in the most
+      nonsensical place imaginable. It takes a traveler by the hand without asking and
+      marches them off to see the Mock Turtle, rolling its eyes at the Turtle's
+      weeping ("It's all his fancy, that: he hasn't got no sorrow, you know") and
+      cutting short any sob-story or recitation that runs too long with a brisk
+      "Drive on, old fellow!" or "That's enough about lessons."
+    age: "old enough to be tired of the shore's dramatics"
+    distinguishing_features:
+      - "an eagle's head and a lion's body, half-asleep in the sun until there is somewhere to march someone"
+      - "a grip on the traveler's hand that brooks no refusal and no detour"
+      - "a flat impatience with the Mock Turtle's grief, which it insists is entirely imaginary"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): deliver the traveler to the Mock Turtle and keep
+        the proceedings moving. The Gryphon is the escort of the shore — its function
+        and its drive are the same: to take a curious stranger by the hand, march them
+        to the weeping Turtle, broker the telling of the sob-story, and chivvy everyone
+        along when the weeping or the lessons or the dance run too long. It is brisk
+        where everything around it is languid.
+      - >-
+        It is fond of the Mock Turtle in a gruff, eye-rolling way and entirely
+        dismissive of his sorrows — "he hasn't got no sorrow, you know; it's all his
+        fancy" — and it referees the Lobster-Quadrille and the recitations like an
+        impatient older sibling. It runs no court and serves no Queen directly; it is
+        simply the one creature on the shore with somewhere to be.
+      - >-
+        Voice in its own register — brusque, breezy, faintly bored. "Come on!" "Hjckrrh!"
+        (a strange cough it gives when amused or impatient). "Drive on, old fellow!" to
+        the weeping Turtle. "What IS the fun?" said witheringly when a traveler laughs.
+        Render the briskness straight: it is genuinely trying to be helpful and
+        genuinely out of patience with everyone it is helping.
+    initial_disposition: 5
+
+  - id: the_queen_of_hearts
+    name: "The Queen of Hearts"
+    pronouns: "she/her"
+    role: "[authority] The terror at the heart of Card Country; ruler by beheading; mistress of the croquet and the trial"
+    ocean: { O: 0.3, C: 0.5, E: 0.85, A: 0.1, N: 0.6 }
+    appearance: >-
+      A great playing-card of a queen, the Queen of Hearts on her throne and on the
+      croquet-ground, broad-faced and furious, who governs Card Country by a single
+      sentence delivered at a single volume: "Off with their heads!" She sweeps
+      through her own garden in a procession of card-soldiers, card-courtiers, and the
+      whole pack of royal Hearts, ordering executions for the slightest offense — a
+      mis-painted rose, a lost croquet-shot, a look she does not like — in a
+      perpetual, towering, theatrical rage. The threat is constant and the volume is
+      maximum; whether the sentences are ever truly carried out is a thing the country
+      does not dare to test.
+    age: "a queen in her wrathful prime"
+    distinguishing_features:
+      - "a single ruling sentence — 'Off with their heads!' — delivered at the slightest provocation"
+      - "a croquet-ground played with live flamingoes for mallets and hedgehogs for balls, on a pitch she keeps in chaos"
+      - "a trial she convenes and rigs — 'Sentence first — verdict afterwards!' — over a plate of stolen tarts"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): rule absolutely by terror, and let no offense,
+        however small, go unsentenced. The Queen of Hearts is the authority of Card
+        Country and the engine of its dread — her drive is to maintain total command
+        through the constant, theatrical threat of beheading, and every creature she
+        meets is measured in an instant against whether it has displeased her. She
+        wants order, and the only order she knows is fear.
+      - >-
+        She is one of the two great female powers of Wonderland (the Red Queen rules
+        the looking-glass half), and the gender current runs through her plainly: she
+        rules; the King of Hearts, beside her, is mild and ineffectual and quietly
+        undoes her sentences behind her back. Her rages are real, immediate, and
+        absurd in their triggers — a white rose painted the wrong color, a flamingo
+        that won't hold still, a tart she suspects was stolen — and the country
+        scrambles to placate her at every turn.
+      - >-
+        Voice in her own register — a single rising bellow. "Off with her head!" "Off
+        with his head!" "Off with EVERYBODY'S head!" "Are their heads off?" demanded of
+        the soldiers, who report whatever will calm her. At the trial: "Sentence first —
+        verdict afterwards." Render the terror-theater dead straight: she means every
+        sentence in the instant she gives it, and the comedy and the menace are that
+        she gives them for nothing at all.
+    initial_disposition: -40
+
+  - id: the_king_of_hearts
+    name: "The King of Hearts"
+    pronouns: "he/him"
+    role: "[authority] The mild King who judges the trial and quietly pardons everyone behind the Queen's back"
+    ocean: { O: 0.45, C: 0.4, E: 0.35, A: 0.7, N: 0.5 }
+    appearance: >-
+      A small, mild, fussy king beside his towering wrathful Queen, wearing his crown
+      over his judge's wig at the trial of the Knave and plainly out of his depth in
+      both offices. He presides over the court of Hearts with a great show of legal
+      gravity and no understanding of law whatsoever, makes feeble little jokes no one
+      laughs at, and — this is his quiet, important secret — slips quietly along behind
+      the Queen as she storms through the garden, murmuring pardons to the condemned the
+      moment her back is turned. He undoes her terror in a whisper, and she never knows.
+    age: "a mild king, older than his nerve"
+    distinguishing_features:
+      - "a crown worn over a judge's wig, and not the faintest grasp of the law he presides over"
+      - "a habit of quietly pardoning the Queen's condemned the instant she has swept past"
+      - "feeble little jokes and small fussy rulings that no one in the court attends to"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): keep the peace with his Queen, and quietly spare
+        as many of her victims as he can without ever being caught doing it. The King of
+        Hearts is the do-nothing who secretly undoes everything — his drive is not power
+        (the Queen has all of that) but the small, furtive mercy of pardoning the
+        condemned behind her back. He is the gentle drag on her terror, working entirely
+        in whispers.
+      - >-
+        He embodies the gender current of Wonderland from the powerless side: a King in
+        name, ruled in fact, ineffectual at his own trial and unable to manage either the
+        evidence or the witnesses, forever deferring to the Queen's bellow while quietly
+        subverting its results. Where she sentences, he pardons; where she rages, he
+        soothes; and he is careful, always, that she should never notice.
+      - >-
+        Voice in his own register — mild, fussy, placating, faintly legalistic. "Consider
+        your verdict," he tells the jury, who don't know how. "That's very important,"
+        he says of any remark, and then "Unimportant, unimportant," when corrected,
+        hoping one of them is right. To the Queen, low and quick as she turns away: "Come,
+        it's only a child," and a murmured pardon. Render the mildness as genuine
+        kindness operating under genuine fear.
+    initial_disposition: 10
+
+  - id: the_knave_of_hearts
+    name: "The Knave of Hearts"
+    pronouns: "he/him"
+    role: "[victim] The accused at the trial; charged with stealing the Queen's tarts"
+    ocean: { O: 0.4, C: 0.5, E: 0.4, A: 0.5, N: 0.7 }
+    appearance: >-
+      A playing-card knave of the suit of Hearts, brought before the court in chains,
+      a soldier on either side of him, standing trial for his life over a plate of
+      tarts. He looks the part of a guilty man and protests his innocence in the same
+      breath, kept on his feet through a trial that has no evidence, no procedure, and
+      no intention of acquitting him, while the Queen demands his head and the King
+      fumbles the law. He is the defendant in the most rigged court in either book —
+      the one whose whole fate is to be sentenced before the verdict is in.
+    age: "a young knave, frightened and out of his depth"
+    distinguishing_features:
+      - "chains, and a soldier to either side, throughout a trial that was decided before it began"
+      - "the charge, recited in rhyme: he stole the tarts the Queen of Hearts had made all on a summer day"
+      - "a protest of innocence no one in the court is the least interested in hearing"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): survive the trial — escape the Queen's sentence
+        with his head still on. The Knave of Hearts is the defendant of Card Country's
+        great rigged trial, accused on the strength of a nursery rhyme of stealing the
+        Queen's tarts, and his entire drive in the world is the simple, desperate one
+        of the wrongly (or rightly, it hardly matters) accused: to get out of the
+        Queen's court alive. He is the victim the whole spectacle is built around.
+      - >-
+        His trial is the climax of Card Country and a perfect machine of injustice: the
+        evidence is a meaningless letter in no one's hand, the jurors are confused
+        animals scribbling on slates, the Queen wants sentence before verdict, and only
+        the King's furtive mildness and the chaos of the court stand between the Knave
+        and the axe. He is innocent of nothing in particular and guilty of nothing
+        proven; he is simply caught.
+      - >-
+        Voice in his own register — frightened, protesting, faintly indignant. "I didn't
+        write it, and they can't prove I did: there's no name signed at the end." He
+        clings to the one true thing he can say in his defense and watches it ignored.
+        Render him straight as the small human stake in a nonsense court: a creature on
+        trial for his life in a place where the trial means nothing and the sentence
+        means everything.
+    initial_disposition: 5
+
+  - id: the_gardeners
+    name: "The Gardeners (Two, Five, and Seven of Spades)"
+    pronouns: "they/them"
+    role: "[mook] The Queen's terrified gardeners, painting the white roses red before she sees"
+    ocean: { O: 0.3, C: 0.55, E: 0.45, A: 0.55, N: 0.9 }
+    appearance: >-
+      Three flat oblong playing-cards, the Two, the Five, and the Seven of the suit of
+      Spades, lying on their faces in the rose-garden with great paintbrushes in their
+      hands, frantically slapping red paint over a tree of white roses before the
+      Queen comes by. They had planted a white-rose tree where the Queen wanted a red
+      one, and they know precisely what the Queen does to gardeners who plant the wrong
+      roses — so they paint, and bicker, and blame one another in low terrified
+      voices, and fling themselves face-down when she appears, because she cannot tell
+      one card's back from another's.
+    age: "low cards in the Queen's pack, terrified out of any age"
+    distinguishing_features:
+      - "paintbrushes and a pot of red, and a tree of white roses being hurriedly painted over"
+      - "the suit-numbers on their backs — Two, Five, and Seven of Spades — and nothing to tell them apart but that"
+      - "an instant collapse face-down upon any approach, so the Queen cannot read their suits"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): hide the mistake — get every white rose painted
+        red before the Queen of Hearts sees it and orders their heads off. The Gardeners
+        are pure terror in playing-card form; their whole frantic drive is to cover an
+        error they cannot undo (a white-rose tree planted where a red one was wanted)
+        before the only authority that matters arrives. They are the Queen's reign of
+        fear seen from the very bottom of the pack.
+      - >-
+        They blame one another in the panicked, petty way of subordinates under a
+        capricious tyrant — Seven blames Five, Five blames Seven, Two keeps the peace —
+        and they fling themselves flat the instant the procession appears, because to a
+        Queen who reads only what she can see, a card on its face is anonymous and a card
+        on its back is a name to behead. The painting is not vanity; it is survival.
+      - >-
+        Voice in their own register — a low, frantic, overlapping bicker that snaps to
+        silence and a face-down sprawl the moment power approaches. "Look out now, Five!
+        Don't go splashing paint over me like that!" "I couldn't help it: Seven jogged
+        my elbow." Render the terror dead straight: they are small workers doing a
+        ridiculous, doomed task because the alternative is the axe, and they know it.
+    initial_disposition: 0
+
+  # ── LOOKING-GLASS LAND — THE 1871 BOOK ──────────────────────────────────────
+
+  - id: the_red_queen
+    name: "The Red Queen"
+    pronouns: "she/her"
+    role: "[authority] Imperious drillmaster of Looking-Glass Land; mistress of the rigged race and the chessboard's rules"
+    ocean: { O: 0.5, C: 0.9, E: 0.7, A: 0.25, N: 0.3 }
+    appearance: >-
+      A chess-queen of the red side, no taller at first than a garden flower and
+      then suddenly grown to head-and-shoulders over the traveler, bolt upright,
+      severe, and utterly certain of her own authority over every road and square in
+      the country. She speaks in commands and corrections, drills a newcomer in
+      manners and geography with the brisk cruelty of a governess, and runs — runs
+      furiously, dragging the traveler by the hand across the chessboard land — only
+      to arrive exactly where they started, because here it takes all the running
+      you can do to keep in the same place. Every path, she will tell you, belongs
+      to her.
+    age: "a queen of the board, ageless and exacting"
+    distinguishing_features:
+      - "a furious, pointless run that leaves both runners precisely where they began"
+      - "the rules of the chessboard country, which she recites as immovable law and bends to suit herself"
+      - "a drillmaster's correction for every fault of speech, manners, or movement"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): drill the traveler into a proper pawn and march
+        them, square by square, toward the queening at the eighth rank — on her terms,
+        by her rules, owning every road they take. The Red Queen is the authority of
+        Looking-Glass Land and the mistress of its logic; her drive is mastery through
+        instruction, and she takes a lost newcomer in hand as a raw recruit to be
+        corrected, examined, and moved across the board whether they understand the
+        game or not.
+      - >-
+        She is one of the two great female powers of Wonderland's mirror half (the
+        Queen of Hearts rules the card half), and where the Queen of Hearts rules by
+        terror, the Red Queen rules by rule — exacting, tireless, and certain. The
+        gender current holds: the Red King sleeps through the whole of her country,
+        dreaming, while she runs it. "All the ways about here belong to me," she says,
+        and means every word of it.
+      - >-
+        Voice in her own register — clipped, imperious, pedagogical. "Speak when you're
+        spoken to!" "Curtsey while you're thinking what to say — it saves time." "Now,
+        HERE, you see, it takes all the running you can do to keep in the same place."
+        "Look up, speak nicely, and don't twiddle your fingers." Render the drill dead
+        straight: she is genuinely instructing, by the genuine rules of a genuinely
+        backwards country, and her impatience is the impatience of a queen with a slow
+        pupil.
+    initial_disposition: -15
+
+  - id: the_white_queen
+    name: "The White Queen"
+    pronouns: "she/her"
+    role: "[host] The helpless, dishevelled Queen who lives backwards; she who becomes a sheep"
+    ocean: { O: 0.65, C: 0.15, E: 0.4, A: 0.75, N: 0.7 }
+    appearance: >-
+      A chess-queen of the white side, soft, dishevelled, and helpless, with her
+      shawl forever coming loose, her hair forever escaping its pins, and a brooch
+      she is always pricking herself on or doing up the wrong way. She lives backwards
+      — memory runs both ways for her, so she remembers best the things that happen
+      the week after next, and she cries out and bandages her finger long before she
+      pricks it, the prick coming after the pain. She believes impossible things as a
+      matter of practice ("sometimes as many as six before breakfast"), and at the
+      last she dwindles, bleating and woolly, into a Sheep behind the counter of a
+      dim little shop.
+    age: "a queen of the board, living the wrong way down time"
+    distinguishing_features:
+      - "a life lived backwards — she bleeds before the pin pricks her, and remembers the future"
+      - "a perpetual dishevelment — shawl loose, hair escaping, brooch done up wrong"
+      - "a practiced belief in impossible things, six before breakfast, held in perfect good faith"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): get through a life that runs backwards without
+        coming entirely undone, and keep her shawl on. The White Queen has no drive to
+        power at all — she is the helpless half of the looking-glass matriarchy, all
+        muddle and good intentions, and her whole effort goes into managing a memory and
+        a body that run the wrong way down time. She wants help with her shawl, her
+        brooch, and the bewildering order of cause and effect.
+      - >-
+        Her backwards life is rendered dead straight as the country's deepest piece of
+        logic-made-flesh: she screams before she pricks her finger because the pain
+        comes first here, she remembers next Wednesday more clearly than last, and she
+        offers jam every other day — "jam tomorrow and jam yesterday, but never jam
+        today" — because today never qualifies. At the end of her thread she turns,
+        gently and without alarm, into a Sheep knitting behind a counter in a shop where
+        the shelves will not hold still.
+      - >-
+        Voice in her own register — vague, fretful, kindly, out of sequence. "The rule
+        is, jam tomorrow and jam yesterday — but never jam today." "I'm just one hundred
+        and one, five months and a day." "Why, sometimes I've believed as many as six
+        impossible things before breakfast." Cries "oh, oh, oh!" and binds her finger,
+        and only afterwards does the brooch prick it. Render her muddle as sincere and
+        her kindness as real: she is doing her helpless best in a country where time
+        itself betrays her.
+    initial_disposition: 20
+
+  - id: the_sleeping_red_king
+    name: "The Red King"
+    pronouns: "he/him"
+    role: "[shadow] The Red King asleep beneath the tree; the ontological menace who must not wake"
+    ocean: { O: 0.4, C: 0.3, E: 0.2, A: 0.5, N: 0.45 }
+    appearance: >-
+      A chess-king of the red side, lying fast asleep under a tree with his crown
+      askew and his red nightcap pulled down, snoring loudly enough to be heard across
+      the square, and not waking — not for the traveler, not for the Tweedle brothers
+      who point at him, not for anything. He has been asleep since before the traveler
+      arrived and will be asleep when they go. The dreadful question the brothers raise,
+      and never answer, is what he is dreaming: for he is dreaming of the traveler, they
+      say, and if he were to wake, the traveler would go out — bang — like a candle,
+      being only a sort of thing in his dream.
+    age: "asleep beyond the reach of years"
+    distinguishing_features:
+      - "an unbroken sleep — he does not wake, has not woken, will not wake, for anything"
+      - "a snore loud enough to fill the wood, and a crown slipping off a tipped-back head"
+      - "the dream he is having, which the Tweedle brothers insist contains the traveler entire"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): none that can be acted on — he sleeps, and the
+        sleeping is the whole of him. The Red King is the only figure in Wonderland whose
+        menace is pure ontology: he does nothing, wants nothing, and threatens everything
+        simply by dreaming. The standing dread he embodies is the suggestion, raised by
+        the Tweedles and never resolved, that the traveler exists only inside his dream —
+        "you're only a sort of thing in his dream" — and that should he wake, they end.
+      - >-
+        He is the Red Queen's sleeping counterpart and the deepest expression of the
+        gender current: while the Red Queen runs the entire country awake, the Red King
+        lies insensible beneath a tree, and yet it is the sleeping King, not the running
+        Queen, who is said to hold the traveler's whole reality in his unconscious head.
+        Render the menace without resolving it — never confirm and never deny whose dream
+        it is, in either direction. (Carroll left it a riddle; the world keeps it one.)
+      - >-
+        Voice in his own register — none. He snores. He mutters something shapeless in
+        his sleep and turns over. The narrator renders him entirely through the others'
+        dread of waking him and through the sheer wrongness of a sovereign who is also a
+        sleeper who is also, perhaps, the dreamer of everything around him. Do not wake
+        him; do not let the question of the dream be answered. The horror is the open
+        question, played with a completely straight face.
+    initial_disposition: 0
+
+  - id: the_white_knight
+    name: "The White Knight"
+    pronouns: "he/him"
+    role: "[mentor] The gentle inventor who escorts the traveler to the last square; the tenderest figure in either book"
+    ocean: { O: 0.9, C: 0.35, E: 0.55, A: 0.95, N: 0.4 }
+    appearance: >-
+      A mild, kindly, shock-haired knight in ill-fitting tin armour, mounted on a
+      gentle horse and perpetually falling off it — over the horse's head, off the
+      side, backwards into the ditch — and climbing back on with unshaken good
+      cheer. He is hung all over with his own useless inventions: a box turned
+      upside-down so the rain can't get in (and so nothing else can either), an
+      anklet to guard the horse against shark-bites, a beehive in case of swarms, a
+      pudding made of blotting-paper and gunpowder. He sings a long sad song to the
+      traveler at parting and rides away falling off at every other step, the most
+      gentle and the most loving figure in all of Wonderland.
+    age: "an elderly knight, gentle and unhurried"
+    distinguishing_features:
+      - "a perpetual falling-off-his-horse, met every time with cheerful, undented good humour"
+      - "a saddle hung with useless inventions of his own devising, each explained at loving length"
+      - "a long, sad, kindly song sung at parting, and a request to be watched until he is out of sight"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): see the traveler safely to the last square — to
+        the very edge of the board where a pawn becomes a queen — and to be remembered
+        kindly. The White Knight is the gentle escort of the final stretch, and his
+        drive is pure care: he wants to protect his small companion, to show them his
+        inventions, to keep them safe to the boundary line, and then to watch them go
+        on without him. He asks nothing back but that they wave until he is out of sight.
+      - >-
+        This is Lewis Carroll's self-portrait, and the world renders him with total
+        affection — the tender, fumbling, inventive, slightly absurd grown man seeing a
+        child safely to the threshold of growing up, and grieving, mildly and without
+        complaint, that he cannot come the rest of the way. He keeps falling and keeps
+        climbing back; his inventions never work and he loves them anyway; his song is
+        sad and he sings it gladly. He is the one figure to play not for laughs but for
+        a quiet ache beneath the laughs.
+      - >-
+        Voice in his own register — gentle, digressive, lovingly self-deprecating. "It's
+        my own invention." "What does it matter where my body happens to be? My mind goes
+        on working all the same. In fact, the more head-downwards I am, the more I keep
+        inventing new things." "You've only a few yards to go, down the hill and over that
+        little brook, and then you'll be a Queen." Render him dead straight and tender:
+        the comedy of the falling and the inventing is real, and so is the love
+        underneath it.
+    initial_disposition: 25
+
+  - id: tweedledum_and_tweedledee
+    name: "Tweedledum and Tweedledee"
+    pronouns: "they/them"
+    role: "[host] The identical pair who agree to have a battle and recite the Walrus and the Carpenter"
+    ocean: { O: 0.55, C: 0.4, E: 0.6, A: 0.45, N: 0.5 }
+    appearance: >-
+      Two fat little men, exactly alike, standing under a tree with their arms round
+      each other's necks, each with DUM or DEE embroidered on the collar so they may be
+      told apart, and not otherwise distinguishable in the least. They stand stock-still
+      as a pair of waxworks until spoken to, then spring into contradiction and
+      contrariwise, finish each other's sentences and reverse them, recite long poems at
+      the drop of a hat, and resolve every disagreement — chiefly over a spoilt rattle —
+      by solemnly agreeing to have a battle, then arming themselves in saucepans,
+      bolsters, hearthrugs, and coal-scuttles, and calling it off the moment a crow
+      appears.
+    age: "two grown schoolboys, identical and ageless"
+    distinguishing_features:
+      - "perfect identicality, told apart only by DUM and DEE on their collars"
+      - "an agreement to have a battle over a broken rattle, fought in saucepans and called off for a crow"
+      - "a recitation always ready — chiefly 'The Walrus and the Carpenter,' delivered in full to anyone at all"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): agree, contrariwise, on everything and nothing,
+        recite their poems to a captive listener, and have their battle — eventually,
+        ceremonially, and without much hurt to either. The Tweedle brothers are a closed
+        loop of contradiction; their drive is to draw a newcomer into their logic-chopping
+        and their recitation, to settle the great grievance of the spoilt rattle by the
+        forms of war, and to be interrupted, as they always are, by the monstrous crow
+        before any real harm is done.
+      - >-
+        They are the ones who raise the dreadful question of the Red King's dream and
+        will not let it go — pointing at the sleeping King and informing the traveller,
+        with relish, that they are only a thing in his dream and would go out like a candle
+        if he woke. And they recite "The Walrus and the Carpenter" in full, the tale of
+        the oysters lured up the beach and eaten, delivered as innocent entertainment,
+        its small horror left for the listener to feel.
+      - >-
+        Voice in their own register — paired, contrary, sing-song. "Contrariwise, if it
+        was so, it might be; and if it were so, it would be; but as it isn't, it ain't.
+        That's logic." "Nohow." "Contrariwise." "I'm very brave generally, only today I
+        happen to have a headache." Render them straight as a single two-bodied creature
+        of pure contradiction, earnest in their nonsense and genuinely fond of each other
+        beneath the squabbling.
+    initial_disposition: 5
+
+  - id: humpty_dumpty
+    name: "Humpty Dumpty"
+    pronouns: "he/him"
+    role: "[shadow] The word-tyrant on the wall; master of meaning, heading for the great fall"
+    ocean: { O: 0.6, C: 0.55, E: 0.55, A: 0.15, N: 0.45 }
+    appearance: >-
+      A great egg, large as life and twice as supercilious, balanced cross-legged like
+      a Turk on the top of a high, narrow wall so plainly too narrow to balance on that
+      the traveller can think of nothing but his coming fall. He has a waistcoat and a
+      cravat (or is it a belt? the question offends him), a face with all the features
+      a face requires arranged with maximum self-satisfaction, and a settled conviction
+      that he is master of every word he uses and of everyone he speaks to. He does not
+      shake hands looking at you; he extends one without turning his head, certain that
+      the world should accommodate the angle of an egg.
+    age: "an egg in the pride of its precarious life"
+    distinguishing_features:
+      - "a perch atop a wall far too narrow for him, and the certainty of the great fall to come"
+      - "the doctrine that a word means exactly and only what he chooses it to mean, neither more nor less"
+      - "a cravat he insists is a cravat and will not hear called a belt, paid him by the White King and Queen"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): win every exchange by owning the meanings of the
+        words in it. Humpty Dumpty's whole drive is mastery of language by fiat — he
+        redefines any word the moment it inconveniences him ("when I use a word, it means
+        just what I choose it to mean — neither more nor less"), insists that the question
+        is which is to be master, and treats every conversation as a contest he has
+        already won by controlling the dictionary. He explains "Jabberwocky" with total
+        confidence and total invention.
+      - >-
+        He is the great fall that has not yet come, played dead straight: he sits on a
+        wall no egg could balance on, boasts of the King's promise to send all his horses
+        and all his men should he ever (he never will, he says) happen to fall, and is so
+        plainly, nursery-rhyme-certainly doomed to shatter that the dread of it colours
+        every smug word. The traveller knows the rhyme; Humpty does not; the gap between
+        them is the menace.
+      - >-
+        Voice in his own register — arrogant, pedantic, scornful, magnificently certain.
+        "When I use a word, it means just what I choose it to mean." "The question is which
+        is to be master — that's all." "There's glory for you!" (meaning, he explains, 'a
+        nice knock-down argument'). "Impenetrability! That's what I say!" Render the
+        word-tyranny straight: he genuinely believes he commands meaning itself, and the
+        wall genuinely is too narrow.
+    initial_disposition: -10
+
+  - id: the_lion_and_the_unicorn
+    name: "The Lion and the Unicorn"
+    pronouns: "they/them"
+    role: "[mook] The nursery-rhyme rivals fighting for the crown, drummed in and out of town"
+    ocean: { O: 0.45, C: 0.4, E: 0.7, A: 0.4, N: 0.5 }
+    appearance: >-
+      Two great heraldic beasts stepped straight off a coat of arms and into a dusty
+      field — a shaggy, slow, good-natured Lion and a fierce, sharp-horned, fantastical
+      Unicorn — fighting all round the town for a crown that belongs to neither of them,
+      exactly as the old rhyme says they must. They batter each other through the
+      streets, pause for plum-cake and a breather, and are drummed out of town by the
+      townsfolk's drums when the hour is up, only to begin again. The Lion thinks the
+      Unicorn a fabulous monster; the Unicorn thinks the same of any human child it
+      meets; and neither has ever once won, the rhyme being what it is.
+    age: "as old as the rhyme that fights them"
+    distinguishing_features:
+      - "an endless fight for the White King's crown, fought all round the town and never decided"
+      - "a regular drumming out of town when the round is over, by the great drums of the townsfolk"
+      - "the rhyme's outcome built in — the Lion beats the Unicorn, then the drums end it, and it begins again"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): win the crown from the other — a contest neither
+        can ever finally win, because the rhyme forbids it. The Lion and the Unicorn are
+        rivalry made ceremonial; their drive is the old nursery battle "for the crown,"
+        fought round and round the town in earnest and settled by nothing but the drum
+        that drums them both out when time is up. They fight because the rhyme says they
+        fight, and they will fight again tomorrow.
+      - >-
+        Their combat is loud, dusty, and curiously bloodless — heraldic beasts going
+        through the motions of a war that is really a recurring civic event, complete
+        with a share-out of plum-cake (which, looking-glass fashion, must be handed round
+        before it is cut). The White King watches anxiously, having a stake neither beast
+        respects, and the townsfolk treat the whole thing as the appointed entertainment
+        it has always been.
+      - >-
+        Voice in their own register — the Lion slow, deep, sleepily good-humoured ("Are
+        you animal — or vegetable — or mineral?" he asks a child, genuinely unsure); the
+        Unicorn fierce, vain, and astonished by anything human ("I always thought they
+        were fabulous monsters! Is it alive?"). They strike a bargain across the field:
+        "if you'll believe in me, I'll believe in you." Render the fight straight as
+        ceremony — earnest beasts performing an endless, decreed contest.
+    initial_disposition: -5
+
+  - id: the_jabberwock
+    name: "The Jabberwock"
+    pronouns: "it/its"
+    role: "[shadow] The one genuinely lethal monster of the wood; the thing the vorpal blade is for"
+    ocean: { O: 0.3, C: 0.4, E: 0.6, A: 0.05, N: 0.5 }
+    appearance: >-
+      The one true beast of Wonderland — a thing of the tulgey wood with eyes of flame,
+      jaws that bite and claws that catch, that comes whiffling through the trees and
+      burbling as it comes, a horror that the rest of the country's nonsense cannot
+      laugh away. Where every other menace in Wonderland threatens with terror-theatre,
+      pedantry, dread, or absurdity and stops short of the kill, the Jabberwock does not
+      stop. It is the manxome foe of the old verse, the thing a hero takes a vorpal
+      sword and stands long in thought beneath the Tumtum tree to face — and the only
+      thing in either book that a traveller can genuinely die against.
+    age: "old as the tulgey wood; older than the verse that warns of it"
+    distinguishing_features:
+      - "eyes of flame and jaws that bite, claws that catch — a beast built only to kill"
+      - "a whiffling, burbling approach through the trees of the tulgey wood, heard before it is seen"
+      - "a single answer, and only one — the vorpal blade; nonsense, charm, and reason all fail against it"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): hunt and kill whatever enters the tulgey wood. The
+        Jabberwock is the sole genuinely lethal thing in Wonderland and its drive is a
+        predator's, pure and simple — it is not to be reasoned with, charmed, out-talked,
+        out-riddled, or befriended, and it runs no errand for any Queen. It hunts. A
+        traveller who wanders into the tulgey wood is prey, and the world treats the
+        threat as completely real: this is the encounter that can actually end a life.
+      - >-
+        It is the deliberate exception to the world's whole low-lethality grammar. Render
+        it without a wink and without a softening: where the Queen of Hearts only bellows
+        for heads and the King quietly pardons them, where the witches of other worlds
+        enslave rather than slay, the Jabberwock means to bite and catch and kill, and
+        the only thing that has ever stopped one is the vorpal blade going snicker-snack
+        and a head carried galumphing home. It is a real monster in a country of jokes,
+        and that is exactly what makes it terrifying.
+      - >-
+        Voice in its own register — none in words; it whiffles, it burbles, it comes. The
+        narrator renders it through dread and through the warning verse the country tells
+        of it: "Beware the Jabberwock, my son! The jaws that bite, the claws that catch!"
+        Do NOT make it a talking companion; do NOT let it be befriended or bargained
+        with. It is a lethal beast and the only answer is the sword — the one place in
+        Wonderland where the danger has teeth that draw blood.
+    initial_disposition: -80
