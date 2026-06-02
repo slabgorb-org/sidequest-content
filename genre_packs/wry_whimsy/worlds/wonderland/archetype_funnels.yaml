@@ -1,0 +1,280 @@
+# Wonderland — World-Level Archetype Funnels
+#
+# GOVERNING LAW (mirrors five_points / oz): World OVERRIDES genre. The resolver
+# (sidequest/genre/archetype/shim.py) falls back to the GENRE Traveler for any
+# (jungian, rpg_role) pair NOT claimed by a funnel's `absorbs`. To keep every
+# arriving traveler dressed in Wonderland flavor rather than the bare genre
+# coping-style, EVERY pair is claimed below.
+#
+# Coverage: 12 jungian × 7 rpg_role = 84 pairs. All 84 are absorbed.
+#   jungian:  caregiver ruler artist innocent sage explorer outlaw magician
+#             hero lover jester everyman
+#   rpg_role: tank dps control healer stealth support jack_of_all_trades
+#
+# WIT-FIRST GENRE NOTE: tank/dps map to NON-violent shapes. In Wonderland, tank =
+# the one who keeps their footing and refuses to be argued or shrunk out of
+# existence (nerve, not muscle); dps = the one who presses an authority hardest by
+# argument, sincerity, or wonder. The single exception is the Jabberwock-slayer
+# below — force is the right answer to exactly one monster and a mark everywhere
+# else.
+#
+# The five genre Travelers (the anchors each funnel is a flavored instance of):
+#   Innocent = innocent / support / HEART   (the Alice-sincerity shape)
+#   Wit      = sage / control / WIT          (the Alice-argument shape)
+#   Surveyor = explorer / stealth / GUILE    (the Gulliver shape)
+#   Scrapper = hero / tank / NERVE           (the weary-soldier shape)
+#   Dreamer  = magician / dps / WONDER       (the risk archetype)
+#
+# `lore` here is terse mechanical scaffolding (the writer owns richer prose in
+# lore.yaml / archetypes.yaml). Render straight Carroll — Tenniel, never Disney.
+
+funnels:
+
+  # ── THE PLAIN-SPOKEN CHILD (Innocent anchor: innocent/support/HEART) ─────────
+  # The traveler whose plain politeness the nonsense cannot quite corrupt.
+  - name: The Plain-Spoken Child
+    absorbs:
+      - [innocent, support]
+      - [innocent, healer]
+      - [innocent, jack_of_all_trades]
+      - [innocent, dps]
+      - [innocent, stealth]
+      - [caregiver, support]
+      - [caregiver, healer]
+      - [everyman, support]
+      - [everyman, healer]
+    faction: null
+    lore: >-
+      The Alice shape at its most sincere — a sensible, well-mannered visitor who
+      meets a country of contrary creatures with plain curiosity and plainer
+      politeness, saying "curiouser and curiouser" and meaning it. The nonsense
+      scolds, riddles, and shrinks them, but it cannot quite make them rude or
+      cruel; the manners hold. Disarms the mad by simply, stubbornly, being kind.
+    cultural_status: a curiosity the creatures cannot rattle into nonsense
+    disposition_toward: {}
+
+  - name: The Gentle Mender
+    absorbs:
+      - [caregiver, control]
+      - [caregiver, jack_of_all_trades]
+      - [caregiver, tank]
+      - [caregiver, dps]
+      - [caregiver, stealth]
+      - [innocent, tank]
+      - [everyman, jack_of_all_trades]
+      - [lover, healer]
+      - [lover, support]
+    faction: null
+    lore: >-
+      The traveler whose first instinct is to soothe, tidy, or comfort — the one
+      who rights the upset tea-things, oils a creature's grievance, and treats the
+      sleeping Dormouse gently. Where the country runs on quarrel, their patience
+      is a rare thing; the contrary creatures soften for them when they soften for
+      no one else. HEART-forward, the persuasion lane made flesh.
+    cultural_status: oddly welcome at a table that welcomes no one
+    disposition_toward: {}
+
+  # ── THE STUBBORN ARGUER (Wit anchor: sage/control/WIT) ───────────────────────
+  # Wonderland is the Wit's home turf AND its torment — nonsense will not yield.
+  - name: The Stubborn Arguer
+    absorbs:
+      - [sage, control]
+      - [sage, support]
+      - [sage, jack_of_all_trades]
+      - [sage, healer]
+      - [ruler, control]
+      - [innocent, control]
+      - [everyman, control]
+    faction: null
+    lore: >-
+      The Alice-argument shape on the country that was built to break it.
+      Wonderland is the Wit's home turf and its torment at once: they will out-logic
+      Humpty Dumpty on the meaning of a word and corner the Caterpillar in its own
+      contradiction — and the nonsense will simply not yield to logic, so their
+      cleverness is the strongest tool here and the cruelest trap. The wit-duel and
+      audience lanes are their ground, and their undoing.
+    cultural_status: the one the creatures love to argue with and never lose to
+    disposition_toward: {}
+
+  - name: The Curtain-Puller
+    absorbs:
+      - [sage, dps]
+      - [sage, stealth]
+      - [outlaw, control]
+      - [outlaw, support]
+      - [jester, control]
+      - [jester, support]
+    faction: null
+    lore: >-
+      The arguer with an edge — the one who answers a riddle with a sharper riddle
+      and catches the Court conducting its trial backwards, sentence before verdict.
+      Quicker to puncture than the Stubborn Arguer, and just as helpless against a
+      nonsense that does not care it has been caught out. The Hatter's riddles and
+      the Queen's mock-trial are theirs to skewer — for all the good it does them.
+    cultural_status: feared by the court, cheered by the cleverer creatures
+    disposition_toward: {}
+
+  # ── THE PATIENT SURVEYOR (Surveyor anchor: explorer/stealth/GUILE) ───────────
+  # The traveler who maps a place that refuses to hold still — comic, dogged.
+  - name: The Patient Surveyor
+    absorbs:
+      - [explorer, stealth]
+      - [explorer, control]
+      - [explorer, support]
+      - [explorer, jack_of_all_trades]
+      - [explorer, tank]
+      - [explorer, dps]
+      - [sage, tank]
+      - [everyman, stealth]
+    faction: null
+    lore: >-
+      The Gulliver shape, set to map and measure a country that refuses to hold
+      still: the corridor of doors that loops back, the garden that rearranges, the
+      chessboard whose squares are crossed by trains and brooks. The rules change as
+      they are written down, and the Surveyor's dogged, futile cataloguing is the
+      country's quiet comedy — the measurer measured, the mapper led in a ring.
+    cultural_status: a solemn cartographer of a place that will not be mapped
+    disposition_toward: {}
+
+  - name: The Quiet Slipper
+    absorbs:
+      - [explorer, healer]
+      - [outlaw, stealth]
+      - [outlaw, jack_of_all_trades]
+      - [jester, stealth]
+      - [lover, stealth]
+      - [everyman, tank]
+    faction: null
+    lore: >-
+      The surveyor's furtive cousin — the one who goes small at the right moment,
+      slips behind a curtain in the long hall, and is simply not there when the
+      card-soldiers sweep through. GUILE over force: the blend-in beat in the escape
+      lane belongs to this traveler, hiding among things stranger than themselves in
+      a country where nobody looks twice at a new kind of strange.
+    cultural_status: never quite where the cards last looked
+    disposition_toward: {}
+
+  # ── THE STANDING SCRAPPER (Scrapper anchor: hero/tank/NERVE) ─────────────────
+  # Nerve, not muscle — holds footing against a world that will not stay sensible.
+  - name: The Standing Scrapper
+    absorbs:
+      - [hero, tank]
+      - [hero, control]
+      - [hero, support]
+      - [hero, jack_of_all_trades]
+      - [ruler, tank]
+      - [everyman, dps]
+    faction: null
+    lore: >-
+      The weary-soldier shape — when the croquet-ground turns to bedlam and the
+      Queen screams for heads, the one who plants their feet and does not break.
+      Not a hero of force (force is no answer to a playing-card) but a person whose
+      nerve outlasts the country's loudest spectacle. Holds the line in the
+      wonder-shock lane and stands between the small creatures and the bellowing.
+    cultural_status: the steady one the others get behind when the court goes mad
+    disposition_toward: {}
+
+  - name: The Jabberwock-Slayer
+    absorbs:
+      - [hero, dps]
+      - [hero, stealth]
+      - [hero, healer]
+      - [outlaw, tank]
+      - [outlaw, dps]
+      - [outlaw, healer]
+    faction: null
+    lore: >-
+      The Scrapper as the country's one true warrior — for the country has one true
+      monster. Violence is the right and only answer to the Jabberwock, jaws-that-
+      bite and claws-that-catch in the tulgey wood, and slaying it with a vorpal
+      blade is a genuine "O frabjous day!" victory. But the drawn blade marks its
+      bearer everywhere else in a world built on nonsense rather than steel: a hero
+      where there is a monster, an alarming figure where there is only a tea-party.
+    cultural_status: a hero in the wood, a worry at the table
+    disposition_toward: {}
+
+  # ── THE OPEN DREAMER (Dreamer anchor: magician/dps/WONDER) ───────────────────
+  # Embraces the wonder and risks never waking — losing the thread of home.
+  - name: The Open Dreamer
+    absorbs:
+      - [magician, dps]
+      - [magician, control]
+      - [magician, support]
+      - [magician, jack_of_all_trades]
+      - [artist, dps]
+      - [lover, dps]
+    faction: null
+    lore: >-
+      The risk archetype — leans INTO the dream-logic and is half in love with it,
+      following the country deeper while the way home grows fainter. Through the
+      wood where things have no names, past the sleeping Red King who may be
+      dreaming the whole of it, the Open Dreamer can lose the thread of home
+      entirely. The let-the-wonder-in beat is their signature and their hazard:
+      every impossible thing believed before breakfast is one belief closer to never
+      waking.
+    cultural_status: half-dreamed already, watched by the things that dream
+    disposition_toward: {}
+
+  - name: The Nameless-Wood Walker
+    absorbs:
+      - [magician, tank]
+      - [magician, stealth]
+      - [magician, healer]
+      - [artist, control]
+      - [artist, support]
+      - [artist, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The Dreamer who has gone furthest in — who has walked into the wood where
+      nothing remembers its own name, and come out answering the country in its own
+      register. An asset and a warning: the half-native sight banks real angles in
+      the wonder-shock lane, but each step into the nameless places frays the
+      memory of who they were and the road back a little looser.
+    cultural_status: spoken of as someone the dream has nearly kept
+    disposition_toward: {}
+
+  # ── THE WANDERING PLAYER (the connective tissue: artist/jester/lover spread) ─
+  - name: The Wandering Player
+    absorbs:
+      - [artist, tank]
+      - [artist, stealth]
+      - [artist, healer]
+      - [jester, dps]
+      - [jester, tank]
+      - [jester, healer]
+      - [jester, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler who meets Wonderland as a performance and plays along — trading
+      nonsense-verse with the Hatter, joining the lobster-quadrille, treating the
+      mock-trial as the grandest farce ever staged. Disarms by delight rather than
+      sincerity or argument, and is welcome at every mad table precisely because
+      they refuse to find it mad. Belongs to no creature and is turned away by none.
+    cultural_status: a delight at every impossible party, claimed by none
+    disposition_toward: {}
+
+  - name: The Lost-and-Loyal
+    absorbs:
+      - [lover, tank]
+      - [lover, control]
+      - [lover, jack_of_all_trades]
+      - [ruler, dps]
+      - [ruler, stealth]
+      - [ruler, healer]
+      - [ruler, support]
+      - [ruler, jack_of_all_trades]
+    faction: null
+    lore: >-
+      The traveler bound by a love or a loyalty — to a companion fallen down the
+      same hole, a lost home above, a creature met and befriended below — and the
+      one who arrives carrying rank from the waking world that means precisely
+      nothing here. Wonderland humbles the ruler and tests the lover: a crown is a
+      paper hat at this table, but devotion keeps the thread to home from breaking.
+    cultural_status: a sovereign of somewhere that does not exist underground
+    disposition_toward: {}
+
+additional_constraints:
+  # The genre ships archetype_constraints.yaml, but every (jungian, rpg_role)
+  # pair is claimed by a funnel above, so the genre fallback is unreachable for
+  # Wonderland and there are no world-forbidden pairs to declare.
+  forbidden: []
