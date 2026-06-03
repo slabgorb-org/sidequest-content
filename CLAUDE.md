@@ -200,7 +200,8 @@ genre_packs/
 ├── road_warrior/         # Late-70s / early-80s vehicle subcultures sharing one port city — the_circuit
 ├── space_opera/          # Sci-fi space adventure — aureate_span (baroque corona megastation, live) + coyote_star + perseus_cloud
 ├── spaghetti_western/    # Morally ambiguous anti-heroes — dust_and_lead (Mexican border) + five_points (1850s NYC Sixth Ward) + the_real_mccoy (1878 Pittsburgh)
-└── tea_and_murder/       # Cosy Edwardian BritBox murder mystery — glenross (Highland village) + blackthorn_moor (draft, assets pending)
+├── tea_and_murder/       # Cosy Edwardian BritBox murder mystery — glenross (Highland village) + blackthorn_moor (draft, assets pending)
+└── wry_whimsy/           # Golden-age literary portal fairytale (survive by wit, not force) — oz + wonderland + gulliver, light-to-savage gradient (asset gate MET; shared PD music via assets/ prefix)
 ```
 
 Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — caverns_sunden (deprecated three-sins hub, superseded by beneath_sunden), low_fantasy at various levels of completeness. `genre_workshopping/{elemental_harmony,space_opera,tea_and_murder}/worlds/` hold in-progress alternate worlds for the live packs of the same name.

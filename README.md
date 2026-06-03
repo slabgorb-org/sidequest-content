@@ -24,12 +24,13 @@ services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 | `space_opera` | Sci-fi space adventure | `aureate_span` (baroque corona megastation), `coyote_star`, `perseus_cloud` |
 | `spaghetti_western` | Morally ambiguous anti-heroes — Leone/Corbucci/Kurosawa. Standoff as ritual, betrayal as inevitability. | `dust_and_lead` (Sangre Territory border town), `five_points` (1850s NYC Sixth Ward), `the_real_mccoy` (1878 industrial Pittsburgh) |
 | `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross`, `blackthorn_moor` (draft) |
+| `wry_whimsy` | Golden-age literary portal fairytale; a sensible traveler in a dream-logic Secondary World survives by wit over force, episodic with an undertow of menace | `oz`, `wonderland`, `gulliver` (light-to-savage gradient; assets rendered) |
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters,
 factions, OCEAN profiles, conlang morphemes, audio cues, visual style), and
 asset directories for portraits, POI landscapes, and music params.
 
-All ten packs above have a `pack.yaml` and are loaded at runtime. Worlds
+All eleven packs above have a `pack.yaml` and are loaded at runtime. Worlds
 default to live; `draft: true` in a world's `world.yaml` hides it from
 selection until its asset gate (portraits + POI landscapes rendered to R2) is
 met. `blackthorn_moor` is currently the only draft world.
