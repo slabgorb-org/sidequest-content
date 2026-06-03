@@ -1,0 +1,160 @@
+# Shared public-domain PARLOR / FRONTIER music bucket — supply spec for sidequest-composer.
+#
+# This file IS a composer Manifest (src/composer/manifest.py). Each entry's
+# `out_name` MUST equal the exact filename a pack `audio.yaml` references under
+# `assets/audio/parlor_pd/` (spaces/dots/casing verbatim). `source_url` is a
+# direct, fetchable public-domain score file (Standard MIDI) — every URL below
+# was urllib-verified (HTTP 200, valid SMF; the composer fetches via urllib,
+# not curl) at authoring time (2026-06-03). The composer renders these to
+# tagged, rights-free OGG; `scripts/render_pd_audio.py` uploads them to R2 at
+# `genre_packs/assets/audio/parlor_pd/<out_name>`.
+#
+# WHAT THIS IS: 19th-century American parlor song, Civil War-era tune, cowboy
+# folk, saloon singalong, and Sousa civic march — the period-correct frontier
+# register for the spaghetti_western pack (dust_and_lead Mexican-border world
+# + baseline). Stephen Foster (d. 1864) and John Philip Sousa (d. 1932) are
+# both long public domain; traditional folk tunes (Home on the Range, Red
+# River Valley, Shenandoah, etc.) are anonymous PD. This is the diegetic
+# "what a saloon piano or a soldier's fife would actually play" layer that
+# sits alongside the ACE-Step Morricone-coded cinematic moods — NOT a
+# replacement for them.
+#
+# Sources:
+#   flutetunes.com  — https://www.flutetunes.com/tunes/<slug>.mid  (Foster, Civil War, folk)
+#   Mutopia Foster  — https://www.mutopiaproject.org/ftp/FosterSC/<dir>/<dir>.mid
+#   Mutopia Sousa   — https://www.mutopiaproject.org/ftp/SousaJP/<dir>/<dir>.mid
+# Once rendered, the OGG on R2 is the durable artifact; the URL is provenance.
+
+loudness: -16
+entries:
+  # ─── Foster parlor song (sorrow, rest) ────────────────────────────────
+  - out_name: "Foster - Beautiful Dreamer.ogg"
+    title: Beautiful Dreamer
+    composer: Stephen Foster
+    work: Beautiful Dreamer
+    source_url: https://www.flutetunes.com/tunes/beautiful-dreamer.mid
+
+  - out_name: "Foster - Jeanie with the Light Brown Hair.ogg"
+    title: Jeanie with the Light Brown Hair
+    composer: Stephen Foster
+    work: Jeanie with the Light Brown Hair
+    source_url: https://www.flutetunes.com/tunes/jeanie-with-the-light-brown-hair.mid
+
+  - out_name: "Foster - Slumber My Darling.ogg"
+    title: Slumber My Darling
+    composer: Stephen Foster
+    work: Slumber My Darling
+    source_url: https://www.mutopiaproject.org/ftp/FosterSC/slumber/slumber.mid
+
+  - out_name: "Foster - The Old Folks at Home.ogg"
+    title: The Old Folks at Home (Swanee River)
+    composer: Stephen Foster
+    work: The Old Folks At Home (Swanee River) — With Variations for Guitar
+    source_url: https://www.mutopiaproject.org/ftp/FosterSC/oldfolks/oldfolks.mid
+
+  # ─── Foster saloon singalong (saloon) ─────────────────────────────────
+  - out_name: "Foster - Oh Susanna.ogg"
+    title: Oh! Susanna
+    composer: Stephen Foster
+    work: Oh! Susanna
+    source_url: https://www.flutetunes.com/tunes/oh-susanna.mid
+
+  - out_name: "Foster - My Old Kentucky Home.ogg"
+    title: My Old Kentucky Home
+    composer: Stephen Foster
+    work: My Old Kentucky Home
+    source_url: https://www.flutetunes.com/tunes/my-old-kentucky-home.mid
+
+  # ─── Traditional saloon / cowboy folk (saloon, riding, exploration) ────
+  - out_name: "Trad - Turkey in the Straw.ogg"
+    title: Turkey in the Straw
+    composer: Traditional
+    work: Turkey in the Straw
+    source_url: https://www.flutetunes.com/tunes/turkey-in-the-straw.mid
+
+  - out_name: "Trad - The Yellow Rose of Texas.ogg"
+    title: The Yellow Rose of Texas
+    composer: Traditional
+    work: The Yellow Rose of Texas
+    source_url: https://www.flutetunes.com/tunes/the-yellow-rose-of-texas.mid
+
+  - out_name: "Trad - Oh My Darling Clementine.ogg"
+    title: Oh My Darling, Clementine
+    composer: Traditional
+    work: Oh My Darling, Clementine
+    source_url: https://www.flutetunes.com/tunes/oh-my-darling-clementine.mid
+
+  - out_name: "Trad - Home on the Range.ogg"
+    title: Home on the Range
+    composer: Traditional
+    work: Home on the Range
+    source_url: https://www.flutetunes.com/tunes/home-on-the-range.mid
+
+  - out_name: "Trad - Red River Valley.ogg"
+    title: Red River Valley
+    composer: Traditional
+    work: Red River Valley
+    source_url: https://www.flutetunes.com/tunes/red-river-valley.mid
+
+  - out_name: "Trad - Shenandoah.ogg"
+    title: Shenandoah
+    composer: Traditional
+    work: Shenandoah (Oh Shenandoah)
+    source_url: https://www.flutetunes.com/tunes/shenandoah.mid
+
+  - out_name: "Trad - Aura Lee.ogg"
+    title: Aura Lee
+    composer: Traditional
+    work: Aura Lee
+    source_url: https://www.flutetunes.com/tunes/aura-lee.mid
+
+  # ─── Civil War-era parlor / lament (sorrow) ───────────────────────────
+  - out_name: "Trad - Lorena.ogg"
+    title: Lorena
+    composer: Traditional
+    work: Lorena
+    source_url: https://www.flutetunes.com/tunes/lorena.mid
+
+  # ─── Martial / civil war / cavalry (combat, standoff, riding) ─────────
+  - out_name: "Trad - Garryowen.ogg"
+    title: Garryowen
+    composer: Traditional
+    work: Garryowen (cavalry quickstep)
+    source_url: https://www.flutetunes.com/tunes/garryowen.mid
+
+  - out_name: "Trad - Dixie.ogg"
+    title: Dixie
+    composer: Traditional
+    work: Dixie's Land
+    source_url: https://www.flutetunes.com/tunes/dixie.mid
+
+  - out_name: "Trad - The Battle Hymn of the Republic.ogg"
+    title: The Battle Hymn of the Republic
+    composer: Traditional
+    work: The Battle Hymn of the Republic
+    source_url: https://www.flutetunes.com/tunes/the-battle-hymn-of-the-republic.mid
+
+  - out_name: "Trad - When Johnny Comes Marching Home.ogg"
+    title: When Johnny Comes Marching Home
+    composer: Traditional
+    work: When Johnny Comes Marching Home
+    source_url: https://www.flutetunes.com/tunes/when-johnny-comes-marching-home.mid
+
+  # ─── Sousa civic / martial march (combat, town pride) ─────────────────
+  - out_name: "Sousa - The Stars and Stripes Forever.ogg"
+    title: The Stars and Stripes Forever
+    composer: John Philip Sousa
+    work: The Stars and Stripes Forever
+    source_url: https://www.mutopiaproject.org/ftp/SousaJP/TheStarsAndStripesForever/TheStarsAndStripesForever.mid
+
+  - out_name: "Sousa - The Liberty Bell.ogg"
+    title: The Liberty Bell
+    composer: John Philip Sousa
+    work: The Liberty Bell March
+    source_url: https://www.mutopiaproject.org/ftp/SousaJP/TheLibertyBell/TheLibertyBell.mid
+
+  - out_name: "Sousa - El Capitan March.ogg"
+    title: El Capitan March
+    composer: John Philip Sousa
+    work: El Capitan March
+    source_url: https://www.mutopiaproject.org/ftp/SousaJP/ElCapitanMarch/ElCapitanMarch.mid
