@@ -1,43 +1,59 @@
 # =============================================================================
 # Gulliver (wry_whimsy) — WORLD VISUAL STYLE
 # =============================================================================
-# Renderer: Z-Image Turbo. There is NO negative_prompt — Z-Image runs at
-# guidance_scale=0 and ignores it (see PROMPTING_Z_IMAGE.md). Every "not X"
-# constraint is phrased as POSITIVE exclusion text inside positive_suffix.
+# Renderer: Z-Image (mflux). The daemon worker loads `z-image` (high_fidelity,
+# CFG 4.0, the default) or `z-image-turbo` (CFG 0) by the SIDEQUEST fidelity
+# env var — see sidequest-daemon/.../workers/zimage_mlx_worker.py and ADR-070.
+# The POI/portrait batch path sends NO negative_prompt (render_common only
+# appends positive_suffix to the positive prompt), so every "not X" clause would
+# land inside the POSITIVE prompt and merely hand the model the very nouns to
+# avoid. We therefore carry NO object negations — the look is steered purely by
+# positive medium vocabulary. There is no Flux/`dev` model in this stack; the
+# old `preferred_model: dev` was DEAD CONFIG (the worker never reads
+# params["variant"]) and has been removed.
 #
 # THE LOOK: Thomas Morten's 1865 wood-engraved plates for the Cassell's
-# illustrated "Gulliver's Travels" — dense cross-hatched Victorian
-# wood-engraving line, confident black ink linework of varying weight, dramatic
+# illustrated "Gulliver's Travels" — densely worked Victorian wood-engraving
+# line, confident black ink linework of varying weight, dramatic
 # realist-fantastical compositions with SCALE-DRAMATIC framing (the giant among
 # the tiny in Lilliput; the tiny man among giants in Brobdingnag). Engraving is
 # black line: restrained or no tint, on a warm cream period-paper ground. This
 # is the SAVAGE-pole sibling of Tenniel (Wonderland) and Denslow (Oz) — the
 # third world's matched-set period engraving.
 #
-# COSTUME SUBTLETY: Gulliver is an early-Georgian ship's surgeon, c. 1700 —
-# tricorn hat, frock coat, knee-breeches, buckled shoes — rendered in Morten's
-# 1865 engraving TECHNIQUE. This is encoded POSITIVELY below by pushing toward
-# the engraved-ink plate and the period dress, and away from Victorian costume,
-# the cute children's-picture-book Gulliver, modern cartoon, and photograph —
-# phrased as the engraved alternative, never as a negation (Z-Image ignores
-# negations). Adult content (Maids of Honour, Yahoo filth, Struldbrugg decay)
-# is handled with the restraint of a period anatomical engraving, never crude.
+# MOIRÉ FIX (2026-06-02): Morten's plates are densely hatched, but a uniform
+# high-frequency ruled field aliases against the 1024px raster and beats into
+# moiré. The suffix keeps the dense work on the modelled forms (drapery, flesh,
+# masonry, the giant's bulk) and explicitly reserves sky / sea / broad flat
+# areas as open bare paper or soft graded tone — authentic to Morten and free
+# of the beat pattern. The suffix was also cut from ~155 florid words to ~90:
+# Morten named once, "fine engraved pen-and-ink linework" as the medium, no
+# 160-word worship of hatching vocabulary.
+#
+# NO CHARACTER IN THE SUFFIX (2026-06-03): the suffix is appended to EVERY
+# render — every POI landscape AND (because no portrait_positive_suffix is
+# declared, render_common falls the portrait tier back to this same string)
+# every NPC portrait. A prior version carried "Gulliver dressed as an early-
+# Georgian ship's surgeon: tricorn hat, frock coat, knee-breeches, buckled
+# shoes" here, which stamped a spurious Georgian figure into empty Lilliput
+# landscapes and into every NPC plate (the Emperor, the Houyhnhnm horses, the
+# Yahoo, Glumdalclitch). A specific CHARACTER never belongs in a world-wide
+# style suffix — only medium, ground, hatching discipline, scale-framing, and
+# the safety clause. Gulliver's dress is steered per-subject where he is
+# actually depicted (the runtime scene render, or a dedicated Gulliver portrait
+# entry), never globally. Adult content (Maids of Honour, Yahoo filth,
+# Struldbrugg decay) is handled with the restraint of a period anatomical
+# engraving, never crude.
 # =============================================================================
 
 positive_suffix: >-
-  a finely detailed wood-engraved plate in the style of Thomas Morten from the
-  1865 Cassell's illustrated edition of Gulliver's Travels — confident black
-  pen-and-ink linework of varying weight defining the forms, the interior dense
-  with cross-hatching, hatching, and stippling that model texture, shadow, and
-  depth, over a warm cream period-paper ground. A dramatic realist-fantastical
-  composition with strong scale contrast between the great and the small. Tint
-  restrained to almost none, the strong black engraved line carrying the image.
-  Gulliver shown as an early-Georgian ship's surgeon of about 1700 — tricorn
-  hat, long frock coat, knee-breeches, buckled shoes. An 1865 engraved-ink
-  storybook plate with the period Georgian dress and dense cross-hatching
-  throughout — not Victorian costume, not a children's picture-book cartoon,
-  not a photograph, not a 3D render. No text, lettering, signature, or watermark.
-
-preferred_model: dev
+  fine engraved pen-and-ink linework in the style of Thomas Morten's 1865
+  Cassell's Gulliver's Travels wood-engravings, on a warm cream period-paper
+  ground. Dense form-following hatching models the figures, drapery, flesh, and
+  masonry; sky, sea, and broad flat areas stay open bare paper or soft graded
+  tone. Strong black line carries the image, tint almost none, restrained
+  selective hand-tint at most. Dramatic scale contrast between the great and the
+  small. No text, no lettering, no caption, no title, no signature, no labels, no
+  watermark, no border, no frame.
 
 base_seed: 1726
