@@ -245,14 +245,34 @@ confrontations:
     intent_verbs: [testify, accuse, defend, argue, examine, object]
     on_intent_mismatch: warn
     category: social
+    # Story 73-2: a Trial by Tribunal is a two-sided contest — prosecution and
+    # defence both press the tribunal for conviction. Under the old beat_selection
+    # mode only the PLAYER rolled and the opponent's conviction dial moved solely
+    # via the narrator's advance_confrontation tool (the 59-8 social_duel
+    # unfairness). opposed_check makes the Other roll d20+modifier each beat so
+    # their dial advances mechanically (ADR-093 bands), GM-panel auditable, no
+    # narrator fiat. Mirrors the negotiation/scandal/social_duel recipe.
+    resolution_mode: opposed_check
+    # Keyed by the stats the beats roll (Cunning/Passion) plus Nerve for the
+    # voluntary withdraw. Per ADR-093 every opponent_default_stats value on an
+    # opposed_check confrontation must be ≤ 10 (challenge comes from dial/DC
+    # geometry, not stat inflation; 10 → +0 modifier). Without these
+    # resolve_opponent_modifier fails loud (No Silent Fallbacks).
+    opponent_default_stats:
+      Cunning: 10
+      Passion: 10
+      Nerve: 10
+    # Thresholds move 8 → 7: ADR-093 v1 owns the opposed_check threshold — every
+    # opposed_check confrontation must be 7/7 (the calibrated tie band assumes
+    # symmetric finish lines, enforced by tests/genre/test_confrontation_calibration.py).
     player_metric:
       name: conviction
       starting: 0
-      threshold: 8
+      threshold: 7
     opponent_metric:
       name: conviction
       starting: 0
-      threshold: 8
+      threshold: 7
     beats:
       - id: cross_examine
         label: "Cross-Examine"
@@ -284,6 +304,21 @@ confrontations:
         stat_check: Passion
         effect: "opponent speaks — may reveal a weakness the next strike can spend"
         narrator_hint: "Strategic silence. Let them overplay their hand."
+      - id: withdraw_case
+        label: "Withdraw the Case"
+        kind: push
+        base: 0
+        stat_check: Nerve
+        # Story 73-2: withdrawing is a voluntary exit — it must ALWAYS end the
+        # trial, regardless of the d20 outcome tier. Without this flag a `push`
+        # only resolves on Success (DEFAULT_DELTAS in beat_kinds.py), so a failed
+        # withdraw left the player soft-locked in a trial the fiction had already
+        # closed (the 59-8 soft-lock class — reproduced in the 67-10 playtest; see
+        # social_duel.concede, negotiation.walk_away, scandal.weather_it).
+        # `resolution` forces resolution on any tier and emits ENCOUNTER_RESOLVED.
+        resolution: true
+        consequence: "Charges dropped / defence rests — the matter is closed, dignity intact"
+        narrator_hint: "Counsel withdraws. The tribunal is dismissed — no verdict pronounced."
     mood: tension
   - type: auction
     label: "The Auction"
