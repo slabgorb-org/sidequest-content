@@ -40,9 +40,11 @@ will surface them to players as if they were finished.
 | `mutant_wasteland` | Post-apocalyptic mutants; `flickering_reach` world is the only spoilable canon |
 | `neon_dystopia` | Cyberpunk — `franchise_nations` |
 | `pulp_noir` | 1930s detective / pre-war pulp — `annees_folles` |
+| `road_warrior` | Late-70s/early-80s vehicle subcultures sharing one port city — `the_circuit` |
 | `space_opera` | Sci-fi space adventure |
 | `spaghetti_western` | Frontier gunslinger |
 | `tea_and_murder` | Cosy Edwardian BritBox murder mystery; village amateur sleuths (Glenross) |
+| `wry_whimsy` | Golden-age literary portal fairytale; survive a dream-logic world by wit — `oz`, `wonderland`, `gulliver` (assets rendered) |
 
 > **Note:** `neon_dystopia`, `pulp_noir`, and `heavy_metal` were promoted /
 > re-promoted 2026-05-23 with the asset gate (portraits, POI landscapes,
