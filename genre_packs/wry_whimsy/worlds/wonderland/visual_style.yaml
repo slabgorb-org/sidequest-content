@@ -1,45 +1,28 @@
 # =============================================================================
 # Wonderland (wry_whimsy) — WORLD VISUAL STYLE
 # =============================================================================
-# Renderer: Z-Image Turbo. There is NO negative_prompt — Z-Image runs at
-# guidance_scale=0 and ignores it (see PROMPTING_Z_IMAGE.md). Every "not X"
-# constraint is phrased as POSITIVE exclusion text inside positive_suffix.
+# Renderer: Z-Image (mflux); see zimage_mlx_worker.py + ADR-070. The batch path
+# sends NO negative_prompt — every clause lands in the POSITIVE prompt — so we
+# steer purely with positive vocabulary and a safety clause. There is no Flux/
+# `dev` model here; the old `preferred_model: dev` was dead config and is gone.
 #
-# THE LOOK: John Tenniel's original wood-engraved plates for "Alice's
-# Adventures in Wonderland" (1865) and "Through the Looking-Glass" (1871) —
-# Victorian steel/wood-engraving line, dense cross-hatching and hatched
-# shading, fine confident black ink linework on a cream period children's-book
-# plate, generous white space, restrained hand-tint over the strong black line.
-# Court figures are literally flat heraldic playing-card pasteboard with printed
-# faces; chess pieces follow Tenniel's carved-chesspiece designs; creatures wear
-# the waistcoated-beast Victorian look; humans wear 1860s costume.
-#
-# This is the ANTI-CLICHE WEAPON. It is NOT the 1951 Disney cartoon — encoded
-# POSITIVELY below by pushing toward engraved ink line, cross-hatching, and a
-# hand-tinted Victorian plate, and away from saturated flat cel animation,
-# rounded cartoon shapes, and candy color (no pinafore-blue cel Alice, no
-# purple grinning cartoon cat — phrased as the engraved alternative, never as
-# a negation, since Z-Image ignores negations).
+# TIGHT-SUFFIX RULE (2026-06-02, per PROMPTING_Z_IMAGE.md): this suffix is
+# appended to EVERY render (render_common has no per-tier split). It must be a
+# SHORT medium/style/palette anchor ONLY — name Tenniel ONCE, fine pen-and-ink
+# line, open cream-paper sky, restrained selective hand-tint, safety clause.
+# The earlier ~160-word version piled on engraving-density vocabulary (Dalziel,
+# Punch, cross-hatching, engraver's line, "dense all-over tone"); per the guide
+# a style anchor imports its whole medium, so that hatching pile drowned the
+# open-paper clause and aliased the sky into moiré. Cut to the anchor below.
+# NO casting (per-POI solo / portrait_manifest appearance own it). NO negations.
+# Per-scene selective hand-tint colours (1-3) are named in each solo, not here.
 # =============================================================================
 
 positive_suffix: >-
-  a finely detailed Victorian wood-engraving plate in the style of John Tenniel
-  from the 1865 first edition of Alice's Adventures in Wonderland — pen-and-ink
-  line art, intricate and ornamental, with the refined draughtsmanship of a
-  steel-engraved storybook plate. Confident black ink outlines of varying weight
-  define the forms, and within them the drawing is dense with fine interior
-  linework — delicate hatching, cross-hatching, and stippling that model texture,
-  shadow, and depth — over generous areas of clean cream paper. A restrained
-  hand-tinted wash sits lightly over the strong black line: muted period
-  watercolour, soft and limited, never saturated, on a warm cream buff paper
-  ground. Court figures rendered as flat heraldic playing-card pasteboard with
-  printed faces; chess pieces as Tenniel's carved wooden chesspieces; talking
-  creatures in waistcoated Victorian dress; people in 1860s costume. An 1865
-  engraved-ink storybook plate with a hand-tinted Victorian look, fine linework
-  and cross-hatching throughout — not a 1951 flat cel animation, not saturated
-  candy-coloured cartoon, not rounded simplified shapes, not a photograph, not a
-  3D render. No text, lettering, signature, or watermark.
-
-preferred_model: dev
+  fine pen-and-ink line illustration in the style of John Tenniel, 1865, crisp
+  confident black outlines, light open linework, plenty of bare cream paper,
+  open unmarked sky, a restrained selective hand-tinted wash in a few muted
+  colours over the black line on warm cream paper. No text, no caption, no
+  title, no writing, no signature, no labels, no watermark, no border, no frame.
 
 base_seed: 1865

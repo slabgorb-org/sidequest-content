@@ -182,17 +182,34 @@ chapters:
   # the POI image pipeline, which reads chapters[].points_of_interest[]
   # exclusively. Each `slug` and `region` matches a cartography.yaml region id.
   #
-  # Z-Image discipline (mirror Oz's history.yaml exactly):
-  #   - visual_prompt.solo is the renderable PLACE/SCENE only — concrete physical
-  #     nouns, what the engraving depicts. NO style/medium/palette words: no
-  #     "engraving", "Tenniel", "woodcut", "Victorian", "hand-tinted", "pen-and-
-  #     ink". The Tenniel-plate style + restrained period tint is appended
-  #     automatically by visual_style.yaml positive_suffix at render time — do
-  #     NOT repeat it here.
-  #   - Keep each `solo` SHORT (one to two tight sentences) to respect the
-  #     512-token render budget; lead with the dominant physical subject.
-  #   - backdrop is the same place as a wider establishing shot, no characters
-  #     needed.
+  # Z-Image discipline (per PROMPTING_Z_IMAGE.md; FULL REWRITE 2026-06-02 after
+  # Keith's "too florid" verdict on the validation renders):
+  #   - CAMERA-STYLE SCAFFOLD, not prose. Each `solo` is a shot list:
+  #     [medium anchor] + [shot] + [foreground 1-3 concrete] + [middle 1-3] +
+  #     [background] + [light] + [mood] + safety clause. Short clauses, concrete
+  #     nouns. 80-150 words. Long-and-novelistic is worse than short.
+  #   - LEAD WITH THE MEDIUM: open every solo "Pen-and-ink line illustration, ..."
+  #     The buried suffix anchor was not reliably steering the medium in the
+  #     validation renders, so the solo reinforces it up front. (This supersedes
+  #     the older "no style words in solo" rule for this world.) Do NOT pile on
+  #     hatching / cross-hatching / engraving-density vocabulary — that imports
+  #     dense ruled-line fields and aliases the sky into moiré. Open cream-paper
+  #     sky; that is the whole moiré fix.
+  #   - COMMIT EVERY FIGURE (Z-Image, corrected 2026-06-02): render each figure
+  #     and crowd CONCRETELY and CONFIDENTLY as a plain camera-style noun. Z-Image
+  #     renders crowds fine. The uncanny mush came from HEDGING — "small and
+  #     distant", "only suggested", "a mass of dim shapes, not individuated", "a
+  #     blur rather than a crowd" tell the model to draw figures and de-emphasize
+  #     them at once → half-formed bodies. NEVER hedge a figure. Either name it as
+  #     a real thing the camera sees (e.g. "a jury box of twelve animal jurors",
+  #     "the Queen in a red gown directing a line of card-soldiers") or leave it
+  #     out. Carroll's scenes KEEP their casts, rendered plainly.
+  #   - NO ABSTRACT ACTION: unrenderable motion ("food takes to the air", "the
+  #     table tips into uproar") renders as unreadable blobs. Use concrete static
+  #     nouns instead (a domed platter, an overturned cup).
+  #   - SELECTIVE HAND-TINT: name 1-3 concrete colours per scene (red roses, gold
+  #     crown, blue waistcoat); let the rest stay tonal line on cream paper.
+  #   - backdrop is the same place as a wider establishing shot, same scaffold.
   #   - Source-faithful Carroll, NEVER the 1951 film: six-o'clock tea, painted
   #     roses, brook-divided squares, the bottle and cake on the glass table, the
   #     egg in a cravat on the wall.
@@ -223,18 +240,20 @@ chapters:
           glass table holding a labelled bottle and a small cake.
         visual_prompt:
           solo: >-
-            Interior of a long, low, narrow hall lit by a row of small lamps hung
-            from the ceiling, with many shut doors of different sizes set all the
-            way along both walls. In the centre stands a little three-legged table
-            of glass bearing a small bottle with a paper label and, beside it, a
-            tiny cake. Low in the far wall, half-hidden behind a drawn curtain, a
-            very small arched door stands ajar on a glimpse of bright sunlit garden
-            with flowers and a fountain beyond.
+            Pen-and-ink line illustration, interior shot down a long low narrow
+            hall. Foreground: a small three-legged glass table holding a little
+            bottle with a paper label and a small cake. Middle ground: many shut
+            wooden doors of different sizes along both walls, a row of small hanging
+            lamps overhead. Background: a tiny arched door low in the far wall,
+            half behind a red curtain, standing ajar on a bright green sunlit garden
+            with flowers. Soft warm lamplight. Quiet, expectant, strange. No text,
+            no caption, no watermark.
           backdrop: >-
-            A long low narrow hall lit by hanging lamps, lined on both walls with
-            many shut doors of varied sizes, a little three-legged glass table in
-            the middle, and a tiny curtained door in the far wall opening on a
-            bright sunlit garden beyond.
+            Pen-and-ink line illustration, wide shot down a long low narrow hall,
+            many shut wooden doors of varied sizes along both walls, hanging lamps
+            overhead, a three-legged glass table in the middle, a tiny curtained
+            door in the far wall ajar on a bright green sunlit garden. No text, no
+            caption, no watermark.
 
       - name: The Pool of Tears
         slug: pool_of_tears
@@ -246,16 +265,17 @@ chapters:
           gather to wring themselves out and run the caucus-race.
         visual_prompt:
           solo: >-
-            A wide, shallow pool of water spreading across the floor of an
-            enormous dim hall, its far edge lost in shadow. Along a narrow wet
-            shore at one side, a cluster of small bedraggled animals — a mouse, a
-            duck, a dodo, a parrot and others — stand dripping and shaking
-            themselves dry, gathered in a loose ring on the damp sand as if about
-            to begin a race with no starting line.
+            Pen-and-ink line illustration, interior shot of a vast dim hall.
+            Foreground: a narrow wet sandy shore where a ring of wet bedraggled
+            animals stand dripping — a brown mouse, a white duck, a grey dodo, a
+            green parrot and a few others, shaking themselves dry. Middle ground: a
+            wide shallow pool of water spreading across the stone floor. Background:
+            tall dim walls. Soft cool light. Damp, comic, bewildered. No text, no
+            caption, no watermark.
           backdrop: >-
-            A wide shallow pool flooding the floor of a vast dim hall, its far edge
-            lost in shadow, with a narrow wet sandy shore along one side and small
-            dripping animals gathered in a loose ring upon it.
+            Pen-and-ink line illustration, wide shot of a vast dim hall, a wide
+            shallow pool flooding the stone floor, a narrow wet sandy shore along
+            one side, tall dim walls behind. No text, no caption, no watermark.
 
       - name: The White Rabbit's House
         slug: white_rabbits_house
@@ -267,15 +287,20 @@ chapters:
           window and one foot jammed up the chimney.
         visual_prompt:
           solo: >-
-            A neat little tile-roofed cottage with a small brass plate beside its
-            door, far too small for what is inside it: one enormous human arm
-            thrust straight out of an upstairs window and one huge foot wedged up
-            into the chimney, so that the whole house seems to bulge and strain.
-            Below, a few small animals scatter back from the windows in alarm.
+            Pen-and-ink line illustration, exterior shot of a neat little
+            tile-roofed cottage with a small brass plate by the door. Foreground:
+            three small animals in coats — a lizard, a guinea-pig, a rabbit — backing
+            away across the garden path in alarm, looking up. Middle ground: the
+            cottage, far too small for what is inside it — one enormous human arm
+            thrust straight out of an upstairs window, one huge foot wedged up the
+            chimney, the walls bulging. Background: a low hedge and open cream-paper
+            sky. Bright daylight. Comic, alarmed, absurd. No text, no caption, no
+            watermark.
           backdrop: >-
-            A neat little tile-roofed cottage with a brass door-plate, an enormous
-            human arm thrust out of an upstairs window and a huge foot jammed up
-            the chimney, the small house bulging as though about to burst.
+            Pen-and-ink line illustration, wide shot of a neat little tile-roofed
+            cottage with a brass door-plate, an enormous human arm out of an upstairs
+            window and a huge foot up the chimney, the walls bulging, a low hedge and
+            open cream-paper sky behind. No text, no caption, no watermark.
 
       - name: The Caterpillar's Mushroom
         slug: caterpillars_mushroom
@@ -287,16 +312,19 @@ chapters:
           hookah.
         visual_prompt:
           solo: >-
-            A single great round-capped mushroom standing waist-high in a deep
-            close wood, its top broad and flat as a small table. Seated upon the
-            top, leaning back, is a large blue caterpillar with its many little
-            legs folded, holding the mouthpiece of a long curled hookah-pipe whose
-            bowl rests on the mushroom-cap, a thin thread of smoke rising. Tall
-            dim trees crowd close on every side.
+            Pen-and-ink line illustration, close shot in a deep wood. Foreground: a
+            single great round-capped mushroom, broad and flat as a small table, and
+            seated upright on top of it a large blue caterpillar reared up tall like
+            a person, several pairs of small arms along its body, one hand holding
+            the mouthpiece of a long curled hookah-pipe, the bowl on the cap, a thin
+            curl of smoke. Background: tall dark green trees crowding close, open
+            cream-paper above. Soft dim woodland light. Calm, oracular, strange. No
+            text, no caption, no watermark.
           backdrop: >-
-            A single great round-capped mushroom standing waist-high in a deep
-            close wood, broad and flat as a table on top, a long curled hookah-pipe
-            resting upon its cap, tall dim trees crowding close all around.
+            Pen-and-ink line illustration, close shot in a deep wood, a single great
+            round-capped mushroom broad and flat on top with a long curled
+            hookah-pipe resting on it, tall dark green trees crowding close all
+            around. No text, no caption, no watermark.
 
       - name: The Duchess's Pepper-Kitchen
         slug: duchess_pepper_kitchen
@@ -308,17 +336,19 @@ chapters:
           all about.
         visual_prompt:
           solo: >-
-            The cramped interior of a low cottage kitchen choked with a thick haze
-            of pepper-dust hanging in the air. A great black cauldron steams over a
-            smoky hearth; broken plates, cups and saucers lie scattered across the
-            stone floor and one is caught mid-air in the act of being thrown.
-            Pots and ladles hang crooked on the walls, the whole room close, hot
-            and disordered.
+            Pen-and-ink line illustration, interior shot of a cramped low cottage
+            kitchen, a thick haze of pepper-dust in the air. Foreground: broken
+            white plates, cups and saucers scattered across the stone floor.
+            Middle ground: a cook in an apron at a smoky hearth stirring a great
+            black cauldron of soup, steam rising. Background: pots and ladles
+            hanging crooked on the walls. Warm smoky firelight. Hot, close,
+            disordered, comic. No text, no caption, no watermark.
           backdrop: >-
-            The cramped interior of a low cottage kitchen choked with a haze of
-            pepper-dust, a great black cauldron steaming on a smoky hearth, and
-            broken crockery scattered across the stone floor with one plate caught
-            mid-air.
+            Pen-and-ink line illustration, wide shot of a cramped low cottage
+            kitchen hazy with pepper-dust, a great black cauldron steaming on a
+            smoky hearth, broken white crockery scattered across the stone floor,
+            pots and ladles hanging crooked on the walls. No text, no caption, no
+            watermark.
 
       - name: The Mad Tea-Party
         slug: mad_tea_party
@@ -330,18 +360,22 @@ chapters:
           the tea never ends.
         visual_prompt:
           solo: >-
-            A long table laid with a great many mismatched cups, saucers and
-            teapots, set out of doors under the spreading boughs of a large tree
-            before a small house. The whole length of it is empty but for one
-            crowded corner where a few places are jammed close together, the rest
-            of the cloth strewn with used and overturned cups and spilt tea. A
-            stopped clock or large pocket-watch lies among the crockery, its hands
-            fixed at six.
+            Pen-and-ink line illustration, outdoor shot of a long table set under a
+            large spreading tree before a small house. Foreground, jammed into one
+            corner of the table: a thin man in a checked coat and a tall top-hat
+            with a paper price ticket in the band, raising a teacup; beside him an
+            upright brown hare in a buttoned coat with wisps of straw in its long
+            ears, a forepaw lifted; and a small dormouse asleep inside a large
+            teacup, only its head and tail showing. On the table: many mismatched
+            cups, saucers and teapots, overturned cups, spilt tea, and a stopped
+            pocket-watch with its hands at six. Background: green tree boughs and
+            open cream-paper sky. Soft daylight. Absurd, cosy, mad. No text, no
+            caption, no watermark.
           backdrop: >-
-            A long table laid with many mismatched cups and teapots, set out of
-            doors under a large spreading tree before a small house, empty but for
-            one crowded corner, the rest strewn with used and overturned cups and
-            spilt tea.
+            Pen-and-ink line illustration, wide shot of a long table laid with many
+            mismatched cups and teapots under a large spreading tree before a small
+            house, overturned cups and spilt tea along the cloth, green tree boughs
+            and open cream-paper sky behind. No text, no caption, no watermark.
 
       - name: The Queen's Croquet-Ground
         slug: queens_croquet_ground
@@ -353,17 +387,22 @@ chapters:
           mallets.
         visual_prompt:
           solo: >-
-            A wide, smooth, clipped green lawn. In the foreground stands a small
-            rose-tree bearing white roses, three flat playing-card figures busily
-            slapping red paint over the blooms with brushes and a paint-pot. Across
-            the lawn, several flat card-soldiers bend double on hands and feet to
-            form croquet-hoops, while figures swing live long-necked flamingoes
-            held like mallets and curled hedgehogs lie about for balls.
+            Pen-and-ink line illustration, ground-level shot on a clipped green
+            lawn. Foreground: one large flat playing-card gardener, a flat oblong
+            card body and printed face, leaning into a small rose-tree and slapping
+            red paint over its white roses from a paint-pot, red drips on the
+            petals. Beside him a tall pink flamingo held upside-down by the legs
+            like a croquet-mallet, and a curled brown hedgehog on the grass for a
+            ball. Middle ground: the Queen of Hearts in a wide red gown and a gold
+            crown stands directing a line of flat card-soldiers bent over into
+            croquet-hoops across the lawn. Background: dark green trees and open
+            cream-paper sky. Soft even daylight. Bright, busy, absurd. No text, no
+            caption, no watermark.
           backdrop: >-
-            A wide smooth clipped green lawn with a small white rose-tree being
-            painted red in the foreground, flat card-soldiers bent double into
-            croquet-hoops across the grass, and long-necked flamingoes held like
-            mallets among scattered curled hedgehogs.
+            Pen-and-ink line illustration, wide shot of a clipped green lawn, a
+            small rose-tree half-painted red in the foreground, a line of flat
+            card-soldiers bent into croquet-hoops across the grass, dark green trees
+            behind and open cream-paper sky above. No text, no caption, no watermark.
 
       - name: The Hall of Justice
         slug: hall_of_justice
@@ -375,17 +414,22 @@ chapters:
           stolen tarts sits in plain sight.
         visual_prompt:
           solo: >-
-            A crowded courtroom interior. At the back, raised on a high stepped
-            dais, stands a great canopied throne with two crowned seats. To one
-            side, a long jury-box packed with a dozen small animals seated in two
-            rows, each scratching on a little slate. In the centre foreground, a
-            plain table bears a large dish heaped with jam-tarts. Ranks of flat
-            playing-card figures and assorted creatures fill the benches all round.
+            Pen-and-ink line illustration, medium courtroom shot. Foreground left:
+            a flat playing-card king and queen, oblong card bodies with printed
+            faces and small red hearts, the king in a thin gold crown, the queen in
+            a tall pointed crown, seated together at a high wooden bench. Foreground
+            right: a young card-knave standing in a wooden dock, wrists in light
+            chains, a small tray of red jam-tarts on a stand before him. Between
+            them a white rabbit in a blue checked waistcoat raises a long brass
+            herald's trumpet. Middle ground: a wooden jury box filled with twelve
+            small animal jurors scratching on slates. Background: a plain panelled
+            courtroom wall, open cream-paper above. Soft indoor light. Tense,
+            absurd, formal. No text, no caption, no watermark.
           backdrop: >-
-            A crowded courtroom with a high canopied throne and two crowned seats on
-            a raised dais, a long jury-box of a dozen small animals scratching on
-            slates, and a central table bearing a dish heaped with jam-tarts, ranks
-            of card-figures filling the benches.
+            Pen-and-ink line illustration, wide shot of a panelled courtroom, a high
+            wooden judge's bench, a wooden dock, a wooden jury box with twelve small
+            animal jurors, a small table bearing a dish of red jam-tarts, open
+            cream-paper above. No text, no caption, no watermark.
 
       # ══ THE SEAM ═══════════════════════════════════════════════════════════════
 
@@ -398,18 +442,20 @@ chapters:
           soft and bright like a gauze, the one passage between the two countries.
         visual_prompt:
           solo: >-
-            A tall, broad mirror in an ornate frame standing on a mantelpiece above
-            a low hearth where a small fire burns. The glass of the mirror has gone
-            soft and faintly luminous, like a sheet of bright silvery gauze rather
-            than solid glass, beginning to dissolve into a shimmering haze at its
-            centre. On the mantelshelf below sit a small clock with a little face
-            and a few china ornaments; the reversed reflection of a quiet room
-            shows dimly within.
+            Pen-and-ink line illustration, interior shot of a mantelpiece. Centre:
+            a tall broad mirror in an ornate gold frame standing on the mantelshelf
+            above a low hearth with a small fire. The mirror glass is bright silvery
+            and softly glowing, a faint luminous haze at its centre, a dim reversed
+            reflection of a quiet room within. Foreground: on the shelf, a small
+            mantel clock with a little face and a few white china ornaments.
+            Background: a plain panelled wall, open cream-paper above. Soft firelit
+            glow. Still, uncanny, expectant. No text, no caption, no watermark.
           backdrop: >-
-            A tall broad framed mirror standing on a mantelpiece above a low hearth
-            with a small fire, its glass gone soft and luminous like bright silvery
-            gauze dissolving into haze at the centre, a little clock and china
-            ornaments on the shelf below.
+            Pen-and-ink line illustration, interior shot of a mantelpiece, a tall
+            broad mirror in an ornate gold frame above a low hearth with a small
+            fire, the glass bright silvery and softly glowing, a small clock and
+            white china ornaments on the shelf, a plain panelled wall behind. No
+            text, no caption, no watermark.
 
       # ══ LOOKING-GLASS LAND ═══════════════════════════════════════════════════════
 
@@ -423,18 +469,20 @@ chapters:
           chequered like a board.
         visual_prompt:
           solo: >-
-            A formal garden flower-bed in the foreground, planted thick with tall,
-            full-blown flowers — a tiger-lily, roses, daisies — turned toward one
-            another as though deep in conversation, their leaves cocked like
-            listening ears. A clear path runs from the bed toward a low rounded
-            grassy hill rising beyond. From the slope of the hill the open country
-            past it can be seen marked off into a regular pattern of squares by
-            little brooks and low straight hedges.
+            Pen-and-ink line illustration, garden shot. Foreground: a formal
+            flower-bed of tall full-blown flowers with little faces — an orange
+            tiger-lily, red roses, white daisies — turned toward one another as if
+            talking, leaves cocked like ears. Middle ground: a clear path running
+            from the bed to a low rounded grassy hill. Background: open green
+            country beyond the hill, marked into a grid of squares by little brooks
+            and low hedges, open cream-paper sky. Soft daylight. Bright, chatty,
+            odd. No text, no caption, no watermark.
           backdrop: >-
-            A formal garden flower-bed of tall full-blown flowers turned toward one
-            another, a clear path running to a low rounded grassy hill beyond, and
-            the open country past it marked off into a pattern of squares by little
-            brooks and low straight hedges.
+            Pen-and-ink line illustration, wide garden shot, a formal flower-bed of
+            tall full-blown flowers in the foreground, a clear path to a low rounded
+            grassy hill, open green country beyond marked into a grid of squares by
+            little brooks and low hedges, open cream-paper sky. No text, no caption,
+            no watermark.
 
       - name: The Chessboard Country
         slug: chessboard_country
@@ -446,17 +494,19 @@ chapters:
           country laid out like a chessboard in play.
         visual_prompt:
           solo: >-
-            A vast open green countryside seen from a slight rise, ruled all over
-            into a regular grid of large squares by little straight brooks running
-            silver across it and low straight green hedgerows between, alternating
-            squares of bright green grass and paler ground like a great chessboard.
-            A narrow path runs straight away across the squares toward the flat far
-            horizon under a wide pale sky.
+            Pen-and-ink line illustration, wide landscape shot from a slight rise.
+            Foreground: green countryside laid out in large alternating squares of
+            bright green grass and pale ground, like a great chessboard, divided by
+            little silver brooks and low straight green hedgerows. Middle ground: a
+            narrow path running straight away across the squares. Background: a flat
+            far horizon and a wide open cream-paper sky. Clear flat daylight. Vast,
+            orderly, dreamlike. No text, no caption, no watermark.
           backdrop: >-
-            A vast open green countryside ruled into a regular grid of large squares
-            by little silver brooks and low straight hedgerows, alternating bright
-            and pale ground like a great chessboard, a path running straight away to
-            the flat far horizon under a wide pale sky.
+            Pen-and-ink line illustration, wide landscape shot of green countryside
+            laid out in large alternating squares like a chessboard, divided by
+            little silver brooks and low straight hedgerows, a path running to a flat
+            far horizon under a wide open cream-paper sky. No text, no caption, no
+            watermark.
 
       - name: The Tweedle Wood
         slug: tweedle_wood
@@ -468,16 +518,18 @@ chapters:
           another.
         visual_prompt:
           solo: >-
-            A close green wood. In the foreground stand two short, very fat,
-            identical men in schoolboy collars, side by side before a tree, each the
-            mirror of the other, arms about to be flung round one another. Deeper
-            among the trees behind them, half in shadow, a large crowned king in a
-            robe lies stretched fast asleep on the ground beneath another tree, his
-            crown tipped, plainly snoring.
+            Pen-and-ink line illustration, shot in a close green wood. Foreground:
+            two short very fat identical men in white schoolboy collars and round
+            caps, standing side by side before a tree, each the mirror of the other.
+            Middle ground: dark tree trunks. Background: a large crowned king in a
+            red robe lying stretched fast asleep on the ground beneath another tree,
+            his gold crown tipped. Soft green woodland light. Comic, sleepy, odd. No
+            text, no caption, no watermark.
           backdrop: >-
-            A close green wood with a tree in the foreground and, deeper among the
-            trees and half in shadow, a large crowned king in a robe lying stretched
-            fast asleep on the ground beneath another tree, his crown tipped.
+            Pen-and-ink line illustration, wide shot in a close green wood, dark tree
+            trunks, and beneath one tree a large crowned king in a red robe lying
+            stretched fast asleep, his gold crown tipped. No text, no caption, no
+            watermark.
 
       - name: Humpty Dumpty's Wall
         slug: humpty_dumptys_wall
@@ -488,15 +540,18 @@ chapters:
           very high and very narrow wall.
         visual_prompt:
           solo: >-
-            A very high, very narrow brick wall running across open ground, so
-            narrow it is a wonder anything keeps its balance on top. Perched upon
-            the wall sits an enormous egg with a face, two little arms and short
-            legs folded, wearing a knotted cravat at its neck and a slightly smug
-            expression, balanced precariously against a wide pale sky.
+            Pen-and-ink line illustration, low-angle shot looking up at a very high,
+            very narrow brick wall running across open ground. On top of the wall
+            sits an enormous egg with a round face, small eyes, a wide mouth, two
+            little arms and short legs folded, wearing a knotted blue cravat at its
+            neck. Background: open cream-paper sky and a low green horizon below the
+            wall. Clear flat daylight. Precarious, comic, smug. No text, no caption,
+            no watermark.
           backdrop: >-
-            A very high, very narrow brick wall running across open ground beneath a
-            wide pale sky, an enormous egg with a cravat perched balanced on top of
-            it, the long drop falling away on either side.
+            Pen-and-ink line illustration, low-angle shot of a very high narrow brick
+            wall across open ground, an enormous egg in a blue cravat perched on top,
+            open cream-paper sky and a low green horizon below. No text, no caption,
+            no watermark.
 
       - name: The Coronation Feast
         slug: coronation_feast
@@ -507,14 +562,20 @@ chapters:
           head and tall candles guttering, the table tipping over into uproar.
         visual_prompt:
           solo: >-
-            A long banquet hall set for a great feast, a long table laden with
-            dishes, a leg of mutton and a domed pudding among them, candles grown
-            improbably tall guttering above. At the head stands a canopied throne
-            with a crown upon its seat. The far end of the table has begun to tip
-            and rise into the air, plates and glasses sliding and taking flight,
-            chairs toppling, the whole feast pitching into uproar.
+            Pen-and-ink line illustration, medium shot at the head of a banquet
+            table. Foreground centre: one adult woman, a newly crowned queen in a
+            red velvet gown and a tall gold crown, standing large at the head of the
+            table, one hand resting on the cloth. Beside her a tall ornate
+            candelabra with lit candles, a domed silver platter, a roast on a dish,
+            goblets and plates on the white tablecloth. Middle ground: guests seated
+            in a row down both sides of the long table — animals in coats and people
+            in court dress, raising goblets. Background: a high canopied throne, tall
+            stone arches and hanging banners, open cream-paper above. Warm
+            candlelight. Grand, formal, slightly absurd. Fully clothed, modest,
+            correct hands. No text, no caption, no watermark.
           backdrop: >-
-            A long banquet hall set for a great feast, a laden table with tall
-            guttering candles and a canopied throne bearing a crown at its head, the
-            far end of the table tipping up into the air with plates and glasses
-            sliding off and chairs toppling into uproar.
+            Pen-and-ink line illustration, wide shot of a grand banquet hall, a long
+            white-clothed table laid with domed platters, goblets and candelabra,
+            guests seated down both sides, a high canopied throne at its head, tall
+            stone arches and hanging banners behind, open cream-paper above. No text,
+            no caption, no watermark.
