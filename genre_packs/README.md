@@ -10,25 +10,26 @@ content, loaded by `sidequest-server` and `sidequest-daemon` at runtime.
 - Orchestrator `justfile` and scripts under `orc-quest/scripts/` (image / music
   generation, playtest harness, etc.)
 
-`SIDEQUEST_GENRE_PACKS` should point at this directory, not at
-`genre_workshopping/`. The server enumerates every subdirectory here and
-treats it as a selectable genre — half-built packs do not belong here.
+`SIDEQUEST_GENRE_PACKS` should point at this directory. The server enumerates
+every subdirectory here and treats it as a genre; worlds that are not yet ready
+set `draft: true` in their `world.yaml` to stay out of player selection.
 
-## Promotion gate (workshop → production)
+## Readiness gate (draft → live)
 
-A pack moves from `genre_workshopping/` into this directory when it has, at
-minimum:
+In-progress packs and worlds live here like any other — there is no separate
+workshopping tree (the old `genre_workshopping/` directory was retired
+2026-06-03). A world stays `draft: true` until it has, at minimum:
 
 - a complete YAML set (archetypes, axes, char_creation, beat_vocabulary,
-  rules, audio.yaml — match the shape of an existing production pack)
-- portraits and POI landscapes generated and committed under `images/`
+  rules, audio.yaml — match the shape of an existing live pack)
+- portraits and POI landscapes rendered and synced to R2
 - audio tracks generated and indexed in `audio.yaml`
 - at least one playable session run end-to-end against
   `sidequest-server` without missing-asset errors
 
-If a pack is not all of those, it lives in `../genre_workshopping/` until it
-is. Do not promote partial packs — the server has no concept of "draft" and
-will surface them to players as if they were finished.
+Until then, leave `draft: true` set — the server honors it and hides the world
+from selection, so partial worlds never surface to players as if finished.
+Clear the flag (or omit it) only once the gate is met.
 
 ## Current packs
 

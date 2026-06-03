@@ -35,11 +35,10 @@ default to live; `draft: true` in a world's `world.yaml` hides it from
 selection until its asset gate (portraits + POI landscapes rendered to R2) is
 met. `blackthorn_moor` is currently the only draft world.
 
-Stub / workshopping packs not yet wired into runtime live under
-`genre_workshopping/` (caverns_sunden — deprecated three-sins hub superseded
-by `beneath_sunden`; low_fantasy at various levels of completeness).
-`genre_workshopping/{elemental_harmony,space_opera,tea_and_murder}/worlds/`
-hold in-progress alternate worlds for the live packs of the same name.
+In-progress packs and worlds live in `genre_packs/` like any other and use
+`draft: true` (above) to stay hidden from selection until their asset gate is
+met. The old `genre_workshopping/` staging tree was retired on 2026-06-03 when
+`low_fantasy` was removed — `draft` status replaces it.
 
 ## Layout
 
@@ -62,7 +61,6 @@ sidequest-content/
 ├── archetypes_base.yaml          # Shared archetype scaffolding
 ├── npc_traits.yaml               # Cross-pack trait pool
 ├── tools/                        # Pack authoring tooling
-├── genre_workshopping/           # Pre-wired packs in design
 ├── runs/                         # Local generation outputs (gitignored)
 ├── PROMPTING_Z_IMAGE.md          # Z-Image prompting guide (no negatives)
 └── SOUL.md                       # In-world design doctrine
