@@ -1,45 +1,82 @@
 # The Circuit — Present-Day Lore
 # What everyone knows about the city and its factions.
+#
+# Seedable fields (history / geography / cosmology / factions) feed the
+# narrator's LoreStore (sidequest-server seed_lore_from_world). The structured
+# faction_relations / daily_life blocks below are authored world detail kept as
+# extras — they are NOT seeded into the LoreStore (story 74-3).
 
-setting:
-  name: The Circuit
-  era: "Late 1970s — the city is at peak cultural collision"
-  description: >-
-    A port city built on a crescent bay, climbing from waterfront to
-    mountains. The harbor faces west. The expressway system loops the
-    upper city like a concrete crown. The market district fills the old
-    center. The industrial flats sprawl north. The coast road runs south
-    along sea cliffs. Suburban strips push east into flat country.
+world_name: The Circuit
 
-    The city has three million people, most of whom drive normal cars to
-    normal jobs. But at night — and sometimes during the day — the roads
-    belong to the crews. Ten vehicle cultures, each with territory, codes,
-    and enemies. The police know them all. The newspapers fear them all.
-    The truth, as always, is more complicated than either institution admits.
+history: >-
+  It is the late 1970s and the city is at peak cultural collision. The port
+  drives legitimate commerce; the factions drive everything else. Fuel is
+  available but expensive — the city imports it and the port authority takes its
+  cut. Parts are scarcer than fuel: the Rockers control the best salvage yards
+  and the Grease Witches in Grensholt price their irreplaceability. Information
+  is the real currency — who is running what route, when the police are
+  distracted, which faction is weak this week.
 
-  economy: >-
-    The port drives legitimate commerce. The factions drive everything else.
-    Fuel is available but expensive — the city imports it, and the port
-    authority takes a cut. Parts are scarcer than fuel — the Rockers control
-    the best salvage yards, and the Grease Witches in Grensholt set
-    prices that reflect their irreplaceability. Information is the real
-    currency: who's running what route, when the police are distracted,
-    which faction is weak this week.
+  Order is held by the Metropolitan Road Division — "the Divvies" — a
+  specialized police unit with fast cars, radio coordination, and a genuine
+  desire to keep civilians safe. They are not corrupt but they are pragmatic:
+  unable to eliminate ten factions, they manage them. Certain runs are
+  tolerated, certain territories unofficially recognized. The line is civilian
+  safety — cross it and the Divvies come down hard; stay in your lanes and they
+  chase you for show, not to the death. Individual Divvies have opinions about
+  individual crews: some respect the Café Racers' discipline, some hate the
+  Bōsōzoku's noise, some keep informants in the Mod network, and all of them are
+  nervous about the 1%ers.
 
-  law_enforcement: >-
-    The Metropolitan Road Division — "the Divvies" — are a specialized
-    police unit tasked with containing the crew problem. They have fast
-    cars, radio coordination, and a genuine desire to keep civilians safe.
-    They are not corrupt but they are pragmatic: they know they cannot
-    eliminate ten factions, so they manage them. Certain runs are tolerated.
-    Certain territories are unofficially recognized. The line is civilian
-    safety — cross it and the Divvies come down hard. Stay in your lanes
-    and they'll chase you for show but not to the death.
+geography: >-
+  A port city built on a crescent bay, climbing from waterfront to mountains.
+  The harbor faces west. The expressway system loops the upper city like a
+  concrete crown. The market district fills the old center. The industrial flats
+  sprawl north. The coast road runs south along sea cliffs. Suburban strips push
+  east into flat country. Three million people live here, most of whom drive
+  normal cars to normal jobs — but at night, and sometimes by day, the roads
+  belong to the crews: ten vehicle cultures, each with territory, codes, and
+  enemies.
 
-    Individual Divvies have opinions about individual factions. Some
-    respect the Café Racers' discipline. Some hate the Bōsōzoku's noise.
-    Some have informants in the Mod network. All of them are nervous about
-    the 1%ers.
+cosmology: >-
+  The Circuit has two faces and they trade shifts. In the morning the city wakes
+  up ordinary — traffic, commuters, delivery trucks, Dekotora convoys rolling
+  legitimate freight with their neon off, Matatu buses running routes at low
+  volume. By afternoon the garages are busy and information is traded with the
+  parts. In the evening the surface population goes home and the road population
+  wakes: Lowriders cruise Sagrado Boulevard, Bōsōzoku gather at the on-ramps, the
+  neon comes on. At night the Circuit is fully alive — formation rides on the
+  expressway, speed trials on the coast road, courier runs through the market
+  alleys, and somewhere in the industrial flats someone has challenged someone
+  else to settle it on the concrete. Then the Café Racers own the dawn: the
+  coast road empty and grey-blue, the ton run alone and fast, gone before the
+  city wakes.
+
+factions:
+  - name: The Matatu Crews
+    summary: Rolling infrastructure — buses that serve everyone.
+    description: >-
+      The Matatu crews don't fit the binary of allies and enemies. They serve
+      everyone — their buses carry civilians, crew members, cargo, and rumors.
+      They are the city's circulatory system, and attacking a Matatu bus is not
+      a faction conflict but an attack on the city itself, to which every faction
+      responds.
+  - name: The Raggare
+    summary: Outsiders even among outsiders, with the heaviest cars.
+    description: >-
+      The Raggare's 1950s American aesthetic confuses everyone. The 1%ers think
+      they're posers; the Lowriders think they're cultural tourists. The Raggare
+      don't care — they have the heaviest cars, the loudest music, and they're
+      not going anywhere.
+  - name: The Café Racers
+    summary: Dawn-running purists of the coast road.
+    description: >-
+      Disciplined and quiet, the Café Racers own the dawn. The coast road, empty
+      and grey-blue, the ton run alone and fast, nothing but the engine. By the
+      time the city wakes, the fastest riders have already been and gone — a
+      discipline even some Divvies respect.
+
+# --- Authored world detail (NOT seeded into the LoreStore) ---
 
 faction_relations:
   blood_feuds:
