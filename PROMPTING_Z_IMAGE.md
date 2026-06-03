@@ -319,6 +319,64 @@ Scaffold:
 No human subjects unless the POI is people-centric. If people must appear,
 they are silhouettes in the middle ground unless the shot demands otherwise.
 
+## Commit every figure — hedging rots them (not figure count)
+
+(Learned from the wry_whimsy/wonderland POI set, 2026-06-02.)
+
+Z-Image renders crowds and multiple figures fine **if you name them plainly**.
+What produces uncanny-valley mush is *hedging* — telling the model to render a
+figure and de-emphasize it in the same breath: "small and distant," "only
+suggested," "a suggested mass of dim shapes," "a blur of uproar rather than a
+crowd of small figures." The model half-commits and paints half-formed bodies.
+
+Rule: a figure is either named concretely as a thing the camera sees, or it is
+absent. Never half-ask. (This is *not* "avoid crowds" — a crowd asked for
+plainly renders well, and is often truer to the scene.)
+
+| Hedged (rots into mush) | Committed (renders) |
+|---|---|
+| "a suggested mass of dim shapes, not individuated" | "a jury box filled with twelve playing-card jurors" |
+| "small and distant, only suggested" | "the Queen of Hearts in a red gown directing a line of card-soldiers" |
+| "a faint cluster of pale see-through shapes" | "three luminous see-through ghosts — a senator, a general, a draped woman — in a row" |
+
+Corollary — **no abstract actions as subjects.** "a leg of mutton takes to the
+air," "a plate caught mid-air," "the table tips into uproar," "the glass
+dissolves into haze" render as unreadable blobs. Replace with a concrete static
+noun (a roast on a domed platter; a glowing silvery mirror).
+
+## Moiré: keep broad flat areas open in landscapes
+
+(Learned from the same set.)
+
+Fine regular hatching across a *broad uniform area* — a sky, a flat field —
+aliases against the output raster into visible moiré. This bites **landscapes**,
+not portraits: a portrait is a tight close subject with no broad empty zone for
+the pattern to ring against, so "fine crosshatching" is safe there. In a POI
+landscape, keep skies, water, and broad flat areas as **open bare paper** and
+confine hatching to modelled forms. Don't pile engraving-density vocabulary
+("dense all-over tone," "cross-hatching throughout") into a *landscape* suffix —
+a style anchor imports its whole medium (see above), and here it imports a ruled
+sky. A 160-word engraving-worship suffix moiréd every Wonderland POI; cutting it
+to ~60 words of medium + "open unmarked sky" fixed it.
+
+## Reference sets (proven good output, same daemon)
+
+When in doubt, match a set already rendered clean on this exact Z-Image daemon:
+
+- **Tenniel / Wonderland line + selective tint:** the Pennyfarthing
+  alice-in-wonderland **persona portraits**
+  (`orc-penny/pennyfarthing/pennyfarthing-dist/personas/portraits/alice-in-wonderland/large/`).
+  Same daemon as SideQuest. Each = a concise, concrete, *committed* `visual`
+  subject + a short **18-word** style suffix: *"John Tenniel wood-engraving
+  illustration, fine crosshatching and hatched shading, 1865 original-edition
+  style, black ink on cream paper."* The tint is the named-color trick — "black
+  ink on cream" plus a named "red"/"pink eyes" in the subject yields a
+  selectively hand-tinted plate. This is the **house reference** for the
+  SideQuest `wry_whimsy/wonderland` Tenniel look (suffix + `portrait_manifest`
+  `appearance` fields). The White Rabbit and Hatter portraits are the cleanest
+  exemplars; study the `visual:` fields in
+  `personas/themes/alice-in-wonderland.yaml`.
+
 ## LoRA captions
 
 LoRA captions are a different beast and follow ADR 032. They are short
