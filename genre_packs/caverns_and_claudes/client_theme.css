@@ -26,7 +26,25 @@
   --destructive: oklch(0.704 0.191 22.216);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Courier+Prime:wght@400;700&display=swap');
+/* Self-hosted faces — served from R2 via the asset_urls seam (server rewrites
+   these genre_packs/ keys to the CDN). No external font CDN. */
+@font-face {
+  font-family: 'IM Fell English';
+  src: url('genre_packs/assets/fonts/IMFellEnglish-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IM Fell English';
+  src: url('genre_packs/assets/fonts/IMFellEnglish-Italic.woff2') format('woff2');
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('genre_packs/assets/fonts/CourierPrime-Regular.woff2') format('woff2');
+  font-display: swap;
+}
 
 
 /* Body text — ink on parchment, slightly worn */
