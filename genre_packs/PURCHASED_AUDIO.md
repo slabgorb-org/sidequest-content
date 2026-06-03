@@ -61,15 +61,15 @@ tone; hold the rest. Source: `KS3-Music Sound Pack/Music_Sound_Pack_FLAC-{A,B,C}
   Candidate: caverns_and_claudes/beneath_sunden keeper/tension (the Glutton
   entity), or a future horror pack. Decision: hold (2026-05-25).
 - **KS3 Music Sound Pack — remaining 19 tracks.** Too light/bardic/pastoral for
-  heavy_metal; no other tonally-correct *wired* home (caverns is silence=danger;
-  low_fantasy is workshopping/unwired). Decision: hold (2026-05-25).
+  heavy_metal; no other tonally-correct *wired* home (caverns is silence=danger).
+  Decision: hold (2026-05-25).
   - **Pirate (4)** — Jolly Pirate Song, Pieces of Eight, Pirate Accordian Song,
     Pirate Song Two. Held as a seed for a future pirate/high-seas pack.
   - **Bardic/tavern (8)** — Tavern Song, The Minstrel's Song 1 & 2, Song of the
     Troubador, Bard on the Fife and Drum, Bard on the Zither, Female Bard Song,
-    Female Bard and Minstrel's. Natural home is low_fantasy `tavern` when promoted.
+    Female Bard and Minstrel's. Held; no wired home — seed for a future tavern/folk pack.
   - **Pastoral/medieval (5)** — Return to the Capital City, The Quaint Village,
-    Elven Sanctuary, Hovel in the Sunlight, Action Sequence. → low_fantasy on promote.
+    Elven Sanctuary, Hovel in the Sunlight, Action Sequence. Held; no wired home.
   - **Off-genre (2)** — Planet X, Arabian Desert Music. Easy follow-ups if wanted:
     Planet X → space_opera (drift/void); Arabian Desert → elemental_harmony
     (exploration, eastern). Not wired pending Keith's go.

@@ -203,7 +203,7 @@ genre_packs/
 └── tea_and_murder/       # Cosy Edwardian BritBox murder mystery — glenross (Highland village) + blackthorn_moor (draft, assets pending)
 ```
 
-Workshopping packs (not yet wired into runtime) live under `genre_workshopping/` — caverns_sunden (deprecated three-sins hub, superseded by beneath_sunden), low_fantasy at various levels of completeness. `genre_workshopping/{elemental_harmony,space_opera,tea_and_murder}/worlds/` hold in-progress alternate worlds for the live packs of the same name.
+The `genre_workshopping/` staging tree was removed on 2026-06-03 (when `low_fantasy` was retired). In-progress packs and worlds now live in `genre_packs/` like any other and are hidden from selection via `draft: true` in their `world.yaml` until the asset gate (portraits + POI landscapes on R2) is met. There is no separate workshopping directory anymore — `draft` status replaces it.
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters, factions, OCEAN profiles, conlang morphemes, audio cues, `visual_style.yaml`), world data, ACE-Step music params (`audio/music/*_input_params.json` — ADR-095, OGG lives in R2), and image prompts (portrait_manifest.yaml, POI yamls — rendered PNGs live in R2 at `cdn.slabgorb.com/genre_packs/<pack>/...`).
 
