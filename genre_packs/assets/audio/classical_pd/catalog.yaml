@@ -1,0 +1,277 @@
+# Shared public-domain music bucket — supply spec for sidequest-composer.
+#
+# This file IS a composer Manifest (src/composer/manifest.py). Each entry's
+# `out_name` MUST equal the exact filename a pack `audio.yaml` references under
+# `assets/audio/classical_pd/` (spaces/dots/casing verbatim). `source_url` is a
+# direct, fetchable public-domain score file (MIDI/MusicXML) — every URL below
+# was curl-verified (HTTP 200, valid Standard MIDI) at authoring time
+# (2026-06-02). The composer renders these to tagged, rights-free OGG;
+# `scripts/render_pd_audio.py` uploads them to R2 at
+# `genre_packs/assets/audio/classical_pd/<out_name>`.
+#
+# Source preference: Mutopia Project FTP (canonical PD typesettings) where
+# available; durable third-party direct-MIDI hosts (mfiles.co.uk,
+# classicalmidi.co.uk, bitmidi.com, flutetunes.com) for works Mutopia lacks.
+# All underlying WORKS are public domain (every composer here d. >70y ago).
+# Once rendered, the OGG on R2 is the durable artifact; the URL is provenance.
+#
+# COVERAGE: 34 of the 47 distinct classical_pd tracks demanded across packs.
+# All 18 tracks demanded by `wry_whimsy` (Oz / Wonderland / Gulliver) are
+# present. The 13 KNOWN GAPS below are demanded ONLY by `tea_and_murder`; no
+# directly-fetchable PD score file was found for them. They are intentionally
+# absent: `render_pd_audio.py` will fail loud naming any uncatalogued demanded
+# track (No Silent Fallbacks) — that error is the signal to source these.
+#
+#   KNOWN GAPS (need a PD MIDI/MusicXML source_url, then add an entry):
+#     Chopin - Nocturne Op.15 No.1 in F major        (not on Mutopia/IMSLP-direct)
+#     Chopin - Nocturne Op.48 No.1 in C minor         (not on Mutopia/IMSLP-direct)
+#     Chopin - Nocturne Op.55 No.2 in E-flat major    (not on Mutopia/IMSLP-direct)
+#     Chopin - Nocturne Op.62 No.2 in E major         (not on Mutopia/IMSLP-direct)
+#     Chopin - Nocturne B.108 in C minor              (posthumous; no clean PD file)
+#     Chopin - Waltz Op.34 No.3 in F major            (no Op.34 on Mutopia)
+#     Chopin - Waltz Op.64 No.2 in C-sharp minor      (Mutopia O64 has only No.1)
+#     Chopin - Waltz Op.69 No.1 in A-flat major       (Mutopia O69 has only No.2)
+#     Chopin - Ballade No.3 Op.47                      (IMSLP PDF/MP3 only)
+#     Chopin - Fantasy Op.49 in F minor               (no PD MIDI/XML found)
+#     Chopin - Polonaise Op.53 Heroic                 (IMSLP PDF/MP3 only)
+#     Strauss - Emperor_Waltz                          (Op.437; only behind .zip/paywall)
+#     Strauss - Roses_From_The_South                   (Op.388; IMSLP PDF only)
+
+loudness: -16
+entries:
+  # ─── Satie (wry_whimsy) ───────────────────────────────────────────────
+  - out_name: "Satie - Gymnopedie No.1.ogg"
+    title: Gymnopédie No. 1
+    composer: Erik Satie
+    work: Trois Gymnopédies
+    movement: No. 1
+    source_url: https://www.mutopiaproject.org/ftp/SatieE/gymnopedie_1/gymnopedie_1.mid
+
+  - out_name: "Satie - Gymnopedie No.3.ogg"
+    title: Gymnopédie No. 3
+    composer: Erik Satie
+    work: Trois Gymnopédies
+    movement: No. 3
+    source_url: https://www.mutopiaproject.org/ftp/SatieE/gymnopedie_3/gymnopedie_3.mid
+
+  - out_name: "Satie - Gnossienne No.1.ogg"
+    title: Gnossienne No. 1
+    composer: Erik Satie
+    work: Gnossiennes
+    movement: No. 1
+    source_url: https://www.mutopiaproject.org/ftp/SatieE/Gnossienne/no_1/no_1.mid
+
+  # ─── Debussy (wry_whimsy) ─────────────────────────────────────────────
+  - out_name: "Debussy - Clair de Lune.ogg"
+    title: Clair de Lune
+    composer: Claude Debussy
+    work: Suite Bergamasque, L. 75
+    movement: No. 3
+    source_url: https://www.mutopiaproject.org/ftp/DebussyC/L75/debussy_Ste_Bergamesq_Clair/debussy_Ste_Bergamesq_Clair.mid
+
+  - out_name: "Debussy - Reverie.ogg"
+    title: Rêverie
+    composer: Claude Debussy
+    work: Rêverie, L. 68
+    source_url: https://bitmidi.com/uploads/29648.mid
+
+  # ─── Schumann (wry_whimsy) ────────────────────────────────────────────
+  - out_name: "Schumann - Traumerei.ogg"
+    title: Träumerei
+    composer: Robert Schumann
+    work: Kinderszenen, Op. 15
+    movement: No. 7
+    source_url: https://www.mutopiaproject.org/ftp/SchumannR/O15/SchumannOp15No07/SchumannOp15No07.mid
+
+  - out_name: "Schumann - Of Foreign Lands and Peoples.ogg"
+    title: Von fremden Ländern und Menschen
+    composer: Robert Schumann
+    work: Kinderszenen, Op. 15
+    movement: No. 1
+    source_url: https://www.mutopiaproject.org/ftp/SchumannR/O15/SchumannOp15No01/SchumannOp15No01.mid
+
+  # ─── Saint-Saëns (wry_whimsy) ─────────────────────────────────────────
+  - out_name: "Saint-Saens - Danse Macabre.ogg"
+    title: Danse Macabre
+    composer: Camille Saint-Saëns
+    work: Danse Macabre, Op. 40
+    source_url: https://bitmidi.com/uploads/37474.mid
+
+  - out_name: "Saint-Saens - The Cuckoo (Carnival of the Animals).ogg"
+    title: Le Coucou au fond des bois
+    composer: Camille Saint-Saëns
+    work: Le Carnaval des Animaux
+    movement: No. 9
+    source_url: https://www.classicalmidi.co.uk/09coucou.mid
+
+  - out_name: "Saint-Saens - Fossils (Carnival of the Animals).ogg"
+    title: Fossiles
+    composer: Camille Saint-Saëns
+    work: Le Carnaval des Animaux
+    movement: No. 12
+    source_url: https://www.flutetunes.com/tunes/saint-saens-carnival-of-the-animals-fossils.mid
+
+  # ─── Grieg (wry_whimsy) ───────────────────────────────────────────────
+  - out_name: "Grieg - Morning Mood (Peer Gynt).ogg"
+    title: Morning Mood
+    composer: Edvard Grieg
+    work: Peer Gynt Suite No. 1, Op. 46
+    movement: No. 1
+    source_url: https://www.mfiles.co.uk/downloads/edvard-grieg-peer-gynt1-morning-mood.mid
+
+  - out_name: "Grieg - In the Hall of the Mountain King.ogg"
+    title: In the Hall of the Mountain King
+    composer: Edvard Grieg
+    work: Peer Gynt Suite No. 1, Op. 46
+    movement: No. 4
+    source_url: https://www.mutopiaproject.org/ftp/GriegE/O46/Dans_l_antre_du_roi_de_la_montagne/Dans_l_antre_du_roi_de_la_montagne.mid
+
+  # ─── Elgar (wry_whimsy) ───────────────────────────────────────────────
+  - out_name: "Elgar - Pomp and Circumstance March No.1.ogg"
+    title: Pomp and Circumstance March No. 1
+    composer: Edward Elgar
+    work: Pomp and Circumstance, Op. 39
+    movement: No. 1
+    source_url: http://classicalmidi.co.uk/music3/3480pompandcircumstanceno1.mid
+
+  - out_name: "Elgar - Salut d'Amour.ogg"
+    title: Salut d'Amour
+    composer: Edward Elgar
+    work: Salut d'Amour, Op. 12
+    source_url: https://www.mfiles.co.uk/downloads/edward-elgar-salut-d-amour-violin-piano.mid
+
+  # ─── Other wry_whimsy singletons ──────────────────────────────────────
+  - out_name: "Dukas - The Sorcerer's Apprentice.ogg"
+    title: The Sorcerer's Apprentice
+    composer: Paul Dukas
+    work: L'apprenti sorcier
+    source_url: https://bitmidi.com/uploads/95821.mid
+
+  - out_name: "Dvorak - Humoresque.ogg"
+    title: Humoresque No. 7
+    composer: Antonín Dvořák
+    work: Humoresques, Op. 101
+    movement: No. 7
+    source_url: https://www.mfiles.co.uk/downloads/dvorak-humoresque7.mid
+
+  - out_name: "Handel - Arrival of the Queen of Sheba.ogg"
+    title: Arrival of the Queen of Sheba
+    composer: George Frideric Handel
+    work: Solomon, HWV 67
+    source_url: https://bitmidi.com/uploads/30002.mid
+
+  - out_name: "Mussorgsky - Night on Bald Mountain.ogg"
+    title: Night on Bald Mountain
+    composer: Modest Mussorgsky
+    work: Night on Bald Mountain
+    source_url: https://www.mutopiaproject.org/ftp/MussorgskyM/nobm/nobm.mid
+
+  # ─── Chopin (tea_and_murder) — Nocturnes ──────────────────────────────
+  - out_name: "Chopin - Nocturne Op.9 No.1 in B-flat minor.ogg"
+    title: Nocturne in B-flat minor
+    composer: Frédéric Chopin
+    work: Nocturnes, Op. 9
+    movement: No. 1
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O9/nocturne_in_b-flat_minor/nocturne_in_b-flat_minor.mid
+
+  - out_name: "Chopin - Nocturne Op.9 No.2 in E-flat major.ogg"
+    title: Nocturne in E-flat major
+    composer: Frédéric Chopin
+    work: Nocturnes, Op. 9
+    movement: No. 2
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O9/chopin_nocturne_op9_n2/chopin_nocturne_op9_n2.mid
+
+  - out_name: "Chopin - Nocturne Op.27 No.2 in D-flat major.ogg"
+    title: Nocturne in D-flat major
+    composer: Frédéric Chopin
+    work: Nocturnes, Op. 27
+    movement: No. 2
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O27/chopin-nocturne-8/chopin-nocturne-8.mid
+
+  # ─── Chopin (tea_and_murder) — Préludes, Op. 28 ───────────────────────
+  - out_name: "Chopin - Prelude Op.28 No.6 in B minor.ogg"
+    title: Prélude in B minor
+    composer: Frédéric Chopin
+    work: Préludes, Op. 28
+    movement: No. 6
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-6/Chop-28-6.mid
+
+  - out_name: "Chopin - Prelude Op.28 No.7 in A major.ogg"
+    title: Prélude in A major
+    composer: Frédéric Chopin
+    work: Préludes, Op. 28
+    movement: No. 7
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-7/Chop-28-7.mid
+
+  - out_name: "Chopin - Prelude Op.28 No.14 in E-flat minor.ogg"
+    title: Prélude in E-flat minor
+    composer: Frédéric Chopin
+    work: Préludes, Op. 28
+    movement: No. 14
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-14/Chop-28-14.mid
+
+  - out_name: "Chopin - Prelude Op.28 No.15 Raindrop.ogg"
+    title: Prélude in D-flat major (Raindrop)
+    composer: Frédéric Chopin
+    work: Préludes, Op. 28
+    movement: No. 15
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-15/Chop-28-15.mid
+
+  - out_name: "Chopin - Prelude Op.28 No.24 in D minor.ogg"
+    title: Prélude in D minor
+    composer: Frédéric Chopin
+    work: Préludes, Op. 28
+    movement: No. 24
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-24/Chop-28-24.mid
+
+  # ─── Chopin (tea_and_murder) — Waltzes, Ballade, Impromptu ─────────────
+  - out_name: "Chopin - Waltz Op.64 No.1 Minute Waltz.ogg"
+    title: Valse in D-flat major (Minute Waltz)
+    composer: Frédéric Chopin
+    work: Waltzes, Op. 64
+    movement: No. 1
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O64/chopin_valse_op64_no1/chopin_valse_op64_no1.mid
+
+  - out_name: "Chopin - Waltz Op.69 No.2 in B minor.ogg"
+    title: Valse in B minor
+    composer: Frédéric Chopin
+    work: Waltzes, Op. 69
+    movement: No. 2
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O69/w10-h-moll-cfi/w10-h-moll-cfi.mid
+
+  - out_name: "Chopin - Grande Valse Brillante Op.18.ogg"
+    title: Grande Valse Brillante in E-flat major
+    composer: Frédéric Chopin
+    work: Grande Valse Brillante, Op. 18
+    source_url: https://www.mfiles.co.uk/downloads/waltz-op18-grande-brillante.mid
+
+  - out_name: "Chopin - Ballade No.1 Op.23.ogg"
+    title: Ballade No. 1 in G minor
+    composer: Frédéric Chopin
+    work: Ballade No. 1, Op. 23
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O23/chopin-op23-ballade-1/chopin-op23-ballade-1.mid
+
+  - out_name: "Chopin - Fantasie Impromptu Op.66.ogg"
+    title: Fantaisie-Impromptu in C-sharp minor
+    composer: Frédéric Chopin
+    work: Fantaisie-Impromptu, Op. 66
+    source_url: https://www.mutopiaproject.org/ftp/ChopinFF/O66/chopin_fantaisie-impromptu/chopin_fantaisie-impromptu.mid
+
+  # ─── Strauss (tea_and_murder) ─────────────────────────────────────────
+  - out_name: "Strauss - Blue_Danube.ogg"
+    title: An der schönen blauen Donau
+    composer: Johann Strauss II
+    work: The Blue Danube, Op. 314
+    source_url: https://www.mutopiaproject.org/ftp/StraussJJ/O314/blue_danube/blue_danube.mid
+
+  - out_name: "Strauss - Tales_From_Vienna_Woods.ogg"
+    title: G'schichten aus dem Wienerwald
+    composer: Johann Strauss II
+    work: Tales from the Vienna Woods, Op. 325
+    source_url: http://classicalmidi.co.uk/music2/2541vienna.mid
+
+  - out_name: "Strauss - Voices_Of_Spring.ogg"
+    title: Frühlingsstimmen
+    composer: Johann Strauss II
+    work: Voices of Spring, Op. 410
+    source_url: https://bitmidi.com/uploads/47948.mid
