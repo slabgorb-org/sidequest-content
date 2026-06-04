@@ -899,6 +899,37 @@ regions:
       - McLaughlin 13 (spaceStation)
       - Lisbon (spaceStation)
       - Thule 7 (spaceStation)
+    # Story 71-25 (ADR-109): the churnworld's named districts are grounded as
+    # typed location entities so the narrator anchors to a fixed set instead of
+    # re-improvising geography each turn. No subsystem object backs these places
+    # yet, so they are flavor_only — they auto-promote to yes_and on mechanical
+    # engagement (Diamonds-and-Coal). The legacy `landmarks` list above (planet +
+    # stations) is read-only legacy and intentionally left untouched.
+    entities:
+      - id: new_kowloon
+        label: "New Kowloon"
+        tier: flavor_only
+        affordances:
+          - thread_the_superblock_stacks
+          - work_the_night_markets
+      - id: santa_abraham
+        label: "Santa Abraham"
+        tier: flavor_only
+        affordances:
+          - pick_the_scrapyards
+          - find_a_fixer
+      - id: glitter
+        label: "Glitter"
+        tier: flavor_only
+        affordances:
+          - ride_up_to_glitter
+          - walk_the_promenade_rings
+      - id: the_tether
+        label: "The Tether"
+        tier: flavor_only
+        affordances:
+          - ride_the_climber
+          - access_the_anchor_station
     rivers: []
     settlements: []
     swn:
