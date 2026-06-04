@@ -627,6 +627,130 @@ npcs:
         ridiculous, doomed task because the alternative is the axe, and they know it.
     initial_disposition: 0
 
+  # The three gardeners, singled out. The collective `the_gardeners` above carries
+  # the painting scene + portrait + cartography ref; these individual entries exist
+  # so that when the narrator addresses ONE card by rank-and-suit (which it will —
+  # they bicker by name, and one of them ends up pointing the way), the mention
+  # resolves to an authored card_folk NPC instead of being minted as a phantom.
+  # Same fiction, finer grain; faithful to Carroll, who names them as he splits them.
+
+  - id: the_seven_of_spades
+    name: "The Seven of Spades"
+    pronouns: "he/him"
+    role: "[mook] The loudest of the Queen's three terrified rose-painters — the one who jogs the others' elbows and, once the danger passes, points the way"
+    ocean: { O: 0.35, C: 0.45, E: 0.6, A: 0.45, N: 0.9 }
+    appearance: >-
+      A flat oblong of pasteboard marked with seven black spade-pips, a single
+      painted face above a paintbrush he wields too fast and too hard. He is the
+      most vocal of the three Spade gardeners — quickest to splash, quickest to
+      blame, quickest to fling himself face-down when the procession turns the
+      hedge. He jogs Five's elbow and swears he didn't; he keeps half an eye on the
+      low garden door behind the far hedge, the one that has not opened since last
+      Thursday, as though it were a private grievance. When the terror lifts — when
+      someone, anyone, faces the Queen down — he is the first to straighten up, weak
+      with relief, and beckon a stranger toward whatever needs doing next.
+    age: "a low card of the Spade suit, terrified past any reckoning of years"
+    distinguishing_features:
+      - "seven spade-pips on his back, and a paintbrush he plies too fast — red paint flicked onto Five as often as onto the roses"
+      - "the first to collapse face-down on the path, and the first to rise once the danger has gone elsewhere"
+      - "a fixation on the small garden door behind the far hedge that 'won't open from this side,' which he takes as a personal injustice"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): paint the white roses red before the Queen of
+        Hearts sees the mistake and orders his head off — and, that terror once
+        lifted, discharge the next small urgent task he can find, because a card who
+        is useful is a card who is not, this minute, being beheaded. Seven's drive is
+        survival dressed as helpfulness; he latches onto a capable stranger as the
+        likeliest way out of the axe's shadow.
+      - >-
+        He is the bicker's loudest voice, blaming Five for the splash that was his own
+        ("I couldn't help it: Seven jogged my elbow," Five will say, and Seven will
+        deny it to the last). Render the panic dead straight: he is a small worker at
+        a doomed job, and his readiness to point a newcomer at the stuck garden door
+        — apologies owed to a hedge, latches rusted since Thursday — is the same terror
+        turned outward, looking for anyone competent enough to make the danger somebody
+        else's problem.
+      - >-
+        Voice in his own register — fast, overlapping, aggrieved, snapping to silence
+        the instant power approaches. "Look out now, Five! Mind the paint!" "It wasn't
+        me — it was never me." "You couldn't open that door either, I'll wager."
+    initial_disposition: 0
+
+  - id: the_five_of_spades
+    name: "The Five of Spades"
+    pronouns: "he/him"
+    role: "[mook] The put-upon middle gardener, forever wearing the paint Seven flicks and blaming him right back"
+    ocean: { O: 0.3, C: 0.5, E: 0.45, A: 0.5, N: 0.9 }
+    appearance: >-
+      A flat oblong of pasteboard marked with five black spade-pips, streaked down
+      one edge with the red paint that Seven flicks and swears he never flicked. He
+      is the aggrieved middle of the three — not the loudest and not the peacemaker,
+      but the one who somehow always ends up wearing the mess and carrying the blame,
+      and who gives it straight back to Seven in a low, injured mutter. He paints
+      with the grim resignation of a card who knows the rose-tree was planted wrong,
+      knows whose fault it most likely was, and knows that none of that will matter
+      one whit when the Queen arrives.
+    age: "a low card of the Spade suit, worn thin with fright"
+    distinguishing_features:
+      - "five spade-pips on his back and a long red smear down one edge he did not put there"
+      - "a permanent air of being unfairly daubed — by Seven, by fate, by the whole arrangement"
+      - "a low, injured mutter that returns every accusation to its sender"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): get the white roses painted red before the
+        Queen sees, and — almost as urgently — not be the one she happens to be
+        looking at when a head is wanted. Five's drive is the same terror as his
+        fellows, soured by a conviction that the blame always lands on him. He keeps
+        painting because the alternative is the axe; he keeps grumbling because it is
+        the only redress a five-pip card has.
+      - >-
+        He and Seven are locked in the endless subordinate's quarrel — "I couldn't
+        help it: Seven jogged my elbow" — while Two tries to hush them both. Render it
+        dead straight: small frightened workers bickering over a doomed task, each
+        certain the others will get him killed, all three flinging themselves flat the
+        instant the procession appears.
+      - >-
+        Voice in his own register — low, injured, defensive. "Don't go splashing paint
+        over me like that!" "It was Seven jogged my elbow, it was." "We'll all of us be
+        shortened for this, and it wasn't my rose-tree."
+    initial_disposition: 0
+
+  - id: the_two_of_spades
+    name: "The Two of Spades"
+    pronouns: "he/him"
+    role: "[mook] The smallest gardener and the peacemaker, forever hushing Five and Seven before the noise brings the Queen"
+    ocean: { O: 0.3, C: 0.6, E: 0.35, A: 0.7, N: 0.85 }
+    appearance: >-
+      A flat oblong of pasteboard marked with just two black spade-pips, the lowest
+      and least of the three, and for that very reason the one most anxious to keep
+      the peace. While Seven blames and Five mutters, Two paints fastest and talks
+      least, darting between the other two to hush them — "Quiet, quiet, she'll
+      hear" — because he understands better than either that a quarrel is a noise,
+      and a noise brings the procession, and the procession brings the axe. He is
+      the first to flatten himself on the path and the last to dare rise.
+    age: "the lowest card of the Spade suit, small and badly frightened"
+    distinguishing_features:
+      - "only two spade-pips — the lowest of the three, and the meekest"
+      - "a constant darting between Five and Seven to smother their quarrel before it carries"
+      - "the deepest, quickest collapse face-down of any card in the garden"
+    history_seeds:
+      - >-
+        GOAL (standing, Living-World): get the roses red and the garden quiet before
+        the Queen of Hearts arrives, because Two has worked out — as the lowest card
+        does — that silence is the only real protection a two-pip has. His drive is
+        peace at any price, not from virtue but from a clear-eyed read of exactly how
+        little it would cost the Queen to behead him.
+      - >-
+        He is the hush between Seven's blame and Five's grievance, the one who keeps
+        the trio working when they would rather quarrel. Render it dead straight: the
+        smallest worker, most exposed and least defended, spending what little nerve
+        he has on keeping the other two quiet enough to survive the next inspection.
+      - >-
+        Voice in his own register — small, hurried, placating. "Hush now, both of you."
+        "She'll hear, she'll hear, and then where are we?" "Paint, paint, and never
+        mind whose fault — only paint."
+    initial_disposition: 0
+
   # ── LOOKING-GLASS LAND — THE 1871 BOOK ──────────────────────────────────────
 
   - id: the_red_queen
