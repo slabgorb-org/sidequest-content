@@ -164,6 +164,17 @@ confrontations:
       hp: 10
       armor_class: 12
       dexterity: 11
+    # Opponent reprisal damage. The opponent reuses the player's first strike beat
+    # only for its to-hit terms, and that beat resolves *damage* from the ACTOR's
+    # inventory — which the seeded WWN mook has none of — so without this the enemy
+    # hits but deals 0 HP and the player can never lose a knife-fight (playtest #16,
+    # the EH burning_peace toothless-Other finding; same class as space_opera 67-10,
+    # surfaced at instantiation by the encounter.opponent_toothless span / ADR-139
+    # Invariant 3). 1d8 (vs EH's unarmed-martial 1d6): this is lethality: high and
+    # the Other is an armed blade — a real edge bites harder (~3 hits to drop a
+    # 10-HP blade-bearer). Read only on the opponent's turn, so it never caps the
+    # player's own weapon.
+    opponent_damage: {dice: "1d8", bonus: 0}
     beats:
       - id: strike
         label: Strike
@@ -194,7 +205,7 @@ confrontations:
         deltas:
           crit_fail:
             own: -3
-        risk: "Overcommits — take a counter on failure"
+        risk: "Overcommits — a botched all-in swing costs you (−3 on a critical failure)"
         effect: "Target takes heavy damage"
         narrator_hint: "An all-in swing; the character is not planning a follow-up. Describe the violence as expensive — to the one making it, as well as the one receiving it."
       - id: break_contact
