@@ -193,7 +193,7 @@ Live, wired packs (loaded by server + daemon at runtime):
 genre_packs/
 ├── caverns_and_claudes/  # Classic dungeon crawl (meta-humor on D&D tropes)
 ├── elemental_harmony/    # Martial arts / elemental magic
-├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic — evropi (assets complete) + long_foundry (portraits pending render)
+├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic — evropi + long_foundry (both asset-complete: portraits + POIs + music on R2)
 ├── mutant_wasteland/     # Post-apocalyptic mutants — flickering_reach (fully spoilable)
 ├── neon_dystopia/        # Cyberpunk — franchise_nations (assets complete)
 ├── pulp_noir/            # 1930s detective / pre-war pulp — annees_folles (assets complete)
