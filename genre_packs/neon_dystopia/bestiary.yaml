@@ -1,0 +1,296 @@
+# Neon Dystopia — pack bestiary (story 90-1)
+#
+# SRD-aligned combat stat blocks for the cwn ruleset module. Encountergen
+# samples these for the Monster Manual encounters pool (free-play reachable
+# hostiles); narrative layers (OCEAN, visual prompt) are composed at
+# generation time. Stats are faithful to the Cities Without Number SRD 1.0
+# (Sine Nomine Publishing) foe blocks — level == HD, printed HP, ascending
+# ranged AC (melee AC noted in description where it differs), morale on the
+# 2d12 ladder. Armor soak and cyberware ride in `abilities` as color.
+#
+# Genre tier rules (ADR-120): names here are genre-generic — no named
+# world franchises, corps, or POIs. World-specific hostiles belong in
+# worlds/<slug>/ overrides.
+entries:
+  - id: street_thug
+    name: Street Thug
+    level: 1
+    hp: 5
+    armor_class: 10
+    attack_bonus: 1
+    damage: "1d8"
+    move: "10m"
+    morale: 7
+    skill: 1
+    save: 15
+    role: unaffiliated street muscle
+    tags: [human, ganger]
+    description: >-
+      A twitchy freelancer in a rain-soaked jacket with a heavy pistol and
+      no backup plan, working the alley side of the neon.
+  - id: ganger
+    name: Ganger
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d8"
+    move: "10m"
+    morale: 8
+    skill: 1
+    save: 15
+    role: gang foot-soldier
+    tags: [human, ganger]
+    abilities:
+      - "Street leathers (3-point armor soak)"
+      - "One budget cybersystem — body blades, cybereyes, or shock fists"
+    description: >-
+      Colors on the jacket, a secondhand chrome implant, and a heavy
+      pistol — a soldier of whichever block this is.
+  - id: rent_a_cop
+    name: Private Security Guard
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d8"
+    move: "10m"
+    morale: 7
+    skill: 1
+    save: 15
+    role: low-end contract security
+    tags: [human, security]
+    abilities:
+      - "Reinforced uniform (2-point armor soak)"
+      - "Non-lethal club option (1d4 shock)"
+    description: >-
+      A bored contract guard in a logo-stamped stab vest, paid too little
+      to die for the franchise lobby they're standing in.
+  - id: corp_guard
+    name: Corporate Guard
+    level: 2
+    hp: 10
+    armor_class: 16
+    attack_bonus: 3
+    damage: "1d8"
+    move: "10m"
+    morale: 8
+    skill: 1
+    save: 14
+    role: badged corporate security
+    tags: [human, security]
+    abilities:
+      - "Light armored suit (5-point armor soak)"
+      - "Cybereyes with flash protection; gunlink"
+    description: >-
+      Real corporate security: matte armor, flash-shielded eyes, and a
+      gunlinked pistol that never has to be drawn twice.
+  - id: cyber_guard_hound
+    name: Cyber Guard Hound
+    level: 2
+    hp: 10
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6+1"
+    move: "15m"
+    morale: 9
+    skill: 2
+    save: 14
+    role: augmented guard animal
+    tags: [animal, cybered]
+    abilities:
+      - "Melee only — bite 1d6+1"
+    description: >-
+      A guard dog with reinforced jaws and a sensor collar, pacing a
+      chain-link perimeter on silent servo-assisted legs.
+  - id: tac_team_trooper
+    name: Tac-Team Trooper
+    level: 3
+    hp: 15
+    armor_class: 17
+    attack_bonus: 5
+    damage: "1d8+1"
+    move: "10m"
+    morale: 9
+    skill: 2
+    save: 14
+    role: SWAT / corporate response trooper
+    tags: [human, security, elite]
+    abilities:
+      - "Light armored suit (5-point armor soak)"
+      - "Coordination augment; cybereyes; gunlink"
+    description: >-
+      A visored trooper stacked on a doorway with three identical
+      friends, moving on a countdown only they can hear.
+  - id: veteran_gang_gunman
+    name: Veteran Gang Gunman
+    level: 3
+    hp: 15
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d12+1"
+    move: "10m"
+    morale: 8
+    skill: 2
+    save: 14
+    role: hardened gang shooter
+    tags: [human, ganger, elite]
+    abilities:
+      - "Street leathers (3-point armor soak)"
+      - "Combat rifle with burst fire; coordination augment; gunlink"
+    description: >-
+      The one the block sends when talking is over — combat rifle held
+      like it grew there, eyes flat as payment terms.
+  - id: breaching_specialist
+    name: Breaching Specialist
+    level: 3
+    hp: 15
+    armor_class: 21
+    attack_bonus: 5
+    damage: "3d4"
+    move: "10m"
+    morale: 9
+    skill: 2
+    save: 14
+    role: armored entry specialist
+    tags: [human, security, elite]
+    abilities:
+      - "Heavy armored suit (15-point armor soak)"
+      - "Combat shotgun with burst; flash and frag grenades"
+      - "Body blades II; muscle fiber replacement"
+    description: >-
+      A walking slab of articulated plate that exists to make doorways
+      bigger, shotgun first.
+  - id: response_commander
+    name: Response Team Commander
+    level: 4
+    hp: 20
+    armor_class: 19
+    attack_bonus: 7
+    damage: "1d12+1"
+    move: "10m"
+    morale: 10
+    skill: 2
+    save: 13
+    role: tactical squad leader
+    tags: [human, security, commander]
+    abilities:
+      - "Medium armored suit (10-point armor soak)"
+      - "Enhanced reflexes (bonus main action); coordination augment"
+    description: >-
+      The calm voice on the tac channel — medium plate, burst rifle, and
+      reflex wiring that makes the squad move like one organism.
+  - id: cybered_attack_beast
+    name: Cybered Attack Beast
+    level: 5
+    hp: 25
+    armor_class: 13
+    attack_bonus: 8
+    damage: "1d8+4"
+    move: "20m"
+    morale: 10
+    skill: 3
+    save: 13
+    role: weaponized cyber-animal
+    tags: [animal, cybered, elite]
+    abilities:
+      - "Two attacks per action — cybernetic claws (1d8+4)"
+    description: >-
+      Something that used to be a big cat before the grafts: carbon-black
+      claws, sensor-cluster eyes, and a kill-permission it already has.
+  - id: corporate_assassin
+    name: Corporate Assassin
+    level: 6
+    hp: 30
+    armor_class: 18
+    attack_bonus: 11
+    damage: "1d6+8"
+    move: "10m"
+    morale: 10
+    skill: 3
+    save: 12
+    role: professional contract killer
+    tags: [human, assassin, elite]
+    abilities:
+      - "Armored clothing (5-point armor soak)"
+      - "Modded light pistol; enhanced reflexes II; IR vision"
+    description: >-
+      Unremarkable coat, forgettable face, a modded pistol worth more than
+      the building — the invoice arrives before the body cools.
+  - id: elite_sniper
+    name: Elite Corporate Sniper
+    level: 6
+    hp: 30
+    armor_class: 21
+    attack_bonus: 11
+    damage: "2d8+7"
+    move: "10m"
+    morale: 10
+    skill: 3
+    save: 12
+    role: overwatch marksman
+    tags: [human, security, elite]
+    abilities:
+      - "Medium armored suit (10-point armor soak)"
+      - "Modded sniper rifle; coordination augment II; IR vision"
+    description: >-
+      Four rooftops away and already done aiming — corporate overwatch
+      with a rifle that files its own paperwork.
+  - id: gang_lieutenant
+    name: Gang Lieutenant
+    level: 6
+    hp: 30
+    armor_class: 16
+    attack_bonus: 9
+    damage: "1d8"
+    move: "10m"
+    morale: 10
+    skill: 3
+    save: 12
+    role: gang officer and enforcer
+    tags: [human, ganger, commander]
+    abilities:
+      - "Armored clothing (5-point armor soak)"
+      - "Body blades II (2d6+4); enhanced reflexes; muscle fiber replacement"
+    description: >-
+      Runs six blocks and a protection book, settles disputes personally
+      with forearm blades the length of machetes.
+  - id: major_gang_boss
+    name: Major Gang Boss
+    level: 8
+    hp: 40
+    armor_class: 21
+    attack_bonus: 13
+    damage: "1d8+8"
+    move: "20m"
+    morale: 11
+    skill: 3
+    save: 11
+    role: syndicate boss
+    tags: [human, ganger, boss]
+    abilities:
+      - "Modded armored clothing (10-point armor soak)"
+      - "Reaction booster II — always wins initiative"
+      - "Enhanced reflexes II; coordination augment II"
+    description: >-
+      The chrome under the tailored suit cost more than a tac team — and
+      has been used more recently than anyone at the table wants to think.
+  - id: chromed_legend
+    name: Chromed Legend
+    level: 10
+    hp: 80
+    armor_class: 21
+    attack_bonus: 17
+    damage: "1d6+14"
+    move: "20m"
+    morale: 12
+    skill: 4
+    save: 10
+    role: legendary street samurai
+    tags: [human, assassin, boss]
+    abilities:
+      - "Enhanced reflexes III; reaction booster II"
+      - "Eye flechette launcher; hard to kill; killing blow"
+    description: >-
+      A name whispered in every bar below the fiftieth floor — more
+      chrome than meat, faster than the rumor that follows the bodies.
