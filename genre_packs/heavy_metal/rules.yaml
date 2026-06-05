@@ -2,40 +2,11 @@ stat_generation: point_buy
 point_buy_budget: 27
 magic_level: high
 
-allowed_classes:
-  - Fighter
-  - Ranger
-  - Rogue
-  - Cleric
-  - Druid
-  - Bard
-  - Barbarian
-  - Monk
-  - Wizard
-  - Warlock
-  - Sorcerer
-  - Paladin
-
-allowed_races:
-  - Human
-  - Dwarf
-  - Elf
-  - Halfling
-
-banned_spells:
-  - Wish
-  - Meteor Swarm
-  - Power Word Kill
-  - Gate
-  - Teleport
-  - Plane Shift
-  - True Resurrection
-  - Raise Dead
-  - Time Stop
-  - Simulacrum
-  - Clone
-  - Miracle
-  - True Polymorph
+# 5e scaffolding (allowed_classes / allowed_races / banned_spells /
+# default_race) was removed in the WWN port (story 87-2). Classes are now
+# defined in classes.yaml (the 5 faithful-WWN Callings); races are world-tier
+# (genre cultures.yaml is []); WWN gates spell access by class spell list, not
+# a ban list.
 
 custom_rules:
   rest_variant: gritty_realism
@@ -47,8 +18,8 @@ custom_rules:
   spell_components: strict
   long_rest_minimum_days: "3"
 
-default_class: Fighter
-default_race: Human
+default_class: warrior
+class_label: Calling
 default_location: "An antechamber of a house that is ending, where the old ledgers are kept"
 default_time_of_day: dusk
 
@@ -186,6 +157,22 @@ confrontations:
         damage_channel: strike
         effect: "Target takes damage this round"
         narrator_hint: "Describe the blow with specificity — which grip, which angle, what gave way. Heavy Metal combat is not choreography; it is plumbing."
+      - id: cast_spell
+        label: "Work a Spell"
+        kind: strike
+        base: 2
+        stat_check: INT
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: none
+        # class_filter restricts this beat to the three caster Callings.
+        # Display names (the loader validates class_filter against
+        # classes.yaml display_name). Without this, the WWN cast resource
+        # gate never fires and the beat would be offered to every class.
+        # Mirrors EH's cast_spell: class_filter: [Channeler, Spirit Medium].
+        class_filter: [Necromancer, Elementalist, Pact-born]
+        effect: "Cast a prepared spell — damage rolled by the WWN spell engine"
+        narrator_hint: "The caster reaches inward, pulls on a prepared working, and spends it. Describe the cost as concretely as the effect — what the working takes from the body that served as its gate."
       - id: brace
         label: Brace
         kind: brace
