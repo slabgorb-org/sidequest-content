@@ -14,17 +14,18 @@
 #   - Signature ability (this file)
 #   - Stat-keyed power-source narrative scaffolding (powers.yaml)
 #
-# Prime requisites use the six road_warrior ability scores:
-#   Grip, Iron, Nerve, Scrap, Road Sense, Swagger.
+# Prime requisites use the standard CWN six (epic 86 D3; the flavor names
+# Grip/Iron/Nerve/Scrap/Road Sense/Swagger were retired):
+#   STR, DEX, CON, INT, WIS, CHA.
 #
 # saving_throws is intentionally null on every class — road_warrior
-# uses confrontation beats + Edge thresholds, not B/X saves.
+# uses confrontation beats + CWN saves via the ruleset, not B/X saves.
 
 - id: wheelman
   display_name: Wheelman
   rpg_role: skirmisher
   jungian_default: hero
-  prime_requisite: GRIP
+  prime_requisite: DEX
   minimum_score: 9
   kit_table: wheelman_kit
   flavor: >-
@@ -34,8 +35,8 @@
     - terrain_cut
     - smoke_screen
     - engine_kill
-    - sideswipe
-    - evasive
+    - melee
+    - take_cover
     - disengage
   magic_access: null
   abilities:
@@ -60,15 +61,15 @@
   display_name: Wrecker
   rpg_role: tank
   jungian_default: warrior
-  prime_requisite: IRON
+  prime_requisite: STR
   minimum_score: 9
   kit_table: wrecker_kit
   flavor: >-
     Violence is a craft and the rig is the chisel.
   encounter_beat_choices:
-    - ram
-    - sideswipe
-    - evasive
+    - shoot
+    - melee
+    - take_cover
     - disengage
     - threaten
   magic_access: null
@@ -82,7 +83,7 @@
       mechanical_effect: >-
         Once per combat: on a Ram beat, ignore the target's Armor
         rating entirely. Deal Composure damage equal to your own
-        rig's Armor + Iron modifier. You take 1 Composure damage to
+        rig's Armor + STR modifier. You take 1 Composure damage to
         your own rig as recoil. Cannot be used while dismounted.
       involuntary: false
   saving_throws: null
@@ -91,13 +92,13 @@
   display_name: Grease Monkey
   rpg_role: support
   jungian_default: caregiver
-  prime_requisite: SCRAP
+  prime_requisite: INT
   minimum_score: 9
   kit_table: grease_monkey_kit
   flavor: >-
     Every machine is a patient. Most of them you can save.
   encounter_beat_choices:
-    - evasive
+    - take_cover
     - smoke_screen
     - concede_point
     - disengage
@@ -114,7 +115,7 @@
       mechanical_effect: >-
         Once per encounter (chase OR combat): spend a beat to restore
         1d3 Rig Composure to any rig in scene including your own.
-        Resolve as a Scrap check vs DC 11 — failure restores 1 only.
+        Resolve as an INT check vs DC 11 — failure restores 1 only.
         Cannot resurrect a wrecked rig (Composure already at 0); that
         is a repair scene, not a beat.
       involuntary: false
@@ -124,15 +125,15 @@
   display_name: War Rider
   rpg_role: striker
   jungian_default: warrior
-  prime_requisite: NERVE
+  prime_requisite: CON
   minimum_score: 9
   kit_table: war_rider_kit
   flavor: >-
     The rig moves and you move with it. The shot lands at sixty.
   encounter_beat_choices:
-    - ram
-    - sideswipe
-    - evasive
+    - shoot
+    - melee
+    - take_cover
     - threaten
     - disengage
   magic_access: null
@@ -158,15 +159,15 @@
   display_name: Chrome Saint
   rpg_role: striker
   jungian_default: martyr
-  prime_requisite: NERVE
+  prime_requisite: CON
   minimum_score: 9
   kit_table: chrome_saint_kit
   flavor: >-
     The line between flesh and machine is the line you cross daily.
   encounter_beat_choices:
-    - ram
-    - sideswipe
-    - evasive
+    - shoot
+    - melee
+    - take_cover
     - threaten
     - disengage
   magic_access: null
@@ -180,7 +181,7 @@
         rig are one piece of moving steel-and-meat, and what hurts
         one of you can be re-routed through the other.
       mechanical_effect: >-
-        Once per combat or chase: spend 1 Driver Edge to either
+        Once per combat or chase: spend 1 HP to either
         (a) restore your Rig Composure to its current maximum,
         OR (b) negate a critical-fail consequence on any beat — your
         body absorbs through the chrome what would have broken the
@@ -194,7 +195,7 @@
   display_name: Road Preacher
   rpg_role: controller
   jungian_default: ruler
-  prime_requisite: SWAGGER
+  prime_requisite: CHA
   minimum_score: 9
   kit_table: road_preacher_kit
   flavor: >-
@@ -204,7 +205,7 @@
     - threaten
     - concede_point
     - walk_away
-    - evasive
+    - take_cover
   magic_access: null
   abilities:
     - name: "Rally"
