@@ -1,6 +1,14 @@
 ## Combat Philosophy
 
-Combat is vehicular first. The default state of conflict is a chase — two
+> **Story 86-1 Plan 1 status:** road_warrior is now CWN-bound (ablative HP,
+> ADR-114). The MECHANICALLY LIVE combat is **personal / dismounted** driver
+> combat — the `combat` confrontation ("Roadside Firefight"), resolved on HP-to-0
+> with CWN Shock/Trauma/Mortal-Injury. The **vehicular / rig two-pool** model
+> described below (Ramming, Rig HP, crash events, the rig damage tiers) is the
+> design target for **Plan 2** and is NOT yet mechanically backed. Treat it as
+> aspirational doctrine, not a wired system.
+
+Combat is vehicular first in spirit. The default state of conflict is a chase — two
 or more rigs on the road, making decisions at speed. Foot combat exists but
 it's diminished — a driver without a rig is a samurai without a sword.
 When combat happens, it should feel like a scene from Fury Road, not a
@@ -11,12 +19,12 @@ D&D encounter. The camera moves. The engine screams. Things break.
 ### Vehicular Combat (Primary)
 - **Ramming:** Close distance and trade paint. Rig Armor absorbs, Rig HP drops. The narrator describes metal tearing, sparks flying, panels crumpling.
 - **Mounted weapons:** Fire from mount slots — bolted guns, harpoon launchers, flame rigs. Gunner role in multi-actor chases.
-- **Boarding:** War boy moves — jumping between rigs at speed. Nerve check. Failure is bad.
-- **PIT maneuvers:** Grip check to spin an enemy out. High risk, high reward.
+- **Boarding:** War boy moves — jumping between rigs at speed. WIS check. Failure is bad.
+- **PIT maneuvers:** DEX check to spin an enemy out. High risk, high reward.
 - **Environmental:** Oil slicks, cliff edges, narrow bridges, oncoming traffic. The road IS a weapon.
 
-### Dismounted Combat (Secondary, Desperate)
-- **Gritty and fast:** No HP buffer. Injury system. Every hit matters.
+### Personal / Dismounted Combat (LIVE — CWN ablative HP)
+- **Gritty and fast:** Full CWN personal combat — attack vs AC, damage ablates HP after armor soak, Trauma can multiply, 0 HP is a Mortal Injury. Every hit matters.
 - **Cover matters:** Use rig wreckage, terrain, anything. Standing in the open is death.
 - **Escape priority:** The goal of dismounted combat is usually to get back in a rig, not to win a firefight.
 - **Improvised weapons:** Tire irons, chains, scavenged guns. Nobody has a pristine arsenal.
@@ -29,10 +37,10 @@ D&D encounter. The camera moves. The engine screams. Things break.
 
 ## Damage Model
 
-- **In the rig:** Rig HP absorbs all incoming damage. The rig is your armor.
-- **Rig at 0 HP:** Crash event. Driver takes injury roll. Rig is wreckage.
-- **Dismounted:** No buffer. Direct injury. Specific wounds with mechanical penalties.
-- **Rig damage tiers:** The narrator MUST reflect damage state:
+- **Personal / dismounted (LIVE):** Ablative HP (ADR-114 / CWN). Incoming damage soaks against armor then ablates HP; 0 HP triggers a Mortal Injury. This is the only mechanically backed combat in Plan 1.
+- **In the rig (Plan 2, INERT):** Rig HP/Composure is meant to absorb incoming damage — the rig is your armor — but no RigComposurePool is wired into a confrontation yet.
+- **Rig at 0 HP (Plan 2, INERT):** Crash event — driver takes ablative-HP crash damage + an injury tag, rig is wreckage.
+- **Rig damage tiers (Plan 2, INERT):** The narrator MUST reflect damage state once wired:
   - 100% — Tight. Engine purrs. Everything works.
   - 75% — Cosmetic. Rattles, dents, cracked mirror. Functional.
   - 50% — Failing. Door hanging off, windshield gone, sparks dragging.
