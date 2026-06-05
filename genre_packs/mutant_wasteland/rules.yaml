@@ -1,22 +1,46 @@
 tone: gonzo-sincere
 lethality: moderate
-magic_level: none
-# DRAFT (2026-04-27): the `magic_level` flag is being retired and is wrong here.
-# Mutations ARE this pack's magic system — the "Use Mutation" combat action with
-# its risk-narration rules is structurally a magic system. Source = Acquired
-# (radiation) + Innate (born mutants). See ./magic.yaml for the full napkin-shaped
-# truth and docs/design/magic-taxonomy.md for the framework.
+
+# ── Ruleset binding (ADR-117 / epic 88) ─────────────────────────────
+# Ashes Without Number (Sine Nomine, CC0). AWN personal combat IS Cities
+# Without Number — the awn module subclasses cwn and inherits the d20-vs-AC
+# attack, the four saves, and the Shock / Trauma / System Strain / Mortal &
+# Major Injury lethality stack. `ruleset: awn` is the HONEST slug (it surfaces
+# in OTEL spans, saves, and the GM panel); the mechanics are CWN's.
+#
+# magic_level removed (was `none`): the flag is retired per its own DRAFT note.
+# Mutation-as-magic framing moves to Plan 2 (bespoke MutationPlugin) — see
+# ./magic.yaml. Nothing in Plan 1 implies a live magic system.
+ruleset: awn
+awn:
+  # AWN natively uses the standard six (design D4) — attribute_map is an identity
+  # mapping from the canonical AWN attribute to the sheet label.
+  attribute_map:
+    STRENGTH: STR
+    DEXTERITY: DEX
+    CONSTITUTION: CON
+    INTELLIGENCE: INT
+    WISDOM: WIS
+    CHARISMA: CHA
+  system_strain:
+    max_source: CONSTITUTION  # System Strain pool max = CON (AWN p.52)
+    rest_recovery_per_night: 1
+    first_aid_cost: 1
+  trauma:
+    default_trauma_target: 6   # Trauma Target 6 (AWN p.48)
+    mortal_injury_rounds: 6     # 0 HP → die in 6 rounds, stabilize diff 8 (p.52)
+    major_injury_save: physical
 
 stat_generation: point_buy
 point_buy_budget: 27
 
 ability_score_names:
-  - Brawn
-  - Reflexes
-  - Toughness
-  - Wits
-  - Instinct
-  - Presence
+  - STR
+  - DEX
+  - CON
+  - INT
+  - WIS
+  - CHA
 
 allowed_classes:
   - Scavenger
@@ -59,14 +83,14 @@ confrontations:
         label: "Make Your Case"
         kind: strike
         base: 2
-        stat_check: Presence
+        stat_check: CHA
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
         label: "Threaten"
         kind: strike
         base: 3
-        stat_check: Brawn
+        stat_check: STR
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "Escalate tension. The threat should feel dangerous."
@@ -75,13 +99,13 @@ confrontations:
         label: "Concede a Point"
         kind: angle
         target_tag: "Real Goal Revealed"
-        stat_check: Presence
+        stat_check: CHA
         effect: "opponent disposition +5, reveals their real goal"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Walk Away"
         kind: push
-        stat_check: Instinct
+        stat_check: WIS
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player turns their back on the deal. Walking away."
     mood: tension
@@ -92,16 +116,29 @@ confrontations:
     intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
     on_intent_mismatch: reprompt
     category: combat
-    resolution_mode: opposed_check
-    # Opponent stats calibrated to mod +0 per ADR-093 (was 12 / mod +1).
+    # AWN/CWN ablative-HP combat (epic 88, design §6.2): the brawl now resolves on
+    # HP reaching 0, not a momentum dial. The momentum metrics below stay as the
+    # beat-texture tempo (command of the fight); HP flows underneath via the strike
+    # channel. This drops the pack from the dial COMBAT_PACKS calibration set by
+    # design (§6.4) — mutant_wasteland intentionally has zero opposed_check now.
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
+    # A generic wasteland raider. All six ability scores present for AWN's four
+    # saves (calibrated ≤10 per ADR-093). hp / armor_class / dexterity are reserved
+    # CreatureCore-seed keys (dexterity feeds the 1d8+DEX initiative roll), exempt
+    # from the stat ceiling.
     opponent_default_stats:
-      Brawn: 10
-      Reflexes: 10
-      Instinct: 10
-      Toughness: 10
-    # Momentum-based encounter metric — tracks command of the brawl,
-    # not HP. Damage lives on character state. Brutal, gritty, and the
-    # mutation beat still has its cost-with-power dynamic.
+      STR: 10
+      DEX: 10
+      CON: 10
+      INT: 10
+      WIS: 10
+      CHA: 10
+      hp: 8
+      armor_class: 12
+      dexterity: 10
+    # Momentum tempo — tracks command of the brawl, not lethality. HP is the
+    # win condition; this is the beat-selection texture on top.
     player_metric:
       name: momentum
       starting: 0
@@ -115,14 +152,17 @@ confrontations:
         label: "Attack"
         kind: strike
         base: 2
-        stat_check: Brawn
+        stat_check: STR
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
         effect: "deal damage to the target"
         narrator_hint: "Describe the blow connecting — gritty, physical, consequential."
       - id: defend
         label: "Defend"
         kind: brace
         base: 1
-        stat_check: Toughness
+        stat_check: CON
         effect: "reduce incoming damage, hold position"
         narrator_hint: "Player braces or blocks. Show the impact absorbed."
       # flank: risky repositioning for better attack angle — angle (setup for next strike)
@@ -133,7 +173,7 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Reflexes
+        stat_check: DEX
         risk: "exposed if it fails — lose 2 momentum and become open to the next enemy beat"
         effect: "gain positional advantage"
         narrator_hint: "Risky repositioning for a better angle of attack."
@@ -144,14 +184,14 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Instinct
+        stat_check: WIS
         risk: "mutation instability — lose 2 momentum and narrate a visible side effect on failure"
         effect: "unleash mutation on target"
         narrator_hint: "The mutation manifests visibly. Show the cost as well as the power."
       - id: flee
         label: "Flee"
         kind: push
-        stat_check: Reflexes
+        stat_check: DEX
         consequence: "escape combat, possible pursuit"
         narrator_hint: "Player breaks contact and runs. Not every fight needs a winner."
     mood: combat
@@ -175,7 +215,7 @@ confrontations:
         label: Scramble
         kind: push
         base: 2
-        stat_check: Reflexes
+        stat_check: DEX
         narrator_hint: Boots on dust, pickup tires spitting rocks.
       - id: shortcut
         label: Shortcut
@@ -184,18 +224,18 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Wits
+        stat_check: INT
         risk: "Dead end in the rubble — lose 2 separation"
       # distraction: throw a flare, scatter scrap — angle (misdirection tag)
       - id: distraction
         label: Distraction
         kind: angle
         target_tag: "Misdirected"
-        stat_check: Wits
+        stat_check: INT
         effect: "Throw a flare, scatter scrap, misdirect"
       - id: go_underground
         label: Go Underground
         kind: push
-        stat_check: Reflexes
+        stat_check: DEX
         consequence: "Chase ends — vanish into a drainage tunnel or bunker"
     mood: tension
