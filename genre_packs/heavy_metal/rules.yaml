@@ -1,6 +1,6 @@
 stat_generation: point_buy
 point_buy_budget: 27
-magic_level: medium
+magic_level: high
 
 allowed_classes:
   - Fighter
@@ -60,73 +60,35 @@ ability_score_names:
   - WIS
   - CHA
 
-# ── Edge / Composure ──────────────────────────────────────────
-# Replaces HP. Edge is the deflection currency — your footing,
-# your nerve, your read on the room. When it's gone, the next
-# thing that happens is the thing that was always going to happen.
-edge_config:
-  # Per-class base Edge capacity. Heavy_metal classes sort by
-  # *how much pressure their training accustomed them to*, not
-  # by hit-die size. The Fighter has carried a shield through
-  # a winter siege; the Wizard has read in a room where the
-  # candles kept blowing out; both took *damage*, just different
-  # damage.
-  base_max_by_class:
-    Fighter:   6   # the doomed-prince baseline
-    Barbarian: 7   # nothing to lose, everything to spend
-    Paladin:   6   # oath as armour
-    Ranger:    5   # the long quiet of the road
-    Monk:      6   # one breath, then the next
-    Cleric:    5   # the litany as anchor
-    Druid:     5   # something else holds you up
-    Bard:      5   # composure is the trade
-    Rogue:     5   # the half-second nobody else has
-    Warlock:   4   # the thing that watches you is not steady
-    Wizard:    4   # the room is too loud for the work
-    Sorcerer:  4   # the gift is also the wound
+lethality: high
 
-  # Default recovery. Heavy_metal is gritty: Edge refills between
-  # confrontations, but only if the practitioner *had a moment*.
-  # If the next confrontation begins before the breath is taken,
-  # the player carries whatever they have.
-  recovery_defaults:
-    on_resolution: full       # full refill at confrontation close
-    on_long_rest: full        # always full at long rest
-    between_back_to_back: 0   # zero refill if no breath was taken
-
-  # The composure-break threshold. When Edge hits zero, this
-  # narrator_hint goes into the LoreStore as a high-priority
-  # KnownFact. The narrator is *required* to honour it on the
-  # next exchange — the prose at zero-Edge is not freelance.
-  thresholds:
-    - at: 1
-      event_id: edge_strained
-      narrator_hint: |
-        The character is one exchange from breaking. Their breath
-        is wrong; their stance has shortened by half a foot. The
-        opponent has noticed. Describe the loss of bearing — the
-        glance toward the exit, the grip that re-seats itself one
-        beat too late.
-      direction: crossing_down
-    - at: 0
-      event_id: composure_break
-      narrator_hint: |
-        The ledger turns. Whatever was being deflected now lands.
-        The narrator must carry the genuine consequence on the
-        next exchange — a wound that does not close, a yield that
-        is heard, a name spoken that cannot be unspoken, a death
-        that the room makes room for. This is not the time for
-        deflection prose. The price is paid in this beat.
-      direction: crossing_down
-
-  # Display fields for the character sheet. The UI reads this
-  # list declaratively — composure_state is derived by the
-  # frontend from current/max ratio (Fresh / Strained / Cracked /
-  # Broken).
-  display_fields:
-    - edge
-    - max_edge
-    - composure_state
+ruleset: wwn
+wwn:
+  # Required by _validate_wwn: all six canonical WWN attribute keys, each
+  # mapping to a declared ability_score_names entry. heavy_metal uses the
+  # standard abbreviations, so the map is canonical -> abbreviation.
+  attribute_map:
+    STRENGTH: STR
+    DEXTERITY: DEX
+    CONSTITUTION: CON
+    INTELLIGENCE: INT
+    WISDOM: WIS
+    CHARISMA: CHA
+  system_strain:
+    # max_source must be a canonical KEY of attribute_map (not "CON").
+    max_source: CONSTITUTION
+    rest_recovery_per_night: 1
+    first_aid_cost: 1
+  trauma:
+    # Faithful WWN/EH baseline; lethality tuning is Keith's crunch call.
+    default_trauma_target: 6
+    mortal_injury_rounds: 6
+    major_injury_save: physical
+  magic:
+    effort_base: 1
+    killing_blow_divisor: 2
+    day_reclaim_requires_comfort: true
+    default_spell_save: mental
 
 encounter_base_tension:
   random: 0.20
@@ -182,25 +144,35 @@ confrontations:
   - type: combat
     label: Blade-work
     category: combat
-    resolution_mode: opposed_check
+    # WWN personal combat: attack-vs-AC + hp_depletion on the ablative HpPool.
+    # Trauma / Mortal Injury layer on via the wwn ruleset module.
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
     opponent_default_stats:
-      STR: 12
-      DEX: 12
-      CON: 12
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 10
+      # ALL SIX ability scores must be authored so the WWN defender-save path
+      # can resolve any save (Mental = best-of WIS/CHA, etc.). The SWN module
+      # fails loud on a missing save attribute — an incomplete block KeyErrors.
+      STR: 10
+      DEX: 10
+      CON: 10
+      INT: 10
+      WIS: 10
+      CHA: 10
+      # Reserved combat-seed keys (not ability scores): hp = HP pool;
+      # armor_class = ascending AC the attack rolls against; dexterity =
+      # initiative (1d8 + DEX). A hired blade: AC 12, HP 10.
+      hp: 10
+      armor_class: 12
+      dexterity: 11
     beats:
       - id: strike
         label: Strike
         kind: strike
         base: 2
         stat_check: STR
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
         effect: "Target takes damage this round"
         narrator_hint: "Describe the blow with specificity — which grip, which angle, what gave way. Heavy Metal combat is not choreography; it is plumbing."
       - id: brace
@@ -214,11 +186,15 @@ confrontations:
         label: "Committed Blow"
         kind: strike
         base: 4
+        stat_check: STR
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
+        damage_override: {dice: "2d6", bonus: 0}
         deltas:
           crit_fail:
             own: -3
-        stat_check: STR
-        risk: "Overcommits — lose 3 momentum and take a counter on failure"
+        risk: "Overcommits — take a counter on failure"
         effect: "Target takes heavy damage"
         narrator_hint: "An all-in swing; the character is not planning a follow-up. Describe the violence as expensive — to the one making it, as well as the one receiving it."
       - id: break_contact
