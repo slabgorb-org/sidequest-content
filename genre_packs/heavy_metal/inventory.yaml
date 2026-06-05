@@ -17,6 +17,7 @@ item_catalog:
     tags: [melee, blade, one-handed]
     lore: Carried by everyone who has ever had reason to need one carried.
     narrative_weight: 0.1
+    damage: {dice: "1d4", bonus: 0, shock: 1, shock_ac: 15}
 
   - id: sword_iron
     name: Iron Longsword
@@ -29,6 +30,7 @@ item_catalog:
     tags: [melee, blade, one-handed]
     lore: The standard blade of every house-guard in the current age.
     narrative_weight: 0.2
+    damage: {dice: "1d8", bonus: 0, shock: 2, shock_ac: 15}
 
   - id: rapier_fine
     name: Fine Rapier
@@ -41,6 +43,7 @@ item_catalog:
     tags: [melee, blade, one-handed, courtly]
     lore: Favoured by those who attend formal challenges in the courts of the declining houses.
     narrative_weight: 0.4
+    damage: {dice: "1d8", bonus: 0, shock: 2, shock_ac: 15}
 
   - id: staff_pilgrim
     name: Pilgrim's Staff
@@ -53,6 +56,7 @@ item_catalog:
     tags: [melee, blunt, two-handed, focus, pilgrim]
     lore: Cut from a specific kind of wood at a specific waystation, and consecrated in the traditional manner of the Path-Eater cult.
     narrative_weight: 0.3
+    damage: {dice: "1d6", bonus: 0, shock: 1, shock_ac: 13}
 
   - id: leather_armor_worn
     name: Travel Leathers
@@ -65,6 +69,7 @@ item_catalog:
     tags: [light-armor, torso]
     lore: The working wardrobe of anyone who moves between settlements on their own feet.
     narrative_weight: 0.1
+    armor_class: 13
 
   - id: chain_shirt
     name: Chain Shirt
@@ -77,6 +82,8 @@ item_catalog:
     tags: [medium-armor, torso]
     lore: Standard kit for the house-guards of the declining Perault lines.
     narrative_weight: 0.2
+    armor_class: 15
+    mitigation: 1
 
   - id: liturgical_surcoat
     name: Liturgical Surcoat
@@ -89,6 +96,7 @@ item_catalog:
     tags: [light-armor, torso, liturgical]
     lore: Worn by temple knights and senior oath-sworn. Each cult's colors are specific and recognized.
     narrative_weight: 0.4
+    armor_class: 13
 
   - id: healing_poultice
     name: Herbalist's Poultice
@@ -197,3 +205,47 @@ item_catalog:
     tags: [blade, one-handed, scribe, forgery]
     lore: Strictly speaking a scribal tool. Carried openly by ledger-thieves who are past pretending otherwise.
     narrative_weight: 0.3
+    damage: {dice: "1d4", bonus: 0, shock: 1, shock_ac: 15}
+
+# Keyed by class display_name (classes.yaml documents this convention at the
+# kit_table comment). Every Calling carries at least one weapon with a damage
+# spec so a strike beat always resolves through the
+# damage_override → item → catalog chain (the BAR-1 unwinnable-combat fix).
+starting_equipment:
+  Warrior:
+    - sword_iron
+    - chain_shirt
+    - healing_poultice
+  Expert:
+    - rapier_fine
+    - leather_armor_worn
+    - healing_poultice
+  Necromancer:
+    - staff_pilgrim
+    - residue_salts
+    - tally_book
+  Elementalist:
+    - staff_pilgrim
+    - residue_salts
+    - guild_mark
+  Pact-born:
+    - dagger_iron
+    - pact_token
+    - feeding_incense
+  Mentalist:
+    - dagger_iron
+    - residue_salts
+    - healing_poultice
+  Super-scientist:
+    - dagger_iron
+    - tally_book
+    - residue_salts
+
+starting_gold:
+  Warrior: 20
+  Expert: 40
+  Necromancer: 25
+  Elementalist: 30
+  Pact-born: 25
+  Mentalist: 25
+  Super-scientist: 40
