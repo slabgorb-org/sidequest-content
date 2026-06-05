@@ -347,3 +347,150 @@
         clever, literal cost (the monkey's paw curls). Once per scene. Cannot
         activate at Effort 0.
       involuntary: false
+
+# ═══════════════════════════════════════════════════════════════════════
+# BARSOOM CASTER CALLINGS (story 89-5)
+#
+# Keith's classes-vs-Foci call (2026-06-05): FULL CALLINGS, completing the
+# BARSOOM HOOK staged in 89-4 (spells_wwn.yaml + rules.yaml). Both ride the
+# same inherited WWN Effort / System-Strain chassis as the doom Callings.
+# They are genre-tier because classes.yaml has no world-tier merge — but
+# they are OFFERED only by barsoom's world char_creation.yaml surface
+# (which REPLACES the genre crucible), so doom worlds never see them, and
+# barsoom never sees the doom Callings. Their starting_prepared lists are
+# the suggested seeds from the 89-4 tradition headers.
+# ═══════════════════════════════════════════════════════════════════════
+
+- id: mentalist
+  display_name: Mentalist
+  rpg_role: control
+  jungian_default: magician
+  minimum_score: 9
+  kit_table: mentalist_kit
+  prime_requisite: WIS
+  flavor: >-
+    The Mentalist carries the discipline of dead Lothar: the trained will
+    that forces the mind's image out into the world until other eyes — and
+    other bodies — must answer it. Phantom bowmen loose phantom arrows that
+    kill real men who believe in them. The working is exhausting in the
+    canon's own terms: every sustained image is paid for out of the body,
+    in Effort and in System Strain, and an image disbelieved collapses at
+    once. It is not sorcery. It is the last art of a people who outlived
+    their sea, their enemies, and very nearly their own reality.
+  encounter_beat_choices:
+    - strike
+    - brace
+    - break_contact
+    - argue
+    - press_obligation
+    - yield
+    - withdraw
+    - run
+    - read_the_ground
+    - vanish
+  magic_access: wwn
+  # governing_attr WISDOM → WIS (rules.yaml attribute_map): the Lotharian
+  # working is sustained WILL, not scholarship — a deliberate divergence
+  # from the Arcane-INT doom traditions.
+  wwn_magic:
+    effort_sources:
+      - source: mentalist
+        governing_attr: WISDOM
+        relevant_skill: Magic
+        starting_skill_level: 1
+    casts_per_day_by_level:
+      "1": 2
+    max_spell_level_by_level:
+      "1": 1
+    prepared_by_level:
+      "1": 2
+    starting_prepared:
+      - phantom_bowmen
+      - mind_veil
+    partial: false
+  saving_throws:
+    death_ray_or_poison: 13
+    magic_wands: 14
+    paralysis_or_stone: 13
+    dragon_breath: 16
+    rods_staves_spells: 15
+  abilities:
+    - name: "Hold the Image"
+      genre_description: >-
+        A Lotharian's phantasm persists only while the will that cast it
+        does not waver. The Mentalist can keep one working alive past its
+        natural end — the bowmen hold their line, the veil stays drawn —
+        by pouring more of the self into the image than the image was
+        worth.
+      mechanical_effect: >-
+        Spend 1 Effort (Effort-1) to sustain one active Mentalist working
+        for one additional scene beat, or to re-assert a phantasm one
+        observer has begun to disbelieve. Once per scene. Cannot activate
+        at Effort 0.
+      involuntary: false
+
+- id: super_scientist
+  display_name: Super-scientist
+  rpg_role: striker
+  jungian_default: sage
+  minimum_score: 9
+  kit_table: super_scientist_kit
+  prime_requisite: INT
+  flavor: >-
+    The Super-scientist works the vanished science of Barsoom — the ninth
+    ray, the brain that can be moved between skulls, the compound that
+    bends light around a hull. Their marvels are apparatus and exhausting
+    concentration, expressed through the same Effort economy as any
+    working: the device is real, but it answers only to the mind that
+    built it, and that mind pays for every firing. The everyday pulp toys
+    (radium rifles, fliers) are mere GEAR; what the Super-scientist casts
+    is the impossible edge of the art.
+  encounter_beat_choices:
+    - strike
+    - brace
+    - break_contact
+    - argue
+    - press_obligation
+    - yield
+    - withdraw
+    - run
+    - read_the_ground
+    - vanish
+  magic_access: wwn
+  # governing_attr INTELLIGENCE → INT: the apparatus answers to intellect.
+  wwn_magic:
+    effort_sources:
+      - source: super_scientist
+        governing_attr: INTELLIGENCE
+        relevant_skill: Magic
+        starting_skill_level: 1
+    casts_per_day_by_level:
+      "1": 2
+    max_spell_level_by_level:
+      "1": 1
+    prepared_by_level:
+      "1": 2
+    starting_prepared:
+      - disintegration_ray
+      - invisibility_compound
+    partial: false
+  saving_throws:
+    death_ray_or_poison: 13
+    magic_wands: 14
+    paralysis_or_stone: 13
+    dragon_breath: 16
+    rods_staves_spells: 15
+  abilities:
+    - name: "Apparatus of the Ninth Ray"
+      genre_description: >-
+        The Super-scientist is never without some instrument of the old
+        science — a lens, a coil, a hand-built emitter. In the moment of
+        need it can be retuned to a purpose its maker never filed: a lock
+        read by its radium signature, a flier's buoyancy tank coaxed past
+        its rating, a beam bent a degree off true.
+      mechanical_effect: >-
+        Spend 1 Effort (Effort-1) to improvise a one-shot apparatus effect
+        adjudicated by the narrator — a concrete, physical intervention of
+        the vanished science (open, overload, illuminate, deflect). Once
+        per scene. Cannot activate at Effort 0.
+      involuntary: false
