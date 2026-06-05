@@ -138,6 +138,15 @@ confrontations:
       hp: 8
       armor_class: 12
       dexterity: 11
+    # Opponent reprisal damage. The strike beat resolves damage from the ACTOR's
+    # inventory — which the seeded WWN mook has none of — so without this the enemy
+    # hits but deals 0 HP and the player never takes damage (playtest #16, the EH
+    # burning_peace toothless-Other finding; same class as space_opera 67-10, now
+    # surfaced at instantiation by the encounter.opponent_toothless span / ADR-139
+    # Invariant 3). 1d6 = a trained martial strike (~3 hits to drop a 10-HP PC),
+    # matching the wuxia mook's threat. Read only on the opponent's turn, so it
+    # never caps the player's own weapon.
+    opponent_damage: {dice: "1d6", bonus: 0}
     beats:
       - id: strike
         label: Strike
