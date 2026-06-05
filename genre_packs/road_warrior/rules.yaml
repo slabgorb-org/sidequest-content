@@ -10,13 +10,32 @@ magic_level: none
 stat_generation: point_buy
 point_buy_budget: 27
 
+# D3 (Story 86-1 Plan 1): road_warrior adopts the STANDARD CWN six on the sheet
+# and drops the old flavor names (Grip/Iron/Nerve/Scrap/Road Sense/Swagger).
+# The narrator may still *call* DEX "grip", STR "iron", etc. in prose, but every
+# MECHANICAL stat reference uses the standard six. Flavor->stat mapping (locked):
+#   Grip -> DEX, Iron -> STR, Nerve -> WIS, Scrap -> INT, Road Sense -> CON,
+#   Swagger -> CHA.
 ability_score_names:
-  - Grip
-  - Iron
-  - Nerve
-  - Scrap
-  - Road Sense
-  - Swagger
+  - STR
+  - DEX
+  - CON
+  - INT
+  - WIS
+  - CHA
+
+# CWN binding (Story 86-1 Plan 1). The validator (_validate_cwn) requires a
+# complete six-key identity attribute_map even though the sheet already uses the
+# canonical labels ("zero attribute-map risk" — the obvious identity map).
+ruleset: cwn
+cwn:
+  attribute_map:
+    STRENGTH: STR
+    DEXTERITY: DEX
+    CONSTITUTION: CON
+    INTELLIGENCE: INT
+    WISDOM: WIS
+    CHARISMA: CHA
 
 allowed_classes:
   - Wheelman
@@ -35,43 +54,16 @@ allowed_races:
   - Legacy
 
 
-# Driver Edge per ADR-078. Rig Composure lives on the rig vessel item
-# (see inventory.yaml + custom_rules.rig_composure_spec below) and is
-# pulled into the snapshot by the materializer; it is NOT a per-character
-# stat_display_field. Fuel and injuries remain character-side trackers.
+# D2 (Story 86-1 Plan 1): Driver Edge (ADR-078) is REMOVED. The driver is now a
+# full ablative-HP CWN character (ADR-114) — survivability is the standard CWN
+# HP/Shock/Trauma/Mortal-Injury stack, the same combat model as space_opera and
+# neon_dystopia. Fuel, injuries, and dismounted remain character-side trackers.
 stat_display_fields:
+  - hp
+  - max_hp
   - fuel
   - injuries
   - dismounted
-
-# Driver Edge — per-class scaling. Tiers reflect each class's combat
-# survivability when dismounted (rig-as-armor handles the mounted case
-# via the Rig Composure pool, below).
-edge_config:
-  base_max_by_class:
-    War Rider: 5      # combat-forward, takes hits
-    Wrecker: 5        # high-impact, rams things
-    Chrome Saint: 4   # body-modded, durable
-    Wheelman: 3       # driver — fast but fragile dismounted
-    Grease Monkey: 3  # support; survivability through fixing, not fighting
-    Road Preacher: 3  # charisma class, not a brawler
-  recovery_defaults:
-    on_resolution: full
-    on_long_rest: full
-    between_back_to_back: 0
-  thresholds:
-    - at: 1
-      event_id: edge_critical
-      narrator_hint: >-
-        The driver is hurting bad. Bleeding through their jacket, vision
-        narrowing, breath ragged. One more hit and they're out.
-      direction: crossing_down
-    - at: 0
-      event_id: edge_zero
-      narrator_hint: >-
-        Down. Bleeding out on the asphalt or slumped over the wheel.
-        Per lethality_policy.yaml — the road is indifferent.
-      direction: crossing_down
 
 
 default_class: Wheelman
@@ -86,44 +78,34 @@ custom_rules:
   rest_variant: gritty_realism
   encumbrance: variant
 
-  # --- DAMAGE MODEL: TWO POOLS, ADR-078 ALIGNED ---
+  # --- DAMAGE MODEL: ABLATIVE HP (ADR-114 / CWN) ---
 
   damage_model: >-
-    Road Warrior runs a TWO-POOL damage model on top of the standard
-    ADR-078 Edge framework:
+    Road Warrior runs the standard CWN personal-combat model: the driver
+    is a full ablative-HP character (ADR-114). Driver Edge (ADR-078) has
+    been removed — there is one combat model engine-wide, the same as
+    space_opera and neon_dystopia.
 
-    1. DRIVER EDGE — the character's own Edge pool (see edge_config above).
-       Per-class scaling, recovers on resolution/long rest. This is the
-       human inside the rig.
+    PERSONAL / DISMOUNTED COMBAT (mechanically live in Plan 1):
+    Attacks roll to-hit vs the target's Armor Class; on a hit the weapon's
+    damage ablates HP after armor soak. Lethal weapons also roll Trauma — a
+    Traumatic Hit multiplies damage. At 0 HP a character takes a Mortal
+    Injury: they die within a handful of rounds unless someone stabilizes
+    them. Never narrate a kill, a Trauma multiplier, or an injury you did
+    not let the engine roll. The dice and the tools are the truth; your
+    prose dramatizes them.
 
-    2. RIG COMPOSURE — a vessel-attached pool on the named rig item (see
-       inventory.yaml vessels + custom_rules.rig_composure_spec). The rig
-       is the character's armor while mounted; incoming damage hits Rig
-       Composure first.
-
-    WHILE MOUNTED:
-    Incoming damage is absorbed by Rig Composure. The narrator MUST
-    reflect this visibly — panels fly off, engine smokes, mirrors
-    crack, exhaust drags sparks. This is not a hidden number; it is the
-    most visible thing happening on screen.
-
-    CRASH EVENT (Rig Composure → 0):
-    The rig is wrecked. The driver loses 1 Edge from the crash itself
-    AND takes an injury tag (see injury_system). The character is now
-    DISMOUNTED — exposed, slow, vulnerable. Whatever caused the crash
-    is still there.
-
-    WHILE DISMOUNTED:
-    No vessel buffer. Incoming damage hits Driver Edge directly. Grip
-    checks at disadvantage. The world treats a driver who lost their
-    rig differently — getting back on the road is a story arc, not a
-    shopping trip.
-
-    EDGE ZERO:
-    Driver is down or dead per lethality_policy.yaml (gritty / permanent
-    / road is indifferent). The road doesn't owe anyone a recovery.
+    RIG COMPOSURE (NOT YET MECHANICALLY LIVE — Plan 2):
+    The rig-as-armor / Rig Composure two-pool vehicle model described in
+    the rig_* prose below is INERT in Plan 1. It is retained as a design
+    target for Plan 2 (solo rig vehicle combat) and Plan 4 (the War Rig).
+    Do NOT imply mechanical backing for Rig Composure, crash events, or
+    chase pools yet — no RigComposurePool is wired into a confrontation in
+    Plan 1. The only mechanically live combat is personal ablative-HP
+    driver combat (the `combat` confrontation below).
 
   rig_damage_tiers: >-
+    INERT in Plan 1 (no RigComposurePool wired yet — Plan 2).
     Rig Composure narrative tiers (for narrator description as the
     Composure pool drains, not separate mechanical bands):
 
@@ -139,7 +121,8 @@ custom_rules:
     0  Composure     — CRASH EVENT (see damage_model).
 
   rig_composure_spec: >-
-    Backend reference (see backlog story for RigComposurePool wiring):
+    INERT in Plan 1 (no RigComposurePool wired yet — Plan 2).
+    Backend reference (see Plan 2 for RigComposurePool wiring):
 
     - Each character has one named rig (vessel item, inventory.yaml).
     - The vessel item carries: composure (current), composure_max
@@ -157,8 +140,8 @@ custom_rules:
     - Crash event hook (Composure crosses 0 downward): fire
       event_id: rig_crash. The handler MUST emit OTEL span
       `rig_pool.crash_event` with {rig_slug, location, attacker} per
-      ADR-031, write the dismounted status, and apply -1 Edge + 1
-      injury tag to the driver.
+      ADR-031, write the dismounted status, and apply crash damage to
+      the driver's ablative HP (ADR-114) + 1 injury tag.
 
   injury_system: >-
     Per ADR-080: injuries are narrative_weight tags on the character,
@@ -166,12 +149,12 @@ custom_rules:
     (dismounted, crash event, boarding combat, or rig pierced) they
     take an INJURY tag — a specific, named wound with a stat penalty:
 
-      Slashed Arm     → Grip -1     (heals in 2 sessions / medical care)
-      Concussion      → Road Sense -1
-      Broken Rib      → Iron -1, Nerve -1 in fast scenes
-      Burned          → Scrap -1 until salved
+      Slashed Arm     → DEX -1      (heals in 2 sessions / medical care)
+      Concussion      → CON -1
+      Broken Rib      → STR -1, WIS -1 in fast scenes
+      Burned          → INT -1 until salved
       Whiplash        → -1 to all checks first round of any chase scene
-      Internal        → -1 Edge max until full medical (this is the bad one)
+      Internal        → -1 max HP until full medical (this is the bad one)
 
     Tags live as narrative_weight entries on the character; the narrator
     references them until healed. Light injuries dissolve at long rest;
@@ -216,6 +199,9 @@ custom_rules:
     afford to burn fuel on this chase and still make it across town."
 
   chase_system: >-
+    NOT YET A MECHANICAL CONFRONTATION (Plan 3). The `chase` confrontation
+    below is a dial-threshold encounter with no Rig Composure backing in
+    Plan 1. This prose is the design target for Plan 3.
     Chases are structured as beat sequences, not single rolls. Each chase
     has an Opening (engage or evade?), Pursuit (distance, terrain, hazards),
     Escalation (boarding, weapons, rig damage), Crisis (something breaks,
@@ -225,9 +211,10 @@ custom_rules:
     as progressive visible damage. Allies can fall. The fortress crumbles.
 
   dismounted_rules: >-
-    A driver without a rig is in survival mode. No Rig Composure buffer —
-    incoming damage hits Driver Edge directly. All Grip checks at
-    disadvantage. Swagger checks to maintain reputation take a penalty.
+    A driver without a rig is in survival mode. No Rig Composure buffer
+    (Plan 2) — incoming damage hits the driver's ablative HP directly. All
+    DEX checks at disadvantage. CHA checks to maintain reputation take a
+    penalty.
     Movement is slow in a world built for wheels. The world treats you
     differently — you're a driver who lost their ride. Getting a new
     rig or recovering your old one is a story arc, not a shopping trip.
@@ -286,12 +273,12 @@ confrontations:
     resolution_mode: opposed_check
     # Opponent stats calibrated to mod +0 per ADR-093.
     opponent_default_stats:
-      Grip: 10
-      Iron: 10
-      Nerve: 10
-      Scrap: 10
-      Road Sense: 10
-      Swagger: 10
+      STR: 10
+      DEX: 10
+      CON: 10
+      INT: 10
+      WIS: 10
+      CHA: 10
     player_metric:
       name: leverage
       starting: 0
@@ -305,14 +292,14 @@ confrontations:
         label: "Make Your Case"
         kind: strike
         base: 2
-        stat_check: Swagger
+        stat_check: CHA
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
         label: "Threaten"
         kind: strike
         base: 3
-        stat_check: Iron
+        stat_check: STR
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "Rev the engine. Let them hear what's coming."
@@ -321,75 +308,99 @@ confrontations:
         label: "Concede a Point"
         kind: angle
         target_tag: "Real Goal Revealed"
-        stat_check: Swagger
+        stat_check: CHA
         effect: "opponent disposition +5, reveals their real goal"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Walk Away"
         kind: push
-        stat_check: Iron
+        stat_check: STR
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player fires up the rig and leaves. No deal."
     mood: tension
 
   - type: combat
-    label: "Vehicular Combat"
+    label: "Roadside Brawl"
+    # Story 86-1 Plan 1: PERSONAL driver combat (CWN on-foot, ablative HP).
+    # This is NOT rig/vehicle combat — that is Plan 2 (the ram/sideswipe
+    # vehicular beats were moved out). This is the wheelman out of the cab:
+    # pistols, scrap iron, and cover, resolved on HP-to-0 like space_opera
+    # and neon_dystopia personal combat.
     # Spec 2026-05-20 confrontation-intent-validator
-    intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
+    intent_verbs: [strike, attack, fight, kill, shoot, fire, gun, hit, stab, swing]
     on_intent_mismatch: reprompt
     category: combat
-    resolution_mode: opposed_check
-    # Opponent stats calibrated to mod +0 per ADR-093.
+    # CWN personal combat: attack-vs-AC + hp_depletion on the ablative HpPool.
+    # Trauma/Shock/Mortal/Major Injury layer on via the cwn ruleset module.
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
     opponent_default_stats:
-      Grip: 10
-      Iron: 10
-      Nerve: 10
-      Scrap: 10
-      Road Sense: 10
-      Swagger: 10
-    # Momentum as "control of the engagement" — who's on the offensive,
-    # who's running. Rig damage and character HP live on character state;
-    # momentum tracks whether the pack is routing you or you them.
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 7
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 7
+      STR: 10
+      DEX: 10
+      CON: 10
+      INT: 10
+      WIS: 10
+      CHA: 10
+      # Reserved combat-seed keys (not ability scores) — seed the runtime
+      # CreatureCore for hp_depletion. hp = HP pool; armor_class = ascending
+      # AC the attack rolls against; dexterity = SWN 1d8+DEX initiative.
+      # Road raider: AC 12 (leathers + scavenged plate), HP 12, drops in a
+      # few solid hits.
+      hp: 12
+      armor_class: 12
+      dexterity: 10
     beats:
-      - id: ram
-        label: Ram
-        kind: strike
-        base: 4
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Grip
-        risk: "Rig damage on failure — lose 2 momentum and take hull damage"
-        effect: "Target rig takes severe damage"
-        narrator_hint: "Steel on steel at speed. Sparks, crumpled panels, the shriek of metal."
-      - id: sideswipe
-        label: Sideswipe
+      - id: shoot
+        label: "Snap Shot"
         kind: strike
         base: 2
-        stat_check: Grip
-        effect: "Force target to swerve, deal glancing damage"
-        narrator_hint: "Paint trades paint. The two rigs grind together at sixty and part."
-      - id: evasive
-        label: "Evasive Maneuver"
+        stat_check: DEX
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
+        effect: "Target takes weapon damage from your sidearm"
+        narrator_hint: "Pistol up over the door, a flat crack across the hardpan."
+      - id: pistol_whip
+        label: "Pistol-Whip"
+        kind: strike
+        base: 2
+        stat_check: STR
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
+        effect: "Close-quarters strike — scrap iron, a wrench, the butt of a gun"
+        narrator_hint: "Up close it's elbows and steel. Wet, ugly, fast."
+      - id: take_cover
+        label: "Take Cover"
         kind: brace
         base: 1
-        stat_check: Iron
-        effect: "Reduce incoming rig damage this round"
-        narrator_hint: "Cut the wheel hard, thread the gap, let them shoot dust."
-      - id: disengage
-        label: "Peel Off"
+        stat_check: DEX
+        effect: "Reduce incoming damage behind the wreck or the engine block"
+        narrator_hint: "Drop behind the chassis. Let the rounds spang off the block."
+      - id: break_off
+        label: "Break Off"
         kind: push
-        stat_check: Road Sense
-        consequence: "Combat ends — break away from the pack"
-        narrator_hint: "Cut the throttle, fall back, let them roar past into the dust."
+        stat_check: CON
+        consequence: "Combat ends — get back to the rig and gun it"
+        narrator_hint: "Sprint for the cab, drop into the seat, fire it up and go."
+    # The raider reprises — a playable fight the wheelman can LOSE.
+    # opponent_attack drives the to-hit; opponent_damage is the reprisal
+    # damage the dispatcher reads (the seeded opponent NPC has no inventory,
+    # so without opponent_damage the enemy hits but deals 0 — playtest 67-10).
+    opponent_attack:
+      stat_check: DEX
+      attack_bonus: 1
+      combat_skill: 1
+      damage:
+        dice: "1d6"
+        trauma_die: "1d8"
+        trauma_rating: 2
+        trauma_target: 8
+    opponent_damage:
+      dice: "1d6"
+      trauma_die: "1d8"
+      trauma_rating: 2
+      trauma_target: 8
     mood: combat
 
   - type: chase
@@ -401,12 +412,12 @@ confrontations:
     resolution_mode: opposed_check
     # Opponent stats calibrated to mod +0 per ADR-093.
     opponent_default_stats:
-      Grip: 10
-      Iron: 10
-      Nerve: 10
-      Scrap: 10
-      Road Sense: 10
-      Swagger: 10
+      STR: 10
+      DEX: 10
+      CON: 10
+      INT: 10
+      WIS: 10
+      CHA: 10
     player_metric:
       name: separation
       starting: 0
@@ -420,7 +431,7 @@ confrontations:
         label: "Floor It"
         kind: push
         base: 2
-        stat_check: Road Sense
+        stat_check: CON
         narrator_hint: "Engine screams, dust plume stretches behind."
       - id: terrain_cut
         label: "Terrain Cut"
@@ -429,7 +440,7 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Scrap
+        stat_check: INT
         risk: "Rollover — take rig damage on failure"
         narrator_hint: "Leave the road. Cut across hardpan, jump a wash."
       # smoke_screen: oil burn or dust cloud — angle (misdirection tag on pursuers)
@@ -437,13 +448,13 @@ confrontations:
         label: "Smoke Screen"
         kind: angle
         target_tag: "Blinded"
-        stat_check: Scrap
+        stat_check: INT
         effect: "Oil burn or dust cloud blinds pursuit"
         narrator_hint: "Pop the smoker, pull the rip-cord, leave them coughing in your wake."
       - id: engine_kill
         label: "Kill the Engine"
         kind: push
-        stat_check: Road Sense
+        stat_check: CON
         consequence: "Chase ends — coast to a stop in the dust, hidden"
         narrator_hint: "Cut the engine. Glide silent into cover. Let them roar past."
     mood: tension
