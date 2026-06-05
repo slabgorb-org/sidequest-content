@@ -173,6 +173,16 @@ confrontations:
         # classes.yaml display_name). Without this, the WWN cast resource
         # gate never fires and the beat would be offered to every class.
         # Mirrors EH's cast_spell: class_filter: [Channeler, Spirit Medium].
+        #
+        # BARSOOM HOOK (89-4 → 89-5): the two Barsoom caster traditions'
+        # spell lists are authored in spells_wwn.yaml (Lotharian Mentalist +
+        # Barsoomian Super-scientist). Their Callings do NOT exist in
+        # classes.yaml yet — the classes-vs-Foci expression is 89-5's scope.
+        # When 89-5 adds those Callings, append their display_names here
+        # (e.g. "Mentalist", "Super-scientist") so cast_spell is offered to
+        # Barsoom casters. It is NOT done in 89-4 because the loader's
+        # _validate_class_filter_refs fails loud on a class_filter naming a
+        # class that does not yet exist — the names would dangle.
         class_filter: [Necromancer, Elementalist, Pact-born]
         effect: "Cast a prepared spell — damage rolled by the WWN spell engine"
         narrator_hint: "The caster reaches inward, pulls on a prepared working, and spends it. Describe the cost as concretely as the effect — what the working takes from the body that served as its gate."
