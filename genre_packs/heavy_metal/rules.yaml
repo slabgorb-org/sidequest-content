@@ -18,7 +18,12 @@ custom_rules:
   spell_components: strict
   long_rest_minimum_days: "3"
 
-default_class: warrior
+# default_class is the class DISPLAY NAME (not the id) — the chargen builder
+# resolves the default ClassDef by display_name (builder.py), with no id
+# fallback. A freeform-crucible character with no class_hint falls through to
+# this default, so it MUST be a real display_name or it resolves to no class
+# (no abilities, no warrior flag). Matches the EH/space_opera convention.
+default_class: Warrior
 class_label: Calling
 default_location: "An antechamber of a house that is ending, where the old ledgers are kept"
 default_time_of_day: dusk
