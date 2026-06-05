@@ -6,23 +6,40 @@
 # steer purely with positive vocabulary and a safety clause. There is no Flux/
 # `dev` model here; the old `preferred_model: dev` was dead config and is gone.
 #
-# TIGHT-SUFFIX RULE (2026-06-02, per PROMPTING_Z_IMAGE.md): this suffix is
-# appended to EVERY render (render_common has no per-tier split). It must be a
-# SHORT medium/style/palette anchor ONLY — name Tenniel ONCE, fine pen-and-ink
-# line, open cream-paper sky, restrained selective hand-tint, safety clause.
-# The earlier ~160-word version piled on engraving-density vocabulary (Dalziel,
-# Punch, cross-hatching, engraver's line, "dense all-over tone"); per the guide
-# a style anchor imports its whole medium, so that hatching pile drowned the
-# open-paper clause and aliased the sky into moiré. Cut to the anchor below.
-# NO casting (per-POI solo / portrait_manifest appearance own it). NO negations.
-# Per-scene selective hand-tint colours (1-3) are named in each solo, not here.
+# BARE TENNIEL ANCHOR (2026-06-04, Keith): keep the suffix to a minimal style
+# reference and let Z-Image import Tenniel's whole medium ("a style anchor
+# imports its whole medium" — PROMPTING_Z_IMAGE.md). Verbose form-hatching /
+# open-paper prose rendered FLAT colour fields like a woodblock/screenprint; the
+# target is a hand-tinted ENGRAVING — line-and-hatching with a light selective
+# tint, colour subordinate to the line, NOT a flat woodblock/screenprint. The
+# medium term "a hand tinted engraving" carries that whole discipline, so the
+# suffix is exactly that phrase + Tenniel and NOTHING else — no adjective pile,
+# no clause stack, no safety tail. Let the anchor do the work.
+# Appended to every non-portrait render; portraits use portrait_positive_suffix.
 # =============================================================================
 
-positive_suffix: >-
-  fine pen-and-ink line illustration in the style of John Tenniel, 1865, crisp
-  confident black outlines, light open linework, plenty of bare cream paper,
-  open unmarked sky, a restrained selective hand-tinted wash in a few muted
-  colours over the black line on warm cream paper. No text, no caption, no
-  title, no writing, no signature, no labels, no watermark, no border, no frame.
+positive_suffix: an engraving in the style of John Tenniel, black ink on cream paper
+
+# PORTRAIT-ONLY SUFFIX (2026-06-04, Keith): the portrait look is matched to the
+# PROVEN persona-theme prompt Keith likes — the alice-in-wonderland theme's
+# `portrait_style` in pennyfarthing (personas/themes/alice-in-wonderland.yaml),
+# which renders crisp crosshatched BLACK-INK Tenniel engravings (cf. the White
+# Knight avatar). The earlier portrait suffix added "a restrained selective
+# hand-tinted wash in a few muted colours" — that colour wash was the culprit
+# that flattened portraits into FLAT screenprints instead of line-and-hatching
+# engravings, so it is GONE here: portraits are black ink on cream paper, NO
+# colour wash. (The world positive_suffix above still hand-tints POIs; portraits
+# do not — a portrait is a face, not a scene, and reads best as pure ink.) We
+# keep the single-figure crowd-suppression clause because the period-costume
+# nouns in each appearance (waistcoat, frock coat, court dress) can summon
+# Tenniel's Punch crowd scenes and Z-Image sends NO negative prompt. Honored by
+# render_common.resolve_suffix AND the daemon's catalog-compose path
+# (StyleCatalog.get_world_portrait); a world without this key falls back to
+# positive_suffix.
+portrait_positive_suffix: >-
+  John Tenniel wood-engraving illustration, fine crosshatching and hatched
+  shading, 1865 original-edition style, black ink on cream paper. A single figure
+  alone against a plain bare cream-paper background, no extra figures, no
+  background crowd.
 
 base_seed: 1865
