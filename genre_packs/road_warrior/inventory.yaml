@@ -264,10 +264,15 @@ item_catalog:
     narrative_weight: 0.3
 
   # Personal Weapons
+  # CWN personal-combat damage specs (epic 86 Plan 1): driver-on-foot combat
+  # resolves on the ablative HpPool, so these carry real weapon damage. Melee
+  # weapons add a Shock rating (chip on a miss vs low-AC). Rig/mounted weapons
+  # above and the rig vessels below stay damage-less — rig combat is Plan 2.
   - id: tire_iron
     name: Tire Iron
     description: "Melee. Better than nothing."
     category: weapon
+    damage: {dice: "1d4", bonus: 0, trauma_die: "1d6", trauma_rating: 2, shock: 1, shock_ac: 13}
     value: 1
     weight: 1.5
     rarity: common
@@ -280,6 +285,7 @@ item_catalog:
     name: Chain
     description: "Melee. Good reach. Classic road warrior accessory."
     category: weapon
+    damage: {dice: "1d6", bonus: 0, trauma_die: "1d8", trauma_rating: 2, shock: 2, shock_ac: 15}
     value: 1
     weight: 2.0
     rarity: common
@@ -292,6 +298,7 @@ item_catalog:
     name: Sawed-off Shotgun
     description: "Two shots. Make them count."
     category: weapon
+    damage: {dice: "3d4", bonus: 0, trauma_die: "1d8", trauma_rating: 3}
     value: 8
     weight: 2.0
     rarity: uncommon
@@ -304,6 +311,7 @@ item_catalog:
     name: Crossbow
     description: "Silent. Reusable ammo. Slow to reload."
     category: weapon
+    damage: {dice: "1d8", bonus: 0, trauma_die: "1d8", trauma_rating: 2}
     value: 6
     weight: 2.5
     rarity: uncommon
@@ -316,6 +324,7 @@ item_catalog:
     name: Pistol
     description: "Sidearm. Limited ammo is the real constraint."
     category: weapon
+    damage: {dice: "1d6", bonus: 0, trauma_die: "1d8", trauma_rating: 2}
     value: 7
     weight: 1.0
     rarity: uncommon
