@@ -296,7 +296,17 @@ chapters:
             a dead-straight canal of shining water ruled across ochre desert,
             bordered by crimson farmland, a pumping-station, distant scarlet
             towers, rose-violet sky.
-    tropes: []
+    # Chapter clocks (ids from worlds/barsoom/tropes.yaml — the world list is
+    # the whole resolved pool; genre doom-tropes never reach Barsoom). The
+    # tribute quarrel and the thin air are both already in the chapter's
+    # stakes; they start dormant and tick from play.
+    tropes:
+      - id: zodanga_moves_against_helium
+        status: dormant
+        progression: 0.0
+      - id: the_atmosphere_plant_falters
+        status: dormant
+        progression: 0.0
 
   - id: the_south
     label: "Down the River of Death"
@@ -491,7 +501,16 @@ chapters:
             a golden dais wreathed in incense in a black-and-gold temple
             hall, kneeling captives and jeweled black guards, dim crimson
             radium light.
-    tropes: []
+    # The pilgrim has already taken the river (chapter stakes) — that is the
+    # 0.5 escalation of the pilgrimage clock. The thinning air has reached
+    # the academies' pooled barometers (0.2).
+    tropes:
+      - id: the_pilgrimage_must_be_answered
+        status: progressing
+        progression: 0.5
+      - id: the_atmosphere_plant_falters
+        status: progressing
+        progression: 0.2
 
   - id: the_north
     label: "Ice, Domes, and the Dreaming City"
@@ -678,4 +697,14 @@ chapters:
             a ruined white-marble city above a dry ochre sea-basin, a rank of
             luminous half-translucent phantom archers among the colonnades,
             rose-violet sky.
-    tropes: []
+    # Endgame clocks: the world kept dying while the party crossed the poles.
+    # The plant is sealed with its trouble inside (0.5); the twin cities'
+    # fleets hold exercises within sight of each other's borders (0.6) — the
+    # homecoming the far north is racing against.
+    tropes:
+      - id: the_atmosphere_plant_falters
+        status: progressing
+        progression: 0.5
+      - id: zodanga_moves_against_helium
+        status: progressing
+        progression: 0.6

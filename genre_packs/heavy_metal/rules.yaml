@@ -2,11 +2,21 @@ stat_generation: point_buy
 point_buy_budget: 27
 magic_level: high
 
-# 5e scaffolding (allowed_classes / allowed_races / banned_spells /
-# default_race) was removed in the WWN port (story 87-2). Classes are now
-# defined in classes.yaml (the 5 faithful-WWN Callings); races are world-tier
-# (genre cultures.yaml is []); WWN gates spell access by class spell list, not
-# a ban list.
+# Most 5e scaffolding (allowed_races / banned_spells / default_race) was
+# removed in the WWN port (story 87-2): races are world-tier (genre
+# cultures.yaml is []) and WWN gates spell access by class spell list, not a
+# ban list. allowed_classes was RESTORED 2026-06-05 (barsoom playtest): it is
+# not 5e residue — encountergen's humanoid-enemy path exits 1 without it, and
+# the loader validates every listed class declares encounter_beat_choices.
+# Keep it in sync with classes.yaml display names (EH keeps the same field).
+allowed_classes:
+  - Warrior
+  - Expert
+  - Necromancer
+  - Elementalist
+  - Pact-born
+  - Mentalist
+  - Super-scientist
 
 custom_rules:
   rest_variant: gritty_realism
