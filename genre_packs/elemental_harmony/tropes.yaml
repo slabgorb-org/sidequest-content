@@ -1,0 +1,128 @@
+# Genre-Level Tropes — Elemental Harmony
+#
+# Genre/world boundary correction (epic 94, supersedes ADR-120
+# "mechanics-in-genre"): the genre tier is the RULEBOOK only, and abstract
+# macro-tropes (`abstract: true`) are rulebook scaffolding — universal narrative
+# patterns that every world SPECIALIZES via `extends:`. They are never emitted
+# directly (resolve_trope_inheritance uses them only as the parent pool); the
+# concrete, world-specific tropes that the table actually sees live at the world
+# tier (worlds/<world>/tropes.yaml).
+#
+# These six abstract parents were deleted by the 2026 flavor-migration
+# (content commit b3bc387) but their world children still `extends:` them, which
+# broke the entire pack load (GenreMissingParentError). They are recovered here
+# verbatim from b3bc387^:genre_packs/elemental_harmony/tropes.yaml. This mirrors
+# the un-migrated mutant_wasteland pack, whose abstract parents
+# (Dead Signal / Mutation Tide) remain genre-tier inheritance base.
+
+# ============================================================
+# ARCHETYPES — abstract inheritance base, specialized by world tropes
+# ============================================================
+
+- name: The Mentor
+  abstract: true
+  category: recurring
+  tags: [mentor, identity, cost-of-knowledge]
+  triggers:
+    - player asks to be taught a new technique
+    - player encounters a problem beyond their current ability
+    - player discovers something about the mentor's past
+  narrative_hints:
+    - lessons must emerge from stakes, not sitting — the mentor teaches through action
+    - every lesson has a cost — visibility, debt, or truth revealed
+    - the mentor is also learning something from the student
+  resolution_patterns:
+    - the student surpasses the mentor in a way the mentor did not expect
+    - the mentor's past catches up and forces a reckoning
+    - the mentor's final lesson is absence — the student must stand alone
+  tension_level: 0.5
+
+- name: The Corruption
+  abstract: true
+  category: conflict
+  tags: [political, conspiracy, power]
+  triggers:
+    - player discovers an institution is acting against its stated purpose
+    - player witnesses authority figures abusing power over civilians
+    - player uncovers evidence of systemic corruption
+  narrative_hints:
+    - corruption is structural, not individual — removing one bad actor changes nothing
+    - the corrupt system offers the player something real in exchange for compliance
+    - the people harmed by the system have their own agency and plans
+  resolution_patterns:
+    - the system is reformed from within by those it tried to crush
+    - the system collapses under its own contradictions
+    - the players build something new to replace what was broken
+  tension_level: 0.6
+
+- name: The Prophecy
+  abstract: true
+  category: revelation
+  tags: [prophecy, spiritual, destiny]
+  triggers:
+    - player learns of a prophecy or ancient prediction
+    - player's actions accidentally fulfill part of a prophecy
+    - player meets someone who claims to know their destiny
+  narrative_hints:
+    - prophecies are ambiguous — multiple interpretations are always valid
+    - the prophecy may describe what will happen, not what should happen
+    - characters who try to force a prophecy often cause the opposite
+  resolution_patterns:
+    - the prophecy is fulfilled in a way no one expected
+    - the prophecy was a mistranslation or misunderstanding all along
+    - the player chooses to defy the prophecy and pays the cost
+  tension_level: 0.7
+
+- name: The Coming of Age
+  abstract: true
+  category: recurring
+  tags: [coming-of-age, identity, moral-dilemma]
+  triggers:
+    - player faces a choice between duty and personal desire
+    - player must act without guidance from authority figures
+    - player's childhood beliefs are challenged by reality
+  narrative_hints:
+    - the choice is real — both options have genuine value and genuine cost
+    - adults in the story are not infallible; their failures are instructive
+    - growing up means accepting complexity, not choosing a side
+  resolution_patterns:
+    - the character defines themselves through an irreversible choice
+    - the character reconciles opposing values into something new
+    - the character accepts loss as the price of growth
+  tension_level: 0.5
+
+- name: The Resistance
+  abstract: true
+  category: conflict
+  tags: [political, military, villages]
+  triggers:
+    - player encounters a community under threat from a larger power
+    - player is asked to help defend people who cannot defend themselves
+    - player must choose between direct action and strategic patience
+  narrative_hints:
+    - the resistance is not unified — internal disagreements are real
+    - victory through violence creates new problems
+    - the occupiers have individuals who doubt their own mission
+  resolution_patterns:
+    - the resistance succeeds through cost the players feel
+    - the larger power withdraws for reasons unrelated to the resistance
+    - the players negotiate a compromise that satisfies no one fully
+  tension_level: 0.6
+
+- name: The Spirit Crisis
+  abstract: true
+  category: climax
+  tags: [spiritual, environmental, prophecy]
+  triggers:
+    - player encounters a breach between the physical and spirit worlds
+    - player witnesses elemental imbalance affecting the natural world
+    - player's channeling begins behaving unpredictably
+  narrative_hints:
+    - the spirit world has its own politics and factions
+    - imbalance is not evil — it is a symptom of something deeper
+    - fixing the imbalance requires understanding, not force
+  resolution_patterns:
+    - balance is restored through sacrifice or compromise
+    - the boundary between worlds is permanently changed
+    - the player becomes a bridge between worlds
+  tension_level: 0.8
