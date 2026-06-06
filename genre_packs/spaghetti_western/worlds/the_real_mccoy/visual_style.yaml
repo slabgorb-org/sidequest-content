@@ -1,0 +1,189 @@
+# The Real McCoy — visual style (1878 Pittsburgh industrial-western gaslight override of the genre frontier look)
+# THIS IS NOT THE BORDER FRONTIER. dust_and_lead is sun-bleached desert; this world is the opposite — a
+#   soot-and-steel river city under a coal-smoke inversion eleven months a year. "Hell with the lid taken
+#   off" (James Parton, Atlantic Monthly, 1868). The light here is gaslight, Bessemer flare, and overcast
+#   coal-haze, NOT desert midday. Keep the desert out via the positive "1878 Pittsburgh coal-smoke" anchor,
+#   NOT a "no desert" list (see below).
+# Z-Image Turbo: negative_prompt is inert at guidance_scale=0, so every "don't" must live in the positive
+#   text. Two consequences (see ../../../PROMPTING_Z_IMAGE.md): (1) object-negations BACKFIRE — "no cactus /
+#   no cowboy hat / no desert" can SUMMON the thing — so we keep the frontier out by ANCHORING to the
+#   industrial city, NOT by negating the frontier. (2) The only tail clause is META-ARTIFACT suppression
+#   (no watermark / caption / title / page-numbers / signature), NOT a blanket "no text": this world is full
+#   of period in-world signage (Fraktur shop boards, brewery drays, gilt window lettering, broadsheets) and
+#   we WANT it, so text is not suppressed.
+#   The suffix is STYLE/MEDIUM/PALETTE ONLY — no scene content.
+#   All scene content (what a place IS, its props, the train cars, the mills, signage, crowds, staging)
+#   lives in the per-region / per-landmark / per-train-car visual_prompt fields in cartography.yaml and the
+#   visual_tag_overrides / scene_registers blocks below — NOT here. Do NOT add mills or crowds to this
+#   always-applied suffix: it would wrongly inject furnaces and street mobs into interior scenes (the
+#   workshop bench, the medical car, the séance demonstration parlor).
+# Signage is WELCOME period texture, not suppressed. 1878 Pittsburgh was visually dense — painted shop
+#   boards, German Fraktur window signage in Deutschtown and the Strip, gilt-lettered bow windows, brewery
+#   dray lettering, layered broadsheets and the McCoy Industries press broadsides. Author it into the
+#   per-region prompts as painted/printed period lettering, weathered with soot; plausible gibberish
+#   lettering reads fine as a teeming industrial city. The ONE hard rule: NEVER put a literal snake_case
+#   slug or a region/landmark name rendered as a title/caption into any prompt — describe scenes, not labels.
+# Palette tokens (bessemer_orange, fog_grey_white, cemetery_slate, gaslight_amber, coal_smoke_sepia) are
+#   already used by name across cartography.yaml's region/landmark/train-car prompts — this file is their
+#   canonical source. Keep them in sync.
+# Slugs canonicalized by world-builder to match cartography region keys.
+
+positive_suffix: 1878 Pittsburgh, coal-smoke inversion over three rivers, hell with the lid taken off,
+  hand-tinted albumen photographic plate over wet-collodion grain, slightly soft daguerreotype focus,
+  monochrome coal-smoke sepia with cemetery-slate cool shadows and warm gaslight-amber and bessemer-orange
+  highlights, industrial soot pall, gaslight and furnace-flare ambient light. No watermark, no caption,
+  no title, no page numbers, no signature.
+negative_prompt: ''
+preferred_model: dev
+base_seed: 1878
+palette:
+  coal_smoke_sepia: '#4b4439'
+  bessemer_orange: '#e07a2c'
+  furnace_glow: '#c44a1e'
+  gaslight_amber: '#d49a44'
+  pintsch_gas_warm: '#e6c074'
+  river_iron_pewter: '#9aa0a0'
+  fog_grey_white: '#cfd0c8'
+  cemetery_slate: '#525a60'
+  soot_brick_red: '#6e3f30'
+  mahogany_warm: '#5a3320'
+  brass_polish: '#b08a3c'
+  mourning_jet: '#15120e'
+  arsenal_grey: '#4d5358'
+palette_usage:
+  sky_default: coal_smoke_sepia
+  sky_industrial_night: mourning_jet
+  furnace_accent: bessemer_orange
+  furnace_deep: furnace_glow
+  interior_warm: gaslight_amber
+  interior_pintsch: pintsch_gas_warm
+  interior_cold: cemetery_slate
+  river_water: river_iron_pewter
+  fog: fog_grey_white
+  masonry_tone: soot_brick_red
+  woodwork_tone: mahogany_warm
+  metal_accent: brass_polish
+  shadow: mourning_jet
+  institutional_grey: arsenal_grey
+medium_primary: hand-tinted 1870s albumen photographic plate over wet-collodion silver grain, daguerreotype
+  stillness, soft shallow focus, monochrome coal-smoke sepia warmed at the gaslight and cooled at the slate
+  shadows, in the register of a period Pittsburgh studio view darkened by industrial soot
+medium_secondary_industrial_engraving: 1870s illustrated-weekly wood-engraving register, fine ink linework
+  on sepia, engraved crosshatching, monochrome, in the manner of a Harper's Weekly or Scientific American
+  industrial plate — used for wide exterior mill, river, and rail-yard views and for cabinet-card character
+  portraits
+medium_tertiary_furnace_flare: long-minutes Bessemer-blow flare register, an orange geyser of sparks against
+  a pure coal-black night sky, hard furnace-orange rim light raking every figure and reflected wet on
+  cobbles and river — used for Edgar Thomson, the Eliza and Lucy furnaces, and any night mill scene
+period_anchor: spring 1878, Pittsburgh and Allegheny City, Allegheny County, Pennsylvania
+period_constraints:
+  technology_ceiling: 1878 — gaslight and Pintsch-gas interior lamps, kerosene lamps, Bessemer converters,
+    blast furnaces, funicular inclines, steam locomotives, telegraph, the first experimental Brush arc-lamp
+    standards just appearing; no incandescent bulb in general service, no telephone in general service, no
+    automobile, no paved asphalt, no steel-frame skyscraper
+  clothing_ceiling: 1878 — frock and sack coats, waistcoats, stovepipe and homburg and bowler hats, work
+    shirts and flannel and leather aprons for the mill hands, German loden and leather suspenders, floor-length
+    bustled or plain day-dresses, bonnets and shawls for women; no Edwardian line, no 20th-century dress, no
+    frontier cowboy duster or sombrero
+  architecture_ceiling: 1878 — soot-blackened red-brick warehouses four and five storeys, Italianate
+    commercial fronts in cream sandstone darkened to charcoal, Second-Empire mansard mansions, Civil-War-era
+    arsenal brick, Gothic-Revival churches, two-storey frame workers' rowhouses; no cast-iron skyscraper, no
+    steel frame, no Beaux-Arts, no adobe, no timber false-front frontier storefront
+  photography_medium: wet-collodion albumen print and the new gelatin dry plate just arriving; hand-tinting
+    over monochrome; no film roll, no halftone, no color photography
+  illumination_real: gaslight (street standards and interiors), Pintsch compressed-gas car lamps, kerosene
+    lamp, Bessemer and blast-furnace flare, the first experimental Brush arc lamps — no incandescent general
+    service, no arc-light street grid yet
+visual_tag_overrides:
+  industrial_riverfront: a wide soot-grey river at dawn between close-crowding four- and five-storey
+    red-brick warehouses, coal barges moored two-deep at timber wharves in the foreground, crosshatched
+    rail yards running along the far bank, a low iron truss bridge in the middle distance with gaslamps
+    still burning and doubled in the water, a river-fog layer pressing low and a coal-smoke inversion layer
+    hanging above it not quite mixing, gulls over the warehouse roofs, coal-smoke sepia sky
+  bessemer_works_night: a Bessemer steelworks at night on a wide river bend, blast furnaces lined along the
+    bank with their stacks crowned in bessemer-orange flare, a converter vessel tipped mid-blow throwing a
+    minutes-long geyser of orange sparks against a pure coal-black sky, a rolling mill with long shed roofs,
+    a glowing steel rail on the hot line with steam rising, the entire river bend reflecting furnace-orange,
+    coke-laden flatcars on a siding, furnace-orange rim light on every wet cobble
+  gaslit_commercial_avenue: a wide Italianate commercial avenue at midday, cream sandstone bank and hotel
+    fronts darkened by soot with wrought-iron balconies and dark-green shuttered windows, streetcar rails
+    down the centre, a horse-drawn coal dray and a passenger streetcar in the middle distance, gaslight
+    standards every sixty feet and a single experimental Brush arc-lamp standard at the far corner,
+    newspaper-boys in flat caps with broadsheets on the foreground corner, coal-smoke sepia sky
+  steep_brick_ridge_street: a cobblestone street climbing a steep ridge in late afternoon, close-packed
+    two- and three-storey red-brick rowhouses with painted wooden stoops and tall narrow windows flanking
+    both sides, a red-brick church with a white bell tower at the crest, figures in frock coats and bonnets
+    on uneven plank sidewalks, a lamplighter reaching a gaslamp with a long brass pole, damp cobbles
+    catching the first gaslight-amber, ground-floor storefront signage, coal-smoke sepia sky above
+  ridgetop_incline_overlook: a panoramic ridgetop overlook at dusk four hundred feet above a river valley,
+    a cherry-wood funicular incline car cresting a thirty-degree grade with its gaslit interior glowing
+    amber, the city valley spread below with thousands of gaslamp pinpricks along three rivers, a distant
+    bessemer-orange furnace flare bleeding through the haze on the far horizon, iron bridge trusses in the
+    middle distance, coal-smoke haze thickening into fog-grey-white, deep amber-to-indigo sky above
+  mansard_old_money_street: a wide cobblestone street in late-afternoon rain, Second-Empire mansard-roofed
+    red-brick mansions set back behind wrought-iron fences and lamp-topped gateposts, mature sycamores and
+    magnolias dark with rain, cream sandstone facades softened by mist and flaked at the cornices, a black
+    closed carriage with matched bays at a carriage sweep, forest-green iron fencing with ornate finials,
+    gaslamps already lit and doubled in puddles, cemetery-slate cool light with no warmth
+  rail_siding_at_night: a private varnished six-car train at a rail siding at dusk, a matte-black 4-4-0
+    locomotive with polished brass fittings and a tall diamond stack trailing a steam plume at the head,
+    mahogany Pullman cars with brass railings and small gold-leaf flank lettering, coal-smoke drifting
+    along the rooflines, a single Brush arc-lamp standard casting hard white light and crushed coal-black
+    shadows beneath the trucks, a yard switcher idle on a parallel track, a brick yard office with amber
+    lamplight in the far background, a nightwatch lantern swinging along the consist
+  arsenal_yard: a federal arsenal on a wide cobblestone street in late afternoon, long Civil-War-era
+    red-brick workshop buildings with low-pitched slate roofs behind a tall brick perimeter wall, black
+    crenellated iron gates flanking a central entrance, a padlocked yard with empty timber munitions racks
+    and a rusted powder cart visible through the gate, faded brass ordnance plates on the nearest doors, a
+    flagpole on the parade ground beyond, a uniformed sentry in blue wool at a small stone guardhouse,
+    arsenal-grey institutional light, coal-smoke sepia sky
+scene_registers:
+  interior_rolling_laboratory: the interior of a thirty-foot Pullman-length rail car converted to a
+    laboratory, long polished walnut benches with iron-strap edges running both walls, a brass microscope
+    on a gimbal mount and a Crookes tube glowing faint violet in a walnut cradle, a lit acetylene brazing
+    torch on a ceramic pad beside an iron vise, coils of gutta-percha wire on hooks, a drafting board with
+    pinned blueprints on the end wall, a small Franklin stove venting at the aft end, gaslight-amber overhead
+    with a violet corona at the tube, warm and close, a medium interior shot
+  interior_study_warm: the interior of a private drafting-room rail car, mahogany-and-walnut panelling to a
+    coffered ceiling, a draftsman's table with T-square and parallel-rule across an unrolled blueprint, a
+    green-shaded banker's oil lamp pooling warm gaslight-amber across a blotter, floor-to-ceiling bookshelves
+    of leather-bound volumes behind the desk, a brass globe on a stand in the corner, a small framed
+    daguerreotype angled toward the chair, warm gaslight-amber on mahogany, a still close composition
+  interior_clinic_clean: the interior of a clinical rail car, a white-enamelled-iron examining table at
+    centre with a sterile white cloth, a Lister carbolic-spray apparatus and a Chamberland steam autoclave
+    on side benches, gauze and catgut in labelled glass jars in a glass-fronted cabinet, a brass microscope
+    on a walnut stand, two curtained observation cots at the aft end, deliberately cream-and-white painted
+    walls breaking from the train's warm mahogany — the clean car — bright cool gaslight, a thin carbolic-and-
+    lavender air, a medium interior shot
+  interior_demonstration_parlor: the interior of a downtown demonstration parlor, dark forest-green flocked
+    wallpaper with a gold cornice border, a polished mahogany table supporting a complex brass mechanical
+    apparatus of interlocked flywheels under a half-lifted brocade cover, a brass-stanchioned velvet rope
+    cordoning the table, heavy dark-green drapes drawn three-quarters, a six-shade gaslight chandelier
+    pouring dramatic warm amber, two burgundy-plush walnut chairs facing the table, hushed and theatrical,
+    a close low-light composition
+  interior_press_room: the interior of a hotel basement press-room, a Hoe-type revolving press and a hand
+    press on an ink-stained plank floor, type cases and a composing stone along the left wall, stacks of
+    damp McCoy Industries broadsides and folded newssheets on a side table, a single gaslight jet and a
+    kerosene lamp pooling amber on inky wood, a compositor in shirtsleeves and a leather apron at the case
+    in shallow focus, soot and printer's-ink smell implied, a medium interior shot
+  exterior_hiring_line: a frozen-instant frame of a mill hiring line at the lee of a blast furnace, loose
+    rows of working men in flannel and wool caps waiting in churned mud in the foreground, a foreman's
+    table with a clerk examining an applicant through a brass-rimmed optic, the furnace stack venting
+    bessemer-orange flare behind, rejected men walking back along the railroad grade in the middle distance
+    without speaking, coal-smoke sepia over furnace-orange haze, quiet operatic Leone-tight tension
+  exterior_riverfog_dawn: a riverfront street at pre-dawn with fog-grey-white pressing down between leaning
+    soot-blackened brick fronts, a single gaslamp still burning and doubled in a black puddle, a lone figure
+    in a long coat emerging from the mist in the middle distance, wet cobbles and a coal dray's ruts in the
+    foreground, the coal-smoke inversion hanging above the river-fog, cold wet stillness, a long composition
+    compressed by haze
+  standoff: a frozen-instant Leone-tight standoff in a soot-grey rail yard or mill yard, two figures squared
+    off at distance in long coats and work caps, hands near their weapons, a wary knot of men pressed back
+    against a brick wall or a parked Pullman flank, wet cinder-and-mud ground between them, a single Brush
+    arc-lamp or gaslight standard, a distant bessemer-orange flare on the horizon, low coal-smoke sky, breath
+    held, extreme tension in extreme stillness
+typography:
+  plate_caption: Clarendon (slab-serif, period playbill and patent-gazette headline)
+  newspaper_masthead: Caslon display + engraved ornament
+  german_supplement: Fette Fraktur (Deutschtown and Strip shop signage, Volksblatt supplement)
+  broadside_display: Victorian fat-face wood type
+  patent_record: engraved copperplate script
