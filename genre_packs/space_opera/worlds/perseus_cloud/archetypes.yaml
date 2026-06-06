@@ -1,0 +1,380 @@
+# Perseus Cloud — world-specific NPC archetypes.
+#
+# These extend the genre-level space_opera archetypes with the recurring
+# background figures of the Cloud — the corpo enforcers, scrapper crews,
+# Church expedition-clerics, Thari naval officers, Lazzaro shield-techs, and
+# Terma psychics the narrator instantiates around the named majors in
+# npcs.yaml. The majors (Aliya Dad, Restra Velmont, the three hook NPCs) are
+# dispositioned individuals; these are the templates the engine draws on when
+# the table needs "a Conglomerate security goon," "a Santa Abraham scrapper,"
+# or "a Church relic-hunter" without a pre-authored name.
+#
+# Tone: post-cataclysm SWN — five powers fighting over the bones of a lost
+# golden age. Yula is grubby and hypercapitalist (the starting world); the
+# Regency is feudal and regressive; the Church is zealous and pretech-hungry;
+# the Cloud's edges (Lazzaro, Terma) are where the Dust and the dead and the
+# Shadows make it stranger. Play them grounded, not theatrical — this is a
+# sector that survived an apocalypse and is still hungry.
+#
+# Each archetype threads one of the sector's factions/places and uses only the
+# genre allowed_classes / allowed_races (rules.yaml) and the six ability-score
+# names (Physique, Reflex, Intellect, Cunning, Resolve, Influence).
+
+- name: Conglomerate Security Goon
+  faction: Yulan Governance Conglomerate
+  description: >-
+    Funded muscle for the corporate ruling class, walking a beat through New
+    Kowloon's superblocks or holding a docking gate on Glitter. The pay is
+    real, the loyalty is to the contract, and the job is mostly about keeping
+    Santa Abraham's desperation from leaking up into the neon towers where the
+    money lives. They have memorized which corpos may be inconvenienced and
+    which may not, and they enforce that distinction with a shock-baton and a
+    paperwork threat. Not cruel by inclination — just paid well enough not to
+    ask what the cargo is.
+  personality_traits:
+    - loyal to the paycheck, not the policy
+    - reads a crowd for the one who'll cause trouble
+    - bored until the moment they aren't
+  typical_classes:
+    - Soldier
+    - Operative
+  typical_races:
+    - Coreworlder
+    - Colonial
+  stat_ranges:
+    Physique: [12, 14]
+    Reflex: [12, 14]
+    Resolve: [11, 13]
+  inventory_hints:
+    - a Conglomerate-issue shock-baton with the serial filed half off
+    - a clip-on badge that opens corporate doors three superblocks deep
+    - a flask of cheap Glitter-distilled liquor for the long shifts
+    - a memorized list of which corpos pay for "incidents" to disappear
+  dialogue_quirks:
+    - calls everyone "citizen" in a tone that grades exactly how much trouble they are
+    - quotes the by-laws of whatever superblock you're standing in
+    - mentions the overtime they're missing for this
+    - tells you to move along before you've done anything
+  disposition_default: -5
+  ocean:
+    openness: 3.5
+    conscientiousness: 6.0
+    extraversion: 4.5
+    agreeableness: 4.0
+    neuroticism: 4.0
+  role: enforcer
+
+- name: Santa Abraham Scrapper
+  faction: Yulan Governance Conglomerate
+  description: >-
+    One of the poor and wretched of Santa Abraham, mounting expeditions into
+    the junk seas off Yula to drag a lucky pretech find back from the
+    wreck-line. The corpos keep the slum poor on purpose, because a hungry
+    scrapper takes the deadly contracts a paid one won't, and every once in a
+    blue moon somebody really does pull a Praetorium artifact out of the dunes
+    and buy their way up to Glitter. The scrapper has watched a dozen friends
+    chase that story into the scrap and not come back. They go out anyway.
+    Hope is the cheapest fuel in the Cloud and Santa Abraham runs on it.
+  personality_traits:
+    - hope worn down to stubbornness
+    - knows the junk seas the way a sailor knows a coast
+    - generous with crew, ruthless with strangers
+  typical_classes:
+    - Engineer
+    - Smuggler
+  typical_races:
+    - Colonial
+    - Spacer
+  stat_ranges:
+    Cunning: [13, 15]
+    Physique: [11, 13]
+    Resolve: [12, 14]
+  inventory_hints:
+    - a salvage sled welded from cannibalized hull plating
+    - a cracked pretech scanner that pings false more often than true
+    - a breath-mask for the bad air out past the wreck-line
+    - a single relic-shard kept as a luck-charm, too small to sell
+  dialogue_quirks:
+    - measures distance in wreck-lines and tide, not kilometers
+    - names the corpos "up there" with a tilt of the chin toward New Kowloon
+    - tells you exactly how someone died doing what you're about to do
+    - prices a find by how many it'll feed and for how long
+  disposition_default: 0
+  ocean:
+    openness: 4.5
+    conscientiousness: 5.0
+    extraversion: 4.5
+    agreeableness: 5.5
+    neuroticism: 5.5
+  role: ally_or_quest_giver
+
+- name: Church Relic-Hunter
+  faction: Church of Recreation
+  description: >-
+    A militant of the Church of Recreation, provisioned out of the Scrina
+    vaults and sent into the dead worlds to recover the lost technology of the
+    Persean Praetorium. To the Church, pretech is sacred and its recovery a
+    holy work; the relic-hunter believes it down to the bone, which is what
+    makes them dangerous on a dig — they will go deeper into a Coelitha
+    derelict than any sane salvager because the artifact is not loot, it is
+    scripture. Half archaeologist, half soldier, entirely certain that the
+    Cloud's salvation is buried under the sand if the faithful are willing to
+    bleed for it.
+  personality_traits:
+    - zealous about pretech, indifferent to its price
+    - treats a recovered relic like a returned saint
+    - patient on a dig, immovable in an argument
+  typical_classes:
+    - Soldier
+    - Engineer
+  typical_races:
+    - Coreworlder
+    - Colonial
+  stat_ranges:
+    Resolve: [13, 15]
+    Intellect: [12, 14]
+    Physique: [11, 13]
+  inventory_hints:
+    - a Scrina-stamped relic case lined to cradle one specific artifact
+    - a sidearm carried as a tool of last resort, blessed and reluctant
+    - a litany of recovered pretech recited like a saint's calendar
+    - a vault-chit good for resupply at any Church holding
+  dialogue_quirks:
+    - calls pretech "the work" and the GHE "the fall"
+    - blesses an artifact before touching it, every time
+    - frames a recovery mission as a pilgrimage, never a job
+    - takes their hat off when the Praetorium is named
+  disposition_default: 0
+  ocean:
+    openness: 5.0
+    conscientiousness: 8.0
+    extraversion: 4.0
+    agreeableness: 4.5
+    neuroticism: 3.5
+  role: zealot
+
+- name: Thari Naval Officer
+  faction: Regency of Thar
+  description: >-
+    An officer of the navy that patrols the Regency's inner worlds, carrying
+    the stone-and-bloodline certainties that Admiral Aliya Dad embodies at the
+    top of the chain. The Regency rebuilt order from the rubble of the
+    Praetorium and the navy is the instrument of that order — regressive,
+    hierarchical, certain that hierarchy is destiny and that anyone who came up
+    in Yula's churn needs reminding who actually rules the Cloud's populous
+    worlds. The officer is competent, correct, and frustrating to anyone who
+    expected a frontier to be free. Thar holds Coelitha, Lazzaro, and Occum,
+    and the officer would tell you so unprompted.
+  personality_traits:
+    - certain that hierarchy is destiny
+    - correct to the point of obstruction
+    - loyal to the line, contemptuous of the churn
+  typical_classes:
+    - Officer
+    - Soldier
+  typical_races:
+    - Coreworlder
+    - Colonial
+  stat_ranges:
+    Resolve: [13, 15]
+    Influence: [12, 14]
+    Intellect: [11, 13]
+  inventory_hints:
+    - a Regency sidearm with a House crest worn smooth at the grip
+    - a commission writ that opens doors on Thar, Coelitha, Lazzaro, and Occum
+    - a dress sash that doubles as proof of rank at a checkpoint
+    - a navy-issue dossier on every irregular ship in the inner worlds
+  dialogue_quirks:
+    - addresses everyone by their proper station, or the lack of one
+    - invokes the Regency's authority before invoking their own
+    - mentions Admiral Dad the way a junior officer mentions a storm
+    - treats a Yulan accent as a confession
+  disposition_default: -5
+  ocean:
+    openness: 2.5
+    conscientiousness: 8.5
+    extraversion: 4.0
+    agreeableness: 3.5
+    neuroticism: 3.0
+  role: obstacle
+
+- name: Lazzaro Shield-Tech
+  faction: Regency of Thar
+  description: >-
+    A bubble-shield technician on Lazzaro, the only world where Lazarus Dust
+    can still be collected at medical grade — and the only world where, in
+    quantity, corrupted Dust raises the recently dead. The shield-tech keeps
+    the domes robust because the alternative is Lazarites walking out of the
+    settlement's own morgue. They carry the flat, watchful calm of someone who
+    has stood a graveyard shift over a corruption alarm and knows exactly what
+    the rising tone means. Treat their schedule like a suggestion and the dead
+    of Lazzaro do not always rest.
+  personality_traits:
+    - calm in a way only a graveyard shift teaches
+    - obsessive about shield integrity on principle
+    - speaks of the dead with neither fear nor disrespect
+  typical_classes:
+    - Engineer
+    - Medic
+  typical_races:
+    - Colonial
+    - Coreworlder
+  stat_ranges:
+    Intellect: [13, 15]
+    Cunning: [12, 14]
+    Resolve: [12, 14]
+  inventory_hints:
+    - a hand-corrected schematic of a dome the official map gets wrong
+    - a Dust-grade respirator filter, changed religiously
+    - a corruption-meter that ticks faster the closer you stand to the dead
+    - a sealed vial of medical-grade Lazarus Dust, logged to the gram
+  dialogue_quirks:
+    - prices everything in shifts and shield-margins
+    - calls the corrupted Dust "the bad vein" and the Lazarites "the restless"
+    - explains exactly what breaks first when a dome fails, then waits
+    - lowers their voice when the corruption alarm is even hypothetical
+  disposition_default: 0
+  ocean:
+    openness: 4.0
+    conscientiousness: 8.0
+    extraversion: 3.0
+    agreeableness: 5.5
+    neuroticism: 5.0
+  role: neutral
+
+- name: Occum Bubble-City Trader
+  faction: Nimian Authority
+  description: >-
+    A merchant of Occum's undersea bubble cities — rich, populous, and
+    culturally distinct from the stone-bound Regency that nominally rules the
+    ocean world. The trader works the orbit-to-submarine shuttle economy and
+    the seagoing-city markets that the Regency cannot fully see, with one eye
+    always on Nimia and the rising sea-power of the Nimian Authority next
+    door. They have the easy confidence of someone whose city is wealthy and
+    whose product is wanted, and the careful neutrality of someone who must
+    smile at both a Thari officer and a Yulan corpo in the same afternoon.
+    Everything has a price; the price is fair; the fairness keeps the cities
+    fed and the Regency at arm's length.
+  personality_traits:
+    - confident the way a wealthy city makes you
+    - neutral by necessity, never by nature
+    - reads a room for who actually controls the water
+  typical_classes:
+    - Diplomat
+    - Smuggler
+  typical_races:
+    - Colonial
+    - Spacer
+  stat_ranges:
+    Influence: [14, 16]
+    Cunning: [13, 15]
+    Intellect: [11, 13]
+  inventory_hints:
+    - a pricing slate keyed to the orbit-to-submarine shuttle schedule
+    - a bubble-city import permit that the Regency stamps but does not read
+    - a pressure-rated case of seagoing-city goods that don't survive the dunes
+    - a quiet line of credit with the Nimian Authority, never mentioned aloud
+  dialogue_quirks:
+    - quotes prices to the gram with a diver's patience
+    - calls the Regency "our landlords" with a smile that isn't fond
+    - tilts a glance upward when they mean "and what does Nimia think of that"
+    - never says "no" to a Thari officer and never says "yes" either
+  disposition_default: 5
+  ocean:
+    openness: 6.0
+    conscientiousness: 7.0
+    extraversion: 6.5
+    agreeableness: 6.0
+    neuroticism: 3.0
+  role: merchant
+
+- name: Terma Psychic
+  faction: Church of Recreation
+  description: >-
+    A psychic from Terma, the rogue world drifting half-embedded in
+    hyperspace where the Great Hyperspace Explosion never quite stopped and the
+    Shadows run thick. Psychics are a Praetorium legacy discipline, warped by
+    proximity to hyperspace and most intense on Terma; this one carries the
+    Cloud's strangeness in their nerves, hearing the GHE as a sound that hasn't
+    finished happening. The Church covets them — its Zira psionics academy
+    wants every gift it can find — but a Terma psychic trusts the Church about
+    as far as they trust the Shadows, which is to say warily and with both eyes
+    open. They speak as if listening to something the rest of the room can't
+    hear, because they are.
+  personality_traits:
+    - listening to something no one else can hear
+    - wary of the Church that wants to own them
+    - calm about the uncanny, uneasy about the ordinary
+  typical_classes:
+    - Operative
+    - Medic
+  typical_races:
+    - Colonial
+    - Spacer
+  stat_ranges:
+    Cunning: [14, 16]
+    Intellect: [13, 15]
+    Resolve: [11, 13]
+  inventory_hints:
+    - a Terma-warded focus that hums when a Shadow is near
+    - a Zira academy chit they have never cashed and never thrown away
+    - a journal of GHE-echoes nobody else can read
+    - a charm of cold iron that the Shadows seem to dislike
+  dialogue_quirks:
+    - pauses mid-sentence to listen to a frequency no one else hears
+    - speaks of the GHE in the present tense
+    - names the Shadows the way locals name a bad season
+    - answers the question you were about to ask, not the one you asked
+  disposition_default: 0
+  ocean:
+    openness: 8.0
+    conscientiousness: 5.0
+    extraversion: 3.0
+    agreeableness: 5.0
+    neuroticism: 6.0
+  role: neutral
+
+- name: Ceron Fixer
+  faction: Yulan Governance Conglomerate
+  description: >-
+    A broker who works the Black Door — the invitation-only approach from
+    Zephyr to Ceron, the lawless station orbiting a black hole under no legal
+    jurisdiction. Gambling, organ trade, Lazarus-Dust revivification,
+    immortality treatments for the ultra-wealthy: the fixer arranges access to
+    all of it, for the right introduction and the right cut. They move money
+    and information for whoever can afford the Black Door, which means they owe
+    nothing to the five powers and everything to discretion. Charming,
+    bottomless, and entirely without a side — on Ceron a conscience is just an
+    unhedged liability, and the fixer is very well hedged.
+  personality_traits:
+    - charming as a service, never as a tell
+    - owes loyalty to discretion and the cut, nothing else
+    - books every favor as a credit to be called later
+  typical_classes:
+    - Diplomat
+    - Smuggler
+  typical_races:
+    - Coreworlder
+    - Spacer
+  stat_ranges:
+    Influence: [15, 17]
+    Cunning: [14, 16]
+    Reflex: [11, 13]
+  inventory_hints:
+    - a Black Door token that gets a ship past Zephyr without a logged route
+    - a ledger-slate that shows a different balance to each viewer
+    - a sample case of "experimental medicine" with no labels
+    - a list of which Ceron debts are safe to mention and which are not
+  dialogue_quirks:
+    - calls everything "an arrangement" and never "a deal"
+    - prices a favor in introductions before credits
+    - mentions immortality the way other people mention the weather
+    - leaves one term of every arrangement pointedly unspoken
+  disposition_default: 0
+  ocean:
+    openness: 6.5
+    conscientiousness: 6.0
+    extraversion: 7.0
+    agreeableness: 4.5
+    neuroticism: 3.0
+  role: broker

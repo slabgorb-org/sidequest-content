@@ -173,3 +173,316 @@
     decelerators: [distance, ignore, trade, normal]
     accelerator_bonus: 0.04
     decelerator_penalty: 0.03
+
+- id: stranger_rides_in
+  name: The Stranger Rides In
+  description: >-
+    A drifter nobody can place arrives at the east end of Sangre del
+    Paso's main street under high noon. No name worth giving, no faction,
+    no past. Every power in the territory — the Sangre Rangers, Los
+    Cuervos, the Consolidated, the Families — wants to know which way
+    this stranger will break before deciding what to do about it. The
+    territory has no room for neutrality; it only tolerates it briefly.
+  category: social
+  triggers:
+    - the drifter making first contact with a faction
+    - townfolk testing the stranger's intentions or skills
+    - a faction extending an offer, a threat, or a job
+  narrative_hints:
+    - shutters closing as the rider passes down the street
+    - the saloon piano stopping mid-tune
+    - Deputy Harlan Dent approaching casually to gather intelligence
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        Silas Cobb buys the stranger a drink in the saloon and trades
+        in the only currency that matters out here — information. He
+        names the four factions, sketches who hates whom, and watches
+        which name makes the stranger's jaw tighten. He is taking notes
+        for whoever pays best.
+      npcs_involved: [The Broker]
+      stakes: First read on the stranger — friend, mark, or threat.
+    - at: 0.5
+      event: >-
+        Deputy Dent finds a reason to inspect the stranger's iron, then
+        a Cuervo scout in civilian clothes offers steady work across the
+        river, then a Consolidated man leaves a card and a number. Three
+        offers, three obligations, and the territory waiting to see which
+        one gets taken.
+      npcs_involved: [The Corrupt Authority, The Broker]
+      stakes: Every faction is bidding; neutrality is running out.
+    - at: 0.75
+      event: >-
+        The stranger does something that can't be taken back — defends
+        the Harwicks, runs guns for the Cuervos, or pockets Consolidated
+        coin. Word reaches every camp by sundown. Whoever was courting
+        the stranger now counts them an enemy, and the courting is over.
+      npcs_involved: [The Corrupt Authority, The Broker, The Frontier Padre]
+      stakes: A side is chosen, by deed if not by word.
+    - at: 1.0
+      event: >-
+        The stranger is no longer a stranger. The territory has a name
+        for them now, and a price, and a place in the war that's coming.
+        Father Mateo says a man becomes what the desert decides he is.
+        The desert has decided.
+      npcs_involved: [The Frontier Padre]
+      stakes: Anonymity is spent — the stranger is now a player.
+  passive_progression:
+    rate_per_turn: 0.015
+    rate_per_day: 0.03
+    accelerators: [stranger, drifter, offer, faction, reputation, choose]
+    decelerators: [leave, ride, vanish, neutral]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: bounty_on_your_head
+  name: A Bounty on Your Head
+  description: >-
+    Someone has put a price on the stranger. The poster goes up on the
+    courthouse wall beside Captain Stone's door, the number printed in
+    bold type. Solomon Cole's ledger is never wrong and his prey is
+    never seen again — and now there's a line in it with the stranger's
+    description. Every Contractor in the territory can read, and dust
+    travels faster than a man can ride.
+  category: conflict
+  triggers:
+    - a wanted poster appearing or a bounty being declared
+    - bounty hunters or Contractors making contact
+    - the stranger recognized by someone who reads the posters
+  narrative_hints:
+    - a fresh woodcut face nailed up at the courthouse
+    - strangers in town who watch the stranger and don't drink
+    - Solomon Cole's name spoken in a lowered voice
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        The poster goes up. The price is high enough that men who were
+        friendly yesterday calculate the arithmetic of betrayal today.
+        Deputy Dent reads it twice and says nothing. The first opportunist
+        — not a professional, just hungry — makes a clumsy try and fails.
+      npcs_involved: [The Corrupt Authority]
+      stakes: The whole territory now has a reason to sell you out.
+    - at: 0.5
+      event: >-
+        A real Contractor arrives — patient, professional, no wasted
+        motion. They don't draw in the street. They learn the stranger's
+        habits, watering holes, and weaknesses, and they wait for the
+        moment the odds are theirs. Solomon Cole has subcontracted, or
+        come himself.
+      npcs_involved: [The Hunter]
+      stakes: An amateur you survive; a professional you outthink or die.
+    - at: 0.75
+      event: >-
+        The bounty's source surfaces — the Consolidated wants the stranger
+        gone, or a faction wants a debt paid in blood. Cole closes the
+        distance. Allies become liabilities; anyone near the stranger is
+        collateral. The choice narrows to run, hide, or finish it.
+      npcs_involved: [The Hunter, The Instrument]
+      stakes: The hunt is personal now, and someone close will pay for it.
+    - at: 1.0
+      event: >-
+        It comes down to open ground and drawn iron. Solomon Cole's
+        ledger demands a closing entry, and only one name leaves it
+        crossed off. Whoever set the bounty learns whether their money
+        bought a corpse or an enemy who now knows their name.
+      npcs_involved: [The Hunter, The Instrument]
+      stakes: The bounty is collected, escaped, or turned back on its buyer.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.03
+    accelerators: [bounty, poster, hunter, cole, contract, wanted, ledger]
+    decelerators: [hide, disguise, clear, pardon]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: the_standoff
+  name: The Standoff
+  description: >-
+    Sooner or later the talking stops and two parties face each other
+    across open ground with their hands near their guns. It happens at
+    the acequia gate over water, on the main street over pride, at the
+    three-way fork south of town over everything. In the Sangre Territory
+    a standoff is not a failure of negotiation — it is negotiation, the
+    last and most honest kind. Someone blinks, or someone bleeds.
+  category: conflict
+  triggers:
+    - two armed parties confronting each other directly
+    - a grievance escalating past the point of words
+    - an ultimatum delivered with hands near holsters
+  narrative_hints:
+    - the street emptying of everyone who isn't a target
+    - a hand drifting to a holster and going still
+    - the long silence before the first move
+  tension_level: 0.6
+  escalation:
+    - at: 0.25
+      event: >-
+        The first hard confrontation — the chained acequia gate, a cut
+        herd, an insult that can't be walked back. Both sides plant their
+        feet. Nobody draws yet, but everyone learns where everyone else
+        stands and how fast they reach. The line is drawn in the dust.
+      npcs_involved: [The Rancher]
+      stakes: First test of nerve — who flinches sets the price of the next.
+    - at: 0.5
+      event: >-
+        A standoff goes loud. Someone fires, on purpose or by nerves,
+        and now there's a body and a grudge with a name attached. The
+        Rangers arrive too late to prevent it and too few to punish it.
+        Every faction recalculates who they can afford to face.
+      npcs_involved: [The Rancher, The Weary Lawman]
+      stakes: Blood is spilled; the standoffs are real now, not posturing.
+    - at: 0.75
+      event: >-
+        Standoffs stack — at the mine, at the ford, on the main street
+        in the same week. Captain Stone can't be everywhere and isn't
+        enough anywhere. The territory tips toward the kind of day where
+        more than one fork in the road ends with men in the dirt.
+      npcs_involved: [The Weary Lawman, The Rancher]
+      stakes: Order collapses into a season of drawn guns.
+    - at: 1.0
+      event: >-
+        The defining standoff at the three-way ground south of town —
+        sun on the horizon, blinding the westward man, shadows reaching
+        east like fingers. Three approaches, three intentions, one
+        clearing with no cover. Whatever the territory becomes is decided
+        in the space between heartbeats before the first hand moves.
+      npcs_involved: [The Weary Lawman, The Rancher]
+      stakes: The campaign's reckoning, settled at gun's range.
+  passive_progression:
+    rate_per_turn: 0.013
+    rate_per_day: 0.03
+    accelerators: [standoff, draw, holster, confront, duel, street, fork]
+    decelerators: [back, negotiate, defuse, withdraw]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.04
+
+- id: gold_fever
+  name: Silver Fever
+  description: >-
+    The Consolidated Sierra Mine pulls silver out of the Sierra Perdida
+    and the smell of it poisons every judgment in the territory. Los
+    Cuervos raid the shipments. Desperate men sign on at killing wages.
+    The Apache call the mountain sacred and watch the wound widen. Silver
+    makes saints into thieves and partners into corpses; out here the
+    fever runs deeper than gold ever did, because the silver is real and
+    everyone has seen it.
+  category: greed
+  triggers:
+    - silver shipments, caches, or claims entering play
+    - a raid, theft, or double-cross over the metal
+    - someone offered a cut large enough to corrupt them
+  narrative_hints:
+    - a strongbox heavier than it should be
+    - men counting shares in a back room and trusting no one
+    - the Sierra Perdida mine working through the night
+  tension_level: 0.4
+  escalation:
+    - at: 0.25
+      event: >-
+        A silver shipment becomes a temptation. Los Cuervos hit it, or
+        someone proposes the stranger help — easy money, the company can
+        afford it, who'd miss one strongbox. The arithmetic of greed gets
+        whispered for the first time, and it sounds reasonable.
+      npcs_involved: [The Desperate Bandit]
+      stakes: The first taste — easy silver with a hidden price.
+    - at: 0.5
+      event: >-
+        The take is bigger than the takers can trust each other with.
+        Shares get counted, recounted, and disputed. A partner shorts a
+        partner. The Consolidated tightens its mine security and starts
+        treating every face as a thief. Suspicion spreads faster than the
+        silver does.
+      npcs_involved: [The Desperate Bandit]
+      stakes: Greed turns allies against each other.
+    - at: 0.75
+      event: >-
+        Blood gets spilled over the metal — a double-cross at the mine
+        entrance, an ambush at the canyon, a cache nobody admits to
+        knowing about. The Apache warning about the mountain stops being
+        superstition and starts looking like prophecy. The fever has a
+        body count now.
+      npcs_involved: [The Desperate Bandit, The Revolutionary]
+      stakes: The silver kills the people chasing it.
+    - at: 1.0
+      event: >-
+        The reckoning over the silver — who ends up holding it, who dies
+        for it, and whether the mountain the Apache guard was worth the
+        wound the Consolidated cut into it. The fever burns out the way
+        all fevers do: in the people it leaves standing and the ones it
+        doesn't.
+      npcs_involved: [The Revolutionary, The Desperate Bandit]
+      stakes: Final accounting of the silver — and of who sold their soul for it.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.025
+    accelerators: [silver, mine, shipment, claim, cache, greed, share]
+    decelerators: [share, return, refuse, walk]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: the_reckoning
+  name: The Reckoning
+  description: >-
+    Everything the stranger has done across the territory comes due at
+    once. The Consolidated burned the Harwick barn. Los Cuervos killed
+    a Ranger deputy. The Apache made a move on the mine. Old debts,
+    betrayals, and grudges converge in Viejo Cañón at dawn, where the
+    canyon walls glow red like a furnace. The territory has decided the
+    stranger is the fulcrum — and the reckoning bends toward whichever
+    way they push.
+  category: conflict
+  triggers:
+    - past choices forcing a final confrontation
+    - betrayed allies or hunted enemies converging
+    - factions calling in every debt at once
+  narrative_hints:
+    - a foreman's horse coming back without a rider
+    - spent brass and a bloodstain at the canyon ambush site
+    - every road out of the territory passing through someone who wants you dead
+  tension_level: 0.7
+  escalation:
+    - at: 0.25
+      event: >-
+        The first bill comes due. Someone the stranger trusted is dead
+        or has turned. Solomon Cole updates his ledger and starts hunting
+        in earnest. Captain Stone, honest and outgunned, admits he's
+        losing the territory and asks the stranger to choose a side while
+        choosing still means something.
+      npcs_involved: [The Instrument, The Weary Lawman]
+      stakes: The past stops being history and becomes a threat.
+    - at: 0.5
+      event: >-
+        Open conflict. The Consolidated burns out the Harwicks. Los
+        Cuervos launch their largest raid. Capitán Emilio Fierro proposes
+        an alliance against the company, and accepting it makes new
+        enemies as fast as it makes new friends. Indecision costs more
+        than any wrong choice.
+      npcs_involved: [The Revolutionary, The Instrument]
+      stakes: Every faction commits; the stranger must too.
+    - at: 0.75
+      event: >-
+        The reckoning reaches the canyon. An ambush at Viejo Cañón, the
+        mine in play, the Apache coalition forming on Rojo Mesa. People
+        the stranger cared about die. The territory's lines redraw
+        themselves in blood, and the only question left is who is still
+        standing when the dust settles.
+      npcs_involved: [The Instrument, The Revolutionary, The Weary Lawman]
+      stakes: The point of no return — the war is fully lit.
+    - at: 1.0
+      event: >-
+        The last reckoning. Every choice the stranger made converges into
+        a single dawn that reshapes the Sangre Territory. The railroad
+        comes or it doesn't. The factions break or hold. Not everyone
+        survives, and the question is whether anything worth saving does.
+        The canyon is beautiful at dawn. It does not care.
+      npcs_involved: [The Instrument, The Revolutionary, The Weary Lawman]
+      stakes: The territory's future, settled once and for all.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.03
+    accelerators: [reckoning, betray, debt, revenge, converge, final, dawn]
+    decelerators: [flee, postpone, mercy, peace]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.04

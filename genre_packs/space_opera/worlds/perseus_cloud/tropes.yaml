@@ -1,0 +1,406 @@
+# Perseus Cloud world tropes — a sector sealed off by the Great Hyperspace
+# Explosion, five powers fighting over the bones of the Persean Praetorium.
+#
+# These are the sector's living-world pressures: the Conglomerate's grip on
+# Yula, the Church's hunger for pretech, the Regency's regressive order, the
+# Dust and the dead on Lazzaro, the Shadows on Terma, and the slow question of
+# what the GHE actually was. Mechanical skeletons only — escalation beats,
+# triggers, tension dials. NPCs referenced (Aliya Dad, Restra Velmont) are
+# vault canon from npcs.yaml; factions and places are lore/cartography canon.
+#
+# Schema matches the sibling space_opera worlds (aureate_span, coyote_star):
+# id, name, description, category, triggers, narrative_hints, tension_level,
+# four-beat escalation, passive_progression.
+
+- id: the_churn_squeeze
+  name: The Churn Squeeze
+  description: >-
+    The Yulan Governance Conglomerate keeps Santa Abraham poor on purpose —
+    desperate scrappers take the deadly junk-sea contracts a paid crew won't.
+    But a lucky pretech find has the slum talking about climbing up to Glitter,
+    and the corpos in New Kowloon do not like the smell of hope. They are
+    tightening the screws: higher quotas, lower payouts, more security on the
+    wreck-line. The churn was always a machine for grinding people. Now it's
+    grinding faster.
+  category: conflict
+  triggers:
+    - working a salvage contract off Santa Abraham
+    - Conglomerate security cracking down in the junk seas
+    - a scrapper crew talking about a find big enough to buy out
+  narrative_hints:
+    - quota boards in Santa Abraham revised upward overnight
+    - Conglomerate goons patrolling the wreck-line in numbers
+    - a New Kowloon corpo paying to make an "incident" disappear
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        Payouts drop and quotas climb the same morning. A New Kowloon notice
+        calls it "market correction." A scrapper crew that pulled a real
+        pretech shard last week is told the assay came back worthless. Nobody
+        believes it. Everybody keeps working, because the alternative is the
+        bad air with no contract at all.
+      npcs_involved: []
+      stakes: The machine tightens; the desperate get more desperate.
+    - at: 0.5
+      event: >-
+        Conglomerate security seals a stretch of the wreck-line "for safety"
+        — the exact stretch where the rich finds have been turning up. The
+        scrappers who worked it are locked out. A fixer in New Kowloon is
+        quietly buying every shard that comes off it, at a fraction of value,
+        before the corpos can.
+      npcs_involved: []
+      stakes: The corpos are cornering the lucky vein and calling it law.
+    - at: 0.75
+      event: >-
+        A crew finds something big enough to matter — Praetorium-grade pretech,
+        the kind that buys a berth on Glitter and never looks back. Word gets
+        out before they can sell it quiet. Now the Conglomerate wants it, a
+        Church relic-hunter wants it, and Santa Abraham wants the crew to prove
+        the climb is real.
+      npcs_involved: []
+      stakes: One find against the whole machine — and everyone wants it.
+    - at: 1.0
+      event: >-
+        It comes to a head on the wreck-line: the crew, the corpo security, the
+        Church, and a slum that has finally decided it has nothing left to lose.
+        The find changes hands tonight, one way or another. Whoever walks away
+        with it decides whether Santa Abraham gets a story about escape — or
+        another about why nobody ever does.
+      npcs_involved: []
+      stakes: The churn breaks, or it claims one more crew to keep itself fed.
+  passive_progression:
+    rate_per_turn: 0.013
+    rate_per_day: 0.035
+    accelerators: [scrap, salvage, quota, corpo, conglomerate, junk, pretech]
+    decelerators: [negotiate, payout, bribe, withdraw]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: the_church_expedition
+  name: The Church Expedition
+  description: >-
+    The Church of Recreation provisions a militant expedition out of the Scrina
+    vaults to recover Praetorium pretech from the dead worlds — and this one is
+    going somewhere it shouldn't. To the Church, the technology of the fallen
+    civilization is sacred and its recovery a holy work; to everyone living on
+    or near the dig, it is armed zealots tearing open a tomb. The relic-hunters
+    will not turn back. The artifact, they are certain, is scripture buried in
+    the sand. The only question is who bleeds to bring it up.
+  category: conflict
+  triggers:
+    - encountering a Church relic-hunter or expedition
+    - a pretech site being claimed in the name of Recreation
+    - the Church invoking the recovery as holy work
+  narrative_hints:
+    - Scrina-stamped relic cases moving through a frontier dock
+    - Church militants blessing a dig site before breaking ground
+    - a Coelitha derelict marked with Recreation's vault-sigils
+  tension_level: 0.45
+  escalation:
+    - at: 0.25
+      event: >-
+        A Church expedition arrives at a site others were already working — a
+        Coelitha wreck-field, a buried Praetorium cache — and declares it
+        consecrated ground. The relic-hunters are polite, certain, and armed.
+        They offer the current diggers a blessing and a deadline to leave.
+      npcs_involved: [Barial Fen]
+      stakes: The faithful have claimed the tomb; the locals have a deadline.
+    - at: 0.5
+      event: >-
+        The dig goes deeper than is safe because the Church will not stop short
+        of the artifact. A derelict's old systems wake; the corrupting Dust
+        that buried the site stirs. A relic-hunter is lost to it and the
+        expedition treats the death as a martyrdom, not a warning, and digs on.
+      npcs_involved: [Barial Fen]
+      stakes: Zeal is outrunning sense, and the tomb is fighting back.
+    - at: 0.75
+      event: >-
+        The artifact is real — and bigger than the Church admitted. Word
+        reaches the Regency, which claims the world the dig sits on, and the
+        Conglomerate, which would pay a fortune to keep pretech out of zealous
+        hands. The expedition suddenly has three powers converging on it and a
+        relic it considers non-negotiable.
+      npcs_involved: [Barial Fen]
+      stakes: A holy recovery becomes a three-way contest over the dead.
+    - at: 1.0
+      event: >-
+        The artifact comes up out of the sand as the powers close in. The
+        Church will die before surrendering scripture; the Regency will not
+        cede its claim; the Conglomerate will buy or burn whoever holds it.
+        Whoever controls the relic when the dust settles changes what the
+        Church can arm, and what the Cloud believes the Praetorium left behind.
+      npcs_involved: [Barial Fen]
+      stakes: The fallen civilization's gift, fought over by the living.
+  passive_progression:
+    rate_per_turn: 0.011
+    rate_per_day: 0.03
+    accelerators: [church, relic, pretech, expedition, dig, derelict, recreation]
+    decelerators: [negotiate, withdraw, surrender, delay]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03
+
+- id: the_princess_and_the_poisoner
+  name: The Princess and the Poisoner
+  description: >-
+    The affair the sector will remember — a scandal in the Regency of Thar that
+    turns on Restra Velmont and Admiral Aliya Dad, whose conservatism is a
+    strongly regressive cultural force on the whole administration. A poisoning,
+    a bloodline, a navy that answers to old certainties: the inner worlds are
+    about to learn what happens when the Regency's hierarchy is threatened from
+    inside. The Admiral will protect the order. The order is the problem. (Vault
+    canon names the principals; the table writes the verdict.)
+  category: political
+  triggers:
+    - moving in Regency court circles on Thar
+    - a Thari naval officer invoking the Admiral's authority
+    - whispers of a poisoning among the inner-world houses
+  narrative_hints:
+    - the Thari Navy quietly reinforcing the inner worlds
+    - a court matter no one will name above a murmur
+    - Aliya Dad's name spoken with the weight of a storm warning
+  tension_level: 0.4
+  escalation:
+    - at: 0.25
+      event: >-
+        A death in the Regency's high houses is ruled natural, and almost no
+        one believes it. Restra Velmont is at the center of the whispers,
+        somehow — too close to the dead, too useful to the living. Admiral
+        Aliya Dad declares the matter closed before it can become a matter at
+        all. The closing is the tell.
+      npcs_involved: [Restra Velmont, Aliya Dad]
+      stakes: A poisoning the Regency would rather did not exist.
+    - at: 0.5
+      event: >-
+        The Navy moves — not openly, but the inner worlds feel it. Officers who
+        asked questions are rotated out. Restra Velmont's situation tightens
+        from rumor to confinement, dressed as protection. The Admiral's
+        regressive certainty is doing exactly what it was built to do: making
+        the threat to hierarchy vanish.
+      npcs_involved: [Restra Velmont, Aliya Dad]
+      stakes: The order is closing ranks around its own rot.
+    - at: 0.75
+      event: >-
+        The truth of the poisoning surfaces, and it implicates the order
+        itself — the bloodline logic, the navy that enforces it, the certainty
+        that someone like Restra Velmont could be sacrificed to keep the houses
+        clean. Aliya Dad must choose between the Regency's legitimacy and the
+        Regency's law. They are no longer the same thing.
+      npcs_involved: [Restra Velmont, Aliya Dad]
+      stakes: The scandal is no longer a death — it's the dynasty's logic on trial.
+    - at: 1.0
+      event: >-
+        The affair breaks into the open. The Admiral can protect Restra Velmont
+        and admit the order is corrupt, or protect the order and let it consume
+        Velmont as it was always going to. Either way the inner worlds watch the
+        regressive certainty that rebuilt the Cloud reveal what it costs — and
+        the sector gets the story it will tell for a generation.
+      npcs_involved: [Restra Velmont, Aliya Dad]
+      stakes: The Regency's founding certainty, called to account.
+  passive_progression:
+    rate_per_turn: 0.009
+    rate_per_day: 0.025
+    accelerators: [poison, regency, court, admiral, bloodline, scandal, navy]
+    decelerators: [hush, delay, protect, withdraw]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+
+- id: the_restless_dust
+  name: The Restless Dust
+  description: >-
+    On Lazzaro — the only world where Lazarus Dust can still be collected at
+    medical grade — corruption is seeping past the bubble shields. In quantity,
+    corrupted Dust raises the recently dead, and the shield-techs keep the domes
+    robust precisely because the dead of Lazzaro do not always rest. But a
+    vein has gone bad faster than the techs can contain it, and the restless are
+    walking out of a settlement's own morgue. The Regency claims the world and
+    its medical-grade product. It does not want to admit what's leaking out the
+    bottom.
+  category: mystery
+  triggers:
+    - traveling to or trading in Lazzaro's Dust settlements
+    - a corruption alarm or shield failure at a collection dome
+    - reports of the dead not staying dead
+  narrative_hints:
+    - bubble-shield corruption meters ticking past safe margins
+    - a settlement quietly sealing one of its own domes
+    - medical-grade Dust shipments delayed with no explanation
+  tension_level: 0.5
+  escalation:
+    - at: 0.25
+      event: >-
+        A collection dome's corruption meter climbs and won't come back down. A
+        shield-tech who has stood a hundred graveyard shifts says this one is
+        different — the bad vein is spreading under the dome, not just at the
+        face. Management calls it a calibration error. The morgue lights stay
+        on all night.
+      npcs_involved: []
+      stakes: The corruption is in the dome, and someone is lying about it.
+    - at: 0.5
+      event: >-
+        The dead of the sealed dome do not stay where they were laid. The first
+        Lazarites are quiet, slow, wrong. The settlement contains the dome
+        rather than evacuate it, because medical-grade Lazarus Dust is the
+        Regency's product and a public outbreak would close the only source in
+        the Cloud. People are being asked to work above a rising tide.
+      npcs_involved: []
+      stakes: The restless are walking, and the Regency wants it kept quiet.
+    - at: 0.75
+      event: >-
+        The corruption breaches a second dome, and the Regency's instinct to
+        protect the product becomes a death sentence for the settlement. A
+        shield-tech has a way to purge the bad vein, but it means venting a
+        dome — destroying weeks of medical-grade Dust the inner worlds are
+        counting on, and admitting Lazzaro is not under control.
+      npcs_involved: []
+      stakes: Save the people or save the supply — the Regency wants both.
+    - at: 1.0
+      event: >-
+        The bad vein reaches the main collection works, and Lazzaro's whole
+        export hangs in the balance with its living. Purge it and the Cloud
+        loses its medical-grade Dust until the domes can be rebuilt; contain it
+        and the restless keep rising until containment fails. The dead of
+        Lazzaro have always been a managed problem. Tonight they stop being
+        managed.
+      npcs_involved: []
+      stakes: The Cloud's only source of healing Dust, against the dead it raises.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.03
+    accelerators: [dust, lazzaro, corruption, dome, shield, dead, lazarite]
+    decelerators: [purge, contain, seal, vent, stabilize]
+    accelerator_bonus: 0.05
+    decelerator_penalty: 0.03
+
+- id: the_shadows_of_terma
+  name: The Shadows of Terma
+  description: >-
+    Terma drifts half-embedded in hyperspace, where the Great Hyperspace
+    Explosion never quite stopped and the Shadows gather thick. The psychics
+    there — a Praetorium legacy discipline, warped by proximity to hyperspace —
+    speak of the GHE as if it is still happening, in the present tense, because
+    on Terma it may be. Something has changed in the drift. The Shadows are
+    coming off the rogue world and following the lanes inward, and the only
+    people who can read what it means are the ones the Church most wants to
+    own.
+  category: revelation
+  triggers:
+    - traveling to Terma or the south-western edge of the Cloud
+    - encountering a Terma psychic or a Shadow
+    - the GHE described as ongoing rather than past
+  narrative_hints:
+    - psychics on Terma growing agitated about the drift
+    - Shadows sighted along lanes where they never were before
+    - the Zira psionics academy recruiting harder than usual
+  tension_level: 0.45
+  escalation:
+    - at: 0.25
+      event: >-
+        A Terma psychic stops mid-sentence to listen to something no one else
+        can hear, and what they say after is wrong: the Explosion is louder
+        this season. The Shadows on the rogue world are restless. A ship that
+        ran the Terma lane comes back with a crew that won't talk about what
+        kept pace with them in the drift.
+      npcs_involved: []
+      stakes: Something at the edge of the Cloud has woken up.
+    - at: 0.5
+      event: >-
+        Shadows are seen off Terma, following the lanes toward Nimia and Yula —
+        farther in than anyone living has recorded. The psychics insist the GHE
+        is not a past event but an open wound, and the wound is widening. The
+        Church's Zira academy moves to collect every gifted it can find, framing
+        it as protection. The psychics know exactly what being collected means.
+      npcs_involved: []
+      stakes: The edge's strangeness is spreading inward, and the Church is hunting readers.
+    - at: 0.75
+      event: >-
+        A psychic reads the drift clearly enough to frighten themselves: the
+        Shadows are not random, and the GHE's "explosion" is still in progress
+        somewhere the lanes used to lead. The Church wants the reading and the
+        reader, by force if needed. To understand what is coming the players
+        must keep a Terma psychic out of zealous hands long enough to listen.
+      npcs_involved: []
+      stakes: The truth about the GHE, and the reader the Church will cage to bury it.
+    - at: 1.0
+      event: >-
+        At Terma's edge, where solid ground frays into hyperspace, the drift
+        opens enough to show what the GHE actually is — or was, or is still
+        becoming. The Shadows answer. The psychics hold the line by will alone.
+        Whatever the players learn here about why the Cloud was severed cannot
+        be unlearned, and the Church will decide it is theirs to suppress.
+      npcs_involved: []
+      stakes: What the Great Hyperspace Explosion really is — and who gets to know.
+  passive_progression:
+    rate_per_turn: 0.008
+    rate_per_day: 0.025
+    accelerators: [terma, shadow, psychic, hyperspace, ghe, drift, scream]
+    decelerators: [ward, shield, retreat, dismiss, ignore]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.02
+
+- id: the_haven_propaganda_crisis
+  name: The Haven Propaganda Crisis
+  description: >-
+    Downstream of the New Kowloon Dust delivery — the block of Dust the Yulan
+    Broadcast Company moved to the Church of Recreation that set the dominoes
+    falling. The Broadcast Company moves information for the Conglomerate the way
+    it moves Dust: for profit and without a conscience. Now a propaganda war is
+    breaking over Haven, a fallen hegemon's xenophile world, with the Church,
+    the Conglomerate, and the inner worlds all writing the story to suit
+    themselves — and the truth of the Dust delivery is the one thing none of
+    them can afford to let out clean.
+  category: political
+  triggers:
+    - encountering Yulan Broadcast Company propaganda or feeds
+    - a faction shaping the narrative around the New Kowloon Dust delivery
+    - the Haven situation surfacing in sector news
+  narrative_hints:
+    - Broadcast Company feeds telling three incompatible stories at once
+    - a New Kowloon dealmaker scrubbing the record of a Dust shipment
+    - Haven mentioned in tones that don't match the facts
+  tension_level: 0.4
+  escalation:
+    - at: 0.25
+      event: >-
+        The Yulan Broadcast Company runs a story about Haven that doesn't match
+        what anyone on the ground saw. The discrepancy traces back, faintly, to
+        a Dust shipment that passed through New Kowloon — the one delivered to
+        the Church. Someone is shaping the narrative, and the shaping is more
+        careful than the truth would require.
+      npcs_involved: []
+      stakes: The story being told about Haven is a manufactured one.
+    - at: 0.5
+      event: >-
+        The propaganda war goes hot: the Church frames the Haven situation as
+        proof of its holy mandate, the Conglomerate frames it as proof of its
+        indispensability, and the Broadcast Company sells both feeds to whoever
+        pays. The truth of the New Kowloon Dust delivery is buried under three
+        narratives, each more profitable than honesty.
+      npcs_involved: []
+      stakes: Three powers are writing over the same lie in different ink.
+    - at: 0.75
+      event: >-
+        Evidence of what the Dust delivery actually was surfaces — enough to
+        collapse one of the three stories, maybe all of them. The Broadcast
+        Company moves to bury it; the Church moves to sanctify it; the
+        Conglomerate moves to sell it to the highest bidder. Whoever holds the
+        evidence holds the Haven crisis, and Haven holds the inner worlds'
+        attention.
+      npcs_involved: []
+      stakes: The buried truth becomes the most valuable cargo in the sector.
+    - at: 1.0
+      event: >-
+        The crisis breaks. The truth of the New Kowloon Dust delivery comes out,
+        gets bought, or gets buried for good — and with it, who the Cloud
+        believes is telling the truth about Haven, the Church, and the Dust that
+        moves through everything. A propaganda war fought with one fact, and
+        whoever lands it last writes the sector's recent history.
+      npcs_involved: []
+      stakes: Who controls the story controls the Cloud's idea of what happened.
+  passive_progression:
+    rate_per_turn: 0.01
+    rate_per_day: 0.03
+    accelerators: [haven, broadcast, propaganda, dust, church, narrative, kowloon]
+    decelerators: [expose, retract, verify, bury, suppress]
+    accelerator_bonus: 0.04
+    decelerator_penalty: 0.03

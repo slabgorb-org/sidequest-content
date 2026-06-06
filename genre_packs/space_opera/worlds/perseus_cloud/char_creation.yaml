@@ -1,0 +1,284 @@
+# Perseus Cloud — world character creation.
+#
+# Same step schema as the sibling space_opera worlds (aureate_span,
+# coyote_star): origins → pronouns → crucible → drive → role → confirmation.
+# mechanical_effects funnel into the genre allowed_races / allowed_classes
+# (rules.yaml). Flavor is the Cloud: a sector sealed off by the Great
+# Hyperspace Explosion, five powers fighting over the bones of the Persean
+# Praetorium, and a starting world (Yula) that runs on Dust, scrap, and corpo
+# money. Every choice is grounded in this fiction — no generic space filler.
+
+- id: origins
+  title: Where Did the Cloud Make You?
+  narration: |
+    The lanes out are gone. Whatever the galaxy became after the Great
+    Hyperspace Explosion sealed us off, the Perseus Cloud will never know — so
+    wherever you started, it's the only somewhere you've got. You can hear it
+    in your accent. You can feel it in how you eye an exit, how you price a
+    stranger, how you sleep when the air recycler ticks wrong.
+
+    Where did the Cloud make you?
+  loading_text: "The answer settles into place..."
+  choices:
+    - label: The Inner Worlds
+      description: >-
+        Stone keeps, an old-blooded navy, the Regency of Thar's regressive
+        certainty that hierarchy is destiny. You were raised where bloodline
+        is a credential and the Praetorium is something the high families
+        claim as ancestry. You walked away from all of it — and you still
+        stand like you expect to be saluted.
+      mechanical_effects:
+        race_hint: Coreworlder
+        background: Regency-raised
+        jungian_hint: ruler
+    - label: The Churn
+      description: >-
+        Yula. New Kowloon's neon superblocks or the scrap seas off Santa
+        Abraham — either way you learned the sector's first lesson young: after
+        the GHE, the galaxy stopped being a destination, and Dust, scrap, and
+        a lucky pretech find became the only currencies that matter. You came
+        up hungry and you stayed sharp.
+      mechanical_effects:
+        race_hint: Colonial
+        background: Yula-born
+        jungian_hint: everyman
+    - label: The Void Between
+      description: >-
+        Glitter's orbital rings, the Tether climbers, a freighter's mid-deck
+        running cargo from world to world. You were born in transit, a Spacer
+        who reads a docking schedule before a book. Gravity is a place you
+        visit. The black between the Cloud's worlds isn't hostile to you —
+        it's the only ceiling you ever trusted.
+      mechanical_effects:
+        race_hint: Spacer
+        background: Void-born
+        jungian_hint: explorer
+    - label: The Edge of the Cloud
+      description: >-
+        Terma, drifting half-embedded in hyperspace where the GHE never quite
+        stopped and the Shadows run thick. Or somewhere the Dust got into
+        you — a Lazzaro dome, a Coelitha dig, a Ceron ward. You came up where
+        the Cloud is strangest, and it left a mark on you that the inner worlds
+        can see across a room and don't like.
+      mechanical_effects:
+        race_hint: Uplifted
+        background: Edge-touched
+        jungian_hint: magician
+  allows_freeform: true
+
+- id: pronouns
+  title: How Do the Manifests Read?
+  narration: >-
+    Everything in the Cloud gets logged somewhere — Conglomerate dock records
+    on Glitter, Regency commission rolls on Thar, a Church vault-ledger on
+    Scrina, the unofficial accounts a Yula fixer keeps in case they need a
+    favor. Your name is on at least one of them. How does it read?
+  allows_freeform: true
+  choices:
+    - label: "she/her"
+      description: "She walks her own path."
+      mechanical_effects:
+        pronoun_hint: "she/her"
+    - label: "he/him"
+      description: "He forges his own way."
+      mechanical_effects:
+        pronoun_hint: "he/him"
+    - label: "they/them"
+      description: "They answer to no one's expectations."
+      mechanical_effects:
+        pronoun_hint: "they/them"
+
+- id: crucible
+  title: What Did You Do in the Cloud?
+  narration: |
+    The Cloud has work, and the work has shapes — a Regency commission, a
+    Church expedition, a freighter's cockpit, the cargo nobody admits to
+    moving through Glitter, the back-room conversations where a New Kowloon
+    deal actually closes. Whatever you did, it left marks. People read them
+    before they know your name.
+
+    What did you do?
+  choices:
+    - label: I Held a Command
+      description: >-
+        A Regency commission, a Conglomerate security detail, a ship's bridge —
+        somewhere, the weight of other people's lives sat on your call. You
+        know what it costs to be the one who says go, in a sector where going
+        wrong gets people very dead.
+      mechanical_effects:
+        class_hint: Officer
+        personality_trait: decisive
+        jungian_hint: ruler
+        rpg_role_hint: support
+    - label: I Kept It Running
+      description: >-
+        Engines, bubble shields, Dust-collection rigs, bodies — whatever broke
+        in a sector running on salvaged pretech, you made it work again.
+        Sometimes with the right parts. On Santa Abraham, usually without. A
+        good tech is worth more than a relic out here, because the relic can't
+        keep your dome sealed.
+      mechanical_effects:
+        class_hint: Engineer
+        personality_trait: methodical
+        jungian_hint: magician
+        rpg_role_hint: support
+    - label: I Flew the Lanes
+      description: >-
+        Freighters, shuttles, the orbit-to-submarine run to Occum, the Black
+        Door approach to Ceron. The space between the Cloud's worlds is just
+        distance, and distance is what you eat. You've docked at places that
+        aren't on the Conglomerate's public charts.
+      mechanical_effects:
+        class_hint: Pilot
+        personality_trait: restless
+        jungian_hint: explorer
+        rpg_role_hint: jack_of_all_trades
+    - label: I Moved the Cargo
+      description: >-
+        Dust the Regency doesn't want crossing its borders. Pretech the Church
+        would call yours stolen. The manifest that says ten crates and ships
+        twelve. You ran goods through Glitter and the junk seas and the gaps
+        between the powers, and you learned which fixers to trust by surviving
+        the ones who weren't.
+      mechanical_effects:
+        class_hint: Smuggler
+        personality_trait: adaptable
+        jungian_hint: outlaw
+        rpg_role_hint: stealth
+    - label: I Traded in Words
+      description: >-
+        Negotiated, translated, lied professionally. A New Kowloon dealmaker, a
+        Yulan Broadcast Company mouthpiece, a fixer working the Black Door. You
+        know what a Thari officer won't say in public and what a Conglomerate
+        VP won't put in writing, and you trade those silences for the things
+        you actually need.
+      mechanical_effects:
+        class_hint: Diplomat
+        personality_trait: perceptive
+        jungian_hint: sage
+        rpg_role_hint: control
+  allows_freeform: true
+
+- id: drive
+  title: Why Are You Out Here?
+  narration: |
+    Nobody works the deep Cloud because everything was fine where they
+    started. Something pushed you out, or pulled you forward, or both. You may
+    not have admitted it to yourself yet — but it's the engine you run on, and
+    it's running right now, somewhere under the recycler-hum.
+
+    What was it?
+  choices:
+    - label: Someone the Dust Took
+      description: >-
+        Family. Crew. A name you don't say out loud anymore. The Dust took
+        them — a Lazzaro dome that failed, a Coelitha dig that didn't come
+        back, a Ceron ward that promised more than it gave. Some say the dead
+        of the Cloud don't always rest. You've started wondering if that's a
+        comfort or a threat.
+      mechanical_effects:
+        relationship: lost_beloved
+        goals: find_what_was_lost
+        emotional_state: quietly grieving
+        jungian_hint: lover
+    - label: A Debt You Carried Across the Cloud
+      description: >-
+        Not money. Something worse. A promise broken on Thar, an oath you
+        couldn't keep on Yula, a body you owe somebody for. You thought the
+        far worlds were far enough. They might be. Or you've started watching
+        the inbound dock traffic at Glitter in a way that says you haven't
+        decided yet.
+      mechanical_effects:
+        relationship: creditor
+        goals: settle_a_debt
+        emotional_state: burdened
+        jungian_hint: everyman
+    - label: My Place Got Taken
+      description: >-
+        A claim the Regency annexed. A scrapper crew the Conglomerate priced
+        out of Santa Abraham. A settlement a corrupted Dust vein swallowed.
+        Whatever held you is gone, and the people in it scattered across the
+        Cloud — some you can find, some you can't, some you're not sure you
+        want to. Forward is the only direction left.
+      mechanical_effects:
+        relationship: displaced_community
+        goals: find_belonging
+        emotional_state: determined
+        jungian_hint: hero
+    - label: I Want to Know What the GHE Was
+      description: >-
+        The lanes out are gone and nobody can tell you why — not really. You've
+        heard the psychics on Terma talk about the Explosion as if it's still
+        happening. You've seen Shadows where there shouldn't be any. You can't
+        stop wanting to know what actually severed the Cloud from the galaxy,
+        and whether anything's still out there on the other side.
+      mechanical_effects:
+        relationship: wanderlust
+        goals: explore_the_unknown
+        emotional_state: wide-eyed
+        jungian_hint: explorer
+  allows_freeform: true
+
+- id: role
+  title: When the Cloud Goes Sideways, What Do You Bring?
+  narration: |
+    Out here, sideways is the resting state. The Regency's regressive, the
+    Church is zealous, the Conglomerate is hungry, and the Dust does what it
+    wants. When something breaks — and it will — the people around you are
+    going to need something specific from you. What do they see, looking at
+    you?
+  choices:
+    - label: Steady Hands
+      description: >-
+        When everything goes wrong, you get calm. Not brave — calm. The panic
+        doesn't reach your hands. People who've worked with you in bad air or
+        under a corruption alarm have noticed. They mention it later, usually
+        when they're trying to recruit you.
+      mechanical_effects:
+        personality_trait: steady
+        jungian_hint: caregiver
+    - label: A Sharp Mouth
+      description: >-
+        You talk fast, think faster, and people listen before they realize
+        they've been convinced. It's not charm — it's velocity. A Conglomerate
+        gate-goon once waved you through because you had your story straight
+        before he had his question straight.
+      mechanical_effects:
+        personality_trait: quick-witted
+        jungian_hint: jester
+    - label: Loyalty
+      description: >-
+        Once you're in, you're in. You don't leave people behind in the junk
+        seas, you don't sell crewmates to the Regency, and that is not
+        negotiable. It's cost you before — a job, a faction, a friend who
+        wasn't really. You'd pay it again.
+      mechanical_effects:
+        personality_trait: loyal
+        jungian_hint: caregiver
+    - label: The Wrong Kind of Luck
+      description: >-
+        Things happen around you. The pretech find nobody else scanned. The
+        Shadow nobody else saw. The signal that pings off your rig three days
+        before anyone else's. The Cloud has a name for people like you, and
+        it's not a compliment — but everyone wants you on their crew anyway.
+      mechanical_effects:
+        personality_trait: trouble-magnet
+        jungian_hint: outlaw
+  allows_freeform: true
+
+- id: confirmation
+  title: This Is Who the Cloud Made
+  narration: |
+    {name}. The {class} from {race} space — for whatever those words mean in a
+    sector cut off from the galaxy, where every label is a story somebody tells
+    about you.
+
+    The lanes out are gone. The five powers are still fighting over the bones
+    of the Praetorium, the Dust still heals and raises and corrupts, and Yula's
+    neon is still burning in the rain below. Whatever happens next — the people
+    you meet, the worlds you reach, the trouble you make or unmake — it's going
+    to be your story.
+
+    Begin.
+  choices: []
+  allows_freeform: false

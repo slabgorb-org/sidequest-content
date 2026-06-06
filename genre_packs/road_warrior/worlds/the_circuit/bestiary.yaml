@@ -1,0 +1,229 @@
+# The Circuit — world bestiary
+#
+# World-tier override on the road_warrior pack (which ships no genre bestiary).
+# SRD-aligned combat stat blocks for the cwn ruleset module; encountergen samples
+# these (alongside any genre-tier pool) for Monster Manual encounters. Narrative
+# layers (OCEAN, visual prompt) are composed at generation time. Stats follow
+# Cities Without Number / SWN-family SRD generic stat lines (Sine Nomine
+# Publishing): level == HD, hp == average (4.5/HD), ascending AC (base ~10),
+# morale on the 2d6 ladder, physical save 15 - floor(level/2).
+#
+# DESIGN NOTE (fiction fidelity, ADR-120): The Circuit is NOT a literal
+# post-apocalyptic wasteland — it is a working three-million-person port city in
+# the late 1970s, with traffic lights, commuters, and convenience stores. The
+# road_warrior pack's default "mutated wasteland fauna" framing does NOT apply
+# here. The honest non-human threat roster for THIS world is the nocturnal animal
+# margin of a real port city (feral dock packs, harbor and wharf rats, gulls, a
+# cornered junkyard guard dog) PLUS the small handful of genuinely uncanny things
+# the world's conspiracy thread supports — the impossible road beneath Aschgrund,
+# the 1962 brass diagrams, the marks that predate every faction. Human faction
+# crews, the Divvies, and chase hazards are handled as NPCs / chase mechanics,
+# not here. No mutants, no irradiated megafauna — that would betray the setting.
+entries:
+  # --- The nocturnal animal margin of a port city ---
+  - id: harbor_rat
+    name: Harbor Rat
+    level: 1
+    hp: 4
+    armor_class: 11
+    attack_bonus: 1
+    damage: "1d4"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: dockside scavenger
+    tags: [beast, vermin]
+    abilities:
+      - "Bolts for cover — flees the moment a headlight swings its way"
+    description: >-
+      A grey wharf rat fattened on spilled freight and gutter food, nosing
+      through the container yards of Farolumi after the cranes go quiet. Alone
+      it is nothing — a startle in the dark, a shape under a parked rig. It is
+      never alone.
+
+  - id: gull_mob
+    name: Quayside Gull Mob
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d4"
+    move: "fly 50 ft."
+    morale: 5
+    skill: 1
+    save: 15
+    role: screeching scavenger flock
+    tags: [beast, swarm]
+    abilities:
+      - "Dive-mob — a thrown chip or an open visor draws the whole shrieking flock"
+      - "Disperses and re-forms; can be scattered but rarely driven off for long"
+    description: >-
+      The harbor gulls of Doracanto and the port roads, bold from a lifetime of
+      cadging from dockworkers and cruise-night crowds. A mob of them boiling up
+      off a fish-truck is noise and chaos more than danger — but a faceful of
+      wings at the wrong moment on the waterfront strip has put more than one
+      rider into the curb.
+
+  - id: stray_lot_dog
+    name: Stray Lot Dog
+    level: 1
+    hp: 6
+    armor_class: 12
+    attack_bonus: 2
+    damage: "1d6"
+    move: "40 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: lone scavenger dog
+    tags: [beast]
+    abilities:
+      - "Wary — keeps its distance until cornered, then commits"
+    description: >-
+      A lean, wall-eyed mongrel that lives off the back-alley bins of Nokutori
+      and the warehouse shells of Aschgrund. Most nights it wants nothing but to
+      be left alone. Corner it against a roller door, or get between it and a
+      litter, and the wanting changes.
+
+  - id: wharf_rat_swarm
+    name: Wharf Rat Swarm
+    level: 2
+    hp: 9
+    armor_class: 11
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: boiling mass of dock vermin
+    tags: [beast, swarm, vermin]
+    abilities:
+      - "Swarm — flows around obstacles and over the fallen; hard to fight with a single weapon"
+      - "Floods the dark — pours out of a drain or a container the instant the lights cut"
+    description: >-
+      What the single harbor rat becomes when the food runs out and the cold
+      comes in: a living tide pouring out of the sewer mouths beneath Farolumi
+      and the flooded basements of the industrial flats. They go for anything
+      warm and stationary. A stalled rig in the wrong tunnel is warm and
+      stationary.
+
+  - id: junkyard_guard_dog
+    name: Junkyard Guard Dog
+    level: 2
+    hp: 11
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d8"
+    move: "40 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: salvage-yard sentinel
+    tags: [beast, guardian]
+    abilities:
+      - "Trained to the gate — does not bluff and does not break morale on its own ground"
+      - "Latch and shake — a successful bite holds, worrying the limb until shaken loose"
+    description: >-
+      The chained-then-loosed brutes that keep watch over the Rocker salvage
+      yards along the Grensholt strip and the locked lots where parts are worth
+      more than the cars they came from. Bred for one job and good at it. Climb
+      the fence after a fuel pump or a fairing and you will meet the reason that
+      lot has never been stripped.
+
+  # --- The feral pack: dock dogs gone fully wild on the industrial fringe ---
+  - id: dock_pack_runner
+    name: Dock-Pack Runner
+    level: 3
+    hp: 13
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d8"
+    move: "50 ft."
+    morale: 8
+    skill: 2
+    save: 14
+    role: feral pack hunter
+    tags: [beast, pack]
+    abilities:
+      - "Pack tactics — gains the upper hand against any foe its packmates have already engaged"
+      - "Cuts the corner — herds prey toward dead ends and the water's edge"
+    description: >-
+      One of the feral dogs that run the no-man's-land where the port road meets
+      the industrial flats — gone wild generations back, organized, and smarter
+      than a stray. The runners flank and drive; they have learned that a rider
+      on foot between Aschgrund's warehouse shells has nowhere good to go. Where
+      there is one runner there are six more in the dark you have not seen yet.
+
+  - id: dock_pack_alpha
+    name: Dock-Pack Alpha
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d10"
+    move: "50 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: leader of the feral dock pack
+    tags: [beast, pack, elite]
+    abilities:
+      - "Holds the pack — packmates within sight do not check morale while the alpha stands"
+      - "Drag-down — a charging hit can knock a standing target prone"
+    description: >-
+      The scarred old bitch or dog that holds the dock pack together — too big,
+      too clever, and too patient, the survivor of a dozen winters in the
+      flooded basements and rusted machinery of the flats. It does not waste
+      itself on the first rush. It waits until the pack has you turned around,
+      then it comes.
+
+  # --- The uncanny margin: what the Thread leaves behind ---
+  - id: tunnel_thing
+    name: The Thing in the Sturmrohr
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d10"
+    move: "40 ft."
+    morale: 11
+    skill: 2
+    save: 13
+    role: unseen tenant of the locked maintenance door
+    tags: [horror, uncanny, thread]
+    abilities:
+      - "Strobe-blind — moves only in the dark beats between the failing fluorescents; never fully seen"
+      - "Does not break — fearless and silent; never checks morale"
+    description: >-
+      Something lives behind the new lock on the old maintenance door at the
+      midpoint of the longest expressway tunnel. Nobody has seen it whole — only
+      the wrongness in the strobing dark, the scrape that keeps pace with you at
+      a hundred kilometers an hour, the door that is unlocked when it should be
+      locked. It belongs to whatever the Thread is. It does not belong to the
+      city.
+
+  - id: road_keeper
+    name: Keeper of the Lower Road
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 7
+    damage: "2d6"
+    move: "40 ft."
+    morale: 12
+    skill: 3
+    save: 12
+    role: warden of the road beneath the city
+    tags: [horror, uncanny, thread, apex]
+    abilities:
+      - "Knows the route — cannot be lost, outrun, or ambushed on the lower road"
+      - "Tireless — never breaks off, never checks morale; the road is long and it is patient"
+    description: >-
+      The thing that has been driving the impossible two-lane road beneath
+      Aschgrund — the road lit by lamps that should not still work, signed by a
+      company in no registry, laid down before any faction arrived. Whatever
+      poured the new slab over the convergence point left this to keep the route.
+      It runs the lower road at speed in the dark, and the marks it scores into
+      steel are the same marks that predate every crew in The Circuit.

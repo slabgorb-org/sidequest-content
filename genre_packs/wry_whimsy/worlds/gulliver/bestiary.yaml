@@ -1,0 +1,299 @@
+# Gulliver — world bestiary (gulliver_bestiary)
+#
+# World-tier roster for the `gulliver` world of the `wry_whimsy` pack
+# (portal-fairytale, native ruleset). SRD-aligned combat stat blocks that
+# encountergen samples and dresses with the narrative layers (OCEAN, visual
+# prompt) it composes at generation time. Strict Bestiary / BestiaryEntry
+# schema (sidequest/genre/models/bestiary.py): level>=1, hp>=1, armor_class>=1,
+# ascending AC, morale on the 2d12 ladder, physical save ~15 - floor(level/2).
+# Generic SRD stat lines.
+#
+# Played dead straight from Jonathan Swift's Gulliver's Travels (1726), all
+# four voyages as one savage country — never the nursery gloss. The SIGNATURE
+# MECHANIC IS SCALE: the threat of a foe is its size relative to the traveler,
+# not its native ferocity. In Lilliput the traveler is the giant and the danger
+# is the NATION-IN-MINIATURE — six-inch soldiers harmless one at a time, lethal
+# by the thousand (the swarm pattern, low level, fragile, deadly massed). In
+# Brobdingnag the traveler is the speck and the danger is the ORDINARY ENLARGED:
+# a house-cat, a rat, a wasp, a monkey — common creatures that become apex
+# horrors purely by the reversal of scale (high level, scale-terror abilities).
+# The Yahoos and the gross creatures of the third and fourth voyages round out
+# the roster at human scale.
+#
+# Tag scheme for the SCALE mechanic:
+#   tiny   — the foe is far smaller than the traveler (Lilliput: he is the giant)
+#   giant  — the foe is far larger than the traveler (Brobdingnag: he is the speck)
+#   swarm  — fights only in massed numbers; trivial singly, lethal en masse
+# Creatures at human scale (Yahoos, Struldbruggs) carry neither tiny nor giant.
+#
+# Source fidelity: every entry is Swift-canon or this world's named instance of
+# a Swift element. Voyage-of-origin is noted in each role/description.
+entries:
+
+  # ══ VOYAGE 1 — LILLIPUT (the traveler is the GIANT; tiny foes, by the swarm) ══
+
+  - id: lilliput_archer_volley
+    name: Lilliput Archer Volley
+    level: 1
+    hp: 4
+    armor_class: 14
+    attack_bonus: 1
+    damage: "1d4"
+    move: "20 ft."
+    morale: 8
+    skill: 1
+    save: 15
+    role: massed six-inch bowmen of the Lilliput shore
+    tags: [tiny, swarm, human, soldier]
+    abilities:
+      - "Swarm — a single archer is nothing; a volley fights as a unit and is dangerous only in number"
+      - "Needle-arrows — they loose into the eyes, the hands, the face of the Man-Mountain, where the giant scale cannot armor him"
+    description: >-
+      A loosed rank of the six-inch soldiers who pegged the Man-Mountain to
+      the shore — bows drawn, needle-arrows nocked, firing in disciplined
+      volleys at the one part of a giant they can reach and harm: the
+      uncovered eye, the straining hand. One is a splinter; a thousand,
+      well-aimed, can blind.
+
+  - id: lilliput_pike_company
+    name: Lilliput Pike Company
+    level: 2
+    hp: 7
+    armor_class: 14
+    attack_bonus: 2
+    damage: "1d6"
+    move: "20 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: massed imperial infantry of Mildendo
+    tags: [tiny, swarm, human, soldier]
+    abilities:
+      - "Swarm — fights as a company; harmless as one man, a wall of bristling pikes as a thousand"
+      - "Pin the Man-Mountain — drives stakes and cords while the giant is held, working to bind rather than to slay"
+    description: >-
+      A company of the Emperor's regular foot, parading out of the toy-capital
+      of Mildendo in ranks no higher than the giant's bootlace — pikes level,
+      stakes and cordage ready. They do not mean to kill the Man-Mountain so
+      much as peg, bind, and hold him for the court's pleasure; but a giant
+      caught in ten thousand threads is a giant brought down.
+
+  - id: blefuscu_marine_boarders
+    name: Blefuscu Marine Boarders
+    level: 2
+    hp: 7
+    armor_class: 15
+    attack_bonus: 2
+    damage: "1d6"
+    move: "20 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: massed marines of the rival toy-empire across the channel
+    tags: [tiny, swarm, human, soldier]
+    abilities:
+      - "Swarm — the marines of a captured fleet, deadly only in their massed boarding-parties"
+      - "Board from the water — swarm up a wading giant from the eight-hundred-yard channel and the anchored men-of-war"
+    description: >-
+      The marines of Blefuscu, that great rival empire eight hundred yards
+      across the water — the men whose anchored men-of-war the Man-Mountain
+      once waded out and towed away by their cables. Swarming up out of their
+      finger-tall ships, they are a nuisance to a giant and a death to a man,
+      and the egg-war they fight is mortal in earnest.
+
+  # ══ VOYAGE 2 — BROBDINGNAG (the traveler is the SPECK; ordinary foes ENLARGED) ══
+
+  - id: brobdingnag_rat
+    name: Brobdingnag Rat
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d8"
+    move: "40 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: mastiff-sized vermin of the farmer's house
+    tags: [giant, beast, vermin]
+    abilities:
+      - "Scale-terror — a common rat made the bulk of a mastiff by the reversal of scale; the speck must draw his hanger and fight for his life"
+      - "Pair-hunters — the rats of the farmhouse come two at once, bold and famished"
+    description: >-
+      A house-rat of Brobdingnag, large as a great mastiff, that climbs the
+      bed-curtains where the tiny traveler sleeps in the farmer's house and
+      falls on him with yellow teeth. Two of them once drove him to draw his
+      hanger and kill where a man at home would set a trap — the first beast
+      the speck must answer with steel, and the killing of it admired as the
+      trick of a clever pet.
+
+  - id: brobdingnag_wasp
+    name: Brobdingnag Wasp
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8"
+    move: "fly 50 ft."
+    morale: 8
+    skill: 1
+    save: 13
+    role: partridge-sized stinging insect drawn to the speck's food
+    tags: [giant, beast, vermin]
+    abilities:
+      - "Scale-terror — a wasp grown to the bulk of a partridge, its sting a sword to a man of six inches"
+      - "Stings drawn by sweets — swarms the marmalade and the displayed traveler alike, droning huge about his head"
+    description: >-
+      A wasp of Brobdingnag, as big as a partridge, drawn by the sweet food
+      set out for the displayed traveler and droning about his head like a
+      cannon-ball with wings. Its sting, an inch and a half of barbed steel
+      pulled from the wreck of one he killed, would run a tiny man clean
+      through — an ordinary garden pest turned, by scale alone, to mortal peril.
+
+  - id: brobdingnag_monkey
+    name: Brobdingnag Monkey
+    level: 5
+    hp: 23
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d10"
+    move: "40 ft. (climb 40 ft.)"
+    morale: 8
+    skill: 2
+    save: 13
+    role: elephant-sized court monkey that takes the speck for its young
+    tags: [giant, beast]
+    abilities:
+      - "Scale-terror — a pet monkey grown to the bulk of an elephant; its idle play is lethal to a thing the size of its kitten"
+      - "Carries off the speck — snatches the traveler up a gable and crams filth into his mouth, mistaking him for a baby of its own kind"
+    description: >-
+      A monkey of the royal household at Lorbrulgrud, large as an elephant,
+      that broke into the traveler's box, took the six-inch man for one of its
+      own young, and bore him up to the palace roof — cradling, squeezing,
+      and stuffing food into his mouth until the court raised ladders to
+      fetch him down half-dead. Affection at giant scale is as deadly as malice.
+
+  - id: brobdingnag_cat
+    name: Brobdingnag House-Cat
+    level: 6
+    hp: 27
+    armor_class: 14
+    attack_bonus: 7
+    damage: "2d6"
+    move: "40 ft."
+    morale: 7
+    skill: 2
+    save: 12
+    role: ox-bulked hearth-cat, apex horror of the kitchen
+    tags: [giant, beast, apex]
+    abilities:
+      - "Scale-terror — a common house-cat three times the bulk of an ox; its purr is thunder and its idle paw a death"
+      - "Stalks the speck — fixes the tiny traveler with one enormous eye; the only defence is to show no fear and never run"
+    description: >-
+      The farmer's hearth-cat, three times the bulk of an ox, that fixed the
+      tiny traveler across the kitchen table with an eye the size of a
+      dinner-plate and the slow attention of a thing deciding whether to
+      pounce. A man at home would shoo it from his lap; the speck dares not
+      run, for to flee is to be chased, and to be chased is to be eaten — the
+      hearth-pet become the apex predator by the turn of scale alone.
+
+  - id: brobdingnag_eagle
+    name: Brobdingnag Eagle
+    level: 7
+    hp: 32
+    armor_class: 14
+    attack_bonus: 9
+    damage: "2d6+1"
+    move: "fly 80 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: house-sized raptor that carries off the travelling-box
+    tags: [giant, beast, apex]
+    abilities:
+      - "Scale-terror — an eagle grown house-large; it takes the traveller's whole chamber for a morsel"
+      - "Snatch and drop — seizes the box by its carrying-ring, bears it out over the sea, and lets it fall when other birds harry it"
+    description: >-
+      A great eagle of the Brobdingnag coast that took the carrying-ring of
+      the traveller's snug wooden box for something edible, snatched the whole
+      chamber up into the sky, and bore it out over the open water — until
+      other birds set upon it and it let the box fall into the sea. The
+      mightiest beast of the second voyage, and the one that, by dropping its
+      prize, becomes the traveller's deliverance as much as his terror.
+
+  # ══ VOYAGE 3 — LAPUTA & BELOW (the gross at human scale) ══════════════════════
+
+  - id: struldbrugg
+    name: Struldbrugg
+    level: 1
+    hp: 5
+    armor_class: 10
+    attack_bonus: 0
+    damage: "1d3"
+    move: "10 ft."
+    morale: 4
+    skill: 0
+    save: 15
+    role: undying decayed immortal of Luggnagg
+    tags: [human, immortal, undying]
+    abilities:
+      - "Cannot die — toothless, deaf, memoryless, declared legally dead at eighty and rotting on for centuries without the mercy of the grave"
+      - "Despair, not menace — the horror is what they are, not what they do; they cannot fight and will not flee"
+    description: >-
+      One of the immortals of Luggnagg, marked from birth by a round red spot
+      above the left brow that never fades — and the cruellest reveal Swift
+      gives, for the Struldbruggs do not stay young. They age into deaf,
+      toothless, friendless, memory-stripped decay and then keep going,
+      declared dead in law at eighty, stripped of all they had, praying for
+      the death that will never come. Envied by the foolish; pitied by all who
+      learn the whole.
+
+  # ══ VOYAGE 4 — HOUYHNHNM-LAND (human scale; the brute and the mirror) ════════
+
+  - id: yahoo_brute
+    name: Yahoo
+    level: 2
+    hp: 9
+    armor_class: 12
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft. (climb 30 ft.)"
+    morale: 6
+    skill: 1
+    save: 14
+    role: filthy man-shaped brute-beast of the Houyhnhnm country
+    tags: [beast, brute, the_verdict]
+    abilities:
+      - "Climbs and flings — clambers trees with horrid agility and discharges its excrement down on whatever it fears or hates"
+      - "The mirror — fighting the Yahoo confirms the Yahoo verdict; every blow against the brute proves the traveler is one"
+    description: >-
+      A Yahoo, one of the filthy, deformed, malicious brute-beasts the
+      Houyhnhnms keep as cattle — the shape of a man and nothing of his mind,
+      lank-haired and clawed, climbing, squabbling, coupling, and flinging
+      its filth from the branches. The horror is not its danger but its
+      likeness: it is the traveler's own kind stripped of every pretence, and
+      to fight it is to be sorted, without appeal, into its herd.
+
+  - id: yahoo_pack
+    name: Yahoo Pack
+    level: 4
+    hp: 18
+    armor_class: 12
+    attack_bonus: 5
+    damage: "2d4"
+    move: "30 ft. (climb 30 ft.)"
+    morale: 7
+    skill: 1
+    save: 13
+    role: massed clawing mob of brute Yahoos
+    tags: [swarm, beast, brute, the_verdict]
+    abilities:
+      - "Swarm — the brutes fall on a stranger forty at once, a stinking clawing mob no single blow can scatter"
+      - "Filth from above — frightened up a tree, the whole pack discharges its excrement down on the prey below"
+    description: >-
+      A herd of Yahoos closing on a stranger in the field — climbing,
+      squabbling, and falling on him forty at once in a clawing, biting,
+      stinking mob, while those driven up the branches foul him from above.
+      Only the arrival of a rational grey horse lifts a traveler out of such a
+      mob alive; and the very ease with which the brutes claim him for their
+      own is the fourth voyage's verdict, delivered by tooth and claw.

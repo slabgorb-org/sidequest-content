@@ -1,0 +1,137 @@
+# Shattered Accord — Character Creation
+#
+# Origin/Path funnels. mechanical_effects emit class_hint/race_hint that map
+# onto this world's cultures (cultures/*.yaml) and classes (classes.yaml), plus
+# jungian_hint/rpg_role_hint absorbed by archetype_funnels.yaml. Together these
+# resolve toward the world NPC archetypes in archetypes.yaml:
+#   - The Jade Officer    (Guardian/Martial Artist · Jade Kingdoms)
+#   - The Spirit Mender   (Channeler/Spirit Medium · Sky Temples / Spirit-Touched)
+#   - The Iron Forgemaster(Guardian/Wanderer · Iron Peaks)
+#   - The Monsoon Dancer  (Channeler/Martial Artist · Monsoon Courts)
+#
+# Channeling is determined by the WWN class system (class_hint), not a separate
+# affinity pick — see the note in elemental_harmony/char_creation.yaml.
+
+- id: origins
+  title: "Which Shard Bore You"
+  narration: >-
+    Fourteen centuries since the Accord Eternal shattered, and the eight shards
+    still grind through the spirit-fog above the Broken Nexus. Every one of them
+    has learned to live with the tears in the sky — and learned it differently.
+    Which shard's element first answered when you reached for it?
+  loading_text: "The spirit-fog parts, and a shard turns its scarred face toward you..."
+  choices:
+    - label: "The Jade Kingdoms"
+      description: "A diminished empire of stone and patience that still claims sovereign right over the Broken Nexus. You learned to stand between what you guard and what would take it, and not be moved."
+      mechanical_effects:
+        race_hint: Jade Kingdoms
+        class_hint: Guardian
+        jungian_hint: everyman
+        rpg_role_hint: tank
+    - label: "The Sky Temples"
+      description: "Mountain monasteries above the cloud-line where the Accord Reborn insists air is the binding breath of a new world. You pursued channeling as breath, altitude, and the long patience of the rope-bridges."
+      mechanical_effects:
+        race_hint: Sky Temples
+        class_hint: Channeler
+        jungian_hint: magician
+        rpg_role_hint: healer
+    - label: "The Iron Peaks"
+      description: "Granite ranges honeycombed with mines, gates sealed with channeled stone after the betrayal at Hyeong Ridge. You were raised to trust the mountain and no one beyond it."
+      mechanical_effects:
+        race_hint: Iron Peaks
+        class_hint: Guardian
+        jungian_hint: hero
+        rpg_role_hint: tank
+    - label: "The Monsoon Courts"
+      description: "Jungle river kingdoms where channeling is monsoon-dance and blood-offering, where the storm answers a gift of pain with devastating force. You move while you speak, never entirely still."
+      mechanical_effects:
+        race_hint: Monsoon Courts
+        class_hint: Channeler
+        jungian_hint: hero
+        rpg_role_hint: control
+    - label: "The Ember Isles"
+      description: "Volcanic archipelagos wreathed in forge-smoke, where channeling is refined through rigid kata at Shijin Shrine. Discipline is the only thing that keeps fire from consuming the one who carries it."
+      mechanical_effects:
+        race_hint: Ember Isles
+        class_hint: Martial Artist
+        jungian_hint: hero
+        rpg_role_hint: control
+    - label: "The Tide Reaches"
+      description: "Half-drowned island chains that never recovered from the Drowning of Qalanolei. You followed the tide out past the sunken atolls and have never stayed long in any one harbor since."
+      mechanical_effects:
+        race_hint: Tide Reaches
+        class_hint: Wanderer
+        jungian_hint: explorer
+        rpg_role_hint: control
+    - label: "The Lotus Provinces"
+      description: "Coastal trading cities of the Silk Delta, squeezed between expanding spheres of influence. Knowledge flows like water here, and every merchant keeps a scholar's ledger and a survivor's caution."
+      mechanical_effects:
+        race_hint: Lotus Provinces
+        class_hint: Scholar
+        jungian_hint: sage
+        rpg_role_hint: jack_of_all_trades
+    - label: "The Saffron Reaches"
+      description: "Temple cities on golden plains where the boundary between world and spirit is thinnest — and where complicity with the Jade Reclamation has begun to wear ochre robes. You walk closer to the spirits than most dare."
+      mechanical_effects:
+        race_hint: Saffron Reaches
+        class_hint: Spirit Medium
+        jungian_hint: magician
+        rpg_role_hint: support
+
+- id: pronouns
+  title: "How the Shards Will Name You"
+  narration: >-
+    The elements do not judge. But the people you fight beside, and the people you
+    fight, will carry your name between the shards. How should they speak it?
+  allows_freeform: true
+  choices:
+    - label: "she/her"
+      description: "She walks her own path through the fog."
+      mechanical_effects:
+        pronoun_hint: "she/her"
+    - label: "he/him"
+      description: "He crosses the tears on his own terms."
+      mechanical_effects:
+        pronoun_hint: "he/him"
+    - label: "they/them"
+      description: "They answer to no faction's expectation."
+      mechanical_effects:
+        pronoun_hint: "they/them"
+
+- id: path
+  title: "How You Learned to Channel"
+  narration: >-
+    In a world bleeding spirits through every tear in the sky, no one learns to
+    channel the same way twice. Some are drilled in temple kata. Some learn at the
+    edge of a spirit-tear, where the lesson is survive or do not. Some never chose
+    it at all — the element woke inside them, and they have been answering for it
+    ever since.
+  choices:
+    - label: "Temple-Trained"
+      description: "Years of disciplined forms at Shijin Shrine, Dignagālavā Monastery, or Rathep's Temple. Your kata are precise, your patience was earned, and your understanding runs deep."
+      mechanical_effects:
+        training_hint: formal
+        jungian_hint: sage
+    - label: "Tear-Forged"
+      description: "You learned to channel where the spirits flood through, because the alternative was to be dragged into a lightless trench. Your forms are rough, improvised, and they work."
+      mechanical_effects:
+        training_hint: street
+        jungian_hint: outlaw
+    - label: "Master's Student"
+      description: "One teacher shaped everything — a wandering channeler who taught through missions, not lectures, and whose retirement was the only way to survive what they knew."
+      mechanical_effects:
+        training_hint: apprentice
+        jungian_hint: hero
+    - label: "Spirit-Awakened"
+      description: "Your channeling woke itself — in a Shattering-scarred place, in a dream, in a moment beside a tear. You are Spirit-Touched now, and you are still learning what that means."
+      mechanical_effects:
+        training_hint: awakened
+        jungian_hint: innocent
+
+- id: confirmation
+  title: "The Fog Opens a Road"
+  narration: >-
+    The shards grind on overhead. The Anhuanzhou Wall waits on the Jade Kingdoms'
+    northern frontier, and the spirit-tears wait beyond it. You are part of the
+    balance now — or part of what breaks it. What do they call you?
+  choices: []

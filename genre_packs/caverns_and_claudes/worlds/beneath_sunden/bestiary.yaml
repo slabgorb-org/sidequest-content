@@ -1,0 +1,373 @@
+# Beneath Sünden — world bestiary (sunden_deep_bestiary)
+#
+# World-tier roster for the caverns_and_claudes pack. The pack ships NO
+# genre-level bestiary, so this file is the full populated stat-block set
+# the encountergen samples for the Monster Manual encounters of the single
+# descent. Narrative layers (OCEAN, visual prompt) are composed at
+# generation time; the marquee plates and their image prompts live in the
+# sibling creatures.yaml.
+#
+# SRD-aligned generic stat lines (caverns_and_claudes native dial engine,
+# OSR/SRD conventions): level == HD, hp == average (4.5/HD rounded),
+# ascending AC, attack_bonus ≈ level, morale on the 2d12 ladder, save ==
+# 15 - floor(level/2). No genre-tier file to override — every reachable
+# hostile is authored here.
+#
+# ── FIDELITY (world_register genre-truth gate + cookbook RACE factions) ─
+#   The deep is the dwarfhold of Sünden Deep, dug past where digging
+#   stops, two lifetimes closed. The roster is "what answered the
+#   digging" and "what the hold became." It draws ONLY from the five
+#   cookbook RACE factions and the world_register allow_types
+#   [Undead, Aberration, Ooze, Monstrosity, Construct, Giant, Humanoid,
+#   Beast], deny [Celestial, Fey]:
+#     undead     — the hold's own dead that did not stay dead (dwarf RACE
+#                  sources its creatures via Undead; the deep keeps no dead)
+#     ooze       — the seep that digests the walls; "Gray Ooze" reskinned
+#                  "The Seep" per world_register.reskin
+#     aberration — what was broken into at the bottom of an honest hole
+#     goblinoid  — the big_bad-less harrier faction (cookbook goblinoid.yaml
+#                  big_bads: []) — grave delved-too-deep scavengers of the
+#                  shaft, never comic, capped at the mid band, NO capstone
+#     vermin     — Dungeon Vermin filler (genre archetype), the shaft's
+#                  starveling fauna; faithful to a lightless mine, never cute
+#   Humanoid appears ONLY as the delved-too-deep, per world_register
+#   humanoid_constraint — never townsfolk-tone.
+#
+# ── CAPSTONE LINKAGE (audit trail, matches creatures.yaml dedup set) ────
+#   The seven named capstones in creatures.yaml carry these SRD ids and
+#   stat bands. Their `name` here is the grave bestiary name; the
+#   image-manifest descriptive (non-proper-noun) name lives in
+#   creatures.yaml so Z-Image never paints a proper noun:
+#     wight (L3 mid) · otyugh (L5 mid) · black_pudding (L6 mid) ·
+#     aboleth (L8 deep) · vampire (L8 deep, marquee) ·
+#     mummy_lord (L9 deep, marquee) · lich (L9 deep, marquee)
+#   marquee rows (Lich/Mummy Lord/Vampire) are Diamonds-and-Coal exempt
+#   from the deny gate (ADR-014).
+entries:
+
+  # ── LOW BAND (1-2) — the shaft's starvelings and first dead ──────────
+
+  - id: gnaw_swarm
+    name: Gnaw-Swarm
+    level: 1
+    hp: 4
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d4"
+    move: "20 ft."
+    morale: 5
+    skill: 1
+    save: 15
+    role: lightless mine vermin
+    tags: [beast, vermin, low]
+    abilities:
+      - "Swarms — fights only in numbers, breaks the moment it is alone"
+    description: >-
+      The blind, hairless mine-rats that bred in the dwarfhold's grain
+      stores and never left when the grain ran out. They eat what the deep
+      drops and what the deep brings up the rope, and they have learned
+      the difference between a lamp that moves and one that does not.
+
+  - id: rope_spider
+    name: Shaftwall Spider
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "20 ft. climb 20 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: pale shaft-clinging ambusher
+    tags: [beast, vermin, low]
+    abilities:
+      - "Wall-clinging — strikes from the worked stone above the lamplight"
+    description: >-
+      A pallid leg-span the breadth of a spread hand, holding to the
+      squared dwarf stonework above where a lamp throws. It does not spin
+      across the shaft; it waits where the worked stone gives onto the
+      rough, and it drops on what passes the seam.
+
+  - id: hold_skeleton
+    name: Hold-Dead Skeleton
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 15
+    role: risen dwarfhold labourer
+    tags: [undead, low]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Does not stay dead — the deep keeps no dead"
+    description: >-
+      A dwarf of the hold, dead two lifetimes, still at the work it was
+      set. Pick-marks of a life's labour worn into the bones of its hands.
+      It does not hate the party; it has simply not been told the shift is
+      over, and it has not been told for a very long time.
+
+  - id: shaft_goblin
+    name: Shaftcrept Goblin
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: delved-too-deep harrier
+    tags: [humanoid, goblinoid, low]
+    abilities:
+      - "Harrier — fights from the dark, withdraws, returns; never holds a line"
+    description: >-
+      Came up the dead road on the same rumour everyone does, went down on
+      the rope, and did not come back the same. What is left scavenges the
+      shaft's edges, lean and silent and grave, with no king to die for and
+      no big death waiting at the bottom of it — only the deep, and the
+      next thing the deep drops.
+
+  - id: grave_ghoul
+    name: Ropefoot Ghoul
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: hungering risen delver
+    tags: [undead, low]
+    abilities:
+      - "Paralytic claws — a struck delver who fails a save cannot move for 1d4 rounds"
+      - "Fearless — never checks morale"
+    description: >-
+      A delver who died far enough down to not be finished, and came back
+      up the slow patient way the cold comes up the rope. It is not the
+      person it was. It remembers the shape of the shaft and it remembers
+      hunger, and it has had a long time to learn that the warm things
+      always come back to the lit collar.
+
+  - id: harrier_pack_leader
+    name: Goblinoid Harrier-Leader
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: senior delved-too-deep scavenger
+    tags: [humanoid, goblinoid, low]
+    abilities:
+      - "Calls the pack — coordinates Shaftcrept Goblins to harry and withdraw"
+    description: >-
+      A harrier that has survived the deep long enough to lead the others
+      to easier prey. It does not rule them; nothing rules in the deep.
+      It simply knows which lamps tire, which ropes fray, and how long a
+      party will chase a noise into the dark before it remembers the way
+      back.
+
+  # ── MID BAND (3-6) — the hold's grave watch and the seep ─────────────
+
+  - id: wight
+    name: Wight of the Dead Watch
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: armored dwarfhold sentry, risen
+    tags: [undead, mid, capstone]
+    abilities:
+      - "Life-drain — a slain delver rises by the next descent as hold-dead"
+      - "Fearless — never checks morale"
+    description: >-
+      A dwarf-make harness on a corpse that was set to hold a gate and has
+      held it long past the end of the watch. The watch that did not stand
+      down. It does not pursue past its post, and its post is wherever the
+      deep last decided the gate should be. The creatures.yaml plate is
+      "The Watch That Did Not Stand Down."
+
+  - id: the_seep
+    name: The Seep
+    level: 4
+    hp: 18
+    armor_class: 12
+    attack_bonus: 4
+    damage: "1d8"
+    move: "10 ft. climb 10 ft."
+    morale: 12
+    skill: 1
+    save: 13
+    role: corrosive shaftwall ooze
+    tags: [ooze, mid]
+    abilities:
+      - "Corrodes metal — a hit degrades armor, blades, and rope alike"
+      - "Edge-blind — strikes only what touches the wall it has taken"
+      - "Fearless — never checks morale"
+    description: >-
+      The "Gray Ooze" reskin the camp calls The Seep. It takes a stretch
+      of worked wall and becomes that wall, slow and patient and wet, and
+      it is the rope's quiet enemy as much as any delver's — it does not
+      hunt, it simply digests whatever leans on the stone it has claimed.
+
+  - id: otyugh
+    name: Otyugh of the Sump
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8"
+    move: "20 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: pit-dwelling refuse horror
+    tags: [aberration, mid, capstone]
+    abilities:
+      - "Two tendril strikes per round (1d8 each), then drags a grabbed delver to the maw"
+      - "Disease — a delver wounded by the maw sickens without a save"
+    description: >-
+      The thing in the sump, crouched low in a flooded pit where
+      everything the deep does not want eventually falls — and where, the
+      camp has learned, delvers eventually fall too. It does not charge.
+      It waits, the way a thing waits that lives at the bottom of where
+      things go. The creatures.yaml plate is "The Thing In The Sump."
+
+  - id: black_pudding
+    name: Black Pudding
+    level: 6
+    hp: 27
+    armor_class: 12
+    attack_bonus: 6
+    damage: "2d6"
+    move: "20 ft. climb 20 ft."
+    morale: 12
+    skill: 2
+    save: 12
+    role: wall-digesting devouring ooze
+    tags: [ooze, mid, capstone]
+    abilities:
+      - "Splits when struck by a blade — each half fights on at reduced mass"
+      - "Corrodes metal and stone — eats the very wall it crosses"
+      - "Fearless — never checks morale"
+    description: >-
+      The seep that digests the walls, grown past a stretch of stone into
+      a slow forward mass that eats the worked rock as it comes. A blade
+      only makes two of it. It comes on the slow patient way the cold comes
+      up the rope. The creatures.yaml plate is "The Seep That Digests The
+      Walls."
+
+  # ── DEEP BAND (8-9) — what was broken into, two lifetimes closed ─────
+
+  - id: aboleth
+    name: Aboleth, the Thing at the Bottom
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 7
+    damage: "1d10"
+    move: "10 ft. swim 40 ft."
+    morale: 10
+    skill: 3
+    save: 11
+    role: the thing the digging broke into
+    tags: [aberration, deep, capstone]
+    abilities:
+      - "Two tentacle strikes per round (1d10 each)"
+      - "Enslaving will — a delver who fails a save acts for it until freed"
+      - "It learned your name — knows the party before the party reaches it"
+    description: >-
+      What the deepest gallery broke into when it cut past where veins give
+      out. It was not ore. It has hung in the lightless water two lifetimes
+      and it has had every one of those years to watch the rope and learn
+      the shape of what comes down it. The creatures.yaml plate is "The
+      Thing That Learned Your Name."
+
+  - id: vampire
+    name: Vampire of the Cold Hall
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d8+2"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: predatory undead the cold did not stop
+    tags: [undead, deep, capstone, marquee, shapechanger]
+    abilities:
+      - "Drains the warm — a bitten delver loses constitution that does not return below"
+      - "The cold did not stop it — moves through the deep's cold as the deep does"
+      - "Regenerates between rounds unless the wound is fire"
+    description: >-
+      The one the cold did not stop. It does not feed at the fire's edge
+      like the lesser dead; it goes where the warm things are, patiently,
+      and it has learned that the warm things come down the rope on a
+      schedule. Marquee (ADR-014), exempt from the deny gate. The
+      creatures.yaml plate is "The One The Cold Did Not Stop."
+
+  - id: mummy_lord
+    name: Mummy Lord, the Kept Watch
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "1d10+1"
+    move: "20 ft."
+    morale: 12
+    skill: 3
+    save: 11
+    role: the watch wrapped and kept past all reason
+    tags: [undead, deep, capstone, marquee]
+    abilities:
+      - "Dreadful gaze — a delver who fails a save is held, unable to act, 1d4 rounds"
+      - "Rot-curse — wounds it deals do not close on their own"
+      - "Fearless — never checks morale; reforms unless burned to nothing"
+    description: >-
+      The watch that was wrapped and kept. A dwarfhold officer bound in
+      blackened linen and set to keep a post, who kept it past the fall of
+      the hold and past two lifetimes and is keeping it still. It does not
+      know the watch is over. Marquee (ADR-014), exempt from the deny gate.
+      The creatures.yaml plate is "The Watch That Was Wrapped And Kept."
+
+  - id: lich
+    name: Lich, the One That Answered
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "1d8+2"
+    move: "30 ft."
+    morale: 12
+    skill: 4
+    save: 11
+    role: what answered the digging and never stopped
+    tags: [undead, deep, capstone, marquee]
+    abilities:
+      - "Deathly word — once per fight, a delver who fails a save drops"
+      - "Cold command — calls the hold-dead and the risen watch to it"
+      - "Cannot be ended while its anchor in the deep endures"
+    description: >-
+      The one that answered the digging. Whatever the dwarves reached and
+      could not close, it answered, and it has not stopped answering. It
+      is the deep's grammar made upright and aware — dead two lifetimes and
+      not finished, and in no hurry, because it has all the time there is.
+      Marquee (ADR-014), exempt from the deny gate. The creatures.yaml
+      plate is "The One That Answered The Digging."

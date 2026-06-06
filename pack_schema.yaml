@@ -1,11 +1,16 @@
 schema_version: "1.0"
 
 genre_pack:
+  # Genre/world boundary correction (supersedes ADR-120 "mechanics-in-genre"):
+  # the genre tier is the RULEBOOK ONLY (resolution rules, progression math,
+  # tone/voice axes, narrator voice, lethality + visibility policy, theme/audio
+  # chrome). The CAST and CATALOG — archetypes, tropes, char_creation, inventory,
+  # power_tiers — are world-authoritative and live under worlds/<world>/. A genre
+  # MAY still ship any of those as a shared default (validates normally when
+  # present), but none are required at the genre tier. See world.required_files.
   required_files:
     - pack.yaml
     - theme.yaml
-    - archetypes.yaml
-    - tropes.yaml
     # lore.yaml is FORBIDDEN at genre level (epic-74 story 74-3 — lore is
     # world-only; the genre tier is mechanics-only). The validator flags a
     # genre-tier lore.yaml as an error; world lore.yaml stays required below.
@@ -14,15 +19,11 @@ genre_pack:
     # visual_style.yaml remains mandatory because every world is self-contained).
     - audio.yaml
     - rules.yaml
-    # cultures.yaml is OPTIONAL at genre level (epic-74 genre→world flavor
-    # migration — ALL flavor, including cultures, lives in worlds; genre tier is
-    # mechanics-only). space_opera/cultures.yaml was deliberately deleted and its
-    # cultures now live under worlds/<world>/cultures/. Packs MAY still ship a
-    # genre cultures.yaml (most still do) and it validates normally when present.
-    - char_creation.yaml
-    - inventory.yaml
+    # cultures.yaml, archetypes.yaml, tropes.yaml, char_creation.yaml,
+    # inventory.yaml, power_tiers.yaml are OPTIONAL at genre level — ALL cast and
+    # catalog flavor lives in worlds/<world>/. Packs MAY still ship genre-tier
+    # copies (some do) and they validate normally when present.
     - lethality_policy.yaml
-    - power_tiers.yaml
     - progression.yaml
     - prompts.yaml
     - axes.yaml
