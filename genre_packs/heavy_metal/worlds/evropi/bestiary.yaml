@@ -1,0 +1,319 @@
+# Evrópí — world bestiary (evropi_bestiary)
+#
+# World-tier override on the heavy_metal pack bestiary. SRD-aligned combat
+# stat blocks for the wwn ruleset module; encountergen samples these (alongside
+# the genre-tier pool) for the Monster Manual encounters of a continent where
+# three authoritarian crowns press on a world twelve thousand years past its
+# last great empire. Narrative layers (OCEAN, visual prompt) are composed at
+# generation time. Stats follow the Worlds Without Number SRD 1.0 (Sine Nomine
+# Publishing) generic stat lines — level == HD, hp == average (4.5/HD),
+# ascending AC, morale on the 2d12 ladder, physical save 15 - floor(level/2).
+#
+# World tier (ADR-120): these hostiles are specific to Evrópí — the
+# forehead-tattooed Daggereyes, the Wazdia secret police, the beauty-eugenic
+# Mistos Host, the Wujasjav covenant-mages, the fiery 999 Crimson Gods, the
+# dead of the drowned Tismenni empire stirring in the Land of Dust. Genre-
+# generic foes (conscripts, grave-knights, foundry constructs) stay in the
+# pack bestiary.yaml; this file overrides only the world-flavored roster.
+entries:
+  - id: reniksnad_madded_slave
+    name: Reniksnad-Madded Slave
+    level: 1
+    hp: 5
+    armor_class: 11
+    attack_bonus: 1
+    damage: "1d4"
+    move: "40 ft."
+    morale: 12
+    skill: 0
+    save: 15
+    role: withdrawal-crazed Pę bondsman
+    tags: [human, frenzied]
+    abilities:
+      - "Beyond fear — never checks morale once the shaking starts"
+      - "Attacks anything between itself and the next dose"
+    description: >-
+      A Waterfolk or Pakook`rook slave of the Pę markets, days past
+      their last reniksnad and a week from the death the withdrawal
+      brings. The Wazdia taxes the supply; this one fell off the
+      ledger and will tear through anything between it and the stall.
+  - id: daggereye_brigand
+    name: Daggereye Brigand
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 15
+    role: forehead-tattooed Egzami outlaw
+    tags: [human, bandit]
+    description: >-
+      A deserter or thief of Srárný's band, the dagger-mark tattooed
+      between the eyebrows, working the Waznoty road for the Gabra
+      Ebbe's bounty-price on his own kind. Robs when the Wazdia's
+      kill-contracts are light, and is not above either.
+  - id: wazdia_informer
+    name: Wazdia Informer
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d4+1"
+    move: "30 ft."
+    morale: 6
+    skill: 2
+    save: 15
+    role: secret-police snitch under a tradesman's cover
+    tags: [human, spy]
+    abilities:
+      - "Marks the party — files a ledger entry that follows them to the next town"
+    description: >-
+      One of the Wazdia's thousands of informers, a grain-broker or
+      ostler who believes nobody knows what they are. Everybody knows.
+      A poor fighter who will run for a Wazan drop-letter the moment
+      a blade is drawn — and the letter is the real danger.
+  - id: wazdia_field_agent
+    name: Wazdia Field Agent
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6+1"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 14
+    role: secret-police killer with a Wazdian Dagger
+    tags: [human, agent]
+    abilities:
+      - "Wazdian Dagger — the curved silver-chased blade strikes for a clean opening cut"
+      - "Mind before Heart — immune to fear and intimidation"
+    description: >-
+      A field agent of the Kingdom of Zkędzała's secret police, the
+      Zkędzała arms on his scabbard, the curved red-and-white blade
+      loose in its silver chasing. He commissions the Daggereyes'
+      contract killings and disavows them, and he does the close
+      work himself when the kill must be deniable.
+  - id: hvoru_reed_stalker
+    name: Hvoru Reed-Stalker
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8"
+    move: "20 ft., swim 40 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: ambush predator of the salt marshes
+    tags: [beast]
+    abilities:
+      - "Lies submerged in the brackish channels and strikes from cover"
+      - "Drags a seized victim under to drown it"
+    description: >-
+      A long flat-bodied marsh-hunter of the Hvoru salt fens between
+      the Egzami and the southern swamps, hide the colour of dead
+      reed. The enslaved Waterfolk who poach its waters know it by
+      the silence — the channel goes quiet, and then it does not.
+  - id: daggereye_knife_captain
+    name: Daggereye Knife-Captain
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d6+2"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 14
+    role: lieutenant of Srárný's brigand band
+    tags: [human, bandit, elite]
+    abilities:
+      - "Commands the lesser Daggereyes — they hold morale while the captain stands"
+      - "Twin curved knives — makes two attacks per round"
+    description: >-
+      A proven killer who has done his assassination and impressed
+      Srárný Fyzioloniązka herself, the forehead-mark cut deeper than
+      a common brigand's. He runs the deep-forest camps when she is
+      moving, sorts the stolen cargo for Wazdia disposal, and takes
+      drop-letter orders in her name.
+  - id: mistos_host_soldier
+    name: Mistos Host Soldier
+    level: 3
+    hp: 14
+    armor_class: 16
+    attack_bonus: 4
+    damage: "1d8+1"
+    move: "30 ft."
+    morale: 11
+    skill: 2
+    save: 14
+    role: beauty-eugenic conscript of the General's Host
+    tags: [elf, soldier]
+    abilities:
+      - "Closed logic — morale holds where any sane army would break"
+      - "Fights in parade formation; flanked Host soldiers fight back-to-back"
+    description: >-
+      A pale-haired Mistos in red-and-black silk over black leather,
+      bred and selected for flawless form, marching north from the
+      Zbóźny under a will that is absolute and a reasoning that is
+      closed. They fight for beauty of movement over battlefield
+      sense, and they are terrifying anyway.
+  - id: tismenni_dust_echo
+    name: Tismenni Dust-Echo
+    level: 4
+    hp: 18
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d8"
+    move: "fly 30 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: half-formed shade leaked from the Land of Dust
+    tags: [undead, spirit]
+    abilities:
+      - "Bound to the thin places — fearless, never checks morale"
+      - "Whispers in dead Tismenni; a target who answers in the tongue saves or is shaken"
+    description: >-
+      A grey half-shape of the drowned empire's dead, leaked through
+      a thin patch of the Land of Dust at a Tismenni ruin. It does
+      not know it has died twelve thousand years ago. It speaks the
+      dead scholar-tongue at anyone who comes near, and is most
+      dangerous to the one who understands it.
+  - id: wujasjav_covenant_adept
+    name: Wujasjav Covenant-Adept
+    level: 4
+    hp: 18
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 3
+    save: 13
+    role: covenant-thaumaturge of the Pę mage guild
+    tags: [human, mage]
+    abilities:
+      - "Covenant-working — pays blood, a year, or a name to loose a searing or binding effect"
+      - "Reniksnad reagent — can wreath a working in addictive smoke that saps a victim's will"
+    description: >-
+      A guild thaumaturge of the Wujasjav at Pę, every working a
+      covenant that costs blood, years, or names. The guild is taxed
+      heavily and tolerated because it is useful; an adept sent into
+      the field has already paid for whatever he is about to do, and
+      means to make it worth the price.
+  - id: mistos_warden
+    name: Mistos Warden
+    level: 5
+    hp: 23
+    armor_class: 17
+    attack_bonus: 6
+    damage: "1d8+3"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 13
+    role: Host officer over a puppet seat or mine
+    tags: [elf, officer, elite]
+    abilities:
+      - "Polite before violence — a parade-perfect strike opens with deadly precision"
+      - "Instrumentalises — does not fight a strange enemy he can use; flees to report instead"
+    description: >-
+      A flawless-featured officer of the General's Host set to watch
+      a Puppet Seat or the Ingurdios mines, courteous in the specific
+      Mistos way that precedes a killing. He offers letters of
+      introduction rather than orders, and remembers exactly who
+      refuses them.
+  - id: crimson_god_visage
+    name: Crimson God's Visage
+    level: 5
+    hp: 23
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d10+1"
+    move: "30 ft., fly 30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: fiery demonic manifestation of a named Crimson God
+    tags: [demon, horror]
+    abilities:
+      - "Wreathed in fire — a struck attacker takes burning damage in return"
+      - "Bargain — offers a favour mid-fight in exchange for flesh, name, or blood"
+    description: >-
+      The summoned visage of one of the 999 Crimson Gods, a unique
+      fiery demonic face called up by a private bargain gone past its
+      term. Each is its own arrangement; this one has come to collect
+      the name it was promised, and will offer a worse bargain to
+      anyone who interrupts the collection.
+  - id: drowned_tismenni_revenant
+    name: Drowned Tismenni Revenant
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 7
+    damage: "1d10+2"
+    move: "30 ft., swim 30 ft."
+    morale: 12
+    skill: 2
+    save: 12
+    role: dragonkin dead risen from the Cataclysm's wave
+    tags: [undead, dragonkin, elite]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Differently-hinged jaw — a seizing bite holds and rends a grappled foe"
+    description: >-
+      A risen dragonkin of the drowned empire, skull hinged in the
+      old Tismenni way, salt-rimed and twelve thousand years patient.
+      It walks up out of the half-submerged ampitheatres and the
+      flooded low cities when the Land of Dust thins, still wearing
+      the harness of an office no living tongue can name.
+  - id: feral_hollows_drone
+    name: Feral Hollows Drone
+    level: 6
+    hp: 27
+    armor_class: 14
+    attack_bonus: 7
+    damage: "1d8+2"
+    move: "40 ft., climb 30 ft."
+    morale: 10
+    skill: 1
+    save: 12
+    role: severed antman worker run mad without a court
+    tags: [insectoid, swarm-caste]
+    abilities:
+      - "Two chitin scythes — makes two attacks per round"
+      - "Cut from the pheromone-court, it follows the last command it was given, forever"
+    description: >-
+      A chitin-plated worker-drone of the Deep Hollows beneath the
+      Ingurdios mines, severed from its hive's pheromone-court by the
+      Mistos digging too deep. Without the court's scent it has no
+      mind left but the last order — and it will carry that order out
+      against anything that moves, until the chitin fails.
+  - id: tismenni_sentinel
+    name: Stirring Tismenni Sentinel
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 10
+    damage: "2d6+3"
+    move: "40 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: dragonkin war-construct waking after the Cataclysm
+    tags: [dragonkin, apex, ancient]
+    abilities:
+      - "Two attacks per round — twelve thousand years has not dulled the drill"
+      - "Commands the lesser dead — Dust-Echoes and revenants nearby hold and obey"
+    description: >-
+      A great dragonkin sentinel of the golden-age empire, set to a
+      watch the comet ended and only now, twelve thousand years
+      later, beginning to stir. It does not know the empire drowned.
+      It knows its post, its orders, and the kobold servant-caste it
+      still expects to attend it — and it is waking for the first
+      time as the crowns above it begin to fall.
