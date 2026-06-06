@@ -1,14 +1,26 @@
 # sidequest-content
 
-The single source of truth for SideQuest **genre packs** — YAML configuration,
-audio, images, world data, and culture corpora. Read by both
-`sidequest-server` (Python game engine) and `sidequest-daemon` (Python media
-services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
+The single source of truth for SideQuest **genre-pack specs** — YAML
+configuration, generation parameters, world data, and culture corpora. Read by
+both `sidequest-server` (Python game engine) and `sidequest-daemon` (Python
+media services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 
-> **Audio assets are NOT in this repo.** They live in R2 (`cdn.slabgorb.com`).
-> Per-track ACE-Step generation parameters (`*_input_params.json` under
-> `genre_packs/<pack>/audio/music/`) ARE in this repo and are the canonical
-> regeneration spec — see [ADR-095](../orc-quest/docs/adr/095-daemon-music-tier-via-ace-step.md).
+> **Rendered media assets (images AND audio) are NOT canonical in this repo.**
+> They are canonical in R2 (`cdn.slabgorb.com`), and the authoritative index of
+> what exists is **`r2_manifest.json`** at the repo root (a full bucket scan:
+> `key`, `md5`, `size_bytes`, `uploaded_at` per object). What git holds is the
+> *spec* — the prompts, manifests, and generation parameters that regenerate a
+> binary — not the binary itself. When the local workspace and R2 disagree on a
+> rendered asset, **R2 wins**; rebuild the index with
+> `scripts/r2_manifest_from_bucket.py`.
+>
+> - **Audio:** per-track ACE-Step generation parameters (`*_input_params.json`
+>   under `genre_packs/<pack>/audio/music/`) are the canonical regeneration
+>   spec — see [ADR-095](../orc-quest/docs/adr/095-daemon-music-tier-via-ace-step.md).
+>   The OGG lives in R2.
+> - **Images:** `portrait_manifest.yaml`, POI yaml, and `visual_style.yaml`
+>   prompt text are the canonical spec. The rendered PNG lives in R2, indexed
+>   by `r2_manifest.json`.
 
 ## Genre packs (live)
 
@@ -94,10 +106,25 @@ the pack's `cultures.yaml`, and validate via `sidequest namegen`.
 - **In R2 (`cdn.slabgorb.com`):** Rendered OGG files served to clients.
 - Music is generated on operator command: `python scripts/generate_music.py --genre <pack>` from the orchestrator (ADR-095). Re-running is idempotent and safe to leave durable.
 
-## Image assets (LFS)
+## Image assets (R2-canonical)
 
-Image assets that remain LFS-tracked are unaffected by the audio-in-R2 change.
-Binary assets are tracked with Git LFS.
+Rendered images are **canonical in R2**, indexed by `r2_manifest.json` — the
+same model as audio. Git holds only the spec (`portrait_manifest.yaml`, POI
+yaml, `visual_style.yaml` prompt text). Render scripts
+(`scripts/generate_portrait_images.py`, `generate_poi_images.py`,
+`generate_creature_images.py`) write PNGs into the local workspace;
+`scripts/r2_sync_packs.py` uploads them to R2; `scripts/r2_manifest_from_bucket.py`
+rebuilds the index.
+
+**Do not treat local PNGs as the source of truth, and do not commit fresh ones.**
+The `.gitattributes` `*.png filter=lfs` rules and a residue of historical
+LFS-committed PNGs predate the R2 migration — they are legacy, not canonical.
+Where a local copy and R2 disagree, R2 wins. Multiple local folder conventions
+(`<pack>/images/<type>/`, `<pack>/assets/images/<type>/`,
+`<pack>/worlds/<world>/assets/<type>/`) exist only as historical render-output
+drift; the canonical location of any asset is whatever key holds it in
+`r2_manifest.json`. (The only LFS binaries that legitimately stay in git are
+`.safetensors` LoRA weights and the cavern-renderer test fixtures.)
 
 > **Do not pull from GitHub to sync between local repos** — it eats LFS bandwidth (10 GiB/month limit on GitHub Pro).
 
