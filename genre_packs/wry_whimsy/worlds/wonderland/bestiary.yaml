@@ -1,0 +1,296 @@
+# Wonderland — world bestiary (wonderland_bestiary)
+#
+# World-tier creature roster for the wry_whimsy pack, wonderland world. SRD-aligned
+# combat stat blocks; encountergen samples these (alongside the genre-tier pool) for
+# the Monster Manual of Lewis Carroll's dream-country. Narrative layers (OCEAN,
+# visual prompt) are composed at generation time.
+#
+# Stats follow generic SRD lines (matching the barsoom template): level == HD, hp ==
+# average (~4.5/HD), ascending AC, morale on the 2d12 ladder, physical save
+# 15 - floor(level/2). Wonderland's tone is MEDIUM-lethality — most of the country is
+# terror-theatre that never lands the blow (low morale, low damage, harmless-absurd),
+# so the roster ranges from a curled hedgehog croquet-ball to the one genuinely lethal
+# thing in the dream: the Jabberwock, encoded high and savage to match world.yaml's
+# the_jabberwock trope. Source-faithful Carroll (Alice's Adventures in Wonderland 1865
+# + Through the Looking-Glass 1871), Tenniel's woodcuts, never the 1951 film.
+#
+# World tier (ADR-120): these creatures are specific to Carroll's Wonderland and are
+# US public domain. Genre-generic foes stay in the pack roster; this file holds only
+# the world-flavored canon.
+entries:
+
+  # ── HARMLESS-ABSURD (level 1) — terror-theatre and croquet-tackle ───────────
+  - id: card_soldier
+    name: Playing-Card Soldier
+    level: 1
+    hp: 4
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d4"
+    move: "30 ft."
+    morale: 5
+    skill: 0
+    save: 15
+    role: pasteboard soldier of the pack
+    tags: [card_country, soldier, played_straight, harmless_absurd]
+    abilities:
+      - "Flat as pasteboard — folds double to make a croquet-hoop and falls flat at a cross word"
+      - "Marches in files; the Queen's living suit-rank, never a soul of its own"
+    description: >-
+      A single painted face on a single thin oblong body, a soldier of the suit
+      raised by the Queen of Hearts. It marches in files, bends double on hands and
+      feet to make a croquet-hoop, and flattens itself on the path in terror the
+      instant she roars. A whole pack of them is nothing but cards, and knows it.
+
+  - id: card_gardener
+    name: Card Gardener
+    level: 1
+    hp: 4
+    armor_class: 11
+    attack_bonus: 0
+    damage: "1d3"
+    move: "30 ft."
+    morale: 4
+    skill: 1
+    save: 15
+    role: terrified pasteboard servant of the garden
+    tags: [card_country, servant, played_straight, harmless_absurd]
+    abilities:
+      - "Paints white roses red in a panic before the Queen finds the mistake out"
+      - "Throws itself flat at the first 'Off with their heads!' — no fight in it at all"
+    description: >-
+      A flat oblong gardener of the low cards — Two, Five, or Seven of Spades —
+      slapping red paint over a rose-tree they planted white by error, in sheer terror
+      of the Queen. They flee, beg, and flatten themselves on the path; they do not
+      fight, only paint and plead and dread the next sentence.
+
+  - id: hedgehog_ball
+    name: Croquet Hedgehog
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d3"
+    move: "20 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: living croquet-ball that crawls off the lawn
+    tags: [card_country, beast, played_straight, harmless_absurd]
+    abilities:
+      - "Uncurls and crawls away mid-stroke — refuses to be a sporting ball"
+      - "Curls into a prickled ball; a careless grab takes 1 spine for 1 point"
+    description: >-
+      A hedgehog pressed into service as a croquet-ball on the Queen's living
+      ground, which uncurls the moment it is struck and ambles off across the grass
+      after its own business. Harmless but contrary, it spoils every stroke and
+      pricks the hand that tries to set it right.
+
+  - id: flamingo_mallet
+    name: Croquet Flamingo
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4"
+    move: "fly 40 ft."
+    morale: 5
+    skill: 1
+    save: 15
+    role: living croquet-mallet that twists to look at you
+    tags: [card_country, beast, played_straight, harmless_absurd]
+    abilities:
+      - "Twists its long neck round to face the player just as the stroke is made"
+      - "A snappish peck if seized by the legs and swung as a mallet"
+    description: >-
+      A live flamingo conscripted as a croquet-mallet, held upside-down by the legs
+      and meant to knock the hedgehogs through the soldier-hoops — except it twists
+      its long neck about to gaze up at whoever swings it, ruining every shot. More
+      nuisance than threat, and quietly affronted by the whole arrangement.
+
+  # ── ODD COMPANY (level 2) — the wood's small mad citizens ───────────────────
+  - id: mome_rath
+    name: Mome Rath
+    level: 2
+    hp: 9
+    armor_class: 12
+    attack_bonus: 2
+    damage: "1d4"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 14
+    role: green pig that has lost its way home, bellowing
+    tags: [tulgey_wood, jabberwocky_beast, played_straight, harmless_absurd]
+    abilities:
+      - "Bellows mournfully when far from home — 'mome' for 'from home', as Humpty Dumpty glosses it"
+      - "Bewildered and harmless in the open; only dangerous underfoot in a panicked herd"
+    description: >-
+      One of the mome raths of the Jabberwocky verse, which Humpty Dumpty explains as
+      a sort of green pig, 'mome' meaning grave or far from home — they outgrabe,
+      bellowing and whistling and sneezing, lost in the tulgey wood. Pathetic rather
+      than fierce, a mome rath troubles a traveler only by getting underfoot.
+
+  - id: borogove
+    name: Borogove
+    level: 2
+    hp: 8
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4"
+    move: "20 ft., fly 30 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: shabby draggled bird like a live mop
+    tags: [tulgey_wood, jabberwocky_beast, played_straight, harmless_absurd]
+    abilities:
+      - "All mimsy — flimsy and miserable, feathers sticking out every way like a live mop"
+      - "A startled flapping rush of beak and claw if cornered, then gone into the trees"
+    description: >-
+      A thin shabby-looking bird with its feathers sticking out all round, as Humpty
+      Dumpty has it — something like a live mop, mimsy (flimsy and miserable) in the
+      tulgey wood near the sundial where the toves gyre. It means no harm; it only
+      looks wretched and flaps off in a fright when a traveler comes too near.
+
+  - id: slithy_tove
+    name: Slithy Tove
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4"
+    move: "40 ft., burrow 20 ft."
+    morale: 7
+    skill: 2
+    save: 14
+    role: badger-lizard-corkscrew that gyres about the sundial
+    tags: [tulgey_wood, jabberwocky_beast, played_straight, harmless_absurd]
+    abilities:
+      - "Gyres and gimbles — spins round and round and bores holes about the sundial"
+      - "Lithe and slimy; slips a grip and corkscrews away underground"
+    description: >-
+      One of the slithy toves of Jabberwocky — 'slithy' being lithe and slimy, and a
+      tove, by Humpty Dumpty's account, something like a badger, something like a
+      lizard, and something like a corkscrew, that makes its nest under sundials and
+      lives on cheese. It gyres and gimbles in the wabe; vexing to catch, never a
+      real danger.
+
+  - id: frog_footman
+    name: Fish-and-Frog Footman
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4"
+    move: "20 ft."
+    morale: 6
+    skill: 2
+    save: 14
+    role: liveried footman who will argue with the door forever
+    tags: [card_country, servant, nonsense, played_straight, harmless_absurd]
+    abilities:
+      - "Argues circularly — will sit on the step disputing whether you can knock until next week"
+      - "Wholly impervious to reason; the conversation is the obstacle, not the fists"
+    description: >-
+      A footman with the head of a fish or a frog and a great powdered wig, in livery,
+      seated on the step before the Duchess's door delivering invitations and refusing
+      to be hurried. He fights only with circular argument, will sit disputing for a
+      week, and means a traveler no harm beyond the maddening waste of their afternoon.
+
+  # ── MAD HOUSEHOLD (level 3) — the dangerous-by-chaos middle ─────────────────
+  - id: pepper_cook
+    name: The Duchess's Cook
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: crockery-flinging cook in a haze of pepper
+    tags: [tulgey_wood, household, hazard, played_straight]
+    abilities:
+      - "Hurls crockery — plates, saucepans, fire-irons fly at everyone, the Duchess and baby included"
+      - "Pepper-haze — the kitchen air makes all within it sneeze and lose their footing"
+    description: >-
+      A cook at a smoky hearth stirring a great cauldron over-seasoned with pepper
+      enough to make the whole room sneeze, who without warning begins flinging the
+      crockery — plates, dishes, the fire-irons — at the Duchess, the howling baby, and
+      anyone else in range. Not malice so much as temper, but the kitchen is genuinely
+      a place to be struck.
+
+  - id: jubjub_bird
+    name: Jubjub Bird
+    level: 3
+    hp: 13
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "20 ft., fly 50 ft."
+    morale: 9
+    skill: 2
+    save: 14
+    role: desperate passionate fowl of the Jabberwock's wood
+    tags: [tulgey_wood, jabberwocky_beast, hazard, played_straight]
+    abilities:
+      - "A bird in a perpetual passion — shrieks and stoops in a fury that scatters lesser creatures"
+      - "Shuns the day; lives where the Jabberwock hunts and is to be shunned the same"
+    description: >-
+      The Jubjub bird of the Jabberwocky verse and the Snark hunt — a desperate bird
+      that lives in perpetual passion, its voice a shriek, named in the same breath as
+      the warning to beware the Jabberwock and the frumious Bandersnatch. It is a real
+      and ill-tempered danger of the tulgey wood, though nothing beside the monster it
+      keeps company with.
+
+  - id: frumious_bandersnatch
+    name: Frumious Bandersnatch
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d10"
+    move: "60 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: swift-snatching neck-craning brute of the wood
+    tags: [tulgey_wood, jabberwocky_beast, apex, played_straight]
+    abilities:
+      - "Frumious and swift — runs down a fleeing traveler before they can clear the trees"
+      - "Snatches with a long craning neck; one cannot outrun it, only fend it off"
+    description: >-
+      The frumious Bandersnatch of Jabberwocky and the Snark hunt — fierce, fuming,
+      and furious all at once ('frumious'), with a neck that cranes and snaps and a
+      speed no runner escapes; in the Snark the only counsel is to keep a steady hold
+      and never let it catch one off guard. A true predator of the wood, second only
+      to the Jabberwock itself.
+
+  # ── THE ONE LETHAL THING (level 8) — the dream that is not playing ──────────
+  - id: jabberwock
+    name: The Jabberwock
+    level: 8
+    hp: 40
+    armor_class: 16
+    attack_bonus: 10
+    damage: "2d8"
+    move: "40 ft., fly 40 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: the one genuinely lethal monster of the dream
+    tags: [tulgey_wood, apex, lethal, the_one_lethal_thing, played_straight]
+    abilities:
+      - "Jaws that bite, claws that catch — two attacks each round, and they land in earnest"
+      - "Eyes of flame — comes whiffling and burbling through the wood, immune to wit, refusal, dosing, and waking; only the blade answers it"
+      - "Vorpal weakness — a true vorpal stroke goes snicker-snack and takes its head; killing it marks the wielder, and the nonsense-country recoils from them after"
+    description: >-
+      The one thing in the dream that is not playing. Deep in the tulgey wood, where
+      the trees meet overhead and the rules grow thin, it comes whiffling — jaws that
+      bite, claws that catch, eyes of flame — and it means real harm and follows
+      through. It cannot be out-argued, refused, dosed, or woken away from; only the
+      vorpal sword answers it, going snicker-snack to take the head. Violence is the
+      right answer in Wonderland exactly once, against exactly this, and it leaves a
+      mark the whole country remembers.

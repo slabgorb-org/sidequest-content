@@ -1,0 +1,251 @@
+# Flickering Reach — world bestiary (combat stat blocks)
+#
+# WORLD-TIER override roster for the strict `Bestiary` model consumed by
+# encountergen's Monster Manual pool. Stats follow the same Ashes Without
+# Number (Sine Nomine) convention as the genre-tier mutant_wasteland
+# bestiary.yaml: level == HD, hp == average (~4.5/HD), ascending AC,
+# attack_bonus/save on the AWN foe ladder, morale on the 2d12 scale.
+#
+# This file is NOT a copy of the genre pool. The genre bestiary supplies
+# generic wasteland foes (wasteland_raider, gorehound, glow_turtle,
+# manscorpion, scorpoid, ghoul_bear, hellrider, raider_boss, dire_warlord,
+# etc.). Those remain reachable as the genre-tier floor. The entries below
+# are SPECIFIC to the Flickering Reach's fiction — each one an expression
+# of the three wounds (the Unsealing, the Rooting, the Bargain) and the
+# four surface/under factions. Ids are shared with this world's narrative
+# creatures.yaml ecology file where the creature is a combatant, so the
+# combat block and the ecology entry describe the same beast.
+#
+# Per ADR-120, world-tier creatures take precedence over the genre floor
+# when present; per the genre→world boundary, mechanics live in the genre
+# pack and world-specific flavor lives here.
+entries:
+  # ══════════════════════════════════════════════════════════════
+  # WOUND: THE UNSEALING — glass, isotopes, resonance, the Signal
+  # ══════════════════════════════════════════════════════════════
+  - id: dust_drinker
+    name: Przyå Dust-Drinker
+    level: 1
+    hp: 4
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "12m"
+    morale: 7
+    skill: 1
+    save: 15
+    role: irradiated ambush scavenger
+    tags: [mutant, beast, glass_flat]
+    abilities:
+      - "Buries in the grey powder of the Przyå Dust and surges up at warmth"
+      - "Hide weeps caustic alkaline brine — 1 point on a bare-handed grapple"
+    description: >-
+      A flattened, ash-coloured thing that lies under the radioactive
+      powder downwind of the Glass Flat, drinking the isotopes the way
+      others drink water. It rises out of the drift when a warm body
+      passes, all loose hide and grasping mouthparts.
+
+  - id: signal_chorus
+    name: Signal Chorus
+    level: 3
+    hp: 13
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "15m fly"
+    morale: 9
+    skill: 2
+    save: 14
+    role: static-singing aerial swarm
+    tags: [mutant, swarm, signal]
+    abilities:
+      - "Counts as a swarm — half damage from single-target weapons, full from area attacks"
+      - "Voices the Long Signal — those within earshot save or stand transfixed for one round"
+    description: >-
+      A whirling flock of glass-winged moths and bird-things that have
+      tuned themselves to the Long Signal, chittering its dead-language
+      cadence back at the world. The chorus drowns thought; people stop
+      to listen and forget to run.
+
+  - id: glass_touched_mount
+    name: Glass-Touched Mount
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d10"
+    move: "24m"
+    morale: 8
+    skill: 2
+    save: 13
+    role: feral seven-limbed steed
+    tags: [mutant, beast, drifter, elite]
+    abilities:
+      - "Gallops at staggering speed — closes or flees a full range band each round"
+      - "Trample on a charge — second attack against a knocked-down target"
+    description: >-
+      A Drifter riding-beast gone feral, six or seven legs of corded
+      muscle under bioluminescent hide, vocalising in patterns that sound
+      almost like speech. Unsaddled and masterless, it runs down anything
+      that moves wrong on the open steppe.
+
+  - id: silo_eye
+    name: Silo-Eye Manifestation
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 10
+    damage: "2d6"
+    move: "10m float"
+    morale: 12
+    skill: 3
+    save: 11
+    role: glass-plain anomaly horror
+    tags: [mutant, horror, anomaly, glass_flat, apex]
+    abilities:
+      - "Resonant Pulse — every other round, all metal-bearing foes within 30m save or take 1d6 as their gear sings and bites"
+      - "Scanning Gaze — on a hit, target save or be rooted in place, certain it is being read"
+      - "Fearless — never checks morale"
+    description: >-
+      Where the green eye's light wells up through a fracture in the black
+      glass, the resonance gathers into a slow-floating pupil of cold green
+      luminescence. It does not attack so much as examine — and being
+      examined by Silo Prime's twelve-century patience is its own wound.
+
+  # ══════════════════════════════════════════════════════════════
+  # WOUND: THE ROOTING — the Understory, spores, living wood
+  # ══════════════════════════════════════════════════════════════
+  - id: understory_hand
+    name: Understory Hand
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "3m"
+    morale: 12
+    skill: 1
+    save: 14
+    role: ambush root-tendril
+    tags: [plant, understory, green]
+    abilities:
+      - "Erupts from soil or salvage — surprise on a successful stealth check the first round"
+      - "Grapple on a hit — held target is dragged toward the root-mass at 3m/round"
+      - "Fearless — never checks morale"
+    description: >-
+      A single arm-thick tendril of the root-network, waiting just under
+      the warm soil at a growth-front. It does not chase. It grabs, and it
+      pulls you down toward the rest of the Understory, which is patient
+      and which is hungry.
+
+  - id: peace_speaker
+    name: Peace-Speaker Cocoon
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8"
+    move: "6m"
+    morale: 12
+    skill: 2
+    save: 13
+    role: spore-luring living-wood entomber
+    tags: [plant, understory, green, horror]
+    abilities:
+      - "Spore Lure — on its turn, all unmasked foes within 9m save or step one pace closer, soothed"
+      - "Entomb — a grappled target wrapped in living wood is removed from the fight until cut free (10 HP of bark)"
+    description: >-
+      A bole of pulsing living wood studded with half-formed cocoons,
+      whispering 'peace in the green' through a mouth of bark. Those who
+      breathe its spores walk willingly into its embrace and are sealed
+      away to feed the network, smiling.
+
+  - id: tangle_mouth
+    name: Tangle-Mouth
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 8
+    damage: "1d10"
+    move: "9m"
+    morale: 10
+    skill: 2
+    save: 13
+    role: canopy apex predator
+    tags: [plant, beast, understory, green, elite]
+    abilities:
+      - "Two constrictor-vine attacks per round"
+      - "Synesthetic spores — a foe it hits saves or has attacks at -2 next round as colours bleed into sound"
+      - "Climbs and ambushes from the canopy"
+    description: >-
+      The Blooming Tangle's apex thing, where root, vine, and the bones of
+      old salvage crews have grown into one snapping maw lined with
+      driftwood teeth. It drops from the bioluminescent canopy onto whatever
+      crosses the root-line below.
+
+  # ══════════════════════════════════════════════════════════════
+  # WOUND: THE BARGAIN — Vault Echo, the Protocols, the tithed
+  # ══════════════════════════════════════════════════════════════
+  - id: echo_frog
+    name: Echo Frog
+    level: 1
+    hp: 4
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4"
+    move: "9m"
+    morale: 6
+    skill: 1
+    save: 15
+    role: psychic canyon amphibian
+    tags: [mutant, psychic, beast]
+    abilities:
+      - "Mourning Croak — a foe within 9m saves or takes a -1 penalty to all rolls next round, weighed down by remembered grief"
+    description: >-
+      A pale, oversized-craniumed frog of the Blind Reach canyons that
+      croaks the names of the tithed children at dusk, first tithe to
+      last. Harmless alone; the weight behind the sound is not.
+
+  - id: tithe_born
+    name: Tithe-Born Stray
+    level: 5
+    hp: 22
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d8+1"
+    move: "12m"
+    morale: 9
+    skill: 3
+    save: 13
+    role: gene-milled vault escapee
+    tags: [human, vaultborn, elite]
+    abilities:
+      - "Carries a vault-standard sidearm that still works perfectly — two ranged attacks per round"
+      - "Surface-Sick — confused by open sky; saves at -1 against fear and disorientation"
+    description: >-
+      A numbered child of the Bargain who clawed back out of the gene-mills
+      with perfect teeth, no memory of sky, and a pre-war pistol that never
+      jams. Fast, lethal, and terrified of the horizon.
+
+  - id: protocol_sentinel
+    name: Protocol Sentinel
+    level: 6
+    hp: 27
+    armor_class: 18
+    attack_bonus: 9
+    damage: "1d10+2"
+    move: "12m"
+    morale: 12
+    skill: 2
+    save: 12
+    role: feral vault security automaton
+    tags: [robot, vaultborn, elite]
+    abilities:
+      - "Two integral weapon attacks per round, mid range — never runs out of ammo"
+      - "Enforce the Protocols — +2 to hit anything attempting to breach a seal it guards"
+      - "Fearless — never checks morale"
+    description: >-
+      A pristine pre-war security chassis still executing its last
+      Protocol behind a sealed vault door, twelve centuries on. It does not
+      negotiate, it does not tire, and it considers the open seal above it
+      a heresy to be corrected with measured fire.

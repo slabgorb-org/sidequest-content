@@ -1,0 +1,313 @@
+# Oz — world bestiary
+#
+# World-tier override on the wry_whimsy pack for the Land of Oz. SRD-aligned
+# combat stat blocks for the native ruleset module; encountergen samples these
+# for the Monster Manual encounters of Baum's fairyland. Narrative layers
+# (OCEAN, visual prompt) are composed at generation time.
+#
+# Stats follow generic SRD-style stat lines (the same convention as the
+# heavy_metal/barsoom world bestiary): level == HD, hp ~= 4.5/HD average,
+# ascending AC, morale on the 2-12 ladder, physical save 15 - floor(level/2).
+#
+# DOCTRINE — Oz is a LOW-lethality fairyland (world.yaml lethality: low,
+# axis menace 0.25). Inside the seal, menace ENCHANTS, ENSLAVES, or
+# SENDS-ON-A-TASK rather than kills. These stat blocks exist so the engine can
+# *run* a confrontation with mechanical weight; "defeat" should resolve as
+# capture, transformation, flight, or a debt owed, almost never a grave. Threat
+# varies widely: talking beasts and field mice are comedic and trivial; the
+# Kalidahs and the bound Winged Monkeys are genuinely dangerous obstacles. The
+# one lethal thing in the country — the Deadly Desert — is a cartography hazard
+# and the deadly_desert trope, not a creature, and so is not statted here.
+#
+# World tier (ADR-120): these creatures are specific to Oz. They are L. Frank
+# Baum's (The Wonderful Wizard of Oz and its sequels), public domain in the US.
+# Genre-generic foes would live in a pack bestiary.yaml; this file is the
+# world-flavored roster.
+entries:
+  # ── COMEDIC / TRIVIAL ──────────────────────────────────────────────────────
+  - id: field_mouse
+    name: Field Mouse of Oz
+    level: 1
+    hp: 3
+    armor_class: 11
+    attack_bonus: 0
+    damage: "1d2"
+    move: "20 ft."
+    morale: 4
+    skill: 1
+    save: 15
+    role: tiny talking subject of the Mouse Queen
+    tags: [oz, beast, tiny, kindness_economy, low_threat]
+    abilities:
+      - "Gratitude remembered — a mouse spared or aided will summon its kin to repay the kindness out of all proportion (see the helpful_beasts trope)"
+      - "No fight in it — bolts at the first alarm; a threat only by being underfoot"
+    description: >-
+      A small grey field mouse of the Munchkin meadows, no larger than its
+      gray-world cousins but able to speak, and proud of its place under the
+      Queen of the Field Mice. Helpless alone and harmless to anyone; its real
+      power is the debt of kindness, for ten thousand of its people once dragged
+      the sleeping Lion from the poppies on a cart.
+  - id: talking_stork
+    name: Talking Stork
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d4"
+    move: "fly 40 ft."
+    morale: 6
+    skill: 2
+    save: 15
+    role: long-legged marsh bird, courteous and strong of wing
+    tags: [oz, beast, flyer, kindness_economy, low_threat]
+    abilities:
+      - "Lift and carry — strong enough on the wing to pluck a stranded traveler (or a waterlogged Scarecrow) from a river and set them ashore"
+    description: >-
+      A great courteous stork of the rivers that cross the Yellow Brick Road,
+      willing to lend its wings to anyone in trouble who asks politely. It
+      fishes the shallows, minds its own affairs, and remembers a good turn — it
+      was a stork that lifted the Scarecrow off his pole in midstream.
+  - id: jackdaw_flock
+    name: Jackdaw Flock
+    level: 1
+    hp: 4
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d3"
+    move: "fly 40 ft."
+    morale: 5
+    skill: 1
+    save: 15
+    role: thieving crow-band that mobs the unwary
+    tags: [oz, beast, flyer, swarm, low_threat]
+    abilities:
+      - "Mob — fights only in numbers, pecking and snatching; scatters the instant one of them is struck down"
+      - "Pilferers — make off with any small bright loose thing rather than press an attack"
+    description: >-
+      A raucous band of black crows and jackdaws of the open country, bold about
+      stealing and quick to mob a scarecrow they take for harmless — to their
+      cost, once, when a wiser Scarecrow wrung their necks. Cowards as soon as
+      the tide turns.
+
+  # ── COURTEOUS OBSTACLES & GUARDED BORDERS ──────────────────────────────────
+  - id: guardian_soldier
+    name: Soldier with the Green Whiskers
+    level: 1
+    hp: 6
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 5
+    skill: 1
+    save: 15
+    role: ceremonial soldier of the Emerald City
+    tags: [oz, human, guard, humbug, low_threat]
+    abilities:
+      - "All ceremony — keeps order by manner and uniform, not by force; folds rather than fight"
+    description: >-
+      A whiskered soldier of the Emerald City in a green uniform, more usher
+      than warrior, who carries messages to the throne room and turns visitors
+      away with apologies. The Wizard's order rests on his green-glassed manner,
+      not his blade — kindly, anxious, and easily talked round.
+  - id: talking_tree
+    name: Quarrelsome Apple Tree
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "0 ft. (rooted)"
+    morale: 8
+    skill: 1
+    save: 14
+    role: rooted ill-tempered tree that guards its fruit
+    tags: [oz, plant, obstacle, played_straight]
+    abilities:
+      - "Rooted — cannot pursue; menaces only what comes within reach of its boughs"
+      - "Switch and hurl — flails with whippy branches and pelts thieves with its own apples; a polite request, oddly, often works better than force"
+    description: >-
+      A grumbling apple tree of the wood by the road, possessive of every apple
+      on its boughs and quick to box the ears of anyone who picks one
+      uninvited. It cannot leave its roots, only swat and scold — an obstacle of
+      manners more than menace, won past with courtesy or a clever distraction.
+  - id: hammerhead
+    name: Hammer-Head
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "0 ft. (rooted)"
+    morale: 9
+    skill: 1
+    save: 14
+    role: armless hill-dweller that bars the way with its head
+    tags: [oz, fey, obstacle, played_straight]
+    abilities:
+      - "Telescoping butt — the flat hard head shoots out on a folding neck to a startling distance and slams an intruder back down the hill, then snaps home"
+      - "Will not be passed — bars the hills of the Quadling country and cannot be reasoned past, only flown over or gone around"
+    description: >-
+      A squat armless folk of the rocky hills, with flat hard heads they shoot
+      out on telescoping necks to knock back anyone trying to cross their
+      country. They keep no quarrel beyond their own hills and want nothing but
+      to be left alone — but nothing afoot gets by them, and the way over them
+      is a way around or above.
+  - id: fighting_tree
+    name: Fighting Tree
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d10"
+    move: "0 ft. (rooted)"
+    morale: 10
+    skill: 1
+    save: 13
+    role: great rooted tree that flings back all who enter its wood
+    tags: [oz, plant, obstacle, played_straight]
+    abilities:
+      - "Limb-fling — seizes anyone who steps under its canopy with snatching boughs and hurls them bodily back the way they came"
+      - "Rooted barrier — fights as a wall, not a hunter; a stout axe (a Tin Woodman's, say) can fell a limb and open a gap"
+    description: >-
+      A towering tree at the edge of a guarded wood, its branches alive and
+      hostile, that catches up trespassers and throws them clear of its shade
+      before they can pass beneath. It cannot give chase; it only forbids the
+      wood. Force of arms can hew a way through, but the gentler answer is to
+      find the gap it cannot reach.
+
+  # ── DANGEROUS WILD BEASTS ──────────────────────────────────────────────────
+  - id: wildcat
+    name: Oz Wildcat
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "40 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: lean predator that hunts the field mice
+    tags: [oz, beast, predator]
+    abilities:
+      - "Run-down — fast enough to chase a fleeing mouse or hare to ground in the open"
+    description: >-
+      A lean grey-yellow wildcat of the meadows, all teeth and hunger, that
+      preys on the small talking creatures of the fields. It was such a cat,
+      chasing the Queen of the Field Mice, that the Tin Woodman cut down — and
+      so banked the kindness that saved the Lion later. A real danger to the
+      small; a manageable one to the armed.
+  - id: kalidah
+    name: Kalidah
+    level: 5
+    hp: 23
+    armor_class: 14
+    attack_bonus: 6
+    damage: "2d6"
+    move: "40 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: bear-bodied, tiger-headed terror of the deep wood
+    tags: [oz, beast, apex, genuinely_dangerous, played_straight]
+    abilities:
+      - "Bear's body, tiger's head — claws and a great fanged bite; the bite damage is brutal"
+      - "Pack pursuit — hunts in twos and threes and gives chase across any open ground, halted only by a gulf it cannot leap"
+    description: >-
+      A monstrous beast of the dark Oz forests with the body of a bear and the
+      head of a tiger, long-clawed and so fierce the Cowardly Lion himself feared
+      it. Kalidahs hunt in pairs and will run a party down through the timber —
+      one of the few things in the gentle country that means, plainly, to kill,
+      and is stopped only by a ravine the Tin Woodman can drop a tree across.
+
+  # ── WITCH-BOUND & WITCH-MADE SERVANTS ──────────────────────────────────────
+  - id: winged_monkey
+    name: Winged Monkey
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d6"
+    move: "fly 60 ft."
+    morale: 8
+    skill: 2
+    save: 14
+    role: flying band bound to the Golden Cap, against its will
+    tags: [oz, fey, flyer, bound_servant, played_straight]
+    abilities:
+      - "Bound to the Cap — must obey whoever owns the Golden Cap and speaks the charm, exactly three times, then is free of that owner"
+      - "Snatch and carry — seizes travelers from the ground and bears them off, or sets them down miles away; mischief, not murder, is its nature"
+    description: >-
+      One of the swift mischievous band of the western air, swooping down at the
+      command of the Golden Cap to carry off, scatter, or deposit whatever the
+      Cap's owner names. The Monkeys are not wicked — they are slaves to the
+      charm against their own liking, and would carry kindness as readily as
+      cruelty if a kinder hand held the Cap. They do not kill: their last
+      master's three commands once spared a small girl for the mark on her brow.
+  - id: gray_wolf
+    name: Witch's Gray Wolf
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "50 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: one of the pack the Witch of the West whistles up
+    tags: [oz, beast, pack, witch_servant]
+    abilities:
+      - "Comes at the whistle — the Wicked Witch calls a pack of forty with one blast; they hunt as a body to the witch's command"
+      - "Pack tactics — deadlier in numbers; a lone wolf checks morale far sooner than the pack"
+    description: >-
+      A great gray wolf of the Winkie hills, one of the forty the Wicked Witch
+      of the West whistles up to tear intruders apart. Obedient only to her
+      whistle, the pack is a real and deadly threat in numbers — though a single
+      stroke of a sharp axe, met head-on at a narrow place, can drop them one by
+      one as they come.
+  - id: witch_crow
+    name: Witch's Crow
+    level: 1
+    hp: 4
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d3"
+    move: "fly 40 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: one of the black flock the Witch of the West sends to peck out eyes
+    tags: [oz, beast, flyer, swarm, witch_servant]
+    abilities:
+      - "Comes at the whistle — answers the Witch's call by the flock and goes for the eyes"
+      - "Cowed by a brave heart — a wise straw man broke their necks one by one; the flock breaks the moment it meets something unafraid"
+    description: >-
+      One of the great flock of black crows the Wicked Witch whistles up to put
+      out the eyes of trespassers. Fearsome as a cloud, brittle as a boast: the
+      Scarecrow, having no eyes to lose and no fear to feel, killed the whole
+      flock with his straw-stuffed hands one bird at a time.
+  - id: ornamented_captive
+    name: Ornamented Captive
+    level: 1
+    hp: 6
+    armor_class: 10
+    attack_bonus: 0
+    damage: "1d2"
+    move: "0 ft. (transfixed)"
+    morale: 12
+    skill: 0
+    save: 14
+    role: a person enchanted into a statue or shelf-ornament, awaiting rescue
+    tags: [oz, victim, transformation, recoverable, enchantment_not_kill]
+    abilities:
+      - "Not a foe — a person turned to a thing by a witch's enchantment, kept rather than killed; the win condition is the counter-charm, never a blow"
+      - "Still themselves within — retains awareness and identity, waiting on the right word, water, or deed to be restored"
+    description: >-
+      Not a monster but the shape menace takes in Oz: a man, woman, or companion
+      that a witch (Mombi turns the inconvenient to ornaments and statues) has
+      enchanted into a china figure, a garden statue, a carved beast — alive and
+      aware inside the change, kept as trophy or leverage. Statted as an entity
+      because the engine must hold them in a scene; "defeating" the enchanter
+      restores them whole. They embody the world's rule: enchantment, not the kill.

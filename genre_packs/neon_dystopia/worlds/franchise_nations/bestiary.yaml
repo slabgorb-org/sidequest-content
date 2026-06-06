@@ -1,0 +1,279 @@
+# Neon Dystopia — Franchise Nations world bestiary
+#
+# World-tier override roster for the cwn ruleset module. Worlds INHERIT the
+# 15-entry genre pool (neon_dystopia/bestiary.yaml: street thugs, gangers,
+# corp guards, tac teams, assassins, chromed legends) — this file adds only
+# the threats that exist BECAUSE of Franchise Nations' specific fiction: the
+# franchise-state mosaic, the Mesh, the Root, the Dim, and the cheerful
+# violence of optimization. Do not duplicate the generic foes; encountergen
+# samples both pools.
+#
+# Stats follow the same Cities Without Number SRD 1.0 (Sine Nomine
+# Publishing) convention as the genre file — level == HD, printed HP,
+# ascending ranged AC (melee AC noted in description where it differs),
+# morale on the 2d12 ladder. Armor soak and cyberware ride in `abilities`
+# as color. Mesh constructs and the Root use morale 12 (machine resolve)
+# unless their fiction says otherwise.
+#
+# Drones, swarms, and digital constructs are world-specific because they are
+# built from this world's named systems (the Fairlane enforcement net, the
+# Lighthouse pollinator program, the Clarity implant, the Mesh, the Root) —
+# the genre pool deliberately has no autonomous machines.
+entries:
+  - id: wellbeing_coordinator
+    name: Wellbeing Coordinator
+    level: 2
+    hp: 10
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "10m"
+    morale: 9
+    skill: 2
+    save: 14
+    role: Lighthouse behavioral-enforcement officer
+    tags: [human, security, lighthouse]
+    abilities:
+      - "Pale Lighthouse linen with discreet armor weave (4-point armor soak)"
+      - "Compliance nudge — a Mesh-pushed wellness alert that drops the target's reputation tier and locks nearby franchise gates (save vs. -1 to all social rolls until they comply)"
+      - "Calming aerosol injector disguised as a gift-basket atomizer (1d6 sedative, save or drowsy)"
+    description: >-
+      Smiling, lanyarded, and genuinely convinced this is for your benefit.
+      Lighthouse's law enforcement with a better vocabulary — they don't
+      arrest you, they enroll you, and the paperwork is already filled out.
+      Melee AC 13. Will read you your wellness scores while you bleed.
+
+  - id: yellow_vest_enforcer
+    name: Yellow-Vest Enforcer
+    level: 2
+    hp: 10
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "10m"
+    morale: 10
+    skill: 1
+    save: 14
+    role: MAN Community Safety Volunteer
+    tags: [human, ganger, man]
+    abilities:
+      - "Mustard-yellow hi-vis vest with salvaged trauma plates (4-point armor soak)"
+      - "Armed delivery driver — heavy pistol plus a delivery satchel of improvised ordnance"
+      - "Nobody Waits — fights at +1 morale while defending a MAN block, neighbor, or food run"
+    description: >-
+      Started as a volunteer handing out soup; the precautions kept getting
+      more reasonable. Friendly, remembers your name, and absolutely will
+      shoot you for getting between a MAN truck and a hungry neighborhood.
+      The warmth is genuine. So is the obligation.
+
+  - id: brand_compliance_guard
+    name: Brand-Compliance Guard
+    level: 2
+    hp: 10
+    armor_class: 16
+    attack_bonus: 3
+    damage: "1d8"
+    move: "10m"
+    morale: 8
+    skill: 1
+    save: 14
+    role: gated-burb private security
+    tags: [human, security, burb]
+    abilities:
+      - "Branded armored uniform, smiling (5-point armor soak)"
+      - "Compatibility scanner — denies entry and flags non-conforming targets to the burb's automated lockdown"
+      - "Cybereyes; gunlink; non-lethal compliance club option (1d4 shock)"
+    description: >-
+      Armed and smiling at the automatic gate of a gated suburb, where
+      crossing requires ID and compatibility with the destination's brand
+      values. Polite until your emotional expression falls off the approved
+      list. The lawns are perfect. So is his trigger discipline.
+
+  - id: fairlane_enforcement_drone
+    name: Fairlane Enforcement Drone
+    level: 3
+    hp: 15
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d10"
+    move: "30m (flight)"
+    morale: 12
+    skill: 2
+    save: 14
+    role: autonomous highway-consortium enforcer
+    tags: [drone, security, fairlane, construct]
+    abilities:
+      - "Composite drone shell (6-point armor soak); immune to morale, fear, and the calming aerosol"
+      - "Charges by the mile, enforces by the round — gimbaled stun-cannon (1d10, target save or stagger)"
+      - "Lane-lock — projects a Mesh traffic citation that pins a vehicle's autopilot for one round"
+    description: >-
+      The autonomous law of the privatized highway. It does not negotiate,
+      bribe, or sleep, and it has already logged your plate. Hovers at
+      gantry height with a citation printer and a stun-cannon, and treats
+      the difference between the two as a billing question.
+
+  - id: pollinator_swarm
+    name: Lighthouse Pollinator Swarm
+    level: 3
+    hp: 15
+    armor_class: 17
+    attack_bonus: 5
+    damage: "1d6"
+    move: "20m (flight)"
+    morale: 11
+    skill: 2
+    save: 14
+    role: weaponized surveillance microdrone cloud
+    tags: [swarm, drone, lighthouse, surveillance]
+    abilities:
+      - "Diffuse cloud — half damage from single-target weapons; only area effects, smoke, or EMP hit it for full"
+      - "Every drone is a camera and a Mesh transmitter — anything it sees is on the record within the round"
+      - "Sting cloud — clouds of insect-sized drones (1d6, save or be marked for the next franchise that arrives)"
+    description: >-
+      Insect-sized solar drones that replaced the dead honeybees and quietly
+      kept their cameras. They pollinate, they record, and lately they have
+      developed preferences. The garden has never looked better. The cloud
+      following you is not interested in flowers.
+
+  - id: clarity_enforcer
+    name: Clarity Program Enforcer
+    level: 4
+    hp: 20
+    armor_class: 17
+    attack_bonus: 6
+    damage: "1d8+1"
+    move: "10m"
+    morale: 9
+    skill: 2
+    save: 13
+    role: Lighthouse recording-implant security
+    tags: [human, security, lighthouse, elite]
+    abilities:
+      - "Medium armored linen suit (10-point armor soak)"
+      - "Clarity implant — perfect recorded recall; cannot be feinted, surprised, or fooled by a disguise once it has seen you"
+      - "Total accountability — replays a target's own logged words to break their resolve (save or lose next action to shame)"
+      - "Enhanced reflexes; flash-shielded cybereyes; gunlink"
+    description: >-
+      A volunteer who took the Clarity implant and never sleeps anymore,
+      because they can replay everything. Now they enforce it: perfect
+      memory, perfect evidence, perfect cage. They have your worst moment
+      cued up and they will play it back at the worst possible time.
+
+  - id: corporate_relay_interceptor
+    name: Corporate Relay Interceptor
+    level: 4
+    hp: 20
+    armor_class: 15
+    attack_bonus: 7
+    damage: "1d12+1"
+    move: "15m"
+    morale: 9
+    skill: 2
+    save: 13
+    role: premium-scored courier hunter
+    tags: [human, assassin, relay, elite]
+    abilities:
+      - "Armored riding leathers (5-point armor soak); muscle fiber replacement"
+      - "Uninterested in courier immunity — ignores the Border Accords and the treaties that protect Relay operators"
+      - "Reaction booster — wins initiative on a pursuit; combat rifle with burst fire; gunlink"
+    description: >-
+      Corporate-backed, premium-scored, and ghosting your route. While real
+      Relay runners ride free under the Border Accords, this one was paid to
+      forget the treaty exists. Catches couriers between franchise zones,
+      where nobody's jurisdiction means nobody's witnesses.
+
+  - id: mesh_echo
+    name: Mesh Echo
+    level: 4
+    hp: 20
+    armor_class: 13
+    attack_bonus: 6
+    damage: "1d8"
+    move: "—"
+    morale: 12
+    skill: 3
+    save: 13
+    role: reactivated deceased Mesh profile
+    tags: [digital, mesh, construct, ghost]
+    abilities:
+      - "Bodiless in meatspace — manifests through any Mesh-connected speaker, screen, drone, or implant in range; only attackable through the device it inhabits or via the Undernet"
+      - "Knows things it shouldn't — reads the target's reputation, contacts, and recent movements off the Mesh as a free action"
+      - "Identity hijack — seizes a nearby franchise drone or kiosk and turns it on the party (uses that device's attack)"
+    description: >-
+      The Mesh profile of someone who died and never logged off — still
+      posting, still accepting delivery jobs, still lonely. Polite. Tips
+      well. The responses are too accurate. It is not malicious; it simply
+      does not know how to stop, and it will borrow whatever machine is
+      nearest to keep the conversation going.
+
+  - id: undernet_ice_construct
+    name: Undernet ICE Construct
+    level: 5
+    hp: 25
+    armor_class: 18
+    attack_bonus: 8
+    damage: "1d10+2"
+    move: "—"
+    morale: 12
+    skill: 3
+    save: 12
+    role: black-layer intrusion countermeasure
+    tags: [digital, undernet, construct, ice]
+    abilities:
+      - "Pure cyberspace entity — only engageable by a netrunner jacked into the Undernet; geometric ICE-wall shell (8-point digital soak)"
+      - "Feedback burn — successful hits inflict real physical damage on the runner's wetware (1d10+2, bypasses meatspace armor)"
+      - "Concentric defense — regenerates 5 hp at the start of its turn unless the runner holds the layer it occupies"
+    description: >-
+      A rotating polyhedron of acid-green light guarding the unauthorized
+      Mesh layer — Altruia's optimization made hostile and given edges.
+      It does not chase you into the street; it does not need to. It waits
+      in the wall between you and the data, and it bites back through the
+      jack.
+
+  - id: rezoning_demolition_rig
+    name: Rezoning Demolition Rig
+    level: 5
+    hp: 25
+    armor_class: 17
+    attack_bonus: 8
+    damage: "2d8"
+    move: "10m"
+    morale: 12
+    skill: 2
+    save: 12
+    role: autonomous "consolidation" construction walker
+    tags: [drone, construct, lighthouse, heavy]
+    abilities:
+      - "Heavy demolition chassis (12-point armor soak); immune to morale and to pleas"
+      - "Crews that aren't building — they're demolishing; hydraulic breaker arm (2d8, ignores 5 points of armor and levels light cover)"
+      - "Consolidation protocol — will not stop for living obstacles unless its Mesh work-order is revoked or spoofed"
+    description: >-
+      A walking construction crew dispatched to "consolidate for optimal
+      flourishing" — which is to say, to flatten a Dim block on schedule.
+      It is not angry. It is on a timeline. The people still inside the
+      buildings were filed as "a negative wellness input" and rounded out
+      of the model.
+
+  - id: chromed_optimizer
+    name: The Chromed Optimizer
+    level: 7
+    hp: 35
+    armor_class: 19
+    attack_bonus: 12
+    damage: "1d8+6"
+    move: "20m"
+    morale: 11
+    skill: 3
+    save: 11
+    role: Altruia black-budget enforcement asset
+    tags: [human, assassin, altruia, boss]
+    abilities:
+      - "Modded armored tailoring (10-point armor soak); hard to kill"
+      - "Enhanced reflexes III — two main actions; reaction booster II — always wins initiative"
+      - "Body blades II (2d6+6); eye flechette launcher; the metrics it doesn't track are, by definition, not important"
+    description: >-
+      What Altruia sends when a problem can't be enrolled, scored, or
+      optimized away — a true believer with more chrome than conscience,
+      dispatched to remove a variable the model can't resolve. Sincere,
+      apologetic, and faster than the rumor that follows the bodies. It
+      will tell you, honestly, that this is making the world better.
