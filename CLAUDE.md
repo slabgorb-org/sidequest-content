@@ -116,21 +116,32 @@ Drift: `orc-quest/docs/adr/DRIFT.md`. Superseded: `orc-quest/docs/adr/SUPERSEDED
 
 ## Asset Hosting
 
-> **Both audio and image assets are NOT in this repo.** They live in R2
-> (`cdn.slabgorb.com`). What lives in git is the *spec* (prompts, manifests,
-> generation parameters) — the rendered binary lives in R2.
+> **Both audio and image assets are canonical in R2, NOT in this repo.** They
+> live in R2 (`cdn.slabgorb.com`). What lives in git is the *spec* (prompts,
+> manifests, generation parameters) — the rendered binary lives in R2.
+>
+> **`r2_manifest.json` (repo root) is the index of record.** It is a full R2
+> bucket scan (`key`, `md5`, `size_bytes`, `uploaded_at` per object) and is the
+> authoritative answer to "does this asset exist, and where?" The canonical
+> location of any rendered asset is whatever key holds it in the manifest — not
+> any local folder. Rebuild it from the live bucket with
+> `scripts/r2_manifest_from_bucket.py`. **When the local workspace and R2/manifest
+> disagree, R2 wins.**
 >
 > - **Audio:** per-track ACE-Step generation parameters live at
 >   `genre_packs/<pack>/audio/music/*_input_params.json` (ADR-095). The OGG
 >   lives in R2. Regenerate with
 >   `python scripts/generate_music.py --genre <pack>` from the orchestrator.
 > - **Images:** `portrait_manifest.yaml`, POI yaml files, and Z-Image prompt
->   text in `visual_style.yaml` are the canonical spec. The rendered PNGs
->   live in R2 at the same relative path under `genre_packs/<pack>/…`.
->   Render scripts (`scripts/generate_portrait_images.py`,
->   `generate_poi_images.py`, `generate_creature_images.py`) write PNGs into
->   the local workspace; `.gitignore` keeps them out of commits.
->   `scripts/r2_sync_packs.py` uploads from the workspace to R2.
+>   text in `visual_style.yaml` are the canonical spec. The rendered PNG lives
+>   in R2, indexed by `r2_manifest.json`. Render scripts
+>   (`scripts/generate_portrait_images.py`, `generate_poi_images.py`,
+>   `generate_creature_images.py`) write PNGs into the local workspace;
+>   `scripts/r2_sync_packs.py` uploads them to R2;
+>   `scripts/r2_manifest_from_bucket.py` rebuilds the index. Local render-output
+>   folders (`images/<type>/`, `assets/images/<type>/`,
+>   `worlds/<world>/assets/<type>/`) are historical drift — the manifest key is
+>   canonical, not the folder.
 
 **Never commit fresh PNG/JPG/WebP assets through git-LFS.** The
 `.gitattributes` file still has `*.png filter=lfs` rules as residue from the
