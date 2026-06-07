@@ -57,6 +57,9 @@ tone; hold the rest. Source: `KS3-Music Sound Pack/Music_Sound_Pack_FLAC-{A,B,C}
 | Battle Hymn of War | heavy_metal/audio/music/battle_hymn_of_war.ogg | heavy_metal | combat |
 | The Monolith | heavy_metal/audio/music/the_monolith.ogg | heavy_metal | ritual |
 | Angelic Voices | heavy_metal/audio/music/angelic_voices.ogg | heavy_metal | ritual |
+| Angelic Voices | space_opera/audio/music/angelic_voices.ogg | space_opera | exploration |
+| Action Sequence | space_opera/audio/music/action_sequence.ogg | space_opera | combat |
+| Action Sequence | neon_dystopia/audio/music/action_sequence.ogg | neon_dystopia | combat |
 
 ### SciFi Atmosphere Loops Vol1 — wired (space_opera; WAV source)
 
@@ -97,8 +100,9 @@ SKIP this key.
   - **Bardic/tavern (8)** — Tavern Song, The Minstrel's Song 1 & 2, Song of the
     Troubador, Bard on the Fife and Drum, Bard on the Zither, Female Bard Song,
     Female Bard and Minstrel's. Held; no wired home — seed for a future tavern/folk pack.
-  - **Pastoral/medieval (5)** — Return to the Capital City, The Quaint Village,
-    Elven Sanctuary, Hovel in the Sunlight, Action Sequence. Held; no wired home.
+  - **Pastoral/medieval (4)** — Return to the Capital City, The Quaint Village,
+    Elven Sanctuary, Hovel in the Sunlight. Held; no wired home. (Action
+    Sequence un-held 2026-06-07 → space_opera + neon_dystopia combat.)
   - **Off-genre (2)** — Planet X, Arabian Desert Music. Easy follow-ups if wanted:
     Planet X → space_opera (drift/void); Arabian Desert → elemental_harmony
     (exploration, eastern). Not wired pending Keith's go.
