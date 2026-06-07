@@ -22,10 +22,14 @@ public redistribution of the standalone files is a licensing concern.
 | Source track | OGG path | Pack | Mood |
 |--------------|----------|------|------|
 | The Streets of Seattle 2072 | neon_dystopia/audio/music/streets_of_seattle_2072.ogg | neon_dystopia | exploration |
+| The Streets of Seattle 2072 | space_opera/audio/music/streets_of_seattle_2072.ogg | space_opera | exploration |
 | Black ICE | neon_dystopia/audio/music/black_ice.ogg | neon_dystopia | cyberspace |
+| Black ICE | space_opera/audio/music/black_ice.ogg | space_opera | combat |
 | Hacking In | neon_dystopia/audio/music/hacking_in.ogg | neon_dystopia | cyberspace |
 | Syndicate | neon_dystopia/audio/music/syndicate.ogg | neon_dystopia | corporate |
+| Syndicate | space_opera/audio/music/syndicate.ogg | space_opera | drift |
 | Sabotage | neon_dystopia/audio/music/sabotage.ogg | neon_dystopia | tension |
+| Sabotage | space_opera/audio/music/sabotage.ogg | space_opera | combat |
 | Dungeon Crawling | caverns_and_claudes/audio/music/dungeon_crawling.ogg | caverns_and_claudes | exploration |
 | Lost in the Labyrinth | caverns_and_claudes/audio/music/lost_in_the_labyrinth.ogg | caverns_and_claudes | exploration |
 | Egyptian Tomb | caverns_and_claudes/audio/music/egyptian_tomb.ogg | caverns_and_claudes | exploration |
@@ -50,9 +54,40 @@ tone; hold the rest. Source: `KS3-Music Sound Pack/Music_Sound_Pack_FLAC-{A,B,C}
 |--------------|----------|------|------|
 | A Dwarven Farewell | heavy_metal/audio/music/dwarven_farewell.ogg | heavy_metal | sorrow |
 | The Desolate Expanse | heavy_metal/audio/music/the_desolate_expanse.ogg | heavy_metal | tension |
+| The Desolate Expanse | mutant_wasteland/audio/music/the_desolate_expanse.ogg | mutant_wasteland | exploration |
 | Battle Hymn of War | heavy_metal/audio/music/battle_hymn_of_war.ogg | heavy_metal | combat |
 | The Monolith | heavy_metal/audio/music/the_monolith.ogg | heavy_metal | ritual |
 | Angelic Voices | heavy_metal/audio/music/angelic_voices.ogg | heavy_metal | ritual |
+| Angelic Voices | space_opera/audio/music/angelic_voices.ogg | space_opera | exploration |
+| Action Sequence | space_opera/audio/music/action_sequence.ogg | space_opera | combat |
+| Action Sequence | neon_dystopia/audio/music/action_sequence.ogg | neon_dystopia | combat |
+| Elven Sanctuary | elemental_harmony/audio/music/elven_sanctuary.ogg | elemental_harmony | rest |
+| Planet X | space_opera/audio/music/planet_x.ogg | space_opera | void |
+
+### SciFi Atmosphere Loops Vol1 — wired (space_opera; WAV source)
+
+Keith's call (2026-06-07): wire all 8. Source:
+`~/Downloads/SciFi_Atmosphere_Loops_Vol1/*.wav` (~60s atmosphere loops,
+~90s reactor loops). Encode recipe as above (libopus 96k).
+
+**Special case — "3 Dark" OVERWRITES an ACE-Step key:** the set-1 exploration
+*ambient* leitmotif variation (`audio/music/set-1/exploration_ambient.ogg`)
+was nuked by operator decision ("that one was terrible") and its R2 object
+replaced in place so the themes-block variation machinery needs no change.
+No `*_input_params.json` ever existed for that key (pre-ADR-095 batch) —
+nothing will regenerate over it, but if a set-1 params backfill ever happens,
+SKIP this key.
+
+| Source track | OGG path | Pack | Mood |
+|--------------|----------|------|------|
+| 3 Dark | space_opera/audio/music/set-1/exploration_ambient.ogg | space_opera | exploration theme · ambient variation (in-place replacement) |
+| 1 Full | space_opera/audio/music/scifi_atmosphere_full.ogg | space_opera | exploration |
+| 2 Texture | space_opera/audio/music/scifi_atmosphere_texture.ogg | space_opera | drift |
+| 4 Pulse And Texture | space_opera/audio/music/scifi_atmosphere_pulse_texture.ogg | space_opera | tension |
+| 5 Reactor Full | space_opera/audio/music/scifi_reactor_full.ogg | space_opera | docking |
+| 6 Reactor Dark | space_opera/audio/music/scifi_reactor_dark.ogg | space_opera | void |
+| 7 Reactor Movement | space_opera/audio/music/scifi_reactor_movement.ogg | space_opera | drift |
+| 8 Reactor Intense | space_opera/audio/music/scifi_reactor_intense.ogg | space_opera | tension |
 
 ## Held — not wired (no clear home)
 
@@ -68,8 +103,11 @@ tone; hold the rest. Source: `KS3-Music Sound Pack/Music_Sound_Pack_FLAC-{A,B,C}
   - **Bardic/tavern (8)** — Tavern Song, The Minstrel's Song 1 & 2, Song of the
     Troubador, Bard on the Fife and Drum, Bard on the Zither, Female Bard Song,
     Female Bard and Minstrel's. Held; no wired home — seed for a future tavern/folk pack.
-  - **Pastoral/medieval (5)** — Return to the Capital City, The Quaint Village,
-    Elven Sanctuary, Hovel in the Sunlight, Action Sequence. Held; no wired home.
-  - **Off-genre (2)** — Planet X, Arabian Desert Music. Easy follow-ups if wanted:
-    Planet X → space_opera (drift/void); Arabian Desert → elemental_harmony
-    (exploration, eastern). Not wired pending Keith's go.
+  - **Pastoral/medieval (3)** — Return to the Capital City, The Quaint Village,
+    Hovel in the Sunlight. Held; no wired home. (Action Sequence un-held
+    2026-06-07 → space_opera + neon_dystopia combat; Elven Sanctuary un-held
+    2026-06-07 → elemental_harmony rest.)
+  - **Off-genre (1)** — Arabian Desert Music. Easy follow-up if wanted:
+    Arabian Desert → elemental_harmony (exploration, eastern). Not wired
+    pending Keith's go. (Planet X un-held 2026-06-07 → space_opera void,
+    per its original earmark.)
