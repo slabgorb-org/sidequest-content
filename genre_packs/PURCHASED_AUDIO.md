@@ -22,9 +22,11 @@ public redistribution of the standalone files is a licensing concern.
 | Source track | OGG path | Pack | Mood |
 |--------------|----------|------|------|
 | The Streets of Seattle 2072 | neon_dystopia/audio/music/streets_of_seattle_2072.ogg | neon_dystopia | exploration |
+| The Streets of Seattle 2072 | space_opera/audio/music/streets_of_seattle_2072.ogg | space_opera | exploration |
 | Black ICE | neon_dystopia/audio/music/black_ice.ogg | neon_dystopia | cyberspace |
 | Hacking In | neon_dystopia/audio/music/hacking_in.ogg | neon_dystopia | cyberspace |
 | Syndicate | neon_dystopia/audio/music/syndicate.ogg | neon_dystopia | corporate |
+| Syndicate | space_opera/audio/music/syndicate.ogg | space_opera | drift |
 | Sabotage | neon_dystopia/audio/music/sabotage.ogg | neon_dystopia | tension |
 | Dungeon Crawling | caverns_and_claudes/audio/music/dungeon_crawling.ogg | caverns_and_claudes | exploration |
 | Lost in the Labyrinth | caverns_and_claudes/audio/music/lost_in_the_labyrinth.ogg | caverns_and_claudes | exploration |
