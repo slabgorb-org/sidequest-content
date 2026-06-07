@@ -54,6 +54,31 @@ tone; hold the rest. Source: `KS3-Music Sound Pack/Music_Sound_Pack_FLAC-{A,B,C}
 | The Monolith | heavy_metal/audio/music/the_monolith.ogg | heavy_metal | ritual |
 | Angelic Voices | heavy_metal/audio/music/angelic_voices.ogg | heavy_metal | ritual |
 
+### SciFi Atmosphere Loops Vol1 — wired (space_opera; WAV source)
+
+Keith's call (2026-06-07): wire all 8. Source:
+`~/Downloads/SciFi_Atmosphere_Loops_Vol1/*.wav` (~60s atmosphere loops,
+~90s reactor loops). Encode recipe as above (libopus 96k).
+
+**Special case — "3 Dark" OVERWRITES an ACE-Step key:** the set-1 exploration
+*ambient* leitmotif variation (`audio/music/set-1/exploration_ambient.ogg`)
+was nuked by operator decision ("that one was terrible") and its R2 object
+replaced in place so the themes-block variation machinery needs no change.
+No `*_input_params.json` ever existed for that key (pre-ADR-095 batch) —
+nothing will regenerate over it, but if a set-1 params backfill ever happens,
+SKIP this key.
+
+| Source track | OGG path | Pack | Mood |
+|--------------|----------|------|------|
+| 3 Dark | space_opera/audio/music/set-1/exploration_ambient.ogg | space_opera | exploration theme · ambient variation (in-place replacement) |
+| 1 Full | space_opera/audio/music/scifi_atmosphere_full.ogg | space_opera | exploration |
+| 2 Texture | space_opera/audio/music/scifi_atmosphere_texture.ogg | space_opera | drift |
+| 4 Pulse And Texture | space_opera/audio/music/scifi_atmosphere_pulse_texture.ogg | space_opera | tension |
+| 5 Reactor Full | space_opera/audio/music/scifi_reactor_full.ogg | space_opera | docking |
+| 6 Reactor Dark | space_opera/audio/music/scifi_reactor_dark.ogg | space_opera | void |
+| 7 Reactor Movement | space_opera/audio/music/scifi_reactor_movement.ogg | space_opera | drift |
+| 8 Reactor Intense | space_opera/audio/music/scifi_reactor_intense.ogg | space_opera | tension |
+
 ## Held — not wired (no clear home)
 
 - **Nyarlathotep**, **The Dreams in the Witch House**, **The Lurker at the
