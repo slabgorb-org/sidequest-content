@@ -161,5 +161,221 @@ item_catalog:
 # Charms are FOUND, inherited, lent, or pressed into a hand — never bought as a
 # loadout. A charm changing hands is a FRESH-tier beat in tropes.yaml. They are
 # not assigned as class starting gear; world archetypes that carry one reference
-# it in their starting_inventory in _archetypes_mech.yaml. No starting_equipment
-# / starting_gold blocks here — the genre inventory.yaml supplies class loadouts.
+# it in their starting_inventory in _archetypes_mech.yaml.
+#
+# ── Mundane gear (class loadouts) ────────────────────────────────────────────
+# Playtest fix 2026-06-07: the comment that used to live here promised "the
+# genre inventory.yaml supplies class loadouts" — that file does not exist,
+# and world inventory REPLACES genre wholesale (epic 94), so every five_points
+# character chargenned with an EMPTY inventory. Loadouts are world-level here,
+# matching siblings dust_and_lead / the_real_mccoy. Items below are mundane
+# 1850s Sixth Ward gear — no charms, no charm tags, power_level 0 throughout.
+
+  - id: colt_pocket_revolver
+    name: Colt Pocket Revolver
+    description: "A .31-calibre pocket Colt, five shots, small enough to ride a coat pocket without printing."
+    category: weapon
+    value: 1200
+    weight: 1.5
+    rarity: uncommon
+    power_level: 0
+    tags: [firearm, concealable]
+    lore: "Pistols are for ending arguments, not winning them — the Points fights with fists, boots, and iron before powder. Producing one changes the temperature of any room."
+    narrative_weight: standard
+
+  - id: pepperbox_pistol
+    name: Pepperbox Pistol
+    description: "A six-barrel Allen & Thurber pepperbox, as likely to fire two barrels as one. Cheap, loud, and rude."
+    category: weapon
+    value: 600
+    weight: 1.5
+    rarity: common
+    power_level: 0
+    tags: [firearm, concealable, unreliable]
+    lore: "The gambler's gun: nobody, including the man holding it, knows quite where it will shoot. At card-table range that hardly matters."
+    narrative_weight: standard
+
+  - id: slungshot
+    name: Slungshot
+    description: "A lead weight braided into a rope lanyard, worn around the wrist under the cuff. The Points' signature persuader."
+    category: weapon
+    value: 50
+    weight: 1
+    rarity: common
+    power_level: 0
+    tags: [melee, concealable, gang]
+    lore: "Quiet, deniable, and devastating in a crowd. Half the Sixth Ward carries one; the other half has been hit with one."
+    narrative_weight: standard
+
+  - id: brass_knuckles
+    name: Brass Knuckles
+    description: "A cast-brass four-finger bar, edges filed smooth from use."
+    category: weapon
+    value: 75
+    weight: 0.5
+    rarity: common
+    power_level: 0
+    tags: [melee, concealable]
+    lore: "Sold openly at the hardware stalls on Chatham Street as 'paperweights.'"
+    narrative_weight: standard
+
+  - id: oyster_knife
+    name: Oyster Knife
+    description: "A short, stout-bladed knife for shucking — and for everything else a knife is for."
+    category: weapon
+    value: 25
+    weight: 0.5
+    rarity: common
+    power_level: 0
+    tags: [melee, tool]
+    lore: "Every cellar oyster-house hands these out and never counts them back in. The most common blade in the Ward and the least remarked."
+    narrative_weight: standard
+
+  - id: hickory_club
+    name: Hickory Club
+    description: "A turned hickory truncheon, twenty-two inches, leather thong through the pommel."
+    category: weapon
+    value: 100
+    weight: 2
+    rarity: common
+    power_level: 0
+    tags: [melee]
+    lore: "The Municipal pattern — but plenty walk the Ward that never saw a station house."
+    narrative_weight: standard
+
+  - id: copper_star
+    name: Copper Star
+    description: "The eight-pointed copper badge of the Municipal Police, pinned inside the lapel as often as outside it."
+    category: tool
+    value: 0
+    weight: 0.1
+    rarity: uncommon
+    power_level: 0
+    tags: [badge, authority, municipal]
+    lore: "It opens doors in some blocks and closes them in others. In the Points, showing the star is a decision, not a habit."
+    narrative_weight: notable
+
+  - id: manacles_iron
+    name: Iron Manacles
+    description: "A pair of screw-key manacles, key on a neck string."
+    category: tool
+    value: 300
+    weight: 2
+    rarity: uncommon
+    power_level: 0
+    tags: [restraint]
+    lore: "A man walked in irons through Paradise Square is a message to everyone watching."
+    narrative_weight: standard
+
+  - id: bullseye_lantern
+    name: Bullseye Lantern
+    description: "A tin lantern with a lensed shutter — a tight beam, or darkness, at a flick."
+    category: tool
+    value: 150
+    weight: 2
+    rarity: common
+    power_level: 0
+    tags: [light]
+    lore: "The cellars under the Points go further than any map admits. A shuttered bullseye is the difference between exploring them and being found in them."
+    narrative_weight: standard
+
+  - id: wanted_handbills
+    name: Sheaf of Wanted Handbills
+    description: "A folded sheaf of reward notices — faces, names, sums — annotated in pencil."
+    category: tool
+    value: 0
+    weight: 0.5
+    rarity: common
+    power_level: 0
+    tags: [information, bounty]
+    lore: "Rewards posted by the banks, the steamship lines, and men who'd rather not say. Knowing which faces are worth money is its own trade."
+    narrative_weight: standard
+
+  - id: deck_of_cards_plain
+    name: Deck of Playing Cards
+    description: "An honest deck of steamboat playing cards, corners soft from play."
+    category: tool
+    value: 25
+    weight: 0.2
+    rarity: common
+    power_level: 0
+    tags: [gambling]
+    lore: "Honest, as far as anyone can prove. A faro bank or a three-card pitch can be set up on any barrel-head in the Ward."
+    narrative_weight: standard
+
+  - id: silk_cravat
+    name: Silk Cravat
+    description: "A gambler's silk cravat, tied high in the sporting style, pin glinting."
+    category: armor
+    value: 200
+    weight: 0.1
+    rarity: uncommon
+    power_level: 0
+    tags: [clothing, sporting]
+    lore: "In the Points, dressing above the gutter is armor of a kind — doors open for a sporting man that stay shut for a tough."
+    narrative_weight: standard
+
+  - id: bedroll_wool
+    name: Wool Bedroll
+    description: "A waxed-canvas roll around a wool blanket, rope-tied for the shoulder."
+    category: tool
+    value: 80
+    weight: 4
+    rarity: common
+    power_level: 0
+    tags: [travel]
+    lore: "The drifter's whole address. A sevenpenny lodging-house bunk is the alternative, lice included."
+    narrative_weight: standard
+
+  - id: clay_pipe_and_twist
+    name: Clay Pipe and Tobacco Twist
+    description: "A short clay pipe and a twist of black tobacco in oilcloth."
+    category: tool
+    value: 15
+    weight: 0.2
+    rarity: common
+    power_level: 0
+    tags: [comfort, social]
+    lore: "Offering the twist is the cheapest introduction in the Ward, and the most reliable."
+    narrative_weight: standard
+
+# Class loadouts — keys are the genre rules.yaml allowed_classes. Items resolve
+# against the item_catalog above (mundane section only; charms never start in a
+# pocket). Gold is in cents (currency above: dollars: 100).
+
+starting_equipment:
+  Gunslinger:
+    - colt_pocket_revolver
+    - oyster_knife
+    - clay_pipe_and_twist
+  Bounty Hunter:
+    - colt_pocket_revolver
+    - manacles_iron
+    - wanted_handbills
+    - bullseye_lantern
+  Outlaw:
+    - slungshot
+    - brass_knuckles
+    - oyster_knife
+  Drifter:
+    - hickory_club
+    - bedroll_wool
+    - oyster_knife
+    - clay_pipe_and_twist
+  Gambler:
+    - pepperbox_pistol
+    - deck_of_cards_plain
+    - silk_cravat
+  Marshal:
+    - copper_star
+    - hickory_club
+    - bullseye_lantern
+    - manacles_iron
+
+starting_gold:
+  Gunslinger: 50
+  Bounty Hunter: 80
+  Outlaw: 20
+  Drifter: 15
+  Gambler: 100
+  Marshal: 60
