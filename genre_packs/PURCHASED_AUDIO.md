@@ -54,6 +54,7 @@ tone; hold the rest. Source: `KS3-Music Sound Pack/Music_Sound_Pack_FLAC-{A,B,C}
 |--------------|----------|------|------|
 | A Dwarven Farewell | heavy_metal/audio/music/dwarven_farewell.ogg | heavy_metal | sorrow |
 | The Desolate Expanse | heavy_metal/audio/music/the_desolate_expanse.ogg | heavy_metal | tension |
+| The Desolate Expanse | mutant_wasteland/audio/music/the_desolate_expanse.ogg | mutant_wasteland | exploration |
 | Battle Hymn of War | heavy_metal/audio/music/battle_hymn_of_war.ogg | heavy_metal | combat |
 | The Monolith | heavy_metal/audio/music/the_monolith.ogg | heavy_metal | ritual |
 | Angelic Voices | heavy_metal/audio/music/angelic_voices.ogg | heavy_metal | ritual |
