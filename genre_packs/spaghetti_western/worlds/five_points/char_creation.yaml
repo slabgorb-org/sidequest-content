@@ -10,9 +10,13 @@
 # session-1 openings (off_the_boat_at_castle_garden, the_red_shirt_and_the_
 # anniversary, the_stair_at_almacks, the_runaway_and_the_tract).
 #
-# The other four chargen scenes (crucible, reputation, the_ride, confirmation)
-# are inherited UNCHANGED from the genre pack. This file is a BARE LIST of
-# scenes per the world loader contract (loader.py validates
+# All five scenes are world-localized (2026-06-07): the genre's frontier
+# vocabulary (cantina, horse at the rail, riding into town, the territory)
+# read absurd in the 1857 Sixth Ward, so crucible / reputation / the_ride /
+# confirmation now carry ward-register narration too. Scene ids, titles,
+# choice labels, and ALL mechanical_effects are byte-identical to the genre
+# scenes — only prose changed. This file is a BARE LIST of scenes per the
+# world loader contract (loader.py validates
 # `isinstance(char_creation_raw, list)`); a top-level `scenes:` mapping would
 # silently load nothing.
 #
@@ -94,53 +98,55 @@
   allows_freeform: true
 
 # ---------------------------------------------------------------------------
-# Scenes below are copied VERBATIM from the genre pack
-# (spaghetti_western/char_creation.yaml). The world loader does NOT merge
-# genre + world scenes (char_creation_resolve.py returns world scenes wholesale
-# when non-empty), so the full flow must be present world-tier. Only `origins`
-# above is the five_points override; these four are the standard genre flow.
+# Scenes below carry the same ids/titles/labels/mechanical_effects as the
+# genre pack's (spaghetti_western/char_creation.yaml) — the world loader does
+# NOT merge genre + world scenes (char_creation_resolve.py returns world
+# scenes wholesale when non-empty), so the full flow must be present
+# world-tier. Narration and choice descriptions are localized to the ward.
 # ---------------------------------------------------------------------------
 
 - id: crucible
   title: What Made You Dangerous?
   narration: |
-    The old man nods slowly — not surprised, not sympathetic. He has heard every origin story the frontier produces. He refills your glass without being asked.
+    The old man nods slowly — not surprised, not sympathetic. There is no story that comes down to the Points he has not already bought a drink for. He refills your glass without being asked.
 
-    "Out here, everyone is dangerous or everyone is dead." He turns his glass on the scarred wood of the table, watching the liquid catch the firelight. "Some are born to it. Some are taught. Some just wake up one morning and discover that the thing they feared most is the thing they are best at."
+    "This ward eats the soft ones the first winter," he says. He turns his glass on the scarred plank, watching the tallow light move in it. "The ones still walking after — every one of them found the thing in themselves the ward could use. Some were born with it. Some had it beaten in. Some woke one morning in a cellar on Worth Street and found the thing they feared most was the thing they were best at."
 
     He meets your eyes. "What was it for you?"
   choices:
     - label: The Gun
       description: >-
         You have a gift for violence — fast hands, steady nerve, the
-        ability to see a fight three moves ahead. Whether it is a
-        revolver, a rifle, or a blade, the weapon is an extension of
-        your will.
+        ability to see a fight three moves ahead. Pocket revolver,
+        knife, or a stretch of lead pipe in a stocking — the weapon is
+        an extension of your will.
       mechanical_effects:
         class_hint: Gunslinger
         personality_trait: Lethal
     - label: The Hunt
       description: >-
-        You learned to track and find. People, animals, fugitives — it
-        does not matter. Patience is your weapon. The territory is your
-        map. Everyone leaves a trail.
+        You learned to track and find. Debtors, runaways, witnesses —
+        it does not matter. Patience is your weapon. The ward is your
+        map, every court and cellar of it. Everyone leaves a trail,
+        even through Mulberry Bend.
       mechanical_effects:
         class_hint: Bounty Hunter
         personality_trait: Patient
     - label: The Take
       description: >-
         You learned that the world does not give — it only has things
-        that can be taken. Theft, robbery, rustling — you found your
-        talent outside the law and the law never caught up.
+        that can be taken. Till-tapping, river piracy off the wharves,
+        the second-storey trade — you found your talent outside the law
+        and the law never caught up.
       mechanical_effects:
         class_hint: Outlaw
         personality_trait: Reckless
     - label: The Road
       description: >-
-        You survived by moving. Never staying long enough to owe anyone,
-        never settling long enough to lose anything. The road itself
-        became your skill — reading strangers, finding shelter, knowing
-        when to run.
+        You survived by moving. Never sleeping twice in the same
+        lodging-cellar, never owing the same man two weeks running. The
+        streets themselves became your skill — reading strangers,
+        finding a dry stair, knowing when to run.
       mechanical_effects:
         class_hint: Drifter
         personality_trait: Adaptable
@@ -155,9 +161,10 @@
     - label: The Badge
       description: >-
         Someone pinned authority on you — or you pinned it on yourself.
-        The law out here is whatever the person with the badge says it
-        is, and you discovered you have opinions about justice that a
-        gun can enforce.
+        With two police forces brawling over one city, the law in this
+        ward is whatever the man wearing the star says it is, and you
+        discovered you have opinions about justice that a star can
+        enforce.
       mechanical_effects:
         class_hint: Marshal
         personality_trait: Authoritative
@@ -166,11 +173,11 @@
 - id: reputation
   title: What Do People Say About You?
   narration: |
-    The old man pushes back his chair. From inside his coat he produces a folded piece of paper — a wanted poster, or a handbill, or a letter of introduction. Hard to tell in the dim light. He smooths it on the table between you.
+    The old man pushes back his chair. From inside his coat he produces a folded piece of paper — a police bill, or a pawn ticket, or a letter in a copperplate hand. Hard to tell by tallow light. He smooths it on the plank between you.
 
-    "Word travels," he says. "Even out here — especially out here. A man's name arrives before he does. By the time you ride into a town, they already know something about you."
+    "Word travels in this ward faster than fire," he says. "A name crosses Paradise Square before its owner does. The grocers have it by noon and the Tombs has it by supper. By the time you stand at a man's door, he already knows something about you."
 
-    He taps the paper. "What do they know?"
+    He taps the paper. "What does he know?"
   choices:
     - label: The stories are worse than the truth
       description: >-
@@ -182,25 +189,27 @@
         reputation_bonus: intimidation
     - label: Nobody knows my name
       description: >-
-        You are a ghost. No wanted posters, no war stories, no debts
-        and no credit. Every town is a fresh start — and every person
-        you meet has to take you at face value.
+        You are a ghost. No police bill, no ballad, no debts and no
+        credit. Every ward is a fresh start — and every person you
+        meet has to take you at face value.
       mechanical_effects:
         personality_trait: Anonymous
         reputation_bonus: stealth
     - label: I am owed favors
       description: >-
         You have done things for people — saved lives, covered debts,
-        kept secrets. The frontier remembers its debts, and yours are
-        scattered across the territory like hidden water.
+        kept secrets. The Points remembers its debts the way the parish
+        remembers its dead, and yours are scattered through the wards
+        like coin sewn into a coat lining.
       mechanical_effects:
         personality_trait: Connected
         reputation_bonus: network
     - label: There is a price on my head
       description: >-
         Someone wants you found. Maybe the law, maybe a family, maybe
-        someone you wronged. The bounty follows you like a shadow, and
-        every bounty hunter in the territory knows the number.
+        someone you wronged. The price follows you like a shadow, and
+        every thief-taker and shoulder-hitter below Canal Street knows
+        the number.
       mechanical_effects:
         personality_trait: Hunted
         reputation_bonus: notoriety
@@ -211,9 +220,9 @@
   narration: |
     The old man folds the paper and returns it to his coat. He finishes his drink in one pull, sets the glass down with the finality of a gavel, and stands.
 
-    "Last question," he says from the doorway, his silhouette framed against a sky full of hard white stars. "Every drifter, every killer, every fool who rides into this territory has a reason. A debt, a name, a number, a grave they are looking for."
+    "Last question," he says from the doorway. Behind him the square is rain and tallow-light, and somewhere off toward the Bowery a fire-bell is going again. "Everybody the tide leaves in this ward has a reason they stay in it. A debt, a name, a number, a grave they are looking for. Nobody lodges in the Points for the air."
 
-    The wind picks up. Somewhere a shutter bangs.
+    The rain picks up. Somewhere above, a shutter bangs on its one hinge.
 
     "What is yours?"
   choices:
@@ -221,31 +230,32 @@
       description: >-
         Someone took something that cannot be replaced. A person, a
         life, a future. You are here to find them and balance the
-        ledger in the only currency the frontier accepts.
+        ledger in the only currency the Points accepts.
       mechanical_effects:
         goals: Vengeance
         emotional_state: Cold
     - label: Gold
       description: >-
-        Somewhere in this territory there is a fortune — buried, stolen,
-        promised, or simply waiting for someone bold enough to take it.
-        You are here because poverty is a death sentence and wealth is
-        the only freedom.
+        Somewhere in this ward there is money — buried under a hearth,
+        sewn into a tick, promised on a handshake, or simply waiting for
+        someone bold enough to take it. You are here because poverty in
+        this city is a death sentence and wealth is the only freedom.
       mechanical_effects:
         goals: Wealth
         emotional_state: Hungry
     - label: A fresh start
       description: >-
         You are running from something — a crime, a failure, a life that
-        closed around you like a fist. The frontier is the last place
-        where a person can become someone new.
+        closed around you like a fist. The Points is the last place in
+        the city that never asks twice who you were before you came
+        down to it.
       mechanical_effects:
         goals: Redemption
         emotional_state: Guarded
     - label: Someone needs finding
       description: >-
-        A name. A face. Someone who disappeared into the territory and
-        did not come back. Whether you are bringing them home or bringing
+        A name. A face. Someone who came down to the wards and did not
+        come back out. Whether you are bringing them home or bringing
         them to justice, the search is all that matters.
       mechanical_effects:
         goals: The Search
@@ -255,12 +265,12 @@
 - id: confirmation
   title: The Road Ahead
   narration: |
-    The old man is gone. You are alone in the cantina with the dying fire and the empty bottle and the sound of your own breathing.
+    The old man is gone. You are alone in the groggery with the guttering tallow dip and the empty bottle and the sound of rain working through the roof into a pail somebody gave up emptying.
 
-    Outside, your horse waits at the rail. The road forks south toward the border towns and north toward the high country. East is where you came from. West is where the maps stop making promises.
+    Outside, five streets meet in the mud of Paradise Square, and every one of them is a promise of a different kind. Worth Street runs up toward Broadway and the swells who come slumming with full pockets. Baxter runs past the groceries that sell more by the back door than the front. Park goes down toward the Mission side, where they will make you new whether you ask or not. Mulberry bends into the Bend, where the courts go dark twenty feet in. And Little Water is hardly a street at all — which is exactly what the people who use it like about it.
 
-    You stand. You check your weapon. You step into the night.
+    You stand. You feel the weight in your coat pocket. You step into the rain.
 
-    The territory does not care who you are. But it is about to find out.
+    The ward does not care who you are. But it is about to find out.
   choices: []
   allows_freeform: false
