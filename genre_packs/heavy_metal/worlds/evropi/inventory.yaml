@@ -6,7 +6,15 @@
 # on the blades. Dye-over-dye on the cloaks. A recognizable kit in the wrong
 # light — the Mistos do not love seeing their own livery on the road.
 #
-# Currency inherits from the heavy_metal genre pack (mark / silver / copper).
+# Currency: the heavy_metal mark / silver / copper. Declared here at the world
+# tier (epic 94 genre/world boundary — the world owns the catalog; the deleted
+# genre-tier inventory.yaml can no longer supply it).
+currency:
+  name: mark
+  denominations:
+    - copper
+    - silver
+    - mark
 
 item_catalog:
 
@@ -451,69 +459,83 @@ item_catalog:
     narrative_weight: 0.65
 
 # ──────────────────────────────────────────────────────────────────
-# Starting kits — Third Cut escape loot, distributed
+# Starting kits — Third Cut escape loot, distributed by class
 # ──────────────────────────────────────────────────────────────────
-# Items are referenced by id from item_catalog above. `equipped: true`
-# marks a piece as currently worn/wielded; others are carried in pack.
-# Quantity defaults to 1; use `qty` to stack consumables or sets.
-# Gold is in marks (heavy_metal currency).
+# All evropi parties wear looted Mistos Host kit. The engine wires starting
+# loadouts class-first (inventory.yaml::starting_equipment[class]), the same
+# shape every other heavy_metal world uses (long_foundry, barsoom), so the kit
+# is keyed by the seven WWN classes rather than by named PC. Item ids reference
+# item_catalog above; weapons/armor are auto-handled by the loadout wiring.
+#
+# Provenance — the original per-PC escape kits these class kits descend from
+# (kept for the table's own reference; the named PCs map onto the class kits):
+#   Prot'Thokk  (quarter-officer)  -> Warrior
+#   Rux         (shaft-runner)     -> Expert
+#   Hant        (composer/face)    -> Mentalist
+#   Pumblestone (sage)             -> Necromancer / Elementalist
 
-starting_kits:
+starting_equipment:
+  Warrior:
+    - mistos_officer_chain_shirt
+    - mistos_officer_longsword
+    - mistos_parade_shield
+    - mistos_manacle_keyring
+    - dyed_mistos_cloak
+    - mistos_iron_boots
+    - sapper_picks
+  Expert:
+    - mistos_short_sword
+    - mistos_throwing_daggers
+    - mistos_light_harness
+    - mistos_dark_lantern
+    - mistos_lockpicks
+    - dyed_mistos_cloak
+    - climbing_line
+  Mentalist:
+    - mistos_travel_sword_short
+    - mistos_officer_cowl
+    - dyed_mistos_cloak
+    - mistos_ceremonial_reed_pipe
+    - pheromone_composition_kit
+    - mistos_quartermaster_journal
+  Necromancer:
+    - zboźny_pine_staff
+    - mistos_overseer_leathers
+    - dyed_mistos_cloak
+    - spellbook_tismenni_iii
+    - mistos_sighting_lens
+    - mistos_inkhorn
+    - strata_map_tismenni
+  Elementalist:
+    - zboźny_pine_staff
+    - mistos_overseer_leathers
+    - dyed_mistos_cloak
+    - spellbook_tismenni_iii
+    - mistos_sighting_lens
+    - strata_map_mistos_prospector
+  Pact-born:
+    - mistos_short_sword
+    - mistos_overseer_leathers
+    - dyed_mistos_cloak
+    - spellbook_tismenni_iii
+    - blackfire_powder_paper
+  Super-scientist:
+    - mistos_travel_sword_short
+    - mistos_light_harness
+    - dyed_mistos_cloak
+    - sapper_picks
+    - sapper_fuse_cord
+    - mistos_sighting_lens
+    - strata_map_mistos_prospector
 
-  prot_thokk:
-    character_name: "Prot'Thokk"
-    description: "Quarter-officer's kit, claimed as first-pick from the killing."
-    gold: 45
-    items:
-      - { id: mistos_officer_chain_shirt, equipped: true }
-      - { id: mistos_officer_longsword, equipped: true }
-      - { id: mistos_parade_shield, equipped: true }
-      - { id: mistos_manacle_keyring }
-      - { id: mistos_shaft_roster_third_cut }
-      - { id: dyed_mistos_cloak }
-      - { id: mistos_iron_boots }
-      - { id: sapper_picks }
-      - { id: blackfire_powder_paper, qty: 1 }
-
-  rux:
-    character_name: "Rux"
-    description: "Overseer shaft-runner's kit, everything sized for someone twice as large."
-    gold: 40
-    items:
-      - { id: mistos_short_sword, equipped: true }
-      - { id: mistos_throwing_daggers, qty: 3 }
-      - { id: mistos_light_harness, equipped: true }
-      - { id: mistos_dark_lantern }
-      - { id: mistos_lockpicks }
-      - { id: dyed_mistos_cloak }
-      - { id: climbing_line }
-      - { id: sapper_fuse_cord, qty: 1 }
-
-  hant:
-    character_name: "Hant"
-    description: "Composer's kit, with a stolen cowl and a stolen reed-pipe made into new instruments."
-    gold: 35
-    items:
-      - { id: mistos_travel_sword_short, equipped: true }
-      - { id: mistos_officer_cowl, equipped: true }
-      - { id: dyed_mistos_cloak }
-      - { id: mistos_ceremonial_reed_pipe }
-      - { id: pheromone_composition_kit }
-      - { id: mistos_quartermaster_journal }
-
-  pumblestone_sweedlewit:
-    character_name: "Pumblestone Sweedlewit"
-    description: "Sage's kit, reassembled from what the Third Cut held and what Cheeney cut in the pine woods."
-    gold: 60
-    items:
-      - { id: zboźny_pine_staff, equipped: true }
-      - { id: mistos_overseer_leathers, equipped: true }
-      - { id: dyed_mistos_cloak }
-      - { id: spellbook_tismenni_iii }
-      - { id: mistos_sighting_lens }
-      - { id: mistos_inkhorn, qty: 3 }
-      - { id: strata_map_tismenni }
-      - { id: strata_map_mistos_prospector }
+starting_gold:
+  Warrior: 45
+  Expert: 40
+  Mentalist: 35
+  Necromancer: 60
+  Elementalist: 50
+  Pact-born: 45
+  Super-scientist: 40
 
 # ──────────────────────────────────────────────────────────────────
 # Retcon note
