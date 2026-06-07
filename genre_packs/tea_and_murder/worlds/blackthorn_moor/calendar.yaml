@@ -1,0 +1,776 @@
+# Blackthorn Moor Calendar
+#
+# The reckoning of time in the West Riding parish of Thornkirk, c. 1866.
+# This file is the narrator's grounding reference for what month and day
+# the household is in, what the next feast or rent day is, what the moon
+# is doing, what the church and the mill bells will ring for, and how
+# the village, the mill town, and the Hall each talk about hours of the
+# day (they do not talk about them the same way).
+#
+# Authored alongside:
+#   - world.yaml        — axis snapshot, premise, starting_time
+#   - cartography.yaml  — Hall, grounds, Thornkirk, Millbridge, station, moors
+#   - lore.yaml         — the Blackthorn family, the mills, the parish
+#   - npcs.yaml         — the household and village cast (c. 1860s West Riding)
+#   - legends/          — edmunds_last_year (1866), the_mill_fire_of_1852
+#
+# Schema: follows the glenross calendar.yaml shape (the shape Story 24-1's
+# schema is expected to enforce). Read at runtime by the
+# `get_world_grounding` narrator tool and surfaced into the narrator's
+# tool-result payload when a scene needs grounding in date, season, or
+# festival proximity.
+
+version: "0.1.0"
+world: blackthorn_moor
+genre_pack: tea_and_murder
+
+# ────────────────────────────────────────────────────────────────────
+# The system
+# ────────────────────────────────────────────────────────────────────
+# The Gregorian calendar as used throughout mid-Victorian England.
+# Year reckoning is Anno Domini; the vicar says "in the year of our
+# Lord eighteen hundred and sixty-six" from the pulpit, the solicitor
+# writes "1866" in the will, and the mill office stamps it on every
+# wage book.
+
+system:
+  type: gregorian
+  era: Anno Domini
+  era_short: AD
+  era_in_prose: "the year of our Lord eighteen hundred and sixty-six"
+  current_year: 1866
+  decade_register: "high Victorian — the Queen five years widowed and still in black, and the county takes its tone from her"
+  months_per_year: 12
+  days_per_week: 7
+  weeks_per_year: 52
+  first_day_of_week: Monday
+  sabbath: Sunday
+  notes:
+    - "Gregorian as adopted by Great Britain in 1752; nobody in the parish remembers otherwise."
+    - "The legal year turns on the four English quarter days (Lady Day, Midsummer, Michaelmas, Christmas) — but the *working* year in the North turns on Martinmas, when farm servants are hired and the year's wages settle. The two systems run side by side and the solicitor keeps books in both."
+    - "Mourning arithmetic matters in this house: Sir Edmund died three weeks ago, so the Hall is in deepest mourning — full black, crape on the door, the clocks in his study stopped at the hour the body was found. The household counts time from the death now, the way other houses count from Christmas."
+
+# ────────────────────────────────────────────────────────────────────
+# Months
+# ────────────────────────────────────────────────────────────────────
+# Standard Gregorian months. Each carries its parish-level texture —
+# what the Hall, the village, the mills, and the moor are doing. Use
+# these to ground a scene in *when* without forcing the narrator to
+# invent it.
+
+months:
+  - number: 1
+    name: January
+    short: Jan
+    days: 31
+    season: deep_winter
+    texture: >-
+      The iron month. Snow lies on the moor tops for weeks; the lane to
+      the station is cut twice a winter. The mills run by gaslight at
+      both ends of the day and the chimney smoke sits in the valley.
+      The Hall keeps its fires in six rooms and shuts the rest.
+    notable_days:
+      - "1 — New Year's Day (the village sees the year in; the mill works; first-footing the night before — a dark-haired man first over the doorstep for luck, the 'lucky bird' as the older folk say)"
+      - "6 — Epiphany / Twelfth Day (the Hall's Christmas greenery comes down; leaving it up past Twelfth Night is bad luck and the housekeeper enforces this personally)"
+      - "(first Monday after Twelfth Day) — Plough Monday (the farm lads drag a ribboned plough through Thornkirk and beg pennies; the vicar disapproves mildly; the pub does well)"
+
+  - number: 2
+    name: February
+    short: Feb
+    days: 28
+    leap_days: 29
+    leap_rule: "29 days in years divisible by 4 except centuries not divisible by 400; 1866 is not a leap year — 28 days."
+    season: deep_winter
+    texture: >-
+      The candle month. Days lengthening but the cold at its worst.
+      Ewes heavy on the in-bye land. The mill's coal bill is the year's
+      highest and the manager says so to anyone who will listen.
+    notable_days:
+      - "2 — Candlemas (the church marks it quietly; by custom half the winter's hay and half the winter's coal should still be in store — a measuring day)"
+      - "14 — St Valentine's Day (penny valentines through the post office, which means the postmistress knows every courtship in two villages)"
+      - "(movable) — Shrove Tuesday and the start of Lent; in 1866 Shrove Tuesday falls on 13 February — pancakes in every kitchen, the mill children let out an hour early by custom Sir Edmund's father began"
+
+  - number: 3
+    name: March
+    short: Mar
+    days: 31
+    season: late_winter
+    texture: >-
+      The wind month. The moor is burnt in patches — keepers firing the
+      old heather in strips, smoke walking the ridge on dry days.
+      Lambing begins on the low farms. The roads are at their worst;
+      the carrier's cart sticks twice a week.
+    notable_days:
+      - "25 — Lady Day (English quarter day — rents due at the estate office; the new farm year's tenancies begin; the solicitor comes out from Millbridge with his clerk and his black bag)"
+
+  - number: 4
+    name: April
+    short: Apr
+    days: 30
+    season: early_spring
+    texture: >-
+      The lambing month on the moor farms — later up here than in the
+      vale, and the shepherds sleep in the field houses. Curlews come
+      back to the moor and the sound of them is the sound of spring.
+      The Hall garden shows its first colour and the gardener stands
+      guard over it.
+    notable_days:
+      - "(movable) — Easter; in 1866 Easter Sunday falls on 1 April. The church's central feast — new clothes for those who can manage them, the mill shut Good Friday and Easter Monday."
+
+  - number: 5
+    name: May
+    short: May
+    days: 31
+    season: spring
+    texture: >-
+      The green month. The beck runs full, the in-bye fields are
+      suddenly bright, and the moor stays brown a month longer out of
+      stubbornness. Cleaning week at the Hall — carpets beaten on the
+      lines, the mistress's linen inventory, the year's whitewashing
+      in the dairy and the stables.
+    notable_days:
+      - "1 — May Day (a children's garland procession in Thornkirk; a maypole on the green that the Methodists at Millbridge decline to notice)"
+      - "(movable) — Whitsuntide; in 1866 Whitsunday falls on 20 May. The great walking feast of the West Riding — see festivals.whitsuntide."
+      - "29 — Oak Apple Day (oak sprigs in buttonhats among the older men; the church bells ring a peal; the young think it quaint)"
+
+  - number: 6
+    name: June
+    short: Jun
+    days: 30
+    season: early_summer
+    texture: >-
+      The hay month begins on the low land. Long light — the moor edge
+      holds the sun past nine. Sheep-washing in the beck pools, then
+      clipping (shearing) with hired gangs and a clipping supper at
+      each farm in turn. The mill's order book is at its summer fullest.
+    notable_days:
+      - "24 — Midsummer Day (English quarter day — the half-year rents; the estate office busy; St John's Eve fires on the moor edge are within living memory but no longer lit)"
+
+  - number: 7
+    name: July
+    short: Jul
+    days: 31
+    season: summer
+    texture: >-
+      The hay harvest in earnest, weather permitting, and the weather
+      does not always permit — a wet July is remembered for years and
+      argued about longer. The moor is at its greenest, which is not
+      very. The grouse broods are counted by the keepers and the
+      counting is reported to the Hall like intelligence from a war.
+    notable_days: []
+
+  - number: 8
+    name: August
+    short: Aug
+    days: 31
+    season: late_summer
+    texture: >-
+      The purple month — the heather comes into bloom and for six
+      weeks the moor is the most beautiful thing in the Riding and
+      everyone says so as if surprised. The Twelfth opens the grouse
+      season and the Hall fills with guns. Corn harvest begins on the
+      low farms at the month's end.
+    notable_days:
+      - "1 — Lammas (the church notes the first-loaf custom; the farms note that harvest is coming; no rents turn on it here)"
+      - "12 — the Glorious Twelfth (the grouse season opens; in 1866 the Twelfth falls on a Sunday, so the guns first walked the moor on Monday the 13th — no shooting on the Sabbath, by law and by the vicar's certain knowledge of the law)"
+      - "(a week in late August) — Thornkirk Feast (the village wakes — see festivals.thornkirk_feast)"
+
+  - number: 9
+    name: September
+    short: Sep
+    days: 30
+    season: early_autumn
+    texture: >-
+      The harvest month. Corn carried on the low farms; the moor
+      farms cut their oats green and pray. The grouse parties thin
+      after the first fortnight. The heather goes over — the purple
+      browns out from the tops down. THE MONTH SIR EDMUND DIED: the
+      27th, a Thursday, three weeks before the campaign opens. The
+      household still measures everything by it.
+    notable_days:
+      - "(movable, late September) — Harvest Festival in the church (sheaves at the altar rail, the new fashion the vicar brought with him and the parish has decided to enjoy)"
+      - "27 — the night Sir Edmund Blackthorn died at Blackthorn Hall (heart failure, by the certificate; every person now under this roof was in the house that night)"
+      - "29 — Michaelmas (English quarter day — rents due two days after the master's death; the estate office took them with the blinds half-drawn and nobody knew whose receipt would stand)"
+
+  - number: 10
+    name: October
+    short: Oct
+    days: 31
+    season: autumn
+    texture: >-
+      The russet month, and the month the campaign opens. Bracken
+      bronze on the moor, rowans red in the cloughs, first frosts in
+      the second week. The last visitors are gone from the Hall — or
+      would be, in any other year; this year the solicitor has called
+      them all BACK, for the reading of the will. Fires lit in every
+      occupied room. Rain two days in three. Tea constant.
+    notable_days:
+      - "18 — (suggested campaign start — see starting_date below)"
+      - "28 — SS Simon and Jude (proverbially the first day of winter weather; 'on Simon and Jude's day the ships go home')"
+      - "31 — All Hallows' Eve (nut-crack night by the older custom — nuts on the fire bars to tell sweethearts' fortunes; the Methodists disapprove; the Hall servants do it anyway, downstairs, quietly)"
+
+  - number: 11
+    name: November
+    short: Nov
+    days: 30
+    season: late_autumn
+    texture: >-
+      The black month. Dark by half past four, the valley fog holding
+      mill smoke like a lid, the moor invisible for days at a stretch.
+      The Martinmas hirings reorganise every farm kitchen in the
+      Riding. The year's accounts begin to be made up — at the mill,
+      at the estate office, at the vicarage, and in quieter ledgers
+      than those.
+    notable_days:
+      - "1 — All Saints' Day (the church observes; fresh flowers on the newer graves — there is a new grave this year that the whole parish watches sidelong)"
+      - "4 — Mischief Night (Yorkshire's own — gates lifted, knockers tied, the constable's busiest night of the year and the magistrates' merriest morning after)"
+      - "5 — Bonfire Night (the great fire on the green; Guy Fawkes was a Yorkshireman and the county burns him with proprietary enthusiasm; the mill's apprentices build the Millbridge fire for a week beforehand)"
+      - "11 — Martinmas (THE northern term day — farm servants' year ends, wages paid in a lump, the hiring fair at Millbridge with lads and lasses standing the street wearing the tokens of their trade; tenancy notices; the year's true financial reckoning)"
+      - "23 — St Clement's Day (the smith's feast; the Thornkirk forge stands ale by old custom)"
+
+  - number: 12
+    name: December
+    short: Dec
+    days: 31
+    season: early_winter
+    texture: >-
+      The candle-and-holly month. The mill runs full till Christmas
+      Eve on the winter orders. The church choir practises to be heard
+      through the vestry wall. The Hall, in mourning this year, will
+      keep a black Christmas — church, a quiet dinner, no party, no
+      dance, and the village understands and watches everything.
+    notable_days:
+      - "21 — St Thomas's Day (a-Thomasing — the parish widows go from door to door for the Christmas dole of wheat and silver, and are refused nowhere that intends to keep its name)"
+      - "24 — Christmas Eve (the sword-dancers come round after dark — the long-sword set from Millbridge, six men and a fool; the kissing-bough hung in farm kitchens; the mill closes at two)"
+      - "25 — Christmas Day (English quarter day and the church's great winter feast; in 1866 it falls on a Tuesday; goose where there is money, beef where there is more, the mill shut, the Hall in black this year)"
+      - "26 — Boxing Day / St Stephen's (the boxes — the Hall's tenants and staff take their Christmas dole; the hunt meets in the vale, but no Blackthorn rides this year)"
+      - "31 — New Year's Eve (watch-night service at the Millbridge chapel; the church abides midnight at home; first-footing after the stroke)"
+
+# ────────────────────────────────────────────────────────────────────
+# Days of the week
+# ────────────────────────────────────────────────────────────────────
+# Standard seven-day week. Sabbath observance is firm but layered:
+# the Millbridge Methodist chapel is stricter than the parish church,
+# the parish church is stricter than the Hall, and the Blackthorn Arms
+# is open Sunday evening and unrepentant about it.
+
+days_of_week:
+  - number: 1
+    name: Monday
+    short: Mon
+    texture: "Wash day in every kitchen in the parish. The mill's heaviest absence day (Saint Monday is dying but not dead). The first train carries the weekend's letters to Leeds."
+  - number: 2
+    name: Tuesday
+    short: Tue
+    texture: "Market day in Millbridge — stalls in the high street, the carrier's cart from Thornkirk at eight, farm wives with butter and eggs. The solicitor keeps Tuesday office hours for country clients."
+  - number: 3
+    name: Wednesday
+    short: Wed
+    texture: "Working day. The doctor's Thornkirk surgery in the front parlour of the post office, mornings. The vicar visits the outlying farms."
+  - number: 4
+    name: Thursday
+    short: Thu
+    texture: "Working day. Early-closing day in Millbridge — the shops shut at one, the shopkeepers garden. The Hall traditionally dined company on Thursdays; not this year."
+  - number: 5
+    name: Friday
+    short: Fri
+    texture: "Reckoning day — the mill makes up its wage books for Saturday payout. Fish carts up from the Leeds line. The pub quiet, money being short the night before wages."
+  - number: 6
+    name: Saturday
+    short: Sat
+    texture: "Pay day and half-day. The mill stops at two o'clock (the Factory Act's half-holiday, and the town's whole social architecture rests on it) — wages at the gate, then the high street, the pub, the cricket field in season. The Hall's servants take their evenings out by rota."
+  - number: 7
+    name: Sunday
+    short: Sun
+    texture: >-
+      The Sabbath. Church at Thornkirk: morning prayer at half past
+      ten, evensong at six. Chapel at Millbridge: ten, two-thirty
+      (Sunday school), and six, and the chapel means all three. No
+      mill, no shops, no cricket. Two trains instead of three, and
+      none after four. Sunday dinner is the week's great meal in
+      every house that can manage one. The moor is walked, the
+      churchyard is visited, and everything anyone does is seen.
+    notes:
+      - "The railway runs a reduced Sunday service — two trains, none after four o'clock; the stationmaster attends evensong and counts the congregation."
+      - "Chapel folk hold the Sabbath harder than church folk and both know it; a Millbridge weaver seen walking the moor in service time will hear about it Monday."
+
+# ────────────────────────────────────────────────────────────────────
+# Quarter days and term days
+# ────────────────────────────────────────────────────────────────────
+# The legal-and-financial spine of the year. England's quarter days
+# carry the rents and the leases; the North's Martinmas term carries
+# the farm wages and the hirings. The estate office keeps both
+# calendars; the will now sitting in the solicitor's bag answers to
+# all of them.
+
+quarter_days:
+  - name: Lady Day
+    date: "25 March"
+    season: late_winter
+    role: "English quarter day. Rents due at the estate office; farm tenancies begin and end; the year's agreements signed."
+  - name: Midsummer
+    date: "24 June"
+    season: early_summer
+    role: "English quarter day. The half-year rents; the estate office's summer reckoning."
+  - name: Michaelmas
+    date: "29 September"
+    season: early_autumn
+    role: "English quarter day. Rents due — in 1866, two days after Sir Edmund's death, taken with the blinds half-drawn. Magistrates' sessions; the hunting world stirs."
+  - name: Christmas
+    date: "25 December"
+    season: early_winter
+    role: "English quarter day. The winter rents, customarily taken gently; the boxes and doles offset what the ledger takes."
+  - name: Martinmas (term day)
+    date: "11 November"
+    season: late_autumn
+    role: "The northern term — not a legal quarter day but the year's true reckoning in the Riding. Farm servants' wages paid in the lump; the Millbridge hiring fair; notices to quit; the working year's hinge."
+
+# ────────────────────────────────────────────────────────────────────
+# Moons
+# ────────────────────────────────────────────────────────────────────
+# Folk names the parish actually uses for the year's full moons —
+# West Riding farm usage, not almanac invention. The shepherds and
+# the keepers name them; the mill town half-remembers them; the Hall
+# does not use them, and the solicitor would not know one if it rose
+# over his office.
+
+moons:
+  - month: 1
+    name: the Wolf Moon
+    folk_register: "Deep winter's moon, named for a hunger nobody living remembers — the wind over the chimney does the howling now."
+  - month: 2
+    name: the Snow Moon
+    folk_register: "The moon of the worst drifts; lambing watched under it on the early farms."
+  - month: 3
+    name: the Plough Moon
+    folk_register: "The spring work begun; the keepers burn heather by day and the smoke hangs across it at dusk."
+  - month: 4
+    name: the Curlew Moon
+    folk_register: "The moor birds come back under it; the shepherds call it the watching moon, for the lambing."
+  - month: 5
+    name: the Milk Moon
+    folk_register: "Grass at last; the dairy's best month begins."
+  - month: 6
+    name: the Clipping Moon
+    folk_register: "Sheep-shearing by gangs farm to farm, and the clipping suppers under it."
+  - month: 7
+    name: the Hay Moon
+    folk_register: "Working light into the evening; a dry hay moon is remembered kindly for years."
+  - month: 8
+    name: the Heather Moon
+    folk_register: "The moor purple under it; the grouse moon, the keepers say, the Hall's windows lit late."
+  - month: 9
+    name: the Harvest Moon
+    folk_register: "The big amber moon that lets the low farms carry corn after sunset. This year, the moon Sir Edmund died under — the parish has already started saying it that way."
+  - month: 10
+    name: the Hunter's Moon
+    folk_register: "First frosts; the bracken bronze by day and silver under it by night."
+  - month: 11
+    name: the Mourning Moon
+    folk_register: "Martinmas, leaves down, the churchyard tidied for winter. The name is older than this year's grief but the village finds it apt."
+  - month: 12
+    name: the Yule Moon
+    folk_register: "The Christmas moon, full or not; the sword-dancers walk between farms by its light."
+
+# ────────────────────────────────────────────────────────────────────
+# Festivals
+# ────────────────────────────────────────────────────────────────────
+# The parish's recurring public occasions, in calendar order. Each is
+# a baited hook in the SOUL.md sense — a known annual moment the
+# narrator can set an arrival, a quarrel, a will-reading, or a
+# confession against.
+
+festivals:
+  - id: new_year
+    name: New Year's Eve and Day
+    date: "31 December – 1 January"
+    fixed: true
+    register: village_folk
+    description: >-
+      Watch-night service at the Millbridge chapel; the church keeps
+      midnight at home. After the stroke, first-footing — a dark-haired
+      man first across the threshold, carrying coal, bread, and a coin,
+      the 'lucky bird.' The mill works New Year's Day; the lucky bird
+      does not excuse the six o'clock bell.
+    narrator_hooks:
+      - "A first-footer crosses a threshold he was not expected at."
+      - "Someone keeps watch-night for reasons that are not religious."
+
+  - id: plough_monday
+    name: Plough Monday
+    date: "first Monday after Twelfth Day (Epiphany)"
+    fixed: false
+    typical_window: "7–13 January"
+    register: village_folk
+    description: >-
+      The farm lads drag a ribboned plough through Thornkirk and beg
+      pennies at every good door, with a fool in skins and a deal of
+      noise. Refusing has consequences for one's front garden that
+      everyone pretends are mysterious. The vicar disapproves at a
+      volume calibrated to change nothing.
+
+  - id: shrovetide
+    name: Shrove Tuesday
+    date: "movable — 47 days before Easter; 13 February in 1866"
+    fixed: false
+    typical_window: "early February to early March"
+    register: village_folk
+    description: >-
+      Pancakes in every kitchen at the bell; the mill children out an
+      hour early by a custom of old Mr Blackthorn's that Sir Edmund
+      kept and the mill manager dislikes. Lent begins the next morning
+      and the chapel observes it harder than the church, on principle.
+
+  - id: easter
+    name: Easter
+    date: "movable — first Sunday after the first full moon after the spring equinox; 1 April in 1866"
+    fixed: false
+    typical_window: "late March to mid-April"
+    register: church_central
+    description: >-
+      The church's great spring feast. Good Friday and Easter Monday
+      the mill stands silent — two of its four closed days in the
+      year. New clothes for Easter Sunday among those who can; the
+      pawnshop in Millbridge does its quietest fortnight beforehand
+      and knows why.
+
+  - id: whitsuntide
+    name: Whitsuntide
+    date: "movable — seven weeks after Easter; Whitsunday 20 May in 1866"
+    fixed: false
+    typical_window: "mid-May to early June"
+    register: village_central
+    description: >-
+      The great walking feast of the West Riding. Whit Monday the mill
+      is shut and the whole valley walks: church and chapel each
+      process behind their banner and their band, children in white,
+      tea and buns in the respective schoolrooms afterwards, and a
+      cricket match in the evening that settles nothing for a year.
+      Church walks Thornkirk; chapel walks Millbridge; the routes
+      cross at the bridge and the precedence at that crossing has
+      been negotiated annually since before anyone now negotiating
+      was born.
+    narrator_hooks:
+      - "Two processions meet at the bridge and someone is walking with the wrong one."
+      - "A face in the Whit walk that should not be back in the valley."
+
+  - id: glorious_twelfth
+    name: the Glorious Twelfth
+    date: "12 August"
+    fixed: true
+    register: gentry_central
+    description: >-
+      The grouse season opens and the Hall becomes the centre of the
+      county for a fortnight — guns, loaders, beaters off the farms,
+      luncheon carried up to the shooting boxes, the game book filled
+      in each evening in the master's own hand. In 1866 the Twelfth
+      fell on a Sunday and the moor was first walked on Monday the
+      13th. This was Sir Edmund's last shooting season; the game book's
+      final entry is six weeks old and nobody has moved it from the
+      gun-room table.
+    narrator_hooks:
+      - "A gun that was cleaned and put away wrong, noticed weeks later."
+      - "What the beaters saw on the moor and did not report to the Hall."
+
+  - id: thornkirk_feast
+    name: Thornkirk Feast
+    date: "the week containing the church's dedication day, late August"
+    fixed: false
+    typical_window: "20–31 August"
+    register: village_central
+    description: >-
+      The village wakes — the old feast of the church's dedication,
+      kept as a week of half-holiday humour: a travelling fair on the
+      green, stalls, a brass band, the pub's great week, relatives
+      home from Leeds and Bradford with new hats and old quarrels.
+      The mill grants the Monday. The gentry subscribe to the feast
+      and attend its first afternoon, briefly, to be seen.
+    narrator_hooks:
+      - "A relative comes home for the Feast with money nobody can account for."
+      - "Something said at the fair's ale booth that was meant to be drowned out."
+
+  - id: harvest_festival
+    name: Harvest Festival
+    date: "movable — a Sunday in late September after the corn is carried"
+    fixed: false
+    typical_window: "20–30 September"
+    register: church_village
+    description: >-
+      Sheaves at the altar rail, the church dressed in corn and
+      michaelmas daisies, the new fashion the vicar brought from his
+      last parish and the village has decided to enjoy. The chapel
+      holds its own harvest tea a week later with better cake and
+      both congregations know it. In 1866 the festival fell the
+      Sunday before Sir Edmund died; the flowers were still fresh
+      in the church when they tolled the bell for him.
+
+  - id: michaelmas
+    name: Michaelmas
+    date: "29 September"
+    fixed: true
+    register: legal_quarter
+    description: >-
+      Quarter day. Rents at the estate office, the magistrates'
+      sessions in Millbridge, geese fattened and sold. In 1866 the
+      rent table was set out two days after the master's death and
+      the tenants filed past the drawn blinds to pay a dead man's
+      due — and each one, pausing at the step, asked the agent the
+      same unanswerable question: *whose receipt am I taking?*
+    narrator_hooks:
+      - "A tenant who did not come to pay, and was not pursued."
+      - "A rent receipt signed in a hand it should not have been."
+
+  - id: all_hallows
+    name: All Hallows' Eve
+    date: "31 October"
+    fixed: true
+    register: village_folk
+    description: >-
+      Nut-crack night. Nuts named for sweethearts on the fire bars —
+      burn steady and the match is true, crack and fly and it is not.
+      Apples on strings, mirrors consulted at midnight by housemaids
+      who would deny it at chapel. The Methodists disapprove of the
+      whole inventory; the Hall servants keep it downstairs, quietly,
+      and this year the divinations have an audience question they
+      dare not ask aloud.
+
+  - id: mischief_night
+    name: Mischief Night
+    date: "4 November"
+    fixed: true
+    register: village_folk
+    description: >-
+      Yorkshire's own institution, the night before Bonfire Night:
+      gates lifted off hinges and swapped between farms, door-knockers
+      tied, windows soaped, the constable everywhere and always too
+      late. Tolerated within limits that every lad knows to the inch
+      and exceeds by a foot. A useful night, the narrator may note,
+      for anyone wanting their own movements unremarked.
+    narrator_hooks:
+      - "Under cover of the night's licensed trespass, a trespass of another kind."
+      - "Something taken on Mischief Night that was not a prank."
+
+  - id: bonfire_night
+    name: Bonfire Night
+    date: "5 November"
+    fixed: true
+    register: civic_central
+    description: >-
+      Guy Fawkes was a York man and the Riding burns him with
+      proprietary enthusiasm. The great fire on Thornkirk green; the
+      Millbridge fire built by the mill apprentices for a week
+      beforehand and guarded the last two nights against rival
+      towns. Parkin and treacle toffee; the church bells ring the
+      Fifth; the vicar preaches deliverance and brevity.
+    narrator_hooks:
+      - "The bonfire, lit, shows everyone's face at once — and one is wrong."
+      - "Something meant to be burned is found before the fire is lit."
+
+  - id: martinmas_hirings
+    name: Martinmas and the Hiring Fair
+    date: "11 November (fair on the nearest market Tuesday)"
+    fixed: true
+    register: working_central
+    description: >-
+      The northern term day — the farm year's hinge. Servants' wages
+      paid in the lump at the kitchen table; boxes corded; and at the
+      Millbridge hirings, lads and lasses stand the high street wearing
+      the tokens of their trade (a whip for a carter, a curl of wool
+      for a shepherd, a white apron for a dairymaid) while farmers
+      walk the line. A shilling pressed into a palm makes the year's
+      contract. The pub takes more money that day than any other and
+      most of the year's marriages and half its troubles are first
+      set going at it.
+    narrator_hooks:
+      - "A servant of the Hall stands the hirings unexpectedly — who let them go, and why?"
+      - "A year's wages in a lump is motive sized exactly for a quiet crime."
+
+  - id: st_thomas
+    name: St Thomas's Day (a-Thomasing)
+    date: "21 December"
+    fixed: true
+    register: parish_charity
+    description: >-
+      The parish widows go a-Thomasing door to door for the Christmas
+      dole — wheat for frumenty, and silver where the house has any.
+      No house that intends to keep its name refuses. The Hall's dole
+      is given at the kitchen door by the housekeeper from a list the
+      late master kept in his own hand; what becomes of the list, and
+      the dole, is this year an open question below stairs.
+
+  - id: christmas
+    name: Christmas
+    date: "24–26 December"
+    fixed: true
+    register: church_central
+    description: >-
+      The full English feast, kept with both hands in the Riding:
+      the long-sword dancers out from Millbridge on Christmas Eve
+      (six men and a fool, the lock of blades raised at the end);
+      the kissing-bough in farm kitchens; church full on the morning;
+      goose or beef by means; the mill shut two days. The Hall in
+      mourning keeps a black Christmas this year — church, a quiet
+      dinner, no dance — and the village will watch the Hall pew on
+      Christmas morning the way other counties watch the assizes.
+    narrator_hooks:
+      - "The sword-dancers' lock raised over a head the fool did not choose by chance."
+      - "Who sits in the Hall pew, in what black, in what order."
+
+# ────────────────────────────────────────────────────────────────────
+# Time precision
+# ────────────────────────────────────────────────────────────────────
+# How the parish actually talks about hours. Three time-cultures
+# share one valley: the Hall (clocks and dressing-gongs), the mill
+# town (the buzzer and the knocker-up), and the farms (light and
+# meals). The railway holds the only time everyone trusts — set from
+# Leeds by the morning telegraph.
+#
+# CLASS NOTE for the narrator: "dinner" is the midday meal in the
+# village and the evening meal at the Hall; "tea" is a full cooked
+# meal (high tea, about five) in Millbridge and a tray of china at
+# four in the drawing room. Getting this wrong marks a speaker
+# instantly, and the cast will notice.
+
+time_precision:
+  registers:
+    gentry:
+      level: minute
+      example: "the solicitor's watch shows eleven minutes past three, and he says so"
+      notes: "Pocket watches, the hall clock, the dressing-gong at seven, dinner at eight. The study clocks are stopped at the hour Sir Edmund's body was found, by the housekeeper's order, and nobody has yet presumed to start them."
+    professional:
+      level: quarter_hour
+      example: "the doctor will be at the Hall before the quarter"
+      notes: "Watch set against the station clock; the vicar's set against the church, which is four minutes proud and always has been."
+    mill_working:
+      level: bell_and_buzzer
+      example: "before the buzzer; at breakfast-stop; after the dinner hour; when the engine stands"
+      notes: "The mill bell at half past five, the engine at six, breakfast-stop half past eight, dinner half past twelve to half past one, loose at six (two on Saturdays). The knocker-up's pole on the bedroom window at five for those who pay him a penny a week."
+    farm_working:
+      level: light_and_meal
+      example: "after milking; by noon-meat; before the gloaming; lantern-time"
+      notes: "The sun, the beasts, and the kitchen clock that is wound on Sundays and trusted accordingly."
+    sabbath:
+      level: service_anchored
+      example: "after morning church; between services; chapel-time"
+      notes: "Sunday hours are spoken in church and chapel terms, not numbers, in both villages."
+
+  bells:
+    church:
+      times: ["10:00 and 10:30 (morning prayer)", "17:30 and 18:00 (evensong)"]
+      rung_for: ["Sunday services", "weddings", "the passing bell and funerals", "the Fifth of November", "fires and floods"]
+      audible_range: "Thornkirk, the Hall and grounds, the station; Millbridge when the wind sits north"
+      notes: "The passing bell tolls the years of the dead — it gave Sir Edmund fifty-eight strokes three weeks ago and the village counted every one."
+    mill:
+      times: ["05:30 (first bell)", "06:00 (engine starts)", "08:30 (breakfast-stop)", "12:30 (dinner)", "13:30 (in)", "18:00 (loose)", "Sat 14:00 (half-day loose)"]
+      rule: "The buzzer carries further than the bell and the valley sets its kitchen clocks by the six o'clock start."
+      audible_range: "all Millbridge, the station, the low farms; the Hall hears it faintly with the window open"
+    hall:
+      times: ["07:00 (servants' bell)", "08:30 (breakfast gong)", "16:00 (tea)", "19:00 (dressing-gong)", "20:00 (dinner)"]
+      rule: "Indoor time is the butler's watch, set against the station clock on his Friday walk."
+      audible_range: "the house and stable yard only"
+
+  trains:
+    notes: >-
+      Three trains a day to Leeds; the last leaves at six. The station
+      clock is set from Leeds by the morning telegraph and is the
+      parish's authoritative time. The stationmaster anchors every
+      account to a train and a right question about the right train
+      will find the timetable does not lie.
+    services:
+      - direction: "down (to Leeds)"
+        time: "08:10"
+        register: "the morning train"
+      - direction: "down (to Leeds)"
+        time: "13:25"
+        register: "the dinner train"
+      - direction: "down (to Leeds)"
+        time: "18:00"
+        register: "the six o'clock — the last train"
+      - direction: "up (from Leeds)"
+        time: "09:35"
+        register: "the morning up-train"
+      - direction: "up (from Leeds)"
+        time: "14:50"
+        register: "the afternoon up-train"
+      - direction: "up (from Leeds)"
+        time: "19:20"
+        register: "the evening up-train — the last arrival; whoever comes on it walks to the Hall in the dark"
+    sundays: "Two trains only, none after four o'clock. The line is effectively silent from Saturday evening's arrival until Monday's 08:10."
+
+  meals:
+    - name: breakfast
+      window: "06:30 – 08:00 working houses (mill folk eat at the breakfast-stop, 08:30); 08:30 – 09:30 at the Hall"
+    - name: dinner (village) / luncheon (Hall)
+      window: "12:30 – 13:30 — the principal hot meal in every working house; a lighter luncheon at the Hall at one"
+    - name: tea
+      window: "16:00 in the drawing room (china, bread-and-butter, the social hour of the mystery); 17:00 – 18:30 in Millbridge and the farms (high tea — a cooked meal and the day's true supper)"
+    - name: dinner (Hall) / supper (village)
+      window: "20:00 at the Hall, dressed, announced, and observed; 20:00 – 21:00 a bite of supper in working houses that take one"
+
+  daylight:
+    notes: >-
+      The parish sits at about 53.8° N in the Pennine West Riding —
+      wide seasonal swing, sharpened by the valley: Millbridge loses
+      the sun behind the ridge an hour before the moor tops do.
+      Sunrise and sunset the parish notices:
+    examples:
+      - "midwinter (late December): sunrise about 08:20, sunset about 15:50; the mill runs by gas at both ends of the day"
+      - "equinox (March, September): sunrise about 06:00, sunset about 18:10"
+      - "midsummer (late June): sunrise about 04:35, sunset about 21:25; light on the moor edge past ten"
+      - "campaign start (mid-October): sunrise about 07:40, sunset about 17:00 — by the time the dressing-gong goes it has been dark an hour and the moor is a black wall at the windows"
+
+# ────────────────────────────────────────────────────────────────────
+# Starting date suggestion
+# ────────────────────────────────────────────────────────────────────
+# The world.yaml `starting_time` is "Late afternoon, autumn". The
+# default below honours that: Thursday 18 October 1866, three weeks
+# to the day after Sir Edmund's death (Thursday 27 September), with
+# the household reassembled at the solicitor's summons and the will
+# to be read. The session handler is free to override per-scene; this
+# is the default the bootstrap may pick up if no scene has set a date.
+
+starting_date:
+  year: 1866
+  month: 10
+  month_name: October
+  day: 18
+  day_of_week: Thursday
+  time_of_day: "late afternoon (about half past four — the tea hour; dark in an hour and a half)"
+  prose: >-
+    Thursday the eighteenth of October, eighteen sixty-six; three weeks
+    to the day since Sir Edmund Blackthorn died in this house; the
+    blinds raised again but the crape still on the door, the study
+    clocks still stopped, the household in full black, and the
+    solicitor's summons answered — everyone who was under this roof
+    that night is under it again tonight.
+  season: autumn
+  days_since_death: 21
+  death_date: "1866-09-27 (a Thursday; heart failure, by the certificate)"
+  nearest_festival_past:
+    id: michaelmas
+    date: "1866-09-29"
+    days_ago: 19
+  nearest_festival_future:
+    id: all_hallows
+    date: "1866-10-31"
+    days_ahead: 13
+
+# ────────────────────────────────────────────────────────────────────
+# Useful conversions for the narrator
+# ────────────────────────────────────────────────────────────────────
+# Quick lookups the grounding tool may surface alongside the current
+# date when a scene asks for context.
+
+useful:
+  twelve_hour_clock: true
+  twenty_four_hour_clock_in_prose: false
+  am_pm_notation: "the village says 'in the morning' / 'of the afternoon' / 'at night'; the railway and the solicitor say 8.10 a.m. or 6 p.m. when precision is wanted; the mill says bells"
+  weekend_concept: "Saturday afternoon (the mill's two o'clock loose) plus the Sabbath — the 'week-end' as a word is just beginning to be heard from commercial travellers and sounds modern"
+  mourning_observance_1866:
+    # The household is in deepest mourning for its master, three weeks dead.
+    # The narrator should let this colour every scene at the Hall.
+    widow: "full black, crape, no ornament; the widow does not dine out, pay calls, or receive any but family and the solicitor — twelve months of this before slighting mourning is even discussed"
+    household: "the family in black; servants in black or with black armbands and ribbons; black-edged notepaper and sealing wax; the door-crape renewed when the weather spots it"
+    house: "the study clocks stopped at the hour the body was found; Sir Edmund's place not laid; the game book untouched on the gun-room table; mirrors in his rooms still covered, by the housekeeper's discretion rather than the widow's order — a distinction below stairs has noticed"
+    village: "the village wears what black it owns to church; the pub lowers its voice on the subject for a month and then stops; the mill flew its flag at half-mast for a fortnight"
+    calendar_effect: "no dinner parties, no music, no cards at the Hall; Christmas 1866 will be kept black; the first ball or dinner the Hall gives again will itself be an event the county reads like a barometer"
