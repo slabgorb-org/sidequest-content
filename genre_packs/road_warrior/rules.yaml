@@ -111,7 +111,13 @@ custom_rules:
 
     CRASH EVENT (Rig Composure → 0) (Plan 2, dormant):
     The rig is wrecked; the driver takes an injury tag (see injury_system) and
-    is DISMOUNTED. Not yet mechanically fired.
+    is DISMOUNTED. Not yet mechanically fired FOR THE SOLO RIG COMPOSURE POOL.
+    NOTE (Plan 4 / epic 86 Story 86-6): the CREWED War Rig is a separate, LIVE
+    path — the `war_rig` confrontation (table_game: war_rig_crew) runs a
+    vessel-scoped shared Hull (sidequest.game.war_rig_combat.WarRigHull) whose
+    Hull→0 DOES mechanically fan CWN crash saves to every occupant and fires the
+    rig_pool.crash_event OTEL span. The dormancy above is about the per-driver
+    solo Rig Composure pool, not the crewed Hull.
 
     WHILE DISMOUNTED:
     No vessel buffer. Incoming damage hits Driver HP directly. DEX checks at
