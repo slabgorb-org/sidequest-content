@@ -1,0 +1,52 @@
+# Perseus Cloud — YULA system orrery (ADR-141, two-scale spatial model).
+# First per-system file from the orbits.yaml split (Story 98-1 / C1).
+# yula is the system root (no parent); the cartography.yaml graph holds
+# inter-system connectivity (yula <-> amanta/nimia/terma). Other systems are
+# authored on demand (Diamonds and Coal — ADR-014); their synthesized geometry
+# is regenerable from perseus_cloud.sector.json.
+#
+# Body values re-homed verbatim from the retired monolithic orbits.yaml.
+
+version: "0.1.0"
+
+clock:
+  epoch_days: 0
+
+travel:
+  realism: narrative
+
+bodies:
+  yula:
+    type: star
+    semi_major_au: 8.343
+    period_days: 8801.8
+    epoch_phase_deg: 209.7
+    label: "YULA"
+  yula_2:
+    type: habitat
+    parent: yula
+    semi_major_au: 0.45
+    period_days: 110.3
+    epoch_phase_deg: 344
+    label: "YULA"
+  lisbon:
+    type: habitat
+    parent: yula_2
+    semi_major_au: 0.004
+    period_days: 0.1
+    epoch_phase_deg: 306
+    label: "LISBON"
+  mclaughlin_13:
+    type: habitat
+    parent: yula_2
+    semi_major_au: 0.008
+    period_days: 0.3
+    epoch_phase_deg: 66
+    label: "MCLAUGHLIN 13"
+  thule_7:
+    type: habitat
+    parent: yula_2
+    semi_major_au: 0.013
+    period_days: 0.5
+    epoch_phase_deg: 186
+    label: "THULE 7"
