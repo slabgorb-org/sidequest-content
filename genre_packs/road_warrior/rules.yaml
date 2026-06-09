@@ -462,3 +462,59 @@ confrontations:
         narrator_hint: "Cut the engine. Glide silent into cover. Let them roar past."
     mood: tension
 
+  # War Rig (crewed vessel) — Story 86-6. The whole crew mans one rig against an
+  # external threat: each station commits a concurrent verb per round (the SOUL
+  # Guitar-Solo wider-action), all riding the ADR-129 N-Seat Table Engine via the
+  # `war_rig_crew` table game. Cooperative, so victory reads table_state (Hull
+  # depletion), never the dual dials — no player/opponent metrics. This is the
+  # MINIMAL playable wiring proof (spec §6): full vessel stat blocks, mount_slot →
+  # CWN weapon remap, and lethality calibration are 86-5; the road_boss Command
+  # Points layer is 86-7.
+  - type: war_rig
+    label: "The War Rig"
+    # `movement` (the chase precedent), NOT `combat`: this is a vehicular crew
+    # action resolved by the table engine (reads table_state, never the dial/HP
+    # combat seam). `combat` would wrongly enlist it in the single-combat
+    # opponent-seed assertions road_warrior's CWN tests pin (86-1).
+    category: movement
+    resolution_mode: table_resolution
+    win_condition: table_showdown
+    table_game: war_rig_crew
+    max_decision_points: 4
+    intent_verbs:
+      - steer
+      - shoot
+      - repair
+      - scan
+    on_intent_mismatch: warn
+    beats:
+      - id: steer
+        label: "Steer"
+        kind: push
+        base: 2
+        stat_check: DEX
+        effect: "Hold the line — thread wreckage, keep the rig out of the kill box"
+        narrator_hint: "Hands locked on the wheel, you read the road and pick the gap."
+      - id: shoot
+        label: "Man the Guns"
+        kind: strike
+        base: 3
+        stat_check: DEX
+        risk: "Miss and the threat closes — a wasted burst is a wasted round"
+        narrator_hint: "Swing the turret, lead the target, squeeze. Brass rains on the deck."
+      - id: repair
+        label: "Patch the Rig"
+        kind: brace
+        base: 2
+        stat_check: INT
+        effect: "Crawl the chassis under fire — shore the Hull where it's failing"
+        narrator_hint: "Sparks, a wrench, a curse. You weld the wound shut as it spreads."
+      - id: scan
+        label: "Spot the Threat"
+        kind: push
+        base: 1
+        stat_check: WIS
+        effect: "Call the threat's next move so the crew can answer it"
+        narrator_hint: "Up in the cupola, glassing the dust line. You see them before they commit."
+    mood: tension
+
