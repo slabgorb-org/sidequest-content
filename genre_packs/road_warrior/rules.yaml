@@ -492,6 +492,11 @@ confrontations:
       - shoot
       - repair
       - scan
+      # Story 86-7 — the road_boss Command Points layer (SWN §4.3). The two
+      # spendable CP actions plus Deal With a Crisis answer the d10 crisis table.
+      - above_and_beyond
+      - support_department
+      - deal_with_crisis
     on_intent_mismatch: warn
     beats:
       - id: steer
@@ -522,5 +527,29 @@ confrontations:
         stat_check: WIS
         effect: "Call the threat's next move so the crew can answer it"
         narrator_hint: "Up in the cupola, glassing the dust line. You see them before they commit."
+      # --- Road-boss command layer (Story 86-7, SWN §4.3) ---
+      # Command Points are a shared per-vessel pool; these two actions spend from
+      # it (1 CP each), resolved by the war_rig_crew table game's command verbs.
+      - id: above_and_beyond
+        label: "Above and Beyond"
+        kind: push
+        base: 1
+        stat_check: CHA
+        effect: "Spend a Command Point to push a station past its limit (+1d6)"
+        narrator_hint: "You call it from the road-boss seat — dig deep, give it everything."
+      - id: support_department
+        label: "Support Department"
+        kind: push
+        base: 1
+        stat_check: CHA
+        effect: "Spend a Command Point to lend one station's effort to another"
+        narrator_hint: "You read the deck and shift hands where they're needed — bracing the weak point."
+      - id: deal_with_crisis
+        label: "Deal With a Crisis"
+        kind: brace
+        base: 2
+        stat_check: INT
+        risk: "Fail a continuing crisis and it escalates — the Hull pays for it"
+        narrator_hint: "Something's gone wrong fast. You triage it before it cascades."
     mood: tension
 
