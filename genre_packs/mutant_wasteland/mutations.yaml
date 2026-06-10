@@ -1,0 +1,917 @@
+# mutations.yaml — mutant_wasteland mutation catalog (AWN Plan 2 Story C, story 102-7)
+#
+# Faithful port of *Ashes Without Number: Free Edition* (Kevin Crawford /
+# Sine Nomine, 2025): MP economy p.16, Stigmas p.17, negative mutations
+# p.18-19, positive mutations p.20-25. Mechanics are lifted, not redesigned
+# (parent spec decision D6). Consumed by sidequest/mutation/catalog.py;
+# resolution lives in sidequest/mutation/{chargen,use_ops,acquire_ops}.py.
+#
+# Replaces the retired magic.yaml (Plan 2 decision P2-1 — "replace, don't
+# reconcile"): mutations ARE this pack's magic system, and this file is the
+# sole authority on mutation mechanics. The magic.yaml narrator_register
+# survives below, verbatim in spirit and nearly in letter.
+#
+# Engine approximations (logged as 102-7 deviations; the engine models
+# strain_cost + usage period, AWN's richer cadences are approximated):
+#   * "first use in a scene is free, additional uses add 1 System Strain"
+#     -> strain_cost: 1, usage: at_will (every use costs; slightly harsher,
+#     never cheaper — costs stay visible).
+#   * "once per game session" / "once per week" -> per_day (the engine's
+#     longest period; effect text carries the true cadence for the narrator).
+#   * Stigma's four d12 columns (Textures/Appearance/Animal/Plant) -> the
+#     schema's single d12 uses the Textures column; the other three are
+#     narrator improvisation space.
+
+mp_economy:
+  # Chargen gate: archetypes whose fiction is mutant (the Trader's
+  # "commercially useful mutation", the Elder's "mutation prestige", the
+  # Beastkin's uplifted body). Ruin Diver / Tech Cultist are baseline
+  # humans; the Wandering Synth is a machine and cannot mutate.
+  mutant_classes:
+    - Wasteland Trader
+    - Village Elder
+    - Beastkin Scout
+  base_mp: 2                 # the Mutant Edge (p.16)
+  per_negative_mp: 2         # each accepted negative mutation (p.16)
+  max_negatives: 3           # "any more and your PC would never have survived"
+  concealable_stigma_cost: 1 # easily concealed Stigma costs 1 MP (p.16)
+  spend_random_positive: 1   # roll one positive randomly (p.16)
+  spend_pick_positive: 3     # pick any one positive (p.16)
+  spend_same_category: 3     # roll two from the same category (p.16)
+  chargen_negatives_rolled: 1
+
+stigma:
+  body_part:                 # d6 Mutated Body Part (p.17)
+    - Head
+    - Arm or arms
+    - Leg or legs
+    - Torso
+    - Eyes, ears, or hands
+    - Roll again and add that extra part
+  nature:                    # d6 Nature of the Mutation (p.17)
+    - Odd appearance or texture
+    - Animalistic structure
+    - Abnormal size or proportion
+    - Plant-like structure
+    - Amorphous or tentacular structure
+    - Inorganic or mineralized structure
+  flavor:                    # d12 Textures column (p.17)
+    - Chitinous
+    - Feathered
+    - Fibrous
+    - Finned
+    - Furred
+    - Glassy
+    - Metallic
+    - Plated
+    - Scabrous
+    - Scaled
+    - Slimy
+    - Stony
+
+negatives:
+  - id: negative/animalistic_mentality
+    name: Animalistic Mentality
+    roll_range: [1, 2]
+    effect: >-
+      Psychological traits that make it difficult to deal with normal humans,
+      including other mutants. Charisma modifier suffers a -1 penalty.
+    attr_penalties: { CHA: -1 }
+  - id: negative/anosmia
+    name: Anosmia
+    roll_range: [3, 4]
+    effect: >-
+      No sense of smell or taste. Wisdom modifier takes a -1 penalty; all
+      skill checks reliant on either sense fail. Cannot identify poisoned or
+      contaminated food or water unless it is visually obvious.
+    attr_penalties: { WIS: -1 }
+  - id: negative/awkward_mouth
+    name: Awkward Mouth
+    roll_range: [5, 6]
+    effect: >-
+      Mouthparts altered so speech is impossible; allies understand
+      vocalizations and sign language, strangers only gestures. Cannot gain
+      the Talk or Lead skills, but gains the Crushing Jaws positive mutation
+      for free.
+  - id: negative/bestial_hunger
+    name: Bestial Hunger
+    roll_range: [7, 8]
+    effect: >-
+      Needs twice as much food and water as a normal human to avoid
+      privation. Cannot gain mutations that lower food or water intake.
+  - id: negative/bleeder
+    name: Bleeder
+    roll_range: [9, 10]
+    effect: >-
+      Dies at the end of the third round after becoming Mortally Wounded,
+      instead of the sixth. Devices, abilities, and powers that would
+      automatically stabilize simply do not work.
+  - id: negative/blindness
+    name: Blindness
+    roll_range: [11, 12]
+    effect: >-
+      Completely blind. After rolling all negative mutations, pick one free
+      non-visual Sensory positive mutation used to compensate. Cannot gain a
+      Sensory mutation that improves vision.
+  - id: negative/chronic_seizures
+    name: Chronic Seizures
+    roll_range: [13, 14]
+    effect: >-
+      On a natural 1 on a hit roll or natural 2 on a skill check, make a
+      Physical save or suffer a seizure — dropping everything held, unable
+      to act for the rest of the scene. May resist by accepting 1 System
+      Strain per round of delay. No more than one seizure per week.
+  - id: negative/clumsy_paws
+    name: Clumsy Paws
+    roll_range: [15, 16]
+    effect: >-
+      Hands are clumsy compared to human digits; cannot manipulate any
+      object more delicate than an oversized gun trigger.
+  - id: negative/constant_secretions
+    name: Constant Secretions
+    roll_range: [17, 18]
+    effect: >-
+      Secretions triple required daily water intake and double the Readied
+      Encumbrance of any armor. All skill checks to resist or escape
+      grapples roll twice, take the better.
+  - id: negative/deafness
+    name: Deafness
+    roll_range: [19, 20]
+    effect: >-
+      Deaf, but lip-reads well enough to understand most others. Cannot
+      gain a mutation that improves hearing.
+  - id: negative/deficient_polycephaly
+    name: Deficient Polycephaly
+    roll_range: [21, 22]
+    effect: >-
+      An additional idiot head and brain, placed where you wish. The stress
+      of containing its impulses applies a -1 modifier penalty to either
+      Intelligence or Wisdom (player's choice). On a natural 2 on a social
+      skill check, it says the worst possible thing.
+  - id: negative/distorted_speech
+    name: Distorted Speech
+    roll_range: [23, 24]
+    effect: >-
+      Unable to communicate clearly; friends have learned to understand,
+      but no more than basic ideas reach others. Cannot gain the Talk or
+      Lead skills.
+  - id: negative/distracted_mind
+    name: Distracted Mind
+    roll_range: [25, 26]
+    effect: >-
+      Difficulty maintaining a single line of thought: -1 skill check
+      penalty on any activity that takes more than five minutes.
+  - id: negative/energy_sink
+    name: Energy Sink
+    roll_range: [27, 28]
+    effect: >-
+      Passively absorbs energy: each day, every carried energy cell or
+      powered device has a 1-in-6 chance of being drained when first used
+      at a critical moment. Ignores the first 10 points of electrical
+      damage taken each round.
+  - id: negative/feeble_joints
+    name: Feeble Joints
+    roll_range: [29, 30]
+    effect: >-
+      Poorly anchored musculature: Strength modifier suffers -1 and jumping
+      is entirely impossible.
+    attr_penalties: { STR: -1 }
+  - id: negative/feral_mind
+    name: Feral Mind
+    roll_range: [31, 32]
+    effect: >-
+      A hard time with abstract ideas. Intelligence modifier suffers a -1
+      penalty.
+    attr_penalties: { INT: -1 }
+  - id: negative/fragile_system
+    name: Fragile System
+    roll_range: [33, 34]
+    effect: >-
+      Exceptionally susceptible to environmental toxins: -2 penalty to all
+      saves versus poisons and diseases, and maximum System Strain is
+      decreased by 2, to a minimum of 3.
+    modifiers: { system_strain_max: -2 }
+  - id: negative/glowbug
+    name: Glowbug
+    roll_range: [35, 36]
+    effect: >-
+      Some significant part glows constantly, illuminating out to 10 meters,
+      concealable only under whole-body wraps. The drain applies a -1
+      Constitution modifier penalty; automatically fails Sneak checks
+      involving unobtrusiveness, veiled or not.
+    attr_penalties: { CON: -1 }
+  - id: negative/hemovore_burden
+    name: Hemovore (burden)
+    roll_range: [37, 38]
+    effect: >-
+      Must drink several liters of mammalian blood each week in addition to
+      normal food, or begin to starve. A sheep-sized mammal feeds you, or
+      thirty or so humans taking turns to donate.
+  - id: negative/insensate_flesh
+    name: Insensate Flesh
+    roll_range: [39, 40]
+    effect: >-
+      Extremely muted touch, including heat and pressure: -1 penalty to the
+      hit point roll each level (minimum 1), as injuries go unnoticed and
+      aggravate easily.
+  - id: negative/light_sensitivity
+    name: Light Sensitivity
+    roll_range: [41, 42]
+    effect: >-
+      Sees normally in low light, but daylight is blinding without goggles
+      or protective gear; suffers 1 System Strain per hour of unshielded
+      sun exposure. Laser weapons roll damage twice, taking the higher.
+  - id: negative/loose_limbs
+    name: Loose Limbs
+    roll_range: [43, 44]
+    effect: >-
+      Limbs break off and regrow: -1 Dexterity modifier; when Mortally
+      Wounded (or intentionally), a randomly-chosen arm or leg is lost,
+      regrowing in 1d4 weeks.
+    attr_penalties: { DEX: -1 }
+  - id: negative/low_resistances
+    name: Low Resistances
+    roll_range: [45, 46]
+    effect: >-
+      The first time each day a Physical, Mental, or Evasion save is made,
+      roll twice and take the worst.
+  - id: negative/memory_damage
+    name: Memory Damage
+    roll_range: [47, 48]
+    effect: >-
+      Prone to losing chunks of memory not relevant to current interests:
+      Intelligence modifier takes -1 and the Know skill cannot be developed.
+    attr_penalties: { INT: -1 }
+  - id: negative/miasmic_stench
+    name: Miasmic Stench
+    roll_range: [49, 50]
+    effect: >-
+      A stench that defies all perfumes: fails Sneak checks against
+      creatures that smell, -1 on all social skill checks. Insects and
+      predators do not recognize you as edible.
+  - id: negative/misshapen
+    name: Misshapen
+    roll_range: [51, 52]
+    effect: >-
+      Strangeness of proportion and jointing makes armor and clothing not
+      tailored to you impossible to wear.
+  - id: negative/musclebound
+    name: Musclebound
+    roll_range: [53, 54]
+    effect: >-
+      Physiology complicates movement: Dexterity modifier is reduced by 1.
+    attr_penalties: { DEX: -1 }
+  - id: negative/narrow_focus
+    name: Narrow Focus
+    roll_range: [55, 56]
+    effect: >-
+      Difficulty attending to surroundings: Wisdom modifier suffers -1 and
+      the Notice skill cannot be developed.
+    attr_penalties: { WIS: -1 }
+  - id: negative/overtaxed_physique
+    name: Overtaxed Physique
+    roll_range: [57, 58]
+    effect: >-
+      The mutations are more than the body can safely handle: maximum
+      System Strain is lowered by 3 points, to a minimum of 3.
+    modifiers: { system_strain_max: -3 }
+  - id: negative/place_blindness
+    name: Place Blindness
+    roll_range: [59, 60]
+    effect: >-
+      Profoundly poor navigation: can find the way around places lived in
+      for at least a week, but invariably becomes lost traveling outside
+      those areas unless guided.
+  - id: negative/poor_eyesight
+    name: Poor Eyesight
+    roll_range: [61, 62]
+    effect: >-
+      Eyes too weak to make out anything more than 10 meters away. Cannot
+      gain a positive Sensory mutation that improves eyesight.
+  - id: negative/primitive_cognition
+    name: Primitive Cognition
+    roll_range: [63, 64]
+    effect: >-
+      When advancing a character level, gain one fewer skill point.
+  - id: negative/sensitive_skin
+    name: Sensitive Skin
+    roll_range: [65, 66]
+    effect: >-
+      External integument can't handle pressure or chafing: cannot wear
+      armor of more than 1 Encumbrance, and gains 1 System Strain each day
+      any armor at all is worn.
+  - id: negative/short_lifespan
+    name: Short Lifespan
+    roll_range: [67, 68]
+    effect: >-
+      Aging accelerates at adulthood. At age 18 and each birthday, roll
+      1d100 and add your age; over 100 means death in 1d4 years.
+  - id: negative/sleep_dependence
+    name: Sleep Dependence
+    roll_range: [69, 70]
+    effect: >-
+      Adequate sleep is critical: a missed good night's sleep costs 2
+      System Strain.
+  - id: negative/slow_development
+    name: Slow Development
+    roll_range: [71, 72]
+    effect: >-
+      Great difficulty matching others' skills: pick a favorite skill; all
+      others have a maximum skill level 1 less than usual for your level,
+      minimum level-0.
+  - id: negative/spindly
+    name: Spindly
+    roll_range: [73, 74]
+    effect: >-
+      A body not built for raw power: Strength modifier is reduced by 1 and
+      the Exert skill cannot be gained.
+    attr_penalties: { STR: -1 }
+  - id: negative/vexation_field
+    name: Vexation Field
+    roll_range: [75, 76]
+    effect: >-
+      Subsonic or electro-neural emissions subconsciously irritate everyone
+      around (friends and allies can ignore it): -1 Charisma modifier
+      penalty; cannot gain the Lead or Connect skills.
+    attr_penalties: { CHA: -1 }
+  - id: negative/voracious
+    name: Voracious
+    roll_range: [77, 78]
+    effect: >-
+      Without at least two food rations a day, hunger distracts so badly a
+      Mental save is needed to resist spending at least one round eating
+      anything edible encountered — including enemy bodies.
+  - id: negative/weak_heart
+    name: Weak Heart
+    roll_range: [79, 80]
+    effect: >-
+      Sharp exertion quickly exhausts: Constitution modifier suffers -1,
+      and all Exert skill checks are rolled twice taking the worst.
+    attr_penalties: { CON: -1 }
+  - id: negative/attribute_deficiency
+    name: Attribute Deficiency
+    roll_range: [81, 90]
+    effect: >-
+      Your lowest attribute suffers a -1 modifier penalty (pick on a tie).
+      Reroll this mutation if its modifier is already at -2.
+  - id: negative/lightly_touched
+    name: Lightly Touched
+    roll_range: [91, 100]
+    effect: >-
+      Roll another negative mutation; it manifests so lightly it has no
+      meaningful effect and applies no penalties.
+
+positives:
+  # ── Structure (p.20-21) ──────────────────────────────────────────────
+  - id: structure/augmented_muscle
+    name: Augmented Muscle
+    category: structure
+    effect: >-
+      Strength score treated as four points greater for Encumbrance; +1
+      bonus to Strength modifier, to a maximum of +2.
+  - id: structure/explosive_exertion
+    name: Explosive Exertion
+    category: structure
+    strain_cost: 1
+    effect: >-
+      As an On Turn action, a tremendous boost of strength: the next roll
+      this round treats the Strength modifier as +2 (or +3 if already +2);
+      for the rest of the round, lift/break/carry as an ogre-sized humanoid,
+      smashing through ordinary doors and non-reinforced walls. (Source: the
+      first use in a scene is free; the engine charges every use.)
+  - id: structure/hypercontortion
+    name: Hypercontortion
+    category: structure
+    effect: >-
+      Abnormally flexible musculature and skeleton: fit through any hole
+      big enough for the head; +2 to all grapple-related skill checks and
+      +1 to motion-related Perform checks. Escaping a grapple is an On Turn
+      action once per round.
+  - id: structure/improved_joints
+    name: Improved Joints
+    category: structure
+    effect: >-
+      Add 5 meters to base Move rate and gain +1 to the Dexterity modifier,
+      to a maximum of +2.
+  - id: structure/leaper
+    name: Leaper
+    category: structure
+    effect: >-
+      Subtract 20 meters from any falling damage taken. As a Move action,
+      jump to any location within 20 meters (not two rounds in a row); the
+      jump does not count as a Fighting Withdrawal.
+  - id: structure/redundant_organs
+    name: Redundant Organs
+    category: structure
+    usage: per_day
+    effect: >-
+      Once per WEEK (engine approximates per-day; honor the weekly cadence
+      in the fiction), as an On Turn action, get up after being Mortally
+      Wounded by physical injury and regain 25% of maximum hit points,
+      rounded up. Cannot save from unavoidably certain death. Trauma Target
+      increases by +1.
+  - id: structure/regenerator
+    name: Regenerator
+    category: structure
+    effect: >-
+      Automatically stabilizes if Mortally Wounded; regenerates 2 hit
+      points of damage every hour. Regrows missing limbs or organs in one
+      week. Cannot recover from effects that instantly kill.
+  - id: structure/reinforced_tissues
+    name: Reinforced Tissues
+    category: structure
+    effect: >-
+      Abnormally dense flesh: treat Constitution as 18 for attribute
+      modifier purposes when rolling hit points; +2 Armor Class stacking
+      with any armor. Cannot swim, and rolls all fall damage twice taking
+      the worst.
+    modifiers: { armor_class: 2 }
+  - id: structure/sealed_systems
+    name: Sealed Systems
+    category: structure
+    effect: >-
+      No need to breathe; immune to toxic gases, pressure and temperature
+      extremes, aerosol-transmitted diseases, and anything a modern hazmat
+      suit would resist. Rests comfortably in any non-damaging environment.
+  - id: structure/stamina_reserves
+    name: Stamina Reserves
+    category: structure
+    effect: >-
+      Does not sleep; maintains modest exertion indefinitely. Recovers
+      daily System Strain with four hours of comfortable, well-fed rest.
+      +2 on all skill checks involving continuous exertion.
+  # ── Sense (p.21-25) ──────────────────────────────────────────────────
+  - id: sense/accelerated_perception
+    name: Accelerated Perception
+    category: sense
+    strain_cost: 1
+    usage: per_day
+    effect: >-
+      Cannot be surprised or suffer Execution Attacks; Snap Attacks take no
+      -4 penalty. Once per day, accept one System Strain to take the next
+      Main Action immediately as an Instant response to someone else's
+      action, resolving first.
+  - id: sense/acute_hearing
+    name: Acute Hearing
+    category: sense
+    effect: >-
+      A clear auditory picture within 10 meters, accurate enough to allow
+      attacks; identify people by breathing and heartbeat. By focusing on a
+      location within 100 meters, listen as if standing there when no
+      obstacles intervene.
+  - id: sense/acute_olfaction
+    name: Acute Olfaction
+    category: sense
+    effect: >-
+      A clear olfactory picture within 10 meters, accurate enough to allow
+      attacks; identify anyone met by smell and objects they handled within
+      the past day. Faultlessly track any trail under an hour old (else +4
+      on all Wis/Survive tracking checks).
+  - id: sense/echolocation
+    name: Echolocation
+    category: sense
+    effect: >-
+      Inaudible sonic pings give a clear forward image out to thirty
+      meters; fine enough to distinguish people and small details, but
+      nothing smaller than one centimeter.
+  - id: sense/empathic_sensitivity
+    name: Empathic Sensitivity
+    category: sense
+    effect: >-
+      Read a creature's current emotional state as a Main Action; +1 to all
+      social skill checks. Communicate basic ideas with intelligent
+      creatures even without a shared language.
+  - id: sense/night_vision
+    name: Night Vision
+    category: sense
+    effect: >-
+      Vision functions perfectly in complete absence of light; can also see
+      dangerous radiation zones.
+  - id: sense/panoptic_vision
+    name: Panoptic Vision
+    category: sense
+    effect: >-
+      360-degree vision that stays aware even asleep or unconscious; cannot
+      be surprised or suffer Execution Attacks, and wakes instantly from
+      normal sleep in response to anything seen.
+  - id: sense/tactile_analysis
+    name: Tactile Analysis
+    category: sense
+    effect: >-
+      Hyper-acute touch: +2 on all skill checks of manual dexterity
+      (crafting, trauma care, lockpicking, instruments). Air-pressure
+      awareness gives a sensory picture of visually-unobstructed
+      surroundings within 10 meters, enough to allow attacks.
+  - id: sense/telescopic_sight
+    name: Telescopic Sight
+    category: sense
+    effect: >-
+      Any visible point within one kilometer can be observed as if
+      adjacent; no penalties for using a ranged weapon at long range.
+  - id: sense/thermal_vision
+    name: Thermal Vision
+    category: sense
+    strain_cost: 1
+    save: { stat: evasion, effect: negates }
+    effect: >-
+      See heat gradients even in perfect darkness or dust, precise enough
+      to distinguish individuals. As a Main Action, emit ocular heat rays:
+      2d6 damage plus character level to a target within 30 meters, Evasion
+      save to negate. (Source: first use in a scene free; engine charges
+      every use.)
+  # ── Hybrid (p.21-25) ─────────────────────────────────────────────────
+  - id: hybrid/aquatic_adaptation
+    name: Aquatic Adaptation
+    category: hybrid
+    effect: >-
+      Breathe and function normally underwater, ignoring temperature and
+      pressure extremes, seeing clearly out to 30 meters even without
+      light. Move rate +5 meters when swimming.
+  - id: hybrid/arboreal_aptitude
+    name: Arboreal Aptitude
+    category: hybrid
+    effect: >-
+      An unnaturally nimble climber: scale all but perfectly smooth
+      surfaces as if flat ground; hang from vertical or overhead surfaces
+      one-handed. All falling damage is halved, rounded down.
+  - id: hybrid/centauroid
+    name: Centauroid
+    category: hybrid
+    effect: >-
+      A quadrupedal lower body: base Move +10 meters per Move action; +2
+      skill check bonus to resist grapples by human-sized foes. Only
+      specially crafted armor fits.
+  - id: hybrid/crushing_jaws
+    name: Crushing Jaws
+    category: hybrid
+    attack:
+      skill: Punch
+      damage: 1d12
+      trauma_die: 1d8
+      trauma_rating: x2
+    effect: >-
+      Jaws meant for crushing hard or fibrous substances: bite attacks use
+      Punch, do 1d12 with no Shock, using the better of Strength or
+      Dexterity; add skill level to the damage roll. Chews through up to
+      twenty centimeters of hard wood per minute of gnawing.
+  - id: hybrid/digitigrade_legs
+    name: Digitigrade Legs
+    category: hybrid
+    effect: >-
+      Animalistic legs grant unusual speed: base Move +5 meters per Move
+      action; jump up to 10 meters horizontally or half vertically as a
+      Move action.
+  - id: hybrid/functional_wings
+    name: Functional Wings
+    category: hybrid
+    effect: >-
+      Fly at twice standard Move rate as a Main Action (no hovering; flap
+      each round or land). No flying while encumbered past usual Strength
+      maximum or in sealed-suit armor not built for wings. Up to ten
+      minutes aloft, then equal time resting.
+  - id: hybrid/prehensile_limb
+    name: Prehensile Limb
+    category: hybrid
+    strain_cost: 1
+    usage: per_scene
+    effect: >-
+      Tails, tentacles, or other extremities that manipulate with normal
+      strength and dexterity. Once per scene, accept one System Strain to
+      have a prehensile limb perform something no larger than a Main
+      Action — an attack, a device manipulation — as an On Turn action.
+  - id: hybrid/savage_claws
+    name: Savage Claws
+    category: hybrid
+    attack:
+      skill: Punch
+      damage: 1d6
+      shock: half level (round up) vs AC 15
+      trauma_die: 1d6
+      trauma_rating: x3
+    effect: >-
+      Murderously effective body weaponry: Punch attacks do 1d6 plus
+      character level, with a Shock rating of half level rounded up against
+      AC 15; use either Dexterity or Strength. Add skill level to the
+      damage die, but not the Shock.
+  - id: hybrid/thick_hide
+    name: Thick Hide
+    category: hybrid
+    effect: >-
+      Dense skin, scales, fur, or chitin: base Armor Class equals 15 plus
+      half character level, rounded down; benefits from shields normally.
+      Any Shock suffered is lowered by 1 point, to a potential minimum of
+      zero.
+  - id: hybrid/venom_glands
+    name: Venom Glands
+    category: hybrid
+    strain_cost: 1
+    effect: >-
+      Exude venom as an On Turn action at the cost of one System Strain:
+      imbibed or applied by a bladed weapon or body weaponry, it does 1d8
+      damage plus the user's level to poison-susceptible subjects for the
+      rest of the scene. The toxin can be made non-lethal; an envenomed
+      weapon takes a Main Action and spoils after a scene. A given victim
+      is harmed by this poison only once per scene.
+  # ── Cognition (p.21-25) ──────────────────────────────────────────────
+  - id: cognition/augmented_cognition
+    name: Augmented Cognition
+    category: cognition
+    effect: >-
+      A brain simply superior to baseline humanity: Intelligence, Wisdom,
+      or Charisma modifier increases by +1 (chosen), to a maximum of +2.
+  - id: cognition/ballistic_calculator
+    name: Ballistic Calculator
+    category: cognition
+    strain_cost: 1
+    usage: per_scene
+    effect: >-
+      An intuitive grasp of vectors and ballistics: gain Shoot as a bonus
+      skill; ignore long-range shooting penalties. Once per scene, accept
+      one System Strain as an Instant action to reroll a missed ranged
+      attack.
+  - id: cognition/eidetic_memory
+    name: Eidetic Memory
+    category: cognition
+    effect: >-
+      Remember every sensory detail of the past 48 hours and never forget
+      matters of importance. Gain one bonus skill of choice and one
+      additional skill point when advancing a level.
+  - id: cognition/internal_map
+    name: Internal Map
+    category: cognition
+    effect: >-
+      Always aware of location and facing relative to a known point; cannot
+      become lost or Go Astray, and navigates known spaces normally in
+      perfect darkness.
+  - id: cognition/intuitive_leap
+    name: Intuitive Leap
+    category: cognition
+    strain_cost: 1
+    usage: per_day
+    effect: >-
+      Remarkable insight from trivial observations: Wisdom modifier +1 (max
+      +2) and Notice as a bonus skill. Once per GAME SESSION (engine
+      approximates per-day), accept one System Strain as a Main Action to
+      ask the GM a question and receive a one-sentence detective's answer.
+  - id: cognition/memory_eater
+    name: Memory Eater
+    category: cognition
+    effect: >-
+      By consuming brain tissue of an intelligent creature dead under an
+      hour, share fragments of its memory: ask one question for a one-or-
+      two-sentence answer (once per brain). Intelligence modifier +1 for 24
+      hours after (max +3); brain-eating feeds for a day.
+  - id: cognition/mental_bifurcation
+    name: Mental Bifurcation
+    category: cognition
+    strain_cost: 1
+    effect: >-
+      Two separate trains of thought: cannot be surprised or suffer
+      Execution Attacks; half the mind can sleep while the other wakes.
+      Once per round, as an Instant action on a failed Mental save, accept
+      one System Strain to reroll the save.
+  - id: cognition/mind_over_body
+    name: Mind Over Body
+    category: cognition
+    effect: >-
+      Substitute Intelligence or Wisdom modifiers for Strength or
+      Constitution modifiers when called for — even hit point rolls.
+      Intellectually ignore pain (mechanical penalties still apply);
+      automatically stabilize when Mortally Wounded.
+  - id: cognition/omniglot
+    name: Omniglot
+    category: cognition
+    effect: >-
+      Innate cross-communication: Charisma modifier +1; speak to any
+      intelligent creature as if in its native language; learn to read and
+      write any language with a day's practice with a native speaker.
+  - id: cognition/predictive_analysis
+    name: Predictive Analysis
+    category: cognition
+    strain_cost: 1
+    usage: per_day
+    effect: >-
+      Predict what others are about to do: Intelligence or Wisdom modifier
+      +1. Once per GAME SESSION (engine approximates per-day), accept one
+      System Strain as an Instant action after someone else acts: events
+      rewind to the beginning of your last turn — what played out was your
+      prediction, and you may act differently. Only in response to a
+      creature's action.
+  # ── Pseudo-Psychic (p.22-25) ─────────────────────────────────────────
+  - id: pseudo_psychic/force_field
+    name: Force Field
+    category: pseudo_psychic
+    strain_cost: 1
+    effect: >-
+      As a Main Action, a personal force field absorbs up to 10 points of
+      damage plus character level before failing. It vanishes at the end of
+      the next round unless sustained with a Move action each round or one
+      System Strain to hold it the scene. The shield regenerates at scene
+      end; if destroyed entirely, overflow damage hits you and it cannot be
+      re-summoned that scene.
+  - id: pseudo_psychic/induce_confusion
+    name: Induce Confusion
+    category: pseudo_psychic
+    strain_cost: 1
+    save: { stat: mental, effect: negates }
+    effect: >-
+      As a Main Action, a living creature within 30 meters must make a
+      Mental save or suffer intense confusion for 1d6 rounds — 50% chance
+      each round of doing the opposite of its intent. One target per scene
+      per creature; leveled creatures shake it off with end-of-round Mental
+      saves. (Source: first use in a scene free; engine charges every use.)
+  - id: pseudo_psychic/limited_precognition
+    name: Limited Precognition
+    category: pseudo_psychic
+    strain_cost: 1
+    effect: >-
+      As an Instant action, accept 1 System Strain before a few-seconds
+      action — pushing a button, opening a door — to sense the next six
+      seconds of likely consequences from your own perspective. May trigger
+      just before an otherwise-successful ambush or Execution Attack,
+      foiling either.
+  - id: pseudo_psychic/mental_domination
+    name: Mental Domination
+    category: pseudo_psychic
+    strain_cost: 1
+    save: { stat: mental, effect: negates }
+    effect: >-
+      As a Main Action, a living creature within 10 meters saves vs Mental
+      or you roll 1d6 per character level; if the total meets its current
+      hit points, it becomes physically subject to your will while seen and
+      sustained with a Move action each round. Thralls perform physical
+      actions but exercise no judgment. Ends at scene end; one creature at
+      a time, one attempt per creature per scene; fails on creatures with
+      more hit dice than your levels. (First use in a scene free; engine
+      charges every use.)
+  - id: pseudo_psychic/mind_reader
+    name: Mind Reader
+    category: pseudo_psychic
+    strain_cost: 1
+    usage: per_day
+    save: { stat: mental, effect: partial }
+    effect: >-
+      As a Main Action, accept one System Strain and target a visible
+      creature: on a made Mental save, a one-sentence description of its
+      current thoughts; on a failure, also ask its memories one question
+      for a one-or-two-sentence answer. A creature can be targeted once
+      per day and won't normally notice.
+  - id: pseudo_psychic/neural_lockdown
+    name: Neural Lockdown
+    category: pseudo_psychic
+    strain_cost: 1
+    save: { stat: mental, effect: negates }
+    effect: >-
+      As a Main Action, a living creature within 10 meters makes a Mental
+      save (unaware on success). On failure roll 1d6 per character level;
+      meeting its current hit points paralyzes it insensate until released
+      or scene's end, remembering nothing. One target per creature per
+      scene. (First use in a scene free; engine charges every use.)
+  - id: pseudo_psychic/panic_wave
+    name: Panic Wave
+    category: pseudo_psychic
+    usage: per_scene
+    effect: >-
+      As a Main Action, emit psychic terror in a 10-meter radius: allies
+      may resist, all other living creatures make a Morale check. A
+      creature that stands its ground takes 1d6 damage per 2 character
+      levels, rounded up; reduced to zero this way it instead regains 1 HP
+      and flees. Once per scene; out of combat, +2 to intimidation-reliant
+      social checks.
+  - id: pseudo_psychic/spatial_displacement
+    name: Spatial Displacement
+    category: pseudo_psychic
+    strain_cost: 1
+    effect: >-
+      As a Move action, teleport up to 10 meters to a visible location;
+      counts as a Fighting Withdrawal for avoiding melee. (Source: first
+      use in a scene free; engine charges every use.)
+  - id: pseudo_psychic/telekinetic_reach
+    name: Telekinetic Reach
+    category: pseudo_psychic
+    effect: >-
+      As a Main Action, manipulate objects within 10 meters per character
+      level as if with your own two hands — no lifting yourself, nothing
+      held/worn/driven by hostile living creatures. Maximum movement speed
+      10 meters per activation.
+  - id: pseudo_psychic/thermokinesis
+    name: Thermokinesis
+    category: pseudo_psychic
+    strain_cost: 1
+    save: { stat: physical, effect: half }
+    effect: >-
+      As a Main Action, target a living creature or flammable object
+      within 30 meters (uncarried; large objects one cubic meter at a
+      time): objects freeze solid or burst into flame; living creatures
+      suffer 2d10 heat or cold damage plus character level, Physical save
+      for half. (First use in a scene free; engine charges every use.)
+  # ── Exotic (p.21-25) ─────────────────────────────────────────────────
+  - id: exotic/chameleon_field
+    name: Chameleon Field
+    category: exotic
+    effect: >-
+      Change body and clothing color/texture at will: Sneak as a bonus
+      skill and +1 on all Sneak checks. Motionless, make an opposed
+      Sneak-vs-Notice check to avoid notice even in direct view; beyond 30
+      meters from a normally-sighted viewer, visually undetectable unless
+      attention is drawn.
+  - id: exotic/electrical_generation
+    name: Electrical Generation
+    category: exotic
+    strain_cost: 1
+    effect: >-
+      Charge unarmed or conductive metal weapon attacks with electricity:
+      +2d6 damage plus character level as an Instant action. May recharge a
+      Type A energy cell for 1 System Strain. Ignores the first 10 points
+      of electrical damage taken. (Source: first use in a scene free;
+      engine charges every use.)
+  - id: exotic/hemovore
+    name: Hemovore
+    category: exotic
+    effect: >-
+      Feed on the life force of a helpless or cooperative intelligent
+      creature: with one Main Action, drain 1d6 hit points and use them to
+      heal your own damage. Cooperative victims choose the amount; you
+      cannot drain more than they have. Draining a human to death negates
+      food or water needs for the next week.
+  - id: exotic/image_projection
+    name: Image Projection
+    category: exotic
+    strain_cost: 1
+    effect: >-
+      As a Main Action, create a visual illusion within 30 meters fitting a
+      5-meter cube, with conversational sound, moving while you concentrate
+      with a Move action each round; persists one round per character level
+      after concentration stops. Entirely intangible. (First use in a scene
+      free; engine charges every use.)
+  - id: exotic/metamorph
+    name: Metamorph
+    category: exotic
+    effect: >-
+      As a Main Action, alter physical shape to any humanoid form within
+      50% of your height or weight, mimicking clothing and armor (no AC or
+      other benefits). Perfect impersonation requires ten minutes of
+      personal interaction or ten grams of the subject's tissue.
+  - id: exotic/molecular_phasing
+    name: Molecular Phasing
+    category: exotic
+    strain_cost: 1
+    effect: >-
+      As a Main Action, accept 1 System Strain to phase slightly out of
+      tune with reality until the start of the next turn: move at normal
+      rate in any direction through solid objects, unaffected by and unable
+      to affect mundane matter or energy. Re-materializing inside something
+      ejects you into the nearest open space — both you and the object take
+      1d6 damage per character level.
+  - id: exotic/natural_projectiles
+    name: Natural Projectiles
+    category: exotic
+    effect: >-
+      A natural projectile or energy weapon with rifle combat statistics,
+      usable without penalty in melee, never out of ammunition under
+      normal usage. Gain the Shoot skill as a bonus skill; the projectiles
+      gain +1 damage and hit bonus at level 3, +2 at 6, +3 at 9.
+  - id: exotic/pheromone_cloud
+    name: Pheromone Cloud
+    category: exotic
+    strain_cost: 1
+    save: { stat: mental, effect: negates }
+    effect: >-
+      Subtle reason-tweaking pheromones: as an On Turn action, accept one
+      System Strain before a request or suggestion; the target must make a
+      Mental save or agree, unless the request brings harm or runs very
+      contrary to its nature. One target per creature per scene.
+  - id: exotic/photon_manipulation
+    name: Photon Manipulation
+    category: exotic
+    effect: >-
+      Modulate ambient light: create visible light within 10 meters or
+      shroud up to a 2-meter radius in inky darkness resisting all
+      illumination (+2 Armor Class while shrouded); see normally regardless
+      of light. When you or an ally within 10 meters is hit by a laser,
+      accept one System Strain as an Instant action to negate the damage.
+  - id: exotic/sound_generation
+    name: Sound Generation
+    category: exotic
+    strain_cost: 1
+    effect: >-
+      Produce any sound up to shout volume from a visible point within 30
+      meters. As a Main Action, focus a sonic attack on a target within 30
+      meters: 2d6 plus character level in non-lethal damage to any
+      non-deaf creature. (Source: first sonic attack in a scene free;
+      engine charges every use.)
+
+# Migrated verbatim from the retired magic.yaml (P2-1) — the narrative
+# register survives; the mechanics now live above and in the engine.
+narrator_register: |
+  Mutations are visibly costly. Every use should show the cost as well as
+  the power — the third eye opens, but it weeps; the strength comes, but
+  so does the tremor. The Wasteland marks its own. Don't narrate mutations
+  as clean superpowers; narrate them as the body's adaptation to a world
+  that's still trying to kill it. The Ancients' tech and the body's
+  mutation are siblings — both broken miracles. Everyone knows mutations
+  are real: some communities welcome them, some burn them, all acknowledge
+  them. Mutation cannot be turned off — the cost is paid for life, not per
+  use — and it is never surgical: you don't pick what the Wasteland gives
+  you. No resurrection, no true creation, no precision control; compelling
+  a mind always carries a visible price.
