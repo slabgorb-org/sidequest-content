@@ -1,0 +1,31 @@
+# Colonial — NAME-GENERATION culture for Glenross.
+# World-tier override: a cultures/ file with a `name:` key is a
+# name-gen Culture; the loader reads the world's name-gen cultures
+# wholesale. Name draw only (no visual_tokens overlay for this set —
+# the art pipeline falls to the world/genre style layer).
+#
+# Returned-from-empire register, c. 1908 — the retired Colonel, the
+# widow back from the hill stations. Shares the genre's English corpus
+# files (corpus/shared/english_colonial_*).
+
+name: Colonial
+summary: "Returned from India, Africa, the Caribbean"
+description: "Returned from India, Africa, the Caribbean — worldly, wealthy, and never quite at home in England again."
+slots:
+  given_name:
+    names_file: english_colonial_first.txt
+  family_name:
+    names_file: english_colonial_family.txt
+  title:
+    word_list: [Colonel, Major, Captain, Mrs., Mr., Miss, Dr., General, Surgeon-Major]
+  place_noun:
+    word_list: [bungalow, verandah, compound, club, hill station, cantonment, residency, lodge]
+  adjective:
+    word_list: [Dorabji, Dorabjee, old, white, upper, lower, east, west, new, grand]
+person_patterns:
+  - "{given_name} {family_name}"
+  - "{title} {family_name}"
+  - "{title} {given_name} {family_name}"
+place_patterns:
+  - "The {family_name} {place_noun}"
+  - "{given_name}'s {place_noun}"

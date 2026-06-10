@@ -1,0 +1,31 @@
+# Industrial North — NAME-GENERATION culture for Glenross.
+# World-tier override: a cultures/ file with a `name:` key is a
+# name-gen Culture; the loader reads the world's name-gen cultures
+# wholesale. Name draw only (no visual_tokens overlay for this set —
+# the art pipeline falls to the world/genre style layer).
+#
+# New-money register, c. 1908 — the mill-fortune guest who bought his
+# way into the shooting party. Shares the genre's English corpus files
+# (corpus/shared/english_industrial_*).
+
+name: Industrial North
+summary: "Mill owners, factory workers, trade unionists"
+description: "Mill owners, factory workers, trade unionists — the new money and the new poor of Manchester and Leeds."
+slots:
+  given_name:
+    names_file: english_industrial_first.txt
+  family_name:
+    names_file: english_industrial_family.txt
+  title:
+    word_list: [Mr., Mrs., Miss, Master, Foreman, Alderman]
+  place_noun:
+    word_list: [Mill, Works, Foundry, Yard, Exchange, Warehouse, Wharf, Station, Terrace, Chapel]
+  adjective:
+    word_list: [Thornton, Darkshire, Milton, Blackstone, Ironbridge, Coalfield, Ashton, Millgate, Grimshaw, Coketown]
+person_patterns:
+  - "{given_name} {family_name}"
+  - "{title} {family_name}"
+place_patterns:
+  - "{adjective} {place_noun}"
+  - "{family_name}'s {place_noun}"
+  - "The {family_name} {place_noun}"

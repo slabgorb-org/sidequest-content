@@ -1,0 +1,32 @@
+# London Professional — NAME-GENERATION culture for Glenross.
+# World-tier override: a cultures/ file with a `name:` key is a
+# name-gen Culture; the loader reads the world's name-gen cultures
+# wholesale. Name draw only (no visual_tokens overlay for this set —
+# the art pipeline falls to the world/genre style layer).
+#
+# Edwardian capital register, c. 1908 — the visiting detective, the
+# family solicitor, the journalist down from Fleet Street. Shares the
+# genre's English corpus files (corpus/shared/english_professional_*).
+
+name: London Professional
+summary: "Doctors, lawyers, detectives, journalists"
+description: "Doctors, lawyers, detectives, journalists — the educated middle class of the capital."
+slots:
+  given_name:
+    names_file: english_professional_first.txt
+  family_name:
+    names_file: english_professional_family.txt
+  title:
+    word_list: [Mr., Mrs., Miss, Dr., Inspector, Sergeant, Professor, Barrister, Solicitor]
+  place_noun:
+    word_list: [Street, Lane, Court, Square, Chambers, Row, Mews, Terrace, Gardens, Passage]
+  adjective:
+    word_list: [Baker, Fleet, Bow, Cheapside, Whitechapel, Holborn, Marylebone, Clerkenwell, Spitalfields, Limehouse]
+person_patterns:
+  - "{given_name} {family_name}"
+  - "{title} {family_name}"
+  - "{title} {given_name} {family_name}"
+place_patterns:
+  - "{adjective} {place_noun}"
+  - "{family_name}'s {place_noun}"
+  - "The {place_noun} off {adjective}"

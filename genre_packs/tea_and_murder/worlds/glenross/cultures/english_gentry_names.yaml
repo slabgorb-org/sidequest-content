@@ -1,0 +1,34 @@
+# English Gentry — NAME-GENERATION culture for Glenross.
+# World-tier override: a cultures/ file with a `name:` key is a
+# name-gen Culture; the loader reads the world's name-gen cultures
+# wholesale (it never merges the old world-root cultures.yaml, which
+# the cultures/ dir shadows). Visual identity for the same set lives in
+# english_gentry.yaml (the visual_tokens overlay the art pipeline
+# reads); this file is the name draw only.
+#
+# Edwardian Highland-estate register, c. 1908: the landed family who
+# hold Castle Ross. Shares the genre's English corpus files
+# (corpus/shared/english_*).
+
+name: English Gentry
+summary: "The landed families, old money, county society"
+description: "The landed families, old money, county society. Names that appear in Burke's Peerage and on estate gates."
+slots:
+  given_name:
+    names_file: english_gentry_first.txt
+  family_name:
+    names_file: english_gentry_family.txt
+  title:
+    word_list: [Mr., Mrs., Miss, Lady, Lord, Sir, The Honourable, Dowager, Reverend, Dr.]
+  place_noun:
+    word_list: [Hall, Manor, Park, House, Lodge, Grange, Court, Abbey, Cottage, Rectory]
+  adjective:
+    word_list: [Thornfield, Wuthering, Blackwood, Ashworth, Ferndale, Netherfield, Pemberley, Briarwood, Whitmore, Harrowgate]
+person_patterns:
+  - "{given_name} {family_name}"
+  - "{title} {family_name}"
+  - "{title} {given_name} {family_name}"
+place_patterns:
+  - "{adjective} {place_noun}"
+  - "{family_name} {place_noun}"
+  - "The {adjective} {place_noun}"
