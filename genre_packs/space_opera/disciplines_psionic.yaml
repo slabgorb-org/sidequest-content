@@ -1,0 +1,308 @@
+# Space Opera — SWN Psionic Discipline Catalog (disciplines_psionic.yaml)
+#
+# A faithful PORT of Stars Without Number (SWN Revised, Sine Nomine CC0)
+# psychic techniques across the six disciplines — Telepathy, Telekinesis,
+# Biopsionics, Precognition, Metapsionics, Teleportation. The MECHANICS are
+# SWN-faithful (technique level, the single Effort pool, scene/day/maintained
+# commitment, the save category an unwilling target rolls); the PROSE is
+# reskinned into space_opera's idiom — fallen star-empires, the long dark
+# between systems, the quiet disciplines that keep their gift behind closed eyes
+# aboard the drifting megastations.
+#
+# space_opera binds the SWN ruleset, which is EFFORT-ONLY here: the engine
+# implements no System Strain for SWN (Strain is a WWN/CWN/AWN mechanic). So no
+# discipline in THIS catalog carries strain_cost — the cost of a dangerous
+# "push" lives in the fiction (genre_description), not a separate track. A
+# WWN-bound pack's catalog may use strain_cost (the engine routes it through the
+# shared System Strain counter).
+#
+# Engine contract (sidequest/genre/models/psionics.py → PsionicDiscipline):
+#   - level: SWN technique level 1-4
+#   - effort_cost: Effort committed from the psychic's single pool on activation
+#   - duration: maintained | scene | day (how long the Effort stays committed)
+#   - save: physical | evasion | mental | luck — present ONLY when an unwilling
+#     target rolls a save; OMITTED for self-buffs, sensing, and willing targets
+#   - strain_cost: System Strain on a "push" — ONLY on strain-bearing rulesets
+#     (WWN/CWN/AWN); MUST be absent (0) on an SWN pack like this one
+#   - mechanical_effect: narrator-adjudicated bespoke effect (Approach C)
+#
+# Loaded into pack.psionic_discipline_catalog by the psionics loader
+# (Story 102-6). Duplicate ids fail the load (extra="forbid").
+version: "1.0"
+disciplines:
+  # ── Telepathy ────────────────────────────────────────────────────────
+  - id: surface_read
+    name: Surface Read
+    level: 1
+    effort_cost: 1
+    duration: scene
+    save: mental
+    genre_description: >
+      You let your attention go soft and wide, the way the old station
+      sensitives were taught — not prying, just listening to the loud thoughts
+      a mind sheds like heat. Across a wardroom or a docking queue, the
+      uppermost worry of every person near you arrives unbidden: the lie
+      half-formed, the name they're trying not to think.
+    mechanical_effect: >
+      Commit Effort for the scene. Read the surface thoughts and immediate
+      intentions of an intelligent target within sight. An unwilling target
+      rolls a Mental save to feel nothing read; on a success the contact is
+      noticed and refused. Yields the target's present emotional state and most
+      pressing thought, not deep memory.
+
+  - id: telepathic_contact
+    name: Quiet Channel
+    level: 1
+    effort_cost: 1
+    duration: maintained
+    genre_description: >
+      Two minds, one silent line. You open a channel of pure thought to a
+      willing companion and hold it — no comm, no signal anyone can jam or
+      trace, just the wordless certainty of being heard across a corridor, a
+      hull, the killing vacuum between two ships running dark.
+    mechanical_effect: >
+      Commit Effort while maintained. Open silent two-way mental communication
+      with a single willing, known mind anywhere you can perceive it (and, with
+      a familiar bond, across far greater distance at the GM's call). No save —
+      the target is willing. Drops the moment concentration breaks.
+
+  - id: mind_walk
+    name: Mind Walk
+    level: 3
+    effort_cost: 1
+    duration: scene
+    save: mental
+    genre_description: >
+      You step past the surface and into the long galleries of another's
+      memory, walking rooms they thought sealed since before the empires fell.
+      It is the most intimate trespass the disciplines permit, and the orders
+      forbid it for good reason — a clumsy walker leaves footprints the host
+      can feel for years.
+    mechanical_effect: >
+      Commit Effort for the scene. Probe a target's deep memories and buried
+      knowledge, asking specific questions of their recollection. An unwilling
+      target rolls a Mental save to resist; on a failure you draw true answers
+      to what they actually know. A success ends the intrusion and the target
+      knows they were walked.
+
+  - id: dominate
+    name: Hand on the Tiller
+    level: 4
+    effort_cost: 1
+    duration: scene
+    save: mental
+    genre_description: >
+      This is the discipline no order teaches without a witness present, the
+      one that gets a sensitive spaced if a magistrate proves it: you take the
+      tiller of another's will and steer. For as long as you hold them, their
+      hands are your hands. It costs you — the mind was never built to carry a
+      second pilot, and you pay in the slow burn beneath your own thoughts.
+    mechanical_effect: >
+      Commit Effort for the scene. The target rolls a Mental save; on a failure
+      you issue commands they obey as if their own, short of obvious
+      self-destruction (which grants a fresh save). A successful save resists
+      entirely. Plainly suicidal orders break the hold.
+
+  # ── Telekinesis ──────────────────────────────────────────────────────
+  - id: kinetic_grip
+    name: Unseen Grip
+    level: 1
+    effort_cost: 1
+    duration: scene
+    genre_description: >
+      You close a fist that isn't there around something a few meters off — a
+      dropped sidearm, a falling tool, a hatch lever just out of reach — and it
+      answers. To the untrained eye it looks like luck, or a trick of the
+      station's spin. To you it is only attention, made to push.
+    mechanical_effect: >
+      Commit Effort for the scene. Manipulate a small object (a few kilograms)
+      within sight as if with an invisible hand — fetch it, hold it, work a
+      simple mechanism. No save against inert objects. Lacks the force to harm
+      or to move a braced person.
+
+  - id: kinetic_barrier
+    name: Standing Field
+    level: 2
+    effort_cost: 1
+    duration: scene
+    genre_description: >
+      A breath before the slugs arrive you raise a wall of held force in front
+      of yourself, an invisible skin of pure attention that turns a kill into a
+      bruise. It is exhausting to hold and it cannot stop everything — but it
+      has carried more than one sensitive out of an ambush that should have
+      ended them.
+    mechanical_effect: >
+      Commit Effort for the scene. Maintain a personal field of force around
+      yourself that reduces incoming physical damage. No save — it shields the
+      caster. Concentration-dependent; drops if you are stunned or the Effort is
+      reclaimed.
+
+  - id: kinetic_crush
+    name: Closing Hand
+    level: 3
+    effort_cost: 1
+    duration: scene
+    save: physical
+    genre_description: >
+      You stop pretending the grip is gentle. The unseen hand closes — on a
+      throat, on a chest, on the brittle housing of a drone — and squeezes with
+      a strength no body owns. This is the discipline that ends arguments, and
+      the orders mark anyone who reaches for it too easily.
+    mechanical_effect: >
+      Commit Effort for the scene. A target within sight rolls a Physical save;
+      on a failure they take crushing telekinetic damage and may be pinned. A
+      success halves or negates the grip. Can instead crush an unattended object
+      or mechanism with no save.
+
+  # ── Biopsionics ──────────────────────────────────────────────────────
+  - id: lend_health
+    name: Knit the Wound
+    level: 1
+    effort_cost: 1
+    duration: scene
+    genre_description: >
+      You lay a hand where the bleeding is and ask the body to hurry — to clot,
+      to close, to forget for a while that it is dying. The old order healers
+      worked the casualty lines this way when the medbays were slag, trading
+      their own clear-headedness for one more crewmate walking off the deck.
+    mechanical_effect: >
+      Commit Effort for the scene. Restore a measure of a willing creature's
+      health and stabilize the dying. No save — the target is willing. Cannot
+      regrow lost limbs or mend long-set damage; that is the work of higher
+      technique.
+
+  - id: body_adjustment
+    name: Hold the Body True
+    level: 2
+    effort_cost: 1
+    duration: day
+    genre_description: >
+      You set the body's own systems against a poison, a fever, the slow
+      betrayals of a hard vacuum exposure — committing a steady inner attention
+      that holds you upright through a watch you should not survive. It is not
+      cure so much as refusal, a day-long argument with your own failing flesh.
+    mechanical_effect: >
+      Commit Effort for the day. Grant yourself or a willing target resistance
+      to toxins, disease, and environmental harm, and accelerated natural
+      recovery. No save — willing target. The Effort stays committed until the
+      next day's rest reclaims it.
+
+  - id: purge_affliction
+    name: Drive It Out
+    level: 3
+    effort_cost: 1
+    duration: scene
+    genre_description: >
+      Hands on the patient, you find the wrongness — the venom, the engineered
+      plague, the nanite rot some fallen empire left seeded in the water — and
+      you drive it out of them by force of will, burning a little of yourself to
+      do it. The patient sleeps. You do not, for a while.
+    mechanical_effect: >
+      Commit Effort for the scene. Neutralize a poison, disease, or hostile
+      biological agent afflicting a willing target, and mend significant injury.
+      No save — willing target. The most demanding biopsionic working; the GM
+      may rule a catastrophic affliction only slowed, not cleared.
+
+  # ── Precognition ──────────────────────────────────────────────────────
+  - id: glimpse_ahead
+    name: A Step Ahead
+    level: 1
+    effort_cost: 1
+    duration: scene
+    genre_description: >
+      The next few seconds arrive a heartbeat early — the swing before it lands,
+      the shot before the trigger, the hand reaching for a weapon under the
+      table. It is never certainty, only the faint pull of a branch about to
+      bear weight, and it is enough to keep you alive in a knife-fight.
+    mechanical_effect: >
+      Commit Effort for the scene. Gain a precognitive edge in immediate danger:
+      improved reaction, harder to surprise, and a bonus to avoid the next
+      sudden threat. No save — a self-applied sense.
+
+  - id: ward_of_foresight
+    name: The Long Watch
+    level: 4
+    effort_cost: 1
+    duration: day
+    save: evasion
+    genre_description: >
+      You spend the quiet hours before a working laying the future down like a
+      net — playing out every way the day can go wrong, until your reflexes
+      already know the answers. When violence finally comes you are simply,
+      uncannily, never where the blow falls. Holding that many futures open at
+      once leaves a mark on you.
+    mechanical_effect: >
+      Commit Effort for the day. For the day's duration you and nearby allies
+      gain a precognitive defensive ward — attacks against the warded suffer;
+      treat it as the warded rolling an Evasion save to slip a strike that would
+      otherwise land cleanly. Reclaimed at the next day's rest.
+
+  # ── Metapsionics ──────────────────────────────────────────────────────
+  - id: psychic_static
+    name: Dead Air
+    level: 2
+    effort_cost: 1
+    duration: scene
+    save: mental
+    genre_description: >
+      You flood the space around you with formless psychic noise — a hiss of
+      pure static that no telepath can read through and no sensitive can work
+      cleanly within. To another psychic it feels like trying to think in a hull
+      breach alarm. Mundane minds feel only a vague unease and a wish to leave.
+    mechanical_effect: >
+      Commit Effort for the scene. Blanket the area in metapsionic interference
+      that disrupts other psychic techniques and telepathic contact within it.
+      An enemy psychic working against the static rolls a Mental save or fails
+      to push through. No effect on mundane action.
+
+  - id: overcharge_working
+    name: Burn the Pool
+    level: 3
+    effort_cost: 1
+    duration: scene
+    genre_description: >
+      Every sensitive learns where the limit is. This is the technique for
+      crossing it on purpose — wringing a second working out of a pool that had
+      nothing left, paying the difference straight out of your own nervous
+      system. Old hands call it burning the pool, and they say it with respect,
+      because the ones who lean on it don't grow old.
+    mechanical_effect: >
+      Commit Effort for the scene to empower the next discipline you activate
+      beyond its normal limits (GM adjudicates the bonus). No save — a
+      self-directed overcharge. The committed Effort is the price; the danger of
+      leaning on it is carried in the fiction, not a separate track.
+
+  # ── Teleportation ─────────────────────────────────────────────────────
+  - id: short_jump
+    name: Crossing
+    level: 2
+    effort_cost: 1
+    duration: scene
+    genre_description: >
+      Between one blink and the next you are simply elsewhere — across the
+      cargo bay, behind the firing line, on the far side of a sealed bulkhead.
+      It is the smallest cousin of the spike-drive's great jump, a few meters of
+      folded space that the body crosses without ever passing through the
+      middle. The disciplined call it Crossing; the startled call it a ghost.
+    mechanical_effect: >
+      Commit Effort for the scene. Instantly teleport yourself a short distance
+      to any point you can see, bypassing barriers and intervening enemies. No
+      save — moves only the willing caster. Cannot carry more than you can hold.
+
+  - id: long_jump
+    name: The Far Crossing
+    level: 4
+    effort_cost: 1
+    duration: day
+    genre_description: >
+      This is the discipline the old orders guarded most jealously: a jump of
+      kilometers, of orbit to deck, made after a day of held preparation — the
+      mind tracing the destination until it is more real than the floor under
+      your feet. Done right it is a miracle. Done in a hurry it scatters you
+      somewhere near where you meant to be, and you pay for the haste.
+    mechanical_effect: >
+      Commit Effort for the day. After the day's preparation, teleport yourself
+      (and possibly a willing companion in contact) across a great distance to a
+      place you know or can clearly perceive. No save — willing only. Rushing or
+      an unfamiliar destination risks a scattered, imprecise arrival at GM
+      discretion.
