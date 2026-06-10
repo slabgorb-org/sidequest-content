@@ -1031,7 +1031,54 @@ regions:
     rivers: []
     settlements: []
 
+# Inter-system jump mechanics (ADR-141 campaign scale, Story 98-4 / C2).
+# Each entry annotates an EXISTING mutual adjacency — it never creates one
+# (orbital/jump.py drops a route whose endpoints are not a declared adjacency).
+# The bound ruleset (space_opera → SWN, ADR-117) reads jump_fuel / transit_days /
+# drive_rating_min / hazard when adjudicating a jump across the edge; an absent
+# field falls per-field to the spike-drive default (1 fuel, 6 days, no hazard),
+# and a bare un-routed adjacency is navigable at that explicit default. Only
+# yula's reached neighbours (amanta, nimia, terma) are routed here — the rest of
+# the sector graph stays at ruleset default until play reaches it.
 routes:
+  - name: The Amanti Supply Run
+    description: >-
+      Yula's corporate logistics arm runs a tight, beacon-marked lane out to the
+      Amanti Trading Station — Amanta being the Cloud's Sole Supplier of several
+      restricted goods. The schedule is punishing but the route is clean, short,
+      and well charted.
+    distance: short
+    danger: routine
+    from_id: yula
+    to_id: amanta
+    jump_fuel: 1
+    transit_days: 4
+  - name: The Tide Road
+    description: >-
+      The busy main lane between the churnworld and the oceanic hegemony of
+      Nimia, patrolled by the Nimian Authority and lit the whole way by Madrid
+      13's beacons. Heavily trafficked and uneventful — the standard crossing.
+    distance: medium
+    danger: low
+    from_id: yula
+    to_id: nimia
+    jump_fuel: 1
+    transit_days: 6
+  - name: The Night Crossing
+    description: >-
+      The approach to Terma, a rogue world half-embedded in Hyperspace where the
+      old GHE never fully died down. Spike drills bend strangely near it; the
+      lane shoals with hyperspace shadow and demands a drive that can hold its
+      calibration. A weaker drive still makes the crossing — but burns hard for
+      it.
+    distance: long
+    danger: high
+    from_id: yula
+    to_id: terma
+    jump_fuel: 2
+    transit_days: 8
+    drive_rating_min: 2
+    hazard: hyperspace_shoal
   - name: The Black Door
     description: >-
       The unmapped, invitation-only approach to Ceron station; no public route
