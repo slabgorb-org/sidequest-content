@@ -4,11 +4,17 @@
 # psychic techniques across the six disciplines — Telepathy, Telekinesis,
 # Biopsionics, Precognition, Metapsionics, Teleportation. The MECHANICS are
 # SWN-faithful (technique level, the single Effort pool, scene/day/maintained
-# commitment, the save category an unwilling target rolls, and the System
-# Strain a "push" overcommit costs); the PROSE is reskinned into space_opera's
-# idiom — fallen star-empires, the long dark between systems, the quiet
-# disciplines that keep their gift behind closed eyes aboard the drifting
-# megastations.
+# commitment, the save category an unwilling target rolls); the PROSE is
+# reskinned into space_opera's idiom — fallen star-empires, the long dark
+# between systems, the quiet disciplines that keep their gift behind closed eyes
+# aboard the drifting megastations.
+#
+# space_opera binds the SWN ruleset, which is EFFORT-ONLY here: the engine
+# implements no System Strain for SWN (Strain is a WWN/CWN/AWN mechanic). So no
+# discipline in THIS catalog carries strain_cost — the cost of a dangerous
+# "push" lives in the fiction (genre_description), not a separate track. A
+# WWN-bound pack's catalog may use strain_cost (the engine routes it through the
+# shared System Strain counter).
 #
 # Engine contract (sidequest/genre/models/psionics.py → PsionicDiscipline):
 #   - level: SWN technique level 1-4
@@ -16,7 +22,8 @@
 #   - duration: maintained | scene | day (how long the Effort stays committed)
 #   - save: physical | evasion | mental | luck — present ONLY when an unwilling
 #     target rolls a save; OMITTED for self-buffs, sensing, and willing targets
-#   - strain_cost: System Strain taken on a dangerous "push" overcommit (else 0)
+#   - strain_cost: System Strain on a "push" — ONLY on strain-bearing rulesets
+#     (WWN/CWN/AWN); MUST be absent (0) on an SWN pack like this one
 #   - mechanical_effect: narrator-adjudicated bespoke effect (Approach C)
 #
 # Loaded into pack.psionic_discipline_catalog by the psionics loader
@@ -84,7 +91,6 @@ disciplines:
     effort_cost: 1
     duration: scene
     save: mental
-    strain_cost: 1
     genre_description: >
       This is the discipline no order teaches without a witness present, the
       one that gets a sensitive spaced if a magistrate proves it: you take the
@@ -92,10 +98,10 @@ disciplines:
       hands are your hands. It costs you — the mind was never built to carry a
       second pilot, and you pay in the slow burn beneath your own thoughts.
     mechanical_effect: >
-      Push: commit Effort for the scene and take 1 System Strain. The target
-      rolls a Mental save; on a failure you issue commands they obey as if their
-      own, short of obvious self-destruction (which grants a fresh save). A
-      successful save resists entirely. Plainly suicidal orders break the hold.
+      Commit Effort for the scene. The target rolls a Mental save; on a failure
+      you issue commands they obey as if their own, short of obvious
+      self-destruction (which grants a fresh save). A successful save resists
+      entirely. Plainly suicidal orders break the hold.
 
   # ── Telekinesis ──────────────────────────────────────────────────────
   - id: kinetic_grip
@@ -137,17 +143,16 @@ disciplines:
     effort_cost: 1
     duration: scene
     save: physical
-    strain_cost: 1
     genre_description: >
       You stop pretending the grip is gentle. The unseen hand closes — on a
       throat, on a chest, on the brittle housing of a drone — and squeezes with
       a strength no body owns. This is the discipline that ends arguments, and
       the orders mark anyone who reaches for it too easily.
     mechanical_effect: >
-      Push: commit Effort for the scene and take 1 System Strain. A target
-      within sight rolls a Physical save; on a failure they take crushing
-      telekinetic damage and may be pinned. A success halves or negates the
-      grip. Can instead crush an unattended object or mechanism with no save.
+      Commit Effort for the scene. A target within sight rolls a Physical save;
+      on a failure they take crushing telekinetic damage and may be pinned. A
+      success halves or negates the grip. Can instead crush an unattended object
+      or mechanism with no save.
 
   # ── Biopsionics ──────────────────────────────────────────────────────
   - id: lend_health
@@ -220,7 +225,6 @@ disciplines:
     effort_cost: 1
     duration: day
     save: evasion
-    strain_cost: 1
     genre_description: >
       You spend the quiet hours before a working laying the future down like a
       net — playing out every way the day can go wrong, until your reflexes
@@ -228,11 +232,10 @@ disciplines:
       uncannily, never where the blow falls. Holding that many futures open at
       once leaves a mark on you.
     mechanical_effect: >
-      Push: commit Effort for the day and take 1 System Strain. For the day's
-      duration you and nearby allies gain a precognitive defensive ward — attacks
-      against the warded suffer; treat it as the warded rolling an Evasion save
-      to slip a strike that would otherwise land cleanly. Reclaimed at the next
-      day's rest.
+      Commit Effort for the day. For the day's duration you and nearby allies
+      gain a precognitive defensive ward — attacks against the warded suffer;
+      treat it as the warded rolling an Evasion save to slip a strike that would
+      otherwise land cleanly. Reclaimed at the next day's rest.
 
   # ── Metapsionics ──────────────────────────────────────────────────────
   - id: psychic_static
@@ -257,7 +260,6 @@ disciplines:
     level: 3
     effort_cost: 1
     duration: scene
-    strain_cost: 1
     genre_description: >
       Every sensitive learns where the limit is. This is the technique for
       crossing it on purpose — wringing a second working out of a pool that had
@@ -265,10 +267,10 @@ disciplines:
       system. Old hands call it burning the pool, and they say it with respect,
       because the ones who lean on it don't grow old.
     mechanical_effect: >
-      Push: commit Effort for the scene and take 1 System Strain. Recover a
-      measure of spent Effort or empower the next discipline you activate beyond
-      its normal limits (GM adjudicates the bonus). No save — a self-directed
-      overcharge. The Strain is the price; it does not refund.
+      Commit Effort for the scene to empower the next discipline you activate
+      beyond its normal limits (GM adjudicates the bonus). No save — a
+      self-directed overcharge. The committed Effort is the price; the danger of
+      leaning on it is carried in the fiction, not a separate track.
 
   # ── Teleportation ─────────────────────────────────────────────────────
   - id: short_jump
@@ -292,7 +294,6 @@ disciplines:
     level: 4
     effort_cost: 1
     duration: day
-    strain_cost: 1
     genre_description: >
       This is the discipline the old orders guarded most jealously: a jump of
       kilometers, of orbit to deck, made after a day of held preparation — the
@@ -300,8 +301,8 @@ disciplines:
       your feet. Done right it is a miracle. Done in a hurry it scatters you
       somewhere near where you meant to be, and you pay for the haste.
     mechanical_effect: >
-      Push: commit Effort for the day and take 1 System Strain. After the day's
-      preparation, teleport yourself (and possibly a willing companion in
-      contact) across a great distance to a place you know or can clearly
-      perceive. No save — willing only. Rushing or an unfamiliar destination
-      risks a scattered, imprecise arrival at GM discretion.
+      Commit Effort for the day. After the day's preparation, teleport yourself
+      (and possibly a willing companion in contact) across a great distance to a
+      place you know or can clearly perceive. No save — willing only. Rushing or
+      an unfamiliar destination risks a scattered, imprecise arrival at GM
+      discretion.
