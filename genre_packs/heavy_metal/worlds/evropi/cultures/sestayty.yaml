@@ -1,0 +1,86 @@
+name: Sestayty
+summary: Infernal-marked human remnant of the fallen Empire of Sest — hunted by Mistos
+  and Wazdia alike, tolerated only in Saletaja, every one of them carrying a pact-mark
+  that cannot be hidden forever.
+description: >-
+  When the Tismenni comet drowned the old world, a human empire rose fast into
+  the power vacuum it left — the Empire of Sest — and rose that fast because its
+  founders bought their ascent from infernal things, in pacts that left a
+  permanent mark on the bloodline. Some say the Sestayty did not merely profit
+  from the Cataclysm but caused it; the Sestayty are eager to blame that rumour
+  on their enemies. The empire is long gone. The marks are not. A Sestayty is
+  human to look at until the sign shows — a cinder that will not cool behind one
+  eye, a brand of script no living scholar can read rising under the skin of the
+  forearm, a scatter of salt-white scarring that was not there yesterday. The
+  Mistos hunt them as an impurity; the Wazdia hunt them as an unfiled variable;
+  most of the continent hunts them out of the old fear of what their grandfathers
+  bought. Only Saletaja, the elective kingdom, gives them a measure of welcome —
+  it is rumoured one of that realm's most influential nobles carries Sest blood
+  himself. They live in the shadows, pass for Zkęd where they can, and pay, every
+  one of them, an inheritance of interest on a debt none of them signed.
+slots:
+  given_name:
+    corpora:
+    - corpus: evropi_sest.txt
+      weight: 1.0
+    lookback: 3
+  family_name:
+    corpora:
+    - corpus: evropi_sest.txt
+      weight: 1.0
+    lookback: 3
+  sign_name:
+    word_list:
+    - Ashbrand
+    - Cinder-Eye
+    - Salt-Scar
+    - Script-Marked
+    - Emberbound
+    - Ash-Tongue
+    - Hollow-Veined
+    - Soot-Handed
+    - Brimstone-Bled
+    - Unburnt
+  epithet:
+    word_list:
+    - of the old debt
+    - twice-marked
+    - the unredeemed
+    - of fallen Sest
+    - the quiet
+    - who does not burn
+    - of the shadowed house
+    - last of a line
+  place_noun:
+    word_list:
+    - sanctum
+    - ash-court
+    - sigil-gate
+    - pyre-hall
+    - reliquary
+    - undercroft
+    - ruin
+    - hospice
+    - refuge
+    - hidden seat
+  adjective:
+    word_list:
+    - fallen
+    - marked
+    - infernal
+    - salt-bitten
+    - sundered
+    - hunted
+    - covenant
+    - ember
+    - shadowed
+    - unredeemed
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name} {family_name}, {epithet}'
+- '{given_name} the {sign_name}'
+- '{given_name} {family_name} the {sign_name}'
+place_patterns:
+- 'the {adjective} {place_noun}'
+- '{family_name} {place_noun}'
+- 'the {place_noun} of {family_name}'
