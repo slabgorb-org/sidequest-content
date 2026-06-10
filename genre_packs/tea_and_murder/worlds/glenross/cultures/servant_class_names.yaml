@@ -1,0 +1,30 @@
+# Servant Class — NAME-GENERATION culture for Glenross.
+# World-tier override: a cultures/ file with a `name:` key is a
+# name-gen Culture; the loader reads the world's name-gen cultures
+# wholesale. Name draw only (no visual_tokens overlay for this set —
+# the art pipeline falls to the world/genre style layer).
+#
+# Below-stairs register, c. 1908 — the Castle Ross household staff.
+# Shares the genre's English corpus files (corpus/shared/english_servant_*).
+
+name: Servant Class
+summary: "Below stairs"
+description: "Below stairs — housekeepers, valets, maids, cooks. Known by surname or role, rarely by first name in company."
+slots:
+  given_name:
+    names_file: english_servant_first.txt
+  family_name:
+    names_file: english_servant_family.txt
+  title:
+    word_list: [Mrs., Mr., Cook, Nurse]
+  place_noun:
+    word_list: [kitchen, pantry, scullery, cellar, attic, servants' hall, back stairs, coal hole, laundry, stillroom]
+  adjective:
+    word_list: [lower, upper, east, west, old, back, night, early, cold, quiet]
+person_patterns:
+  - "{family_name}"
+  - "{title} {family_name}"
+  - "{given_name}"
+place_patterns:
+  - "the {adjective} {place_noun}"
+  - "the {place_noun}"

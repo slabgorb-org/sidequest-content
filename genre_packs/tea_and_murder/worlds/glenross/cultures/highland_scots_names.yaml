@@ -1,0 +1,35 @@
+# Highland Scots — NAME-GENERATION culture for Glenross.
+# World-tier override: a cultures/ file with a `name:` key is a
+# name-gen Culture; the loader reads the world's name-gen cultures
+# wholesale. Visual identity for the same set lives in
+# highland_scots.yaml (the visual_tokens overlay the art pipeline
+# reads); this file is the name draw only.
+#
+# Edwardian Highland working-and-professional register, c. 1908 — the
+# families of the glen. Shares the genre's Highland corpus files
+# (corpus/shared/highland_scots_*).
+
+name: Highland Scots
+summary: "Crofters, gillies, distillers, ministers — the people of the glen"
+description: "Crofters, gillies, distillers, ministers, post-mistresses, schoolmasters — the families who have held the glen since before the railway came. Gaelic still spoken by the eldest. Names that appear on kirkyard stones going back four generations."
+slots:
+  given_name:
+    names_file: highland_scots_first.txt
+  family_name:
+    names_file: highland_scots_family.txt
+  title:
+    word_list: [Mr., Mrs., Miss, Sir, Lady, the Reverend, Dr., Sergeant, Captain]
+  place_noun:
+    word_list: [Glen, Loch, Burn, Brae, Ben, Strath, Cairn, Allt, Bothy, Croft, Manse, Lodge, Halt, Pass]
+  adjective:
+    word_list: [Mor, Beag, Dubh, Ban, Rua, Old, Upper, Lower, North, South, Long, High]
+person_patterns:
+  - "{given_name} {family_name}"
+  - "{title} {family_name}"
+  - "{title} {given_name} {family_name}"
+  - "{given_name} {family_name} of {place_noun}"
+place_patterns:
+  - "{place_noun} {family_name}"
+  - "{adjective} {place_noun}"
+  - "{place_noun} {adjective}"
+  - "{family_name}'s {place_noun}"
