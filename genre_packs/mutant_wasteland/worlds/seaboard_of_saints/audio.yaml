@@ -1,0 +1,594 @@
+# Audio configuration for The Seaboard of Saints (mutant_wasteland / seaboard_of_saints)
+#
+# WORLD-LEVEL HARD OVERRIDE. This world is a LITERARY-GONZO COMIC DYSTOPIA in
+# which life, inconveniently for the genre, *works*. The register is Henny
+# Youngman thawing at Brown's Hotel and asking which tummler is on tonight, NOT
+# the end of the world. Trains run on a schedule nobody understands; miracles
+# are adjudicated by committee; the Philadelphia Mint still strikes pennies from
+# the pre-war dies. The strangeness comes from historical depth, never despair.
+#
+# It therefore does NOT inherit the genre pack's grim mood beds. The parent
+# mutant_wasteland mood_tracks — Geiger-counter tension, scrap-iron combat, the
+# desolate-expanse drone, radioactive-wasteland ambience — are the OPPOSITE of
+# this world's palette and are REPLACED in full. NO Geiger whisper, NO dead-zone
+# drone, NO post-apocalyptic ambient, NO scrap-metal dread. This is a world of
+# parlour chamber music, sea shanty, klezmer bandstand, liturgical brass, mill-
+# girl ballad, and crooner doo-wop — the layered American-music geography of the
+# Penobscot-to-Potomac Corridor, rendered warm, literate, and lived-in.
+#
+# THE FOUR VOICES (the leitmotif spine — see saints.yaml header). Doctrine names
+# exactly four Saints who carry exotic/sound_generation and seats their feast-
+# processions in this order: Washington (the storyteller), Francis (the singer),
+# Tito (the drummer), Henny (the comic). Each is a leitmotif below; together they
+# are the world's musical theology. The narrator layers a Voice over a mood cue
+# when its Saint, its tradition, or its patron region is on-scene.
+#
+# THE CORRIDOR-GEOGRAPHY IDIOMS (every cue draws from these real, named American
+# traditions, named at the seams where they collide — cliche-granularity
+# discipline, instance-level references, no coarse "post-apocalyptic" anything):
+#   - DOWN EAST / MARITIME — sea shanty, lighthouse-keeper hymn, the Seaman's
+#     Bethel pump-organ (Whalecoast: Wampanoag + whaling work-song).
+#   - BRAHMIN BOSTON — parlour chamber (square piano, viol consort) + New England
+#     shape-note (the Sacred Harp / "Northfield"-idiom fuguing tune).
+#   - MERRIMACK MILLS — Franco-American reel + the mill-girl ballad + the 1912
+#     Bread-and-Roses labor song.
+#   - PROVIDENCE / FEDERAL HILL — Italian-American parlour song + the 1848
+#     Spiritualist seance-rap (the Whitman Circle's Athenaeum).
+#   - CATSKILLS / BORSCHT BELT — klezmer + Tin-Pan-Alley + the tummler's
+#     bandstand (Saint Henny's seat).
+#   - OUTER BOROUGHS — Nuyorican mambo / boogaloo (Saint Tito's timbales),
+#     Sinatra-as-Saint-Francis crooning, doo-wop.
+#   - PHILADELPHIA — the Mummers' string band (banjos, saxophones, glockenspiel,
+#     the "Oh Dem Golden Slippers" strut).
+#   - BALTIMORE / CHESAPEAKE — oyster-fleet chanty + the Poe dirge (raven-bell).
+#   - DC / BROOKLAND — Little-Rome liturgical (organ, plainchant, sanctus bell).
+# Don't render all of these per cue — pick the moods that carry play.
+#
+# Film-score behavior (cue-driven, NOT BGM loop) — overtures, one-shots, fades,
+# long silences are part of the score. Music enters as punctuation, the way a
+# good GM lets the room go quiet before a docket ruling. NO looping background bed.
+#
+# Leitmotifs are generated via ACE-Step audio2audio (a2a) from a per-leitmotif
+# source.wav seed under themed/{leitmotif}/source.wav — the validated approach for
+# real thematic variation. Seed provenance is preserved: each themed/ dir holds
+# source.wav + its own input_params.json documenting the seed recipe.
+#
+# Reference tracks are cited at the *instance* level (specific tradition + tune +
+# instrument + period). Named tunes are real and pre-war. This world is
+# player-readable (NOT spoiler-exempt); these notes carry tone, not plot.
+
+world: seaboard_of_saints
+genre: mutant_wasteland
+inherits_from: genre_packs/mutant_wasteland/audio.yaml
+override_policy: replace_mood_tracks  # world replaces genre mood_tracks; SFX additions layer over the inherited library
+
+# ---------------------------------------------------------------------------
+# Mixer — genre baseline is loud (0.4/0.7) for a Geiger-counter wasteland.
+# This world is acoustic, intimate, parlour-scaled — music sits lower and
+# crossfades longer for the cue-driven pacing and the literate quiet.
+# ---------------------------------------------------------------------------
+mixer:
+  music_volume: 0.12
+  sfx_volume: 0.30
+  crossfade_default_ms: 4000
+
+# ---------------------------------------------------------------------------
+# Mood palette — 7 moods, cue-style, world-scoped paths:
+#   worlds/seaboard_of_saints/audio/music/<mood>_<variant>.ogg
+# Variant roles (music-director spec): overture, full, sparse, ambient,
+# tension_build, resolution. Variant ROLES bind to dramatic functions:
+#   overture   = arrival / boarding the Corridor
+#   full       = a feast, a docket, a confrontation at pitch
+#   ambient    = a working-town day, the default bed
+#   tension_build = the rite mounting, the rent-day fuse
+#   resolution = the breath after, the ruling read, the wake
+# Not every mood takes every variant — only what the pacing calls for.
+# ---------------------------------------------------------------------------
+mood_tracks:
+
+  the_corridor:
+    # ARRIVAL / RAIL TRAVEL. The Corridor itself — the pre-war rail line on the
+    # unknowable schedule. The signature OVERTURE: a warm WPA-travel-poster
+    # brightness, a clarinet and a brushed snare keeping the click of jointed
+    # rail, an accordion taking the melody as the mill towns roll past. The
+    # smash-cut bed for "you arrive in Baltimore; it is raining oysters." Hope,
+    # motion, the literate ease of a world that works. The conductor calls the
+    # stops in a language half-forgotten — the cue should feel like it knows
+    # where it is going even if you do not.
+    - path: audio/music/the_corridor_overture.ogg
+      title: "The Schedule Nobody Understands"
+      bpm: 104
+      tempo: "medium, clarinet + accordion over a brushed-snare rail click"
+    - path: audio/music/the_corridor_ambient.ogg
+      title: "Between the Mill Towns"
+      bpm: 84
+      tempo: "easy, accordion drone + distant rail, travelogue calm"
+
+  working_town:
+    # THE WORKING-TOWN DAY. The DEFAULT bed — a Seaboard parish going about its
+    # business. Federal Hill supper-smoke, the Merrimack looms running, the
+    # Athenaeum reading room. A small acoustic ensemble: mandolin and guitar in
+    # the Italian-American parlour manner, a fiddle picking out a Franco-American
+    # reel fragment, a mill-girl-ballad melody half-hummed. Civic, warm, unhurried
+    # — never pretty in a postcard way, lived-in in a worn-stair way. This is
+    # the sound of the strange part: it works.
+    - path: audio/music/working_town_ambient.ogg
+      title: "Federal Hill at Supper"
+      bpm: 0
+      tempo: "ambient, mandolin + guitar parlour bed, no fixed pulse"
+    - path: audio/music/working_town_sparse.ogg
+      title: "The Looms Still Running"
+      bpm: 76
+      tempo: "slow, sparse fiddle reel-fragment over guitar"
+
+  the_docket:
+    # THE MAGISTERIUM RITE / TENSION. The Plenary Council in session — a miracle
+    # adjudicated by committee, spectral evidence weighed, a Saint-recognition
+    # heard on the docket. TENSION_BUILD is the signature variant. Brookland's
+    # Little-Rome liturgical idiom rendered with institutional patience: a pipe
+    # organ holding one cluster too long, plainchant in low Latin, a single
+    # sanctus bell that refuses to resolve the cadence. The tension is bureaucratic,
+    # not violent — the dread of a ruling pending, the room waiting on a committee
+    # that has been arguing for two hundred years. Builds; does not break.
+    - path: audio/music/the_docket_tension_build.ogg
+      title: "The Case Is Not Yet Ripe"
+      bpm: 60
+      tempo: "slow accelerando, organ cluster + plainchant, unresolved"
+    - path: audio/music/the_docket_sparse.ogg
+      title: "Minutes, and All"
+      bpm: 52
+      tempo: "very slow, lone organ + sanctus bell, near-silent"
+
+  the_feast:
+    # THE FEAST-PROCESSION. A Saint's feast at full pitch — Saint Francis
+    # processing downtown, the Giglio carried by barge, the Bread-and-Roses walk,
+    # Saint Rocco on the Hill. The FULL variant is the world's loudest joy: a
+    # processional band collides the idioms on purpose — a Philadelphia Mummers'
+    # string band (banjos, saxophones, glockenspiel) meeting an Italian-American
+    # festa brass band and a klezmer freylekh, all of it strutting Broad Street
+    # at once. Ecstatic, civic, sincere. The comedy is never a wink; the joy is real.
+    - path: audio/music/the_feast_full.ogg
+      title: "The Giglio on the Water"
+      bpm: 120
+      tempo: "fast, processional, Mummers strut vs festa brass vs freylekh"
+    - path: audio/music/the_feast_overture.ogg
+      title: "The Saints Process Downtown"
+      bpm: 100
+      tempo: "march-tempo open, string-band fanfare into the parade"
+    - path: audio/music/the_feast_resolution.ogg
+      title: "After the Procession, the Square"
+      bpm: 80
+      tempo: "slowing, single accordion + glockenspiel, the crowd thinning"
+
+  the_bandstand:
+    # THE CATSKILLS COMIC BANDSTAND. Saint Henny's seat — Brown's Hotel, the
+    # Imperial Room at the Concord, the tummler working the late show. A
+    # Borscht-Belt house band: klezmer clarinet bent into a Tin-Pan-Alley vamp,
+    # an upright piano comping, a brushed kit, and a violin played slightly badly
+    # ON PURPOSE (Saint Henny's icon plays one). Warm, fast, generous; the
+    # rimshot is liturgy here. This is the comic-dystopia anchor in sound — the
+    # thawed retiree coming downstairs mid-routine, demanding the kasha.
+    - path: audio/music/the_bandstand_full.ogg
+      title: "Take My Wife, Please"
+      bpm: 132
+      tempo: "fast, klezmer-clarinet vamp + comping piano + brushed kit"
+    - path: audio/music/the_bandstand_sparse.ogg
+      title: "The Late Show, Half the Room"
+      bpm: 96
+      tempo: "medium, clarinet + piano only, between the punchlines"
+
+  the_glen:
+    # CONFRONTATION / DREAD ON THE EDGE. Off the Corridor, where the adventure
+    # and the danger live — the Sleepy Hollow glen after moonset, the Patroon's
+    # closed coverts on rent-day, the Horseman riding the span, the Dunderberg's
+    # weather in the Highlands. The genre's only properly DARK cue, and even here
+    # it is faerie-feudal gothic, not radioactive despair: a viol consort and a
+    # shape-note fuguing line gone minor, a hardanger-bowed fiddle drone, a single
+    # church-bridge bell. Near-total silence is the cue. Cross before moonset.
+    - path: audio/music/the_glen_full.ogg
+      title: "Cross the Bridge Before Moonset"
+      bpm: 50
+      tempo: "very slow, suspended, viol drone + shape-note minor, silence-driven"
+    - path: audio/music/the_glen_tension_build.ogg
+      title: "The Patroon's Houndsmen Ask Your Business"
+      bpm: 56
+      tempo: "slow build, hardanger drone + single bridge bell"
+
+  the_thaw:
+    # RESOLUTION / BREATH. The Sleepers' cold-room opening; the wake; the ruling
+    # finally read; the costly choice landed. RESOLUTION is the signature variant.
+    # The gentlest cue in the world — the waking rite's first question is "What
+    # year do you believe it to be?" A lighthouse-keeper hymn on a Seaman's Bethel
+    # pump organ, a solo cornet taking a Tin-Pan-Alley standard slow and tender,
+    # a single brushed cymbal like a tide. Mercy without melodrama; the world
+    # receives its bewildered returned, fed first and questioned never.
+    - path: audio/music/the_thaw_resolution.ogg
+      title: "What Year Do You Believe It To Be"
+      bpm: 54
+      tempo: "slow, reverent, pump-organ hymn + solo cornet"
+    - path: audio/music/the_thaw_ambient.ogg
+      title: "Coffee and a Current Calendar"
+      bpm: 0
+      tempo: "ambient, pump-organ drone + distant cornet, no fixed pulse"
+
+# ---------------------------------------------------------------------------
+# Leitmotif themes — each a2a-generated from a seed source.wav. These are the
+# thematic variations the narrator layers over mood cues. Each leitmotif has a
+# base_prompt (ACE-Step text conditioning) + variations (a2a outputs, roles per
+# music-director spec). Seed provenance under themed/{name}/source.wav.
+#
+# THE FOUR VOICES come first, in doctrinal procession order (Washington, Francis,
+# Tito, Henny), followed by the place/faction themes (the Magisterium liturgical,
+# the Corridor rail, the Sleepers' thaw).
+# ---------------------------------------------------------------------------
+themes:
+
+  # ── THE FOUR VOICES — the sound_generation Saints, in feast-procession order ──
+
+  - name: washington_voice
+    # THE STORYTELLER (first of the Four Voices). Saint Washington of Sunnyside,
+    # the Hudson dreamer who makes a thing true by telling it well. A fireside-
+    # tale idiom: a solo fiddle in the Anglo-Dutch parlour-air manner over a low
+    # cello drone, the melody wandering as a told story wanders, a music box
+    # ticking under it like the millpond clock. Harmonic template: the slow strain
+    # of "The Ash Grove" (Welsh-American parlour air, pre-war), used as frame, not
+    # quoted — a tune of memory and the half-real. Plays in the Hudson Valley, at
+    # Sunnyside, over a Lo'in performance, whenever a story is being told as ritual.
+    leitmotif_for: "Saint Washington of Sunnyside / the storyteller / the told-true tale"
+    seed: audio/music/themed/washington_voice/source.wav
+    seed_params: audio/music/themed/washington_voice/input_params.json
+    base_prompt: >
+      solo fiddle parlour air in the Anglo-Dutch Hudson Valley manner over a low
+      cello drone, a music box ticking underneath like a millpond clock, harmonic
+      template of the Welsh-American parlour air The Ash Grove (frame only, not
+      quoted), a melody that wanders as a told story wanders, D major turning
+      pensive, slow 60 bpm, warm fireside storytelling quality, dry close-mic
+      acoustic, period-authentic pre-war parlour aesthetic, no electric
+      instruments, no modern production, no post-apocalyptic ambience
+    variations:
+      - type: ambient
+        path: audio/music/themed/washington_voice/ambient.ogg
+      - type: full
+        path: audio/music/themed/washington_voice/full.ogg
+      - type: sparse
+        path: audio/music/themed/washington_voice/sparse.ogg
+      - type: resolution
+        path: audio/music/themed/washington_voice/resolution.ogg
+
+  - name: francis_voice
+    # THE SINGER (second of the Four Voices). Saint Francis of Hoboken, the
+    # crooner-Saint of the Outer Boroughs, bel canto on a streetlamp corner. A
+    # late-night supper-club idiom: a muted trumpet and brushed kit, a stand-up
+    # bass walking, a string-section swell holding back — the saloon-singer's
+    # comeback ballad with nobody at the mic, the melody implied by the band.
+    # Harmonic template: the torch-ballad "One for My Baby" idiom (Arlen/Mercer,
+    # pre-war Tin-Pan-Alley), frame only. Plays on Arthur Avenue, at a feast, any
+    # time the ask is made and the room agrees. Curdles at a heckle, per his drawback.
+    leitmotif_for: "Saint Francis of Hoboken / the singer / the saloon-singer's comeback"
+    seed: audio/music/themed/francis_voice/source.wav
+    seed_params: audio/music/themed/francis_voice/input_params.json
+    base_prompt: >
+      late-night supper-club instrumental ballad, muted trumpet lead and brushed
+      drum kit, walking upright bass, a restrained string-section swell, an
+      implied crooner melody with no vocal, harmonic template of the Tin-Pan-Alley
+      torch ballad One for My Baby idiom (frame only, not quoted), E-flat major
+      bittersweet, slow 66 bpm, intimate ring-a-ding small-hours quality, warm
+      tube-amp acoustic recording aesthetic, period-authentic pre-war crooner
+      idiom, no electric guitar, no modern production, no post-apocalyptic ambience
+    variations:
+      - type: full
+        path: audio/music/themed/francis_voice/full.ogg
+      - type: sparse
+        path: audio/music/themed/francis_voice/sparse.ogg
+      - type: resolution
+        path: audio/music/themed/francis_voice/resolution.ogg
+
+  - name: tito_voice
+    # THE DRUMMER (third of the Four Voices). Saint Tito of Spanish Harlem, the
+    # timbalero whose beat the room syncs to. The one full-tilt rhythmic Voice:
+    # timbales and bongos and a cowbell clave leading, a piano montuno, a horn
+    # section punching the accents — Nuyorican mambo at the Palladium, every
+    # dancer caught mid-step on his accent. Rhythmic template: the mambo / cha-cha
+    # idiom of the 1950s Palladium Ballroom (frame, not quoted). Plays on East
+    # 116th, at any feast, whenever momentum and joy need a pulse. He needs
+    # percussion to sleep, per his drawback — silence injures this Voice.
+    leitmotif_for: "Saint Tito of Spanish Harlem / the drummer / the beat the room syncs to"
+    seed: audio/music/themed/tito_voice/source.wav
+    seed_params: audio/music/themed/tito_voice/input_params.json
+    base_prompt: >
+      Nuyorican mambo instrumental, timbales and bongos and a cowbell clave
+      leading, piano montuno, a punchy horn section hitting the accents, rhythmic
+      template of the 1950s Palladium Ballroom mambo and cha-cha idiom (frame
+      only, not quoted), C major bright and driving, fast 132 bpm, every dancer
+      caught mid-step quality, live big-band ballroom recording aesthetic,
+      period-authentic mid-century Latin idiom, no electric instruments, no
+      modern production, no post-apocalyptic ambience
+    variations:
+      - type: full
+        path: audio/music/themed/tito_voice/full.ogg
+      - type: sparse
+        path: audio/music/themed/tito_voice/sparse.ogg
+      - type: tension_build
+        path: audio/music/themed/tito_voice/tension_build.ogg
+
+  - name: henny_voice
+    # THE COMIC (fourth of the Four Voices). Saint Henny of the Borscht, the
+    # tummler whose punchline scrambles a room. A Borscht-Belt vaudeville idiom:
+    # a klezmer clarinet doing the take-my-wife rimshot setup, a violin played
+    # badly-on-purpose (his icon holds one), a vamp piano and a rimshot kit, the
+    # whole thing a one-liner in sound — setup, beat, punchline, laugh. Harmonic
+    # template: the Yiddish-theatre / Tin-Pan-Alley novelty-tune idiom (frame).
+    # Plays at the Catskills bandstand, at Brown's, whenever the comedy lands. He
+    # wilts without an audience, per his drawback — this Voice needs a room.
+    leitmotif_for: "Saint Henny of the Borscht / the comic / the punchline that scrambles a room"
+    seed: audio/music/themed/henny_voice/source.wav
+    seed_params: audio/music/themed/henny_voice/input_params.json
+    base_prompt: >
+      Borscht-Belt vaudeville instrumental, klezmer clarinet running a comic
+      setup-and-rimshot phrase, a violin played deliberately badly for laughs, a
+      vamping upright piano and a rimshot drum kit, structured like a one-liner in
+      sound (setup, beat, punchline), harmonic template of the Yiddish-theatre
+      Tin-Pan-Alley novelty-tune idiom (frame only, not quoted), G major
+      mischievous, bright 128 bpm, warm nightclub bandstand recording aesthetic,
+      period-authentic mid-century Catskills resort idiom, no electric
+      instruments, no modern production, no post-apocalyptic ambience
+    variations:
+      - type: full
+        path: audio/music/themed/henny_voice/full.ogg
+      - type: sparse
+        path: audio/music/themed/henny_voice/sparse.ogg
+      - type: resolution
+        path: audio/music/themed/henny_voice/resolution.ogg
+
+  # ── PLACE / FACTION THEMES ──
+
+  - name: magisterium_theme
+    # The Magisterium of the Seaboard — the Plenary-Council church, the docket,
+    # Brookland's Little Rome. Liturgical, patient, institutional. A pipe organ
+    # and low men's-schola plainchant in the Roman manner, a sanctus bell, the
+    # cadence held one beat past comfort — the sound of an institution that wins
+    # by keeping minutes. Template: the Latin plainchant "Dies Irae" / a Solemn
+    # High Mass idiom (frame, not quoted) rendered cool and procedural, not
+    # apocalyptic. Plays in DC/Brookland, in session, when the canon speaks.
+    leitmotif_for: "The Magisterium of the Seaboard / the Plenary Council / the docket / Little Rome"
+    seed: audio/music/themed/magisterium_theme/source.wav
+    seed_params: audio/music/themed/magisterium_theme/input_params.json
+    base_prompt: >
+      pipe organ and low men's schola plainchant in the Roman liturgical manner,
+      a single sanctus bell, cadences held one beat past resolution, harmonic
+      template of Latin plainchant and the Solemn High Mass idiom (frame only,
+      not quoted), rendered cool and procedural and institutionally patient
+      rather than apocalyptic, D Dorian modal, slow 56 bpm, the sound of an
+      institution that wins by keeping minutes, cathedral acoustic reverb,
+      period-authentic sacred-music aesthetic, no electric instruments, no
+      modern production, no horror-score dread
+    variations:
+      - type: full
+        path: audio/music/themed/magisterium_theme/full.ogg
+      - type: sparse
+        path: audio/music/themed/magisterium_theme/sparse.ogg
+      - type: tension_build
+        path: audio/music/themed/magisterium_theme/tension_build.ogg
+
+  - name: corridor_theme
+    # The Corridor itself — the rail spine, the connective tissue of the whole
+    # world, the schedule nobody understands. A travelling-train idiom: a brushed
+    # snare and woodblock keeping the click of jointed rail, a clarinet and
+    # accordion trading the melody, a low brass pulse for the locomotive — a WPA-
+    # era travel-poster brightness with a faintly unknowable lilt, because the
+    # timetable survived but its explanation did not. Template: a folk-revival
+    # "train song" instrumental idiom (frame). Plays on every Corridor leg, at
+    # every boarding, at every smash-cut arrival.
+    leitmotif_for: "The Corridor / the rail line / fast travel between the cities"
+    seed: audio/music/themed/corridor_theme/source.wav
+    seed_params: audio/music/themed/corridor_theme/input_params.json
+    base_prompt: >
+      travelling-train instrumental, brushed snare and woodblock keeping the
+      click of jointed rail, clarinet and accordion trading the melody, a low
+      brass pulse for the locomotive, WPA-era travel-poster brightness with a
+      faintly unknowable lilt, harmonic template of a folk-revival train-song
+      idiom (frame only, not quoted), A major warm and rolling, medium 104 bpm,
+      a world that works and runs on time it cannot explain, clean acoustic
+      ensemble recording aesthetic, period-authentic mid-century folk idiom, no
+      electric instruments, no modern production, no post-apocalyptic ambience
+    variations:
+      - type: full
+        path: audio/music/themed/corridor_theme/full.ogg
+      - type: ambient
+        path: audio/music/themed/corridor_theme/ambient.ogg
+      - type: overture
+        path: audio/music/themed/corridor_theme/overture.ogg
+
+  - name: sleepers_theme
+    # The Sleepers' Sodality / the thaw / the cold-rooms under the Catskills
+    # hotels. The world's gentlest, strangest theme — the bewilderment made
+    # tender. A lighthouse-keeper hymn on a Seaman's Bethel pump organ (the reed
+    # slightly out of true, fifteen centuries old), a lone cornet taking a faded
+    # Tin-Pan-Alley standard slow, a music box of a half-remembered jingle
+    # bleeding in underneath so the lost decades and the present never quite
+    # separate. Template: the pump-organ hymn "Shall We Gather at the River"
+    # idiom (frame). Plays at the thaw-floor, at Brown's, when a Sleeper wakes.
+    leitmotif_for: "The Sleepers' Sodality / the thaw / the cold-room waking rite"
+    seed: audio/music/themed/sleepers_theme/source.wav
+    seed_params: audio/music/themed/sleepers_theme/input_params.json
+    base_prompt: >
+      lighthouse-keeper hymn on a pump organ with a reed slightly out of true,
+      a lone cornet taking a faded Tin-Pan-Alley standard very slow, a music box
+      of a half-remembered advertising jingle bleeding in underneath so the lost
+      decades and the present never quite separate, harmonic template of the
+      pump-organ hymn Shall We Gather at the River idiom (frame only, not quoted),
+      F major tender and uncanny, slow 54 bpm, the bewilderment made gentle,
+      warm intimate parlour-organ recording aesthetic, period-authentic
+      pre-war devotional idiom, no electric instruments, no modern production,
+      no post-apocalyptic ambience
+    variations:
+      - type: ambient
+        path: audio/music/themed/sleepers_theme/ambient.ogg
+      - type: resolution
+        path: audio/music/themed/sleepers_theme/resolution.ogg
+      - type: sparse
+        path: audio/music/themed/sleepers_theme/sparse.ogg
+
+# ---------------------------------------------------------------------------
+# SFX library — world-scoped additions for the Seaboard. The genre-pack SFX
+# library is INHERITED but most of it is wasteland-irrelevant; the entries below
+# are the world layer. The genre's footsteps, door_open/close, latch_open,
+# metal_click, and machinery_hum remain usable (parishes have doors, latches,
+# and the Mint's still-running striking line). The genre's explosion, energy_*,
+# zap, mutant_ooze, and thruster SFX are inherited-but-unused here —
+# scene_bindings never reference them; this world does not sound like a war.
+# ---------------------------------------------------------------------------
+sfx_library_additions:
+  rail_click:
+    - path: audio/sfx/rail_click_1.ogg
+      description: "Jointed rail under a moving carriage, the Corridor's steady click-and-sway"
+  conductor_call:
+    - path: audio/sfx/conductor_call_1.ogg
+      description: "The conductor calling a stop in a language half-forgotten (Corridor boarding)"
+  sanctus_bell:
+    - path: audio/sfx/sanctus_bell_1.ogg
+      description: "Single altar sanctus bell, struck once (Magisterium docket / a ruling read)"
+  gavel_committee:
+    - path: audio/sfx/gavel_committee_1.ogg
+      description: "A Plenary-Council gavel and the rustle of schemata (the miracle on the docket)"
+  coin_strike_mint:
+    - path: audio/sfx/coin_strike_mint_1.ogg
+      description: "The Philadelphia Mint's striking line stamping a penny from the pre-war die"
+  pennies_counted:
+    - path: audio/sfx/pennies_counted_1.ogg
+      description: "Pennies counted out by hand onto a parish plate (the counting is the prayer)"
+  lighthouse_horn:
+    - path: audio/sfx/lighthouse_horn_1.ogg
+      description: "A Maine-coast lighthouse fog-horn and the turn of the lamp (Down East / the drowned torch)"
+  oyster_tongs:
+    - path: audio/sfx/oyster_tongs_1.ogg
+      description: "Skipjack oyster tongs working over the side, Chesapeake (Baltimore / Eastern Shore)"
+  raven_bell:
+    - path: audio/sfx/raven_bell_1.ogg
+      description: "A raven's call and the toll of a grave-yard bell (Saint Edgar's shrine, Westminster Hall)"
+  rimshot_tummler:
+    - path: audio/sfx/rimshot_tummler_1.ogg
+      description: "A bandstand rimshot and a room's laugh breaking (the Catskills late show / Saint Henny)"
+  cryo_door_thaw:
+    - path: audio/sfx/cryo_door_thaw_1.ogg
+      description: "A cold-room door unsealing with a hiss of vented chill (the Sleepers' thaw-floor)"
+  bridge_hoofbeats:
+    - path: audio/sfx/bridge_hoofbeats_1.ogg
+      description: "Hoofbeats crossing a wooden church bridge, then silence (the Sleepy Hollow glen)"
+
+# ---------------------------------------------------------------------------
+# Scene → mood binding hints (for narrator audio-cue dispatch). Region slugs
+# mirror cartography.yaml; trope-beat names mirror tropes.yaml ids; faction and
+# Saint scene-keys mirror lore.yaml and saints.yaml.
+# ---------------------------------------------------------------------------
+scene_bindings:
+  # Corridor / rail travel (prefer overture / ambient variants)
+  boarding_the_corridor: the_corridor
+  the_downeaster: the_corridor
+  the_shore_line: the_corridor
+  the_causeway_line: the_corridor
+  the_keystone_leg: the_corridor
+  the_chesapeake_leg: the_corridor
+  the_southern_see_leg: the_corridor
+  arrival_smash_cut: the_corridor
+
+  # Working-town day — the default bed
+  providence: working_town
+  boston_common: working_town
+  merrimack_mills: working_town
+  outer_boroughs: working_town
+  philadelphia: working_town
+  baltimore: working_town
+  cape_ann: working_town
+  down_east: working_town
+  whalecoast: working_town
+  pioneer_valley: working_town
+  federal_hill_supper: working_town
+  ward_street_life: working_town
+
+  # The Magisterium rite / docket (prefer tension_build variant)
+  dc: the_docket
+  the_miracle_on_the_docket: the_docket
+  the_regret_in_due_form: the_docket
+  plenary_council_in_session: the_docket
+  spectral_evidence_court: the_docket
+  saint_recognition_petition: the_docket
+  salem_country: the_docket          # the Court of Spectral Evidence still sits
+
+  # The feast-procession (prefer full / overture variants)
+  saint_feast_procession: the_feast
+  the_giglio_on_the_water: the_feast
+  bread_and_roses_walk: the_feast
+  saint_rocco_on_the_hill: the_feast
+  mummers_parade: the_feast
+
+  # The Catskills comic bandstand
+  catskills: the_bandstand
+  browns_hotel_late_show: the_bandstand
+  the_tummler_works_the_room: the_bandstand
+
+  # Confrontation / off-Corridor dread (prefer full / tension_build variants)
+  hudson_valley: the_glen
+  the_sleepy_hollow_glen: the_glen
+  the_calico_rent_day: the_glen
+  the_mayflower_low_and_wakeless: the_glen
+  patroon_houndsmen_at_the_gate: the_glen
+  the_horseman_rides: the_glen
+  white_mountains: the_glen          # the worst weather on the seaboard, hostile
+  adirondacks: the_glen              # wilderness, not wasteland — with teeth
+  faction_standoff: the_glen
+
+  # Resolution / breath / the thaw (prefer resolution variant)
+  thaw_day_at_the_resorts: the_thaw
+  the_waking_rite: the_thaw
+  the_ruling_read: the_thaw
+  a_wake_or_memorial: the_thaw
+  the_loin_at_swan_point: the_thaw   # a tale finished lovingly over a grave
+  the_breath_after: the_thaw
+
+# ---------------------------------------------------------------------------
+# Theme → scene/faction/Saint leitmotif binding hints (narrator layers these
+# OVER the mood cue when the relevant entity is on-scene). The Four Voices bind
+# to their Saints, their traditions, and their patron regions.
+# ---------------------------------------------------------------------------
+theme_bindings:
+  # The Four Voices
+  washington_of_sunnyside: washington_voice
+  the_storyteller: washington_voice
+  loin_performance: washington_voice          # the told-true tale, staged
+  francis_of_hoboken: francis_voice
+  the_singer: francis_voice
+  arthur_avenue: francis_voice
+  tito_of_spanish_harlem: tito_voice
+  the_drummer: tito_voice
+  east_116th_street: tito_voice
+  henny_of_the_borscht: henny_voice
+  the_comic: henny_voice
+  the_bandstand_late_show: henny_voice
+
+  # Place / faction themes
+  the_magisterium: magisterium_theme
+  the_plenary_council: magisterium_theme
+  brookland_little_rome: magisterium_theme
+  the_corridor: corridor_theme
+  the_rail_line: corridor_theme
+  the_sleepers_sodality: sleepers_theme
+  the_thaw_floor: sleepers_theme
+  browns_hotel: sleepers_theme
+
+# ---------------------------------------------------------------------------
+# Fail-loud contract
+# ---------------------------------------------------------------------------
+# Per music-director core principles: if a path listed above does not exist on
+# disk / in R2 at runtime, the engine MUST fail loudly. This manifest declares
+# NO track as optional — every entry is a contract. The ACE-Step pipeline run
+# (operator: `python scripts/generate_music.py --genre mutant_wasteland`,
+# world-scoped to seaboard_of_saints) is a SEPARATE step; until tracks are
+# generated and uploaded to R2 under worlds/seaboard_of_saints/audio/, this
+# manifest is the spec, and the loader should refuse to bind this world rather
+# than silently fall back to the genre's grim mood beds. The override is total:
+# NONE of mutant_wasteland's wasteland mood_tracks — the Geiger-counter tension,
+# the scrap-iron combat, the desolate-expanse drone, the radioactive ambience —
+# may sound in this world. A world that works does not sound like the end of the
+# world. The world stays draft: true until these tracks (and the image renders)
+# flip the asset gate to MET.

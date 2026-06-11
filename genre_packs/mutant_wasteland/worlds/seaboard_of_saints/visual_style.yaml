@@ -1,0 +1,61 @@
+# Visual style — The Seaboard of Saints (world-level override).
+#
+# WORLD HARD OVERRIDE of the mutant_wasteland genre look. This world does
+# NOT inherit the parent genre's grim Geiger-counter palette (desaturated
+# rust, bruised toxic-green sky, scavenger despair). The Seaboard *works*:
+# fifteen centuries after the Glory, the trains still run, the lighthouses
+# still turn, the Mint still strikes coin, and miracles are adjudicated by
+# committee. The strangeness comes from historical depth and matter-of-fact
+# mutation — never from despair. Mutation is rendered the way a working
+# coast renders weather: present, unremarked, woven in. Webbed hands mend
+# nets; a grandfather-whale breaches off the grounds; nobody screams.
+#
+# Reference register (instance-level, per cliche-granularity discipline):
+# Hudson River School luminism (Church, Kensett's coastal light) for the
+# wild country; WPA post-office-mural civic optimism for the working towns;
+# American Catholic devotional folk art and the linoleum-block saint-card
+# for the iconography; New Bedford / Fitz Henry Lane luminist marine painting
+# for the harbors. NOT concept-art grimdark, NOT cyberpunk neon, NOT the
+# genre's wasteland.
+
+# ── Core Style ────────────────────────────────────────────────
+
+# positive_suffix → POI landscapes + illustrations (render_common.py:92).
+# Maritime nouns are CORRECT here: a POI lighthouse/harbor is the actual subject.
+positive_suffix: >-
+  luminous narrative digital painting, New England maritime light, the silver
+  luminism of Hudson River School coastal painters and Fitz Henry Lane marine
+  work, with the civic warmth of a WPA post-office mural and the gilt palette
+  of American devotional folk art. Painterly with visible brushwork, soft tonal
+  modeling, atmospheric depth. Warm and habitable rather than desolate; aged but
+  tended. Palette of sea-silver granite grey, salt-bleached driftwood and old
+  brick, deep harbor blue-green shadow, sea-foam highlight, and a devotional gilt
+  accent — warm gold and candle-amber catching the light. Quiet wonder over dread.
+  No text, no caption, no title, no writing, no signs, no signage, no labels, no
+  inscriptions, no graffiti, no watermark, no artist signature, no studio logo,
+  no UI overlay, no game HUD, no title card, no border, no frame.
+
+# portrait_positive_suffix → PORTRAITS ONLY (render_common.py:92). Trained
+# Z-Image style labels, not prose: no analogies, no mood-narration, no maritime
+# subject nouns (those summoned a lighthouse into every saint). LOOK DON'T TELL.
+portrait_positive_suffix: >-
+  devotional holy card portrait, Sulpician holy card, gold-leaf gilt ground,
+  oil painting, painterly brushwork, soft directional light, warm muted earth
+  palette,
+  no text, no caption, no writing, no signs, no labels, no watermark,
+  no signature, no logo, no border, no frame.
+
+preferred_model: dev
+base_seed: 42
+
+color_palette:
+  primary: "#8A9BA8"     # sea-silver granite — the coast's working light
+  secondary: "#C7BBA6"   # salt-bleached driftwood and old brick
+  accent: "#D9A441"      # devotional gilt — saint-gold, candle-flame, struck coin
+  shadow: "#1E2A33"      # deep harbor blue-green
+  highlight: "#EAF1F0"   # sea-foam and lighthouse glass
+
+# POI landscapes are authored in history.yaml under
+# chapters[].points_of_interest[].visual_prompt (the source the POI renderer
+# reads — scripts/generate_poi_images.py::collect_pois). They are NOT kept
+# here; visual_style holds only the global render style above.

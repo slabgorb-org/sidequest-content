@@ -1,10 +1,17 @@
 # The Seaboard of Saints — world metadata.
-# draft: true keeps this world out of selection until the asset gate is met.
+# LIVE as of 2026-06-11: asset gate met (18 POIs + 31 portraits on R2). No
+# draft key — live worlds omit it (parity with flickering_reach).
 # Player-readable: unlike flickering_reach, this world is NOT spoiler-exempt.
 
 name: The Seaboard of Saints
 slug: seaboard_of_saints
-draft: true
+
+# Hero shot for the lobby. MUST match a real POI slug rendered to R2 —
+# server rest.py builds hero_image as assets/poi/<cover_poi>.png (a slug
+# typo silently 404s to the placeholder glyph). `sunken_bight` is keyed in
+# visual_style.yaml `atmosphere`: the drowned colossus whose torch still
+# burns as a lighthouse — the world's signature image.
+cover_poi: sunken_bight
 
 era: "fifteen centuries after the Glory"
 
