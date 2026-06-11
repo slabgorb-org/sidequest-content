@@ -1,0 +1,423 @@
+# The Seaboard of Saints — world inventory (story 103-8).
+#
+# IMPORTANT (epic 94 + inventory_resolve): a world inventory.yaml REPLACES
+# the genre's wholesale — it is NOT merged. So this file must carry the
+# FULL surface the Seaboard needs: its coin currency, its item catalog,
+# per-class starting kits, and starting gold. The genre's "Salvage / no
+# minted currency" economy does not apply here — the Glory was a plague,
+# not a bomb, and the United States Mint at Philadelphia never went dark.
+#
+# Currency (world design §8): pre-war US coins, still struck to the old
+# dies by Magisterium decree. The regional scrips are the `secondary`
+# block; the iconic coin-objects also appear in item_catalog as treasure
+# so a roll of quarters or an old silver dollar is a thing you can hold.
+# Banned (§11): no bottlecaps, no water-as-currency.
+
+currency:
+  name: Mint Coin
+  abbreviation: "¢"
+  # Pre-Cataclysm denominations, struck to the old dies. Values in cents.
+  denominations:
+    penny: 1
+    nickel: 5
+    dime: 10
+    quarter: 25
+    half_dollar: 50
+    dollar: 100
+  description: >-
+    The United States Mint at Philadelphia — oldest in the country, its
+    automated line hardened against the Shake — still strikes pennies,
+    nickels, dimes, quarters, half-dollars, and Sacagawea dollars to the
+    pre-Cataclysm dies, because nobody has dared change them. IN GOD WE
+    TRUST on the quarter is read as a Magisterium endorsement of the
+    Federal Coinage; the eagle on the reverse is venerated, informally, as
+    Saint Eagle of the Reverse; Sacagawea is canonized. Denominations
+    carry weight: a roll of quarters is a full transaction, pennies are
+    alms, and the Saint-Marked tithe their parish in copper. The Patroon
+    houses honor old silver dollars and refuse the new strikes on
+    principle.
+  secondary:
+    - name: Whaling Shares
+      abbreviation: lay
+      description: >-
+        Fractional "lays" of a catch, the Whalecoast and Down East ledger
+        going back to the New Bedford grounds — your cut written in the
+        sternman's hand, redeemable when the boat comes in.
+    - name: Lighthouse Letters
+      abbreviation: LL
+      description: >-
+        Drafts redeemable at the automated lighthouse stations of Down
+        East; good as coin along the granite coast, worthless inland.
+    - name: Athenaeum Vellum
+      abbreviation: AV
+      description: >-
+        Manuscript-backed scrip issued by the Providence Athenaeum and the
+        learned circles; each note is sealed against a catalogued pre-war
+        holding the Whitman Circle keeps.
+    - name: Mass Pike Tokens
+      abbreviation: MPT
+      description: >-
+        Surviving stock of the real pre-war turnpike toll tokens, still
+        circulating along the interstate-corridor segments as small change.
+    - name: Sleepers' Coupons
+      abbreviation: SC
+      description: >-
+        Pre-war retail coupons, expired by fifteen centuries and still
+        honored, gravely, by thawed-Sleeper businesses of the Sodality.
+
+item_catalog:
+  # --- WEAPONS (damage specs required — a weapon without one ablates 0 HP) ---
+  - id: gaff_hook
+    name: Gaff Hook
+    description: A long pole ending in a steel hook, for landing what the pound-nets catch. Tool first, weapon second, good at both.
+    category: weapon
+    value: 40
+    weight: 2.0
+    rarity: common
+    power_level: 1
+    tags: [melee, hook, two-handed, tool]
+    lore: Every sternman on the Down East grounds carries one. It has landed lobster, line, and the occasional unwise stranger.
+    narrative_weight: 0.1
+    damage: {dice: "1d6", bonus: 0}
+
+  - id: whaling_lance
+    name: Whaling Lance
+    description: A long iron lance off the New Bedford boats, balanced for the killing throw at the end of a long hunt.
+    category: weapon
+    value: 90
+    weight: 3.0
+    rarity: uncommon
+    power_level: 2
+    tags: [melee, reach, two-handed, whalecoast]
+    lore: The Acushnet boats still carry them. Saint Herman's veneration runs deep in the men who throw them.
+    narrative_weight: 0.2
+    damage: {dice: "1d8", bonus: 1}
+
+  - id: oyster_knife
+    name: Oyster Knife
+    description: A short stiff blade for shucking — quiet, personal, and never questioned at a table.
+    category: weapon
+    value: 25
+    weight: 0.3
+    rarity: common
+    power_level: 1
+    tags: [melee, blade, one-handed, silent, tool]
+    lore: Half the Cape Ann Sodality carries one for the work. The other half carries one for the work it doesn't talk about.
+    narrative_weight: 0.1
+    damage: {dice: "1d4", bonus: 1}
+
+  - id: fowling_piece
+    name: Fowling Piece
+    description: A long pre-pattern blackpowder shoulder gun, slow to load and emphatic when it speaks.
+    category: weapon
+    value: 220
+    weight: 4.5
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, blackpowder, two-handed]
+    lore: Powder is the real cost. The Mint strikes coin; nobody automated the saltpetre, so a charge is reckoned dear.
+    narrative_weight: 0.2
+    damage: {dice: "1d8", bonus: 0}
+
+  - id: patroon_saber
+    name: Patroon Saber
+    description: A manor-house cavalry saber, kept bright on the wall and drawn when the rent rolls are disputed.
+    category: weapon
+    value: 160
+    weight: 2.0
+    rarity: uncommon
+    power_level: 2
+    tags: [melee, blade, one-handed, hudson]
+    lore: Van Rensselaer steel, three centuries of it, last drawn in earnest during the Anti-Rent troubles and oiled ever since.
+    narrative_weight: 0.2
+    damage: {dice: "1d6", bonus: 1}
+
+  - id: relay_maul
+    name: Relay-Line Maul
+    description: A long-hafted sledge salvaged off the drowned rail line, swung by those with the back for it.
+    category: weapon
+    value: 70
+    weight: 6.0
+    rarity: common
+    power_level: 2
+    tags: [melee, blunt, two-handed, heavy]
+    lore: The Corridor crews drove spikes with these for the schedule nobody understands. It still drives things.
+    narrative_weight: 0.2
+    damage: {dice: "1d10", bonus: 0}
+
+  # --- ARMOR (mitigation = flat soak) ---
+  - id: oilskins
+    name: Oilskins
+    description: Waxed-canvas coast weather-gear, proof against the spray and a little proof against worse.
+    category: armor
+    value: 60
+    weight: 2.0
+    rarity: common
+    power_level: 1
+    tags: [light, coastal, weatherproof]
+    lore: It will not stop a lance, but it will keep you dry long enough to argue about it.
+    narrative_weight: 0.1
+    mitigation: 1
+
+  - id: carapace_brigandine
+    name: Carapace Brigandine
+    description: A jack of boiled leather faced with lobster-shell and salvage plate, heavy and loud and better than skin.
+    category: armor
+    value: 240
+    weight: 7.0
+    rarity: uncommon
+    power_level: 2
+    tags: [heavy, salvage, coastal]
+    lore: The lobster-folk make them best, having opinions about armor that the rest of the coast lacks.
+    narrative_weight: 0.2
+    mitigation: 2
+
+  # --- CONSUMABLES ---
+  - id: saints_water
+    name: Saint's Water
+    description: A stoppered flask of blessed spring-water from a proven shrine; the parishes swear by it and the wounded don't argue.
+    category: consumable
+    value: 30
+    weight: 0.3
+    rarity: common
+    power_level: 1
+    tags: [healing, blessed, single-use]
+    lore: Whether it is the Saint or the clean water that heals is a question the Magisterium has ruled on and the patients have not.
+    narrative_weight: 0.2
+
+  - id: hardtack_and_lobscouse
+    name: Hardtack and Lobscouse
+    description: Ship's biscuit and a tin of salt-meat stew. Technically food, reliably filling, never once enjoyed.
+    category: consumable
+    value: 6
+    weight: 0.5
+    rarity: common
+    power_level: 0
+    tags: [food, survival]
+    lore: The Whalecoast runs on it. So does everyone who has ever been broke on the Whalecoast.
+    narrative_weight: 0.0
+
+  - id: laudanum_draught
+    name: Laudanum Draught
+    description: A small brown bottle of the old tincture — for pain, for sleep, for the long watch, at a price the body keeps charging.
+    category: consumable
+    value: 45
+    weight: 0.2
+    rarity: uncommon
+    power_level: 1
+    tags: [medicine, sedative, single-use]
+    lore: Saint Edgar's parishes know it too well. It quiets the drumbeat-pulse, for a while, and asks for more.
+    narrative_weight: 0.2
+
+  # --- TOOLS ---
+  - id: pilgrim_lantern
+    name: Pilgrim's Lantern
+    description: A shuttered tin lantern with a long wick, carried on the shrine-roads and the off-Corridor tracks.
+    category: tool
+    value: 35
+    weight: 1.0
+    rarity: common
+    power_level: 0
+    tags: [light, travel]
+    lore: A shuttered flame, a saint's medal soldered to the handle, and enough oil for one night's walk between shrines.
+    narrative_weight: 0.1
+
+  - id: lay_ledger
+    name: Lay-Ledger
+    description: A salt-stained account book of catch-shares and debts, kept in a hand only the guild fully reads.
+    category: tool
+    value: 20
+    weight: 0.6
+    rarity: common
+    power_level: 0
+    tags: [record, guild, economic]
+    lore: The lay-ledger is the law on the grounds. Whose name is in it, and for what share, decides more than any saber.
+    narrative_weight: 0.1
+
+  - id: breviary
+    name: Magisterium Breviary
+    description: A pocket book of the offices, the saint-calendar, and the tariff of grace, thumbed soft at the edges.
+    category: tool
+    value: 50
+    weight: 0.4
+    rarity: common
+    power_level: 0
+    tags: [religious, magisterium, reference]
+    lore: It tells you which Saint's day it is, what the Magisterium charges for a miracle, and which regrets are observed this week.
+    narrative_weight: 0.1
+
+  - id: tide_glass
+    name: Tide-Glass
+    description: A pre-war barometer-and-tide-table in a brass case, still reading the weather it was built to read.
+    category: tool
+    value: 110
+    weight: 0.8
+    rarity: uncommon
+    power_level: 1
+    tags: [navigation, weather, coastal]
+    lore: The Mount Washington weather-priests keep the master glasses; this is the pocket kind, and it is right more often than the priests admit.
+    narrative_weight: 0.2
+
+  # --- ANCIENT ARTIFACTS (ids referenced by char_creation.yaml artifact step;
+  #     de-genericized to the Seaboard register, ids kept stable) ---
+  - id: growth_wand
+    name: Growth Wand
+    description: "A humming metal rod that makes plants grow faster when you point it at them. The plants don't always grow right."
+    category: tool
+    value: 28
+    weight: 0.7
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, agricultural]
+    lore: A pre-war agritech relic. The plant-folk of the Adirondacks regard it with the wariness one extends to a stranger holding a knife near the family.
+    narrative_weight: 0.3
+
+  - id: datapad
+    name: Ancient Screen
+    description: "A flat glass rectangle that sometimes shows pictures of the old world. You can't control what it shows."
+    category: tool
+    value: 25
+    weight: 0.5
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, sensor, display]
+    lore: Pre-war glass that flickers awake with images of cities, faces, schematics. The Whitman Circle authenticates the honest ones and burns the lying ones.
+    narrative_weight: 0.3
+
+  - id: purifier
+    name: Screaming Purifier
+    description: "A small box that purifies any liquid poured into it. The catch: it takes a day, and it screams while working."
+    category: tool
+    value: 35
+    weight: 1.0
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, water, survival]
+    lore: A box that makes any liquid drinkable. The scream — high, mechanical, almost a wail — has been mistaken for a saint, a ghost, and a kettle, in that order.
+    narrative_weight: 0.3
+
+  - id: mystery_compass
+    name: Mystery Compass
+    description: "A compass that doesn't point north. It points at something, but you haven't figured out what yet."
+    category: tool
+    value: 22
+    weight: 0.3
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, navigation, mysterious]
+    lore: The needle holds to one unknown referent. The Lo'in say it points at whichever myth you are standing inside. The compass has no opinion.
+    narrative_weight: 0.3
+
+  # --- TREASURE (coins & scrips as held objects — AC6 "present as items") ---
+  - id: roll_of_quarters
+    name: Roll of Quarters
+    description: A paper-wrapped roll of Mint quarters, the denomination a full transaction is reckoned in.
+    category: treasure
+    value: 1000
+    weight: 0.5
+    rarity: common
+    power_level: 1
+    tags: [currency, coin, mint]
+    lore: Forty quarters to the roll, struck to the old dies, the eagle of the Reverse on every one. Heavy in the pocket and heavier to lose.
+    narrative_weight: 0.2
+
+  - id: old_silver_dollar
+    name: Old Silver Dollar
+    description: A pre-Cataclysm silver dollar of the kind the Patroon houses honor and the kind they refuse to see re-struck.
+    category: treasure
+    value: 100
+    weight: 0.1
+    rarity: uncommon
+    power_level: 1
+    tags: [currency, coin, silver, patroon]
+    lore: Up the Hudson it is worth more than its face by a measure no one will write down. The manors pay in it and will not take the new strikes.
+    narrative_weight: 0.3
+
+  - id: mass_pike_token
+    name: Mass Pike Token
+    description: A surviving turnpike toll token, small change along the interstate-corridor segments and worthless off them.
+    category: treasure
+    value: 10
+    weight: 0.05
+    rarity: common
+    power_level: 0
+    tags: [currency, scrip, corridor]
+    lore: Stamped brass from before the Glory. The Corridor crews still take a handful for a stretch of safe rail, by a custom no one decreed.
+    narrative_weight: 0.1
+
+  - id: athenaeum_vellum_note
+    name: Athenaeum Vellum Note
+    description: A manuscript-backed scrip note sealed by the Providence Athenaeum, good in learned circles and nowhere a sternman drinks.
+    category: treasure
+    value: 250
+    weight: 0.05
+    rarity: uncommon
+    power_level: 1
+    tags: [currency, scrip, athenaeum]
+    lore: Each note is sealed against a catalogued holding. Forging one is, to the Whitman Circle, a worse crime than the theft it usually accompanies.
+    narrative_weight: 0.3
+
+  - id: whaling_share_lay
+    name: Whaling Share (Lay)
+    description: A sternman's written lay — a fractional share of a catch, redeemable when the boat comes in and not one day before.
+    category: treasure
+    value: 150
+    weight: 0.05
+    rarity: common
+    power_level: 0
+    tags: [currency, scrip, whalecoast]
+    lore: A poor lay on a good boat beats a rich wage on a wreck. The whole Whalecoast economy is an argument about which is which.
+    narrative_weight: 0.2
+
+# Per-class starting kits — keyed by the six AWN classes the genre ships.
+# Every id below resolves against item_catalog above.
+starting_equipment:
+  Scavenger:
+    - oyster_knife
+    - lay_ledger
+    - hardtack_and_lobscouse
+    - pilgrim_lantern
+  Mutant:
+    - gaff_hook
+    - saints_water
+    - hardtack_and_lobscouse
+  Pureblood:
+    - breviary
+    - saints_water
+    - hardtack_and_lobscouse
+    - pilgrim_lantern
+  Wirewalker:
+    - tide_glass
+    - pilgrim_lantern
+    - hardtack_and_lobscouse
+  Beastkin:
+    - gaff_hook
+    - oilskins
+    - hardtack_and_lobscouse
+  Tinker:
+    - lay_ledger
+    - pilgrim_lantern
+    - hardtack_and_lobscouse
+
+# Starting coin, in cents (the base Mint denomination). Mirrors the genre's
+# relative class scale at coin fidelity — a Pureblood parish-raised with a
+# purse, a Beastkin pound-hand with copper.
+starting_gold:
+  Scavenger: 800
+  Mutant: 300
+  Pureblood: 1500
+  Wirewalker: 500
+  Beastkin: 200
+  Tinker: 1000
+
+philosophy:
+  carry_limit: 20
+  restricted_categories: []
+  progression_gates: {}
+  notes: >-
+    The Seaboard runs on minted coin, not salvage — the Mint never went
+    dark. The parish, the boat, and the manor carry the heavy stuff; what
+    a traveler keeps is what is on their belt, in their purse, and blessed
+    against loss. Track the gun, the lantern, the saint's water, and the
+    thing someone gave you — not every biscuit. If it doesn't drive a
+    scene, it doesn't need to be on the sheet.
