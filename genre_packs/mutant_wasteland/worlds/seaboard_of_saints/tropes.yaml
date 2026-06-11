@@ -1,0 +1,403 @@
+# The Seaboard of Saints — world tropes.
+#
+# Player-readable. These are open situations, not plots: the Seaboard is a
+# functioning world, and what these tropes set in motion is argument, docket,
+# pilgrimage, and rent-day — the recurring business of a civilization that
+# never stopped keeping minutes. Each extends a mutant_wasteland seed-trope but
+# wears its New-Catholic, antiquarian-Americana clothes; the register is
+# literate and dry-witted, never generic post-apoc.
+#
+# ADR-018 / ADR-128: these feed the trope engine (temporal governor + seed-trope
+# deck). tension_level and passive_progression are kept in the governor's pacing
+# band; escalation `at` thresholds ascend 0.25 -> 1.0.
+#
+# Region slugs, factions, and Saints reference cartography.yaml, lore.yaml, and
+# saints.yaml only. NPCs are invented with period-syncretic names; no new
+# regions or factions are coined.
+
+- id: thaw_day_at_the_resorts
+  name: Thaw-Day at the Resorts
+  extends: dead-signal
+  description: >-
+    A cold-room under one of the Borscht-Belt hotels has opened on its pre-war
+    timer in the middle of the season, and a sleeper has come downstairs
+    mid-anecdote into a world that canonized his headliners fifteen centuries
+    ago. The Sleepers' Sodality meets him at the door with coffee and a current
+    calendar; the Catskills Resorts Guild would simply like the man to stop
+    asking the kitchen for kasha at three in the afternoon. The waking rite
+    opens, as it always does, with the gentlest question in the canon — "What
+    year do you believe it to be?" — and nobody likes the answer.
+  triggers:
+    - a cold-room timer cycling open out of season at a Catskills resort
+    - a thawed sleeper appearing downstairs demanding a pre-war menu or headliner
+    - the Sleepers' Sodality dispatching a welcome volunteer
+    - a dispute over a sleeper's standing, coupons, or twenty-year vow
+  narrative_hints:
+    - a vault door under the hotel breathing fog into a warm corridor
+    - a man in a forty-year-old dinner jacket asking which tummler is on tonight
+    - the Sodality's coffee urn carried at a half-run down a service stair
+    - the coupon desk's committee convening in unusual haste
+  tension_level: 0.35
+  escalation:
+    - at: 0.25
+      event: >-
+        A cold-room under the Concord opens eleven weeks early and gives up one
+        Murray Glickman, headliner, last on a Wednesday bill in a year he can
+        still name. Sister-volunteer Faygele Roth of the Sleepers' Sodality gets
+        coffee into him and a calendar in front of him; he asks, reasonably, to
+        be paid for the room nights he slept through.
+      npcs_involved: [Faygele Roth, Murray Glickman]
+      stakes: A sleeper is awake out of season, and his back pay is a theological question.
+    - at: 0.5
+      event: >-
+        The Catskills Resorts Guild's house steward, Anselm Pesce, wants
+        Glickman moved to the Sodality's junior house and off the Guild's
+        ledger; the Sodality's coupon desk produces a pre-war comp voucher
+        Glickman swears entitles him to the season. The committee that prices
+        such vouchers has been arguing the rate for two hundred years and is
+        delighted to argue this one too.
+      npcs_involved: [Anselm Pesce, Faygele Roth, Murray Glickman]
+      stakes: Whether a sleeper's pre-war paper binds the living parish that thawed him.
+    - at: 0.75
+      event: >-
+        Glickman, restless and unbilled, walks into Saint Henny's chapel at
+        Brown's during the mourner's meal and does ten minutes uninvited. The
+        room laughs. The tummler on duty does not, because the office is held by
+        apprenticeship and Glickman has filed no petition — and a Catskills house
+        without one is canonically incomplete, but a house with two is a fight.
+      npcs_involved: [Murray Glickman, Faygele Roth, Anselm Pesce]
+      stakes: An unbilled sleeper has claimed a sanctioned office without ordination.
+    - at: 1.0
+      event: >-
+        The Sodality petitions the local bishop to recognize Glickman's standing
+        and his comp voucher both, and the Guild counter-petitions to have him
+        billed, housed, or sent back down — every party citing a different one
+        of the three running calendars for when, exactly, his nights were owed.
+        The bishop sets a date. The thaw-floor timers, indifferent, ready the
+        next room.
+      npcs_involved: [Faygele Roth, Anselm Pesce, Murray Glickman]
+      stakes: A sleeper's full place in the living world — billed guest, comp guest, or coffee and the door.
+  passive_progression:
+    rate_per_turn: 0.014
+    rate_per_day: 0.05
+
+- id: the_miracle_on_the_docket
+  name: The Miracle on the Docket
+  extends: mutation-tide
+  description: >-
+    The Magisterium of the Seaboard convenes in Plenary form to rule on a
+    contested case — a marriage petitioned between two marks the Registry is not
+    certain it can read together, turning on whether one party is canonically
+    Saint-marked at all or a Wild Mutant still inside the year's catechumenate.
+    The doctrine is precise and the parties are in love, which is exactly the
+    kind of problem the canon was built to keep arguing politely forever. The
+    Sisters of the Whitman Circle have opinions about the paperwork.
+  triggers:
+    - a marriage petitioned between two marks the Registry has not paired before
+    - a Wild Mutant's catechumenate ending in a contested pattern-reading
+    - the Magisterium calling a Plenary session on a miracle or status dispute
+    - the Sisters of the Whitman Circle filing an attribution brief
+  narrative_hints:
+    - schemata and promulgations circulating in fair copy before a session
+    - a couple waiting on a bench outside a chancery with their parish letters
+    - an Athenaeum Sister cross-checking a mark against a marginal note
+    - the profound, tactical patience of a body that has all the time there is
+  tension_level: 0.3
+  escalation:
+    - at: 0.25
+      event: >-
+        At the Providence see, the bishop's court takes up the petition of
+        Concetta Aliberti, of an Arthur Avenue line that reads clean to Saint
+        Francis, and a quarry diver from the coves whose congenital marks no
+        clerk will swear are Saint Folly's rather than no Saint's at all. The
+        marriage-rite requires a mark on both. The reading is the whole case.
+      npcs_involved: [Bishop Aurelio Crelli, Concetta Aliberti]
+      stakes: Whether two people may be married under a patron's hand depends on reading a body.
+    - at: 0.5
+      event: >-
+        Sister Marguerite Folkard of the Athenaeum files for the Whitman Circle:
+        the diver is no Wild Mutant but an unsigned manuscript awaiting
+        attribution, and the Sisters love an attribution problem. She offers the
+        Custom-House precedent of Saint Hester's reading — the mark that writes
+        itself — and asks the court, with terrible courtesy, what it thinks a
+        signature is.
+      npcs_involved: [Sister Marguerite Folkard, Bishop Aurelio Crelli]
+      stakes: A bibliographic order has made the couple's marriage a test of how the canon reads at all.
+    - at: 0.75
+      event: >-
+        The bishop refers the contested reading upward; a Plenary panel is
+        seated, schemata drawn, and the diver's whole cove arrives to testify
+        that the marks vary by cove as founder lines do, which is true and
+        canonical and helps no one decide. The couple is asked, kindly, to wait,
+        which on the Seaboard is its own kind of verdict.
+      npcs_involved: [Bishop Aurelio Crelli, Sister Marguerite Folkard, Concetta Aliberti]
+      stakes: The case has become precedent; whatever the panel rules will read every cove diver after.
+    - at: 1.0
+      event: >-
+        The panel must promulgate: recognize the diver's pattern as Saint
+        Folly's and let the rite proceed; remand to a fresh catechumenate and
+        make them wait a year more; or open a petition for a new Saint, which in
+        two hundred years has carried exactly once. Whatever it rules is minuted,
+        and the minutes outlive everyone in the room.
+      npcs_involved: [Bishop Aurelio Crelli, Sister Marguerite Folkard, Concetta Aliberti]
+      stakes: A marriage, a doctrine of the un-marked, and a precedent the Registry will cite for centuries.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.04
+
+- id: the_mayflower_low_and_wakeless
+  name: The Mayflower, Low and Wakeless
+  extends: dead-signal
+  description: >-
+    The Mayflower is sighted again off the Whalecoast — low in the water,
+    leaving no wake, holding a course no living pilot set — and the question is
+    never whether the hulk is real but what it is owed. Saint Plymouth's canon
+    binds every compact ever signed and forbids the unsigning; a ship that
+    carried the first compact of all, come round again, is a debt with a deck.
+    The shore watches. The Massasoit-Bradford Compact's keepers watch harder.
+  triggers:
+    - a drifting pre-war hulk or the Mayflower relic sighted off Plymouth or the Whalecoast
+    - a vessel holding course with no wake and no answering hail
+    - the Massasoit-Bradford Compact's keepers convening over a sighting
+    - a salvage claim filed against a ship Saint Plymouth's canon may bind
+  narrative_hints:
+    - a three-master low at the tideline, wakeless, fog declining to part for her
+    - the toothed Rock at Plymouth said to grind on nights she is seen
+    - compact-keepers from Plymouth and Mashpee both reaching for the receipts
+    - fog-lanterns lit along the Whalecoast ledges that no keeper admits to lighting
+  tension_level: 0.4
+  escalation:
+    - at: 0.25
+      event: >-
+        Sternman Eleuthera Pesha out of New Bedford raises a three-master off
+        the Aquinnah cliffs, low and wakeless, that will not answer a hail and
+        will not close the shore. By the time she puts about it is gone, but the
+        Seaman's Bethel rings the watch-bell, and on the cape the Rock is said to
+        have ground its teeth all night.
+      npcs_involved: [Eleuthera Pesha]
+      stakes: The Mayflower is sighted; the shore must decide whether a sighting is a summons.
+    - at: 0.5
+      event: >-
+        Elder-keeper Wamsutta Tobey of Mashpee opens the Massasoit-Bradford
+        receipts: if the hulk carries the first compact, it carries the
+        Plymouth side of a live treaty, and both parties keep the originals.
+        Plymouth's keeper, Standfast Howland, agrees it is a debt with a deck —
+        and disagrees, in due form, about whose.
+      npcs_involved: [Wamsutta Tobey, Standfast Howland]
+      stakes: A ghost ship's cargo may be live treaty, and two compact-keepers each hold the original.
+    - at: 0.75
+      event: >-
+        The hulk grounds — or seems to — on a kettle-pond shoal inside the cape
+        where no three-master could float, and a salvage syndicate out of the
+        Sunken Bight files a claim before the tide turns. Saint Plymouth's canon
+        is read against them at once: a compact filed at the Rock may never be
+        unsigned, and a ship is not flotsam if it came to be received.
+      npcs_involved: [Standfast Howland, Wamsutta Tobey, Eleuthera Pesha]
+      stakes: Whether the Mayflower is salvage to be claimed or a compact to be kept.
+    - at: 1.0
+      event: >-
+        The keepers must board her together or not at all, and what is in the
+        hold — a compact, a relic, an empty deck the fog made into a ship — will
+        be witnessed and minuted, because on this coast a relic is made
+        canonical by witness, not provenance, exactly as the Rock was. Whatever
+        they sign aboard her binds, and Saint Plymouth's canon forbids unsigning it.
+      npcs_involved: [Wamsutta Tobey, Standfast Howland, Eleuthera Pesha]
+      stakes: A boarding that becomes a compact the moment it is witnessed, binding forever.
+  passive_progression:
+    rate_per_turn: 0.013
+    rate_per_day: 0.045
+
+- id: the_calico_rent_day
+  name: The Calico Rent-Day
+  extends: ruin-fever
+  description: >-
+    Up the Hudson the Patroon houses still collect manor rents argued in the
+    original paperwork, and the tenant farmers still answer the way they did
+    from 1839 to 1845 — in calico disguise, tin horns over the hills, the
+    Anti-Rent War reopening with every rent-day. The rents survived the
+    rebellion and the apocalypse both. So did the calico. Saint Washington of
+    Sunnyside is venerated and feared up here, and a thing becomes true by being
+    told well, which both sides know.
+  triggers:
+    - a Patroon house serving rent or eviction on tenant farmers up the Hudson
+    - tin horns answering over the hills on a rent-day
+    - tenant farmers gathering in calico disguise against a manor
+    - a manor lease or grant disputed in its original pre-war paperwork
+  narrative_hints:
+    - bolts of calico cut down for masks in a barn loft before dawn
+    - a Patroon houndsman asking your business at every covert gate
+    - tin dinner-horns passing a signal ridge to ridge over the manor land
+    - a lease in a strongbox older than the Glory, both parties citing the same clause
+  tension_level: 0.4
+  escalation:
+    - at: 0.25
+      event: >-
+        The Van Rensselaer steward, Cornelis Bly, posts back-rents on the
+        Rensselaerswijck tenants and a writ of distraint on Hosea Quackenbush's
+        team and plough. Quackenbush reads the original grant aloud at the gate
+        and finds the clause that has held since before the water changed. By
+        nightfall the tin horns are answering over three ridges.
+      npcs_involved: [Cornelis Bly, Hosea Quackenbush]
+      stakes: An eviction served on paper that may not, by its own old wording, allow it.
+    - at: 0.5
+      event: >-
+        The calico is cut and worn. A masked tenant band turns the distraint
+        agent off the Quackenbush land without a blow, in the old manner, and
+        the steward calls it riot while the tenants call it the lease enforcing
+        itself. The Patroon houndsmen close the coverts; the rent-day has become
+        a standoff conducted entirely in documents and disguises.
+      npcs_involved: [Cornelis Bly, Hosea Quackenbush]
+      stakes: Whether masked enforcement of an old clause is rebellion or contract.
+    - at: 0.75
+      event: >-
+        The dispute is carried to a Saint Washington vigil at the Old Dutch
+        burying ground, where a tale begun on one bank must be finished before
+        the far one — and both sides understand the manor's whole title is a
+        story, told well or told badly. A storyteller is engaged. The Horseman's
+        glen lies between the manor and the bridge, and no one travels it after
+        moonset to deliver papers either way.
+      npcs_involved: [Hosea Quackenbush, Cornelis Bly]
+      stakes: The manor's title itself is on trial as a story, and stories here are load-bearing.
+    - at: 1.0
+      event: >-
+        The case goes before the see's court with the original paperwork on the
+        table and the calico folded in evidence. The court can void the
+        distraint and let the old clause stand, uphold the Patroon and let the
+        horns blow another rent-day, or refer the whole manor grant for reading —
+        but whatever it rules, the rents have outlasted a rebellion and an
+        apocalypse, and the calico is already cut for next year.
+      npcs_involved: [Cornelis Bly, Hosea Quackenbush]
+      stakes: A manor's rents, a tenant's plough, and a rebellion the canon never let fully close.
+  passive_progression:
+    rate_per_turn: 0.013
+    rate_per_day: 0.045
+
+- id: the_loin_at_swan_point
+  name: The Lo'in at Swan Point
+  extends: dead-signal
+  description: >-
+    The Lo'in make their one sanctioned pilgrimage outside the repertoire — to
+    the Swan Point grave of the pre-war writer of horrors who never once wrote
+    of people like them as monsters — to reclaim him by reading him aloud over
+    his stone, lovingly miscast. The traditions find the Lo'in unsettling in
+    inverse proportion to how recently they have seen a performance, and this
+    year the reading draws a crowd that has not seen one in a while. Saints are
+    roles, the Lo'in hold, not rewards; the rest of Providence is not so sure.
+  triggers:
+    - the Lo'in assembling for their sanctioned pilgrimage to Swan Point
+    - a Lo taking a name and a part for the graveside reading
+    - the Whitman Circle or Magisterium observing the pilgrimage with unease
+    - a Wild Mutant auditioning for a part among the Lo'in
+  narrative_hints:
+    - a procession in mutated flesh winding up through Providence to the cemetery
+    - a Lo reading horror aloud over a stone, gently, deliberately miscast
+    - Athenaeum Sisters watching from the gate, courteous and unsettled
+    - the Lo'in holding auditions where everyone else holds opinions
+  tension_level: 0.3
+  escalation:
+    - at: 0.25
+      event: >-
+        Lo Edgar-of-the-Raven leads the company up College Hill to Swan Point
+        for the graveside reading, and a Wild Mutant the parishes have not
+        placed — calling herself only Lo-in-waiting — walks at the back asking
+        to audition. The Lo'in, unlike everyone with an opinion about the
+        un-marked, actually hold auditions. The cemetery wardens watch the gate.
+      npcs_involved: [Lo Edgar-of-the-Raven, the Lo-in-waiting]
+      stakes: An un-marked stranger seeks a role where the canon would give her only a docket.
+    - at: 0.5
+      event: >-
+        The reading begins, and it is beautiful and wrong in the exact way it
+        means to be — the old terrors recast as kin. Sister Avice Pelletreau of
+        the Athenaeum, sent to observe, recognizes the text as pre-war scripture
+        the Sisters preserve and the staging as something her order has no
+        license to call either heresy or art. She stays. That is itself a stir.
+      npcs_involved: [Lo Edgar-of-the-Raven, Sister Avice Pelletreau]
+      stakes: A bibliographic order's preserved scripture is being lovingly miscast in front of it.
+    - at: 0.75
+      event: >-
+        The Lo-in-waiting takes a part mid-reading and is good — good enough that
+        the company seats her, which means a Wild Mutant has been cast in a role
+        the Magisterium would say she has no mark to bear. Word reaches Federal
+        Hill before the procession comes back down the hill. Saint Francis's
+        parish would like a word; so, more gently, would the Sisters.
+      npcs_involved: [the Lo-in-waiting, Lo Edgar-of-the-Raven, Sister Avice Pelletreau]
+      stakes: The Lo'in have given the un-marked a place the canon reserves for the marked.
+    - at: 1.0
+      event: >-
+        The pilgrimage comes down off Swan Point with a new cast member and an
+        old argument made fresh: are saints roles or rewards, and may a person
+        the water did not sign perform one truly? The Magisterium does not stage
+        and the Lo'in do not canonize, and neither will yield the word; the
+        Sisters file the whole thing as an attribution problem and look, for
+        once, genuinely pleased.
+      npcs_involved: [Lo Edgar-of-the-Raven, the Lo-in-waiting, Sister Avice Pelletreau]
+      stakes: Whether a role honestly performed is its own kind of mark — and who gets to rule on it.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.04
+
+- id: the_regret_in_due_form
+  name: The Regret in Due Form
+  extends: ruin-fever
+  description: >-
+    Every August 11 the Saturday Club — the Brahmin Remnant's dinner circle,
+    descended from Emerson's table of 1855 — observes the anniversary of the
+    1834 burning of the Ursuline convent at Charlestown with what it calls
+    regret expressed in due form, and the Magisterium accepts the regret, in due
+    form, and nothing is concluded, by mutual and centuries-old agreement. The
+    form is exquisite. The regret is real. The wound is tended like a garden,
+    which is to say never allowed to close.
+  triggers:
+    - the August 11 anniversary of the Charlestown convent burning approaching
+    - the Saturday Club preparing its regret expressed in due form
+    - the Magisterium preparing its annual acceptance of the regret
+    - any party proposing to actually conclude the matter
+  narrative_hints:
+    - the Charlestown convent-ground swept and dressed, still mourned
+    - the Somerset Club's plate laid for a dinner that resolves nothing
+    - a Magisterium clerk drafting an acceptance identical to last year's
+    - the word "honest" used by a Brahmin as the highest compliment left to him
+  tension_level: 0.25
+  escalation:
+    - at: 0.25
+      event: >-
+        At 42 Beacon Street the Saturday Club's recording secretary, Endicott
+        Lowell Phair, drafts this year's regret expressed in due form, the form
+        unchanged in centuries; word goes down the line to Brookland that the
+        Magisterium should ready its acceptance. A debt their tradition incurred
+        and cannot retire is being, once again, exquisitely acknowledged.
+      npcs_involved: [Endicott Lowell Phair]
+      stakes: The annual rite of a wound deliberately kept open is set in motion.
+    - at: 0.5
+      event: >-
+        Monsignor Brigid Caffrey, sent up from the southern see to receive the
+        regret, finds the convent-ground dressed and a younger Brahmin, Prudence
+        Cabot Sears, asking aloud why the thing cannot simply be concluded after
+        so long. The elders go quiet. A gentleman does not dispute a grade; one
+        does not, either, propose to close an account the Church has chosen to
+        keep open.
+      npcs_involved: [Monsignor Brigid Caffrey, Prudence Cabot Sears]
+      stakes: "A younger Brahmin has proposed the one thing the ritual exists to prevent: an ending."
+    - at: 0.75
+      event: >-
+        The proposal to conclude reaches the Magisterium, which must decide
+        whether to accept a final settlement or refuse one — and refusing the
+        end of a grievance is a stranger act than refusing the grievance. The
+        Sisters of the Whitman Circle, asked for the record, note that some
+        manuscripts are kept unfinished on purpose, and that the difference is
+        not semantic.
+      npcs_involved: [Monsignor Brigid Caffrey, Prudence Cabot Sears, Endicott Lowell Phair]
+      stakes: Whether a centuries-old mutual grief should be allowed, at last, to end.
+    - at: 1.0
+      event: >-
+        August 11 arrives. The regret is offered in due form and the acceptance
+        is given in due form, exactly as ever — or, this once, someone declines
+        the form, and the Seaboard discovers what it has been holding together by
+        agreeing never to finish. Either way the plate is laid, the convent-ground
+        is swept, and the word "honest" is spoken across the table like an
+        absolution nobody has license to grant.
+      npcs_involved: [Endicott Lowell Phair, Monsignor Brigid Caffrey, Prudence Cabot Sears]
+      stakes: The anniversary itself — kept open another year, or concluded and gone.
+  passive_progression:
+    rate_per_turn: 0.012
+    rate_per_day: 0.04

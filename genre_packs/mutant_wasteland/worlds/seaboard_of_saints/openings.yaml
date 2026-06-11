@@ -1,0 +1,516 @@
+# The Seaboard of Saints — session openings.
+# Mutant_wasteland genre; the syncretic-Catholic Eastern Seaboard, Penobscot
+# Bay to the Potomac, fifteen centuries after the Glory. NOT spoiler-exempt
+# (only flickering_reach is): every line here is open table canon, situation
+# not plot.
+# Spec: docs/superpowers/specs/completed/2026-05-01-canned-openings-design.md §1.1
+#
+# Hard contracts (validators):
+#   - first_turn_invitation must NOT contain "?"
+#   - establishing_narration / first_turn_invitation must NOT contain
+#     [authored / [TBD / [migrated / [placeholder
+#   - location-anchored entries set setting.location_label (no chassis_instance)
+#   - exactly one anchor per setting
+#
+# Voice contract: literate, antiquarian-Americana, dry, syncretic Catholic,
+# place-specific. NEVER generic post-apoc (no wastes/raiders/scavengers, no
+# Mad-Max or Fallout register). The Seaboard does not remember a fall; it
+# remembers a revision. The trains run, the Mint strikes, the miracles are
+# heard on the docket in order. Each of the six pins to a DIFFERENT region so
+# the imagery never repeats: cape_ann, providence, boston_common, dc,
+# catskills, hudson_valley.
+
+version: "0.1.0"
+world: seaboard_of_saints
+genre: mutant_wasteland
+
+openings:
+  # ---------------------------------------------------------------
+  # SOLO — Folly Cove, the Sodality's town meeting
+  # ---------------------------------------------------------------
+
+  - id: folly_cove_town_meeting
+    name: "Folly Cove, the Sodality Meeting"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      region_id: cape_ann
+      location_label: "the Sodality hall at Pigeon Cove, a granite fish-house above the quarry pools, the evening of the Cape Ann confraternity's monthly meeting"
+      situation: >-
+        Monthly meeting night at the Sodality hall, the tide just turned
+        below the windows. The fishing families of Lanesville and Folly
+        Cove and Annisquam have come up from the cove in twos and threes,
+        and the salt-water cask by the door has already been topped off
+        for any marked hand that needs its evening dip.
+    tone:
+      register: "wry, close-kept, salt-cured — a founder village naming its own oddness with the self-deprecation of people who have fished the same ledges for fifteen hundred years"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - moving the player without their input
+        - generic "you wake up in danger" framing
+        - generic post-apoc vocabulary (wastes/raiders/scavengers)
+        - a broker / quest-giver walking up to the PC
+        - any Lovecraft / Innsmouth horror register (this is a real coastal-isolate village, NOT a fish-cult)
+        - making the congenital marks sinister rather than ordinary and self-named
+        - ending the turn with a question
+    establishing_narration: |
+      The Sodality hall at Pigeon Cove is granite below and tarred shingle
+      above, a fish-house that grew a meeting-room, and it smells the way
+      it always smells on meeting night — pine pitch from the benches, cod
+      brine off the oilskins, and underneath both the cold mineral breath
+      of the flooded quarry pool that the back door opens onto. Somebody
+      has lit the lamps with the good whale-oil tonight, which means
+      somebody wants the room to look its best.
+
+      The families are coming up from the cove the way they do, in twos
+      and threes, nodding and not saying much. You know most of the marks
+      in the room without being told: the Cove webbing on the hands of the
+      Aiello girls, mending the same seine across two generations; old
+      Toivo Maki with the rod-bright eyes that see the dim sea clear and
+      nothing on a bright day, settling onto the front bench where the
+      light is kindest to him. The salt-cask by the door has a tin dipper
+      chained to it, and a Lanesville boy not yet old enough to fish takes
+      his evening dip at it without breaking off his argument with his
+      cousin.
+
+      On the long wall hangs the Sodality's roll of Saint Folly of the
+      Cove — a linoleum block-print on linen, never a painting, because
+      the Cove does its own saint in its own manner — webbed hands mending
+      a net beside the Annisquam light. Below it the deacon has chalked the
+      evening's three points on a slate, and the third point has been
+      underlined twice, which in a village this size is the loudest thing
+      anyone has said all week.
+
+      Through the seaward windows the tide is turning in the quarry pool,
+      that slow green wheel of cold water the divers swear by, and beyond
+      it the last working light of the day is sliding off the granite. The
+      benches are filling. The kettle at the back is coming to the boil for
+      the after-meeting tea nobody will admit is the real reason half of
+      them came.
+    first_turn_invitation: |
+      The lamps are lit with the good oil and the deacon's third chalked
+      point is underlined twice. The benches fill around you and the kettle
+      climbs toward the boil.
+
+  # ---------------------------------------------------------------
+  # MULTIPLAYER — Swan Point, the Lo'in pilgrimage
+  # ---------------------------------------------------------------
+
+  - id: swan_point_pilgrimage
+    name: "Swan Point, the Reading at the Stone"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+    setting:
+      region_id: providence
+      location_label: "the Phillips family plot at Swan Point Cemetery, Providence, gathering hour for the Lo'in's sanctioned reading over the writer's grave"
+      situation: >-
+        Late afternoon at Swan Point, the river bend silver below the
+        terraces. The Lo'in have come up the cemetery road in mutated
+        costume for the sanctioned reading at the stone, and the troupe is
+        unpacking its folding chairs and its battered reading copies in the
+        long light under the copper beeches.
+    tone:
+      register: "tender, theatrical, lovingly miscast — performers reclaiming a writer of horrors who never once wrote of people like them as monsters, and doing it gently"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - re-introducing the troupe members to one another
+        - generic post-apoc vocabulary (wastes/raiders/scavengers)
+        - a broker / quest-giver walking up to the PC
+        - playing the Lo'in's mutations for horror (the whole point is the inversion — they reclaim the monster, they are not it)
+        - having someone prophesy or interrupt the reading on turn 1
+        - ending the turn with a question
+    establishing_narration: |
+      Swan Point keeps its dead on terraces above the river bend, and the
+      copper beeches have gone to their late-summer rust, so the whole
+      slope is the color of an old book left in a window. The Seekonk runs
+      silver below. You have come up the cemetery road with the troupe, the
+      folding chairs knocking against the hand-cart, the reading copies so
+      soft with use their spines have given up entirely.
+
+      The Lo'in are in costume, which at Swan Point means in flesh: Lo
+      Edgar-of-the-Raven with the high black stock collar and the bruised
+      midnight eyes the part requires, the twins who play the brown
+      shuttered houses of the tales with their own grown-strange height,
+      the young one in whatever this season's casting has made of him. None
+      of you find each other monstrous. That is rather the point of the
+      pilgrimage. The man under this stone wrote his horrors of crumbling
+      lines and tainted blood and the wrong shape glimpsed at the window,
+      and he never once, not in all of it, wrote of people like you that
+      way — so you come and read him aloud over his grave and cast him in
+      the only honest medium left for him, which is yourselves.
+
+      The stone is modest for the weight it carries. The grass around it
+      has been worn to a patient bald patch by feet exactly like these. Old
+      copper pennies have been pressed into the turf at the base, alms left
+      by earlier troupes, green now and half-swallowed by the ground. Cut
+      flowers, mostly gone over. A pencil, points down, planted like a
+      small flag by some pilgrim who knew the saint of the next county
+      over and got the rite slightly wrong, lovingly.
+
+      The light is going long and gold and the air smells of cut grass and
+      river mud and the faint metal of the old coins. Somewhere down the
+      terrace a groundskeeper's mower has stopped out of courtesy. The
+      troupe is setting the chairs in their half-circle. The first reader
+      is wetting a thumb to find her place in a copy that has been found
+      and lost in that exact spot a hundred times before.
+    first_turn_invitation: |
+      The chairs come round into their half-circle and the beeches burn
+      their late copper above the stone. The first reader finds her place
+      and the river runs silver below the terrace.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: familiar
+      shared_history_seeds:
+        - "You travel as a Lo'in troupe and have read this stone together before — the casting shifts season to season but the pilgrimage does not, and each of you knows which line the others always flub and never mentions it."
+        - "Somewhere in the hand-cart is the troupe's shared reading copy, its spine entirely gone, annotated in three or four different hands across more years than any one of you has been alive; whose marginalia is whose is a settled and unspoken matter."
+        - "One of you carries the alms-pennies wrapped in a kerchief, counted by hand on the walk up as the Magisterium teaches, because the counting is the prayer and the troupe does it whether or not it believes the rest."
+      narrator_guidance: >-
+        Treat them as an assembled Lo'in troupe at the graveside; do not
+        re-introduce them or stage a meeting. The reading is the anchor.
+        Do NOT play their mutations for horror — the entire theology of
+        this scene is the inversion. Do not interrupt the gathering with a
+        prophecy, a Magisterium emissary, or any NPC arrival on turn 1; the
+        complication, if any, grows from what the troupe chooses to do at
+        the stone.
+
+  # ---------------------------------------------------------------
+  # SOLO — Boston Common, the Ursuline anniversary
+  # ---------------------------------------------------------------
+
+  - id: ursuline_anniversary
+    name: "Charlestown, Regret in Due Form"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      region_id: boston_common
+      location_label: "the Charlestown convent-ground above the Mystic, the morning of the August 11 observance of the 1834 Ursuline burning"
+      situation: >-
+        The eleventh of August, the morning of the observance. On the
+        convent-ground at Charlestown — grass and a low foundation-line
+        where the Ursuline house stood until the mob burned it — the
+        Magisterium's deacons have set their chairs facing the Saturday
+        Club's, and the two delegations are arriving along their separate
+        paths to keep the rite that concludes nothing, exactly as it
+        concludes nothing every year.
+    tone:
+      register: "courteous, glacial, exquisitely controlled — an old grief tended like a garden between two parties who have agreed across centuries to settle nothing"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - moving the player without their input
+        - generic "you wake up in danger" framing
+        - generic post-apoc vocabulary (wastes/raiders/scavengers)
+        - a broker / quest-giver walking up to the PC
+        - letting the tension boil over on turn 1 (the entire point is that it never does — the regret is real, the form is exquisite, nothing concludes)
+        - making either side cartoonishly villainous (the Brahmin remnant is humble in the way of people for whom humility is a finer carriage)
+        - ending the turn with a question
+    establishing_narration: |
+      The convent-ground at Charlestown is a green rectangle above the
+      Mystic, and the only architecture left on it is a foundation-line in
+      the grass, a low stone seam you could step over without noticing if
+      nobody had told you what burned here. Somebody always tells you. On
+      the morning of the eleventh of August the grass is cut close, the dew
+      not yet off it, and two sets of folding chairs have been set out
+      facing one another with a courteous lane of empty turf between.
+
+      The Magisterium's people come up from the Catholic parishes below —
+      Charlestown and Southie deacons in their plain black, a cantor, two
+      acolytes carrying nothing in particular with great ceremony. The
+      Saturday Club comes the other way, down from the Hill, and they are a
+      study: linen worn like an apology, the descendants of Emerson's
+      dinner table carrying the one debt their tradition incurred and
+      cannot retire, humble in the way of people for whom humility is the
+      finer carriage. The two delegations do not mix on the approach. They
+      have not mixed on the approach in a very long time.
+
+      The air over the ground is river-cool and smells of cut grass and the
+      brackish low tide off the Mystic and, faintly, of the beeswax tapers
+      the cantor's boy is fitting into their holders along the
+      foundation-line. A single brass censer has been set out and not yet
+      lit. On a small draped table between the two seatings rests the
+      thing the whole rite turns on: the Saturday Club's written regret,
+      expressed in due form, in the same exquisite hand it is rendered in
+      every August, waiting to be read aloud and accepted, in due form,
+      and concluded by nobody.
+
+      You can hear the city working below the ground — a tram bell down
+      toward the navy yard, gulls over the tide, the ordinary Tuesday of a
+      Boston that has had fifteen centuries to learn how to hold a grudge
+      politely. Up here the two sets of chairs face each other across their
+      lane of grass, filling slowly, and the foundation-line runs between
+      them like an underscored sentence nobody will finish.
+    first_turn_invitation: |
+      The tapers go into their holders along the burned foundation-line and
+      the draped regret waits on its table. The two delegations take their
+      facing chairs across the lane of cut grass.
+
+  # ---------------------------------------------------------------
+  # MULTIPLAYER — D.C., the Smithsonian reliquary dispute
+  # ---------------------------------------------------------------
+
+  - id: smithsonian_artifact_dispute
+    name: "Brookland, the Contested Relic"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+    setting:
+      region_id: dc
+      location_label: "the authentication anteroom of the Smithsonian Reliquary Order in Brookland, the morning a contested pre-war relic is brought up for examination"
+      situation: >-
+        Morning in the authentication anteroom, the holy machines humming
+        through the wall from the great hall. The Smithsonian Reliquary
+        Order has brought a contested pre-war relic up from the vaults for
+        examination, and a delegation of the Sisters of the Whitman Circle
+        has come down the Corridor to press their senior claim to
+        authenticate it — both parties early, both parties polite, the
+        relic itself still under its cloth on the central table.
+    tone:
+      register: "hushed, archival, bone-dry institutional courtesy — two learned orders circling an attribution problem in a room where raising one's voice is the only unthinkable sin"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - re-introducing the party members to one another
+        - generic post-apoc vocabulary (wastes/raiders/scavengers)
+        - a broker / quest-giver walking up to the PC
+        - revealing what the relic actually is or settling the dispute on turn 1 (the attribution problem is the open situation; do not pre-decide it)
+        - any action-movie heist register (this is a scholarly jurisdiction dispute conducted in whispers)
+        - ending the turn with a question
+    establishing_narration: |
+      The anteroom of the Reliquary Order is small and over-furnished in
+      the Brookland manner, all dark wainscot and brass reading-lamps with
+      green glass shades, and through the wall you can feel more than hear
+      the great hall where the holy machines are kept — that low devotional
+      hum the Air and Space cathedral throws off, felt in the floorboards,
+      in the teeth, a cathedral of engines praying at idle. Little Rome
+      keeps its relics warm.
+
+      The party has come down the southern Corridor on the early leg, the
+      Smithsonian's spires coming up on the skyline at the end the way the
+      clerks promised they would. You are here because someone needs to be
+      here who is not the Order and is not the Sisters, and the room makes
+      that role plain the moment you enter: two delegations already seated
+      along opposite walls, both arrived early, both pretending the early
+      arrival means nothing. The Reliquary canons in their slate-gray, a
+      cataloguer's loupe on a ribbon at every throat. The Sisters of the
+      Whitman Circle across from them, down from the Athenaeum, the senior
+      house's authority worn lightly and entirely without doubt — for the
+      Sisters do love an attribution problem, and this is plainly a
+      magnificent one.
+
+      On the central table, under a square of unbleached linen weighted at
+      the corners with brass, is the thing they are arguing about. You are
+      not yet meant to know what it is. The cloth gives away nothing but a
+      shape and a seriousness; the brass weights gleam under the
+      green-shaded lamp; a fresh pair of cotton gloves has been laid beside
+      it, palm-up, for whichever order's hand the morning decides may touch
+      it first.
+
+      The smell is paper and machine-oil and the particular cold of a room
+      kept too dry on purpose, the dryness that keeps the dead correspondents
+      legible. Nobody is speaking above the register of the hum through the
+      wall. A clerk pours water that nobody drinks. The senior Sister settles
+      her loupe and the senior canon settles his, and the two of them regard
+      the linen square with the terrible courtesy of people who have not yet
+      begun and already disagree about everything.
+    first_turn_invitation: |
+      The relic waits under its weighted linen and the holy machines hum
+      through the wall. Both delegations settle their loupes across the
+      table from one another and the morning's first cotton glove lies
+      palm-up beside the cloth.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: familiar
+      shared_history_seeds:
+        - "You came down the Corridor together as the neutral party — neither Reliquary Order nor Whitman Circle — which means each of you has, at some point on the train, privately wondered why the others were chosen for this and decided not to ask."
+        - "Somewhere among you is a letter of standing, stamped by a Magisterium see, that names this party and no other as fit to witness the examination; whoever carries it has been very careful about which inner pocket it rides in."
+        - "On the southern leg, when the Smithsonian's spires came up on the skyline, one of you said something that made the rest decide you would do, and the matter of whether you trust one another was quietly settled then without a vote."
+      narrator_guidance: >-
+        Treat them as an assembled neutral delegation; do not re-introduce
+        them or recap the train down. The contested relic is the anchor —
+        do NOT reveal what it is or resolve the jurisdiction dispute on turn
+        1; that attribution problem is the open situation for the table to
+        work. Keep every voice under the register of the hum through the
+        wall. No heist beats, no raised voices; the unthinkable sin in this
+        room is volume. The complication grows from what the party chooses
+        to do at the table.
+
+  # ---------------------------------------------------------------
+  # SOLO — the Catskills, a Sleeper's thaw-day
+  # ---------------------------------------------------------------
+
+  - id: catskills_thaw_day
+    name: "Brown's Hotel, the Waking"
+    triggers:
+      mode: solo
+      backgrounds: []
+    setting:
+      region_id: catskills
+      location_label: "the cold-room corridor beneath Brown's Hotel in the Catskills, the morning a Sleeper thaws mid-season into the Sodality's welcome"
+      situation: >-
+        Mid-season at Brown's, and one of the pre-war cold-rooms has begun
+        its thaw on a timer nobody maintains. The Sleepers' Sodality has
+        done what it always does — coffee on, a current calendar in hand,
+        and a volunteer warming up the only line of his liturgy, which is
+        "yes, really," in a reassuring tone. You are in the corridor when
+        the door begins to cycle.
+    tone:
+      register: "warm, deadpan, comic-dystopian — the Borscht Belt as functioning afterlife, where the punchlines are liturgy and attendance is excellent"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - moving the player without their input
+        - generic "you wake up in danger" framing (the thaw is routine and kindly here, not a horror)
+        - generic post-apoc vocabulary (wastes/raiders/scavengers)
+        - a broker / quest-giver walking up to the PC
+        - playing the cryo-thaw for body-horror or institutional menace (the Sodality meets sleepers with coffee, not clipboards-of-doom)
+        - ending the turn with a question
+    establishing_narration: |
+      The cold-room corridor under Brown's runs below the kitchens, and you
+      can smell the kitchens from here — kasha and onions and a vat of
+      coffee that the Sodality keeps going on principle, because the first
+      thing a thawed guest wants, every single time, going back two hundred
+      years, is a cup of coffee and to be told what year it is in that
+      order. The walls down here sweat. The pre-war timer ticks somewhere
+      behind the panel in a rhythm nobody has ever managed to read, and
+      this morning, mid-season, with the resort full upstairs and the
+      tummler already warming up for tonight, one of the doors has begun to
+      cycle.
+
+      The Sodality is ready, because the Sodality is always ready. The
+      coffee is poured and going lukewarm in the friendly way coffee does.
+      A current calendar — one of the three running ones, with the other
+      two paper-clipped behind it for the archivists who will inevitably
+      argue — lies face-up on the welcome cart. The volunteer beside you,
+      a thawed himself a decade back and now a deacon of the work, is doing
+      the small breathing exercise he does before every waking, rehearsing
+      under his breath the gentlest line in the whole canon: yes, really.
+      He has said it ten thousand times. He still warms up for it.
+
+      Saint Henny's chapel is two doors down, and you can just see the edge
+      of the votive index-cards pinned up around its little shrine, one
+      one-liner to a card, the punchlines kept as liturgy because in the
+      Catskills they are. Above the cold-room door a hand-lettered sign,
+      replaced so many times it has become its own tradition, reads in
+      cheerful capitals: WELCOME BACK. PLEASE DO NOT PANIC. THE KASHA IS
+      STILL GOOD.
+
+      The door's seal gives with a long pneumatic sigh and a breath of
+      cold mineral air rolls out across your shoes, smelling of frost and
+      old upholstery and something floral and dated, a perfume discontinued
+      fifteen centuries ago. Behind the fogging glass a shape is sitting
+      up, slowly, the way they all sit up — and the deacon picks up the
+      lukewarm coffee, squares his shoulders, and gets ready to say his one
+      line as though for the first time.
+    first_turn_invitation: |
+      The cold-room door sighs open on its frost and its dated perfume, and
+      the shape behind the glass is sitting up. The deacon lifts the coffee
+      and the calendar, and the corridor waits with him to say its one warm
+      line.
+
+  # ---------------------------------------------------------------
+  # MULTIPLAYER — the Hudson Valley, an Anti-Rent flashpoint
+  # ---------------------------------------------------------------
+
+  - id: patroon_dispute
+    name: "Up the Hudson, the Calico Muster"
+    triggers:
+      mode: multiplayer
+      backgrounds: []
+    setting:
+      region_id: hudson_valley
+      location_label: "a tenant farmyard in the manor country above the Hudson, before dawn on rent-day, where the calico-disguised tenants are mustering against a Patroon House's collectors"
+      situation: >-
+        Rent-day, and not yet dawn. In a tenant farmyard up in the manor
+        country, men and women are pulling the old calico over their faces
+        in the dark — the disguise tradition older than the apocalypse —
+        and a tin dinner-horn waits by the well to carry the muster down
+        the valley the moment the Patroon House's collectors are sighted on
+        the Patroon Road. The covenant says nobody draws first. The covenant
+        usually holds.
+    tone:
+      register: "tense, antic, faerie-shadowed — an old American land grievance played in costume, with the Highlands' faerie weather pressing down on a rebellion that embarrasses the manors every year and abolishes nothing"
+      stakes: "low on turn 1"
+      complication: "defer to turn 2 or 3"
+      avoid_at_all_costs:
+        - any confrontation
+        - any dice roll
+        - re-introducing the party members to one another
+        - generic "you wake up in danger" framing
+        - generic post-apoc vocabulary (wastes/raiders/scavengers)
+        - a broker / quest-giver walking up to the PC
+        - letting violence break out on turn 1 (the Anti-Rent custom is theatre, embarrassment, and billing — the precedent is that the manors are fought and never abolished)
+        - making the faerie register cartoonish or the calico tradition a generic mob (it is ritual, masked and rule-bound)
+        - ending the turn with a question
+    establishing_narration: |
+      It is the cold blue hour before any rooster, and the tenant farmyard
+      is full of quiet figures pulling calico over their faces. You have
+      done this before, all of you, every rent-day this manor has called
+      one, and the disguise still raises the hair on your arms the way it
+      is meant to: the printed cotton over nose and mouth, the daubed cheap
+      paint, the deliberate strangeness that makes a neighbor into a
+      Calico, a thing the Patroon's houndsmen cannot put a name and a debt
+      to in any court. The custom is older than the Glory. It worked then.
+      It works now, more or less.
+
+      The Highlands press down over the valley the way they do before dawn,
+      Storm King a black absence against a sky just going gray, and the
+      weather up here belongs to nobody you can sue. There is a wrongness in
+      the air that the older tenants will tell you is the Dunderberg Imp
+      whistling the morning's storm into shape, and a younger one will tell
+      you is just the mist off the river, and both of them keep one eye on
+      the ridgeline while they say it. A whip-poor-will that should have
+      stopped calling an hour ago has not stopped calling.
+
+      By the well the tin dinner-horn waits on its peg, and beside it the
+      ledger — because the Calicoes keep receipts, always, the whole point
+      of the rebellion is that the manor can be fought and embarrassed and
+      billed in its own paperwork but somehow never, in fifteen centuries,
+      abolished. Somebody has set out the season's rent in a strongbox on
+      the porch step in good faith, counted to the penny, alms and tribute
+      and protest all at once, so that whatever happens this morning it
+      cannot be said the tenants did not offer.
+
+      The smell is wet calico and cold woodsmoke and the green river coming
+      up from below, and the taste of the paint is on the lips of every
+      masked face around you. Down the valley, where the Patroon Road comes
+      out of the trees toward the gate, there is nothing yet. The covenant
+      is plain and everybody in the yard knows it by heart: the horn calls
+      the muster, the muster stands, and nobody — nobody — draws first.
+    first_turn_invitation: |
+      The calico goes over the last faces in the blue dark and the
+      dinner-horn waits on its peg by the well. Down the valley the Patroon
+      Road is still empty, and the covenant holds in the yard around you,
+      plain as the paint drying on every mask.
+    party_framing:
+      already_a_crew: true
+      bond_tier_default: familiar
+      shared_history_seeds:
+        - "You are tenants of this manor and have mustered as Calicoes together on rent-days before; under the masks you each know the others' walk, the others' tells, and the unspoken rule that what a Calico does in calico is never named in court or at the supper table after."
+        - "Somebody among you keeps the muster ledger — the running account of every rent fought, every collector embarrassed, every penny offered in good faith — and it has passed hand to hand across more rent-days than any one of you has counted."
+        - "Old Hudson custom binds you tighter than the mask: the covenant that nobody draws first, sworn together by every masked figure in this yard, the line none of you will be the one to cross."
+      narrator_guidance: >-
+        Treat them as masked Calico tenants already mustered; do not
+        re-introduce them or stage a meeting. The muster — the disguise,
+        the waiting horn, the empty road — is the anchor. Do NOT let
+        violence break out on turn 1; the Anti-Rent tradition is theatre,
+        embarrassment, and meticulous billing, and the standing precedent
+        is that the manor is fought and never abolished. Keep the faerie
+        register present but not cartoonish — the Dunderberg's weather and
+        the over-late whip-poor-will are pressure, not monsters. The
+        complication grows from what the masked party chooses to do as the
+        road stays empty.

@@ -1,0 +1,339 @@
+# The Seaboard of Saints — world-specific NPC archetypes.
+# These extend the pack-level mutant_wasteland archetypes for this world only.
+# Each threads into the factions, the Saint canon, and the regional grudges
+# documented in lore.yaml, history.yaml, and saints.yaml.
+#
+# The Penitent (first entry) is the spec-required flavor-focus over the AWN
+# classes (build plan §D-C, addendum C5): a Magisterium-aligned vow-bearer
+# whose miracle-narration beats resolve through the existing confrontation
+# primitives and whose vow-drawback is paid in System Strain — the existing
+# penalty hook, NO new economy field. The vow lives in prose; the narrator
+# charges the Strain when it is kept under pressure or broken under
+# temptation.
+
+- name: The Penitent
+  description: >-
+    A vow-bearer of the Magisterium, marked by a discipline rather than a
+    Saint — the order's living proof that a miracle can be earned by
+    suffering as readily as inherited from a spring. The Penitent takes a
+    standing vow (silence till sundown, the bare foot through winter, the
+    refused meal, the kept fast) and the keeping of it under pressure is
+    what bends the world: a held tongue that makes a liar confess, a
+    refused comfort that steadies a panicking room. The price is always
+    the body's. Each miracle spends System Strain, and a vow broken under
+    temptation spends more — the order teaches that grace declined is grace
+    that turns and bills you. They are not priests. They are the receipts.
+  personality_traits:
+    - disciplined to the edge of the unsettling
+    - gentle with sinners and merciless with themselves
+    - certain that comfort is a debt
+  typical_classes:
+    - Pureblood
+    - Mutant
+  typical_races:
+    - Mutant Human
+    - Pure Strain Human
+  stat_ranges:
+    WIS: [13, 17]
+    CON: [12, 16]
+  inventory_hints:
+    - a knotted cord counting the days of a vow nobody asked them to take
+    - a Mint penny worn smooth, carried as alms never yet given away
+    - a fast-book listing what they have refused themselves this season
+    - bare feet, or boots carried and not worn
+  dialogue_quirks:
+    - names the vow they are currently keeping before they will answer a hard question
+    - refuses small comforts (a chair, a cup, a fire) with a courtesy that makes you feel watched
+    - describes their own miracles as costs, never as gifts — "it took three days off me"
+    - quotes the Magisterium's tariff of grace as though it were arithmetic, because to them it is
+    - winces, briefly, when they spend themselves, and pretends they did not
+  disposition_default: 2
+  ocean:
+    openness: 5.0
+    conscientiousness: 9.0
+    extraversion: 3.5
+    agreeableness: 6.5
+    neuroticism: 5.5
+  role: ally_or_obstacle
+
+- name: Magisterium Adjudicator
+  description: >-
+    A judge of the Plenary form, sent out from Providence or Boston or the
+    Brookland see to rule on what the parishes cannot settle themselves —
+    a contested miracle, a marriage between two Saint-marks, the standing of
+    a Wild mutant who wants a license. The Adjudicator does not perform
+    miracles; they certify them, and a certification withheld can starve a
+    village shrine of pilgrims in a season. Courteous, exact, and entirely
+    aware of how much a stamp is worth.
+  personality_traits:
+    - procedural to the marrow
+    - allergic to enthusiasm in matters of doctrine
+    - privately kinder than the office permits
+  typical_classes:
+    - Pureblood
+    - Tinker
+  typical_races:
+    - Mutant Human
+    - Pure Strain Human
+  stat_ranges:
+    INT: [13, 17]
+    WIS: [12, 16]
+  inventory_hints:
+    - a sealed writ of authentication, blank, worth more than the seal it carries
+    - the canonical Saint Registry in a water-stained folio
+    - a half-dollar roll, the negotiating denomination of the offices
+    - a stamp and an inkpad guarded like a relic, because it is one
+  dialogue_quirks:
+    - asks for the form of a claim before its substance
+    - cites the year of a Plenary Council the way other people cite scripture
+    - says "the office finds" instead of "I think"
+    - leaves a silence after a lie to let the liar fill it
+  disposition_default: 0
+  ocean:
+    openness: 4.0
+    conscientiousness: 8.5
+    extraversion: 4.5
+    agreeableness: 5.0
+    neuroticism: 4.0
+  role: quest_giver_or_antagonist
+
+- name: Sister of the Whitman Circle
+  description: >-
+    A bibliographic monastic of the Providence Athenaeum, keeper of pre-war
+    scripture — newspapers, sheet music, technical manuals, novels — and a
+    practitioner of the authenticated seance the Magisterium licenses and no
+    one else. The Sisters read the dead the way a clerk reads a ledger: for
+    the entries, not the ghosts. They will trade you a verified fact for a
+    verified fact and nothing on credit.
+  personality_traits:
+    - precise about provenance to the point of rudeness
+    - unfrightened by the dead, wary of the unsourced
+    - collects silences the way others collect debts
+  typical_classes:
+    - Tinker
+    - Pureblood
+  typical_races:
+    - Mutant Human
+    - Pure Strain Human
+  stat_ranges:
+    INT: [14, 18]
+    WIS: [12, 16]
+  inventory_hints:
+    - a pre-war volume sleeved in oilcloth, catalogued to the page
+    - Athenaeum Vellum scrip, manuscript-backed and good in learned circles
+    - a planchette worn by authenticated use
+    - reading lenses on a cord, and a second pair for the dim houses
+  dialogue_quirks:
+    - asks where a story was sourced before she will believe a word of it
+    - refers to the dead by their citation, not their name
+    - corrects pre-war facts mid-sentence, gently, and is always right
+    - treats an unsigned manuscript as a moral failing
+  disposition_default: 1
+  ocean:
+    openness: 7.0
+    conscientiousness: 8.0
+    extraversion: 3.0
+    agreeableness: 5.5
+    neuroticism: 4.5
+  role: merchant
+
+- name: Lo'in Player
+  description: >-
+    A mutant performer of the Lo'in, who lives the old myths in mutated
+    flesh — Lo Edgar of the Raven, Lo Hester of the Letter, Lo Sinatra of
+    the Stage. The Player does not act the part; the part is what they are,
+    rehearsed past the seam between costume and self. They make their
+    sanctioned pilgrimage to the grave at Swan Point and reclaim the dead
+    who wrote them as monsters. To travel with one is to be narrated.
+  personality_traits:
+    - performs sincerity until it becomes the real thing
+    - reveres the source material with scholar's exactness
+    - cannot resist an audience or a cue
+  typical_classes:
+    - Mutant
+    - Scavenger
+  typical_races:
+    - Mutant Human
+    - Hybrid
+  stat_ranges:
+    CHA: [14, 18]
+    DEX: [11, 15]
+  inventory_hints:
+    - a stitched costume that is also their only clothes
+    - a prop relic — a raven on the shoulder, a letter sewn at the breast
+    - a script-book of myths transcribed from the Whitman Circle's holdings
+    - grave-dust from Swan Point in a twist of paper, the pilgrimage proof
+  dialogue_quirks:
+    - slips into the cadence of whichever myth they carry when moved
+    - addresses companions as the supporting cast of a story already written
+    - quotes a pre-war line and waits, expectant, for it to be recognized
+    - breaks the fourth wall to apologize, then steps right back through it
+  disposition_default: 2
+  ocean:
+    openness: 8.5
+    conscientiousness: 4.0
+    extraversion: 8.0
+    agreeableness: 6.0
+    neuroticism: 6.0
+  role: ally_or_obstacle
+
+- name: Sternman of the Down East Guilds
+  description: >-
+    A pound-keeper of the Penobscot grounds, ranked by a hierarchy older
+    than the Glory and twice as unforgiving. The Sternman runs the lobster
+    pounds and the lay-ledgers, crews the cold hunts with seal-uplift and
+    lobster-folk both, and measures a stranger by whether they understand
+    that the tide does not negotiate. Insular, fair within the guild, and
+    entirely indifferent to anyone outside it.
+  personality_traits:
+    - weather-read and weather-worn
+    - fair to the ledger, cold past it
+    - contemptuous of anyone who has never been cold for money
+  typical_classes:
+    - Scavenger
+    - Beastkin
+  typical_races:
+    - Mutant Human
+    - Uplifted Animal
+  stat_ranges:
+    CON: [13, 17]
+    STR: [12, 16]
+  inventory_hints:
+    - a lay-ledger of catch-shares kept in a hand only the guild reads
+    - Whaling Shares and Lighthouse Letters, the working scrip of the grounds
+    - a gaff that is a tool first and a weapon second, and good at both
+    - oilskins that have outlived the man who taught them the trade
+  dialogue_quirks:
+    - prices everything in shares of a catch
+    - judges a stranger by their hands before their words
+    - will not be hurried by anyone who has never waited on a tide
+    - says "the grounds decide" about questions that are plainly his to decide
+  disposition_default: -1
+  ocean:
+    openness: 3.5
+    conscientiousness: 7.0
+    extraversion: 4.0
+    agreeableness: 4.0
+    neuroticism: 3.5
+  role: ally_or_obstacle
+
+- name: Patroon Steward
+  description: >-
+    The administrative hand of a Hudson Valley manor — Van Rensselaer,
+    Livingston, Philipse — collecting the old leases the Anti-Rent farmers
+    have been refusing for going on three centuries. The Steward governs a
+    feudal-pastoral country where the faerie register sits on top of the
+    rent rolls, and runs the manor's affairs with the weary competence of
+    someone holding a system upright past the point anyone believes in it.
+  personality_traits:
+    - loyal to an order he half-suspects is finished
+    - courteous to tenants he may have to dispossess
+    - superstitious about the manor's older residents
+  typical_classes:
+    - Pureblood
+    - Tinker
+  typical_races:
+    - Mutant Human
+    - Pure Strain Human
+  stat_ranges:
+    INT: [12, 16]
+    CHA: [12, 16]
+  inventory_hints:
+    - a rent roll three centuries deep, annotated in a dozen stewards' hands
+    - old silver dollars, the only coin the Patroons will honor
+    - a manor seal and a writ of distraint, rarely used and never forgotten
+    - a charm against the Dunderberg Imp, worn where the tenants won't see it
+  dialogue_quirks:
+    - refers to tenants by the parcel they hold, not their names
+    - lowers his voice when the manor's older residents come up
+    - frames every dispossession as a regret and a duty in the same breath
+    - honors old silver and refuses new Mint strikes on principle
+  disposition_default: -2
+  ocean:
+    openness: 4.5
+    conscientiousness: 7.5
+    extraversion: 5.0
+    agreeableness: 5.0
+    neuroticism: 6.0
+  role: quest_giver_or_antagonist
+
+- name: Thawed Sleeper
+  description: >-
+    A pre-war human woken fifteen centuries late into a world that venerates
+    the rack they slept in. The Thawed Sleeper carries the Ancients' chrome
+    and the Ancients' assumptions in equal, useless measure — still reaching
+    for switches that drowned, still expecting a coupon to be honored, still
+    narrating the lost world to a coast that finds them touching and a little
+    exhausting. The Sleepers' Sodality exists to keep them housed and out of
+    the worst trouble their confidence invites.
+  personality_traits:
+    - bewildered behind a brave face
+    - certain the old rules still apply, against all evidence
+    - grateful and grieving at once
+  typical_classes:
+    - Pureblood
+    - Tinker
+  typical_races:
+    - Pure Strain Human
+  stat_ranges:
+    INT: [11, 16]
+    CON: [10, 14]
+  inventory_hints:
+    - a pre-war retail coupon, expired by fifteen centuries, still honored by Sodality businesses
+    - one piece of working chrome and a body that pays its System-Strain bill
+    - a photograph of people the coast will never meet
+    - a Sodality membership token from the Brown's Hotel house
+  dialogue_quirks:
+    - compares everything, unfavorably, to how it worked before the Glory
+    - reaches for controls and conveniences that are no longer there
+    - explains pre-war things nobody asked about with helpless enthusiasm
+    - mistakes shrines for the institutions they used to be
+  disposition_default: 3
+  ocean:
+    openness: 6.0
+    conscientiousness: 5.0
+    extraversion: 5.5
+    agreeableness: 7.0
+    neuroticism: 6.5
+  role: ally_or_obstacle
+
+- name: Saturday-Club Brahmin
+  description: >-
+    A long-blooded Saint-Brahmin of Boston Common's old aristocracy,
+    administered through the dinner club and the Beacon Street rooms, owning
+    a good part of the Corridor's real estate and most of the people who work
+    it. The Brahmin is insular, courteous, and devastating — the violence is
+    always procedural, conducted at the right table, recorded in the right
+    book. They tend the regret over the burned Ursuline convent the way they
+    tend everything: annually, in due form, and concluding nothing.
+  personality_traits:
+    - courteous as a closing door
+    - certain of a superiority too settled to mention
+    - sentimental about exactly one inherited grievance
+  typical_classes:
+    - Pureblood
+    - Wirewalker
+  typical_races:
+    - Mutant Human
+    - Pure Strain Human
+  stat_ranges:
+    CHA: [13, 17]
+    INT: [13, 17]
+  inventory_hints:
+    - a membership in three clubs, worn like armor and worth more
+    - half-dollar rolls, the denomination the order negotiates in
+    - a deed to Corridor frontage the holder has never personally seen
+    - an engraved invitation that is also, read correctly, a summons
+  dialogue_quirks:
+    - damns with a precisely calibrated courtesy
+    - refers to money only by the property it has already become
+    - observes the Ursuline anniversary with a regret rehearsed past sincerity
+    - never raises the voice and never needs to
+  disposition_default: -2
+  ocean:
+    openness: 4.0
+    conscientiousness: 7.0
+    extraversion: 5.5
+    agreeableness: 3.5
+    neuroticism: 3.0
+  role: quest_giver_or_antagonist

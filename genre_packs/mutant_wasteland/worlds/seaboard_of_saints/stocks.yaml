@@ -1,4 +1,10 @@
-# The Seaboard of Saints — stock roster (story 103-2: the PROOF stocks).
+# The Seaboard of Saints — stock roster.
+#
+# Story 103-2 landed the three PROOF stocks (sleeper / saint_marked /
+# harbor_seal) that exercise every branch class of the schema. Story
+# 103-8 completes the full roster: nine Animal stocks (the Penobscot- and
+# Wampanoag-named uplift among them), seven Plant stocks, and four
+# Synthetic variants — all through the SAME generic application path.
 #
 # A stock is a chargen entry path defined entirely as data — attr mods,
 # Move/AC/Trauma-Target hooks, granted AWN positive-mutation ids, and
@@ -61,3 +67,447 @@ stocks:
       # the pound-net bite -> crushing jaws
       - hybrid/crushing_jaws
     saint_affinity_allowed: true
+
+  # ============================================================
+  # ANIMAL STOCKS — uplifted Northeast fauna. Penobscot- and
+  # Wampanoag-language names where the stock is anchored in the
+  # actually-extant Indigenous polities' territory; English names
+  # where those registers don't reach. Each may take one Saint.
+  # ============================================================
+
+  - id: muwin_folk
+    name: Muwin-Folk
+    description: >-
+      Muwin is the Penobscot word for bear, and the muwin-folk carry it
+      the way the Adirondacks and the Maine Woods carry their weather —
+      without apology. Uplifted in the high country where the People still
+      keep the older names, they are slow to rouse and impossible to move
+      once roused, and they winter heavy whether or not the season asks
+      it of them.
+    attr_mods:
+      STR: 2
+      DEX: -1
+    # Bear bulk — natural armor over the unarmored 10.
+    ac: 13
+    trauma_target_mod: 1
+    granted_mutations:
+      # the bear's strength
+      - structure/augmented_muscle
+      # claws that open a deadfall or a door
+      - hybrid/savage_claws
+      # winter hide
+      - hybrid/thick_hide
+    saint_affinity_allowed: true
+
+  - id: kiwhosis_folk
+    name: Kiwhosis-Folk
+    description: >-
+      Kiwhosis is Penobscot for muskrat, and the kiwhosis-folk work the
+      Hudson Valley wetlands the muskrat works them — patiently, half-
+      submerged, with a lodge nobody else can find. Small, tireless, and
+      entirely unbothered by cold water or a long job done slowly.
+    attr_mods:
+      DEX: 1
+      CON: 1
+      STR: -1
+    # At home in the water, deliberate on land.
+    move: 8
+    granted_mutations:
+      # the wetland body
+      - hybrid/aquatic_adaptation
+      # the muskrat's endurance
+      - structure/stamina_reserves
+      # a nose for the marsh
+      - sense/acute_olfaction
+    saint_affinity_allowed: true
+
+  - id: ahtuhq_folk
+    name: Ahtuhq-Folk
+    description: >-
+      Ahtuhq is the Wampanoag word for deer, and the ahtuhq-folk are bound
+      to the Plymouth Stone country where the Mashpee and Aquinnah keep
+      their standing. Fleet past the point of belief, alert to the edge of
+      nerves, and gone over the next rise before a slower mind has decided
+      they were ever there.
+    attr_mods:
+      DEX: 2
+      STR: -1
+    # Deer-fleet — well past the unarmored default.
+    move: 12
+    granted_mutations:
+      # the bounding gait
+      - structure/leaper
+      # ears that turn before the head
+      - sense/acute_hearing
+      # the flinch that beats the arrow
+      - sense/accelerated_perception
+    saint_affinity_allowed: true
+
+  - id: paquanaog_folk
+    name: Paquanaog-Folk
+    description: >-
+      Paquanaog is the Wampanoag word the Cape Cod people give the clam,
+      and the paquanaog-folk are the clam-people in earnest — shelled,
+      sealed, and content to outlast a thing rather than fight it. They
+      shut, they wait, and the tide that meant to take them goes back out
+      without them.
+    attr_mods:
+      CON: 2
+      DEX: -1
+    # A shell to close, and slow going when it's open.
+    ac: 14
+    move: 6
+    trauma_target_mod: 1
+    granted_mutations:
+      # the shut shell — airtight, watertight
+      - structure/sealed_systems
+      # the tidal body
+      - hybrid/aquatic_adaptation
+      # the shell itself
+      - structure/reinforced_tissues
+    saint_affinity_allowed: true
+
+  - id: lobster_folk
+    name: Lobster-Folk
+    description: >-
+      Down East coastal stock, carapaced and clawed, crewing the same
+      cold grounds the harbor-seal uplift works but from the bottom up.
+      A handshake is a calculated risk. Everything about them is armored,
+      including the temperament.
+    attr_mods:
+      STR: 1
+      DEX: -1
+    # Carapace — heavy natural armor.
+    ac: 14
+    move: 8
+    trauma_target_mod: 1
+    granted_mutations:
+      # the crusher claw
+      - hybrid/crushing_jaws
+      # the shell
+      - hybrid/thick_hide
+      # cold-water body
+      - hybrid/aquatic_adaptation
+    saint_affinity_allowed: true
+
+  - id: cardinal_folk
+    name: Cardinal-Folk
+    description: >-
+      Hudson Valley stock, scarlet and carrying, the cardinal-folk are the
+      Seaboard's couriers and criers — seen from a ridge away, heard from
+      two, and impossible to lose in a crowd that a quieter messenger would
+      want to disappear into.
+    attr_mods:
+      DEX: 1
+      CHA: 1
+      STR: -1
+    granted_mutations:
+      # the wing
+      - hybrid/functional_wings
+      # the height-eye
+      - sense/telescopic_sight
+      # the carrying call
+      - exotic/sound_generation
+    saint_affinity_allowed: true
+
+  - id: mountain_lion_folk
+    name: Mountain-Lion-Folk
+    description: >-
+      Catskills stock, solitary by build and by preference. The mountain-
+      lion-folk hunt the high ledges nobody contests, move without sound
+      they did not choose to make, and regard company as a thing to be
+      tolerated for a fixed and clearly-felt duration.
+    attr_mods:
+      DEX: 2
+      STR: 1
+      CHA: -1
+    move: 12
+    granted_mutations:
+      # the ambush claw
+      - hybrid/savage_claws
+      # the pounce
+      - structure/leaper
+      # the night the cat owns
+      - sense/night_vision
+    saint_affinity_allowed: true
+
+  - id: fox_folk
+    name: Fox-Folk
+    description: >-
+      Pioneer Valley and Catskills stock, smaller than the predators and
+      smarter than most of them. The fox-folk solve by indirection what
+      heavier stocks solve by weight, and they are rarely where the trap
+      was set, having read the ground that the trap was set on.
+    attr_mods:
+      DEX: 1
+      INT: 1
+      STR: -1
+    granted_mutations:
+      # ears for the underbrush
+      - sense/acute_hearing
+      # the nose on the trail
+      - sense/acute_olfaction
+      # the silent quick foot
+      - hybrid/digitigrade_legs
+    saint_affinity_allowed: true
+
+  - id: brook_trout_folk
+    name: Brook-Trout-Folk
+    description: >-
+      Adirondack stream stock, jewel-flanked and quick in the cold runs.
+      On land the brook-trout-folk are deliberate and a little stranded;
+      in moving water they are a flash of color and gone, reading the
+      current through a skin that feels what the eye would miss.
+    attr_mods:
+      DEX: 1
+      CON: 1
+    move: 6
+    granted_mutations:
+      # the stream body
+      - hybrid/aquatic_adaptation
+      # the lateral line — pressure and motion in the dark water
+      - sense/tactile_analysis
+      # the darting twist
+      - structure/hypercontortion
+    saint_affinity_allowed: true
+
+  # ============================================================
+  # PLANT STOCKS — largely Adirondack-resident; visiting the cities
+  # is an event. The Whalecoast keeps kelp-folk, the Hudson cattail-
+  # folk. Slow, rooted, and harder to end than they look.
+  # ============================================================
+
+  - id: white_pine_folk
+    name: White-Pine-Folk
+    description: >-
+      Tall, resinous, and unhurried, the white-pine-folk grow toward a
+      light the rest of the Seaboard has stopped noticing. They are the
+      patient party in any negotiation, having a different relationship to
+      time than the animals do, and they smell, always, faintly of sap and
+      cold needles.
+    attr_mods:
+      STR: 1
+      DEX: -1
+    # Heartwood.
+    ac: 12
+    move: 8
+    granted_mutations:
+      # the wood that takes a blow
+      - structure/reinforced_tissues
+      # the slow deep reserve
+      - structure/stamina_reserves
+      # the forest's nervous system, felt
+      - sense/empathic_sensitivity
+    saint_affinity_allowed: true
+
+  - id: sugar_maple_folk
+    name: Sugar-Maple-Folk
+    description: >-
+      Sweet-sapped and seasonal, the sugar-maple-folk run thin and bright
+      in the cold months and heal by bleeding the wound shut with their own
+      sugar. The whole Adirondack spring smells of them. They are good
+      company and they keep, like a thing put up in a jar.
+    attr_mods:
+      CON: 1
+      DEX: -1
+    move: 8
+    granted_mutations:
+      # the sap that closes the cut
+      - structure/regenerator
+      # the running-sweet scent
+      - exotic/pheromone_cloud
+      # heartwood
+      - structure/reinforced_tissues
+    saint_affinity_allowed: true
+
+  - id: salt_marsh_cordgrass_folk
+    name: Salt-Marsh-Cord-Grass-Folk
+    description: >-
+      Spartina-stock, the cord-grass-folk hold the line where the land
+      gives up and the tide takes over. Salt that would kill a softer stock
+      is simply weather to them; they seal against it, root in the muck,
+      and green back over any gap the storm tears open.
+    attr_mods:
+      CON: 1
+      CHA: -1
+    move: 8
+    granted_mutations:
+      # the tidal body
+      - hybrid/aquatic_adaptation
+      # the salt-seal
+      - structure/sealed_systems
+      # green back over the breach
+      - structure/regenerator
+    saint_affinity_allowed: true
+
+  - id: mountain_laurel_folk
+    name: Mountain-Laurel-Folk
+    description: >-
+      Evergreen and quietly lethal, the mountain-laurel-folk carry the real
+      grayanotoxin of their namesake in leaf and bloom — the honey gathered
+      near them is the maddening kind. Beautiful in the lean months,
+      best admired from a polite and well-considered distance.
+    attr_mods:
+      CON: 1
+      DEX: -1
+    ac: 12
+    move: 8
+    granted_mutations:
+      # the laurel poison
+      - hybrid/venom_glands
+      # the evergreen toughness
+      - structure/reinforced_tissues
+    saint_affinity_allowed: true
+
+  - id: oak_folk
+    name: Oak-Folk
+    description: >-
+      The slowest and the strongest of the plant stocks, the oak-folk are
+      reckoned in decades and felt in tons. They do not start things. They
+      finish them, eventually, having stood through the part where a faster
+      stock would have given up the ground.
+    attr_mods:
+      STR: 2
+      DEX: -1
+    # Bark and heartwood — heavy natural armor.
+    ac: 13
+    move: 8
+    trauma_target_mod: 1
+    granted_mutations:
+      # the heartwood limb
+      - structure/augmented_muscle
+      # the bark
+      - hybrid/thick_hide
+      # the trunk that takes the axe
+      - structure/reinforced_tissues
+    saint_affinity_allowed: true
+
+  - id: kelp_folk
+    name: Kelp-Folk
+    description: >-
+      Whalecoast stock, the kelp-folk are anchored offshore in the holdfast
+      forests and stranded, frankly, on land — long, supple, and reaching
+      for a current that isn't there. In the water they are a different
+      creature: boneless, fast, and everywhere in the frond-canopy at once.
+    attr_mods:
+      DEX: 1
+      STR: -1
+    move: 6
+    granted_mutations:
+      # the holdfast body
+      - hybrid/aquatic_adaptation
+      # boneless in the current
+      - structure/hypercontortion
+      # the frond that reads the water
+      - sense/tactile_analysis
+    saint_affinity_allowed: true
+
+  - id: cattail_folk
+    name: Cattail-Folk
+    description: >-
+      Hudson wetland stock, the cattail-folk stand the marsh margins in
+      rank and file and seed the whole valley in a good autumn — a single
+      stand fills the air for a week. Useful root to crown, patient as the
+      water table, and quick to colonize any disturbed ground.
+    attr_mods:
+      CON: 1
+      DEX: -1
+    move: 8
+    granted_mutations:
+      # the marsh body
+      - hybrid/aquatic_adaptation
+      # the seeding burst
+      - exotic/pheromone_cloud
+      # rhizome regrowth
+      - structure/regenerator
+    saint_affinity_allowed: true
+
+  # ============================================================
+  # SYNTHETIC STOCKS — pre-war animatronic figures who achieved (or
+  # had imposed on them) personhood. Their lane is pre-war subsystems,
+  # not Saint-water: saint_affinity_allowed is false, the way the
+  # Sleeper's chrome keeps it out of the Saint economy. (Subsystem
+  # progression trees are v2 — these are trait-set variants for v1.)
+  # ============================================================
+
+  - id: mta_conductor
+    name: MTA Conductor Automaton
+    description: >-
+      A transit-authority conductor unit, still calling stations on lines
+      that drowned with the Sunken Bight. The mta-conductor-folk hold the
+      whole pre-war route map in working order and will tell you, exactly,
+      how to get from anywhere to anywhere — by a schedule no living thing
+      can keep.
+    attr_mods:
+      INT: 1
+      CHA: -1
+    granted_mutations:
+      # the route map, intact
+      - cognition/internal_map
+      # the schedule, to the second
+      - cognition/eidetic_memory
+      # no breath to stop
+      - structure/sealed_systems
+    saint_affinity_allowed: false
+
+  - id: smithsonian_docent
+    name: Smithsonian Docent Unit
+    description: >-
+      A Brookland-housed docent model, built to walk visitors through halls
+      that are now the Smithsonian Reliquary Order's whole theology. The
+      docent-units remember every label on every case, in every language a
+      pre-war visitor might have read, and they have opinions about
+      provenance that the Sisters of the Whitman Circle find useful and
+      occasionally insufferable.
+    attr_mods:
+      INT: 2
+      STR: -1
+    ac: 11
+    granted_mutations:
+      # every label on every case
+      - cognition/eidetic_memory
+      # the docent's languages
+      - cognition/omniglot
+      # the catalog mind
+      - cognition/augmented_cognition
+    saint_affinity_allowed: false
+
+  - id: bandstand_brassbot
+    name: Band-Stand Brass-Bot
+    description: >-
+      A Catskills resort band-stand automaton, brass-bodied and built to
+      play the season out forever. The brass-bots kept the music going
+      through the Glory and never got the message to stop; a thaw-day crowd
+      will find one mid-number, perfectly in time, waiting for a dance card
+      that emptied centuries ago.
+    attr_mods:
+      CHA: 1
+      DEX: 1
+    granted_mutations:
+      # the whole band, one body
+      - exotic/sound_generation
+      # the works that drive it
+      - exotic/electrical_generation
+      # brass that takes a knock
+      - structure/reinforced_tissues
+    saint_affinity_allowed: false
+
+  - id: nypl_librarian
+    name: NYPL Reference Librarian Model
+    description: >-
+      A reference-desk model out of the drowned main branch, the librarian-
+      units answer the question under the question and find the source you
+      didn't know to ask for. They are the Whitman Circle's quiet rivals and
+      occasional allies, holding a catalog the Sisters would give a junior
+      house to copy.
+    attr_mods:
+      INT: 2
+      CHA: -1
+    granted_mutations:
+      # the catalog, held whole
+      - cognition/eidetic_memory
+      # the reference desk's languages
+      - cognition/omniglot
+      # the reference instinct — the answer before the question lands
+      - cognition/predictive_analysis
+    saint_affinity_allowed: false
