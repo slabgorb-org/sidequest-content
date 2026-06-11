@@ -20,6 +20,8 @@
 
 # ── Core Style ────────────────────────────────────────────────
 
+# positive_suffix → POI landscapes + illustrations (render_common.py:92).
+# Maritime nouns are CORRECT here: a POI lighthouse/harbor is the actual subject.
 positive_suffix: >-
   luminous narrative digital painting, New England maritime light, the silver
   luminism of Hudson River School coastal painters and Fitz Henry Lane marine
@@ -32,6 +34,16 @@ positive_suffix: >-
   No text, no caption, no title, no writing, no signs, no signage, no labels, no
   inscriptions, no graffiti, no watermark, no artist signature, no studio logo,
   no UI overlay, no game HUD, no title card, no border, no frame.
+
+# portrait_positive_suffix → PORTRAITS ONLY (render_common.py:92). Trained
+# Z-Image style labels, not prose: no analogies, no mood-narration, no maritime
+# subject nouns (those summoned a lighthouse into every saint). LOOK DON'T TELL.
+portrait_positive_suffix: >-
+  devotional holy card portrait, Sulpician holy card, gold-leaf gilt ground,
+  oil painting, painterly brushwork, soft directional light, warm muted earth
+  palette,
+  no text, no caption, no writing, no signs, no labels, no watermark,
+  no signature, no logo, no border, no frame.
 
 preferred_model: dev
 base_seed: 42
