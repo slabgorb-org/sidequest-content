@@ -1,0 +1,57 @@
+name: French-Canadian Lowell
+summary: Petit Canada — the Québécois mill families of Lowell on the Merrimack, joual
+  on the tongue and the parish at the center, fifteen centuries of looms and faith.
+description: >
+  Petit Canada, the French-Canadian quarter packed against the canals and mills of
+  Lowell on the Merrimack. Families who came down from Québec generations on
+  generations ago for the looms and never lost the language — joual, the mill-town
+  French, kept alive in the parish, the convent school, and the kitchen. The
+  national parish is the whole world: the curé, the Saint-Jean-Baptiste society,
+  the fabrique, the survivance that means you stay French and Catholic no matter
+  what the bosses speak. Large families, hard shifts, cheap rents over the river,
+  and a stubborn devotion that outlasted the mills themselves.
+slots:
+  given_name:
+    names_file: french_given.txt
+  family_name:
+    names_file: quebecois_surnames.txt
+  dit_name:
+    names_file: quebecois_surnames.txt
+  title:
+    word_list:
+    - Monsieur
+    - Madame
+    - Mademoiselle
+    - le Curé
+    - Mémère
+    - Pépère
+    - mon oncle
+    - ma tante
+  adjective:
+    word_list:
+    - Petit
+    - Vieux
+    - Grand
+    - Saint
+    - Bas
+    - Blanc
+  place_noun:
+    word_list:
+    - Paroisse
+    - Moulin
+    - Canal
+    - Église
+    - Couvent
+    - Rue
+    - Marché
+    - Pont
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{given_name} {family_name} dit {dit_name}'
+- '{title} {given_name} {family_name}'
+place_patterns:
+- '{family_name}-{place_noun}'
+- La {place_noun} {adjective}
+- '{family_name}''s {place_noun}'
+chargen: true

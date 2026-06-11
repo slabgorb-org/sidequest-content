@@ -163,6 +163,67 @@
       description: "The sea made you once already. That's devotion enough."
       mechanical_effects: {}
 
+# Cryptic Alliance (world spec §9 step 5; story 103-7). A faction tie or
+# Unaligned. Each tie grants the faction's token via item_hint — the
+# starting-equipment-slot hook — and that token in inventory is the signal
+# the narrator reads for the faction's opening NPC reactions (lore.yaml
+# chargen_tie). Only `joinable: true` factions appear here; Unaligned is a
+# valid, first-class choice. AWN Plan 7 reads these ties for Enclave
+# membership — until then they are content tags.
+- id: cryptic_alliance
+  title: "Who Has Your Back"
+  narration: >-
+    Nobody walks the Corridor entirely alone. Somewhere south of here a
+    house, a guild, a parish, or a company will answer when your name
+    comes up — for a price, an errand, or an old debt. Whose token do you
+    carry? Or do you owe no one?
+  loading_text: "The Corridor takes note of your friends..."
+  allows_freeform: true
+  choices:
+    - label: "The Magisterium"
+      description: "The Plenary-Council Church commends you to every see. Doors open; errands follow."
+      mechanical_effects:
+        item_hint: magisterium_letter
+    - label: "The Sisters of the Whitman Circle"
+      description: "Stack privileges in every house the bibliographic-Spiritualist order keeps — and the duty to bring back more than you take."
+      mechanical_effects:
+        item_hint: athenaeum_borrowers_card
+    - label: "The Saturday Club"
+      description: "Old-blood Boston finds you useful, which is not the same as welcome. The lower rooms are open to you."
+      mechanical_effects:
+        item_hint: saturday_club_card
+    - label: "The Lo'in"
+      description: "A castmember's place among the mutant performers — a part, a bed backstage, and rivals already eyeing your role."
+      mechanical_effects:
+        item_hint: loin_playbill
+    - label: "The Sleepers' Sodality"
+      description: "The thawed mutual-aid confraternity claims you as family, coupon desk and legal-aid roster and all."
+      mechanical_effects:
+        item_hint: sodality_coupon_book
+    - label: "A Patroon House"
+      description: "Bound to a Hudson Valley manor — its protection, its lower table, and a debt the Anti-Rent men would warn you off."
+      mechanical_effects:
+        item_hint: patroon_indenture
+    - label: "The Sternmen Guilds"
+      description: "A lay token and a Down East berth. Worthless inland, unmistakable on the water."
+      mechanical_effects:
+        item_hint: sternmens_lay_token
+    - label: "The Atwells Avenue Society"
+      description: "A friend of friends on Federal Hill — owed the Society's warmth, held to its expectations."
+      mechanical_effects:
+        item_hint: atwells_avenue_marker
+    - label: "The Red Hook Stevedores"
+      description: "A union button and a hook at the shape-up — work on the drowned wharves, and a cut of the quiet trade."
+      mechanical_effects:
+        item_hint: stevedores_button
+    - label: "The Tubman Trails Society"
+      description: "A conductor's token that opens the safe houses from the Eastern Shore to Philadelphia — to those who know it."
+      mechanical_effects:
+        item_hint: trail_token
+    - label: "Unaligned"
+      description: "You owe no one and no one owes you. The Corridor is wide, and your name comes up nowhere."
+      mechanical_effects: {}
+
 - id: artifact
   title: "The Thing You Found"
   narration: >-

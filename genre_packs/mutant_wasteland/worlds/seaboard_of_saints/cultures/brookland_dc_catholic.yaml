@@ -1,0 +1,57 @@
+name: Brookland DC Catholic
+summary: Little Rome — the Black Catholic community of Brookland in northeast DC,
+  clustered around the basilica and the university, fifteen centuries of striving,
+  sodality, and Sunday best.
+description: >
+  Brookland, the Black Catholic heart of northeast Washington — Little Rome,
+  ringed by the great basilica, the university, and a hundred religious houses and
+  seminaries. A community built by Black families who claimed the Church as their
+  own and made the neighborhood a citadel of faith and respectability: the parish
+  school, the Knights and the sodalities, the funeral homes and the social aid
+  clubs, the brass band at the saint's-day procession. Educated, organized, and
+  immovably dignified — Sunday best on a Tuesday, the choir loft as a power base,
+  a long communal memory of every door opened and every door closed.
+slots:
+  given_name:
+    names_file: mccoy_black_given.txt
+  family_name:
+    names_file: mccoy_black_surnames.txt
+  title:
+    word_list:
+    - Mr.
+    - Mrs.
+    - Miss
+    - Deacon
+    - Sister
+    - Brother
+    - Mother
+    - Father
+    - Professor
+  adjective:
+    word_list:
+    - Old
+    - Blessed
+    - Holy
+    - Upper
+    - North
+    - Sacred
+  place_noun:
+    word_list:
+    - Parish
+    - Hall
+    - Basilica
+    - Sodality
+    - Lodge
+    - Chapel
+    - Square
+    - School
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{given_name} {family_name}'
+place_patterns:
+- '{family_name} {place_noun}'
+- The {adjective} {place_noun}
+- '{family_name}''s {place_noun}'
+chargen: true
