@@ -1,0 +1,203 @@
+# The Seaboard of Saints — chargen flow (story 103-2: the stock step).
+#
+# A world char_creation list REPLACES the genre's wholesale (ADR-140 /
+# char_creation_resolve). This is the genre's live 5-step spine plus the
+# stock step and its per-stock branch scenes:
+#
+#   origins -> pronouns -> stock -> [branch by requires_stock] ->
+#   artifact -> confirmation
+#
+# Branching is authored data: a `stock_id` on a stock-scene choice selects
+# the path; scenes tagged `requires_stock` present only on that path.
+# Wild Mutant carries NO stock_id — a stock-less walk skips every tagged
+# scene and the classic AWN seeding (roll the drawback, bank the MP)
+# fires at confirm, exactly as before this story.
+
+- id: origins
+  title: "Where the Coast Kept You"
+  narration: >-
+    Fifteen centuries after the Glory, the Seaboard remembers everything
+    in its own way — in pound-net tithes, in relay towers that still
+    whisper, in springs that mark the faithful. Every road south of
+    Penobscot starts somewhere. Where did yours?
+  loading_text: "The Seaboard remembers your answer..."
+  allows_freeform: true
+  choices:
+    - label: "The Whalecoast"
+      description: "New Bedford's drowned streets and the Bethel's lamplight, where the lays are still kept and the hunts still run."
+      mechanical_effects:
+        class_hint: Scavenger
+        race_hint: Mutant Human
+        background: Whalecoast Laykeeper
+    - label: "The Pine Shadows"
+      description: "The dark mile-woods below Katahdin, where the cairn-folk walk soft and owe the wilderness Saints their winters."
+      mechanical_effects:
+        class_hint: Mutant
+        race_hint: Mutant Human
+        background: Cairn Walker
+    - label: "The Harbor Margins"
+      description: "Salt flats and seal-crewed pound-nets, where the uplifted work the tides and keep their own ledgers."
+      mechanical_effects:
+        class_hint: Beastkin
+        race_hint: Uplifted Animal
+        background: Pound-Net Hand
+    - label: "A Reliquary Rack"
+      description: "A cold vault the parishes tend like a shrine — and one morning, one of the racks opened."
+      mechanical_effects:
+        class_hint: Pureblood
+        race_hint: Pure Strain Human
+        background: Rack-Woken
+
+- id: pronouns
+  title: "Who Are You?"
+  narration: >-
+    Before the coast takes your measure — how do the parish registers,
+    the lay-ledgers, and the gossip on the tide flats speak of you when
+    you're not in the room?
+  allows_freeform: true
+  choices:
+    - label: "she/her"
+      description: "She holds her own on any tide."
+      mechanical_effects:
+        pronoun_hint: "she/her"
+    - label: "he/him"
+      description: "He keeps his ledger square."
+      mechanical_effects:
+        pronoun_hint: "he/him"
+    - label: "they/them"
+      description: "They answer to the coast and nothing else."
+      mechanical_effects:
+        pronoun_hint: "they/them"
+
+- id: stock
+  title: "What You Are"
+  narration: >-
+    The Glory wrote on everyone differently — and on some, not at all.
+    Some drank deliberately from a Saint's spring. Some woke up already
+    changed. Some woke up fifteen centuries late. And some were never
+    human to begin with. What are you?
+  loading_text: "The coast takes your measure..."
+  choices:
+    - label: "Wild Mutant"
+      description: "The plague wrote on you freehand — a burden you carry and a budget of change you'll spend as the road demands."
+      mechanical_effects:
+        class_hint: Mutant
+    - label: "Saint-Marked"
+      description: "You drank from a spring and took a Saint's marks — the gifts and the burden both, at the same price the wild pay."
+      mechanical_effects:
+        stock_id: saint_marked
+    - label: "Sleeper"
+      description: "Pre-Glory and unmutated, woken from a reliquary rack with the Ancients' chrome still humming under your skin."
+      mechanical_effects:
+        stock_id: sleeper
+        race_hint: Pure Strain Human
+    - label: "Harbor Seal Uplift"
+      description: "Whalecoast stock — slow on the strand, unstoppable in the swells, blubbered against the worst the sea remembers."
+      mechanical_effects:
+        stock_id: harbor_seal
+        race_hint: Uplifted Animal
+
+- id: the_spring
+  title: "The Saint's Spring"
+  narration: >-
+    The parishes keep three proven springs south of Penobscot, and every
+    one of them charges the same toll: the Saint's gifts, and the
+    Saint's burden, and no haggling. Whose water do you drink?
+  requires_stock: saint_marked
+  choices:
+    - label: "Saint Herman of the Acushnet"
+      description: "The whalecoast pilgrim — whale-bone density, deep-pressure sight, the long hunt's stamina. His burden: the story you cannot stop telling."
+      mechanical_effects:
+        saint_id: herman_of_the_acushnet
+    - label: "Saint Edgar of Baltimore"
+      description: "The raven-tongued doctor of the southern parishes, whose marks sharpen the mind and darken the dreams."
+      mechanical_effects:
+        saint_id: edgar_of_baltimore
+    - label: "Saint Lizzie of the Cairn"
+      description: "The wilderness Saint of the pine shadows, who keeps her walkers warm and asks the winters back."
+      mechanical_effects:
+        saint_id: lizzie_of_the_cairn
+
+- id: the_cold_rack
+  title: "The Cold Rack"
+  narration: >-
+    You woke with the Ancients' ledger already written into you. The
+    rack-tenders salvaged what the centuries didn't keep — one piece of
+    chrome still answers. Which one?
+  requires_stock: sleeper
+  choices:
+    - label: "Subdermal Weave"
+      description: "Filament mesh under the skin. Blades skate; the weave sends the bill to your body."
+      mechanical_effects:
+        item_hint: subdermal_weave
+    - label: "Cortex Booster"
+      description: "A cold sliver behind the ear. Thought runs faster while it burns."
+      mechanical_effects:
+        item_hint: cortex_booster
+    - label: "Optic Suite"
+      description: "Ancient lenses — dark becomes dusk, far becomes near, and the eyes water for hours."
+      mechanical_effects:
+        item_hint: optic_suite
+    - label: "Dermal Vox"
+      description: "Printed cartilage in the throat that whispers on the relay towers' old frequencies."
+      mechanical_effects:
+        item_hint: dermal_vox
+    - label: "Blood-Filter"
+      description: "A coiled organ riding the liver. It eats poison and bad water, and it charges for the service."
+      mechanical_effects:
+        item_hint: blood_filter
+
+- id: the_seal_devotion
+  title: "The Seal's Devotion"
+  narration: >-
+    The pound-net parishes keep a wet shrine to Saint Herman, and the
+    uplifted are welcome at it — the spring doesn't ask what shape you
+    wear. Some seals drink. Some keep the old waters only.
+  requires_stock: harbor_seal
+  choices:
+    - label: "Drink from Herman's spring"
+      description: "Take the whalecoast Saint's marks atop what the uplift already gave you — and his burden with them."
+      mechanical_effects:
+        saint_id: herman_of_the_acushnet
+    - label: "Keep the old waters"
+      description: "The sea made you once already. That's devotion enough."
+      mechanical_effects: {}
+
+- id: artifact
+  title: "The Thing You Found"
+  narration: >-
+    Everyone on the Seaboard carries one piece of the Ancients' world —
+    pulled from a drowned cellar, traded off a relay-runner, or kept in
+    the family since the Glory. You don't fully understand yours.
+    Nobody does.
+  choices:
+    - label: "Growth Wand"
+      description: "A humming metal rod that makes plants grow faster when you point it at them. The plants don't always grow right."
+      mechanical_effects:
+        item_hint: growth_wand
+    - label: "Ancient Screen"
+      description: "A flat glass rectangle that sometimes shows pictures of the old world. You can't control what it shows."
+      mechanical_effects:
+        item_hint: datapad
+    - label: "Screaming Purifier"
+      description: "A small box that purifies any liquid poured into it. It takes a day, and it screams while working."
+      mechanical_effects:
+        item_hint: purifier
+    - label: "Mystery Compass"
+      description: "A compass that doesn't point north. It points at something, but you haven't figured out what yet."
+      mechanical_effects:
+        item_hint: mystery_compass
+    - label: "Nothing"
+      description: "You've survived on wits and tide-sense alone. Artifacts are for people who trust things they don't understand."
+      mechanical_effects:
+        item_hint: ~
+
+- id: confirmation
+  title: "The Seaboard Awaits"
+  narration: >-
+    You stand above the tide line with everything you are: your shape,
+    your marks or your chrome, and maybe one piece of the old world that
+    might save your life or end it spectacularly. South of here the
+    coast runs all the way to the Potomac, and every mile of it has a
+    Saint, a ledger, or a tooth. The road waits.
+  choices: []
