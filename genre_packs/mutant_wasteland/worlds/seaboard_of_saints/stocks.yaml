@@ -1,0 +1,63 @@
+# The Seaboard of Saints — stock roster (story 103-2: the PROOF stocks).
+#
+# A stock is a chargen entry path defined entirely as data — attr mods,
+# Move/AC/Trauma-Target hooks, granted AWN positive-mutation ids, and
+# whether one Saint affinity bundle may layer on top (build plan §D-B;
+# AWN rebase addendum 2026-06-09). The engine applies every stock through
+# ONE generic path; nothing branches on a stock's id. Every granted id
+# below must resolve against genre_packs/mutant_wasteland/mutations.yaml;
+# the server fails the pack load on any miss.
+#
+# The three entries prove every branch class of the schema (story scope —
+# the full Animal/Plant/Synthetic roster is 103-8):
+#   sleeper      : all hooks inert; no mutations, no Saints — chrome is
+#                  its lane (implants in items.yaml, System-Strain costs)
+#   saint_marked : inert traits + saint_affinity_allowed — the branch
+#                  scene layers a Saint bundle through 103-1's preset math
+#   harbor_seal  : a full Animal trait set (attr mods + Move/AC/Trauma +
+#                  granted mutations) that may ALSO take one Saint
+#
+# Wild Mutant deliberately has NO entry: a stock-less pick falls through
+# to the classic AWN seeding path (roll the drawback, bank the MP) —
+# absence of a stock is the Wild path, not a seventh special case.
+
+stocks:
+  - id: sleeper
+    name: Sleeper
+    description: >-
+      You went under before the Glory and woke fifteen centuries late,
+      preserved and unmutated in a cold rack the Seaboard has learned to
+      call a reliquary. The plague never wrote on you; the Ancients did,
+      in chrome. Your implants draw on the same body that powers any
+      stim — System Strain, the old ledger.
+    saint_affinity_allowed: false
+
+  - id: saint_marked
+    name: Saint-Marked
+    description: >-
+      You drank from a Saint's spring and took the marks — the gifts and
+      the burden both, priced by the same economy every Wild mutant
+      spends. Curation replaces the dice, not the cost.
+    saint_affinity_allowed: true
+
+  - id: harbor_seal
+    name: Harbor Seal Uplift
+    description: >-
+      Whalecoast stock, uplifted in the drowned generations to crew the
+      pound-nets and the long hunts. Slow on the strand, unstoppable in
+      the swells, and blubbered against the worst the sea remembers.
+    attr_mods:
+      CON: 1
+      CHA: -1
+    # Waddles ashore — under the 10m AWN default.
+    move: 8
+    # Blubber and hide — natural armor in place of the unarmored 10.
+    ac: 13
+    # Hard to trauma through the insulation.
+    trauma_target_mod: 1
+    granted_mutations:
+      # the seal's element -> aquatic adaptation
+      - hybrid/aquatic_adaptation
+      # the pound-net bite -> crushing jaws
+      - hybrid/crushing_jaws
+    saint_affinity_allowed: true
