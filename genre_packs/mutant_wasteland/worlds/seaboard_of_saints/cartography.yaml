@@ -1,0 +1,512 @@
+# The Seaboard of Saints — cartography.
+#
+# The corridor from Penobscot Bay to the Potomac. Eighteen regions: the
+# seventeen of world-spec §3 plus the Pioneer Valley, which saints.yaml
+# (103-4) names as Saint Emily of Amherst's patron region and which therefore
+# must exist for cross-file slug consistency (see session deviation note).
+#
+# THE CORRIDOR is the connective spine: the pre-war Northeast rail line, still
+# running on a schedule nobody understands. Movement ALONG the Corridor is fast
+# travel — a smash cut ("you arrive in Baltimore; it is raining oysters").
+# Movement OFF the Corridor is the adventure: slower, named, dangerous routes
+# into the wilderness margins. Corridor edges are danger: safe; off-Corridor
+# routes carry real danger.
+#
+# discovery_mode: public — these are the real Eastern Seaboard cities; their
+# existence is common knowledge. Region descriptions are travelogue-register
+# (geography, who lives there, the working weirdness) and carry NO plot
+# spoilers; the world's secrets live in lore.yaml / saints.yaml, not the map.
+#
+# Cliché bans (§11) hold: no Reach/Veil/Spire/Hollow/Drift/Mire/Shroud/
+# Sanctum/Bastion coinages. Sleepy Hollow appears as a real place name only.
+
+world_name: The Seaboard of Saints
+starting_region: providence
+navigation_mode: region
+discovery_mode: public
+map_resolution: null
+map_style: >-
+  Hand-tinted antiquarian rail map, WPA-era travel-poster palette, the
+  Corridor inked as a confident black line with brass station-dots, coastline
+  in faded sea-green, drowned country washed pale blue, decorative compass
+  rose and a cartouche reading "The Seaboard of Saints — Penobscot to
+  Potomac." Saints' shrine-marks as small gold icons. Warm, literate,
+  lived-in — a map you would frame, not a tactical readout.
+
+regions:
+
+  down_east:
+    name: Down East
+    summary: "Penobscot Bay granite and fog; lobster guilds and lighthouse keepers."
+    description: >-
+      The far northeast corner — Penobscot Bay, Bar Harbor, Eastport, Mount
+      Desert, and Ktaadn standing inland in the Maine Woods. Granite and cold
+      water and fog that carries its own cold light. The pound-keepers and
+      sternmen run the lobster grounds by a hierarchy older than the Glory,
+      the lighthouses still rotate on their own, and Penobscot oral tradition
+      keeps the fog-cosmology that the rest of the Seaboard finds unsettling.
+      Insular. It works, and it does not much care whether you do.
+    adjacent: [white_mountains, merrimack_mills, cape_ann]
+    landmarks:
+      - "Mount Desert and the rotating lights of the outer islands"
+      - "Ktaadn, the holy mountain inland in the Maine Woods (Saint Henry's seat)"
+      - "Eastport's sternmen's hall and the tidal lobster-pounds"
+    terrain: "rugged granite coast and deep north woods"
+
+  whalecoast:
+    name: The Whalecoast
+    summary: "Mutant whalers hunting mutant whales; Melville syncretized with Wampanoag and the abyss."
+    description: >-
+      New Bedford, Nantucket, Martha's Vineyard, Provincetown. The Acushnet —
+      the real ship Melville sailed in 1841 — is preserved at New Bedford, and
+      Father Mapple's pulpit still stands in the Seaman's Bethel. The whalers
+      hunt leviathans the Glory made strange, in a covenant that braids
+      Melville with Aquinnah and Mashpee Wampanoag practice and the plain
+      biology of the deep. Not a coast of horror — a coast of work, of lays
+      and shares and grandfather-whales the People will not hunt.
+    adjacent: [boston_common, plymouth_stone, providence]
+    landmarks:
+      - "The Acushnet, preserved at New Bedford"
+      - "Father Mapple's pulpit, the Seaman's Bethel"
+      - "The Aquinnah cliffs on Martha's Vineyard"
+    terrain: "barrier islands, deep-water grounds, drowned salt marsh"
+
+  cape_ann:
+    name: The Cape Ann Sodality
+    summary: "Founder-effect fishing villages between Rockport and Gloucester; real coastal-isolate genetics."
+    description: >-
+      Lanesville, Pigeon Cove, Folly Cove, Annisquam — the real Cape Ann
+      fishing villages, Finnish and Italian and Portuguese by ancestry, small
+      enough that the Glory's pressure on a founder population bred true. The
+      marks here are real congenital syndromes (the kind seen in Tristan da
+      Cunha, Pingelap atoll, Old Order founder communities), not anyone's
+      reskin of a horror story. The villages keep to themselves, fish the
+      ledges, and name their own oddness with a wry self-deprecation older
+      than the catastrophe.
+    adjacent: [down_east, salem_country, boston_common]
+    landmarks:
+      - "Folly Cove and its self-named tide-pools"
+      - "The Sodality hall at Pigeon Cove"
+      - "The granite quarries flooded to deep cold pools"
+    terrain: "rockbound cove coast and flooded quarries"
+
+  boston_common:
+    name: Boston Common
+    summary: "Brahmin mutant aristocracy administered through the old clubs; Irish Catholic parishes beneath."
+    description: >-
+      Boston and Cambridge — Beacon Hill, Back Bay, Dorchester, Roxbury,
+      Charlestown, Cambridgeport. The old aristocracy runs its affairs through
+      the Somerset Club and the Saturday Club, courteous and insular and
+      devastating; the Irish Catholic parishes of Southie and Dorchester keep
+      their own Saints below. The Charlestown scar — where a Protestant mob
+      once burned an Ursuline convent — has never healed between the Brahmin
+      remnant and the Magisterium. Harvard and MIT keep their scriptoria as
+      junior houses to the Athenaeum down the line.
+    adjacent: [cape_ann, salem_country, merrimack_mills, plymouth_stone, whalecoast, providence]
+    landmarks:
+      - "The Somerset Club, 42 Beacon Street"
+      - "The Charlestown convent-ground, still mourned"
+      - "Harvard and MIT scriptoria across the river"
+    terrain: "filled tideland, brick hills, drowned harbor islands"
+
+  salem_country:
+    name: Salem Country
+    summary: "Civic witch-craft under spectral-evidence doctrine; the 1692 trials were retrospectively right."
+    description: >-
+      Salem proper, Danvers (the old Salem Village), and Beverly. The Glory
+      proved the 1692 trials had been right about the wrong thing — certain
+      bloodlines were favored — and the old Putnam-Porter land feud is read
+      now as the theology it secretly was. Witch-craft here is civic, not
+      occult: registered lines, sworn familiars, spectral evidence as a legal
+      doctrine the Magisterium still rules on. Tituba's specifically-Barbadian
+      creole practice is the honored seed of the witch line. Cautiously, it
+      works.
+    adjacent: [cape_ann, boston_common, merrimack_mills]
+    landmarks:
+      - "The Danvers meeting-ground (old Salem Village)"
+      - "The Court of Spectral Evidence, still in session"
+      - "The witch-line registry house"
+    terrain: "tidal river country and old township commons"
+
+  merrimack_mills:
+    name: The Merrimack Mills
+    summary: "The textile-mill axis; Saint Crispin's looms; immigrant labor history made canon."
+    description: >-
+      Lowell, Lawrence, Manchester, Nashua, Worcester, Fall River — the old
+      textile axis on the Merrimack and Blackstone, multi-immigrant and
+      industrial. Saint Crispin patrons the work; the 1912 Bread-and-Roses
+      strike is canonical labor history; Kerouac's Pawtucketville parish keeps
+      the Grotto Stations as Saint Jack's shrine. Worcester is Polish, Fall
+      River Portuguese, Lowell French-Canadian. The looms still run — some of
+      them with nobody at the shuttle.
+    adjacent: [down_east, white_mountains, salem_country, boston_common, pioneer_valley, providence]
+    landmarks:
+      - "The Grotto Stations of the Cross, Pawtucket Street, Lowell (Saint Jack's shrine)"
+      - "The Bread-and-Roses memorial at Lawrence"
+      - "The still-running power-looms of the Boott complex"
+    terrain: "canal-laced mill cities on fast rivers"
+
+  providence:
+    name: Providence
+    summary: "The Athenaeum Sisters, Federal Hill's parlours, and the Lo'in pilgrimage to Swan Point. The starting region."
+    description: >-
+      Providence and Federal Hill, Olneyville and Swan Point. The Sisters of
+      the Whitman Circle keep the Athenaeum as library-faith and authenticated
+      seance, in the 1848 Spiritualist lineage Poe brushed against when he
+      courted Helen Whitman here. Italian Federal Hill runs its own arrangement
+      along Atwells Avenue; Saint Francis processes downtown on his feast. The
+      Lo'in keep Lovecraft's Swan Point grave as a pilgrimage, reenacting his
+      tales in mutated form — he never wrote of *them* as monsters, so they
+      reclaim him. Cloistered and civic at once. The Corridor's northern hinge.
+    adjacent: [boston_common, merrimack_mills, whalecoast, pioneer_valley, outer_boroughs, sunken_bight]
+    landmarks:
+      - "The Providence Athenaeum reading room (the Sisters' senior house)"
+      - "Atwells Avenue and the Federal Hill parlours"
+      - "Lovecraft's grave at Swan Point (the Lo'in pilgrimage)"
+    terrain: "hill city at the head of a drowned bay"
+
+  pioneer_valley:
+    name: The Pioneer Valley
+    summary: "Saint Emily's quiet Connecticut River country; Amherst, Northampton, Holyoke."
+    description: >-
+      The Connecticut River towns of western Massachusetts — Amherst,
+      Northampton, Holyoke — under the long quiet that is Saint Emily of
+      Amherst's own register. Mount Holyoke keeps an Athenaeum junior house;
+      the flood-cut oxbows below the mountain have gone green and patient. A
+      withdrawing country, slant of light and shut doors, where the loudest
+      thing for a mile is the river working at its own banks. Saints come here
+      to not be found.
+    adjacent: [merrimack_mills, providence, hudson_valley, catskills]
+    landmarks:
+      - "The Mount Holyoke library (Athenaeum junior house)"
+      - "The Connecticut River oxbow below the mountain"
+      - "The shut house at Amherst (Saint Emily's seat)"
+    terrain: "broad river valley between low ranges"
+
+  hudson_valley:
+    name: The Hudson Valley
+    summary: "Faerie country and Patroon manors; Storm King, the Dunderberg, Sleepy Hollow."
+    description: >-
+      West Point up to Albany — Sleepy Hollow, Tarrytown, Cold Spring, Hyde
+      Park; Storm King looming over the river. Old-money faerie country: the
+      Patroon houses (Van Rensselaer, Livingston, Philipse) hold their manor-
+      states still, and the Anti-Rent War reopens every rent-day. The Hudson
+      lore is live — the Dunderberg Imp whistling up storms in the Highlands,
+      the Catskill ninepin-players, the Horseman riding the glen on moonless
+      nights. Saint Washington of Sunnyside is venerated and feared in equal
+      measure.
+    adjacent: [adirondacks, catskills, pioneer_valley, sunken_bight, outer_boroughs]
+    landmarks:
+      - "Storm King Mountain over the Highlands"
+      - "Sleepy Hollow and the Tarry Town church bridge"
+      - "Philipsburg Manor and the Rensselaerswijck grant"
+    terrain: "deep tidal river under faerie-haunted highlands"
+
+  catskills:
+    name: The Catskills
+    summary: "The Sleeper region; Borscht-Belt resorts thaw on schedule into comic dystopia."
+    description: >-
+      The Borscht Belt — Liberty, Loch Sheldrake, Monticello, South Fallsburg.
+      Under the Brown, the Grossinger's, the Concord, the Nevele, cryo-vaults
+      thaw their pre-war guests on a schedule nobody maintains, and Jewish-
+      Catskills retirees come downstairs mid-routine demanding the kasha and
+      asking which tummler is on tonight. Saint Henny of the Borscht is
+      venerated here. The world's comic-dystopia anchor: everything still
+      works, absurdly, and the resorts open every summer for the living and
+      the thawed alike.
+    adjacent: [hudson_valley, pioneer_valley]
+    landmarks:
+      - "Brown's Hotel (the Sleepers' Sodality seat; Saint Henny's chapel)"
+      - "The Grossinger's cryo-vault thaw-floor"
+      - "The Catskill cloves where the ninepin-players bowl their thunder"
+    terrain: "resort-dotted mountains and deep wooded cloves"
+
+  adirondacks:
+    name: The Adirondacks
+    summary: "Mutant wilderness and hermit philosophers; Saint John of Slabsides' High Peaks."
+    description: >-
+      The High Peaks, the Lake Champlain shore, Follensby Pond, Slabsides.
+      Wilderness — not wasteland. Saint John of Slabsides (Burroughs) patrons
+      the country, and the Philosophers' Camp at Follensby is a pilgrimage
+      where the hermits argue Murray's *Adventures in the Wilderness* as
+      scripture. The bears here are big enough and close enough to the
+      uplifted muwin-folk that killing one starts a theological dispute. You
+      come to the Adirondacks to be alone, and the wilderness obliges, with
+      teeth.
+    adjacent: [white_mountains, hudson_valley]
+    landmarks:
+      - "Slabsides, Saint John's preserved cabin at West Park"
+      - "The Philosophers' Camp at Follensby Pond"
+      - "The High Peaks and the Lake Champlain shore"
+    terrain: "high wild peaks, deep ponds, trackless forest"
+
+  white_mountains:
+    name: The White Mountains
+    summary: "Weather-priests enforce the storms; Mount Washington and the Big Wind."
+    description: >-
+      Mount Washington and the Presidentials — the Tip-Top House, the Cog
+      Railway, the Lakes of the Clouds. The weather-priests at the still-
+      running Observatory predict the storms and, the parishes below swear,
+      *call* them; the 1934 Big Wind (231 miles an hour, real, a record that
+      stood until 1996) is a liturgical date. The Tip-Top House is the literal
+      cathedral; the Cog is pilgrimage. Saint Lizzie of the Cairn, who died of
+      exposure near the summit in 1855, is venerated by everyone who climbs.
+      It works. It is hostile.
+    adjacent: [down_east, merrimack_mills, adirondacks]
+    landmarks:
+      - "The Tip-Top House summit cathedral"
+      - "The Mount Washington Observatory (the weather-priests)"
+      - "Lizzie Bourne's cairn near the summit (Saint Lizzie's shrine)"
+    terrain: "alpine summits with the worst weather on the seaboard"
+
+  plymouth_stone:
+    name: Plymouth Stone
+    summary: "The Rock grew teeth; the Mayflower is sighted again; King Philip's War is the unhealed wound."
+    description: >-
+      Plymouth, Cape Cod, Mashpee, Patuxet. The Rock grew teeth, and the
+      theological joke writes itself — the relic wasn't even identified until
+      1741, invented retrospectively by a 95-year-old pointing at a stone.
+      The Mayflower is sighted again, periodically, low and wakeless. King
+      Philip's War (Metacom's rising, 1675) is the wound that never closed;
+      the Massasoit-Bradford Compact is a live treaty. Saint Tisquantum, the
+      captive who returned to a village wiped by disease, is the Saint of
+      returns. It works, uneasily.
+    adjacent: [boston_common, whalecoast]
+    landmarks:
+      - "The toothed Rock at Plymouth"
+      - "Patuxet and the Mashpee Wampanoag grounds"
+      - "The shore where the Mayflower is sighted"
+    terrain: "sandy cape, kettle ponds, drowned tidal flats"
+
+  sunken_bight:
+    name: The Sunken Bight
+    summary: "Drowned New York to the skyscraper-shoulders; the torch still burns as a lighthouse."
+    description: >-
+      New York submerged to the skyscraper-shoulders, Long Island Sound risen
+      over the boroughs. Lady Liberty stands drowned to her shoulders, her
+      torch still burning as a working light. Manhattan stratifies by
+      elevation — Park Slope dry, Battery Park a reef — and vertical buildings
+      have become filter-feeder ecologies. The Giglio-on-the-Water is carried
+      by barge to the drowned tip of Manhattan each July. Townhouses to the
+      eaves in saltwater; rent paid in quarters; the torch as lighthouse. It
+      works, half-underwater.
+    adjacent: [outer_boroughs, hudson_valley, providence]
+    landmarks:
+      - "Lady Liberty drowned to the shoulders, the torch still burning"
+      - "The drowned Midtown towers and their filter-feeder reefs"
+      - "The flooded IRT subway lines"
+    terrain: "half-drowned vertical city, brackish tide through the avenues"
+
+  outer_boroughs:
+    name: Outer Boroughs & Italian Bronx
+    summary: "The New Catholic core; Arthur Avenue, Bensonhurst, Spanish Harlem, the Cabrini shrine."
+    description: >-
+      The dry-shouldered boroughs around the drowned core — Bensonhurst,
+      Belmont and Arthur Avenue in the Bronx, Spanish Harlem on East 116th,
+      Inwood and Washington Heights. These neighborhoods *are* the New
+      Catholic heart: Saint Francis of Hoboken venerated on Arthur Avenue,
+      Saint Tito on East 116th, Saint Roberto at the bridge, and Mother
+      Cabrini's actual shrine at Fort Tryon. Feast days run hot, the parishes
+      run deep, and the Corridor runs straight through the middle of it all.
+    adjacent: [sunken_bight, hudson_valley, providence, philadelphia]
+    landmarks:
+      - "Mother Cabrini's shrine at Fort Tryon (Saint Francesca's seat)"
+      - "Arthur Avenue and the Belmont Italian parishes"
+      - "East 116th Street, Spanish Harlem (Saint Tito's shrine)"
+    terrain: "dense dry-ground neighborhoods ringing the drowned bight"
+
+  philadelphia:
+    name: Philadelphia
+    summary: "Federal-era ruins, the Mummers, the Mint that still strikes coin; bridge between north and south."
+    description: >-
+      Philadelphia proper, the Main Line, South Philly, Fishtown, Gladwyne.
+      Federal-era ruins and working parishes — Saint Cecilia of South Philly
+      blesses the music, the Mummers Parade struts Broad Street every New
+      Year's, Father Divine's Gladwyne estate is a shrine, and the Osage
+      Avenue MOVE site is an acknowledged martyrdom. The United States Mint
+      still strikes pennies from the pre-war dies because nobody has dared to
+      change them. The political bridge between Boston-coded and DC-coded
+      Seaboard.
+    adjacent: [outer_boroughs, baltimore]
+    landmarks:
+      - "The United States Mint, still striking the pre-war dies"
+      - "Broad Street, the Mummers' route"
+      - "Father Divine's Peace Mission estate at Gladwyne"
+    terrain: "federal ruins on a tidal river, working row-house wards"
+
+  baltimore:
+    name: Baltimore
+    summary: "Poe's grave, crab tongs, the skipjack oyster fleet; Saint Edgar's shrine and the Eastern Shore."
+    description: >-
+      Baltimore and the Chesapeake — Dorchester County, Smith Island,
+      Tangier. Edgar Allan Poe's grave at Westminster Hall is Saint Edgar's
+      principal shrine; the ravens keep it. Harriet Tubman's Dorchester County
+      is a Saint-of-the-crossing site. The skipjack oyster fleet still works
+      sail-only by pre-war law, and Smith and Tangier Islands still speak the
+      Elizabethan dialect their isolation preserved. Baltimore's Saints are its
+      own musicians — Billie Holiday, Eubie Blake, Cab Calloway — not anyone
+      else's ethnomusicology.
+    adjacent: [philadelphia, dc]
+    landmarks:
+      - "Poe's grave at Westminster Hall (Saint Edgar's shrine)"
+      - "The Eastern Shore and Tubman's Dorchester County"
+      - "The skipjack oyster fleet, sail-only by law"
+    terrain: "harbor city and the wide brackish Chesapeake"
+
+  dc:
+    name: D.C.
+    summary: "The Mall, the Smithsonian reliquary, Brookland's Little Rome; the Magisterium's southern see."
+    description: >-
+      The Mall, the Federal Triangle, Georgetown, Brookland, Anacostia, Shaw,
+      Mt. Pleasant. Brookland — Little Rome, the Catholic-institutional
+      quarter — is the Magisterium's southern see. The Smithsonian is a
+      reliquary complex, the Air & Space Hall a literal cathedral of holy
+      machines. The Library of Congress is the Memorabilia junior house to
+      Providence's senior. The Capitol still hosts a body that believes it
+      governs, attended by mutant pages; the Pentagon is cult and ruin both.
+      The strangest region, in a polite way.
+    adjacent: [baltimore]
+    landmarks:
+      - "Brookland — Little Rome — the Magisterium's southern see"
+      - "The Smithsonian reliquary and the Air & Space cathedral"
+      - "The Pentagon, cult and ruin"
+    terrain: "monumental ruin-city on a tidal estuary"
+
+routes:
+
+  # ── THE CORRIDOR — the rail spine; fast travel; danger: safe ──────────
+  - name: The Downeaster
+    description: >-
+      The northern Corridor leg, Boston up through the mill country to the
+      Maine coast. The train runs it on the unknowable schedule; you board,
+      you doze, you arrive Down East with the fog already on the platform.
+    from_id: boston_common
+    to_id: down_east
+    distance: long
+    danger: safe
+    waypoints: [merrimack_mills]
+
+  - name: The Shore Line
+    description: >-
+      Boston to Providence, the busiest safe leg of the Corridor — commuters,
+      pilgrims to the Athenaeum, Federal Hill produce, all of it rolling
+      through on schedule. The conductor still calls the stops in a language
+      half-forgotten.
+    from_id: boston_common
+    to_id: providence
+    distance: short
+    danger: safe
+
+  - name: The Causeway Line
+    description: >-
+      Providence down to the drowned city — the Corridor's longest safe leg,
+      crossing the New Haven gap to arrive at the dry-shouldered boroughs and
+      the edge of the Sunken Bight. The last few miles run on causeway above
+      the rising water.
+    from_id: providence
+    to_id: outer_boroughs
+    distance: long
+    danger: safe
+
+  - name: The Keystone Leg
+    description: >-
+      The boroughs to Philadelphia, fast and flat through the old industrial
+      corridor. Coin clinks at every stop; the Mint's fresh-struck pennies
+      ride north on this leg in canvas sacks.
+    from_id: outer_boroughs
+    to_id: philadelphia
+    distance: medium
+    danger: safe
+
+  - name: The Chesapeake Leg
+    description: >-
+      Philadelphia to Baltimore, the Corridor crossing into Chesapeake
+      country — the smell of the harbor and the oyster boats reaching the
+      windows before the city does.
+    from_id: philadelphia
+    to_id: baltimore
+    distance: medium
+    danger: safe
+
+  - name: The Southern See Leg
+    description: >-
+      Baltimore to Washington, the final safe leg into Brookland's Little
+      Rome. Mutant pages and Magisterium clerks share the carriages; the
+      Smithsonian's reliquary-spires come up on the skyline at the end.
+    from_id: baltimore
+    to_id: dc
+    distance: short
+    danger: safe
+
+  # ── OFF-CORRIDOR — the adventure routes; slower, named, dangerous ─────
+  - name: The Cog and the Climb
+    description: >-
+      Off the Corridor and up — the old Cog Railway and the pilgrim trail to
+      the Mount Washington summit, into the worst weather on the seaboard.
+      The weather-priests decide who summits. Many who climb without their
+      leave do not come down.
+    from_id: merrimack_mills
+    to_id: white_mountains
+    distance: medium
+    danger: dangerous
+
+  - name: The Slabsides Trace
+    description: >-
+      The hermit-paths from the White Mountains across to the Adirondack High
+      Peaks — Follensby Pond, Slabsides, the Philosophers' Camp. Slow walking
+      through trackless wilderness; the muwin elders hold the high passes.
+    from_id: white_mountains
+    to_id: adirondacks
+    distance: long
+    danger: dangerous
+
+  - name: The Patroon Road
+    description: >-
+      Down the Hudson from the Adirondack foot through the manor-states —
+      closed coverts, rent-day tension, the Dunderberg's weather in the
+      Highlands. The Patroon houndsmen ask your business at every gate.
+    from_id: adirondacks
+    to_id: hudson_valley
+    distance: long
+    danger: moderate
+
+  - name: The Berkshire Crossing
+    description: >-
+      The quiet inland route from the mill country into the Pioneer Valley and
+      on toward the Catskill cloves — slant light, shut doors, and the
+      ninepin-players' thunder in the western hills.
+    from_id: pioneer_valley
+    to_id: catskills
+    distance: medium
+    danger: moderate
+
+  - name: The Sleepy Hollow Glen
+    description: >-
+      The river road from the Hudson manors down to the drowned city, past
+      the Tarry Town church bridge. Cross the bridge before moonset. The
+      Horseman rides the glen, and rides down anyone caught between the manor
+      and the span after dark.
+    from_id: hudson_valley
+    to_id: sunken_bight
+    distance: medium
+    danger: dangerous
+
+  - name: The Cape Passage
+    description: >-
+      The coastal water-route from Boston's drowned harbor islands around to
+      the Whalecoast and down to Plymouth — fog-lanterns off the ledges,
+      grandfather-whales sounding in the deep grounds. Sailed, not railed.
+    from_id: whalecoast
+    to_id: plymouth_stone
+    distance: medium
+    danger: moderate
+
+  - name: The North Shore Ledges
+    description: >-
+      The rockbound coast from Cape Ann around through Salem Country — quarry
+      pools, the Cove diving-families' ledges, and the civic courts of the
+      witch-lines holding session in the old township commons.
+    from_id: cape_ann
+    to_id: salem_country
+    distance: short
+    danger: moderate

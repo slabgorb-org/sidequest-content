@@ -1,0 +1,939 @@
+# Seaboard of Saints — world bestiary (combat stat blocks)
+#
+# WORLD-TIER override roster for the strict `Bestiary` model consumed by
+# encountergen's Monster Manual pool. Per GenrePack.effective_bestiary the
+# world set REPLACES the genre floor entirely (barsoom-style canon isolation):
+# none of mutant_wasteland's generic wasteland foes (wasteland_raider,
+# gorehound, manscorpion, raider_boss, etc.) are reachable here. Every
+# creature an encounter_tables.yaml entry references MUST be defined below.
+#
+# Stats follow the Ashes Without Number (Sine Nomine) convention shared with
+# flickering_reach: level == HD, hp ~= 4.5/HD average, ascending AC, the AWN
+# foe attack/save ladder, morale on the 2d12 scale (6 timid .. 12 fearless).
+#
+# Genre truth for the Seaboard is NOT grimdark wasteland. The cities work; the
+# Corridor runs. Hostiles are regional hazards, mutant marine life, Hudson
+# faerie, drowned-NYC filter ecology, comic-dystopian thaw cases, and the human
+# enforcers of working factions — not roving raider warbands. Most "fights"
+# are avoidable, civic, or absurd. Lethality lives in the wilderness margins
+# (Mount Washington, the open abyss, the drowned skyline), not the parishes.
+#
+# Cliché bans (spec §11) hold in every name and description: no Reach/Veil/
+# Spire/Hollow/Drift/Mire/Shroud/Sanctum/Bastion coinages (Sleepy Hollow is a
+# real place and keeps its name); no Innsmouth-Look reskin (Cape Ann is real
+# founder-effect genetics); no "voodoo"/coarse occultism (Salem is civic-legal
+# spectral-evidence doctrine). Region tags use cartography.yaml slugs.
+entries:
+
+  # ══════════════════════════════════════════════════════════════
+  # DOWN EAST — Penobscot Bay, fog cosmology, the sternmen guilds
+  # ══════════════════════════════════════════════════════════════
+  - id: poundkeeper_bull
+    name: Pound-Keeper's Bull
+    level: 2
+    hp: 9
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "6m / 12m swim"
+    morale: 8
+    skill: 1
+    save: 14
+    role: car-sized impounded lobster gone feral
+    tags: [mutant, beast, down_east, whalecoast]
+    abilities:
+      - "Crusher claw — on a hit, target is grappled until it breaks free (opposed Brawn)"
+      - "Armoured carapace — first hit each fight that would drop it instead chips the shell (no damage)"
+    description: >-
+      A lobster the size of a dory, kept too long in a tidal holding-pound off
+      Stonington until it learned the gate. The sternmen still tithe it the
+      season's short-measures; when the tithe is thin it comes up the ramp on
+      its own legs, claws clicking like a man cracking knuckles.
+
+  - id: fog_lantern
+    name: Fog-Lantern
+    level: 3
+    hp: 13
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d6"
+    move: "9m drift"
+    morale: 9
+    skill: 2
+    save: 14
+    role: lure-light predator of the rolling fog
+    tags: [mutant, beast, anomaly, down_east]
+    abilities:
+      - "Lure-light — a foe that moves toward the glow saves or loses its next action, walking off the path"
+      - "Only manifests in fog or full dark; harmless and inert in clear daylight"
+    description: >-
+      The fog off Mount Desert carries a soft cold light that the lobstermen
+      call a lantern and never row toward. It is an anglerfish principle worn
+      by something the size of a man, hanging its glow in the murk above the
+      ledges where the rocks will do the killing for it.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE WHALECOAST — mutant whalers, mutant whales, abyssal biology
+  # ══════════════════════════════════════════════════════════════
+  - id: dogfish_pack
+    name: Abyssal Dogfish Pack
+    level: 3
+    hp: 13
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "18m swim"
+    morale: 7
+    skill: 2
+    save: 14
+    role: coordinated deep-water hunting school
+    tags: [mutant, beast, swarm, whalecoast]
+    abilities:
+      - "Counts as a school — half damage from single-target weapons, full from area attacks"
+      - "Blood-frenzy — +2 to hit any target that has already taken damage this fight"
+    description: >-
+      Spiny dogfish run in their thousands off Nantucket Shoals, but the
+      Glory taught one strain to school like wolves and surface in daylight.
+      They take a swimmer the way a current takes a hat — all at once, and
+      from below.
+
+  - id: scrimshaw_bull
+    name: Scrimshaw Bull
+    level: 7
+    hp: 31
+    armor_class: 16
+    attack_bonus: 9
+    damage: "2d8"
+    move: "24m swim"
+    morale: 10
+    skill: 3
+    save: 12
+    role: harpoon-scarred leviathan, the hunt that hunts back
+    tags: [mutant, beast, whalecoast, apex]
+    abilities:
+      - "Sound and breach — once per fight, dives and erupts under a boat: all aboard save or are thrown into the water"
+      - "Stove the boards — a hit on a vessel cripples it; a hit on a swimmer is 2d8"
+      - "Reads the iron — +2 to hit anyone carrying a harpoon it has felt before"
+    description: >-
+      Its grey hide is carved over every old wound with scrimshaw the whalers
+      themselves cut — a Melville-syncretized covenant that names each harpoon
+      and each hand. The Aquinnah call it a grandfather and will not hunt it.
+      The New Bedford lays still go out. It remembers all of them.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE CAPE ANN SODALITY — founder-effect coastal isolate villages
+  # ══════════════════════════════════════════════════════════════
+  - id: cove_diver
+    name: Folly Cove Diver
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "6m / 15m swim"
+    morale: 7
+    skill: 2
+    save: 14
+    role: web-fingered isolate smuggler, wary not wicked
+    tags: [human, mutant, cape_ann]
+    abilities:
+      - "Holds breath ten minutes — fights from the water, surfacing only to strike"
+      - "Cold-water vasoconstriction — ignores the first point of cold or exposure damage each scene"
+    description: >-
+      The Lanesville and Pigeon Cove families carry real congenital marks —
+      syndactyly webbing, the salt-craving, the echolocation hum taught
+      cradle to cradle. A Diver is no monster, only a neighbour who would
+      rather you left, and who knows the ledges you do not. Press them and
+      they fight like seals defending a haul-out.
+
+  # ══════════════════════════════════════════════════════════════
+  # BOSTON COMMON — Brahmin aristocracy, the Saturday Club, the Vault
+  # ══════════════════════════════════════════════════════════════
+  - id: vault_factor
+    name: The Vault's Factor
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8"
+    move: "12m"
+    morale: 9
+    skill: 3
+    save: 13
+    role: courteous enforcer of the Beacon Hill oligarchy
+    tags: [human, boston_common, faction]
+    abilities:
+      - "Reads the room — opens any social confrontation one step ahead; +2 to the first contested roll"
+      - "Half-dollar persuasion — may attempt to end a fight by paying it off before the second round"
+    description: >-
+      The old Boston business order — the Somerset Club above the table, the
+      Vault beneath it — does not send thugs. It sends a Factor in a good coat
+      who knows your debts, your parish, and your mother's maiden Saint, and
+      who would so much prefer this be settled quietly. The pistol is a
+      formality he finds distasteful but carries.
+
+  - id: charles_eel
+    name: Charles River Eel
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "3m / 15m swim"
+    morale: 6
+    skill: 1
+    save: 14
+    role: brackish ambusher in the basin culverts
+    tags: [mutant, beast, boston_common]
+    abilities:
+      - "Shock-grasp — on a hit, target saves or is stunned out of its next action"
+      - "Slips any grapple; cannot be held"
+    description: >-
+      Two centuries of dumped pre-war transformer oil and the Glory together
+      gave the basin eels a weak electric organ. They lair in the Back Bay
+      storm culverts and the Esplanade locks, and they bite the ankles of
+      anyone fool enough to wade the genteel green water.
+
+  # ══════════════════════════════════════════════════════════════
+  # SALEM COUNTRY — civic witch-craft, spectral-evidence doctrine
+  # ══════════════════════════════════════════════════════════════
+  - id: spectral_witness
+    name: Spectral Witness
+    level: 4
+    hp: 16
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d6"
+    move: "9m float"
+    morale: 12
+    skill: 2
+    save: 13
+    role: a sworn accusation given shape under the old doctrine
+    tags: [psychic, anomaly, salem_country]
+    abilities:
+      - "Accusing finger — points at one foe; that foe saves or takes a -2 penalty until it acts against the Witness"
+      - "Insubstantial — only iron, true testimony, or a magistrate's writ can wound it; mundane weapons pass through"
+      - "Fearless — never checks morale"
+    description: >-
+      In Salem the 1692 trials were retrospectively right, and spectral
+      evidence is still law the Magisterium rules on. A grudge sworn before a
+      magistrate and left unresolved can walk — the literal shape of an
+      accusation, pointing, until the court that raised it sits again. Civic,
+      not occult. Terrifying all the same.
+
+  - id: court_familiar
+    name: Court Familiar
+    level: 1
+    hp: 4
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4"
+    move: "12m"
+    morale: 8
+    skill: 1
+    save: 15
+    role: a witch-line's sworn animal, bound by the registry
+    tags: [mutant, beast, salem_country]
+    abilities:
+      - "Bonded — shares what it sees with its sworn witch up to a mile off"
+      - "Bites and flees; will not stand if its witch is not present"
+    description: >-
+      Every registered Salem witch-line keeps a familiar entered in the
+      parish book — a black hare, a marsh cat, a banded crow. Tituba's
+      Barbadian Arawak-and-Anglican creole gave the practice its shape; the
+      Magisterium gave it paperwork. Cross the witch and the familiar is the
+      first thing you meet, and the last thing that runs to tell.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE MERRIMACK MILLS — textile axis, Saint Crispin, labor history
+  # ══════════════════════════════════════════════════════════════
+  - id: loom_revenant
+    name: Loom-Revenant
+    level: 3
+    hp: 13
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d8"
+    move: "6m"
+    morale: 12
+    skill: 1
+    save: 14
+    role: a power-loom still running its last shift
+    tags: [robot, merrimack_mills]
+    abilities:
+      - "Shuttle-strike — two fast attacks per round at close range"
+      - "Bobbin-bind — on a hit, target is wound in thread and snagged until it spends an action tearing free"
+      - "Fearless — never checks morale"
+    description: >-
+      In the Lowell and Lawrence mills the Glory stopped the people but not
+      the machines. A Loom-Revenant is a full Crompton loom on jury-rigged
+      legs, still throwing its shuttle on a 12-hour rhythm twelve centuries
+      late, weaving anyone who wanders onto the floor into the bolt. The
+      Saint Crispin parishes bless the ones they can and bar the doors on the
+      rest.
+
+  # ══════════════════════════════════════════════════════════════
+  # PROVIDENCE — the Athenaeum Sisters, Federal Hill, the Lo'in
+  # ══════════════════════════════════════════════════════════════
+  - id: atwells_button
+    name: Atwells Avenue Button-Man
+    level: 3
+    hp: 13
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "12m"
+    morale: 8
+    skill: 2
+    save: 14
+    role: Federal Hill enforcer, all courtesy until it isn't
+    tags: [human, providence, faction]
+    abilities:
+      - "Two of them are never far — if one falls, a second arrives within two rounds"
+      - "Knows the alleys — disengages from any fight on its own terms once per scene"
+    description: >-
+      The Atwells Avenue Society runs Federal Hill's parlours under its own
+      arrangement with the Magisterium — Saint Francis processions on the
+      fourth of October, tribute the rest of the year. A Button-Man is
+      polite, well-dressed, and entirely willing to discuss your debt over
+      coffee at the Pinecone before he discusses it any other way.
+
+  - id: seance_wraith
+    name: Séance Wraith
+    level: 4
+    hp: 16
+    armor_class: 13
+    attack_bonus: 5
+    damage: "1d6"
+    move: "9m float"
+    morale: 11
+    skill: 3
+    save: 13
+    role: a botched automatic-writing left half-open
+    tags: [psychic, anomaly, providence]
+    abilities:
+      - "Cold dictation — a foe within 9m saves or spends its turn writing the wraith's words instead of acting"
+      - "Bound to the manuscript — destroying the page it was raised from banishes it instantly"
+      - "Insubstantial to mundane weapons; iron, salt, or the true text disperse it"
+    description: >-
+      The Sisters of the Whitman Circle authenticate their seances for good
+      reason: an automatic-writing left unclosed at the Athenaeum can keep
+      writing without a hand. The Séance Wraith is the lingering pressure of a
+      message that wants finishing, in the 1848 Fox-Sisters lineage the
+      Sisters guard against. Find the page; burn the page.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE HUDSON VALLEY — faerie country, Patroon manors, Storm King
+  # ══════════════════════════════════════════════════════════════
+  - id: dunderberg_imp
+    name: Dunderberg Imp
+    level: 3
+    hp: 12
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d6"
+    move: "9m / 15m fly"
+    morale: 7
+    skill: 2
+    save: 14
+    role: storm-whistling goblin of the Highlands
+    tags: [faerie, mutant, hudson_valley]
+    abilities:
+      - "Whistle up the squall — once per fight calls a sudden gust: all in the open save or are knocked down"
+      - "Capricious — checks morale early, but a bribe of drink or a riddle can end the fight outright"
+    description: >-
+      The goblin-crew of the Dunderberg have whistled storms up the Hudson
+      Highlands since the Dutch sailed it, and the Glory only gave them
+      bodies to match the old sailors' tales. Squat, blue-lipped, full of
+      spite and bad weather, an Imp would rather wreck your sloop than rob it
+      — though it will happily do both.
+
+  - id: catskill_ninepin
+    name: Catskill Ninepin-Player
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "9m"
+    morale: 8
+    skill: 1
+    save: 14
+    role: bowler-hatted mountain dwarf out of Rip's tale
+    tags: [faerie, mutant, hudson_valley, catskills]
+    abilities:
+      - "Thunder-bowl — rolls a heavy ball down the slope: a struck foe saves or is knocked prone and loses its turn"
+      - "Pour you a draught — a foe that drinks what it offers sleeps for the rest of the scene (save resists)"
+    description: >-
+      The dwarves Rip Van Winkle found at their ninepins are real in the
+      Catskill cloves, still bowling their thunder among the rocks in faded
+      Dutch doublets. They mean no harm they can help, but their flagon is
+      the original American Sleeper's curse, and a man who drinks deep wakes
+      a long way downhill and a long time later.
+
+  - id: horseman_of_sleepy_hollow
+    name: The Horseman of Sleepy Hollow
+    level: 6
+    hp: 27
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d10+1"
+    move: "30m mounted"
+    morale: 12
+    skill: 3
+    save: 12
+    role: the headless rider, faerie-bound to the glen
+    tags: [faerie, anomaly, hudson_valley, elite]
+    abilities:
+      - "Runs down anyone fleeing — gains a free attack against a target that retreats"
+      - "Cannot cross the church bridge — broken off entirely if a foe reaches consecrated ground"
+      - "Fearless — never checks morale"
+    description: >-
+      Tarry Town keeps its bridge in repair for one reason. The Horseman
+      rides the glen on moonless nights as he has since Irving wrote him,
+      and the Glory only deepened the binding — Saint Washington of Sunnyside
+      both venerated and feared. He hunts to the bridge and no further. Reach
+      it, and you live to tell it badly.
+
+  - id: patroon_houndsman
+    name: Patroon Houndsman
+    level: 3
+    hp: 13
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d8"
+    move: "12m"
+    morale: 9
+    skill: 2
+    save: 14
+    role: manor-estate enforcer of the Rensselaerswijck grant
+    tags: [human, hudson_valley, faction]
+    abilities:
+      - "Hunts in a brace with two estate hounds (use Court Familiar stats for the dogs)"
+      - "Writ of the manor — fights with conviction on Patroon land; -1 morale off it"
+    description: >-
+      The old Dutch patroonships never fully ended — Van Rensselaer, Livingston,
+      Philipse still hold their manor-states up the Hudson, and the Anti-Rent War
+      is a wound that reopens every rent-day. A Houndsman keeps the tenant
+      farmers off the closed coverts, and remembers which families wore the
+      Calico-Indian disguises last time.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE CATSKILLS — the Sleeper region, Borscht-Belt comic dystopia
+  # ══════════════════════════════════════════════════════════════
+  - id: thawed_wrong
+    name: Sleeper Thawed Wrong
+    level: 2
+    hp: 9
+    armor_class: 12
+    attack_bonus: 3
+    damage: "1d6"
+    move: "9m"
+    morale: 6
+    skill: 1
+    save: 14
+    role: a vault-retiree woken mid-routine and badly
+    tags: [human, sleeper, catskills]
+    abilities:
+      - "Bewildered — opens every fight by demanding the front desk, the check, or its wife; loses round one to confusion"
+      - "Pre-war sidearm in the nightstand — if it finds it, two ranged attacks per round"
+    description: >-
+      Under the Concord and Grossinger's the cryo-vaults thaw on a schedule
+      nobody maintains, and sometimes a guest comes up with the freezer-burn
+      still in the brain — convinced the tummler is late and the kasha is
+      cold. Mostly harmless and heartbreaking. Occasionally armed, and the
+      pre-war pistol in the nightstand still works perfectly.
+
+  - id: bandstand_brassbot
+    name: Bandstand Brass-Bot
+    level: 3
+    hp: 13
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d6"
+    move: "6m"
+    morale: 12
+    skill: 1
+    save: 14
+    role: a resort house-band automaton stuck on encore
+    tags: [robot, synthetic, catskills]
+    abilities:
+      - "Brazen blare — a sonic blast each round; foes within 9m save or attack at -1 from the noise"
+      - "Cannot stop the set — fights to destruction; never checks morale"
+    description: >-
+      The Catskills bandstands ran on brass automatons — trumpet, trombone,
+      a clarinet that does Benny Goodman note-perfect — and a few never got
+      the signal that the season ended twelve centuries ago. A Brass-Bot
+      plays the same medley at a wall of sound, and treats anyone who tries
+      to pull the plug as a heckler to be drowned out, permanently.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE ADIRONDACKS — mutant wilderness, hermit philosophers
+  # ══════════════════════════════════════════════════════════════
+  - id: muwin_bear
+    name: Muwin Elder
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 7
+    damage: "1d10"
+    move: "12m"
+    morale: 9
+    skill: 2
+    save: 13
+    role: uplift-adjacent dire bear of the High Peaks
+    tags: [mutant, beast, adirondacks]
+    abilities:
+      - "Two claw attacks per round; on both hitting, a crushing hug for 1d10 more"
+      - "Knows the philosophers — will not attack anyone who sits still and speaks gently (save by the bear to break off)"
+    description: >-
+      Muwin is the Penobscot word, and the Adirondack bears wear it with
+      reason now: bigger, slower-eyed, and close enough to the uplifted
+      muwin-folk that the hermits of Follensby Pond argue whether killing one
+      is murder. It will let a quiet philosopher pass. It will not let a loud
+      hunting party.
+
+  - id: blackfly_haze
+    name: Blackfly Haze
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d4"
+    move: "12m fly"
+    morale: 8
+    skill: 1
+    save: 14
+    role: a June swarm thick enough to drown a moose
+    tags: [mutant, swarm, adirondacks]
+    abilities:
+      - "Counts as a swarm — half damage from single-target weapons, full from smoke or fire"
+      - "Maddening — every round in the cloud, save or lose concentration on any careful task"
+    description: >-
+      The Adirondack blackfly was a misery before the Glory and is a hazard
+      after it — June swarms dense enough that the old loggers' rule held:
+      keep moving or be buried. The Haze drives deer off cliffs and turns a
+      calm portage into a screaming run for open water.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE WHITE MOUNTAINS — weather-priests, the Big Wind, hostile peaks
+  # ══════════════════════════════════════════════════════════════
+  - id: rime_walker
+    name: Rime-Walker
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8"
+    move: "9m"
+    morale: 11
+    skill: 2
+    save: 13
+    role: ice-clad exposure-thing above the treeline
+    tags: [mutant, anomaly, white_mountains]
+    abilities:
+      - "Killing cold — a hit deals 1d8 and the target saves or is slowed (half move) next round"
+      - "Below treeline it sublimes away — only fights in the alpine zone"
+    description: >-
+      Above the Lakes of the Clouds the rime grows on the cairns in feather-
+      blades, and in the worst weather it grows on something that walks. The
+      weather-priests of the Mount Washington Observatory say it is the
+      mountain's own cold given a shape, and they do not climb to fight it —
+      they wait for the foehn wind to take it back.
+
+  - id: observatory_warden
+    name: Observatory Warden
+    level: 4
+    hp: 18
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d8"
+    move: "9m"
+    morale: 10
+    skill: 3
+    save: 13
+    role: weather-priest enforcing the summit's storm-law
+    tags: [human, white_mountains, faction]
+    abilities:
+      - "Reads the glass — knows when the weather turns and uses it; +2 to hit during a called storm"
+      - "Tip-Top sanctuary — fights to the last only inside the stone summit house"
+    description: >-
+      The Mount Washington Observatory has run since 1932 and the Glory only
+      made its keepers priests. A Warden predicts the storm and, the parishes
+      below swear, calls it — enforcing the liturgy of the 1934 Big Wind on
+      pilgrims who climb without leave. They venerate Saint Lizzie of the
+      Cairn, who died doing exactly that.
+
+  # ══════════════════════════════════════════════════════════════
+  # PLYMOUTH STONE — the Rock grew teeth, King Philip's War wound
+  # ══════════════════════════════════════════════════════════════
+  - id: faunce_remnant
+    name: Faunce Remnant
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 7
+    damage: "1d8"
+    move: "9m"
+    morale: 11
+    skill: 2
+    save: 13
+    role: revenant of the unhealed colonial war
+    tags: [anomaly, human, plymouth_stone]
+    abilities:
+      - "Old grievance — strikes hardest at whoever last broke a compact in its presence (+2 to hit them)"
+      - "Bound to the wound — laying the original grievance to rest (a roleplay resolution) ends it without a blow"
+    description: >-
+      King Philip's War ended the first New England and never finished
+      ending. Around Patuxet and the toothed Rock the dead of 1675 still
+      walk on the anniversary — colonist and Wampanoag both, no longer
+      distinguishable, only aggrieved. Saint Tisquantum's people know the
+      rites that settle them; the Massasoit-Bradford Compact is still the
+      live treaty either side can invoke.
+
+  - id: ghost_mayflower_hand
+    name: Ghost-Mayflower Hand
+    level: 3
+    hp: 13
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d6"
+    move: "6m / 12m swim"
+    morale: 9
+    skill: 2
+    save: 14
+    role: crewman off the ship that keeps being sighted
+    tags: [anomaly, plymouth_stone]
+    abilities:
+      - "Press-gang — a foe it grapples and drags to the waterline is 'signed aboard,' removed from the scene until rescued"
+      - "Fades at the bell — any church bell rung within earshot ends the encounter"
+    description: >-
+      The Mayflower is sighted off Plymouth still, low in the water with no
+      wake, and now and then a boat's crew comes ashore to make up their
+      numbers. A Hand is salt-stiff and single-minded, looking for one more
+      back for the long crossing. It cannot abide a church bell — and the
+      Stone's parishes ring them often, for exactly this.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE SUNKEN BIGHT — drowned NYC, A.I. register, vertical reef ecology
+  # ══════════════════════════════════════════════════════════════
+  - id: tower_filterer
+    name: Tower-Filterer
+    level: 5
+    hp: 24
+    armor_class: 13
+    attack_bonus: 6
+    damage: "1d8"
+    move: "3m / 12m swim"
+    morale: 10
+    skill: 2
+    save: 13
+    role: colossal filter-feeder rooted in a drowned skyscraper
+    tags: [mutant, beast, sunken_bight]
+    abilities:
+      - "Intake current — every round, swimmers within 9m save or are drawn one band closer to the maw"
+      - "Sessile — cannot pursue; lethal only to those who come (or are dragged) within reach"
+    description: >-
+      A Midtown tower flooded to the fortieth floor becomes a vertical reef,
+      and in the dark of the lower storeys something has grown to fill the
+      stairwell — a barrel-mouthed filter-feeder the width of an elevator
+      bank, breathing the tide in and out through drowned offices. It cannot
+      chase. It does not need to. The current does the chasing.
+
+  - id: subway_reefshark
+    name: Subway Reef-Shark
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d10"
+    move: "18m swim"
+    morale: 8
+    skill: 2
+    save: 13
+    role: tunnel-dwelling predator of the flooded IRT
+    tags: [mutant, beast, sunken_bight]
+    abilities:
+      - "Tunnel ambush — surprise round against anyone entering its flooded line"
+      - "Cannot turn quickly in the tubes — a foe that reaches a platform or stair is safe from it"
+    description: >-
+      The flooded subway is the best hunting in the drowned city — straight
+      runs, blind corners, prey funnelled by the architecture. The reef-
+      sharks that work the old IRT lines are built for it, all forward drive
+      and no patience, hitting once down a tunnel and overshooting if you can
+      only reach the stairs.
+
+  - id: liberty_keeper
+    name: Liberty Light-Keeper
+    level: 4
+    hp: 18
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d8"
+    move: "6m"
+    morale: 12
+    skill: 2
+    save: 13
+    role: automaton still tending the drowned torch as a lighthouse
+    tags: [robot, synthetic, sunken_bight]
+    abilities:
+      - "Defends the light — +2 to hit anyone who approaches the torch-flame uninvited"
+      - "Signals for aid — a fight at the torch draws a harbor patrol within three rounds"
+      - "Fearless — never checks morale"
+    description: >-
+      Lady Liberty stands drowned to the shoulders in the Bight, and her
+      torch still burns — kept by a maintenance automaton that long ago
+      decided the flame was the one thing worth surviving for. It is not
+      hostile to mariners; it is devoted to the light, and devotion at the
+      top of a drowned monument has sharp edges.
+
+  # ══════════════════════════════════════════════════════════════
+  # OUTER BOROUGHS & ITALIAN BRONX — the New Catholic core
+  # ══════════════════════════════════════════════════════════════
+  - id: feast_day_bravo
+    name: Feast-Day Bravo
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "12m"
+    morale: 7
+    skill: 1
+    save: 14
+    role: parish street-tough riled up at the giglio
+    tags: [human, outer_boroughs]
+    abilities:
+      - "Runs in a crowd — fights at +1 while two or more allies are within sight"
+      - "All show — checks morale the moment the odds even out"
+    description: >-
+      On Arthur Avenue and in Bensonhurst the feast days run hot — the
+      giglio swaying, the bands, the wine — and a Bravo is some parish kid
+      with more honour than sense, ready to defend Saint Francis of Hoboken's
+      good name with his fists. Dangerous in a pack at the procession;
+      sheepish the next morning at confession.
+
+  # ══════════════════════════════════════════════════════════════
+  # PHILADELPHIA — federal ruins, the Mummers, the bridge politics
+  # ══════════════════════════════════════════════════════════════
+  - id: mummer_automaton
+    name: Mummer Automaton
+    level: 3
+    hp: 13
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d6"
+    move: "9m"
+    morale: 12
+    skill: 1
+    save: 14
+    role: a New Year's string-band figure still strutting Broad Street
+    tags: [robot, synthetic, philadelphia]
+    abilities:
+      - "Strut-and-wheel — moves and attacks in a fixed parade pattern; a foe that learns the step gets +2 to dodge"
+      - "Feathers and sequins over a steel frame — first hit each fight only strips costume, no damage"
+    description: >-
+      The Mummers Parade marched on Broad Street every New Year's, and some
+      of the big string-band automatons never stopped — sequined, plumed,
+      banjo-armed, strutting the same route through the federal ruins twelve
+      centuries on. Beautiful, absurd, and heavy enough to break a jaw with
+      a banjo it still thinks it is playing.
+
+  # ══════════════════════════════════════════════════════════════
+  # BALTIMORE — Poe, the Chesapeake, the skipjack oyster fleet
+  # ══════════════════════════════════════════════════════════════
+  - id: chesapeake_tonger
+    name: Chesapeake Tonger-Crab
+    level: 4
+    hp: 18
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d10"
+    move: "6m / 9m swim"
+    morale: 8
+    skill: 2
+    save: 13
+    role: skiff-sized blue crab of the brackish shallows
+    tags: [mutant, beast, baltimore]
+    abilities:
+      - "Shear-claw — a hit on a hull or an oar cripples it; a hit on a body is 1d10"
+      - "Buries in the bottom mud — surprise against anyone wading the flats"
+    description: >-
+      The Chesapeake blue crab grew with the Glory into something the
+      skipjack men hunt with tongs the size of ship's spars. A Tonger-Crab
+      lies buried on the oyster flats off Smith Island, claws like sprung
+      shears, and the sail-only oyster fleet works its grounds knowing one in
+      a season takes a man instead of the other way round.
+
+  - id: westminster_ravens
+    name: Westminster Ravens
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d4"
+    move: "3m / 15m fly"
+    morale: 7
+    skill: 2
+    save: 14
+    role: the graveyard murder that attends Saint Edgar's shrine
+    tags: [mutant, beast, swarm, baltimore]
+    abilities:
+      - "Counts as a swarm — half damage from single-target weapons"
+      - "Nevermore — fixates on one foe, harrying it at -1 to all rolls until that foe leaves the churchyard"
+    description: >-
+      The ravens of Westminster Hall keep Poe's grave as if it were a nest,
+      and the Glory made them clever and many. Saint Edgar's shrine-keepers
+      feed them and read their wheeling for omens; thieves who come for the
+      grave-offerings learn the murder picks one mark and does not tire of it.
+
+  # ══════════════════════════════════════════════════════════════
+  # D.C. — the Mall, the Smithsonian reliquary, the Pentagon cult-ruin
+  # ══════════════════════════════════════════════════════════════
+  - id: reliquary_exhibit
+    name: Reliquary Exhibit
+    level: 5
+    hp: 22
+    armor_class: 16
+    attack_bonus: 6
+    damage: "1d10"
+    move: "9m"
+    morale: 12
+    skill: 2
+    save: 13
+    role: a Smithsonian relic the docent-units keep "operational"
+    tags: [robot, synthetic, dc, elite]
+    abilities:
+      - "Restored to working order — a flight relic strafes, an engine relic crushes; one heavy ranged or melee attack per round"
+      - "Reliquary-bound — pursues only within its hall; the Smithsonian Order calls it back at the doors"
+      - "Fearless — never checks morale"
+    description: >-
+      The Smithsonian is a reliquary complex now and the Air & Space Hall a
+      cathedral, where the docent-automatons keep the holy machines
+      maintained — and some of the holy machines, maintained too well, defend
+      themselves. An Exhibit is a pre-war craft or engine restored past
+      safety, guarding its plinth against anyone the Order has not blessed to
+      approach.
+
+  - id: pentagon_cultist
+    name: Pentagon Cultist
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8+1"
+    move: "12m"
+    morale: 10
+    skill: 2
+    save: 13
+    role: devotee-soldier of the ring that is cult and ruin
+    tags: [human, dc, faction]
+    abilities:
+      - "Pre-war service weapon, drilled — two ranged attacks per round at the cost of moving"
+      - "Five-sided liturgy — fights with conviction inside the Pentagon ring; -1 morale beyond it"
+    description: >-
+      The Pentagon is both cult and ruin: a five-sided liturgy worshipping a
+      chain of command that has issued no order in twelve centuries, and
+      still mustering devotees to defend the rings. A Cultist drills daily,
+      keeps a pre-war service rifle clean, and believes, with the whole heart,
+      that the orders are coming.
+
+  - id: capitol_page
+    name: Capitol Page
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "12m"
+    morale: 6
+    skill: 2
+    save: 14
+    role: mutant attendant of the body that thinks it governs
+    tags: [human, mutant, dc]
+    abilities:
+      - "Knows every corridor of the chamber — cannot be cornered inside the Capitol"
+      - "Summons the sergeant-at-arms — a disturbance in session brings guards in two rounds"
+    description: >-
+      Under the Capitol dome a body still convenes, debates, and divides,
+      attended by mutant pages who carry the bills no one enacts. A Page is
+      no fighter, only a frightened functionary of a government that is all
+      ceremony — but the ceremony has guards, and a brawl on the floor brings
+      them fast.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE PIONEER VALLEY — Saint Emily's quiet country (Connecticut River)
+  # (Region added to satisfy saints.yaml's patron_regions: [pioneer_valley];
+  #  see session deviation note — spec §3 listed 17, saints.yaml needs 18.)
+  # ══════════════════════════════════════════════════════════════
+  - id: oxbow_lurker
+    name: Oxbow Lurker
+    level: 3
+    hp: 13
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d8"
+    move: "3m / 15m swim"
+    morale: 7
+    skill: 1
+    save: 14
+    role: snapping ambusher of the Connecticut River oxbows
+    tags: [mutant, beast, pioneer_valley]
+    abilities:
+      - "Lunge from the reeds — surprise against anyone on the riverbank"
+      - "Drags under — a grappled foe is pulled into the oxbow and must swim free"
+    description: >-
+      The flood-cut oxbows below Mount Holyoke are still water gone green and
+      patient, and the snapping turtles in them grew with the Glory to the
+      size of millstones. An Oxbow Lurker lies under the duckweed off Northampton
+      with only its eyes above the surface, waiting for a careless ankle on
+      the bank Saint Emily's valley keeps so quiet.
+
+  # ══════════════════════════════════════════════════════════════
+  # THE CORRIDOR — hazards of the line itself (cross-region)
+  # ══════════════════════════════════════════════════════════════
+  - id: corridor_tollman
+    name: Corridor Toll-Man
+    level: 3
+    hp: 13
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "12m"
+    morale: 7
+    skill: 2
+    save: 14
+    role: self-appointed gatekeeper of an off-schedule platform
+    tags: [human, corridor]
+    abilities:
+      - "Holds the chokepoint — +2 to hit anyone forcing past on a narrow platform or trestle"
+      - "Take the toll and pass — accepts a roll of quarters or Mass Pike tokens to end the encounter"
+    description: >-
+      The rail Corridor runs on a schedule nobody understands, and where the
+      trains pause, somebody decides the platform is theirs to tax. A Toll-Man
+      is half-bandit, half-stationmaster, demanding a roll of quarters or a
+      handful of surviving Mass Pike tokens to let travellers board — and
+      entirely willing to be paid rather than fought, which is the point.
+
+  - id: handcar_wrecker
+    name: Handcar Wrecker
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "15m on rail"
+    morale: 6
+    skill: 1
+    save: 14
+    role: opportunist raider working the off-Corridor spurs
+    tags: [human, corridor]
+    abilities:
+      - "Hit and pump away — strikes once, then retreats a full band on the handcar"
+      - "Cuts the line — can drop a rail to strand a target's train, then bargain"
+    description: >-
+      Off the main Corridor, on the weed-grown spurs the trains no longer
+      run, small crews work pump-handcars — looting a stalled carriage,
+      cutting a rail to strand a richer prize, then pumping off into the
+      brush before the Magisterium's wardens arrive. More nuisance than
+      menace, unless they've cut the line ahead of you.
