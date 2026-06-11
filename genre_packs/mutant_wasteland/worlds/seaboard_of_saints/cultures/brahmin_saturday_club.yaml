@@ -1,0 +1,59 @@
+name: Brahmin / Saturday-Club
+summary: The old Boston Yankee Protestant aristocracy of Beacon Hill — Cabots, Lowells,
+  Saltonstalls — fifteen centuries deep and still pouring sherry on Mount Vernon Street.
+description: >
+  The Brahmin caste of Beacon Hill and the Back Bay, the families that founded
+  Boston Common's drawing-room order and never relinquished it: Cabots, Lowells,
+  Saltonstalls, Endicotts, Forbeses, Peabodys, Lodges. They keep the Saturday Club
+  and the Athenaeum, marry their cousins, and measure a stranger by the cut of his
+  vowels. Unitarian by inheritance, abolitionist by memory, devastating by
+  understatement — the worst thing they can say of you is nothing at all. Their
+  wealth is older than the Glory and quieter than money; their power is the long
+  pause before a sentence they decline to finish.
+slots:
+  given_name:
+    names_file: english_gentry_first.txt
+  family_name:
+    names_file: brahmin_surnames.txt
+  middle_name:
+    names_file: brahmin_surnames.txt
+  title:
+    word_list:
+    - Mr.
+    - Mrs.
+    - Miss
+    - Dr.
+    - the Hon.
+    - Judge
+    - Professor
+    - Cousin
+  adjective:
+    word_list:
+    - Old
+    - Quiet
+    - Lower
+    - Upper
+    - Beacon
+    - Brimstone
+    - Louisburg
+    - Acorn
+  place_noun:
+    word_list:
+    - Hill
+    - Square
+    - Athenaeum
+    - Club
+    - Row
+    - Common
+    - Place
+    - Court
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{given_name} {middle_name} {family_name}'
+- '{title} {given_name} {family_name}'
+place_patterns:
+- '{family_name} {place_noun}'
+- The {adjective} {place_noun}
+- '{family_name}-on-the-{place_noun}'
+chargen: true

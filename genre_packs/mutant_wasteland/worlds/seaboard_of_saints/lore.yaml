@@ -1,6 +1,21 @@
 # The Seaboard of Saints — cosmological ground truth.
 # Player-readable: everything here is open doctrine, open history, open argument.
-# The five tradition readings of the Glory live in factions[] as retrievable units.
+#
+# factions[] holds two layers, all retrievable units (ADR-118):
+#   1. The six MAJOR powers — the Glory's tradition readings (Magisterium,
+#      Sisters of the Whitman Circle, Brahmin Remnant/Saturday Club, Lo'in,
+#      Sleepers' Sodality) plus the Hudson-Valley Patroon Houses.
+#   2. The regional MINORS (story 103-7, world spec §7) — guilds, councils,
+#      orders, and societies bound to the 103-6 region slugs.
+#
+# Cryptic-Alliance tags (story 103-7): factions a PC can tie to at chargen
+# carry `joinable: true` + a `chargen_tie` block. v1 these are CONTENT TAGS —
+# the tie is realized in char_creation.yaml's `cryptic_alliance` scene, which
+# grants the `chargen_tie.starting_item` via item_hint (the equipment slot),
+# and that token in inventory is the signal the narrator reads to color a
+# faction's opening NPC reactions (ADR-020 disposition stays narrator-mediated
+# in v1). When AWN Plan 7 lands the Enclave sim, these same tags are its
+# retrofit hook — see `# AWN Plan 7 Enclave retrofit hook` markers below.
 
 world_name: The Seaboard of Saints
 
@@ -135,6 +150,14 @@ history: >-
 factions:
   - name: The Magisterium of the Seaboard
     disposition: neutral
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    joinable: true
+    chargen_tie:
+      starting_item: magisterium_letter
+      opening_reaction: >-
+        Parish NPCs read the letter and treat you as a known quantity owed
+        courtesy — and owed the occasional errand. Brahmin and Patroon NPCs
+        note the seal and grow correct, which is not the same as warm.
     summary: >-
       The Plenary-Council church of New Catholicism — keeper of the
       Saint Registry and of the canon's mainstream reading of the Glory.
@@ -159,6 +182,14 @@ factions:
 
   - name: The Sisters of the Whitman Circle
     disposition: neutral
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    joinable: true
+    chargen_tie:
+      starting_item: athenaeum_borrowers_card
+      opening_reaction: >-
+        Learned NPCs and any house with a library treat you as a colleague
+        with stack privileges; the Sisters expect you to bring back as much
+        as you take out. The unlettered find the card faintly alarming.
     summary: >-
       The bibliographic-Spiritualist order of the Providence Athenaeum,
       for whom the Glory was a revision of the manuscript of the world.
@@ -181,6 +212,16 @@ factions:
 
   - name: The Brahmin Remnant
     disposition: wary
+    # The Saturday Club is the Remnant's governing dinner-circle (world spec §7
+    # names the Club as the major; the Remnant is the people, the Club their
+    # organ). AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag.
+    joinable: true
+    chargen_tie:
+      starting_item: saturday_club_card
+      opening_reaction: >-
+        Old-blood and counting-house NPCs extend exquisite, conditional
+        courtesy — the card means you are useful, not equal. Italian,
+        Dominican, and Nuyorican NPCs clock it and keep their own counsel.
     summary: >-
       Boston's old Protestant aristocracy, who hold the Glory was a
       test — one the Catholics passed and the Protestants failed.
@@ -203,6 +244,14 @@ factions:
 
   - name: The Lo'in
     disposition: cautious
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    joinable: true
+    chargen_tie:
+      starting_item: loin_playbill
+      opening_reaction: >-
+        Other Lo'in greet a fellow castmember and start angling for your
+        part; theatres, taverns, and Swan Point pilgrims open up. The
+        Magisterium is polite and watchful, the way one watches a mirror.
     summary: >-
       Mutant performers who reenact the pre-war myths in mutated form,
       and who hold that saints are roles, not rewards.
@@ -225,6 +274,14 @@ factions:
 
   - name: The Sleepers' Sodality
     disposition: neutral
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    joinable: true
+    chargen_tie:
+      starting_item: sodality_coupon_book
+      opening_reaction: >-
+        Thawed Sleepers and the cold-room desks treat you as family with a
+        claim on the coupon desk and the legal-aid roster. Parish clerks
+        sigh at the coupon book and honor it anyway, by committee ruling.
     summary: >-
       The mutual-aid confraternity of thawed pre-war sleepers,
       headquartered at Brown's Hotel in the Catskills. Doctrinally:
@@ -246,3 +303,303 @@ factions:
       that had canonized their headliners, and many converted on the
       spot. Saint Henny has a chapel at Brown's. The punchlines are
       considered liturgy, and attendance is excellent.
+
+  # === The sixth major power ===
+
+  - name: The Patroon Houses
+    disposition: wary
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    joinable: true
+    chargen_tie:
+      starting_item: patroon_indenture
+      opening_reaction: >-
+        Manor NPCs read the indenture and slot you into the household with
+        a place at the lower table and a debt you did not sign for. Free
+        farmers and Anti-Rent men see the paper and go cold; the Houses'
+        debts are the one thing the valley has never forgiven.
+    summary: >-
+      The Hudson Valley's feudal-pastoral manor-states, who hold the
+      Glory simply confirmed an order the land had always kept — and who
+      have never settled the Anti-Rent debt.
+    description: >-
+      Six manor-houses on grants older than the Republic — Van
+      Rensselaer of Rensselaerswijck at Albany, the senior house;
+      Livingston of Clermont in the mid-Hudson; Philipse of Philipsburg
+      Manor at Tarrytown; and Beekman, Van Cortlandt, and Schuyler
+      between. They read the Annunciation as the land confirming its own
+      tenure: each manor keeps a Saint of its preference, and a manor
+      Saint's marks run truer the longer a bloodline has held the
+      ground, which the Houses regard as proof and their tenants regard
+      as a racket. The register over all of it is faerie-feudal — the
+      manors keep older bargains than the Church likes to name, and a
+      Patroon's word in the dark of the Sleepy Hollow glen carries a
+      weight no parish court will overrule. Their one unhealed conflict
+      is the Anti-Rent War: in 1839 the valley's tenant farmers rode in
+      disguise as Calico Indians and broke the manorial collections by
+      force, and the question of what a Patroon may actually demand has
+      been open, and armed, ever since. They want the old tenures
+      honored, the rents resumed, and the glen's bargains kept; the free
+      towns want them ended; and the Magisterium, which would rather not
+      choose, keeps finding reasons the case is not yet ripe.
+
+  # === Regional minor factions (world spec §7) ===
+  # Bound to 103-6 region slugs; narrative + disposition + retrieval
+  # entities only — no Enclave settlement sim (that is AWN Plan 7).
+
+  - name: The Sternmen Guilds
+    disposition: neutral
+    region: down_east
+    joinable: true
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    chargen_tie:
+      starting_item: sternmens_lay_token
+      opening_reaction: >-
+        Down East pound-keepers and lobster co-ops treat you as a hand
+        with a lay coming, owed a berth and a share. Inland NPCs find the
+        token meaningless and the smell of it considerable.
+    summary: >-
+      The pound-keepers and lobster co-ops of Down East, who run the
+      grounds by a hierarchy older than the Glory.
+    description: >-
+      The confederated guilds of the Penobscot Bay sternmen — the
+      pound-keepers, the lobster co-ops, the lighthouse-tenders' locals —
+      who hold the cold grounds from Bar Harbor to Eastport by a charter
+      of seniority that predates the Annunciation and survived it
+      unchanged. A guild berth is inherited or earned over years; the lay
+      (the fractional share of a season's catch) is the unit of standing,
+      and a Sternman's word on whose trap-line is whose is the only court
+      Down East recognizes. They are insular, weather-hardened, and
+      indifferent to the Corridor's politics except where a Patroon or a
+      Mint clerk tries to tax the water. They want their grounds left
+      alone and their lays honored, and they keep an uneasy, respectful
+      border with the Penobscot, whose fog-cosmology they only half
+      pretend not to believe.
+
+  - name: The Mount Washington Observatory
+    disposition: neutral
+    region: white_mountains
+    joinable: false
+    summary: >-
+      The weather-priests of the White Mountains, who read the worst
+      weather in the Seaboard as scripture and sell the forecast dear.
+    description: >-
+      An order of weather-priests holding the summit station on Mount
+      Washington, where the pre-war instruments never went dark and the
+      wind has been measured at speeds the rest of the coast refuses to
+      credit. They read the mountain's violence as a continuous
+      revelation and keep the only reliable long-range forecast on the
+      Seaboard, which they sell to the rail lines, the Sternmen, and the
+      Catskills hotels at rates that fund their hermitage. The
+      Magisterium has never decided whether their practice is meteorology
+      or a minor heresy and has prudently left the question on the
+      summit. They want the station kept, the readings unbroken, and the
+      pilgrims who climb to ask the weather to tip well and leave.
+
+  - name: The Cape Ann Sodality
+    disposition: neutral
+    region: cape_ann
+    joinable: false
+    summary: >-
+      The fishing-village confraternity of Folly Cove, Lanesville, and
+      Pigeon Cove — a coastal isolate that married its own for so long
+      the Glory had unusual material to work with.
+    description: >-
+      The lay confraternity of the Cape Ann fishing villages — Folly
+      Cove, Lanesville, Pigeon Cove, Annisquam — Azorean and Sicilian and
+      old-Yankee families who have intermarried on the same granite
+      headland for fifteen centuries. The founder effect is real and
+      old: a narrow gene pool that the Glory entered through a small door
+      and rang like a bell, so the Cape Ann marks run to a family
+      likeness the rest of the coast finds uncanny and the Sodality finds
+      unremarkable. They keep their own feast-days, their own dialect of
+      the liturgy, and a courteous distance from outsiders; they are
+      fishermen and net-menders and stonecutters, not a mystery, and they
+      tire of being looked at as one. They want a good haul, a kept
+      feast, and to be left off the list of things the Corridor finds
+      strange.
+
+  - name: The Smithsonian Reliquary Order
+    disposition: neutral
+    region: dc
+    joinable: false
+    summary: >-
+      The Brookland-affiliated keepers of the national collection, a
+      junior house of the Whitman Circle that guards the Ancients'
+      objects rather than their words.
+    description: >-
+      The order that holds the pre-war national collection on the Mall —
+      a junior house of the Sisters of the Whitman Circle, affiliated to
+      the Brookland sees, who specialize not in manuscripts but in
+      objects: the Ancients' machines, instruments, aircraft, and
+      relics, catalogued and venerated as a parallel scripture of things.
+      Where the Sisters authenticate texts, the Reliquary Order
+      authenticates artifacts, and a thing certified by the Order carries
+      a provenance the whole Corridor will honor — which makes their seal
+      worth forging and their authenticators worth bribing. They keep
+      careful, jealous custody and an old rivalry with the Library of
+      Congress house over which is the senior reading of the Ancients.
+      They want the collection whole, the catalogue closed, and the
+      Lo'in, who keep trying to borrow exhibits for the stage, kept at
+      the door.
+
+  - name: The Atwells Avenue Society
+    disposition: wary
+    region: providence
+    joinable: true
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    chargen_tie:
+      starting_item: atwells_avenue_marker
+      opening_reaction: >-
+        Federal Hill NPCs read the marker and extend the particular warmth
+        owed to a friend of friends — and the particular expectation. The
+        Magisterium's clerks see it and pretend, courteously, not to.
+    summary: >-
+      The men who keep order on Federal Hill — an honored society
+      syncretized with the Providence parishes in an arrangement neither
+      the Society nor the Magisterium will fully describe.
+    description: >-
+      The society that keeps its own kind of order along Atwells Avenue
+      in Providence — the Italian quarter's own authority, structured by
+      family and obligation and a long memory, that the Federal Hill
+      parishes have come to a working arrangement with over the
+      centuries. The arrangement is real and unwritten: the Society keeps
+      the peace its own way, contributes generously to the feast of Saint
+      Rocco and the parish coffers, and the Magisterium's clerks find
+      their ledgers reconcile and their questions answered before they
+      are asked. They are not a crime out of the pulps; they are an
+      institution that predates the law it operates beside, courteous and
+      patient and absolutely not to be crossed on the Hill. They want
+      respect, the feast kept, the arrangement honored, and the Saturday
+      Club's Boston money kept on its own side of the Shore Line.
+
+  - name: The Mashpee-Aquinnah Council
+    disposition: neutral
+    region: plymouth_stone
+    joinable: false
+    summary: >-
+      The joint council of the two sovereign Wampanoag nations — Mashpee
+      on the Cape, Aquinnah on the western cliffs of Martha's Vineyard —
+      whose standing predates the Glory and survived it intact.
+    description: >-
+      The standing council of the Mashpee and Aquinnah Wampanoag — two
+      distinct, sovereign nations, one on the Cape and one on the red
+      clay cliffs of Aquinnah at the western end of Martha's Vineyard —
+      who held their ground and their governance through the Glory as
+      they had held it through everything before. Their sovereignty is
+      not a courtesy the Corridor extends; it is older than the Corridor,
+      and the Council treats the Magisterium, the Patroons, and the
+      Saturday Club as exactly what they are — newer powers, to be dealt
+      with at arm's length and by treaty. They keep their own relation to
+      the land and the dead that the New Catholic canon has learned not
+      to translate, and their whalecoast kin run the Acushnet lays
+      alongside the Melville-marked without conceding a thing. They want
+      their waters, their cliffs, and their council respected, and the
+      old habit of being narrated by outsiders finally broken.
+
+  - name: The Red Hook Stevedores
+    disposition: wary
+    region: sunken_bight
+    joinable: true
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    chargen_tie:
+      starting_item: stevedores_button
+      opening_reaction: >-
+        The Red Hook locals read the button and put you on the shape-up
+        with a hook of your own; the docks open, and so do the debts a
+        hook carries. Customs men and Mint clerks read it and watch their
+        manifests.
+    summary: >-
+      The longshoremen and smugglers of Red Hook, whose elevated houses
+      rode out the Sunken Bight and who control what moves off the
+      drowned wharves.
+    description: >-
+      The longshoremen's local and the smuggling rings that share its
+      membership entirely, working the wharves of Red Hook — the Brooklyn
+      ground whose elevated houses stood high enough to survive the
+      flooding of the Sunken Bight. They run the shape-up, the hiring
+      hook by which a man works or doesn't, and the quiet second trade in
+      what comes off a manifest before it is counted. Standing is a union
+      button and a reputation for keeping your mouth shut; the bosses
+      settle disputes on the pier and the river keeps the records. They
+      hold a hard border with the Patroon Houses upriver, who own the
+      cargo, and a working truce with the Atwells Avenue Society, who
+      understand the business. They want the docks theirs, the hook
+      honored, and the Sunken Bight's drowned cellars left to the divers
+      they license.
+
+  - name: The Catskills Resorts Guild
+    disposition: neutral
+    region: catskills
+    joinable: false
+    summary: >-
+      The hoteliers' association of the Catskills — Brown's, Grossinger's,
+      the Concord — who keep the resorts running, the thaw-rooms cold,
+      and the Borscht-Belt liturgy of Saint Henny in repertory.
+    description: >-
+      The association of the great Catskills hotels — Brown's, the
+      Concord, Kutsher's, the Nevele, the Pines, Grossinger's — who keep
+      the resorts and their cold reliquary racks running on a calendar
+      fifteen centuries deep. The hotels are where the Sleepers thaw, on
+      schedule, and the Guild has made an institution of the
+      bewilderment: a tummler at every cold-room door, a card-room and a
+      dining-room and a stage, and Saint Henny's punchlines kept in
+      nightly repertory as both entertainment and rite. They work hand in
+      glove with the Sleepers' Sodality, which advocates for the thawed
+      the Guild profits from housing, and the two argue endlessly and
+      affectionately over the bill. They want full bookings, kept
+      schedules, the racks reliable, and a good closer for the late
+      show.
+
+  - name: The Tubman Trails Society
+    disposition: neutral
+    region: baltimore
+    joinable: true
+    # AWN Plan 7 Enclave retrofit hook — Cryptic-Alliance tag (v1 content only).
+    chargen_tie:
+      starting_item: trail_token
+      opening_reaction: >-
+        Station-keepers from the Eastern Shore to Philadelphia read the
+        token and open the safe houses, the routes, and the network's
+        long memory to you. Slavers' heirs and toll-takers read it and
+        find you suddenly hard to follow.
+    summary: >-
+      The route-keepers of the old Underground Railroad lines from the
+      Maryland Eastern Shore through Philadelphia — a network that moves
+      people the Corridor would rather not see moved.
+    description: >-
+      The society that keeps the old conductor-routes alive from the
+      Maryland Eastern Shore up through Philadelphia — the safe houses,
+      the signs, the river crossings, and the institutional memory of how
+      to move a person past anyone who wants them stopped. Founded on the
+      real Underground Railroad lines that Harriet Tubman ran out of
+      Dorchester County, the Society has outlasted the thing it was built
+      to defeat and turned the craft to whoever needs passage now:
+      Sleepers fleeing a hostile parish, Wild Mutants the Magisterium has
+      not gotten to, marks fleeing a Patroon's indenture. They are quiet,
+      disciplined, and trusted by everyone who has ever needed them. They
+      want their routes open, their station-keepers safe, and the
+      Corridor's toll-takers none the wiser.
+
+  - name: The Cabrini Missionary Sisters
+    disposition: neutral
+    region: outer_boroughs
+    joinable: false
+    summary: >-
+      Mother Cabrini's order, still founding hospitals, schools, and
+      orphanages the length of the Corridor — the Magisterium's hands in
+      the immigrant parishes.
+    description: >-
+      The missionary order descended from Mother Frances Xavier Cabrini,
+      who never stopped doing the work she was founded for: planting
+      hospitals, schools, orphanages, and clinics through the immigrant
+      parishes the length of the Corridor, from the Italian Bronx to
+      Inwood to Federal Hill. Where the Magisterium governs and the
+      Whitman Circle remembers, the Cabrini Sisters build and tend, and
+      their institutions are the one Church presence the Atwells Avenue
+      Society, the Stevedores, and the Nuyorican parishes all trust
+      without reservation. They keep a studied distance from the Corridor's
+      faction politics and a great deal of practical leverage because of
+      it — a parish will defy its bishop before it crosses the Sister who
+      runs its hospital. They want the work funded, the institutions
+      staffed, and the poor of every mark and stock looked after,
+      doctrine be damned.

@@ -1,0 +1,56 @@
+name: Hudson Valley Patroon
+summary: The manorial Dutch of the Hudson — Van Rensselaers and Schuylers on their
+  vast patroonships, a feudal-pastoral order of tenant farms, river sloops, and old
+  Sleepy Hollow weather.
+description: >
+  The Dutch landed gentry of the Hudson Valley, heirs to the patroonships that
+  parceled the river country into manors before the Glory and somehow still hold
+  them: Van Rensselaers, Schuylers, Van Cortlandts, Beekmans. A feudal-pastoral
+  order of tenant farms and rent-day, fieldstone manor houses, river sloops, and
+  Dutch Reformed steeples over orchard towns. They keep the old holidays and the
+  old deference, and the country around Sleepy Hollow is thick with weather that
+  doesn't behave — a soft uncanny that the patroons treat as a tenant treats his
+  landlord: quietly, and without asking questions out loud.
+slots:
+  given_name:
+    names_file: dutch_colonial_given.txt
+  family_name:
+    names_file: dutch_colonial_surnames.txt
+  title:
+    word_list:
+    - Heer
+    - Vrouw
+    - Patroon
+    - Dominie
+    - Oom
+    - Tante
+    - Mijnheer
+  adjective:
+    word_list:
+    - Oud
+    - Groot
+    - Klein
+    - Hoog
+    - Stille
+    - Boven
+    - Neder
+  place_noun:
+    word_list:
+    - Manor
+    - Kill
+    - Hoek
+    - Bouwerie
+    - Dorp
+    - Patent
+    - Mill
+    - Landing
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{title} {given_name} {family_name}'
+- '{given_name} {family_name} van {place_noun}'
+place_patterns:
+- '{family_name} Manor'
+- '{adjective} {place_noun}'
+- '{family_name}''s {place_noun}'
+chargen: true

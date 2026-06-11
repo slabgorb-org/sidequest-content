@@ -1,0 +1,69 @@
+name: Spanish Harlem Nuyorican
+summary: El Barrio — the Puerto Rican community of East Harlem, La Marqueta and the
+  casitas, bomba and plena under the elevated, fifteen centuries of island memory
+  kept alive on the mainland.
+description: >
+  El Barrio, the Puerto Rican heart of East Harlem above the old outer-borough
+  sprawl. Nuyorican to the bone — island-born grandparents and mainland-born
+  children, the language doubled, neither half complete without the other. La
+  Marqueta under the railway arches, the community gardens and hand-built casitas,
+  botánicas and cuchifrito counters, bomba and plena spilling out of doorways on a
+  hot night. Catholic and Pentecostal and something older underneath, fierce about
+  family and about disrespect. They built a homeland out of a few avenues and
+  defend it the way you defend the only thing you brought with you.
+slots:
+  given_name:
+    names_file: puerto_rican_given.txt
+  family_name:
+    names_file: spanish_caribbean_surnames.txt
+  second_surname:
+    names_file: spanish_caribbean_surnames.txt
+  title:
+    word_list:
+    - Don
+    - Doña
+    - Tío
+    - Tía
+    - Mami
+    - Papi
+    - Hermano
+  adjective:
+    word_list:
+    - Nuevo
+    - Viejo
+    - Alto
+    - Santo
+    - Claro
+    - Bravo
+  apodo:
+    word_list:
+    - Flaco
+    - Chino
+    - Tato
+    - Junior
+    - Cano
+    - Papo
+    - Cuco
+    - Nene
+    - Piri
+    - Chago
+  place_noun:
+    word_list:
+    - Bodega
+    - Casita
+    - Marqueta
+    - Esquina
+    - Botánica
+    - Solar
+    - Barrio
+    - Cuchifrito
+person_patterns:
+- '{given_name} {family_name}'
+- '{given_name} {family_name} {second_surname}'
+- '{title} {given_name}'
+- '{apodo} {family_name}'
+place_patterns:
+- La {place_noun} de {given_name}
+- '{place_noun} {family_name}'
+- El {place_noun} {adjective}
+chargen: true

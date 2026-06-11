@@ -1,0 +1,56 @@
+name: Sleeper
+summary: Thawed pre-Glory mid-century Americans woken in the Catskills — Borscht-Belt
+  retirees out of Brown's Hotel, still telling the same jokes fifteen centuries late.
+description: >
+  The Sleepers: mid-twentieth-century Americans who went under before the Glory and
+  came back up after it, thawed out of the cold rooms beneath the old Catskills
+  resorts. Brown's Hotel and the whole Borscht Belt full of them — Harolds and
+  Mildreds and Seymours, retirees and tummlers and dentists, blinking at fifteen
+  centuries gone by with the timing intact. They keep the comic register of a lost
+  world: the setup and the punchline, the kvetch, the room they can still work.
+  Out of step with everything and at peace with almost none of it, they hold court
+  in the lobby that outlived its century and explain to the locals exactly what's
+  wrong with the place, with love.
+slots:
+  given_name:
+    names_file: mid_century_american_given.txt
+  family_name:
+    names_file: mccoy_anglo_american_surnames.txt
+  title:
+    word_list:
+    - Mr.
+    - Mrs.
+    - Miss
+    - Doc
+    - Uncle
+    - Aunt
+    - the late
+    - "Mister"
+  adjective:
+    word_list:
+    - Grand
+    - Old
+    - Royal
+    - Sunny
+    - Pine
+    - Crystal
+  place_noun:
+    word_list:
+    - Hotel
+    - Lounge
+    - Bungalow
+    - Lobby
+    - Casino
+    - Pavilion
+    - Solarium
+    - Dining Room
+person_patterns:
+- '{given_name} {family_name}'
+- '{title} {family_name}'
+- '{given_name} {family_name}'
+- '{title} {given_name} {family_name}'
+place_patterns:
+- The {adjective} {place_noun}
+- '{family_name}''s {place_noun}'
+- '{family_name} {place_noun}'
+chargen: true
