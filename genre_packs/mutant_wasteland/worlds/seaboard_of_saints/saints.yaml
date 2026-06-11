@@ -1,4 +1,4 @@
-# The Seaboard of Saints — Saint canon (story 103-1: the 3 PROOF Saints).
+# The Seaboard of Saints — Saint canon (story 103-4: the full canon).
 #
 # A Saint is a curated bundle of AWN positive-mutation ids plus exactly one
 # negative as the canonical drawback (AWN rebase addendum 2026-06-09 —
@@ -10,14 +10,28 @@
 # = at most 4 bundle marks. Additional marks belong on the affinity list
 # (purchasable in chargen by accepting further drawbacks, standard economy).
 #
-# The three shapes prove the pipeline (story scope — full canon is 103-4):
-#   herman_of_the_acushnet : bundle-only
-#   edgar_of_baltimore     : bundle + affinity
-#   lizzie_of_the_cairn    : drawback-bearing wilderness Saint
-#
+# All 25 Saints from world spec §6 (2026-05-14 design doc), four traditions:
+#   literary (7) · catholic_immigrant (7) · folk_place (7) ·
+#   wilderness_sleeper (4)
+# The three 103-1 proof Saints (herman, edgar, lizzie) are kept verbatim.
 # Mapping notes record the spec-§6 flavor -> catalog-id curation rationale.
+# One catalog gap surfaced by curation: exotic/vital_transfusion (ally-
+# healing; additive genre-tier entry, content PR #416).
+#
+# patron_regions are forward references to the 103-6 places/cartography
+# region ids (the loader does not validate them; migration is canon).
+#
+# A curation diamond the Magisterium itself has noticed: exactly four
+# Saints carry exotic/sound_generation — the storyteller (Washington),
+# the singer (Francis), the drummer (Tito), and the comic (Henny).
+# Doctrine calls them the Four Voices and seats their feast-processions
+# in that order.
 
 saints:
+  # ════════════════════════════════════════════════════════════════════
+  # LITERARY CANON
+  # ════════════════════════════════════════════════════════════════════
+
   - id: herman_of_the_acushnet
     name: Saint Herman of the Acushnet
     tradition: literary
@@ -39,6 +53,119 @@ saints:
       Principal shrine at the Seamen's Bethel, New Bedford; his feast is
       kept the first week of the sperm-whale run, when the pound-keepers
       read the Cetology aloud in shifts until every chapter has been told.
+
+  - id: henry_of_the_maine_woods
+    name: Saint Henry of the Maine Woods
+    tradition: literary
+    patron_regions: [down_east]
+    bundle:
+      # silent-step -> the woods hide him; chameleon field's stealth gift
+      - exotic/chameleon_field
+      # plant-empathy -> empathic sensitivity (the 1891 Plenary at
+      # Brookland ruled the Maine Woods an intelligent creature within
+      # the meaning of the canon, settling the question of his gift)
+      - sense/empathic_sensitivity
+      # never-lost-in-wilderness -> internal map
+      - cognition/internal_map
+    # "cannot abide crowds; asthmatic in cities" — town air is a toxin
+    drawback: negative/fragile_system
+    iconography: >-
+      A lean surveyor in a homespun coat, pencil of his own family's
+      graphite behind one ear, surveyor's chain coiled at the hip and
+      huckleberry-stained fingers; behind him Ktaadn's tableland stands
+      in cloud, and he is looking at it instead of at you.
+    veneration: >-
+      His feast is kept on the September ascent of Ktaadn; pilgrims climb
+      past treeline in silence until the weather-priest cries "Contact!"
+      and the line answers "Contact!" — the whole of his liturgy. Pencils
+      are left as votives at the Allagash portages, points unsharpened.
+
+  - id: john_of_slabsides
+    name: Saint John of Slabsides
+    tradition: literary
+    # Adirondacks first per spec §3 (the wilderness see claimed him);
+    # hudson_valley acknowledges where the cabin actually stands.
+    patron_regions: [adirondacks, hudson_valley]
+    bundle:
+      # birdcall-tongue (speak with corvids and thrushes) -> omniglot
+      - cognition/omniglot
+      # deep-listening (overhear a mile through forest) -> acute hearing
+      - sense/acute_hearing
+      # riverstep -> leaper
+      - structure/leaper
+    affinity:
+      # the naturalist's nose, taken at the price of further burdens
+      - sense/acute_olfaction
+    # "cannot abide indoor rooms past three days; the city makes you
+    # weep" — the hermit's difficulty with ordinary company
+    drawback: negative/animalistic_mentality
+    iconography: >-
+      A white-bearded man on the porch of a bark-sided cabin above a
+      celery swamp, a hermit thrush perched on his wrist mid-phrase; his
+      boots are off and his notebooks are full.
+    veneration: >-
+      Slabsides Day, the third Saturday of May, when his cabin in the
+      woods above Riverby is opened and a thrush is waited for. The
+      Philosophers' Camp at Follensby Pond was Emerson's circle, not
+      his — the Magisterium grafted the elder camp onto his cult when
+      it seated the wilderness see in the Adirondacks, and the seam is
+      taught, not hidden: pilgrims walk from Slabsides to Follensby to
+      join the two. His marked take the three-day vow: no roof, by way
+      of inoculation.
+
+  - id: emily_of_amherst
+    name: Saint Emily of Amherst
+    tradition: literary
+    patron_regions: [pioneer_valley]
+    bundle:
+      # withdrawing-soul (turn invisible-to-attention) -> chameleon
+      # field's motionless-unnoticed clause, read inward
+      - exotic/chameleon_field
+      # poet-tongue (compressed dash-speech) -> augmented cognition
+      - cognition/augmented_cognition
+      # the slant of light — sudden whole knowledge -> intuitive leap
+      - cognition/intuitive_leap
+    # "cannot leave the household you live in for long" — the catalog's
+    # place-blindness IS her geography: home perfectly known, all else lost
+    drawback: negative/place_blindness
+    iconography: >-
+      A small woman in white at an upstairs window, lowering a basket of
+      gingerbread on a rope to children she will not come down to meet;
+      on the sill, a pressed gentian and a writing table seventeen and
+      one-half inches square.
+    veneration: >-
+      Her feast is December 10. Petitions to her are folded thrice and
+      slipped under doors unsigned; answered prayers are stab-sewn into
+      fascicles with string, as she bound her own, and shelved at the
+      Homestead, whose hedge is clipped only after dark, as she gardened.
+
+  - id: washington_of_sunnyside
+    name: Saint Washington of Sunnyside
+    tradition: literary
+    patron_regions: [hudson_valley]
+    bundle:
+      # borrowed-tongue (speak any voice you've heard once) -> sound
+      # generation; the first of the Four Voices
+      - exotic/sound_generation
+      # folk-summoning (call up local stories as half-real) -> image
+      # projection
+      - exotic/image_projection
+      # Headless-Horseman vision on moonless nights -> night vision
+      - sense/night_vision
+    # "dreams bleed into the day; the line between memory and invention
+    # slips" — the dreamer attends the story, not the surroundings
+    drawback: negative/narrow_focus
+    iconography: >-
+      A stout gentleman asleep in wisteria shade against the stepped
+      Dutch gable of Sunnyside, ink not yet dry on the page in his lap;
+      across the millpond a rider holds a jack-o'-lantern at arm's
+      length, waiting politely for him to wake.
+    veneration: >-
+      Storytelling vigils at the Old Dutch Church burying ground; the
+      bridge-crossing rite, by which a tale begun on one bank must be
+      finished before the far one. His feast is December 6, shared with
+      the Nicholas cult he invented — the canon's second lesson, after
+      Plymouth's, that a thing becomes true by being told well.
 
   - id: edgar_of_baltimore
     name: Saint Edgar of Baltimore
@@ -65,6 +192,472 @@ saints:
       and three roses are still left each January; the Whitman Circle at
       the Providence Athenaeum keeps his courtship letters under seal.
 
+  - id: hester_of_the_letter
+    name: Saint Hester of the Letter
+    tradition: literary
+    patron_regions: [salem_country]
+    bundle:
+      # scarlet-mark (your skin shows the lie of others) -> empathic
+      # sensitivity; the reading writes itself on her skin
+      - sense/empathic_sensitivity
+      # needle-craft -> tactile analysis
+      - sense/tactile_analysis
+      # hex-recognition -> intuitive leap (the detective's answer, asked
+      # of a working laid on a thing)
+      - cognition/intuitive_leap
+    # "branded — your own mistakes and your ancestors' show physically"
+    # -> the mark that glows and cannot be hidden short of full wraps
+    drawback: negative/glowbug
+    iconography: >-
+      A gray-gowned woman whose gold-embroidered letter outshines the
+      shame it was cut for, a wild rose from the prison door worn at the
+      breast, needle mid-stitch; she has made the badge beautiful, which
+      was not what the magistrates intended.
+    veneration: >-
+      Her needlework guilds bless christening gowns and shrouds alike;
+      her chapel keeps the Custom House attic where the letter was found.
+      On her feast — July 4, the surveyor's birthday — penitents
+      embroider their own faults gorgeously and wear them through town,
+      the rite called the badge worn beautiful.
+
+  # ════════════════════════════════════════════════════════════════════
+  # CATHOLIC-IMMIGRANT CANON
+  # ════════════════════════════════════════════════════════════════════
+
+  - id: francis_of_hoboken
+    name: Saint Francis of Hoboken
+    tradition: catholic_immigrant
+    patron_regions: [outer_boroughs, providence, philadelphia]
+    bundle:
+      # bel canto voice -> sound generation; the singer of the Four Voices
+      - exotic/sound_generation
+      # perfect timing -> accelerated perception (never caught flat,
+      # always lands on the beat ahead of the band)
+      - sense/accelerated_perception
+      # blue-eyed sight -> empathic sensitivity (the room read from the
+      # stage, table by table)
+      - sense/empathic_sensitivity
+    affinity:
+      # the Voice's sway — make the ask and the room agrees
+      - exotic/pheromone_cloud
+    # "cannot perform if disrespected by the audience; fragile to
+    # interruption" — one heckle and the thread is gone
+    drawback: negative/distracted_mind
+    iconography: >-
+      A slight man under a streetlamp with a raincoat over one shoulder,
+      orange pocket square, eyes an improbable ring-a-ding blue; behind
+      him the Hoboken ferry slips and a band shell with the chairs still
+      warm.
+    veneration: >-
+      His feast is December 12. The saloon-singers' novena reads the
+      Comeback of 1953 as resurrection doctrine — counted out, then an
+      Oscar — and a finger of Tennessee whiskey is poured at the stage
+      door, as a bottle was buried with him. The parish rolls in Hoboken
+      still honor Dolly, midwife and ward-heeler, who delivered half the
+      neighborhood one way or the other.
+
+  - id: eugene_of_new_london
+    name: Saint Eugene of New London
+    tradition: catholic_immigrant
+    patron_regions: [boston_common, providence]
+    bundle:
+      # tragic-sight (see how it ends) -> limited precognition
+      - pseudo_psychic/limited_precognition
+      # seawater-tolerance and the long-lung orations -> aquatic
+      # adaptation (the breath of the drowned coast carries both)
+      - hybrid/aquatic_adaptation
+    affinity:
+      # the family's lines never leave him
+      - cognition/augmented_cognition
+    # "brooding; the family curse — relatives die young" — the literal
+    # O'Neill fact, carried in the blood as accelerated years
+    drawback: negative/short_lifespan
+    iconography: >-
+      The Monte Cristo Cottage in fog, and on its porch a man thin as a
+      held breath, four chairs behind him arranged to face away from one
+      another; out on the Thames the foghorn sounds the interval it
+      always sounds.
+    veneration: >-
+      Once a year at the winter solstice the Long Play is read from dusk
+      to midnight, no intermission, the audience forbidden to leave early
+      out of mercy. Born in a Longacre Square hotel room (October 16),
+      he is the patron of traveling players, whose medal hangs over
+      transom doors; the foghorn is rung once for each of the family dead.
+
+  - id: roberto_of_the_bridge
+    name: Saint Roberto of the Bridge
+    tradition: catholic_immigrant
+    patron_regions: [outer_boroughs, sunken_bight, dc]
+    bundle:
+      # perfect throw -> ballistic calculator (the arm from deep right,
+      # read as vectors)
+      - cognition/ballistic_calculator
+      # generosity-glow -> empathic sensitivity
+      - sense/empathic_sensitivity
+      # water-walk (his death was over water) -> spatial displacement;
+      # the impossible step across, which the water cannot take twice
+      - pseudo_psychic/spatial_displacement
+    # "charitable compulsion — cannot retain wealth" rides veneration as
+    # vow; the canonical drawback is the harder fact: when he went down,
+    # no rescue reached him -> bleeder (stabilization does not work)
+    drawback: negative/bleeder
+    iconography: >-
+      A right fielder mid-throw from the warning track, number 21, the
+      arm like judgment arriving; below the span behind him, a low
+      plane over dark water with relief crates lashed in the hold.
+    veneration: >-
+      The vigil of December 31 — the New Year's Eve the relief flight
+      went into the sea — is kept standing; no one venerates him sitting
+      down. The 3,000th hit, struck in his last at-bat of that final
+      September, is read as the completed life. Relief caravans cross
+      the Williamsburg span under his medal, and outfield walls the
+      length of the corridor carry the painted 21.
+
+  - id: tito_of_spanish_harlem
+    name: Saint Tito of Spanish Harlem
+    tradition: catholic_immigrant
+    patron_regions: [outer_boroughs, philadelphia]
+    bundle:
+      # rhythm-pulse (others sync to your beat) -> sound generation;
+      # the drummer of the Four Voices
+      - exotic/sound_generation
+      # drum-hands -> tactile analysis (the catalog names instruments
+      # outright)
+      - sense/tactile_analysis
+      # dance-resilience -> improved joints
+      - structure/improved_joints
+    affinity:
+      # the ear that holds the clave under every other sound
+      - sense/acute_hearing
+    # "silence injures you; you need percussion to sleep"
+    drawback: negative/sleep_dependence
+    iconography: >-
+      A grinning man in a white suit behind timbales, sticks blurred to
+      smoke; behind him the Palladium Ballroom on a Wednesday night,
+      every dancer caught mid-step on his accent.
+    veneration: >-
+      His feast is April 20; the street-shrine stands at East 110th and
+      Lexington, on the corner that bears his name. At the wakes of his
+      marked the drums do not stop from dusk until burial — silence
+      being his one enemy — and mambo is taught as catechism in the
+      parish halls of the corridor.
+
+  - id: dorothy_of_the_bowery
+    name: Saint Dorothy of the Bowery
+    tradition: catholic_immigrant
+    patron_regions: [sunken_bight, outer_boroughs, baltimore]
+    bundle:
+      # healing-touch -> vital transfusion (the 103-4 gap addition: AWN
+      # had no ally-healing; she gives from her own body, zero-sum,
+      # which is the only theology she would have accepted)
+      - exotic/vital_transfusion
+      # peace-aura -> pheromone cloud (the room de-escalates around her)
+      - exotic/pheromone_cloud
+    affinity:
+      # knowing need on sight, taken at the price of further burdens
+      - sense/empathic_sensitivity
+    # "cannot accumulate property; everything given to you must be
+    # passed on" — including her own reserves; she meets each day
+    # already spent
+    drawback: negative/low_resistances
+    iconography: >-
+      A gray-braided woman in a donated coat ladling at a soup line, a
+      picket sign leaned against the kettle; folded in her apron, the
+      masthead of a penny paper. Food-multiplication is claimed of her
+      line at Maryhouse — the pot that never quite empties — and the
+      Magisterium has three times declined to rule on it, on the grounds
+      that the hungry were fed either way.
+    veneration: >-
+      Principal shrine at Maryhouse on East Third Street. Her paper
+      still sells for a penny and by canon the price may never rise; a
+      made bed and a filled bowl count as votives. Her Vatican cause
+      was open when the Glory came — the Magisterium ruled the question
+      settled by the water itself. Feast November 29.
+
+  - id: francesca_of_the_heights
+    name: Saint Francesca of the Heights
+    tradition: catholic_immigrant
+    patron_regions: [outer_boroughs]
+    bundle:
+      # tireless-stride (cross any distance without fatigue) -> stamina
+      # reserves
+      - structure/stamina_reserves
+      # child-recognition (instantly know an orphan) -> intuitive leap;
+      # the founder's eye that sees the need at a glance
+      - cognition/intuitive_leap
+      # institutional-architecture (walls hold under your hand) ->
+      # force field
+      - pseudo_psychic/force_field
+    # "seasick on any open water; cannot rest under one roof more than a
+    # season" — the historical frailty: refused by two orders for weak
+    # health, she founded sixty-seven houses anyway
+    drawback: negative/weak_heart
+    iconography: >-
+      A very small woman in a black habit at a riverboat rail, an iron
+      ring of sixty-seven keys at her belt — one for every house she
+      founded — her gaze already on the far bank.
+    veneration: >-
+      The Fort Tryon shrine keeps her body under glass; the head is in
+      Rome, and the Magisterium and the old see have corresponded about
+      it for centuries without rancor or progress. Feast November 13;
+      patroness of immigrants, so decreed in 1950 and re-affirmed at the
+      first post-Glory Plenary. Travelers touch one of her keys before
+      any crossing — but she is never asked to bless a sea voyage. She
+      hated open water, and her canon respects it.
+
+  - id: jack_of_lowell
+    name: Saint Jack of Lowell
+    tradition: catholic_immigrant
+    patron_regions: [merrimack_mills, down_east]
+    bundle:
+      # road-spirit (cannot get lost on a highway) -> internal map
+      - cognition/internal_map
+      # spontaneous-prose (perfect recall of a conversation, hours
+      # after) -> eidetic memory, nearly verbatim from the catalog
+      - cognition/eidetic_memory
+      # bilingual-tongue (Joual + English at will) -> omniglot
+      - cognition/omniglot
+    # "the road eats you — you cannot stay anywhere more than a few
+    # weeks; addiction-prone" -> voracious: the appetite that ate him —
+    # the road, the wine, all of it, two rations at a time
+    drawback: negative/voracious
+    iconography: >-
+      A flannel-shirted man at the Grotto's Stations of the Cross on
+      Pawtucket Street, rucksack on one shoulder, a roll of teletype
+      paper unspooling from his jacket and down the hill toward the
+      Merrimack.
+    veneration: >-
+      Each October the Scroll — one hundred twenty feet, no paragraph
+      breaks — is unrolled and read aloud straight through, readers
+      relieving one another like pound-keepers at the Cetology. Joual is
+      the liturgical tongue at the Pawtucketville parish. Feast March 12;
+      his marked are blessed at on-ramps, and no innkeeper of the
+      corridor may refuse them the first night.
+
+  # ════════════════════════════════════════════════════════════════════
+  # FOLK / PLACE CANON
+  # ════════════════════════════════════════════════════════════════════
+
+  - id: plymouth
+    name: Saint Plymouth
+    tradition: folk_place
+    patron_regions: [plymouth_stone]
+    bundle:
+      # first-winter-survival (cold and scurvy resistance) -> sealed
+      # systems
+      - structure/sealed_systems
+      # compact-binding (your written word binds others — the Mayflower
+      # Compact mechanism) -> pheromone cloud's binding ask
+      - exotic/pheromone_cloud
+      # rock-myth (your reputation creates the relic) -> image
+      # projection; conjure the image and the faithful do the rest
+      - exotic/image_projection
+    # "must keep every compact you ever signed; cannot lie even by
+    # omission" rides veneration as vow; the canonical drawback is the
+    # starving time itself, never quite over -> bestial hunger
+    drawback: negative/bestial_hunger
+    iconography: >-
+      The Rock with teeth, half-submerged at the tideline; above it a
+      quill laid across a sea-chest, and a plate holding exactly five
+      kernels of parched corn.
+    veneration: >-
+      Forefathers' Day, December 22 — a date wrong on purpose: the old
+      calendar-keepers added eleven days converting the landing when ten
+      was correct, and the canon keeps the blunder enshrined, twin to
+      the Faunce doctrine. Succotash is served, the five kernels eaten
+      first in memory of the starving-time ration. The Feast of the
+      Retrospective Relic honors Elder Faunce's identification of the
+      Rock in 1741, one hundred twenty-one years after the landing — the
+      canon's own lesson that a relic is made canonical by witness, not
+      provenance. Signed compacts are filed at the Rock and may never be
+      unsigned.
+
+  - id: tisquantum
+    name: Saint Tisquantum
+    tradition: folk_place
+    patron_regions: [plymouth_stone]
+    bundle:
+      # many-tongues (any language you've heard spoken near you) ->
+      # omniglot, nearly verbatim from the catalog
+      - cognition/omniglot
+      # grief-strength (your grief is structurally load-bearing) ->
+      # mind over body; what carries him is not muscle
+      - cognition/mind_over_body
+    affinity:
+      # the village remembered entire, taken at the price of burdens
+      - cognition/eidetic_memory
+    # "the home you return to is never the home you left" -> anosmia:
+    # the taste of home is gone, and what kills unseen in food and
+    # water — as it took Patuxet — he cannot detect either
+    drawback: negative/anosmia
+    iconography: >-
+      A man standing between two shorelines — one of masts, one of
+      graves — treading eels from the mud with bare feet; behind him,
+      a herring set in every cornhill.
+    veneration: >-
+      The spring herring run is his movable feast, and Mashpee keeps his
+      rolls and adjudicates his cult. Returnees — captives, hostages,
+      the long-lost — are received at his shrines fed first and
+      questioned never. His catechumens learn the hard sentence of his
+      canon: the home you return to is never the home you left, and you
+      return anyway.
+
+  - id: manhattan
+    name: Saint Manhattan
+    tradition: folk_place
+    patron_regions: [sunken_bight]
+    bundle:
+      # skyscraper-tall (grows beyond human height) -> augmented muscle
+      - structure/augmented_muscle
+      # the strength of the tall one -> explosive exertion (the catalog
+      # names ogre-sized lifting and walls that give way)
+      - structure/explosive_exertion
+      # never-sleeps -> stamina reserves, verbatim from the catalog
+      - structure/stamina_reserves
+    affinity:
+      # vertical-mind (think in stories, not floors)
+      - cognition/augmented_cognition
+    # "one-G fatigue in flat country; claustrophobic in rooms" ->
+    # misshapen: nothing in the flat world is cut to her proportions
+    drawback: negative/misshapen
+    iconography: >-
+      A figure tall as a water tower wading the drowned avenues at dusk,
+      steam from the vents wreathing her hem, windows lighting one by
+      one as she passes.
+    veneration: >-
+      The Blackout Vigil, November 9: the Sunken Bight puts its lamps
+      out on purpose and her people walk home in the dark together, as
+      the city once did, strangers handing strangers down the stairs.
+      Steam-vent oracles are read at dawn. Her marked sleep in shifts,
+      so that someone is always awake in the city that cannot be.
+
+  - id: folly_of_the_cove
+    name: Saint Folly of the Cove
+    tradition: folk_place
+    patron_regions: [cape_ann]
+    bundle:
+      # syndactyly-membrane (congenital web-fingering, swims like a
+      # seal) -> aquatic adaptation
+      - hybrid/aquatic_adaptation
+      # echolocation-hum (taught, not innate) -> echolocation, verbatim
+      - sense/echolocation
+      # salt-tolerance + cold-water vasoconstriction -> sealed systems
+      - structure/sealed_systems
+    affinity:
+      # the achromatope's gift: rod-vision, the dim sea seen clearly
+      - sense/night_vision
+    # "needs salt-immersion daily; brittle in dry rooms; the congenital
+    # condition flares under stress" -> sensitive skin
+    drawback: negative/sensitive_skin
+    iconography: >-
+      Webbed hands mending a seine net beside a granite quarry pool, the
+      Annisquam light behind; her image is always a linoleum block print
+      on linen, in the Folly Cove manner, never painted.
+    veneration: >-
+      The Sodality's feast rides St. Peter's Fiesta in June — the greasy
+      pole walked out over cold harbor water, ordeal and joke at once.
+      Sauna-and-plunge is the Lanesville rite of welcome; the Finns
+      built the saunas and the Glory approved them. At baptism the
+      congenital marks are read aloud as her signature, which varies by
+      cove, as founder lines do.
+
+  - id: rebecca_of_nurse
+    name: Saint Rebecca of Nurse
+    tradition: folk_place
+    patron_regions: [salem_country]
+    bundle:
+      # court-sight (read truth-from-lying) -> mind reader; the truth
+      # under the testimony, one sentence at a time
+      - pseudo_psychic/mind_reader
+      # unjust-trial-immunity (the second time, you cannot be
+      # convicted) -> predictive analysis; the verdict rewound
+      - cognition/predictive_analysis
+      # seventy-year-witness (an elder's perspective even when young)
+      # -> augmented cognition, taken in Wisdom
+      - cognition/augmented_cognition
+    # "hexed in turn — people always know your name first; falsely
+    # accused at least once a year" -> vexation field: suspicion
+    # gathers on her marked without cause
+    drawback: negative/vexation_field
+    iconography: >-
+      A woman of seventy-one in a white coif, hands bound before her,
+      face unbothered; behind her a petition sheet bearing the
+      signatures of thirty-nine neighbors who would not let the lie
+      stand unanswered.
+    veneration: >-
+      Principal shrine at the Nurse homestead in Danvers, which still
+      stands; feast July 19, the day of the hanging. Each feast the 1711
+      reversal of attainder and the 1712 restoration of her communion
+      are read aloud — the canon's proof that a verdict can be unsaid —
+      and the descendants of accusers serve the feast meal, which they
+      have never once declined to do.
+
+  - id: tubman_of_the_crossing
+    name: Saint Tubman of the Crossing
+    tradition: folk_place
+    patron_regions: [baltimore, boston_common, philadelphia]
+    bundle:
+      # path-finding (never lost on a route) -> internal map
+      - cognition/internal_map
+      # endurance-sleep (rest in 90 seconds) -> stamina reserves
+      - structure/stamina_reserves
+      # tactical-vision (see ambushes before they form) -> accelerated
+      # perception; the combat-Saint cannot be surprised
+      - sense/accelerated_perception
+    affinity:
+      # the disguises — the woman no slave-catcher ever noticed
+      - exotic/chameleon_field
+    # "spells — narcoleptic collapse from a childhood head injury that
+    # drops you for unpredictable minutes" -> chronic seizures, the
+    # literal mapping in the whole canon
+    drawback: negative/chronic_seizures
+    iconography: >-
+      A small woman with a lantern and an army scout's pistol, head
+      turned as if listening to something under the wind; behind her,
+      gunboats low in the Combahee reeds and seven hundred walking free.
+    veneration: >-
+      Feast March 10 — the same date the old Episcopal calendar kept,
+      which the Magisterium retained out of respect for a church that
+      got there first. The Moses title is hers alone and is extended to
+      no one. Marsh-guides of Dorchester County are sworn on her
+      lantern: she never lost a passenger, and neither may they.
+
+  - id: nikola_of_the_hotel
+    name: Saint Nikola of the Hotel
+    tradition: folk_place
+    patron_regions: [sunken_bight]
+    bundle:
+      # electrical-fingers (small currents, automation-influence, a
+      # bulb lit in the hand) -> electrical generation
+      - exotic/electrical_generation
+      # prophetic-insomnia (you do not sleep but you receive visions in
+      # your wakefulness) -> mental bifurcation; half the mind sleeps,
+      # the other half receives
+      - cognition/mental_bifurcation
+    affinity:
+      # pigeon-affinity — the gray congregation at the sill
+      - cognition/omniglot
+    # "germ-phobia and number-obsession — must round everything to
+    # threes; cannot eat in the presence of others" -> distracted mind:
+    # the counting interrupts everything longer than a thought
+    drawback: negative/distracted_mind
+    iconography: >-
+      A tall man at the window of Room 3327, a pigeon on the sill,
+      eighteen dinner napkins folded in thirds on the table behind him;
+      over the Hudson, lightning that visibly wants to come in.
+    veneration: >-
+      Room 3327 of the Hotel New Yorker is kept empty and unrented in
+      perpetuity. Feast July 10: born at midnight in a lightning storm —
+      the midwife called the omen dark, and his mother answered that he
+      would be a child of light, which is the versicle and response of
+      his liturgy. The Niagara plant is his western pilgrimage; his
+      seized papers rest sealed at Brookland, examined once a generation
+      and resealed without comment.
+
+  # ════════════════════════════════════════════════════════════════════
+  # WILDERNESS / SLEEPER / FOLKWAY CANON
+  # ════════════════════════════════════════════════════════════════════
+
   - id: lizzie_of_the_cairn
     name: Saint Lizzie of the Cairn
     tradition: wilderness_sleeper
@@ -88,3 +681,92 @@ saints:
       stone by every party that passes; the weather-priests of the
       Observatory log her feast on September 14 and refuse to schedule
       a storm for it.
+
+  - id: rip_of_the_catskills
+    name: Saint Rip of the Catskills
+    tradition: wilderness_sleeper
+    patron_regions: [catskills, hudson_valley]
+    bundle:
+      # sleeps in long bouts (months or years), and the sleep repairs
+      # everything -> regenerator
+      - structure/regenerator
+      # wakes mutated each cycle -> metamorph
+      - exotic/metamorph
+      # nothing passes the sleeper unseen -> panoptic vision (the
+      # catalog keeps watch even in sleep)
+      - sense/panoptic_vision
+    # "absent for years; loved ones move on; you forget faces" ->
+    # memory damage
+    drawback: negative/memory_damage
+    iconography: >-
+      A bearded man asleep against an oak, fowling-piece rusted to lace
+      beside him, an empty dog collar held loose in one hand; up the
+      mountain, squat figures bowl at nine-pins in the thunder.
+    veneration: >-
+      Thunder over the Catskills is the Half-Moon's crew at their pins
+      and is answered with a raised cup. The Sleepers' Sodality keeps
+      his vault liturgies — twenty-year vows taken at Grossinger's are
+      sealed with his medal — and the waking rite opens with the
+      gentlest question in the canon: "What year do you believe it to
+      be?"
+
+  - id: henny_of_the_borscht
+    name: Saint Henny of the Borscht
+    tradition: wilderness_sleeper
+    patron_regions: [catskills]
+    bundle:
+      # the take-my-wife one-liner that hits — the punchline that
+      # scrambles a room -> induce confusion
+      - pseudo_psychic/induce_confusion
+      # audience-need-as-strength: the tummler hears every cough and
+      # whisper in the house -> acute hearing
+      - sense/acute_hearing
+      # comedy-tongue (involuntary punchlines) -> sound generation; the
+      # comic of the Four Voices
+      - exotic/sound_generation
+    # "cannot bear silence; physically wilts without an audience" ->
+    # deficient polycephaly: the heckler in his own head, the second
+    # voice that blurts the worst possible thing on a bad night —
+    # a tummler's double-act he never asked for and cannot fire
+    drawback: negative/deficient_polycephaly
+    iconography: >-
+      A man in a tuxedo holding a violin he plays badly on purpose, an
+      index card of one-liners in the breast pocket; behind him the
+      Imperial Room at the Concord, caught mid-laugh.
+    veneration: >-
+      Feast March 16. The mourner's meal at his chapels runs seven
+      courses and every eulogy must be one line, no exceptions, however
+      loved the dead. "Take my wife" is the call and "please" the
+      response. Tummlers hold his office by apprenticeship, and a
+      Catskills house without one is canonically incomplete.
+
+  - id: crispin_of_the_mill
+    name: Saint Crispin of the Mill
+    tradition: wilderness_sleeper
+    patron_regions: [merrimack_mills]
+    bundle:
+      # weaver-hands and machine-empathy together -> tactile analysis
+      # (the catalog's crafting hands, laid on loom and lathe alike)
+      - sense/tactile_analysis
+      # tireless-shift -> stamina reserves
+      - structure/stamina_reserves
+      # the 1912 Bread-and-Roses memory in the bones -> eidetic memory;
+      # the strike is remembered in his marked the way a body remembers
+      - cognition/eidetic_memory
+    # "injury under any factory roof you have not personally blessed;
+    # cannot rest on a 12-hour shift" -> insensate flesh: the mill
+    # worker's numbed body, whose injuries go unnoticed and aggravate
+    drawback: negative/insensate_flesh
+    iconography: >-
+      A man holding a shoemaker's last and awl crossed over a weaver's
+      shuttle — the old cordwainer's saint syncretized to the whole
+      Merrimack — the mill bell above him, bread in one apron pocket
+      and a rose in the other.
+    veneration: >-
+      Feast October 25, the old shoemakers' Crispin, kept through the
+      lodges of the Knights of St. Crispin since 1867. The Bread and
+      Roses procession walks Lawrence each Labor Day, bread carried by
+      the eldest worker and roses by the youngest; no mill may run on
+      his feast. His marked bless a factory roof by working one full
+      shift beneath it — which is also the only inoculation against his
+      burden.
