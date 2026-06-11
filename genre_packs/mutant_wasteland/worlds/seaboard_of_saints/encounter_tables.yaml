@@ -1,0 +1,626 @@
+# Encounter tables for the Seaboard of Saints.
+#
+# Each table is keyed by region (slugs from cartography.yaml) and every
+# `creature:` references an id in this world's bestiary.yaml (the world set
+# REPLACES the genre floor per GenrePack.effective_bestiary, so there is no
+# wasteland_raider fallback — every ref must resolve here). encountergen rolls
+# on these tables, generates concrete individuals from the bestiary, and drops
+# them into the Monster Manual.
+#
+# Difficulty levels:
+#   trivial  — flavor/atmosphere, no real threat (tier 1, low count)
+#   easy     — manageable fight or avoidable hazard (tier 1-2)
+#   moderate — real danger, resource expenditure expected (tier 2-3)
+#   hard     — serious threat, retreat is reasonable (tier 3)
+#   deadly   — potential TPK, avoidance recommended (tier 3-4)
+#
+# Weight is relative within a table. Higher = more likely to be rolled.
+#
+# Genre truth: the Seaboard works. Most encounters are avoidable, civic, or
+# absurd — a Toll-Man who would rather be paid, a parish kid spoiling for a
+# feast-day scrap, a confused thawed retiree. Lethality concentrates in the
+# wilderness margins (Mount Washington, the deep whaling grounds, the drowned
+# towers, Sleepy Hollow after dark), not in the parishes. Behaviors and
+# situations promise no mechanics this world hasn't shipped (no radiation
+# zones, no survival attrition — that is not this genre's register here).
+
+tables:
+
+  # ── DOWN EAST ────────────────────────────────────────────────
+  down_east:
+    description: >-
+      Granite, cold water, and fog that carries its own light. The lobster
+      guilds run the grounds; the lighthouses turn themselves. Trouble here
+      comes off the water or out of the murk.
+    encounters:
+      - weight: 25
+        difficulty: easy
+        creature: fog_lantern
+        count: [1, 1]
+        situation: >-
+          A soft cold light hangs in the fog ahead, just off the path, low
+          over the ledges. The lobstermen have a rule about lights you do not
+          row toward. You are on foot.
+        behavior: lure
+        time_of_day: night
+      - weight: 20
+        difficulty: moderate
+        creature: poundkeeper_bull
+        count: [1, 1]
+        situation: >-
+          The tidal holding-pound's gate hangs open and the season's tithe of
+          short-measures lies untouched on the ramp. Something the size of a
+          dory is coming up the slip on its own legs, claws clicking.
+        behavior: territorial
+        time_of_day: any
+      - weight: 15
+        difficulty: easy
+        creature: handcar_wrecker
+        count: [2, 3]
+        situation: >-
+          Out on the weed-grown spur past Eastport, a pump-handcar crew has
+          stopped on the line ahead, eyeing your gear with the frank interest
+          of people who have already cut the rail behind you.
+        behavior: opportunist
+        time_of_day: day
+
+  # ── THE WHALECOAST ───────────────────────────────────────────
+  whalecoast:
+    description: >-
+      Mutant whalers and the leviathans they hunt, in a covenant that braids
+      Melville with Wampanoag practice and the plain biology of the deep.
+      Work, not horror — until the deep grounds, where the hunt hunts back.
+    encounters:
+      - weight: 25
+        difficulty: moderate
+        creature: dogfish_pack
+        count: [1, 1]
+        situation: >-
+          The water off the shoals goes dark in a spreading stain that resolves,
+          too late, into thousands of spined backs schooling like wolves toward
+          the boat. They surface in daylight now. That is the new part.
+        behavior: blood_frenzy
+        time_of_day: day
+      - weight: 8
+        difficulty: deadly
+        creature: scrimshaw_bull
+        count: [1, 1]
+        situation: >-
+          The grey hide breaks the surface carved over with the whalers' own
+          scrimshaw, naming every harpoon and every hand. The Aquinnah aboard
+          set down their irons. It has felt your iron before, and it remembers.
+        behavior: apex_hunter
+        time_of_day: any
+      - weight: 18
+        difficulty: easy
+        creature: poundkeeper_bull
+        count: [1, 1]
+        situation: >-
+          A car-sized lobster has hauled itself up onto the New Bedford
+          fish-pier and will not be moved, claws working at the crates like a
+          man cracking his knuckles before a hard job.
+        behavior: territorial
+        time_of_day: any
+
+  # ── THE CAPE ANN SODALITY ────────────────────────────────────
+  cape_ann:
+    description: >-
+      Founder-effect fishing villages that keep to themselves and know the
+      ledges you don't. The marks here are real and old; the people are
+      neighbors, not monsters — unless you press them on their own water.
+    encounters:
+      - weight: 30
+        difficulty: easy
+        creature: cove_diver
+        count: [1, 2]
+        situation: >-
+          A web-fingered figure surfaces between the quarry-pool ledges, watches
+          you with frank wariness, and says, plainly, that you have come far
+          enough. They would much rather you simply left.
+        behavior: defensive
+        time_of_day: any
+      - weight: 12
+        difficulty: trivial
+        creature: handcar_wrecker
+        count: [1, 2]
+        situation: >-
+          A lone scavenger picking the flooded quarry's drowned hoist-house
+          freezes when you round the granite, weighing whether you are worth
+          the trouble. You are clearly not from the Cove.
+        behavior: opportunist
+        time_of_day: day
+
+  # ── BOSTON COMMON ────────────────────────────────────────────
+  boston_common:
+    description: >-
+      Brahmin courtesy above the table, the Vault beneath it, Irish parishes
+      below them both. Violence here is well-dressed and would so much prefer
+      to be a transaction. The Corridor's busiest hub.
+    encounters:
+      - weight: 22
+        difficulty: moderate
+        creature: vault_factor
+        count: [1, 1]
+        situation: >-
+          A man in a very good coat is waiting where you did not expect anyone,
+          and he knows your debts, your parish, and your mother's maiden Saint.
+          He would so much prefer this be settled quietly, over coffee.
+        behavior: negotiator
+        time_of_day: any
+      - weight: 18
+        difficulty: easy
+        creature: charles_eel
+        count: [1, 3]
+        situation: >-
+          Wading the genteel green water of a Back Bay storm-culvert, your
+          ankle finds something that grips and crackles — the basin eels, lit
+          faintly from within, lairing in the old locks.
+        behavior: ambush
+        time_of_day: any
+      - weight: 15
+        difficulty: easy
+        creature: corridor_tollman
+        count: [1, 1]
+        situation: >-
+          The platform at an off-hour stop has been claimed by a man who has
+          decided the fare to board is his to collect — half stationmaster,
+          half bandit, entirely open to a roll of quarters instead of a fight.
+        behavior: tollkeeper
+        time_of_day: any
+
+  # ── SALEM COUNTRY ────────────────────────────────────────────
+  salem_country:
+    description: >-
+      Civic witch-craft under spectral-evidence law: registered lines, sworn
+      familiars, accusations that walk. Cross a witch-line and the paperwork
+      gets strange before the violence does.
+    encounters:
+      - weight: 22
+        difficulty: easy
+        creature: court_familiar
+        count: [1, 2]
+        situation: >-
+          A black hare — or a marsh cat, or a banded crow — has been pacing you
+          for a mile, too deliberate by half. It is entered in some line's parish
+          book, and it has already told its witch where you are.
+        behavior: scout
+        time_of_day: any
+      - weight: 14
+        difficulty: moderate
+        creature: spectral_witness
+        count: [1, 1]
+        situation: >-
+          The air in the old township common thickens into the shape of a
+          pointing figure — a grudge sworn before a magistrate and left
+          unresolved, walking until the court that raised it sits again. It
+          points at you.
+        behavior: accuser
+        time_of_day: any
+
+  # ── THE MERRIMACK MILLS ──────────────────────────────────────
+  merrimack_mills:
+    description: >-
+      The textile axis, multi-immigrant and industrial, under Saint Crispin's
+      patronage. The looms still run. Some of them have nobody at the shuttle,
+      and the parishes bar the doors on the ones they cannot bless.
+    encounters:
+      - weight: 26
+        difficulty: moderate
+        creature: loom_revenant
+        count: [1, 1]
+        situation: >-
+          Down a mill-floor you thought abandoned, a full power-loom lurches on
+          jury-rigged legs, still throwing its shuttle on a 12-hour rhythm twelve
+          centuries late, weaving everything that wanders in into the bolt.
+        behavior: relentless
+        time_of_day: any
+      - weight: 14
+        difficulty: easy
+        creature: corridor_tollman
+        count: [1, 1]
+        situation: >-
+          A canal-side loading platform between Lowell and Lawrence has a
+          self-appointed toll-keeper on it, leaning on the chokepoint, naming
+          a price in Mass Pike tokens to let your cargo through.
+        behavior: tollkeeper
+        time_of_day: day
+
+  # ── PROVIDENCE ───────────────────────────────────────────────
+  providence:
+    description: >-
+      The Athenaeum Sisters, Federal Hill's polite enforcers, the Lo'in at
+      Swan Point. Cloistered and civic at once — and the Corridor's northern
+      hinge, where the off-hours platforms attract their own taxmen.
+    encounters:
+      - weight: 22
+        difficulty: moderate
+        creature: atwells_button
+        count: [1, 2]
+        situation: >-
+          A well-dressed man on Atwells Avenue suggests, with great courtesy,
+          that you join him for coffee at the Pinecone to discuss a small
+          matter of your debt. A second man is already behind you.
+        behavior: enforcer
+        time_of_day: any
+      - weight: 14
+        difficulty: moderate
+        creature: seance_wraith
+        count: [1, 1]
+        situation: >-
+          In a back reading-room of the Athenaeum a pen is moving across a page
+          with no hand on it, and the cold pressure of an unfinished message
+          turns toward you, wanting yours.
+        behavior: compulsion
+        time_of_day: any
+      - weight: 12
+        difficulty: easy
+        creature: corridor_tollman
+        count: [1, 1]
+        situation: >-
+          The causeway platform at the edge of the Causeway Line has a
+          toll-man on it tonight, polite and immovable, quoting a roll of
+          quarters to let you board the southbound.
+        behavior: tollkeeper
+        time_of_day: any
+
+  # ── THE PIONEER VALLEY ───────────────────────────────────────
+  pioneer_valley:
+    description: >-
+      Saint Emily's quiet Connecticut River country — slant light, shut doors,
+      and the river working at its own banks. The loudest thing for a mile is
+      usually the water. Usually.
+    encounters:
+      - weight: 28
+        difficulty: moderate
+        creature: oxbow_lurker
+        count: [1, 1]
+        situation: >-
+          The green water of the oxbow below Mount Holyoke is glass-still except
+          for two eyes above the duckweed, and the bank you are standing on is
+          exactly an ankle's reach from them.
+        behavior: ambush
+        time_of_day: any
+      - weight: 10
+        difficulty: trivial
+        creature: handcar_wrecker
+        count: [1, 2]
+        situation: >-
+          On the grown-over spur toward the Berkshire crossing, a pair of
+          opportunists work a stalled freight-car, looking up at you with more
+          calculation than welcome.
+        behavior: opportunist
+        time_of_day: day
+
+  # ── THE HUDSON VALLEY ────────────────────────────────────────
+  hudson_valley:
+    description: >-
+      Faerie country and Patroon manors — Storm King, the Dunderberg, the
+      Catskill cloves, Sleepy Hollow's glen. Old money, old weather, old
+      stories that did not stay stories after the Glory.
+    encounters:
+      - weight: 22
+        difficulty: moderate
+        creature: dunderberg_imp
+        count: [1, 2]
+        situation: >-
+          The sky over the Highlands turns the colour of a bruise in seconds,
+          and a squat blue-lipped thing whistles on the cliff above your sloop,
+          delighted, calling the storm down on the water.
+        behavior: capricious
+        time_of_day: any
+      - weight: 16
+        difficulty: easy
+        creature: catskill_ninepin
+        count: [1, 3]
+        situation: >-
+          Thunder rolls in the clove that is not weather — bowler-hatted dwarves
+          at their ninepins among the rocks, who pause, regard you, and offer,
+          with grave courtesy, a flagon.
+        behavior: faerie_bargain
+        time_of_day: any
+      - weight: 14
+        difficulty: moderate
+        creature: patroon_houndsman
+        count: [1, 1]
+        situation: >-
+          A manor houndsman blocks the covert road with two estate hounds at
+          heel and asks your business on Rensselaerswijck land, in the tone of
+          a man who remembers the last Anti-Rent disguises.
+        behavior: gatekeeper
+        time_of_day: day
+      - weight: 6
+        difficulty: hard
+        creature: horseman_of_sleepy_hollow
+        count: [1, 1]
+        situation: >-
+          It is past moonset in the Sleepy Hollow glen and you are not yet at
+          the church bridge. Hoofbeats behind you, gaining, and no head above
+          the rider's collar. Run for the span.
+        behavior: relentless_hunter
+        time_of_day: night
+
+  # ── THE CATSKILLS ────────────────────────────────────────────
+  catskills:
+    description: >-
+      The Borscht Belt, where the resorts open every summer for the living and
+      the thawed alike and everything works, absurdly. Comic dystopia: the
+      danger here is more likely to demand the check than your life.
+    encounters:
+      - weight: 26
+        difficulty: easy
+        creature: thawed_wrong
+        count: [1, 1]
+        situation: >-
+          A guest in a moth-eaten robe comes down the Grossinger's grand stair
+          mid-routine, freezer-burn still in the brain, loudly demanding the
+          tummler, the kasha, and his wife — and reaching, vaguely, for the
+          nightstand drawer.
+        behavior: bewildered
+        time_of_day: any
+      - weight: 18
+        difficulty: moderate
+        creature: bandstand_brassbot
+        count: [1, 2]
+        situation: >-
+          On the shuttered bandstand a brass automaton swings into the same
+          medley it has played for twelve centuries, at a wall of sound, and
+          treats your hand on the power-cord as the worst kind of heckling.
+        behavior: relentless
+        time_of_day: any
+      - weight: 14
+        difficulty: easy
+        creature: catskill_ninepin
+        count: [1, 2]
+        situation: >-
+          Up a wooded clove behind the Nevele, the thunder-bowling dwarves are
+          at their game, and one rolls a heavy ball your way — a greeting, or a
+          warning, hard to say which.
+        behavior: faerie_bargain
+        time_of_day: any
+
+  # ── THE ADIRONDACKS ──────────────────────────────────────────
+  adirondacks:
+    description: >-
+      Wilderness, not wasteland — hermit philosophers, the High Peaks, Saint
+      John's birdsong country. The wilderness obliges your wish to be alone,
+      with teeth.
+    encounters:
+      - weight: 22
+        difficulty: hard
+        creature: muwin_bear
+        count: [1, 1]
+        situation: >-
+          The muwin elder rises on the trail ahead, slow-eyed and enormous,
+          close enough to the uplifted muwin-folk that the hermits would call
+          this murder. Sit. Speak gently. Or do not, and find out.
+        behavior: territorial
+        time_of_day: any
+      - weight: 24
+        difficulty: easy
+        creature: blackfly_haze
+        count: [1, 1]
+        situation: >-
+          The June air thickens to a black haze that drives into eyes and
+          mouth and ears — the old loggers' rule was keep moving or be buried.
+          The deer ahead have already broken into a screaming run for water.
+        behavior: maddening_swarm
+        time_of_day: day
+
+  # ── THE WHITE MOUNTAINS ──────────────────────────────────────
+  white_mountains:
+    description: >-
+      The worst weather on the seaboard, enforced as liturgy by the
+      weather-priests of the Observatory. The mountain decides who summits.
+      Deadly above the treeline; merely hostile below it.
+    encounters:
+      - weight: 20
+        difficulty: hard
+        creature: rime_walker
+        count: [1, 1]
+        situation: >-
+          Above the Lakes of the Clouds the rime grows on the cairns in
+          feather-blades — and on something that walks out of the whiteout
+          toward you, the mountain's own cold given a shape and a reach.
+        behavior: relentless
+        time_of_day: any
+      - weight: 16
+        difficulty: moderate
+        creature: observatory_warden
+        count: [1, 2]
+        situation: >-
+          A weather-priest steps onto the Cog trestle ahead, reads the glass,
+          and informs you the summit is closed by the liturgy today — as the
+          wind, on cue, begins to rise.
+        behavior: gatekeeper
+        time_of_day: day
+
+  # ── PLYMOUTH STONE ───────────────────────────────────────────
+  plymouth_stone:
+    description: >-
+      The toothed Rock, the wakeless Mayflower, and King Philip's War that
+      never finished ending. The dead here are aggrieved, not evil, and the
+      old rites and compacts still settle them — if you know them.
+    encounters:
+      - weight: 20
+        difficulty: moderate
+        creature: ghost_mayflower_hand
+        count: [1, 2]
+        situation: >-
+          A wakeless ship rides low offshore, and salt-stiff figures are coming
+          up the strand to make up their numbers — one looks you over the way a
+          press-gang looks at a strong back. Somewhere, a church bell.
+        behavior: press_gang
+        time_of_day: night
+      - weight: 12
+        difficulty: hard
+        creature: faunce_remnant
+        count: [1, 1]
+        situation: >-
+          On the anniversary the dead of 1675 walk Patuxet, colonist and
+          Wampanoag no longer told apart, only aggrieved. One turns toward
+          whoever here last broke a compact. It knows.
+        behavior: vengeful
+        time_of_day: any
+
+  # ── THE SUNKEN BIGHT ─────────────────────────────────────────
+  sunken_bight:
+    description: >-
+      Drowned New York to the skyscraper-shoulders, the torch still burning
+      over the harbor. Vertical reef ecology in the flooded towers, predators
+      in the subway tubes. The current does the hunting the predators don't.
+    encounters:
+      - weight: 20
+        difficulty: hard
+        creature: tower_filterer
+        count: [1, 1]
+        situation: >-
+          The flooded stairwell of a Midtown tower breathes — an intake current
+          drawing you down past drowned offices toward a barrel-mouth the width
+          of an elevator bank. It cannot chase. It does not need to.
+        behavior: drawing_current
+        time_of_day: any
+      - weight: 22
+        difficulty: moderate
+        creature: subway_reefshark
+        count: [1, 2]
+        situation: >-
+          Wading the flooded IRT, you feel the pressure-wave down the tunnel
+          before you see it — forward drive and no patience, hitting once and
+          overshooting. The platform stairs are three strokes away.
+        behavior: tunnel_ambush
+        time_of_day: any
+      - weight: 12
+        difficulty: moderate
+        creature: liberty_keeper
+        count: [1, 1]
+        situation: >-
+          You have come too near the drowned torch, and the keeper that tends
+          the flame — devoted past reason to the one thing it thinks worth
+          saving — interposes itself, signalling the harbor patrol as it does.
+        behavior: guardian
+        time_of_day: any
+
+  # ── OUTER BOROUGHS & ITALIAN BRONX ───────────────────────────
+  outer_boroughs:
+    description: >-
+      The New Catholic heart — Arthur Avenue, Bensonhurst, Spanish Harlem, the
+      Cabrini shrine. Feast days run hot and the parishes run deep. The danger
+      is mostly honor, fists, and the Corridor's taxmen.
+    encounters:
+      - weight: 26
+        difficulty: easy
+        creature: feast_day_bravo
+        count: [2, 4]
+        situation: >-
+          The giglio is swaying, the band is loud, the wine is flowing, and a
+          knot of parish kids has decided you slighted Saint Francis of Hoboken's
+          good name. They are brave in a crowd and sheepish at confession.
+        behavior: mob_bravado
+        time_of_day: any
+      - weight: 14
+        difficulty: easy
+        creature: corridor_tollman
+        count: [1, 1]
+        situation: >-
+          The Corridor platform at an off-hour has a self-appointed fare-taker
+          on it, naming his price in quarters to let you board, entirely willing
+          to be paid rather than crossed.
+        behavior: tollkeeper
+        time_of_day: any
+
+  # ── PHILADELPHIA ─────────────────────────────────────────────
+  philadelphia:
+    description: >-
+      Federal-era ruins, working parishes, the Mint still striking coin, and
+      the Mummers strutting Broad Street twelve centuries late. The political
+      bridge of the Seaboard — and a city that never stopped its parade.
+    encounters:
+      - weight: 26
+        difficulty: moderate
+        creature: mummer_automaton
+        count: [1, 2]
+        situation: >-
+          A sequined, plumed, banjo-armed figure struts the same Broad Street
+          route it has marched for twelve centuries, and wheels into your path
+          in its fixed parade-step, heavy enough to break a jaw with the banjo
+          it still thinks it is playing.
+        behavior: fixed_pattern
+        time_of_day: any
+      - weight: 12
+        difficulty: easy
+        creature: handcar_wrecker
+        count: [2, 3]
+        situation: >-
+          In the federal ruins off the Keystone Leg, a crew works a stalled
+          coin-wagon — fresh-struck Mint pennies in canvas sacks — and turns,
+          unhurried, to weigh you against the haul.
+        behavior: opportunist
+        time_of_day: day
+
+  # ── BALTIMORE ────────────────────────────────────────────────
+  baltimore:
+    description: >-
+      Poe's grave and its ravens, the crab tongs, the sail-only oyster fleet,
+      the Eastern Shore. Saint Edgar's city, where the danger lives on the
+      brackish flats and in the churchyard.
+    encounters:
+      - weight: 22
+        difficulty: moderate
+        creature: chesapeake_tonger
+        count: [1, 1]
+        situation: >-
+          Wading the oyster flats off Smith Island, the bottom mud erupts —
+          a skiff-sized blue crab with claws like sprung shears, the one in a
+          season that takes a man instead of the other way round.
+        behavior: ambush
+        time_of_day: any
+      - weight: 18
+        difficulty: easy
+        creature: westminster_ravens
+        count: [1, 1]
+        situation: >-
+          The ravens of Westminster Hall lift off Poe's grave in a single
+          wheeling murder and fix on you — they have decided you came for the
+          grave-offerings, and they do not tire of a chosen mark.
+        behavior: harrying_swarm
+        time_of_day: any
+
+  # ── D.C. ─────────────────────────────────────────────────────
+  dc:
+    description: >-
+      The Mall, the Smithsonian reliquary, Brookland's Little Rome, the
+      Pentagon's cult-and-ruin. The strangest region, in a polite way — where
+      the holy machines defend themselves and a body still believes it governs.
+    encounters:
+      - weight: 18
+        difficulty: hard
+        creature: reliquary_exhibit
+        count: [1, 1]
+        situation: >-
+          Deep in the Air & Space cathedral a holy machine restored past safety
+          comes off its plinth to defend itself — a flight-relic strafing the
+          hall, the docent-units watching to see whether the Order blessed you
+          to approach.
+        behavior: guardian
+        time_of_day: any
+      - weight: 16
+        difficulty: moderate
+        creature: pentagon_cultist
+        count: [1, 3]
+        situation: >-
+          Inside the five-sided ring, devotee-soldiers drill for orders twelve
+          centuries overdue, and challenge you in the name of a command that
+          has issued nothing in living memory but believes, wholly, it is about
+          to.
+        behavior: zealous
+        time_of_day: any
+      - weight: 14
+        difficulty: trivial
+        creature: capitol_page
+        count: [1, 2]
+        situation: >-
+          Under the dome a mutant page hurries past with an armful of bills no
+          one will enact, takes you for an intruder on the floor, and bolts for
+          the sergeant-at-arms — who will arrive, with guards, in moments.
+        behavior: alarm
+        time_of_day: any
