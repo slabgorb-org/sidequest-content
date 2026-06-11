@@ -1,0 +1,90 @@
+# The Seaboard of Saints — Saint canon (story 103-1: the 3 PROOF Saints).
+#
+# A Saint is a curated bundle of AWN positive-mutation ids plus exactly one
+# negative as the canonical drawback (AWN rebase addendum 2026-06-09 —
+# curation replaces the dice, not the pricing). Every id below must resolve
+# against genre_packs/mutant_wasteland/mutations.yaml; the server fails the
+# pack load on any miss.
+#
+# Bundle budget: base 2 MP + drawback 2 MP at the 1-MP random-pull rate
+# = at most 4 bundle marks. Additional marks belong on the affinity list
+# (purchasable in chargen by accepting further drawbacks, standard economy).
+#
+# The three shapes prove the pipeline (story scope — full canon is 103-4):
+#   herman_of_the_acushnet : bundle-only
+#   edgar_of_baltimore     : bundle + affinity
+#   lizzie_of_the_cairn    : drawback-bearing wilderness Saint
+#
+# Mapping notes record the spec-§6 flavor -> catalog-id curation rationale.
+
+saints:
+  - id: herman_of_the_acushnet
+    name: Saint Herman of the Acushnet
+    tradition: literary
+    patron_regions: [whalecoast]
+    bundle:
+      # whale-bone density -> reinforced tissues
+      - structure/reinforced_tissues
+      # deep-pressure / salt tolerance -> aquatic adaptation
+      - hybrid/aquatic_adaptation
+      # the long hunt -> stamina reserves
+      - structure/stamina_reserves
+    # "obsessive monologue; cannot stop telling a story once begun"
+    drawback: negative/narrow_focus
+    iconography: >-
+      A pilgrim in oilskins lashed about with manila line, one hand on a
+      whale's jawbone worn as a reliquary yoke, ledger of lays tucked at
+      the belt; behind him the preserved Acushnet rides at anchor.
+    veneration: >-
+      Principal shrine at the Seamen's Bethel, New Bedford; his feast is
+      kept the first week of the sperm-whale run, when the pound-keepers
+      read the Cetology aloud in shifts until every chapter has been told.
+
+  - id: edgar_of_baltimore
+    name: Saint Edgar of Baltimore
+    tradition: literary
+    patron_regions: [baltimore, providence]
+    bundle:
+      # midnight-eye -> night vision
+      - sense/night_vision
+      # the morbid attunement (drumbeat-pulse heard in others) -> empathic sensitivity
+      - sense/empathic_sensitivity
+    affinity:
+      # prophetic dread, taken at the price of further burdens
+      - pseudo_psychic/limited_precognition
+      # the verses never leave -> eidetic memory
+      - cognition/eidetic_memory
+    # "melancholia-attacks; daylight migraine"
+    drawback: negative/light_sensitivity
+    iconography: >-
+      A gaunt man in a high black stock collar at a rain-dark grave,
+      raven at the shoulder, one candle behind smoked glass; his eyes
+      carry the bruised look of a man who reads after midnight on purpose.
+    veneration: >-
+      Principal shrine at Westminster Hall, Baltimore, where the cognac
+      and three roses are still left each January; the Whitman Circle at
+      the Providence Athenaeum keeps his courtship letters under seal.
+
+  - id: lizzie_of_the_cairn
+    name: Saint Lizzie of the Cairn
+    tradition: wilderness_sleeper
+    patron_regions: [white_mountains]
+    bundle:
+      # weather-bones (predict the storm) -> limited precognition
+      - pseudo_psychic/limited_precognition
+      # wind-tolerance / exposure-resistance -> sealed systems
+      - structure/sealed_systems
+      # cairn-blessing (your hand on stone marks the way home) -> internal map
+      - cognition/internal_map
+    # "ill below treeline; depressed at low altitudes" — the lowlands drain her
+    drawback: negative/energy_sink
+    iconography: >-
+      A young woman in 1855 walking-dress, hem frozen stiff, building a
+      cairn with bare hands in horizontal wind; every stone she sets
+      glows faintly warmer than the air, and the trail behind her is
+      marked in small lights.
+    veneration: >-
+      Her cairn below the Mount Washington summit is dressed with a new
+      stone by every party that passes; the weather-priests of the
+      Observatory log her feast on September 14 and refuse to schedule
+      a storm for it.
