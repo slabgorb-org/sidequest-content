@@ -204,14 +204,14 @@ Live, wired packs (loaded by server + daemon at runtime):
 genre_packs/
 ├── caverns_and_claudes/  # Classic dungeon crawl (meta-humor on D&D tropes)
 ├── elemental_harmony/    # Martial arts / elemental magic
-├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic — evropi + long_foundry (both asset-complete: portraits + POIs + music on R2)
-├── mutant_wasteland/     # Post-apocalyptic mutants — flickering_reach (fully spoilable)
+├── heavy_metal/          # Baroque fantasy of pacts, decay, and blood-priced magic — evropi + long_foundry (both asset-complete: portraits + POIs + music on R2) + barsoom (WWN ruleset, live 2026-06-05; portraits still rendering)
+├── mutant_wasteland/     # Post-apocalyptic mutants — flickering_reach (fully spoilable) + seaboard_of_saints (portraits + POIs + leitmotif music on R2)
 ├── neon_dystopia/        # Cyberpunk — franchise_nations (assets complete)
 ├── pulp_noir/            # 1930s detective / pre-war pulp — annees_folles (assets complete)
 ├── road_warrior/         # Late-70s / early-80s vehicle subcultures sharing one port city — the_circuit
 ├── space_opera/          # Sci-fi space adventure — aureate_span (baroque corona megastation, live) + coyote_star + perseus_cloud
 ├── spaghetti_western/    # Morally ambiguous anti-heroes — dust_and_lead (Mexican border) + five_points (1850s NYC Sixth Ward) + the_real_mccoy (1878 Pittsburgh)
-├── tea_and_murder/       # Cosy Edwardian BritBox murder mystery — glenross (Highland village) + blackthorn_moor (draft, assets pending)
+├── tea_and_murder/       # Cosy Edwardian BritBox murder mystery — glenross (Highland village) + blackthorn_moor (live; portraits + POIs on R2)
 └── wry_whimsy/           # Golden-age literary portal fairytale (survive by wit, not force) — oz + wonderland + gulliver, light-to-savage gradient (asset gate MET; shared PD music via assets/ prefix)
 ```
 
