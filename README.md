@@ -28,14 +28,14 @@ media services) via the `SIDEQUEST_GENRE_PACKS` environment variable.
 |------|-------|----------------|
 | `caverns_and_claudes` | Classic dungeon crawl (meta-humor on D&D tropes) | `beneath_sunden` (single-shaft procedural megadungeon, ADR-106; surface anchor authored, deep is runtime) |
 | `elemental_harmony` | Martial arts / elemental magic | `burning_peace`, `shattered_accord` |
-| `heavy_metal` | Baroque fantasy of pacts, decay, and blood-priced magic | `evropi`, `long_foundry` (portraits pending render) |
-| `mutant_wasteland` | Post-apocalyptic mutants | `flickering_reach` (fully spoilable) |
+| `heavy_metal` | Baroque fantasy of pacts, decay, and blood-priced magic | `evropi`, `long_foundry`, `barsoom` (WWN ruleset; portraits still rendering) |
+| `mutant_wasteland` | Post-apocalyptic mutants | `flickering_reach` (fully spoilable), `seaboard_of_saints` |
 | `neon_dystopia` | Cyberpunk | `franchise_nations` |
 | `pulp_noir` | 1930s detective / pre-war pulp | `annees_folles` |
 | `road_warrior` | Late-70s / early-80s vehicle subcultures sharing one port city (bōsōzoku, mods, lowriders, dekotora, raggare, &c.) | `the_circuit` |
 | `space_opera` | Sci-fi space adventure | `aureate_span` (baroque corona megastation), `coyote_star`, `perseus_cloud` |
 | `spaghetti_western` | Morally ambiguous anti-heroes — Leone/Corbucci/Kurosawa. Standoff as ritual, betrayal as inevitability. | `dust_and_lead` (Sangre Territory border town), `five_points` (1850s NYC Sixth Ward), `the_real_mccoy` (1878 industrial Pittsburgh) |
-| `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross`, `blackthorn_moor` (draft) |
+| `tea_and_murder` | Cosy Edwardian (1901-1914) BritBox-register murder mystery; village amateur sleuths, episodic mysteries | `glenross`, `blackthorn_moor` |
 | `wry_whimsy` | Golden-age literary portal fairytale; a sensible traveler in a dream-logic Secondary World survives by wit over force, episodic with an undertow of menace | `oz`, `wonderland`, `gulliver` (light-to-savage gradient; assets rendered) |
 
 Each pack contains YAML configs (archetypes, tropes, rules, encounters,
@@ -45,7 +45,7 @@ asset directories for portraits, POI landscapes, and music params.
 All eleven packs above have a `pack.yaml` and are loaded at runtime. Worlds
 default to live; `draft: true` in a world's `world.yaml` hides it from
 selection until its asset gate (portraits + POI landscapes rendered to R2) is
-met. `blackthorn_moor` is currently the only draft world.
+met. There are currently no draft worlds — all worlds are live.
 
 In-progress packs and worlds live in `genre_packs/` like any other and use
 `draft: true` (above) to stay hidden from selection until their asset gate is
