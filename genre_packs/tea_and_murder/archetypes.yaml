@@ -1,0 +1,543 @@
+# tea_and_murder — genre-level NPC archetypes.
+#
+# This is the GENERIC cosy-village cast: the universal supporting players you
+# find in ANY Edwardian-or-thereabouts British murder-mystery village, whether
+# it sits in a Highland glen, on an English moor, or anywhere a body might be
+# found slumped at the writing desk before the second cup of tea. The minister,
+# the doctor, the constable, the squire, the spinster who sees everything, the
+# retired colonel, the postmistress, the solicitor, the schoolmistress, the
+# innkeeper, the butler, the gamekeeper — the fixtures of the form.
+#
+# World-level archetypes.yaml files (glenross, blackthorn_moor, …) SUPPLEMENT
+# this file. Where this genre cast gives the generic figures, the world files
+# give the specific people who make THAT village feel like one place and not
+# another (the Laird's Factor, the Railway Porter, the Castle Housekeeper, …).
+# When a world wants a generic role made local, it overrides here.
+#
+# DELIBERATELY village-agnostic: no place-names, no Scotland-only or
+# England-only specifics. "The Squire" — not "the laird". A vicar OR a manse
+# minister can be read off "The Parish Minister". The world layer adds the
+# local colour.
+#
+# Schema mirrors the pack-level form (pulp_noir/archetypes.yaml). The
+# ability-score keys (Angst/Pride/Humour/Nerve/Cunning/Passion), Callings
+# (Governess/Detective/Society/Doctor/Industrialist/Explorer/Clergyman) and
+# Origins (Gentry/Trade/Servant/Clergy/Bohemian/Colonial) are the chargen
+# vocabulary from rules.yaml. World files may add `ocean`/`role` extensions
+# for the NPC materialiser; the genre cast stays to the portable fields plus
+# ocean.
+
+- name: The Village Constable
+  description: >-
+    The whole of the law for miles, and well aware that the law's reach
+    stops where the parish's good opinion begins. Keeps the peace by knowing
+    everyone — whose boy was poaching, whose marriage is sour, who was seen
+    on the lane after dark and who only says he wasn't. Competent at the
+    ordinary run of things: drunks, strays, the occasional broken window.
+    Out of his depth the moment a body turns up, and honest enough to know
+    it, which is precisely when an amateur sleuth becomes either his salvation
+    or his torment. Defers to the man from the county only as far as the
+    front gate, then forms his own opinion in private.
+  personality_traits:
+    - dutiful
+    - local to his bones
+    - quietly observant
+  typical_classes:
+    - Detective
+    - Society
+  typical_races:
+    - Trade
+    - Servant
+  stat_ranges:
+    Nerve: [12, 16]
+    Cunning: [10, 14]
+    Pride: [10, 14]
+  inventory_hints:
+    - a notebook with a pencil tied to it by a length of boot-lace
+    - a bicycle that is the only police vehicle in the parish and is always being mended
+    - a truncheon he has drawn perhaps twice in his career and is rather proud of that
+    - a pocket watch set three minutes fast against the church clock, which he insists is the one that is wrong
+  dialogue_quirks:
+    - prefaces an awkward question with "now I'm sure there's nothing in it, but —"
+    - calls every man "sir" until he has decided otherwise, and then does not
+    - writes down what you say in full while you are still saying it, which makes the guilty hurry and the innocent slow
+    - refers to a death as "the sad business" until a verdict is reached, and only then will he say "the murder"
+  disposition_default: 10
+  ocean:
+    openness: 4.0
+    conscientiousness: 8.0
+    extraversion: 5.0
+    agreeableness: 6.5
+    neuroticism: 4.5
+
+- name: The Country Doctor
+  description: >-
+    Knows the inside of every household in the parish, having delivered half
+    of it and closed the eyes of the other half. Carries more secrets than the
+    minister, and is bound by a discretion just as old. The first man sent for
+    when a body is found, and the one whose brief examination decides whether
+    the bell tolls for an accident or for something worse — a verdict he gives
+    plainly and refuses to dress up, however much the family would prefer a
+    softer word. Tired, kind, and sharper than he lets on; sees the small
+    physical wrongness — the wrong bruise, the wrong pallor, the cup that
+    smelled of more than tea — that the constable misses.
+  personality_traits:
+    - shrewd
+    - compassionate
+    - professionally discreet
+  typical_classes:
+    - Doctor
+  typical_races:
+    - Trade
+    - Gentry
+  stat_ranges:
+    Cunning: [14, 18]
+    Nerve: [12, 16]
+    Humour: [10, 14]
+  inventory_hints:
+    - a worn leather bag that has been to every sickbed and deathbed in the parish
+    - a pocket flask of brandy kept strictly "for the patient", administered chiefly to himself after a hard case
+    - reading spectacles he removes to deliver bad news and replaces to deliver good
+    - a thermometer in a nickel case and a notebook of cases he will let no one else read
+  dialogue_quirks:
+    - delivers a fatal conclusion in the flattest possible voice, because the alternative is to feel it
+    - says "I'd want to be certain before I said so" when he is already entirely certain
+    - refuses to discuss one patient with another, and will let the silence sit until the question is withdrawn
+    - measures gravity by what he prescribes — "I've told her to rest" is mild; "I'll call again tonight" is not
+  disposition_default: 15
+  ocean:
+    openness: 6.0
+    conscientiousness: 8.5
+    extraversion: 4.5
+    agreeableness: 7.0
+    neuroticism: 4.0
+
+- name: The Parish Minister
+  description: >-
+    Shepherd of the parish, and the only man with a standing right to ask any
+    household its troubles. Reads the village by its attendance, its silences,
+    and the things confessed at the graveside that are never confessed at the
+    door. A genuinely good man, or near enough that the difference rarely
+    shows, troubled by the gulf between the charity he preaches and the
+    suspicion a murder forces upon him — for he, more than anyone, knows which
+    of his flock had cause. Holds confidences he cannot break and will not
+    pretend he does not hold, which makes him at once the sleuth's best witness
+    and his most maddening one.
+  personality_traits:
+    - principled
+    - gently watchful
+    - burdened by what he knows
+  typical_classes:
+    - Clergyman
+  typical_races:
+    - Clergy
+  stat_ranges:
+    Passion: [12, 16]
+    Cunning: [12, 16]
+    Nerve: [10, 14]
+  inventory_hints:
+    - a much-thumbed prayer book with pressed flowers from forgotten funerals between the pages
+    - a register of births, marriages, and deaths that is the truest history of the parish anyone keeps
+    - a stipend that never quite stretches, and a study that is always cold to save the coal
+    - sermon notes whose margins record, in a private shorthand, who was absent and why
+  dialogue_quirks:
+    - answers a question he cannot answer with a question of scripture, and lets the listener draw the moral
+    - says "I would not wish to think ill of anyone" immediately before thinking it
+    - distinguishes carefully between "I cannot say" (a confidence) and "I do not know" (the truth), and expects the difference to be honoured
+    - falls silent and looks at his hands rather than name a sin he has been told of in trust
+  disposition_default: 15
+  ocean:
+    openness: 6.5
+    conscientiousness: 8.0
+    extraversion: 5.0
+    agreeableness: 8.0
+    neuroticism: 4.5
+
+- name: The Innkeeper
+  description: >-
+    Keeps the one public room where the whole parish passes through — gentry
+    in the snug, farmhands at the bar, the stranger off the afternoon coach
+    taking a room he may or may not have wired ahead for. Hears everything,
+    because a man with a pint in front of him forgets that the man drawing it
+    has ears. Genial, unhurried, and entirely without illusions about human
+    nature, having watched it through the bottom of a glass for thirty years.
+    Knows who came in flush and left broke, who quarrelled by the fire, and
+    who was upstairs the night it happened — and decides, glass by glass, how
+    much of it the sleuth has earned.
+  personality_traits:
+    - genial
+    - unflappable
+    - quietly retentive
+  typical_classes:
+    - Society
+    - Detective
+  typical_races:
+    - Trade
+    - Servant
+  stat_ranges:
+    Cunning: [12, 16]
+    Humour: [14, 18]
+    Nerve: [10, 14]
+  inventory_hints:
+    - a cellar key on a ring he never lets leave his person
+    - a slate of who owes what, settled discreetly and forgiven selectively
+    - a guest book in which the names are real about half the time
+    - a cloth forever in hand, polishing a glass that is already clean, because it gives him something to do while he listens
+  dialogue_quirks:
+    - answers a nosy question with "couldn't say, I'm sure" and a refill, which ends the matter
+    - describes a stranger by his drink and his manner of paying — "the gentleman who took the parlour and asked for it warmed"
+    - lowers his voice to a confidence only after the bar has emptied, and never before
+    - says "we get all sorts" as both a philosophy and a polite refusal to gossip about a particular sort
+  disposition_default: 10
+  ocean:
+    openness: 5.0
+    conscientiousness: 6.5
+    extraversion: 7.5
+    agreeableness: 7.0
+    neuroticism: 3.0
+
+- name: The Squire
+  description: >-
+    The principal landed gentleman of the district — the big house on the hill,
+    the pews at the front of the church, the name on half the leases and the
+    chairmanship of every committee worth the title. Carries himself as a man
+    whose family has been deferred to for so long that deference has stopped
+    feeling like a thing other people choose to give. Genuinely cares for the
+    parish in the proprietary way one cares for a thing one owns; genuinely
+    expects a murder under his patronage to be tidied quietly before it touches
+    the family name. Has more to lose from scandal than anyone, which makes him
+    either the sleuth's powerful patron or the wall the investigation runs into.
+  personality_traits:
+    - imperious
+    - paternal
+    - jealous of the family name
+  typical_classes:
+    - Society
+  typical_races:
+    - Gentry
+  stat_ranges:
+    Pride: [14, 18]
+    Cunning: [12, 16]
+    Nerve: [12, 14]
+  inventory_hints:
+    - a signet ring bearing arms granted to an ancestor for a service no one now remembers
+    - a shotgun kept for show and sport in equal measure, well-oiled, rarely fired
+    - the keys to a gun room, a wine cellar, and a strongbox of papers he would rather no one read
+    - a subscription list for every parish good cause, on which his name always heads the column
+  dialogue_quirks:
+    - refers to the village as "my people" and to the church as "my church", and is faintly surprised to be corrected
+    - meets an inconvenient question with "I hardly think that need concern us" and a change of subject
+    - grants a favour as though conferring a knighthood and refuses one as though it pained him personally
+    - says "we have always managed these things ourselves" when he means he does not want the county police involved
+  disposition_default: 0
+  ocean:
+    openness: 4.0
+    conscientiousness: 7.0
+    extraversion: 6.0
+    agreeableness: 4.5
+    neuroticism: 4.0
+
+- name: The Spinster Observer
+  description: >-
+    A lady of a certain age and no particular occupation, which the parish
+    mistakes for no particular use. Sits at the window with her needlework and
+    her tea, and from that vantage misses nothing — who called on whom, who
+    walked out late, whose curtains were drawn at the wrong hour, which young
+    man's manner toward which young woman has changed since Easter. Underrated
+    by everyone, which is her great advantage, because people speak freely in
+    front of a harmless old maid. Has a memory like a parish register and a
+    grasp of human wickedness, learned entirely from village life, that would
+    startle a magistrate. The real detective in the room, and the last person
+    anyone suspects of being one.
+  personality_traits:
+    - deceptively mild
+    - relentlessly observant
+    - shrewd about human nature
+  typical_classes:
+    - Detective
+    - Society
+  typical_races:
+    - Gentry
+    - Trade
+  stat_ranges:
+    Cunning: [16, 18]
+    Pride: [10, 14]
+    Humour: [12, 16]
+  inventory_hints:
+    - a workbasket of needlework that is never finished because the watching is the real work
+    - a window seat with an uninterrupted view of the lane, the green, and the church gate
+    - a tea-things tray always ready for two, because a caller is a source and a source must be made comfortable
+    - a commonplace book of village comings and goings she would die before admitting she kept
+  dialogue_quirks:
+    - undercuts a piercing deduction with "but then I'm only a foolish old woman and know nothing of these things"
+    - reaches the truth by analogy to some entirely domestic incident — "it reminds me so of the trouble over the church flowers"
+    - says "now isn't that interesting" in a tone that means she has just understood the whole case
+    - apologises for noticing a thing in the very act of describing it in devastating detail
+  disposition_default: 15
+  ocean:
+    openness: 7.0
+    conscientiousness: 7.5
+    extraversion: 5.5
+    agreeableness: 6.0
+    neuroticism: 3.5
+
+- name: The Retired Colonel
+  description: >-
+    Soldiered for the Empire in places the parish could not find on a map, and
+    came home to a life of committee meetings and the morning paper that he
+    finds harder to survive than any campaign. Bluff, loud, and given to
+    opinions delivered as orders, with a heart considerably softer than the
+    manner. Distrusts foreigners, modern manners, and the post office, in that
+    order. Useful to a sleuth out of all proportion to his bluster: he knows
+    firearms, poisons of the field-hospital sort, and the smell of a man lying
+    about where he has served — and beneath the harrumphing carries griefs and
+    guilts from old service that a murder has an uncomfortable way of disturbing.
+  personality_traits:
+    - bluff
+    - irascible
+    - secretly tender-hearted
+  typical_classes:
+    - Explorer
+    - Society
+  typical_races:
+    - Colonial
+    - Gentry
+  stat_ranges:
+    Nerve: [14, 18]
+    Pride: [14, 16]
+    Passion: [12, 14]
+  inventory_hints:
+    - a service revolver from a former war, kept oiled in a drawer "in case"
+    - a chest of campaign trophies and a wall of photographs of men mostly dead
+    - a regimental tie worn daily and a club membership maintained at ruinous cost
+    - a stick he uses more for emphasis than for walking
+  dialogue_quirks:
+    - punctuates his speech with "harrumph" and "what?" tacked onto the end of statements that are not questions
+    - dates every event by a campaign — "not since the relief of the garrison, by Jove"
+    - declares a man "sound" or "a damned bounder" within a minute of meeting him, and is right more often than he has any right to be
+    - turns gruff and mumbling the instant a real feeling is at risk of being expressed
+  disposition_default: 5
+  ocean:
+    openness: 3.5
+    conscientiousness: 6.5
+    extraversion: 7.0
+    agreeableness: 4.5
+    neuroticism: 4.5
+
+- name: The Postmistress
+  description: >-
+    Keeps the post office and the little shop attached to it, and through her
+    hands passes every letter, telegram, and parcel in the parish — which is to
+    say every secret that travels by paper. Sells stamps, weighs packages,
+    works the telephone exchange, and forwards information at least as
+    efficiently as the Royal Mail, though by a less official route. Knows who
+    writes to whom and how often, whose hand is on the envelope and whose is
+    not, who wired urgently to the city and who received a black-edged letter
+    on Tuesday. The unrivalled clearing-house of village news, dispensed across
+    the counter with the change, and a sharper judge of what an unexpected
+    telegram means than its sender would ever credit.
+  personality_traits:
+    - inquisitive
+    - well-meaning
+    - a fountain of intelligence
+  typical_classes:
+    - Society
+    - Detective
+  typical_races:
+    - Trade
+    - Servant
+  stat_ranges:
+    Cunning: [12, 16]
+    Humour: [12, 16]
+    Nerve: [8, 12]
+  inventory_hints:
+    - the telephone exchange board, on which a careless thumb might keep a line open a moment too long
+    - a ledger of telegrams sent and received that is, in effect, the parish's secret correspondence
+    - a counter bell, a stamp drawer, and a memory better than either
+    - a shop apron with a pencil tucked behind the ear and the day's gossip tucked behind that
+  dialogue_quirks:
+    - relays a confidence with "now I shouldn't say, but seeing as it's you —" and then says it
+    - reads significance into the post — "three letters this week from the same hand, and her not one to write"
+    - begins half her sentences with "I happened to hear" or "it so happens"
+    - lowers her voice to share what the whole village already knows, as though it were still a secret
+  disposition_default: 10
+  ocean:
+    openness: 5.5
+    conscientiousness: 6.0
+    extraversion: 7.5
+    agreeableness: 6.5
+    neuroticism: 4.0
+
+- name: The Country Solicitor
+  description: >-
+    The parish's man of business — drafts the wills, settles the estates,
+    conveys the property, and knows to the shilling who inherits what and who
+    expected to inherit more. Dry, careful, and constitutionally incapable of
+    saying a plain thing where a guarded one will do. Holds, in the locked
+    deed-boxes of his office, the documentary motive for half the murders that
+    could possibly happen in the district, and guards client confidence with a
+    professional zeal that frustrates the sleuth right up to the reading of the
+    will. A respectable, cautious man — which makes the question of just how
+    cautious, and on whose behalf, an interesting one when money and death
+    arrive together.
+  personality_traits:
+    - cautious
+    - precise
+    - discreet to a fault
+  typical_classes:
+    - Society
+    - Detective
+  typical_races:
+    - Gentry
+    - Trade
+  stat_ranges:
+    Cunning: [14, 18]
+    Pride: [12, 14]
+    Nerve: [10, 14]
+  inventory_hints:
+    - a wall of black deed-boxes, each painted with a client's name in faded gold
+    - a will or two whose contents he alone knows and which more than one party would pay to read early
+    - spectacles, a watch-chain, and a manner so dry it could blot ink
+    - a fountain pen reserved for signatures and a pencil for everything he would rather not commit to ink
+  dialogue_quirks:
+    - qualifies every statement into uselessness — "speaking generally, and without prejudice, one might suppose —"
+    - retreats behind "I am not at liberty to disclose the contents of a client's affairs" as a portcullis
+    - distinguishes, with relish, between what is "strictly accurate" and what is "the case"
+    - answers an emotional question with a procedural one, and considers that a kindness
+  disposition_default: 0
+  ocean:
+    openness: 3.5
+    conscientiousness: 9.0
+    extraversion: 3.5
+    agreeableness: 5.0
+    neuroticism: 3.5
+
+- name: The Village Schoolmistress
+  description: >-
+    Teaches the parish its letters, its sums, and a good deal of its manners,
+    in a single schoolroom that has seen three generations through the same
+    worn benches. Respectable, underpaid, and held to a standard of conduct
+    that would shame a bishop, for a schoolmistress lives her whole life in the
+    village's view. Knows the children, which means she knows the households,
+    which means she knows more of the parish's private weather than the parents
+    suspect — a child repeats at the blackboard what was shouted across the
+    breakfast table. Carries the quiet ache of a life lived just inside the
+    edges of others' families, and a kindness that has cost her more than it
+    has ever cost anyone she has shown it to.
+  personality_traits:
+    - conscientious
+    - reserved
+    - keenly perceptive
+  typical_classes:
+    - Governess
+    - Society
+  typical_races:
+    - Trade
+    - Gentry
+  stat_ranges:
+    Cunning: [12, 16]
+    Angst: [10, 14]
+    Nerve: [10, 14]
+  inventory_hints:
+    - a register of attendance in a hand so neat it could be engraved
+    - a cupboard of confiscated treasures returned to no one and remembered by all
+    - a respectability maintained at the cost of nearly everything else
+    - a single good Sunday hat, brushed and re-trimmed each season, that is her one visible vanity
+  dialogue_quirks:
+    - corrects a grammatical slip by reflex, then apologises, then does it again
+    - reports what a child has let slip with great care to protect the child and none to protect the parent
+    - says "the children notice everything, you know" as both an observation and a warning
+    - addresses adults with the patient clarity she uses on the slow back row, which the proud find maddening
+  disposition_default: 10
+  ocean:
+    openness: 6.0
+    conscientiousness: 8.5
+    extraversion: 4.0
+    agreeableness: 7.0
+    neuroticism: 5.5
+
+- name: The Butler
+  description: >-
+    The grave presence at the front door of the great house, and the unseen
+    hand behind every dinner, every visit, every quiet word that smooths the
+    family's path. Has served the household long enough to know it better than
+    it knows itself — which guest was given which room, what was said when the
+    ladies withdrew, which decanter was lower in the morning than it should
+    have been. Impeccably loyal, impeccably discreet, and capable of conveying
+    a universe of disapproval by the precise angle at which he sets down a tray.
+    Knows where everyone was, and when, on the night in question — and whether
+    he will say so is a matter of where his loyalty is owed and how it has been
+    repaid.
+  personality_traits:
+    - impeccable
+    - discreet
+    - loyal to the house
+  typical_classes:
+    - Society
+    - Governess
+  typical_races:
+    - Servant
+    - Trade
+  stat_ranges:
+    Cunning: [12, 16]
+    Pride: [14, 18]
+    Nerve: [12, 16]
+  inventory_hints:
+    - a cellar book recording every bottle that enters and leaves the house, to the year and vintage
+    - a tray, a cloth, and a bearing that turns the carrying of a teacup into a statement
+    - the plate-room keys and a memory of the family silver down to the last apostle spoon
+    - a set of livery brushed to a standard the family's own clothes rarely meet
+  dialogue_quirks:
+    - answers every question with "very good, sir" and a quantity of information precisely measured to the asker's standing
+    - registers disapproval not in words but in a pause, a glance, and the faint elevation of a single eyebrow
+    - says "I really couldn't say" with a precision that makes plain he could say a very great deal
+    - refers to the family in the collective — "the house does not receive on a Sunday" — as though he were its voice
+  disposition_default: 5
+  ocean:
+    openness: 3.5
+    conscientiousness: 9.5
+    extraversion: 3.0
+    agreeableness: 5.5
+    neuroticism: 3.0
+
+- name: The Gamekeeper
+  description: >-
+    Master of the woods and waters of the estate, where he spends more hours
+    than any man and meets more secrets than the parish would guess. Rears the
+    game, wars on the poachers, and reads the ground like print — a broken
+    twig, a snare, a footprint in the soft margin of the wood that has no
+    business being there. Taciturn, weathered, and more at ease with a dog and
+    a gun than with the drawing-room. Knows who walks the coverts after dark
+    and what they are doing there, which makes him a witness of rare value to a
+    sleuth — if the sleuth can get three sentences out of him together, and if
+    what the keeper saw does not implicate the master whose wages he draws.
+  personality_traits:
+    - taciturn
+    - weather-hardened
+    - fiercely territorial
+  typical_classes:
+    - Explorer
+  typical_races:
+    - Servant
+    - Trade
+  stat_ranges:
+    Nerve: [14, 18]
+    Cunning: [12, 16]
+    Pride: [10, 14]
+  inventory_hints:
+    - a shotgun broken over the crook of the arm and a dog that obeys nobody else
+    - a pocketful of snares cut from poachers and kept as evidence and trophy both
+    - boots that have walked every yard of the estate and a coat the colour of the wood in winter
+    - a knowledge of every path, gate, and hiding place on the ground that exists on no map
+  dialogue_quirks:
+    - answers at the length of a single word unless the subject is game, dogs, or weather, on which he is suddenly fluent
+    - reports a sign in the ground as plain fact and is faintly contemptuous of anyone who needs it explained
+    - says "I'd know that track anywhere" of a boot, a bird, or a man, with equal certainty
+    - falls silent rather than name the master's business, and the silence says more than a name would
+  disposition_default: 5
+  ocean:
+    openness: 4.0
+    conscientiousness: 7.5
+    extraversion: 2.5
+    agreeableness: 5.0
+    neuroticism: 3.0
