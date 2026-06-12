@@ -1,73 +1,39 @@
-# Character creation — Caverns & Claudes (classic-class era)
-# 6 scenes: roll → arrange → calling → story → kit → mouth.
-# Visible 3d6 rolls; click-to-assign arrangement with live class
-# qualification panel; reject-and-reroll on arrangement scene only.
-# Story scene folds pronouns + background + description with autogen.
-
-- id: the_roll
-  title: "Six Bones, In Any Order You Can Stomach"
-  narration: |
-    You sit at a scarred table in a lamplit room that smells of tallow and old
-    sweat. Brecca Half-Hand — missing three fingers from her left hand,
-    seven-delve veteran — pushes six bone dice across the wood toward you.
-
-    "Roll them in any order you can stomach. The bones don't care which trade
-    you pick. They only care which numbers land."
-  loading_text: "Brecca counts the bones..."
-  choices: []
-  allows_freeform: false
-  mechanical_effects:
-    stat_generation: roll_3d6_arrange_visible
-
-- id: the_arrangement
-  title: "Arrange Them"
-  narration: |
-    Brecca taps the table once. "Now arrange them. The trade is yours to
-    choose, if the bones allow it."
-
-    Drop each number into a slot — Strength, Dexterity, Constitution,
-    Intelligence, Wisdom, Charisma. The list to the side will tell you which
-    trades the bones permit.
-
-    If you cannot stomach what they gave you, throw them again.
-  loading_text: "Brecca watches you arrange..."
-  choices: []
-  allows_freeform: false
-  mechanical_effects:
-    assignment_required: true
-    allow_reject: true
+# Character creation — Caverns & Claudes (WWN era)
+# 4 scenes: calling → story → kit → mouth.
+# Point-buy pack (rules.yaml stat_generation: point_buy) — no roll/arrange
+# scenes; the builder seeds attributes from the point-buy budget, per the
+# elemental_harmony / heavy_metal precedent. The B/X visible-3d6 scenes
+# were retired in the 2026-06-12 WWN port.
 
 - id: the_calling
   title: "What You'll Be Called"
   narration: |
-    Brecca looks at the bones, then at you. "These are the trades the bones
-    will let you take. The dungeon doesn't care which one you pick. The
-    records do."
+    You sit at a scarred table in a lamplit room that smells of tallow and
+    old sweat. Brecca Half-Hand — missing three fingers from her left hand,
+    seven-delve veteran — opens the ledger and looks at you the way she
+    looks at rope: checking for the flaw that will kill someone later.
+
+    "Three trades go down the rope," she says. "Pick the one you'll die as.
+    The dungeon doesn't care which. The records do."
   choices:
-    - label: "Fighter"
-      description: "Plate, polearm, and the patience to be hit first."
+    - label: "Warrior"
+      description: "Mail, a long blade, and the patience to be hit first."
       mechanical_effects:
-        class_hint: Fighter
+        class_hint: Warrior
         rpg_role_hint: tank
         jungian_hint: hero
+    - label: "Expert"
+      description: "Lockpicks, leather, and a professional interest in being elsewhere."
+      mechanical_effects:
+        class_hint: Expert
+        rpg_role_hint: stealth
+        jungian_hint: explorer
     - label: "Mage"
-      description: "Bookish, half-blind, and dangerous in the third round."
+      description: "Recovered pages, a steady hand, and a body that pays for every working."
       mechanical_effects:
         class_hint: Mage
         rpg_role_hint: control
         jungian_hint: magician
-    - label: "Cleric"
-      description: "Holy symbol, war-mace, and a faith that is mostly working so far."
-      mechanical_effects:
-        class_hint: Cleric
-        rpg_role_hint: healer
-        jungian_hint: caregiver
-    - label: "Thief"
-      description: "Lockpicks, leather, and a professional interest in being elsewhere."
-      mechanical_effects:
-        class_hint: Thief
-        rpg_role_hint: stealth
-        jungian_hint: outlaw
   allows_freeform: false
 
 - id: the_story

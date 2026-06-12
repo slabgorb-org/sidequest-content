@@ -1,21 +1,17 @@
-stat_generation: roll_3d6_strict
-point_buy_budget: 0
-magic_level: none
-# DRAFT (2026-04-27): the `magic_level` flag is being retired. It's misleading
-# here — magic items are core gameplay; this pack's actual claim is "no caster
-# classes" + `world_knowledge: folkloric`. See ./magic.yaml for the full
-# napkin-shaped truth and docs/design/magic-taxonomy.md for the framework.
+stat_generation: point_buy
+point_buy_budget: 27
 
+# WWN port (2026-06-12 beneath-sunden-wwn-port spec). B/X scaffolding
+# (allowed_races / default_race / banned_spells / magic_level) removed per
+# the heavy_metal 87-2 precedent: races are world-tier and WWN gates spell
+# access by class spell list, not a ban list. allowed_classes is NOT 5e
+# residue — encountergen's humanoid-enemy path exits 1 without it, and the
+# loader validates every listed class declares encounter_beat_choices.
+# Keep it in sync with classes.yaml display names.
 allowed_classes:
-  - Fighter
+  - Warrior
+  - Expert
   - Mage
-  - Cleric
-  - Thief
-allowed_races:
-  - Human
-
-banned_spells: []
-
 
 custom_rules:
   treasure_as_xp: "true"
@@ -25,10 +21,15 @@ custom_rules:
   encumbrance: "strict"
   injuries: "permanent"
 
-default_race: Human
+# default_class is the class DISPLAY NAME (not the id) — the chargen builder
+# resolves the default ClassDef by display_name (builder.py), with no id
+# fallback. A freeform character with no class_hint falls through to this
+# default, so it MUST be a real display_name. Matches the EH/heavy_metal
+# convention.
+default_class: Warrior
+class_label: Calling
 default_location: "The mouth of the dungeon"
 default_time_of_day: dawn
-
 
 ability_score_names:
   - STR
@@ -38,8 +39,36 @@ ability_score_names:
   - WIS
   - CHA
 
-# HP/max_hp/AC removed per ADR-014 (Diamonds and Coal) — momentum/edge/fate
-# replaced HP. Stragglers were stale-schema display fields with no backing data.
+lethality: high
+
+ruleset: wwn
+wwn:
+  # Required by _validate_wwn: all six canonical WWN attribute keys, each
+  # mapping to a declared ability_score_names entry. This pack uses the
+  # standard abbreviations, so the map is canonical -> abbreviation.
+  attribute_map:
+    STRENGTH: STR
+    DEXTERITY: DEX
+    CONSTITUTION: CON
+    INTELLIGENCE: INT
+    WISDOM: WIS
+    CHARISMA: CHA
+  system_strain:
+    # max_source must be a canonical KEY of attribute_map (not "CON").
+    max_source: CONSTITUTION
+    rest_recovery_per_night: 1
+    first_aid_cost: 1
+  trauma:
+    # Faithful WWN/heavy_metal baseline; lethality tuning is Keith's call.
+    default_trauma_target: 6
+    mortal_injury_rounds: 6
+    major_injury_save: physical
+  magic:
+    effort_base: 1
+    killing_blow_divisor: 2
+    day_reclaim_requires_comfort: true
+    default_spell_save: mental
+
 stat_display_fields:
   - torches
   - rations
@@ -67,174 +96,110 @@ initiative_rules:
     description: "Awareness determines who notices things first"
 
 # ── Confrontations ──────────────────────────────────────────
-# Forward-ported from main 5144b6c (story 28-10) — combat + chase
-# ConfrontationDefs. Required by sidequest-api test
-# `packs_without_confrontations_yaml_have_empty_vec`.
 confrontations:
   - type: combat
     label: Dungeon Combat
-    # Spec 2026-05-20 confrontation-intent-validator
     intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
     on_intent_mismatch: reprompt
     category: combat
-    resolution_mode: opposed_check
-    # Opponent stats calibrated to mod +0 per ADR-093 (was 12 / mod +1).
+    # WWN personal combat: attack-vs-AC + hp_depletion on the ablative
+    # HpPool. Trauma / Mortal Injury layer on via the wwn ruleset module.
+    resolution_mode: beat_selection
+    win_condition: hp_depletion
     opponent_default_stats:
+      # ALL SIX ability scores must be authored so the WWN defender-save
+      # path can resolve any save (Mental = best-of WIS/CHA, etc.). The SWN
+      # module fails loud on a missing save attribute — an incomplete block
+      # KeyErrors.
       STR: 10
       DEX: 10
       CON: 10
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 7
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 7
+      INT: 10
+      WIS: 10
+      CHA: 10
+      # Reserved combat-seed keys (not ability scores): hp = HP pool;
+      # armor_class = ascending AC the attack rolls against; dexterity =
+      # initiative (1d8 + DEX). A starveling of the shaft: AC 12, HP 10.
+      hp: 10
+      armor_class: 12
+      dexterity: 11
+    # Opponent reprisal damage. Without this the seeded Other hits but deals
+    # 0 HP (toothless-Other class of bug: EH playtest #16 / ADR-139
+    # Invariant 3). 1d8: lethality: high, and the deep does not pull its
+    # blows. Read only on the opponent's turn; never caps the player's own
+    # weapon.
+    opponent_damage: {dice: "1d8", bonus: 0}
     beats:
-      - id: attack
-        label: Attack
+      - id: strike
+        label: Strike
         kind: strike
         base: 2
         stat_check: STR
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
         effect: "Target takes damage this round"
-        narrator_hint: Steel rings off stone. Torchlight flickers across the blow.
-      - id: defend
-        label: Defend
-        kind: brace
-        base: 1
-        stat_check: CON
-        effect: "Reduce incoming damage this round, brace against the push"
-        narrator_hint: Shield raised, back to the wall, weight forward.
-      - id: hold_the_line
-        label: Hold the Line
-        kind: brace
-        base: 2
-        stat_check: CON
-        effect: "Plant the feet — pass durability to the rest of the party until the next round"
-        narrator_hint: Stance widens, breath steadies. Whatever comes through has to come through you first.
-      - id: second_wind
-        label: Second Wind
-        kind: brace
-        base: 1
-        stat_check: CON
-        edge_delta: 1
-        effect: "Catch a breath — recover composure when the lungs and legs still have something left"
-        narrator_hint: A held breath, a settling of the shoulders. The body remembers it isn't done yet.
-      - id: shield_bash
-        label: Shield Bash
-        kind: strike
-        base: 4
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: CON
-        class_filter: [Fighter, Cleric]
-        effect: "Stun the target briefly, break their footing"
-        risk: "Overcommitted — lose 2 momentum and take a counter on failure"
-        narrator_hint: Shoulder-and-shield, body weight committed — the kind of blow that costs the bracer as much as the braced.
-      - id: feint
-        label: Feint
-        kind: angle
-        target_tag: "Off-Balance"
-        stat_check: DEX
-        class_filter: [Fighter, Thief]
-        effect: "Set up a leverage tag the next attack can spend"
-        narrator_hint: A bait — open the guard, draw the swing.
-      - id: flee
-        label: Flee
-        kind: push
-        base: 1
-        stat_check: DEX
-        consequence: "Combat ends — retreat deeper into the dungeon"
-        narrator_hint: Break contact, torch sweeping behind you as you run.
-      - id: cleave
-        label: Cleave
-        kind: strike
-        base: 3
-        stat_check: STR
-        class_filter: [Fighter]
-        effect: "Wide swing — opens up space against multiple foes"
-        narrator_hint: "Two-handed sweep, momentum carrying through to the next stance."
-      - id: taunt
-        label: Taunt
-        kind: strike
-        base: 2
-        stat_check: CHA
-        class_filter: [Fighter]
-        effect: "Pull the next blow onto yourself — eat it on your own HP/Vitality so the squishies survive"
-        risk: "Hit lands harder when you've made yourself the target"
-        narrator_hint: "A half-step forward, eye contact, an insult that lands in the gut. They have to swing at you now."
-      - id: parry
-        label: Parry
-        kind: brace
-        base: 2
-        stat_check: DEX
-        class_filter: [Fighter]
-        effect: "Trade momentum for a guarantee — turn the next blow aside"
-        narrator_hint: "Steel meets steel, deflecting just enough."
-      - id: backstab
-        label: Backstab
-        kind: strike
-        base: 4
-        stat_check: DEX
-        target_tag: "Off-Balance"
-        class_filter: [Thief]
-        risk: "Requires Off-Balance setup — wasted swing without it"
-        effect: "Out of the dark, blade between ribs"
-        narrator_hint: "Shadow into the gap, blade going in where armor stops."
-      - id: sneak
-        label: Slip Behind
-        kind: angle
-        target_tag: "Off-Balance"
-        stat_check: DEX
-        class_filter: [Thief]
-        effect: "Set up an Off-Balance tag the next backstab can spend"
-        narrator_hint: "A step into the side passage, gone before the lantern catches."
-      - id: cast_cantrip
-        label: Cast Cantrip
-        kind: strike
-        base: 1
-        stat_check: INT
-        class_filter: [Mage]
-        effect: "A small working — a glamour, a spark, a trick"
-        narrator_hint: "A flick of the wrist, a syllable too brief to catch."
+        narrator_hint: >-
+          Steel on stone-dark air. Describe the blow with specificity —
+          which grip, which angle, what gave way. Combat in the deep is
+          work, not choreography; narrate it like labor that can kill.
       - id: cast_spell
         label: Cast Spell
         kind: strike
-        base: 4
+        base: 2
         stat_check: INT
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: none
+        # class_filter restricts this beat to the caster Calling. Display
+        # name (loader validates class_filter against classes.yaml
+        # display_name). This is the ONLY gate that offers cast_spell, so
+        # the WWN cast resource gate fires (heavy_metal/EH pattern).
         class_filter: [Mage]
-        risk: "Consumes a spell slot; without one, the verb does not exist"
-        resource_deltas:
-          spell_slots: -1.0
-        effect: "The prepared spell unspools — page burns or memory empties"
-        narrator_hint: "The morning's memorized syllables, spent in one pass."
-      - id: turn_undead
-        label: Turn Undead
-        kind: push
-        base: 3
-        stat_check: WIS
-        class_filter: [Cleric]
-        effect: "Drives the dead off the field"
-        narrator_hint: "Holy symbol raised; the unliving recoil from the will behind it."
-      - id: pray
-        label: Pray for Aid
+        effect: "Cast a prepared spell — damage rolled by the WWN spell engine"
+        narrator_hint: >-
+          The Mage spends a prepared working. Describe the cost as
+          concretely as the effect — what the working takes from the body
+          that served as its gate, by torchlight, in front of people who
+          are counting on it.
+      - id: brace
+        label: Brace
         kind: brace
         base: 1
-        stat_check: WIS
-        class_filter: [Cleric]
-        edge_delta: 1
-        effect: "The saint listens, briefly — composure returns"
-        narrator_hint: "A whispered name, an answered breath."
-    morale:
-      score: 8
-      triggers: [first_blood, half_killed, intimidated, leader_killed]
-      flee_consequence: chase
+        stat_check: CON
+        effect: "Reduce incoming damage this round"
+        narrator_hint: >-
+          Shield up, back to the worked wall, weight forward. The character
+          sets themselves and takes the impact; the body pays for it later.
+      - id: committed_blow
+        label: Committed Blow
+        kind: strike
+        base: 4
+        stat_check: STR
+        attack_bonus: 1
+        combat_skill: 1
+        damage_channel: strike
+        damage_override: {dice: "2d6", bonus: 0}
+        deltas:
+          crit_fail:
+            own: -3
+        risk: "Overcommits — a botched all-in swing costs you (−3 on a critical failure)"
+        effect: "Target takes heavy damage"
+        narrator_hint: >-
+          An all-in swing; the character is not planning a follow-up.
+          Describe the violence as expensive — to the one making it as
+          well as the one receiving it. The deep keeps the receipt.
+      - id: break_contact
+        label: Break Contact
+        kind: push
+        stat_check: DEX
+        consequence: "Combat ends — the character withdraws deeper into the dungeon, or the enemy lets them go"
+        narrator_hint: >-
+          Disengagement is a real choice in the deep, and it always costs
+          ground. Describe what is given up: the room, the body, the light.
     mood: combat
   - type: chase
     label: Corridor Pursuit
-    # Spec 2026-05-20 confrontation-intent-validator
     intent_verbs: [chase, pursue, flee, run, escape, follow]
     on_intent_mismatch: reprompt
     category: movement
@@ -274,7 +239,6 @@ confrontations:
     mood: tension
   - type: negotiation
     label: "Haggling at the Counter"
-    # Spec 2026-05-20 confrontation-intent-validator
     intent_verbs: [haggle, bargain, barter, offer, deal, price, sell, buy, negotiate]
     on_intent_mismatch: warn
     category: social
@@ -326,19 +290,3 @@ confrontations:
         stat_check: WIS
         consequence: "Negotiation ends — leave with the merchant's last offer"
     mood: comedic
-
-# Per-class starting Edge (composure pool).
-# Class strings match Character.char_class display values (set via class_hint
-# in char_creation.yaml). Fighter has the deepest pool — trained to be hit.
-# Mage and Thief share the lowest — glass-cannon and skirmisher respectively.
-edge_config:
-  base_max_by_class:
-    Fighter: 4
-    Cleric:  3
-    Mage:    2
-    Thief:   2
-
-  recovery_defaults:
-    on_resolution: full
-    on_long_rest: full
-    between_back_to_back: 0
