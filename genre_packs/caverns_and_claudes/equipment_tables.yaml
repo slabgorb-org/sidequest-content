@@ -48,8 +48,12 @@ rolls_per_slot:
 # Each ClassDef.kit_table in classes.yaml resolves to one block here.
 # Slots match the top-level `tables:` slot names so rolls_per_slot
 # applies consistently.
+# Re-keyed for the WWN Callings (2026-06-12 port): fighter_kit→warrior_kit,
+# thief_kit→expert_kit; cleric_kit retired with the class. Kit CONTENTS are
+# unchanged (no retuning) — the mage's "spellbook" utility item is the
+# physical recovered-pages prop, not the retired B/X spellbook.yaml surface.
 class_tables:
-  fighter_kit:
+  warrior_kit:
     weapon: [sword_long, sword_short, mace_iron, hand_axe, spear]
     armor:  [leather_armor, shield_wood, helmet_iron]
     light:  [torch]
@@ -63,14 +67,7 @@ class_tables:
     consumable: [rations_day, waterskin, potion_healing]
     utility: [spellbook, component_pouch, chalk]
 
-  cleric_kit:
-    weapon: [mace_iron, hammer_war]
-    armor:  [leather_armor, shield_wood]
-    light:  [torch]
-    consumable: [rations_day, waterskin, potion_healing]
-    utility: [holy_symbol, rope_hemp, chalk]
-
-  thief_kit:
+  expert_kit:
     weapon: [dagger_iron, sword_short]
     armor:  [leather_armor]
     light:  [torch, lantern_oil]
