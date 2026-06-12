@@ -455,291 +455,306 @@ characters:
   # fact only — bone, set of jaw, dress, posture — never mood-words.
   # `culture` = culture filename stem; `archetype` = a real name from
   # worlds/gulliver/archetypes.yaml. Every backdrop_poi resolves to a
-  # rendered POI in r2_manifest.json. The world's non-human peoples are
-  # honored: the Houyhnhnms are naturalistic horses, the Yahoos brute-
-  # humans rendered as a type with period anatomical restraint.
+  # rendered POI in r2_manifest.json.
   #
-  # Allocation: 18 entries across all four cultures. Where a culture has
-  # two natural sexes, M/F are balanced; the Houyhnhnm horse-folk and the
-  # Yahoo brute-kind carry both as best the form allows.
+  # PORTAL-FAIRYTALE FIX (2026-06-12): the players are NOT natives of the
+  # voyage-countries. Gulliver is a portal world — the player-characters are
+  # ORDINARY BRITONS OF GEORGIAN BRITAIN, c.1726 (the year Swift published the
+  # Travels), seafarers and townsfolk who wash up on these shores exactly as
+  # Lemuel Gulliver, ship's surgeon, does. The pickers were wrongly making the
+  # player select an in-world people (lilliputians / brobdingnagians / laputans
+  # / houyhnhnms_and_yahoos); that was the bug. Every picker now sets
+  # culture: georgian_british (file stem worlds/gulliver/cultures/
+  # georgian_british.yaml — the StyleCatalog culture gate requires the file
+  # stem to match the picker culture slug EXACTLY). The in-world peoples remain
+  # the NPC cast above; they are not playable faces. Appearances are period-
+  # accurate 1726 Georgian dress (tricorne, frock coat, mob cap, breeches,
+  # buckled shoes) ending on physical posture — NO style words; the world
+  # positive_suffix carries the Morten plate look. Castaways stand on real
+  # shore / harbour / landing POIs verified against r2_manifest.json.
+  #
+  # Allocation: 18 entries, all culture: georgian_british, M/F balanced 9/9,
+  # period occupations. Archetypes are REUSED from archetypes.yaml (no new
+  # values invented); each Georgian occupation is mapped to its nearest
+  # existing archetype.
   # ===========================================================================
 
-  # ── Picker · Lilliputians ──────────────────────────────────────────────
+  # ── Picker · Georgian Britons — the seafaring trades ───────────────────
 
-  - id: picker_lilliputians_minister_m01
-    name: picker lilliputians minister m01
-    role: Tightrope Minister
+  - id: picker_georgian_british_surgeon_m01
+    name: picker georgian british surgeon m01
+    role: Ship's Surgeon
     type: player_picker
-    culture: lilliputians
-    archetype: The Tightrope Minister
+    culture: georgian_british
+    archetype: The Sane Dissenting Lord
     sex: male
-    backdrop_poi: mildendo_capital
+    backdrop_poi: the_lilliput_shore
     appearance: >-
-      A six-inch man, slim and sharp-featured, a narrow clean-shaven face with a
-      high brow, a long thin nose and a small firm mouth stated as drawn line.
-      Powdered court-wig curled at the ears, a gold-laced miniature coat with a
-      stiff high collar and a sash of office across the chest. The shoulders held
-      square and the chin lifted in the brittle poise of an acrobat at rest.
+      A plain sensible Englishman of middling years, a clean-shaven oval face with
+      a high forehead, level brows, a straight nose and a composed steady mouth
+      stated as drawn line. A modest powdered tie-wig, a sober brown frock coat
+      buttoned over a plain waistcoat and white stock, a small surgeon's case held
+      under one arm. The shoulders square and the head carried level in unhurried
+      attention.
 
-  - id: picker_lilliputians_minister_f01
-    name: picker lilliputians minister f01
-    role: Honest Minister
+  - id: picker_georgian_british_clerk_m01
+    name: picker georgian british clerk m01
+    role: Naval Clerk
     type: player_picker
-    culture: lilliputians
+    culture: georgian_british
     archetype: The One Honest Minister
-    sex: female
-    backdrop_poi: the_imperial_palace
+    sex: male
+    backdrop_poi: the_homecoming
     appearance: >-
-      A six-inch woman of middle years, an open level face with broad cheekbones,
-      steady wide-set eyes and a plain straight mouth. Dark hair drawn back under
-      a small lace cap, a sober court-gown of grey watered silk closed high at the
-      throat with a single chain of office. The head carried straight, the
-      shoulders easy, the hands folded plainly before her.
+      A spare careful young man, a narrow clean-shaven face with a pointed chin,
+      attentive close-set eyes and a thin precise mouth drawn as line, an ink-stain
+      on one finger. A plain undressed brown wig, a grey clerk's coat worn at the
+      cuff over a buttoned waistcoat, a sheaf of papers and a quill clutched to the
+      breast. The shoulders rounded forward, the head bent in patient diligence.
 
-  - id: picker_lilliputians_admiral_m01
-    name: picker lilliputians admiral m01
-    role: Hostile Admiral
+  - id: picker_georgian_british_midshipman_m01
+    name: picker georgian british midshipman m01
+    role: Midshipman
     type: player_picker
-    culture: lilliputians
+    culture: georgian_british
     archetype: The Hostile Admiral
+    sex: male
+    backdrop_poi: the_open_sea
+    appearance: >-
+      A weather-browned young man of the sea, a square open face with wind-chapped
+      cheeks, a firm jaw and a plain set mouth drawn as line, the hair clubbed back
+      and tarred. A dark naval coat with brass buttons and a midshipman's white
+      collar-patch, a cocked hat set square on the head. The stance braced as
+      against a deck, the chin up and the shoulders thrown back.
+
+  - id: picker_georgian_british_sailmaker_m01
+    name: picker georgian british sailmaker m01
+    role: Sailmaker
+    type: player_picker
+    culture: georgian_british
+    archetype: The Spiteful Court-Dwarf
     sex: male
     backdrop_poi: blefuscu_strand
     appearance: >-
-      A six-inch man, hard-jawed and sour-visaged, a square weathered face with a
-      heavy brow, deep lines bracketing a downturned mouth stated as drawn line,
-      and a grey moustache clipped short. A miniature naval coat heavy with braid
-      and frogging, a cocked hat under one arm, a thin dress-sword at the hip. The
-      stance martial and stiff, the chin tucked, the spine ramrod straight.
+      A broad thickset workman of the dockyard, a heavy weathered face with a blunt
+      nose, a stubbled jaw and a flat closed mouth drawn as line. A leather palm-guard
+      strapped across one hand, a coarse canvas apron over a rolled-sleeve shirt and
+      a knitted cap pulled low, a great needle thrust through the apron-bib. The thick
+      shoulders set, the hands folded heavy before him.
 
-  - id: picker_lilliputians_grandee_f01
-    name: picker lilliputians grandee f01
-    role: Court Grandee of the High-Heel
+  - id: picker_georgian_british_cooper_m01
+    name: picker georgian british cooper m01
+    role: Cooper
     type: player_picker
-    culture: lilliputians
-    archetype: The Tightrope Minister
-    sex: female
-    backdrop_poi: the_grand_assembly
+    culture: georgian_british
+    archetype: The Judging Sovereign
+    sex: male
+    backdrop_poi: the_homecoming
     appearance: >-
-      A six-inch woman, fine-boned and elaborately dressed, an oval face with a
-      small pointed chin, arched brows and a narrow mouth held in a measured
-      court-smile drawn as line. Tall powdered hair piled high and pinned with
-      thread-fine jewels, a wide gilded court-gown with a stiff stomacher, the
-      slender shoes raised on conspicuously high heels. A poised ceremonious carriage.
+      A solid tradesman of settled years, a broad ruddy face with full cheeks, a
+      level brow and a plain steady mouth drawn as line, the hair greying at the
+      temples beneath a plain felt hat. A buff leather jerkin over a coarse shirt,
+      shirtsleeves rolled, a cooper's adze in one fist. The barrel chest squared,
+      the head held erect and appraising.
 
-  # ── Picker · Brobdingnagians ───────────────────────────────────────────
+  # ── Picker · Georgian Britons — the town trades ────────────────────────
 
-  - id: picker_brobdingnagians_nurse_f01
-    name: picker brobdingnagians nurse f01
-    role: Giant Farm-Nurse
+  - id: picker_georgian_british_pamphleteer_f01
+    name: picker georgian british pamphleteer f01
+    role: Coffee-House Pamphleteer
     type: player_picker
-    culture: brobdingnagians
+    culture: georgian_british
+    archetype: The Earnest Projector
+    sex: female
+    backdrop_poi: the_open_sea
+    appearance: >-
+      A lean restless woman of the coffee-houses, a long sharp face with a high
+      brow, bright fixed eyes and a quick thin mouth drawn as line, dark hair pinned
+      hastily under a plain cap. An ink-spotted plum gown worn over a loosened
+      kerchief, a folded pamphlet brandished in one hand. The head thrust forward,
+      the shoulders eager and the free hand half-raised mid-argument.
+
+  - id: picker_georgian_british_factor_m01
+    name: picker georgian british factor m01
+    role: Merchant's Factor
+    type: player_picker
+    culture: georgian_british
+    archetype: The Tightrope Minister
+    sex: male
+    backdrop_poi: the_lilliput_shore
+    appearance: >-
+      A trim well-kept man of business, a smooth oval face with a measured mouth
+      drawn as line, arched brows and a faint shrewd cast to the eyes. A neat
+      powdered wig curled at the ears, a good dark-blue frock coat with cloth-covered
+      buttons over an embroidered waistcoat and white stock, a ledger tucked beneath
+      one arm. The carriage upright and poised, the chin level and composed.
+
+  - id: picker_georgian_british_parson_m01
+    name: picker georgian british parson m01
+    role: Parson
+    type: player_picker
+    culture: georgian_british
+    archetype: The Decaying Immortal
+    sex: male
+    backdrop_poi: the_homecoming
+    appearance: >-
+      A grave elderly clergyman, a long pale face deeply lined, hollow cheeks, mild
+      sunken eyes and a thin closed mouth drawn as line, sparse white hair beneath a
+      flat black hat. A plain black parson's coat and cassock with white preaching-bands
+      at the throat, a small worn book held in both hands. The thin shoulders stooped,
+      the head bowed forward in quiet gravity.
+
+  - id: picker_georgian_british_apothecary_f01
+    name: picker georgian british apothecary f01
+    role: Apothecary
+    type: player_picker
+    culture: georgian_british
+    archetype: The Earnest Projector
+    sex: female
+    backdrop_poi: blefuscu_strand
+    appearance: >-
+      A spare studious woman of careful habit, a narrow face with hollow cheeks,
+      attentive deep-set eyes and a thin pursed mouth drawn as line, dark hair
+      smoothed under a plain linen cap. A dark workaday gown with the sleeves
+      protected by linen oversleeves over a laced bodice, a small corked phial held
+      up between finger and thumb. The head tilted in close scrutiny, the shoulders
+      bent over her work.
+
+  # ── Picker · Georgian Britons — the women of 1726 ──────────────────────
+
+  - id: picker_georgian_british_fishwife_f01
+    name: picker georgian british fishwife f01
+    role: Fishwife
+    type: player_picker
+    culture: georgian_british
+    archetype: The Judging Sovereign
+    sex: female
+    backdrop_poi: the_lilliput_shore
+    appearance: >-
+      A sturdy weathered woman of the quay, a broad ruddy face with wind-reddened
+      cheeks, sharp shrewd eyes and a wide plain mouth drawn as line, strong arms
+      bare to the elbow. A linen mob cap, a coarse kerchief crossed over a laced
+      bodice, a heavy stuff petticoat kilted up and a sacking apron, a shallow
+      fish-creel braced on one hip. The chin up, the stance square and unbowed.
+
+  - id: picker_georgian_british_maidservant_f01
+    name: picker georgian british maidservant f01
+    role: Maidservant
+    type: player_picker
+    culture: georgian_british
     archetype: The Little Giant-Nurse
     sex: female
-    backdrop_poi: the_farmers_house
+    backdrop_poi: the_homecoming
     appearance: >-
-      A colossal farm-girl of nine years, the face that of a tender child blown to
-      mountainous scale — round full cheeks, wide clear eyes, a soft snub nose and
-      a kind half-open mouth, the skin shown coarse-grained and every pore a
-      landscape at this magnification. Fair hair in two thick plaits, a plain
-      homespun country gown and apron. The great head inclined gently downward.
+      A neat young countrywoman in service, a round fresh face with soft cheeks,
+      clear wide eyes and a gentle closed mouth drawn as line, fair hair tucked away.
+      A plain white linen mob cap and kerchief, a modest grey stuff gown with a
+      laced bodice and a clean white apron, a small covered basket carried on one
+      arm. The head inclined a little, the bearing modest and ready.
 
-  - id: picker_brobdingnagians_farmer_m01
-    name: picker brobdingnagians farmer m01
-    role: Giant Cornfield Reaper
+  - id: picker_georgian_british_draper_f01
+    name: picker georgian british draper f01
+    role: Draper
     type: player_picker
-    culture: brobdingnagians
-    archetype: The Judging Sovereign
-    sex: male
-    backdrop_poi: the_giant_cornfield
+    culture: georgian_british
+    archetype: The Tightrope Minister
+    sex: female
+    backdrop_poi: blefuscu_strand
     appearance: >-
-      A sixty-foot labouring man, a broad weather-beaten face the size of a wall,
-      a heavy jaw, a wide flat nose and a thick mouth stated as drawn line, the
-      coarse-grained skin scored with deep lines and bristled with a stubble like
-      a hedge. A battered broad-brimmed hat, a rough open-collared smock and a reaping
-      hook over one mountainous shoulder. The huge head bent in slow appraisal.
+      A well-dressed tradeswoman of the shop, an even oval face with composed brows,
+      steady measuring eyes and a neat closed mouth drawn as line. Dark hair pinned
+      under a fine lace cap, a good dark-green gown with a laced stomacher over a
+      figured petticoat, a folded length of cloth and a brass measuring-rule held
+      across both hands. The carriage upright, the chin level and assessing.
 
-  - id: picker_brobdingnagians_king_m01
-    name: picker brobdingnagians king m01
-    role: Judging Sovereign
+  - id: picker_georgian_british_surgeon_f01
+    name: picker georgian british surgeon f01
+    role: Surgeon's Wife and Hosier
     type: player_picker
-    culture: brobdingnagians
-    archetype: The Judging Sovereign
-    sex: male
-    backdrop_poi: the_kings_court
+    culture: georgian_british
+    archetype: The One Honest Minister
+    sex: female
+    backdrop_poi: the_open_sea
     appearance: >-
-      A colossal monarch, a vast grave face with a high broad forehead, a long
-      straight nose and a level mouth set in unhurried judgement drawn as line, a
-      full grey beard combed square across the chest. A plain heavy robe of state
-      without ornament, a thin circlet upon the brow. The great head held erect
-      and still, one immense hand half-raised as if weighing something small.
+      A capable Englishwoman of middling years, an open level face with broad
+      cheekbones, steady wide-set eyes and a plain straight mouth drawn as line. Dark
+      hair drawn back under a small lace cap, a sober brown gown closed high at the
+      throat with a plain kerchief and a clean apron, a pair of knitted stockings over
+      one arm. The head carried straight, the hands folded plainly before her.
 
-  - id: picker_brobdingnagians_queen_f01
-    name: picker brobdingnagians queen f01
-    role: Giant Queen
+  - id: picker_georgian_british_midwife_f01
+    name: picker georgian british midwife f01
+    role: Parish Midwife
     type: player_picker
-    culture: brobdingnagians
-    archetype: The Judging Sovereign
+    culture: georgian_british
+    archetype: The Decaying Immortal
+    sex: female
+    backdrop_poi: the_open_sea
+    appearance: >-
+      An older woman of long parish service, a seamed kindly face with deep folds
+      about a steady mouth drawn as line, shrewd patient eyes and grey hair beneath a
+      plain cap. A dark hooded cloak over a sober brown gown and apron, a stout bag
+      and a horn lantern carried in one hand. The shoulders a little bent, the head
+      level and watchful.
+
+  - id: picker_georgian_british_almswoman_f01
+    name: picker georgian british almswoman f01
+    role: Almshouse Goodwife
+    type: player_picker
+    culture: georgian_british
+    archetype: The Spiteful Court-Dwarf
     sex: female
     backdrop_poi: the_seaside_box
     appearance: >-
-      A towering queen of stately bearing, a broad handsome face with full cheeks,
-      wide calm eyes, a straight nose and a generous mouth drawn as line, the
-      magnified skin shown coarse and faintly downed at the jaw. Dark hair dressed
-      high beneath a great jewelled coronet, a rich brocaded gown with a deep stiff
-      bodice. The vast head carried with placid majesty, the chin level.
+      A thin elderly almshouse-woman, a pinched lined face with sharp watchful eyes,
+      a sunken cheek and a tight set mouth drawn as line, white wisps escaping a worn
+      cap. A patched grey woollen gown and a darned shawl drawn close, a wooden bowl
+      clutched in both hands. The narrow shoulders hunched, the head bent forward and
+      sidelong.
 
-  - id: picker_brobdingnagians_court_dwarf_m01
-    name: picker brobdingnagians court-dwarf m01
-    role: Spiteful Court-Dwarf
+  # ── Picker · Georgian Britons — the gentry and the deep-water men ──────
+
+  - id: picker_georgian_british_captain_m01
+    name: picker georgian british captain m01
+    role: Sea-Captain
     type: player_picker
-    culture: brobdingnagians
-    archetype: The Spiteful Court-Dwarf
+    culture: georgian_british
+    archetype: The Hostile Admiral
     sex: male
-    backdrop_poi: the_kings_court
+    backdrop_poi: the_open_sea
     appearance: >-
-      A giant accounted a dwarf among his own kind yet still colossal beside a
-      man, the head over-large for the squat thick body, a broad lumpy face with a
-      jutting jaw, small close-set eyes and a wide thin mouth twisted to one side
-      drawn as line. Coarse-grained magnified skin, lank dark hair. A gaudy
-      court-livery of mismatched bright cloth. The heavy shoulders hunched, the
-      chin thrust forward and up.
+      A hard commanding master-mariner, a square weather-beaten face with a heavy
+      brow, deep-cut lines and a firm downturned mouth drawn as line, grey at the
+      temples. A dark blue captain's coat heavy with brass buttons over a buff
+      waistcoat, a cocked hat squared on the head, a brass spyglass gripped in one
+      fist. The spine straight, the chin set, the stance braced and authoritative.
 
-  # ── Picker · Laputans ──────────────────────────────────────────────────
-
-  - id: picker_laputans_projector_m01
-    name: picker laputans projector m01
-    role: Earnest Projector of Lagado
+  - id: picker_georgian_british_gentlewoman_f01
+    name: picker georgian british gentlewoman f01
+    role: Merchant's Wife
     type: player_picker
-    culture: laputans
-    archetype: The Earnest Projector
-    sex: male
-    backdrop_poi: lagado_academy
-    appearance: >-
-      A human-scale man, gaunt and abstracted, the head reclined to one side with
-      one eye turned inward and one turned up toward the zenith, a long hollow face
-      with sunken cheeks, a thin nose and a slack distracted mouth drawn as line.
-      Wild unkempt hair, a stained and threadbare scholar's gown hung loose, soot
-      smudging one cheek. The shoulders stooped, the gaze fixed on nothing near.
-
-  - id: picker_laputans_astronomer_f01
-    name: picker laputans astronomer f01
-    role: Laputan Astronomer
-    type: player_picker
-    culture: laputans
+    culture: georgian_british
     archetype: The Sane Dissenting Lord
     sex: female
-    backdrop_poi: laputa_flying_island
+    backdrop_poi: the_seaside_box
     appearance: >-
-      A human-scale woman, the head tilted with one eye reclined inward and one
-      lifted to the sky, a narrow attenuated face with high thin cheekbones, a
-      long nose and a small absent mouth drawn as line. Hair pinned loosely with a
-      stray instrument thrust through it, a plain dark robe figured with faint
-      embroidered circles and theorems. The neck craned upward, the carriage frail.
+      A composed gentlewoman of the merchant sort, a fine oval face with a small
+      firm chin, level brows and a measured closed mouth drawn as line. Dark hair
+      dressed simply beneath a fine lace cap, a good blue silk gown with a laced
+      stomacher and modest lace at the elbows, a folded fan held in one gloved hand.
+      The carriage upright and easy, the head held level in quiet self-possession.
 
-  - id: picker_laputans_lord_m01
-    name: picker laputans lord m01
-    role: Sane Dissenting Lord
+  - id: picker_georgian_british_physician_m01
+    name: picker georgian british physician m01
+    role: Town Physician
     type: player_picker
-    culture: laputans
+    culture: georgian_british
     archetype: The Sane Dissenting Lord
     sex: male
-    backdrop_poi: lagado_academy
-    appearance: >-
-      A human-scale man of settled middle years, the head held level and the eyes
-      both forward and clear — unlike his abstracted countrymen — a square steady
-      face with a firm jaw, a straight nose and a plain composed mouth drawn as
-      line. Neat short hair, a well-kept sober coat of good plain cloth without
-      ornament. The shoulders square, the bearing grounded and unhurried.
-
-  - id: picker_laputans_struldbrugg_m01
-    name: picker laputans struldbrugg m01
-    role: Decaying Immortal
-    type: player_picker
-    culture: laputans
-    archetype: The Decaying Immortal
-    sex: male
-    backdrop_poi: luggnagg_court
-    appearance: >-
-      A human-scale ancient of immense age, a livid round spot fixed over the left
-      brow, the face a ruin of deep folds and fallen flesh, the eyes rheumy and
-      sunken, the mouth slack and gap-toothed, a few white hairs straggling from a
-      mottled scalp. A worn shapeless robe hanging on a bent shrunken frame. The
-      head trembling forward upon a stooped neck.
-
-  - id: picker_laputans_governor_f01
-    name: picker laputans governor f01
-    role: Sorceress-Governor of Glubbdubdrib
-    type: player_picker
-    culture: laputans
-    archetype: The Sane Dissenting Lord
-    sex: female
-    backdrop_poi: glubbdubdrib_isle
-    appearance: >-
-      A human-scale woman of grave authority, a long pale face with hollow cheeks,
-      dark deep-set eyes, a straight nose and a still closed mouth drawn as line.
-      Dark hair smoothed flat under a plain dark veil, a long sober robe of heavy
-      dark cloth without ornament, a slim staff held upright in one hand. The head
-      erect, the bearing composed and watchful.
-
-  # ── Picker · Houyhnhnms and Yahoos ─────────────────────────────────────
-
-  - id: picker_houyhnhnms_and_yahoos_master_m01
-    name: picker houyhnhnms and yahoos horse-master m01
-    role: Rational Horse-Master
-    type: player_picker
-    culture: houyhnhnms_and_yahoos
-    archetype: The Rational Horse-Master
-    sex: male
-    backdrop_poi: the_masters_house
-    appearance: >-
-      A naturalistic dapple-grey stallion of grave authority, the head held high
-      and level, the eye dark, steady and intelligent, the muscled neck arched, the
-      anatomy and proportions those of a real fine horse drawn with realism. No
-      clothing and no harness of any kind. The ears pricked forward, the stance
-      erect and composed upon firm legs.
-
-  - id: picker_houyhnhnms_and_yahoos_mare_f01
-    name: picker houyhnhnms and yahoos mare f01
-    role: Houyhnhnm Mare
-    type: player_picker
-    culture: houyhnhnms_and_yahoos
-    archetype: The Rational Horse-Master
-    sex: female
     backdrop_poi: the_canoe_shore
     appearance: >-
-      A naturalistic sorrel mare of calm dignity, the fine head carried level, the
-      eye large, dark and tranquil, the chestnut coat clean and the proportions
-      those of a real well-bred horse drawn with grave realism. No clothing and no
-      tack of any kind. The ears turned attentively forward, the legs set square,
-      the whole stance still and temperate.
-
-  - id: picker_houyhnhnms_and_yahoos_yahoo_m01
-    name: picker houyhnhnms and yahoos yahoo m01
-    role: Brute Yahoo
-    type: player_picker
-    culture: houyhnhnms_and_yahoos
-    archetype: The Brute Yahoo
-    sex: male
-    backdrop_poi: the_yahoo_field
-    appearance: >-
-      A brute beast of human shape rendered as a type, the face flat and lowering
-      with a heavy shelved brow, a broad nose and a coarse mouth set in a snarl
-      stated as drawn line, the lank hair matted and the long nails clawed. The
-      filthy body turned and shadowed, drawn with the restraint of a period
-      anatomical engraving, no explicit detail. The shoulders hunched, the head
-      thrust low and forward.
-
-  - id: picker_houyhnhnms_and_yahoos_yahoo_f01
-    name: picker houyhnhnms and yahoos yahoo f01
-    role: Brute Yahoo
-    type: player_picker
-    culture: houyhnhnms_and_yahoos
-    archetype: The Brute Yahoo
-    sex: female
-    backdrop_poi: the_yahoo_field
-    appearance: >-
-      A brute beast of human shape rendered as a type, a flat brutish face with a
-      low brow, a broad nose and bared teeth stated as drawn line, the hair a long
-      matted tangle and the nails clawed. The filthy form turned and shadowed and
-      drawn with the restraint of a period anatomical engraving, no explicit detail,
-      non-sexualized depiction. The body crouched low, the head sunk between the shoulders.
+      A learned man of settled middle years, a square steady face with a firm jaw, a
+      straight nose and a plain composed mouth drawn as line, the eyes clear and
+      level. A full grey physician's wig, a sober black coat of good cloth over a
+      dark waistcoat and white stock, a gold-headed cane held upright in one hand.
+      The shoulders square, the bearing grounded and unhurried.
