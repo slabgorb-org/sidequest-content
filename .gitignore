@@ -86,6 +86,8 @@ genre_packs/**/audio/**/*.ogg
 # Procedurally-materialized room YAMLs (ADR-106 megadungeon expansion output) —
 # canonical state lives in the save db; on-disk files are runtime artifacts.
 genre_packs/**/worlds/*/rooms/*.yaml
+# Exception: authored entrance rooms (expansion 0 seed; materializer never emits these)
+!genre_packs/**/worlds/*/rooms/entrance.yaml
 
 # Commercial sound library (licensed, not redistributable) — symlinked out of repo
 sound_effects
