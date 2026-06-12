@@ -20,8 +20,319 @@
 # dies with FileNotFoundError and the daemon closes the socket without a
 # response (observed 2026-05-17: all 5 POI renders failed this way until
 # this file was added). `characters: []` makes load() return a valid
-# empty catalog: read_text() succeeds, the loop body never runs. This is
-# the correct, contract-true representation of "this world has no
-# authored character portraits", not a stub.
+# empty catalog: read_text() succeeds, the named-NPC loop body never
+# runs over any townsfolk-warmth entry. This is the correct, contract-true
+# representation of "this world has no authored *named-NPC* character
+# portraits", not a stub.
+#
+# UPDATE 2026-06-12: the `characters:` list is no longer literally empty —
+# it now carries PLAYER-PICKER face options (type: player_picker) appended
+# below, matching the mutant_wasteland/seaboard_of_saints pilot, which also
+# nests its picker block under `characters:`. These are NOT named NPCs and
+# do NOT reintroduce townsfolk-warmth: they are the chargen face pool for
+# the delver the player will play (New Arrival / Scarred Delver / Salvager
+# register — the permitted humanoid tone at the lip). The original
+# load()-must-not-FileNotFoundError contract is unchanged: the file still
+# exists and parses to a valid catalog.
 
-characters: []
+characters:
+
+# ═══════════════════════════════════════════════════════════════════════
+# PLAYER-PICKER PORTRAITS — character-creation face options
+#
+# Every player at Ropefoot arrives as a person who came up the dead road
+# and is rigging for the descent — so the picker faces ARE the permitted
+# humanoid register here (the New Arrival / Scarred Delver / Salvager
+# types), not townsfolk-warmth.
+#
+# Mirrors the mutant_wasteland/seaboard_of_saints pilot's player_picker
+# block: id `picker_<culture>_<short_role>_<sex><nn>`; `appearance` is
+# terse, ONE FACE, head-and-shoulders only — NO scene prose (the backdrop
+# is composed from `backdrop_poi`, a real rendered POI for this world).
+#
+# CULTURE: this world has exactly one playable person-culture. The pack
+# cultures.yaml ships three naming cultures — Surface Folk (people),
+# Keeper Titles (villain epithets, not a person culture), and Dungeon
+# Names (place-name kennings, not a person culture). Only Surface Folk
+# yields playable faces; the camp at the lip is entirely Surface Folk who
+# came up the dead road. So all pickers are `culture: surface_folk`,
+# varied across archetype and the four B/X classes, M/F balanced 9/9.
+#
+# TONE: grave, lethal, Moria-as-tragedy. No whimsy, no warmth. These are
+# faces shaped by the dead road and the rope. Renders inherit the world's
+# B&W Otus/Trampier ink discipline from visual_style.yaml positive_suffix.
+#
+# BACKDROPS (all verified in r2_manifest.json): the_kept_fire,
+# the_rigging_benches, the_winch_house, the_dropmouth,
+# the_board_of_the_unreturned.
+# ═══════════════════════════════════════════════════════════════════════
+
+# ── Picker · Surface Folk · New Arrival ─────────────────────────────────
+
+  - id: picker_surface_folk_new_arrival_m01
+    name: picker surface folk new arrival m01
+    role: New Arrival
+    type: player_picker
+    culture: surface_folk
+    archetype: New Arrival
+    sex: male
+    backdrop_poi: the_kept_fire
+    appearance: >-
+      Man, early twenties. Open square face still soft at the jaw, weather
+      not yet cut into it. Brown hair pushed back, clear hazel eyes too
+      bright for this place, a few days' road-dust on his cheek. Clean
+      unscratched leather at the collar. The eager look the camp recognizes.
+
+  - id: picker_surface_folk_new_arrival_f01
+    name: picker surface folk new arrival f01
+    role: New Arrival
+    type: player_picker
+    culture: surface_folk
+    archetype: New Arrival
+    sex: female
+    backdrop_poi: the_kept_fire
+    appearance: >-
+      Woman, mid-twenties. Round wind-reddened face, freckles across the
+      nose, dark eyes still asking questions the camp stopped answering.
+      Chestnut hair in a loose road-braid coming undone. Sunburn at the
+      hairline. A new buckled collar, the leather pale and unworn.
+
+# ── Picker · Surface Folk · Scarred Delver ──────────────────────────────
+
+  - id: picker_surface_folk_scarred_delver_m01
+    name: picker surface folk scarred delver m01
+    role: Scarred Delver
+    type: player_picker
+    culture: surface_folk
+    archetype: Scarred Delver
+    sex: male
+    backdrop_poi: the_rigging_benches
+    appearance: >-
+      Man, forties. Lean grey-stubbled face hollowed at the cheek, one
+      eye clouded white and the lid scarred shut above it. Dark hair gone
+      iron at the temples. The good eye too steady. A burn-seam crosses
+      the jaw into a high collar of cracked leather.
+
+  - id: picker_surface_folk_scarred_delver_f01
+    name: picker surface folk scarred delver f01
+    role: Scarred Delver
+    type: player_picker
+    culture: surface_folk
+    archetype: Scarred Delver
+    sex: female
+    backdrop_poi: the_rigging_benches
+    appearance: >-
+      Woman, late thirties. Sharp drawn face, skin gone grey-pale from
+      lampless months, deep-set eyes that flinch at no sound and hold no
+      ease. Black hair shorn close on one side over a ridge of old scar.
+      A thin pale line splits one brow. Worn rope-burned collar.
+
+# ── Picker · Surface Folk · Salvager ────────────────────────────────────
+
+  - id: picker_surface_folk_salvager_m01
+    name: picker surface folk salvager m01
+    role: Salvager
+    type: player_picker
+    culture: surface_folk
+    archetype: Salvager
+    sex: male
+    backdrop_poi: the_winch_house
+    appearance: >-
+      Man, fifties. Broad weathered face, shrewd narrow eyes that price a
+      stranger before they sit. Grey-shot beard cropped close, a nose
+      broken and set crooked. A grease-smudge along one cheekbone. Layered
+      collars of salvaged leather, none of it originally his.
+
+  - id: picker_surface_folk_salvager_f01
+    name: picker surface folk salvager f01
+    role: Salvager
+    type: player_picker
+    culture: surface_folk
+    archetype: Salvager
+    sex: female
+    backdrop_poi: the_winch_house
+    appearance: >-
+      Woman, forties. Lean shrewd face, quick assessing grey eyes, a flat
+      unsentimental mouth. Sandy hair scraped back hard under a leather
+      band. A hand-scale's cord looped at her throat. A faint old soot-mark
+      at the temple. Collar of cleaned, re-sold hide.
+
+# ── Picker · Surface Folk · Winch-Keeper ────────────────────────────────
+
+  - id: picker_surface_folk_winch_keeper_m01
+    name: picker surface folk winch keeper m01
+    role: Winch-Keeper
+    type: player_picker
+    culture: surface_folk
+    archetype: Winch-Keeper
+    sex: male
+    backdrop_poi: the_winch_house
+    appearance: >-
+      Man, late fifties. Heavy seamed face, jaw set like a man who counts
+      before he speaks. Deep-set tired eyes, grey brows, white stubble.
+      A burn-scar webs the back of one hand lifted near the collar. Plain
+      worn iron-grey wool at the throat. The flattened look of repeated loss.
+
+  - id: picker_surface_folk_winch_keeper_f01
+    name: picker surface folk winch keeper f01
+    role: Winch-Keeper
+    type: player_picker
+    culture: surface_folk
+    archetype: Winch-Keeper
+    sex: female
+    backdrop_poi: the_winch_house
+    appearance: >-
+      Woman, fifties. Square steady face cut deep at the mouth, pale eyes
+      that hold a tally behind them. Iron-grey hair bound tight and plain.
+      A faint hot-iron scar at one knuckle near the jaw. Heavy practical
+      collar of soot-darkened wool. An expression worn flat by the count.
+
+# ── Picker · Surface Folk · Rope-Watcher ────────────────────────────────
+
+  - id: picker_surface_folk_rope_watcher_m01
+    name: picker surface folk rope watcher m01
+    role: Rope-Watcher
+    type: player_picker
+    culture: surface_folk
+    archetype: Rope-Watcher
+    sex: male
+    backdrop_poi: the_board_of_the_unreturned
+    appearance: >-
+      Man, sixties. Gaunt grief-locked face, hollow cheeks, eyes fixed on
+      something out of frame and not letting go. Thin white hair, grey
+      week-old beard he has stopped tending. A blanket-edge pulled to the
+      collar. The still, waiting look of a man who will not turn away.
+
+  - id: picker_surface_folk_rope_watcher_f01
+    name: picker surface folk rope watcher f01
+    role: Rope-Watcher
+    type: player_picker
+    culture: surface_folk
+    archetype: Rope-Watcher
+    sex: female
+    backdrop_poi: the_board_of_the_unreturned
+    appearance: >-
+      Woman, fifties. Drawn hollow face, dry-eyed past weeping, gaze held
+      on the drum no one else watches anymore. Grey hair loose and
+      unkempt. A flat worn-out voice you can read in the set of the mouth.
+      A shawl drawn close at the throat. Grief gone quiet and fixed.
+
+# ── Picker · Surface Folk · Fighter (delver) ────────────────────────────
+
+  - id: picker_surface_folk_fighter_m01
+    name: picker surface folk fighter m01
+    role: Fighter
+    type: player_picker
+    culture: surface_folk
+    archetype: Scarred Delver
+    sex: male
+    backdrop_poi: the_dropmouth
+    appearance: >-
+      Man, thirties. Heavy-browed blunt face, broad nose, jaw set hard.
+      Close-cropped dark hair, a few days' beard. Pale eyes steady under a
+      scar that nicks one eyebrow. The thick neck and squared shoulders of
+      a man who stands first. Mail-edge cold at the collar.
+
+  - id: picker_surface_folk_fighter_f01
+    name: picker surface folk fighter f01
+    role: Fighter
+    type: player_picker
+    culture: surface_folk
+    archetype: New Arrival
+    sex: female
+    backdrop_poi: the_dropmouth
+    appearance: >-
+      Woman, late twenties. Strong square jaw, weather-tanned skin, a flat
+      set mouth that does not bargain. Dark hair cropped to the collar for
+      the helm. Grey level eyes. An old white scar along one cheekbone.
+      Worn mail and leather rising to the throat.
+
+# ── Picker · Surface Folk · Thief (delver) ──────────────────────────────
+
+  - id: picker_surface_folk_thief_m01
+    name: picker surface folk thief m01
+    role: Thief
+    type: player_picker
+    culture: surface_folk
+    archetype: Scarred Delver
+    sex: male
+    backdrop_poi: the_rigging_benches
+    appearance: >-
+      Man, thirties. Narrow watchful face, quick dark eyes that find the
+      exits first. Lank black hair to the jaw, hollow cheeks, a thin
+      knife-scar at the corner of the mouth. A wary half-smile that costs
+      nothing. Dark close-fitted leather collar, soft and silent.
+
+  - id: picker_surface_folk_thief_f01
+    name: picker surface folk thief f01
+    role: Thief
+    type: player_picker
+    culture: surface_folk
+    archetype: Salvager
+    sex: female
+    backdrop_poi: the_rigging_benches
+    appearance: >-
+      Woman, late twenties. Sharp narrow face, fast appraising eyes,
+      cheekbones high under grime. Dark hair pinned back tight off the
+      face. A faint scar nicking one nostril. A guarded, ready set to the
+      mouth. Snug dark leather at the collar, fitted for quiet.
+
+# ── Picker · Surface Folk · Cleric (delver) ─────────────────────────────
+
+  - id: picker_surface_folk_cleric_m01
+    name: picker surface folk cleric m01
+    role: Cleric
+    type: player_picker
+    culture: surface_folk
+    archetype: New Arrival
+    sex: male
+    backdrop_poi: the_kept_fire
+    appearance: >-
+      Man, forties. Worn grave face, lined at the brow from prayer that is
+      mostly working so far. Greying tonsured hair, deep calm eyes, a
+      close grey beard. A plain wooden holy symbol on a cord at the
+      collar. The steady look of faith held against the dark.
+
+  - id: picker_surface_folk_cleric_f01
+    name: picker surface folk cleric f01
+    role: Cleric
+    type: player_picker
+    culture: surface_folk
+    archetype: Rope-Watcher
+    sex: female
+    backdrop_poi: the_board_of_the_unreturned
+    appearance: >-
+      Woman, fifties. Severe weathered face, pale resolute eyes, a mouth
+      that has spoken many last rites. Grey hair bound under a plain dark
+      coif. A worn wooden holy symbol resting at the throat. The unflinching
+      composure of someone who burns the names herself.
+
+# ── Picker · Surface Folk · Mage (delver) ───────────────────────────────
+
+  - id: picker_surface_folk_mage_m01
+    name: picker surface folk mage m01
+    role: Mage
+    type: player_picker
+    culture: surface_folk
+    archetype: Scarred Delver
+    sex: male
+    backdrop_poi: the_dropmouth
+    appearance: >-
+      Man, thirties. Gaunt scholarly face, pale lampless skin, hollow
+      under sharp cheekbones. Thin dark hair receding, deep half-blind
+      eyes squinting from reading by ember-light. A burn-mark dark across
+      one fingertip raised near the chin. High plain collar of dark wool.
+
+  - id: picker_surface_folk_mage_f01
+    name: picker surface folk mage f01
+    role: Mage
+    type: player_picker
+    culture: surface_folk
+    archetype: New Arrival
+    sex: female
+    backdrop_poi: the_kept_fire
+    appearance: >-
+      Woman, thirties. Pale narrow face, intent dark eyes ringed from
+      sleepless study, a thin unsmiling mouth. Black hair pulled severe
+      off a high forehead. An ink-stain at one temple where she rests the
+      pen. A plain dark collar buttoned to the throat against the cold.
