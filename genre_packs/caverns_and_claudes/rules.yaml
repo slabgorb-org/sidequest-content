@@ -75,6 +75,22 @@ stat_display_fields:
   - encumbrance
   - gold
 
+resources:
+  - name: light
+    label: Light
+    min: 0.0
+    max: 6.0          # one torch = 6 time-advancing beats (spec §9)
+    starting: 0.0     # descend UNLIT on purpose (spec §5)
+    voluntary: false
+    decay_per_turn: 0.0   # burn is driven by environment_clock, NOT passive decay
+    thresholds:
+      - at: 1.0
+        event_id: light_guttering
+        narrator_hint: "The torch is guttering — its light has minutes left."
+      - at: 0.0
+        event_id: light_dark
+        narrator_hint: "The light is gone. The dark itself closes in."
+
 encounter_base_tension:
   random: 0.15
   ambush: 0.40
