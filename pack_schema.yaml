@@ -33,8 +33,14 @@ genre_pack:
   required_dirs:
     - audio/music
     - assets/fonts
-    - assets/images/portraits
-    - assets/images/poi
+    # NOTE: assets/images/{portraits,poi} were retired as required dirs on
+    # 2026-06-13. Rendered images are canonical in R2 (cdn.slabgorb.com),
+    # indexed by r2_manifest.json — the local assets/images/* folders are
+    # documented "historical drift" (see sidequest-content/CLAUDE.md "Asset
+    # Hosting"; older worlds keep them only as empty .gitkeep residue, and
+    # production rest.py resolves hero/POI art via assets/poi + R2, not
+    # assets/images/*). Enforcing them rejected clean post-R2 worlds
+    # (seaboard_of_saints) while passing residue-carrying ones.
     - worlds
 
   extensions:
@@ -91,8 +97,8 @@ world:
   required_dirs:
     - cultures
     - legends
-    - assets/images/portraits
-    - assets/images/poi
+    # assets/images/{portraits,poi} retired here too — see the genre-tier note
+    # above. Rendered art is canonical in R2; the local folders are drift.
 
   extensions:
     archetype_funnels:
