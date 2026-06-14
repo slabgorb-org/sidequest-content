@@ -25,9 +25,10 @@ tables:
   light:
     - torch
   consumable:
+    # Story 106-4: potion_healing moved out of the random pool into
+    # guaranteed_grants (every kit gets exactly one heal, 30% upgraded).
     - rations_day
     - waterskin
-    - potion_healing
   utility:
     - rope_hemp
     - ten_foot_pole
@@ -57,19 +58,35 @@ class_tables:
     weapon: [sword_long, sword_short, mace_iron, hand_axe, spear]
     armor:  [leather_armor, shield_wood, helmet_iron]
     light:  [torch]
-    consumable: [rations_day, waterskin, potion_healing]
+    consumable: [rations_day, waterskin]
     utility: [rope_hemp, ten_foot_pole, iron_spikes]
 
   mage_kit:
     weapon: [dagger_iron, staff_wood]
     armor:  []
     light:  [torch]
-    consumable: [rations_day, waterskin, potion_healing]
+    consumable: [rations_day, waterskin]
     utility: [spellbook, component_pouch, chalk]
 
   expert_kit:
     weapon: [dagger_iron, sword_short]
     armor:  [leather_armor]
     light:  [torch, lantern_oil]
-    consumable: [rations_day, waterskin, potion_healing]
+    consumable: [rations_day, waterskin]
     utility: [lockpicks, ten_foot_pole, chalk, sack_large]
+
+# Story 106-4: guaranteed grants — every character of a kit starts with exactly
+# one heal potion (decision Keith 2026-06-13: "everyone gets one"), with a 30%
+# chance it's the better Potion of Mending (Greater) instead (upgrade-only —
+# never worse, never zero). Keyed by kit id (matches class_tables; "tables" is
+# the random_table fallback flow). The granted item is enriched from the
+# item_catalog by id (name/tags/heal_amount) just like the rolled items.
+guaranteed_grants:
+  warrior_kit:
+    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
+  mage_kit:
+    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
+  expert_kit:
+    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
+  tables:
+    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
