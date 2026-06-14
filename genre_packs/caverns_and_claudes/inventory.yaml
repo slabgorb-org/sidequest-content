@@ -301,8 +301,28 @@ item_catalog:
     rarity: rare
     power_level: 2
     tags: [magic, consumable, healing, potion]
+    # Story 106-4: heal magnitude per the WWN-SRD escalation ruling
+    # (gm-decisions 2026-06-13). WWN SRD has no standard healing potion, so
+    # anchored to the WWN-family Lazarus-Patch idiom (1d6+level). 1d6+2 on a
+    # ~10-HP L1 pool is a reprieve, not a reset — keeps the lethal ramp.
+    heal_amount: "1d6+2"
     lore: Does not heal cleanly. The scar tissue is thick and numb. But you are alive.
     narrative_weight: 0.4
+
+  - id: potion_healing_greater
+    name: Potion of Mending (Greater)
+    description: A clear, almost luminous draught in a faceted vial. The good stuff — rare and dear.
+    category: magic
+    value: 200
+    weight: 0.2
+    rarity: very_rare
+    power_level: 3
+    tags: [magic, consumable, healing, potion]
+    # Story 106-4: the "better" potion — the 30% upgrade of the guaranteed kit
+    # heal. 2d6+2 is roughly a full L1 pool; same WWN-family idiom, one tier up.
+    heal_amount: "2d6+2"
+    lore: Closes the wound clean, no scar. Whoever brewed this knew what they were doing.
+    narrative_weight: 0.5
 
   - id: wand_spark
     name: Wand of Sparks
