@@ -1,3 +1,28 @@
+# The Long Foundry (heavy_metal) world inventory — authored against the WWN baseline
+#
+# ADR-145 D3: the heavy_metal genre tier ships the verbatim WWN SRD equipment
+# baseline (genre_packs/heavy_metal/inventory.yaml). This world file carries ONLY:
+#   * RESKINS of baseline items — same baseline id, presentation-only override
+#     (name/description/lore/flavor tags + optional narrative_weight). NO mechanical
+#     fields are restated; the mechanical envelope (damage/Shock/AC/cost/encumbrance)
+#     inherits+locks from the baseline (the union merge raises VerbatimFieldLockError
+#     on any restated verbatim mechanic).
+#   * BESPOKE world items — signature Long Foundry gear with no baseline match,
+#     provenance mode=bespoke. The Foundry's identity is a working foundry-city of
+#     ledgers, residue, civic guild thaumaturgy, the three-cult feeding arrangement,
+#     and the declining High Seats — so its bespoke gear leans on documents, tokens,
+#     reagents, and tools rather than weapons. The two bespoke blades sit inside the
+#     WWN melee envelope (1d4 sidearm class).
+#
+# The Long Foundry is NOT Barsoom. There is no Path-Eater cult fiction in the
+# weapons, no Perault "declining lines" framing, no Kragmoor quarter as a
+# generic place — the Foundry's own factions (the Coil and Brand Guild, the three
+# Astran feeding cults, the High Seats, the Kin Lanes Covenant, the River Wardens,
+# the Stratum Camp) own the flavor here.
+#
+# currency / starting_equipment / starting_gold stay world-owned. starting_equipment
+# is repointed to the baseline + bespoke ids the Foundry's characters actually carry.
+
 currency:
   name: mark
   denominations:
@@ -6,199 +31,154 @@ currency:
     - mark
 
 item_catalog:
-  - id: dagger_iron
-    name: Iron Dagger
-    description: A plain iron dagger of honest guild make.
-    category: weapon
-    value: 10
-    weight: 0.5
-    rarity: common
-    power_level: 1
-    tags: [melee, blade, one-handed]
-    damage: {dice: "1d4", bonus: 0}
-    lore: Carried by everyone who has ever had reason to need one carried.
-    narrative_weight: 0.1
 
-  - id: sword_iron
-    name: Iron Longsword
-    description: A sturdy iron longsword, guild-marked at the ricasso.
+  # ──────────────────────────────────────────────────────────────
+  # RESKINS of WWN baseline items (presentation-only; mechanics inherit+lock)
+  # ──────────────────────────────────────────────────────────────
+
+  - id: wwn_sword_long
     category: weapon
-    value: 30
-    weight: 2.0
+    name: Guard-Issue Longsword
+    description: >-
+      A plain working longsword, the ricasso struck with the Coil and
+      Brand's brand-iron mark and the year's rate-stamp. Issued, logged,
+      and expected back.
+    lore: The standard sidearm of the house-guards who walk the High Seats' terraces and the Wardens who keep the Long Span. Every blade in the city is in someone's ledger.
     rarity: common
-    power_level: 2
-    tags: [melee, blade, one-handed]
-    damage: {dice: "1d8", bonus: 0, shock: 2, shock_ac: 15}
-    lore: The standard blade of every house-guard in the current age.
+    tags: [melee, blade, one-handed, guild_marked]
     narrative_weight: 0.2
 
-  - id: rapier_fine
-    name: Fine Rapier
-    description: A duelist's rapier with a chased guard and a personal maker's mark.
+  - id: wwn_sword_short
     category: weapon
-    value: 120
-    weight: 1.2
-    rarity: uncommon
-    power_level: 3
-    tags: [melee, blade, one-handed, courtly]
-    damage: {dice: "1d8", bonus: 0, shock: 1, shock_ac: 15}
-    lore: Favoured by those who attend formal challenges in the courts of the declining houses.
-    narrative_weight: 0.4
-
-  - id: staff_pilgrim
-    name: Pilgrim's Staff
-    description: A weathered walking staff with a Path-Eater route-token knotted into the grip.
-    category: weapon
-    value: 8
-    weight: 1.4
+    name: Forge-Quarter Short Sword
+    description: >-
+      A short, broad-bladed working sword carried by foundry hands and
+      the lower-lane guard. Cheap, honest, and re-ground until the maker's
+      mark is gone.
+    lore: The blade of someone who works for a living and does not expect to draw it. Carried more for the walk home through the lower lanes than for anything else.
     rarity: common
-    power_level: 1
+    tags: [melee, blade, one-handed]
+    narrative_weight: 0.15
+
+  - id: wwn_dagger
+    category: weapon
+    name: Lane Dagger
+    description: A plain iron dagger of honest forge-quarter make, worn at the belt by nearly everyone.
+    lore: Carried by everyone in the Foundry who has ever had reason to need one carried — which, given the city, is everyone.
+    rarity: common
+    tags: [melee, blade, one-handed]
+    narrative_weight: 0.1
+
+  - id: wwn_staff
+    category: weapon
+    name: Pilgrim-Road Staff
+    description: >-
+      A weathered walking staff cut to length at the Western Gate, a
+      Path-Eater waystation token knotted into the grip by whichever
+      pilgrim carried it last.
+    lore: The road west runs three days to the next feeding temple. Anyone who walks it carries one of these, and the staff outlasts the pilgrim more often than not.
+    rarity: common
     tags: [melee, blunt, two-handed, focus, pilgrim]
-    damage: {dice: "1d6", bonus: 0, shock: 1, shock_ac: 13}
-    lore: Cut from a specific kind of wood at a specific waystation, and consecrated in the traditional manner of the Path-Eater cult.
     narrative_weight: 0.3
 
-  - id: leather_armor_worn
-    name: Travel Leathers
-    description: A well-kept set of leathers patched at the knees and elbows.
-    category: armor
-    value: 18
-    weight: 5.0
+  - id: wwn_mace
+    category: weapon
+    name: Warden's Span-Mace
+    description: >-
+      A short iron mace carried by River Wardens for the work the
+      three-tone whistle does not finish. Blunt by design — the Wardens
+      keep order on a public bridge and prefer not to draw blood on it.
+    lore: River Warden issue. The Wardens hear everything that passes the span; on the rare night they have to act, they would rather bruise than open a man over the river.
     rarity: common
-    power_level: 1
+    tags: [melee, blunt, one-handed, warden]
+    narrative_weight: 0.25
+
+  - id: wwn_linothorax
+    category: armor
+    name: Forge Leathers
+    description: A well-worn set of foundry leathers, scorch-marked at the forearms and patched at the knees.
+    lore: The working wardrobe of anyone who spends a shift near the forges or walks the lanes between them. The residue-burns on the sleeves are how you tell a guild hand from a visitor.
+    rarity: common
     tags: [light-armor, torso]
-    lore: The working wardrobe of anyone who moves between settlements on their own feet.
     narrative_weight: 0.1
-    armor_class: 13
-    mitigation: 1
 
-  - id: chain_shirt
-    name: Chain Shirt
-    description: A shirt of interlocking iron rings, noisy but effective.
+  - id: wwn_cuirass_and_greaves
     category: armor
-    value: 60
-    weight: 10.0
+    name: House-Guard Harness
+    description: >-
+      A guard's iron cuirass and greaves in the muted indigo livery of
+      one of the High Seats, the lacquer faded and the house-mark at the
+      breast worn nearly smooth.
+    lore: Standard kit for the house-guards of the high quarter. The livery says which house pays the wage; the wear says how long ago the house could last afford to replace it.
     rarity: uncommon
-    power_level: 3
-    tags: [medium-armor, torso]
-    lore: Standard kit for the house-guards of the declining Perault lines.
-    narrative_weight: 0.2
-    armor_class: 15
-    mitigation: 1
+    tags: [medium-armor, torso, livery]
+    narrative_weight: 0.3
 
-  - id: liturgical_surcoat
-    name: Liturgical Surcoat
-    description: A surcoat in the precise colors of a specific feeding cult, with the rite-sigils embroidered at the hem.
+  - id: wwn_pieced_armor
     category: armor
-    value: 90
-    weight: 2.5
+    name: Liturgical Coat
+    description: >-
+      A reinforced coat in the cold-white of the Keepers of the Hour,
+      the rite-sigils of the cult's calendar embroidered at the cuffs
+      and hem in pale thread.
+    lore: Worn by the oath-sworn who escort the annual refined-tally offering across the Long Span to the temple precinct. Each cult's colors are exact, and recognized at a glance by anyone who lives here.
     rarity: uncommon
-    power_level: 2
     tags: [light-armor, torso, liturgical]
-    lore: Worn by temple knights and senior oath-sworn. Each cult's colors are specific and recognized.
     narrative_weight: 0.4
-    armor_class: 14
-    mitigation: 1
 
-  - id: healing_poultice
-    name: Herbalist's Poultice
-    description: A cloth bundle of dried herbs and ground reagent that speeds natural healing.
-    category: consumable
-    value: 10
-    weight: 0.2
+  - id: wwn_small_shield
+    category: armor
+    name: Warden's Span-Shield
+    description: >-
+      A round shield of banded iron painted in the blue-grey of the
+      River Wardens, the Long Span's single-arch silhouette stamped at
+      the boss. Light, plain, and recognized at both ends of the bridge.
+    lore: Warden issue. A Warden does not carry it to fight so much as to be seen carrying it — the shield is the bridge's authority made portable.
     rarity: common
-    power_level: 1
-    tags: [healing, herbal]
-    lore: Prepared by the herbalists of any Kragmoor quarter. Quality varies by the district's reputation.
+    tags: [shield, warden]
+    narrative_weight: 0.25
+
+  - id: wwn_lantern
+    category: gear
+    name: Span Lantern
+    description: >-
+      A brass lantern of the pattern the River Wardens hang on the iron
+      standards along the Long Span, trimmed to burn slow through a long
+      watch.
+    lore: The Wardens maintain a thousand of these along the span and the river-locks. A private one marks its carrier as someone who has either bought a Warden's goodwill or stolen a Warden's lantern.
+    rarity: common
+    tags: [light, warden]
     narrative_weight: 0.1
 
-  - id: residue_salts
-    name: Reagent Salts
-    description: A small pouch of the precise residue-salts used as reagents in common thaumaturgic workings.
-    category: consumable
-    value: 15
+  # ──────────────────────────────────────────────────────────────
+  # BESPOKE world items — signature Long Foundry gear, no WWN baseline match.
+  # Documents, tokens, reagents, tools — the Foundry is a city of ledgers.
+  # ──────────────────────────────────────────────────────────────
+
+  - id: ritual_knife_plain
+    name: Ritual Knife
+    description: >-
+      A small, very sharp knife with a turned bone handle, kept by guild
+      thaumaturges to score circles, cut thread, and pare nibs. Sharp
+      enough to be a weapon; not meant as one.
+    category: weapon
+    value: 12
     weight: 0.3
     rarity: common
     power_level: 1
-    tags: [reagent, guild]
-    lore: Sold at the guild markets in measured doses. A workshop consumes several doses in a day.
-    narrative_weight: 0.1
-
-  - id: feeding_incense
-    name: Cult Incense
-    description: A bundle of thin sticks of incense blended for a specific cult's rite.
-    category: consumable
-    value: 12
-    weight: 0.1
-    rarity: common
-    power_level: 1
-    tags: [ritual, cult]
-    lore: Available at the temple's offering-yard. The scent is distinct enough that the informed can tell which cult it serves.
+    tags: [blade, one-handed, focus, scribe]
+    damage: {dice: "1d4", bonus: 0}
+    lore: Every working thaumaturge of the Coil and Brand owns one. It draws circles, not blood — though it will, if the day goes badly.
     narrative_weight: 0.2
+    provenance:
+      mode: bespoke
 
-  - id: tally_book
-    name: Scribe's Tally Book
-    description: A small leather-bound ledger with pre-ruled columns for recording offerings, debits, and small workings.
-    category: focus
-    value: 25
-    weight: 0.4
-    rarity: common
-    power_level: 1
-    tags: [focus, clerical, scribe]
-    lore: The working tool of scribes, clerks, and feed-keepers. Every entry is permanent.
-    narrative_weight: 0.3
-
-  - id: pact_token
-    name: Pact Token
-    description: A small worked metal or bone token bearing the sigil of a patron, worn where only the informed would see it.
-    category: focus
-    value: 50
-    weight: 0.1
-    rarity: uncommon
-    power_level: 2
-    tags: [focus, warlock, pact]
-    lore: Given to warlocks at the formal signing of the agreement. It is how the patron is reached. It is also how the patron reaches back.
-    narrative_weight: 0.5
-
-  - id: house_signet
-    name: House Signet
-    description: A ring bearing the sigil of one of the Perault houses, whose authority depends on whether that house's line still holds.
-    category: focus
-    value: 80
-    weight: 0.1
-    rarity: uncommon
-    power_level: 2
-    tags: [focus, noble, sigil]
-    lore: Inherited from an elder of the line. Signs documents, opens certain doors, and marks the wearer as someone with an inheritance to answer to.
-    narrative_weight: 0.4
-
-  - id: kin_charm
-    name: Kin Charm
-    description: A small bound charm of knotted cord, carved wood, and a single stone chosen from a specific place.
-    category: focus
-    value: 20
-    weight: 0.1
-    rarity: common
-    power_level: 1
-    tags: [focus, covenant, kin]
-    lore: Carried by Orvinnic and some sympathetic others. The charm acknowledges a covenant's current terms and is visible to those who understand its making.
-    narrative_weight: 0.3
-
-  - id: guild_mark
-    name: Guild-Mark Token
-    description: A stamped token of a specific Kragmoor thaumaturgy guild, certifying the bearer's qualification.
-    category: focus
-    value: 35
-    weight: 0.1
-    rarity: common
-    power_level: 1
-    tags: [focus, guild, sorcerer]
-    lore: Issued at the completion of apprenticeship. Required to practice thaumaturgy within the quarters of any properly guilded city.
-    narrative_weight: 0.3
-
-  - id: ledger_knife
-    name: Scribe's Ledger Knife
-    description: A small, very sharp knife used for lifting or altering entries in an old-style ledger — and, historically, for worse.
+  - id: rates_book_knife
+    name: Rates-Book Knife
+    description: >-
+      A long thin scribe's knife for lifting and re-pinning the leaves
+      of a public ledger without tearing them. The same edge has, on
+      occasion, been used to lift entries that were never meant to leave.
     category: weapon
     value: 25
     weight: 0.3
@@ -206,50 +186,356 @@ item_catalog:
     power_level: 1
     tags: [blade, one-handed, scribe, forgery]
     damage: {dice: "1d4", bonus: 0}
-    lore: Strictly speaking a scribal tool. Carried openly by ledger-thieves who are past pretending otherwise.
+    lore: Officially a tool of the rates-book desk. Carried openly by the kind of clerk who has stopped pretending the rates-book is the only thing they cut.
     narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: residue_salts
+    name: Reagent Salts
+    description: >-
+      A measured pouch of the pale residue-salts that collect above the
+      First-Feeder bedrock and make the Long Foundry's thaumaturgy cheap.
+    category: consumable
+    value: 15
+    weight: 0.3
+    rarity: common
+    power_level: 1
+    tags: [reagent, guild]
+    lore: Sold by the dose at the guild markets at a rate the Coil and Brand publishes every dawn. The whole city's economy is, at bottom, the price of these.
+    narrative_weight: 0.1
+    provenance:
+      mode: bespoke
+
+  - id: forge_poultice
+    name: Forge-Hand's Poultice
+    description: >-
+      A cloth bundle of dried herb and ground residue-salt, blended in
+      the Kin Lanes to draw the heat out of a burn and speed a wound.
+    category: consumable
+    value: 10
+    weight: 0.2
+    rarity: common
+    power_level: 1
+    tags: [healing, herbal, kin_lanes]
+    lore: The Kin Lanes households make these for the forge hands who burn themselves daily. Quality is a matter of which lane you bought it on, and everyone has an opinion.
+    narrative_weight: 0.1
+    provenance:
+      mode: bespoke
+
+  - id: hour_incense
+    name: Hour-Cult Incense
+    description: >-
+      A bundle of thin sticks blended for the Keepers of the Hour's
+      timing-rites, burned to mark the intervals of an observance.
+    category: consumable
+    value: 12
+    weight: 0.1
+    rarity: common
+    power_level: 1
+    tags: [ritual, cult]
+    lore: Bought at the temple precinct's offering-yard during the morning visiting window. The scent is exact enough that an informed nose can tell which of the three cults a stick was blended for.
+    narrative_weight: 0.2
+    provenance:
+      mode: bespoke
+
+  - id: tally_book
+    name: Scribe's Tally Book
+    description: >-
+      A small leather-bound ledger with pre-ruled columns for offerings,
+      debits, and small workings, of the pattern the Coil and Brand issues
+      to its clerks.
+    category: focus
+    value: 25
+    weight: 0.4
+    rarity: common
+    power_level: 1
+    tags: [focus, clerical, scribe]
+    lore: The working tool of every scribe, clerk, and feed-keeper in the Foundry. Every entry is permanent, and in this city that is the whole point.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: guild_mark
+    name: Coil and Brand Guild-Mark
+    description: >-
+      A stamped bronze token bearing the Coil and Brand's mark — a coil
+      drawn through a brand-iron — certifying the bearer's qualification
+      to practice civic thaumaturgy.
+    category: focus
+    value: 35
+    weight: 0.1
+    rarity: common
+    power_level: 1
+    tags: [focus, guild, sorcerer]
+    lore: Issued at the end of apprenticeship and logged in the guild's roll. Required to take a commission off the rates-book; required, in practice, to work magic anywhere in the city without a Warden asking questions.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: covenant_token
+    name: Covenant Token
+    description: >-
+      A small worked token of bone or dark metal bearing a patron's
+      sigil, worn beneath the collar where only the informed would look
+      for it.
+    category: focus
+    value: 50
+    weight: 0.1
+    rarity: uncommon
+    power_level: 2
+    tags: [focus, warlock, pact]
+    lore: Given at the formal signing of a covenant. It is how the patron is reached. In a city built on accumulating covenants, it is also how the patron reaches back.
+    narrative_weight: 0.5
+    provenance:
+      mode: bespoke
+
+  - id: high_seat_signet
+    name: High Seat Signet
+    description: >-
+      A ring bearing the sigil of one of the sixteen old houses of the
+      high quarter, whose authority is exactly as good as that house's
+      remaining standing.
+    category: focus
+    value: 80
+    weight: 0.1
+    rarity: uncommon
+    power_level: 2
+    tags: [focus, noble, sigil]
+    lore: Inherited from an elder of the line. It signs documents, opens certain terrace doors, and marks the wearer as someone with an inheritance — and a column of arrears — to answer to.
+    narrative_weight: 0.4
+    provenance:
+      mode: bespoke
+
+  - id: kin_lanes_charm
+    name: Kin Lanes Charm
+    description: >-
+      A small bound charm of knotted cord, carved wood, and a single
+      river-stone, made the way the Kin Lanes covenant has made them for
+      a hundred and fifty years.
+    category: focus
+    value: 20
+    weight: 0.1
+    rarity: common
+    power_level: 1
+    tags: [focus, covenant, kin]
+    lore: Carried by the Orvinnic labor-kin and the rare outsider they have chosen to acknowledge. The charm names the bearer's standing in the covenant's current terms, and the Kin Lanes can read it at a glance.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: guild_lodgings_chit
+    name: Guild Lodgings Chit
+    description: >-
+      A stamped wooden chit good for a bed and a meal at the Coil and
+      Brand's commission-lodgings, dated and counter-marked at the
+      rates-book desk.
+    category: tool
+    value: 4
+    weight: 0.05
+    rarity: common
+    power_level: 0
+    tags: [document, guild]
+    lore: Issued with a commission, redeemed at the lodging-house, and logged both ways. Running out of unredeemed chits is the most reliable sign that a job has gone longer than the guild expected.
+    narrative_weight: 0.15
+    provenance:
+      mode: bespoke
+
+  - id: warded_letter_sealed
+    name: Warded Sealed Letter
+    description: >-
+      A folded letter closed with a sealing-wax sigil that will mark the
+      wax if the letter is opened before its intended hand breaks it.
+      What the letter says is the carrier's problem; what the seal records
+      is everyone's.
+    category: tool
+    value: 6
+    weight: 0.1
+    rarity: uncommon
+    power_level: 0
+    tags: [document, ward, loaded]
+    lore: The Foundry carries its most careful business by sealed letter rather than open ledger. A courier who arrives with the seal intact is paid; one who arrives with it marked is questioned.
+    narrative_weight: 0.4
+    provenance:
+      mode: bespoke
+
+  - id: travelling_cloak_grey
+    name: Guild-Grey Travelling Cloak
+    description: >-
+      A heavy oiled-wool cloak in the muted grey the Coil and Brand's
+      commission-takers wear on the road. House-guards nod to it on the
+      Ascending Way; they do not nod to anyone else.
+    category: tool
+    value: 8
+    weight: 2.0
+    rarity: common
+    power_level: 0
+    tags: [clothing, guild]
+    lore: Guild grey is not a uniform, exactly — but on the terraces and the span it is read as one, and it opens more doors than a signet does.
+    narrative_weight: 0.2
+    provenance:
+      mode: bespoke
+
+  - id: brass_pen_nib_set
+    name: Brass Pen-Nib Set
+    description: >-
+      A folded leather roll of cut brass nibs in graded widths, with a
+      stoppered ink-vial of the oak-gall ink the guild scribes favor.
+      The fine nibs are for entries; the broad one is for corrections.
+    category: tool
+    value: 9
+    weight: 0.3
+    rarity: common
+    power_level: 0
+    tags: [tool, scribe]
+    lore: A scribe is judged by the regularity of their hand, and the hand begins with the nib. The Coil and Brand's clerks grind their own.
+    narrative_weight: 0.2
+    provenance:
+      mode: bespoke
+
+  - id: calfskin_ledger_half_full
+    name: Half-Full Calfskin Ledger
+    description: >-
+      A personal ledger bound in worn calfskin, perhaps a third of its
+      ruled pages already filled in a careful hand. What is recorded in
+      it is the owner's business; that it is recorded at all is the
+      Foundry's whole way of being.
+    category: tool
+    value: 12
+    weight: 0.5
+    rarity: common
+    power_level: 0
+    tags: [document, scribe, personal]
+    lore: In a city where every favor is recorded and every silence is a balance, a person's private ledger is the truest thing they carry. People kill for thinner books than this.
+    narrative_weight: 0.35
+    provenance:
+      mode: bespoke
+
+  - id: residue_respirator
+    name: Forge Respirator
+    description: >-
+      A close-fitting leather half-mask packed with charcoal and damp
+      Kin Lanes wadding, worn by forge hands who work too long in the
+      thick of the day's residue.
+    category: tool
+    value: 14
+    weight: 0.4
+    rarity: common
+    power_level: 0
+    tags: [tool, forge, kin_lanes]
+    lore: The residues that make the Foundry's magic cheap are not kind to a non-kin chest over a full shift. The Kin Lanes do not need these. Everyone else does.
+    narrative_weight: 0.2
+    provenance:
+      mode: bespoke
+
+  - id: pilgrim_route_token
+    name: Pilgrim Route-Token
+    description: >-
+      A small wooden token strung on a neck-cord, carved at a specific
+      Path-Eater waystation on the road west and notched at each shrine
+      the bearer has passed.
+    category: tool
+    value: 3
+    weight: 0.05
+    rarity: common
+    power_level: 0
+    tags: [token, pilgrim]
+    lore: The notches read, to a pilgrim, like a ledger of a different kind — how far west you have walked, and whether you came home. Lately the second-mile shrines have been adding notches the bearers do not remember earning.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: stratum_field_journal
+    name: Stratum Field-Journal
+    description: >-
+      A waist-chained field-journal of the pattern the Stratum Camp
+      scholars carry, ruled for stratum notation, most of its later
+      pages filled in a hand that grows steadier the less it says.
+    category: tool
+    value: 20
+    weight: 0.4
+    rarity: uncommon
+    power_level: 0
+    tags: [document, scholar, stratum, loaded]
+    lore: The Refuser-scholars in the eastern hills record everything. A journal that comes back from the camp without its scholar is the kind of object the Coil and Brand records and does not publish.
+    narrative_weight: 0.55
+    provenance:
+      mode: bespoke
+
+  - id: thessil_mineral_tea
+    name: Thessil Mineral Tea
+    description: >-
+      A twist of oiled paper holding the pale mineral tea the Thessil
+      herders brew at their waystation, said to steady a traveller
+      against the ridge-wind.
+    category: consumable
+    value: 5
+    weight: 0.1
+    rarity: uncommon
+    power_level: 0
+    tags: [consumable, thessil]
+    lore: Herd-Mother Kelu gives it to anyone who asks. She believes the courtesy is in the warning that comes with it, not in the tea — but the tea is real, and the road east is long.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
 
 # Starting kits keyed by class DISPLAY NAME (chargen_loadout does a
-# case-insensitive display-name lookup; item ids must exist in item_catalog
-# above or the seam fails loud). Covers all seven Callings in classes.yaml —
-# the five doom Callings plus the two Barsoom Callings (Mentalist /
-# Super-scientist), which draw from the same genre catalog: on Barsoom the
-# long-sword is every fighting hand's weapon, whatever else they practise.
+# case-insensitive display-name lookup; item ids must exist in the MERGED catalog
+# — genre baseline ∪ this world's items — or the seam fails loud). Weapon/armor ids
+# are the WWN baseline ids the reskins inherit (Guard-Issue Longsword → wwn_sword_long,
+# Forge-Quarter Short Sword → wwn_sword_short, Lane Dagger → wwn_dagger, Pilgrim-Road
+# Staff → wwn_staff, Forge Leathers → wwn_linothorax, House-Guard Harness →
+# wwn_cuirass_and_greaves). Bespoke ids are this world's own.
+#
+# The Foundry character starts as a Coil and Brand commission-taker: guild grey on
+# the back, a tally book or a guild-mark in the pocket, a forge-hand's poultice for
+# the road. The Grey Thaumaturge funnel's early-chapter kit (see history.yaml) is the
+# Necromancer/Elementalist baseline below.
 starting_equipment:
   Warrior:
-    - sword_iron
-    - dagger_iron
-    - chain_shirt
-    - healing_poultice
+    - wwn_sword_long
+    - wwn_dagger
+    - wwn_cuirass_and_greaves
+    - travelling_cloak_grey
+    - forge_poultice
   Expert:
-    - sword_iron
-    - leather_armor_worn
+    - wwn_sword_short
+    - wwn_linothorax
     - tally_book
-    - healing_poultice
+    - brass_pen_nib_set
+    - guild_lodgings_chit
+    - forge_poultice
   Necromancer:
-    - staff_pilgrim
+    - ritual_knife_plain
+    - wwn_staff
     - tally_book
     - residue_salts
-    - healing_poultice
+    - travelling_cloak_grey
+    - forge_poultice
   Elementalist:
-    - staff_pilgrim
+    - wwn_staff
     - guild_mark
     - residue_salts
-    - healing_poultice
+    - residue_respirator
+    - travelling_cloak_grey
+    - forge_poultice
   Pact-born:
-    - sword_iron
-    - pact_token
-    - feeding_incense
-    - healing_poultice
+    - wwn_sword_short
+    - covenant_token
+    - hour_incense
+    - travelling_cloak_grey
+    - forge_poultice
   Mentalist:
-    - sword_iron
-    - dagger_iron
-    - healing_poultice
+    - wwn_dagger
+    - calfskin_ledger_half_full
+    - travelling_cloak_grey
+    - forge_poultice
   Super-scientist:
-    - sword_iron
-    - dagger_iron
+    - wwn_dagger
     - residue_salts
-    - healing_poultice
+    - stratum_field_journal
+    - travelling_cloak_grey
+    - forge_poultice
 
 starting_gold:
   Warrior: 25
