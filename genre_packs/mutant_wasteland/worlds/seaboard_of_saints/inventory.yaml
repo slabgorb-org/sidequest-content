@@ -308,6 +308,24 @@ item_catalog:
     lore: The needle holds to one unknown referent. The Lo'in say it points at whichever myth you are standing inside. The compass has no opinion.
     narrative_weight: 0.3
 
+  # The fifth chargen artifact. char_creation offers `power_glove` as an artifact
+  # item_hint; because a world inventory.yaml REPLACES the genre wholesale, it must
+  # be carried here or a Seaboard PC who picks it hits the fallback-to-weapon bug
+  # the 2026-04-11 genre fix closed. Mechanically the genre's 1d8 weapon artifact
+  # (id + category + damage preserved); re-flavored to the Seaboard's reliquary idiom.
+  - id: power_glove
+    name: Saint's Gauntlet
+    description: "A pitted iron gauntlet, knuckles worn smooth by old prayer. Grip it and your hand crushes like a press for about ten seconds — then it hangs dead and useless for an hour while the saint, whoever they were, rests."
+    category: weapon
+    damage: {dice: "1d8"}
+    value: 32
+    weight: 1.0
+    rarity: rare
+    power_level: 2
+    tags: [ancient, artifact, relic, weapon]
+    lore: The Whitman Circle calls it a relic of a strong-armed saint; the Lo'in call it pre-war and leave it at that. Both agree on what it does to a hatch, a chain, or a man's wrist.
+    narrative_weight: 0.3
+
   # --- TREASURE (coins & scrips as held objects — AC6 "present as items") ---
   - id: roll_of_quarters
     name: Roll of Quarters
