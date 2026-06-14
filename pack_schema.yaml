@@ -43,16 +43,22 @@ genre_pack:
     # (seaboard_of_saints) while passing residue-carrying ones.
     - worlds
 
+  # Story 113-2: this list is reconciled against the server loader's genre-pack-root
+  # allowlist (sidequest-server/sidequest/genre/loader.py
+  # GENRE_PACK_ROOT_EXTENSION_FILES). The FILE set here MUST equal that constant —
+  # a drift guard (test_pack_schema_loader_drift_113_2.py) fails CI otherwise, so
+  # the validator can flag dead files and recognize live ones. Removed entries
+  # (loader-dead at the genre tier): openings (loader sets openings=[]; world-tier
+  # only), powers (unreferenced), weather (runtime reads world_dir, not pack root),
+  # calendar (no genre-tier read), history (world-tier only); spellbook keeps its
+  # `spells/` dir but drops the unread spellbook.yaml file.
   extensions:
     magic:
       files: [magic.yaml]
     classes:
       files: [classes.yaml]
     spellbook:
-      files: [spellbook.yaml]
       dirs: [spells]
-    openings:
-      files: [openings.yaml]
     projection:
       files: [projection.yaml]
     beat_vocabulary:
@@ -61,16 +67,8 @@ genre_pack:
       files: [archetype_constraints.yaml]
     achievements:
       files: [achievements.yaml]
-    powers:
-      files: [powers.yaml]
     chassis_classes:
       files: [chassis_classes.yaml]
-    calendar:
-      files: [calendar.yaml]
-    weather:
-      files: [weather.yaml]
-    history:
-      files: [history.yaml]
     dogfight:
       dirs: [dogfight]
     pacing:
@@ -81,6 +79,25 @@ genre_pack:
       files: [equipment_tables.yaml]
     backstory_tables:
       files: [backstory_tables.yaml]
+    # Live genre-tier mechanics the loader reads (ADR-143 chargen catalogs,
+    # WWN/psionic spellbooks, SRD bestiary, mutation + witnessed-act vocab) —
+    # previously omitted, so the validator could not recognize them.
+    skills:
+      files: [skills.yaml]
+    spells_wwn:
+      files: [spells_wwn.yaml]
+    foci:
+      files: [foci.yaml]
+    bestiary:
+      files: [bestiary.yaml]
+    backgrounds:
+      files: [backgrounds.yaml]
+    witnessed_acts:
+      files: [witnessed_acts.yaml]
+    mutations:
+      files: [mutations.yaml]
+    disciplines_psionic:
+      files: [disciplines_psionic.yaml]
 
 world:
   required_files:
