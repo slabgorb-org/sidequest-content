@@ -11,11 +11,13 @@ This is a personal project under the `slabgorb-org` GitHub organization.
 
 ## SideQuest System Overview
 
-Four repos compose the SideQuest stack (Python backend per ADR-082, ported from the Rust prototype 2026-04):
+Six repos compose the SideQuest stack (Python backend per ADR-082, ported from the Rust prototype 2026-04):
 - **sidequest-server** — Python/FastAPI game engine and WebSocket API on port 8765
 - **sidequest-ui** — React/TypeScript game client (Vite, port 5173)
-- **sidequest-daemon** — Python media services (image gen, audio library playback)
+- **sidequest-daemon** — Python media services (image gen, music gen)
 - **sidequest-content** — Genre packs (YAML configs, audio, images, world data)
+- **sidequest-composer** — Standalone CLI: public-domain notation → rights-free audio (offline)
+- **sidequest-understudy** — Naive simulated-player playtest client
 
 Orchestrator repo (`orc-quest`, also cloned as `oq-1` / `oq-2`) coordinates sprint tracking, docs, ADRs, and cross-repo scripts.
 
@@ -176,7 +178,7 @@ git clone --no-hardlinks /path/to/existing/sidequest-content /path/to/new/sidequ
 
 # Point origin at GitHub for backup pushes
 cd /path/to/new/sidequest-content
-git remote set-url origin git@github.com:slabgorb/sidequest-content.git
+git remote set-url origin git@github.com:slabgorb-org/sidequest-content.git
 
 # Add the source as a local remote for future syncing
 git remote add local /path/to/existing/sidequest-content
