@@ -70,10 +70,14 @@ sidequest-content/
 │   │       ├── world.cartography.yaml
 │   │       └── ...
 ├── corpus/                       # Conlang word lists per culture (ADR-091)
+├── docs/                         # Authoring checklist + Z-Image prompting guide
 ├── archetypes_base.yaml          # Shared archetype scaffolding
 ├── npc_traits.yaml               # Cross-pack trait pool
+├── pack_schema.yaml              # Genre-pack schema (validation target)
+├── r2_manifest.json              # Index of record for R2 assets (full bucket scan)
 ├── tools/                        # Pack authoring tooling
 ├── runs/                         # Local generation outputs (gitignored)
+├── CHANGELOG.md                  # Content change log
 ├── PROMPTING_Z_IMAGE.md          # Z-Image prompting guide (no negatives)
 └── SOUL.md                       # In-world design doctrine
 ```
@@ -140,7 +144,7 @@ git push origin main   # Only when you want a remote backup
 ```bash
 git clone --no-hardlinks /path/to/existing/sidequest-content /path/to/new/sidequest-content
 cd /path/to/new/sidequest-content
-git remote set-url origin git@github.com:slabgorb/sidequest-content.git
+git remote set-url origin git@github.com:slabgorb-org/sidequest-content.git
 git remote add local /path/to/existing/sidequest-content
 ```
 
@@ -161,7 +165,9 @@ identities, and world secrets as opaque — read the schema, not the answer.
 
 ## Related repos
 
-- [orc-quest](https://github.com/slabgorb/orc-quest) — Orchestrator, ADRs
-- [sidequest-server](https://github.com/slabgorb/sidequest-server) — Python FastAPI backend
-- [sidequest-daemon](https://github.com/slabgorb/sidequest-daemon) — Python media services
-- [sidequest-ui](https://github.com/slabgorb/sidequest-ui) — React client
+- [sidequest](https://github.com/slabgorb-org/sidequest) — Orchestrator, ADRs
+- [sidequest-server](https://github.com/slabgorb-org/sidequest-server) — Python FastAPI backend
+- [sidequest-daemon](https://github.com/slabgorb-org/sidequest-daemon) — Python media services
+- [sidequest-ui](https://github.com/slabgorb-org/sidequest-ui) — React client
+- [sidequest-composer](https://github.com/slabgorb-org/sidequest-composer) — Notation → rights-free audio (offline tool)
+- [sidequest-understudy](https://github.com/slabgorb-org/sidequest-understudy) — Naive simulated-player playtest client
