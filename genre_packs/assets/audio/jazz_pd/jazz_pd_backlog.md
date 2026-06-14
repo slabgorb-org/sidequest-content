@@ -34,6 +34,32 @@ sides were PD as of 2024. They are not.)
 | Track | Artist / recording | Year | PD since | Status |
 |---|---|---|---|---|
 | Helen Gone | Vincent Rose & His Montmartre Orch. — Victor 19378 | 1924 | 2025-01-01 | **LIVE** (pulp_noir tavern/speakeasy) |
+| Montmartre Rag | Mitchell's Jazz Kings (Paris, Pathé) | 1922 | 2023-01-01 | **LIVE** (pulp_noir tavern/speakeasy, chase) |
+| Dipper Mouth Blues | King Oliver's Creole Jazz Band | 1923 | 2024-01-01 | **LIVE** (pulp_noir combat, tavern/speakeasy) |
+| Tiger Rag | Original Dixieland Jazz Band — Victor 18472-B | 1918 | 2022-01-01 | **LIVE** (pulp_noir combat, chase) |
+| Crazy Blues | Mamie Smith & Her Jazz Hounds — OKeh | 1920 | 2022-01-01 | **LIVE** (pulp_noir tension, intrigue) |
+| Weeping Willow Blues | Bessie Smith — Columbia (rec. 1924-09-26) | 1924 | 2025-01-01 | **LIVE** (pulp_noir tension, intrigue) |
+| St. Louis Blues | Bessie Smith w/ Louis Armstrong — Columbia (rec. 1925-01-14) | 1925 | 2026-01-01 | **LIVE** (pulp_noir rest, intrigue) |
+
+> **2026-06-14 sourcing pass — the 1917–1925 hot-jazz seam.** The original
+> `1920sJazz_201606` set was mostly 1926+ (deferred below). This pass instead
+> mined the *earlier* window that is already PD, as individual Internet Archive
+> items (not the `1920sJazz_201606` compilation):
+>   - Montmartre Rag — `1922-B-Archives-1922-07-00-Mitchells-Jazz-Kings-Montmartre-rag-Paris`
+>   - Dipper Mouth Blues — `1923-USA-Archives-1923-00-00-King-Olivers-Creole-Jazz-Band-Dipper-Mouth-Blues`
+>   - Tiger Rag — `original-dixieland-jazz-band-tiger-rag-victor-18472-b`
+>   - Crazy Blues — `MamieSmithHerJazzHounds`
+>   - Weeping Willow Blues — `bessie-smith-weeping-willow-blues` (date 1924-09-26)
+>   - St. Louis Blues — `the-st-louis-blues` (date 1925-01-14)
+> Transcoded with the composer's static libvorbis ffmpeg per the pipeline below.
+> Also removed pulp_noir's `themes:` block in the same change — it was shadowing
+> mood_tracks so NONE of this jazz (nor the Joplin ragtime) actually played.
+>
+> **REJECTED — Canal Street Blues** (`78_canal-street-blues_..._gbia0253734b`):
+> recording is 1923 but THIS transfer is tagged `year: 1946` (reissue pressing).
+> Per the verify-the-recording-year rule we did not wire it; King Oliver is
+> already covered by the clean 1923 Dipper Mouth item. Re-source from a
+> 1923-tagged Gennett transfer to clear it.
 
 ### ⏳ Backlog — enters PD on the dated schedule (wire each on/after its year)
 | Enters PD | Track | Artist / recording | Rec. year |

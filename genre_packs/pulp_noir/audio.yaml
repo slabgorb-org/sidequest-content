@@ -1,3 +1,17 @@
+# PURCHASED/PD-FIRST audio (revamped 2026-06-14).
+#
+# The `themes:` block was REMOVED. library_backend._resolve_music plays a mood's
+# `themes` variations before it ever reads `mood_tracks`, so the ACE-Step set-1
+# leitmotifs (exploration_full, combat_full, …) were shadowing the entire curated
+# catalog below — the Joplin ragtime and the real 1920s jazz recordings never
+# played. Removing `themes:` makes `mood_tracks` the live source.
+#
+# Two music sources here, both period-correct for the Années folles (1920s Paris):
+#   - assets/audio/ragtime_pd/ : Scott Joplin rags, composer-rendered from PD
+#     notation (Mutopia MIDI). See that bucket's catalog.yaml.
+#   - assets/audio/jazz_pd/    : GENUINE public-domain 1920s jazz RECORDINGS
+#     (78rpm transfers, recording first published <=1925 -> PD in the US).
+#     See jazz_pd/jazz_pd_backlog.md for per-track provenance + the PD-year rule.
 mood_tracks:
   exploration:
     # Public domain Scott Joplin ragtime — slow/atmospheric rags & waltz
@@ -14,13 +28,21 @@ mood_tracks:
       title: "Sugar Cane Rag"
       bpm: 82
   combat:
-    - path: audio/music/combat_full.ogg
-      title: "Brass and Blood"
-      bpm: 145
+    # Hot jazz scores the violence (jazz-age gunplay). Real 1920s recordings.
+    - path: assets/audio/jazz_pd/Tiger Rag.ogg
+      title: "Tiger Rag"            # Original Dixieland Jazz Band, 1918 (PD)
+      bpm: 180
+    - path: assets/audio/jazz_pd/Dipper Mouth Blues.ogg
+      title: "Dipper Mouth Blues"   # King Oliver's Creole Jazz Band, 1923 (PD)
+      bpm: 92
   tension:
-    - path: audio/music/tension_full.ogg
-      title: "The Envelope"
-      bpm: 65
+    # Slow blues — real 1920s recordings.
+    - path: assets/audio/jazz_pd/Crazy Blues.ogg
+      title: "Crazy Blues"          # Mamie Smith & Her Jazz Hounds, 1920 (PD)
+      bpm: 72
+    - path: assets/audio/jazz_pd/Weeping Willow Blues.ogg
+      title: "Weeping Willow Blues" # Bessie Smith, 1924 (PD)
+      bpm: 70
   rest:
     # Public domain Scott Joplin ragtime — slow/atmospheric rags & waltz
     - path: assets/audio/ragtime_pd/Joplin - Bethena.ogg
@@ -29,14 +51,21 @@ mood_tracks:
     - path: assets/audio/ragtime_pd/Joplin - Eugenia.ogg
       title: "Eugenia"
       bpm: 78
+    - path: assets/audio/jazz_pd/St Louis Blues.ogg
+      title: "St. Louis Blues"      # Bessie Smith w/ Louis Armstrong, 1925 (PD)
+      bpm: 85
   # tavern alias — maps core interpreter keywords to speakeasy jazz
   tavern: &speakeasy_tracks
-    # Genuine public-domain 1920s jazz recording (the real article): Vincent Rose
-    # & His Montmartre Orch., Victor 19378, 1924 — PD in the US since 2025-01-01.
-    # The only one of the original jazz_pd set verified PD; see jazz_pd_backlog.md.
+    # Genuine public-domain 1920s jazz recordings (the real article).
     - path: assets/audio/jazz_pd/Helen Gone.ogg
-      title: "Helen Gone"
+      title: "Helen Gone"           # Vincent Rose & His Montmartre Orch., 1924 (PD)
       bpm: 95
+    - path: assets/audio/jazz_pd/Montmartre Rag.ogg
+      title: "Montmartre Rag"       # Mitchell's Jazz Kings, Paris, 1922 (PD)
+      bpm: 100
+    - path: assets/audio/jazz_pd/Dipper Mouth Blues.ogg
+      title: "Dipper Mouth Blues"   # King Oliver's Creole Jazz Band, 1923 (PD)
+      bpm: 92
     # Public domain Scott Joplin ragtime — mid-tempo social parlor piano
     - path: assets/audio/ragtime_pd/Joplin - Maple Leaf Rag.ogg
       title: "Maple Leaf Rag"
@@ -61,9 +90,16 @@ mood_tracks:
       bpm: 118
   speakeasy: *speakeasy_tracks
   intrigue:
-    - path: audio/music/intrigue_full.ogg
-      title: "Shadows on the Wall"
-      bpm: 75
+    # Moody slow blues — real 1920s recordings.
+    - path: assets/audio/jazz_pd/Crazy Blues.ogg
+      title: "Crazy Blues"          # Mamie Smith & Her Jazz Hounds, 1920 (PD)
+      bpm: 72
+    - path: assets/audio/jazz_pd/Weeping Willow Blues.ogg
+      title: "Weeping Willow Blues" # Bessie Smith, 1924 (PD)
+      bpm: 70
+    - path: assets/audio/jazz_pd/St Louis Blues.ogg
+      title: "St. Louis Blues"      # Bessie Smith w/ Louis Armstrong, 1925 (PD)
+      bpm: 85
   chase:
     # Public domain Scott Joplin ragtime — uptempo, driving two-steps
     - path: assets/audio/ragtime_pd/Joplin - The Cascades.ogg
@@ -78,6 +114,13 @@ mood_tracks:
     - path: assets/audio/ragtime_pd/Joplin - The Strenuous Life.ogg
       title: "The Strenuous Life"
       bpm: 138
+    # Fast hot jazz — real 1920s recordings.
+    - path: assets/audio/jazz_pd/Tiger Rag.ogg
+      title: "Tiger Rag"            # Original Dixieland Jazz Band, 1918 (PD)
+      bpm: 180
+    - path: assets/audio/jazz_pd/Montmartre Rag.ogg
+      title: "Montmartre Rag"       # Mitchell's Jazz Kings, Paris, 1922 (PD)
+      bpm: 100
 
 # Genre-specific mood keywords — triggers mood detection for non-standard moods
 mood_keywords:
@@ -152,122 +195,9 @@ mixer:
   sfx_volume: 0.7
   crossfade_default_ms: 3000
 
+# Library always resolves now (every mood has tracks), so musicgen never fires.
 ai_generation:
   enabled: true
   model: musicgen_small
   max_generation_time_s: 15
   cache_generated: true
-
-themes:
-  - name: exploration
-    mood: exploration
-    base_prompt: ""
-    variations:
-      - type: full
-        path: audio/music/exploration_full.ogg
-      - type: ambient
-        path: audio/music/exploration_ambient.ogg
-      - type: overture
-        path: audio/music/exploration_overture.ogg
-      - type: resolution
-        path: audio/music/exploration_resolution.ogg
-      - type: sparse
-        path: audio/music/exploration_sparse.ogg
-      - type: tension_build
-        path: audio/music/exploration_tension_build.ogg
-  - name: combat
-    mood: combat
-    base_prompt: ""
-    variations:
-      - type: full
-        path: audio/music/combat_full.ogg
-      - type: ambient
-        path: audio/music/combat_ambient.ogg
-      - type: overture
-        path: audio/music/combat_overture.ogg
-      - type: resolution
-        path: audio/music/combat_resolution.ogg
-      - type: sparse
-        path: audio/music/combat_sparse.ogg
-      - type: tension_build
-        path: audio/music/combat_tension_build.ogg
-  - name: tension
-    mood: tension
-    base_prompt: ""
-    variations:
-      - type: full
-        path: audio/music/tension_full.ogg
-      - type: ambient
-        path: audio/music/tension_ambient.ogg
-      - type: overture
-        path: audio/music/tension_overture.ogg
-      - type: resolution
-        path: audio/music/tension_resolution.ogg
-      - type: sparse
-        path: audio/music/tension_sparse.ogg
-      - type: tension_build
-        path: audio/music/tension_tension_build.ogg
-  - name: rest
-    mood: rest
-    base_prompt: ""
-    variations:
-      - type: full
-        path: audio/music/rest_full.ogg
-      - type: ambient
-        path: audio/music/rest_ambient.ogg
-      - type: overture
-        path: audio/music/rest_overture.ogg
-      - type: resolution
-        path: audio/music/rest_resolution.ogg
-      - type: sparse
-        path: audio/music/rest_sparse.ogg
-      - type: tension_build
-        path: audio/music/rest_tension_build.ogg
-  - name: chase
-    mood: chase
-    base_prompt: ""
-    variations:
-      - type: full
-        path: audio/music/chase_full.ogg
-      - type: ambient
-        path: audio/music/chase_ambient.ogg
-      - type: overture
-        path: audio/music/chase_overture.ogg
-      - type: resolution
-        path: audio/music/chase_resolution.ogg
-      - type: sparse
-        path: audio/music/chase_sparse.ogg
-      - type: tension_build
-        path: audio/music/chase_tension_build.ogg
-  - name: intrigue
-    mood: intrigue
-    base_prompt: ""
-    variations:
-      - type: full
-        path: audio/music/intrigue_full.ogg
-      - type: ambient
-        path: audio/music/intrigue_ambient.ogg
-      - type: overture
-        path: audio/music/intrigue_overture.ogg
-      - type: resolution
-        path: audio/music/intrigue_resolution.ogg
-      - type: sparse
-        path: audio/music/intrigue_sparse.ogg
-      - type: tension_build
-        path: audio/music/intrigue_tension_build.ogg
-  - name: speakeasy
-    mood: speakeasy
-    base_prompt: ""
-    variations:
-      - type: full
-        path: audio/music/speakeasy_full.ogg
-      - type: ambient
-        path: audio/music/speakeasy_ambient.ogg
-      - type: overture
-        path: audio/music/speakeasy_overture.ogg
-      - type: resolution
-        path: audio/music/speakeasy_resolution.ogg
-      - type: sparse
-        path: audio/music/speakeasy_sparse.ogg
-      - type: tension_build
-        path: audio/music/speakeasy_tension_build.ogg
