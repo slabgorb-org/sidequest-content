@@ -37,6 +37,60 @@
         jungian_hint: magician
   allows_freeform: false
 
+- id: the_trade
+  title: "What You Did Before"
+  narration: |
+    Brecca sets the quill down and looks at you like she's pricing rope.
+    "You didn't come from nowhere," she says. "Something put a set of
+    hands on you before the dungeon did. What did those hands do?"
+
+    She taps the ledger. The ledger has a column for this.
+  loading_text: "Brecca makes a note in the margin."
+  choices:
+    - label: "Worked the winch end of something"
+      description: "Mine shaft, well, or siege engine. You know load, and you know what happens when the load shifts."
+      mechanical_effects:
+        background: Rope-Puller
+        focus_id: load-bearer
+        skill_grants:
+          Exert: 0
+    - label: "Pulled teeth and set bones"
+      description: "Hedge barber, wound-closer, the person the village sent for when there was no one better. You learned medicine from results."
+      mechanical_effects:
+        background: Hedge-Barber
+        focus_id: dungeon-surgeon
+        skill_grants:
+          Heal: 0
+    - label: "Worked a crowd before working a dungeon"
+      description: "Three seasons picking pockets at market fairs. What you actually learned was not being noticed."
+      mechanical_effects:
+        background: Cutpurse-Alumni
+        focus_id: crowd-mover
+        skill_grants:
+          Sneak: 0
+    - label: "Left the temple before ordination"
+      description: "You know the prayers and the herb-lore and which of the congregation skim the plate. The reasons for leaving vary by telling."
+      mechanical_effects:
+        background: Failed-Cleric
+        focus_id: quick-tongue
+        skill_grants:
+          Pray: 0
+    - label: "Walked away from a guild apprenticeship"
+      description: "Long enough to learn the craft, short enough to avoid the fees. You know how things are built, which means you know how they come apart."
+      mechanical_effects:
+        background: Guild-Dropout
+        focus_id: door-reader
+        skill_grants:
+          Craft: 0
+    - label: "Carried a spear on a road nobody cared about"
+      description: "Three seasons as a roadwarden, watching for bandits who mostly didn't come. What you learned was terrain and the third watch."
+      mechanical_effects:
+        background: Roadwarden-Washout
+        focus_id: torch-discipline
+        skill_grants:
+          Survive: 0
+  allows_freeform: false
+
 - id: the_story
   title: "For The Tally"
   narration: |

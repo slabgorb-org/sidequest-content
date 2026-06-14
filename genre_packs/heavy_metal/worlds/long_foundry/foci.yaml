@@ -1,0 +1,136 @@
+# The Long Foundry — WWN Foci, world tier (SRD §1.5)
+#
+# Five foci matching the five Long Foundry backgrounds. Referenced as
+# focus_id values in the char_creation.yaml `origins` scene (wired below).
+# Replaces genre-tier foci for all long_foundry sessions.
+#
+# Register: guild thaumaturgy as labor, the feeding cults' arithmetic,
+# covenant-debt in the body, the stratum underneath the city.
+# Skill names must be in heavy_metal/skills.yaml.
+
+- id: ledger-walker
+  display_name: Ledger Walker
+  description: >-
+    You were raised knowing what your family owes and to whom — not as
+    metaphor but as fact, with specific numbers and specific creditors.
+    You have developed the ability to read the obligations that bind other
+    people, which is both a professional skill and an uncomfortable one.
+  levels:
+    - skills:
+        Know: 1
+      abilities:
+        - name: Debt Arithmetic
+          genre_description: >-
+            You can look at a person and read the weight of what they owe —
+            not the specifics of a signed covenant, but whether someone
+            is carrying more than they can service, and in roughly which
+            direction the creditor lies.
+          mechanical_effect: >-
+            Once per scene, when interacting with a person for the first
+            time, you may make a Know check (difficulty 10) to determine
+            whether they are currently bound by an active covenant or
+            significant obligation, and whether the terms are being honored.
+            You do not learn the creditor's name or the debt's specifics.
+          involuntary: false
+
+- id: forge-trained
+  display_name: Forge-Trained
+  description: >-
+    The Coil and Brand's guild training is specific about where the scars
+    go. Thaumaturgy in the Long Foundry is a trade — licensed, scheduled,
+    with rates set monthly — and the practitioners who survive long careers
+    learn to work their craft with a professional economy that pure-study
+    mages rarely develop.
+  levels:
+    - skills:
+        Craft: 1
+      abilities:
+        - name: Rate-Work
+          genre_description: >-
+            Guild-trained workers don't make flourishes. They hit the rate
+            that pays and don't spend a margin they don't have. You have
+            internalized this as a working philosophy.
+          mechanical_effect: >-
+            When using Craft to repair, construct, or modify an object, you
+            may work twice as fast as normal by focusing on essentials.
+            Once per session, a Craft check that would have failed instead
+            produces a partial result — the work holds, but degrades after
+            one scene unless properly finished.
+          involuntary: false
+
+- id: compact-body
+  display_name: Compact Body
+  description: >-
+    The Orvinnic labor-kin households carry their covenant in the
+    physiology — built for sustained work in tight spaces, trained from
+    childhood to carry load over long shifts. The compact is in the
+    bones now; no one can read it out of you.
+  levels:
+    - skills:
+        Exert: 1
+      abilities:
+        - name: Compact Endurance
+          genre_description: >-
+            You were built for the forge-floor shift — sustained work,
+            poor ventilation, heavy load, and no rest until the quota
+            is met. The city's demands are rarely harder than what the
+            guild quarter produced on a standard week.
+          mechanical_effect: >-
+            You may ignore the first penalty from fatigue or encumbrance
+            each scene. When resting, you recover from exhaustion-based
+            penalties in half the usual time (one hour instead of a
+            full rest, one full rest instead of a week).
+          involuntary: false
+
+- id: cult-timing
+  display_name: Cult Timing
+  description: >-
+    You were raised in the feeding cults' precise observance, where every
+    scheduled offering was also a payment in a formal account. You know
+    when the feedings are, what they cost, and — more usefully — when the
+    cult temples are not paying attention to anything other than their
+    own arithmetic.
+  levels:
+    - skills:
+        Pray: 1
+      abilities:
+        - name: Observance Schedule
+          genre_description: >-
+            You know the feeding cycle the way other people know the
+            market calendar. The temples are not subtle about when they
+            are occupied with their own business.
+          mechanical_effect: >-
+            Once per session, you may declare that a religious institution,
+            feeding cult, or ritual organization is currently occupied
+            with a scheduled observance and therefore not directing
+            attention outward. This window lasts one scene. You may not
+            use this ability the same session you have already interacted
+            with that institution.
+          involuntary: false
+
+- id: stratum-sense
+  display_name: Stratum Sense
+  description: >-
+    You grew up with one foot in the older layer — the residue economy
+    that underlies the Long Foundry's success — and you can feel the
+    difference between a built surface and a preserved one. The eastern
+    dig unsettles you the way certain other sites have unsettled you,
+    and you have learned to trust that feeling.
+  levels:
+    - skills:
+        Know: 0
+        Notice: 0
+      abilities:
+        - name: Layer Reading
+          genre_description: >-
+            You can tell when a floor, a wall, or a corridor is from a
+            different age than the structure around it. Older layers have
+            a quality you register before you understand it.
+          mechanical_effect: >-
+            When moving through a built environment, you automatically
+            sense when you have crossed from a current-age structure into
+            one from an earlier stratum. On a successful Notice check
+            (difficulty 10), you can identify roughly how many strata
+            deep the older construction is, and whether it appears to
+            have been sealed intentionally.
+          involuntary: false

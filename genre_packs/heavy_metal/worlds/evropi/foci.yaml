@@ -1,0 +1,240 @@
+# Evrópí — WWN Foci, world tier (SRD §1.5)
+#
+# Foci matched to Evrópí's nine cultural backgrounds. These will be
+# referenced as focus_id values in the char_creation.yaml `origins` scene
+# (wired via Step 4). Replacing genre-tier foci entirely for evropi sessions.
+#
+# Pack register: pacts, debts, the Wazdia ledger, the cost of survival in
+# a continent that is quietly counting down. Foci reflect what Evrópí's
+# specific cultures press into their people.
+#
+# Skill names must be in heavy_metal/skills.yaml.
+
+- id: settlement-watcher
+  display_name: Settlement Watcher
+  description: >-
+    Growing up in the Zkęd settlements means growing up watched, which means
+    learning to watch back. You know when the Wazdia has someone in the market,
+    who is informing on the block, and which doorway gives you the best
+    sight-line on both exits of the lower hall.
+  levels:
+    - skills:
+        Notice: 1
+      abilities:
+        - name: Ledger Awareness
+          genre_description: >-
+            You have spent your life being filed and categorized by the Wazdia,
+            and you have developed an instinct for who in a room is being
+            careful and why.
+          mechanical_effect: >-
+            Once per scene, you may make a Notice check (difficulty 10) to
+            identify one person in your immediate vicinity who is watching
+            someone else, following instructions, or performing a cover role.
+            You do not learn their target or their handler — only that they
+            are performing one.
+          involuntary: false
+
+- id: steppe-reader
+  display_name: Steppe Reader
+  description: >-
+    Klas steppe childhood means reading weather, animal behavior, and the
+    political balance of a traveling horde before you can read a letter.
+    You understand the logic of large groups in motion — their pressure
+    points, their rest needs, their triggers — and you can apply that
+    understanding to groups that are not on horseback.
+  levels:
+    - skills:
+        Lead: 1
+      abilities:
+        - name: Herd Sense
+          genre_description: >-
+            The Aldkin read a herd's mood from a quarter-mile and act
+            before the mood becomes a stampede. You do the same with
+            people.
+          mechanical_effect: >-
+            Once per session, before a social scene turns violent or a
+            crowd turns hostile, you may make a Lead check (difficulty 10)
+            to identify the single person most likely to tip the balance
+            and the one action that would stabilize or inflame them. Success
+            gives you the information; the choice of what to do with it
+            remains yours.
+          involuntary: false
+
+- id: marsh-walker
+  display_name: Marsh Walker
+  description: >-
+    You survived a childhood in the marshes — the salt reaches or the
+    deeper swamps — which means you know how to move through terrain
+    that wants to stop you, without leaving a trail that can be followed.
+    The Zkęd have been trying to track your people for three hundred years
+    with mixed results.
+  levels:
+    - skills:
+        Sneak: 1
+      abilities:
+        - name: No Path Left
+          genre_description: >-
+            You grew up learning to leave no readable trace in mud, reed
+            beds, and shallow water, because leaving one meant being taken.
+            The principle extends to other surfaces.
+          mechanical_effect: >-
+            When moving through difficult terrain, you leave no tracks unless
+            you choose to. In normal terrain, attempts to track you have
+            a +2 difficulty. Once per scene, you may disappear into cover
+            that would normally be insufficient — a doorway, a market crowd,
+            a shadow — if you move before you are seen.
+          involuntary: false
+
+- id: exile-cautiousness
+  display_name: Exile Cautiousness
+  description: >-
+    A Mistos in exile learns to read a room the way a trapped animal reads
+    a snare — for the trigger, the mechanism, the one weak point. The
+    General's standing instruction about Mistos who leave is not a rumor.
+    You are careful because careful people are alive.
+  levels:
+    - skills:
+        Notice: 0
+        Sneak: 0
+      abilities:
+        - name: Exit Catalog
+          genre_description: >-
+            The first thing you do when entering any room is identify every
+            way out of it. The second thing is identify who would notice
+            you using each one.
+          mechanical_effect: >-
+            When you enter any enclosed space, you may make a Notice check
+            (no roll required — automatic) to identify all exits, including
+            non-standard ones (windows, trapdoors, roof access). If combat
+            begins, you may always move toward an exit as part of your
+            first action without triggering an attack of opportunity.
+          involuntary: false
+
+- id: book-precision
+  display_name: Book Precision
+  description: >-
+    Ten thousand pages, copied once, no errors permitted. The Vaermm
+    coming-of-age rite produced in you a precision of attention that
+    exceeds what most people manage deliberately. You notice discrepancies,
+    inconsistencies, and small errors because your whole formation was
+    about catching them.
+  levels:
+    - skills:
+        Know: 1
+      abilities:
+        - name: Margin Note
+          genre_description: >-
+            You see what is wrong with a document, a story, or a set of
+            facts the way a copyist sees a wrong letter: immediately,
+            involuntarily, and with mild distress.
+          mechanical_effect: >-
+            Once per scene, when presented with written or spoken
+            information, you may make a Know check (difficulty 10) to
+            identify one internal inconsistency, one deliberate omission,
+            or one detail that contradicts something you already know.
+            The narrator tells you the inconsistency exists — not its
+            source or meaning.
+          involuntary: false
+
+- id: sea-debt
+  display_name: Sea Debt
+  description: >-
+    Elvish sea-peoples accumulate obligations the way ships accumulate
+    barnacles — slowly, invisibly, until the hull is encrusted and the
+    speed is gone. You know how to read a debtor, how to call a favor,
+    and how to negotiate across a feud that neither side remembers
+    the cause of.
+  levels:
+    - skills:
+        Trade: 1
+      abilities:
+        - name: Cross-Feud Terms
+          genre_description: >-
+            Jambiendo and Bladtrablo maintain a feud older than memory,
+            which means they have also developed exquisite protocols for
+            transacting business across it. You learned those protocols
+            and can apply them to other entrenched hostilities.
+          mechanical_effect: >-
+            Once per session, you may broker a temporary arrangement
+            between two parties who are actively hostile to each other —
+            a trade, an exchange, a single act of mutual non-interference
+            — without either party losing face. Both sides understand
+            the arrangement expires; neither side is obligated to renew.
+          involuntary: false
+
+- id: dead-tongue
+  display_name: Dead Tongue
+  description: >-
+    You read Tismenni — the written language of a drowned empire twelve
+    thousand years dead — well enough to get into trouble in libraries.
+    The trouble is usually worth it. Dead languages are archives of the
+    things the living decided not to preserve any other way.
+  levels:
+    - skills:
+        Know: 1
+      abilities:
+        - name: Strata Reading
+          genre_description: >-
+            You can read the layered record of a ruin — what it was built
+            for, what it was repurposed for, what happened at the end —
+            the way a Tismenni scholar would read a document, if any
+            Tismenni scholars were still alive.
+          mechanical_effect: >-
+            When examining a ruin, ancient text, or artifact of non-current
+            origin, you may make a Know check (difficulty 10) to determine
+            one fact about the object's original creators — their purpose,
+            their method, or their relationship to whatever destroyed them.
+          involuntary: false
+
+- id: infernal-inheritance
+  display_name: Infernal Inheritance
+  description: >-
+    The Sest pacts left their mark in the bloodline, and in you it runs
+    close to the surface — a heat behind the eyes, a sensitivity to the
+    uncanny that is less a gift than a consequence. The Mistos would call
+    it contamination. You call it what it is: paying for what your
+    ancestors bought.
+  levels:
+    - skills:
+        Magic: 0
+      abilities:
+        - name: Ember Sense
+          genre_description: >-
+            Where pacts were struck, the Sest-Marked can feel the warmth
+            of the original flame — not warmth as heat, but warmth as
+            recognition. You know when something has been bargained over,
+            whether the bargain is still active, and approximately
+            how hot the terms were.
+          mechanical_effect: >-
+            Once per scene, you may make a Magic check (difficulty 10)
+            to sense active pacts, infernal covenants, or ongoing
+            bargains within thirty feet. Success tells you the approximate
+            age of the binding and whether the terms are currently being
+            honored. Failure has no cost.
+          involuntary: false
+
+- id: unlisted-people
+  display_name: Unlisted People
+  description: >-
+    You are not from any of the continent's standing peoples, which means
+    the world has consistently underestimated you — your capability, your
+    reach, your patience. The Wazdia files you under a category that does
+    not quite fit. You have made use of the gap.
+  levels:
+    - skills:
+        Connect: 0
+        Survive: 0
+      abilities:
+        - name: Outside the Ledger
+          genre_description: >-
+            The Wazdia's book has you in it now, but for most of your life
+            you did not exist in any record anyone consulted. That invisibility
+            has uses.
+          mechanical_effect: >-
+            When someone investigates your past, they find only what was
+            recorded at registration — the informer's entry in the Gabra's
+            book. Prior history requires a significant resource expenditure
+            to uncover and even then returns only partial information.
+            Once per session, you may invoke your unlisted status to be
+            overlooked by a search, a bounty notice, or a routine checkpoint.
+          involuntary: false

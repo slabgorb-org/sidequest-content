@@ -1,0 +1,157 @@
+# Caverns & Claudes — WWN Foci (SRD §1.5)
+#
+# Feat-like talents; chargen grants level 1. WWN foci have 1-2 levels.
+# Pack tone: functional, unglamorous names for unglamorous talents.
+# A veteran who has survived the deep doesn't call it "Battle Fury" —
+# they call it "learning to hit before the other person does."
+#
+# Each level: skills (name -> 0 for trained-at-0, 1 for level-1) +
+#             abilities (name/genre_description/mechanical_effect/involuntary).
+# Skill names must be in skills.yaml.
+
+- id: torch-discipline
+  display_name: Torch Discipline
+  description: >-
+    You have learned, through painful repetition, to budget light the way
+    other people budget food. You move through a dungeon in a state of
+    constant low-level vigilance about the status of your illumination,
+    which means you almost never get caught in the dark by surprise.
+  levels:
+    - skills:
+        Notice: 1
+      abilities:
+        - name: Light Economy
+          genre_description: >-
+            In seven delves you have never been caught with an empty torch
+            pouch, which is its own kind of skill. You track your light
+            without conscious thought, and the flicker of a guttering torch
+            gives you a few extra seconds while everyone else panics.
+          mechanical_effect: >-
+            You always know exactly how many torches remain and may extend
+            one torch by one additional scene per session by economizing
+            the burn. Once per session, when the light source dies
+            unexpectedly, you may act for one round in full darkness as
+            if still illuminated (you anticipated it).
+          involuntary: false
+
+- id: door-reader
+  display_name: Door Reader
+  description: >-
+    You have opened enough wrong doors — and the right ones in the wrong way —
+    to have developed a professional respect for the thing. You listen, you look
+    at the hinges and the sweep, you check the temperature of the handle.
+    The dungeon punishes the incautious; you are not incautious about doors.
+  levels:
+    - skills:
+        Notice: 0
+        Know: 0
+      abilities:
+        - name: Read the Swing
+          genre_description: >-
+            You can usually tell, before you open a door, roughly what is on
+            the other side — or at least whether someone is actively standing
+            in front of it. This is the accumulated result of many close calls
+            and careful listening.
+          mechanical_effect: >-
+            Before opening a door, you may spend one minute examining it.
+            On a successful Notice check, you learn one of the following
+            (your choice): whether anyone stands within five feet on the
+            far side, whether the door is trapped, or the general size
+            of the space beyond.
+          involuntary: false
+
+- id: dungeon-surgeon
+  display_name: Dungeon Surgeon
+  description: >-
+    You are not a healer — healers work in clean rooms with proper instruments.
+    You are someone who has learned to close wounds with what is on hand, in
+    the dark, while being shot at. The distinction matters less to the person
+    bleeding than to everyone else.
+  levels:
+    - skills:
+        Heal: 1
+      abilities:
+        - name: Field Closure
+          genre_description: >-
+            You have learned that in the dungeon, speed matters more than
+            technique. You can stop a bleed, splint a fracture, or pull out
+            an embedded arrowhead without the patient dying on the way to
+            the nearest town.
+          mechanical_effect: >-
+            When you provide first aid, you may do so in one round instead
+            of the usual ten minutes, and the result is identical to the
+            standard outcome. Once per scene, you may apply first aid to
+            yourself.
+          involuntary: false
+
+- id: load-bearer
+  display_name: Load Bearer
+  description: >-
+    You have spent your working life carrying things — goods, stone, water,
+    lumber. The difference between you and someone who merely lifts a lot
+    is that you understand weight distribution and pacing, which means you
+    can carry more, further, without the injury that ends other people's careers.
+  levels:
+    - skills:
+        Exert: 1
+      abilities:
+        - name: Efficient Carry
+          genre_description: >-
+            You pack the way a professional packs — everything balanced,
+            nothing wasted, everything reachable. Your kit never seems as
+            heavy as it is.
+          mechanical_effect: >-
+            You may carry one additional encumbrance item without penalty.
+            When you would suffer the encumbrance movement penalty, you may
+            make an Exert check (difficulty 10) to negate it for that turn.
+          involuntary: false
+
+- id: crowd-mover
+  display_name: Crowd Mover
+  description: >-
+    You have moved through places where you were not wanted — market crowds,
+    hostile inns, occupied towns — and developed the talent for appearing to
+    belong, not by disguise, but by attitude. A guard-room full of cultists
+    reads a confident walk the same way a tax-checkpoint did; you learned to
+    give them nothing to stop.
+  levels:
+    - skills:
+        Sneak: 1
+      abilities:
+        - name: Plausible Presence
+          genre_description: >-
+            You move through a space without declaring yourself. Not invisible —
+            simply unremarkable, not quite where people expect a threat to be.
+            In the dungeon, this is worth more than armor.
+          mechanical_effect: >-
+            Once per scene, when moving through an area with at least one
+            inattentive enemy, you may attempt to pass without triggering
+            a reaction roll, substituting a Sneak check (difficulty 12)
+            for the usual alert check. Failure does not guarantee combat —
+            only that you are noticed.
+          involuntary: false
+
+- id: quick-tongue
+  display_name: Quick Tongue
+  description: >-
+    You have talked your way past a creditor's enforcers, an angry
+    landlord, and at least one mob with a rope already thrown — every
+    time because the alternative was a fight you would lose. You learned
+    to negotiate, to stall, to deflect, never from safety and always
+    from the wrong end of the odds.
+  levels:
+    - skills:
+        Convince: 1
+      abilities:
+        - name: Stall for Time
+          genre_description: >-
+            You can keep a conversation going when everything in the other
+            person wants to end it. In the dungeon, this is occasionally
+            the difference between a fight and a very tense non-fight.
+          mechanical_effect: >-
+            Once per session, when facing a social confrontation that is
+            about to become a physical one, you may make a Convince check
+            (difficulty 10) to delay the transition by one full scene,
+            during which both sides continue talking. You do not prevent
+            the fight — you move it.
+          involuntary: false
