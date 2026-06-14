@@ -1,3 +1,20 @@
+# barsoom (heavy_metal) world inventory — post-114-4 dedupe against the WWN baseline
+#
+# ADR-145 D3: the heavy_metal genre tier now ships the verbatim WWN SRD equipment
+# baseline (genre_packs/heavy_metal/inventory.yaml). This world file carries ONLY:
+#   * RESKINS of baseline items — same baseline id, presentation-only override
+#     (name/description/lore/flavor tags). NO mechanical fields are restated; the
+#     mechanical envelope (damage/Shock/AC/cost/encumbrance) inherits+locks from
+#     the baseline (the union merge raises VerbatimFieldLockError on any restated
+#     verbatim mechanic). Barsoom's old hand-tuned off-baseline stats (e.g. an
+#     AC-15 "chain shirt", an AC-15 longsword) are intentionally DROPPED — they
+#     were the ADR-143 forbidden re-tune; the reskin inherits the SRD's numbers.
+#   * BESPOKE world items — signature gear with no baseline match (pacts, sigils,
+#     cult reagents, the ledger knife, the fine rapier), provenance mode=bespoke.
+#
+# currency / starting_equipment / starting_gold stay world-owned (world-replaces-
+# genre). starting_equipment is repointed to the baseline ids the reskins inherit.
+
 currency:
   name: mark
   denominations:
@@ -6,31 +23,68 @@ currency:
     - mark
 
 item_catalog:
-  - id: dagger_iron
-    name: Iron Dagger
-    description: A plain iron dagger of honest guild make.
-    category: weapon
-    value: 10
-    weight: 0.5
-    rarity: common
-    power_level: 1
-    tags: [melee, blade, one-handed]
-    damage: {dice: "1d4", bonus: 0}
-    lore: Carried by everyone who has ever had reason to need one carried.
-    narrative_weight: 0.1
 
-  - id: sword_iron
+  # ──────────────────────────────────────────────────────────────
+  # RESKINS of WWN baseline items (presentation-only; mechanics inherit+lock)
+  # ──────────────────────────────────────────────────────────────
+
+  - id: wwn_sword_long
+    category: weapon
     name: Iron Longsword
     description: A sturdy iron longsword, guild-marked at the ricasso.
-    category: weapon
-    value: 30
-    weight: 2.0
+    lore: The standard blade of every house-guard in the current age. On Barsoom the long-sword is every fighting hand's weapon, whatever else they practise.
     rarity: common
-    power_level: 2
-    tags: [melee, blade, one-handed]
-    damage: {dice: "1d8", bonus: 0, shock: 2, shock_ac: 15}
-    lore: The standard blade of every house-guard in the current age.
+    tags: [melee, blade, one-handed, guild_marked]
     narrative_weight: 0.2
+
+  - id: wwn_staff
+    category: weapon
+    name: Pilgrim's Staff
+    description: A weathered walking staff with a Path-Eater route-token knotted into the grip.
+    lore: Cut from a specific kind of wood at a specific waystation, and consecrated in the traditional manner of the Path-Eater cult.
+    rarity: common
+    tags: [melee, blunt, two-handed, focus, pilgrim]
+    narrative_weight: 0.3
+
+  - id: wwn_dagger
+    category: weapon
+    name: Iron Dagger
+    description: A plain iron dagger of honest guild make.
+    lore: Carried by everyone who has ever had reason to need one carried.
+    rarity: common
+    tags: [melee, blade, one-handed]
+    narrative_weight: 0.1
+
+  - id: wwn_linothorax
+    category: armor
+    name: Travel Leathers
+    description: A well-kept set of leathers patched at the knees and elbows.
+    lore: The working wardrobe of anyone who moves between settlements on their own feet.
+    rarity: common
+    tags: [light-armor, torso]
+    narrative_weight: 0.1
+
+  - id: wwn_cuirass_and_greaves
+    category: armor
+    name: Chain Shirt
+    description: A shirt of interlocking iron rings, noisy but effective.
+    lore: Standard kit for the house-guards of the declining Perault lines.
+    rarity: uncommon
+    tags: [medium-armor, torso]
+    narrative_weight: 0.2
+
+  - id: wwn_pieced_armor
+    category: armor
+    name: Liturgical Surcoat
+    description: A surcoat in the precise colors of a specific feeding cult, with the rite-sigils embroidered at the hem.
+    lore: Worn by temple knights and senior oath-sworn. Each cult's colors are specific and recognized.
+    rarity: uncommon
+    tags: [light-armor, torso, liturgical]
+    narrative_weight: 0.4
+
+  # ──────────────────────────────────────────────────────────────
+  # BESPOKE world items — signature gear, no WWN baseline match
+  # ──────────────────────────────────────────────────────────────
 
   - id: rapier_fine
     name: Fine Rapier
@@ -44,157 +98,8 @@ item_catalog:
     damage: {dice: "1d8", bonus: 0, shock: 1, shock_ac: 15}
     lore: Favoured by those who attend formal challenges in the courts of the declining houses.
     narrative_weight: 0.4
-
-  - id: staff_pilgrim
-    name: Pilgrim's Staff
-    description: A weathered walking staff with a Path-Eater route-token knotted into the grip.
-    category: weapon
-    value: 8
-    weight: 1.4
-    rarity: common
-    power_level: 1
-    tags: [melee, blunt, two-handed, focus, pilgrim]
-    damage: {dice: "1d6", bonus: 0, shock: 1, shock_ac: 13}
-    lore: Cut from a specific kind of wood at a specific waystation, and consecrated in the traditional manner of the Path-Eater cult.
-    narrative_weight: 0.3
-
-  - id: leather_armor_worn
-    name: Travel Leathers
-    description: A well-kept set of leathers patched at the knees and elbows.
-    category: armor
-    value: 18
-    weight: 5.0
-    rarity: common
-    power_level: 1
-    tags: [light-armor, torso]
-    lore: The working wardrobe of anyone who moves between settlements on their own feet.
-    narrative_weight: 0.1
-    armor_class: 13
-    mitigation: 1
-
-  - id: chain_shirt
-    name: Chain Shirt
-    description: A shirt of interlocking iron rings, noisy but effective.
-    category: armor
-    value: 60
-    weight: 10.0
-    rarity: uncommon
-    power_level: 3
-    tags: [medium-armor, torso]
-    lore: Standard kit for the house-guards of the declining Perault lines.
-    narrative_weight: 0.2
-    armor_class: 15
-    mitigation: 1
-
-  - id: liturgical_surcoat
-    name: Liturgical Surcoat
-    description: A surcoat in the precise colors of a specific feeding cult, with the rite-sigils embroidered at the hem.
-    category: armor
-    value: 90
-    weight: 2.5
-    rarity: uncommon
-    power_level: 2
-    tags: [light-armor, torso, liturgical]
-    lore: Worn by temple knights and senior oath-sworn. Each cult's colors are specific and recognized.
-    narrative_weight: 0.4
-    armor_class: 14
-    mitigation: 1
-
-  - id: healing_poultice
-    name: Herbalist's Poultice
-    description: A cloth bundle of dried herbs and ground reagent that speeds natural healing.
-    category: consumable
-    value: 10
-    weight: 0.2
-    rarity: common
-    power_level: 1
-    tags: [healing, herbal]
-    lore: Prepared by the herbalists of any Kragmoor quarter. Quality varies by the district's reputation.
-    narrative_weight: 0.1
-
-  - id: residue_salts
-    name: Reagent Salts
-    description: A small pouch of the precise residue-salts used as reagents in common thaumaturgic workings.
-    category: consumable
-    value: 15
-    weight: 0.3
-    rarity: common
-    power_level: 1
-    tags: [reagent, guild]
-    lore: Sold at the guild markets in measured doses. A workshop consumes several doses in a day.
-    narrative_weight: 0.1
-
-  - id: feeding_incense
-    name: Cult Incense
-    description: A bundle of thin sticks of incense blended for a specific cult's rite.
-    category: consumable
-    value: 12
-    weight: 0.1
-    rarity: common
-    power_level: 1
-    tags: [ritual, cult]
-    lore: Available at the temple's offering-yard. The scent is distinct enough that the informed can tell which cult it serves.
-    narrative_weight: 0.2
-
-  - id: tally_book
-    name: Scribe's Tally Book
-    description: A small leather-bound ledger with pre-ruled columns for recording offerings, debits, and small workings.
-    category: focus
-    value: 25
-    weight: 0.4
-    rarity: common
-    power_level: 1
-    tags: [focus, clerical, scribe]
-    lore: The working tool of scribes, clerks, and feed-keepers. Every entry is permanent.
-    narrative_weight: 0.3
-
-  - id: pact_token
-    name: Pact Token
-    description: A small worked metal or bone token bearing the sigil of a patron, worn where only the informed would see it.
-    category: focus
-    value: 50
-    weight: 0.1
-    rarity: uncommon
-    power_level: 2
-    tags: [focus, warlock, pact]
-    lore: Given to warlocks at the formal signing of the agreement. It is how the patron is reached. It is also how the patron reaches back.
-    narrative_weight: 0.5
-
-  - id: house_signet
-    name: House Signet
-    description: A ring bearing the sigil of one of the Perault houses, whose authority depends on whether that house's line still holds.
-    category: focus
-    value: 80
-    weight: 0.1
-    rarity: uncommon
-    power_level: 2
-    tags: [focus, noble, sigil]
-    lore: Inherited from an elder of the line. Signs documents, opens certain doors, and marks the wearer as someone with an inheritance to answer to.
-    narrative_weight: 0.4
-
-  - id: kin_charm
-    name: Kin Charm
-    description: A small bound charm of knotted cord, carved wood, and a single stone chosen from a specific place.
-    category: focus
-    value: 20
-    weight: 0.1
-    rarity: common
-    power_level: 1
-    tags: [focus, covenant, kin]
-    lore: Carried by Orvinnic and some sympathetic others. The charm acknowledges a covenant's current terms and is visible to those who understand its making.
-    narrative_weight: 0.3
-
-  - id: guild_mark
-    name: Guild-Mark Token
-    description: A stamped token of a specific Kragmoor thaumaturgy guild, certifying the bearer's qualification.
-    category: focus
-    value: 35
-    weight: 0.1
-    rarity: common
-    power_level: 1
-    tags: [focus, guild, sorcerer]
-    lore: Issued at the completion of apprenticeship. Required to practice thaumaturgy within the quarters of any properly guilded city.
-    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
 
   - id: ledger_knife
     name: Scribe's Ledger Knife
@@ -208,46 +113,162 @@ item_catalog:
     damage: {dice: "1d4", bonus: 0}
     lore: Strictly speaking a scribal tool. Carried openly by ledger-thieves who are past pretending otherwise.
     narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: healing_poultice
+    name: Herbalist's Poultice
+    description: A cloth bundle of dried herbs and ground reagent that speeds natural healing.
+    category: consumable
+    value: 10
+    weight: 0.2
+    rarity: common
+    power_level: 1
+    tags: [healing, herbal]
+    lore: Prepared by the herbalists of any Kragmoor quarter. Quality varies by the district's reputation.
+    narrative_weight: 0.1
+    provenance:
+      mode: bespoke
+
+  - id: residue_salts
+    name: Reagent Salts
+    description: A small pouch of the precise residue-salts used as reagents in common thaumaturgic workings.
+    category: consumable
+    value: 15
+    weight: 0.3
+    rarity: common
+    power_level: 1
+    tags: [reagent, guild]
+    lore: Sold at the guild markets in measured doses. A workshop consumes several doses in a day.
+    narrative_weight: 0.1
+    provenance:
+      mode: bespoke
+
+  - id: feeding_incense
+    name: Cult Incense
+    description: A bundle of thin sticks of incense blended for a specific cult's rite.
+    category: consumable
+    value: 12
+    weight: 0.1
+    rarity: common
+    power_level: 1
+    tags: [ritual, cult]
+    lore: Available at the temple's offering-yard. The scent is distinct enough that the informed can tell which cult it serves.
+    narrative_weight: 0.2
+    provenance:
+      mode: bespoke
+
+  - id: tally_book
+    name: Scribe's Tally Book
+    description: A small leather-bound ledger with pre-ruled columns for recording offerings, debits, and small workings.
+    category: focus
+    value: 25
+    weight: 0.4
+    rarity: common
+    power_level: 1
+    tags: [focus, clerical, scribe]
+    lore: The working tool of scribes, clerks, and feed-keepers. Every entry is permanent.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: pact_token
+    name: Pact Token
+    description: A small worked metal or bone token bearing the sigil of a patron, worn where only the informed would see it.
+    category: focus
+    value: 50
+    weight: 0.1
+    rarity: uncommon
+    power_level: 2
+    tags: [focus, warlock, pact]
+    lore: Given to warlocks at the formal signing of the agreement. It is how the patron is reached. It is also how the patron reaches back.
+    narrative_weight: 0.5
+    provenance:
+      mode: bespoke
+
+  - id: house_signet
+    name: House Signet
+    description: A ring bearing the sigil of one of the Perault houses, whose authority depends on whether that house's line still holds.
+    category: focus
+    value: 80
+    weight: 0.1
+    rarity: uncommon
+    power_level: 2
+    tags: [focus, noble, sigil]
+    lore: Inherited from an elder of the line. Signs documents, opens certain doors, and marks the wearer as someone with an inheritance to answer to.
+    narrative_weight: 0.4
+    provenance:
+      mode: bespoke
+
+  - id: kin_charm
+    name: Kin Charm
+    description: A small bound charm of knotted cord, carved wood, and a single stone chosen from a specific place.
+    category: focus
+    value: 20
+    weight: 0.1
+    rarity: common
+    power_level: 1
+    tags: [focus, covenant, kin]
+    lore: Carried by Orvinnic and some sympathetic others. The charm acknowledges a covenant's current terms and is visible to those who understand its making.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: guild_mark
+    name: Guild-Mark Token
+    description: A stamped token of a specific Kragmoor thaumaturgy guild, certifying the bearer's qualification.
+    category: focus
+    value: 35
+    weight: 0.1
+    rarity: common
+    power_level: 1
+    tags: [focus, guild, sorcerer]
+    lore: Issued at the completion of apprenticeship. Required to practice thaumaturgy within the quarters of any properly guilded city.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
 
 # Starting kits keyed by class DISPLAY NAME (chargen_loadout does a
-# case-insensitive display-name lookup; item ids must exist in item_catalog
-# above or the seam fails loud). Covers all seven Callings in classes.yaml —
-# the five doom Callings plus the two Barsoom Callings (Mentalist /
-# Super-scientist), which draw from the same genre catalog: on Barsoom the
-# long-sword is every fighting hand's weapon, whatever else they practise.
+# case-insensitive display-name lookup; item ids must exist in the MERGED catalog
+# — genre baseline ∪ this world's items — or the seam fails loud). The weapon/
+# armor ids below are now the WWN baseline ids the reskins inherit (sword_iron →
+# wwn_sword_long, dagger_iron → wwn_dagger, chain_shirt → wwn_cuirass_and_greaves,
+# leather_armor_worn → wwn_linothorax, staff_pilgrim → wwn_staff). Bespoke ids
+# (tally_book, residue_salts, guild_mark, pact_token, feeding_incense,
+# healing_poultice) are unchanged.
 starting_equipment:
   Warrior:
-    - sword_iron
-    - dagger_iron
-    - chain_shirt
+    - wwn_sword_long
+    - wwn_dagger
+    - wwn_cuirass_and_greaves
     - healing_poultice
   Expert:
-    - sword_iron
-    - leather_armor_worn
+    - wwn_sword_long
+    - wwn_linothorax
     - tally_book
     - healing_poultice
   Necromancer:
-    - staff_pilgrim
+    - wwn_staff
     - tally_book
     - residue_salts
     - healing_poultice
   Elementalist:
-    - staff_pilgrim
+    - wwn_staff
     - guild_mark
     - residue_salts
     - healing_poultice
   Pact-born:
-    - sword_iron
+    - wwn_sword_long
     - pact_token
     - feeding_incense
     - healing_poultice
   Mentalist:
-    - sword_iron
-    - dagger_iron
+    - wwn_sword_long
+    - wwn_dagger
     - healing_poultice
   Super-scientist:
-    - sword_iron
-    - dagger_iron
+    - wwn_sword_long
+    - wwn_dagger
     - residue_salts
     - healing_poultice
 
