@@ -1,0 +1,279 @@
+# Seed tropes for spaghetti_western/five_points — world-tier deck (Epic 94:
+# genre is the rulebook only; flavor lives in the world). Short-arc narrative
+# hooks dealt at session start and on lull/engagement draws, expiring after
+# lifespan_turns and lingering as ghosts for later callback (ADR-018, ADR-128).
+# Seeds are baited hooks (ADR-014 diamonds-and-coal) — deliberately vague; the
+# narrator threads an engaged seed into whatever the ward demands.
+#
+# These supersede the genre-tier spaghetti_western/seed_tropes.yaml deck for
+# five_points: the engine reads world-first (websocket_session_handler
+# `_seed_source = worlds.get(slug) or pack`), so without this file five_points
+# drew from an empty deck and the lull engine declined `none_available` on every
+# quiet turn — which left the narrator inventing crowds of NPCs to fill silence.
+#
+# Pitched to the Sixth Ward, autumn 1856 (world.yaml: comedy 0.12, gravity 0.80,
+# outlook 0.30, mythic 0.60, loyalty 0.50 — grim, heavy, bleak, folk-belief
+# present but never confirmed). Register is Leone/Corbucci over Anbinder's
+# de-Asbury scholarship: no clean ethnic war, the gangs are electoral muscle, the
+# law does not save you, and the mud is real. Every seed flies a Banner and hides
+# a Hand (lore.yaml). The supernatural — the bean sí, the marked shawl, the
+# unwaked dead under the fill — is BELIEF, never confirmed, and a settling joist
+# explains it as well as a banshee does. These finer-grain seeds sit BENEATH the
+# macro-tropes (the_fuse_to_the_fourth, the_divided_law, the_fixed_election,
+# the_floor_at_almacks, the_runners_gauntlet) — particulars the ward coughs up
+# between the big beats, any of which the narrator can later tie to a faction's
+# Hand. Period-correct: post-'54 street names (Worth, Baxter, Park), old St.
+# Patrick's on Mott is the live cathedral, the Old Brewery a year-and-a-half
+# demolished and alive only as legend, Castle Garden fenced since '55, Croton
+# water uptown only. Keep it specific — crimping at the docks, swill-milk, the
+# fire-company hydrant, the dead-house, the green-grocery box — never "tough guys
+# in the slum."
+
+- id: five_points_a_berth_too_eager
+  name: A Berth Offered Too Eagerly at the Slip
+  description: >-
+    A boarding-master down at the South Street slips is buying drinks for a
+    sailor who has not asked for them, and a clerk has been seen entering names
+    in a ledger that is not a crew list. Men who take that hospitality have a way
+    of waking up already signed aboard a Liverpool packet, owing the master their
+    advance. The waterfront calls it nothing; the waterfront has a great many
+    words for nothing.
+  flavor_tags: [waterfront, crimping, debt, intrigue]
+  lifespan_turns: 6
+  delivery_hints:
+    - A runner with tar under his nails presses free gin on a stranger by the Burling Slip and will not be refused gracefully
+    - The boarding-master's ledger has a column for men's names beside a column of ship's names, and no column for consent
+    - A widow on Water Street is asking after a lodger three days gone who left his sea-chest but not himself
+  narrative_hint: >-
+    A crimping/shanghai hook beneath a countryman's welcome (SOUL: the Hand under
+    the Banner). Let the kindness be the trap; thread the missing lodger to a
+    debt someone in the ward is collecting, and let the law — divided, paid, or
+    absent — be no help at all if the players reach for it.
+
+- id: five_points_the_hydrant_held
+  name: The Hydrant Held Against the Next Fire
+  description: >-
+    Somebody has chained a butt over the Baxter Street hydrant and posted a boy
+    to watch it, and the engine company two corners up takes that as a declaration.
+    The plug is dry until the brotherhood that owns it says otherwise, and the
+    next blaze in the rookery will be fought over the water before it is fought
+    over the flames. The boy on watch is twelve and proud of the post.
+  flavor_tags: [fire_company, turf, bowery, peril]
+  lifespan_turns: 5
+  delivery_hints:
+    - A wooden butt padlocked over the corner plug, and a soaplocked laddie lounging nearby who dares anyone to touch it
+    - Two rival engine companies eyeing the same hydrant from opposite kerbs, neither yet moving
+    - A tenement laundress complains she cannot draw water for her coppers, and her court is one of dry timber
+  narrative_hint: >-
+    A fire-company turf seed under the Bowery Boys' brotherhood Banner (the Hand
+    is which crew controls the block). Let it stay petty until a real fire calls
+    the bluff; if the players ignore it, let the held hydrant cost a court its
+    roofs the night a lamp tips over.
+
+- id: five_points_the_milk_that_is_not_milk
+  name: The Blue Milk on the Mott Street Round
+  description: >-
+    The milk a Mott Street woman buys for her infant is bluish, thin, and warm
+    from a cellar that smells of distillery mash, not pasture. The distillery
+    swill-cows give it; the dealers chalk it white and the babies of the court
+    keep dying of a summer complaint that does not wait for summer. Nobody who
+    sells it will say where it stables, and the priest has buried four this month.
+  flavor_tags: [tenement, poison, grief, household]
+  lifespan_turns: 7
+  delivery_hints:
+    - A mother holds out a tin of milk gone faintly blue and asks a player, plainly, whether it is fit for the child
+    - The milk-cart's churns are warm to the touch and the man will not say which stable filled them before light
+    - Old St. Patrick's has three small coffins waiting and Father Lynch is short of even the words
+  narrative_hint: >-
+    A swill-milk seed — slow, grinding, no villain to shoot (SOUL: consequences
+    are real and the system, not a man, is the killer). Let it sour the ward's
+    air rather than resolve cleanly; the stable behind it can later prove to feed
+    a faction's purse, but the dead babies stay dead either way.
+
+- id: five_points_a_name_already_keened
+  name: A Name Already Keened Before Its Time
+  description: >-
+    Maggie Doyle, who keens for hire and knows the trade, has been heard at a Cow
+    Bay pump giving the cry for a man who is still walking the ward and laughing
+    about it. She will not say who told her he was marked, only that the shawl
+    knew. Two she keened early this autumn are in the ground; the man she keens
+    for now is buying rounds at the green-grocery and calling it a hag's spite.
+  flavor_tags: [bean_si, omen, folk_belief, peril]
+  lifespan_turns: 7
+  delivery_hints:
+    - A keening heard three courts off where no wake is laid and no woman crying can be found
+    - Maggie Doyle offers to let a player hold the marked-man's shawl, for a consideration, and watch their face
+    - The man being keened for is hale, loud, and certain it means nothing, which the court finds worse than if he feared it
+  narrative_hint: >-
+    A bean-sí omen seed — mythic 0.60, never confirmed (SOUL: belief is real to
+    its carriers; a settling joist explains the wailing as well as a banshee).
+    Let the prophecy hang; if the marked man dies it was the ward's own knives,
+    and if he lives the shawl is a grift — leave the table to decide which.
+
+- id: five_points_the_box_at_the_grocery
+  name: The Wrong Names Counted at the Green-Grocery
+  description: >-
+    A back room behind a Paradise Square green-grocery has a man reading names off
+    a list by candle and a second man ticking them in a ledger, and the names are
+    of people too lately landed to vote and a few too long dead to. A naturalization
+    is being manufactured for an election still weeks off. The grocer sells
+    cabbages out front and asks no questions about the traffic to his back door.
+  flavor_tags: [tammany, election, fraud, intrigue]
+  lifespan_turns: 6
+  delivery_hints:
+    - A green-grocery whose back room sees more men than its cabbages could ever explain
+    - A clerk reading a list of names aloud, some of them belonging to the freshly landed and one or two to the recently buried
+    - A ward heeler offers a player two dollars and a meal to walk a line of new citizens from the courthouse to a poll
+  narrative_hint: >-
+    A repeater/fast-naturalization seed under Tammany's only-friend-the-immigrant
+    Banner (the Hand is the vote-harvest). Thread it toward the_fixed_election if
+    the players pull it; let the fraud be undeniable and the authority to punish
+    it nonexistent — the press might listen, no clean badge will.
+
+- id: five_points_what_came_up_with_the_fill
+  name: What the Cellar Gave Back When It Flooded
+  description: >-
+    A rear-court cellar off Little Water flooded again with the rains and the
+    water came up wrong — not river-stink but something older, and a thing surfaced
+    in the muck that the family that lives there will not name and will not throw
+    back. The ground is filled Collect Pond, marsh and worse, and the old people
+    say the unwaked cholera dead went into pits down there with no priest to spare.
+    The family has stopped sleeping in the back room.
+  flavor_tags: [collect_pond, uncanny, folk_belief, tenement]
+  lifespan_turns: 6
+  delivery_hints:
+    - A flooded cellar whose water smells of marsh-rot and something the tenants cross themselves over
+    - A bundle or a bone fetched up from the fill that the family has set on a shelf and will neither bury nor discard
+    - An old woman insists the court has been built over a plague-pit with no wake sung, and the wailing proves it
+  narrative_hint: >-
+    A buried-dead seed off the_dead_below lore — mythic, never confirmed (SOUL:
+    the methane marsh and the unconsecrated pit are both literally there; the
+    horror needs no ghost). Let the thing stay ambiguous — a drowned dog, a
+    pauper's bone, an omen — and let what the family does about it be the story.
+
+- id: five_points_the_dead_house_misnamed
+  name: A Wrong Name on the Dead-House Slate
+  description: >-
+    The board outside the ward dead-house has a name chalked against a body nobody
+    has come to claim, and a woman at the gate swears the name is wrong — she knew
+    the face and it is not the man the slate says drowned off the pier. Either the
+    keeper miswrote it or somebody wanted a different man recorded dead. The
+    unclaimed go to Potter's Field in a day, name or no name, true or not.
+  flavor_tags: [death, identity, mystery, intrigue]
+  lifespan_turns: 6
+  delivery_hints:
+    - A dead-house slate with a name chalked beside a description that does not match the face on the table
+    - A woman at the gate insisting the drowned man is not who the keeper has written, and being told to move along
+    - The cart for Potter's Field is loading at first light and will not wait on a question of who anyone was
+  narrative_hint: >-
+    A mistaken-or-falsified-death seed (SOUL: a small mechanical fact — a wrong
+    name — that the players can verify and that someone profits by). Let the
+    misnaming later place a living man where he claimed not to be, or bury an
+    inconvenient witness under a stranger's name; the cart's haste is the clock.
+
+- id: five_points_a_pledge_at_the_house_of_industry
+  name: A Child Pledged at the House of Industry Door
+  description: >-
+    A Famine widow has left her boy at the Five Points Mission door for the bread,
+    the schooling, and the cleaner Scripture, and the parish has noticed the child
+    no longer wears his mother's medal. The Mission ladies mean every kindness; the
+    price written nowhere is the rosary left at the door and the Faith scrubbed
+    gentle out of him. The widow cannot feed him and cannot bear what feeding him
+    is costing.
+  flavor_tags: [mission, erasure, faith, grief]
+  lifespan_turns: 7
+  delivery_hints:
+    - A Mission lady, sincere and kind, explains the schooling and the clean room and does not mention the medal taken at the door
+    - A parish woman points out a child who came back from the House of Industry saying his prayers in a different shape
+    - A widow asks a player whether bread bought at the cost of her son's Faith is bread she can take
+  narrative_hint: >-
+    A soft-nativist erasure seed under the Reformers' salvation Banner (the Hand
+    is scrubbing the Catholic out of the saved, per lore.yaml). Both are true —
+    real charity, real colonization. Don't let the players resolve it clean; the
+    aid is needed and the cost is real, and choosing is the whole point.
+
+- id: five_points_old_smokes_shadow
+  name: The Prizefighter's Quiet Errand
+  description: >-
+    John Morrissey — Old Smoke, the coming man at Rynders's elbow — has been seen
+    where the Captain's business does not usually send him, walking a back lane
+    near the Roach parishes with two men and no fanfare. The ward reads a
+    prizefighter's errand the way it reads weather: somebody is about to be leaned
+    on, collected from, or warned, and the only question is who and for whose
+    account.
+  flavor_tags: [tammany, enforcer, intrigue, peril]
+  lifespan_turns: 5
+  delivery_hints:
+    - A broad-shouldered man with a fighter's hands walking a lane he has no green-grocery reason to walk
+    - Two of the Empire Club's sluggers waiting at a corner with the patience of men expecting someone
+    - A shopkeeper who has gone very careful and very quiet since the prizefighter passed his door
+  narrative_hint: >-
+    A machine-enforcer seed under Tammany's friendship Banner (the Hand is the
+    retainer and the debt being collected). Keep Morrissey's errand offstage and
+    legible only by its wake; let the players choose to read it, follow it, or
+    stay out of a prizefighter's road — and let staying out have a cost too.
+
+- id: five_points_the_hot_corn_girls_protector
+  name: The Hot-Corn Girl's New Protector
+  description: >-
+    A girl who sells hot corn on the Bowery kerb of an evening has a new man
+    standing by her basket — older, well-coated, calling himself her protection
+    from the b'hoys who pester her. The ward has seen this arrangement before:
+    the protection becomes the thing she needs protecting from, and the basket's
+    takings stop being hers. She is grateful to him tonight. The court gives it a
+    fortnight.
+  flavor_tags: [street_trade, exploitation, scandal, household]
+  lifespan_turns: 5
+  delivery_hints:
+    - A hot-corn girl singing her cry on the kerb with a well-dressed man planted too close to her basket
+    - An older woman of the court watching the arrangement with the flat look of someone who has seen how it ends
+    - The girl tells a player, with real gratitude, that the gentleman keeps the rough lads off her now
+  narrative_hint: >-
+    A grooming/protection-racket seed at street scale (SOUL: the kindness is the
+    hook, the cost arrives later). Let the danger be slow and deniable; if the
+    players intervene early they take on whatever the protector answers to, and
+    if they wait the fortnight makes the cost plain.
+
+- id: five_points_the_ragpickers_find
+  name: What the Ragpicker Pulled From the Ash
+  description: >-
+    A ragpicker working the Cow Bay ash-heaps has turned up something that is not
+    rag and not bone — a good coat, a sealed paper, a thing too fine to have come
+    honestly to that heap — and has been quietly asking the wrong people what it
+    is worth. Word travels in the back courts faster than the ragpicker walks. By
+    nightfall somebody who knows exactly what it is will come looking for it, and
+    for whoever has been holding it.
+  flavor_tags: [cow_bay, found_evidence, intrigue, peril]
+  lifespan_turns: 6
+  delivery_hints:
+    - A ragpicker with a sack who keeps one item back from the bone-boiler and asks its value in a careful voice
+    - An object too fine for an ash-heap — a sealed letter, a gentleman's coat, a thing with a name worked into it
+    - A stranger asking, door to door and pleasant about it, who has been picking the Cow Bay heaps this week
+  narrative_hint: >-
+    A found-object seed that draws a hand toward the holder (SOUL: the thing
+    means something to someone with power, and possession is now danger). Let the
+    object's worth surface slowly; thread the one coming for it to whatever
+    faction's secret it carries, and let the ragpicker's safety be the cost of
+    the players' curiosity.
+
+- id: five_points_the_oyster_cellars_back_room
+  name: The Lamp Still Lit in the Oyster Cellar
+  description: >-
+    A Baxter Street oyster cellar that shutters at midnight has had a lamp burning
+    in its back room past two o'clock three nights running, and the oysterman says
+    only that it is private. Men go down the stair who do not come up with shells
+    in their hands. Whatever is counted, sworn, or settled down there happens
+    below the street and below the notice of either police force, which suits
+    everyone who uses it.
+  flavor_tags: [oyster_cellar, conspiracy, gossip, intrigue]
+  lifespan_turns: 5
+  delivery_hints:
+    - An oyster cellar dark in front but with lamplight leaking up the back stair well past its closing
+    - Men descending the cellar stair who carry the manner of business, not appetite, and tip the doorman to forget them
+    - The oysterman, asked, says it is a private party and recommends the stew, and means both as a closed door
+  narrative_hint: >-
+    A clandestine-meeting seed — deliberately vague as to whose (SOUL: the Hand
+    meets below the street where the divided law cannot reach). Let the cellar's
+    business be whatever the macro-trope needs when the players pull on it: a
+    repeater muster, a contract over a killing, a truce between banners — bind it
+    late, keep it dark until then.

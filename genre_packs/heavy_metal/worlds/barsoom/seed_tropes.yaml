@@ -1,0 +1,293 @@
+# Seed tropes for heavy_metal/barsoom — world-tier deck (Epic 94: genre is the
+# rulebook only; flavor lives in the world). Short-arc narrative hooks dealt at
+# session start and on engagement draws, expiring after lifespan_turns and
+# lingering as ghosts for later callback (ADR-018, ADR-128). Seeds are baited
+# hooks (ADR-014 diamonds-and-coal) — deliberately vague; the narrator threads
+# an engaged seed into whatever the dying world demands of the swordsman.
+#
+# These supersede the genre-tier heavy_metal/seed_tropes.yaml deck for barsoom:
+# the engine reads world-first (websocket_session_handler `_seed_source =
+# worlds.get(slug) or pack`), so without this file barsoom drew from an empty
+# deck and the lull-escalation engine declined `none_available` on every quiet
+# turn — which left the narrator inventing crowds of NPCs to fill silence
+# (the bug this fixes; oz/gulliver had the identical gap, playtest 2026-06-13).
+#
+# These seeds are the SMALL hooks — the texture between the four big world clocks
+# (tropes.yaml: the Zodanga war, the Iss pilgrimage, the Atmosphere Plant, the
+# gathering hordes). They do not duplicate those planetary engines; they bait
+# the honor-duel, the telepathy-as-craft, the oviparous incubator custom, the
+# buoyancy-ray gear that cannot be remade, the dead-city scavenge, the
+# guest-code, and the slow private griefs of a thousand-year people on a world
+# that is running out of air.
+#
+# Pitched to Burroughs' Barsoom specifically (A Princess of Mars, 1912, public
+# domain) but in heavy_metal's register — baroque decay, blood-priced wonder,
+# honor that costs. The dying ochre sea-bottoms, the marble dead cities, the
+# radium arms inert in shadow, the buoyancy-ray that no living hand can renew,
+# the thoat and the calot and the banth, the egg and the incubator, jed and
+# jeddak and the long-sword code, the surface-thought everyone reads. NOT "a
+# hero on a desert planet." Every hook is a thing this world's logic makes
+# inevitable, not a quest a stranger hands you across a table.
+
+- id: barsoom_quarrel_demands_the_blade
+  name: A Quarrel That the Code Will Only Let Steel Settle
+  description: >-
+    A man of standing takes offense — at a word, a glance, a precedence
+    badly kept — and on Barsoom an offense between men of standing is not
+    argued or apologized away; it is answered with the long-sword, in the
+    open, before witnesses who will remember which hand reached first. To
+    refuse is to be marked a coward forever; to draw is to wager a
+    thousand-year life on the next minute. Reaching for the radium pistol
+    instead of the blade is itself the confession of cowardice.
+  flavor_tags: [honor, duel, peril, authority]
+  lifespan_turns: 5
+  delivery_hints:
+    - The insult is small and the answer is fatal, and everyone present treats the proportion as obvious
+    - A second steps forward to keep the forms — ground, witnesses, first blood or to the death named aloud
+    - Someone reaches by reflex toward a holstered pistol and a dozen eyes go cold at the gesture
+  narrative_hint: >-
+    The duel is a compressed confrontation (SOUL: stakes you can feel). Let
+    the players weigh the blade against the brand of coward, and let whoever
+    they fight — or refuse — become a standing in this city that follows them
+    to the next scene, won or lost in steel.
+
+- id: barsoom_a_mind_that_will_not_be_read
+  name: The One Stranger Whose Surface You Cannot Read
+  description: >-
+    Among a people who half-hear every intention around them, a calm blank
+    mind is the loudest thing in the room. Someone the party deals with shows
+    nothing to the Barsoomian gift — a smooth shuttered surface where every
+    honest man leaks his next thought — and on this world that is not privacy,
+    it is a confession that they have something to hide and the discipline to
+    hide it. Spies shield. Assassins shield. So do the rare honest folk who
+    have simply been hurt too often.
+  flavor_tags: [telepathy, intrigue, uncanny, authority]
+  lifespan_turns: 6
+  delivery_hints:
+    - A companion remarks they can feel the edges of everyone's intent in the room except this one person's
+    - The shielded one answers questions smoothly while giving the mind-touch nothing at all
+    - A skilled local grows visibly wary of the blank surface and adjusts their own guard upward
+  narrative_hint: >-
+    Make deceit a craft, not a die roll (SOUL: the world has its own logic).
+    Let the shield read as guilt the party cannot quite prove, and let the
+    reveal cut either way — the spy they suspected, or the honest soul whose
+    only crime was learning to keep their own counsel.
+
+- id: barsoom_the_guest_made_sacred
+  name: Bread and Salt That Bind the Host to Die for You
+  description: >-
+    A red household takes the party in under the guest-code, which on Barsoom
+    is no courtesy but a debt older than the cities: a guest is sacred, the
+    host's blade is the guest's blade, and to harm one under another's roof
+    dishonors the roof itself. The shelter is real and absolute — and it binds
+    the host to the party's quarrels as surely as it shields them, so that the
+    enemy at the gate is now the host's enemy too, whether the host wished it
+    or not.
+  flavor_tags: [honor, alliance, bargain, authority]
+  lifespan_turns: 7
+  delivery_hints:
+    - The host shares bread and water with a gravity that makes plain this is an oath, not a meal
+    - A pursuer who arrives at the threshold stops cold at the doorway, balked by a code they dare not break openly
+    - The host quietly takes up the party's danger as their own and does not mention the cost it may bring their house
+  narrative_hint: >-
+    The kindness has a price the giver pays (SOUL: choices have weight). Let
+    the guest-bond open a door no coin could, and let the party reckon with a
+    host's house burning for a quarrel that was never the host's — and decide
+    what honor owes back.
+
+- id: barsoom_the_incubator_that_must_be_guarded
+  name: A Season's Eggs, and No Mother Among Them
+  description: >-
+    Somewhere out on the bottoms a hatchery has been laid — five years of eggs
+    sealed in a sun-warmed incubator of stone, the next generation of a horde
+    or a household, watched but not loved, for on Barsoom a hatchling has no
+    mother and belongs to all and to none. Now something threatens the
+    clutch — a rival horde, a banth, a fire, a thief who knows what a stolen
+    incubator is worth — and whoever holds the eggs holds a people's whole
+    tomorrow in a thin shell.
+  flavor_tags: [custom, peril, stakes, the_dead_seas]
+  lifespan_turns: 6
+  delivery_hints:
+    - The eggs are guarded with grim duty and not one flicker of tenderness; the custom forbids the latter
+    - A raider or a beast is circling the clutch, and the keepers are too few to hold it
+    - A single egg has hatched early and the cold little thing imprints on whoever is standing over it
+  narrative_hint: >-
+    Let the world's loveless logic be the hook (SOUL: the setting is alien and
+    consistent). The party can guard a future they feel nothing owed, or carry
+    off one hatchling against every custom — and either choice marks them to a
+    people who do not understand why a stranger would care.
+
+- id: barsoom_lift_that_cannot_be_remade
+  name: A Flier Bleeding the Last of an Irreplaceable Lift
+  description: >-
+    A flier — the party's, or one they need — has taken a wound to its
+    buoyancy tanks, and the eighth-ray that holds it against the thin air is
+    leaking away slowly enough to argue over. The hull does not fall; it
+    sinks, by inches, settling toward a sea-bottom of hordes and banths. And
+    the ray cannot be refilled, only drawn from a dwindling old stock no
+    living Barsoomian knows how to make — so every foot of altitude spent here
+    is a foot the world will never get back.
+  flavor_tags: [gear, decay, peril, travel]
+  lifespan_turns: 5
+  delivery_hints:
+    - A holed tank hisses lift, not gas, and the deck tilts a degree lower each hour
+    - Someone names the brutal arithmetic — so many miles of altitude left, and the desert is wider than that
+    - The only recharge is a sealed cache of the old ray that another faction also wants and is counted to the drop
+  narrative_hint: >-
+    Make the dying world tangible in one machine (SOUL: the world is running
+    down). Let the slow sink force a landing nobody wants, or a bargain for the
+    old ray that costs more than the flight — and let the loss of lift stand
+    for the larger loss the whole planet is quietly suffering.
+
+- id: barsoom_the_dead_city_holds_its_dead
+  name: A Marble Tomb-City With Something Still Awake in It
+  description: >-
+    The party shelters in one of the thousands of dead cities the drained
+    ocean left stranded — silent marble streets furred with moss, treasure and
+    record and ruin untouched for ages because the bottoms are not empty. A
+    white ape dens in the toppled halls; ulsio swarm the cellars; a green
+    outpost may camp the plaza. The city keeps its riches precisely because
+    everything that ever came for them is still in here, and hungry.
+  flavor_tags: [the_dead_seas, peril, wonder, decay]
+  lifespan_turns: 6
+  delivery_hints:
+    - The streets are perfectly preserved and perfectly silent, and the silence is the warning
+    - Something large has been living in the great hall — bones, a reek, a nest of broken marble
+    - A genuine treasure or record sits in plain reach, untouched for ages, because reaching it wakes the tenant
+  narrative_hint: >-
+    The reward and the teeth share a room (SOUL: wonder with weight). Let the
+    dead city offer something the party truly needs and make the taking of it
+    the fight — and let what they wake be worse than the rumor that drew them in.
+
+- id: barsoom_the_roar_across_the_moss
+  name: A Banth Working the Dark at the Edge of the Fire
+  description: >-
+    Out on the open bottom after dark, the great maneless lion of Barsoom is
+    hunting — ten-legged, tusk-ringed, eyes set wide in its head, and its roar
+    rolls across the moss to freeze the blood of everything afoot. It is the
+    last sound many a traveller hears. It circles a camp the party is part of,
+    or stalks a road they must walk, patient and certain, and the thin cold
+    night gives it every advantage that steel in the dark does not answer.
+  flavor_tags: [beast, peril, travel, the_dead_seas]
+  lifespan_turns: 5
+  delivery_hints:
+    - The roar comes from the dark and the thoats go mad on their picket-line trying to bolt
+    - A circling weight in the night picks off the watch-beast or a straggler before it shows itself
+    - Radium rifles are useless in the lightless dark and everyone present knows the fight will be steel and nerve
+  narrative_hint: >-
+    A seed with real teeth (SOUL: the world is genuinely dangerous). Let the
+    banth pick its moment — the watch half-asleep, the fire low — and let
+    survival turn on terrain and nerve rather than a fair shot, and on who the
+    party is willing to stand over when it comes.
+
+- id: barsoom_a_captive_who_could_be_a_friend
+  name: A Prisoner of a People Who Have Bred Out Friendship
+  description: >-
+    The party crosses paths with a captive of the green hordes — taken in a
+    raid, kept for the arena or for labor, in a culture that has bred laughter
+    and love out of itself and holds a prisoner as a thing, never a person.
+    And in one warrior of the horde, across a long cruel life, something the
+    green men forgot is stirring: that a captive can be a friend. That heresy
+    is the crack the party can widen — or the warrior they can win, if they are
+    worth the risk to a creature taught that mercy is weakness.
+  flavor_tags: [companion, the_dead_seas, alliance, reversal]
+  lifespan_turns: 7
+  delivery_hints:
+    - The captive is treated as property by everyone but one green warrior who watches a beat too long
+    - A small unsanctioned kindness passes between captor and captive that the horde would punish as weakness
+    - The dissenting warrior tests the party obliquely, risking nothing they cannot deny, to see if mercy is real
+  narrative_hint: >-
+    A companion-arc the party can open (SOUL: relationships are earned). Let
+    the green warrior's buried capacity for loyalty be the prize, slow to win
+    and dangerous to the one who offers it — and let the freed captive or
+    turned warrior owe the party a bond stronger than any city's coin.
+
+- id: barsoom_the_serum_with_a_locked_door
+  name: A Healing Miracle From a Laboratory Best Not Questioned
+  description: >-
+    A wound that should take weeks is closing in hours, because someone has
+    given the party the surgeons' serum — the everyday small miracle of a
+    science that can also lift a living brain whole from one skull into
+    another. The healing is real and freely offered. But the same locked
+    laboratory that brews the vial keeps darker work behind its inner doors,
+    and the one who heals the party may want, in time, something a grateful
+    patient finds very hard to refuse.
+  flavor_tags: [gear, bargain, uncanny, alliance]
+  lifespan_turns: 6
+  delivery_hints:
+    - The serum works a wound shut while the party watches, casual as the surgeon counts it a trifle
+    - A wise patient is warned, quietly, not to ask what else was on the table in that laboratory
+    - The healer's generosity carries an unspoken ledger, and the favor will be named at the worst time
+  narrative_hint: >-
+    The gift opens a debt (SOUL: every wonder has a cost). Let the cure be
+    genuine and lifesaving so the obligation lands with full weight, and let
+    the price the laboratory asks later be a moral one — a thing carried, a
+    door not opened, a question not asked — that the healing makes hard to deny.
+
+- id: barsoom_the_one_putting_affairs_in_order
+  name: A Friend Quietly Giving Their Sword Away
+  description: >-
+    Someone the party has names for — a veteran of the landing-stage, an old
+    retainer, a green warrior grown too stiff to ride — has begun, with the
+    particular serenity Barsoom reserves for it, to settle their debts and give
+    their possessions away. The signs are unmistakable to anyone who knows
+    them: they are preparing to go down to the river. The faith calls it
+    paradise at the journey's end; no one who took the river has ever come back
+    to say. And the party may be the last word that could turn them.
+  flavor_tags: [faith, grief, companion, the_south]
+  lifespan_turns: 7
+  delivery_hints:
+    - A friend presses a cherished blade or token on the party with a calm that is worse than weeping
+    - Debts are being quietly paid and farewells made too gently, and no one names what is coming
+    - The pilgrim speaks of the Valley Dor and the Lost Sea of Korus with a trust the party cannot share
+  narrative_hint: >-
+    A private grief that bears on the world's largest lie (SOUL: NPCs have
+    their own lives). Let the parting be tender and the party's word the only
+    weight against a thousand years of faith — and let whether they dissuade,
+    follow, or let go become the seam where the death-pilgrimage's larger
+    horror first opens.
+
+- id: barsoom_a_wig_that_sits_wrong
+  name: A Holy Man Whose Eternity Does Not Quite Fit
+  description: >-
+    The party meets one of the white holy ones — a priest of the exempt-from-
+    death race, flowing yellow hair, jeweled harness, the smooth assurance of a
+    man performing the ten-thousandth repetition of a profitable rite. And
+    something is just slightly off: the wig sits a hair crooked over what might
+    be a shaven scalp, the piety is a beat too practiced, the surface mind shows
+    a blank where devotion should leak through. The holiness is a costume, worn
+    so long the wearer half-believes it himself.
+  flavor_tags: [faith, intrigue, reversal, the_south]
+  lifespan_turns: 6
+  delivery_hints:
+    - The blond hair shifts and beneath it is the gleam of a bald white scalp the priest does not want seen
+    - The holy rite is performed with the bored precision of a transaction, not the heat of belief
+    - The priest's shielded surface gives the mind-touch nothing, where a true believer would brim with faith
+  narrative_hint: >-
+    Bait the world's great fraud with one false note (SOUL: appearances lie,
+    and the truth has teeth). Let the party catch the seam without yet knowing
+    the whole shape of the lie behind it, and let pulling that thread put them
+    at odds with a priesthood that would sooner suffocate a world than be found out.
+
+- id: barsoom_rank_taken_by_the_one_who_kills
+  name: A Chieftaincy That Changes Hands by Murder, in the Open
+  description: >-
+    Among the green hordes there is one law of advancement and it is simple:
+    rank is held until a stronger warrior takes it, by killing the holder, in
+    the sight of all. A jed or chieftain near the party is being measured by a
+    challenger — or the party themselves, having drawn green attention, find
+    that the only standing a horde respects is the kind taken over a body. The
+    custom is not cruelty for its own sake; it is the only government these
+    giants keep, and it is always, openly, for the death.
+  flavor_tags: [the_dead_seas, honor, peril, authority]
+  lifespan_turns: 5
+  delivery_hints:
+    - A green warrior eyes a chieftain's harness the way a man eyes a door he means to walk through
+    - The whole horde gathers without a word to witness a challenge no one will interrupt
+    - Killing the holder of a rank is offered to the party as the plain and only road to standing among the green men
+  narrative_hint: >-
+    Let the world's brutal logic set the stakes (SOUL: the setting governs by
+    its own rules). Whether the party backs a challenger, defends a holder, or
+    takes a harness themselves, let the killing be public and binding — and let
+    the standing it buys among the hordes be as real, and as precarious, as the
+    blade that won it.

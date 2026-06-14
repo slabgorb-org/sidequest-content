@@ -1,0 +1,284 @@
+# Seed tropes for space_opera/coyote_star — world-tier deck (Epic 94: genre is
+# the rulebook only; flavor lives in the world). Short-arc narrative hooks dealt
+# at session start and on engagement draws, expiring after lifespan_turns and
+# lingering as ghosts for later callback (ADR-018, ADR-128). Seeds are baited
+# hooks (ADR-014 diamonds-and-coal) — deliberately vague; the narrator threads an
+# engaged seed into whatever the run demands of the crew.
+#
+# The engine reads world-first (websocket_session_handler `_seed_source =
+# worlds.get(slug) or pack`), so without this file coyote_star drew from an empty
+# deck and the lull-escalation engine declined `none_available` on every quiet
+# turn — which left the narrator inventing crowds of NPCs to fill the silence
+# (the bug this deck fixes). The genre-tier space_opera deck, if any, is
+# superseded here for coyote_star.
+#
+# Pitched to coyote_star's OWN canon, not generic space opera. This is a
+# single-star cul-de-sac: one jump point (Grand Gate, Hegemonic customs), one
+# way in and one way out, so "everyone notices everyone" and a hull's history
+# follows it. The economy is ore, salvage, and not asking questions. Reference
+# the system's real idioms — the contested rare-earth survey under Tsveri sacred
+# ground in the Deep Root; the ~two-year Far Landing ↔ Red Prospect trade window
+# that's the only cheap freight burn; Clan Moana-Teru's fuel monopoly and the
+# clan name that can be LOST by cutting your tattoos; the Broken Drift Runners
+# working dead prospector claims as dead drops, every faction patch stripped to a
+# ghost outline; the Long Hum out past Red Prospect that gets louder with
+# distance, which is backwards; the Absent Gate the Tsveri call "closed." Tone is
+# frontier space-western, survival-by-wit, moderate lethality (axis_snapshot
+# scale 0.3 / tone 0.5 / swagger 0.5). Mendes' Post is the bar where the system's
+# talk happens. Keep the seeds physical and economic — a habitat short a
+# consumable, a claim contested under a specific law, a debt owed in a transit
+# window, a signal that shouldn't carry — not cosmic until a crew pulls the
+# thread.
+
+- id: coyote_star_contested_survey_stake
+  name: A Survey Stake Driven Where the Tsveri Said No
+  description: >-
+    Someone has planted survey markers inside the Deep Root range — on the
+    slope above a Tsveri waystone, where the rare-earth runs structured and the
+    Tsveri have said, plainly and finally, no. The Free Miners read it as a
+    claim. The Tsveri read it as a wound. And whoever drove that stake wants a
+    crew to either hold it or quietly pull it before the patrol cruiser has to
+    notice which.
+  flavor_tags: [salvage, authority, peril, bargain]
+  lifespan_turns: 7
+  delivery_hints:
+    - A miner buys the crew a round at Mendes' Post and lets slip whose markers are already up the slope
+    - A Tsveri stands subsonically still at the edge of the survey line, not blocking it, only present, and humans feel it in the chest before they hear it
+    - Prefect Vaskov's office has logged the dispute and would rather it resolve before a report has to be written
+  narrative_hint: >-
+    The system's central fault line, drawn to a single stake. Thread it so the
+    crew is asked to act on the contested claim and bind to one side of the
+    Deep Root question (SOUL: the world reacts — pulling the stake makes a
+    friend and an enemy, holding it makes the opposite pair).
+
+- id: coyote_star_closing_trade_window
+  name: A Debt Due Before the Trade Window Closes
+  description: >-
+    The Far Landing to Red Prospect alignment — the once-in-roughly-two-years
+    burn where freight rides the gravity assist out and back without a ruinous
+    Hohmann fuel bill — is closing. Someone is short a payment, a cargo, or a
+    berth, and after the window shuts the next cheap run is two years off. A
+    name is mentioned to the crew as either the creditor or the only hauler
+    still with a slot.
+  flavor_tags: [debt, travel, orbit, bargain]
+  lifespan_turns: 6
+  delivery_hints:
+    - The conjunction countdown is the bar's running clock at Mendes' Post, and it is short
+    - A hauler offers the last berth in the window at a price that is either salvation or extortion
+    - Clan Moana-Teru's fuel desk quietly notes who is buying enough fuel for a full Hohmann burn, which means they missed the cheap window
+  narrative_hint: >-
+    A frontier-orbit ticking clock. Let the closing window make the obligation
+    real and time-boxed, so the crew weighs the run against the burn cost
+    (SOUL: scarcity and consequence — missing the window costs two years, and
+    everyone in-system knows it).
+
+- id: coyote_star_signal_that_carries_wrong
+  name: A Signal That Gets Louder the Farther Out You Go
+  description: >-
+    A prospector back from a claim past Red Prospect can't stop talking about a
+    low vibration at the edge of the sensors — no transmission, no source, and
+    it strengthened the deeper they pushed, which is backwards. The voidborn
+    crews call it the Long Hum and won't transit out there without ritual.
+    Someone wants the reading confirmed, or wants it to stop being talked about
+    at Mendes' Post.
+  flavor_tags: [signal, peril, travel, salvage]
+  lifespan_turns: 7
+  delivery_hints:
+    - A voidborn star-reader at the next table goes quiet and will not say the word for it
+    - The prospector's nav log shows clock drift and a course wander they cannot explain
+    - A buyer for outer-system readings is paying well and asking the crew not to mention where the data came from
+  narrative_hint: >-
+    The world's slow uncanny, kept at sensor's edge. Don't resolve what the Hum
+    is — bait the crew toward the outer dark and let the wrongness accrete
+    (SOUL: the world is larger than the players and does not explain itself; an
+    engaged seed earns one more reading, never an answer).
+
+- id: coyote_star_hull_with_a_past
+  name: The Ship Remembers a Captain You Never Met
+  description: >-
+    A hull docked at Turning Hub carries three captains' worth of patches —
+    including a panel of Tsveri silicon that resonates when the talk turns to
+    the Deep Root. Someone at the Post recognizes the ship before they
+    recognize the crew, and a prior owner's name is spoken like a debt, a
+    grudge, or a warning. In a one-jump system, a hull's history is a public
+    record nobody filed.
+  flavor_tags: [reversal, debt, signal, companion]
+  lifespan_turns: 6
+  delivery_hints:
+    - A regular at Mendes' Post calls the ship by an older name and waits to see the crew's faces
+    - The silicon patch warms and hums faintly whenever the Deep Root comes up in conversation
+    - The chief engineer has found a previous captain's private ledger wedged behind a bulkhead, half-erased
+  narrative_hint: >-
+    Identity-follows-you in a closed system. Thread the hull's past into the
+    present scene so a stranger's grievance lands on the crew through the ship
+    (SOUL: continuity and consequence — what the hull did before the players
+    owned it is now theirs to answer for).
+
+- id: coyote_star_habitat_short_a_consumable
+  name: A Station Running Out of Something It Can't Make
+  description: >-
+    A small habitat — a belt claim, a moon waystation, a welded shack still on
+    last year's batteries — is short a consumable it cannot manufacture:
+    scrubber medium, reactor coolant, a med stock, breathable margin. The next
+    resupply rides a transit window that hasn't opened, and Turning Hub's fuel
+    desk sets the price. Someone aboard sends word out, carefully, so the
+    shortage doesn't become common knowledge and a target.
+  flavor_tags: [travel, bargain, peril, debt]
+  lifespan_turns: 6
+  delivery_hints:
+    - A quiet comms request reaches the crew naming the shortfall but not the station, for fear of who else is listening
+    - Clan Moana-Teru's fuel desk already knows the number and is pricing the rescue accordingly
+    - A Broken Drift captain offers the same resupply off-manifest for less, and no questions, which is its own kind of price
+  narrative_hint: >-
+    Frontier survival-logistics as a hook. Let the specific missing consumable
+    drive a concrete errand and a moral price — official channel and its toll,
+    or the smuggler's discount and its strings (SOUL: scarcity is real, and
+    every rescue costs something the world will remember).
+
+- id: coyote_star_claim_jumped_on_the_drift
+  name: Someone Working a Claim That Isn't Theirs
+  description: >-
+    Out in the Broken Drift, a salvage scow is reading stencil claim-numbers off
+    the rock and working a face whose registered holder is dead, missing, or
+    conveniently absent. The Free Miners' Compact arbitrates these by custom,
+    not by the governor's law, and the custom is sharp. A crew gets asked to
+    verify whose number is on the rock — or to make sure the answer comes out a
+    particular way.
+  flavor_tags: [salvage, authority, peril, reversal]
+  lifespan_turns: 6
+  delivery_hints:
+    - Dura Mendes mentions the disputed face at Mendes' Post in the tone she uses for Compact business
+    - The claim-number stencil on the rock has been over-sprayed, badly, and the old digits ghost through
+    - A second scow is already burning toward the same face, which means somebody else got the same word
+  narrative_hint: >-
+    The salvage economy's own law, enforced by reputation. Thread the contested
+    claim so the crew's finding becomes a verdict the Compact will honor or
+    contest (SOUL: the world has its own rules and the players' choice has
+    weight in them — being right and being trusted are not the same thing).
+
+- id: coyote_star_cut_tattoos_running_drift
+  name: A Voidborn Who Cut the Clan Name Away
+  description: >-
+    Someone wearing faded Moana-Teru blues has cut their clan tattoos — the mark
+    of voidborn who run with the Broken Drift and lose the Bright Ocean name
+    with them. They want passage, or a debt collected, or a message carried that
+    Turning Hub must not see. The clan does not forgive the cut, and Clan elder
+    Rangi Moana-Teru plays every faction against the others, always has.
+  flavor_tags: [companion, debt, authority, reversal]
+  lifespan_turns: 8
+  delivery_hints:
+    - The scarred-over tattoo lines at collar and cuff tell any voidborn at a glance exactly what this person gave up
+    - They ask for the favor away from Turning Hub's docks, where the clan's eyes are
+    - A Moana-Teru factor later asks the crew, mildly, whether they've seen the one who cut and ran
+  narrative_hint: >-
+    A companion-hook freighted with a culture's specific shame and a clan
+    politics that reaches everywhere fuel does. Let the cut voidborn's request
+    entangle the crew with Moana-Teru standing (SOUL: relationships carry
+    consequence — helping the exile is taking a side against the Bright Ocean,
+    whether the crew means to or not).
+
+- id: coyote_star_gate_manifest_problem
+  name: A Cargo the Gate Won't Like, and Only One Gate
+  description: >-
+    There is one way out of Coyote Star, and a warrant officer at Grand Gate has
+    personally opened it for every hull that ever left. Now a cargo, a passenger,
+    or a manifest line needs to pass that customs station — and shouldn't.
+    Someone offers the crew the job, or the bribe, or the forged seal, knowing
+    that in a cul-de-sac system there is no second jump point to slip out the
+    side.
+  flavor_tags: [authority, bargain, travel, peril]
+  lifespan_turns: 6
+  delivery_hints:
+    - The job comes with the reminder that the Gate logs every hull and there is nowhere else to go
+    - A customs officer is known to look the other way for a cut, and known to remember faces who don't pay it
+    - Vaskov's published tariff and the actual price of passage are two very different numbers, and everyone knows the second one
+  narrative_hint: >-
+    The one-jump chokepoint as a pressure point. Thread the contraband run so
+    the single Gate makes evasion impossible and the crew must deal, bribe, or
+    bluff the bottleneck (SOUL: the geography is real and constraining — one
+    gate means one set of consequences, and the Gate does not forget).
+
+- id: coyote_star_dead_drop_gone_quiet
+  name: A Dead Drop That Stopped Answering
+  description: >-
+    The Broken Drift Runners use dead prospector claims as dead drops, and one
+    of them has gone silent past its schedule — cargo unretrieved, captain
+    unheard, the agreed light not blinking on the shack's hull. The loose
+    confederation of captains shares routes and warnings, and this silence is a
+    warning. Someone wants the drop checked before the wrong faction finds it
+    first.
+  flavor_tags: [salvage, signal, peril, debt]
+  lifespan_turns: 5
+  delivery_hints:
+    - A Drift captain, patches stripped to ghost outlines, names the drop coordinates and the overdue light
+    - The agreed signal lamp on the dead shack is dark, and the batteries should have lasted the season
+    - Whatever is in the drop is worth a captain's silence, which is worth more than the cargo
+  narrative_hint: >-
+    A set-piece salvage hook off the smuggling network's own customs. Let the
+    silent drop become a scene the crew walks into without knowing which faction
+    got there first (SOUL: the world moves without the players — the silence has
+    a cause that is already in motion).
+
+- id: coyote_star_emissary_needs_carrying
+  name: The First Tsveri Request in a Generation
+  description: >-
+    A Tsveri needs ferrying — Deep Root to the Consulate, or Far Landing to
+    Turning Hub — and asks through intermediaries for a specific hull, a
+    specific quiet, a specific route that does not pass certain ears. It is the
+    first such request from the Deep Root in living memory, and the Tsveri do
+    not explain why now, or why this crew. They simply name a price no human
+    can manufacture.
+  flavor_tags: [travel, bargain, companion, signal]
+  lifespan_turns: 8
+  delivery_hints:
+    - The request arrives through a human go-between who has clearly been told only the minimum
+    - The Tsveri's subsonic presence changes the pressure in the cabin and the crew feels the conversation more than hears it
+    - The offered payment is a material nobody else in the system can make, and it is offered as if the trade is already understood
+  narrative_hint: >-
+    A long-arc companion-and-mystery hook around the system's silent power. Let
+    the unprecedented request bait curiosity about why now, while keeping the
+    Tsveri's reasons opaque (SOUL: the world's deepest party acts on its own
+    logic; an engaged seed earns trust and proximity, never explanation).
+
+- id: coyote_star_outside_money_arriving
+  name: Outside Money Asking About the Deep Root
+  description: >-
+    The contracts at the Drift Runners' Meet have stopped being about ore.
+    Someone from beyond the jump point — a buyer, a broker, an interest with too
+    much credit and too little history in-system — is paying for access,
+    silence, or position around the Deep Root rare-earth. In a system where one
+    jump in means everyone notices everyone, a new face spending freely is the
+    biggest news at Mendes' Post.
+  flavor_tags: [bargain, authority, reversal, debt]
+  lifespan_turns: 7
+  delivery_hints:
+    - A stranger who came through the Gate this cycle is buying drinks and asking the kind of questions that map a system's loyalties
+    - The Meet's contracts now offer kilocredits for positioning, not payloads, and the old hands are uneasy
+    - Clan Moana-Teru, who profit from stability, are quietly unhappy that someone is buying a fight
+  narrative_hint: >-
+    The outside world reaching into the cul-de-sac, escalating the central
+    Deep Root stakes. Thread the newcomer's money so the crew is courted or
+    threatened and must read whose side the credit is buying (SOUL: actions
+    have consequence at scale — outside money changes what every faction can
+    afford to do).
+
+- id: coyote_star_closed_word_on_the_charts
+  name: The Gate That Should Exist and Doesn't
+  description: >-
+    A voidborn star-reader will show anyone who buys the round the charts: the
+    gravitational signature says there should be a second jump point out past
+    Last Drift, on the far side of the system. It isn't there. The Tsveri have a
+    word for it that translates as closed — not absent, not collapsed, closed,
+    as if someone shut it. Someone is hiring to take a real reading at the
+    Absent Gate, and the voidborn crews are already refusing.
+  flavor_tags: [travel, signal, peril, salvage]
+  lifespan_turns: 8
+  delivery_hints:
+    - The star-reader's charts are laid out on the bar and the mass-shadow is plainly marked where nothing is
+    - Every voidborn pilot approached for the run has declined, and they will not all say why
+    - The Long Hum is loudest exactly where the Absent Gate's signature sits, and the prospectors who go there come back wrong
+  narrative_hint: >-
+    The world's largest question, baited as a survey job nobody sane will take.
+    Keep the Absent Gate unexplained — let an engaged crew earn the approach and
+    the unease, not the truth (SOUL: the world holds more than the players can
+    yet grasp; the seal stays sealed, and the wanting to open it is the hook).
