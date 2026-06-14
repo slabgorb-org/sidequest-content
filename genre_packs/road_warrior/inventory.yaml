@@ -1,3 +1,24 @@
+# road_warrior — genre-tier CWN baseline + bespoke vehicular catalog (ADR-145, story 114-5)
+#
+# Two layers live here, both genre-tier:
+#  1. The Cities Without Number SRD §3.0.0 PERSONAL gear chapter (Armor §3.3,
+#     Weapons §3.4, Mission Gear §3.1, Cyberware §3.6.7), extracted VERBATIM by the
+#     114-5 tool (cwn_equip_extract@114-5). road_warrior binds ruleset: cwn — the
+#     same CWN module neon_dystopia binds — so on-foot driver combat resolves on
+#     the SRD's own gear. Each `cwn_*` item carries mode=verbatim/srd=cwn/
+#     license=wn-free provenance; system_strain is a verbatim FLOAT (0.25/0.5).
+#  2. The bespoke road-warrior gear: rig parts, mount weapons, vessels (rigs), and
+#     survival kit, plus the improvised personal weapons (tire iron, chain,
+#     sawed-off, crossbow). These are mode=bespoke/license=na — honestly NOT
+#     SRD-verbatim, freely re-stattable.
+#
+# SCOPE (114-5 = personal gear only): the rig Composure / vessel / mount-weapon
+# stringly-typed homebrew below is UNCHANGED and remains bespoke. Binding CWN's
+# vehicle chapter (speed/armor/AC/HP/crew/hardpoints) is story 114-6, deliberately
+# out of scope here. Verbatim gaps the WN-family parser does not capture (sourced,
+# never invented): Rifle's +2 flat bonus, weapon Trauma Die/Rating, armor Damage
+# Soak + dual AC (armor_class = SRD Ranged AC), Dermal Armor Trauma-Target mod.
+
 currency:
   name: Fuel
   abbreviation: F
@@ -19,7 +40,963 @@ currency:
         A Fuel Broker who owes you a favor is better than a full tank.
         Tracked per NPC/faction, not as a number.
 
+
 item_catalog:
+  # ── CWN PERSONAL-GEAR BASELINE (verbatim) ──────────────
+  # ── Armor (CWN SRD §3.0.1) ─────────────────────────────
+  - id: cwn_ordinary_clothing
+    name: "Ordinary Clothing"
+    description: "Ordinary Clothing"
+    category: armor
+    value: 25
+    weight: 0.0
+    armor_class: 10
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_reinforced_clothing
+    name: "Reinforced Clothing"
+    description: "Reinforced Clothing"
+    category: armor
+    value: 100
+    weight: 0.0
+    armor_class: 13
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_war_harness
+    name: "War Harness"
+    description: "War Harness"
+    category: armor
+    value: 200
+    weight: 1.0
+    armor_class: 13
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_street_leathers
+    name: "Street Leathers"
+    description: "Street Leathers"
+    category: armor
+    value: 250
+    weight: 0.0
+    armor_class: 13
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_reinforced_longcoat
+    name: "Reinforced Longcoat"
+    description: "Reinforced Longcoat"
+    category: armor
+    value: 500
+    weight: 1.0
+    armor_class: 15
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_armored_clothing
+    name: "Armored Clothing"
+    description: "Armored Clothing"
+    category: armor
+    value: 1000
+    weight: 2.0
+    armor_class: 16
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_plated_longcoat
+    name: "Plated Longcoat"
+    description: "Plated Longcoat"
+    category: armor
+    value: 2000
+    weight: 3.0
+    armor_class: 17
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_impact_jacket
+    name: "Impact Jacket"
+    description: "Impact Jacket"
+    category: armor
+    value: 1000
+    weight: 1.0
+    armor_class: 12
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_light_armored_suit
+    name: "Light Armored Suit"
+    description: "Light Armored Suit"
+    category: armor
+    value: 5000
+    weight: 2.0
+    armor_class: 16
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_medium_armored_suit
+    name: "Medium Armored Suit"
+    description: "Medium Armored Suit"
+    category: armor
+    value: 10000
+    weight: 3.0
+    armor_class: 18
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_heavy_armored_suit
+    name: "Heavy Armored Suit"
+    description: "Heavy Armored Suit"
+    category: armor
+    value: 20000
+    weight: 3.0
+    armor_class: 20
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.1 Armor"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  # ── Melee Weapons (CWN SRD §3.0.2) ─────────────────────
+  - id: cwn_knife
+    name: "Knife"
+    description: "Knife"
+    category: melee_weapon
+    value: 20
+    weight: 1.0
+    damage: {dice: "1d4", shock: 1, shock_ac: 15}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_spear
+    name: "Spear"
+    description: "Spear"
+    category: melee_weapon
+    value: 50
+    weight: 1.0
+    damage: {dice: "1d6", shock: 2, shock_ac: 13}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_sword
+    name: "Sword"
+    description: "Sword"
+    category: melee_weapon
+    value: 200
+    weight: 1.0
+    damage: {dice: "1d8", shock: 2, shock_ac: 13}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_big_sword
+    name: "Big Sword"
+    description: "Big Sword"
+    category: melee_weapon
+    value: 500
+    weight: 2.0
+    damage: {dice: "2d6", shock: 2, shock_ac: 15}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_big_club
+    name: "Big Club"
+    description: "Big Club"
+    category: melee_weapon
+    value: 100
+    weight: 2.0
+    damage: {dice: "1d10", shock: 2, shock_ac: 18}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_advanced_knife
+    name: "Advanced Knife"
+    description: "Advanced Knife"
+    category: melee_weapon
+    value: 200
+    weight: 1.0
+    damage: {dice: "1d6", shock: 2, shock_ac: 15}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_advanced_sword
+    name: "Advanced Sword"
+    description: "Advanced Sword"
+    category: melee_weapon
+    value: 1000
+    weight: 1.0
+    damage: {dice: "1d10", shock: 3, shock_ac: 15}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_advanced_big_sword
+    name: "Advanced Big Sword"
+    description: "Advanced Big Sword"
+    category: melee_weapon
+    value: 2500
+    weight: 2.0
+    damage: {dice: "2d8", shock: 4, shock_ac: 15}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_advanced_club
+    name: "Advanced Club"
+    description: "Advanced Club"
+    category: melee_weapon
+    value: 500
+    weight: 1.0
+    damage: {dice: "1d8", shock: 2, shock_ac: 18}
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.2 Melee Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  # ── Ranged Weapons (CWN SRD §3.0.3) ────────────────────
+  - id: cwn_light_pistol
+    name: "Light Pistol"
+    description: "Light Pistol"
+    category: ranged_weapon
+    value: 200
+    weight: 1.0
+    damage: {dice: "1d6"}
+    range_band: "10/80"
+    magazine: 15
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_heavy_pistol
+    name: "Heavy Pistol"
+    description: "Heavy Pistol"
+    category: ranged_weapon
+    value: 200
+    weight: 1.0
+    damage: {dice: "1d8"}
+    range_band: "10/100"
+    magazine: 8
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_advanced_bow
+    name: "Advanced Bow"
+    description: "Advanced Bow"
+    category: ranged_weapon
+    value: 500
+    weight: 2.0
+    damage: {dice: "1d8"}
+    range_band: "30/200"
+    magazine: 1
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_rifle
+    name: "Rifle"
+    description: "Rifle"
+    category: ranged_weapon
+    value: 1000
+    weight: 2.0
+    damage: {dice: "1d10"}
+    range_band: "200/400"
+    magazine: 6
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_combat_rifle
+    name: "Combat Rifle"
+    description: "Combat Rifle"
+    category: ranged_weapon
+    value: 2500
+    weight: 2.0
+    damage: {dice: "1d12"}
+    range_band: "100/300"
+    magazine: 30
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_submachine_gun
+    name: "Submachine Gun"
+    description: "Submachine Gun"
+    category: ranged_weapon
+    value: 2000
+    weight: 1.0
+    damage: {dice: "1d8"}
+    range_band: "30/100"
+    magazine: 20
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_shotgun
+    name: "Shotgun"
+    description: "Shotgun"
+    category: ranged_weapon
+    value: 200
+    weight: 2.0
+    damage: {dice: "3d4"}
+    range_band: "10/30"
+    magazine: 2
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_semi_auto_shotgun
+    name: "Semi-Auto Shotgun"
+    description: "Semi-Auto Shotgun"
+    category: ranged_weapon
+    value: 1000
+    weight: 2.0
+    damage: {dice: "3d4"}
+    range_band: "10/30"
+    magazine: 6
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_combat_shotgun
+    name: "Combat Shotgun"
+    description: "Combat Shotgun"
+    category: ranged_weapon
+    value: 3000
+    weight: 2.0
+    damage: {dice: "3d4"}
+    range_band: "10/30"
+    magazine: 12
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_sniper_rifle
+    name: "Sniper Rifle"
+    description: "Sniper Rifle"
+    category: ranged_weapon
+    value: 3000
+    weight: 2.0
+    damage: {dice: "2d8"}
+    range_band: "1000/2000"
+    magazine: 1
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_taser_pistol
+    name: "Taser Pistol"
+    description: "Taser Pistol"
+    category: ranged_weapon
+    value: 500
+    weight: 1.0
+    damage: {dice: "1d8"}
+    range_band: "10/15"
+    magazine: 2
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_automatic_rifle
+    name: "Automatic Rifle"
+    description: "Automatic Rifle"
+    category: ranged_weapon
+    value: 10000
+    weight: 4.0
+    damage: {dice: "2d8"}
+    range_band: "200/400"
+    magazine: 10
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.3 Ranged Weapons"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  # ── General Equipment (CWN SRD §3.0.4) ─────────────────
+  - id: cwn_active_hearing_protection
+    name: "Active Hearing Protection"
+    description: "Active Hearing Protection"
+    category: general
+    value: 250
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_backpack
+    name: "Backpack"
+    description: "Backpack"
+    category: general
+    value: 25
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_binoculars
+    name: "Binoculars"
+    description: "Binoculars"
+    category: general
+    value: 100
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_climbing_kit
+    name: "Climbing Kit"
+    description: "Climbing Kit"
+    category: general
+    value: 150
+    weight: 2.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_gas_mask
+    name: "Gas Mask"
+    description: "Gas Mask"
+    category: general
+    value: 1000
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_anti_flash_goggles
+    name: "Anti-Flash Goggles"
+    description: "Anti-Flash Goggles"
+    category: general
+    value: 100
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_ir_goggles
+    name: "IR Goggles"
+    description: "IR Goggles"
+    category: general
+    value: 1000
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_basic_tools_kit
+    name: "Basic Tools Kit"
+    description: "Basic Tools Kit"
+    category: general
+    value: 100
+    weight: 2.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_cyberdoc_kit
+    name: "Cyberdoc Kit"
+    description: "Cyberdoc Kit"
+    category: general
+    value: 500
+    weight: 2.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_medkit
+    name: "Medkit"
+    description: "Medkit"
+    category: general
+    value: 100
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_survival_kit
+    name: "Survival Kit"
+    description: "Survival Kit"
+    category: general
+    value: 100
+    weight: 2.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_lockpicks
+    name: "Lockpicks"
+    description: "Lockpicks"
+    category: general
+    value: 100
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_portable_video_camera
+    name: "Portable Video Camera"
+    description: "Portable Video Camera"
+    category: general
+    value: 300
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_handheld_radio
+    name: "Handheld Radio"
+    description: "Handheld Radio"
+    category: general
+    value: 50
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_ultralight_tab_radio
+    name: "Ultralight Tab Radio"
+    description: "Ultralight Tab Radio"
+    category: general
+    value: 500
+    weight: 0.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_cheap_vr_crown
+    name: "Cheap VR Crown"
+    description: "Cheap VR Crown"
+    category: general
+    value: 50
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_wearable_light
+    name: "Wearable Light"
+    description: "Wearable Light"
+    category: general
+    value: 25
+    weight: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.4 General Equipment"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  # ── Cyberware (CWN SRD §3.0.5; system_strain is a verbatim float) ─
+  - id: cwn_cybernetic_infrastructure_baseline
+    name: "Cybernetic Infrastructure Baseline"
+    description: "Gain Con 12 for cyber purposes"
+    category: cyberware
+    value: 20000
+    weight: 0.0
+    tags: ["cyberware", "location:body", "concealment:medical"]
+    system_strain: 0.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_viper_sting
+    name: "Viper Sting"
+    description: "Hidden drug injection system"
+    category: cyberware
+    value: 25000
+    weight: 0.0
+    tags: ["cyberware", "location:body", "concealment:medical"]
+    system_strain: 0.5
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_cybereyes
+    name: "Cybereyes"
+    description: "Flash-protected synthetic eyes"
+    category: cyberware
+    value: 10000
+    weight: 0.0
+    tags: ["cyberware", "location:sensory", "concealment:sight"]
+    system_strain: 0.25
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_cyberears
+    name: "Cyberears"
+    description: "Noise-filtering synthetic ears"
+    category: cyberware
+    value: 10000
+    weight: 0.0
+    tags: ["cyberware", "location:sensory", "concealment:touch"]
+    system_strain: 0.25
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_gunlink
+    name: "Gunlink"
+    description: "Bonus when using firearms"
+    category: cyberware
+    value: 25000
+    weight: 0.0
+    tags: ["cyberware", "location:sensory", "concealment:touch"]
+    system_strain: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_cranial_jack
+    name: "Cranial Jack"
+    description: "Link to jack-equipped gear"
+    category: cyberware
+    value: 1000
+    weight: 0.0
+    tags: ["cyberware", "location:head", "concealment:touch"]
+    system_strain: 0.25
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_skillplug_jack_i
+    name: "Skillplug Jack I"
+    description: "Use level-1 intellectual plugs"
+    category: cyberware
+    value: 10000
+    weight: 0.0
+    tags: ["cyberware", "location:head", "concealment:touch"]
+    system_strain: 0.25
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_skillplug_jack_ii
+    name: "Skillplug Jack II"
+    description: "Use level-1 plugs of any kind"
+    category: cyberware
+    value: 25000
+    weight: 0.0
+    tags: ["cyberware", "location:head", "concealment:touch"]
+    system_strain: 0.5
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_dermal_armor_i
+    name: "Dermal Armor I"
+    description: "AC 16 and plus 1 to Trauma Target"
+    category: cyberware
+    value: 40000
+    weight: 0.0
+    tags: ["cyberware", "location:skin", "concealment:medical"]
+    system_strain: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_dermal_armor_ii
+    name: "Dermal Armor II"
+    description: "As I but AC 18 and Shock resist"
+    category: cyberware
+    value: 80000
+    weight: 0.0
+    tags: ["cyberware", "location:skin", "concealment:touch"]
+    system_strain: 2.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_dermal_armor_iii
+    name: "Dermal Armor III"
+    description: "As II but AC 20 and plus 2 Trauma Target"
+    category: cyberware
+    value: 200000
+    weight: 0.0
+    tags: ["cyberware", "location:skin", "concealment:sight"]
+    system_strain: 3.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_body_blades_i
+    name: "Body Blades I"
+    description: "Integral body weaponry"
+    category: cyberware
+    value: 10000
+    weight: 0.0
+    tags: ["cyberware", "location:limb", "concealment:medical"]
+    system_strain: 1.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_body_blades_ii
+    name: "Body Blades II"
+    description: "Larger body weaponry"
+    category: cyberware
+    value: 25000
+    weight: 0.0
+    tags: ["cyberware", "location:limb", "concealment:sight"]
+    system_strain: 2.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_cyberlimb
+    name: "Cyberlimb"
+    description: "Prosthetic with storage space"
+    category: cyberware
+    value: 10000
+    weight: 0.0
+    tags: ["cyberware", "location:limb", "concealment:touch"]
+    system_strain: 0.5
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_enhanced_reflexes_i
+    name: "Enhanced Reflexes I"
+    description: "Once per scene bonus Main Action"
+    category: cyberware
+    value: 100000
+    weight: 0.0
+    tags: ["cyberware", "location:nerve", "concealment:medical"]
+    system_strain: 2.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_enhanced_reflexes_ii
+    name: "Enhanced Reflexes II"
+    description: "Once per scene bonus Main and Move"
+    category: cyberware
+    value: 250000
+    weight: 0.0
+    tags: ["cyberware", "location:nerve", "concealment:medical"]
+    system_strain: 3.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  - id: cwn_enhanced_reflexes_iii
+    name: "Enhanced Reflexes III"
+    description: "Twice per scene bonus Main and Move"
+    category: cyberware
+    value: 750000
+    weight: 0.0
+    tags: ["cyberware", "location:nerve", "concealment:touch"]
+    system_strain: 4.0
+    provenance:
+      mode: verbatim
+      srd: cwn
+      srd_ref: "CWN SRD §3.0.5 Cyberware"
+      license: wn-free
+      extracted_by: "cwn_equip_extract@114-5"
+
+  # ── BESPOKE ROAD-WARRIOR GEAR (rig / vessel / survival / improvised) ─
   # Rig Parts
   - id: scrap_metal
     name: Scrap Metal
@@ -296,6 +1273,7 @@ item_catalog:
     tags: [melee, weapon, tool]
     lore: Every driver carries one. Not just for tires.
     narrative_weight: 0.1
+    provenance: {mode: bespoke, license: na}
 
   - id: chain
     name: Chain
@@ -309,6 +1287,7 @@ item_catalog:
     tags: [melee, weapon]
     lore: Three feet of oily steel. Swings wide, hits hard.
     narrative_weight: 0.2
+    provenance: {mode: bespoke, license: na}
 
   - id: sawed_off_shotgun
     name: Sawed-off Shotgun
@@ -322,6 +1301,7 @@ item_catalog:
     tags: [ranged, weapon, firearm]
     lore: Close range diplomacy. Two barrels of persuasion.
     narrative_weight: 0.3
+    provenance: {mode: bespoke, license: na}
 
   - id: crossbow
     name: Crossbow
@@ -335,7 +1315,14 @@ item_catalog:
     tags: [ranged, weapon, silent]
     lore: No bang, no flash. Just a bolt in the dark.
     narrative_weight: 0.3
+    provenance: {mode: bespoke, license: na}
 
+  # road_warrior's iconic improvised sidearm. KEPT as a bespoke item (category
+  # `weapon`, with a trauma_die) — the CWN baseline adds `cwn_light_pistol` above
+  # for availability, but road_warrior's personal-combat strike path and the
+  # combat-class loadouts use this `weapon`-category pistol (the dispatch tests
+  # seed it by id; CWN ranged_weapon items are the catalog baseline, not the
+  # combat-class starting weapon).
   - id: pistol
     name: Pistol
     description: "Sidearm. Limited ammo is the real constraint."
@@ -348,6 +1335,7 @@ item_catalog:
     tags: [ranged, weapon, firearm, one-handed]
     lore: Six rounds. Every one is a decision.
     narrative_weight: 0.2
+    provenance: {mode: bespoke, license: na}
 
   # ── VESSELS (RIGS) — magic.yaml vessel category ────────────────
   # Templates by tier. The player names their rig at chargen
@@ -500,6 +1488,11 @@ item_catalog:
       Legendary tag (narratively indestructible except for story reasons).
     narrative_weight: 1.0
 
+
+# Loadouts keyed by char_creation crucible class_hint (Wheelman, Grease Monkey,
+# Wrecker, Chrome Saint, Road Preacher). The orphan `War Rider` key — no backing
+# class_hint — was removed in 114-5. Every id resolves to a catalog item above
+# (rig/bespoke survival ids or CWN baseline ids); no dead ids. Gold is fuel-scale.
 starting_equipment:
   Wheelman: [rig_tier_1_prospect, tool_kit, pistol, radio_handheld]
   Grease Monkey: [rig_tier_1_prospect, tool_kit, tire_iron, engine_part, medkit]
