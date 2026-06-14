@@ -1,0 +1,295 @@
+# Seed tropes for heavy_metal/long_foundry — world-tier deck (Epic 94: genre is
+# the rulebook only; flavor lives in the world). Short-arc narrative hooks dealt
+# at session start and on engagement/lull draws, expiring after lifespan_turns
+# and lingering as ghosts for later callback (ADR-018, ADR-128). Seeds are baited
+# hooks (ADR-014 diamonds-and-coal) — deliberately vague; the narrator threads an
+# engaged seed into whatever the city's quiet anxiety demands.
+#
+# Without this file long_foundry drew from an empty deck and the lull-escalation
+# engine declined none_available on every quiet turn — which left the narrator
+# inventing crowds of NPCs to fill the silence (the bug this fixes). These
+# supersede the genre-tier heavy_metal/seed_tropes.yaml deck for long_foundry:
+# the engine reads world-first (_seed_source = worlds.get(slug) or pack).
+#
+# Pitched to THIS city specifically, not generic grimdark. The Long Foundry is
+# the magnificent, working, civic-bureaucratic end of the heavy_metal gradient:
+# nothing is on fire, every cost is paid politely and on time, and the horror is
+# in the ledger lines, not the gutter. The mechanisms are named and local —
+# refined tally rendered from First-Feeder residue; Kragmoor craft-signs paid for
+# in years off a maker's life; Orvinnic doubled names and a physiology that is a
+# contract still in force; the Astran feeding ledgers and their account-seals;
+# Perault covenants accumulating faster than they can be serviced; the founding
+# guild's missing books and the unswept Founders' Footprint; the annual
+# refined-tally offering to three of the six cults. The two world macro-tropes
+# (the stratum camp going silent, the three-cult arrangement cracking) are the
+# weather these seeds drift toward. Keep the register dry, formal, and unhurried:
+# this is a city that would rather amend a clause than admit a crisis, and the
+# dread is that the amendment is already overdue.
+
+- id: long_foundry_a_craft_sign_paid_early
+  name: A Maker Whose Craft-Sign Is Costing More Than the Work
+  description: >-
+    A Kragmoor of the forge quarter has been delivering work to the
+    rates-book at the posted price, and the work is good — but the maker
+    has aged a decade in a season, and the apprentices have begun to do
+    the lifting their master used to do without being asked. A craft-sign
+    is paid for in years off the end of a life, and someone here is paying
+    faster than the ledger says they should be.
+  flavor_tags: [kragmoor, guild, pact, decay]
+  lifespan_turns: 7
+  delivery_hints:
+    - A Coil and Brand commission comes back finished a day early and the courier mentions the maker did not rise to see them out
+    - At a Kin Lanes tavern, two apprentices argue quietly over whether to tell the guild their master's hands have begun to shake at the brand
+    - The rates-book lists the same maker's mark on three jobs no single person could have worked in the time, and nobody at the hall will explain it
+  narrative_hint: >-
+    The bargain made visible in a body (SOUL: every working costs, and the
+    cost is paid in the maker, not the made thing). Don't let the price be
+    abstract — thread it as a person spending themselves, and let the
+    players choose between the good cheap work and the maker keeping their
+    remaining years.
+
+- id: long_foundry_the_offering_runs_short
+  name: This Year's Refined Tally Will Not Quite Cover the Offering
+  description: >-
+    The annual offering of refined tally that keeps three of the six cults
+    current is rendered from First-Feeder residue by a method the current
+    guild knows is less efficient than the one that was lost. This year the
+    yield is short — not by much, but by enough that someone will have to be
+    told the offering is light, and nobody wants to be the one who carries
+    that word across the river.
+  flavor_tags: [astran, guild, tally, arrangement]
+  lifespan_turns: 6
+  delivery_hints:
+    - A guild scrivener is seen reweighing the same sealed tally-casks twice, slowly, as if a third weighing might come out heavier
+    - A feed-keeper asks an outsider, with great delicacy, whether the forge quarter seems to be running its furnaces as hot as usual this season
+    - The Grievance-Keepers, least-funded of the three cults, have begun posting a junior at the span to watch the tally-barges cross
+  narrative_hint: >-
+    The dread is bureaucratic, not bloody — an arrangement two centuries old
+    discovering it is short by a measure. Let the shortfall be real and
+    small, let every party prefer to defer the conversation, and remember the
+    three-cult crack this drifts toward: a light offering is exactly the kind
+    of clause that gets re-negotiated.
+
+- id: long_foundry_a_second_account_seal
+  name: An Account-Seal on a Door That Should Owe Nothing
+  description: >-
+    Someone has found a fresh Astran account-seal pressed to the lintel of a
+    household that has always been current — a high-quarter door, or a Kin
+    Lanes one, or a guild storeroom. The seal means the feeding ledgers have
+    recorded a debt against whoever lives behind it. The household swears they
+    owe nothing. The wax is new, and the ledger does not make errors that
+    anyone is permitted to find.
+  flavor_tags: [astran, ledger, debt, uncanny]
+  lifespan_turns: 6
+  delivery_hints:
+    - A householder shows an outsider the seal on their own door and asks, too lightly, whether the temples have ever sealed a door by mistake
+    - A junior clerk of the temple precinct cannot find the matching entry in the open ledger and has stopped looking out loud
+    - The same seal-mark is described on two doors in two quarters by people who have never met
+  narrative_hint: >-
+    A debt arriving before its cause (SOUL: the pact is older and larger than
+    any one signatory's knowledge of it). Let the seal be genuine and the
+    household genuinely innocent of any account they understand, and let the
+    explanation, when pulled, point back at something the ledger inherited
+    rather than something this generation did.
+
+- id: long_foundry_the_other_name_spoken
+  name: An Orvinnic Bound-Name Heard in the Wrong Room
+  description: >-
+    Every Orvinnic child carries two names — the one they were given and the
+    one the pact gave them — and one of those should never be spoken outside
+    the kin. Someone not of the Kin Lanes has been heard using a bound-name,
+    correctly, in a room where it had no business being known. The covenant
+    that binds the Kin Lanes is tied to the foundry work itself, and a
+    bound-name in the wrong mouth is not a discourtesy. It is a lever.
+  flavor_tags: [orvinnic, pact, kin-lanes, intrigue]
+  lifespan_turns: 7
+  delivery_hints:
+    - A Kin Lanes elder goes very still when an outsider repeats a name they were sure they had only half-heard, and changes the subject with care
+    - A high-quarter factor is overheard pronouncing a doubled name with the exact stress only the kin are taught
+    - A child of the Kin Lanes is kept home from the forge-edge for a week without the household saying why
+  narrative_hint: >-
+    Knowledge as a hold over a body (SOUL: the Orvinnic physiology is a
+    contract still in force, and the bound-name is the clause that enforces
+    it). Don't reveal who learned the name or how — let the players trace the
+    leak, and let the stakes be that the kin's quiet, generous households
+    depend on those names staying unspoken.
+
+- id: long_foundry_a_covenant_comes_due
+  name: A High House Whose Covenant Is Finally, Quietly Due
+  description: >-
+    Among the sixteen Perault houses still keeping their doors open, one has
+    a covenant that has at last come due — a pact an ancestor signed
+    generations back, serviced for so long that the present heir half-believed
+    it would never close. The house is in its usual arrears and cannot meet
+    it. The head of the house knows. Or the head of the house has spent a
+    great deal of effort not knowing, which is its own kind of knowing.
+  flavor_tags: [perault, covenant, decay, debt]
+  lifespan_turns: 8
+  delivery_hints:
+    - A Perault factor begins discreetly pricing the contents of a high-quarter vault that has never before been offered
+    - An heir attends a Coil and Brand council session they have no business at, and asks one careful question about transferring an old obligation
+    - The household's grocer's account, three months in arrears, is suddenly settled in full and in coin nobody saw arrive
+  narrative_hint: >-
+    Decay as a debt that was only ever deferred (SOUL: the covenant is real,
+    and patience was never payment). Let the house try every respectable
+    instrument — sale, transfer, marriage, a quiet word — before the ugly
+    one, and let the players be the instrument it reaches for, or the witness
+    to what it does when the instruments run out.
+
+- id: long_foundry_the_unswept_corner
+  name: Apprentices Sweeping a Corner They Were Told to Leave
+  description: >-
+    Beneath the oldest foundry the working residues collect in a pattern, and
+    apprentices are told from their first day not to sweep that section of
+    bedrock and to report any observation about it directly to a senior
+    sorcerer. The seniors do not discuss what gets reported. Now a junior has
+    swept it — or measured it, or simply stood in it too long — and the
+    pattern is doing something it was not doing last month.
+  flavor_tags: [kragmoor, guild, residue, uncanny]
+  lifespan_turns: 6
+  delivery_hints:
+    - A senior sorcerer is fetched to the floor in the middle of a shift and does not come back up looking reassured
+    - An apprentice describes, to an outsider they trust, a residue-pattern that has begun to repeat a shape rather than spread at random
+    - The Coil and Brand reassigns its newest juniors away from the oldest foundry without posting a reason in the rates-book
+  narrative_hint: >-
+    The founding guild's unanswered question, stirring (SOUL: the city is
+    built on something it chose not to inventory). Keep the anomaly small and
+    specific — a pattern that has begun to mean something — and let the
+    guild's instinct to not-look be the obstacle. This is the city's deepest
+    silence beginning to make a sound.
+
+- id: long_foundry_a_ledger_in_a_foreign_hand
+  name: A Page That Matches the Books the Founding Guild Took Away
+  description: >-
+    Two hundred years ago the senior members of the founding guild left over
+    three weeks, took their ledgers, and were never traced. A single loose
+    page has surfaced — bought, dropped, pressed in a book sold downriver —
+    written in the working-hand of that lost guild, describing the efficient
+    method for rendering residue into tally that the current guild merely
+    assumes once existed. One page is not the books. But it is a thread, and
+    several parties would pay a great deal to hold the other end.
+  flavor_tags: [kragmoor, guild, lost-art, intrigue]
+  lifespan_turns: 8
+  delivery_hints:
+    - A downriver dealer offers an outsider a single foxed page and cannot or will not say where the rest of the volume went
+    - A Coil and Brand senior, shown a copied line, goes carefully blank and asks where the original is being kept
+    - A Refuser-scholar at the eastern dig recognizes the hand and says, unprompted, that they have seen its like in the stratum
+  narrative_hint: >-
+    The lost art as a live temptation (SOUL: the efficient method was lost for
+    a reason nobody alive remembers). Let the page be genuine and incomplete,
+    let every faction want it for a different end, and let the question of why
+    the founders took the books be the gravity the seed slowly bends toward —
+    without answering it.
+
+- id: long_foundry_the_wardens_three_whistles
+  name: A Fourth Whistle on the Span Nobody Was Taught
+  description: >-
+    The River Wardens keep the span with three whistle-tones — all clear,
+    attention, stand aside — and every soul who crosses daily knows them in
+    the body. This week a fourth tone has sounded twice, low and at odd hours,
+    and the Wardens, who hear everything that passes the city, will only say
+    it is an old signal and not a current one. They are badly understaffed.
+    They are unusually well-informed. Both facts are suddenly relevant.
+  flavor_tags: [river-wardens, span, intrigue, uncanny]
+  lifespan_turns: 5
+  delivery_hints:
+    - A barge-hand asks an outsider whether they also heard the low tone before dawn, and seems relieved and then troubled to be believed
+    - A Warden deflects the question with practiced ease and then posts a second watcher on the span where there has only ever been one
+    - The fourth tone is mentioned in an old River Warden tally as the call for something the current roster has never had cause to use
+  narrative_hint: >-
+    The city's best-informed body declining to inform (SOUL: graceful
+    degradation — the institutions hold by not saying everything they know).
+    Let the Wardens be friendly and unforthcoming at once, let the old signal
+    have a real referent, and bind it loosely to whatever is coming down the
+    river or up from the stratum — a herald the players can place before the
+    city does.
+
+- id: long_foundry_the_tally_barge_rides_high
+  name: A Tally-Barge Crossing Lighter Than Its Manifest
+  description: >-
+    A barge carrying sealed casks of refined tally across the span to the
+    temple precinct is riding higher in the iron-river water than a full
+    manifest should allow. The seals are intact. The count is right. The
+    weight is wrong, and the only people positioned to notice — the Wardens
+    at the locks, a Kin Lanes loader, a junior feed-keeper with a good eye —
+    have each decided, separately, that it is not their place to say so.
+  flavor_tags: [tally, span, river-wardens, intrigue]
+  lifespan_turns: 5
+  delivery_hints:
+    - A loader at the lower forge edge mentions the barge sat too high and then insists they must have misjudged the load
+    - A Warden at the locks has begun, without instruction, to note the waterline of the tally-barges in a private tally of their own
+    - A feed-keeper signs for a delivery, hesitates over the receiving-seal, and signs anyway
+  narrative_hint: >-
+    A discrepancy everyone is incentivized not to see (SOUL: the arrangement
+    survives on each party's reluctance to be the one who breaks it). Let the
+    shortfall be physical and provable, let three witnesses each defer, and
+    drift it toward the cult arrangement — a barge that rides high is a clause
+    nobody has dared invoke yet.
+
+- id: long_foundry_a_thessil_at_the_guild_door
+  name: A Thessil Who Knows What the Bedrock Is For
+  description: >-
+    A Thessil herder has come down from the eastern slopes to the forge
+    quarter and is waiting, patiently, at the Coil and Brand door — not to
+    complain about grazing, as Thessil usually do, but to say something about
+    the oldest foundry that they were never told and should not know. The
+    Thessil live on the slow edge of a debt that is still in the bedrock. When
+    one of them walks into the city to speak, the city has learned, slowly,
+    to be afraid in a quiet way.
+  flavor_tags: [thessil, stratum, guild, uncanny]
+  lifespan_turns: 6
+  delivery_hints:
+    - A guild porter mentions a Thessil has been sitting at the hall door since dawn and will give their message to a senior or to no one
+    - The herder names the unswept corner of the oldest foundry without ever having been inside the building
+    - A Kin Lanes elder, told a Thessil has come to speak, asks at once which slope they came down from
+  narrative_hint: >-
+    The buried civilization's heirs knowing the present's secrets (SOUL: the
+    oldest contract is the one the city understands least and owes most).
+    Don't let the Thessil be a riddle for its own sake — give them one true,
+    specific thing to say about the bedrock or the stratum, and let it cost
+    the players to hear it out, because the guild would rather they didn't.
+
+- id: long_foundry_the_grievance_keepers_short
+  name: The Least-Funded Cult Asking a Favor It Cannot Repay
+  description: >-
+    The Grievance-Keepers are the poorest of the three feeding cults in the
+    precinct, and the most anxious, and this season the most exposed. A
+    senior of their house approaches an outsider with a request framed as a
+    small courtesy — carry a word, witness a count, stand in a doorway at a
+    certain hour — and is plainly hoping the favor will not be priced, because
+    they have nothing current to pay it with except the one thing a feeding
+    cult always has to offer, which is a place in a ledger.
+  flavor_tags: [astran, cults, debt, peril]
+  lifespan_turns: 6
+  delivery_hints:
+    - A Grievance-Keeper buys an outsider a poor meal and works around to the favor only at the very end, apologizing in advance
+    - The cult's junior posted at the span is recalled abruptly, as if the house can no longer spare even one watcher
+    - A rival cult's prefect remarks, not unkindly, that the Grievance-Keepers have begun asking favors they used to be too proud to ask
+  narrative_hint: >-
+    A bargain offered by the party least able to pay it honestly (SOUL: a
+    feeding cult's only coin is the ledger, and accepting the favor may price
+    you into it). Let the request seem genuinely small, let the gratitude be
+    real, and leave the players to wonder whether a Grievance-Keeper's thanks
+    is a kindness or the first entry against their name.
+
+- id: long_foundry_a_courier_who_came_back_changed
+  name: A Courier Back From the Hills Who Will Not Discuss the Walk
+  description: >-
+    The Coil and Brand still pays the eastern stratum camp's rations, and a
+    courier has just made the week's walk out and back. They delivered the
+    rations. They returned. They are drinking alone in the Kin Lanes and are
+    specifically, pointedly uninterested in any conversation about the road,
+    the camp, or what the hills sounded like on the way home. The guild has
+    not yet asked them anything, and seems in no hurry to.
+  flavor_tags: [stratum, kragmoor, peril, uncanny]
+  lifespan_turns: 5
+  delivery_hints:
+    - A tavern-keeper in the Kin Lanes quietly asks an outsider to sit with the courier, who has been at the same table too long
+    - The courier answers a harmless question about the weather on the slopes with a long silence and a changed subject
+    - The Coil and Brand has paid the courier early and not booked them for the next run, which is not how the rates-book works
+  narrative_hint: >-
+    The macro-trope's nearest edge, made personal (SOUL: the camp is already
+    reaching the city through the people who go there). Don't say what the
+    courier saw — let the not-saying be the seed, let the guild's incuriosity
+    be its own tell, and thread this toward the stratum-camp arc as the first
+    symptom the players can touch before the city admits there is one.

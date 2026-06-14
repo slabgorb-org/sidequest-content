@@ -1,0 +1,263 @@
+# Seed tropes for mutant_wasteland/flickering_reach — world-tier deck (Epic 94:
+# genre is the rulebook only; flavor lives in the world). Short-arc narrative
+# hooks dealt at session start and on lull/engagement draws, expiring after
+# lifespan_turns and lingering as ghosts for later callback (ADR-018, ADR-128).
+# Seeds are baited hooks (ADR-014 diamonds-and-coal) — deliberately vague; the
+# narrator threads an engaged seed into whatever the scavenge demands.
+#
+# The engine reads world-first (websocket_session_handler `_seed_source =
+# worlds.get(slug) or pack`), so without this file flickering_reach drew from an
+# empty deck and the lull-escalation engine declined `none_available` on every
+# quiet turn — which left the narrator inventing crowds of NPCs to fill the
+# silence of the steppe (the bug this deck fixes).
+#
+# Pitched to flickering_reach's actual axes (hope 0.6, tech 0.5, weirdness 0.9)
+# and its four-faction grudge-web. Every seed reference-stacks on THIS world's
+# canon — the rain-catcher leases Odige rents at three hundred percent, the
+# Tithe Wall and Karta's Road, the Long Signal in the static, finder's law, the
+# Understory's root-creep and its "peace in the green," the Vaultborn
+# trade-locks and Atmost-delta's residency offer, the lost art of storm-reading
+# — never generic "raiders attack the wasteland." The Reach is survivable but
+# strange: water is the only real currency, every debt is owed in blood, and the
+# weirdness dial is turned up high. flickering_reach is the project's one fully
+# spoilable world, so these lean hard on real secrets (the Signal is a network,
+# Kuinem's Sowing was wiring, the vats under Vault Echo). Register: dust, rust,
+# and grudges, kept human-scale — a scavenger's stakes, not the apocalypse's.
+
+- id: flickering_reach_overdue_rain_catcher
+  name: The Lease Came Due
+  description: >-
+    A settlement's rain-catcher has stopped yielding, and the Dome Syndicate's
+    collector is overdue for the salvage-and-labor the lease was paid in. The
+    array isn't broken so much as withholding — and everyone here knows what
+    Odige does to a post that falls behind. Someone has begun quietly weighing
+    whether to drink the catch or barter it before the collector arrives.
+  flavor_tags: [water, scrapborn, debt, scarcity]
+  lifespan_turns: 6
+  delivery_hints:
+    - A settler keeps glancing at the dry condensation trough and then at the road the collector takes
+    - The lease-tally is read aloud and the salvage owed is short by more than anyone will admit to
+    - Two households are arguing over whose ration of the last full catch was skimmed
+  narrative_hint: >-
+    Water is the only real currency here (SOUL: ground every stake in survival,
+    not spectacle). Let the players feel the lease as a leash — the Syndicate's
+    catch keeps the post alive and can be cut — and let their choice to pay,
+    skim, or sabotage make an ally or an enemy of Odige's collector.
+
+- id: flickering_reach_repainted_stone
+  name: A Stone Repainted Out of Season
+  description: >-
+    One of the red-painted markers along Karta's Road has been freshly daubed in
+    iron-oxide — but it isn't spring, and no Drifter rider claims the work. The
+    pigment is wrong, too bright, and it points off the maintained line toward
+    the glass. Whoever repainted it wanted the Road read a new way.
+  flavor_tags: [drifters, signal, mystery, trail]
+  lifespan_turns: 7
+  delivery_hints:
+    - A rider runs a thumb over the wet pigment and frowns at the colour, which is not the clan's mix
+    - The repainted marker leans a few degrees off the old line, toward the black glass plain
+    - An old Drifter insists the spring repainting was finished a month ago and this stone was not among them
+  narrative_hint: >-
+    Karta's Road is a Drifter memorial and a map at once. Let the players read
+    the tampered marker as a message or a trap (SOUL: reward curiosity, but the
+    Reach answers it with consequences) and bind the false line to whoever wants
+    a crew lured off the safe trail.
+
+- id: flickering_reach_name_on_the_tithe_wall
+  name: A Name That Came Back
+  description: >-
+    Someone has been standing too long at the Tithe Wall in Tood's Dome, tracing
+    one carved name with a fingertip and saying nothing. They are not Drifter,
+    and they do not trade. A numbered stranger with perfect teeth has been asking
+    the market who keeps the recovery-oath lists — and asking very carefully.
+  flavor_tags: [bargain, vaultborn, drifters, memory]
+  lifespan_turns: 7
+  delivery_hints:
+    - A clean-jawed visitor lingers at the scrap-steel wall while every Drifter in the Dome pretends not to watch
+    - The stranger flinches at open sky and keeps a hand near a sidearm that has never once jammed
+    - A Drifter elder is sent for, because someone has touched a name that a clan still swears an oath over
+  narrative_hint: >-
+    The Bargain is the world's defining shame. Let the players decide whether the
+    returned tithe-child is hunted, haunted, or hunting (SOUL: NPCs want things
+    and act on it) — and let touching that name reopen a grief the whole Dome
+    conducts trade around.
+
+- id: flickering_reach_root_under_the_floor
+  name: The Floor Is Warm
+  description: >-
+    The packed earth under a trade-post stall has gone soft and warm overnight,
+    and something arm-thick is moving beneath it. The Greenfolk would call it the
+    earth reclaiming what was stolen; the stallholder calls it the end of his
+    foundation. A barefoot Greenfolk pilgrim has already arrived to kneel where
+    the ground is warmest.
+  flavor_tags: [greenfolk, understory, peril, growth]
+  lifespan_turns: 5
+  delivery_hints:
+    - Boot-soles come up faintly warm from one patch of floor and cold everywhere else
+    - A tool left overnight near the soft ground has corroded to uselessness by dawn
+    - A Greenfolk pilgrim walks in barefoot, lies down on the warm patch, and will not be moved
+  narrative_hint: >-
+    Root-creep is invasion to one faction and healing to another, and both are
+    sincere (SOUL: every side is internally logical). Let the players choose to
+    cut, feed, or flee the tendril, and let whichever they pick put them on a
+    side of the Greenfolk-Syndicate line they didn't mean to take.
+
+- id: flickering_reach_word_in_the_static
+  name: A Word in the Static
+  description: >-
+    A scavenged radio that has only ever hissed the Long Signal's tangle of dead
+    broadcasts spoke a single clear word at dawn — in no language anyone present
+    knows — and then went back to humming. A Drifter singer two camps over woke
+    at the same hour. Whoever owns the set has not decided yet whether to sell
+    it, smash it, or listen for the next word.
+  flavor_tags: [drifters, signal, mystery, weirdness]
+  lifespan_turns: 8
+  delivery_hints:
+    - The radio's hiss briefly resolves into a cadence too even to be noise, then dissolves again
+    - A Drifter singer arrives unasked, saying the static called her here
+    - The set's owner cannot agree with anyone present on which word they heard, though all heard one
+  narrative_hint: >-
+    The Signal is a conversation between machines that never stopped (fully
+    spoilable). Let the players treat the word as omen, salvage, or summons
+    (SOUL: weirdness is high here — lean into it) and let answering it draw a
+    singer's interest and the Syndicate's, who triangulate anything worth money.
+
+- id: flickering_reach_vault_lock_cycled
+  name: The Trade-Lock Cycled at Night
+  description: >-
+    A sealed Vaultborn trade-lock that has opened only on its numbered schedule
+    for a century cycled once, off-hours, and a crate went in that no manifest
+    lists. The proxy who handles the slot won't say who sent it. Surface goods
+    have been moving the wrong direction through a door that is supposed to only
+    take.
+  flavor_tags: [vaultborn, smuggling, intrigue, sealed]
+  lifespan_turns: 6
+  delivery_hints:
+    - The trade-lock's seal shows scuffing consistent with a recent off-schedule cycle
+    - A numbered intermediary refuses to name the crate's sender and refuses just a little too smoothly
+    - A surface trader admits, uneasily, that their suspiciously pure-bred regular paid in vault-mint scrip
+  narrative_hint: >-
+    The vault's isolation is cracking from inside (spoilable: Atmost-delta's
+    covert residency program, the reformist heresy). Let the players follow the
+    crate (SOUL: consequences cascade) and decide whether contact with the
+    Vaultborn is a door worth opening or the Bargain wearing a new mask.
+
+- id: flickering_reach_finders_law_dispute
+  name: Finder's Law Is Contested
+  description: >-
+    Two crews have planted claim-stakes on the same picked ruin, and both cite
+    finder's law — the only law the Scrapborn actually keep. One got there first;
+    the other got the working part out. Now a salvage-arbiter is being sent for,
+    and everyone within a day's ride is choosing which crew's version of "first"
+    they'll swear to.
+  flavor_tags: [scrapborn, salvage, dispute, law]
+  lifespan_turns: 6
+  delivery_hints:
+    - Two sets of claim-stakes stand in the same doorway, each scratched with a different crew-mark
+    - One crew has the intact component already crated; the other has the earlier stake and the witnesses
+    - A salvage-arbiter is named, and quiet offers begin circulating to buy the testimony before they arrive
+  narrative_hint: >-
+    Finder's law is the Scrapborn's whole civic order, and it bends to whoever
+    has leverage. Let the players be pulled in as muscle, witness, or arbiter
+    (SOUL: their word has weight and costs something) and let the verdict make
+    one crew an ally and the other a grudge that rides the salvage circuit.
+
+- id: flickering_reach_mounts_wont_cross
+  name: The Mounts Won't Cross
+  description: >-
+    A Drifter string of seven-limbed mounts has balked at a stretch of open
+    steppe they crossed easily a season ago, and no rider can drive them over it.
+    The old hands could have read what the beasts are saying — storm-reading died
+    with the tithe-generation — and the young riders are left with crude
+    instruments and a growing dread. Something under that ground has changed.
+  flavor_tags: [drifters, mounts, lost-art, weirdness]
+  lifespan_turns: 7
+  delivery_hints:
+    - The mounts plant their legs and vocalise in patterns that almost resolve into words at one patch of steppe
+    - A young rider admits no one living can read mount-behaviour the way the lost storm-readers did
+    - Brought-near metal briefly magnetises, the way it does above Vault Echo's vents
+  narrative_hint: >-
+    Storm-reading is a lost art the Bargain broke (canon). Let the players supply
+    the reading the Drifters can't (SOUL: reward the clever workaround) and let
+    what spooks the mounts — root-creep, a buried node, a vault shaft — be a
+    thread that pays off larger later.
+
+- id: flickering_reach_offering_of_shoes
+  name: The Offerings Were Taken
+  description: >-
+    The children's shoes left as offerings at Vault Echo's fused Sealed Gate have
+    been gathered up and removed in the night — every pair, off a door no one has
+    opened in a century. The Drifters who maintain the shrine are past grief and
+    into fury. Someone reached that gate, and the gate, or what is behind it,
+    took what was left there.
+  flavor_tags: [bargain, vaultborn, drifters, dread]
+  lifespan_turns: 6
+  delivery_hints:
+    - The graffiti-covered blast door stands bare where pairs of small shoes were heaped yesterday
+    - A Drifter who tends the shrine is shaking with a rage that hasn't decided on a target yet
+    - A single shoe is found a long stride from the gate, pointing inward, as if dropped on the way in
+  narrative_hint: >-
+    Vault Echo is sealed from the inside and warm to the touch (canon: someone
+    breathing on the far side). Let the players investigate a desecration that
+    has no innocent explanation (SOUL: dread earned, not declared) and let the
+    answer point at the vault's secret commerce or at something that came out.
+
+- id: flickering_reach_root_fed_salvage
+  name: Salvage Fed to the Roots
+  description: >-
+    A cache of pre-war biotech has gone missing from a Scrapborn yard, and the
+    Greenfolk growth-front nearest it has put on a season's growth in a week —
+    reaching now toward a rain-catcher and a buried power source with disturbing
+    purpose. Someone has been feeding the Understory on the sly, and the roots
+    have started doing things roots don't do.
+  flavor_tags: [greenfolk, understory, scrapborn, sabotage]
+  lifespan_turns: 5
+  delivery_hints:
+    - A yard's biotech salvage is gone and the growth-front beside it has lurched closer overnight
+    - New tendrils grow toward a power source and a rain-catcher, not toward light or water
+    - The roots hum at a frequency that leaves a nearby Drifter singer nauseated and unwilling to stay
+  narrative_hint: >-
+    Kuinem's Great Sowing was wiring, not agriculture (fully spoilable), and a
+    young radical is accelerating it. Let the players trace the missing biotech
+    (SOUL: small acts ripple) and decide whether to expose the feeder, prune the
+    growth, or learn what the roots are reaching for — and whom that angers.
+
+- id: flickering_reach_residency_offer
+  name: A Place Below, If You'll Trade for It
+  description: >-
+    A numbered intermediary has been making a quiet offer at the trade post —
+    permanent residency in the vault, water and safety guaranteed, in exchange
+    for "voluntary integration." Someone desperate enough is listening. The
+    Drifters who hear of it call it the Bargain with the serial numbers filed
+    off, and they are not wrong.
+  flavor_tags: [vaultborn, bargain, temptation, scarcity]
+  lifespan_turns: 7
+  delivery_hints:
+    - A clinical, soft-spoken proxy describes the offer's terms in language that carefully avoids the word tithe
+    - A settler at the end of their water and their luck is asking the proxy follow-up questions
+    - A Drifter overhears, goes white, and starts naming the offer for what their grandparents survived
+  narrative_hint: >-
+    The vault wants gene-diversity and won't repeat the tithe openly (canon:
+    Atmost-delta's program). Let the players sit with a genuinely tempting offer
+    whose price is paid in self (SOUL: bargains grant exactly what's asked and
+    cost what was meant) and let their counsel to the desperate settler matter.
+
+- id: flickering_reach_atmospheric_processor
+  name: The Second Processor Breathes
+  description: >-
+    Darty Ironlung's crew at the Rusted Junction has coaxed a second pre-war
+    atmospheric processor partway to life, and a thin column of true vapour now
+    rises where there was only rust. If it runs, Odige's water monopoly becomes
+    a water empire — and every settlement in the Reach can feel the math of that
+    arriving. The Junction has started turning hands away at the perimeter.
+  flavor_tags: [scrapborn, water, power, conflict]
+  lifespan_turns: 6
+  delivery_hints:
+    - A faint plume of real condensate rises over the Rusted Junction's strip-mined sprawl
+    - Syndicate crews are working double shifts and the perimeter has new guards who turn strangers back
+    - Border settlements are quietly stockpiling water against an embargo they can already smell coming
+  narrative_hint: >-
+    Whoever controls water controls the Reach (canon escalation: the scrapborn
+    empire). Let the players reach the Junction as hireling, spy, or saboteur
+    (SOUL: agency with teeth) and let helping or hobbling the processor tilt the
+    whole region toward feudal monopoly or fractious coalition.

@@ -1,0 +1,221 @@
+# Seed tropes for wry_whimsy/oz — world-tier deck (Epic 94: genre is the
+# rulebook only; flavor lives in the world). Short-arc narrative hooks dealt
+# at session start and on engagement draws, expiring after lifespan_turns and
+# lingering as ghosts for later callback (ADR-018, ADR-128). Seeds are baited
+# hooks (ADR-014 diamonds-and-coal) — deliberately vague; the narrator threads
+# an engaged seed into whatever the road demands of the traveler.
+#
+# These supersede the genre-tier wry_whimsy/seed_tropes.yaml deck for oz: the
+# engine reads world-first (websocket_session_handler `_seed_source =
+# worlds.get(slug) or pack`), so without this file oz drew from an empty deck
+# and the lull-escalation engine declined on every lull — which left the
+# narrator inventing crowds of NPCs to fill quiet travel (playtest 2026-06-13).
+#
+# Pitched to Baum's Oz specifically (public-domain canon, 1900): the road that
+# has opinions, the green-spectacles law of the Emerald City, the Deadly Poppy
+# Field, the Kalidahs, the Hammer-Heads, the Golden Cap, the witches' marks.
+# Wonder shading toward the uncanny, never toward horror — wry_whimsy tone.
+
+- id: oz_the_road_decides
+  name: The Road Has Decided Where You Are Going
+  description: >-
+    There is one road and it has opinions. Side-paths close behind the
+    traveler like a held breath; a turning taken twice arrives at the same
+    place it did the first time. Everyone met on the brick is going the same
+    way, and none of them remember choosing to.
+  flavor_tags: [travel, geography, law-of-the-land, wonder]
+  lifespan_turns: 7
+  delivery_hints:
+    - A fellow walker says cheerfully he meant to visit his sister three counties back and somehow keeps arriving here instead
+    - A milestone read from behind still counts the distance forward
+    - Stepping off the brick into the clover, the traveler finds the brick again under the next footfall
+  narrative_hint: >-
+    The road is a rule nobody wrote. Let it strand the players beside someone
+    useful or dangerous and let "why can't I turn back?" become the question
+    that opens the world's deeper logic.
+
+- id: oz_a_kindness_with_a_mark
+  name: A Kindness That Leaves a Mark
+  description: >-
+    A creature or a witch of the gentler sort grants exactly the help the
+    party needs — a direction, a safe field to sleep in, a word that unlocks
+    a gate — and presses a small token or a kiss upon the brow in parting.
+    The mark is protection. The mark is also a label, and labels here are read.
+  flavor_tags: [bargain, wonder, companion, traveler]
+  lifespan_turns: 8
+  delivery_hints:
+    - The giver explains the mark protects against one specific harm and is genuinely glad to give it
+    - Strangers down the road glance at the mark and adjust their manner — some warmer, some markedly cooler
+    - The mark cannot be washed off; a local mentions this as though it were obvious
+  narrative_hint: >-
+    The protection is real and the visibility is the hook. Let the mark open
+    one door and close another, and let whoever fears what marked the party
+    reveal themselves by their reaction to it.
+
+- id: oz_the_courteous_law
+  name: A Local Law, Applied With Perfect Courtesy
+  description: >-
+    An ordinance entirely sensible to the inhabitants lands on the travelers
+    in a way plainly never intended — spectacles that must be worn and locked
+    on at the gate, a toll paid in something the party didn't know it carried,
+    a colour one is forbidden to wear in this county. The officials are kind.
+    The officials are immovable.
+  flavor_tags: [law-of-the-land, authority, trial, absurdity]
+  lifespan_turns: 6
+  delivery_hints:
+    - The gatekeeper fits the lock himself, apologising for the snugness, certain the party will thank him later
+    - A traveler ahead in the queue is turned back for the same trifle and takes it as simply the weather
+    - There is an exemption; claiming it requires proving something inconvenient but not impossible
+  narrative_hint: >-
+    The law is a compressed confrontation. Let the players solve it by wit or
+    by finding the authority that sits above the one enforcing it; the
+    exemption, once claimed, should hand them a new obligation.
+
+- id: oz_the_ordinary_impossible
+  name: Something Impossible, Treated as a Chore
+  description: >-
+    A resident is doing a flatly impossible thing — oiling a joint so they do
+    not rust solid by Thursday, watering a field that grows its own fences,
+    arguing tariffs with a scarecrow who is winning — and is mildly put out by
+    the party's astonishment. It is simply what one does here.
+  flavor_tags: [wonder, absurdity, local-custom, traveler]
+  lifespan_turns: 5
+  delivery_hints:
+    - The resident uses the impossible thing to accomplish something entirely dull and is impatient to get on
+    - Asked to explain, they say there is nothing to explain and the party must be from away, perhaps from over the desert
+    - A second local confirms it is perfectly normal and offers to show a different impossible thing they find far more interesting
+  narrative_hint: >-
+    The impossible thing is a lever for the lateral thinker. The real prize is
+    learning which of this country's rules bend politely and which are
+    load-bearing.
+
+- id: oz_field_that_wants_you_to_rest
+  name: The Field That Only Wants You to Rest
+  description: >-
+    A stretch of the way is glorious — scarlet to the horizon, warm, scented,
+    deeply reasonable about the merits of sitting down for just a moment. The
+    smaller and the softer-hearted of the party feel it first. The flowers are
+    not cruel. They simply do not understand why anyone would want to wake.
+  flavor_tags: [travel, uncanny, wonder, peril-soft]
+  lifespan_turns: 5
+  delivery_hints:
+    - The drowsiness arrives as agreement rather than fear — every reason to stop is a good one
+    - Smaller companions or beasts succumb first and must be carried; the field does not object to being crossed, only hurried
+    - Field-mice, a stork, some small unbothered creature, know the trick of getting a sleeper out and will trade the knowing for a courtesy
+  narrative_hint: >-
+    The danger wears no teeth — it is the soft refusal to go on. Let rescue
+    come from an alliance with something small the party was tempted to ignore,
+    and let the debt for that help matter later.
+
+- id: oz_the_cap_that_commands
+  name: An Object That Commands, a Fixed Number of Times
+  description: >-
+    The party comes into possession of a thing of real power — a cap, a whistle,
+    a written word — that compels a great service when correctly invoked. The
+    power is genuine. The charges are finite and precisely counted, and the
+    previous owner spent some of them already.
+  flavor_tags: [bargain, wonder, authority, traveler]
+  lifespan_turns: 8
+  delivery_hints:
+    - The rhyme or rite of invocation is learned secondhand and may be a verse short
+    - Whatever answers the call serves exactly the letter of the command and not one inch past it
+    - The count of remaining uses is known to someone who would very much like to borrow one
+  narrative_hint: >-
+    The finite charges are the story. Let the party agonise over spending one,
+    let a literal-minded servant grant precisely what was asked, and let the
+    last charge come due when something they love is on the wrong end of it.
+
+- id: oz_beast_with_one_honest_problem
+  name: A Beast or Body Honest About Its One Flaw
+  description: >-
+    A potential ally — a stuffed man, a tin one, a great cat ashamed of its
+    own roar, a hill-creature without arms — would make a fine companion but
+    for the single thing it names at once: it cannot cross water, it rusts, it
+    is a coward, it is missing the very part it most wants. It asks anyway.
+  flavor_tags: [companion, wonder, bargain, traveler]
+  lifespan_turns: 8
+  delivery_hints:
+    - The flaw is stated plainly in the first breath; there is no pretending otherwise
+    - The flaw is relevant to the road ahead, not the road behind
+    - The creature knows where its lack might be mended; the way there is exactly where the party is reluctantly headed
+  narrative_hint: >-
+    The flaw is a short arc the players can close. Let mending it shift the
+    country's regard for the party or open a door they could not have found
+    alone — and let the creature's "lack" turn out to be something it had the
+    whole time.
+
+- id: oz_kalidah_in_the_reckoning
+  name: The Thing in the Wood Is Worse Than the Rumour
+  description: >-
+    Between two stretches of safe road lies a gap the locals lower their voices
+    about — a ravine, a dark wood, a stretch where the brick gives out. What
+    waits there is not a story for frightening children. It has the body of one
+    fearsome thing and the head of another, and it hunts in a pair.
+  flavor_tags: [travel, peril, wonder, reversal]
+  lifespan_turns: 6
+  delivery_hints:
+    - Locals will name it only obliquely and will not walk the party to the edge of its ground
+    - It is patient and clever and comes when the party is most committed to the crossing — mid-span, mid-climb
+    - The way past is not strength; it is the felling of the bridge, the burning of the gap, the wit to make the ground itself refuse them
+  narrative_hint: >-
+    A rare seed with real teeth — wry_whimsy holds peril, it merely refuses
+    grimness. Let survival come from cleverness with the terrain rather than a
+    fair fight, and let the cost of the crossing (a felled bridge, a burned
+    wood) close a road behind the party for good.
+
+- id: oz_the_breakable_country
+  name: A Country Where Everyone Is Breakable
+  description: >-
+    A region the road passes through is populated by folk of china, or glass,
+    or some other lovely fragile stuff — perfectly alive, perfectly mannered,
+    and perfectly aware that a careless stranger could end a milkmaid or a
+    prince with one clumsy step. They would like the party to leave. Gently.
+  flavor_tags: [wonder, local-custom, absurdity, traveler]
+  lifespan_turns: 5
+  delivery_hints:
+    - The inhabitants flinch at sudden movement and conduct all business at the pace of not-being-shattered
+    - A small kindness done with enormous care earns disproportionate gratitude; a thoughtless gesture causes a real, mournful loss
+    - Crossing the country at all puts something delicate at risk; the only blameless path is the slow one
+  narrative_hint: >-
+    The fragility is the rule the players must hold in their hands the whole
+    way through. Let care be rewarded and carelessness cost something that
+    cannot be glued back, and let one figure of china choose to leave with the
+    party knowing they may not survive the leaving.
+
+- id: oz_the_humbug_behind_the_curtain
+  name: The Great Power Is a Frightened Person
+  description: >-
+    Something the country fears and obeys — a voice of fire, a floating head, an
+    edict from a hidden throne — turns out, when the party gets behind it, to be
+    an ordinary frightened soul working levers. They are not a villain. They are
+    a person who told one large lie and has been maintaining it, exhausted, ever
+    since.
+  flavor_tags: [reversal, authority, wonder, bargain]
+  lifespan_turns: 6
+  delivery_hints:
+    - The terrifying apparatus is real; the terror behind it is held together with string and nerve
+    - Exposed, the humbug does not fight — they bargain, offering real help by ordinary means if the lie is kept
+    - The thing the country needed from its false god, the humbug can almost provide, by craft rather than power
+  narrative_hint: >-
+    The reversal is the genre in a sentence — the marvel is a person, and the
+    person can still come through by wit instead of magic. Let the players
+    decide whether to unmask or protect the lie, and let their choice change
+    what the country becomes without its idol.
+
+- id: oz_one_who_waited_at_the_verge
+  name: The One Who Has Been Waiting by the Road
+  description: >-
+    Someone sits at the verge — a gatekeeper, a riddle-setter, a guardian of a
+    stile — visibly relieved that travelers have at last arrived. There is
+    evidence of a long wait: a worn seat, the leavings of meals, a tally of days
+    scratched somewhere. They will not leave until their one matter is settled.
+  flavor_tags: [companion, traveler, wonder, riddle]
+  lifespan_turns: 7
+  delivery_hints:
+    - The waiting one has made themselves a small home of the spot and speaks as though the party were expected
+    - The matter cannot be settled alone — it wants someone from away, someone going on rather than staying
+    - Passing by is allowed; the figure calls after that they will still be here, and they will be
+  narrative_hint: >-
+    The matter is small and the reward out of proportion — trust, a shortcut,
+    a true thing known. Let the gratitude be genuine and the information
+    reliable, so the players learn that pausing to help pays here.

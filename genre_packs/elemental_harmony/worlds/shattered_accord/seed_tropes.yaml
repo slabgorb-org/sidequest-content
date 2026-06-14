@@ -1,0 +1,288 @@
+# Seed tropes for elemental_harmony/shattered_accord — world-tier deck (Epic 94:
+# genre is the rulebook only; all flavor lives in the world). Short-arc narrative
+# hooks dealt at session start and on engagement/lull draws, expiring after
+# lifespan_turns and lingering as ghosts for later callback (ADR-018, ADR-128).
+# Seeds are baited hooks (ADR-014 diamonds-and-coal) — deliberately vague; the
+# narrator threads an engaged seed into whatever the contested frontier demands.
+#
+# Without this file shattered_accord drew from an empty deck and the
+# lull-escalation engine declined `none_available` on every quiet turn, leaving
+# the narrator to invent crowds of NPCs to fill silence (the bug this fixes; the
+# engine reads world-first via the session handler `_seed_source = worlds.get(slug)
+# or pack`, so this deck supersedes any genre-tier elemental_harmony seeds here).
+#
+# Pitched to shattered_accord's own canon, NOT generic wuxia: axes balance 0.2 /
+# conflict 0.7 / mysticism 0.7, WWN lethality (sentences and spirits really kill),
+# starting on the Anhuanzhou Wall on the Jade Kingdoms' contested northern
+# frontier. Every seed reference-stacks a SPECIFIC named idiom — the Burning
+# Schism's grudge ('ember aid is ash', the Granite Cenotaph), Taamila's forbidden
+# bloodline-pact and the Drowned Covenant's ritual drownings, the mistranslated
+# Convergence prophecy ('one purpose', not 'one person'), multi-element channeling
+# outlawed and hunted, tribute owed to river-dragons since the Accord broke, the
+# Sealed Gate's starving borders, the Chain of Meishangdao, the collapsed Mountain
+# Accord — not 'the elements are out of balance'. The register is a world already
+# at war fought in skirmish and shadow-campaign, where the wrong allegiance, the
+# wrong technique, or an unpaid offering gets people killed, and no faction's
+# version of the past is wholly true.
+
+- id: shattered_accord_ember_aid_is_ash
+  name: An Old Ally Offers Aid the Border Remembers as Treachery
+  description: >-
+    Fire channelers from the Ember Isles have arrived at the frontier offering
+    help — against bandits, a spirit-tear, a Jade column, it hardly matters — and
+    the Iron Peaks folk here have gone silent and hard at the sight of them. Three
+    hundred years ago the Ember Isles answered exactly such a call at Hyeong Ridge
+    and burned the allies they came to save. The locals have a saying. Nobody will
+    say it to the newcomers' faces.
+  flavor_tags: [grudge, alliance, fire, distrust]
+  lifespan_turns: 6
+  delivery_hints:
+    - An old miner mutters 'ember aid is ash' and spits, then refuses to explain it to the fire channelers' faces
+    - The Ember Isles channelers are sincere, capable, and visibly puzzled that their offered help is met with stone-faced hostility
+    - Someone points out the Granite Cenotaph or its like, carved 'betrayed by fire, unbroken by earth', as the only answer the Iron Peaks will give
+  narrative_hint: >-
+    Diamonds-and-coal: the aid is real and so is the grudge, and accepting one
+    costs the other. Don't let the party reconcile the two with a speech — the
+    fire offered now is the same shape as the fire that killed Dojin's rearguard,
+    and choosing to trust it makes enemies of whoever still recites the names of
+    the fallen.
+
+- id: shattered_accord_unpaid_tribute
+  name: A River-Spirit Is Owed an Offering No One Has Paid in Years
+  description: >-
+    The water has turned wrong along this stretch — running clear where it should
+    be silted, or rising against the wind, or simply gone quiet in a way the old
+    folk find worse than flood. Before the Shattering the river-mother of this
+    valley was given offerings every season and kept the channel kind. The shrine
+    is half-drowned now and the offerings stopped a generation back, and something
+    coiled and patient has begun to take a toll of its own.
+  flavor_tags: [spirit, tribute, water, omen]
+  lifespan_turns: 7
+  delivery_hints:
+    - A boatman will not pole past a certain bend after dusk and cannot fully say why, only that his father did not either
+    - A flooded shrine still holds the rotted remains of an altar where seasonal offerings were once laid
+    - Someone recalls the river took a swimmer or a skiff last month, and the elders did not call it an accident
+  narrative_hint: >-
+    SOUL graceful degradation: the spirit is a real, dangerous Other with a
+    grievance that predates the party, not set dressing. Let the unpaid tribute be
+    a debt that can be settled, fought, or fled — and let ignoring it mean the
+    thing in the water chooses its own payment, on the lethality track, from
+    whoever is nearest.
+
+- id: shattered_accord_the_hunted_breadth
+  name: A Channeler Who Bends More Than One Element Is Being Hunted
+  description: >-
+    Someone in the district moves the wrong way — turns a flame aside with a
+    breath, steadies stone with a gesture meant for water. Multi-element
+    channeling died with the Accord and is half-myth now, and every faction wants
+    the one who can do it: the Jade Reclamation to control, the Accord Reborn to
+    recruit, others simply to be sure no one else has them. The person knows it,
+    and is trying very hard to look ordinary.
+  flavor_tags: [multi-element, fugitive, prophecy, faction]
+  lifespan_turns: 6
+  delivery_hints:
+    - A stranger over-corrects to hide a reflex — dampening a spark too fast, calming a tremor that should have thrown them
+    - A faction scout is in the district asking flat, careful questions about anyone who 'channels strangely'
+    - A scholar mentions the Avatar prophecy and that everyone is hunting one person, then frowns as if the wording has always bothered them
+  narrative_hint: >-
+    Thread toward the Convergence-mistranslated truth without stating it: the
+    hunters believe in 'one person', and the danger is the party deciding whether
+    to deliver this one, shelter them, or become visible themselves. SOUL agency —
+    sheltering them paints the same target on the party that the hunted one wears.
+
+- id: shattered_accord_breath_sealed_summons
+  name: A Breath-Sealed Letter Summons a Channeler to a Summit
+  description: >-
+    An Accord Reborn emissary has come down from the Sky Temples carrying a letter
+    closed with a seal of held breath — it will not open for anyone but its named
+    reader, and it names someone near the party, or the party itself. It invites a
+    channeler to the Sacred Spire to help reweave the broken Accord. The
+    invitation is gracious. The faction that sends it has lately begun calling
+    refusal 'requiring guidance'.
+  flavor_tags: [faction, summons, air, obligation]
+  lifespan_turns: 5
+  delivery_hints:
+    - The emissary will not hand the breath-sealed letter to anyone but its named addressee, and waits with unnerving patience for an answer
+    - Pressed, the emissary speaks warmly of voluntary alignment, then more coldly of nations that 'must be guided'
+    - A local who declined a prior summons is spoken of in the past tense, and no one will say what guidance was given them
+  narrative_hint: >-
+    Diamonds-and-coal: the summit is genuinely the world's best hope and also a
+    soft conscription. Let the party feel the courtesy and the threat in the same
+    breath, and let saying no put an authoritarian faction's attention on them as
+    surely as saying yes would put them on the road to the Spire.
+
+- id: shattered_accord_assessors_paper
+  name: A Village Is Being Dismantled by Requisition Notice, Not by Sword
+  description: >-
+    Jade Reclamation assessors have posted notices on this frontier village —
+    reclassifying the land, devaluing the wells, scheduling a resettlement that
+    nobody asked for. The water failed last season in a way that looked natural
+    and was not. There is no army here yet, only paper and the quiet certainty
+    behind it, and the elders cannot decide whether to comply, resist, or run
+    before the schedule reaches them.
+  flavor_tags: [empire, villages, sabotage, bureaucracy]
+  lifespan_turns: 7
+  delivery_hints:
+    - A requisition notice is nailed where everyone passes, written in the bloodless courtesy of imperial law
+    - A well or terrace that 'failed naturally' shows, to a careful eye, the marks of deliberate sabotage done ahead of the assessors
+    - An assessor is polite, reasonable, and entirely immovable, and treats the village's survival as a clerical matter already decided
+  narrative_hint: >-
+    The Bureaucracy of Ruin in miniature: the evil is procedural, not a villain
+    with a speech. SOUL — every village the party saves accelerates the
+    Authority's timeline for the next, so let mercy have a cost and let the
+    saboteur, when found, be a person under pressure rather than a monster.
+
+- id: shattered_accord_sealed_gate_starving
+  name: A Sealed Border Means a Town That Will Starve Behind Its Own Walls
+  description: >-
+    Past the channeled-granite wall the Iron Peaks raised after the Burning
+    Schism, a garrison-town is slowly starving — sealed borders cut the trade in
+    grain and medicine, and doctrine forbids opening a single gate to a foreign
+    hand. Someone inside is smuggling, or starving, or quietly arguing that the
+    walls must open or the town must die. To help is to be the foreign hand the
+    whole doctrine exists to refuse.
+  flavor_tags: [iron-peaks, siege, isolation, scarcity]
+  lifespan_turns: 6
+  delivery_hints:
+    - A wall-warden turns the party away by oath even as hunger shows plainly on the faces behind him
+    - A quiet internal faction argues the gate must open or the town starves within a generation, and says so at risk to themselves
+    - Foreign channelers crossing the border are threatened with the deep mines, yet someone inside has left a way through anyway
+  narrative_hint: >-
+    SOUL graceful degradation through a closed door: the isolation is rational
+    self-defense earned by real betrayal, and it is also killing the people it
+    protects. Let aid mean breaking a law written in blood, and let the smuggler
+    or the dissenter who opened the gate bear the consequence whether the party
+    helps or not.
+
+- id: shattered_accord_drowned_offering
+  name: The Tide Came Too Far Inland, and It Wanted Something
+  description: >-
+    The sea reached past every marker it should respect and drew back leaving the
+    village shaken and one person fewer. On the coast they whisper of the Drowned
+    Covenant, who feed the deep-ocean spirits with ritual drownings to keep their
+    terrible favor — the same spirits Taamila woke when she spent her whole
+    bloodline for one wave six centuries ago. Someone here has been making
+    offerings to the deep. Or has been chosen as one.
+  flavor_tags: [tide-reaches, cult, water, sacrifice]
+  lifespan_turns: 7
+  delivery_hints:
+    - The tideline is wrong — debris and salt far above where any tide should reach, and a name no one will speak missing since
+    - A coastal local with translucent skin and lightless eyes speaks of the deep's favor as a blessing, in a voice that carries an underwater resonance
+    - Someone recalls Taamila spent her own bloodline to the ocean spirits for a single wave, and that those spirits never went back to sleep
+  narrative_hint: >-
+    WWN lethality is real here: the deep takes people and does not give them back.
+    Diamonds-and-coal — the Covenant's faith is monstrous and sincere, and the
+    spirits' favor is genuine power bought with human cost. Let the party choose
+    whether the chosen offering is rescued, and let interfering with the deep's
+    due be a debt the ocean collects later.
+
+- id: shattered_accord_two_clans_one_dead_name
+  name: Two Clans Curse and Bless the Same Drowned Name
+  description: >-
+    Tide Reaches refugees on this frontier carry a feud older than the border:
+    one clan venerates Taamila of the Deep Atoll as the savior who drowned the
+    Jade fleet, the other curses her as the murderer who drowned their own
+    islands with it. The two truths cannot share a hearth. A death, a marriage, or
+    a single careless toast has reopened the wound, and the party is standing in
+    the middle of it.
+  flavor_tags: [tide-reaches, schism, grudge, refugees]
+  lifespan_turns: 6
+  delivery_hints:
+    - A toast or a prayer that honors a name makes half the room go rigid and the other half raise their cups higher
+    - A refugee recounts the Drowning as deliverance; another, just as certain, names it the murder of tens of thousands of their own
+    - The party is pressed to acknowledge one telling of the drowned name, and there is no wording that satisfies both clans
+  narrative_hint: >-
+    SOUL — let neither reading be the lie; the Coral Clans and the Deep Clans are
+    both right, which is why six centuries have not healed it. Don't let the party
+    arbitrate it away with reason both sides have already weaponized. Forced
+    acknowledgment binds them to one clan's cause and makes the other an enemy
+    over a six-hundred-year-old wave.
+
+- id: shattered_accord_spirit_tear_widening
+  name: A Wound in the Sky Is Widening, and Wardens Are Turning Everyone Away
+  description: >-
+    A spirit-tear that the district had learned to live beside has begun to widen
+    — alien light spilling further each night, the spirits coming through it
+    bolder. Sealed Gate wardens have arrived to ring it with ward-stones and are
+    refusing all channelers entry regardless of allegiance, while an Accord Reborn
+    envoy insists it must be kept open and reweave, not sealed. The ground between
+    the two arguments is exactly where the people live.
+  flavor_tags: [spirit-tear, faction, environmental, peril]
+  lifespan_turns: 6
+  delivery_hints:
+    - The tear's light has crept past a landmark the locals use to measure it, and they measure it nervously every dusk now
+    - Sealed Gate wardens raise ward-stones and bar all channelers from the site, citing discipline over allegiance
+    - An Accord Reborn envoy argues, urgently and against the wardens, that sealing the tear forecloses any restoration
+  narrative_hint: >-
+    SOUL graceful degradation: the tear is a real hazard worsening on its own
+    clock, and both factions' remedies are plausible and incompatible. Let the
+    party's choice — seal, hold open, or hold neither — have a cost that lands on
+    the villagers either way, and let cooperative multi-element work quiet the
+    tear in a way no single channeler can, drawing exactly the attention the
+    hunted breadth fears.
+
+- id: shattered_accord_one_purpose_not_one_person
+  name: A Scholar Insists the Whole Age Has Mistranslated the Prophecy
+  description: >-
+    A frontier scholar, or a fugitive carrying their work, claims the academies
+    teach the Convergence prophecy wrong: the Old River Tongue says all elements
+    will find one purpose, not that one person will channel them all. The
+    difference unmakes the entire age — a messiah to be found and owned, against a
+    cooperation no faction can possess. Someone changed the text deliberately, and
+    they would very much like this scholar silenced.
+  flavor_tags: [prophecy, scholarship, faction, secret]
+  lifespan_turns: 8
+  delivery_hints:
+    - A nervous scholar guards a worn copy of an old text and flinches when the word Avatar is used the academy's way
+    - A faction agent is asking after this scholar by a description rather than a name, in the tone reserved for loose ends
+    - The party hears the academy reading and the scholar's reading side by side and the single changed word reframes everything
+  narrative_hint: >-
+    SOUL agency — the truth is more dangerous than the lie, because 'one purpose'
+    means no chosen one to control and every faction's strategy is built on the
+    wrong word. Let the party pull the thread and have received truth come apart
+    in their hands, putting them at odds with whoever staked their power on the
+    comfortable mistranslation.
+
+- id: shattered_accord_chain_of_links
+  name: A Reckoning of an Old Atrocity Reaches the Frontier
+  description: >-
+    Word comes that someone has begun, quietly, to settle accounts for the
+    Drowning of Qalanolei — the Jade naval invasion that cost eight hundred ships,
+    one link of which is set into the throne-hall floor for each drowned vessel.
+    A descendant, an heir to a grudge, or a relic of the dead fleet has surfaced
+    near the Wall, and a name that was supposed to stay sunk in the Bone Shallows
+    is being spoken aloud again.
+  flavor_tags: [grudge, history, jade-kingdoms, reckoning]
+  lifespan_turns: 5
+  delivery_hints:
+    - A traveler bears a token from a calcified ship of the lost fleet and will not say plainly what they intend with it
+    - Someone curses the imperial commander's name as if six centuries were yesterday, and others nearby do not stop them
+    - A frontier official grows abruptly nervous when the eight-hundred-link Chain in the throne hall is mentioned
+  narrative_hint: >-
+    Diamonds-and-coal: the reckoning is just and the empire's crime was real, and
+    a reopened atrocity on a contested border is also a spark in dry grass. Let
+    the party choose whether to aid, restrain, or expose the one settling the
+    account, and let either choice draw the Jade Reclamation's attention to the
+    district the way blood draws the deep-current things.
+
+- id: shattered_accord_mountain_accord_relic
+  name: A Collapsed Old Pact Has Left a Promise Someone Still Means to Keep
+  description: >-
+    The Mountain Accord — a mutual-defense pact between the Iron Peaks and the Sky
+    Temples — collapsed when the Temples refused to march at Hyeong Ridge,
+    severing centuries of highland solidarity. Now a token of that dead pact has
+    surfaced here: a sealing-stone, an oath-tally, a wall-officer's standing order
+    never rescinded. Someone believes the old promise still binds, and is acting
+    as if it were never broken at all.
+  flavor_tags: [oath, history, iron-peaks, sky-temples]
+  lifespan_turns: 7
+  delivery_hints:
+    - A relic of a defunct alliance is treated by one old keeper as a living obligation everyone else considers long dead
+    - A grudge-bound wall-officer, or their unquiet memory, still answers to an order from a pact that no longer exists
+    - Pressing the matter forces a choice between honoring a dead oath and admitting the solidarity it promised is gone for good
+  narrative_hint: >-
+    SOUL — an oath outliving the powers that swore it is both a relic and a snare.
+    Let the party decide whether to honor a broken promise that the world has
+    moved past, and remember WWN lethality: a wall-officer who still keeps a
+    fourteen-centuries-stale post may not be persuaded he is dead, and may settle
+    the question with the edge of a rusted blade.

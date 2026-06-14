@@ -1,0 +1,273 @@
+# Seed tropes for spaghetti_western/dust_and_lead — world-tier deck (Epic 94:
+# genre is the rulebook only; flavor lives in the world). Short-arc narrative
+# hooks dealt at session start and on engagement/lull draws, expiring after
+# lifespan_turns and lingering as ghosts for later callback (ADR-018, ADR-128).
+# Seeds are baited hooks (ADR-014 diamonds-and-coal) — deliberately vague; the
+# narrator threads an engaged seed into whatever the scene in the territory
+# becomes.
+#
+# The engine reads world-first (websocket_session_handler `_seed_source =
+# worlds.get(slug) or pack`), so without this file dust_and_lead drew from an
+# empty deck and the lull-escalation engine declined `none_available` on every
+# quiet turn — which left the narrator inventing crowds of NPCs to fill the
+# silence between gunshots. This file is the fix.
+#
+# Pitched FINER than western cliche. dust_and_lead is the Sangre Territory,
+# 1878 — a Mexican-border collision zone (lore.yaml world_truth: three
+# civilizations, none with clean hands), Leone moral ambiguity, mythic 0.9,
+# gravity 0.7, slow-fuse violence, survival by wit and nerve. These seeds
+# reference-stack on the territory's SPECIFIC mechanisms, not the dime-novel
+# saloon: the chained acequia headgate, silver coin the merchants won't change
+# against company scrip, Rurales and Rangers who cannot cross the river without
+# an international incident, the bounty paid only on delivery to the correct
+# jurisdiction, the salt-claim grievance the Families have not forgiven, Father
+# Mateo who buries everyone and asks no faction's leave. No white hats. The
+# desert decides what a man becomes, and it has all the patience none of them
+# do.
+
+- id: dust_and_lead_chained_headgate
+  name: The Acequia Gate Is Chained, and It Was Not Yesterday
+  description: >-
+    The headgate that feeds water down the old acequia to the south ranches
+    has a new chain on it and a new padlock, and a survey stake driven where
+    the common ditch turns. No one will say on whose order. Downstream the
+    corn is already curling in the heat, and the family that has watered there
+    since before the border is standing at the gate doing the arithmetic of
+    how many days the crop has left.
+  flavor_tags: [authority, peril, local-custom, border]
+  lifespan_turns: 7
+  delivery_hints:
+    - A vaquero rides up the ditch line at first light to find the gate chained and a stranger's stake in the bank, and rides back faster
+    - The padlock is company-new, oiled, the kind the general store does not stock; the chain still has the price-tag wire on it
+    - An old woman at the gate explains, without heat, exactly how many days of standing water are left and what happens to the crop after
+  narrative_hint: >-
+    Water is the only real currency in fifty miles (lore the_land). Let the
+    chain be a question of survival, not principle, and let whoever cut it or
+    kept it shut own the consequence downstream — SOUL: the world reacts to
+    what the players actually do about the gate, and the corn dies on its own
+    schedule whether or not anyone watches.
+
+- id: dust_and_lead_silver_wont_change
+  name: A Coin No Merchant Will Change
+  description: >-
+    Someone is trying to spend old silver — a heavy coin, an honest weight,
+    a face the Sangre del Paso merchants have never seen struck — and the
+    storekeeper has gone quiet and will only take company scrip or trade. The
+    coin is good. That is exactly the trouble. Good silver in the wrong hand
+    raises the only question that matters out here: where did it come from,
+    and who is missing it.
+  flavor_tags: [money, bargain, peril]
+  lifespan_turns: 6
+  delivery_hints:
+    - A storekeeper turns the coin over twice, sets it on the counter without picking it back up, and suggests scrip instead in a careful voice
+    - The coin's mint-face matches nothing in circulation; it weighs more than the dollar it claims to be
+    - A man two stools down at the cantina watches the coin change hands and leaves before his drink is finished
+  narrative_hint: >-
+    The Sierra Perdida silver and Los Cuervos' raided shipments are the local
+    economy's open wound (lore the_silver). Let the coin's provenance stay
+    vague until the players pull on it, then bind it to whoever in the scene
+    has reason to fear being asked — SOUL: the question the players raise is
+    the one that comes back for them.
+
+- id: dust_and_lead_pursuit_stops_at_the_water
+  name: The Tracks Lead to the River and Stop
+  description: >-
+    Fresh tracks — shod horses, driven stock, a wheel-rut heavy with weight —
+    run hard for the Sangre and end at the ford, where the law on this bank
+    ends with them. Across the brown water someone is unhurried. The patrol
+    that followed this far has reined up at the shallows because the man who
+    leads it knows what a single splashed hoofprint on the far bank costs in
+    Washington and Mexico City both.
+  flavor_tags: [border, peril, authority, money]
+  lifespan_turns: 6
+  delivery_hints:
+    - A lawman sits his horse at the water's edge and does not enter it, and is angrier about the line than about the theft
+    - On the far bank, unhurried, someone is already at work — branding, loading, or simply watching the pursuers not cross
+    - The rut in the near mud is deep enough that whatever crossed was carrying more than cattle
+  narrative_hint: >-
+    The river is the border and the border is a wall only for those who answer
+    to a flag (lore the_border). Rurales cannot cross north, Rangers cannot
+    cross south. Let the players be the only party in the scene the line does
+    not bind, and let crossing cost them the protection of whichever side they
+    leave — SOUL: the geography is the antagonist, and it does not move.
+
+- id: dust_and_lead_delivered_alive_or_dead
+  name: The Bounty Pays Only on Delivery, and to the Right Side
+  description: >-
+    A price has been set on a man, but the terms are particular: the money is
+    paid only when the body — or the breathing man, the poster is coy on which
+    — is delivered to the office that issued the paper, on the correct bank,
+    to the correct jurisdiction. A Contractor has read the fine print and is
+    doing the geometry of distance, water, and which border guard can be paid
+    to look at the river instead of the cargo.
+  flavor_tags: [money, peril, border, authority]
+  lifespan_turns: 6
+  delivery_hints:
+    - A quiet professional in town does not drink, does not gamble, and asks the stationmaster only about the schedule and the ford
+    - The poster's reward line specifies a place of delivery, not just a sum, and the place is days of hard country away
+    - A man who could collect twice — once on each side — is overheard pricing the difference
+  narrative_hint: >-
+    Solomon Cole's ledger is never wrong and his prey is never seen again
+    (lore the_contractors). Let the bounty's terms make the delivery, not the
+    capture, the real problem — the corpse is worthless until it reaches the
+    right desk — and let the players be the cargo, the carrier, or the rescue.
+    SOUL: the contract has no loyalty, only conditions, and the conditions bite.
+
+- id: dust_and_lead_padre_buries_everyone
+  name: Father Mateo Is Digging a Grave Nobody Has Claimed
+  description: >-
+    At the mission, the old priest is turning earth for a grave, and there is
+    no name on the marker and no family at the wall to mourn. He buries
+    everyone — Cuervo and company man, Ranger and rustler, in the same dry
+    ground — and asks no faction's leave to do it. He will tell you who is in
+    the box if you ask plainly. He will not tell you who put them there. That
+    he leaves to the desert and to you.
+  flavor_tags: [local-custom, vengeance, companion]
+  lifespan_turns: 8
+  delivery_hints:
+    - The mission bell does not ring for this one; the priest works alone with a spade in the heat and offers a stranger the other shovel
+    - The grave is being dug before the territory has agreed there is a death to bury, and the priest will not say how he came to know
+    - At the mission wall, one mourner stands apart who is not family and will not give a name
+  narrative_hint: >-
+    The mission is the territory's one neutral ground; even Los Cuervos respect
+    it (lore the_faith). Let Father Mateo be the seed's still point — he knows
+    the dead, withholds the killer, and grants no absolution the players have
+    not earned. Bind the unclaimed body to whatever grievance the scene
+    surfaces. SOUL: the consequence of a death lands on the living, in the open.
+
+- id: dust_and_lead_stakes_on_the_rancho
+  name: Survey Stakes Where the Corral Used to Be
+  description: >-
+    Fresh-cut stakes with bright ribbon have appeared overnight on land a
+    family has worked for three generations, run in a dead-straight line that
+    does not care about the well, the graveyard, or the house. A surveyor with
+    brass instruments and a federal escort says it is right-of-way and eminent
+    domain. The family says it is theirs. Both produce paper. Only one of the
+    papers is in a language the territorial court will read.
+  flavor_tags: [authority, reversal, local-custom]
+  lifespan_turns: 7
+  delivery_hints:
+    - A surveyor's line of ribboned stakes runs arrow-straight through a yard, a ditch, and the corner of a family camposanto without a bend
+    - Two deeds are laid on a table; one is old and Spanish and witnessed by a mission long since secularized, the other is new and federal
+    - The escort with the survey crew is not local and stands a little apart, watching the family rather than the instruments
+  narrative_hint: >-
+    The Consolidated takes what it cannot buy and buys what it cannot take;
+    its land claims dwarf any local title (lore the_railroad, world.yaml
+    opening). Let the conflict be two legitimate papers and one court that
+    only reads one of them — not villainy, but a larger thing that does not
+    slow down. SOUL: the players' choice of which paper to defend has weight.
+
+- id: dust_and_lead_the_salt_remembered
+  name: An Old Salt Grievance Walks Back Into Town
+  description: >-
+    Someone connected to the fencing of the salt flats — the man who filed the
+    claim, the deputy who stood with him, an heir collecting the family's debt
+    of memory — is in Sangre del Paso again, and the Families have not
+    forgotten who died at the flats and who got rich. Nobody says a word about
+    it out loud. But the room changes temperature when he walks in, and an old
+    man counts something on his fingers that is not money.
+  flavor_tags: [vengeance, local-custom, authority]
+  lifespan_turns: 8
+  delivery_hints:
+    - A familiar face from the salt-flat years rides in and the cantina conversation drops by half without anyone leaving
+    - An old vaquero watches the man cross the street and recites, quietly, a list of names that ends before the present
+    - The man buys salt at the company store at the company price, in front of the people who once gathered it free
+  narrative_hint: >-
+    The Salt War of 1877 is living memory here: common ground was claimed,
+    men died, the Rangers and Army came, and now the families buy their own
+    salt back (legend the_salt_war; Deputy Dent stood with the claimant). Let
+    the grievance simmer as a temperature, not a quest — and let the players
+    decide whether old blood gets paid. SOUL: the past is a debt the living
+    carry openly.
+
+- id: dust_and_lead_scrip_for_a_man
+  name: The Company Will Settle the Debt — for a Name
+  description: >-
+    A man is into the Consolidated for back-wages owed against the company
+    store, or behind on a note the company quietly bought, and the
+    superintendent's clerk has come to him with a clean, polite arrangement:
+    the debt vanishes if the man delivers a piece of information, a signature
+    on a deed, or the whereabouts of someone the company would like to find.
+    It is regrettable, necessary, and best done quickly. He has until the
+    railhead office closes Friday to decide what his honor is worth in scrip.
+  flavor_tags: [bargain, money, reversal]
+  lifespan_turns: 7
+  delivery_hints:
+    - A man with a company ledger-entry against his name is approached by a soft-spoken clerk who frames betrayal as bookkeeping
+    - The debt is real and the relief offered is real; only the price — a name, a mark, a route — is left vague until the man asks
+    - Someone the players know stops meeting their eye the week the clerk came to town
+  narrative_hint: >-
+    Superintendent Ward treats acquisition like surgery: regrettable,
+    necessary, quick (lore the_consolidated). Let the company never threaten
+    when it can purchase; the seed is the debtor's choice, not the company's
+    menace. Bind the asked-for name to someone the players value. SOUL: a small
+    desperate man's bargain becomes the players' problem when they're the name.
+
+- id: dust_and_lead_rurales_north_of_the_line
+  name: A Rurales Patrol on the Wrong Bank
+  description: >-
+    Federal Rurales have crossed to the north bank — hot pursuit, they say, of
+    men who fled their jurisdiction — and they are armed, mounted, and a long
+    way from any authority that can vouch for them. The Rangers call it an
+    incursion. The Rurales call it duty. Somewhere between those two words is
+    a fugitive worth crossing a border for, and a strip of riverbank where the
+    first shot fired could become a matter for two governments.
+  flavor_tags: [border, peril, authority, reversal]
+  lifespan_turns: 5
+  delivery_hints:
+    - Mounted men in unfamiliar federal grey are watering their horses on the American side and offering an explanation nobody asked for
+    - Their officer is correct, courteous, and immovable about the man he came north to take
+    - A Ranger arrives, badly outnumbered, and the whole exchange balances on which side speaks first and how
+  narrative_hint: >-
+    Cross-border pursuit is the spark the territory keeps almost-striking
+    (tropes border_war 0.5; lore the_border). Let the seed be a standoff of
+    jurisdictions, not a brawl — the danger is diplomatic and the fugitive is
+    the fuse. Let the players' intervention tip it either way. SOUL: nobody has
+    to die, but somebody decides, and the deciding has a price.
+
+- id: dust_and_lead_the_quiet_passes
+  name: The Canyon Passes Have Gone Quiet
+  description: >-
+    The high passes the Apache hold have stopped trading. No runners, no
+    smoke at the usual hours, no scouts on the ridgelines watching the survey
+    crews — and the silence is doing more to the territory's nerves than any
+    raid ever did. A trader has come back down with his goods unsold and a
+    single word scratched on a rock he cannot read. Something has moved up
+    there, deliberately, and the not-knowing is its own kind of weather.
+  flavor_tags: [travel, peril, local-custom]
+  lifespan_turns: 7
+  delivery_hints:
+    - A trader returns from the mountains with a full pack he meant to empty and will not be talked into going back up
+    - The ridgelines that always held a watching figure are bare, and the men who notice such things have noticed
+    - A word is scratched into stone at an abandoned trade-camp, recent, and no one in town can read it
+  narrative_hint: >-
+    Victorio's people are camped up the western draw and have not moved in
+    nine days (world.yaml opening; tropes apache_silence). Keep the Apache
+    people, not faceless threat — the silence is a decision with reasons the
+    players must earn, not a monster-cue. Let the quiet pressurize whatever
+    scene it touches. SOUL: absence reads as menace only because the territory
+    fears what it has not bothered to understand.
+
+- id: dust_and_lead_the_late_survey_crew
+  name: The Survey Crew Is Three Days Overdue
+  description: >-
+    A Southern Pacific survey party that should have reached town by now has
+    not, and the company is offering coin to anyone who will ride the line and
+    find out why. The country between here and the last camp is canyon and
+    salt and other people's grievances, and the crew was carrying instruments,
+    payroll, and a federal patent that several parties would prefer never
+    arrived. They are late. Late is a number that gets larger the longer no
+    one rides out to make it smaller.
+  flavor_tags: [travel, money, peril, money]
+  lifespan_turns: 6
+  delivery_hints:
+    - A company man at the railhead is paying in advance, in coin not scrip, for anyone willing to ride the survey line and report back
+    - The crew's last known camp is a day past the ford and a day short of the canyon that everyone has a reason to avoid
+    - What the crew carried — patent, payroll, brass — is worth more missing than the men are worth found
+  narrative_hint: >-
+    The survey crew that's "already three days late" is a live wire in the
+    opening fiction (world.yaml silver_canyon opening). Let the search be a
+    journey through the territory's factions, the overdue crew a question with
+    several interested answers, and the payroll a temptation. SOUL: what
+    happened to them is decided by the country they crossed, not narrated in
+    advance; the players find out by going.

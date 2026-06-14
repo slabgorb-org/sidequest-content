@@ -1,0 +1,262 @@
+# Seed tropes for caverns_and_claudes/beneath_sunden — world-tier deck
+# (Epic 94: genre is the rulebook only; flavor lives in the world). Short-arc
+# narrative hooks dealt at session start and on engagement draws, expiring
+# after lifespan_turns and lingering as ghosts for later callback (ADR-018,
+# ADR-128). Seeds are baited hooks (ADR-014 diamonds-and-coal) — deliberately
+# vague; the narrator threads an engaged seed into whatever the descent (or the
+# wait at the lip) becomes.
+#
+# The engine reads world-first (websocket_session_handler `_seed_source =
+# worlds.get(slug) or pack`), so without this file beneath_sunden drew from an
+# empty deck and the lull-escalation engine declined `none_available` on every
+# quiet turn — which left the narrator filling silence by inventing crews of
+# NPCs the camp does not have. Ropefoot is a SHORT roster (a winch-keeper, a
+# few who will not go down again); it cannot afford invented strangers.
+#
+# Pitched FINER than dungeon-crawl cliche, to beneath_sunden's specific lethal,
+# grave, Moria-as-tragedy register (gravity 0.9, comedy 0.05, outlook 0.2). The
+# reference stack is OSR megadungeon idiom made native to ONE shaft: the rope as
+# sole lifeline, the board of the unreturned as regional memory, torch/fuel/cold
+# attrition, the henchman who knows the way, the wandering-economy harriers, the
+# trick-room / empty-room / talking-room rhythm, level-drain dread, and the deep
+# that rearranges itself between descents. No winking. The name "Sünden" is
+# never explained.
+
+- id: beneath_sunden_a_name_on_the_board_you_knew
+  name: A Name on the Board You Half-Knew
+  description: >-
+    A name is being burned into the board while the party is at the fire, and it
+    is one they have heard before — a crew that sat at this bench, a face that
+    asked them a question last descent. The winch-keeper does not pause over it.
+    The iron hisses the note it always hisses. Only the party seems to feel that
+    the count just moved closer.
+  flavor_tags: [loss, local-custom, reversal]
+  lifespan_turns: 6
+  delivery_hints:
+    - The iron is already in the fire when the party comes up the rope, and the winch-keeper asks only which name, not whether
+    - Someone at the bench recalls the burned crew owed the party a favour, or were owed one, and now it cannot be settled
+    - The plank has run out of room and a fresh board has been nailed below the old, and the new name goes on it first
+  narrative_hint: >-
+    SOUL — Stakes are personal: let the camp's flat ritual make the party the
+    only mourners, and bind the half-known name to whatever the party most
+    needs to know about the way down. The count is the campaign; make this name
+    the moment the count stops being about strangers.
+
+- id: beneath_sunden_the_henchman_who_knows_the_way
+  name: The One Who Will Not Go Down Again
+  description: >-
+    Someone at the lip has been down further than anyone living and came back
+    deciding never to go again — and has not yet decided to leave. They know a
+    way through that the deep has not rearranged yet, or knew it the last time
+    it held still. They will not guide. They might talk, for the right reason,
+    if the party can bear what talking costs them.
+  flavor_tags: [companion, bargain, riddle]
+  lifespan_turns: 8
+  delivery_hints:
+    - They sit at the bench closest to the shaft and cannot stop shivering, three steps from a fire they will not move toward
+    - They answer a question about the deep with a single true detail and then will not say a second, as if the saying spends something
+    - They ask the party to carry one small thing down and leave it in a particular place, and will not say what it is for
+  narrative_hint: >-
+    SOUL — Orchestrate meaningful choices: the henchman-who-knows-the-way is an
+    OSR lifeline the party must earn, not buy. Let their knowledge be real but
+    expiring (the deep moves), and let the cost of getting it — a confession, an
+    errand, a debt — matter more than the route itself.
+
+- id: beneath_sunden_the_fire_is_drawing_thin
+  name: The Cold Has Crept Up the Collar
+  description: >-
+    The line where the fire's warmth stops and the shaft's cold starts has moved
+    toward the benches since the party last sat here. The fire is fed on
+    schedule and at the usual height. No one at the lip says it. Everyone has
+    felt it, and the fuel that holds the line is not endless.
+  flavor_tags: [peril, uncanny, local-custom]
+  lifespan_turns: 6
+  delivery_hints:
+    - A delver on the bench nearest the shaft cannot get warm though the fire is built up and close
+    - The rota has a gap because the person whose turn it was to feed the fire is on the board now
+    - The fire throws less heat than the wood should account for, as though something below is drawing it off
+  narrative_hint: >-
+    SOUL — Use the world's own logic: the camp's only cosmology is that the cold
+    dislikes the fire. Make that single observed fact the pressure — fuel is a
+    resource clock, and letting the line slip is the quiet, surface-side version
+    of running out of torches. Never name what the cold is.
+
+- id: beneath_sunden_the_rope_came_up_wrong
+  name: The Rope Came Up Wrong
+  description: >-
+    The line came over the winch's lip bearing a mark or a wear that was not in
+    the weave when it went down — not cut, not frayed by honest use, but
+    something a thing with patience and no blade might leave. The winch-keeper
+    studies it the way they study everything, and re-rigs it, and checks the
+    pawl twice, and does not say what they concluded.
+  flavor_tags: [peril, uncanny, trial]
+  lifespan_turns: 5
+  delivery_hints:
+    - A fiber pattern is worked into the hemp that was not there at descent, further down the length than wet should reach
+    - The drum has turned a quarter-notch against the pawl overnight, as if something below seated its weight on the line
+    - The spare line, when the winch-keeper measures it, is shorter than the shaft is deep
+  narrative_hint: >-
+    SOUL — Let consequences land hard: the rope is the only way out, and this is
+    the lifeline taking its first cost. Make the choice concrete — repair and
+    lose the descent's time, or trust a touched rope — and remember that whatever
+    is working it from below has not stopped.
+
+- id: beneath_sunden_the_route_rewrote_itself
+  name: The Way Down Is Not the Way You Mapped
+  description: >-
+    A stretch the party walked last descent is not where the party left it. A
+    junction that branched left branches right now, and the stone at the joint is
+    seamless, as if it was always this way and the party's memory is the error.
+    The deep shifts in its sleep, slowly, without witness, with no regard for
+    what was built or found before.
+  flavor_tags: [travel, uncanny, riddle]
+  lifespan_turns: 6
+  delivery_hints:
+    - A cairn the party stacked last descent stands present but in a place the party did not stack it
+    - The draught comes from a different quarter than it did hours ago, and the cold's gradient no longer points the way it pointed
+    - Two of the party describe the same chamber differently and both are remembering honestly
+  narrative_hint: >-
+    SOUL — Reward player skill over preparation: the Jaquaysed loop here is that
+    no map survives the leaving. Let navigation by air, sound, and cold gradient
+    beat navigation by remembered stone, and make every descent the first
+    descent. Retreat is not retracing.
+
+- id: beneath_sunden_the_room_that_is_only_a_room
+  name: A Worked Chamber That Holds Nothing
+  description: >-
+    A squared dwarf-make gallery opens off the dark — benches cut into the rock,
+    a smelter's footing, a ledger-niche — and there is nothing in it. No dead, no
+    ore, no trap, no answer. The hold did honest work here once and then stopped,
+    and the silence of the place is heavier for the labour that went into it.
+  flavor_tags: [wonder, uncanny, reversal]
+  lifespan_turns: 5
+  delivery_hints:
+    - Pick-marks of a life's labour are worn into a work-bench that no one will ever use again
+    - The party spends torch and time searching for the catch, the cache, the trick, and there is none
+    - A tally scratched on the wall ends mid-count, in a hand that did not finish the line
+  narrative_hint: >-
+    SOUL — Honour the empty room: OSR rhythm needs the room that is only a room,
+    and in Moria-as-tragedy the emptiness IS the content. Let the party's own
+    suspicion be the tension — the resource cost of searching nothing — and let
+    the unfinished tally do the grieving the camp will not.
+
+- id: beneath_sunden_the_dead_still_at_the_work
+  name: Hold-Dead, Still at the Shift
+  description: >-
+    A dwarf of the hold, dead two lifetimes, is at the labour it was set to —
+    swinging at a face of stone, hauling an empty cart, holding a gate long past
+    the end of the watch. It does not hate the party. It has simply not been told
+    the shift is over, and it has not been told for a very long time.
+  flavor_tags: [peril, uncanny, trial]
+  lifespan_turns: 5
+  delivery_hints:
+    - The sound reaches the party before the sight — a pick striking stone in even, tireless, unhurried strokes
+    - It does not turn toward the lamp until the party crosses some line it was set to hold, and then it turns all at once
+    - Putting it down does not keep; the deep keeps no dead, and the party will pass this gallery again
+  narrative_hint: >-
+    SOUL — Make the world mourn: the undead are the deep's grammar, not a twist.
+    Play the risen labourer as tragedy first and threat second — it is doing its
+    job — and let the fact that it will not stay down be the dread, the
+    OSR level-drain weight made literal: nothing you spend here stays spent.
+
+- id: beneath_sunden_the_harriers_in_the_dark
+  name: Something Is Working the Lamps
+  description: >-
+    Lean shapes move at the edge of the light — came up the dead road on the
+    same rumour everyone does, went down the rope, and did not come back the
+    same. They do not hold a line. They harry and withdraw and return, and they
+    know which lamps tire, which ropes fray, and how long a party will chase a
+    noise into the dark before it remembers the way back.
+  flavor_tags: [peril, travel, reversal]
+  lifespan_turns: 5
+  delivery_hints:
+    - A stone skitters from a side gallery the party already cleared, drawing the lamp one way while the cold breathes from another
+    - Gear left at the descent-point — a coil of spare rope, a sack of fuel — is gone or moved when the party returns to it
+    - There is no king to kill and no hoard at the bottom of them; they want what the party carries, and they have time
+  narrative_hint: >-
+    SOUL — Make the dungeon an intelligence: this is the OSR wandering-monster
+    economy made grave. The harriers are an attrition engine, not a fight to win
+    — let them tax the party's torches, rope, and nerve, and let the temptation
+    to chase them cost more than standing did.
+
+- id: beneath_sunden_the_thing_below_knows_the_schedule
+  name: It Has Watched the Rope a Long Time
+  description: >-
+    Something far down has learned that the warm things come down the rope on a
+    schedule, and it has had two lifetimes to learn it. The party finds the small
+    signs of being expected — a passage worn smooth by waiting, a cold that
+    arrives before they do, the unshakable sense that the dark below was ready
+    for this exact crew.
+  flavor_tags: [peril, uncanny, riddle]
+  lifespan_turns: 7
+  delivery_hints:
+    - The cold reaches a gallery ahead of the party and is already there when they arrive, as if it came down to meet them
+    - A thing the party said at the fire, that nothing living was near to hear, seems to have been heard somewhere lower
+    - The way ahead is clear and unhindered in a manner the deep has never been clear before, as if held open on purpose
+  narrative_hint: >-
+    SOUL — Let dread outweigh spectacle: the level-drain dread of the deep dweller
+    is that it is patient and it knows you. Thread this as the slow conviction
+    that the party is descending toward something that arranged the descent.
+    Reveal the named thing only if engaged; vagueness is the bait.
+
+- id: beneath_sunden_the_silver_is_still_down_there
+  name: The Silver the Dead Counted
+  description: >-
+    The rumour that drew everyone up the dead road is that a hold this rich could
+    not have spent itself — that the silver is still down there with the dead who
+    counted it. Some of that is even true. The party finds a sign of it: a struck
+    coin, a sealed assay, a ledger that balances to a sum no crew ever carried
+    up. The deep does not guard its treasure. It guards the going home.
+  flavor_tags: [bargain, wonder, trial]
+  lifespan_turns: 8
+  delivery_hints:
+    - A single hold-struck coin turns up where it has no business being, too clean, as if recently in a hand
+    - A weight of silver is reachable but heavy enough that carrying it means dropping rope, or fuel, or a wounded crewmate's pace
+    - The ledger-niche shows the hold's last assay came back richer than the one before, and the line after it is blank
+  narrative_hint: >-
+    SOUL — Make choices cost: extraction is the whole OSR bargain — the treasure
+    makes the lethality worth it, and the carry is the trap. Let the silver be
+    real and reachable, and let the weight of it bid against the rope, the
+    torches, and the count of who makes it back up.
+
+- id: beneath_sunden_the_extraction_that_outpaced_the_rope
+  name: Too Far Down to Climb in Time
+  description: >-
+    The party is deeper than the fuel, the water, or the daylight at the lip will
+    comfortably allow — and the way up is longer than the way down felt. Every
+    further step is a step that must be unwalked while something tires: the lamp,
+    the legs, the rope's patience, the winch-keeper's willingness to keep the
+    drum manned past the agreed hour. The deep is generous with distance and mean
+    with the way back.
+  flavor_tags: [peril, travel, trial]
+  lifespan_turns: 6
+  delivery_hints:
+    - The lamp gutters and the party counts the spares and the count is lower than the depth
+    - The cold's gradient says up is further than the descent took, because the deep has lengthened the way behind them
+    - The agreed hour at the winch passes; the drum may or may not still be manned when the party reaches the rope
+  narrative_hint: >-
+    SOUL — Let the clock be the antagonist: this is OSR resource-attrition and
+    extraction-panic native to one shaft. Make the turn-around decision the real
+    confrontation — one more gallery against one more hour of fuel — and let the
+    rope's far end be a question the party cannot answer until they arrive at it.
+
+- id: beneath_sunden_the_crew_that_did_not_come_up
+  name: The Crew Ahead of You
+  description: >-
+    Another party went down before this one and has not come up. The board does
+    not have their names yet — the winch-keeper has not given up on the rope, or
+    there was a second rope, or no one is sure. The party finds their leavings in
+    the dark: a dropped pack, a cold lamp, a chalk-mark in a hand that meant to
+    come back. What happened to them is the question the deep most wants to
+    answer in person.
+  flavor_tags: [peril, riddle, companion]
+  lifespan_turns: 7
+  delivery_hints:
+    - A lamp stands cold and upright in the middle of a gallery, set down deliberately by someone who meant to return for it
+    - Chalk-marks lead the party onward in a confident hand and then stop, mid-stroke, at a wall the marks did not expect
+    - One of the crew is found, and is not finished, and knows the party's faces though the party never knew theirs
+  narrative_hint: >-
+    SOUL — Make the world remember: the lost crew is the campaign's memory walking
+    ahead of the party. Let their trail be a tutorial in the deep's lethality and
+    a moral weight — to follow it is to learn how the party will end. If engaged,
+    let the meeting be tragedy, not jump-scare.

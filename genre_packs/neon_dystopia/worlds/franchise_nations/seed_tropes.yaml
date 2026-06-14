@@ -1,0 +1,269 @@
+# Seed tropes for neon_dystopia/franchise_nations — world-tier deck (Epic 94:
+# genre is the rulebook only; flavor lives in the world). Short-arc narrative
+# hooks dealt at session start and on engagement/lull draws, expiring after
+# lifespan_turns and lingering as ghosts for later callback (ADR-018, ADR-128).
+# Seeds are baited hooks (ADR-014 diamonds-and-coal) — deliberately vague; the
+# narrator threads an engaged seed into whatever the run becomes.
+#
+# The engine reads world-first (websocket_session_handler `_seed_source =
+# worlds.get(slug) or pack`), so without this file franchise_nations drew from
+# an empty deck and the lull-escalation engine declined `none_available` on
+# every quiet turn — which left the narrator inventing crowds of NPCs to fill
+# the silence. This deck is the world's own bait so a lull threads back into the
+# franchise fiction instead of a fresh invented stranger.
+#
+# Register: satire played COMPLETELY STRAIGHT (axis_snapshot satire 0.9,
+# corporate 0.7, chrome 0.5; moderate CWN lethality). Every franchise sincerely
+# believes it is saving the world — that sincerity is the horror, not villainy.
+# These seeds are pitched FINER than cyberpunk cliche: no rain-and-a-hacker, no
+# generic "the megacorp." Instead they name the SPECIFIC mechanism of a world
+# where the state was optimized away and replaced by franchise-states — the
+# Mesh reputation score that weights you by your neighbors' ratings, the EULA
+# read aloud as law, the loyalty-points debt you can't pay off, courier immunity
+# under the Border Accords, the wellness nudge that locks the franchise gate,
+# the "consolidation for optimal flourishing" that flattens a Dim block on
+# schedule. The slang is canon: "enrolled" = detained, "flatline" = safe,
+# "optimize" used as profanity. Keep the cheerfulness; let it cost something.
+
+- id: franchise_nations_score_weighted_by_company
+  name: Your Score Is Falling for Standing Next to the Wrong People
+  description: >-
+    The Mesh weights a reputation score by the scores of everyone you're seen
+    with, and someone in your orbit is sliding — so the algorithm has quietly
+    started docking you for the company you keep. A franchise gate that opened
+    yesterday hesitates today. A vendor's smile arrives a half-second late.
+    Nobody will say the number out loud, because saying it lower is itself a
+    negative wellness input.
+  flavor_tags: [surveillance, reversal, transaction, local-custom]
+  lifespan_turns: 6
+  delivery_hints:
+    - A gate that scanned you green last week now makes you stand in the arch an extra beat before it sighs open
+    - Someone the party likes keeps drifting to the edge of the group, having done the math on what their proximity costs everyone
+    - A franchise clerk recites the social-proximity clause from memory, apologetically, the way you'd quote weather
+  narrative_hint: >-
+    SOUL — consequences are real and arithmetic. Don't let the players argue the
+    number; the algorithm doesn't take appeals. Let the falling score force a
+    choice between a person and a door, and let cutting the person loose work
+    exactly as advertised, which is the cruelty.
+
+- id: franchise_nations_eula_as_law
+  name: You Already Agreed to This, Section 14, Subclause C
+  description: >-
+    Stepping onto franchise ground is acceptance of its terms, and the terms are
+    binding the way a statute is binding — except no legislature wrote them and
+    no court but the franchise reads them. Someone now holds the party to a
+    clause they accepted by crossing a painted line, walking through an arch, or
+    letting the Mesh authenticate them. The clause is real. The font was small.
+  flavor_tags: [authority, trial, local-custom, transaction]
+  lifespan_turns: 7
+  delivery_hints:
+    - A compliance officer produces the agreement on a slim tablet, scrolls past nine screens, and rests a finger on the line that traps you
+    - The party crossed a threshold a scene ago and only now learns what crossing it consented to
+    - A franchise insists this is not punishment but enforcement of a contract you signed by existing here, and is sincerely puzzled you object
+  narrative_hint: >-
+    SOUL — the world is internally, relentlessly logical. The satire is that the
+    EULA has replaced the law and everyone treats it as natural. Don't let reason
+    break it; let the players either perform compliance, find a counter-clause,
+    or flee into the Dim where no terms reach — each at a price.
+
+- id: franchise_nations_loyalty_debt_indenture
+  name: A Debt Denominated in a Currency Only One Franchise Honors
+  description: >-
+    Someone owes a balance in loyalty points — accrued for housing, for the
+    wellness package, for the onboarding that was free until it wasn't — and the
+    points only spend back to the franchise that issued them. The debt cannot be
+    cleared in cash, only worked off in scored contributions, and the interest is
+    a participation requirement. They are not a prisoner. They simply cannot
+    afford to leave.
+  flavor_tags: [bargain, transaction, authority, companion]
+  lifespan_turns: 8
+  delivery_hints:
+    - A person mentions their balance the way someone mentions a chronic illness — managed, never cured, always present
+    - A franchise frames the indenture as a benefit, complete with a tier ladder and a congratulatory notification for good behavior
+    - Someone offers the party a way to clear the balance that costs more than the balance, and means it as a kindness
+  narrative_hint: >-
+    SOUL — agency has a price tag. Let the players feel how the loyalty-points
+    economy makes freedom a thing you purchase in installments. If they try to
+    pay it off, let the currency's one-way exchange rate be the trap; if they try
+    to break it, let the franchise grieve the loss of a valued member.
+
+- id: franchise_nations_courier_immunity_disputed
+  name: A Border Accord Honored Everywhere Except the One Stretch That Matters
+  description: >-
+    Relay operators ride free under the Border Accords, and every franchise
+    swears to courier immunity because every franchise needs things delivered.
+    Then a package or a person needs to cross one specific gap where someone has
+    paid a premium-scored interceptor to forget the treaty exists. Between the
+    zones is nobody's jurisdiction, which means nobody's witnesses.
+  flavor_tags: [travel, peril, transaction, reversal]
+  lifespan_turns: 5
+  delivery_hints:
+    - A Relay runner flashes courier credentials at a checkpoint and watches the guard's face do nothing at all
+    - Someone confirms the immunity is real, then names the one stretch of Fairlane where it quietly isn't
+    - A vehicle has been pacing the party since the last gantry, premium-scored, uninterested in the treaty in the glovebox
+  narrative_hint: >-
+    SOUL — the rules are real until money buys an exception, and that's the
+    confrontation. Set-piece: a chase or a stand on the unwitnessed stretch. Let
+    the treaty hold everywhere the party doesn't need it and fail precisely
+    where they do.
+
+- id: franchise_nations_wellness_nudge_lockout
+  name: A Gentle Suggestion You Cannot Decline Without Consequence
+  description: >-
+    A Wellbeing Coordinator has flagged someone for a wellness nudge — a Mesh-
+    pushed suggestion backed by behavioral science and, if declined, a quiet drop
+    in tier that locks the franchise gates around them. It is offered with a
+    smile and a gift basket. The basket contains cortisol supplements and a
+    Positivity Journal. The exits are clearly marked but never quite where you
+    remember them being.
+  flavor_tags: [authority, surveillance, uncanny, peril]
+  lifespan_turns: 6
+  delivery_hints:
+    - A lanyarded Coordinator addresses a player by first name, having read it, and asks after a stress they never mentioned aloud
+    - Declining the nudge is logged in real time; the nearby gates go from green to amber as the party watches
+    - The help is sincere, the smile genuine, and the gift basket is already prepared with the party's biometrics on the tag
+  narrative_hint: >-
+    SOUL — the antagonist believes they are the protagonist. Play the Coordinator
+    completely straight: warm, certain, and inescapable. Let the nudge be a soft
+    cage that tightens by degrees, and let refusing it cost a door the party
+    needed open.
+
+- id: franchise_nations_augic_repossession
+  name: The Chrome Was Financed, and the Payment Bounced
+  description: >-
+    A cyberlimb, an implant, an enhancement — installed on a franchise wellness
+    plan, owned by the franchise until the last installment clears. Someone has
+    fallen behind, and the repossession agents have a lawful work-order to remove
+    the hardware. They are polite. They have a sterile field and a release form.
+    The augmetic does not have to be paid off; it has to be returned.
+  flavor_tags: [peril, transaction, bargain, reversal]
+  lifespan_turns: 5
+  delivery_hints:
+    - A person flexes a chromed hand and a notification chimes on it that isn't theirs to dismiss
+    - Repo agents arrive with a folded gurney and the unhurried courtesy of people who have done this a hundred times
+    - The work-order is read aloud, clause and serial number, and the hardware in question is currently load-bearing
+  narrative_hint: >-
+    SOUL — the body itself is collateral, and that's the horror played straight.
+    Set-piece: the repossession is a confrontation the party can fight, buy off,
+    spoof, or outrun. Let the lawfulness of it be the worst part — the agents are
+    not cruel, just enforcing a lien.
+
+- id: franchise_nations_noncompete_enforced
+  name: A Non-Compete With Legs and a Yellow Vest
+  description: >-
+    Someone left a franchise — or wants to — and their onboarding contract had a
+    non-compete: they may not contribute their skills to a rival territory for a
+    term measured in years. Enforcement isn't a lawsuit. It's a friendly visit
+    from people who remember your name, wear the same vest they wore handing out
+    soup, and absolutely will stop you from working the other side of the line.
+  flavor_tags: [authority, peril, bargain, transaction]
+  lifespan_turns: 6
+  delivery_hints:
+    - A worker turns down good pay from a rival zone with a flinch they try to pass off as principle
+    - People in matching vests are waiting outside a place they have no delivery to make
+    - A franchise frames the non-compete as protecting the community it built, and is hurt that anyone would call it a leash
+  narrative_hint: >-
+    SOUL — obligation wears the face of friendship. Let the enforcers be genuinely
+    fond and genuinely immovable. The bargain is whether the party helps someone
+    breach the clause, buys it out, or talks the franchise into a release — and
+    each path makes an enemy of people who will still ask how the kids are.
+
+- id: franchise_nations_data_bloodprice
+  name: The Settlement Is Paid in Memory, Not Money
+  description: >-
+    A dispute lands where one party can't pay in any currency that spends — so
+    the franchise offers, reasonably, to settle the balance in data: a slice of
+    logged experience, a behavioral profile, the contents of a Clarity feed, the
+    rights to a stretch of someone's recorded life. It's generous. It's the only
+    offer on the table. The terms of service technically allowed it all along.
+  flavor_tags: [bargain, transaction, uncanny, trial]
+  lifespan_turns: 7
+  delivery_hints:
+    - A mediator slides over a settlement that asks for no cash at all, only access, and calls it the painless option
+    - Someone touches their temple before answering, having learned that everything since the implant is on the record and now negotiable
+    - The franchise treats a person's memories as an asset class, with a buy price, and is baffled by the reluctance to liquidate
+  narrative_hint: >-
+    SOUL — what's monetized reveals what the world values. Let the data-as-payment
+    offer be real leverage and real loss. If the party accepts on someone's
+    behalf, let the harvested memory surface later in a franchise's hands; if they
+    refuse, let the unpaid balance keep its teeth.
+
+- id: franchise_nations_company_scrip_town
+  name: A Town Where the Only Money Is the Money the Owner Prints
+  description: >-
+    A franchise enclave runs entirely on its own scrip — wages paid in it, rent
+    charged in it, the company store the only place it spends. Outside currency
+    doesn't work here and the exchange booth sets a rate that ensures nobody
+    quite leaves with anything. Everyone is employed. Everyone is housed. Everyone
+    is exactly as free as the exchange rate permits.
+  flavor_tags: [travel, local-custom, transaction, authority]
+  lifespan_turns: 7
+  delivery_hints:
+    - The party's loyalty currencies are accepted at the booth at a rate that makes the math quietly hostile
+    - A resident has worked here for years and cannot say how much, in real terms, they have ever actually saved
+    - The company store has everything, priced so the week's scrip lands you back at the door on Monday
+  narrative_hint: >-
+    SOUL — the system's logic is the trap, fully visible and inescapable. Let the
+    players move through a place that is generous and total at once. The way out
+    costs scrip nobody can accumulate; let them either game the exchange, smuggle
+    value, or leave someone behind who can't afford the gate.
+
+- id: franchise_nations_clarity_feed_leverage
+  name: Someone Has Your Worst Moment Cued Up and Ready to Play
+  description: >-
+    A Clarity implant records everything its bearer sees and hears, and under
+    Phase 2 that feed is subpoena-able, employer-accessible, franchise property.
+    Now a recorded moment — a fight, an admission, a face in a place it shouldn't
+    have been — is leverage in someone's hands, and they'd like a word. The
+    playback is perfect. There is no version where you misremembered.
+  flavor_tags: [surveillance, bargain, trial, peril]
+  lifespan_turns: 6
+  delivery_hints:
+    - A person flinches at their own logged words played back at them at exactly the wrong moment
+    - Someone offers to make a recording disappear, which the terms of service do not actually permit, which means they're lying or they're powerful
+    - A Clarity bearer cannot be lied to about what they saw, and lets you know it without raising their voice
+  narrative_hint: >-
+    SOUL — the truth is a weapon and the world has perfect evidence. Let the feed
+    be unarguable; the confrontation is what's done with it, not whether it's
+    accurate. Bargaining over a recording that can't be denied is the scene —
+    and any promise to delete it is a franchise promise.
+
+- id: franchise_nations_pollinator_swarm_drift
+  name: The Drones Pollinate the Flowers and Remember the Faces
+  description: >-
+    A cloud of insect-sized Lighthouse pollinator drones works the gardens here —
+    solar, networked, each one a camera the size of a bee. They don't pollinate
+    in the Dim, but they fly there anyway, and lately one has been following at a
+    distance no flower would justify. The tomatoes have never been better.
+    Everything the cloud sees is on the record within the round.
+  flavor_tags: [surveillance, uncanny, travel, peril]
+  lifespan_turns: 5
+  delivery_hints:
+    - A single drone holds station near a private conversation longer than any blossom would explain
+    - A Dim vendor has a dead one in a jar, cracked open to show the camera, the microphone, and the Mesh transmitter inside
+    - The gardens in this stretch are suspiciously lush for a place with no gardeners and no franchise on paper
+  narrative_hint: >-
+    SOUL — surveillance wears the mask of care, and refusing the care is its own
+    flag. Let the swarm be both genuinely beneficial and genuinely watching. The
+    players can fear it, fool it, or feed it sugar water — but anything done in
+    its sight reaches whichever franchise arrives next.
+
+- id: franchise_nations_dead_profile_still_working
+  name: A Mesh Profile That Keeps Accepting Jobs After Its Owner Died
+  description: >-
+    Someone is dead — Fairlane hit-and-run, jurisdictional dispute, nobody
+    investigated — and their Mesh profile never logged off. It still posts, still
+    tips well, still accepts delivery jobs, and the responses know things the
+    profile shouldn't. Altruia calls it a known glitch functioning as designed.
+    The friends say it's too accurate. It isn't threatening. It's lonely.
+  flavor_tags: [uncanny, riddle, companion, transaction]
+  lifespan_turns: 6
+  delivery_hints:
+    - A delivery request arrives from a name the party knows is deceased, routed through a kiosk speaker that isn't wired to anything
+    - The dead profile references something that happened after the death, in a tone of perfect ordinary friendliness
+    - A depot still lists the operator as available, five-star rated, and customer service insists the account is fine
+  narrative_hint: >-
+    SOUL — the franchise system built something it can't categorize, monetize, or
+    turn off, and the players have to decide what it is. Don't resolve whether
+    it's a ghost, a hack, or the Mesh improvising; let the echo ask for one honest
+    thing and let answering cost more than ignoring it.

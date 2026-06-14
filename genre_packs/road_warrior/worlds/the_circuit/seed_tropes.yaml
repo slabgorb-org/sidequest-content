@@ -1,0 +1,265 @@
+# Seed tropes for road_warrior/the_circuit — world-tier deck (Epic 94: genre is
+# the rulebook only; flavor lives in the world). Short-arc narrative hooks dealt
+# at session start and on lull/engagement draws, expiring after lifespan_turns
+# and lingering as ghosts for later callback (ADR-018, ADR-128). Seeds are baited
+# hooks (ADR-014 diamonds-and-coal) — deliberately vague; the narrator threads an
+# engaged seed into whatever the road demands of the rider.
+#
+# These supersede the genre-tier road_warrior/seed_tropes.yaml deck for
+# the_circuit: the engine reads world-first (websocket_session_handler
+# `_seed_source = worlds.get(slug) or pack`), so without this file the_circuit
+# drew from an empty/generic deck and the lull-escalation engine declined
+# `none_available` on every quiet turn — which left the narrator inventing crews
+# of nameless NPCs to fill the silence between runs (the bug this fixes).
+#
+# Pitched to THIS world specifically, NOT generic Mad-Max. The Circuit is a
+# working three-million-person port city in the late 1970s/early '80s — traffic
+# lights, commuters, convenience stores — with ten real-world vehicle subcultures
+# layered over it and a parallel night economy of runs, turf, and contested
+# asphalt. Stakes 0.55 / law 0.50 / chrome 0.50: the Divvies manage the factions
+# rather than crush them, violence is real but rarely lethal-by-default, and the
+# rig IS the character. Every seed reference-stacks on a NAMED mechanism from the
+# world canon — the Mod mirror-semaphore network, the Matatu bass signal, the
+# Grensholt parts economy, the Sagrado Pact, the port-authority fuel cut, the
+# Café Racer dawn ton, the Aschgrund sanctioned arena, the Brückner / Meridian
+# Asphalt conspiracy thread under the city. Keep the register loud, colorful, and
+# paranoid-connective (Pynchon under neon), never grim desert apocalypse.
+
+- id: the_circuit_mirror_says_your_name
+  name: The Mirror Signal Has Been Asking After You
+  description: >-
+    Somewhere up in the Nottavello clubs a Mod angled a streetlight off a
+    Vespa wing-mirror, and three flashes later the optical semaphore had carried
+    a question across the nightlife district: who is the new rig, and where does
+    it sleep. The signal does not lie and it does not forget. Whatever the Mods
+    learned, it is already for sale — to everyone, the rider included, if the
+    rider can pay or trade.
+  flavor_tags: [intelligence, mods, surveillance, reputation]
+  lifespan_turns: 6
+  delivery_hints:
+    - A scooter parked at an odd angle to the streetlamp flicks its mirror twice as the party passes, then idles off
+    - Haraka leans in off a moving matatu to say the player's plate number came down the wire before the player did
+    - Ace Nifty names a detail about the rig nobody was told — and offers the rest of the file in three priced tiers
+  narrative_hint: >-
+    Information is the real currency here (SOUL: consequences ripple). Let the
+    seed make the party feel watched by a system they cannot see, and let the
+    price of buying back their own file be a favor owed into the Mod economy.
+
+- id: the_circuit_parts_debt_at_grensholt
+  name: A Part You Need Lives in a Locked Lot
+  description: >-
+    The one fairing, transmission housing, or fuel pump that will put the rig
+    right is not for sale at any fair price — it is sitting in a Rocker salvage
+    yard on the Grensholt strip behind a chained gate and a guard dog that has
+    never let a lot go stripped. Spark Greasefire can name the part and the price.
+    The price is not money. In The Circuit a parts debt is paid in fuel, in labor,
+    or in a run, and it comes due at the worst possible hour.
+  flavor_tags: [parts, rockers, debt, grensholt]
+  lifespan_turns: 5
+  delivery_hints:
+    - Spark Greasefire diagnoses the rig by its sound, then goes quiet about where the replacement actually is
+    - A Rocker at the salvage gate quotes a price in favors, not currency, and writes nothing down
+    - The lot's guard dog is chained by day and loosed by night, and the part sits in plain sight just past its reach
+  narrative_hint: >-
+    The rig is identity here (ADR-114 / rig_resurrection). Let the part be gettable
+    only at the cost of a debt to the Rockers, and let that debt be the leash the
+    seed pulls on later — surface it again when the party can least afford to pay.
+
+- id: the_circuit_pink_slip_on_the_table
+  name: A Wager With the Rig as the Stake
+  description: >-
+    Somebody has put a run on offer where the loser does not just lose face — they
+    hand over the keys. A pink-slip race, route already half-agreed, witnesses
+    lining up to watch. The challenge is aimed loosely in the party's direction,
+    or at someone the party would have to answer for. Refusing has a cost in this
+    city. Accepting puts the one thing that makes a rider a rider on the line.
+  flavor_tags: [race, wager, honor, rig]
+  lifespan_turns: 5
+  delivery_hints:
+    - A rider revs alongside at a light, names a stretch of road, and taps the player's ignition barrel with one finger
+    - The Matatu crews are already quietly booking a betting operation on the outcome from their buses
+    - The proposed route runs through a third faction's turf, and that faction was not asked
+  narrative_hint: >-
+    A baited dare nobody can cleanly refuse (SOUL: meaningful choice). Let the
+    stake be real and the route compromising, so that whether the party races,
+    declines, or renegotiates the terms, the choice reshapes who owes whom.
+
+- id: the_circuit_fuel_cut_at_the_port
+  name: The Port's Cut Has Gone Up Overnight
+  description: >-
+    Fuel comes into The Circuit through the harbor and the port authority takes
+    its toll on every drum — that is the old arrangement everyone grumbles about
+    and pays. This week the cut jumped without warning, and a tanker that should
+    have rolled didn't. Someone is squeezing the supply, and the dry tank at the
+    bottom of it will be the party's, or a crew the party rides with, by the time
+    the rumor reaches the garages.
+  flavor_tags: [fuel, port, economy, pressure]
+  lifespan_turns: 7
+  delivery_hints:
+    - The pump at the usual station is roped off and the attendant won't say more than orders from the harbor
+    - Haraka prices a jerrycan at triple last week's rate and is apologetic but firm about it
+    - A Dekotora driver mutters that a scheduled fuel run got held at the port gate and never came through
+  narrative_hint: >-
+    A slow economic vise, not a fight (stakes 0.55). Let the seed make the open
+    road itself a resource problem, and let the question of WHO is choking the
+    supply pull the party toward whichever faction or Divvie has the most to gain.
+
+- id: the_circuit_bass_signal_in_the_night
+  name: The Buses Are Passing a Message Nobody Will Translate
+  description: >-
+    Late, when the surface city has gone home, a Matatu subwoofer somewhere out
+    on the transit corridors drops into a pattern too deliberate to be a song —
+    the bass signal, the crews' low-frequency telegraph rolling across the flats.
+    The pattern repeats, answered from two districts over. Something is being
+    called, or warned, or summoned, and the touts who know exactly what it means
+    have all gone politely, expensively vague.
+  flavor_tags: [matatu, signal, omen, intelligence]
+  lifespan_turns: 6
+  delivery_hints:
+    - A parked matatu's sound system pulses a figure that is plainly not music, three times, then cuts
+    - Haraka's cheerful patter stops cold when the pattern rolls through; he changes the subject too smoothly
+    - The same bass figure answers itself from across the industrial flats, closer the second time
+  narrative_hint: >-
+    The Matatu network is the city's nervous system (paranoid connectivity).
+    Let the signal read as a thread the party can pull or ignore; if pulled, let
+    it lead toward whatever crisis is moving through the city before the news does.
+
+- id: the_circuit_divvies_pick_one_crew
+  name: The Road Division Is Offering Somebody a Deal
+  description: >-
+    The Metropolitan Road Division — the Divvies — manage the factions, they don't
+    erase them, and management this week means a quiet offer made to exactly one
+    crew: inform, cooperate, and your territory stays clear while everyone else's
+    gets swept. The offer is real and the pressure is real. The danger is not the
+    checkpoint. The danger is who in the night world finds out the offer was
+    taken, and by whom.
+  flavor_tags: [divvies, police, betrayal, pressure]
+  lifespan_turns: 7
+  delivery_hints:
+    - A clean, polite Divvie in an unmarked fast car flags the party down for a chat that is not a stop
+    - Checkpoints appear on one faction's routes and conspicuously not on a rival's
+    - Ace Nifty mentions, in the tone reserved for the word interesting, that a crew has gone suddenly cooperative
+  narrative_hint: >-
+    The Divvies are pragmatic, not corrupt (law 0.50). Let the seed dangle the
+    safety of cooperation against the certainty of exposure, so the real stakes
+    are loyalty and rumor — and let whoever takes the deal become a fault line.
+
+- id: the_circuit_sanctioned_at_aschgrund
+  name: A Quarrel Is Being Pushed Onto the Arena Concrete
+  description: >-
+    Two crews have a grievance hot enough to bleed into a convoy war, and the
+    elders are steering it instead toward Aschgrund — the industrial flats where
+    disputes get settled by sanctioned racing rather than open battle, the 1%ers
+    presiding and taking their cut. An invitation, or a summons, is shaping up to
+    land on the party: ride for one side, judge the run, or be the neutral body
+    everyone agrees can hold the stakes.
+  flavor_tags: [aschgrund, arena, faction, one-percenters]
+  lifespan_turns: 6
+  delivery_hints:
+    - Intermediaries shuttle between two faction garages and one of the routes runs past the party twice in a night
+    - A 1%er sends word that a date has been set on the flats and a neutral pair of hands is wanted to hold the pinks
+    - Mechanics across two crews are working overtime on a single champion rig and won't say for which run
+  narrative_hint: >-
+    Aschgrund is the pressure valve that keeps war off the streets (turf_race /
+    convoy_war). Let the party be pulled into a role — racer, judge, or stakeholder
+    — and let the sanctioned frame be fragile enough that one wrong move breaks it.
+
+- id: the_circuit_blood_feud_spark
+  name: An Old Hatred Has Just Been Handed a New Reason
+  description: >-
+    The oldest grudge in the city — Mods against Rockers, scooter against British
+    iron, the rivalry that fights on sight in neutral ground — has been freshly
+    lit by something small and deliberate: a scooter tagged with Rocker grease, a
+    Triumph keyed outside a Nottavello club, an insult delivered where it could not
+    be unheard. It looks like a flare-up. It smells, to anyone paying attention,
+    like someone wanted exactly this.
+  flavor_tags: [feud, mods, rockers, provocation]
+  lifespan_turns: 5
+  delivery_hints:
+    - A Mod scooter sits outside the bar with a Rocker's grease-thumbprint smeared deliberately across the seat
+    - Two riders the party knows from opposite sides each tell an incompatible version of who started it
+    - The provocation happened on neutral ground, where both sides know better, which is the part that doesn't fit
+  narrative_hint: >-
+    The Mods/Rockers feud is structural, not personal (faction_relations).
+    Let the obvious escalation be a thread the party can either ride into or unpick,
+    and seed the suspicion that a third hand struck the match for its own reasons.
+
+- id: the_circuit_dawn_ton_witness
+  name: Someone Wants the Dawn Road Run, and Watched
+  description: >-
+    Before the city wakes the Café Racers own the coast road — the ton run, alone
+    and fast and quiet but for the engine, gone grey-blue before the commuters
+    stir. This dawn it was not empty. Word comes that a rider made a clean
+    hundred-mile-an-hour pass on a road they had no business knowing, and that Ton
+    Redline, who has done the ton on nearly every named road in The Circuit, was
+    there at the verge, watching, and said nothing.
+  flavor_tags: [cafe-racers, dawn, speed, mystery]
+  lifespan_turns: 6
+  delivery_hints:
+    - A Café Racer at the coast-road caff describes a pass at dawn that the timing makes nearly impossible
+    - Ton Redline resets the strap on a faded-red-striped helmet at the mention and declines to elaborate
+    - The road the run used connects to a stretch that shouldn't link up the way the witness swears it did
+  narrative_hint: >-
+    The dawn ton is the world's purest discipline, and its edge touches the
+    Thread. Let the seed reward a chase after pure speed, and let the impossible
+    geometry of the route be a quiet door onto the conspiracy beneath the city.
+
+- id: the_circuit_sagrado_pact_tested
+  name: A Shadow Has Fallen Across Cruise Night
+  description: >-
+    On Sagrado Boulevard the Lowrider procession is ceremony, not traffic — the
+    slow cruise, the candy paint, the hydraulics, all of it held inviolate from
+    cross-faction violence by the unwritten Sagrado Pact that Don Flaco brokered
+    and never priced aloud. Something is leaning on that peace: a non-Lowrider rig
+    seen idling the boulevard during procession, a threat half-spoken, a Veterano's
+    car touched. The pact has held for years. This week it is being measured.
+  flavor_tags: [lowriders, sagrado, sacred, honor]
+  lifespan_turns: 7
+  delivery_hints:
+    - A car that does not belong rolls the boulevard slow during cruise and every Lowrider engine goes quiet at once
+    - Don Flaco de la Cruz refers to the offender as my friend exactly once, which is its own kind of verdict
+    - Lowrider crews who never gather together are gathering, hydraulics locked high, watching the same stretch of curb
+  narrative_hint: >-
+    Cruise Night is sacred and the Pact is fragile (cruise_night_incident).
+    Let the party be positioned to defuse, judge, or be blamed, and remember the
+    Lowriders united are a force the whole city's balance was built to avoid.
+
+- id: the_circuit_chop_shop_in_the_alley
+  name: A Stolen Rig Is Being Cut Up Tonight
+  description: >-
+    A rig has gone missing — wrecked is one thing, stolen is worse — and the trail
+    runs into the Nokutori market alleys where Phi Lek's people know every shortcut
+    and the chop shops turn a whole machine into anonymous parts before sunrise.
+    The window to get it back intact is the length of one night. After that it is
+    a fairing on one bench, an engine on another, and a candy-paint panel already
+    promised to a buyer two districts away.
+  flavor_tags: [theft, tuk-tuk, nokutori, rig]
+  lifespan_turns: 5
+  delivery_hints:
+    - A rig the party knows is suddenly, conspicuously absent from where it always sits
+    - Phi Lek, from his plastic chair in an alley that shouldn't fit one, can say which way it went for the price of a question
+    - A panel of unmistakable candy paint turns up on a bench in a Nokutori back-alley, still warm from the cut
+  narrative_hint: >-
+    A hard clock against the city's labyrinth (rig_resurrection). Let recovery
+    be possible only before dawn and only by trading favors for alley-knowledge,
+    so the rescue itself wires the party deeper into the Tuk-Tuk Syndicate's debts.
+
+- id: the_circuit_meridian_nameplate
+  name: A Name That Predates Every Crew Has Surfaced
+  description: >-
+    A nameplate, a brass diagram, a curling photograph with Meridian Asphalt
+    stamped at the edge and a severe blonde woman staring into the lens as if she
+    knew exactly who would find it. The road it references is not on any city map.
+    The company is in no registry. The marks on the brass are the same marks
+    scored into steel down in the dark beneath Aschgrund — older than the
+    Bōsōzoku, older than the 1%ers, older than the convergence nobody can explain.
+  flavor_tags: [thread, conspiracy, uncanny, history]
+  lifespan_turns: 8
+  delivery_hints:
+    - An object surfaces in a glovebox or a salvage bin bearing the Meridian Asphalt mark and a road that isn't there
+    - An old-timer goes very still at the name Brückner, then refuses to discuss it before sundown
+    - The diagram's reference lines match a stretch of tunnel the party has driven but cannot place on any map
+  narrative_hint: >-
+    The slow uncanny spine of the world (the lower road, Brückner, the Thread) —
+    a long-fuse seed. Don't resolve it; let one pulled thread lead to another and
+    let the party feel a designed city humming under the improvised one.

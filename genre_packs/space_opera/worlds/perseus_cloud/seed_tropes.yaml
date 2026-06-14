@@ -1,0 +1,292 @@
+# Seed tropes for space_opera/perseus_cloud — world-tier deck (Epic 94: genre
+# is the rulebook only; flavor lives in the world). Short-arc narrative hooks
+# dealt at session start and on lull/engagement draws, expiring after
+# lifespan_turns and lingering as ghosts for later callback (ADR-018, ADR-128).
+# Seeds are baited hooks (ADR-014 diamonds-and-coal) — deliberately vague; the
+# narrator threads an engaged seed into whatever the sector's pressure demands.
+#
+# These supersede any genre-tier space_opera seed deck for perseus_cloud: the
+# engine reads world-first (websocket_session_handler `_seed_source =
+# worlds.get(slug) or pack`). Without this file the Cloud drew from an empty
+# deck, the lull engine declined `none_available` on every quiet turn, and the
+# narrator invented NPCs to fill the silence — the bug this file fixes.
+#
+# Register is perseus_cloud's own (world.yaml axis_snapshot: scale 0.8, tone
+# 0.35, swagger 0.5): grounded, grimy, post-collapse — neon over scrap, not
+# gilded spectacle. Stars Without Number to the bone. The sector is SEALED: the
+# Great Hyperspace Explosion severed every outbound lane and the galaxy is
+# unreachable, so nobody leaves and the relationships forced by a bad job tend
+# to stick. Every seed reference-stacks a SPECIFIC Cloud mechanism — the Tether
+# and Glitter's freight economy, the Dust that heals and raises the dead,
+# Lazzaro's bubble shields, the Church's pretech vaults on Scrina, the Spacer
+# habit of "reading the wall," the Conglomerate's deliberate poverty of Santa
+# Abraham, Terma's hyperspace drift — never generic "a mysterious nebula." None
+# of the five Vault NPCs (Aliya Dad, Restra Velmont, Barial Fen, Eritrea Velmar,
+# Felra Amberton) are named here; seeds are anonymous bait, and naming them
+# would pre-empt Jade & Sebastien's Season-1 canon (CAMPAIGN_NOTES.md).
+
+- id: perseus_cloud_strap_cut_not_unbuckled
+  name: A Consignment Gone Before the Hour It Was Due
+  description: >-
+    A cargo cradle on Glitter — or in a New Kowloon bonded bay, or a
+    Tether freight pod — holds nothing but its own shadow and a securing
+    strap somebody cut rather than unbuckled. The manifest still lists it.
+    The hour it was due is now. Whoever was meant to hand it over is not
+    answering, and a dock-warden's slate is already logging faces against
+    the empty space.
+  flavor_tags: [salvage, theft, spacer, debt]
+  lifespan_turns: 5
+  delivery_hints:
+    - A strap on the cradle is cut clean through, not unbuckled — whoever took it was in a hurry and had a blade out
+    - The bay's manifest and the warden's slate disagree by exactly one item, and the warden has noticed
+    - A Spacer berth-hand remembers a lighter leaving off-schedule, riding low, with no filed departure
+  narrative_hint: >-
+    SOUL — consequence: a cut strap is a choice somebody made, and choices
+    in a sealed sector have nowhere to run to. Let the missing cargo turn
+    out to be something a faction wants logged as never-arrived, and let
+    the players' faces on the warden's slate become the cheapest evidence
+    in the bay.
+
+- id: perseus_cloud_assay_came_back_worthless
+  name: A Lucky Find the Assay Swears Is Worthless
+  description: >-
+    A Santa Abraham scrapper crew pulled something real out of the junk
+    seas — the kind of pretech shard that buys a berth up on Glitter and
+    a one-way ride off the wreck-line. Then the New Kowloon assay came
+    back worthless, overnight, and nobody who has held the shard believes
+    it. The crew is still working, because the air down here costs money
+    and hope does not pay quota.
+  flavor_tags: [pretech, churn, corpo, salvage]
+  lifespan_turns: 6
+  delivery_hints:
+    - A scrapper shows the party a shard that reads dead on the corporate assay but hums wrong in the hand
+    - The assay office revised the verdict the same morning the quota board ticked upward
+    - A New Kowloon fixer is quietly buying every shard off that exact stretch of wreck-line, at a fraction of value
+  narrative_hint: >-
+    SOUL — fairness over flattery: the Conglomerate keeps Santa Abraham
+    poor on purpose, and a true find is a threat to the machine, not a
+    reward from it. Don't let the players cash the shard cleanly. Let the
+    worthless verdict be the corpos cornering a lucky vein, and let proving
+    the find real cost the crew the only protection poverty ever gave them.
+
+- id: perseus_cloud_morgue_lights_stay_on
+  name: A Dust Settlement Whose Morgue Lights Burn All Night
+  description: >-
+    A Lazzaro collection dome's corruption meter has climbed past the safe
+    margin and will not come back down, and a shield-tech who has stood a
+    hundred graveyard shifts says this vein is spreading under the dome,
+    not just at the face. Management is calling it a calibration error.
+    The morgue lights stay on all night now. In quantity, corrupted Lazarus
+    Dust does not let the recently dead rest.
+  flavor_tags: [dust, lazzaro, dead, regency]
+  lifespan_turns: 7
+  delivery_hints:
+    - A shield-tech keeps the morgue lit through the night-cycle and will not say outright why
+    - A dome's corruption meter is taped over with a calibration-fault notice in fresh ink
+    - A medical-grade Dust shipment to the inner worlds is delayed with no reason given, and the Regency wants no questions
+  narrative_hint: >-
+    SOUL — consequence over convenience: the Regency would rather contain a
+    rising tide than admit the Cloud's only source of healing Dust is leaking
+    the dead out its bottom. Let the players be asked to work above that tide,
+    and let the choice between saving the people and saving the supply be one
+    nobody in authority will make for them.
+
+- id: perseus_cloud_reading_the_wall
+  name: An Open Entry on the Legacy Register
+  description: >-
+    A Spacer asks the party, half-ritual, whether they've read the wall
+    before a long run — and shows them an entry in Glitter's Praetorium-era
+    transit ledger that still reads, in a dead clerk's hand, "awaiting
+    transit clearance." The lane that ship was waiting for has been gone
+    for centuries. There are eight other open entries in the same register.
+    One of them is newer than it should be.
+  flavor_tags: [spacer, ghe, mystery, lane]
+  lifespan_turns: 6
+  delivery_hints:
+    - A Spacer touches a brass berth-plate before a run and cannot say why they do it
+    - The legacy register holds nine open crossings, hand-updated, never closed because no one has the authority
+    - One open entry carries a date inside living memory, in ink that has not had time to fade
+  narrative_hint: >-
+    SOUL — wonder grounded, not flattered: the GHE took the lanes and the
+    Spacers keep the only honest account of what it cost. Let the players
+    read the wall as occupational habit, then let the one too-new entry pull
+    on the question the veteran tier asks — whether something still crosses
+    where the lanes used to lead, and who filed it.
+
+- id: perseus_cloud_consecrated_ground
+  name: A Dig Site Blessed and Claimed by the Faithful
+  description: >-
+    A Church of Recreation expedition has arrived at a site others were
+    already working — a Coelitha wreck-field, a buried Praetorium cache —
+    and declared it consecrated ground. The relic-hunters are polite,
+    certain, and armed out of the Scrina vaults. They offer the current
+    diggers a blessing and a deadline to leave. To the Church the artifact
+    is scripture buried in the sand. To everyone else it is a tomb with
+    zealots standing on the lid.
+  flavor_tags: [church, pretech, expedition, conflict]
+  lifespan_turns: 6
+  delivery_hints:
+    - Scrina-stamped relic cases and a field-deacon's blessing-kit move through a frontier dock together
+    - Church militants mark a derelict with Recreation's vault-sigils and post a date by which the locals must be gone
+    - A relic-hunter speaks of a dig fatality as a martyrdom rather than a warning, and the expedition digs on
+  narrative_hint: >-
+    SOUL — fairness over flattery: the faithful are not villains to them,
+    they are recovering a holy inheritance, and that certainty is exactly
+    what makes them unstoppable. Let the players be the locals with the
+    deadline, and let the artifact prove bigger than the Church admitted —
+    so a holy recovery becomes a three-way contest over the dead.
+
+- id: perseus_cloud_three_feeds_one_lie
+  name: Three Broadcast Feeds Telling Incompatible Stories
+  description: >-
+    The Yulan Broadcast Company is running three versions of the same event
+    on three feeds at once — a frontier incident, a faction's mandate, a
+    market correction — and the discrepancy traces back, faintly, to a Dust
+    shipment that passed through New Kowloon. The Company moves information
+    the way it moves Dust: for profit and without a conscience. Somebody is
+    shaping a narrative more carefully than the truth would ever require.
+  flavor_tags: [propaganda, corpo, dust, narrative]
+  lifespan_turns: 6
+  delivery_hints:
+    - The same billboard cycles three accounts of one event, each flattering a different power
+    - A New Kowloon dealmaker is scrubbing a Dust-shipment record from the feed-logs, line by line
+    - A witness on the ground describes something that matches none of the three broadcast versions
+  narrative_hint: >-
+    SOUL — fairness over flattery: in the Cloud, whoever lands the last fact
+    writes the sector's recent history. Let the players hold a single piece
+    of the buried truth and feel three powers move at once — to bury it, to
+    sanctify it, to sell it — so the one fact becomes the most valuable cargo
+    in the bay precisely because everyone needs it gone.
+
+- id: perseus_cloud_psychic_stopped_mid_sentence
+  name: A Reader Who Says the Explosion Is Louder This Season
+  description: >-
+    Someone with the Praetorium psychic discipline stops mid-sentence to
+    listen to something no one else can hear, and what they say after is
+    wrong in the tense: the Great Hyperspace Explosion is louder this season.
+    Off Terma the Shadows are restless and following lanes inward, farther
+    than anyone living has recorded. The reader knows that the Church's Zira
+    academy collects gifted like them, and knows exactly what collected means.
+  flavor_tags: [psychic, terma, shadow, hyperspace]
+  lifespan_turns: 7
+  delivery_hints:
+    - A psychic speaks of the GHE in the present tense, as an open wound rather than a past event
+    - A crew off the Terma lane will not talk about what kept pace with them in the drift
+    - Zira-academy recruiters are working harder than usual and the gifted are going quiet to avoid them
+  narrative_hint: >-
+    SOUL — wonder grounded, not flattered: the edge of the Cloud is where
+    post-apocalyptic turns strange, and the cost of reading it is being owned.
+    Let the players choose whether to keep a frightened reader out of zealous
+    hands long enough to listen, and let what the reader hears about why the
+    Cloud was severed be a thing that cannot be unlearned.
+
+- id: perseus_cloud_compact_conditions
+  name: A Quarrel Both Sides Have Already Lost
+  description: >-
+    Two parties are deadlocked over something — a crew contract, a salvage
+    split, a faction's terms — and an old hand calls it "compact conditions,"
+    after the Lazzaro Compact: out of good options, choosing the least bad
+    one with full awareness of the choosing. Everyone at the table knows the
+    phrase. Yulan scrappers mean it one way, Spacers another. The dead it
+    came from are not mentioned, and do not need to be.
+  flavor_tags: [debt, spacer, yulan, negotiation]
+  lifespan_turns: 5
+  delivery_hints:
+    - Someone invokes "the Compact" or "compact conditions" by analogy, in an argument that has nothing to do with the dead
+    - Both sides of the quarrel have already lost something and are deciding only what to do next
+    - An older worker can tell the party where the phrase comes from, and would rather not
+  narrative_hint: >-
+    SOUL — fairness over flattery: this is the sector's idiom for a real
+    moral cost honestly weighed. Don't let the players find a clean third
+    option. Let the resolution be a least-bad one they choose knowingly, and
+    let the Compact's origin — Settlement Four, the thirty-day wall — lend the
+    small dispute the weight of every hard agreement the Cloud has ever made.
+
+- id: perseus_cloud_yacht_off_no_public_lane
+  name: An Invitation to a Station No Public Lane Reaches
+  description: >-
+    A discreet party offers the crew passage somewhere lucrative and quiet —
+    and the routing makes no sense, because the destination sits off no
+    public lane, out past the settled worlds, orbiting something that bends
+    the few stars around it. Ceron sells immortality to the ultra-wealthy
+    with Lazarus-Dust revivification and worse, under no legal jurisdiction.
+    The work pays in advance. The advance is the kind that buys silence.
+  flavor_tags: [ceron, dust, bargain, peril]
+  lifespan_turns: 7
+  delivery_hints:
+    - A broker offers routing coordinates that match no filed lane and asks no questions in return
+    - The pay is offered in advance, in full, in a currency that does not leave a record
+    - A previous crew that took the same run is spoken of in the past tense, vaguely, by people who change the subject
+  narrative_hint: >-
+    SOUL — consequence over convenience: a black station beyond jurisdiction
+    pays well because there is no authority to answer to when it stops paying.
+    Let the advance tempt the players before they know the cargo or the
+    clients, and let the destination's appetite — revivification, organs,
+    immortality treatments — be the thing the silence was always buying.
+
+- id: perseus_cloud_navy_rotates_the_curious
+  name: The Inner Worlds Feel the Navy Move
+  description: >-
+    The Thari Navy is reinforcing the inner worlds — not openly, but the
+    feudal calm has a new weight to it. Officers who asked the wrong question
+    about a death in the high houses are being rotated out, quietly. A court
+    matter no one will name above a murmur is being closed before it can
+    become a matter at all. In the Regency, the closing of a question is the
+    tell that there was one.
+  flavor_tags: [regency, court, navy, scandal]
+  lifespan_turns: 6
+  delivery_hints:
+    - A Thari naval officer invokes a superior's authority to decline a perfectly reasonable question
+    - A death in the inner-world houses was ruled natural and almost no one believes the ruling
+    - An officer who asked too much has been posted somewhere distant on short notice
+  narrative_hint: >-
+    SOUL — fairness over flattery: the Regency's regressive order rebuilt the
+    Cloud, and protecting that order means making threats to it vanish. Keep
+    the principals offstage — this seed is the navy's shadow, not the scandal
+    itself. Let the players feel hierarchy close ranks around its own rot, and
+    let pulling the thread mark them as a problem the order would rather rotate
+    out than answer.
+
+- id: perseus_cloud_bay_nine_protection
+  name: A Tax Called Protection on Bay Nine
+  description: >-
+    A stationside crew — dock toughs, a fixer's muscle, somebody taking a cut
+    of everything that moves through a bay — has decided the party's business
+    runs through their stretch of deck, and the tax is called protection.
+    On a sealed sector's docks the wreck-line and the cargo deck are the only
+    economy there is, and a cut of it is worth standing on. They would prefer
+    to be paid. They are equipped to be argued with, briefly.
+  flavor_tags: [ganger, dock, debt, conflict]
+  lifespan_turns: 5
+  delivery_hints:
+    - A knuckle-scarred enforcer with a shock-baton explains, politely, which bay belongs to whom
+    - A vendor or berth-hand pays the cut without being asked, the way one pays weather
+    - The crew taking the tax answers to a fixer two tiers up who is watching to see how the party handles it
+  narrative_hint: >-
+    SOUL — consequence over convenience: in a sealed sector the docks are
+    leverage and the muscle knows it. This is the deck-level bite — a real
+    confrontation, not a setpiece. Let the players pay, fight, or turn the
+    tax-takers, and let whichever fixer they answer to remember the choice,
+    because nobody here is going anywhere the memory can't follow.
+
+- id: perseus_cloud_climb_to_glitter
+  name: A Slum That Has Decided the Climb Is Real
+  description: >-
+    A lucky pretech find has Santa Abraham talking about climbing the Tether
+    to Glitter and never looking back — and the corpos in New Kowloon do not
+    like the smell of hope. The churn was always a machine for grinding people;
+    now it is grinding faster, with higher quotas and more security on the
+    wreck-line. The slum is deciding, all at once, whether escape is a story
+    that can be true, or another story about why nobody ever does.
+  flavor_tags: [churn, tether, corpo, salvage]
+  lifespan_turns: 6
+  delivery_hints:
+    - Conglomerate security seals the exact stretch of wreck-line where the rich finds have been turning up, "for safety"
+    - A crew with one real find becomes the thing the whole slum is watching to see if the climb is possible
+    - Quotas climb and payouts drop the same morning, and a corpo notice calls it market correction
+  narrative_hint: >-
+    SOUL — fairness over flattery: the Conglomerate profits from Santa
+    Abraham's deliberate poverty, and a single find that buys a berth is a
+    threat to the whole machine. Let the players carry the slum's hope or the
+    corpos' grip, and let the find change hands on the wreck-line — so whoever
+    walks away with it decides which story Santa Abraham gets to tell.

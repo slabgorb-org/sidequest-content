@@ -1,0 +1,246 @@
+# Seed tropes for wry_whimsy/wonderland — world-tier deck (Epic 94: genre is
+# the rulebook only; flavor lives in the world). Short-arc narrative hooks
+# dealt at session start and on engagement draws, expiring after lifespan_turns
+# and lingering as ghosts for later callback (ADR-018, ADR-128). Seeds are
+# baited hooks (ADR-014 diamonds-and-coal) — deliberately vague; the narrator
+# threads an engaged seed into whatever the dream demands of the traveler.
+#
+# These supersede the genre-tier wry_whimsy/seed_tropes.yaml deck for
+# wonderland: the engine reads world-first (websocket_session_handler
+# `_seed_source = worlds.get(slug) or pack`), so without this file wonderland
+# drew from an empty deck and the lull-escalation engine declined on every lull
+# — which left the narrator inventing crowds of NPCs to fill quiet scenes
+# (playtest 2026-06-13, oz had the identical gap).
+#
+# Pitched to Carroll specifically (Alice's Adventures in Wonderland 1865 +
+# Through the Looking-Glass 1871, public-domain), treated as one dream-country:
+# the Red Queen's race, looking-glass reversal, Eat-Me/Drink-Me rescaling, the
+# stopped tea-hour, the caucus-race, the Caterpillar and the Cheshire Cat, live
+# croquet, sentence-before-verdict, the sleeping Red King, the garden behind the
+# tiny door, the tulgey wood. Register is TENNIEL, never Disney: nonsense is the
+# ANTAGONIST and the cruelties are delivered with perfect courtesy. Menace is
+# sharper than Oz but mostly theatre that never lands the blow — except the one
+# crossing that does. Women rage and rule; the men sleep or are useless. The
+# deep dread is dislocation: being rescaled, out-argued by drivel, told you are
+# only someone else's dream.
+
+- id: wonderland_run_to_stay_still
+  name: It Takes All the Running You Can Do to Keep in the Same Place
+  description: >-
+    The traveler is seized by a raging royal woman and made to run — hand
+    gripped, breath gone, the landscape streaming past — and arrives back
+    exactly where they began. Here you must run to stand still, and run twice
+    as fast to get anywhere at all, and nobody finds this strange.
+  flavor_tags: [travel, absurdity, authority, peril-soft]
+  lifespan_turns: 5
+  delivery_hints:
+    - The one who runs you ragged does it as instruction, scolding you to go faster while the trees keep pace alongside
+    - A milestone passed at full sprint is the same milestone passed before; the bread-and-butter does not refresh
+    - Stopping is permitted and accomplishes precisely nothing; the country has already moved on without you
+  narrative_hint: >-
+    The race is exhaustion that buys no ground — a lull that masquerades as
+    urgency. Let the players learn that effort is the wrong lever here and that
+    the way forward is sideways, by refusing the race's premise rather than
+    winning it.
+
+- id: wonderland_lived_backwards
+  name: A Rule That Only Works in Reverse
+  description: >-
+    Something here runs the wrong way down time and sense: the cake is handed
+    round before it is cut, the prisoner is jailed before the trial before the
+    crime, a resident remembers next Tuesday clearly and this morning not at
+    all. To reach a thing you must walk firmly away from it. The locals manage
+    perfectly; the traveler's forward-facing logic is the handicap.
+  flavor_tags: [law-of-the-land, absurdity, wonder, riddle]
+  lifespan_turns: 6
+  delivery_hints:
+    - A kindly woman bandages a finger before it is cut and screams in advance of the pin, then is quite well when the moment comes
+    - Approaching the gate directly walks the traveler away from it; turning to leave brings it under their hand
+    - The memory that works both ways belongs to someone who can tell the party what they are about to do, and is right
+  narrative_hint: >-
+    The reversal is a puzzle-key, not a curse. Let the player who stops fighting
+    the backwardness — who asks what they must un-do, or walks away to arrive —
+    pass where brute persistence only spends them.
+
+- id: wonderland_eat_me_drink_me
+  name: Something to Eat or Drink That Changes Your Size
+  description: >-
+    A morsel, a phial, a frosted cake sits within easy reach, and the only
+    label is an invitation. Taken, it makes the traveler enormous or tiny — too
+    vast for the room, or small enough to drown in their own spilled tears.
+    Wonderland is strewn with such helps, and not one of them is sized to the
+    door you actually need to pass.
+  flavor_tags: [bargain, wonder, uncanny, peril-soft]
+  lifespan_turns: 6
+  delivery_hints:
+    - The change arrives faster and further than wanted; a careful nibble overshoots, a sip leaves the chin below the table
+    - The door, the key, and the body are never the right three sizes at once — solving one undoes another
+    - A local treats sudden growth as a manners problem ("you have no right to grow here") rather than a marvel
+  narrative_hint: >-
+    Scale is the resource and the trap. Let the players solve a passage by
+    juggling size against door and key, and let an overshoot strand them in a
+    new predicament — wedged in a house, swimming a pool of their own making —
+    that the next bite must answer.
+
+- id: wonderland_the_endless_tea_hour
+  name: A Hospitality Where the Clock Has Stopped
+  description: >-
+    A table is laid for a meal that never ends and never feeds anyone — always
+    the same hour, the cups never washed, the guests shuffling one place along
+    when a setting is used up. They quarrelled with Time once and Time stopped
+    for them. They are delighted to have a stranger and have no intention of
+    letting the hour move.
+  flavor_tags: [local-custom, absurdity, wonder, traveler]
+  lifespan_turns: 5
+  delivery_hints:
+    - The party is pressed to take more tea where there is none, and corrected sharply for saying so
+    - A riddle is posed with great ceremony and proves, on inquiry, to have no answer at all — this is not seen as a flaw
+    - Leaving is the unspeakable rudeness; the seat behind the traveler fills the instant it empties
+  narrative_hint: >-
+    The party is a recursion dressed as rest — courtesy with no exit and no
+    forward motion. Let escape come from breaking the ritual rather than
+    completing it, and let the offence of leaving cost a small thing the
+    company keeps as a grudge.
+
+- id: wonderland_caucus_prizes
+  name: A Contest With No Rules, Where Everyone Wins
+  description: >-
+    A crowd is engaged in some great undertaking — a race begun without a start
+    and ended without a finish, a vote on a question no one will state, a
+    competition whose object keeps changing. When it concludes (it concludes
+    when they tire), all have won and all must have prizes, and the prize, it
+    emerges, is to be supplied out of the traveler's own pockets.
+  flavor_tags: [absurdity, authority, traveler, bargain]
+  lifespan_turns: 5
+  delivery_hints:
+    - The party is enrolled in the proceeding without being asked and is already, somehow, behind
+    - The rules are explained on demand and contradict the rules explained a moment earlier, both with full confidence
+    - The award ceremony turns on the party having something small and portable to hand out, and grows cold if they do not
+  narrative_hint: >-
+    The procedure is bureaucratic nonsense that extracts a real cost. Let the
+    players spend a trifle to be released, or refuse and learn how the crowd
+    treats a guest who will not play — and let whatever they hand out come back
+    in someone else's hand later.
+
+- id: wonderland_advice_that_unmakes_you
+  name: A Guide Whose Counsel Is True and Useless at Once
+  description: >-
+    A creature offers to help — perched, grinning, languid, certain — and every
+    word of its counsel is unanswerable and leads nowhere the traveler wished
+    to go. It asks who you are and rejects the answer. It tells you which way to
+    walk and adds that it depends entirely on where you want to get to, and that
+    you are sure to arrive somewhere if you only walk long enough.
+  flavor_tags: [companion, riddle, wonder, absurdity]
+  lifespan_turns: 7
+  delivery_hints:
+    - The guide demands the traveler account for themselves and finds the account wanting, as though identity were the party's error
+    - Its directions are impeccable and circular; both roads lead to mad company, which it states as simple geography
+    - It may vanish by degrees and leave only its expression behind, still commenting, when the party most wants a straight answer
+  narrative_hint: >-
+    The guide is real help wearing the shape of obstruction. Let its useless-
+    seeming truths turn out to have been exact once the players stop demanding
+    sense from them, and let its grin reappear to mark the moment a riddle pays
+    off.
+
+- id: wonderland_living_game
+  name: A Genteel Game Whose Pieces Are Alive and the Stakes Are Heads
+  description: >-
+    The party is invited — commanded — to play, and the game is a polite
+    catastrophe: the implements squirm and walk off, the rules alter between
+    strokes, no one waits a turn, and the raging royal hostess answers every
+    fumble and every dispute with an order for somebody's beheading. The
+    sentences are bellowed constantly and, behind her back, quietly never
+    carried out.
+  flavor_tags: [trial, authority, absurdity, peril-soft]
+  lifespan_turns: 5
+  delivery_hints:
+    - The traveler's mallet and ball have opinions and ambitions and decline to cooperate at the decisive moment
+    - The order for a beheading lands on the party as casually as on the gardeners; a courtier murmurs that she says it to everybody
+    - Someone whose head was just demanded is, ten minutes later, calmly back in play — the King pardons them all unseen
+  narrative_hint: >-
+    The game is a confrontation whose lethal threat is theatre. Let the players
+    feel the terror, then learn its hollowness — the danger is in being SEEN to
+    lose face before the court, not in the axe — and let the sleepy King's quiet
+    mercies be a thread worth pulling.
+
+- id: wonderland_sentence_first
+  name: A Court Where the Verdict Is Already Written
+  description: >-
+    A trial is in progress and the defendant, it transpires, is the traveler.
+    The jurors write their own names down for fear of forgetting them; the
+    evidence is a poem that names no one; the sovereign wants the sentence
+    settled before the verdict and the verdict before any evidence at all. It is
+    conducted with total gravity and total courtesy.
+  flavor_tags: [trial, authority, law-of-the-land, reversal]
+  lifespan_turns: 5
+  delivery_hints:
+    - The charges are read with precision and have nothing to do with anything the party did
+    - A helpful neighbour in the gallery explains the rules of evidence, which are that there are none that bind the crown
+    - The proceeding accelerates toward sentence; the court is impatient, there is another trial after this one
+  narrative_hint: >-
+    The trial is the genre's central terror-theatre, and its exit is refusal,
+    not argument — the traveler who rises and names the court "nothing but a
+    pack of cards" wakes the dream's grip on them. Let the players try to WIN it
+    first, fail by its broken rules, and discover that disbelief is the only
+    plea that works.
+
+- id: wonderland_only_a_dream
+  name: The Rumour That You Are Only Someone Else's Dream
+  description: >-
+    A sleeper lies under a tree or on a far hillside — a great dozing king, snoring
+    fit to shake the leaves — and a local says, kindly and dreadfully, that the
+    whole country is merely a thing inside his dream, and so is the traveler. If
+    he woke, where would you be? Out, like a candle. They put it forward as a
+    settled and rather boring fact.
+  flavor_tags: [uncanny, wonder, reversal, peril-soft]
+  lifespan_turns: 6
+  delivery_hints:
+    - The ones who explain it are fond and matter-of-fact, even a little smug, and resent being argued with
+    - The sleeper genuinely stirs at an inconvenient moment, and for a heartbeat the colour goes out of the world
+    - Disproving it is impossible by argument; the locals win every exchange and the dislocation only deepens
+  narrative_hint: >-
+    This is the deep dread — being out-argued out of your own reality. Don't let
+    it be solved by logic, which the world owns. Let it press on the players'
+    nerve until they answer it the way the dream is answered: by deciding, flatly,
+    to be real — the same refusal that wakes the court.
+
+- id: wonderland_garden_behind_the_door
+  name: A Loveliness Glimpsed Through a Door Too Small to Pass
+  description: >-
+    Beyond a low curtain, behind a fifteen-inch door, lies the loveliest garden
+    the traveler ever saw — cool fountains, bright beds — and the traveler is
+    the wrong size to enter, or has lost the little key, or both. Inside, gardeners
+    are frantically painting the white roses red before a tyrant notices the
+    wrong colour was planted.
+  flavor_tags: [bargain, wonder, traveler, uncanny]
+  lifespan_turns: 6
+  delivery_hints:
+    - The key, the door, and the traveler's size never agree; obtaining one loses another
+    - Through the gap the party can see the gardeners' terror and hear why — a small mistake here is a beheading offence
+    - Whatever lets the party in also announces them to whoever rules the garden, who is watching for exactly such arrivals
+  narrative_hint: >-
+    The garden is bait — a beauty held just out of reach to draw the players
+    deeper. Let the cost of entry be exposure to the garden's tyrant, and let
+    the painted roses be a smaller injustice the party can take a side on before
+    the larger one arrives.
+
+- id: wonderland_the_wood_where_it_lands
+  name: The Wood Where the Terror Stops Being Theatre
+  description: >-
+    Between two stretches of harmless nonsense lies a dim wood the locals will
+    not name above a whisper — a tulgey, shadow-snarled place where the
+    country's usual rule, that the threats only bluster and never bite, quietly
+    fails. Something with jaws and claws and burning eyes whiffles through it.
+    Here, for once, the blow lands.
+  flavor_tags: [peril, travel, wonder, reversal]
+  lifespan_turns: 6
+  delivery_hints:
+    - Residents who shrug at beheadings and drowning-pools go pale and vague about this one wood and will not walk the party to its edge
+    - The thing does not posture or pronounce sentence; it hunts, in silence, and comes at the most committed moment of the crossing
+    - The way past is not a fair fight but cleverness with the ground — a vorpal trick, a chosen stand by the Tumtum tree, a felling of the way behind
+  narrative_hint: >-
+    A rare seed with real teeth — Wonderland holds one genuine lethality amid a
+    country of bluff. Let survival come from wit and terrain rather than force,
+    let the cost close a road for good, and let the contrast teach the players
+    which of this world's threats they may safely call a bluff and which they
+    may not.
