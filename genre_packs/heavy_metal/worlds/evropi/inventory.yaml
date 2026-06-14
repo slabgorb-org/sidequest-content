@@ -35,6 +35,10 @@ item_catalog:
     rarity: uncommon
     power_level: 3
     tags: [melee, blade, one-handed, mistos_livery, recognizable]
+    # WWN combat envelope — mirrors the heavy_metal sibling worlds (barsoom
+    # sword_iron 1d8/shock 2/AC 15). A hand-and-a-half officer's blade is the
+    # genre's longsword class. Values are the genre's, not invented here.
+    damage: {dice: "1d8", bonus: 0, shock: 2, shock_ac: 15}
     lore: Quarter-officer's sidearm from the Third Cut overseer detachment. The officer did not survive the disagreement.
     narrative_weight: 0.65
 
@@ -50,6 +54,8 @@ item_catalog:
     rarity: common
     power_level: 2
     tags: [melee, blade, one-handed, mistos_livery]
+    # WWN short-blade class (1d6, light shock). Genre envelope, not invented.
+    damage: {dice: "1d6", bonus: 0, shock: 1, shock_ac: 13}
     lore: The working short sword of a Mistos overseer. Given out by the shaft, returned by the shaft.
     narrative_weight: 0.35
 
@@ -64,6 +70,8 @@ item_catalog:
     rarity: common
     power_level: 2
     tags: [thrown, blade, mistos_livery, set]
+    # WWN dagger class (1d4). Thrown — no shock value.
+    damage: {dice: "1d4", bonus: 0}
     lore: Officer-cadre throwing work. Taught as a promotion-ritual skill; every Mistos quarter-officer can place three in a man-shaped target at twenty paces.
     narrative_weight: 0.35
 
@@ -78,6 +86,8 @@ item_catalog:
     rarity: common
     power_level: 1
     tags: [melee, blade, one-handed, mistos_livery]
+    # WWN short-blade class (1d6, light shock) — a lighter travel cut.
+    damage: {dice: "1d6", bonus: 0, shock: 1, shock_ac: 13}
     lore: Issued to Host attachés and ceremonial couriers who were never expected to use them.
     narrative_weight: 0.3
 
@@ -97,6 +107,10 @@ item_catalog:
     rarity: uncommon
     power_level: 3
     tags: [medium-armor, torso, mistos_livery, recognizable]
+    # WWN armor table — Chain (medium) = AC 15. Mirrors barsoom chain_shirt
+    # (AC 15 / mitigation 1), the heavy_metal genre convention.
+    armor_class: 15
+    mitigation: 1
     lore: Officer-cadre armour from the Third Cut. The previous wearer is in a shallow grave five hundred feet underground.
     narrative_weight: 0.55
 
@@ -112,6 +126,9 @@ item_catalog:
     rarity: common
     power_level: 1
     tags: [light-armor, torso, mistos_livery]
+    # WWN armor table — Leather (light) = AC 13. Mirrors barsoom leather_armor_worn.
+    armor_class: 13
+    mitigation: 1
     lore: The working armour of a Mistos pit-overseer. Dyed-black kidskin, parade-grade stitching where it shows, honest leather where it doesn't.
     narrative_weight: 0.3
 
@@ -126,6 +143,10 @@ item_catalog:
     rarity: common
     power_level: 1
     tags: [light-armor, torso, mistos_livery, undersized]
+    # WWN light-armor baseline AC 13 (differentiation is in value/power_level,
+    # not AC — the genre envelope has no sub-13 standard armor).
+    armor_class: 13
+    mitigation: 1
     lore: Issued to Mistos shaft-runners — the smaller, faster overseers who move between levels.
     narrative_weight: 0.25
 
@@ -141,6 +162,9 @@ item_catalog:
     rarity: common
     power_level: 2
     tags: [shield, mistos_livery, recognizable]
+    # WWN shield = AC 13 as sole defence (matches caverns shield_wood). No
+    # mitigation field on shields, per the genre's shield convention.
+    armor_class: 13
     lore: Host ceremonial issue. Beauty first, function second — the Mistos philosophy in lacquer.
     narrative_weight: 0.4
 
@@ -425,6 +449,8 @@ item_catalog:
     rarity: common
     power_level: 1
     tags: [melee, blunt, two-handed, focus]
+    # WWN staff class — mirrors barsoom staff_pilgrim (1d6/shock 1/AC 13).
+    damage: {dice: "1d6", bonus: 0, shock: 1, shock_ac: 13}
     lore: Cut at dawn, above the Third Cut, from a tree older than the current quarter-officer.
     narrative_weight: 0.4
 
