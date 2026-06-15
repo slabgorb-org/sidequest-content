@@ -1,0 +1,44 @@
+# beneath_sunden — world-tier chargen kit override (story 120-1, ADR-140 / ADR-145)
+#
+# Worlds Without Number-bound caverns_and_claudes carries a 100%-verbatim genre
+# equipment baseline (genre_packs/caverns_and_claudes/equipment_tables.yaml). The
+# dungeon-flavor chargen gear that has NO WWN SRD analog — ten-foot poles, chalk,
+# lockpicks, the recovered-pages spellbook prop, a component pouch, an iron helm,
+# and the heal potion — lives at the world tier as mode=bespoke
+# (worlds/beneath_sunden/inventory.yaml) and is merged back into the chargen kits
+# here, world-over-genre, by
+# server.dispatch.equipment_tables_resolve.resolve_equipment_tables (story 120-4):
+#   * class_tables / tables — per-slot APPEND (genre items first, then these)
+#   * guaranteed_grants     — APPEND by kit id
+#   * rolls_per_slot        — inherited from genre (not overridden here)
+
+tables:
+  armor:
+    - helmet_iron
+  utility:
+    - ten_foot_pole
+    - chalk
+
+class_tables:
+  warrior_kit:
+    armor: [helmet_iron]
+    utility: [ten_foot_pole]
+
+  mage_kit:
+    utility: [spellbook, component_pouch, chalk]
+
+  expert_kit:
+    utility: [lockpicks, ten_foot_pole, chalk]
+
+# Story 106-4: every kit ships exactly one heal potion (Keith 2026-06-13:
+# "everyone gets one"), 30% upgraded to the Greater. The Potion of Mending has no
+# WWN SRD analog, so it is a world-tier bespoke item and its guarantee lives here.
+guaranteed_grants:
+  warrior_kit:
+    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
+  mage_kit:
+    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
+  expert_kit:
+    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
+  tables:
+    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}

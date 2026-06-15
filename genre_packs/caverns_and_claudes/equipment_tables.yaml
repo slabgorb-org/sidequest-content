@@ -1,4 +1,4 @@
-# Caverns & Claudes — random equipment tables
+# Caverns & Claudes — random equipment tables (WWN-verbatim genre baseline)
 #
 # Consumed by CharacterBuilder when a character creation scene declares
 # `equipment_generation: random_table` in its mechanical_effects (see `the_kit`
@@ -10,33 +10,40 @@
 #
 # Story 31-3: wire equipment_generation random_table in CharacterBuilder.
 # Replaces the hardcoded `starting_equipment.Delver` list at inventory.yaml:294.
+#
+# Story 120-1 (ADR-145): the genre baseline is now 100% WWN-SRD-verbatim, so every
+# id here is a `wwn_*` catalog item. The dungeon-flavor gear the old kit carried
+# (ten_foot_pole, chalk, lockpicks, the recovered-pages spellbook prop,
+# component_pouch, helmet_iron, and the heal potion) has NO WWN SRD analog and now
+# lives at the WORLD tier (worlds/beneath_sunden/inventory.yaml, mode=bespoke). The
+# beneath_sunden world equipment_tables.yaml merges those items back into these
+# kits world-over-genre (per-slot APPEND) via resolve_equipment_tables
+# (story 120-4, ADR-140).
 
 tables:
   weapon:
-    - dagger_iron
-    - sword_short
-    - mace_iron
-    - spear
-    - hand_axe
+    - wwn_dagger
+    - wwn_sword_short
+    - wwn_mace
+    - wwn_spear_light
+    - wwn_axe_hand
   armor:
-    - leather_armor
-    - shield_wood
-    - helmet_iron
+    - wwn_linothorax
+    - wwn_small_shield
   light:
-    - torch
+    - wwn_torch
   consumable:
-    # Story 106-4: potion_healing moved out of the random pool into
-    # guaranteed_grants (every kit gets exactly one heal, 30% upgraded).
-    - rations_day
-    - waterskin
+    # Story 106-4: the heal potion moved out of the random pool into
+    # guaranteed_grants. The Potion of Mending has no WWN analog, so its guarantee
+    # lives at the world tier (worlds/beneath_sunden/equipment_tables.yaml).
+    - wwn_rations_one_week
+    - wwn_waterskin_one_gallon
   utility:
-    - rope_hemp
-    - ten_foot_pole
-    - iron_spikes
-    - chalk
-    - crowbar
-    - sack_large
-    - lantern_oil
+    - wwn_rope_50ft
+    - wwn_iron_spikes_10
+    - wwn_crowbar
+    - wwn_sack
+    - wwn_oil_one_pint
 
 # Override the default 1-roll-per-slot for bulk items. Mirrors the old
 # hardcoded Delver loadout (3 torches, 2 rations + 1 other, 3 utility picks).
@@ -50,43 +57,41 @@ rolls_per_slot:
 # Slots match the top-level `tables:` slot names so rolls_per_slot
 # applies consistently.
 # Re-keyed for the WWN Callings (2026-06-12 port): fighter_kit→warrior_kit,
-# thief_kit→expert_kit; cleric_kit retired with the class. Kit CONTENTS are
-# unchanged (no retuning) — the mage's "spellbook" utility item is the
-# physical recovered-pages prop, not the retired B/X spellbook.yaml surface.
+# thief_kit→expert_kit; cleric_kit retired with the class. Story 120-1 repointed
+# every id to the WWN-verbatim catalog (leather_armor→wwn_linothorax AC 13,
+# shield_wood→wwn_small_shield, hand_axe→wwn_axe_hand, …); the dungeon-flavor
+# utility items (spellbook/component_pouch/chalk/lockpicks/ten_foot_pole) and the
+# iron helm now arrive from the beneath_sunden world override.
 class_tables:
   warrior_kit:
-    weapon: [sword_long, sword_short, mace_iron, hand_axe, spear]
-    armor:  [leather_armor, shield_wood, helmet_iron]
-    light:  [torch]
-    consumable: [rations_day, waterskin]
-    utility: [rope_hemp, ten_foot_pole, iron_spikes]
+    weapon: [wwn_sword_long, wwn_sword_short, wwn_mace, wwn_axe_hand, wwn_spear_light]
+    armor:  [wwn_linothorax, wwn_small_shield]
+    light:  [wwn_torch]
+    consumable: [wwn_rations_one_week, wwn_waterskin_one_gallon]
+    utility: [wwn_rope_50ft, wwn_iron_spikes_10]
 
   mage_kit:
-    weapon: [dagger_iron, staff_wood]
+    weapon: [wwn_dagger, wwn_staff]
     armor:  []
-    light:  [torch]
-    consumable: [rations_day, waterskin]
-    utility: [spellbook, component_pouch, chalk]
+    light:  [wwn_torch]
+    consumable: [wwn_rations_one_week, wwn_waterskin_one_gallon]
+    # spellbook (recovered-pages prop), component_pouch, and chalk are world-tier
+    # bespoke — appended by worlds/beneath_sunden/equipment_tables.yaml.
+    utility: []
 
   expert_kit:
-    weapon: [dagger_iron, sword_short]
-    armor:  [leather_armor]
-    light:  [torch, lantern_oil]
-    consumable: [rations_day, waterskin]
-    utility: [lockpicks, ten_foot_pole, chalk, sack_large]
+    weapon: [wwn_dagger, wwn_sword_short]
+    armor:  [wwn_linothorax]
+    light:  [wwn_torch, wwn_oil_one_pint]
+    consumable: [wwn_rations_one_week, wwn_waterskin_one_gallon]
+    # lockpicks, ten_foot_pole, and chalk are world-tier bespoke — appended by
+    # worlds/beneath_sunden/equipment_tables.yaml.
+    utility: [wwn_sack]
 
-# Story 106-4: guaranteed grants — every character of a kit starts with exactly
-# one heal potion (decision Keith 2026-06-13: "everyone gets one"), with a 30%
-# chance it's the better Potion of Mending (Greater) instead (upgrade-only —
-# never worse, never zero). Keyed by kit id (matches class_tables; "tables" is
-# the random_table fallback flow). The granted item is enriched from the
-# item_catalog by id (name/tags/heal_amount) just like the rolled items.
-guaranteed_grants:
-  warrior_kit:
-    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
-  mage_kit:
-    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
-  expert_kit:
-    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
-  tables:
-    - {item: potion_healing, upgrade: potion_healing_greater, upgrade_chance: 0.30}
+# Story 106-4: every character starts with exactly one heal potion (decision Keith
+# 2026-06-13: "everyone gets one"), with a 30% chance it's the better Potion of
+# Mending (Greater) instead. The Potion of Mending has no WWN SRD analog (it is
+# world-tier bespoke), so the guarantee lives at the world tier
+# (worlds/beneath_sunden/equipment_tables.yaml) and is merged in world-over-genre.
+# The WWN-pure genre baseline grants nothing.
+guaranteed_grants: {}
