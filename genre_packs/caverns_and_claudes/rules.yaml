@@ -123,7 +123,6 @@ confrontations:
     category: combat
     # WWN personal combat: attack-vs-AC + hp_depletion on the ablative
     # HpPool. Trauma / Mortal Injury layer on via the wwn ruleset module.
-    resolution_mode: beat_selection
     win_condition: hp_depletion
     opponent_default_stats:
       # ALL SIX ability scores must be authored so the WWN defender-save
@@ -148,74 +147,12 @@ confrontations:
     # blows. Read only on the opponent's turn; never caps the player's own
     # weapon.
     opponent_damage: {dice: "1d8", bonus: 0}
-    beats:
-      - id: strike
-        label: Strike
-        kind: strike
-        base: 2
-        stat_check: STR
-        attack_bonus: 1
-        combat_skill: 1
-        damage_channel: strike
-        effect: "Target takes damage this round"
-        narrator_hint: >-
-          Steel on stone-dark air. Describe the blow with specificity —
-          which grip, which angle, what gave way. Combat in the deep is
-          work, not choreography; narrate it like labor that can kill.
-      - id: cast_spell
-        label: Cast Spell
-        kind: strike
-        base: 2
-        stat_check: INT
-        attack_bonus: 1
-        combat_skill: 1
-        damage_channel: none
-        # class_filter restricts this beat to the caster Calling. Display
-        # name (loader validates class_filter against classes.yaml
-        # display_name). This is the ONLY gate that offers cast_spell, so
-        # the WWN cast resource gate fires (heavy_metal/EH pattern).
-        class_filter: [Mage]
-        effect: "Cast a prepared spell — damage rolled by the WWN spell engine"
-        narrator_hint: >-
-          The Mage spends a prepared working. Describe the cost as
-          concretely as the effect — what the working takes from the body
-          that served as its gate, by torchlight, in front of people who
-          are counting on it.
-      - id: brace
-        label: Brace
-        kind: brace
-        base: 1
-        stat_check: CON
-        effect: "Reduce incoming damage this round"
-        narrator_hint: >-
-          Shield up, back to the worked wall, weight forward. The character
-          sets themselves and takes the impact; the body pays for it later.
-      - id: committed_blow
-        label: Committed Blow
-        kind: strike
-        base: 4
-        stat_check: STR
-        attack_bonus: 1
-        combat_skill: 1
-        damage_channel: strike
-        damage_override: {dice: "2d6", bonus: 0}
-        deltas:
-          crit_fail:
-            own: -3
-        risk: "Overcommits — a botched all-in swing costs you (−3 on a critical failure)"
-        effect: "Target takes heavy damage"
-        narrator_hint: >-
-          An all-in swing; the character is not planning a follow-up.
-          Describe the violence as expensive — to the one making it as
-          well as the one receiving it. The deep keeps the receipt.
-      - id: break_contact
-        label: Break Contact
-        kind: push
-        stat_check: DEX
-        consequence: "Combat ends — the character withdraws deeper into the dungeon, or the enemy lets them go"
-        narrator_hint: >-
-          Disengagement is a real choice in the deep, and it always costs
-          ground. Describe what is given up: the room, the body, the light.
+    # No native beats: under the WWN binding the sealed initiative engine
+    # (wn_round.py) owns the combat action set — attack / move / item-use /
+    # cast — so this def authors zero beats. The native beat/edge/momentum
+    # scaffolding is *removed* from a Without-Number combat path, not
+    # balanced against it (ADR-143 / ADR-139 Inv-3; SOUL "Bind the Ruleset,
+    # Don't Balance It"). Do not re-add a beats list here.
     mood: combat
   - type: chase
     label: Corridor Pursuit

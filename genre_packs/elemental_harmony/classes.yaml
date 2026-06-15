@@ -29,16 +29,17 @@
 #     display_name in inventory.yaml, not via class_kit path.
 #   - jungian_default: archetype tag per class narrative posture.
 #
-# encounter_beat_choices reference real beat IDs from rules.yaml
-# confrontations (Martial Exchange / Diplomatic Council / Pursuit):
-#   Martial Exchange: strike, elemental_burst, cast_spell, guard, yield
+# encounter_beat_choices reference real beat IDs from rules.yaml DIAL
+# confrontations only. Martial Exchange (combat) is de-nativized under the
+# WWN binding (ADR-143) — its native beats are removed and the WN round
+# (wn_round.py) supplies the combat action set (attack/move/item-use/cast),
+# so NO combat beats appear in any class's choices. Remaining DIAL pools:
 #   Diplomatic Council: persuade, threaten, concede_point, walk_away
 #   Pursuit: dash, leap, blend, vanish
 #
-# cast_spell is EXCLUDED from non-caster beat lists — the rules.yaml
-# class_filter restricts it to [Channeler, Spirit Medium] so the WWN
-# cast resource gate fires correctly (mirrors caverns_and_claudes
-# class_filter: [Mage] pattern on cast_spell).
+# Casting is the WN `cast` action supplied by the engine — there is no
+# cast_spell combat beat to gate; the spell resource gate lives in the wwn
+# ruleset module / spells_wwn.yaml, not in a beat class_filter.
 #
 # Per ADR-095: roughly ONE signature ability per non-magical class.
 # Casters get two entries reflecting their Art + spellcasting flavor.
@@ -59,11 +60,6 @@
     not contain the element — they become briefly and voluntarily
     permeable to it, at real cost to the body that serves as the gate.
   encounter_beat_choices:
-    - strike
-    - elemental_burst
-    - cast_spell
-    - guard
-    - yield
     - persuade
     - concede_point
     - walk_away
@@ -134,10 +130,6 @@
     than words. They do not command the spirit world; they have an
     ongoing and occasionally contentious relationship with it.
   encounter_beat_choices:
-    - strike
-    - cast_spell
-    - guard
-    - yield
     - persuade
     - concede_point
     - walk_away
@@ -209,10 +201,6 @@
     control, through the thousand repetitions that have made certain
     patterns cheaper to run than ordinary motion.
   encounter_beat_choices:
-    - strike
-    - elemental_burst
-    - guard
-    - yield
     - persuade
     - concede_point
     - walk_away
@@ -267,10 +255,6 @@
     encountered it: a settled quality, an absence of urgency about
     their own survival that makes them very hard to move.
   encounter_beat_choices:
-    - strike
-    - elemental_burst
-    - guard
-    - yield
     - persuade
     - concede_point
     - walk_away
@@ -324,9 +308,6 @@
     next three moves, and reframe the situation in terms that make
     the others in the room more effective.
   encounter_beat_choices:
-    - strike
-    - guard
-    - yield
     - persuade
     - concede_point
     - walk_away
@@ -366,10 +347,6 @@
     faces, find exits in rooms where exits are not obvious, and have a
     working relationship with luck that feels earned because it was.
   encounter_beat_choices:
-    - strike
-    - elemental_burst
-    - guard
-    - yield
     - persuade
     - concede_point
     - walk_away

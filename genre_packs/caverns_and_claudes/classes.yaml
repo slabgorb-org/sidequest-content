@@ -13,9 +13,13 @@
 #
 # class_label in rules.yaml: "Calling".
 #
-# cast_spell is NOT listed in any class's encounter_beat_choices — the
-# rules.yaml combat class_filter [Mage] is the ONLY gate that offers it,
-# so the WWN cast resource gate fires correctly (heavy_metal/EH pattern).
+# Dungeon Combat (combat) is de-nativized under the WWN binding (ADR-143) —
+# its native beats are removed and the WN round (wn_round.py) supplies the
+# combat action set (attack/move/item-use/cast). No combat beats appear in
+# any class's encounter_beat_choices; what remains are the chase/negotiation
+# DIAL beats. Casting is the WN `cast` action supplied by the engine — there
+# is no cast_spell combat beat to gate; the spell resource gate lives in the
+# wwn ruleset module.
 #
 # Required-but-inert fields follow the space_opera / EH / heavy_metal
 # convention: minimum_score: 9 (point_buy pack, no roll-minimum gate);
@@ -45,10 +49,6 @@
     every door, and keep an honest count of which of those doors they
     expect to come back through.
   encounter_beat_choices:
-    - strike
-    - brace
-    - committed_blow
-    - break_contact
     - sprint
     - barricade
     - talk_up_the_haul
@@ -110,9 +110,6 @@
     not, and keep their accounts with the camp's quartermaster scrupulously
     clean, because a delver who owes nothing can leave at any time.
   encounter_beat_choices:
-    - strike
-    - brace
-    - break_contact
     - sprint
     - duck_through
     - douse_torch
@@ -158,9 +155,6 @@
     residue the craft leaves in the hands and the eyes. The camp does not
     trust them. The camp also does not go down without them.
   encounter_beat_choices:
-    - strike
-    - brace
-    - break_contact
     - sprint
     - duck_through
     - plead_poverty
