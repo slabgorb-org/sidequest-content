@@ -259,10 +259,10 @@ starting_equipment:
     - water_canteen
     - medkit_crude
   Pureblood:
-    # rad_pills is a wasteland-bespoke item carried at the world tier
-    # (worlds/flickering_reach/inventory.yaml); it resolves into this kit via the
-    # non-droppable genre↔world merge for worlds that ship it.
-    - rad_pills
+    # NOTE: rad_pills is NOT here — it is a world-tier wasteland item (no AWN analog,
+    # ADR-145 D3) and a genre kit must reference only genre-catalog ids. A world that
+    # stocks radiation gear adds rad_pills to its OWN Pureblood kit
+    # (worlds/flickering_reach/inventory.yaml does).
     - medkit_crude
     - water_canteen
     - glow_rod
