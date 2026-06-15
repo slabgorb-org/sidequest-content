@@ -1,0 +1,196 @@
+# flickering_reach — world-tier inventory (ADR-145 D3, story 114-14)
+#
+# The mutant_wasteland genre baseline is verbatim AWN gear only (no bespoke —
+# enforced by loader._validate_genre_baseline_no_bespoke). The pre-war RELICS and
+# the two radiation items have NO AWN SRD analog, so they are SideQuest-original
+# `mode: bespoke` and live here at the world tier (ADR-145 D3 — bespoke is a
+# world-tier privilege). The non-droppable genre↔world merge
+# (inventory_resolve.resolve_inventory) unions these over the genre verbatim
+# baseline, so a flickering_reach character sees BOTH the AWN baseline gear and
+# these wasteland relics.
+#
+# ⚠ World-replaces-genre: resolve_inventory takes starting_equipment /
+# starting_gold / currency from THIS file wholesale when a world ships an
+# inventory.yaml. They are therefore copied verbatim from the genre tier so the
+# class kits keep working (the genre Pureblood kit references rad_pills, which
+# this file supplies). Do not drop them.
+
+currency:
+  name: Salvage
+  abbreviation: S
+  description: >-
+    There is no minted currency. Value is measured in salvage — useful
+    material, clean water, ammunition, working tech. A functioning
+    battery is worth more than a bag of gold. Barter is the norm.
+    When people say something costs "ten salvage," they mean ten units
+    of tradeable goods roughly equivalent to a day's clean water.
+  secondary:
+    - name: Favor
+      abbreviation: Fv
+      description: >-
+        Debts owed and debts earned. The wasteland's social currency.
+        A Scrapborn mechanic who owes you a favor is worth more than
+        a crate of batteries. Tracked per NPC/faction, not as a number.
+
+item_catalog:
+  # --- Wasteland radiation gear: SideQuest-original, no AWN analog (bespoke) ---
+
+  - id: rad_pills
+    name: Rad Pills (3 doses)
+    description: "Chalky tablets that reduce radiation absorption. Taste like metal."
+    category: consumable
+    value: 5
+    weight: 0.1
+    rarity: uncommon
+    power_level: 1
+    tags: [medical, radiation]
+    lore: Vaultborn manufacture. Everyone else pays through the nose.
+    narrative_weight: 0.1
+    provenance:
+      mode: bespoke
+
+  - id: geiger_clicker
+    name: Geiger Clicker
+    description: "A salvaged radiation detector. Clicks faster when you should be running."
+    category: tool
+    value: 15
+    weight: 0.5
+    rarity: uncommon
+    power_level: 2
+    tags: [tool, detection, salvage]
+    lore: The ones that still work are worth killing for. The batteries are worth more.
+    narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  # --- Pre-war relics: SideQuest-original, no AWN analog (bespoke). The five
+  # chargen artifacts below are offered by the genre char_creation "The Thing You
+  # Found" step via item_hint; they MUST resolve in this world's catalog or the
+  # chargen builder falls back to category:weapon (the 2026-04-11 datapad bug).
+
+  - id: datapad
+    name: Ancient Screen
+    description: "A flat glass rectangle that sometimes shows pictures of the old world. You can't control what it shows."
+    category: tool
+    value: 25
+    weight: 0.5
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, sensor, display]
+    lore: Pre-war glass that occasionally flickers awake with images of cities, faces, schematics. Vault Dwellers prize them for the fragments of lost knowledge they reveal.
+    narrative_weight: 0.6
+    provenance:
+      mode: bespoke
+
+  - id: growth_wand
+    name: Growth Wand
+    description: "A humming metal rod that makes plants grow faster when you point it at them. The plants don't always grow right."
+    category: tool
+    value: 28
+    weight: 0.7
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, agricultural]
+    lore: Some kind of pre-war agritech relic. The plants it grows are sometimes useful, sometimes monstrous, sometimes both.
+    narrative_weight: 0.6
+    provenance:
+      mode: bespoke
+
+  - id: purifier
+    name: Screaming Purifier
+    description: "A small box that purifies any liquid poured into it. The catch: it takes a day, and it screams while working."
+    category: tool
+    value: 35
+    weight: 1.0
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, water, survival]
+    lore: A box that makes any liquid drinkable. The scream — high, mechanical, almost a wail — is the cost of safe water in the wastes.
+    narrative_weight: 0.6
+    provenance:
+      mode: bespoke
+
+  - id: power_glove
+    name: Power Glove
+    description: "A glove that makes your hand incredibly strong but only for about ten seconds. Then it needs to rest for an hour."
+    # Category: weapon — the Power Glove explicitly hits (10 seconds of crushing
+    # strength is a punch, a chain-rip, a hatch-tear). Pre-war exo-glove, no AWN
+    # SRD analog, so bespoke (no Trauma Die required).
+    category: weapon
+    damage: {dice: "1d8"}
+    value: 32
+    weight: 1.0
+    rarity: rare
+    power_level: 2
+    tags: [ancient, artifact, augmentation, wearable, melee]
+    lore: A pre-war exo-glove with a battery cell that has somehow survived the centuries. Ten seconds of crushing strength then a full hour of useless cooldown. Tearing through a hatch, ripping a chain, breaking a jaw — short bursts only.
+    narrative_weight: 0.6
+    provenance:
+      mode: bespoke
+
+  - id: mystery_compass
+    name: Mystery Compass
+    description: "A compass that doesn't point north. It points at something, but you haven't figured out what yet."
+    category: tool
+    value: 22
+    weight: 0.3
+    rarity: rare
+    power_level: 1
+    tags: [ancient, artifact, navigation, mysterious]
+    lore: The needle is always aligned to the same unknown referent. Some carriers say it's a person, some say a place, some say a future. The compass has no opinion.
+    narrative_weight: 0.6
+    provenance:
+      mode: bespoke
+
+  - id: ancient_artifact
+    name: Unknown Artifact
+    description: "A pre-war device of uncertain function. It hums when you hold it."
+    category: treasure
+    value: 30
+    weight: 0.5
+    rarity: rare
+    power_level: 3
+    tags: [ancient, mysterious, valuable]
+    lore: Could be a weapon, a tool, or a fancy paperweight. Finding out is the adventure.
+    narrative_weight: 0.7
+    provenance:
+      mode: bespoke
+
+# World-replaces-genre: copied verbatim from the genre tier (the genre kits
+# reference both AWN-baseline gear, which resolves via the merge, and rad_pills,
+# supplied above).
+starting_equipment:
+  Scavenger:
+    - pipe_wrench
+    - tool_kit_basic
+    - water_canteen
+    - glow_rod
+  Mutant:
+    - sharpened_rebar
+    - water_canteen
+    - medkit_crude
+  Pureblood:
+    - rad_pills
+    - medkit_crude
+    - water_canteen
+    - glow_rod
+  Wirewalker:
+    - tool_kit_basic
+    - glow_rod
+    - water_canteen
+  Beastkin:
+    - sharpened_rebar
+    - water_canteen
+    - water_canteen
+  Tinker:
+    - tool_kit_basic
+    - glow_rod
+    - water_canteen
+
+starting_gold:
+  Scavenger: 8
+  Mutant: 3
+  Pureblood: 15
+  Wirewalker: 5
+  Beastkin: 2
+  Tinker: 10

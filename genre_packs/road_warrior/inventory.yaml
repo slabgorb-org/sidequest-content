@@ -1256,86 +1256,14 @@ item_catalog:
     lore: Reach out and touch someone. Fifty miles in every direction.
     narrative_weight: 0.3
 
-  # Personal Weapons
-  # CWN personal-combat damage specs (epic 86 Plan 1): driver-on-foot combat
-  # resolves on the ablative HpPool, so these carry real weapon damage. Melee
-  # weapons add a Shock rating (chip on a miss vs low-AC). Rig/mounted weapons
-  # above and the rig vessels below stay damage-less — rig combat is Plan 2.
-  - id: tire_iron
-    name: Tire Iron
-    description: "Melee. Better than nothing."
-    category: weapon
-    damage: {dice: "1d4", bonus: 0, trauma_die: "1d6", trauma_rating: 2, shock: 1, shock_ac: 13}
-    value: 1
-    weight: 1.5
-    rarity: common
-    power_level: 1
-    tags: [melee, weapon, tool]
-    lore: Every driver carries one. Not just for tires.
-    narrative_weight: 0.1
-    provenance: {mode: bespoke, license: na}
-
-  - id: chain
-    name: Chain
-    description: "Melee. Good reach. Classic road warrior accessory."
-    category: weapon
-    damage: {dice: "1d6", bonus: 0, trauma_die: "1d8", trauma_rating: 2, shock: 2, shock_ac: 15}
-    value: 1
-    weight: 2.0
-    rarity: common
-    power_level: 1
-    tags: [melee, weapon]
-    lore: Three feet of oily steel. Swings wide, hits hard.
-    narrative_weight: 0.2
-    provenance: {mode: bespoke, license: na}
-
-  - id: sawed_off_shotgun
-    name: Sawed-off Shotgun
-    description: "Two shots. Make them count."
-    category: weapon
-    damage: {dice: "3d4", bonus: 0, trauma_die: "1d8", trauma_rating: 3}
-    value: 8
-    weight: 2.0
-    rarity: uncommon
-    power_level: 2
-    tags: [ranged, weapon, firearm]
-    lore: Close range diplomacy. Two barrels of persuasion.
-    narrative_weight: 0.3
-    provenance: {mode: bespoke, license: na}
-
-  - id: crossbow
-    name: Crossbow
-    description: "Silent. Reusable ammo. Slow to reload."
-    category: weapon
-    damage: {dice: "1d8", bonus: 0, trauma_die: "1d8", trauma_rating: 2}
-    value: 6
-    weight: 2.5
-    rarity: uncommon
-    power_level: 2
-    tags: [ranged, weapon, silent]
-    lore: No bang, no flash. Just a bolt in the dark.
-    narrative_weight: 0.3
-    provenance: {mode: bespoke, license: na}
-
-  # road_warrior's iconic improvised sidearm. KEPT as a bespoke item (category
-  # `weapon`, with a trauma_die) — the CWN baseline adds `cwn_light_pistol` above
-  # for availability, but road_warrior's personal-combat strike path and the
-  # combat-class loadouts use this `weapon`-category pistol (the dispatch tests
-  # seed it by id; CWN ranged_weapon items are the catalog baseline, not the
-  # combat-class starting weapon).
-  - id: pistol
-    name: Pistol
-    description: "Sidearm. Limited ammo is the real constraint."
-    category: weapon
-    damage: {dice: "1d6", bonus: 0, trauma_die: "1d8", trauma_rating: 2}
-    value: 7
-    weight: 1.0
-    rarity: uncommon
-    power_level: 2
-    tags: [ranged, weapon, firearm, one-handed]
-    lore: Six rounds. Every one is a decision.
-    narrative_weight: 0.2
-    provenance: {mode: bespoke, license: na}
+  # Personal weapons moved to the world tier (ADR-145 D3 / 114-14): the five
+  # bespoke personal weapons (tire_iron, chain, sawed_off_shotgun, crossbow,
+  # pistol) are mode=bespoke, and a WN-family genre baseline carries no bespoke
+  # (loader._validate_genre_baseline_no_bespoke). They live at
+  # worlds/the_circuit/inventory.yaml and resolve into the combat-class kits via
+  # the non-droppable genre↔world merge. (The remaining unprovenanced genre items
+  # in this file — rig parts, mount weapons, survival gear, rig vessels — are the
+  # verbatim-only sweep deferred to epic 119.)
 
   # ── VESSELS (RIGS) — magic.yaml vessel category ────────────────
   # Templates by tier. The player names their rig at chargen

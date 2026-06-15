@@ -1,0 +1,145 @@
+# franchise_nations — world-tier inventory (ADR-145 D3, story 114-14)
+#
+# neon_dystopia binds CWN; its genre baseline is verbatim CWN gear only (no
+# bespoke — enforced by loader._validate_genre_baseline_no_bespoke). The six
+# cyberpunk-iconic items the CWN gear table does not contain are SideQuest-original
+# `mode: bespoke` and live here at the world tier (ADR-145 D3 — bespoke is a
+# world-tier privilege). The non-droppable genre↔world merge unions them over the
+# CWN baseline, so a franchise_nations character sees both.
+#
+# ⚠ World-replaces-genre: resolve_inventory takes starting_equipment /
+# starting_gold / currency from THIS file wholesale when a world ships an
+# inventory.yaml. They are copied verbatim from the genre tier so the class kits
+# keep working — the kits reference both these bespoke ids (cyberdeck/smart_pistol/
+# optical_camo) and CWN baseline ids (which resolve via the merge). Do not drop them.
+
+currency:
+  name: eddies
+  denominations:
+    - chips
+    - creds
+    - stacks
+
+item_catalog:
+  # Cyberpunk-iconic bespoke gear (NOT CWN-verbatim). Damage on the bespoke
+  # weapons is hand-tuned to sit beside the CWN baseline, not SRD-sourced.
+  - id: smart_pistol
+    name: Smart Pistol
+    description: Tracks targets around corners. Point in the general direction and let the gun do the math.
+    category: ranged_weapon
+    value: 800
+    weight: 1.0
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, firearm, one-handed, smart]
+    lore: Standard corporate sidearm. The aiming assist makes everyone a marksman.
+    narrative_weight: 0.2
+    damage: {dice: "1d6", bonus: 0, trauma_die: "1d8", trauma_rating: 2}
+    range_band: "10/80"
+    magazine: 12
+    provenance:
+      mode: bespoke
+      license: na
+
+  - id: katana
+    name: Mono-Edge Katana
+    description: Monomolecular edge. Cuts through armor like opinion through fact.
+    category: melee_weapon
+    value: 1200
+    weight: 1.0
+    rarity: uncommon
+    power_level: 3
+    tags: [melee, blade, two-handed, mono]
+    lore: Street samurai weapon of choice. The blade never dulls because it's one molecule wide.
+    narrative_weight: 0.4
+    damage: {dice: "1d8", bonus: 0, trauma_die: "1d8", trauma_rating: 2, shock: 2, shock_ac: 15}
+    provenance:
+      mode: bespoke
+      license: na
+
+  - id: mantis_blades
+    name: Mantis Blades
+    description: Retractable arm blades. Slice through anything. Part of you now.
+    category: cyberware
+    value: 35000
+    weight: 0.0
+    rarity: rare
+    power_level: 4
+    tags: [melee, cyberware, concealed, blade, "location:limb", "concealment:medical"]
+    lore: Installed by a ripperdoc, deployed by thought. The chrome that kills.
+    narrative_weight: 0.5
+    damage: {dice: "1d8", bonus: 1, trauma_die: "1d10", trauma_rating: 3, shock: 4, shock_ac: 15}
+    system_strain: 2.0
+    provenance:
+      mode: bespoke
+      license: na
+
+  - id: cyberdeck
+    name: Cyberdeck
+    description: Your interface to the Net. Jack in, breach ICE, ride data. The world behind the world.
+    category: tool
+    value: 5000
+    weight: 0.5
+    rarity: uncommon
+    power_level: 3
+    tags: [hacking, net, electronic, essential]
+    lore: Every deck is customized. A netrunner's deck is as personal as their fingerprints.
+    narrative_weight: 0.5
+    provenance:
+      mode: bespoke
+      license: na
+
+  - id: optical_camo
+    name: Optical Camo Module
+    description: Bends light around you. Not invisible — but close enough in the dark.
+    category: tool
+    value: 12000
+    weight: 0.0
+    rarity: rare
+    power_level: 4
+    tags: [cyberware, stealth, infiltration]
+    lore: Military prototype that found its way to the street. Glitches in the rain.
+    narrative_weight: 0.6
+    provenance:
+      mode: bespoke
+      license: na
+
+  - id: data_chip
+    name: Stolen Data Chip
+    description: Contains something someone wants. You don't know what. That's either a problem or leverage.
+    category: treasure
+    value: 0
+    weight: 0.1
+    rarity: legendary
+    power_level: 5
+    tags: [data, plot-device, unique, electronic]
+    lore: The most dangerous thing you can carry. Worth nothing until you know what's on it.
+    narrative_weight: 0.9
+    provenance:
+      mode: bespoke
+      license: na
+
+# World-replaces-genre: copied verbatim from the genre tier. Kit ids resolve
+# against the merged catalog — bespoke ids here, CWN baseline ids via the merge.
+starting_equipment:
+  Netrunner: [cyberdeck, smart_pistol, cwn_handheld_radio, cwn_cybereyes]
+  Solo: [cwn_combat_rifle, cwn_street_leathers, cwn_medkit, cwn_gunlink]
+  Fixer: [smart_pistol, cwn_armored_clothing, cwn_handheld_radio]
+  Tech: [cwn_basic_tools_kit, cwn_cyberdoc_kit, cwn_medkit, cwn_climbing_kit]
+  Nomad: [cwn_rifle, cwn_street_leathers, cwn_medkit, cwn_handheld_radio]
+  Face: [smart_pistol, cwn_armored_clothing, cwn_handheld_radio]
+  Ghost: [smart_pistol, cwn_climbing_kit, optical_camo, cwn_handheld_radio]
+
+starting_gold:
+  Netrunner: 3000
+  Solo: 2500
+  Fixer: 5000
+  Tech: 3500
+  Nomad: 2000
+  Face: 4500
+  Ghost: 3000
+
+philosophy:
+  carry_limit: 0
+  restricted_categories: []
+  progression_gates: {}

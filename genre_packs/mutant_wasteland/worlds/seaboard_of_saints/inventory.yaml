@@ -1,11 +1,12 @@
 # The Seaboard of Saints — world inventory (story 103-8).
 #
-# IMPORTANT (epic 94 + inventory_resolve): a world inventory.yaml REPLACES
-# the genre's wholesale — it is NOT merged. So this file must carry the
-# FULL surface the Seaboard needs: its coin currency, its item catalog,
-# per-class starting kits, and starting gold. The genre's "Salvage / no
-# minted currency" economy does not apply here — the Glory was a plague,
-# not a bomb, and the United States Mint at Philadelphia never went dark.
+# IMPORTANT (ADR-145 D3 / inventory_resolve, updated 114-14): the item_catalog
+# MERGES non-droppably over the genre baseline (genre verbatim AWN gear survives;
+# this file's items union over it by id). But starting_equipment / starting_gold /
+# currency are world-replaces-genre — taken from THIS file wholesale — so the
+# Seaboard declares its full coin currency and per-class kits here (below). The
+# genre's "Salvage / no minted currency" economy does not apply — the Glory was a
+# plague, not a bomb, and the United States Mint at Philadelphia never went dark.
 #
 # Currency (world design §8): pre-war US coins, still struck to the old
 # dies by Magisterium decree. The regional scrips are the `secondary`
@@ -271,6 +272,8 @@ item_catalog:
     tags: [ancient, artifact, agricultural]
     lore: A pre-war agritech relic. The plant-folk of the Adirondacks regard it with the wariness one extends to a stranger holding a knife near the family.
     narrative_weight: 0.3
+    provenance:
+      mode: bespoke
 
   - id: datapad
     name: Ancient Screen
@@ -283,6 +286,8 @@ item_catalog:
     tags: [ancient, artifact, sensor, display]
     lore: Pre-war glass that flickers awake with images of cities, faces, schematics. The Whitman Circle authenticates the honest ones and burns the lying ones.
     narrative_weight: 0.3
+    provenance:
+      mode: bespoke
 
   - id: purifier
     name: Screaming Purifier
@@ -295,6 +300,8 @@ item_catalog:
     tags: [ancient, artifact, water, survival]
     lore: A box that makes any liquid drinkable. The scream — high, mechanical, almost a wail — has been mistaken for a saint, a ghost, and a kettle, in that order.
     narrative_weight: 0.3
+    provenance:
+      mode: bespoke
 
   - id: mystery_compass
     name: Mystery Compass
@@ -307,12 +314,15 @@ item_catalog:
     tags: [ancient, artifact, navigation, mysterious]
     lore: The needle holds to one unknown referent. The Lo'in say it points at whichever myth you are standing inside. The compass has no opinion.
     narrative_weight: 0.3
+    provenance:
+      mode: bespoke
 
   # The fifth chargen artifact. char_creation offers `power_glove` as an artifact
-  # item_hint; because a world inventory.yaml REPLACES the genre wholesale, it must
-  # be carried here or a Seaboard PC who picks it hits the fallback-to-weapon bug
-  # the 2026-04-11 genre fix closed. Mechanically the genre's 1d8 weapon artifact
-  # (id + category + damage preserved); re-flavored to the Seaboard's reliquary idiom.
+  # item_hint; the relics live only at the world tier (114-14), so each world that
+  # offers them must carry them or a Seaboard PC who picks it hits the
+  # fallback-to-weapon bug the 2026-04-11 genre fix closed. Mechanically the 1d8
+  # weapon artifact (id + category + damage preserved); re-flavored to the
+  # Seaboard's reliquary idiom.
   - id: power_glove
     name: Saint's Gauntlet
     description: "A pitted iron gauntlet, knuckles worn smooth by old prayer. Grip it and your hand crushes like a press for about ten seconds — then it hangs dead and useless for an hour while the saint, whoever they were, rests."
@@ -325,6 +335,22 @@ item_catalog:
     tags: [ancient, artifact, relic, weapon]
     lore: The Whitman Circle calls it a relic of a strong-armed saint; the Lo'in call it pre-war and leave it at that. Both agree on what it does to a hatch, a chain, or a man's wrist.
     narrative_weight: 0.3
+    provenance:
+      mode: bespoke
+
+  - id: ancient_artifact
+    name: Unknown Artifact
+    description: "A pre-war device of uncertain function. It hums when you hold it."
+    category: treasure
+    value: 30
+    weight: 0.5
+    rarity: rare
+    power_level: 3
+    tags: [ancient, mysterious, valuable]
+    lore: Could be a weapon, a tool, or a fancy paperweight. The Whitman Circle would pay to find out; the Lo'in would pay to bury it.
+    narrative_weight: 0.7
+    provenance:
+      mode: bespoke
 
   # --- TREASURE (coins & scrips as held objects — AC6 "present as items") ---
   - id: roll_of_quarters
