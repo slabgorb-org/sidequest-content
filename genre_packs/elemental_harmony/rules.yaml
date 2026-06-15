@@ -119,7 +119,6 @@ confrontations:
     category: combat
     # WWN personal combat: attack-vs-AC + hp_depletion on the ablative HpPool.
     # Trauma/Mortal Injury layer on via the wwn ruleset module.
-    resolution_mode: beat_selection
     win_condition: hp_depletion
     opponent_default_stats:
       # ALL SIX ability scores must be authored so the WWN defender-save path
@@ -150,62 +149,12 @@ confrontations:
     # matching the wuxia mook's threat. Read only on the opponent's turn, so it
     # never caps the player's own weapon.
     opponent_damage: {dice: "1d6", bonus: 0}
-    beats:
-      - id: strike
-        label: Strike
-        kind: strike
-        base: 2
-        stat_check: Strength
-        attack_bonus: 1
-        combat_skill: 1
-        damage_channel: strike
-        effect: "A flowing combination — elemental energy behind the blow"
-        narrator_hint: Describe the elemental force channeled through the strike.
-      - id: elemental_burst
-        label: Elemental Burst
-        kind: strike
-        base: 4
-        stat_check: Strength
-        attack_bonus: 1
-        combat_skill: 1
-        damage_channel: strike
-        damage_override: {dice: "2d6", bonus: 0}
-        deltas:
-          crit_fail:
-            own: -2
-          fail:
-            own: -2
-        risk: "Spirit flares wide — lose 2 momentum on any failure"
-        effect: "Unleash raw elemental force on the target"
-        narrator_hint: Channel raw elemental force. The air shimmers with heat or frost or lightning.
-      - id: cast_spell
-        label: Channel a Spell
-        kind: strike
-        base: 2
-        stat_check: Spirit
-        attack_bonus: 1
-        combat_skill: 1
-        damage_channel: none
-        # class_filter restricts this beat to caster Disciplines only.
-        # Mirrors caverns_and_claudes cast_spell: class_filter: [Mage].
-        # Without this, the WWN cast resource gate never fires — the beat
-        # would be offered to every class and the gate check skipped.
-        class_filter: [Channeler, Spirit Medium]
-        effect: "Cast a prepared spell — damage rolled by the spell engine"
-        narrator_hint: The character reaches inward, pulls on prepared elemental form, releases it.
-      - id: guard
-        label: Guard
-        kind: brace
-        base: 1
-        stat_check: Endurance
-        effect: "Reduce incoming damage, channel harmony back into stance"
-        narrator_hint: Weight sinks. Breath steadies. The element answers.
-      - id: yield
-        label: Yield
-        kind: push
-        stat_check: Agility
-        consequence: "Combat ends — honor preserved through retreat"
-        narrator_hint: A bow, a step backward, a parting gesture. The exchange ends.
+    # No native beats: under the WWN binding the sealed initiative engine
+    # (wn_round.py) owns the combat action set — attack / move / item-use /
+    # cast — so this def authors zero beats. The native beat/edge/momentum
+    # scaffolding is *removed* from a Without-Number combat path, not
+    # balanced against it (ADR-143 / ADR-139 Inv-3; SOUL "Bind the Ruleset,
+    # Don't Balance It"). Do not re-add a beats list here.
     mood: combat
   - type: chase
     label: Pursuit

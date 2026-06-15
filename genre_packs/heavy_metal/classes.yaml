@@ -18,10 +18,13 @@
 #
 # class_label in rules.yaml: "Calling".
 #
-# cast_spell is NOT listed in any class's encounter_beat_choices — the
-# rules.yaml combat (Blade-work) class_filter [Necromancer, Elementalist,
-# Pact-born] is the ONLY gate that offers it, so the WWN cast resource gate
-# fires correctly (mirrors EH's class_filter pattern on cast_spell).
+# Blade-work (combat) is de-nativized under the WWN binding (ADR-143) — its
+# native beats are removed and the WN round (wn_round.py) supplies the combat
+# action set (attack/move/item-use/cast). No combat beats appear in any
+# class's encounter_beat_choices; what remains are the chase/negotiation DIAL
+# beats. Casting is the WN `cast` action supplied by the engine — there is no
+# cast_spell combat beat to gate; the spell resource gate lives in the wwn
+# ruleset module / spells_wwn.yaml.
 #
 # Required-but-inert fields follow the space_opera / EH convention:
 #   - minimum_score: 9 — standard-array pack, no roll-minimum gate.
@@ -53,10 +56,6 @@
     long ago finished negotiating the price of their own life and is no
     longer interested in renegotiating it.
   encounter_beat_choices:
-    - strike
-    - brace
-    - committed_blow
-    - break_contact
     - argue
     - press_obligation
     - yield
@@ -116,9 +115,6 @@
     room that has no obvious exit, and know which silences in a strata-site
     are safe to walk through and which are not.
   encounter_beat_choices:
-    - strike
-    - brace
-    - break_contact
     - argue
     - yield
     - withdraw
@@ -164,9 +160,6 @@
     The working is bargained and Effort-paid, not a tidy list of spells; the
     cost is carried in the body and in System Strain.
   encounter_beat_choices:
-    - strike
-    - brace
-    - break_contact
     - argue
     - press_obligation
     - yield
@@ -230,10 +223,6 @@
     hands, the lungs, the eye. They pay, a little, every time they practise,
     and they have accepted this as the terms of the work.
   encounter_beat_choices:
-    - strike
-    - brace
-    - committed_blow
-    - break_contact
     - argue
     - yield
     - withdraw
@@ -296,10 +285,6 @@
     weight of someone who knows exactly what they owe — and the monkey's-paw
     cost is carried in narration and System Strain, not a bespoke ledger.
   encounter_beat_choices:
-    - strike
-    - brace
-    - committed_blow
-    - break_contact
     - argue
     - press_obligation
     - yield
@@ -378,9 +363,6 @@
     once. It is not sorcery. It is the last art of a people who outlived
     their sea, their enemies, and very nearly their own reality.
   encounter_beat_choices:
-    - strike
-    - brace
-    - break_contact
     - argue
     - press_obligation
     - yield
@@ -446,9 +428,6 @@
     (radium rifles, fliers) are mere GEAR; what the Super-scientist casts
     is the impossible edge of the art.
   encounter_beat_choices:
-    - strike
-    - brace
-    - break_contact
     - argue
     - press_obligation
     - yield
