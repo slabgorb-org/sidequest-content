@@ -1,0 +1,143 @@
+# the_circuit — world-tier inventory (ADR-145 D3, story 114-14)
+#
+# road_warrior binds CWN; its genre baseline must carry no bespoke item
+# (loader._validate_genre_baseline_no_bespoke). The five bespoke personal weapons
+# (no clean CWN-verbatim analog — they are road_warrior's iconic improvised
+# arsenal) are SideQuest-original `mode: bespoke` and live here at the world tier
+# (ADR-145 D3 — bespoke is a world-tier privilege). The non-droppable genre↔world
+# merge unions them over the CWN baseline, so a the_circuit character sees both.
+#
+# NOTE (epic 119): road_warrior's genre inventory still carries unprovenanced rig
+# parts / mount weapons / survival gear / rig-tier vessels. Those are NOT bespoke
+# (no provenance), so this story's validator passes them; the verbatim-only sweep
+# that provenances or relocates them is epic 119.
+#
+# ⚠ World-replaces-genre: resolve_inventory takes starting_equipment /
+# starting_gold / currency from THIS file wholesale when a world ships an
+# inventory.yaml. They are copied verbatim from the genre tier so the class kits
+# keep working — the kits reference both these bespoke ids (tire_iron / chain /
+# sawed_off_shotgun / pistol) and still-genre ids (rig_tier_1_prospect, tool_kit,
+# medkit, radio_handheld, …) which resolve via the merge. Do not drop them.
+
+currency:
+  name: Fuel
+  abbreviation: F
+  description: >-
+    Fuel is the universal currency. Everything is priced in fuel units.
+    A full tank is wealth. An empty tank is death. The world's economy
+    runs on combustion — whoever controls fuel controls everything.
+  secondary:
+    - name: Parts
+      abbreviation: P
+      description: >-
+        Scavenged mechanical components. Used for rig repairs and upgrades.
+        More specialized parts are rarer and more valuable. A working
+        alternator is worth more than gold.
+    - name: Favor
+      abbreviation: Fv
+      description: >-
+        Debts owed and favors earned. The informal economy of the road.
+        A Fuel Broker who owes you a favor is better than a full tank.
+        Tracked per NPC/faction, not as a number.
+
+item_catalog:
+  # Personal weapons — bespoke (no clean CWN-verbatim analog; road_warrior's
+  # iconic improvised arsenal). CWN personal-combat damage specs (epic 86 Plan 1):
+  # driver-on-foot combat resolves on the ablative HpPool, so these carry real
+  # weapon damage. Melee weapons add a Shock rating (chip on a miss vs low-AC).
+  - id: tire_iron
+    name: Tire Iron
+    description: "Melee. Better than nothing."
+    category: weapon
+    damage: {dice: "1d4", bonus: 0, trauma_die: "1d6", trauma_rating: 2, shock: 1, shock_ac: 13}
+    value: 1
+    weight: 1.5
+    rarity: common
+    power_level: 1
+    tags: [melee, weapon, tool]
+    lore: Every driver carries one. Not just for tires.
+    narrative_weight: 0.1
+    provenance: {mode: bespoke, license: na}
+
+  - id: chain
+    name: Chain
+    description: "Melee. Good reach. Classic road warrior accessory."
+    category: weapon
+    damage: {dice: "1d6", bonus: 0, trauma_die: "1d8", trauma_rating: 2, shock: 2, shock_ac: 15}
+    value: 1
+    weight: 2.0
+    rarity: common
+    power_level: 1
+    tags: [melee, weapon]
+    lore: Three feet of oily steel. Swings wide, hits hard.
+    narrative_weight: 0.2
+    provenance: {mode: bespoke, license: na}
+
+  - id: sawed_off_shotgun
+    name: Sawed-off Shotgun
+    description: "Two shots. Make them count."
+    category: weapon
+    damage: {dice: "3d4", bonus: 0, trauma_die: "1d8", trauma_rating: 3}
+    value: 8
+    weight: 2.0
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, weapon, firearm]
+    lore: Close range diplomacy. Two barrels of persuasion.
+    narrative_weight: 0.3
+    provenance: {mode: bespoke, license: na}
+
+  - id: crossbow
+    name: Crossbow
+    description: "Silent. Reusable ammo. Slow to reload."
+    category: weapon
+    damage: {dice: "1d8", bonus: 0, trauma_die: "1d8", trauma_rating: 2}
+    value: 6
+    weight: 2.5
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, weapon, silent]
+    lore: No bang, no flash. Just a bolt in the dark.
+    narrative_weight: 0.3
+    provenance: {mode: bespoke, license: na}
+
+  # road_warrior's iconic improvised sidearm. Bespoke (category `weapon`, with a
+  # trauma_die) — the CWN baseline `cwn_light_pistol` stays at the genre tier for
+  # availability, but road_warrior's personal-combat strike path and the
+  # combat-class loadouts use this `weapon`-category pistol.
+  - id: pistol
+    name: Pistol
+    description: "Sidearm. Limited ammo is the real constraint."
+    category: weapon
+    damage: {dice: "1d6", bonus: 0, trauma_die: "1d8", trauma_rating: 2}
+    value: 7
+    weight: 1.0
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, weapon, firearm, one-handed]
+    lore: Six rounds. Every one is a decision.
+    narrative_weight: 0.2
+    provenance: {mode: bespoke, license: na}
+
+# World-replaces-genre: copied verbatim from the genre tier. Kit ids resolve
+# against the merged catalog — bespoke ids here, still-genre ids via the merge.
+starting_equipment:
+  Wheelman: [rig_tier_1_prospect, tool_kit, pistol, radio_handheld]
+  Grease Monkey: [rig_tier_1_prospect, tool_kit, tire_iron, engine_part, medkit]
+  Wrecker: [rig_tier_1_prospect, chain, ram_plow, armor_plate]
+  War Rider: [rig_tier_1_prospect, sawed_off_shotgun, armor_plate, medkit]
+  Chrome Saint: [rig_tier_1_prospect, pistol, medkit, radio_rig, binoculars]
+  Road Preacher: [rig_tier_1_prospect, sawed_off_shotgun, radio_handheld, medkit]
+
+starting_gold:
+  Wheelman: 15
+  Grease Monkey: 20
+  Wrecker: 10
+  War Rider: 10
+  Chrome Saint: 15
+  Road Preacher: 25
+
+philosophy:
+  carry_limit: 0
+  restricted_categories: []
+  progression_gates: {}

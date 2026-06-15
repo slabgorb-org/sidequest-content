@@ -1,13 +1,25 @@
-# mutant_wasteland — genre-tier AWN baseline equipment catalog (ADR-145, story 114-8)
+# mutant_wasteland — genre-tier AWN baseline equipment catalog (ADR-145, stories 114-8 + 114-14)
 #
 # mutant_wasteland binds the Ashes Without Number ruleset (AWN combat = CWN
-# verbatim). Per ADR-145, a bound ruleset's gear is *inherited*, not re-authored:
-# the standard wasteland weapons/armor reproduce the AWN SRD equipment chapter's
+# verbatim). Per ADR-145 D3, a bound ruleset's genre baseline is *inherited*, not
+# re-authored: every genre-tier item reproduces an AWN SRD equipment entry's
 # mechanical envelope VERBATIM — damage dice, Trauma Die/Rating, Shock, Armor
-# Class, cost, encumbrance, tech level — and carry an ItemProvenance stamp
+# Class, cost, encumbrance, tech level — and carries an ItemProvenance stamp
 # (mode=verbatim, srd=awn, license=wn-free, srd_ref). The flavorful wasteland
 # names/descriptions are a free reskin layer over those fixed mechanics
 # (ADR-145 D1 — "verbatim binds the mechanics, not the presentation").
+#
+# Story 114-14 (ADR-145 D3, Keith 2026-06-15): the genre baseline must carry NO
+# bespoke item — bespoke gear is a WORLD-tier privilege, enforced fail-loud by
+# loader._validate_genre_baseline_no_bespoke. The standard survival/tool gear is
+# now AWN-sourced verbatim AT the genre tier (Water jug / First aid kit /
+# Flashlight / Toolkit) so it is shared, not duplicated across worlds. The
+# pre-war RELICS (datapad/growth_wand/purifier/power_glove/mystery_compass/
+# ancient_artifact) and the two radiation items (rad_pills, geiger_clicker) have
+# NO AWN SRD analog — they are SideQuest-original bespoke and live at the WORLD
+# tier (worlds/flickering_reach/inventory.yaml; the five chargen artifacts also in
+# worlds/seaboard_of_saints/inventory.yaml). A future epic (119) carries the
+# remaining unprovenanced-baseline sweep for the other WN packs.
 #
 # Sourcing (ADR-145 D4/D4a/D4b): the Without Number SRDs are usable under Sine
 # Nomine's published free-use terms. This is FACTUAL SOURCING ONLY — no
@@ -19,15 +31,6 @@
 # "Salvage" (a flavor reskin); the integer `value` carries the SRD cost — the
 # Salvage/credit unit distinction is not represented in the integer field (the
 # same known schema limitation flagged for the WWN packs in 114-4).
-#
-# The five pre-war chargen artifacts (datapad, growth_wand, purifier,
-# power_glove, mystery_compass), the loose `ancient_artifact`, and the
-# wasteland survival consumables/tools have NO AWN SRD analog — they are
-# SideQuest-original wasteland flavor and are stamped `mode=bespoke`. (ADR-145
-# D1/D3 would site bespoke items at the world tier; relocating them across both
-# mutant_wasteland worlds + rewiring chargen refs is deferred — see story 114-8
-# Delivery Findings. They are stamped bespoke here so the licensing audit can
-# tell SRD-sourced gear from invented gear.)
 
 currency:
   name: Salvage
@@ -162,197 +165,88 @@ item_catalog:
       srd_ref: "AWN SRD Equipment — Armor (Scrap Mail)"
       license: wn-free
 
-  # --- Wasteland survival gear: SideQuest-original, no AWN analog (bespoke) -
+  # --- Survival/tool gear: verbatim AWN SRD Survival Gear, wasteland reskin ---
+  # AWN is itself post-apocalyptic, so its Survival Gear table supplies verbatim
+  # analogs for the wasteland's universal kit. Sourced at the genre tier (shared,
+  # not duplicated per world). Names/descriptions are a free reskin (ADR-145 D1).
 
   - id: water_canteen
     name: Canteen (1 day)
     description: "A sealed container of clean water. One day's supply for one person."
     category: consumable
+    # AWN SRD Equipment — Survival Gear: Water jug (cost 2, Enc 1).
     value: 2
-    weight: 0.5
+    weight: 1.0
     rarity: common
     power_level: 0
     tags: [survival, water]
     lore: The most valuable thing you can carry. Don't let anyone see how full it is.
     narrative_weight: 0.1
+    tech_level: 0
     provenance:
-      mode: bespoke
-
-  - id: rad_pills
-    name: Rad Pills (3 doses)
-    description: "Chalky tablets that reduce radiation absorption. Taste like metal."
-    category: consumable
-    value: 5
-    weight: 0.1
-    rarity: uncommon
-    power_level: 1
-    tags: [medical, radiation]
-    lore: Vaultborn manufacture. Everyone else pays through the nose.
-    narrative_weight: 0.1
-    provenance:
-      mode: bespoke
+      mode: verbatim
+      srd: awn
+      srd_ref: "AWN SRD Equipment — Survival Gear (Water jug)"
+      license: wn-free
 
   - id: medkit_crude
     name: Crude Medkit
     description: "Bandages, a needle, gut-thread, and a bottle of something that burns."
     category: consumable
-    value: 4
-    weight: 0.5
+    # AWN SRD Equipment — Survival Gear: First aid kit (cost 25, Enc 1; after each
+    # use roll 1d6, on a 1 it is spent).
+    value: 25
+    weight: 1.0
     rarity: common
     power_level: 1
     tags: [medical, healing]
     lore: It won't save your life, but it'll buy you time to save yourself.
     narrative_weight: 0.1
+    tech_level: 0
     provenance:
-      mode: bespoke
+      mode: verbatim
+      srd: awn
+      srd_ref: "AWN SRD Equipment — Survival Gear (First aid kit)"
+      license: wn-free
 
   - id: glow_rod
     name: Glow Rod
-    description: "A pre-war chemical light stick. Snap it and you get four hours of sickly green light."
+    description: "A pre-war chemical light stick. Snap it and you get hours of sickly green light."
     category: tool
-    value: 3
-    weight: 0.2
+    # AWN SRD Equipment — Survival Gear: Flashlight (cost 10, Enc 1; 6h battery,
+    # 20m beam). The verbatim AWN analog for a hand-held portable light.
+    value: 10
+    weight: 1.0
     rarity: common
     power_level: 0
     tags: [light, salvage]
     lore: Nobody makes these anymore. The supply is finite and everyone knows it.
     narrative_weight: 0.1
+    tech_level: 0
     provenance:
-      mode: bespoke
+      mode: verbatim
+      srd: awn
+      srd_ref: "AWN SRD Equipment — Survival Gear (Flashlight)"
+      license: wn-free
 
   - id: tool_kit_basic
     name: Basic Tool Kit
     description: "Wrenches, screwdrivers, pliers, wire cutters. The essentials."
     category: tool
-    value: 8
-    weight: 2.0
+    # AWN SRD Equipment — Survival Gear: Toolkit (cost 50, Enc 3).
+    value: 50
+    weight: 3.0
     rarity: common
     power_level: 1
     tags: [tool, repair, salvage]
     lore: Worth more than weapons in most settlements.
     narrative_weight: 0.1
+    tech_level: 0
     provenance:
-      mode: bespoke
-
-  - id: geiger_clicker
-    name: Geiger Clicker
-    description: "A salvaged radiation detector. Clicks faster when you should be running."
-    category: tool
-    value: 15
-    weight: 0.5
-    rarity: uncommon
-    power_level: 2
-    tags: [tool, detection, salvage]
-    lore: The ones that still work are worth killing for. The batteries are worth more.
-    narrative_weight: 0.3
-    provenance:
-      mode: bespoke
-
-  - id: ancient_artifact
-    name: Unknown Artifact
-    description: "A pre-war device of uncertain function. It hums when you hold it."
-    category: treasure
-    value: 30
-    weight: 0.5
-    rarity: rare
-    power_level: 3
-    tags: [ancient, mysterious, valuable]
-    lore: Could be a weapon, a tool, or a fancy paperweight. Finding out is the adventure.
-    narrative_weight: 0.7
-    provenance:
-      mode: bespoke
-
-  # Playtest 2026-04-11: chargen artifact catalog entries.
-  # The mutant_wasteland chargen "The Thing You Found" step (char_creation.yaml
-  # `artifact` scene) gave players five artifact choices via `item_hint:` fields,
-  # but NONE of those ids existed in this catalog. Result: every artifact-bearing
-  # character (e.g., Vex with the Ancient Screen) had their artifact created via
-  # the inventory extractor's fallback path, which defaulted unknown items to
-  # `category: weapon`. Vex's datapad was showing under the `weapon` heading even
-  # though "she flicks the datapad at the humming gap" is a sensor-use action,
-  # not a strike. Adding all five entries with `category: tool` so the chargen
-  # → catalog lookup succeeds and the items land in the right inventory bucket.
-  #
-  # All five are pre-war relics with no AWN SRD analog — they are SideQuest
-  # bespoke (provenance.mode=bespoke), exempt from the AWN verbatim envelope.
-
-  - id: datapad
-    name: Ancient Screen
-    description: "A flat glass rectangle that sometimes shows pictures of the old world. You can't control what it shows."
-    category: tool
-    value: 25
-    weight: 0.5
-    rarity: rare
-    power_level: 1
-    tags: [ancient, artifact, sensor, display]
-    lore: Pre-war glass that occasionally flickers awake with images of cities, faces, schematics. Vault Dwellers prize them for the fragments of lost knowledge they reveal.
-    narrative_weight: 0.6
-    provenance:
-      mode: bespoke
-
-  - id: growth_wand
-    name: Growth Wand
-    description: "A humming metal rod that makes plants grow faster when you point it at them. The plants don't always grow right."
-    category: tool
-    value: 28
-    weight: 0.7
-    rarity: rare
-    power_level: 1
-    tags: [ancient, artifact, agricultural]
-    lore: Some kind of pre-war agritech relic. The plants it grows are sometimes useful, sometimes monstrous, sometimes both.
-    narrative_weight: 0.6
-    provenance:
-      mode: bespoke
-
-  - id: purifier
-    name: Screaming Purifier
-    description: "A small box that purifies any liquid poured into it. The catch: it takes a day, and it screams while working."
-    category: tool
-    value: 35
-    weight: 1.0
-    rarity: rare
-    power_level: 1
-    tags: [ancient, artifact, water, survival]
-    lore: A box that makes any liquid drinkable. The scream — high, mechanical, almost a wail — is the cost of safe water in the wastes.
-    narrative_weight: 0.6
-    provenance:
-      mode: bespoke
-
-  - id: power_glove
-    name: Power Glove
-    description: "A glove that makes your hand incredibly strong but only for about ten seconds. Then it needs to rest for an hour."
-    # Category: weapon (corrected during playtest 2026-04-11 audit). The
-    # other four chargen artifacts (datapad, growth_wand, purifier,
-    # mystery_compass) are tools because none of them hit anyone — Keith's
-    # rule. The Power Glove explicitly does: 10 seconds of crushing
-    # strength is a punch, a chain-rip, a hatch-tear. When combat resolution
-    # looks at the weapon slot, this is what should be there.
-    # Pre-war exo-glove — no AWN SRD analog, so bespoke (no Trauma Die required).
-    category: weapon
-    damage: {dice: "1d8"}
-    value: 32
-    weight: 1.0
-    rarity: rare
-    power_level: 2
-    tags: [ancient, artifact, augmentation, wearable, melee]
-    lore: A pre-war exo-glove with a battery cell that has somehow survived the centuries. Ten seconds of crushing strength then a full hour of useless cooldown. Tearing through a hatch, ripping a chain, breaking a jaw — short bursts only.
-    narrative_weight: 0.6
-    provenance:
-      mode: bespoke
-
-  - id: mystery_compass
-    name: Mystery Compass
-    description: "A compass that doesn't point north. It points at something, but you haven't figured out what yet."
-    category: tool
-    value: 22
-    weight: 0.3
-    rarity: rare
-    power_level: 1
-    tags: [ancient, artifact, navigation, mysterious]
-    lore: The needle is always aligned to the same unknown referent. Some carriers say it's a person, some say a place, some say a future. The compass has no opinion.
-    narrative_weight: 0.6
-    provenance:
-      mode: bespoke
+      mode: verbatim
+      srd: awn
+      srd_ref: "AWN SRD Equipment — Survival Gear (Toolkit)"
+      license: wn-free
 
 starting_equipment:
   Scavenger:
@@ -365,7 +259,10 @@ starting_equipment:
     - water_canteen
     - medkit_crude
   Pureblood:
-    - rad_pills
+    # NOTE: rad_pills is NOT here — it is a world-tier wasteland item (no AWN analog,
+    # ADR-145 D3) and a genre kit must reference only genre-catalog ids. A world that
+    # stocks radiation gear adds rad_pills to its OWN Pureblood kit
+    # (worlds/flickering_reach/inventory.yaml does).
     - medkit_crude
     - water_canteen
     - glow_rod
