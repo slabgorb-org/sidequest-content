@@ -1,23 +1,56 @@
-stat_generation: point_buy
-point_buy_budget: 27
+# pulp_noir — Fate Core binding (ADR-144 F4b / story 121-2).
+# Fate REPLACES the native engine; conflicts route to the fate_conflict engine.
+# Only the genre flavor Fate does NOT own (contacts/heat/occult, the Heat
+# resource, encounter tension, scene defaults) is retained below.
+ruleset: fate
 magic_level: low
 
-ability_score_names:
-  - Brawn
-  - Finesse
-  - Grit
-  - Savvy
-  - Nerve
-  - Charm
-
-allowed_classes:
-  - Detective
-  - Brawler
-  - Grifter
-  - Soldier of Fortune
-  - Scholar
-  - Smuggler
-  - Performer
+fate:
+  # The hard-boiled skill ladder. One seeded starting spread for every PC for
+  # now (per-archetype allocation is story 121-7). A noir PI peaks at
+  # Investigate, leans on Contacts and reading people, can handle a piece but
+  # would rather not.
+  skills:
+    Investigate: 4
+    Contacts: 3
+    Notice: 3
+    Rapport: 3
+    Deceive: 2
+    Stealth: 2
+    Will: 2
+    Shoot: 2
+    Empathy: 1
+    Provoke: 1
+    Athletics: 1
+    Drive: 1
+    Burglary: 1
+    Fight: 1
+    Lore: 1
+    Resources: 1
+    Physique: 1
+  refresh: 3
+  default_high_concept: "Disbarred Lawyer Working the Other Side of the Law"
+  default_trouble: "I Can't Leave a Loose Thread Alone"
+  stunts:
+    - name: "Read the Room"
+      description: >-
+        Once per scene, when you first enter a charged location, spend no action
+        to create an advantage with Notice and invoke it for free — you clock the
+        exits, the muscle, and the one person who doesn't belong.
+    - name: "Know a Guy"
+      description: >-
+        +2 to Contacts when you call in a favor from the demimonde — bartenders,
+        cabbies, fences, and night-shift clerks who owe you and would rather you
+        forgot it.
+    - name: "Talk Past the Lie"
+      description: >-
+        Once per scene, when an opponent succeeds with style to Deceive you, you
+        may reduce it to a plain success — something in the delivery rang false and
+        you caught it.
+    - name: "Cold Under Fire"
+      description: >-
+        +2 to Will to defend against Provoke attacks while a weapon is pointed at
+        you. You've had guns in your face before; the trick is not blinking.
 
 allowed_races:
   - Old Money
@@ -27,17 +60,8 @@ allowed_races:
   - Academic
   - Frontier
 
-
-stat_display_fields:
-  - hp
-  - max_hp
-  - defense
-
-
-default_class: Detective
 default_race: Street
 race_label: Background
-class_label: Archetype
 default_location: "A smoky bar in a city that never sleeps"
 default_time_of_day: night
 
@@ -47,7 +71,7 @@ custom_rules:
   rest_variant: standard
   encumbrance: none
   contacts_system: >-
-    Spend Charm to "know a guy." Each contact is a one-time favor —
+    Roll Contacts to "know a guy." Each contact is a one-time favor —
     information, a safe house, a forged document, a distraction.
     The Narrator decides if the contact is available and what they want
     in return.
@@ -77,290 +101,3 @@ encounter_base_tension:
   ambush: 0.20
   boss: 0.35
   final: 0.45
-
-# ── Confrontations ──────────────────────────────────────────
-# Migrated 2026-05-23 to dual-track-momentum schema (player_metric +
-# opponent_metric, beat kind/base/deltas) per
-# docs/superpowers/specs/completed/2026-04-25-dual-track-momentum-design.md.
-confrontations:
-  - type: negotiation
-    label: "Backroom Deal"
-    category: social
-    player_metric:
-      name: leverage
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: leverage
-      starting: 0
-      threshold: 10
-    beats:
-      - id: persuade
-        label: "Make Your Case"
-        kind: strike
-        base: 2
-        stat_check: Charm
-        effect: "opponent considers your argument"
-        narrator_hint: "Show the NPC weighing the player's words."
-      - id: threaten
-        label: "Threaten"
-        kind: strike
-        base: 3
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Nerve
-        risk: "faction reputation -1 if it fails"
-        consequence: "NPC becomes hostile on critical failure"
-        narrator_hint: "Escalate tension. The threat should feel dangerous."
-      # concede_point: strategic retreat that reveals opponent's real goal — angle
-      - id: concede_point
-        label: "Concede a Point"
-        kind: angle
-        target_tag: "Real Goal Revealed"
-        stat_check: Charm
-        effect: "opponent disposition +5, reveals their real goal"
-        narrator_hint: "Strategic retreat. Player gives ground to gain information."
-      - id: walk_away
-        label: "Walk Away"
-        kind: push
-        stat_check: Nerve
-        consequence: "deal collapses, reputation intact"
-        narrator_hint: "Player leaves the table. No deal."
-    mood: tension
-  - type: interrogation
-    label: "Interrogation"
-    category: social
-    # Player advances toward breaking the subject; the subject's resistance
-    # is the opposing dial. First to threshold wins.
-    player_metric:
-      name: progress
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: resistance
-      starting: 0
-      threshold: 10
-    beats:
-      - id: pressure
-        label: "Apply Pressure"
-        kind: strike
-        base: 2
-        deltas:
-          crit_fail:
-            opponent: 3
-        stat_check: Nerve
-        risk: "subject shuts down if check fails badly"
-        narrator_hint: "Intimidation. The subject squirms."
-      - id: rapport
-        label: "Build Rapport"
-        kind: strike
-        base: 1
-        stat_check: Charm
-        effect: "safe — no risk, slow progress"
-        narrator_hint: "Empathy. The subject relaxes slightly."
-      - id: evidence
-        label: "Present Evidence"
-        kind: strike
-        base: 3
-        stat_check: Savvy
-        requires: "must have discovered relevant clue"
-        narrator_hint: "Confront with proof. Watch their face change."
-    mood: tension
-  - type: roulette
-    label: "Roulette"
-    category: social
-    # House edge vs. winnings. Player wants to cash out big before the house grinds them down.
-    player_metric:
-      name: winnings
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: house_edge
-      starting: 0
-      threshold: 10
-    beats:
-      - id: bet_red
-        label: "Bet Red"
-        kind: strike
-        base: 1
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Nerve
-        risk: "wrong color — lose 2 winnings"
-        narrator_hint: "Even odds. The ball rattles in the wheel."
-      - id: bet_number
-        label: "Bet a Number"
-        kind: strike
-        base: 5
-        deltas:
-          crit_fail:
-            own: -3
-        stat_check: Nerve
-        risk: "long odds — lose 3 winnings on miss"
-        narrator_hint: "35 to 1. The ball bounces. Bounces again."
-      - id: let_it_ride
-        label: "Let It Ride"
-        kind: strike
-        base: 3
-        deltas:
-          crit_fail:
-            own: -10
-        stat_check: Nerve
-        risk: "lose everything on the table"
-        consequence: "total loss — winnings reset to 0"
-        narrator_hint: "Push it all back. Double or nothing."
-      - id: cash_out
-        label: "Cash Out"
-        kind: push
-        stat_check: Grit
-        consequence: "walk away with current winnings"
-        narrator_hint: "Know when to walk. Collect your chips."
-    mood: tension
-  - type: craps
-    label: "Craps"
-    category: social
-    player_metric:
-      name: streak
-      starting: 0
-      threshold: 8
-    opponent_metric:
-      name: house_edge
-      starting: 0
-      threshold: 8
-    beats:
-      - id: pass_line
-        label: "Pass Line"
-        kind: strike
-        base: 1
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Nerve
-        risk: "snake eyes — lose 2 streak"
-        narrator_hint: "The safe bet. Bet with the shooter."
-      - id: dont_pass
-        label: "Don't Pass"
-        kind: strike
-        base: 1
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Nerve
-        risk: "shooter hits — lose 2 streak"
-        narrator_hint: "Bet against the table. Nobody likes a don't player."
-      - id: press_bet
-        label: "Press the Bet"
-        kind: strike
-        base: 3
-        deltas:
-          crit_fail:
-            own: -4
-        stat_check: Savvy
-        risk: "seven out — lose 4 streak"
-        narrator_hint: "Double the odds bet. Ride the hot streak."
-      - id: proposition
-        label: "Proposition Bet"
-        kind: strike
-        base: 4
-        deltas:
-          crit_fail:
-            own: -5
-        stat_check: Nerve
-        risk: "sucker bet — lose 5 streak on miss"
-        narrator_hint: "The worst odds on the table. But the payout..."
-      - id: color_up
-        label: "Color Up"
-        kind: push
-        stat_check: Grit
-        consequence: "walk away from the table"
-        narrator_hint: "Trade your chips for higher denominations. Time to go."
-    mood: tension
-
-  - type: combat
-    label: Gunfight
-    category: combat
-    # Momentum-based. HP on character state, momentum on the encounter.
-    # Noir fights are dirty and short — big swings from one beat to the next.
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 10
-    beats:
-      - id: shoot
-        label: Shoot
-        kind: strike
-        base: 2
-        stat_check: Brawn
-        effect: "Target takes damage this round"
-        narrator_hint: Revolver bark in a dark alley. Cordite and rain.
-      - id: take_cover
-        label: Take Cover
-        kind: brace
-        base: 1
-        stat_check: Grit
-        effect: "Duck behind a car, a dumpster, a bar"
-        narrator_hint: The world narrows to the gap between bullet and brick.
-      - id: brawl
-        label: Brawl
-        kind: strike
-        base: 4
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Brawn
-        risk: "Overcommits — lose 2 momentum and take a blow on failure"
-        effect: "Close to grappling range, deal close damage"
-        narrator_hint: Close quarters — fists, bottles, chair legs.
-      - id: flee
-        label: Flee
-        kind: push
-        stat_check: Finesse
-        consequence: "Combat ends — disappear into the rain"
-        narrator_hint: Drop the piece, hit the fire escape, gone.
-    mood: combat
-  - type: chase
-    label: Car Chase
-    category: movement
-    player_metric:
-      name: separation
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: pursuit
-      starting: 0
-      threshold: 10
-    beats:
-      - id: floor_it
-        label: Floor It
-        kind: push
-        base: 2
-        stat_check: Finesse
-        narrator_hint: Tires scream on wet asphalt. Headlights sweep the rain.
-      - id: sidestreet
-        label: Side Street
-        kind: push
-        base: 3
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Savvy
-        risk: "Dead end — lose 2 separation"
-      # weave: use civilians as cover — angle, sets concealment tag
-      - id: weave
-        label: Weave Through Traffic
-        kind: angle
-        target_tag: "Civilian Cover"
-        stat_check: Savvy
-        effect: "Use civilian cars as cover"
-      - id: ditch_the_car
-        label: Ditch the Car
-        kind: push
-        stat_check: Finesse
-        consequence: "Chase ends — abandon the vehicle and vanish on foot"
-    mood: tension
