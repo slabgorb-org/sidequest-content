@@ -1,0 +1,413 @@
+# space_opera — genre-tier SWN baseline equipment catalog (ADR-145, story 114-7)
+#
+# space_opera binds the Stars Without Number ruleset (rules.yaml: ruleset: swn).
+# Per ADR-145 D3, a bound ruleset's genre baseline is *inherited*, not re-authored:
+# every genre-tier item reproduces an SWN SRD equipment entry's mechanical envelope
+# VERBATIM — damage dice, Shock, Armor Class, cost, encumbrance, range, magazine,
+# tech level — and carries an ItemProvenance stamp (mode=verbatim, srd=swn,
+# license=wn-free, srd_ref). The sci-fi names/descriptions are a free reskin layer
+# over those fixed mechanics (ADR-145 D1 — "verbatim binds the mechanics, not the
+# presentation"). E.g. "Sidearm Blaster" is the SWN Laser Pistol envelope; the name
+# is reskinned, the 1d6 / mag-10 / TL4 mechanics are the SRD's.
+#
+# Licensing (ADR-145 D4): the SWN free edition is usable under Sine Nomine's
+# published Without Number free-use terms — the same basis as WWN/CWN/AWN. All four
+# WN SRDs reproduce VERBATIM (this SUPERSEDES the 2026-06-14 audit's earlier
+# "SWN = derive-only" read; see story 114-7 Conflict finding). This is FACTUAL
+# SOURCING ONLY — no endorsement, partnership, or involvement of Sine Nomine /
+# Kevin Crawford is implied. The source is the bare SWN SRD (Stars Without Number
+# Revised Free Edition, Equipment chapter); the full commercial rulebook is never
+# a source.
+#
+# Story 114-7 (ADR-145 D3): this genre baseline is the SHARED SWN core every
+# space_opera world inherits — it replaces the three byte-identical world catalogs
+# that previously duplicated this gear. The genre baseline carries NO bespoke item
+# (enforced fail-loud by loader._validate_genre_baseline_no_bespoke); world-specific
+# gear (jump keys, station relics, frontier kit) lives at the WORLD tier
+# (worlds/<world>/inventory.yaml).
+#
+# SWN cost figures are the SRD's printed credit numbers, carried in the integer
+# `value`; SWN encumbrance is carried in `weight` (a "#"-packable enc → 1.0, a
+# negligible "*" enc → 0.0). The currency is credits.
+
+currency:
+  name: credits
+  denominations:
+    - credits
+    - kilocredits
+
+item_catalog:
+  # --- Weapons: verbatim SWN SRD mechanics, space-opera reskin ---------------
+
+  - id: blaster_sidearm
+    name: Sidearm Blaster
+    description: Standard-issue energy pistol, reliable and unimpressive.
+    category: weapon
+    # SWN SRD Ranged Weapons: Laser Pistol (1d6, range 100/300, mag 10, Dex,
+    # cost 200, Enc 1, TL4). Mechanics carried verbatim.
+    damage: {dice: "1d6"}
+    value: 200
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [ranged, energy, one-handed, sidearm]
+    lore: Every station market has a bin of these. They all work. Mostly.
+    narrative_weight: 0.1
+    tech_level: 4
+    range_band: "100/300"
+    magazine: 10
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Ranged Weapons (Laser Pistol)"
+      license: wn-free
+
+  - id: blaster_rifle
+    name: Blaster Rifle
+    description: Military-grade energy rifle with adjustable output.
+    category: weapon
+    # SWN SRD Ranged Weapons: Laser Rifle (1d10, range 300/500, mag 20, Dex,
+    # cost 300, Enc 2, TL4; burst-capable per the SRD's "*"). Burst is a firing
+    # mode, not a CatalogItem field — base damage carried verbatim.
+    damage: {dice: "1d10"}
+    value: 300
+    weight: 2.0
+    rarity: uncommon
+    power_level: 2
+    tags: [ranged, energy, two-handed, military]
+    lore: The output dial goes higher than is wise. People use it anyway.
+    narrative_weight: 0.2
+    tech_level: 4
+    range_band: "300/500"
+    magazine: 20
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Ranged Weapons (Laser Rifle)"
+      license: wn-free
+
+  # NOTE: the id `multifocal_laser` is NOT a personal sidearm — it is the
+  # strike-fighter ship weapon wired into the `dogfight` confrontation in
+  # rules.yaml (player_weapon/opponent_weapon). It is bespoke (no SWN personal-gear
+  # analog), so per ADR-145 D3 it lives at the WORLD tier (worlds/*/inventory.yaml),
+  # NOT here. Do not add a genre-baseline item under this id (story 114-7 review).
+
+  - id: vibroblade
+    name: Vibroblade
+    description: A monomolecular edge driven by a high-frequency oscillator. Cuts almost anything.
+    category: weapon
+    # SWN SRD Melee Weapons: Medium advanced weapon (1d8+1, Shock 2/AC 13,
+    # Str/Dex, cost 60, Enc 1, TL4). Mechanics carried verbatim.
+    damage: {dice: "1d8", bonus: 1, shock: 2, shock_ac: 13}
+    value: 60
+    weight: 1.0
+    rarity: uncommon
+    power_level: 2
+    tags: [melee, energy, one-handed]
+    lore: Silent, deniable, and reliably murderous. The duelist's choice.
+    narrative_weight: 0.2
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Melee Weapons (Medium advanced weapon)"
+      license: wn-free
+
+  - id: vibroknife
+    name: Vibroknife
+    description: A palm-length oscillating blade, easily concealed up a sleeve.
+    category: weapon
+    # SWN SRD Melee Weapons: Small advanced weapon (1d6, Shock 1/AC 15, Str/Dex,
+    # cost 40, Enc 1, TL4). Mechanics carried verbatim.
+    damage: {dice: "1d6", shock: 1, shock_ac: 15}
+    value: 40
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [melee, energy, concealable]
+    lore: The last argument when the blasters are checked at the door.
+    narrative_weight: 0.1
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Melee Weapons (Small advanced weapon)"
+      license: wn-free
+
+  - id: stun_baton
+    name: Stun Baton
+    description: A law-enforcement shock stick. Drops a target without killing them.
+    category: weapon
+    # SWN SRD Melee Weapons: Stun baton (1d8, Shock 1/AC 15, Str/Dex, cost 50,
+    # Enc 1, TL4; non-lethal — a target dropped to 0 HP wakes in ten minutes with
+    # 1 HP). Mechanics carried verbatim.
+    damage: {dice: "1d8", shock: 1, shock_ac: 15}
+    value: 50
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [melee, energy, non-lethal, law-enforcement]
+    lore: Station security carries these. So do people who don't want a body to explain.
+    narrative_weight: 0.1
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Melee Weapons (Stun baton)"
+      license: wn-free
+
+  # --- Armor: verbatim SWN SRD mechanics, space-opera reskin -----------------
+
+  - id: flight_suit
+    name: Flight Suit
+    description: A sealed pressure suit rated for vacuum. Standard wear for crews who work the hull.
+    category: armor
+    # SWN SRD Armor: Armored Vacc Suit (AC 13, cost 400, Enc 2, TL4). SWN uses
+    # ascending Armor Class. Mechanics carried verbatim.
+    armor_class: 13
+    value: 400
+    weight: 2.0
+    rarity: common
+    power_level: 1
+    tags: [armor, vacc, light]
+    lore: It won't stop a rifle, but it'll keep you breathing when the airlock cycles wrong.
+    narrative_weight: 0.1
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Armor (Armored Vacc Suit)"
+      license: wn-free
+
+  - id: tactical_vest
+    name: Tactical Vest
+    description: Woven impact-weave panels over the torso. Favored by those expecting trouble.
+    category: armor
+    # SWN SRD Armor: Woven Body Armor (AC 15, cost 400, Enc 2, TL3). Mechanics
+    # carried verbatim.
+    armor_class: 15
+    value: 400
+    weight: 2.0
+    rarity: uncommon
+    power_level: 2
+    tags: [armor, ballistic, medium]
+    lore: Stops a knife, slows a slug. Concealable under a long coat if you slouch.
+    narrative_weight: 0.2
+    tech_level: 3
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Armor (Woven Body Armor)"
+      license: wn-free
+
+  # --- Consumables: verbatim SWN SRD mechanics, space-opera reskin -----------
+
+  - id: medpatch
+    name: Medpatch
+    description: An adhesive trauma patch that stabilizes a dying body long enough to reach real care.
+    category: consumable
+    # SWN SRD Tools and Medical: Lazarus patch (cost 30, Enc 1#, TL4). Stabilizes
+    # a mortally wounded target (does not directly restore HP). Mechanics verbatim.
+    value: 30
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [medical, stabilize]
+    lore: Slap it on, and the dying stop dying. Everything after that is up to a real medic.
+    narrative_weight: 0.2
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Tools and Medical (Lazarus patch)"
+      license: wn-free
+
+  - id: stim_pack
+    name: Stim Pack
+    description: A pressed-skin stim capsule that accelerates the body's own recovery.
+    category: consumable
+    # SWN SRD Pharmaceuticals: Lift stim (cost 50, Enc *, TL4). Heals 1d8 + the
+    # user's Heal skill after five minutes' rest; +1 System Strain per dose.
+    # The verbatim base heal is 1d8 (the Heal-skill bonus is applied at use time).
+    heal_amount: "1d8"
+    value: 50
+    weight: 0.0
+    rarity: common
+    power_level: 1
+    tags: [medical, stim, healing]
+    lore: Buys you five minutes and a second wind. The hangover comes later.
+    narrative_weight: 0.1
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Pharmaceuticals (Lift stim)"
+      license: wn-free
+
+  - id: ration_pack
+    name: Ration Pack
+    description: A day's compressed field rations. Edible. That is the most that can be said.
+    category: consumable
+    # SWN SRD General Equipment — Field Equipment: Rations, 1 day (cost 5,
+    # Enc 1#, TL1). Mechanics carried verbatim.
+    value: 5
+    weight: 1.0
+    rarity: common
+    power_level: 0
+    tags: [survival, food]
+    lore: Tastes like the box it came in. The box, frankly, has more flavor.
+    narrative_weight: 0.0
+    tech_level: 1
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Field Equipment (Rations, 1 day)"
+      license: wn-free
+
+  # --- Tools: verbatim SWN SRD mechanics, space-opera reskin -----------------
+
+  - id: multitool_engineer
+    name: Engineer's Multitool
+    description: A self-powered handtool that interfaces with most postech machinery and data lines.
+    category: tool
+    # SWN SRD Tools and Medical: Metatool (cost 200, Enc 1, TL4). A universal
+    # postech handtool. Mechanics carried verbatim.
+    value: 200
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [tool, repair, tech]
+    lore: A good engineer's most-stolen possession. Engrave your name on it.
+    narrative_weight: 0.1
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Tools and Medical (Metatool)"
+      license: wn-free
+
+  - id: medkit_field
+    name: Field Medkit
+    description: A stocked case of stims, sealants, and diagnostic tools for working trauma in the field.
+    category: tool
+    # SWN SRD Tools and Medical: Medkit (cost 100, Enc 2, TL4). Required kit for
+    # applying Heal-skill treatment in the field. Mechanics carried verbatim.
+    value: 100
+    weight: 2.0
+    rarity: common
+    power_level: 1
+    tags: [medical, tool]
+    lore: The difference between a medic and a passenger who once read a first-aid pamphlet.
+    narrative_weight: 0.2
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Tools and Medical (Medkit)"
+      license: wn-free
+
+  - id: datapad
+    name: Datapad
+    description: A palm device that unfolds into a thin slab, handling comms, records, and computation.
+    category: tool
+    # SWN SRD General Equipment — Computing Gear: Dataslab (cost 300, Enc 1, TL4).
+    # Performs all compad functions and communicates wirelessly. Mechanics verbatim.
+    value: 300
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [tool, computing, comms]
+    lore: Holds your charts, your debts, and the message you keep meaning to delete.
+    narrative_weight: 0.1
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Computing Gear (Dataslab)"
+      license: wn-free
+
+  - id: scanner_handheld
+    name: Handheld Scanner
+    description: A portable survey unit reading atmosphere, life signs, and mineral traces.
+    category: tool
+    # SWN SRD General Equipment — Field Equipment: Survey scanner (cost 250,
+    # Enc 1, TL4). Mechanics carried verbatim.
+    value: 250
+    weight: 1.0
+    rarity: common
+    power_level: 1
+    tags: [tool, survey, sensor]
+    lore: Points you at the air, the water, and whatever is breathing in the dark ahead.
+    narrative_weight: 0.1
+    tech_level: 4
+    provenance:
+      mode: verbatim
+      srd: swn
+      srd_ref: "SWN SRD Field Equipment (Survey scanner)"
+      license: wn-free
+
+# Genre-default class kits + gold. Used as-is by any world that ships no
+# inventory.yaml of its own; worlds that DO ship one own their loadout wholesale
+# (the resolver takes currency/starting_equipment/starting_gold/philosophy from the
+# world tier, and merges only item_catalog over this baseline — ADR-145 D3).
+starting_equipment:
+  Officer:
+    - blaster_sidearm
+    - datapad
+    - flight_suit
+    - medpatch
+  Operative:
+    - blaster_sidearm
+    - vibroknife
+    - flight_suit
+    - datapad
+  Pilot:
+    - blaster_sidearm
+    - datapad
+    - flight_suit
+  Engineer:
+    - multitool_engineer
+    - datapad
+    - flight_suit
+    - stim_pack
+  Medic:
+    - medkit_field
+    - medpatch
+    - medpatch
+    - datapad
+    - flight_suit
+  Smuggler:
+    - blaster_sidearm
+    - vibroknife
+    - datapad
+    - flight_suit
+  Diplomat:
+    - datapad
+    - flight_suit
+    - medpatch
+  Soldier:
+    - blaster_rifle
+    - tactical_vest
+    - medpatch
+    - stim_pack
+
+starting_gold:
+  Officer: 800
+  Operative: 600
+  Pilot: 500
+  Engineer: 400
+  Medic: 500
+  Smuggler: 700
+  Diplomat: 900
+  Soldier: 300
+
+philosophy:
+  carry_limit: 0
+  restricted_categories: []
+  progression_gates: {}
+  notes: >-
+    Inventory is not the point of space opera. The ship carries the heavy
+    stuff. Personal gear is what's on your belt and in your bunk. We track
+    items that matter narratively — the gun, the medkit, the thing someone
+    gave you — not every ration bar and spare battery. If it doesn't drive
+    a scene, it doesn't need to be in the inventory.
