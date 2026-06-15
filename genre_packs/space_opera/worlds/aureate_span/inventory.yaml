@@ -56,6 +56,26 @@ item_catalog:
       mode: bespoke
       license: na
 
+  - id: multifocal_laser
+    name: "Multifocal Laser"
+    description: Strike-fighter-mounted rotary laser array with adaptive focusing optics. Cycles through focal lengths to punch through hull plating.
+    category: weapon
+    # Bespoke SHIP weapon (no SWN personal-gear analog) — the player_weapon /
+    # opponent_weapon of the `dogfight` confrontation in rules.yaml. Must resolve in
+    # this world's catalog so dogfight_shot.py's weapon_lookup finds it with its
+    # armor_piercing (AP 20) intact (ADR-145 D3: bespoke gear is a world-tier privilege).
+    value: 8000
+    weight: 40.0
+    rarity: rare
+    power_level: 3
+    tags: [ranged, energy, vehicle-mounted, ship-weapon, armor-piercing]
+    lore: Standard fitment on Hegemonic interceptors. The multifocal drum rotates three lens sets per burst — one will find the gap.
+    narrative_weight: 0.3
+    damage: {dice: "1d4", bonus: 0, armor_piercing: 20}
+    provenance:
+      mode: bespoke
+      license: na
+
 starting_equipment:
   Officer:
     - blaster_sidearm

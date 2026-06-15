@@ -86,28 +86,11 @@ item_catalog:
       srd_ref: "SWN SRD Ranged Weapons (Laser Rifle)"
       license: wn-free
 
-  - id: multifocal_laser
-    name: Multifocal Laser
-    description: A heavy sidearm whose phased coil throws a denser bolt than a standard blaster.
-    category: weapon
-    # SWN SRD Ranged Weapons: Mag Pistol (2d6+2, range 100/300, mag 6, Dex,
-    # cost 400, Enc 1, TL4). A premium TL4 sidearm; mechanics carried verbatim.
-    damage: {dice: "2d6", bonus: 2}
-    value: 400
-    weight: 1.0
-    rarity: uncommon
-    power_level: 3
-    tags: [ranged, energy, one-handed, premium]
-    lore: Costs as much as a used shuttle. Worth it to the people who carry one.
-    narrative_weight: 0.3
-    tech_level: 4
-    range_band: "100/300"
-    magazine: 6
-    provenance:
-      mode: verbatim
-      srd: swn
-      srd_ref: "SWN SRD Ranged Weapons (Mag Pistol)"
-      license: wn-free
+  # NOTE: the id `multifocal_laser` is NOT a personal sidearm — it is the
+  # strike-fighter ship weapon wired into the `dogfight` confrontation in
+  # rules.yaml (player_weapon/opponent_weapon). It is bespoke (no SWN personal-gear
+  # analog), so per ADR-145 D3 it lives at the WORLD tier (worlds/*/inventory.yaml),
+  # NOT here. Do not add a genre-baseline item under this id (story 114-7 review).
 
   - id: vibroblade
     name: Vibroblade
