@@ -86,11 +86,11 @@ item_catalog:
       srd_ref: "SWN SRD Ranged Weapons (Laser Rifle)"
       license: wn-free
 
-  # NOTE: the id `multifocal_laser` is NOT a personal sidearm — it is the
-  # strike-fighter ship weapon wired into the `dogfight` confrontation in
-  # rules.yaml (player_weapon/opponent_weapon). It is bespoke (no SWN personal-gear
-  # analog), so per ADR-145 D3 it lives at the WORLD tier (worlds/*/inventory.yaml),
-  # NOT here. Do not add a genre-baseline item under this id (story 114-7 review).
+  # NOTE: the ship weapon `multifocal_laser` is NOT a personal sidearm and is NOT in
+  # item_catalog — it is the strike-fighter ship weapon wired into the `dogfight`
+  # confrontation in rules.yaml (player_weapon/opponent_weapon). It is native-subsystem
+  # config, so it lives in the genre-tier `ship_weapons:` block below (story 114-15,
+  # supersedes the 114-7 world-tier triplication). One source, inherited by every world.
 
   - id: vibroblade
     name: Vibroblade
@@ -345,6 +345,31 @@ item_catalog:
       srd: swn
       srd_ref: "SWN SRD Field Equipment (Survey scanner)"
       license: wn-free
+
+# --- Ship weapons (story 114-15) -------------------------------------------
+# Native-subsystem config for the `dogfight` confrontation (ADR-077), NOT personal
+# gear: resolved by build_dogfight_weapon_lookup against this genre-tier collection
+# ONLY, so it lives OFF item_catalog and is exempt from the ADR-145 D3
+# genre-baseline-no-bespoke check. One source, inherited by every world (the three
+# worlds no longer each copy it). `multifocal_laser` is mechanically the SWN starship
+# Multifocal Laser (AP 20) but damage-scaled (1d4) for the personal-scale native
+# dogfight — an honest `bespoke` ship weapon, not a verbatim SRD reproduction.
+ship_weapons:
+  - id: multifocal_laser
+    name: "Multifocal Laser"
+    description: Strike-fighter-mounted rotary laser array with adaptive focusing optics. Cycles through focal lengths to punch through hull plating.
+    category: weapon
+    value: 8000
+    weight: 40.0
+    rarity: rare
+    power_level: 3
+    tags: [ranged, energy, vehicle-mounted, ship-weapon, armor-piercing]
+    lore: Standard fitment on Hegemonic interceptors. The multifocal drum rotates three lens sets per burst — one will find the gap.
+    narrative_weight: 0.3
+    damage: {dice: "1d4", bonus: 0, armor_piercing: 20}
+    provenance:
+      mode: bespoke
+      license: na
 
 # Genre-default class kits + gold. Used as-is by any world that ships no
 # inventory.yaml of its own; worlds that DO ship one own their loadout wholesale
