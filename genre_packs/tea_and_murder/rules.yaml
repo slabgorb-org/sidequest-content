@@ -1,5 +1,9 @@
-stat_generation: point_buy
-point_buy_budget: 27
+# tea_and_murder — Fate Core binding (ADR-144 / story 114-10).
+# Fate REPLACES the native d20-flavoured engine; conflicts route to the
+# fate_conflict engine. Only the cosy-mystery flavor Fate does NOT own (Standing
+# / Scandal social dials, the warm-cast and tea-cup doctrines, encounter tension,
+# scene defaults, the gothic-dialed occult) is retained below.
+ruleset: fate
 magic_level: none
 # DRAFT (2026-04-27): the `magic_level` flag is being retired. Architecture here
 # is correct (gothic axis dials supernatural in/out per world); only the label
@@ -20,30 +24,62 @@ chargen_field_labels:
   personality: Bearing
   backstory: Past
 
-ability_score_names:
-  - Angst
-  - Pride
-  - Humour
-  - Nerve
-  - Cunning
-  - Passion
-
-allowed_classes:
-  - Governess
-  - Detective
-  - Society
-  - Doctor
-  - Industrialist
-  - Explorer
-  - Clergyman
-
-allowed_races:
-  - Gentry
-  - Trade
-  - Servant
-  - Clergy
-  - Bohemian
-  - Colonial
+fate:
+  # The cosy-mystery skill ladder (121-3 design — Edwardian amateur sleuth).
+  # One seeded starting spread for every PC for now (per-archetype allocation is
+  # 121-7 territory). Combat is rare; the village sleuth lives on Investigate,
+  # reading people (Empathy/Rapport/Notice), Will and Lore, with the rougher
+  # skills (Physique/Athletics) at the bottom of the pyramid. A full Fate ladder,
+  # one peak at 4, descending.
+  skills:
+    Investigate: 4
+    Empathy: 3
+    Notice: 3
+    Rapport: 3
+    Will: 2
+    Lore: 2
+    Contacts: 2
+    Deceive: 1
+    Provoke: 1
+    Resources: 1
+    Stealth: 1
+    Burglary: 1
+    Physique: 1
+    Athletics: 1
+  refresh: 3
+  # Refresh-invariant knobs (114-10). SRD default 3/3. The signature kit below is
+  # all aspect-/permission-gear (free), so a starting sleuth keeps refresh 3.
+  base_refresh: 3
+  free_stunts: 3
+  # Shared signature gear compiled onto every sleuth's sheet at chargen (gear.yaml).
+  gear:
+    - amateur_notebook
+    - good_china
+    - victims_last_letter
+    - respectable_standing
+  default_high_concept: "Amateur Sleuth Whom No One Suspects"
+  default_trouble: "I Simply Cannot Let a Question Lie Unanswered"
+  stunts:
+    - name: "A Quiet Word in the Right Ear"
+      description: >-
+        +2 to Contacts when you call on the village's web of gossip — the
+        postmistress, the publican, the vicar's wife — to learn who was seen
+        where, and with whom, and looking how.
+    - name: "The Overlooked Detail"
+      description: >-
+        Once per scene, when you first take in a room, spend no action to create
+        an advantage with Notice and invoke it for free — the chair drawn up
+        wrong, the umbrella that matches no one, the cup with two saucers.
+    - name: "Pour Another Cup"
+      description: >-
+        +2 to Empathy to create an advantage when you sit a frightened or
+        grieving person down with a fresh pot of tea. People say more over china
+        than they ever would across a desk.
+    - name: "One Does Not Make a Scene"
+      description: >-
+        +2 to Will to defend against Provoke while propriety is being observed.
+        You have weathered worse insults at worse dinners; you do not give the
+        room the satisfaction of a flinch.
 
 
 stat_display_fields:
@@ -69,7 +105,18 @@ survivability_pool_label: Composure
 combat_encounters: false
 
 
-default_class: Detective
+# Origins kept as Fate "Background" flavor (the cosy-mystery analogue to
+# pulp_noir's allowed_races); under Fate these colour the high-concept, not a d20
+# species. Callings (Governess/Detective/…) survive only as world-tier NpcArchetype
+# cast now, so allowed_classes / default_class are dropped with the d20 engine.
+allowed_races:
+  - Gentry
+  - Trade
+  - Servant
+  - Clergy
+  - Bohemian
+  - Colonial
+race_label: Background
 default_race: Gentry
 default_location: "The bar of a village inn, the fire going, the rain just easing off"
 default_time_of_day: late afternoon
