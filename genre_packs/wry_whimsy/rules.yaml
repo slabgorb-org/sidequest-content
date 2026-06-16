@@ -1,71 +1,119 @@
-# Wry Whimsy — core rules
-# The golden-age literary portal fairytale. A sensible traveler crosses into a
-# Secondary World run on dream-logic and survives its impossible authorities by
-# WIT and NERVE far more than by force.
+# Wry Whimsy — Fate Core binding (ADR-144 / story 114-10).
 #
-# Chassis decisions (locked):
-#   - ruleset: native  (the default dial/confrontation engine; no custom module)
-#   - resolution is wit/Composure-first; physical violence is the priced exception
-#   - ability axes replace STR/DEX/CON entirely (see ability_score_names)
-#   - Composure is the lethality substrate (see lethality_policy.yaml). It is
-#     carried at runtime by the ablative HP/Edge pool (ADR-078/ADR-114): beats
-#     debit it via edge_delta / target_edge_delta, and a drop to 0 fires the
-#     engine's composure_break — a *break*, not a death. Per-world lethality
-#     dials decide whether a break is recoverable (Oz) or terminal (later worlds).
-#     This genre baseline leans recoverable.
+# The golden-age literary portal fairytale (Baum's Oz, Carroll's Wonderland,
+# Swift's Gulliver): a sensible traveler crosses into a Secondary World run on
+# dream-logic and survives its impossible authorities by WIT and NERVE far more
+# than by force. Fate Core is the native fit — the genre runs on aspects and
+# compels, not hit points: you survive a humbug king by refusing his premise,
+# not by out-rolling his guards.
+#
+# Fate REPLACES the native dial/confrontation engine here. The six wit-first
+# "confrontation types" the native build carried (audience / wit_duel / escape /
+# wonder_shock / persuasion / violence) are not authored as native beat tables
+# anymore — under Fate they are ordinary contests and conflicts resolved on
+# 4dF + skill vs opposition, with the Court's verdict, the Caterpillar's riddle,
+# and the dream's pull all modeled as opposition + situation aspects. Only the
+# genre flavor Fate does NOT own (the threshold races, scene defaults, the
+# witnessed-act dispatch threshold) is retained below.
 
-ruleset: native
-
-# No combat-sim variants. A fairytale is not survived by counting rations or
-# tracking encumbrance — it is survived by keeping your head. Deliberately omit
-# rest_variant / encumbrance / injuries custom rules.
-stat_generation: point_buy
-point_buy_budget: 27
+ruleset: fate
 magic_level: none
 
-allowed_classes:
-  - Curious Child
-  - Practical Servant
-  - Earnest Scholar
-  - Weary Soldier
-  - Wayward Dreamer
-  - Stubborn Skeptic
+fate:
+  # The portal-fairytale skill ladder. One seeded starting spread for every
+  # traveler for now (per-archetype allocation is a later story). A traveler
+  # survives by reading the room, talking past nonsense, and keeping their nerve
+  # when the world tries to overwhelm them — so the ladder peaks at Rapport
+  # (sincerity is rare here and lands hard) and leans on the social/perceptive
+  # skills, with a thin physical tail (force is the priced exception, not a plan).
+  skills:
+    Rapport: 4
+    Empathy: 3
+    Notice: 3
+    Will: 3
+    Deceive: 2
+    Lore: 2
+    Investigate: 2
+    Provoke: 1
+    Athletics: 1
+    Burglary: 1
+    Contacts: 1
+    Physique: 1
+    Fight: 1
+  refresh: 3
+  # Refresh-invariant knobs (114-10). SRD default 3/3. The signature kit below is
+  # all aspect-/permission-gear (free), so a starting traveler keeps refresh 3.
+  base_refresh: 3
+  free_stunts: 3
+  # Shared signature gear compiled onto every traveler's sheet at chargen
+  # (gear.yaml). The sensible pinafore, the basket with a small dog, the good
+  # manners that open doors, the head full of stories — the ordinary, human
+  # things a traveler crosses the threshold carrying. (The silver/ruby shoes are
+  # deliberately NOT here — they are a mid-game found item, not chargen kit.)
+  gear:
+    - whimsy_sensible_pinafore
+    - whimsy_basket_with_a_dog
+    - whimsy_good_manners
+    - whimsy_head_full_of_stories
+  default_high_concept: "Sensible Child a Very Long Way from Home"
+  default_trouble: "Curiosity Always Gets the Better of Me"
+  stunts:
+    - name: "But That's Not Fair"
+      description: >-
+        Once per scene, when you create an advantage with Rapport by naming, out
+        loud and plainly, how unjust an impossible authority is being, you may
+        invoke the resulting aspect for free — a place built on whim has no answer
+        to a child who simply will not stop pointing out the rules it broke.
+    - name: "I Don't Believe in You"
+      description: >-
+        +2 to Will to defend against any attempt to frighten, enchant, or
+        intimidate you that runs on your belief in it. The towering nonsense is
+        made of everyone agreeing to be afraid, and you have declined to grant it
+        the one thing it was built out of.
+    - name: "Mind Your Manners"
+      description: >-
+        +2 to Rapport when you address a capricious authority with scrupulous,
+        old-fashioned courtesy. A curtsey and a "please" disarm a card-court or a
+        humbug king far faster than any sword — they have prepared for defiance,
+        never for politeness.
+    - name: "A Story for Every Occasion"
+      description: >-
+        Once per scene, you may spend a fate point to declare that something you
+        read in a book back home is true of the strange thing in front of you now
+        — and create an advantage with Lore as though you had studied it for
+        years. The dream is, after all, made of stories, and you have read a great
+        many.
 
+# The threshold-origin "race" axis the portal fairytale keeps (it is FLAVOR, not
+# a Fate stat — Fate has no species mechanics; this seeds the chargen origin
+# choice and reference-sheet label).
 allowed_races:
   - Ordinary-Born
   - Threshold-Touched
   - Native Dreamer
 
-banned_spells: []
-
-default_class: Curious Child
 default_race: Ordinary-Born
+race_label: Origin
 default_location: "The far side of a threshold you did not mean to cross"
 default_time_of_day: afternoon
 
-# Locked ability axes. WIT=cleverness/argument; NERVE=composure under absurdity;
-# HEART=sincerity/conviction; GUILE=cunning/misdirection; WONDER=openness to
-# dream-logic (the risk stat — high WONDER means going native).
-ability_score_names:
-  - WIT
-  - NERVE
-  - HEART
-  - GUILE
-  - WONDER
-
-# Composure is the tracked ablative pool. It rides the runtime HP/Edge slot
-# (ADR-078/ADR-114), so the standard hp / max_hp display fields surface it; the
-# reference sheet relabels them as Composure at the world/theme layer.
-stat_display_fields:
-  - hp
-  - max_hp
-
-encounter_base_tension:
-  random: 0.10
-  ambush: 0.25
-  audience: 0.35
-  boss: 0.40
-  final: 0.50
+# A fairytale is not survived by counting rations or tracking encumbrance — it is
+# survived by keeping your head. The genre deliberately ships none of those
+# subsystems; violence is the priced exception, improvised, never a loadout.
+custom_rules:
+  lethality: forgiving
+  injury_system: none
+  encumbrance: none
+  kindness_economy: >-
+    Baum's rule and every fairytale's: be gentle to the small, frightened
+    creature, and it returns when the giant's hand is closing. A kindness shown
+    to the weak is the genre's most reliable currency — bank it as an aspect and
+    invoke it exactly when it is needed most.
+  going_native: >-
+    The world would love to keep you. Leaning into its dream-logic grants insight
+    and shortcuts at a quiet cost — each surrender makes the waking (the genre's
+    true exit) a little harder. The Narrator may offer this as a compel: a free
+    fate point now for a complication that pulls you one step further from home.
 
 # Per-subsystem intent-router engagement thresholds (ADR-113). A witnessed act
 # that reshapes a society's belief in its authority should be EARNED: require
@@ -74,26 +122,18 @@ encounter_base_tension:
 dispatch_confidence_thresholds:
   witnessed_act: 0.7
 
-# ── Confrontations ──────────────────────────────────────────
-# Six confrontation types across the wit-first spectrum. Five resolve on nerve
-# and cleverness; the sixth (violence) is the priced exception.
-#
-# Dual-track schema (2026-04-25 dual-track-momentum): each side carries an
-# independent ascending dial (player_metric / opponent_metric, name+starting+
-# threshold). Beats declare a `kind` (strike / brace / push / angle) that drives
-# the per-outcome delta table; `base` scales the magnitude.
-#
-# COMPOSURE & THE BREAK: any beat that spends the traveler's grip debits
-# Composure via `edge_delta` (self) or presses the opponent's via
-# `target_edge_delta`. When a side's Composure hits 0 the engine fires
-# composure_break and ends the confrontation as a *break*, not a death.
-#
-# RESOLUTION TRAP (authoring): an exit beat MUST carry `resolution: true`. A
-# prose `consequence:` field is inert narrator flavor and will NOT end the
-# confrontation. Every exit beat below is kind=push AND carries resolution:true
-# (belt-and-suspenders — push auto-resolves on Success, the flag resolves on any
-# outcome).
+encounter_base_tension:
+  random: 0.10
+  ambush: 0.25
+  audience: 0.35
+  boss: 0.40
+  final: 0.50
 
+# --- Native social-confrontation substrate (typed NATIVE flavor — these beats use
+#     the native engine's stat names (WIT/HEART/GUILE/NERVE), NOT Fate skills; they are
+#     unconsumed under the Fate binding and kept per the ADR-144 F5 boundary until a
+#     separate F5 story removes them. Restored 2026-06-16 for parity with
+#     spaghetti_western/tea_and_murder, which kept theirs). ---
 confrontations:
   # 1. AUDIENCE / TRIAL — you stand before an impossible authority (a humbug
   #    king, a card-court, a council of little men) whose verdict is the danger.

@@ -1,19 +1,83 @@
-stat_generation: point_buy
-point_buy_budget: 27
+# spaghetti_western — Fate Core binding (ADR-144 / story 114-10).
+# Fate REPLACES the native d20 build + combat engine; conflicts route to the
+# fate_conflict engine. The Leone standoff is a Contest of nerve and reputation
+# (121-5 design), not an HP exchange. Only the genre flavor Fate does NOT own —
+# Luck as a resource, the reputation factions, the standoff/confrontation colour,
+# scene defaults — is retained below as typed-but-unconsumed content. The d20
+# scaffolding (stat_generation, point_buy_budget, allowed_classes,
+# ability_score_names, stat_display_fields) is stripped; chargen now seeds a Fate
+# skill ladder instead of rolling six stats.
+ruleset: fate
 magic_level: none
-# DRAFT (2026-04-27): the `magic_level` flag is being retired and is misleading
-# here. Named guns, cursed bullets, the impossible quickdraw, the gunslinger's
-# mythic reputation — these ARE item-channeled and Reflexive-Physical magic.
-# The genre denies the word, not the structure. World-knowledge is folkloric
-# (legends, ghost-rider tales). See ./magic.yaml for the napkin-shaped truth.
+# NOTE: named guns, the impossible quickdraw, the gunslinger's mythic reputation
+# are item-channeled / reflexive flavor (see ./magic.yaml), narrated — never a
+# spellbook. Under Fate they live as aspects and stunts, not a magic_level dial.
 
-allowed_classes:
-  - Gunslinger
-  - Bounty Hunter
-  - Outlaw
-  - Drifter
-  - Gambler
-  - Marshal
+fate:
+  # The frontier skill ladder. One seeded starting spread for every PC for now
+  # (per-archetype allocation is a later story). The wandering gunhand peaks at
+  # Shoot, can sit a horse and read a stranger, holds his nerve under a leveled
+  # pistol, and would rather talk (or walk) than bleed.
+  skills:
+    Shoot: 4
+    Ride: 3
+    Provoke: 3
+    Notice: 3
+    Physique: 2
+    Will: 2
+    Deceive: 2
+    Fight: 2
+    Athletics: 1
+    Rapport: 1
+    Empathy: 1
+    Resources: 1
+    Lore: 1
+    Stealth: 1
+  refresh: 3
+  # Refresh-invariant knobs (114-10). SRD default 3/3. The signature gear below is
+  # all aspect-/permission-gear (free), so a starting rider keeps refresh 3.
+  base_refresh: 3
+  free_stunts: 3
+  # Shared signature gear compiled onto every PC's sheet at chargen (gear.yaml).
+  gear:
+    - western_weathered_hat
+    - western_worn_pistol
+    - western_saddlebags
+    - western_wanted_poster
+  default_high_concept: "Nameless Gun Riding Toward One Last Reckoning"
+  default_trouble: "My Reputation Always Finds Me First"
+  stunts:
+    - name: "The Quick Draw"
+      description: >-
+        Once per conflict, when you act first against an opponent who hasn't yet
+        cleared leather, you may use Shoot in place of your action's skill and
+        invoke a situation aspect for free — iron clears the holster before
+        thought catches up.
+    - name: "Read the Hands, Not the Eyes"
+      description: >-
+        +2 to Notice to size up whether someone is about to draw, bluff, or run —
+        you watch the twitch of a hand near the holster, not the face, because the
+        face has been lying since they walked in.
+    - name: "Nerves of Cold Iron"
+      description: >-
+        +2 to Will to defend against Provoke while a weapon is pointed at you.
+        You've had guns in your face before; the trick is not to blink, and in the
+        standoff, fear kills a man before any bullet does.
+    - name: "Walk Away Slow"
+      description: >-
+        Once per scene, when you choose to end a confrontation by turning your back
+        and walking, you may roll Provoke to create a Leaving Them to Wonder aspect
+        on the scene with a free invoke — nobody fires on the man who isn't afraid
+        to give them his back.
+
+custom_rules:
+  rest_variant: campfire
+  encumbrance: none
+  injuries: lingering
+  standoff: "true"
+  reputation: multi_faction
+  bounty_board: "true"
+  luck_as_resource: "true"
 
 allowed_races:
   - Frontier Born
@@ -21,37 +85,9 @@ allowed_races:
   - Border Crosser
   - War Survivor
 
-banned_spells: []
-
-
-custom_rules:
-  rest_variant: campfire
-  encumbrance: saddlebag
-  injuries: lingering
-  standoff: "true"
-  reputation: multi_faction
-  bounty_board: "true"
-  luck_as_resource: "true"
-
-default_class: Drifter
 default_race: Frontier Born
 default_location: "A nameless border town baking under a white sun"
 default_time_of_day: high_noon
-
-
-ability_score_names:
-  - GRIT
-  - DRAW
-  - NERVE
-  - CUNNING
-  - PRESENCE
-  - LUCK
-
-stat_display_fields:
-  - hp
-  - max_hp
-  - ac
-  - luck
 
 resources:
   - name: luck

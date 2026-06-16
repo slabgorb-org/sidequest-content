@@ -248,8 +248,10 @@
   loading_text: "The landlord glances at your satchel..."
   choices: []
   allows_freeform: false
-  mechanical_effects:
-    equipment_generation: class_kit
+  # Fate has no equipment economy (114-10 migration): the kit is now compiled as
+  # signature gear aspects from rules.fate.gear, not rolled from an item catalog.
+  # This scene stays as a narration beat; the d20 `equipment_generation: class_kit`
+  # effect is dropped with the inventory.yaml it consumed.
 
 - id: confirmation
   title: Settling In
