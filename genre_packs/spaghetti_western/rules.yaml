@@ -362,22 +362,22 @@ confrontations:
     intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
     on_intent_mismatch: reprompt
     category: combat
-    resolution_mode: opposed_check
-    opponent_default_stats:
-      DRAW: 12
-      NERVE: 12
-      CUNNING: 12
-    # Momentum-based. Gunfights are fast and brutal — big momentum swings.
+    # Fate Contest (ADR-144, spec §3): both gunhands roll 4dF + skill; higher
+    # total scores a victory (margin ≥3 scores 2). First to 3 wins. The Other
+    # rolls from its seated FateSheet — no d20 opponent_default_stats, no
+    # dial.compute_dc. Fate owns its confrontation.
+    # Gunfights are fast and brutal — big momentum swings.
     # `walk_away` as resolution is western genre gold: the hero who
     # turns their back and keeps walking.
+    resolution_mode: contest
     player_metric:
       name: momentum
       starting: 0
-      threshold: 10
+      threshold: 3
     opponent_metric:
       name: momentum
       starting: 0
-      threshold: 10
+      threshold: 3
     beats:
       - id: draw
         label: Draw
