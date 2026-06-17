@@ -220,70 +220,42 @@ confrontations:
     intent_verbs: [haggle, bargain, barter, offer, deal, price, sell, buy, negotiate]
     on_intent_mismatch: warn
     category: social
-    # Story 73-1: a Polite Negotiation is a two-sided contest — both parties press
-    # for leverage. Under the old beat_selection mode only the PLAYER rolled and
-    # the opponent's leverage dial moved solely via the narrator's
-    # advance_confrontation tool (the 59-8 social_duel unfairness). opposed_check
-    # makes the Other roll d20+modifier each beat so their dial advances
-    # mechanically (ADR-093 bands) — the GM panel sees a real opposed roll, not a
-    # narrator-fiat delta. Mirrors the social_duel recipe below.
-    resolution_mode: opposed_check
-    # Keyed by the same stat names the beats' stat_check uses (Cunning/Nerve).
-    # Per ADR-093 every opponent_default_stats value on an opposed_check
-    # confrontation must be ≤ 10 (challenge comes from dial/DC geometry, not stat
-    # inflation; 10 → +0 modifier). Without these resolve_opponent_modifier fails
-    # loud (No Silent Fallbacks).
-    opponent_default_stats:
-      Cunning: 10
-      Nerve: 10
-    # Thresholds stay 7/7 (ADR-093 opposed_check calibration). The opponent's
-    # starting: 3 is a deliberate start-line edge (the other party comes to the
-    # table already holding cards), not a frozen-dial artifact.
+    # spec 2026-06-17 §3: a Polite Negotiation is a Fate Contest — both parties
+    # roll 4dF + skill for leverage; the higher total scores a victory; first to 3
+    # wins. The Other rolls from its seated FateSheet (no d20 opponent_default_stats,
+    # no dial.compute_dc) — Fate owns its own confrontation now (ADR-144).
+    resolution_mode: contest
+    # The 0->3 victory tally (was the 0->7 leverage dial). opponent starts with a
+    # 1-victory head-start on the tally (comes to the table already holding cards);
+    # starting must be < threshold.
     player_metric:
       name: leverage
       starting: 0
-      threshold: 7
+      threshold: 3
     opponent_metric:
       name: leverage
-      starting: 3
-      threshold: 7
+      starting: 1
+      threshold: 3
+    # spec 2026-06-17 §2 (Westley major M1, ADR-144 REPLACE): a Fate Contest resolves
+    # via the 4dF exchange engine, NOT the dial apply_beat path. These beats are now
+    # DISPLAY-ONLY stubs (id + label + narrator_hint) — every dial-resolution field
+    # (kind/base/stat_check/deltas/effect/risk/consequence/resolution) is stripped so
+    # the narrator can never select an armed dial beat that would run the dial engine
+    # in parallel to the Contest. They survive as ids so the world-tier classes.yaml
+    # Abilities tab (encounter_beat_choices: persuade/threaten/... in glenross +
+    # blackthorn_moor) still resolves id->label via views._resolve_class_moves.
     beats:
       - id: persuade
         label: "Appeal to Reason"
-        kind: strike
-        base: 2
-        stat_check: Cunning
-        effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
         label: "Veiled Threat"
-        kind: strike
-        base: 3
-        deltas:
-          crit_fail:
-            own: -1
-        stat_check: Nerve
-        risk: "faction reputation -1 if it fails"
-        consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "A polite suggestion with steel beneath. Propriety barely maintained."
       - id: concede_point
         label: "Concede a Point"
-        kind: angle
-        target_tag: "Real Goal"
-        stat_check: Cunning
-        effect: "opponent reveals their real goal — sets a leverage tag for the closer"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Take One's Leave"
-        kind: push
-        base: 0
-        stat_check: Nerve
-        # Walking out is a voluntary exit — it must ALWAYS end the negotiation,
-        # not gate on a roll (same soft-lock class as social_duel's concede,
-        # playtest 59-8). Without this a failed `push` left no terminal
-        # transition. `resolution` forces resolution on any outcome tier.
-        resolution: true
-        consequence: "deal collapses, reputation intact"
         narrator_hint: "Player excuses themselves. The matter is dropped — for now."
     mood: tension
   - type: trial
@@ -292,79 +264,39 @@ confrontations:
     intent_verbs: [testify, accuse, defend, argue, examine, object]
     on_intent_mismatch: warn
     category: social
-    # Story 73-2: a Trial by Tribunal is a two-sided contest — prosecution and
-    # defence both press the tribunal for conviction. Under the old beat_selection
-    # mode only the PLAYER rolled and the opponent's conviction dial moved solely
-    # via the narrator's advance_confrontation tool (the 59-8 social_duel
-    # unfairness). opposed_check makes the Other roll d20+modifier each beat so
-    # their dial advances mechanically (ADR-093 bands), GM-panel auditable, no
-    # narrator fiat. Mirrors the negotiation/scandal/social_duel recipe.
-    resolution_mode: opposed_check
-    # Keyed by the stats the beats roll (Cunning/Passion) plus Nerve for the
-    # voluntary withdraw. Per ADR-093 every opponent_default_stats value on an
-    # opposed_check confrontation must be ≤ 10 (challenge comes from dial/DC
-    # geometry, not stat inflation; 10 → +0 modifier). Without these
-    # resolve_opponent_modifier fails loud (No Silent Fallbacks).
-    opponent_default_stats:
-      Cunning: 10
-      Passion: 10
-      Nerve: 10
-    # Thresholds move 8 → 7: ADR-093 v1 owns the opposed_check threshold — every
-    # opposed_check confrontation must be 7/7 (the calibrated tie band assumes
-    # symmetric finish lines, enforced by tests/genre/test_confrontation_calibration.py).
+    # spec 2026-06-17 §3: a Trial by Tribunal is a Fate Contest — both parties
+    # roll 4dF + skill for conviction; the higher total scores a victory; first to
+    # 3 wins. The Other rolls from its seated FateSheet (no d20 opponent_default_stats,
+    # no dial.compute_dc) — Fate owns its own confrontation now (ADR-144).
+    resolution_mode: contest
+    # The 0->3 victory tally (was the 0->7 conviction dial). Both sides start at 0.
     player_metric:
       name: conviction
       starting: 0
-      threshold: 7
+      threshold: 3
     opponent_metric:
       name: conviction
       starting: 0
-      threshold: 7
+      threshold: 3
+    # spec 2026-06-17 §2 (Westley major M1, ADR-144 REPLACE): contest resolves via the
+    # 4dF exchange engine. Display-only beat stubs (id + label + narrator_hint) — dial
+    # fields stripped; ids survive for the world-class Abilities tab (Detective/Doctor/
+    # Industrialist reference cross_examine/present_argument/object).
     beats:
       - id: cross_examine
         label: "Cross-Examine"
-        kind: strike
-        base: 2
-        stat_check: Cunning
-        effect: "witness credibility damaged"
         narrator_hint: "Pick apart the testimony. Find contradictions."
       - id: present_argument
         label: "Present Argument"
-        kind: strike
-        base: 2
-        stat_check: Passion
         narrator_hint: "Address the tribunal directly. Be persuasive."
       - id: object
         label: "Object"
-        kind: brace
-        base: 1
-        deltas:
-          crit_fail:
-            own: -1
-        stat_check: Cunning
-        risk: "overruled — lose credibility if frivolous"
         narrator_hint: "Challenge procedure or evidence. Must be substantive."
       - id: yield
         label: "Yield the Floor"
-        kind: angle
-        target_tag: "Overplay"
-        stat_check: Passion
-        effect: "opponent speaks — may reveal a weakness the next strike can spend"
         narrator_hint: "Strategic silence. Let them overplay their hand."
       - id: withdraw_case
         label: "Withdraw the Case"
-        kind: push
-        base: 0
-        stat_check: Nerve
-        # Story 73-2: withdrawing is a voluntary exit — it must ALWAYS end the
-        # trial, regardless of the d20 outcome tier. Without this flag a `push`
-        # only resolves on Success (DEFAULT_DELTAS in beat_kinds.py), so a failed
-        # withdraw left the player soft-locked in a trial the fiction had already
-        # closed (the 59-8 soft-lock class — reproduced in the 67-10 playtest; see
-        # social_duel.concede, negotiation.walk_away, scandal.weather_it).
-        # `resolution` forces resolution on any tier and emits ENCOUNTER_RESOLVED.
-        resolution: true
-        consequence: "Charges dropped / defence rests — the matter is closed, dignity intact"
         narrator_hint: "Counsel withdraws. The tribunal is dismissed — no verdict pronounced."
     mood: tension
   - type: auction
@@ -424,75 +356,37 @@ confrontations:
     intent_verbs: [insult, riposte, parry, slight, retort, snub]
     on_intent_mismatch: warn
     category: social
-    # A Duel of Wits is a genuine two-sided contest: BOTH duellists roll their
-    # wits against each other each beat (playtest 59-8, Keith's call). Under the
-    # default beat_selection mode only the PLAYER rolled and the opponent's dial
-    # could only move via the narrator's advance_confrontation tool — which had a
-    # lost-update bug (wrote a throwaway snapshot the end-of-turn save clobbered),
-    # so the Other's dial froze at 0 and the duel could never resolve on his side.
-    # opposed_check makes the opponent roll d20+modifier each beat; his dial
-    # advances mechanically from the result (ADR-093 bands) — no narrator-fiat,
-    # and the GM panel sees a real opposed roll instead of "Claude said delta=2".
-    resolution_mode: opposed_check
-    # opposed_check resolves each side's roll against opponent_default_stats when
-    # the Other carries no per-actor sheet (the location-fallback case — Sir Iain
-    # is seated off the roster, not a stat-blocked NPC). Keyed by the same stat
-    # names the beats' stat_check uses (Cunning/Nerve/Humour). Per ADR-093
-    # calibration (enforced by tests/genre/test_confrontation_calibration.py) every
-    # opponent_default_stats value on an opposed_check confrontation must be ≤ 10 —
-    # opponent challenge comes from the dial/DC geometry, NOT stat inflation. 10
-    # gives the +0 modifier of a competent-but-fair adversary; Sir Iain's edge is
-    # the room and the writing, not a fat bonus. Without these resolve_opponent_modifier
-    # fails loud (No Silent Fallbacks).
-    opponent_default_stats:
-      Cunning: 10
-      Nerve: 10
-      Humour: 10
-    # Both duellists try to land barbs on the other's composure. The first
-    # to absorb threshold worth of cuts breaks first. Drawing-room blood sport.
-    # Threshold 7 per ADR-093 opposed_check calibration (was 5 under the old
-    # beat_selection authoring; opposed_check shares the calibrated tie band → 7).
+    # spec 2026-06-17 §3: a Duel of Wits is a Fate Contest — both duellists roll
+    # 4dF + skill for barbs; the higher total scores a victory; first to 3 wins.
+    # The Other rolls from its seated FateSheet (no d20 opponent_default_stats,
+    # no dial.compute_dc) — Fate owns its own confrontation now (ADR-144).
+    resolution_mode: contest
+    # The 0->3 victory tally (was the 0->7 barbs_landed dial). Both sides start at 0.
     player_metric:
       name: barbs_landed
       starting: 0
-      threshold: 7
+      threshold: 3
     opponent_metric:
       name: barbs_landed
       starting: 0
-      threshold: 7
+      threshold: 3
+    # spec 2026-06-17 §2 (Westley major M1, ADR-144 REPLACE): contest resolves via the
+    # 4dF exchange engine. Display-only beat stubs (id + label + narrator_hint) — dial
+    # fields stripped; ids survive for the world-class Abilities tab (Society references
+    # riposte/appeal_propriety; many reference composure).
     beats:
       - id: riposte
         label: Verbal Riposte
-        kind: strike
-        base: 3
-        stat_check: Cunning
         narrator_hint: A cutting remark, perfectly timed. The room goes quiet.
       - id: appeal_propriety
         label: Appeal to Propriety
-        kind: strike
-        base: 2
-        stat_check: Cunning
-        effect: "Invoke social convention to embarrass the opponent"
+        narrator_hint: "Invoke social convention to embarrass the opponent."
       - id: composure
         label: Maintain Composure
-        kind: brace
-        base: 1
-        stat_check: Nerve
-        effect: "Recover poise — resist the next barb"
+        narrator_hint: "Recover poise — resist the next barb."
       - id: concede
         label: Concede Gracefully
-        kind: push
-        base: 0
-        stat_check: Humour
-        # A concession is a voluntary forfeit, not a contested action — it must
-        # ALWAYS end the duel, regardless of the d20 outcome tier. Without this
-        # flag a `push` only resolves on Success (apply_beat line 860), so a
-        # failed concede roll left the player soft-locked in a duel the fiction
-        # had already closed (playtest 59-8 BLOCKING, Glenross). `resolution`
-        # is the declarative always-resolves flag (BeatDef.resolution); the
-        # engine honors it on any tier and emits ENCOUNTER_RESOLVED.
-        resolution: true
-        consequence: "Duel ends — withdraw with dignity intact"
+        narrator_hint: "Duel ends — withdraw with dignity intact."
     mood: mystery
   - type: scandal
     label: Scandal Eruption
@@ -500,72 +394,41 @@ confrontations:
     intent_verbs: [whisper, gossip, expose, slander, accuse, rumor]
     on_intent_mismatch: warn
     category: social
-    # Story 73-1: the player races to contain the scandal before exposure becomes
-    # public knowledge; the gossip pushes back. That is a genuine two-sided
-    # contest, so it converts from beat_selection to opposed_check — the Other
-    # (the gossip's champion) rolls d20+modifier each beat and the exposure dial
-    # advances mechanically (ADR-093 bands), GM-panel auditable, no narrator fiat.
-    resolution_mode: opposed_check
-    # Keyed by the stats the beats roll (Cunning/Pride/Nerve), all ≤ 10 per the
-    # ADR-093 parity ceiling. resolve_opponent_modifier fails loud without them.
-    opponent_default_stats:
-      Cunning: 10
-      Pride: 10
-      Nerve: 10
-    # DELIBERATE asymmetric-dial recalibration (Story 73-1, AC-2). Scandal's dials
-    # were intentionally asymmetric — containment threshold 5, exposure threshold 8
-    # (the gossip has a head start). But ADR-093 v1 owns the opposed_check
-    # threshold: every opposed_check confrontation must be 7/7 (the calibrated tie
-    # band assumes symmetric finish lines, enforced by
-    # tests/genre/test_confrontation_calibration.py). Asymmetric *thresholds* are
-    # explicit ADR-093 v2 territory. So both thresholds move to 7, and the fiction's
-    # head start is PRESERVED by moving the asymmetry from the finish line to the
-    # START line: exposure starts at 3, containment at 0. The gossip still has its
-    # lead; both sides now share the calibrated tie-band threshold the resolver and
-    # guardrail require. (The asymmetry moved from unequal finish lines to unequal
-    # start lines — see Story 73-1 AC-2.)
+    # spec 2026-06-17 §3: a Scandal Eruption is a Fate Contest — the player races
+    # to contain the scandal while the gossip's champion rolls 4dF + skill to
+    # expose it; first to 3 victories wins. The Other rolls from its seated
+    # FateSheet (no d20 opponent_default_stats, no dial.compute_dc) — Fate owns
+    # its own confrontation now (ADR-144).
+    resolution_mode: contest
+    # The 0->3 victory tally (was the 0->7 dial). The gossip's head start is
+    # preserved on the start line: exposure starts at 2 (< threshold 3), containment
+    # at 0. The asymmetry moved from the finish line to the start line.
     player_metric:
       name: containment
       starting: 0
-      threshold: 7
+      threshold: 3
     opponent_metric:
       name: exposure
-      starting: 3
-      threshold: 7
+      starting: 2
+      threshold: 3
+    # spec 2026-06-17 §2 (Westley major M1, ADR-144 REPLACE): contest resolves via the
+    # 4dF exchange engine. Display-only beat stubs (id + label + narrator_hint) — dial
+    # fields stripped; ids survive for the world-class Abilities tab (Society references
+    # deflect; Clergyman/Detective reference confide; many reference weather_it). The
+    # gossip's authored head-start now lives ONLY on opponent_metric.starting (2),
+    # seeded into ContestState.opponent_victories at seating (Westley major M2).
     beats:
       - id: deflect
         label: Deflect Rumour
-        kind: strike
-        base: 2
-        stat_check: Cunning
         narrator_hint: Redirect attention — another scandal, a convenient distraction.
       - id: counter_accusation
         label: Counter-Accusation
-        kind: strike
-        base: 3
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: Pride
-        risk: "Backfire — your own secrets surface if failed"
+        narrator_hint: "A bold reversal — turn the accusation back on the accuser."
       - id: confide
         label: Confide in Ally
-        kind: angle
-        target_tag: "Advocate"
-        stat_check: Cunning
-        effect: "Gain an advocate who speaks on your behalf — sets a tag the next deflect can spend"
+        narrator_hint: "Gain an advocate who speaks on your behalf."
       - id: weather_it
         label: Weather the Storm
-        kind: push
-        base: 0
-        stat_check: Nerve
-        # Story 73-1: weathering the storm is a voluntary exit — it must ALWAYS
-        # end the scandal, regardless of the d20 outcome tier. Without this flag a
-        # `push` only resolves on Success (DEFAULT_DELTAS in beat_kinds.py), so a
-        # failed weather_it left the player soft-locked in a scandal the fiction
-        # had already closed (the 59-8 soft-lock class — see social_duel.concede
-        # and negotiation.walk_away). `resolution` forces resolution on any tier.
-        resolution: true
-        consequence: "Scandal passes — Standing may have shifted"
+        narrator_hint: "Endure the scandal — let it pass without rising to the bait."
     mood: mystery
 

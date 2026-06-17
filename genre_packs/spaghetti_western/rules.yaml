@@ -362,53 +362,42 @@ confrontations:
     intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
     on_intent_mismatch: reprompt
     category: combat
-    resolution_mode: opposed_check
-    opponent_default_stats:
-      DRAW: 12
-      NERVE: 12
-      CUNNING: 12
-    # Momentum-based. Gunfights are fast and brutal — big momentum swings.
+    # Fate Contest (ADR-144, spec §3): both gunhands roll 4dF + skill; higher
+    # total scores a victory (margin ≥3 scores 2). First to 3 wins. The Other
+    # rolls from its seated FateSheet — no d20 opponent_default_stats, no
+    # dial.compute_dc. Fate owns its confrontation.
+    # Gunfights are fast and brutal — big momentum swings.
     # `walk_away` as resolution is western genre gold: the hero who
     # turns their back and keeps walking.
+    resolution_mode: contest
     player_metric:
       name: momentum
       starting: 0
-      threshold: 10
+      threshold: 3
     opponent_metric:
       name: momentum
       starting: 0
-      threshold: 10
+      threshold: 3
+    # spec 2026-06-17 §2 (Westley major M1, ADR-144 REPLACE): a Fate Contest resolves
+    # via the 4dF exchange engine, NOT the dial apply_beat path. These beats are now
+    # DISPLAY-ONLY stubs (id + label + narrator_hint) — every dial-resolution field
+    # (kind/base/stat_check/deltas/risk/effect/consequence) is stripped so the narrator
+    # can never select an armed dial beat that would run the dial engine in parallel to
+    # the Contest. They survive as ids ONLY because the classes.yaml Abilities tab
+    # (encounter_beat_choices: fan_hammer/duck/draw/walk_away) resolves id→label via
+    # views._resolve_class_moves; the 4dF exchange decides the gunfight.
     beats:
       - id: draw
         label: Draw
-        kind: strike
-        base: 3
-        stat_check: DRAW
-        effect: "Target takes damage this round"
         narrator_hint: A single heartbeat. Then iron clears leather.
       - id: fan_hammer
         label: Fan the Hammer
-        kind: strike
-        base: 4
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: NERVE
-        risk: "Empty cylinder — lose 2 momentum and skip next turn on failure"
-        effect: "Target takes heavy damage"
         narrator_hint: Six shots in as many seconds. Accuracy sacrificed for volume.
       - id: duck
         label: Duck
-        kind: brace
-        base: 1
-        stat_check: CUNNING
-        effect: "Reduce incoming damage — hit the dirt or dive for cover"
         narrator_hint: Dust puffs where you were a breath ago.
       - id: walk_away
         label: Walk Away
-        kind: push
-        stat_check: NERVE
-        consequence: "Combat ends — turn your back and keep walking"
         narrator_hint: Holster the iron. Don't look back. Let them wonder.
     mood: combat
   - type: chase
