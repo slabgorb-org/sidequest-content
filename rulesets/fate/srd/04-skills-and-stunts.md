@@ -7,7 +7,6 @@ title: "Skills and Stunts"
 order: 4
 ---
 
-**5**
 
 # SKILLS AND STUNTS
 

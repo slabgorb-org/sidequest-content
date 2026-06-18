@@ -7,7 +7,6 @@ title: "The Basics"
 order: 1
 ---
 
-**1**
 
 # THE BASICS
 

@@ -7,7 +7,6 @@ title: "The Long Game"
 order: 7
 ---
 
-**10**
 
 # THE LONG GAME
 

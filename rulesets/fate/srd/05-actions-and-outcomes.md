@@ -7,7 +7,6 @@ title: "Actions and Outcomes"
 order: 5
 ---
 
-**6**
 
 # ACTIONS AND OUTCOMES
 

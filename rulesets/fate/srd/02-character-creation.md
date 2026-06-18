@@ -7,7 +7,6 @@ title: "Character Creation"
 order: 2
 ---
 
-**3**
 
 # CHARACTER CREATION
 

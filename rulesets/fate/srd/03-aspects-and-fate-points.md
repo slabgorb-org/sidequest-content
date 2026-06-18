@@ -7,7 +7,6 @@ title: "Aspects and Fate Points"
 order: 3
 ---
 
-**4**
 
 # ASPECTS AND FATE POINTS
 

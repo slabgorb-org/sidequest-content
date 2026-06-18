@@ -7,7 +7,6 @@ title: "Challenges, Contests, and Conflicts"
 order: 6
 ---
 
-**7**
 
 # CHALLENGES, CONTESTS, AND CONFLICTS
 
