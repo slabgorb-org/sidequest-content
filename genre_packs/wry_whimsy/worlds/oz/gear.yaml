@@ -1,0 +1,64 @@
+# Oz — world-tier Fate found-items (story 126-21, the #945 invokable-aspect path).
+#
+# These are Oz's WITCH-TREASURES: charmed artifacts a traveler does not start
+# with but FINDS in the course of the journey. They are world flavor, not genre
+# kit — "Crunch in the Genre, Flavor in the World" — so they live here, at the
+# world tier, NOT in genre_packs/wry_whimsy/gear.yaml (which is the generic
+# portal-traveler chassis shared by oz, wonderland, and gulliver). The silver
+# shoes are Munchkin-country canon; they have no business in a wonderland or
+# gulliver loadout.
+#
+# Each entry is a Fate GearDef (same schema as the genre-tier gear.yaml). When a
+# player GAINS the matching item in play, story #945's runtime promoter
+# (fate_item_promotion.py) appends its grants_aspects to the live FateSheet as an
+# invokable aspect — the silver shoes become a thing you can invoke for +2 / a
+# reroll on a "cross the sand / get home" action, or compel against you.
+#
+# NONE of these are referenced by any archetype's `gear:` list: they are NOT
+# chargen kit. They never compile onto a starting sheet — they only match when
+# the item is found mid-game. (This is exactly why the genre-tier gear.yaml's
+# old comment said "the silver/ruby shoes are NOT here": they were excluded as
+# chargen kit. #945 gave gear.yaml a second job — a mid-game match table — and
+# that is the job THIS file does, at the correct tier.)
+#
+# !!! PENDING SERVER WIRING — NOT YET LIVE !!!
+# The Fate gear_catalog (rules.fate.gear_catalog) the #945 matcher reads is
+# loaded from the GENRE tier only today (loader._load_gear → genre gear.yaml).
+# World-tier gear.yaml is NOT yet merged into gear_catalog, so the promoter
+# cannot see these entries until a server story wires the world-tier merge
+# (parallel to the ADR-145 §D3 by-id inventory merge). Until that lands this
+# file is authored-but-inert. Tracked by the server story filed alongside 126-21
+# (see the story's Delivery Findings). Authored to the live GearDef schema so it
+# loads clean the moment the merge ships.
+#
+# kind: permission == a NARRATOR-READ capability (the wearer MAY do the thing),
+# never an engine gate. That is the right shape for a finite-charge witch-power.
+
+- id: oz_silver_shoes
+  name: The Silver Shoes of the Dead Witch
+  description: >-
+    The charmed silver footwear of the Wicked Witch of the East, left on her feet
+    when a falling house ended her and gone to whoever the good Witch of the North
+    says may have them. (Silver — never ruby; the ruby is a Hollywood invention
+    this world refuses.) Their power is not understood even by the one who wears
+    them until the very end: they carry the wearer anywhere in three steps, across
+    the Deadly Desert itself, faster than thought. They are one of the very few
+    things in Oz that can cross the killing border — and so one of the very few
+    ways home.
+  grants_aspects:
+    - text: Three Steps Home
+      kind: permission
+
+- id: oz_golden_cap
+  name: The Golden Cap of the Winged Monkeys
+  description: >-
+    A charmed crown that commands the Winged Monkeys, the swift mischievous band
+    of the western air. Whoever owns the Cap and speaks the charm may summon the
+    Monkeys exactly three times, and they must obey — and then the Cap passes to a
+    new owner and a new three. The Monkeys themselves are not wicked; they are
+    bound against their own inclination, and would rather be free of it. The
+    commands are a finite, precious resource: three wishes' worth of unstoppable
+    flying force, no more.
+  grants_aspects:
+    - text: Three Commands of the Winged Monkeys
+      kind: permission
