@@ -41,6 +41,47 @@ fate:
     - noir_little_black_book
   default_high_concept: "Disbarred Lawyer Working the Other Side of the Law"
   default_trouble: "I Can't Leave a Loose Thread Alone"
+  # Story 126-24: narrative-chargen seed table. Maps each crucible class_hint
+  # (char_creation.yaml) to a COMPLETE legal pyramid (1 Great / 2 Good / 3 Fair /
+  # 4 Average) + free-aspect seeds, so the friendly narrative on-ramp presents a
+  # pre-ranked, pre-filled Fate sheet (editable defaults) instead of a blank one.
+  # Covers every crucible vocation (No Silent Fallbacks: no unseeded class_hint).
+  chargen_seed_table:
+    Detective:
+      pyramid: { Investigate: 4, Notice: 3, Contacts: 3, Deceive: 2, Empathy: 2, Will: 2, Rapport: 1, Stealth: 1, Burglary: 1, Shoot: 1 }
+      aspects:
+        - "I Find Things Out"
+        - "A Ghost in My Past"
+    Brawler:
+      pyramid: { Fight: 4, Physique: 3, Provoke: 3, Athletics: 2, Notice: 2, Will: 2, Shoot: 1, Contacts: 1, Drive: 1, Empathy: 1 }
+      aspects:
+        - "I Hit Things, and They Stay Hit"
+        - "More Scars Than Sense"
+    Grifter:
+      pyramid: { Deceive: 4, Rapport: 3, Contacts: 3, Empathy: 2, Notice: 2, Provoke: 2, Stealth: 1, Burglary: 1, Will: 1, Investigate: 1 }
+      aspects:
+        - "I Talk My Way In"
+        - "Never Met a Mark I Didn't Like"
+    Soldier of Fortune:
+      pyramid: { Shoot: 4, Physique: 3, Athletics: 3, Notice: 2, Will: 2, Fight: 2, Drive: 1, Contacts: 1, Stealth: 1, Provoke: 1 }
+      aspects:
+        - "I've Seen Action"
+        - "There's Always Another War"
+    Scholar:
+      pyramid: { Lore: 4, Investigate: 3, Will: 3, Notice: 2, Empathy: 2, Contacts: 2, Rapport: 1, Resources: 1, Deceive: 1, Physique: 1 }
+      aspects:
+        - "I Know Things Others Have Forgotten"
+        - "Booksmart, Street-Stupid"
+    Smuggler:
+      pyramid: { Drive: 4, Stealth: 3, Contacts: 3, Deceive: 2, Notice: 2, Burglary: 2, Shoot: 1, Physique: 1, Resources: 1, Will: 1 }
+      aspects:
+        - "I Move Things That Shouldn't Move"
+        - "Everyone Wants a Cut"
+    Performer:
+      pyramid: { Rapport: 4, Provoke: 3, Empathy: 3, Deceive: 2, Contacts: 2, Notice: 2, Will: 1, Athletics: 1, Resources: 1, Investigate: 1 }
+      aspects:
+        - "I Own the Room"
+        - "The Show Can't Go On Without Me"
   stunts:
     - name: "Read the Room"
       description: >-
