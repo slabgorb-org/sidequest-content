@@ -59,6 +59,49 @@ fate:
     - respectable_standing
   default_high_concept: "Amateur Sleuth Whom No One Suspects"
   default_trouble: "I Simply Cannot Let a Question Lie Unanswered"
+  # Story 126-24 (content gap-fill, 2026-06-20): narrative-chargen seed table.
+  # Maps each crucible class_hint (worlds/<world>/char_creation.yaml — WORLD-tier
+  # in this genre; glenross + blackthorn_moor share the same six callings) to a
+  # COMPLETE legal pyramid (1 Great / 2 Good / 3 Fair / 4 Average, per the SRD
+  # chargen_pyramid [1,2,3,4]@apex 4) + free-aspect seeds, so the friendly
+  # narrative on-ramp presents a pre-ranked, pre-filled Fate sheet (editable
+  # defaults — the player overrides any rating/aspect) instead of the blank
+  # pyramid the seam read nothing for. Covers every crucible class_hint (No
+  # Silent Fallbacks: no unseeded hint → no blank sheet). Allocations draw ONLY
+  # from the 14-skill cosy ladder above (no Drive/Shoot/Fight/Crafts). Aspects
+  # are locale-neutral (calling, not place) so they read true in both Edwardian
+  # Highland glenross and mid-Victorian Yorkshire blackthorn_moor.
+  chargen_seed_table:
+    Doctor:
+      pyramid: { Lore: 4, Investigate: 3, Empathy: 3, Notice: 2, Rapport: 2, Will: 2, Physique: 1, Contacts: 1, Resources: 1, Provoke: 1 }
+      aspects:
+        - "The Body Tells Me What the Family Won't"
+        - "The Whole Parish Is My Patient — and My Suspect List"
+    Clergyman:
+      pyramid: { Empathy: 4, Rapport: 3, Will: 3, Investigate: 2, Lore: 2, Notice: 2, Contacts: 1, Deceive: 1, Provoke: 1, Resources: 1 }
+      aspects:
+        - "People Confess to Me What They'd Tell No One Else"
+        - "I Cannot Unhear a Confession"
+    Society:
+      pyramid: { Contacts: 4, Notice: 3, Rapport: 3, Empathy: 2, Investigate: 2, Deceive: 2, Will: 1, Lore: 1, Provoke: 1, Resources: 1 }
+      aspects:
+        - "Every Letter in the Parish Passes Through My Hands"
+        - "I Know Whose Business I Oughtn't"
+    Governess:
+      pyramid: { Notice: 4, Empathy: 3, Lore: 3, Will: 2, Investigate: 2, Rapport: 2, Contacts: 1, Deceive: 1, Provoke: 1, Resources: 1 }
+      aspects:
+        - "The Children Tell Me What Their Parents Daren't"
+        - "I Will Not Pretend I Haven't Seen It"
+    Detective:
+      pyramid: { Investigate: 4, Notice: 3, Provoke: 3, Will: 2, Contacts: 2, Empathy: 2, Rapport: 1, Deceive: 1, Athletics: 1, Physique: 1 }
+      aspects:
+        - "One Sergeant, One Bicycle, and Every Lie in the Parish"
+        - "The Law Here Runs on the Village's Goodwill"
+    Explorer:
+      pyramid: { Physique: 4, Notice: 3, Will: 3, Athletics: 2, Investigate: 2, Provoke: 2, Lore: 1, Contacts: 1, Empathy: 1, Rapport: 1 }
+      aspects:
+        - "Thirty Years' Service — I Know a Liar by His Boots"
+        - "I Cannot Sit Still in a Quiet Village"
   stunts:
     - name: "A Quiet Word in the Right Ear"
       description: >-
