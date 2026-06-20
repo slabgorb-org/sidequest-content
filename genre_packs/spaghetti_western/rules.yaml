@@ -46,6 +46,47 @@ fate:
     - western_wanted_poster
   default_high_concept: "Nameless Gun Riding Toward One Last Reckoning"
   default_trouble: "My Reputation Always Finds Me First"
+  # Story 126-24 (content gap-fill, 2026-06-20): narrative-chargen seed table.
+  # Maps each crucible class_hint (worlds/<world>/char_creation.yaml — WORLD-tier
+  # here; dust_and_lead, five_points, and the_real_mccoy all share the same six
+  # callings) to a COMPLETE legal pyramid (1 Great / 2 Good / 3 Fair / 4 Average,
+  # per the SRD chargen_pyramid [1,2,3,4]@apex 4) + free-aspect seeds, so the
+  # friendly narrative on-ramp presents a pre-ranked Fate sheet (editable defaults
+  # — the player overrides any rating/aspect) instead of the blank pyramid the
+  # seam read nothing for. Covers every crucible class_hint (No Silent Fallbacks).
+  # Allocations draw ONLY from the 14-skill western ladder above (Shoot/Ride/Fight;
+  # no Investigate/Contacts).
+  chargen_seed_table:
+    Gunslinger:
+      pyramid: { Shoot: 4, Fight: 3, Notice: 3, Athletics: 2, Physique: 2, Will: 2, Provoke: 1, Ride: 1, Deceive: 1, Resources: 1 }
+      aspects:
+        - "The Weapon Is an Extension of My Will"
+        - "Every Town Has a Boy Who Wants to Be the One Who Killed Me"
+    Bounty Hunter:
+      pyramid: { Notice: 4, Shoot: 3, Ride: 3, Stealth: 2, Physique: 2, Will: 2, Fight: 1, Provoke: 1, Lore: 1, Athletics: 1 }
+      aspects:
+        - "Everyone Leaves a Trail"
+        - "I Always Bring Them Back — Dead Is Cheaper"
+    Outlaw:
+      pyramid: { Stealth: 4, Shoot: 3, Ride: 3, Deceive: 2, Notice: 2, Physique: 2, Provoke: 1, Athletics: 1, Resources: 1, Will: 1 }
+      aspects:
+        - "The World Only Has Things Waiting to Be Taken"
+        - "There's Paper on Me in Three Territories"
+    Drifter:
+      pyramid: { Athletics: 4, Notice: 3, Empathy: 3, Ride: 2, Stealth: 2, Will: 2, Physique: 1, Shoot: 1, Deceive: 1, Rapport: 1 }
+      aspects:
+        - "Never Stay Long Enough to Owe Anyone"
+        - "I Always Know When to Run"
+    Gambler:
+      pyramid: { Deceive: 4, Rapport: 3, Empathy: 3, Notice: 2, Provoke: 2, Will: 2, Shoot: 1, Resources: 1, Athletics: 1, Lore: 1 }
+      aspects:
+        - "Every Conversation Is a Hand Being Played"
+        - "I Always Have an Ace — and Sometimes Two"
+    Marshal:
+      pyramid: { Provoke: 4, Shoot: 3, Will: 3, Notice: 2, Physique: 2, Rapport: 2, Fight: 1, Ride: 1, Lore: 1, Empathy: 1 }
+      aspects:
+        - "The Law Out Here Is Whatever I Say It Is"
+        - "I Have Opinions About Justice a Gun Can Enforce"
   stunts:
     - name: "The Quick Draw"
       description: >-
