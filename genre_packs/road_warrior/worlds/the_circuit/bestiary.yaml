@@ -19,6 +19,18 @@
 # the 1962 brass diagrams, the marks that predate every faction. Human faction
 # crews, the Divvies, and chase hazards are handled as NPCs / chase mechanics,
 # not here. No mutants, no irradiated megafauna — that would betray the setting.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each entry carries a
+# `factions:` list naming the region `controlled_by` zone(s) it belongs to, so the
+# engine's zone-eligibility filter (sidequest/game/zone_eligibility.py) scopes
+# content per subculture turf. UNLIKE the fairytale worlds, most of this roster is
+# world-global "*": per the design note above, the non-human threat is the
+# nocturnal animal margin of a shared port city (harbor/wharf rats, gulls, stray
+# and feral dock dogs) plus the Thread's uncanny entities that "predate every crew"
+# — none owned by a single turf. The one faction-owned creature is the Rocker
+# junkyard guard dog [rockers] (the Grensholt salvage yards). Specific faction
+# values are exact cartography `controlled_by` slugs (bosozoku, cafe_racers,
+# tuk_tuk, lowriders, dekotora, one_percenters, mods, rockers, matatu, raggare).
 entries:
   # --- The nocturnal animal margin of a port city ---
   - id: harbor_rat
@@ -34,6 +46,7 @@ entries:
     save: 15
     role: dockside scavenger
     tags: [beast, vermin]
+    factions: ["*"]   # world-global — port-city vermin (seen at Farolumi, but city-wide ecology, not faction-owned)
     abilities:
       - "Bolts for cover — flees the moment a headlight swings its way"
     description: >-
@@ -55,6 +68,7 @@ entries:
     save: 15
     role: screeching scavenger flock
     tags: [beast, swarm]
+    factions: ["*"]   # world-global — harbor gulls of the whole waterfront (Doracanto + the port roads)
     abilities:
       - "Dive-mob — a thrown chip or an open visor draws the whole shrieking flock"
       - "Disperses and re-forms; can be scattered but rarely driven off for long"
@@ -78,6 +92,7 @@ entries:
     save: 15
     role: lone scavenger dog
     tags: [beast]
+    factions: ["*"]   # world-global — back-alley stray across districts (Nokutori, Aschgrund), not faction-owned
     abilities:
       - "Wary — keeps its distance until cornered, then commits"
     description: >-
@@ -99,6 +114,7 @@ entries:
     save: 14
     role: boiling mass of dock vermin
     tags: [beast, swarm, vermin]
+    factions: ["*"]   # world-global — sewer/basement vermin tide across the industrial flats
     abilities:
       - "Swarm — flows around obstacles and over the fallen; hard to fight with a single weapon"
       - "Floods the dark — pours out of a drain or a container the instant the lights cut"
@@ -122,6 +138,7 @@ entries:
     save: 14
     role: salvage-yard sentinel
     tags: [beast, guardian]
+    factions: [rockers]   # the Rocker salvage yards along the Grensholt strip (faction-owned guard dog)
     abilities:
       - "Trained to the gate — does not bluff and does not break morale on its own ground"
       - "Latch and shake — a successful bite holds, worrying the limb until shaken loose"
@@ -146,6 +163,7 @@ entries:
     save: 14
     role: feral pack hunter
     tags: [beast, pack]
+    factions: ["*"]   # world-global — feral dogs of the unclaimed no-man's-land between turfs
     abilities:
       - "Pack tactics — gains the upper hand against any foe its packmates have already engaged"
       - "Cuts the corner — herds prey toward dead ends and the water's edge"
@@ -169,6 +187,7 @@ entries:
     save: 13
     role: leader of the feral dock pack
     tags: [beast, pack, elite]
+    factions: ["*"]   # world-global — alpha of the feral dock pack (the industrial-fringe ecology)
     abilities:
       - "Holds the pack — packmates within sight do not check morale while the alpha stands"
       - "Drag-down — a charging hit can knock a standing target prone"
@@ -193,6 +212,7 @@ entries:
     save: 13
     role: unseen tenant of the locked maintenance door
     tags: [horror, uncanny, thread]
+    factions: ["*"]   # world-global — a Thread entity that "does not belong to the city" (transcends turf)
     abilities:
       - "Strobe-blind — moves only in the dark beats between the failing fluorescents; never fully seen"
       - "Does not break — fearless and silent; never checks morale"
@@ -217,6 +237,7 @@ entries:
     save: 12
     role: warden of the road beneath the city
     tags: [horror, uncanny, thread, apex]
+    factions: ["*"]   # world-global — the Thread apex, its marks "predate every crew in The Circuit"
     abilities:
       - "Knows the route — cannot be lost, outrun, or ambushed on the lower road"
       - "Tireless — never breaks off, never checks morale; the road is long and it is patient"

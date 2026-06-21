@@ -7,19 +7,37 @@
 # menace enchants, enslaves, or sends-on-a-task rather than kills, and the world
 # mostly wants the traveler to win.
 #
-# Three of these tropes EXTEND genre-tier abstract tropes via `extends:` (matched on
+# Two of these tropes EXTEND genre-tier abstract tropes via `extends:` (matched on
 # the parent trope's NAME, slugified): incomplete_companion ← Helpful Companion,
-# green_spectacles ← The Seam Reveal, lost_princess ← Impossible Authority. The Oz
-# escalation arrays fully override the generic parent beats with Baum's particulars.
-# The remaining four (water_weak_tyrant, helpful_beasts, deadly_desert,
-# enchantment_not_kill) are standalone Oz tropes with no genre parent.
+# lost_princess ← Impossible Authority. The Oz escalation arrays fully override the
+# generic parent beats with Baum's particulars. green_spectacles is themed as
+# "specializes The Seam Reveal" in its section comment but carries NO `extends:`
+# line in its body, so at runtime it is standalone (flagged in 157-6 — decide
+# whether to add `extends:` or drop the claim). The remaining standalone tropes are
+# water_weak_tyrant, green_spectacles, helpful_beasts, deadly_desert,
+# enchantment_not_kill.
 #
 # Doctrine: source-fidelity over Hollywood; diegetic sincerity, never a wink; the
 # seams are bait, not walls (findable, never protected); enchantment, not the kill.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each trope carries a
+# `factions:` list so the Seam-3 trope gate (game/trope_tick.py) only offers a
+# dormant trope where its zone is active. Values are exact cartography
+# `controlled_by` slugs, or the sentinel "*" = world-global (a cross-region
+# thematic spine eligible in every zone). The three world-spines are "*":
+# deadly_desert (the lethal seal at every rim — the go-home spine),
+# enchantment_not_kill (the country-wide low-lethality doctrine), and
+# lost_princess (the latent who-rules-Oz mystery that hums beneath the others).
+# NOTE: the two `extends:` tropes (incomplete_companion, lost_princess) rely on
+# resolve.py::_merge_trope propagating `factions` through inheritance (wired in
+# 157-5) — including lost_princess's "*" sentinel. (green_spectacles is section-
+# commented "specializes The Seam Reveal" but carries no `extends:` line in its
+# body, so at runtime it is a standalone trope — see the Reviewer delivery finding.)
 
 # 1 — INCOMPLETE COMPANION  (specializes Helpful Companion)
 - id: incomplete_companion
   name: The Incomplete Companion
+  factions: [open_country]   # the companions join along the Yellow Brick Road
   extends: Helpful Companion
   description: >-
     A creature of Oz joins the traveler, earnestly convinced it lacks the one
@@ -92,6 +110,7 @@
 # 2 — WATER-WEAK TYRANT  (standalone)
 - id: water_weak_tyrant
   name: The Water-Weak Tyrant
+  factions: [witch_of_the_west]   # the Wicked Witch's yellow Winkie country
   description: >-
     A fearsome power undone by an absurd, trivial weakness. The Wicked Witch of
     the West — one eye, sharp as a telescope; a whistle that calls wolves, crows,
@@ -161,6 +180,7 @@
 # 3 — GREEN SPECTACLES  (specializes The Seam Reveal)
 - id: green_spectacles
   name: The Green Spectacles
+  factions: [the_wizard]   # the Emerald City gate illusion
   description: >-
     A standing illusion with no villain behind it. The Emerald City is only
     "emerald" because every soul who enters — citizen and stranger alike — is
@@ -228,6 +248,7 @@
 # 4 — HELPFUL BEASTS  (standalone)
 - id: helpful_beasts
   name: The Helpful Beasts
+  factions: [munchkins, open_country]   # the Mouse Queen (Munchkin meadows) + the road poppy-rescue
   description: >-
     Baum's moral economy: a small kindness to a humble creature is repaid,
     decisively, at the moment of greatest need. The traveler who spares a field
@@ -294,6 +315,7 @@
 # 5 — DEADLY DESERT  (standalone)
 - id: deadly_desert
   name: The Deadly Desert
+  factions: ["*"]   # world-spine — the lethal seal at the rim of every quarter (the go-home spine)
   description: >-
     The one genuinely lethal thing in a low-lethality world. Oz is a sealed
     fairyland, ringed on every side by a great shifting waste of sand — the Deadly
@@ -360,6 +382,7 @@
 # 6 — ENCHANTMENT, NOT THE KILL  (standalone)
 - id: enchantment_not_kill
   name: Enchantment, Not the Kill
+  factions: ["*"]   # world-spine — the country-wide low-lethality doctrine (menace transforms, never kills)
   description: >-
     The low-lethality dial of Oz expressed as a trope. Within the sealed country
     (the Deadly Desert excepted) menace does not slay — it transforms, enslaves,
@@ -429,6 +452,7 @@
 # 7 — LOST PRINCESS  (specializes Impossible Authority) — PRIMED BUT LATENT
 - id: lost_princess
   name: The Lost Princess
+  factions: ["*"]   # world-spine — the latent who-rules-Oz mystery that hums beneath every region (extends; "*" must survive _merge_trope)
   extends: Impossible Authority
   description: >-
     Rightful female rule, hidden under enchantment, while a humbug or usurper

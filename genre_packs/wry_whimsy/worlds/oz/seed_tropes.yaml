@@ -15,9 +15,22 @@
 # has opinions, the green-spectacles law of the Emerald City, the Deadly Poppy
 # Field, the Kalidahs, the Hammer-Heads, the Golden Cap, the witches' marks.
 # Wonder shading toward the uncanny, never toward horror — wry_whimsy tone.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each seed carries a
+# `factions:` list so the Seam-4 seed-deck draw (game/seed_deck.py,
+# game/seed_tick.py) never deals a Winkie-witch seed onto the Munchkin meadows.
+# Values are exact cartography `controlled_by` slugs, or the sentinel "*" =
+# world-global (a cross-region social/wonder spine). Most seeds are road- or
+# region-anchored; two world-spines — "a kindness that leaves a mark" (the mark
+# economy read in every region) and "something impossible treated as a chore"
+# (Oz-wide wonder) — are "*". The one glinda-tagged seed is oz_the_breakable_country
+# (Baum's Dainty China Country, on the southern road to Glinda's Quadling country);
+# the Fighting Trees and Hammer-Heads of that same southern journey are bestiary
+# entries (fighting_tree, hammerhead → glinda), not seeds.
 
 - id: oz_the_road_decides
   name: The Road Has Decided Where You Are Going
+  factions: [open_country]   # the Yellow Brick Road itself
   description: >-
     There is one road and it has opinions. Side-paths close behind the
     traveler like a held breath; a turning taken twice arrives at the same
@@ -36,6 +49,7 @@
 
 - id: oz_a_kindness_with_a_mark
   name: A Kindness That Leaves a Mark
+  factions: ["*"]   # world-spine — the protective mark is read across every region (labels here are read)
   description: >-
     A creature or a witch of the gentler sort grants exactly the help the
     party needs — a direction, a safe field to sleep in, a word that unlocks
@@ -54,6 +68,7 @@
 
 - id: oz_the_courteous_law
   name: A Local Law, Applied With Perfect Courtesy
+  factions: [the_wizard]   # the Emerald City gate-law (locked green spectacles)
   description: >-
     An ordinance entirely sensible to the inhabitants lands on the travelers
     in a way plainly never intended — spectacles that must be worn and locked
@@ -73,6 +88,7 @@
 
 - id: oz_the_ordinary_impossible
   name: Something Impossible, Treated as a Chore
+  factions: ["*"]   # world-spine — the impossible-is-mundane wonder, true in every quarter of Oz
   description: >-
     A resident is doing a flatly impossible thing — oiling a joint so they do
     not rust solid by Thursday, watering a field that grows its own fences,
@@ -91,6 +107,7 @@
 
 - id: oz_field_that_wants_you_to_rest
   name: The Field That Only Wants You to Rest
+  factions: [open_country]   # the Deadly Poppy Field on the Yellow Brick Road
   description: >-
     A stretch of the way is glorious — scarlet to the horizon, warm, scented,
     deeply reasonable about the merits of sitting down for just a moment. The
@@ -109,6 +126,7 @@
 
 - id: oz_the_cap_that_commands
   name: An Object That Commands, a Fixed Number of Times
+  factions: [witch_of_the_west]   # the Golden Cap (commands the Winged Monkeys), the Witch's Winkie domain
   description: >-
     The party comes into possession of a thing of real power — a cap, a whistle,
     a written word — that compels a great service when correctly invoked. The
@@ -127,6 +145,7 @@
 
 - id: oz_beast_with_one_honest_problem
   name: A Beast or Body Honest About Its One Flaw
+  factions: [open_country]   # the road companions (Scarecrow/Tin Woodman/Lion) who name their one lack
   description: >-
     A potential ally — a stuffed man, a tin one, a great cat ashamed of its
     own roar, a hill-creature without arms — would make a fine companion but
@@ -146,6 +165,7 @@
 
 - id: oz_kalidah_in_the_reckoning
   name: The Thing in the Wood Is Worse Than the Rumour
+  factions: [open_country]   # the Kalidah ravine/dark-wood gap the road crosses (matches the kalidah bestiary entry)
   description: >-
     Between two stretches of safe road lies a gap the locals lower their voices
     about — a ravine, a dark wood, a stretch where the brick gives out. What
@@ -165,6 +185,7 @@
 
 - id: oz_the_breakable_country
   name: A Country Where Everyone Is Breakable
+  factions: [glinda]   # Baum's Dainty China Country, on the southern road to Glinda's Quadling country
   description: >-
     A region the road passes through is populated by folk of china, or glass,
     or some other lovely fragile stuff — perfectly alive, perfectly mannered,
@@ -184,6 +205,7 @@
 
 - id: oz_the_humbug_behind_the_curtain
   name: The Great Power Is a Frightened Person
+  factions: [the_wizard]   # the Wizard working levers behind the curtain (Emerald City)
   description: >-
     Something the country fears and obeys — a voice of fire, a floating head, an
     edict from a hidden throne — turns out, when the party gets behind it, to be
@@ -204,6 +226,7 @@
 
 - id: oz_one_who_waited_at_the_verge
   name: A Fixed Point the Country Stopped Seeing
+  factions: [open_country]   # a fixed point ON the road, waiting for a traveler going on
   description: >-
     Something on the road cannot move from its spot and has been there long
     enough that the country treats it as scenery — a signpost-keeper whose boots

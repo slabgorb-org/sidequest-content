@@ -23,9 +23,18 @@
 # crossing that does. Women rage and rule; the men sleep or are useless. The
 # deep dread is dislocation: being rescaled, out-argued by drivel, told you are
 # only someone else's dream.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each seed carries a
+# `factions:` list so the Seam-4 seed-deck draw (game/seed_deck.py,
+# game/seed_tick.py) never deals a Looking-Glass seed onto the Card-Country
+# trial. Values are exact cartography `controlled_by` slugs — the_queens_terror
+# (Card Country + the Tulgey Wood) or the_rigged_game (Looking-Glass Land). Every
+# seed is anchored to a concrete location, so none is world-global "*" (the
+# way-home spine lives in the the_pack_of_cards trope, not in this deck).
 
 - id: wonderland_run_to_stay_still
   name: It Takes All the Running You Can Do to Keep in the Same Place
+  factions: [the_rigged_game]   # the Red Queen's race (Looking-Glass / chessboard country)
   description: >-
     The traveler is seized by a raging royal woman and made to run — hand
     gripped, breath gone, the landscape streaming past — and arrives back
@@ -45,6 +54,7 @@
 
 - id: wonderland_lived_backwards
   name: A Rule That Only Works in Reverse
+  factions: [the_rigged_game]   # living-backwards (the White Queen, Looking-Glass)
   description: >-
     Something here runs the wrong way down time and sense: the cake is handed
     round before it is cut, the prisoner is jailed before the trial before the
@@ -64,6 +74,7 @@
 
 - id: wonderland_eat_me_drink_me
   name: Something to Eat or Drink That Changes Your Size
+  factions: [the_queens_terror]   # eat-me/drink-me — Hall of Doors, Pool of Tears (Card Country)
   description: >-
     A morsel, a phial, a frosted cake sits within easy reach, and the only
     label is an invitation. Taken, it makes the traveler enormous or tiny — too
@@ -84,6 +95,7 @@
 
 - id: wonderland_the_endless_tea_hour
   name: A Hospitality Where the Clock Has Stopped
+  factions: [the_queens_terror]   # the Mad Tea-Party frozen at six o'clock (Card Country)
   description: >-
     A table is laid for a meal that never ends and never feeds anyone — always
     the same hour, the cups never washed, the guests shuffling one place along
@@ -104,6 +116,7 @@
 
 - id: wonderland_caucus_prizes
   name: A Contest With No Rules, Where Everyone Wins
+  factions: [the_queens_terror]   # the Caucus-race on the Pool of Tears shore (Card Country)
   description: >-
     A crowd is engaged in some great undertaking — a race begun without a start
     and ended without a finish, a vote on a question no one will state, a
@@ -124,6 +137,7 @@
 
 - id: wonderland_advice_that_unmakes_you
   name: A Guide Whose Counsel Is True and Useless at Once
+  factions: [the_queens_terror]   # the Caterpillar / Cheshire Cat of the Tulgey Wood (controlled_by the_queens_terror)
   description: >-
     A creature offers to help — perched, grinning, languid, certain — and every
     word of its counsel is unanswerable and leads nowhere the traveler wished
@@ -144,6 +158,7 @@
 
 - id: wonderland_living_game
   name: A Genteel Game Whose Pieces Are Alive and the Stakes Are Heads
+  factions: [the_queens_terror]   # the Queen's living croquet-ground (Card Country)
   description: >-
     The party is invited — commanded — to play, and the game is a polite
     catastrophe: the implements squirm and walk off, the rules alter between
@@ -165,6 +180,7 @@
 
 - id: wonderland_sentence_first
   name: A Court Where the Verdict Is Already Written
+  factions: [the_queens_terror]   # the trial in the Hall of Justice (Card Country)
   description: >-
     A trial is in progress and the defendant, it transpires, is the traveler.
     The jurors write their own names down for fear of forgetting them; the
@@ -186,6 +202,7 @@
 
 - id: wonderland_only_a_dream
   name: The Rumour That You Are Only Someone Else's Dream
+  factions: [the_rigged_game]   # the sleeping Red King (Looking-Glass / the_tweedle_wood)
   description: >-
     A sleeper lies under a tree or on a far hillside — a great dozing king, snoring
     fit to shake the leaves — and a local says, kindly and dreadfully, that the
@@ -206,6 +223,7 @@
 
 - id: wonderland_garden_behind_the_door
   name: A Loveliness Glimpsed Through a Door Too Small to Pass
+  factions: [the_queens_terror]   # the garden behind the little door + the rose-painters (Card Country)
   description: >-
     Beyond a low curtain, behind a fifteen-inch door, lies the loveliest garden
     the traveler ever saw — cool fountains, bright beds — and the traveler is
@@ -226,6 +244,7 @@
 
 - id: wonderland_the_wood_where_it_lands
   name: The Wood Where the Terror Stops Being Theatre
+  factions: [the_queens_terror]   # the Jabberwock's Tulgey Wood (controlled_by the_queens_terror)
   description: >-
     Between two stretches of harmless nonsense lies a dim wood the locals will
     not name above a whisper — a tulgey, shadow-snarled place where the
