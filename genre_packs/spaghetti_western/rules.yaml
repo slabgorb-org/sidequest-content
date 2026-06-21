@@ -234,253 +234,208 @@ luck_rules:
 
 # ── Confrontations ──────────────────────────────────────────
 confrontations:
-  - type: standoff
-    label: "Standoff"
-    # Spec 2026-05-20 confrontation-intent-validator
-    intent_verbs: [draw, stare, threaten, intimidate, square, confront]
-    on_intent_mismatch: reprompt
-    category: pre_combat
-    # Legacy bidirectional duel maps cleanly to two ascending dials
-    # (spec §"spaghetti_western"). Each side accumulates tension;
-    # whoever crosses the threshold first blinks — or draws.
-    player_metric:
-      name: tension
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: tension
-      starting: 0
-      threshold: 10
-    beats:
-      # size_up: read opponent's stance, breathing, intent — angle (leverage / information)
-      - id: size_up
-        label: "Size Up"
-        kind: angle
-        target_tag: "Opponent Read"
-        stat_check: CUNNING
-        reveals: opponent_detail
-      # bluff: create a false impression to force a mistake — angle
-      - id: bluff
-        label: "Bluff"
-        kind: angle
-        target_tag: "False Tell"
-        base: 3
-        stat_check: NERVE
-        risk: "opponent may call it — immediate draw"
-      # flinch: absorbing the pressure — defensive brace
-      - id: flinch
-        label: "Flinch"
-        kind: brace
-        base: 1
-        stat_check: NERVE
-      - id: draw
-        label: "Draw"
-        kind: push
-        stat_check: DRAW
-        consequence: "Standoff resolves into action — gun clears leather"
-    secondary_stats:
-      - name: focus
-        source_stat: NERVE
-        spendable: true
-    escalates_to: combat
-    mood: standoff
-  - type: negotiation
-    label: "Tense Negotiation"
-    # Spec 2026-05-20 confrontation-intent-validator
-    intent_verbs: [haggle, bargain, barter, offer, deal, price, sell, buy, negotiate]
-    on_intent_mismatch: warn
-    category: social
-    player_metric:
-      name: leverage
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: leverage
-      starting: 0
-      threshold: 10
-    beats:
-      - id: persuade
-        label: "Make Your Case"
-        kind: strike
-        base: 2
-        stat_check: PRESENCE
-        effect: "opponent considers your argument"
-        narrator_hint: "Show the NPC weighing the player's words."
-      - id: threaten
-        label: "Threaten"
-        kind: strike
-        base: 3
-        stat_check: NERVE
-        risk: "faction reputation -1 if it fails"
-        consequence: "NPC becomes hostile on critical failure"
-        narrator_hint: "Escalate tension. The threat should feel dangerous."
-      # concede_point: strategic retreat that reveals opponent's real goal — angle
-      - id: concede_point
-        label: "Concede a Point"
-        kind: angle
-        target_tag: "Real Goal Revealed"
-        stat_check: PRESENCE
-        effect: "opponent disposition +5, reveals their real goal"
-        narrator_hint: "Strategic retreat. Player gives ground to gain information."
-      - id: walk_away
-        label: "Walk Away"
-        kind: push
-        stat_check: NERVE
-        consequence: "deal collapses, reputation intact"
-        narrator_hint: "Player leaves the table. No deal."
-    mood: tension
-  - type: poker
-    label: "Poker"
-    # Spec 2026-05-20 confrontation-intent-validator
-    intent_verbs: [bet, raise, call, fold, bluff, ante, wager]
-    on_intent_mismatch: warn
-    category: social
-    # free-for-all N-seat table — dual dials dropped (table_state drives resolution)
-    resolution_mode: table_resolution
-    win_condition: table_showdown
-    table_game: poker
-    max_decision_points: 3
-    # NOTE: for table_resolution the engine dispatches on the beat `id` ONLY.
-    # `kind`/`stat_check`/`base`/`target_tag` below are present solely to satisfy
-    # the BeatDef schema — they are INERT for table resolution (the dial /
-    # apply_beat path never runs for table types). Editing them does not change
-    # table behavior; the table_game ("poker") drives the mechanics.
-    beats:
-      - id: fold
-        label: "Fold"
-        kind: push
-        base: 0
-        stat_check: WIS
-        narrator_hint: "Live to play another hand."
-      - id: call
-        label: "Call"
-        kind: push
-        base: 0
-        stat_check: WIS
-        narrator_hint: "Match the bet. See what they've got."
-      - id: bet
-        label: "Bet"
-        kind: strike
-        base: 1
-        stat_check: CHA
-        narrator_hint: "Push chips forward. Confidence or bluff?"
-      - id: raise
-        label: "Raise"
-        kind: strike
-        base: 2
-        stat_check: CHA
-        narrator_hint: "Escalate the stakes. Make them sweat."
-      - id: bluff
-        label: "Bluff"
-        kind: push
-        base: 2
-        stat_check: CHA
-        narrator_hint: "Stone face. Sell the lie."
-      - id: read_table
-        label: "Read the Table"
-        kind: angle
-        target_tag: "Opponent Tell"
-        base: 1
-        stat_check: WIS
-        narrator_hint: "Watch their eyes. Everyone's got a tell."
-      - id: cheat
-        label: "Cheat"
-        kind: strike
-        base: 3
-        stat_check: DEX
-        narrator_hint: "Palm a card. Bottom deal. The Card Shark's specialty."
-      - id: accuse
-        label: "Accuse of Cheating"
-        kind: angle
-        target_tag: "Cheat Exposed"
-        base: 2
-        stat_check: WIS
-        narrator_hint: "Call them out. If you're right, they're done. If you're wrong, so are you."
-    mood: saloon
-  - type: combat
-    label: Gunfight
-    # Spec 2026-05-20 confrontation-intent-validator
-    intent_verbs: [strike, attack, fight, kill, slay, swing, shoot, hit, stab]
-    on_intent_mismatch: reprompt
-    category: combat
-    # Fate Contest (ADR-144, spec §3): both gunhands roll 4dF + skill; higher
-    # total scores a victory (margin ≥3 scores 2). First to 3 wins. The Other
-    # rolls from its seated FateSheet — no d20 opponent_default_stats, no
-    # dial.compute_dc. Fate owns its confrontation.
-    # Gunfights are fast and brutal — big momentum swings.
-    # `walk_away` as resolution is western genre gold: the hero who
-    # turns their back and keeps walking.
-    resolution_mode: contest
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 3
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 3
-    # spec 2026-06-17 §2 (Westley major M1, ADR-144 REPLACE): a Fate Contest resolves
-    # via the 4dF exchange engine, NOT the dial apply_beat path. These beats are now
-    # DISPLAY-ONLY stubs (id + label + narrator_hint) — every dial-resolution field
-    # (kind/base/stat_check/deltas/risk/effect/consequence) is stripped so the narrator
-    # can never select an armed dial beat that would run the dial engine in parallel to
-    # the Contest. They survive as ids ONLY because the classes.yaml Abilities tab
-    # (encounter_beat_choices: fan_hammer/duck/draw/walk_away) resolves id→label via
-    # views._resolve_class_moves; the 4dF exchange decides the gunfight.
-    beats:
-      - id: draw
-        label: Draw
-        narrator_hint: A single heartbeat. Then iron clears leather.
-      - id: fan_hammer
-        label: Fan the Hammer
-        narrator_hint: Six shots in as many seconds. Accuracy sacrificed for volume.
-      - id: duck
-        label: Duck
-        narrator_hint: Dust puffs where you were a breath ago.
-      - id: walk_away
-        label: Walk Away
-        narrator_hint: Holster the iron. Don't look back. Let them wonder.
-    mood: combat
-  - type: chase
-    label: Horseback Pursuit
-    # Spec 2026-05-20 confrontation-intent-validator
-    intent_verbs: [chase, pursue, flee, run, escape, follow]
-    on_intent_mismatch: reprompt
-    category: movement
-    player_metric:
-      name: separation
-      starting: 0
-      threshold: 7
-    opponent_metric:
-      name: pursuit
-      starting: 0
-      threshold: 7
-    beats:
-      - id: spur
-        label: Spur the Horse
-        kind: push
-        base: 2
-        stat_check: DRAW
-        narrator_hint: Hooves thunder across the flats. Dust plumes behind.
-      - id: canyon
-        label: Canyon Shortcut
-        kind: push
-        base: 3
-        deltas:
-          crit_fail:
-            own: -2
-        stat_check: CUNNING
-        risk: "Dead-end box canyon — lose 2 separation"
-      # ford_river: cross water to break the trail — angle (sets up misdirection tag)
-      - id: ford_river
-        label: Ford the River
-        kind: angle
-        target_tag: "Trail Broken"
-        stat_check: NERVE
-        effect: "Cross water to break pursuit's trail"
-      - id: go_to_ground
-        label: Go to Ground
-        kind: push
-        stat_check: CUNNING
-        consequence: "Chase ends — dismount, hide among the rocks"
-    mood: tension
+- type: standoff
+  label: Standoff
+  intent_verbs:
+  - draw
+  - stare
+  - threaten
+  - intimidate
+  - square
+  - confront
+  on_intent_mismatch: reprompt
+  category: pre_combat
+  player_metric:
+    name: tension
+    starting: 0
+    threshold: 3
+  opponent_metric:
+    name: tension
+    starting: 0
+    threshold: 3
+  beats:
+  - id: size_up
+    label: Size Up
+  - id: bluff
+    label: Bluff
+    narrator_hint: opponent may call it — immediate draw
+  - id: flinch
+    label: Flinch
+  - id: draw
+    label: Draw
+    narrator_hint: Standoff resolves into action — gun clears leather
+  secondary_stats:
+  - name: focus
+    source_stat: NERVE
+    spendable: true
+  escalates_to: combat
+  mood: standoff
+  resolution_mode: contest
+- type: negotiation
+  label: Tense Negotiation
+  intent_verbs:
+  - haggle
+  - bargain
+  - barter
+  - offer
+  - deal
+  - price
+  - sell
+  - buy
+  - negotiate
+  on_intent_mismatch: warn
+  category: social
+  player_metric:
+    name: leverage
+    starting: 0
+    threshold: 3
+  opponent_metric:
+    name: leverage
+    starting: 0
+    threshold: 3
+  beats:
+  - id: persuade
+    label: Make Your Case
+    narrator_hint: Show the NPC weighing the player's words.
+  - id: threaten
+    label: Threaten
+    narrator_hint: Escalate tension. The threat should feel dangerous.
+  - id: concede_point
+    label: Concede a Point
+    narrator_hint: Strategic retreat. Player gives ground to gain information.
+  - id: walk_away
+    label: Walk Away
+    narrator_hint: Player leaves the table. No deal.
+  mood: tension
+  resolution_mode: contest
+- type: poker
+  label: Poker
+  intent_verbs:
+  - bet
+  - raise
+  - call
+  - fold
+  - bluff
+  - ante
+  - wager
+  on_intent_mismatch: warn
+  category: social
+  resolution_mode: table_resolution
+  win_condition: table_showdown
+  table_game: poker
+  max_decision_points: 3
+  beats:
+  - id: fold
+    label: Fold
+    kind: push
+    base: 0
+    stat_check: WIS
+    narrator_hint: Live to play another hand.
+  - id: call
+    label: Call
+    kind: push
+    base: 0
+    stat_check: WIS
+    narrator_hint: Match the bet. See what they've got.
+  - id: bet
+    label: Bet
+    kind: strike
+    base: 1
+    stat_check: CHA
+    narrator_hint: Push chips forward. Confidence or bluff?
+  - id: raise
+    label: Raise
+    kind: strike
+    base: 2
+    stat_check: CHA
+    narrator_hint: Escalate the stakes. Make them sweat.
+  - id: bluff
+    label: Bluff
+    kind: push
+    base: 2
+    stat_check: CHA
+    narrator_hint: Stone face. Sell the lie.
+  - id: read_table
+    label: Read the Table
+    kind: angle
+    target_tag: Opponent Tell
+    base: 1
+    stat_check: WIS
+    narrator_hint: Watch their eyes. Everyone's got a tell.
+  - id: cheat
+    label: Cheat
+    kind: strike
+    base: 3
+    stat_check: DEX
+    narrator_hint: Palm a card. Bottom deal. The Card Shark's specialty.
+  - id: accuse
+    label: Accuse of Cheating
+    kind: angle
+    target_tag: Cheat Exposed
+    base: 2
+    stat_check: WIS
+    narrator_hint: Call them out. If you're right, they're done. If you're wrong, so are you.
+  mood: saloon
+- type: combat
+  label: Gunfight
+  intent_verbs:
+  - strike
+  - attack
+  - fight
+  - kill
+  - slay
+  - swing
+  - shoot
+  - hit
+  - stab
+  on_intent_mismatch: reprompt
+  category: combat
+  resolution_mode: conflict
+  beats:
+  - id: draw
+    label: Draw
+    narrator_hint: A single heartbeat. Then iron clears leather.
+  - id: fan_hammer
+    label: Fan the Hammer
+    narrator_hint: Six shots in as many seconds. Accuracy sacrificed for volume.
+  - id: duck
+    label: Duck
+    narrator_hint: Dust puffs where you were a breath ago.
+  - id: walk_away
+    label: Walk Away
+    narrator_hint: Holster the iron. Don't look back. Let them wonder.
+  mood: combat
+- type: chase
+  label: Horseback Pursuit
+  intent_verbs:
+  - chase
+  - pursue
+  - flee
+  - run
+  - escape
+  - follow
+  on_intent_mismatch: reprompt
+  category: movement
+  player_metric:
+    name: separation
+    starting: 0
+    threshold: 3
+  opponent_metric:
+    name: pursuit
+    starting: 0
+    threshold: 3
+  beats:
+  - id: spur
+    label: Spur the Horse
+    narrator_hint: Hooves thunder across the flats. Dust plumes behind.
+  - id: canyon
+    label: Canyon Shortcut
+    narrator_hint: Dead-end box canyon — lose 2 separation
+  - id: ford_river
+    label: Ford the River
+    narrator_hint: Cross water to break pursuit's trail
+  - id: go_to_ground
+    label: Go to Ground
+    narrator_hint: Chase ends — dismount, hide among the rocks
+  mood: tension
+  resolution_mode: contest
