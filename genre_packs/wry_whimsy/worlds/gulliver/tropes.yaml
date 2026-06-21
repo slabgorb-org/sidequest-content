@@ -28,10 +28,22 @@
 # Doctrine: source-fidelity over Hollywood; diegetic sincerity, never a wink; the
 # antagonist IS the verdict; the gender current is savage male court-politics. The
 # way home is always open — and that is the horror.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each trope carries a
+# `factions:` list so the Seam-3 trope gate (game/trope_tick.py) only offers a
+# dormant trope where its zone is active. Values are exact cartography
+# `controlled_by` slugs, or the sentinel "*" = world-global (a cross-voyage
+# thematic spine eligible in every zone). Voyage-bound tropes name their
+# voyage's faction; the three verdict/violence/go-home spines that recur across
+# all four voyages are "*". NOTE: the three `extends:` tropes
+# (the_satire_turns_on_you, the_petty_holy_war, the_compulsion_to_reembark)
+# rely on resolve.py::_merge_trope propagating `factions` through inheritance —
+# wired in the server alongside this content (157-5).
 
 # 1 — THE SATIRE TURNS ON YOU  (specializes The Seam Reveal)
 - id: the_satire_turns_on_you
   name: The Satire Turns on You
+  factions: ["*"]   # world-global — the verdict-engine of the whole country (every society turns the instrument on the traveler)
   extends: The Seam Reveal
   description: >-
     The central engine of the whole country. The traveler arrives believing he is
@@ -110,6 +122,7 @@
 # 2 — THE SCALE REVEAL  (standalone)
 - id: the_scale_reveal
   name: The Scale Reveal
+  factions: [the_lilliput_court, the_brobdingnag_crown]   # Voyages 1 & 2 — the giant / the speck (voyages 3-4 are human-scale)
   description: >-
     Size as horror and comedy at once. In Lilliput the traveler is the giant —
     Quinbus Flestrin, the Great Man-Mountain — and his ordinary body becomes a
@@ -186,6 +199,7 @@
 # 3 — THE PETTY HOLY WAR  (specializes Impossible Authority)
 - id: the_petty_holy_war
   name: The Petty Holy War
+  factions: [the_lilliput_court]   # Voyage 1 — the Big/Little-Endian + High/Low-Heel war of Lilliput
   extends: Impossible Authority
   description: >-
     Men kill in earnest over which end of an egg to crack. The empire of Lilliput
@@ -265,6 +279,7 @@
 # 4 — REASON WITHOUT SENSE  (standalone)
 - id: reason_without_sense
   name: Reason Without Sense
+  factions: [the_lagado_academy]   # Voyage 3 — Laputa + the Academy of Lagado
   description: >-
     Intellect divorced entirely from use. On the flying island of Laputa the court
     is so absorbed in mathematics and music that no one can attend to a word said to
@@ -343,6 +358,7 @@
 # 5 — THE STRULDBRUGG CURSE  (standalone)
 - id: the_struldbrugg_curse
   name: The Struldbrugg Curse
+  factions: [the_lagado_academy]   # Voyage 3 — the immortals of Luggnagg
   description: >-
     Immortality as decay, not gift. In Luggnagg the traveler hears of the
     Struldbruggs — children born now and then with a red spot above the left
@@ -418,6 +434,7 @@
 # 6 — THE THING WHICH IS NOT  (standalone)
 - id: the_thing_which_is_not
   name: The Thing Which Is Not
+  factions: [the_houyhnhnm_assembly]   # Voyage 4 — the Houyhnhnms, who have no word for lying
   description: >-
     The Houyhnhnms have no word for lying. To convey the idea the traveler must call
     it "saying the thing which is not," because in a society founded wholly on reason
@@ -494,6 +511,7 @@
 # 7 — THE YAHOO WITHIN  (standalone)
 - id: the_yahoo_within
   name: The Yahoo Within
+  factions: [the_houyhnhnm_assembly, no_one]   # Voyage 4 + the bleak homecoming (Redriff, controlled_by: no_one)
   description: >-
     The savage losing-the-thread-of-home. Living among the Houyhnhnms, the traveler
     comes to see the Yahoos — the filthy, malicious, greedy human-shaped brutes the
@@ -570,6 +588,7 @@
 # 8 — PRICED VIOLENCE MARKS THE YAHOO  (standalone)
 - id: priced_violence_marks_the_yahoo
   name: Priced Violence Marks the Yahoo
+  factions: ["*"]   # world-global — every violent act in any voyage confirms the Yahoo verdict
   description: >-
     The priced-violence inversion, the world's hardest mechanic-flavor delta.
     Wonderland prices violence high but grants ONE sanctioned kill — the Jabberwock,
@@ -648,6 +667,7 @@
 # 9 — THE COMPULSION TO REEMBARK  (specializes Threshold Crossing)
 - id: the_compulsion_to_reembark
   name: The Compulsion to Reembark
+  factions: ["*"]   # world-global — the go-home spine runs through every voyage and the open sea
   extends: Threshold Crossing
   description: >-
     The savage go-home spine. Oz seals the traveler in and makes him yearn for home;
