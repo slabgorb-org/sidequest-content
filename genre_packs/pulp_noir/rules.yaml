@@ -165,128 +165,108 @@ encounter_base_tension:
 # to give the narrator mood + beat labels. Structure mirrors spaghetti_western
 # (sibling gunplay-noir Fate pack); re-flavored for Paris, 1926.
 confrontations:
-  # The gun in the dark — a tense, deadly pause before someone moves. Seats as a
-  # full Fate conflict (attack / defend / ablative stress), escalates to violence.
-  - type: standoff
-    label: "Drawn Guns"
-    intent_verbs: [draw, level, aim, threaten, intimidate, square, confront, brace, demand]
-    on_intent_mismatch: reprompt
-    category: pre_combat
-    player_metric:
-      name: tension
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: tension
-      starting: 0
-      threshold: 10
-    beats:
-      - id: read_them
-        label: "Read Them"
-        kind: angle
-        target_tag: "Tell Spotted"
-        stat_check: CUNNING
-        reveals: opponent_detail
-      - id: bluff
-        label: "Bluff"
-        kind: angle
-        target_tag: "False Calm"
-        base: 3
-        stat_check: NERVE
-        risk: "they call it — iron comes out"
-      - id: hold_nerve
-        label: "Hold Your Nerve"
-        kind: brace
-        base: 1
-        stat_check: NERVE
-      - id: make_your_move
-        label: "Make Your Move"
-        kind: push
-        stat_check: NERVE
-        consequence: "The standoff breaks — someone reaches for a gun"
-    escalates_to: combat
-    mood: tension
-  # Sudden noir violence — a back-alley beating, a shootout in a stairwell. Seats
-  # as a full Fate conflict so harm lands on stress / consequences (ADR-144).
-  - type: combat
-    label: "Sudden Violence"
-    intent_verbs: [strike, attack, fight, kill, shoot, hit, stab, swing, slug, grab, beat]
-    on_intent_mismatch: reprompt
-    category: combat
-    player_metric:
-      name: momentum
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: momentum
-      starting: 0
-      threshold: 10
-    beats:
-      - id: open_fire
-        label: "Open Fire"
-        kind: strike
-        base: 3
-        stat_check: NERVE
-        narrator_hint: "A muzzle flash in the dark. Plaster bursts off the wall."
-      - id: close_in
-        label: "Close In"
-        kind: strike
-        base: 2
-        stat_check: PRESENCE
-        narrator_hint: "Inside arm's reach now — fists, elbows, a bottle off the bar."
-      - id: take_cover
-        label: "Take Cover"
-        kind: brace
-        base: 1
-        stat_check: CUNNING
-        narrator_hint: "Behind the overturned table. Splinters where your head was."
-      - id: back_off
-        label: "Back Off"
-        kind: push
-        stat_check: NERVE
-        consequence: "Hands open, backing toward the door — let them keep the room."
-    mood: combat
-  # The shakedown, the grilling, the deal that goes sour — tense noir negotiation.
-  - type: negotiation
-    label: "The Shakedown"
-    intent_verbs: [haggle, bargain, offer, deal, negotiate, interrogate, question, press, lean, persuade]
-    on_intent_mismatch: warn
-    category: social
-    player_metric:
-      name: leverage
-      starting: 0
-      threshold: 10
-    opponent_metric:
-      name: leverage
-      starting: 0
-      threshold: 10
-    beats:
-      - id: press
-        label: "Press the Point"
-        kind: strike
-        base: 2
-        stat_check: PRESENCE
-        effect: "the mark weighs what you're saying"
-        narrator_hint: "Show the NPC reckoning with the player's words."
-      - id: lean
-        label: "Lean On Them"
-        kind: strike
-        base: 3
-        stat_check: NERVE
-        risk: "Heat +1 if it fails"
-        consequence: "NPC turns hostile on a bad break"
-        narrator_hint: "Escalate. The threat should feel like it could go somewhere ugly."
-      - id: give_ground
-        label: "Give Ground"
-        kind: angle
-        target_tag: "Real Angle Revealed"
-        stat_check: PRESENCE
-        effect: "NPC disposition +5, reveals what they actually want"
-        narrator_hint: "Strategic retreat. Trade a concession for the truth."
-      - id: walk
-        label: "Walk"
-        kind: push
-        stat_check: NERVE
-        consequence: "deal collapses, reputation intact"
-        narrator_hint: "Player leaves. No deal."
-    mood: tension
+- type: standoff
+  label: Drawn Guns
+  intent_verbs:
+  - draw
+  - level
+  - aim
+  - threaten
+  - intimidate
+  - square
+  - confront
+  - brace
+  - demand
+  on_intent_mismatch: reprompt
+  category: pre_combat
+  player_metric:
+    name: tension
+    starting: 0
+    threshold: 3
+  opponent_metric:
+    name: tension
+    starting: 0
+    threshold: 3
+  beats:
+  - id: read_them
+    label: Read Them
+  - id: bluff
+    label: Bluff
+    narrator_hint: they call it — iron comes out
+  - id: hold_nerve
+    label: Hold Your Nerve
+  - id: make_your_move
+    label: Make Your Move
+    narrator_hint: The standoff breaks — someone reaches for a gun
+  escalates_to: combat
+  mood: tension
+  resolution_mode: contest
+- type: combat
+  label: Sudden Violence
+  intent_verbs:
+  - strike
+  - attack
+  - fight
+  - kill
+  - shoot
+  - hit
+  - stab
+  - swing
+  - slug
+  - grab
+  - beat
+  on_intent_mismatch: reprompt
+  category: combat
+  beats:
+  - id: open_fire
+    label: Open Fire
+    narrator_hint: A muzzle flash in the dark. Plaster bursts off the wall.
+  - id: close_in
+    label: Close In
+    narrator_hint: Inside arm's reach now — fists, elbows, a bottle off the bar.
+  - id: take_cover
+    label: Take Cover
+    narrator_hint: Behind the overturned table. Splinters where your head was.
+  - id: back_off
+    label: Back Off
+    narrator_hint: Hands open, backing toward the door — let them keep the room.
+  mood: combat
+  resolution_mode: conflict
+- type: negotiation
+  label: The Shakedown
+  intent_verbs:
+  - haggle
+  - bargain
+  - offer
+  - deal
+  - negotiate
+  - interrogate
+  - question
+  - press
+  - lean
+  - persuade
+  on_intent_mismatch: warn
+  category: social
+  player_metric:
+    name: leverage
+    starting: 0
+    threshold: 3
+  opponent_metric:
+    name: leverage
+    starting: 0
+    threshold: 3
+  beats:
+  - id: press
+    label: Press the Point
+    narrator_hint: Show the NPC reckoning with the player's words.
+  - id: lean
+    label: Lean On Them
+    narrator_hint: Escalate. The threat should feel like it could go somewhere ugly.
+  - id: give_ground
+    label: Give Ground
+    narrator_hint: Strategic retreat. Trade a concession for the truth.
+  - id: walk
+    label: Walk
+    narrator_hint: Player leaves. No deal.
+  mood: tension
+  resolution_mode: contest
