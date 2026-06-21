@@ -7,12 +7,15 @@
 # menace enchants, enslaves, or sends-on-a-task rather than kills, and the world
 # mostly wants the traveler to win.
 #
-# Three of these tropes EXTEND genre-tier abstract tropes via `extends:` (matched on
+# Two of these tropes EXTEND genre-tier abstract tropes via `extends:` (matched on
 # the parent trope's NAME, slugified): incomplete_companion ← Helpful Companion,
-# green_spectacles ← The Seam Reveal, lost_princess ← Impossible Authority. The Oz
-# escalation arrays fully override the generic parent beats with Baum's particulars.
-# The remaining four (water_weak_tyrant, helpful_beasts, deadly_desert,
-# enchantment_not_kill) are standalone Oz tropes with no genre parent.
+# lost_princess ← Impossible Authority. The Oz escalation arrays fully override the
+# generic parent beats with Baum's particulars. green_spectacles is themed as
+# "specializes The Seam Reveal" in its section comment but carries NO `extends:`
+# line in its body, so at runtime it is standalone (flagged in 157-6 — decide
+# whether to add `extends:` or drop the claim). The remaining standalone tropes are
+# water_weak_tyrant, green_spectacles, helpful_beasts, deadly_desert,
+# enchantment_not_kill.
 #
 # Doctrine: source-fidelity over Hollywood; diegetic sincerity, never a wink; the
 # seams are bait, not walls (findable, never protected); enchantment, not the kill.
@@ -25,9 +28,11 @@
 # deadly_desert (the lethal seal at every rim — the go-home spine),
 # enchantment_not_kill (the country-wide low-lethality doctrine), and
 # lost_princess (the latent who-rules-Oz mystery that hums beneath the others).
-# NOTE: the three `extends:` tropes (incomplete_companion, green_spectacles,
-# lost_princess) rely on resolve.py::_merge_trope propagating `factions` through
-# inheritance (wired in 157-5) — including lost_princess's "*" sentinel.
+# NOTE: the two `extends:` tropes (incomplete_companion, lost_princess) rely on
+# resolve.py::_merge_trope propagating `factions` through inheritance (wired in
+# 157-5) — including lost_princess's "*" sentinel. (green_spectacles is section-
+# commented "specializes The Seam Reveal" but carries no `extends:` line in its
+# body, so at runtime it is a standalone trope — see the Reviewer delivery finding.)
 
 # 1 — INCOMPLETE COMPANION  (specializes Helpful Companion)
 - id: incomplete_companion
