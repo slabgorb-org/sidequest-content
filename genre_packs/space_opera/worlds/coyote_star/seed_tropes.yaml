@@ -30,7 +30,14 @@
 # window, a signal that shouldn't carry — not cosmic until a crew pulls the
 # thread.
 
+# --- epic-157 zone-tagging: every item below carries factions: ["*"] (world-
+#     global). This world is zoned (cartography regions declare controlled_by),
+#     so the strict load validator (story 157-7) requires a non-empty factions
+#     list on each pooled item. "*" = eligible in every zone, behavior-identical
+#     to untagged. To actually zone-scope an item, swap ["*"] for the controlled_by
+#     faction slug(s) it belongs to (see worlds/gulliver for worked examples).
 - id: coyote_star_contested_survey_stake
+  factions: ["*"]
   name: A Survey Stake Driven Where the Tsveri Said No
   description: >-
     Someone has planted survey markers inside the Deep Root range — on the
@@ -52,6 +59,7 @@
     friend and an enemy, holding it makes the opposite pair).
 
 - id: coyote_star_closing_trade_window
+  factions: ["*"]
   name: A Debt Due Before the Trade Window Closes
   description: >-
     The Far Landing to Red Prospect alignment — the once-in-roughly-two-years
@@ -73,6 +81,7 @@
     everyone in-system knows it).
 
 - id: coyote_star_signal_that_carries_wrong
+  factions: ["*"]
   name: A Signal That Gets Louder the Farther Out You Go
   description: >-
     A prospector back from a claim past Red Prospect can't stop talking about a
@@ -94,6 +103,7 @@
     engaged seed earns one more reading, never an answer).
 
 - id: coyote_star_hull_with_a_past
+  factions: ["*"]
   name: The Ship Remembers a Captain You Never Met
   description: >-
     A hull docked at Turning Hub carries three captains' worth of patches —
@@ -115,6 +125,7 @@
     owned it is now theirs to answer for).
 
 - id: coyote_star_habitat_short_a_consumable
+  factions: ["*"]
   name: A Station Running Out of Something It Can't Make
   description: >-
     A small habitat — a belt claim, a moon waystation, a welded shack still on
@@ -136,6 +147,7 @@
     every rescue costs something the world will remember).
 
 - id: coyote_star_claim_jumped_on_the_drift
+  factions: ["*"]
   name: Someone Working a Claim That Isn't Theirs
   description: >-
     Out in the Broken Drift, a salvage scow is reading stencil claim-numbers off
@@ -157,6 +169,7 @@
     weight in them — being right and being trusted are not the same thing).
 
 - id: coyote_star_cut_tattoos_running_drift
+  factions: ["*"]
   name: A Voidborn Who Cut the Clan Name Away
   description: >-
     Someone wearing faded Moana-Teru blues has cut their clan tattoos — the mark
@@ -178,6 +191,7 @@
     whether the crew means to or not).
 
 - id: coyote_star_gate_manifest_problem
+  factions: ["*"]
   name: A Cargo the Gate Won't Like, and Only One Gate
   description: >-
     There is one way out of Coyote Star, and a warrant officer at Grand Gate has
@@ -199,6 +213,7 @@
     gate means one set of consequences, and the Gate does not forget).
 
 - id: coyote_star_dead_drop_gone_quiet
+  factions: ["*"]
   name: A Dead Drop That Stopped Answering
   description: >-
     The Broken Drift Runners use dead prospector claims as dead drops, and one
@@ -220,6 +235,7 @@
     a cause that is already in motion).
 
 - id: coyote_star_emissary_needs_carrying
+  factions: ["*"]
   name: The First Tsveri Request in a Generation
   description: >-
     A Tsveri needs ferrying — Deep Root to the Consulate, or Far Landing to
@@ -241,6 +257,7 @@
     logic; an engaged seed earns trust and proximity, never explanation).
 
 - id: coyote_star_outside_money_arriving
+  factions: ["*"]
   name: Outside Money Asking About the Deep Root
   description: >-
     The contracts at the Drift Runners' Meet have stopped being about ore.
@@ -263,6 +280,7 @@
     afford to do).
 
 - id: coyote_star_closed_word_on_the_charts
+  factions: ["*"]
   name: The Gate That Should Exist and Doesn't
   description: >-
     A voidborn star-reader will show anyone who buys the round the charts: the

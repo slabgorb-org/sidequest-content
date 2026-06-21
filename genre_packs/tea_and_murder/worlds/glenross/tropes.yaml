@@ -10,7 +10,14 @@
 # mystery — the background hum of a village that is changing slowly
 # and not entirely comfortably, not a thriller.
 
+# --- epic-157 zone-tagging: every item below carries factions: ["*"] (world-
+#     global). This world is zoned (cartography regions declare controlled_by),
+#     so the strict load validator (story 157-7) requires a non-empty factions
+#     list on each pooled item. "*" = eligible in every zone, behavior-identical
+#     to untagged. To actually zone-scope an item, swap ["*"] for the controlled_by
+#     faction slug(s) it belongs to (see worlds/gulliver for worked examples).
 - id: the_lairds_uncertain_succession
+  factions: ["*"]
   name: The Laird's Uncertain Succession
   description: >-
     Sir Iain Ross was not raised to inherit Castle Ross. His elder
@@ -110,6 +117,7 @@
     decelerator_penalty: 0.02
 
 - id: the_distillerys_growing_name
+  factions: ["*"]
   name: The Distillery's Growing Name
   description: >-
     Three generations of Munros have run the distillery on a licence
@@ -206,6 +214,7 @@
     decelerator_penalty: 0.02
 
 - id: the_railway_and_its_changes
+  factions: ["*"]
   name: The Railway and Its Changes
   description: >-
     The railway came to Glenross thirty years ago and the village
@@ -308,6 +317,7 @@
     decelerator_penalty: 0.02
 
 - id: the_old_glen_and_the_new
+  factions: ["*"]
   name: The Old Glen and the New
   description: >-
     The largest single class in the parish is the crofters and tenant
