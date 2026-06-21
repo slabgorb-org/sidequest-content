@@ -17,7 +17,14 @@
 # at the floor of the ladder (level 1), hp == average (4.5/HD), ascending AC,
 # morale on the 2d12 ladder.
 entries:
+  # --- epic-157 zone-tagging: every item below carries factions: ["*"] (world-
+  #     global). This world is zoned (cartography regions declare controlled_by),
+  #     so the strict load validator (story 157-7) requires a non-empty factions
+  #     list on each pooled item. "*" = eligible in every zone, behavior-identical
+  #     to untagged. To actually zone-scope an item, swap ["*"] for the controlled_by
+  #     faction slug(s) it belongs to (see worlds/gulliver for worked examples).
   - id: brae_adder
+    factions: ["*"]
     name: Brae Adder
     level: 1
     hp: 2
@@ -39,6 +46,7 @@ entries:
       away into the heather at any heavy step — but a hand into the wrong tussock
       or a careless foot on the hill path can earn a strike and a doctor's call.
   - id: highland_cow
+    factions: ["*"]
     name: Highland Cow
     level: 1
     hp: 6
@@ -60,6 +68,7 @@ entries:
       laird's Riley, the doctor's car, and a sleuth in a hurry alike, and not a
       whit of hurry will move them before they choose.
   - id: gillies_deerhound
+    factions: ["*"]
     name: Gillie's Deerhound
     level: 1
     hp: 5
@@ -80,6 +89,7 @@ entries:
       heel, knows every face that belongs in the glen, and turns its long head
       toward the one that does not — a silent, watchful note for the noticing eye.
   - id: startled_red_stag
+    factions: ["*"]
     name: Startled Red Stag
     level: 1
     hp: 6
@@ -101,6 +111,7 @@ entries:
       across the railway halt before the Inverness train is a heart-stopping
       moment and, now and then, the wrong note a mystery turns on.
   - id: distillery_rat
+    factions: ["*"]
     name: Distillery Rat
     level: 1
     hp: 1

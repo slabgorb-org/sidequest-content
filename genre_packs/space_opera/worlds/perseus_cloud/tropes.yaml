@@ -12,7 +12,14 @@
 # id, name, description, category, triggers, narrative_hints, tension_level,
 # four-beat escalation, passive_progression.
 
+# --- epic-157 zone-tagging: every item below carries factions: ["*"] (world-
+#     global). This world is zoned (cartography regions declare controlled_by),
+#     so the strict load validator (story 157-7) requires a non-empty factions
+#     list on each pooled item. "*" = eligible in every zone, behavior-identical
+#     to untagged. To actually zone-scope an item, swap ["*"] for the controlled_by
+#     faction slug(s) it belongs to (see worlds/gulliver for worked examples).
 - id: the_churn_squeeze
+  factions: ["*"]
   name: The Churn Squeeze
   description: >-
     The Yulan Governance Conglomerate keeps Santa Abraham poor on purpose —
@@ -78,6 +85,7 @@
     decelerator_penalty: 0.03
 
 - id: the_church_expedition
+  factions: ["*"]
   name: The Church Expedition
   description: >-
     The Church of Recreation provisions a militant expedition out of the Scrina
@@ -141,6 +149,7 @@
     decelerator_penalty: 0.03
 
 - id: the_princess_and_the_poisoner
+  factions: ["*"]
   name: The Princess and the Poisoner
   description: >-
     The affair the sector will remember — a scandal in the Regency of Thar that
@@ -206,6 +215,7 @@
     decelerator_penalty: 0.02
 
 - id: the_restless_dust
+  factions: ["*"]
   name: The Restless Dust
   description: >-
     On Lazzaro — the only world where Lazarus Dust can still be collected at
@@ -273,6 +283,7 @@
     decelerator_penalty: 0.03
 
 - id: the_shadows_of_terma
+  factions: ["*"]
   name: The Shadows of Terma
   description: >-
     Terma drifts half-embedded in hyperspace, where the Great Hyperspace
@@ -339,6 +350,7 @@
     decelerator_penalty: 0.02
 
 - id: the_haven_propaganda_crisis
+  factions: ["*"]
   name: The Haven Propaganda Crisis
   description: >-
     Downstream of the New Kowloon Dust delivery — the block of Dust the Yulan

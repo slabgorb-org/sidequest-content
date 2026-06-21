@@ -12,7 +12,14 @@
 # world factions, systems, or POIs. World-specific hostiles belong in
 # worlds/<slug>/ overrides.
 entries:
+  # --- epic-157 zone-tagging: every item below carries factions: ["*"] (world-
+  #     global). This world is zoned (cartography regions declare controlled_by),
+  #     so the strict load validator (story 157-7) requires a non-empty factions
+  #     list on each pooled item. "*" = eligible in every zone, behavior-identical
+  #     to untagged. To actually zone-scope an item, swap ["*"] for the controlled_by
+  #     faction slug(s) it belongs to (see worlds/gulliver for worked examples).
   - id: dock_tough
+    factions: ["*"]
     name: Dock Tough
     level: 1
     hp: 4
@@ -29,6 +36,7 @@ entries:
       A knuckle-scarred enforcer working the cargo decks, shock-baton on
       the hip and a cut of everything that moves through bay nine.
   - id: pirate_deckhand
+    factions: ["*"]
     name: Pirate Deckhand
     level: 1
     hp: 4
@@ -45,6 +53,7 @@ entries:
       A vacc-suited boarder with a mag-pistol and bad debts, third wave
       through the breach because the first two waves get shot.
   - id: security_bot
+    factions: ["*"]
     name: Security Bot
     level: 1
     hp: 4
@@ -64,6 +73,7 @@ entries:
       A polite chrome cylinder with a stun arm and infinite patience,
       reciting ordinance codes as it advances.
   - id: pirate_veteran
+    factions: ["*"]
     name: Pirate Veteran
     level: 2
     hp: 9
@@ -80,6 +90,7 @@ entries:
       A raider who has survived enough boardings to own a real armored
       undersuit and pick which airlock to come through.
   - id: soldier_bot
+    factions: ["*"]
     name: Soldier Bot
     level: 2
     hp: 9
@@ -96,6 +107,7 @@ entries:
       A mass-produced combat chassis running a decade-old warfare
       expert-system — slow to improvise, relentless on doctrine.
   - id: mercenary_elite
+    factions: ["*"]
     name: Mercenary Elite
     level: 3
     hp: 14
@@ -114,6 +126,7 @@ entries:
       A professional in matte combat armor whose contract has very
       specific clauses about who gets shot and who pays extra.
   - id: gengineered_killer
+    factions: ["*"]
     name: Gengineered Killer
     level: 4
     hp: 18
@@ -132,6 +145,7 @@ entries:
       Someone's black-lab masterpiece: human-shaped at a distance, too
       fast and too calm up close, bred for exactly this.
   - id: void_predator
+    factions: ["*"]
     name: Void Predator
     level: 5
     hp: 22
@@ -150,6 +164,7 @@ entries:
       A six-limbed ambush hunter from a deadworld biosphere, all silent
       grace until the hold lights flicker.
   - id: heavy_warbot
+    factions: ["*"]
     name: Heavy Warbot
     level: 6
     hp: 27
@@ -169,6 +184,7 @@ entries:
       An ogreish engine of war on four reverse-jointed legs, plasma
       mounts tracking independently, painted in someone's old colors.
   - id: mercenary_commander
+    factions: ["*"]
     name: Mercenary Commander
     level: 6
     hp: 27
@@ -187,6 +203,7 @@ entries:
       A company commander with three wars behind them and a reputation
       that closes contracts before the shooting starts.
   - id: pirate_king
+    factions: ["*"]
     name: Pirate King
     level: 7
     hp: 32
@@ -205,6 +222,7 @@ entries:
       A warlord in salvaged powered armor who taxes three systems'
       shipping and calls it protection — argued with rarely, and briefly.
   - id: apex_predator
+    factions: ["*"]
     name: Terrifying Apex Predator
     level: 8
     hp: 36
