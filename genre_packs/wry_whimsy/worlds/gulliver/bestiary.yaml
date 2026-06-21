@@ -28,6 +28,18 @@
 #
 # Source fidelity: every entry is Swift-canon or this world's named instance of
 # a Swift element. Voyage-of-origin is noted in each role/description.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each entry carries a
+# `factions:` list naming the region `controlled_by` zone(s) it belongs to, so
+# the engine's zone-eligibility filter (sidequest/game/zone_eligibility.py) keeps
+# a 4th-voyage Yahoo off the 1st-voyage Lilliput shore. Values are exact
+# cartography `controlled_by` slugs — one per voyage:
+#   the_lilliput_court      — Voyage 1 (Lilliput + Blefuscu shore/court)
+#   the_brobdingnag_crown   — Voyage 2 (Brobdingnag)
+#   the_lagado_academy      — Voyage 3 (Laputa / Balnibarbi / Luggnagg)
+#   the_houyhnhnm_assembly  — Voyage 4 (Houyhnhnm-land)
+# (the sentinel "*" = all zones; no bestiary entry is world-global). Every entry
+# is voyage-bound, so each carries exactly one faction.
 entries:
 
   # ══ VOYAGE 1 — LILLIPUT (the traveler is the GIANT; tiny foes, by the swarm) ══
@@ -45,6 +57,7 @@ entries:
     save: 15
     role: massed six-inch bowmen of the Lilliput shore
     tags: [tiny, swarm, human, soldier]
+    factions: [the_lilliput_court]   # Voyage 1 — the Lilliput shore
     abilities:
       - "Swarm — a single archer is nothing; a volley fights as a unit and is dangerous only in number"
       - "Needle-arrows — they loose into the eyes, the hands, the face of the Man-Mountain, where the giant scale cannot armor him"
@@ -68,6 +81,7 @@ entries:
     save: 14
     role: massed imperial infantry of Mildendo
     tags: [tiny, swarm, human, soldier]
+    factions: [the_lilliput_court]   # Voyage 1 — Mildendo (Lilliput court)
     abilities:
       - "Swarm — fights as a company; harmless as one man, a wall of bristling pikes as a thousand"
       - "Pin the Man-Mountain — drives stakes and cords while the giant is held, working to bind rather than to slay"
@@ -91,6 +105,7 @@ entries:
     save: 14
     role: massed marines of the rival toy-empire across the channel
     tags: [tiny, swarm, human, soldier]
+    factions: [the_lilliput_court]   # Voyage 1 — Blefuscu Strand (controlled_by: the_lilliput_court)
     abilities:
       - "Swarm — the marines of a captured fleet, deadly only in their massed boarding-parties"
       - "Board from the water — swarm up a wading giant from the eight-hundred-yard channel and the anchored men-of-war"
@@ -116,6 +131,7 @@ entries:
     save: 14
     role: mastiff-sized vermin of the farmer's house
     tags: [giant, beast, vermin]
+    factions: [the_brobdingnag_crown]   # Voyage 2 — Brobdingnag
     abilities:
       - "Scale-terror — a common rat made the bulk of a mastiff by the reversal of scale; the speck must draw his hanger and fight for his life"
       - "Pair-hunters — the rats of the farmhouse come two at once, bold and famished"
@@ -140,6 +156,7 @@ entries:
     save: 13
     role: partridge-sized stinging insect drawn to the speck's food
     tags: [giant, beast, vermin]
+    factions: [the_brobdingnag_crown]   # Voyage 2 — Brobdingnag
     abilities:
       - "Scale-terror — a wasp grown to the bulk of a partridge, its sting a sword to a man of six inches"
       - "Stings drawn by sweets — swarms the marmalade and the displayed traveler alike, droning huge about his head"
@@ -163,6 +180,7 @@ entries:
     save: 13
     role: elephant-sized court monkey that takes the speck for its young
     tags: [giant, beast]
+    factions: [the_brobdingnag_crown]   # Voyage 2 — Brobdingnag
     abilities:
       - "Scale-terror — a pet monkey grown to the bulk of an elephant; its idle play is lethal to a thing the size of its kitten"
       - "Carries off the speck — snatches the traveler up a gable and crams filth into his mouth, mistaking him for a baby of its own kind"
@@ -186,6 +204,7 @@ entries:
     save: 12
     role: ox-bulked hearth-cat, apex horror of the kitchen
     tags: [giant, beast, apex]
+    factions: [the_brobdingnag_crown]   # Voyage 2 — Brobdingnag
     abilities:
       - "Scale-terror — a common house-cat three times the bulk of an ox; its purr is thunder and its idle paw a death"
       - "Stalks the speck — fixes the tiny traveler with one enormous eye; the only defence is to show no fear and never run"
@@ -210,6 +229,7 @@ entries:
     save: 12
     role: house-sized raptor that carries off the travelling-box
     tags: [giant, beast, apex]
+    factions: [the_brobdingnag_crown]   # Voyage 2 — the seaside box (controlled_by: the_brobdingnag_crown)
     abilities:
       - "Scale-terror — an eagle grown house-large; it takes the traveller's whole chamber for a morsel"
       - "Snatch and drop — seizes the box by its carrying-ring, bears it out over the sea, and lets it fall when other birds harry it"
@@ -236,6 +256,7 @@ entries:
     save: 15
     role: undying decayed immortal of Luggnagg
     tags: [human, immortal, undying]
+    factions: [the_lagado_academy]   # Voyage 3 — Luggnagg (controlled_by: the_lagado_academy)
     abilities:
       - "Cannot die — toothless, deaf, memoryless, declared legally dead at eighty and rotting on for centuries without the mercy of the grave"
       - "Despair, not menace — the horror is what they are, not what they do; they cannot fight and will not flee"
@@ -263,6 +284,7 @@ entries:
     save: 14
     role: filthy man-shaped brute-beast of the Houyhnhnm country
     tags: [beast, brute, the_verdict]
+    factions: [the_houyhnhnm_assembly]   # Voyage 4 — Houyhnhnm-land
     abilities:
       - "Climbs and flings — clambers trees with horrid agility and discharges its excrement down on whatever it fears or hates"
       - "The mirror — fighting the Yahoo confirms the Yahoo verdict; every blow against the brute proves the traveler is one"
@@ -287,6 +309,7 @@ entries:
     save: 13
     role: massed clawing mob of brute Yahoos
     tags: [swarm, beast, brute, the_verdict]
+    factions: [the_houyhnhnm_assembly]   # Voyage 4 — Houyhnhnm-land
     abilities:
       - "Swarm — the brutes fall on a stranger forty at once, a stinking clawing mob no single blow can scatter"
       - "Filth from above — frightened up a tree, the whole pack discharges its excrement down on the prey below"

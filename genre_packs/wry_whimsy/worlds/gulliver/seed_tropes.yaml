@@ -25,9 +25,17 @@
 # commuted, violence only confirms the traveler is the brute the satire names,
 # and the verdict on him and his civilization is mostly correct. Keep the
 # politics male and savage; let the women be fond and powerless to save him.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each seed carries a
+# `factions:` list so the Seam-4 seed-deck draw (game/seed_deck.py,
+# game/seed_tick.py) never deals a Houyhnhnm seed on the Lilliput shore. Values
+# are exact cartography `controlled_by` slugs (the sentinel "*" = world-global;
+# no seed here is world-global — every hook is voyage-anchored). The one
+# scale-as-politics seed spans both scale voyages (Lilliput + Brobdingnag).
 
 - id: gulliver_man_mountain
   name: Your Size Is a Political Fact Before It Is Anything Else
+  factions: [the_lilliput_court, the_brobdingnag_crown]   # Voyages 1 & 2 — the giant staked / the speck a cat could kill
   description: >-
     The traveler wakes staked to the ground by a hundred slender threads, hair
     pegged down, swarmed by an army of six-inch men with bows drawn — or looms
@@ -48,6 +56,7 @@
 
 - id: gulliver_endian_war
   name: A Total War Over a Trifle Nobody Will Call a Trifle
+  factions: [the_lilliput_court]   # Voyage 1 — the egg-end / heel-height war of Lilliput
   description: >-
     Two factions are locked in generations of bloodshed over a question of no
     consequence whatever — which end of an egg to break, the height of a heel,
@@ -69,6 +78,7 @@
 
 - id: gulliver_office_by_rope_dance
   name: High Office Awarded for an Absurd Performance
+  factions: [the_lilliput_court]   # Voyage 1 — rope-dancing for office at the Lilliput court
   description: >-
     Rank, favour, and the great offices of state are won here not by merit but
     by feats of ridiculous skill — dancing on a tightrope before the sovereign,
@@ -90,6 +100,7 @@
 
 - id: gulliver_articles_of_impeachment
   name: The Service They Praised Becomes the Charge That Damns You
+  factions: [the_lilliput_court]   # Voyage 1 — the palace-fire service turned to articles of impeachment
   description: >-
     The traveler does the state a great service — wins its war, quenches a fire
     in its palace — and is fêted for it. Then the very deed is drawn up as a
@@ -111,6 +122,7 @@
 
 - id: gulliver_the_pet_named_grildrig
   name: Reduced to a Curiosity, Owned and Displayed for Coin
+  factions: [the_brobdingnag_crown]   # Voyage 2 — Grildrig the pet, displayed for coin in Brobdingnag
   description: >-
     The traveler becomes a marvel the wrong way — small, helpless, charming —
     and is taken up not as a guest but as property: named like a lapdog,
@@ -131,6 +143,7 @@
 
 - id: gulliver_the_reasonable_verdict
   name: A Ruler Examines Your Homeland and Finds It Vile — and Is Right
+  factions: [the_brobdingnag_crown]   # Voyage 2 — the Brobdingnag King's "little odious vermin" verdict
   description: >-
     A patient, decent sovereign questions the traveler at length about the
     customs of home — its wars, its laws, its money, its medicine, its great
@@ -152,6 +165,7 @@
 
 - id: gulliver_sunbeams_from_cucumbers
   name: A Great Institution Earnestly Pursuing Useless Things
+  factions: [the_lagado_academy]   # Voyage 3 — the Grand Academy of Lagado
   description: >-
     A famous academy, funded and revered, devotes itself to projects of
     magnificent futility — extracting sunbeams from cucumbers to bottle against
@@ -174,6 +188,7 @@
 
 - id: gulliver_the_island_that_descends
   name: An Aloof Power That Rules by Lowering Its Weight Upon You
+  factions: [the_lagado_academy]   # Voyage 3 — Laputa, the descending flying island
   description: >-
     Far overhead floats an abstracted authority — rapt in mathematics and music,
     its lords so lost in speculation they must be roused by attendants who flap
@@ -195,6 +210,7 @@
 
 - id: gulliver_immortals_who_only_rot
   name: A Wish for Deathlessness, Granted in the Worst Way
+  factions: [the_lagado_academy]   # Voyage 3 — the Struldbruggs of Luggnagg
   description: >-
     The traveler hears of people born now and then who never die, and leaps to
     envy them — imagining the wisdom, the wealth, the works of an endless life.
@@ -216,6 +232,7 @@
 
 - id: gulliver_the_summoned_dead
   name: The Past Called Up to Testify, and It Exposes the Record as a Lie
+  factions: [the_lagado_academy]   # Voyage 3 — the summoned dead of Glubbdubdrib
   description: >-
     In this place the dead can be summoned to answer questions, and the
     traveler, calling up the great names of history, learns that the record is
@@ -237,6 +254,7 @@
 
 - id: gulliver_taken_for_the_yahoo
   name: Among Creatures of Pure Reason, You Are the Brute You Resemble
+  factions: [the_houyhnhnm_assembly]   # Voyage 4 — taken for a Yahoo among the Houyhnhnms
   description: >-
     The traveler comes among beings of calm, complete rationality — who have no
     word for lying because they have never needed one — and is classed at once
