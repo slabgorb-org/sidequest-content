@@ -17,6 +17,18 @@
 # World tier (ADR-120): these creatures are specific to Carroll's Wonderland and are
 # US public domain. Genre-generic foes stay in the pack roster; this file holds only
 # the world-flavored canon.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each entry carries a
+# `factions:` list naming the region `controlled_by` zone it belongs to, so the
+# engine's zone-eligibility filter (sidequest/game/zone_eligibility.py) keeps a
+# Card-Country creature off the Looking-Glass side. Wonderland's cartography is
+# coarse — many regions share a few faction banners:
+#   the_queens_terror — Card Country + the Tulgey Wood (Alice's Adventures half)
+#   the_rigged_game   — Looking-Glass Land (Through the Looking-Glass half)
+#   no_one            — the looking-glass seam (the threshold; no pooled content)
+# Every creature here is a Card-Country or Tulgey-Wood inhabitant (the tags
+# already carry card_country / tulgey_wood, both controlled_by the_queens_terror),
+# so each is [the_queens_terror]; there is no Looking-Glass fauna and no "*".
 entries:
 
   # ── HARMLESS-ABSURD (level 1) — terror-theatre and croquet-tackle ───────────
@@ -33,6 +45,7 @@ entries:
     save: 15
     role: pasteboard soldier of the pack
     tags: [card_country, soldier, played_straight, harmless_absurd]
+    factions: [the_queens_terror]   # Card Country — the Queen of Hearts' living suit
     abilities:
       - "Flat as pasteboard — folds double to make a croquet-hoop and falls flat at a cross word"
       - "Marches in files; the Queen's living suit-rank, never a soul of its own"
@@ -55,6 +68,7 @@ entries:
     save: 15
     role: terrified pasteboard servant of the garden
     tags: [card_country, servant, played_straight, harmless_absurd]
+    factions: [the_queens_terror]   # Card Country — the croquet-ground rose-painters
     abilities:
       - "Paints white roses red in a panic before the Queen finds the mistake out"
       - "Throws itself flat at the first 'Off with their heads!' — no fight in it at all"
@@ -77,6 +91,7 @@ entries:
     save: 15
     role: living croquet-ball that crawls off the lawn
     tags: [card_country, beast, played_straight, harmless_absurd]
+    factions: [the_queens_terror]   # Card Country — the Queen's living croquet-ground
     abilities:
       - "Uncurls and crawls away mid-stroke — refuses to be a sporting ball"
       - "Curls into a prickled ball; a careless grab takes 1 spine for 1 point"
@@ -99,6 +114,7 @@ entries:
     save: 15
     role: living croquet-mallet that twists to look at you
     tags: [card_country, beast, played_straight, harmless_absurd]
+    factions: [the_queens_terror]   # Card Country — the Queen's living croquet-ground
     abilities:
       - "Twists its long neck round to face the player just as the stroke is made"
       - "A snappish peck if seized by the legs and swung as a mallet"
@@ -122,6 +138,7 @@ entries:
     save: 14
     role: green pig that has lost its way home, bellowing
     tags: [tulgey_wood, jabberwocky_beast, played_straight, harmless_absurd]
+    factions: [the_queens_terror]   # the Tulgey Wood (controlled_by the_queens_terror)
     abilities:
       - "Bellows mournfully when far from home — 'mome' for 'from home', as Humpty Dumpty glosses it"
       - "Bewildered and harmless in the open; only dangerous underfoot in a panicked herd"
@@ -144,6 +161,7 @@ entries:
     save: 14
     role: shabby draggled bird like a live mop
     tags: [tulgey_wood, jabberwocky_beast, played_straight, harmless_absurd]
+    factions: [the_queens_terror]   # the Tulgey Wood (controlled_by the_queens_terror)
     abilities:
       - "All mimsy — flimsy and miserable, feathers sticking out every way like a live mop"
       - "A startled flapping rush of beak and claw if cornered, then gone into the trees"
@@ -166,6 +184,7 @@ entries:
     save: 14
     role: badger-lizard-corkscrew that gyres about the sundial
     tags: [tulgey_wood, jabberwocky_beast, played_straight, harmless_absurd]
+    factions: [the_queens_terror]   # the Tulgey Wood (controlled_by the_queens_terror)
     abilities:
       - "Gyres and gimbles — spins round and round and bores holes about the sundial"
       - "Lithe and slimy; slips a grip and corkscrews away underground"
@@ -189,6 +208,7 @@ entries:
     save: 14
     role: liveried footman who will argue with the door forever
     tags: [card_country, servant, nonsense, played_straight, harmless_absurd]
+    factions: [the_queens_terror]   # the Duchess's door (Card Country / Tulgey-Wood side)
     abilities:
       - "Argues circularly — will sit on the step disputing whether you can knock until next week"
       - "Wholly impervious to reason; the conversation is the obstacle, not the fists"
@@ -212,6 +232,7 @@ entries:
     save: 14
     role: crockery-flinging cook in a haze of pepper
     tags: [tulgey_wood, household, hazard, played_straight]
+    factions: [the_queens_terror]   # the Duchess's kitchen in the Tulgey Wood
     abilities:
       - "Hurls crockery — plates, saucepans, fire-irons fly at everyone, the Duchess and baby included"
       - "Pepper-haze — the kitchen air makes all within it sneeze and lose their footing"
@@ -235,6 +256,7 @@ entries:
     save: 14
     role: desperate passionate fowl of the Jabberwock's wood
     tags: [tulgey_wood, jabberwocky_beast, hazard, played_straight]
+    factions: [the_queens_terror]   # the Tulgey Wood (controlled_by the_queens_terror)
     abilities:
       - "A bird in a perpetual passion — shrieks and stoops in a fury that scatters lesser creatures"
       - "Shuns the day; lives where the Jabberwock hunts and is to be shunned the same"
@@ -258,6 +280,7 @@ entries:
     save: 13
     role: swift-snatching neck-craning brute of the wood
     tags: [tulgey_wood, jabberwocky_beast, apex, played_straight]
+    factions: [the_queens_terror]   # the Tulgey Wood (controlled_by the_queens_terror)
     abilities:
       - "Frumious and swift — runs down a fleeing traveler before they can clear the trees"
       - "Snatches with a long craning neck; one cannot outrun it, only fend it off"
@@ -282,6 +305,7 @@ entries:
     save: 11
     role: the one genuinely lethal monster of the dream
     tags: [tulgey_wood, apex, lethal, the_one_lethal_thing, played_straight]
+    factions: [the_queens_terror]   # deep in the Tulgey Wood (controlled_by the_queens_terror)
     abilities:
       - "Jaws that bite, claws that catch — two attacks each round, and they land in earnest"
       - "Eyes of flame — comes whiffling and burbling through the wood, immune to wit, refusal, dosing, and waking; only the blade answers it"

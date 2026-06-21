@@ -23,6 +23,21 @@
 # Baum's (The Wonderful Wizard of Oz and its sequels), public domain in the US.
 # Genre-generic foes would live in a pack bestiary.yaml; this file is the
 # world-flavored roster.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each entry carries a
+# `factions:` list naming the region `controlled_by` zone(s) it belongs to, so
+# the engine's zone-eligibility filter (sidequest/game/zone_eligibility.py) keeps
+# a Winkie wolf off the Munchkin meadows. Values are exact cartography
+# `controlled_by` slugs:
+#   munchkins              — the Munchkin Country (east)
+#   open_country           — the Yellow Brick Road / the open road and its woods
+#   the_wizard             — the Emerald City
+#   witch_of_the_west      — the Winkie Country (west)
+#   glinda                 — the Quadling Country (south)
+#   gillikin_hedge_witches — the Gillikin Country (north)
+#   no_one                 — the Deadly Desert (the lethal rim)
+# (the sentinel "*" = all zones; no bestiary entry here is world-global — every
+# creature is region-bound, so each carries exactly one faction.)
 entries:
   # ── COMEDIC / TRIVIAL ──────────────────────────────────────────────────────
   - id: field_mouse
@@ -38,6 +53,7 @@ entries:
     save: 15
     role: tiny talking subject of the Mouse Queen
     tags: [oz, beast, tiny, kindness_economy, low_threat]
+    factions: [munchkins]   # the Munchkin meadows — the Mouse Queen's people
     abilities:
       - "Gratitude remembered — a mouse spared or aided will summon its kin to repay the kindness out of all proportion (see the helpful_beasts trope)"
       - "No fight in it — bolts at the first alarm; a threat only by being underfoot"
@@ -60,6 +76,7 @@ entries:
     save: 15
     role: long-legged marsh bird, courteous and strong of wing
     tags: [oz, beast, flyer, kindness_economy, low_threat]
+    factions: [open_country]   # the rivers that cross the Yellow Brick Road
     abilities:
       - "Lift and carry — strong enough on the wing to pluck a stranded traveler (or a waterlogged Scarecrow) from a river and set them ashore"
     description: >-
@@ -80,6 +97,7 @@ entries:
     save: 15
     role: thieving crow-band that mobs the unwary
     tags: [oz, beast, flyer, swarm, low_threat]
+    factions: [open_country]   # the open country along the road
     abilities:
       - "Mob — fights only in numbers, pecking and snatching; scatters the instant one of them is struck down"
       - "Pilferers — make off with any small bright loose thing rather than press an attack"
@@ -103,6 +121,7 @@ entries:
     save: 15
     role: ceremonial soldier of the Emerald City
     tags: [oz, human, guard, humbug, low_threat]
+    factions: [the_wizard]   # the Emerald City gate and throne room
     abilities:
       - "All ceremony — keeps order by manner and uniform, not by force; folds rather than fight"
     description: >-
@@ -123,6 +142,7 @@ entries:
     save: 14
     role: rooted ill-tempered tree that guards its fruit
     tags: [oz, plant, obstacle, played_straight]
+    factions: [open_country]   # the apple wood by the Yellow Brick Road
     abilities:
       - "Rooted — cannot pursue; menaces only what comes within reach of its boughs"
       - "Switch and hurl — flails with whippy branches and pelts thieves with its own apples; a polite request, oddly, often works better than force"
@@ -144,6 +164,7 @@ entries:
     save: 14
     role: armless hill-dweller that bars the way with its head
     tags: [oz, fey, obstacle, played_straight]
+    factions: [glinda]   # bars the hills of the Quadling country (south)
     abilities:
       - "Telescoping butt — the flat hard head shoots out on a folding neck to a startling distance and slams an intruder back down the hill, then snaps home"
       - "Will not be passed — bars the hills of the Quadling country and cannot be reasoned past, only flown over or gone around"
@@ -166,6 +187,7 @@ entries:
     save: 13
     role: great rooted tree that flings back all who enter its wood
     tags: [oz, plant, obstacle, played_straight]
+    factions: [glinda]   # the guarded wood on the southern road to Glinda's Quadling country
     abilities:
       - "Limb-fling — seizes anyone who steps under its canopy with snatching boughs and hurls them bodily back the way they came"
       - "Rooted barrier — fights as a wall, not a hunter; a stout axe (a Tin Woodman's, say) can fell a limb and open a gap"
@@ -190,6 +212,7 @@ entries:
     save: 14
     role: lean predator that hunts the field mice
     tags: [oz, beast, predator]
+    factions: [munchkins]   # the Munchkin meadows where the field mice live
     abilities:
       - "Run-down — fast enough to chase a fleeing mouse or hare to ground in the open"
     description: >-
@@ -211,6 +234,7 @@ entries:
     save: 13
     role: bear-bodied, tiger-headed terror of the deep wood
     tags: [oz, beast, apex, genuinely_dangerous, played_straight]
+    factions: [open_country]   # the dark forest the road crosses (the ravine the Tin Woodman bridges)
     abilities:
       - "Bear's body, tiger's head — claws and a great fanged bite; the bite damage is brutal"
       - "Pack pursuit — hunts in twos and threes and gives chase across any open ground, halted only by a gulf it cannot leap"
@@ -235,6 +259,7 @@ entries:
     save: 14
     role: flying band bound to the Golden Cap, against its will
     tags: [oz, fey, flyer, bound_servant, played_straight]
+    factions: [witch_of_the_west]   # the western air, bound to the Golden Cap
     abilities:
       - "Bound to the Cap — must obey whoever owns the Golden Cap and speaks the charm, exactly three times, then is free of that owner"
       - "Snatch and carry — seizes travelers from the ground and bears them off, or sets them down miles away; mischief, not murder, is its nature"
@@ -258,6 +283,7 @@ entries:
     save: 14
     role: one of the pack the Witch of the West whistles up
     tags: [oz, beast, pack, witch_servant]
+    factions: [witch_of_the_west]   # the Winkie hills, the Witch's wolf-pack
     abilities:
       - "Comes at the whistle — the Wicked Witch calls a pack of forty with one blast; they hunt as a body to the witch's command"
       - "Pack tactics — deadlier in numbers; a lone wolf checks morale far sooner than the pack"
@@ -280,6 +306,7 @@ entries:
     save: 15
     role: one of the black flock the Witch of the West sends to peck out eyes
     tags: [oz, beast, flyer, swarm, witch_servant]
+    factions: [witch_of_the_west]   # the Witch of the West's crow-flock (Winkie)
     abilities:
       - "Comes at the whistle — answers the Witch's call by the flock and goes for the eyes"
       - "Cowed by a brave heart — a wise straw man broke their necks one by one; the flock breaks the moment it meets something unafraid"
@@ -301,6 +328,7 @@ entries:
     save: 14
     role: a person enchanted into a statue or shelf-ornament, awaiting rescue
     tags: [oz, victim, transformation, recoverable, enchantment_not_kill]
+    factions: [gillikin_hedge_witches]   # Mombi's signature ornament/statue transformation (Gillikin)
     abilities:
       - "Not a foe — a person turned to a thing by a witch's enchantment, kept rather than killed; the win condition is the counter-charm, never a blow"
       - "Still themselves within — retains awareness and identity, waiting on the right word, water, or deed to be restored"

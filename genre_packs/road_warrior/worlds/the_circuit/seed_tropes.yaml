@@ -24,9 +24,23 @@
 # Café Racer dawn ton, the Aschgrund sanctioned arena, the Brückner / Meridian
 # Asphalt conspiracy thread under the city. Keep the register loud, colorful, and
 # paranoid-connective (Pynchon under neon), never grim desert apocalypse.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each seed carries a
+# `factions:` list so the Seam-4 seed-deck draw (game/seed_deck.py,
+# game/seed_tick.py) never deals a Mod-turf seed onto Lowrider Sagrado Boulevard.
+# Unlike this world's bestiary/tropes (mostly world-global), most seeds reference-
+# stack on a NAMED faction mechanism and carry that faction: the Mod mirror network
+# [mods], the Rocker parts economy [rockers], the Matatu bass signal [matatu], the
+# 1%er Aschgrund arena [one_percenters], the Café Racer dawn ton [cafe_racers], the
+# Lowrider Sagrado Pact [lowriders], the Tuk-Tuk Nokutori chop shops [tuk_tuk], and
+# the Mods/Rockers blood feud [mods, rockers]. Four are world-global "*": the
+# pink-slip wager (any pair), the port fuel cut and the Divvie deal (city-wide
+# pressure), and the Meridian/Thread nameplate (predates every crew). Faction
+# values are exact cartography `controlled_by` slugs.
 
 - id: the_circuit_mirror_says_your_name
   name: The Mirror Signal Has Been Asking After You
+  factions: [mods]   # the Mod mirror-semaphore network of the Nottavello clubs
   description: >-
     Somewhere up in the Nottavello clubs a Mod angled a streetlight off a
     Vespa wing-mirror, and three flashes later the optical semaphore had carried
@@ -47,6 +61,7 @@
 
 - id: the_circuit_parts_debt_at_grensholt
   name: A Part You Need Lives in a Locked Lot
+  factions: [rockers]   # the Rocker salvage yards / parts economy on the Grensholt strip
   description: >-
     The one fairing, transmission housing, or fuel pump that will put the rig
     right is not for sale at any fair price — it is sitting in a Rocker salvage
@@ -67,6 +82,7 @@
 
 - id: the_circuit_pink_slip_on_the_table
   name: A Wager With the Rig as the Stake
+  factions: ["*"]   # world-global — a pink-slip wager format, any pair of riders/factions, any route
   description: >-
     Somebody has put a run on offer where the loser does not just lose face — they
     hand over the keys. A pink-slip race, route already half-agreed, witnesses
@@ -86,6 +102,7 @@
 
 - id: the_circuit_fuel_cut_at_the_port
   name: The Port's Cut Has Gone Up Overnight
+  factions: ["*"]   # world-global — a city-wide fuel-supply vise; every faction needs fuel
   description: >-
     Fuel comes into The Circuit through the harbor and the port authority takes
     its toll on every drum — that is the old arrangement everyone grumbles about
@@ -106,6 +123,7 @@
 
 - id: the_circuit_bass_signal_in_the_night
   name: The Buses Are Passing a Message Nobody Will Translate
+  factions: [matatu]   # the Matatu bass-signal low-frequency telegraph (transit corridors)
   description: >-
     Late, when the surface city has gone home, a Matatu subwoofer somewhere out
     on the transit corridors drops into a pattern too deliberate to be a song —
@@ -126,6 +144,7 @@
 
 - id: the_circuit_divvies_pick_one_crew
   name: The Road Division Is Offering Somebody a Deal
+  factions: ["*"]   # world-global — external Divvie pressure that can target any crew/turf
   description: >-
     The Metropolitan Road Division — the Divvies — manage the factions, they don't
     erase them, and management this week means a quiet offer made to exactly one
@@ -146,6 +165,7 @@
 
 - id: the_circuit_sanctioned_at_aschgrund
   name: A Quarrel Is Being Pushed Onto the Arena Concrete
+  factions: [one_percenters]   # the 1%er-presided sanctioned arena at Aschgrund
   description: >-
     Two crews have a grievance hot enough to bleed into a convoy war, and the
     elders are steering it instead toward Aschgrund — the industrial flats where
@@ -166,6 +186,7 @@
 
 - id: the_circuit_blood_feud_spark
   name: An Old Hatred Has Just Been Handed a New Reason
+  factions: [mods, rockers]   # the Mods-vs-Rockers blood feud (scoped to the two feuding factions, not all turfs)
   description: >-
     The oldest grudge in the city — Mods against Rockers, scooter against British
     iron, the rivalry that fights on sight in neutral ground — has been freshly
@@ -186,6 +207,7 @@
 
 - id: the_circuit_dawn_ton_witness
   name: Someone Wants the Dawn Road Run, and Watched
+  factions: [cafe_racers]   # the Café Racer dawn ton run on the coast road (Bruveil/Grisevont)
   description: >-
     Before the city wakes the Café Racers own the coast road — the ton run, alone
     and fast and quiet but for the engine, gone grey-blue before the commuters
@@ -206,6 +228,7 @@
 
 - id: the_circuit_sagrado_pact_tested
   name: A Shadow Has Fallen Across Cruise Night
+  factions: [lowriders]   # the Lowrider Sagrado Pact / Cruise Night on Sagrado Boulevard (Doracanto)
   description: >-
     On Sagrado Boulevard the Lowrider procession is ceremony, not traffic — the
     slow cruise, the candy paint, the hydraulics, all of it held inviolate from
@@ -226,6 +249,7 @@
 
 - id: the_circuit_chop_shop_in_the_alley
   name: A Stolen Rig Is Being Cut Up Tonight
+  factions: [tuk_tuk]   # the Tuk-Tuk Syndicate chop shops in the Nokutori market alleys
   description: >-
     A rig has gone missing — wrecked is one thing, stolen is worse — and the trail
     runs into the Nokutori market alleys where Phi Lek's people know every shortcut
@@ -246,6 +270,7 @@
 
 - id: the_circuit_meridian_nameplate
   name: A Name That Predates Every Crew Has Surfaced
+  factions: ["*"]   # world-spine — the Meridian/Brückner Thread conspiracy, "older than" every faction
   description: >-
     A nameplate, a brass diagram, a curling photograph with Meridian Asphalt
     stamped at the edge and a severe blonde woman staring into the lens as if she

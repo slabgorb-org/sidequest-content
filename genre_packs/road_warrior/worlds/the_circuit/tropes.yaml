@@ -1,9 +1,20 @@
 # The Circuit — Tropes
 # Story beats tuned for inter-faction gang racing, turf wars, and chase drama.
 # These extend/override the genre-level tropes for this specific world.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each trope carries a
+# `factions:` list so the Seam-3 trope gate (game/trope_tick.py) only offers a
+# dormant trope where its zone is active. Most are world-global "*" because they
+# are circuit-wide event/conflict FORMATS that span every turf — a turf race, the
+# full-circuit run, a convoy war, a Divvie crackdown, a rig rebuild. The one
+# faction-scoped trope is cruise_night_incident [lowriders] (the Lowrider
+# procession on Sagrado Boulevard, in lowrider-controlled Doracanto). Faction
+# values are exact cartography `controlled_by` slugs. (No trope here uses
+# `extends:`, so none depends on _merge_trope faction propagation.)
 
 - id: turf_race
   name: Turf Race
+  factions: ["*"]   # world-global — a conflict format between any two factions over any contested ground
   description: >-
     Two factions settle a territorial dispute the only way The Circuit
     respects — on the road. A race through contested ground, witnessed
@@ -68,6 +79,7 @@
 
 - id: the_full_circuit_challenge
   name: The Full Circuit
+  factions: ["*"]   # world-global — the run that touches every faction's territory (tags: all-factions)
   description: >-
     Someone has challenged someone to run The Full Circuit — every
     faction's territory in a single run. The legendary route. Nobody
@@ -135,6 +147,7 @@
 
 - id: convoy_war
   name: Convoy War
+  factions: ["*"]   # world-global — a freight-route conflict format; routes cross every turf
   description: >-
     Two factions contest a freight route. Not a race — a running battle
     between convoys. Rigs smashing into rigs, riders boarding vehicles,
@@ -186,6 +199,7 @@
 
 - id: police_crackdown
   name: Divvie Sweep
+  factions: ["*"]   # world-global — external pressure hitting every faction simultaneously (tags: all-factions)
   description: >-
     The Metropolitan Road Division is cracking down. Checkpoints,
     roadblocks, helicopters. Something has embarrassed the police
@@ -244,6 +258,7 @@
 
 - id: rig_resurrection
   name: Rig Resurrection
+  factions: ["*"]   # world-global — a personal rebuild arc that touches every faction (Rocker parts, Lowrider paint)
   description: >-
     A rider has lost their rig — wrecked, stolen, or impounded. In
     The Circuit, this is an identity crisis. A driver without a ride is
@@ -296,6 +311,7 @@
 
 - id: cruise_night_incident
   name: Cruise Night Incident
+  factions: [lowriders]   # the Lowrider procession on Sagrado Boulevard (Doracanto, controlled_by lowriders)
   description: >-
     Someone has violated the sanctity of Cruise Night on Sagrado
     Boulevard. The Lowrider procession — the most beautiful, most

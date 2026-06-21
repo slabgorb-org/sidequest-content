@@ -20,10 +20,23 @@
 # gender current is honest to Carroll — the women rage and rule, the men sleep or
 # dither. The way home is WAKING: you leave by refusing the dream decisively, and
 # reshaping the world raises the cost of leaving.
+#
+# Faction/zone eligibility (epic-157, ADR-059 amendment): each trope carries a
+# `factions:` list so the Seam-3 trope gate (game/trope_tick.py) only offers a
+# dormant trope where its zone is active. Values are exact cartography
+# `controlled_by` slugs (the_queens_terror = Card Country + the Tulgey Wood;
+# the_rigged_game = Looking-Glass Land), or the sentinel "*" = world-global. The
+# two cross-both-halves spines are "*": nonsense_as_authority (the central
+# nonsense-as-authority engine — the Queen's trial AND Humpty's dictionary) and
+# the_pack_of_cards (the way home — the refusal that wakes the dreamer, at both
+# the Card trial and the Looking-Glass feast). nonsense_as_authority is the one
+# `extends:` trope here, so its "*" relies on resolve.py::_merge_trope
+# propagating `factions` through inheritance (wired in 157-5).
 
 # 1 — NONSENSE AS AUTHORITY  (specializes Impossible Authority)
 - id: nonsense_as_authority
   name: Nonsense as Authority
+  factions: ["*"]   # world-spine — the central nonsense-as-authority engine (Queen's trial + Humpty's dictionary); extends, so "*" must survive _merge_trope
   extends: Impossible Authority
   description: >-
     The rules are invented on the spot and weaponized. In Wonderland the antagonist
@@ -98,6 +111,7 @@
 # 2 — THE CAPRICIOUS SENTENCE  (standalone)
 - id: the_capricious_sentence
   name: The Capricious Sentence
+  factions: [the_queens_terror]   # the Queen of Hearts' "off with their heads" (Card Country)
   description: >-
     "Off with their heads!" — the constant terror-theatre of the Queen of Hearts,
     who orders an execution roughly once a minute over a misplaced word, a botched
@@ -168,6 +182,7 @@
 # 3 — THE SIZE GAME  (standalone)
 - id: the_size_game
   name: The Size Game
+  factions: [the_queens_terror]   # eat-me/drink-me — Hall of Doors, Pool of Tears, the Rabbit's house (Card Country)
   description: >-
     Eat-me, drink-me: the world rescales the traveler, growing and shrinking them as
     both tool and hazard. A bottle labelled DRINK ME shrinks the traveler to ten
@@ -238,6 +253,7 @@
 # 4 — STUCK IN THE NONSENSE  (standalone)
 - id: stuck_in_the_nonsense
   name: Stuck in the Nonsense
+  factions: [the_queens_terror]   # the Mad Tea-Party frozen at six o'clock (Card Country)
   description: >-
     The perpetual-present trap. The Mad Tea-Party is frozen at six o'clock forever:
     the Hatter quarrelled with Time and now Time will not move for him, so it is
@@ -307,6 +323,7 @@
 # 5 — THE TRUTH-TELLING CAT  (specializes Helpful Companion)
 - id: the_truth_telling_cat
   name: The Truth-Telling Cat
+  factions: [the_queens_terror]   # the Cheshire Cat of the Tulgey Wood (controlled_by the_queens_terror)
   description: >-
     The Cheshire Cat: the one creature in Wonderland who speaks plain truth amid the
     nonsense, and the guide who refuses to guide. It tells the traveler the most
@@ -376,6 +393,7 @@
 # 6 — ONLY A THING IN HIS DREAM  (standalone)
 - id: only_a_thing_in_his_dream
   name: Only a Thing in His Dream
+  factions: [the_rigged_game]   # the sleeping Red King + Tweedledum/Tweedledee (Looking-Glass / the_tweedle_wood)
   description: >-
     The deepest dread of Wonderland: the sleeping Red King, and the suggestion that
     the whole country — and the traveler in it — may be only something he is dreaming.
@@ -447,6 +465,7 @@
 # 7 — RUN TO STAY IN PLACE  (standalone)
 - id: run_to_stay_in_place
   name: Run to Stay in Place
+  factions: [the_rigged_game]   # the Red Queen's race in the chessboard country (Looking-Glass)
   description: >-
     The Red Queen's race, and the satire of striving it carries. The Red Queen seizes
     the traveler by the hand and runs — faster and faster, the trees and everything
@@ -517,6 +536,7 @@
 # 8 — THE PACK OF CARDS  (specializes The Seam Reveal)
 - id: the_pack_of_cards
   name: The Pack of Cards
+  factions: ["*"]   # world-spine — the way home (the refusal that wakes the dreamer): the Card trial AND the Looking-Glass feast
   description: >-
     The climactic refusal that ends the dream. At the trial's height, with the Queen
     screaming for sentence and the court closing in, Alice — grown to her full height —
@@ -588,6 +608,7 @@
 # 9 — THE JABBERWOCK  (standalone)
 - id: the_jabberwock
   name: The Jabberwock
+  factions: [the_queens_terror]   # the one lethal monster, deep in the Tulgey Wood (controlled_by the_queens_terror)
   description: >-
     The one genuinely lethal monster in a world of harmless terror, and the rare moment
     violence is the right answer. The Jabberwock — jaws that bite, claws that catch,
