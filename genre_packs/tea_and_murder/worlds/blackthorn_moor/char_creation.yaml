@@ -234,6 +234,87 @@
         personality_trait: tenacious
   allows_freeform: true
 
+- id: drive
+  title: What Really Brought You Here?
+  narration: |
+    The landlord has stopped pretending to work. The fire has burned low and
+    the dog has gone quiet. He sets both his hands flat on the bar and looks
+    at you the way the parish looks at a newcomer — not unkind, but not fooled.
+
+    "Nobody crosses the moor for the pleasure of it," he says. "There's always
+    a reason under the reason. I'll not press you on it — but you'll carry it
+    about whether you tell me or no, and it'll be at every door you knock on
+    while you're with us. So. What is it that's really brought you out here?"
+  loading_text: "The landlord sets both hands flat on the bar..."
+  choices:
+    - label: A Death They Called an Accident
+      description: >-
+        Someone went off the tor, or into the bog, or quietly to sleep and
+        never woke — and the inquest was satisfied. You are not. You have come
+        the length of the country because you cannot let a verdict stand that
+        you know in your bones is a lie.
+      mechanical_effects:
+        relationship: the_unquiet_dead
+        goals: prove_it_was_murder
+        emotional_state: quietly resolute
+        jungian_hint: hero
+    - label: A Name You Mean to Clear
+      description: >-
+        Someone you care for was blamed — for the theft, the scandal, the
+        death — and the parish has settled comfortably on its verdict. You
+        have come to unsettle it. You will not leave until the right name is
+        spoken in the right doorways.
+      mechanical_effects:
+        relationship: the_wrongly_blamed
+        goals: clear_an_innocent_name
+        emotional_state: stubbornly loyal
+        jungian_hint: caregiver
+    - label: A Promise Made at a Deathbed
+      description: >-
+        You held a hand as it went cold and you swore something — to find
+        someone, to right something, to carry a message you don't fully
+        understand. The promise brought you here. You mean to keep it
+        whatever it costs.
+      mechanical_effects:
+        relationship: the_one_who_died
+        goals: keep_a_deathbed_promise
+        emotional_state: burdened by duty
+        jungian_hint: everyman
+    - label: Someone Who Came Here and Vanished
+      description: >-
+        A letter that stopped arriving. A relative, a friend, a client who
+        travelled out to the moor and was never heard from again. The trail
+        goes cold at the edge of this parish. You have come to find where it
+        leads — and to whom.
+      mechanical_effects:
+        relationship: the_missing
+        goals: find_the_vanished
+        emotional_state: anxiously searching
+        jungian_hint: explorer
+    - label: A Letter That Should Not Exist
+      description: >-
+        Something reached your hands that was never meant to — a confession,
+        a threat, a name in an old hand. You could have burned it. Instead
+        you came to learn what it means, and the knowing has already begun
+        to be dangerous.
+      mechanical_effects:
+        relationship: the_unknown_writer
+        goals: uncover_a_buried_secret
+        emotional_state: warily curious
+        jungian_hint: sage
+    - label: A Reckoning of Your Own
+      description: >-
+        You have business here that is older than this week — a wrong done
+        to you, or by you, that the years never settled. You told yourself
+        you'd let it lie. You were lying. You have come back to have it
+        out, one way or the other.
+      mechanical_effects:
+        relationship: the_old_wrong
+        goals: settle_an_old_score
+        emotional_state: privately driven
+        jungian_hint: rebel
+  allows_freeform: true
+
 - id: fate_aspects
   title: "Now, Who Are You Really?"
   narration: |
