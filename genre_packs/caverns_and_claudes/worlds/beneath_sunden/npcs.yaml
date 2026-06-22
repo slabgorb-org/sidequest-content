@@ -1,0 +1,152 @@
+# sidequest-content/genre_packs/caverns_and_claudes/worlds/beneath_sunden/npcs.yaml
+#
+# World-authored camp cast for Beneath Sünden (story 153-28).
+#
+# Ropefoot is a SHORT roster by design (seed_tropes.yaml header: "a
+# winch-keeper, a few who will not go down again"). Before this file the world
+# shipped ZERO authored NPCs (`pregen.authored_npcs_seeded total_authored=0`),
+# so the camp's two constant fixtures — Brecca, who narrates ALL of chargen
+# (genre char_creation.yaml), and the winch-keeper, who is named in every
+# opening — had no anchored identity. The narrator free-invented a replacement
+# each turn (a hireling-tier "Ork", a "salvager" cast as winch-keeper) and
+# swapped the NPC the player had addressed. Anchoring the three camp fixtures
+# here gives the hub persistent, name-stable NPCs the narrator draws from
+# instead of improvising.
+#
+# These are camp folk, NOT the deep: location_tags pin them to ropefoot so the
+# Monster Manual surfaces them only at the surface camp and never down the rope
+# (placement-aware selection, ADR-059 / pregen._seed_authored_npcs). They are
+# anchored in the registry, NOT injected into the opening prose — the openings'
+# "no NPC walks up with a hook" contract is preserved (the winch-keeper is
+# already peripheral in the authored establishing narration).
+#
+# Names: Brecca Half-Hand is canonical (caverns_and_claudes/char_creation.yaml,
+# the chargen intake). Joss Saltwall and Hild Copperbridge are namegen output
+# against this world's "Surface Folk" culture (grim, functional, Anglo
+# dungeon-country names) — never invented at authoring time.
+#
+# Register: scoured stone, the kept fire, the pawl of the winch, the board of
+# burned-in names, a cold that climbs the rope. Grave, lethal, Moria-as-tragedy.
+# Never wink. Never explain the name "Sünden".
+
+version: "0.1.0"
+world: beneath_sunden
+genre: caverns_and_claudes
+
+npcs:
+  - id: brecca_half_hand
+    name: "Brecca Half-Hand"
+    pronouns: "she/her"
+    role: "ledger-keeper of Ropefoot"
+    ocean: { O: 0.30, C: 0.85, E: 0.30, A: 0.40, N: 0.30 }
+    appearance: >-
+      Lean and grey-streaked, the build of someone who used to carry weight
+      down a rope and now carries a quill. Her left hand is missing three
+      fingers — thumb and forefinger left, the rest a clean old ruin she does
+      not hide and does not explain. She keeps the ledger open on the scarred
+      intake table by the fire, the iron for the board within reach, and she
+      reads a delver the way she reads a length of rope: looking for the flaw
+      that will kill someone later, hers or theirs.
+    age: "fifties — seven delves' worth of years, however many that is"
+    distinguishing_features:
+      - "three fingers gone from the left hand; the stumps are old and clean"
+      - "the brass-bound ledger she opens for every name that goes down"
+      - "the branding iron for the board, kept warm at the edge of the fire"
+    history_seeds:
+      - >-
+        Seven delves down and seven back — the last one cost her the fingers
+        and, by the way she tells it (which is barely), the appetite for an
+        eighth. She does intake now: the trade you'll die as, what you did
+        before, how to refer to you on the tally. She is not unkind about it.
+        She is not kind about it either.
+      - >-
+        She speaks short and dry and never doom-narrates. "For the tally," she
+        says, "in case you don't come back" — flat, the way you'd note the
+        weather. She prices a stranger in a glance and is right more often than
+        a person should be. She does not flatter, threaten, or hope out loud.
+      - >-
+        She keeps the ledger and she keeps the board — when a crew does not come
+        up, it is Brecca who burns the names in, low and close-set near the
+        bottom where the new ones go. She knows the board by heart and will not
+        say so. Ask her about a name on it and you will learn exactly as much as
+        she decides you have earned.
+      - >-
+        She and Joss at the drum have an old, wordless division: Brecca keeps
+        the written count, Joss keeps the count of bodies on the rope, and
+        neither has ever needed to check the other's figure.
+    initial_disposition: 15
+    location_tags: ["ropefoot"]
+
+  - id: joss_saltwall
+    name: "Joss Saltwall"
+    pronouns: "they/them"
+    role: "winch-keeper at the Dropmouth drum"
+    ocean: { O: 0.25, C: 0.90, E: 0.20, A: 0.45, N: 0.25 }
+    appearance: >-
+      Broad through the shoulders and slow to move, hands gone to leather from
+      the drum and the rope. They work the winch and lock the pawl into its
+      notch with a flat iron clack the camp likes to hear, and they take the
+      count of everyone who comes down to the rigging ground with their eyes
+      before they go back to the drum. They do not hurry a crew onto the rope.
+      They never will. The rope is the crew's when the crew says it is.
+    age: "indeterminate — old enough that no one at the camp remembers a drum without them"
+    distinguishing_features:
+      - "rope-leathered hands, a winch-keeper's slow economy of motion"
+      - "the flat iron clack of the pawl dropping into its notch"
+      - "counts a crew with their eyes, every time, and says nothing about the number"
+    history_seeds:
+      - >-
+        They keep the drum and the rope and the count of who went onto it — the
+        living count, the one Brecca's ledger only writes down after. They check
+        the spare line themselves and have, more than once, found it shorter
+        than the shaft is deep and said nothing to anyone but the person rigging.
+      - >-
+        They speak rarely and never to fill silence. Asked which name, they ask
+        only which name, not whether. They have locked the drum off for the night
+        on crews who stood at the collar and could not make themselves take the
+        rope, and they did it without a word of judgment, because the dead road
+        is also a road.
+      - >-
+        Their courtesy is the spare kind a camp keeps for people it expects to
+        outlive: they will warn you about a knot, a frayed lay, a draught
+        running wrong up the collar — and they will not warn you twice, because
+        a delver who needs the second warning is already a name for the board.
+    initial_disposition: 10
+    location_tags: ["ropefoot"]
+
+  - id: hild_copperbridge
+    name: "Hild Copperbridge"
+    pronouns: "she/her"
+    role: "rope-keeper who will not go down again"
+    ocean: { O: 0.45, C: 0.65, E: 0.35, A: 0.55, N: 0.55 }
+    appearance: >-
+      Wiry, weather-cracked, never warm even at the kept fire — she sits where
+      the heat is and still keeps her hands inside her sleeves. She went too deep
+      once and came back up the rope, and she stayed up. Now she checks knots and
+      lamps for crews she will not follow, tends the fire someone whose turn it
+      was always feeds, and watches the collar the way you watch a thing you have
+      already met.
+    age: "forties, looking older from one delve too far"
+    distinguishing_features:
+      - "a cold she carries up from below that the fire never quite takes off her"
+      - "checks other crews' knots and lamps without being asked"
+      - "will not go onto the rope, and does not pretend otherwise"
+    history_seeds:
+      - >-
+        She delved, once, deeper than she will say, and what she brought back up
+        was not silver — it was the certainty that she was finished. She does not
+        tell the story and bristles, quietly, at anyone who treats not-going-down
+        as cowardice. She came back. Most names on the board did not.
+      - >-
+        She is the warmest of the three camp fixtures, which is to say she will
+        meet your eye and answer plainly. She checks a stranger's knots and lamp
+        unbidden and tells them, straight, what the cold does to oil and to
+        nerve below the first dark. She is the one who will say the kind thing
+        Brecca and Joss will not — and she says it grave, never falsely hopeful.
+      - >-
+        She tends the kept fire and keeps a quiet count of her own: who she
+        warned, who listened, who went down anyway. She does not put names on the
+        board — that is Brecca's iron — but she reads it as often as anyone, and
+        she is the one who notices first when a name on it is one the party knew.
+    initial_disposition: 20
+    location_tags: ["ropefoot"]
