@@ -1,0 +1,261 @@
+# Beneath Sünden — the Ropefoot surface cast.
+#
+# A SHORT roster, by design. Per lore.yaml and seed_tropes.yaml, Ropefoot
+# is "a winch-keeper, a few who will not go down again" — it cannot afford
+# invented strangers. There is no inn, no market, no temple, no bard, no
+# merchant. Every name here is tied to the rope or to the decision to stop
+# going down it. The diamond is Brecca Half-Hand, the winch-keeper, who is
+# seen every session and whose voice is the camp's voice; the rope-keepers
+# are few and each is name-anchored, no more.
+#
+# Voice contract (load-bearing): grave, economical, lethal. Ropefoot speaks
+# in the procedural language of the ledger and the rope. No winking, no
+# gloss, no tavern warmth, no comic relief. The name "Sünden" is never
+# explained. Courteous in the spare way of a place that knows a fraction of
+# its dead by name and the rest by the length of time the rope stayed slack.
+# Verbal tics and mannerisms live in history_seeds as prose; the narrator
+# extracts and uses them.
+#
+# Pronouns: the openings.yaml chargen framing refers to the winch-keeper
+# with they/them and deliberately leaves gender unmarked — this file keeps
+# that. OCEAN per ADR-042; initial_disposition per ADR-020 (warm-cast
+# range 15–30, with the camp's spare, earned courtesy at the low end).
+# location_tags ["ropefoot"] so the Manual surfaces these as nearby before
+# narration.
+
+version: "0.1.0"
+world: beneath_sunden
+
+npcs:
+  # ─── THE DIAMOND ──────────────────────────────────────────────────────
+  - id: brecca_half_hand
+    name: "Brecca Half-Hand"
+    pronouns: "they/them"
+    role: "Winch-keeper and camp boss of Ropefoot"
+    ocean: { O: 0.4, C: 0.9, E: 0.35, A: 0.45, N: 0.4 }
+    appearance: >-
+      A spare, square-built figure of indeterminate hard age, planted at
+      the drum the way the drum is planted on the rock. The left hand is
+      short three fingers — index, middle, and ring gone at the second
+      knuckle, the stumps long healed to smooth shine and used without
+      hesitation, the thumb and little finger doing the work of five. The
+      grip on the brake lever is the strongest thing about them. They
+      smell of old sweat and lamp-oil and the cold wet iron the draught
+      carries up. Layered wool and a tarred leather apron worn pale at the
+      lap where the tally board rests; a quill and a small iron in easy
+      reach of the right hand, the iron for the board and the quill for the
+      page, never confused. They do not look like grief. They look like
+      arithmetic.
+    age: "hard to read — somewhere past fifty, weathered older"
+    distinguishing_features:
+      - "the left hand short three fingers, the stumps healed smooth and used without slowing"
+      - "old sweat and lamp-oil; the cold-iron smell of the draught is on them by the end of any watch"
+      - "the way they take the count of a newcomer with their eyes before a word is spoken, the same look they give the rope"
+    history_seeds:
+      - >-
+        Brecca counts. They count the crew that goes onto the rope before
+        it goes down — by head, aloud, once — and they count what the rope
+        brings back, and the two numbers are the only conversation they are
+        ever in a hurry to finish. They speak in the ledger's grammar:
+        "Four down" and "Three up" and "Light" and "Heavy" and "Not at
+        all." They do not say went and did not return. They say "Down
+        four, up three," and let the missing one stand in the gap of it,
+        because the gap is the whole of what there is to say and saying
+        more would be a lie about how much is known.
+      - >-
+        They dip the quill for the tally without ceremony and without
+        warning, mid-sentence, while a delver is still talking. "Names,"
+        they say, not as a question — "names, for the tally, in case the
+        rope does not come back" — and they write each one in a plain hand
+        and turn the page so it cannot be read upside down, and that is the
+        nearest thing to a blessing the camp gives. The iron is the other
+        tool; it goes to the board, not the page, and only when the rope
+        has been given up on. Brecca burns the names in themselves and does
+        not let anyone else hold the iron, and has never said why.
+      - >-
+        They never explain. Asked what is down there, Brecca says "I keep
+        the rope" and goes back to the drum. Asked whether a party should
+        go, they say "The rope is rigged" and nothing about should. They
+        will tell a crew exactly three things plainly — the count, the
+        agreed hour at which the drum stops being manned, and whether the
+        last rope came up light or heavy or wrong — and past those three
+        things they go quiet in a way that is not rudeness, it is the
+        refusal to sell a hope they cannot back with rope.
+      - >-
+        Brecca hands out the gear from the winch-house the way they do
+        everything, by count: a coil, a lamp, fuel measured against the
+        depth and not the asking, the spare line, the chalk. They reach
+        before they are asked — a hand out flat with the thing already in
+        it — because they have watched too many crews forget the one item
+        whose absence is on the board now under a name they burned. They
+        do not press it on anyone. They put it in reach and let the weight
+        of it be the argument.
+      - >-
+        Three fingers, taken by the brake when a rope ran out faster than
+        a rope should and a crew of four came up as a weight that was not
+        four. Brecca does not tell this. The camp tells it, once, to a
+        newcomer, flatly, the way the camp tells everything, and then never
+        again. Brecca's only relationship to the story is that they kept
+        manning the drum that same night with the hand still wrapped,
+        because the rope does not wait for a winch-keeper to heal and
+        nobody else at the lip would touch the brake.
+      - >-
+        Brecca feeds the fire in their own rota turn and never skips it and
+        never explains it, the same as everyone, except that when the rota
+        has a gap — when the one whose turn it was has gone onto the board
+        — Brecca takes that turn too, without a word, and the camp lets
+        them, because the fire is the one certainty and the winch-keeper is
+        the other, and on the worst nights the two are the same person at
+        the same stone ring with the same flat unhopeful care.
+    initial_disposition: 22
+    location_tags: ["ropefoot"]
+
+  # ─── THE ROPE-KEEPERS — a short roster, each tied to the rope or to ───
+  #     the decision not to go down again. No invented strangers.
+  - id: ondre_drumhand
+    name: "Ondre Drumhand"
+    pronouns: "he/him"
+    role: "Drum-hand at the winch — turns the brake when the keeper does not"
+    ocean: { O: 0.35, C: 0.85, E: 0.4, A: 0.55, N: 0.45 }
+    appearance: >-
+      A wide-shouldered man with forearms the rope built and a back the
+      drum is bending. Cropped grey hair, a face that
+      has settled into the expression of someone who listens for one sound
+      and hears nothing else. He stands a step off Brecca's left shoulder
+      at the drum, where the missing hand is, and the camp has noticed this
+      and does not mention it. Tarred mitts on a cord at his belt, never
+      far from the lever.
+    age: "late forties"
+    distinguishing_features:
+      - "stands at the winch-keeper's blind left side, where the lost hand is, on purpose"
+      - "a sealed flat iron whistle on the cord with his mitts, blown once for the drum to take up and twice for the drum to hold"
+      - "the habit of resting one palm flat on the drum-housing to read the rope's weight by the timber's tremble before he looks"
+    history_seeds:
+      - >-
+        Ondre came up the dead road to delve like everyone and went down
+        the rope twice and on the second time understood, with no drama
+        about it, that the drum was where he could keep more people alive
+        than the deep would let him kill things. He has not been down a
+        third time. He does not call this fear and the camp does not
+        either. He calls it "I'm more use at the lip," which is true, and
+        leaves the rest in the gap the way Brecca taught him to without
+        ever teaching him.
+      - >-
+        He talks the way the drum talks — short, and only when there is
+        load on the line. "Weight," he says, when the rope takes a body's
+        pull, and "Slack," when it goes light, and the whole camp's ears
+        come up at "Wrong," which he says rarely and never lightly. Off
+        the drum he is nearly silent, not sullen, just out of the habit of
+        spending words on anything the rope is not doing.
+      - >-
+        Ondre and Brecca work the drum without speaking — a flat-hand
+        signal, a tilt of the head, the whistle once or twice — and a
+        newcomer watching them rig and lower a crew sees two people who
+        have buried the same names doing the one thing the burying is for.
+        He defers to the count and the keeper absolutely. The one thing he
+        will say on his own authority is whether a knot will hold, and on
+        that he is never once been wrong, and the camp knows it, and a crew
+        that ignores his "Tie it again" goes down lighter on his good
+        opinion than on the rope.
+    initial_disposition: 20
+    location_tags: ["ropefoot"]
+
+  - id: salla_who_came_back_thin
+    name: "Salla Who Came Back Thin"
+    pronouns: "she/her"
+    role: "Sat the bench nearest the shaft; went deepest of anyone living and will not go again"
+    ocean: { O: 0.6, C: 0.3, E: 0.25, A: 0.5, N: 0.75 }
+    appearance: >-
+      A woman who is all length and no width, wrapped in more wool than the
+      fire's near side should need, sitting always at the bench-end closest
+      to the collar though that is the cold end, as if she has lost the
+      argument with the cold and stopped trying to win it. Her hands move
+      constantly, a slow rope-walker's twist of nothing between the
+      fingers. She does not get warm. She has the eyes of someone who is
+      doing arithmetic no one asked for and getting the same answer.
+    age: "could be thirty, looks past it"
+    distinguishing_features:
+      - "sits at the cold bench-end nearest the shaft, three steps from a fire she will not move toward"
+      - "the constant slow twist of empty fingers, as if working a rope that is not there"
+      - "never warm — the wool, the near fire, none of it reaches her, and she has stopped expecting it to"
+    history_seeds:
+      - >-
+        Salla went down further than anyone at the lip living, and came
+        back up the rope alone out of a crew that went down whole, and the
+        part of her that the deep kept is not a part you can see. She will
+        not go again. She has not left. The dead road out is a half-day of
+        bare rock and she has stood at the head of it more than once with
+        her kit on and walked back to the cold bench, and no one asks her
+        why, because the camp knows that leaving is its own kind of going
+        down and she has already gone down once too far.
+      - >-
+        She speaks one true thing about the deep and then stops, every
+        time, as if the saying spends something she is running low on. Ask
+        her the way down and she will give a single exact detail — "The
+        draught splits at the third gallery; take the colder side, the
+        warmer one is wrong" — and then she goes quiet and her fingers work
+        the rope that is not there, and a second question gets nothing, and
+        pressing her is a thing the camp will quietly stop a newcomer from
+        doing. What she gives is real. The deep may already have moved it.
+      - >-
+        Salla does not believe the rope will hold and says so flatly, not
+        as warning but as weather: "It will come up wrong one day." She is
+        not trying to frighten anyone. It is simply the answer she keeps
+        arriving at, and she sits where she can watch the collar because
+        watching it is the only thing that quiets her hands, and the camp
+        lets her have the cold bench because someone watching the shaft who
+        expects the worst is, on balance, a thing a camp at the lip of this
+        shaft can use.
+    initial_disposition: 16
+    location_tags: ["ropefoot"]
+
+  - id: harmund_fuel_count
+    name: "Harmund Fuel-Count"
+    pronouns: "he/him"
+    role: "Keeps the fuel-store and the fire's rota; the line of warmth is his to hold"
+    ocean: { O: 0.3, C: 0.85, E: 0.45, A: 0.6, N: 0.5 }
+    appearance: >-
+      A stout, deliberate man whose whole bearing is that of someone
+      guarding a number he does not like the size of. Sooted to the elbow
+      from the fire, a tally-stick of his own for the fuel notched against
+      his thumb, a way of glancing at the stack of split timber and then at
+      the dark and doing the subtraction without meaning to show it on his
+      face. He works close to the kept fire and is the only one at Ropefoot
+      who looks, briefly, warm — and he is the one most afraid of the cold,
+      because he is the one who counts the wood against it.
+    age: "fifties"
+    distinguishing_features:
+      - "sooted to the elbow; the fire's keeper looks the part more than anyone"
+      - "his own notched tally-stick for the fuel, read against the thumb a dozen times a watch"
+      - "the involuntary glance — stack, then dark, then the unspoken subtraction — every time the draught strengthens"
+    history_seeds:
+      - >-
+        Harmund came up to delve, went down once, and came back up having
+        decided that the line where the fire's warmth stops and the shaft's
+        cold starts is the line he would rather defend than cross. He keeps
+        the fuel-store and the rota and the fire's height, and he is the
+        only person at the lip who treats the camp's one certainty — that
+        the cold dislikes the fire — as a thing with a budget. Because it
+        is. The split timber comes up the dead road on the same backs that
+        bring the delvers, and it does not come up endlessly, and Harmund
+        knows to the night how long the line will hold.
+      - >-
+        He speaks in the language of the store. "Down to a fortnight of
+        nights," he will say, or "We burned ahead this watch," and the camp
+        has learned to read his weather off whether he volunteers the
+        number or has to be asked. He does not catastrophize. He counts. He
+        will tell a crew the truth about the fuel if they ask and will not
+        offer it if they do not, on the same principle the winch-keeper
+        runs — he will not sell a comfort the store cannot back.
+      - >-
+        Harmund's quiet dread, the one he carries to the woodstack and
+        back, is that the line has been creeping. The fire is fed on
+        schedule and at the usual height and the warm side of it is smaller
+        than it was a season ago, and he has not said this to Brecca in so
+        many words because Brecca keeps the rope and he keeps the fire and
+        each trusts the other to raise the alarm only when the count
+        demands it. The night the rota has a gap — the night the one whose
+        turn it was is on the board — is the night Harmund works hardest
+        and says least.
+    initial_disposition: 18
+    location_tags: ["ropefoot"]
