@@ -938,6 +938,16 @@ item_catalog:
     category: gear
     value: 2
     weight: 1.0
+    # The dedicated light-source tag the environment_clock relight handler keys on
+    # (environment_clock._find_torch): with it, "light a torch" sets resources.light
+    # to max, clears the −2 darkness penalty, and consumes one torch. WITHOUT it the
+    # loadout ships a tagless torch, _find_torch returns None, every relight fails
+    # `no_torch`, and the narrator improvises "the dark retreats" while light stays 0
+    # (sq-playtest 2026-06-22 lie-detector catch). A bare `light` tag must NOT be used
+    # — it marks light-WEIGHT weapons (a dagger), which the matcher deliberately
+    # excludes so a weapon is never eaten as fuel. This is a functional engine tag, not
+    # SRD prose; `provenance.mode: verbatim` governs the item text, not its wiring.
+    tags: [light_source]
     provenance:
       mode: verbatim
       srd: wwn
