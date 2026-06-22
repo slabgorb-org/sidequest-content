@@ -1,0 +1,135 @@
+# Space Opera — WWN/SWN Foci, genre tier (SRD §1.5)
+#
+# Genre-tier foci, shared by all three live worlds (no world ships its own
+# foci.yaml, so world-first resolution falls through to genre). One focus per
+# CRUCIBLE vocation — the crucible ("What did you do?") scene is identical
+# across aureate_span, coyote_star, and perseus_cloud, so these five foci wire
+# the same way in every world. A character is granted ONE focus at chargen
+# (the focus of their chosen vocation), per WWN SRD §1.5 — its first level's
+# skill + signature ability.
+#
+# ADR-095 — each focus ability is DISTINCT from the corresponding class's
+# signature ability. The class abilities (classes.yaml) all resolve through
+# the confrontation beat engine (Call the Shot, Reroute Power, Threading the
+# Needle, Exit Plan, Find Common Ground); these focus abilities are the
+# out-of-combat knack the vocation leaves on a person — exploration, downtime,
+# and social competence the beat engine doesn't cover. Skill names are in
+# skills.yaml. Level-1 only (chargen grants the first level).
+
+- id: chain-of-command
+  display_name: Chain of Command
+  description: >-
+    You wore the responsibility of command long enough that it shows in how
+    people defer to you. Not on a battlefield — the class handles that — but
+    in the corridor, the requisition line, the room where someone has to
+    decide who gets the last berth.
+  levels:
+    - skills:
+        Lead: 1
+      abilities:
+        - name: Pull Rank
+          genre_description: >-
+            You know how a hierarchy talks to itself — the forms, the
+            courtesies, the precise weight a credential carries. People
+            embedded in a chain of command read you as someone who belongs
+            above them in it, and most of the time that is enough.
+          mechanical_effect: >-
+            Once per session, invoke standing or credentials to requisition
+            resources, secure access, or compel cooperation from someone
+            inside a command structure (military, corporate, station
+            authority). On a successful Lead check (difficulty 10) they treat
+            your request as a lawful order they are expected to obey.
+          involuntary: false
+
+- id: jury-rigger
+  display_name: Jury-Rigger
+  description: >-
+    Spec sheets are suggestions and you have always written better ones — not
+    under fire, where the class's instincts take over, but in the long quiet
+    hours when something is broken and the right part is four jumps away.
+  levels:
+    - skills:
+        Work: 1
+      abilities:
+        - name: Make It Hold
+          genre_description: >-
+            Given a little time and whatever's lying around, you can talk a
+            dead machine back into one more shift of life. It won't be pretty
+            and it won't be permanent, but it will run when it has to.
+          mechanical_effect: >-
+            With a few minutes and scavenged materials, make a Work check
+            (difficulty 10) to restore a broken device, vehicle, or system to
+            temporary function for one scene — even lacking the correct
+            components. The fix lapses when the scene ends or the system is
+            pushed hard.
+          involuntary: false
+
+- id: dead-reckoning
+  display_name: Dead Reckoning
+  description: >-
+    The class flies the ship through the gap that isn't there. This is the
+    quieter half of the same gift — the part that knows where the gap LEADS,
+    that reads a starfield like a map and remembers a route flown once years
+    ago.
+  levels:
+    - skills:
+        Sail: 1
+      abilities:
+        - name: Know the Lanes
+          genre_description: >-
+            Charts are for people who haven't been there. You carry the shape
+            of the routes in your head — the safe burns, the hazards, the
+            shortcut nobody filed — and you can find your way without an
+            instrument telling you how.
+          mechanical_effect: >-
+            Make a Sail check (difficulty 10) to plot a viable course through
+            hazardous or uncharted space without instruments, shave transit
+            time off a known run, or recognize that you have flown this
+            approach before and recall one specific hazard or landmark on it.
+          involuntary: false
+
+- id: black-market-contacts
+  display_name: Black-Market Contacts
+  description: >-
+    The class gets you OUT of the room. This is how you knew which room to
+    walk into in the first place — a web of fences, fixers, and bent
+    officials built one favor at a time across every port you ever worked.
+  levels:
+    - skills:
+        Connect: 1
+      abilities:
+        - name: Know a Guy
+          genre_description: >-
+            Every port has someone who can move the thing that can't be moved,
+            launder the credits that can't be banked, or lose the manifest
+            that can't exist — and somehow you always know how to reach them,
+            or someone who does.
+          mechanical_effect: >-
+            In any settlement or station, make a Connect check (difficulty 10)
+            to produce a useful underworld contact — a fence, a fixer, a bent
+            official — willing to move goods, launder funds, or look the other
+            way, for a reasonable price or favor owed.
+          involuntary: false
+
+- id: cultural-fluency
+  display_name: Cultural Fluency
+  description: >-
+    The class closes the deal. This is what lets you walk into a room you've
+    never been in and not get it wrong — a fluency in registers, taboos, and
+    who actually holds the power that no negotiation beat teaches.
+  levels:
+    - skills:
+        Convince: 1
+      abilities:
+        - name: Read the Room
+          genre_description: >-
+            You can feel the shape of a social situation the moment you enter
+            it — who genuinely holds authority, what cannot be said aloud,
+            which courtesy is load-bearing and which is decoration. It keeps
+            you from the misstep that ends a conversation before it starts.
+          mechanical_effect: >-
+            On entering an unfamiliar social situation, make a Convince check
+            (difficulty 10) to immediately grasp the real power dynamics,
+            local taboos, and who actually holds authority — and to avoid one
+            specific cultural misstep that would otherwise cost you standing.
+          involuntary: false

@@ -1,0 +1,152 @@
+# Space Opera — WWN/SWN Backgrounds, genre tier (SRD §1.3)
+#
+# These are the GENRE-TIER backgrounds. The three live space_opera worlds
+# (aureate_span, coyote_star, perseus_cloud) do NOT ship their own
+# world-tier backgrounds.yaml, so this single genre-tier file resolves for
+# all of them (world-first resolution falls through to genre — see
+# chargen_defs_resolve.resolve_backgrounds). It therefore defines EVERY
+# `background:` id those worlds' `char_creation.yaml` origins scenes tag —
+# 11 distinct ids (Void-born is shared by aureate_span + perseus_cloud).
+#
+# Each background grants a free_skill (trained at level 0) + quick_skills
+# (all level 0), per WWN SRD §1.3. All skill names are in skills.yaml.
+# The grants are origin-themed (where you're from), decoupled from the
+# crucible vocation that grants class + focus — so a Void-born can be any
+# vocation. (Crunch in the Genre, Flavor in the World.)
+
+# --- aureate_span origins (origins scene) ---
+
+- id: Core-educated
+  display_name: Core-Educated
+  description: >-
+    Bright cities, polished schools, a life that ran on rails laid down
+    before you were born. You walked away from every advantage that was
+    waiting for you, but the schooling stayed in your hands and your habits.
+  free_skill: Know
+  quick_skills:
+    - Know
+    - Administer
+
+- id: Frontier-raised
+  display_name: Frontier-Raised
+  description: >-
+    Hard ground, tight communities, a horizon that stayed empty no matter
+    how long you watched it. You learned to fix what broke and outlast what
+    couldn't be fixed, because the nearest help was three days out and didn't
+    always come.
+  free_skill: Survive
+  quick_skills:
+    - Survive
+    - Work
+
+- id: Void-born
+  display_name: Void-Born
+  description: >-
+    Born in transit — a station corridor, a ship's mid-deck, a habitat
+    orbiting something nameless. Gravity is a place you visit. You read a
+    docking schedule before you read a book, and the black isn't hostile to
+    you; it's home.
+  free_skill: Exert
+  quick_skills:
+    - Exert
+    - Sail
+
+- id: Constructed
+  display_name: Constructed
+  description: >-
+    You weren't born — you were begun. Grown, woken, compiled, declared
+    viable. Your earliest memory is fluorescent light and someone watching
+    through a transparent panel to see how you'd react. You have been
+    studying people back ever since.
+  free_skill: Know
+  quick_skills:
+    - Know
+    - Notice
+
+# --- coyote_star origins (background scene) ---
+
+- id: Outsystem-arrived
+  display_name: Outsystem-Arrived
+  description: >-
+    You came through Grand Gate with a duffel, a story, and not enough fuel
+    to leave again. The Reach does that to time. You learned fast who to talk
+    to and how to make a stranger decide you were worth helping.
+  free_skill: Connect
+  quick_skills:
+    - Connect
+    - Convince
+
+- id: Far Landing-raised
+  display_name: Far Landing-Raised
+  description: >-
+    You were born on the dust. You know which streets in Vaskov Centrum wash
+    out in the rains, which Compact foreman pays in scrip and which in ore,
+    which storm warnings to ignore. The Reach is the only place you've ever
+    been, and you'd still rather be here than somewhere with too much sky.
+  free_skill: Survive
+  quick_skills:
+    - Survive
+    - Work
+
+- id: Hub-born
+  display_name: Hub-Born
+  description: >-
+    You grew up in voidborn corridors — a Moana-Teru kid who could read a
+    docking schedule before a book. Forty years of clan history runs through
+    Turning Hub and you carry some of it. Gravity is something you visit.
+  free_skill: Sail
+  quick_skills:
+    - Sail
+    - Notice
+
+- id: Deep Root-adjacent
+  display_name: Deep Root-Adjacent
+  description: >-
+    You came up in the foothills near the Tsveri — where the subsonic
+    registers carry on the wind and you learn early that the ground here is
+    older than your settlement, your colony, your species. You came back
+    into Far Landing with patience and a way of hearing things nobody talks
+    about.
+  free_skill: Notice
+  quick_skills:
+    - Notice
+    - Sneak
+
+# --- perseus_cloud origins (origins scene) ---
+
+- id: Regency-raised
+  display_name: Regency-Raised
+  description: >-
+    Stone keeps, an old-blooded navy, the Regency of Thar's certainty that
+    hierarchy is destiny. You were raised where bloodline is a credential and
+    the Praetorium is something the high families claim as ancestry. You
+    walked away from all of it — and you still stand like you expect to be
+    saluted.
+  free_skill: Lead
+  quick_skills:
+    - Lead
+    - Administer
+
+- id: Yula-born
+  display_name: Yula-Born
+  description: >-
+    New Kowloon's neon superblocks or the scrap seas off Santa Abraham —
+    either way you learned the sector's first lesson young: after the GHE,
+    Dust, scrap, and a lucky pretech find became the only currencies that
+    matter. You came up hungry and you stayed sharp.
+  free_skill: Trade
+  quick_skills:
+    - Trade
+    - Sneak
+
+- id: Edge-touched
+  display_name: Edge-Touched
+  description: >-
+    Terma, drifting half-embedded in hyperspace where the Shadows run thick —
+    or somewhere the Dust got into you, a Lazzaro dome, a Coelitha dig, a
+    Ceron ward. You came up where the Cloud is strangest, and it left a mark
+    the inner worlds can see across a room and don't like.
+  free_skill: Notice
+  quick_skills:
+    - Notice
+    - Heal
