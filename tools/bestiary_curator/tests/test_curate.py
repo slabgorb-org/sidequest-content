@@ -27,11 +27,24 @@ from bestiary_curator import (
 
 BENEATH_SUNDEN = (
     Path(__file__).resolve().parents[3]
-    / "genre_packs" / "caverns_and_claudes" / "worlds" / "beneath_sunden"
+    / "genre_packs"
+    / "caverns_and_claudes"
+    / "worlds"
+    / "beneath_sunden"
 )
 
 # Mechanical fields every curated stat block must carry to pass load_genre_pack.
-REQUIRED_FIELDS = {"id", "name", "level", "hp", "armor_class", "attack_bonus", "save", "morale", "tags"}
+REQUIRED_FIELDS = {
+    "id",
+    "name",
+    "level",
+    "hp",
+    "armor_class",
+    "attack_bonus",
+    "save",
+    "morale",
+    "tags",
+}
 
 
 @pytest.fixture(scope="module")

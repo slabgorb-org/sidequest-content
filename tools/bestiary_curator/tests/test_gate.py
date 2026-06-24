@@ -83,9 +83,7 @@ def test_deny_name_glob_is_case_insensitive(register):
 # ── marquee exemption precedence (Diamonds-and-Coal, ADR-014) ──
 def test_marquee_entry_is_kept_even_when_otherwise_denied(register):
     """A marquee name survives even if its type AND tag would both be denied."""
-    d = apply_genre_truth_gate(
-        _entry("Lich", "Celestial", tags=["titan"], cr=21.0), register
-    )
+    d = apply_genre_truth_gate(_entry("Lich", "Celestial", tags=["titan"], cr=21.0), register)
     assert d.kept is True, "marquee rows are exempt from the deny gate"
 
 
