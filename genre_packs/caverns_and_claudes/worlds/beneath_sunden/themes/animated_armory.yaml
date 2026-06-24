@@ -1,0 +1,59 @@
+id: animated_armory
+display_name: The Oathbound Armoury
+generator_class: structured
+interior:
+  algorithm: prim
+  params: {}
+  braid_ratio: 0.2
+# Random-dungeon eligibility (story 158-19): eligible at every depth; the
+# the_standing_rack set-piece + wight per-creature depth_band carry the
+# difficulty. See gm-decisions.md "Random-dungeon theme eligibility".
+depth_band: {min: 0.0, max: null}
+narrator:
+  register: grave
+  flavor: >-
+    Racked war-plate in ordered rows, every strap still supple with oil and
+    every edge still unblued, the file's last pass bright along the steel —
+    and the armourers who struck the watch-oaths into the tangs are two
+    hundred years of dust on the floor their work goes on keeping.
+  motifs: [oathbound_steel, the_watch_that_kept, empty_armoury, the_files_last_pass]
+adjacency:
+  prefers: [bone_crypt, skeleton_tomb]
+  avoids: [drowned_cavern]
+creature_table:
+  # Real sunden_deep_bestiary ids — the dead armourers still at their benches
+  # (hold_skeleton), the watch-captain (wight) deeper. The animated panoply
+  # and the HD 1/2->1 flying blades are the_standing_rack set-piece, not
+  # wandering rows; Keith seeds the construct stat roster.
+  - {ref: hold_skeleton, weight: 2.0}
+  - {ref: wight, weight: 1.0, depth_band: {min: 40.0}}
+loot_table:
+  - {ref: oathkeeper_blade, weight: 2.0}
+  - {ref: armourers_watch_seal, weight: 1.0}
+set_pieces:
+  - id: the_standing_rack
+    name: The Standing Rack
+    telegraph: >-
+      The central rack holds a full panoply assembled as if for a body —
+      greaves, cuirass, helm — and the only disturbed dust in the hall lies
+      before it, pressed in the shape of nothing that walks.
+    outcome: >-
+      Crossing the watch-line under arms wakes the oath the smiths bound into
+      the steel; the panoply keeps the watch it was sworn to keep, and it does
+      not care that the hall it guards has stood empty for two hundred years.
+    depth_band: {min: 0.0, max: null}
+    slots:
+      - name: layout
+        options:
+          - {value: ranked_armoury_hall, weight: 2.0}
+          - {value: forge_annex, weight: 1.0}
+      - name: loot
+        options:
+          - {value: master_armourers_commission, weight: 1.0}
+    trope_components:
+      - trope_id: the_keeper_stirs
+        params: {scope: local}
+quest_template:
+  signature: reach_deep
+  title: "What the Steel Still Guards"
+  objective: "The watch-oaths still hold the upper hall under arms; find the smiths' own descent behind the forge-annex, where the last of the steel was carried down and never brought back up."

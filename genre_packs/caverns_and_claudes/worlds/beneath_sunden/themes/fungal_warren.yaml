@@ -1,0 +1,63 @@
+id: fungal_warren
+display_name: The Spore-Fed Dark
+generator_class: organic
+interior:
+  algorithm: cellular
+  params: {density: 0.5, cutoff: 5, passes: 4}
+  braid_ratio: 0.0
+# Random-dungeon eligibility (story 158-19): eligible at every depth; the
+# the_tended_beds set-piece + gnaw_swarm/the_seep per-creature depth_band
+# carry the difficulty. See gm-decisions.md "Random-dungeon theme eligibility".
+depth_band: {min: 0.0, max: null}
+narrator:
+  register: grave
+  flavor: >-
+    Pale fungus climbs the walls in cultivated rows long since gone to riot.
+    The cap-meat is bread to a starved mouth — it warms the cold out of dead
+    fingers and quiets a gut that has nothing else to quiet it — and the
+    husks working the beds are the delvers who first planted them, kept
+    upright by the very crop they tend.
+  motifs: [fungiculture, the_cap_meat, the_willing_husks, famine_crop]
+adjacency:
+  prefers: [drowned_cavern]
+  avoids: [sunless_temple]
+creature_table:
+  # Real sunden_deep_bestiary ids: the seep that digests the spent beds, and
+  # the vermin that breed in the rot. The willing husks and the first bloom
+  # that learned to seed its planters are the_tended_beds set-piece; Keith
+  # seeds any thrall/spawner stat roster.
+  - {ref: the_seep, weight: 2.0}
+  - {ref: gnaw_swarm, weight: 1.0}
+loot_table:
+  - {ref: spore_cured_cache, weight: 2.0}
+  - {ref: fungiculture_tally, weight: 1.0}
+set_pieces:
+  - id: the_tended_beds
+    name: The Tended Beds
+    telegraph: >-
+      The deeper beds are the well-kept ones — weeded, watered, warm — and
+      the husks working them have the slow untroubled hands of the fed and
+      the hollow under the skin of the long-starved, and they do not look up.
+    outcome: >-
+      The crop feeds whoever eats it and keeps whoever it feeds, and it has
+      kept these tenders since the grain ran out; the cost is written on the
+      bed-frame in the planters' own tally — a notch for each who stayed to
+      work one more season, and not one notch struck through. You need not
+      eat to be kept: the thick air this deep is the crop breathing, and
+      breathing it is only the slower way to take it in.
+    depth_band: {min: 0.0, max: null}
+    slots:
+      - name: layout
+        options:
+          - {value: cultivated_warren, weight: 2.0}
+          - {value: collapsed_bloom_gallery, weight: 1.0}
+      - name: loot
+        options:
+          - {value: planters_last_ration, weight: 1.0}
+    trope_components:
+      - trope_id: the_resource_clock_you_can_see
+        params: {resource: clean_air}
+quest_template:
+  signature: reach_deep
+  title: "Below the Tended Rows"
+  objective: "The beds grow better-kept and the air thicker the deeper the warren drops; find the seed-gallery where the first bloom was farmed, below the rows still worth working, and the way down past it."

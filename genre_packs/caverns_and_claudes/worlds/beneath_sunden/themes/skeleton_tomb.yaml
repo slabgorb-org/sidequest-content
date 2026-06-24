@@ -1,0 +1,60 @@
+id: skeleton_tomb
+display_name: The Standing Barrow
+generator_class: structured
+interior:
+  algorithm: prim
+  params: {}
+  braid_ratio: 0.1
+# Random-dungeon eligibility (story 158-19): eligible at every depth; the
+# the_sealed_coffin set-piece + wight per-creature depth_band carry the
+# difficulty. See gm-decisions.md "Random-dungeon theme eligibility".
+depth_band: {min: 0.0, max: null}
+narrator:
+  register: grave
+  flavor: >-
+    A processional vault where the honour-guard were interred upright in
+    their war-plate, ranked along the walls and facing the one sealed coffin
+    they were sworn to keep; the flesh failed and the seal did not, and while
+    the seal holds the guard hold with it.
+  motifs: [the_standing_guard, the_sealed_coffin, retainer_burial, the_unbroken_seal]
+adjacency:
+  prefers: [bone_crypt, winding_catacomb]
+  avoids: [drowned_cavern]
+creature_table:
+  # Real sunden_deep_bestiary ids. The captain (wight) deepens; the ranked
+  # guard (hold_skeleton) and the grave-gnawers (grave_ghoul) hold the upper
+  # vault. The standing guard rousing en masse is the_sealed_coffin set-piece.
+  - {ref: hold_skeleton, weight: 2.0}
+  - {ref: grave_ghoul, weight: 1.0}
+  - {ref: wight, weight: 1.0, depth_band: {min: 30.0}}
+loot_table:
+  - {ref: grave_plate, weight: 2.0}
+  - {ref: the_coffin_key, weight: 1.0}
+set_pieces:
+  - id: the_sealed_coffin
+    name: The Sealed Coffin
+    telegraph: >-
+      The coffin at the head of the vault is the only thing here not turned
+      to face the door; its seals are unbroken, and every interred guard
+      along the walls is angled, exactly, toward whoever stands before it.
+    outcome: >-
+      The guard were buried to keep this one coffin and they were always
+      going to keep it; breaking the seals — or lingering too long before
+      them — is the disturbance the standing dead were interred to answer.
+    depth_band: {min: 0.0, max: null}
+    save_or_die: {save: reflex, dc: 14}
+    slots:
+      - name: layout
+        options:
+          - {value: processional_vault, weight: 2.0}
+          - {value: ringed_guard_chamber, weight: 1.0}
+      - name: loot
+        options:
+          - {value: the_kept_lords_torc, weight: 1.0}
+    trope_components:
+      - trope_id: the_keeper_notices_the_disturbance
+        params: {patience: low}
+quest_template:
+  signature: reach_deep
+  title: "Whom the Barrow Keeps"
+  objective: "The standing guard keep one sealed coffin and bar the descent behind it; find what the barrow was built to keep down, past the ranked dead who have not stopped facing the door."
