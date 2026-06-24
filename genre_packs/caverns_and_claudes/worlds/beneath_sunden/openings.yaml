@@ -50,6 +50,22 @@ openings:
         never doom-narrated and never falsely hopeful
       stakes: "low on turn 1 — the rope is not taken yet"
       complication: "defer to turn 2 or later; let the cold and the board do the work"
+      # Self-directed spine, NOT a giver hook: no `giver` field, so the camp
+      # offers nothing and no NPC walks up. The bait is the Dropmouth itself
+      # (already the ambient draw above). The router mints this only when the
+      # delver chooses the rope on their own — acceptance is the descent, not a
+      # yes to anyone. Drive-independent: covers WWN PCs with an empty `drive`.
+      quest_seed:
+        quest_id: the_unspent_hold
+        title: "The Unspent Hold"
+        objective: >-
+          Go down the Dropmouth after the unspent hold the dead road's
+          rumor promised, and come back up the rope — your name still
+          off the board.
+        stakes: >-
+          the only thing the camp counts: whether the rope comes back up
+          on your weight, and whether your name stays off the board
+        anchor: the_dropmouth
       avoid_at_all_costs:
         - any combat in the first scene
         - any dice roll
@@ -132,6 +148,21 @@ openings:
         lethal, never doom-narrated
       stakes: "low on turn 1 — they are rigging, not descending"
       complication: "defer; let the board and the cold introduce it"
+      # Same self-directed spine as the solo opening (one quest_id across modes,
+      # only one opening fires per session). No `giver`: the crew takes the rope
+      # on their own count, not at anyone's word. Drive-independent so a crew of
+      # WWN PCs with empty `drive` still seeds a tracked quest on descent.
+      quest_seed:
+        quest_id: the_unspent_hold
+        title: "The Unspent Hold"
+        objective: >-
+          Go down the Dropmouth after the unspent hold the dead road's
+          rumor promised, and bring the crew back up the rope — none of
+          your names added to the board.
+        stakes: >-
+          the only thing the camp counts: whether the rope comes back up
+          on your weight, and whether your names stay off the board
+        anchor: the_dropmouth
       avoid_at_all_costs:
         - any combat in the first scene
         - any dice roll
