@@ -62,9 +62,10 @@ openings:
           Go down the Dropmouth after the unspent hold the dead road's
           rumor promised, and come back up the rope — your name still
           off the board.
-        stakes: >-
-          the only thing the camp counts: whether the rope comes back up
-          on your weight, and whether your name stays off the board
+        # No seed-level `stakes`: the world's stakes live on the history
+        # chapters' `active_stakes` (which always wins via mint_quest_offer's
+        # fill-don't-clobber), so a seed `stakes` here would be inert duplicate
+        # prose. Chapter owns the stakes; the seed owns the quest.
         anchor: the_dropmouth
       avoid_at_all_costs:
         - any combat in the first scene
@@ -159,9 +160,8 @@ openings:
           Go down the Dropmouth after the unspent hold the dead road's
           rumor promised, and bring the crew back up the rope — none of
           your names added to the board.
-        stakes: >-
-          the only thing the camp counts: whether the rope comes back up
-          on your weight, and whether your names stay off the board
+        # No seed-level `stakes` (see solo opening): chapter `active_stakes`
+        # owns the stakes line; the seed owns the quest.
         anchor: the_dropmouth
       avoid_at_all_costs:
         - any combat in the first scene
