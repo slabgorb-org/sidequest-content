@@ -1,20 +1,19 @@
 id: sunless_temple
 display_name: The Sunless Temple
-generator_class: built
+generator_class: labyrinthine
 interior:
-  algorithm: roomcorridor
-  # Real gen_roomcorridor kwargs (verified vs interiors/roomcorridor.py):
-  # max_rooms, room_min, room_max (NOT min_room/max_room/room_attempts).
-  # gen_roomcorridor raises ValueError below 5x5; at valid-but-small dims
-  # its room-placement retries can yield sparse/degenerate rooms — Plan 7's
-  # materializer must validate region dims before dispatch (carry-forward
-  # gotcha); not Plan 4's concern (params undispatched here).
-  params: {max_rooms: 16, room_min: 4, room_max: 9}
-  braid_ratio: 0.0
+  # depthfirst maze (story 158-19): the temple binds the necropolis look
+  # (generator_binding: depthfirst) — undead-heavy faction matching the
+  # acolyte-shades + altar-horror, and a "mausoleum-formal, straight lines"
+  # register that fits colonnaded halls. Was built/roomcorridor, but
+  # beneath_sunden ships no roomcorridor look (only depthfirst/cellular/prim),
+  # so roomcorridor is unmaterializable here. braid_ratio 0.3 = some hall
+  # connectivity (architecture, not a pristine trap maze).
+  algorithm: depthfirst
+  params: {}
+  braid_ratio: 0.3
 # Random-dungeon eligibility (story 158-19): eligible at every depth; the
 # the_altar_that_waits set-piece (min 45) + altar_horror (min 80) carry difficulty.
-# NOTE: roomcorridor degrades below 5x5 — shallow sunless regions need the
-# materializer to validate region dims before dispatch (Delivery Finding, story 158-19).
 depth_band: {min: 0.0, max: null}
 narrator:
   register: grave
