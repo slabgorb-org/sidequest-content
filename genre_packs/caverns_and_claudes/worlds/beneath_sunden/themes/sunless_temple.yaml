@@ -11,7 +11,11 @@ interior:
   # gotcha); not Plan 4's concern (params undispatched here).
   params: {max_rooms: 16, room_min: 4, room_max: 9}
   braid_ratio: 0.0
-depth_band: {min: 45.0, max: null}
+# Random-dungeon eligibility (story 158-19): eligible at every depth; the
+# the_altar_that_waits set-piece (min 45) + altar_horror (min 80) carry difficulty.
+# NOTE: roomcorridor degrades below 5x5 — shallow sunless regions need the
+# materializer to validate region dims before dispatch (Delivery Finding, story 158-19).
+depth_band: {min: 0.0, max: null}
 narrator:
   register: grave
   flavor: >-

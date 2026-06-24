@@ -9,7 +9,13 @@ interior:
   # no TypeError landmine.
   params: {density: 0.45, cutoff: 5, passes: 4}
   braid_ratio: 0.0
-depth_band: {min: 0.0, max: 60.0}
+# Random-dungeon eligibility (Keith, 2026-06-24, story 158-19): every theme is
+# broadly eligible at EVERY depth so the descent stays a grab-bag (>=5
+# themes/stratum) and drowned is 1-of-N everywhere, never the forced opening.
+# Depth tunes the ENCOUNTERS (per-creature depth_band rows + the set-piece
+# depth_band below + cookbook cr_bands), NOT which theme you land in.
+# See gm-decisions.md "Random-dungeon theme eligibility".
+depth_band: {min: 0.0, max: null}
 narrator:
   register: grave
   flavor: >-
