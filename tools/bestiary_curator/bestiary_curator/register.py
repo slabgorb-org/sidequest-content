@@ -29,11 +29,24 @@ class WorldRegister:
 
     @classmethod
     def from_yaml(cls, path: str | Path) -> WorldRegister:
-        data = yaml.safe_load(Path(path).read_text()) or {}
+        # Fail loud (No Silent Fallbacks): an empty/malformed register must NOT
+        # become a silent zero-config gate that drops the entire corpus.
+        data = yaml.safe_load(Path(path).read_text())
+        if not isinstance(data, dict) or not data:
+            raise ValueError(
+                f"{path}: world_register must be a non-empty YAML mapping, "
+                f"got {type(data).__name__}"
+            )
+        allow_types = list(data.get("allow_types") or [])
+        if not allow_types:
+            raise ValueError(
+                f"{path}: world_register.allow_types is empty — an empty allow "
+                f"list denies every creature; declare the admissible 5e types"
+            )
         deny = data.get("deny") or {}
         return cls(
             register=data.get("register", ""),
-            allow_types=list(data.get("allow_types") or []),
+            allow_types=allow_types,
             deny_types=list(deny.get("types") or []),
             deny_tags=list(deny.get("tags") or []),
             deny_name_globs=list(deny.get("name_glob") or []),

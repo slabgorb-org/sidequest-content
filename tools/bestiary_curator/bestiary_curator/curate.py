@@ -85,9 +85,19 @@ def _stat_block(decision: GateDecision, corpus_row: dict) -> dict:
 
 def curate(corpus: list[dict], register: WorldRegister) -> CurationResult:
     """Gate every corpus row and convert survivors onto the WWN ladder."""
+    # Fail loud (No Silent Fallbacks): an empty/None/dict-shaped corpus must not
+    # silently iterate into a cryptic crash (or, for {}, silently yield nothing).
+    if not isinstance(corpus, list) or not corpus:
+        raise ValueError(
+            f"corpus must be a non-empty list of monster rows, got {type(corpus).__name__}"
+        )
     kept: list[dict] = []
     dropped: list[GateDecision] = []
-    for row in corpus:
+    for index, row in enumerate(corpus):
+        if not isinstance(row, dict):
+            raise ValueError(
+                f"corpus row {index} must be a mapping, got {type(row).__name__}: {row!r}"
+            )
         decision = apply_genre_truth_gate(row, register)
         if decision.kept:
             kept.append(_stat_block(decision, row))

@@ -41,6 +41,10 @@ def cr_to_level(cr: float) -> int:
     """Map a 5e Challenge Rating onto the WWN level ladder, compressing high CR
     into the L8-L10 deep band."""
     cr = float(cr)
+    if cr < 0:
+        # Fail loud (No Silent Fallbacks): a negative CR is a malformed corpus
+        # row, not a level-1 creature — don't silently band it to the floor.
+        raise ValueError(f"CR {cr} is negative — corpus row is malformed")
     for upper, level in _CR_BANDS:
         if cr <= upper:
             return level
