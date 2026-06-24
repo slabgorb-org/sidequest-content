@@ -9,9 +9,13 @@
 #
 # SRD-aligned generic stat lines (wwn ruleset module — see rules.yaml,
 # OSR/SRD conventions): level == HD, hp == average (4.5/HD rounded),
-# ascending AC, attack_bonus ≈ level, morale on the 2d12 ladder, save ==
-# 15 - floor(level/2). No genre-tier file to override — every reachable
-# hostile is authored here.
+# ascending AC, attack_bonus ≈ level, morale on the 2d6 ladder (12 = fearless,
+# auto-pass), save == 15 - floor(level/2). No genre-tier file to override —
+# every reachable
+# hostile is authored here. The 7 named capstones below are followed by a
+# 178-entry SRD Monster Manual → WWN expansion (added 2026-06-24); see the
+# banner above that block for its two-gate (genre-truth + tone) provenance,
+# the 61-creature drop audit, and the CR→level conversion recipe.
 #
 # ── FIDELITY (world_register genre-truth gate + cookbook RACE factions) ─
 #   The deep is the dwarfhold of Sünden Deep, dug past where digging
@@ -371,3 +375,3606 @@ entries:
       not finished, and in no hurry, because it has all the time there is.
       Marquee (ADR-014), exempt from the deny gate. The creatures.yaml
       plate is "The One That Answered The Digging."
+
+  # ════════════════════════════════════════════════════════════════════
+  #  SRD MONSTER MANUAL → WWN EXPANSION (178 entries)  — added 2026-06-24
+  # ════════════════════════════════════════════════════════════════════
+  #  The full 5e Monster Manual roster (~330 rows, MM 2014/2025 + Volo's +
+  #  Kassoon) was handed in. These 178 are what survived TWO gates and were
+  #  converted to WWN/OSR stat lines on the SAME ladder as the 7 capstones
+  #  above. Full audit trail: sunden_gate.py / tone_curate.py.
+  #
+  #  GATE 1 — world_register.yaml genre-truth (type / tag / name_glob),
+  #    applied against corpus/monsters.yaml: dropped every Dragon, Fiend,
+  #    Elemental, Plant, Fey, Celestial, and Swarm type (none in allow_types)
+  #    + titan-tagged (Kraken, Tarrasque) + name_globs (mephits, faerie
+  #    dragons, sprite, pegasus). ~95 culled here.
+  #  GATE 2 — tone curation (Moria-as-tragedy, "never comic, never cute"):
+  #    beast band held to lightless-mine vermin / cave predators only (≈40
+  #    surface fauna dropped — camels, horses, sharks, dinosaurs, surface
+  #    cats and bears); humanoids kept ONLY as the delved-too-deep / underdark
+  #    / doomed-rival-expedition (humanoid_constraint); dropped dedicated
+  #    flyers (Roc, Griffon, Hippogriff, Chimera, Manticore, Peryton),
+  #    modron-lineage comic clockwork (Duo/Tri/Quadro/Pentadrone), wrong-biome
+  #    humanoids (Bullywug, Jackalwere, Thri-kreen), and whimsical/joke Kassoon
+  #    items (Animated Gel Can, Bernard Denholm, Vine Tortoise, Arachniferno).
+  #    61 dropped at this gate.
+  #  DEDUP — Wight, Otyugh, Vampire, Mummy Lord, Lich, Ghoul, and Gray Ooze
+  #    already live above (Gray Ooze == the_seep via world_register.reskin);
+  #    not re-added.
+  #
+  #  CONVERSION (same recipe as the file header): WWN level assigned by
+  #    CR-band, compressing high CR into the L8-10 deep band (Lich CR21→L9,
+  #    Mummy Lord CR15→L9, Vampire CR13→L8, Aboleth CR10→L8); hp == round(4.5
+  #    × level); ascending AC 12-17 by armor archetype; attack_bonus == level;
+  #    save == 15 − level//2; morale on the 2d6 ladder (12 + a "Fearless"
+  #    ability for mindless undead / oozes / constructs); skill 1-4 by band.
+  #
+  #  LEAN-TIER CONVENTION — unlike the 7 named capstones above (evocative
+  #    grave names + Z-Image plates in creatures.yaml), these lean entries
+  #    keep the recognizable SRD `name` for encountergen/reference legibility
+  #    and carry their grave Sünden recast in `description`. tags = [<srd
+  #    type>, <band: low|mid|deep>, <descriptors>]. None are marquee/capstone;
+  #    no Z-Image plates rendered for these yet.
+  # ════════════════════════════════════════════════════════════════════
+
+  - id: constrictor_snake
+    name: Constrictor Snake
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d8"
+    move: "30 ft. swim 30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: coiling sump-edge ambusher
+    tags: [beast, low, vermin]
+    abilities:
+      - "Constrict — a bitten delver is coiled and crushed each round until the snake is slain or shaken off"
+    description: >-
+      A long pale muscle of a thing that lies along the sump's worked lip and
+      takes whatever drinks at the black water.
+
+  - id: giant_bat
+    name: Giant Bat
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "10 ft. fly 40 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: blind vaulted-ceiling flyer
+    tags: [beast, low, vermin]
+    abilities:
+      - "Sound-sight — it strikes unerringly in full dark and a snuffed lamp is no cover from it"
+    description: >-
+      It roosts in the high dark of the great worked vaults and drops on the
+      lamp-flame, blind and silent and wide as a man's reach.
+
+  - id: giant_crab
+    name: Giant Crab
+    level: 1
+    hp: 5
+    armor_class: 15
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft. swim 30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: sump-dwelling armored scavenger
+    tags: [beast, low, vermin]
+    abilities:
+      - "Grab — a claw that closes holds a delver fast until the carapace is broken"
+    description: >-
+      A bone-white scuttler the breadth of a shield, dredged up from the
+      flooded sumps where the deep's water stands black and still.
+
+  - id: giant_poisonous_snake
+    name: Giant Poisonous Snake
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: pale gallery-stalking venom-hunter
+    tags: [beast, low, vermin]
+    abilities:
+      - "Venom — a delver bitten saves or fails fast as the heavy poison floods the wound"
+    description: >-
+      A blind serpent thick as a delver's arm, white from a life beneath all
+      light, that hunts the warmth moving through the lightless galleries.
+
+  - id: giant_rat
+    name: Giant Rat
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d4"
+    move: "30 ft."
+    morale: 5
+    skill: 1
+    save: 15
+    role: blind grain-store scavenger
+    tags: [beast, low, vermin]
+    abilities:
+      - "Filth — a delver bitten sickens without a save as the deep's rot enters the wound"
+    description: >-
+      Grown dog-large on the dwarfhold's spoiled stores, hairless and milk-
+      eyed, it gnaws whatever the rope lowers into the dark.
+
+  - id: giant_wolf_spider
+    name: Giant Wolf Spider
+    level: 1
+    hp: 5
+    armor_class: 14
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft. climb 30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: pale running stone-floor hunter
+    tags: [beast, low, vermin]
+    abilities:
+      - "Venom — a delver bitten saves or stiffens as the hunting-poison takes the limb"
+    description: >-
+      It spins no line but runs the worked floor on pale legs, hunting down
+      the tremor of a delver's step across the dwarf-stone.
+
+  - id: poisonous_snake
+    name: Poisonous Snake
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: pale lightless stone-crack lurker
+    tags: [beast, low, vermin]
+    abilities:
+      - "Venom — a delver bitten saves or sickens as the poison works through the cold"
+    description: >-
+      A blind white thread of a serpent that winters in the cracks of the
+      worked dwarf-stone and strikes at the warmth of a passing hand.
+
+  - id: scorpion
+    name: Scorpion
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: pale stinging shaft vermin
+    tags: [beast, low, vermin]
+    abilities:
+      - "Venom — a delver struck by the sting saves or weakens as the cold poison spreads"
+    description: >-
+      A hand-long pallid thing that hunts the lightless galleries by the
+      tremor of a footfall on worked stone.
+
+  - id: spider
+    name: Spider
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "30 ft. climb 30 ft."
+    morale: 5
+    skill: 1
+    save: 15
+    role: small lightless web-vermin
+    tags: [beast, low, vermin]
+    abilities:
+      - "Venom — a delver bitten saves or stiffens as the small poison takes hold"
+    description: >-
+      It strings its grey lines across a dead gallery and waits where no lamp
+      has thrown for two lifetimes.
+
+  - id: stirge
+    name: Stirge
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "10 ft. fly 40 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: blood-draining lamplight flyer
+    tags: [beast, low, vermin]
+    abilities:
+      - "Blood-drain — once fixed it clings and draws blood each round until pried loose or killed"
+    description: >-
+      It comes out of the lightless vault on leather wings the moment a lamp
+      is lit, drawn to the heat of living blood.
+
+  - id: swarm_of_centipedes
+    name: Swarm of Centipedes
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d6"
+    move: "20 ft. climb 20 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: boiling crevice-bred vermin tide
+    tags: [beast, low, vermin]
+    abilities:
+      - "Swarms — fights only in numbers, breaks the moment it is alone"
+    description: >-
+      A pale boiling carpet that pours from a crack in the worked stone and is
+      over a fallen delver before the lamp can be turned to it.
+
+  - id: swarm_of_insects
+    name: Swarm of Insects
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d6"
+    move: "20 ft. climb 20 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: lightless crawling vermin cloud
+    tags: [beast, low, vermin]
+    abilities:
+      - "Swarms — fights only in numbers, breaks the moment it is alone"
+    description: >-
+      The blind crawling things that bred in the dark on what the deep drops,
+      rising in a cloud the instant warm blood passes.
+
+  - id: giant_octopus
+    name: Giant Octopus
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "20 ft. swim 30 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: flooded-sump grabbing lurker
+    tags: [beast, low, vermin]
+    abilities:
+      - "Grab and drag — a struck delver is seized and hauled toward the black water until it tears free or drowns"
+    description: >-
+      A pale boneless thing folded into the deepest flooded sump, that reaches
+      a long arm up over the worked lip for whatever comes to the water.
+
+  - id: cave_bear
+    name: Cave Bear
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d10"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: blind-eyed apex deep predator
+    tags: [beast, mid, predator]
+    abilities:
+      - "Two claw strikes per round (1d10 each), and a grabbed delver is bitten without escape"
+    description: >-
+      A great pale bulk bred lightless in the deep, blind-eyed and ranging the
+      cold galleries by scent and the tremor of the stone.
+
+  - id: giant_constrictor_snake
+    name: Giant Constrictor Snake
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d10"
+    move: "30 ft. swim 30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: massive sump-haunting crusher
+    tags: [beast, mid, predator]
+    abilities:
+      - "Constrict — a struck delver is wrapped and crushed each round, drawn down toward the black water until it is freed or slain"
+    description: >-
+      A pale coil long as a gallery is wide, drawn up out of the flooded deep
+      to lie in wait along the worked stone of the sump.
+
+  - id: giant_scorpion
+    name: Giant Scorpion
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: armored venomous deep stalker
+    tags: [beast, mid, predator]
+    abilities:
+      - "Venom — a delver struck by the sting saves or weakens fast as the heavy poison floods the wound"
+    description: >-
+      A black-armored thing the size of a hound, gone pale at the joints, that
+      hunts the lightless galleries by the tremble of the stone underfoot.
+
+  - id: swarm_of_poisonous_snakes
+    name: Swarm of Poisonous Snakes
+    level: 3
+    hp: 14
+    armor_class: 12
+    attack_bonus: 3
+    damage: "1d8"
+    move: "20 ft. climb 20 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: writhing venomous vermin nest
+    tags: [beast, mid, vermin]
+    abilities:
+      - "Swarms — fights only in numbers, breaks the moment it is alone"
+    description: >-
+      A nest of pale blind serpents disturbed from a crack in the dwarf-stone,
+      striking from every side at once at the warmth that woke them.
+
+  - id: web_weaver_spider
+    name: Web Weaver Spider
+    level: 7
+    hp: 32
+    armor_class: 14
+    attack_bonus: 7
+    damage: "1d10"
+    move: "30 ft. climb 30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: great pale web-spinning horror
+    tags: [beast, deep, predator]
+    abilities:
+      - "Web — a struck delver is bound fast to the worked stone, helpless until the strands are cut, and is bitten each round it remains"
+    description: >-
+      The great pale spinner of the deep galleries, whose grey lines sheathe a
+      whole worked hall and hold the long-dead delvers still folded in them.
+
+  - id: cultist
+    name: Cultist
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 15
+    role: faith-kept delver gone wrong
+    tags: [humanoid, low, cultist]
+    abilities:
+      - "Litany — chants to the deep through the dark, unshaken while the words hold"
+    description: >-
+      Came down on a pilgrimage no one else would name, and kneels yet in the
+      lightless galleries to a thing that answered.
+
+  - id: deep_gnome_svirfneblin
+    name: Deep Gnome (Svirfneblin)
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: stone-vanishing deep recluse
+    tags: [humanoid, low]
+    abilities:
+      - "Stonewalk — it passes through worked dwarf-stone unseen, breaking line of sight and reappearing to strike"
+    description: >-
+      Small, grey, and starved-careful, it has shared the dark with the hold's
+      ruin so long it moves through the cut walls as if through water.
+
+  - id: drow
+    name: Drow
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: lightless gallery skirmisher
+    tags: [humanoid, low, drow]
+    abilities:
+      - "Sunblind — a sudden lantern-flare blinds it; attacks against it gain advantage until it withdraws into dark"
+    description: >-
+      A pale hunter of the unlit galleries who took the deep when the dwarves
+      could no longer keep it, and grudges any lamp that comes down the rope.
+
+  - id: gnoll
+    name: Gnoll
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d8"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: starved scavenging hunter
+    tags: [humanoid, low, gnoll]
+    abilities:
+      - "Frenzied bite — when it drops a delver, it may bite a second time as a free attack"
+    description: >-
+      The hunger that drove it down the rope never left it, and down here
+      there is nothing to feed it but what comes carrying a lamp.
+
+  - id: grimlock
+    name: Grimlock
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: blind gallery-stalker
+    tags: [humanoid, low]
+    abilities:
+      - "Hunts by sound — eyeless, it strikes unerringly in pitch dark but is thrown off by sudden noise or stillness"
+    description: >-
+      Eyeless from generations born past all light, it reads the worked stone
+      by echo and the scrape of a delver's boot.
+
+  - id: guard
+    name: Guard
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: posted sentry of a dead camp
+    tags: [humanoid, low, warrior]
+    abilities:
+      - "Hold the rope — stands the choke where the rope comes down, gives no ground at a doorway"
+    description: >-
+      Was set to watch the camp's one way out and watches it still, long after
+      the camp went cold and the others did not return.
+
+  - id: hobgoblin
+    name: Hobgoblin
+    level: 1
+    hp: 5
+    armor_class: 15
+    attack_bonus: 1
+    damage: "1d8"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 15
+    role: drilled warband spearman
+    tags: [humanoid, low, goblinoid]
+    abilities:
+      - "Holds the line — fights shoulder to shoulder, gains +1 to hit while a comrade stands beside it"
+    description: >-
+      It came down the dead road with a column that still kept its order, and
+      it keeps that order yet in a gallery the lamps no longer reach.
+
+  - id: kenku
+    name: Kenku
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: voice-thieving dark scavenger
+    tags: [humanoid, low]
+    abilities:
+      - "Stolen voices — it speaks only in voices taken from the dead, calling in a lost companion's words to draw delvers off the rope"
+    description: >-
+      It has no voice of its own, only the last words of those who went down
+      before, and it spends them like coin from the dark beyond the lamplight.
+
+  - id: kuo_toa
+    name: Kuo-toa
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft. swim 30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: dweller of the drowned workings
+    tags: [humanoid, low, aquatic]
+    abilities:
+      - "Sticky shield — on a hit it may instead fix its glue-shield to a delver, grappling until torn free"
+    description: >-
+      Come up out of the flooded lower galleries on cold webbed feet, it
+      worships something the dwarves drowned and never name.
+
+  - id: lizardfolk
+    name: Lizardfolk
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft. swim 30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: drowned-workings ambusher
+    tags: [humanoid, low, lizardfolk]
+    abilities:
+      - "Hold-breath ambush — lies still beneath the flooded stone, gains surprise on any who wade past"
+    description: >-
+      It took to the drowned lower workings when the cold drove it off the
+      rope, and it has not surfaced for any reason but to drag something
+      under.
+
+  - id: sahuagin
+    name: Sahuagin
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft. swim 30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: drowned-workings raider
+    tags: [humanoid, low, aquatic]
+    abilities:
+      - "Blood-frenzy — once a delver is wounded and bleeding in the water, it strikes with savage advantage"
+    description: >-
+      It rose with the flood that took the lower hold and hunts the waterline
+      where the cold galleries give way to the dark drowned stairs.
+
+  - id: thug
+    name: Thug
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: starved sell-sword turned bandit
+    tags: [humanoid, low, warrior]
+    abilities:
+      - "Waylay — strikes from the dark of a worked-stone gallery for what little a delver carries"
+    description: >-
+      Hired on for gold, found none, and learned down here that a man with a
+      lamp is worth robbing for the lamp alone.
+
+  - id: troglodyte
+    name: Troglodyte
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: reeking stone-burrow lurker
+    tags: [humanoid, low]
+    abilities:
+      - "Reek — any delver within reach saves or is weakened, attacks at penalty until clear of the stench"
+    description: >-
+      It nests in the side-cuts the masons abandoned, and its stink reaches a
+      gallery ahead of it like a warning none can heed in time.
+
+  - id: gnoll_flesh_gnawer
+    name: Gnoll Flesh Gnawer
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d8"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: blooded carrion-hunter
+    tags: [humanoid, low, gnoll]
+    abilities:
+      - "Rend the fallen — gains an extra bite each round there is a bleeding body within reach"
+    description: >-
+      It learned in the lightless galleries that the dead keep better than the
+      living, and it no longer waits for a thing to stop moving before it
+      feeds.
+
+  - id: goblin_boss
+    name: Goblin Boss
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 2
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: harrier-band overseer
+    tags: [humanoid, low, goblinoid]
+    abilities:
+      - "Drives the band — may force a nearby goblin to take a blow meant for itself"
+    description: >-
+      It survives by spending the others, sending them up the fraying ropes
+      and into the unlit galleries while it waits where the cold is least.
+
+  - id: kuo_toa_whip
+    name: Kuo-toa Whip
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 2
+    damage: "1d8"
+    move: "30 ft. swim 30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: drowned-flock driver
+    tags: [humanoid, low, aquatic]
+    abilities:
+      - "Drives the flock — lashes lesser kuo-toa forward to grapple and hold while it strikes the held"
+    description: >-
+      It carries the pincer-staff of those who keep the cold faith, and it
+      spends the flock without a flicker to feed whatever waits below the
+      waterline.
+
+  - id: orc_ruffian
+    name: Orc Ruffian
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 2
+    damage: "1d8"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: warband edge-holder
+    tags: [humanoid, low, orc]
+    abilities:
+      - "Savage swing — once per fight, hits a second adjacent delver if its first blow lands"
+    description: >-
+      It holds a stretch of worked dwarf-stone by force and feeds on whatever
+      the warband cannot, growing leaner and meaner the longer the dark keeps
+      it.
+
+  - id: spy
+    name: Spy
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: turncoat scout of the dead expedition
+    tags: [humanoid, low, rogue]
+    abilities:
+      - "Sneak-strike — +1d6 against a foe who has not yet marked her in the dark"
+    description: >-
+      Slipped the rival camp's roster to whatever bought her safe passage, and
+      now carries lamplight only to lure the next party onto the rope.
+
+  - id: bugbear_chief
+    name: Bugbear Chief
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: ambushing warband chief
+    tags: [humanoid, mid, goblinoid]
+    abilities:
+      - "Comes out of the dark — deals double damage on any round it strikes from surprise"
+    description: >-
+      It moves through the galleries quieter than a thing its size should, and
+      the first the band's prey knows of it is the lamp going out.
+
+  - id: druid
+    name: Druid
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: green-priest rotted in the deep
+    tags: [humanoid, mid, spellcaster]
+    abilities:
+      - "Withering word — a save-or-wither hex that draws the warmth from flesh in the cold"
+    description: >-
+      Came to bless an expedition that would see the sky again, and stayed
+      past the last living root to learn what grows where no light goes.
+
+  - id: githyanki_warrior
+    name: Githyanki Warrior
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: disciplined exile reaver
+    tags: [humanoid, mid, psionic]
+    abilities:
+      - "Mind-blade — its sword bites the thoughts as the flesh; a struck delver saves or is left reeling for a turn"
+    description: >-
+      Gaunt and gilt-armored and far from any home, it holds a stretch of the
+      lightless galleries with a cold soldier's discipline and no mercy at
+      all.
+
+  - id: githzerai_monk
+    name: Githzerai Monk
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: ascetic exile, fists like stone
+    tags: [humanoid, mid, psionic]
+    abilities:
+      - "Defensive trance — between blows it turns aside the first attack each turn unarmed, faster than the dark can follow"
+    description: >-
+      It came down into the deep to be alone with its discipline, and it
+      strikes with bare hands harder than dwarf-iron when that solitude is
+      broken.
+
+  - id: gnoll_pack_lord
+    name: Gnoll Pack Lord
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: starved hunting-pack master
+    tags: [humanoid, mid, gnoll]
+    abilities:
+      - "Looses the pack — every gnoll within earshot gains the frenzied second bite while the lord lives"
+    description: >-
+      It holds the pack together by being hungrier than any of them, and it
+      runs its hunters down the lightless galleries until something is
+      cornered.
+
+  - id: hobgoblin_captain
+    name: Hobgoblin Captain
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: gallery-holding warband officer
+    tags: [humanoid, mid, goblinoid]
+    abilities:
+      - "Captain's word — grants every hobgoblin within earshot +1 to hit and immunity to the first failed morale check"
+    description: >-
+      It keeps the column's discipline in a hold the dwarves cut and
+      abandoned, and it will spend every spear it commands before it yields
+      the stretch.
+
+  - id: knight
+    name: Knight
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: oath-bound captain of the lost
+    tags: [humanoid, mid, warrior]
+    abilities:
+      - "Rally — broken survivors at his side hold their morale while he stands"
+    description: >-
+      Swore to see the expedition home and keeps the oath the only way left to
+      him, holding worked dwarf-stone for a banner two lifetimes fallen.
+
+  - id: kuo_toa_monitor
+    name: Kuo-toa Monitor
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft. swim 30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: disciplined drowned-faith enforcer
+    tags: [humanoid, mid, aquatic]
+    abilities:
+      - "Stunning blows — a delver struck twice in a turn saves or is staggered, unable to act until the dark closes again"
+    description: >-
+      Bred and beaten into a fighting calm the others lack, it guards the wet
+      shrines and breaks any delver who comes too near the flooded stair.
+
+  - id: lizardfolk_shaman
+    name: Lizardfolk Shaman
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft. swim 30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: drowned-workings curse-speaker
+    tags: [humanoid, mid, lizardfolk, spellcaster]
+    abilities:
+      - "Calls the cold water — floods a stretch of gallery, leaving wading delvers off-balance and surprised by what waits below"
+      - "Drowning-curse — a cursed delver's lungs fill as if submerged, taking 1d6 each round until they leave the water's edge"
+    description: >-
+      It speaks to whatever rose in the flooded lower workings when the
+      dwarves drowned them, and the water answers it the way it answers
+      nothing living.
+
+  - id: orc_eye_of_gruumsh
+    name: Orc Eye of Gruumsh
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 10
+    skill: 1
+    save: 14
+    role: half-blind warband zealot
+    tags: [humanoid, mid, orc, spellcaster]
+    abilities:
+      - "Curse of the one eye — names a delver, who suffers -2 to all rolls until the zealot falls"
+      - "Fanatic — never checks morale, and the warband holds while it stands"
+    description: >-
+      It put out its own eye somewhere in the dark to see what the dark sees,
+      and it leads the warband by a faith colder than the stone.
+
+  - id: orog
+    name: Orog
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: deep-bred warband shock-killer
+    tags: [humanoid, mid, orc]
+    abilities:
+      - "Tireless — ignores the first wound's penalty and presses the attack while lesser orcs falter"
+    description: >-
+      It was whelped down here, never saw the dead road, and knows no surface
+      to long for — only the worked stone and the killing it was bred to.
+
+  - id: priest
+    name: Priest
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 10
+    skill: 1
+    save: 14
+    role: doomed faith's last celebrant
+    tags: [humanoid, mid, spellcaster]
+    abilities:
+      - "Binding word — a spoken save-or-hold that roots a delver where the lamplight finds him"
+    description: >-
+      Read the last rites over a camp that no one buried, and goes on saying
+      them in the dark to a congregation of the dead.
+
+  - id: quaggoth
+    name: Quaggoth
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft. climb 20 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: maddened deep-galleries brute
+    tags: [humanoid, mid]
+    abilities:
+      - "Death-rage — when bloodied it attacks twice each turn and will not stop while it stands"
+    description: >-
+      A shaggy, climbing horror gone wrong in the dark, it scales the cut
+      walls and the dwarf-rigged ropes to fall on lamplight from above.
+
+  - id: quaggoth_thonot
+    name: Quaggoth Thonot
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft. climb 20 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: wild psionic pack-shaman
+    tags: [humanoid, mid, psionic]
+    abilities:
+      - "Mind-lash — once per fight it stabs a delver's thoughts; save or take searing inner damage and drop what it holds"
+    description: >-
+      The one in the pack whose ruin turned inward, it leads by a raw cold
+      pressure on the mind that the others crawl to obey.
+
+  - id: veteran
+    name: Veteran
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d10"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: hardened survivor of the descent
+    tags: [humanoid, mid, warrior]
+    abilities:
+      - "Second cut — strikes twice in the round against any foe who closes within reach"
+    description: >-
+      Outlived everyone who came down the dead road with him and stopped
+      asking why, keeping only the edge that kept him breathing.
+
+  - id: wererat
+    name: Wererat
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: curse-taken shaft-scavenger
+    tags: [humanoid, mid, shapechanger]
+    abilities:
+      - "Lycanthropy — shrugs off any steel not silvered; a bitten delver who fails a save carries the curse and turns by the next dark"
+    description: >-
+      A delver the deep's curse took small and skittering, it keeps to the
+      shaft's crawlspaces and the gaps in the worked stone, gnawing the ropes
+      that others trust their weight to.
+
+  - id: werewolf
+    name: Werewolf
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: curse-taken gallery-hunter
+    tags: [humanoid, mid, shapechanger]
+    abilities:
+      - "Lycanthropy — shrugs off any steel not silvered; a bitten delver who fails a save carries the curse and turns by the next dark"
+    description: >-
+      It went down a delver and came up something the lamplight no longer
+      answers to, hunting the galleries it once mapped with a hunger no rope
+      can lower far enough to escape.
+
+  - id: blind_grim_guardian
+    name: Blind Grim Guardian
+    level: 4
+    hp: 18
+    armor_class: 16
+    attack_bonus: 4
+    damage: "1d8"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: sightless warder of a sealed way
+    tags: [humanoid, mid, warrior]
+    abilities:
+      - "Blind-fighting — fights wholly by sound, unhindered by dark or any blinding"
+    description: >-
+      Gave up his eyes to the deep to be rid of the dark's last advantage, and
+      now guards a door no lamp will ever help a delver pass.
+
+  - id: demon_pactmage
+    name: Demon Pactmage
+    level: 4
+    hp: 18
+    armor_class: 12
+    attack_bonus: 4
+    damage: "1d6"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: bargain-bound caller of the below
+    tags: [humanoid, mid, spellcaster, cultist]
+    abilities:
+      - "Pact-fire — a save-for-half bolt of cold hellfire bought with his own dwindling years"
+    description: >-
+      Made his bargain when the food ran out and the rope went slack, and pays
+      it down here in coin that is not gold to a creditor that does not
+      forget.
+
+  - id: lizard_king
+    name: Lizard King
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d10"
+    move: "30 ft. swim 30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: drowned-workings warband king
+    tags: [humanoid, mid, lizardfolk]
+    abilities:
+      - "Drags them under — on a hit it pulls a delver into the flooded stone, where its kin wait holding their breath"
+    description: >-
+      It rules the drowned lower workings the dwarves could not save, and
+      nothing that wades into its water by lamplight has come back up the rope
+      to say so.
+
+  - id: lizard_queen
+    name: Lizard Queen
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d8"
+    move: "30 ft. swim 30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: drowned-workings warband queen
+    tags: [humanoid, mid, lizardfolk]
+    abilities:
+      - "Calls the brood — summons holding-breath lizardfolk from the flooded dark to surface upon a chosen delver"
+    description: >-
+      She holds the deepest of the flooded workings, where the cold water
+      never moves, and she spends her brood the way the deep spends everything
+      that comes down to it.
+
+  - id: orc_war_chief
+    name: Orc War Chief
+    level: 4
+    hp: 18
+    armor_class: 16
+    attack_bonus: 4
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: gallery-holding warband chief
+    tags: [humanoid, mid, orc]
+    abilities:
+      - "Chief's rally — every orc within earshot rerolls a failed morale check and gains +1 to hit while the chief stands"
+    description: >-
+      It took a long stretch of worked dwarf-stone by force and feeds its
+      warband on the rope-traffic from above, and it will hold the gallery
+      until the last of them is dead beneath it.
+
+  - id: warlock_of_the_archfey
+    name: Warlock Of The Archfey
+    level: 4
+    hp: 18
+    armor_class: 12
+    attack_bonus: 4
+    damage: "1d6"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: fey-pledged delver lured ever down
+    tags: [humanoid, mid, spellcaster, cultist]
+    abilities:
+      - "Witch-dark — calls a smothering save-or-blind dark that does not touch her own sight"
+    description: >-
+      Followed a light that was not lamplight deeper than any vein runs, sworn
+      to a patron the dwarves walled out and the digging let back in.
+
+  - id: wereboar
+    name: Wereboar
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: curse-taken charging brute
+    tags: [humanoid, mid, shapechanger]
+    abilities:
+      - "Lycanthropy — shrugs off any steel not silvered; a bitten delver who fails a save carries the curse and turns by the next dark"
+      - "Goring rush — charges down a gallery for double damage and knocks a struck delver from their feet"
+    description: >-
+      The curse took it heavy and tusked and stupid with rage, and it charges
+      the worked stone corridors head-down, caring nothing for the rope, the
+      cold, or the lamp it shatters underfoot.
+
+  - id: weretiger
+    name: Weretiger
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: curse-taken stalking killer
+    tags: [humanoid, mid, shapechanger]
+    abilities:
+      - "Lycanthropy — shrugs off any steel not silvered; a bitten delver who fails a save carries the curse and turns by the next dark"
+      - "Pouncing kill — strikes from ambush in the dark and rakes twice if the first blow lands"
+    description: >-
+      It hunts the lightless galleries the way nothing wide-shouldered should
+      be able to, silent past the worked stone, and a delver knows it is there
+      only when the lamp goes out and the weight comes down from above.
+
+  - id: drow_elite_warrior
+    name: Drow Elite Warrior
+    level: 5
+    hp: 22
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: elite lightless-gallery duelist
+    tags: [humanoid, mid, drow]
+    abilities:
+      - "Poisoned blade — a struck delver saves or is dropped senseless until the next descent"
+      - "Sunblind — a lantern-flare blinds it; attacks against it gain advantage until it gains the dark"
+    description: >-
+      The blade the unlit houses send when a delving must simply end, it
+      fights two-weaponed in the pitch with poison drawn from the deep's own
+      vermin.
+
+  - id: gladiator
+    name: Gladiator
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: pit-killer of the camp's last sport
+    tags: [humanoid, mid, warrior]
+    abilities:
+      - "Crowd-killer — strikes twice each round and rolls morale at no penalty while outnumbered"
+    description: >-
+      Was set to fight men for the camp's amusement when the food was gone,
+      and kept fighting after the amusement died with the camp.
+
+  - id: half_red_dragon_veteran
+    name: Half-Red Dragon Veteran
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d10"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: changed sell-sword, scaled by the deep
+    tags: [humanoid, mid, warrior]
+    abilities:
+      - "Searing breath — a save-for-half gout of fire once per fight, scales hardened against the cold"
+    description: >-
+      Took a bargain in the lightless galleries that bought him heat against
+      the cold and a hide of red scale, and lost the man underneath to the
+      trade.
+
+  - id: sahuagin_baron
+    name: Sahuagin Baron
+    level: 5
+    hp: 22
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d10"
+    move: "30 ft. swim 30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: warlord of the drowned stair
+    tags: [humanoid, mid, aquatic]
+    abilities:
+      - "Drives the raid — lesser sahuagin fight with savage advantage while it stands and holds the waterline"
+      - "Blood-frenzy — strikes a bleeding delver twice each turn in the flood"
+    description: >-
+      Four-armed and scarred from a hundred raids up the drowned stair, it has
+      claimed the flooded lower hold as a kingdom and counts its drowned dead
+      among the faithful.
+
+  - id: werebear
+    name: Werebear
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d10"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: curse-taken solitary maul-beast
+    tags: [humanoid, mid, shapechanger]
+    abilities:
+      - "Lycanthropy — shrugs off any steel not silvered; a bitten delver who fails a save carries the curse and turns by the next dark"
+      - "Bear-form fury — strikes twice each round, and when bloodied it ignores all wound penalties"
+    description: >-
+      A delver the curse took alone and made vast, it holds a single black
+      gallery against all comers and remembers just enough of the rope and the
+      lamp to hate the ones who still carry them.
+
+  - id: drow_mage
+    name: Drow Mage
+    level: 6
+    hp: 27
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: spellbinder of the unlit houses
+    tags: [humanoid, mid, drow, spellcaster]
+    abilities:
+      - "Webcraft and shadow — calls clinging dark and binding webs to pin delvers and snuff their lamps"
+      - "Sunblind — a lantern-flare blinds it; attacks against it gain advantage until it gains the dark"
+    description: >-
+      It learned its art in galleries that have not seen a true flame in two
+      lifetimes, and it grudges the borrowed light of every delver who
+      descends. The dark answers it, and the dark is patient.
+
+  - id: githzerai_zerth
+    name: Githzerai Zerth
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: master adept of the exile order
+    tags: [humanoid, mid, psionic]
+    abilities:
+      - "Mind-stun — once per turn it stills a delver's thoughts; save or stand frozen and useless for a turn"
+      - "Defensive trance — turns aside the first attack each turn unarmed"
+    description: >-
+      Decades of the discipline have made its body a weapon and its will a
+      wall, and it carries that stillness through the lightless galleries like
+      a man who has already made peace with the dark.
+
+  - id: hobgoblin_warlord
+    name: Hobgoblin Warlord
+    level: 6
+    hp: 27
+    armor_class: 16
+    attack_bonus: 6
+    damage: "1d10"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 12
+    role: warband-commanding gallery lord
+    tags: [humanoid, mid, goblinoid]
+    abilities:
+      - "Warlord's command — every hobgoblin within earshot gains +2 to hit, never checks morale, and may shift to flank on the warlord's word"
+      - "Veteran's guard — the first telling blow each fight is turned aside by its scarred discipline"
+    description: >-
+      It brought a whole disciplined column down the dead road and held it
+      together where everything else came apart, ruling a span of worked
+      dwarf-stone like a hold of its own. The lamps along its gallery are kept
+      lit on purpose — so its spears can see what the rope brings down to die.
+
+  - id: kuo_toa_archpriest
+    name: Kuo-toa Archpriest
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d8"
+    move: "30 ft. swim 30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: high voice of the drowned god
+    tags: [humanoid, mid, aquatic, spellcaster]
+    abilities:
+      - "Drowned-god's wrath — calls down a curse of the deep, choking lungs with phantom water; a delver saves or drowns where it stands"
+      - "Sticky shield — fixes its glue-shield to a delver, grappling until torn free"
+    description: >-
+      It speaks for the thing the dwarves drowned in the lower workings and
+      could not keep drowned, and the cold water of the flooded galleries
+      answers when it raises its webbed hands.
+
+  - id: mage
+    name: Mage
+    level: 6
+    hp: 27
+    armor_class: 12
+    attack_bonus: 6
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: scholar who delved past his learning
+    tags: [humanoid, mid, spellcaster]
+    abilities:
+      - "Withering bolt — a save-for-half lance of unlight that gutters lamps as it strikes"
+    description: >-
+      Came down to copy the worked-stone glyphs the dwarves left and read one
+      too far, and has not slept or aged or surfaced since.
+
+  - id: assassin
+    name: Assassin
+    level: 7
+    hp: 32
+    armor_class: 14
+    attack_bonus: 7
+    damage: "1d8"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: silent cutter of the rival camp
+    tags: [humanoid, deep, rogue]
+    abilities:
+      - "Death-strike — +3d6 against a foe unaware of her in the dark; a felling blow forces a save or die"
+      - "Lamp-killer — moves unheard and snuffs the nearest light before she opens"
+    description: >-
+      Settled the rival camp's quarrels one throat at a time when the gold ran
+      short, and works the dark now out of long habit and nothing left to
+      want.
+
+  - id: githyanki_knight
+    name: Githyanki Knight
+    level: 7
+    hp: 32
+    armor_class: 16
+    attack_bonus: 7
+    damage: "1d10"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 12
+    role: gilt-armored captain of the reavers
+    tags: [humanoid, deep, psionic]
+    abilities:
+      - "Blink — it steps out of the world and back, leaving a strike to find empty dark, then falling on a delver's flank"
+      - "Mind-blade — its great sword bites flesh and thought alike; a struck delver saves or is left reeling for a turn"
+    description: >-
+      It commands the gaunt reavers who hold the deepest worked galleries, and
+      it fights from no fixed place, here and then gone and then behind the
+      lamp. Two lifetimes from any sky, it has made the dwarves' tomb its
+      garrison.
+
+  - id: archmage
+    name: Archmage
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d8"
+    move: "30 ft."
+    morale: 10
+    skill: 3
+    save: 11
+    role: the doomed expedition's master, deepest of all
+    tags: [humanoid, deep, spellcaster]
+    abilities:
+      - "Word of fear — a spoken save-or-flee that empties a gallery of the living"
+      - "Withering hand — a save-for-half ruin of cold unlight that drinks the lamplight nearest him"
+    description: >-
+      He led them down the dead road on the promise of the hold's gold and led
+      them past where digging stops, and would not turn back when the rope
+      still reached the light. Now he keeps the deepest gallery alone, the
+      last and worst-changed of everyone who trusted him.
+
+  - id: gelatinous_cube
+    name: Gelatinous Cube
+    level: 3
+    hp: 14
+    armor_class: 12
+    attack_bonus: 3
+    damage: "1d6"
+    move: "10 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: gallery-shaped engulfing ooze
+    tags: [ooze, mid]
+    abilities:
+      - "Engulf — a delver it touches must save or be drawn inside, held fast and dissolved while still aware"
+      - "Fearless — never checks morale"
+    description: >-
+      A clear block of wet exactly the width of the worked corridor, scoured
+      so clean of passage you do not see it until the lamp shines through a
+      hanging bone.
+
+  - id: ochre_jelly
+    name: Ochre Jelly
+    level: 3
+    hp: 14
+    armor_class: 12
+    attack_bonus: 3
+    damage: "1d6"
+    move: "20 ft. climb 20 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: stone-seeping dividing ooze
+    tags: [ooze, mid]
+    abilities:
+      - "Splits when struck by a blade — each half crawls on and digests flesh, leaving worked stone untouched"
+      - "Fearless — never checks morale"
+    description: >-
+      A dull amber seep that came up through a crack in the floor and will not
+      be cut apart, only multiplied, each piece still hungry.
+
+  - id: scarecrow
+    name: Scarecrow
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: bound straw ward, never stood down
+    tags: [construct, low, warding]
+    abilities:
+      - "Dread touch — a delver who fails a save is frozen in place 1d4 rounds"
+      - "Fearless — never checks morale"
+    description: >-
+      A lamp-watch effigy the hold lashed up of straw and old harness to mind
+      a granary gate, still clawing at any light that nears the threshold.
+
+  - id: rug_of_smothering
+    name: Rug of Smothering
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "20 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: bound smother-ward of a great hall
+    tags: [construct, mid, smother]
+    abilities:
+      - "Smother — on a hit it folds over a delver, who cannot act and takes the damage again each round until torn free"
+      - "Fearless — never checks morale"
+    description: >-
+      A hall-rug woven through with binding-work to fall on intruders, lying
+      flat and cold across the flagstones of a feast-room two lifetimes empty.
+
+  - id: flesh_golem
+    name: Flesh Golem
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8"
+    move: "30 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: stitched dwarf-make guardian, never stood down
+    tags: [construct, mid, warding]
+    abilities:
+      - "Spell-proof — wizardry slides off it and leaves no mark; only steel and force tell"
+      - "Fearless — never checks morale"
+    description: >-
+      The hold's last forge-wrights sewed their own slain into a single
+      labouring hulk to keep the deep gate, and it keeps it yet, long after
+      the hands that made it went cold.
+
+  - id: shield_guardian
+    name: Shield Guardian
+    level: 6
+    hp: 27
+    armor_class: 16
+    attack_bonus: 6
+    damage: "1d10"
+    move: "20 ft."
+    morale: 12
+    skill: 2
+    save: 12
+    role: bound bodyguard-ward of a dead lord
+    tags: [construct, mid, warding]
+    abilities:
+      - "Ward-bond — it still shields the long-dead master it was bound to, taking onto itself the blows meant for those near where that one fell"
+      - "Fearless — never checks morale"
+    description: >-
+      A dwarf-make sentinel bound to guard one of the hold's lords, standing
+      watch over a chair of bones it will let no living hand disturb.
+
+  - id: stone_golem
+    name: Stone Golem
+    level: 8
+    hp: 36
+    armor_class: 17
+    attack_bonus: 8
+    damage: "2d6"
+    move: "20 ft."
+    morale: 12
+    skill: 3
+    save: 11
+    role: dwarf-carved ward of the deep gate
+    tags: [construct, deep, warding]
+    abilities:
+      - "Spell-proof — wizardry breaks against it like water on rock; only force and steel mark its carved hide"
+      - "Crushing slam — a solid blow knocks a delver from their feet and leaves them slow to rise"
+    description: >-
+      A guardian hewn whole from a pillar of the deep dwarf-stone and woken to
+      hold one threshold against all comers. It has kept that threshold
+      through the fall of the hold and the silence of two lifetimes, and asks
+      nothing but that none pass.
+
+  - id: iron_golem
+    name: Iron Golem
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d6"
+    move: "20 ft."
+    morale: 12
+    skill: 3
+    save: 11
+    role: forge-made ward, never once stood down
+    tags: [construct, deep, warding]
+    abilities:
+      - "Spell-proof — no wizardry touches it; fire only feeds the heat already banked in its iron frame"
+      - "Crushing slam — its blow falls with the weight of the forge that made it, breaking bone and shield together"
+    description: >-
+      The masterwork of the hold's last forge-wrights, a man-shape of black
+      iron set to guard the innermost gate and never told to stand down. It
+      walks its few measured paces still, glowing faintly with banked forge-
+      heat, while the hands that wrought it are two lifetimes dust.
+
+  - id: half_ogre
+    name: Half-Ogre
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 2
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: brute squatting the upper galleries
+    tags: [giant, low]
+    abilities:
+      - "Crushing reach — strikes first against a delver who closes from open ground"
+    description: >-
+      A hulking thing of mixed and brutish blood that drifted down into the
+      empty galleries when the hold's wardens stopped walking them.
+
+  - id: half_ogre_ogrillon
+    name: Half-Ogre (Ogrillon)
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 2
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: knuckle-walking brute of the lower runs
+    tags: [giant, low]
+    abilities:
+      - "Bone-ridge fists — a natural hit splits hide and worked stone alike"
+    description: >-
+      Squatter and meaner than its kin, it took a flooded cistern run for a
+      den and breaks whatever comes down the rope to it.
+
+  - id: ogre
+    name: Ogre
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: galleries-claiming brute with a stone club
+    tags: [giant, mid]
+    abilities:
+      - "Hurled stone — flings a chunk of worked dwarf-stone for 1d8 at range"
+    description: >-
+      A great ill-tempered thing that walled itself into a guardroom off the
+      high gallery and drags the dead back to it down the long stair.
+
+  - id: ettin
+    name: Ettin
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: two-headed warden of a gallery mouth
+    tags: [giant, mid]
+    abilities:
+      - "Two-headed watch — cannot be surprised and strikes twice, once with each fist"
+    description: >-
+      A two-headed brute that quarrels endlessly with itself in the dark, yet
+      never lets both heads sleep, so nothing passes its gallery unseen.
+
+  - id: hill_giant
+    name: Hill Giant
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "2d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 13
+    role: hulking squatter of the broken halls
+    tags: [giant, mid]
+    abilities:
+      - "Hurled stone — heaves a slab of fallen masonry for 1d10 at range"
+    description: >-
+      A great dull-witted brute that came up out of the lower dark when the
+      galleries fell quiet, and rules a hall of rubble it neither built nor
+      mourns.
+
+  - id: troll
+    name: Troll
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: lank cave-horror that will not stay dead
+    tags: [giant, mid, regenerating]
+    abilities:
+      - "Regeneration — closes its wounds and rises again unless the hurt was dealt by fire or acid"
+    description: >-
+      A long-limbed grey thing that crept into the lamp-dead galleries and
+      cannot be killed by any honest wound, only burned or eaten away.
+
+  - id: cyclops
+    name: Cyclops
+    level: 6
+    hp: 27
+    armor_class: 14
+    attack_bonus: 6
+    damage: "2d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: one-eyed brute of the deep quarries
+    tags: [giant, mid]
+    abilities:
+      - "Hurled stone — slings a quarried block for 1d10, though its aim is poor and bent"
+    description: >-
+      A single-eyed giant that drove its bulk into the abandoned quarry-
+      galleries and hammers crude shapes from the worked dwarf-stone in the
+      dark.
+
+  - id: oni
+    name: Oni
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d10"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: shape-stealing devourer in the dark
+    tags: [giant, mid]
+    abilities:
+      - "Borrowed face — it takes the seeming of one it has eaten, and walks among delvers as a lost companion until it strikes"
+    description: >-
+      An ogre-thing of old malice that learned to wear the faces of the hold's
+      dead, calling down the rope in voices the living still grieve for.
+
+  - id: stone_giant
+    name: Stone Giant
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "2d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: deep-stone brute that hurls and shatters
+    tags: [giant, mid]
+    abilities:
+      - "Hurled stone — casts a boulder with grim accuracy for 1d10, and catches stones thrown back"
+    description: >-
+      A grey giant grown into the deep rock who treats the hold's standing
+      pillars as quarry, and the delvers beneath them as so much spoil.
+
+  - id: cloud_giant
+    name: Cloud Giant
+    level: 7
+    hp: 32
+    armor_class: 15
+    attack_bonus: 7
+    damage: "2d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: exiled lord of a drowned high hall
+    tags: [giant, deep]
+    abilities:
+      - "Old craft — it calls a roiling murk to its hand or hurls a stone in a gust for 1d10, the last small magics of a fallen house"
+    description: >-
+      The last of a proud hall buried when the deep took it, this towering
+      exile keeps to the cold ruin of its seat and meets intruders with a
+      grief that has long since curdled to wrath.
+
+  - id: fire_giant
+    name: Fire Giant
+    level: 7
+    hp: 32
+    armor_class: 16
+    attack_bonus: 7
+    damage: "2d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: smith-brute squatting a dead forge
+    tags: [giant, deep]
+    abilities:
+      - "Heated steel — its weapon glows from the forge-coals, the blow searing flesh it does not merely break"
+    description: >-
+      A black-iron giant that took the hold's great forge for its own and
+      keeps the coals fed with whatever comes down the stair, hammering at
+      metal no dwarf would own.
+
+  - id: fomorian
+    name: Fomorian
+    level: 7
+    hp: 32
+    armor_class: 14
+    attack_bonus: 7
+    damage: "2d6"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: curse-twisted giant with a withering eye
+    tags: [giant, deep, cursed]
+    abilities:
+      - "Evil eye — fixing its swollen eye on a delver who fails a save wracks the body with curse, halving their strength until they leave the deep"
+    description: >-
+      A vast misshapen giant warped by the same curse that took the hold, one
+      eye bloated and weeping malice, dragging its ruined frame through the
+      lowest galleries where even the dead do not go.
+
+  - id: frost_giant
+    name: Frost Giant
+    level: 7
+    hp: 32
+    armor_class: 15
+    attack_bonus: 7
+    damage: "2d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: cold-wreathed brute of the deep chill
+    tags: [giant, deep]
+    abilities:
+      - "Hurled ice — flings a rime-crusted block for 1d10, and the deep cold clings where it lands"
+    description: >-
+      A giant born of the killing cold that pools in the hold's deepest
+      reaches, its breath a fog on the dark and frost grown thick on the
+      dwarf-stone where it has stood too long.
+
+  - id: storm_giant
+    name: Storm Giant
+    level: 8
+    hp: 36
+    armor_class: 15
+    attack_bonus: 8
+    damage: "2d6"
+    move: "30 ft."
+    morale: 8
+    skill: 3
+    save: 11
+    role: last lord of a hall the deep swallowed
+    tags: [giant, deep]
+    abilities:
+      - "Storm-call — it draws the lightning down through the dead stone for 2d6, a power dimmed but not yet spent"
+      - "Hurled stone — casts a pillar-shard for 1d10 with a lord's deadly aim"
+    description: >-
+      The sole survivor of a high hall that stood once at the roof of the
+      world and now lies crushed beneath miles of fallen rock. It sits in the
+      dark of its drowned seat, keeping the old forms of a court that has no
+      other living soul to honour them.
+
+  - id: darkmantle
+    name: Darkmantle
+    level: 1
+    hp: 5
+    armor_class: 14
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft. climb 30 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: lamp-killing ceiling ambusher
+    tags: [monstrosity, low]
+    abilities:
+      - "Smother — drops to fold over a delver's head and snuff the lamp, leaving the gallery black"
+    description: >-
+      A clot of stone-colored hide that hangs among the ceiling carvings until
+      a light passes beneath it, then falls to close over the flame and the
+      face that carried it.
+
+  - id: piercer
+    name: Piercer
+    level: 1
+    hp: 5
+    armor_class: 14
+    attack_bonus: 1
+    damage: "1d6"
+    move: "20 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: stalactite-mimicking drop-ambusher
+    tags: [monstrosity, low]
+    abilities:
+      - "Plunge — releases from the gallery roof onto whatever stops beneath it, striking once for 1d6 on the fall"
+    description: >-
+      Hanging stone-still among the natural teeth of the unworked roof, it is
+      one more drip-shape until it lets go on the delver who pauses below.
+
+  - id: rust_monster
+    name: Rust Monster
+    level: 1
+    hp: 5
+    armor_class: 14
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: iron-eating scavenger of old diggings
+    tags: [monstrosity, low]
+    abilities:
+      - "Corrode — a metal weapon or armor that strikes it or is struck crumbles to red flakes unless warded"
+    description: >-
+      It came up the old diggings for the iron the dwarves left in the walls,
+      and eats a delver's blade and mail to rust before it eats anything else.
+
+  - id: death_dog
+    name: Death Dog
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "40 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: two-headed gallery pack-hunter
+    tags: [monstrosity, low]
+    abilities:
+      - "Two-headed — bites twice per round (1d6 each), and a delver bitten sickens with a wasting fever without a save"
+    description: >-
+      Lean and twin-skulled, run wild in the lightless galleries past counting
+      of generations; one head sleeps while the other keeps the watch.
+
+  - id: ankheg
+    name: Ankheg
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft. burrow 20 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: tunnel-boring acid ambusher
+    tags: [monstrosity, mid]
+    abilities:
+      - "Burrow-ambush — erupts from worked stone it has bored through, seizes a delver in its mandibles, and floods the grip with acid (1d8)"
+    description: >-
+      It cut its own crooked shafts beside the dwarves' square ones and lies
+      in them, and the floor opens where no seam was before.
+
+  - id: basilisk
+    name: Basilisk
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d6"
+    move: "20 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: petrifying eight-legged lair-keeper
+    tags: [monstrosity, mid]
+    abilities:
+      - "Petrifying gaze — a delver who meets its eyes must save or be turned slowly to cold stone where they stand"
+    description: >-
+      It keeps a lair hung with grey shapes that were once delvers and once
+      dwarves, each one stopped mid-stride in the stone the gaze made of them.
+
+  - id: carrion_crawler
+    name: Carrion Crawler
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft. climb 30 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: corpse-feeding paralytic crawler
+    tags: [monstrosity, mid]
+    abilities:
+      - "Paralytic tendrils — a delver struck by the head-fronds is held rigid and helpless on a failed save while the thing feeds"
+    description: >-
+      It walks the walls of the death-galleries on a hundred legs, feeding
+      where the deep has already done the killing and waiting for what still
+      moves.
+
+  - id: doppelganger
+    name: Doppelganger
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: shape-stealing gallery impostor
+    tags: [monstrosity, mid]
+    abilities:
+      - "Take the face — wears the form of one it has killed and walks among the party until it strikes from inside the lamplight"
+    description: >-
+      Something pale and faceless that grew patient in the dark, and learned
+      that the surest way through a closed party is to come back wearing one
+      of them.
+
+  - id: ettercap
+    name: Ettercap
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft. climb 30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: web-stringing gallery snare-keeper
+    tags: [monstrosity, mid]
+    abilities:
+      - "Web-snare — strings worked archways with strangling cord; a delver caught is held fast on a failed save and bitten at the spinner's leisure"
+    description: >-
+      A hunched and clawed weaver that has hung the old colonnades with its
+      cord end to end, and keeps the husks of what it caught strung up among
+      the dwarf-carving.
+
+  - id: grick
+    name: Grick
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft. climb 30 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: stone-colored tentacled lurker
+    tags: [monstrosity, mid]
+    abilities:
+      - "Four tentacles — lashes with all four barbed arms (1d6 each) before it brings the beak to bear"
+    description: >-
+      A length of rubbery dark coil pressed into a wall-niche, the same grey
+      as the stone around it, until the four barbed arms come away from the
+      rock.
+
+  - id: hook_horror
+    name: Hook Horror
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "20 ft. climb 30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: blind echo-hunting wall-climber
+    tags: [monstrosity, mid]
+    abilities:
+      - "Two hooks — rakes with both great beak-hooks per round (1d8 each); blind, it hunts by the sound of a delver's own steps"
+    description: >-
+      A chitinous, beaked horror that clings high on the worked walls and sees
+      nothing, but hears every scrape of boot on dwarf-stone and comes for it.
+
+  - id: merrow
+    name: Merrow
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "20 ft. swim 40 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: flooded-gallery brute lurker
+    tags: [monstrosity, mid]
+    abilities:
+      - "Drag-under — seizes a delver at the water's edge and hauls them into the flooded dark to drown"
+    description: >-
+      A bloated, fish-eyed thing grown huge in the drowned lower workings,
+      that surfaces at the edge of the lamplight only to take a delver down
+      with it.
+
+  - id: mimic
+    name: Mimic
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d8"
+    move: "10 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: disguised stone-furniture predator
+    tags: [monstrosity, mid]
+    abilities:
+      - "Adhesive seizure — a delver who touches it sticks fast and cannot pull free without a save, held for the maw"
+    description: >-
+      It learned the shapes the dwarves left behind — a strongbox, a door, a
+      hewn step — and waits in the lightless rooms as the one of them that is
+      hungry.
+
+  - id: minotaur
+    name: Minotaur
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: maze-keeping goring brute
+    tags: [monstrosity, mid]
+    abilities:
+      - "Goring charge — a run-up across an open gallery lands the horns for 1d8 and bears a delver to the floor"
+    description: >-
+      It knows every turn of the dead-end diggings the way the lost never
+      will, and runs them in the dark to drive what it finds into the deeper
+      blind ways.
+
+  - id: owlbear
+    name: Owlbear
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: territorial den-guarding brute
+    tags: [monstrosity, mid]
+    abilities:
+      - "Hug — a delver clawed by both forelimbs is caught and crushed against it for 1d8 more"
+    description: >-
+      A great hooked-beak brute denned in a side-gallery strewn with cracked
+      bone, that takes the lamplight at its border as a thing to be torn
+      apart.
+
+  - id: yeti
+    name: Yeti
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft. climb 20 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: cold-gallery silent stalker
+    tags: [monstrosity, mid]
+    abilities:
+      - "Cold grip — both claws rend (1d8) and the killing cold of the deep galleries bleeds the warmth from a delver it holds"
+    description: >-
+      White as the rime on the deepest worked stone and just as still, it
+      stalks the cold lower galleries where breath smokes and the lamp-flame
+      stands low.
+
+  - id: yuan_ti_malison_type_1
+    name: Yuan-ti Malison (Type 1)
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: serpent-bodied vault-cult hunter
+    tags: [monstrosity, mid]
+    abilities:
+      - "Constricting coil — the lower length winds a grabbed delver and crushes for 1d6 each round it holds"
+    description: >-
+      Human to the shoulders and serpent below, it slides the old cult-
+      galleries on its coils, keeping the rites the deep taught a people who
+      came down and never went up.
+
+  - id: yuan_ti_malison_type_2
+    name: Yuan-ti Malison (Type 2)
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: serpent-armed vault-cult hunter
+    tags: [monstrosity, mid]
+    abilities:
+      - "Venom-strike — the snakes that hang where arms should be bite past a parry, and the venom sickens a delver without a save"
+    description: >-
+      Man-shaped and man-faced, but from each shoulder hangs a serpent in
+      place of an arm, and both strike while it watches you watch the wrong
+      one.
+
+  - id: yuan_ti_malison_type_3
+    name: Yuan-ti Malison (Type 3)
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: serpent-headed vault-cult hunter
+    tags: [monstrosity, mid]
+    abilities:
+      - "Hypnotic sway — a delver who meets the lamplit eyes stands swaying and slow on a failed save while the fangs find the throat"
+    description: >-
+      A man's body crowned with the flat wedge-head of a great serpent, that
+      rises from the cult-dark and holds a delver still with the slow weave of
+      its gaze.
+
+  - id: lamia
+    name: Lamia
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 13
+    role: deceiving will-sapping lair-keeper
+    tags: [monstrosity, mid]
+    abilities:
+      - "Withering touch — a delver struck loses heart and wit, weakening on a failed save until the lair is left behind"
+    description: >-
+      It keeps a stolen lair of dwarf-finery and ruined comfort, and wears a
+      fair seeming over the lower beast to draw a delver in close enough to
+      drain.
+
+  - id: bulette
+    name: Bulette
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d10"
+    move: "40 ft. burrow 30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: armored stone-swimming ambush-digger
+    tags: [monstrosity, mid]
+    abilities:
+      - "Breach — surges up through floor it has tunneled, throwing a delver down, and lands its great jaws for 1d10"
+    description: >-
+      A plated horror that swims the worked stone as if it were water, and the
+      first a delver knows of it is the floor of the gallery heaving up
+      underfoot.
+
+  - id: gorgon
+    name: Gorgon
+    level: 5
+    hp: 22
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d10"
+    move: "40 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: iron-hided petrifying brute
+    tags: [monstrosity, mid]
+    abilities:
+      - "Petrifying breath — a delver in the path of its grey exhalation must save or stiffen to standing stone"
+    description: >-
+      An iron-scaled bull-shape that snorts a grey vapor in the close
+      galleries, and the lair behind it is set with delvers turned to
+      weathered statuary.
+
+  - id: roper
+    name: Roper
+    level: 5
+    hp: 22
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d8"
+    move: "10 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: stone-disguised tendril predator
+    tags: [monstrosity, mid]
+    abilities:
+      - "Reeling strands — flicks out sticky tendrils that catch a delver fast on a failed save and reel them in to the maw"
+    description: >-
+      It stands among the broken pillars as one more shaft of fallen rock,
+      until the strands lash out from the stone and draw a delver in across
+      the floor.
+
+  - id: umber_hulk
+    name: Umber Hulk
+    level: 5
+    hp: 22
+    armor_class: 16
+    attack_bonus: 5
+    damage: "1d10"
+    move: "30 ft. burrow 20 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: tunnel-boring confounding digger
+    tags: [monstrosity, mid]
+    abilities:
+      - "Confounding gaze — a delver who looks on its four eyes is left reeling and confused on a failed save, striking at shadows"
+    description: >-
+      A great clawed digger that chews its own tunnels through the dwarf-
+      stone, and the four-eyed stare of it muddles a delver into running the
+      wrong way.
+
+  - id: young_remorhaz
+    name: Young Remorhaz
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d10"
+    move: "30 ft. burrow 20 ft."
+    morale: 8
+    skill: 2
+    save: 13
+    role: heat-shedding cold-gallery worm
+    tags: [monstrosity, mid]
+    abilities:
+      - "Searing hide — a delver who strikes it bare-handed or grappling is burned by the heat that pours off its back (1d6)"
+    description: >-
+      A young thing of the cold deep galleries, its segmented back glowing
+      dull against the rime, eating its way toward the warmth of anything that
+      breathes.
+
+  - id: drider
+    name: Drider
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d8"
+    move: "30 ft. climb 30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: web-spinning spider-bodied hunter
+    tags: [monstrosity, mid]
+    abilities:
+      - "Web and venom — snares a delver in its cord on a failed save, then sets the fangs, and the venom burns through without a second save"
+    description: >-
+      Torso of a thinking thing set on the legs of a great pale spider, it
+      strung its webs across the high galleries and hunts the seams the
+      lamplight reaches.
+
+  - id: grick_alpha
+    name: Grick Alpha
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d8"
+    move: "30 ft. climb 30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: great tentacled wall-lurking predator
+    tags: [monstrosity, mid]
+    abilities:
+      - "Four great tentacles — lashes with all four barbed arms (1d8 each) and drags a grabbed delver to the rending beak"
+    description: >-
+      The elder of its kind, grown long and thick in a wall-niche it has
+      fouled with the bones of all it has taken, the grey coils near
+      indistinguishable from the stone.
+
+  - id: medusa
+    name: Medusa
+    level: 6
+    hp: 27
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: petrifying serpent-haired lair-keeper
+    tags: [monstrosity, mid]
+    abilities:
+      - "Petrifying gaze — a delver who meets her eyes in the lamplight must save or be turned wholly to stone"
+    description: >-
+      She keeps a quiet gallery full of grey figures caught in the act of
+      flight, and the snakes that crown her hiss low while she asks you,
+      gently, to look up.
+
+  - id: yuan_ti_abomination
+    name: Yuan-ti Abomination
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: great serpent vault-cult master
+    tags: [monstrosity, mid]
+    abilities:
+      - "Constrict — a delver wound in its coils is crushed for 1d8 each round and cannot draw breath to call out"
+    description: >-
+      Wholly serpent now but for the cold reason behind its eyes, the eldest
+      of the cult that came down and worshipped what the deep showed it, and
+      never sought the surface again.
+
+  - id: abominable_yeti
+    name: Abominable Yeti
+    level: 7
+    hp: 32
+    armor_class: 14
+    attack_bonus: 7
+    damage: "1d10"
+    move: "40 ft. climb 30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: killing-cold deep-gallery giant
+    tags: [monstrosity, deep]
+    abilities:
+      - "Killing cold — both claws rend (1d10) and the cold rolling off it stops the breath of a delver who fails a save"
+    description: >-
+      A white horror the height of two delvers that comes silent through the
+      deepest cold galleries, and the lamp-flame gutters and the water glazes
+      to ice where it has passed.
+
+  - id: hydra
+    name: Hydra
+    level: 7
+    hp: 32
+    armor_class: 15
+    attack_bonus: 7
+    damage: "1d8"
+    move: "20 ft. swim 30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: many-headed flooded-cistern horror
+    tags: [monstrosity, deep]
+    abilities:
+      - "Many heads — bites with every head each round (1d8 each), and a severed neck is no end to it unless the stump is seared"
+    description: >-
+      Coiled in a flooded dwarf-cistern gone black, it lifts head after head
+      from the water, and the cut that should kill only sends two more
+      questing toward the light.
+
+  - id: spirit_naga
+    name: Spirit Naga
+    level: 7
+    hp: 32
+    armor_class: 14
+    attack_bonus: 7
+    damage: "1d8"
+    move: "30 ft. swim 30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: spellbinding serpent vault-haunter
+    tags: [monstrosity, deep]
+    abilities:
+      - "Binding word — speaks a charm in a tongue older than the hold; a delver who fails a save stands still and obedient until struck"
+    description: >-
+      A great serpent with a face that thinks and a voice that binds, coiled
+      among a vault's dead treasure, and it remembers being something the deep
+      made into this.
+
+  - id: behir
+    name: Behir
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d10"
+    move: "40 ft. climb 30 ft."
+    morale: 9
+    skill: 3
+    save: 11
+    role: many-legged lightning gallery-serpent
+    tags: [monstrosity, deep]
+    abilities:
+      - "Constrict — seizes a delver in its long body and crushes for 1d10 each round it holds"
+      - "Lightning — looses a line of white fire down a straight gallery, scorching all caught in its run (2d6)"
+    description: >-
+      A serpent the length of a gallery on a dozen crawling legs, that runs
+      the walls and ceiling alike. It loves the long straight dwarf-cut halls,
+      where its lightning has nowhere to spend itself but you.
+
+  - id: guardian_naga
+    name: Guardian Naga
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d10"
+    move: "30 ft."
+    morale: 10
+    skill: 3
+    save: 11
+    role: oath-bound vault-door warden
+    tags: [monstrosity, deep]
+    abilities:
+      - "Spitting venom — strikes at range with a spat venom that blinds and burns a delver who fails a save (1d8)"
+      - "Set to the door — it will not leave the vault-threshold it was bound to keep, and fights to the last across it"
+    description: >-
+      A great golden-scaled serpent set across a sealed dwarf-vault's door an
+      age ago and never once relieved. It does not know the keepers are dead,
+      only that you are not them.
+
+  - id: gynosphinx
+    name: Gynosphinx
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d10"
+    move: "30 ft."
+    morale: 10
+    skill: 3
+    save: 11
+    role: riddle-warden of a deep vault
+    tags: [monstrosity, deep]
+    abilities:
+      - "Two raking claws per round (1d10 each)"
+      - "Riddle-or-die — bars the vault with a question older than the hold; a wrong answer, or none, and it falls on the delver who failed it"
+    description: >-
+      Set before a deep dwarf-vault the diggers sealed and prayed over, it has
+      kept its riddle ready across two lifetimes of silence. It would rather
+      you answered. It is ready if you cannot.
+
+  - id: remorhaz
+    name: Remorhaz
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d10"
+    move: "30 ft. burrow 30 ft."
+    morale: 9
+    skill: 3
+    save: 11
+    role: white-hot tunneling cold-deep worm
+    tags: [monstrosity, deep]
+    abilities:
+      - "Swallow whole — a delver caught in its jaws is taken down into the burning gut and seared (2d6) each round until cut free"
+      - "Molten hide — the back glows white in the cold dark, and a delver who strikes or grapples it bare is burned for 1d8"
+    description: >-
+      The full-grown horror of the cold lower deeps, its segmented length
+      glowing molten against the rime that never melts elsewhere. It bores
+      toward the warmth of the living and takes them down whole into the heat
+      of itself.
+
+  - id: androsphinx
+    name: Androsphinx
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d6"
+    move: "30 ft."
+    morale: 10
+    skill: 3
+    save: 11
+    role: roaring warden of the deepest vault
+    tags: [monstrosity, deep]
+    abilities:
+      - "Two raking claws per round (2d6 each)"
+      - "Riddle-or-die and dread roar — it sets one question before the sealed vault; answered wrong, its roar alone drops the heart of a delver who fails a save before the claws even reach"
+    description: >-
+      Last and gravest of the wardens the dwarves set before the thing they
+      should never have dug down to, it has kept the deepest vault shut by
+      riddle and by force across two closed lifetimes. It asks once. The roar
+      that follows a wrong answer has unmanned braver delvers than you before
+      the claws were ever needed.
+
+  - id: purple_worm
+    name: Purple Worm
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "2d6"
+    move: "30 ft. burrow 40 ft."
+    morale: 9
+    skill: 3
+    save: 11
+    role: the great digger beneath the diggings
+    tags: [monstrosity, deep]
+    abilities:
+      - "Swallow whole — a delver struck by its maw is taken in entire and crushed and dissolved (2d6) each round until the worm is slain or the wall of it cut open from within"
+      - "Breach — surges up through any stone it pleases, throwing a whole party off their feet as the gallery floor erupts"
+    description: >-
+      The thing whose tunnels the dwarves followed believing the bores their
+      own, deeper and straighter than any pick could cut. It was already down
+      here, eating the stone, when the first shaft was sunk; the hold was only
+      ever a crust above its road.
+
+  - id: slaad_tadpole
+    name: Slaad Tadpole
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "30 ft. climb 20 ft."
+    morale: 8
+    skill: 1
+    save: 15
+    role: implanted spawn that gnaws free
+    tags: [aberration, low, parasite]
+    abilities:
+      - "Born of a host — it claws out from a delver who took a grey-skinned thing's seed, and the host does not rise again"
+    description: >-
+      A grey larva that came out of a man at the bottom of the dig, leaving
+      him open and emptied where it chewed its way to the lamplight.
+
+  - id: gibbering_mouther
+    name: Gibbering Mouther
+    level: 3
+    hp: 14
+    armor_class: 12
+    attack_bonus: 3
+    damage: "1d6"
+    move: "20 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: many-mouthed babbling sprawl
+    tags: [aberration, mid]
+    abilities:
+      - "Gibbering — a delver who hears it must save or be confused, stumbling toward the mass instead of away"
+    description: >-
+      A heap of running flesh studded with the mouths of every digger it has
+      taken, all of them still talking in the dark of the lowest gallery.
+
+  - id: grell
+    name: Grell
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "fly 20 ft. (hover)"
+    morale: 8
+    skill: 1
+    save: 14
+    role: floating tentacled brain-hunter
+    tags: [aberration, mid]
+    abilities:
+      - "Paralytic tendrils — a delver struck must save or stand rigid while it draws him up into the dark above the lamplight"
+    description: >-
+      A naked brain trailing a curtain of barbed feelers, drifting without
+      sound through galleries where no honest thing should ever leave the
+      floor.
+
+  - id: nothic
+    name: Nothic
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 8
+    skill: 1
+    save: 14
+    role: hoarding one-eyed watcher
+    tags: [aberration, mid]
+    abilities:
+      - "Rotting Gaze — a delver caught in its great eye must save or wither, the flesh going grey as old bandage"
+    description: >-
+      A stooped, single-eyed thing that was once a delver who looked too long
+      into what the deepest shaft had opened, and learned what it cost.
+
+  - id: spectator
+    name: Spectator
+    level: 3
+    hp: 14
+    armor_class: 15
+    attack_bonus: 3
+    damage: "1d6"
+    move: "fly 20 ft. (hover)"
+    morale: 8
+    skill: 1
+    save: 14
+    role: bound four-eyed gallery sentinel
+    tags: [aberration, mid]
+    abilities:
+      - "Eye-stalk rays — each round one stalk fires: paralysis, wounding, or a confusion that turns a delver on his own"
+    description: >-
+      A lesser eye-thing set to guard a vault the dwarfs sealed and never
+      named, still watching the door two lifetimes after the last of them
+      died.
+
+  - id: chuul
+    name: Chuul
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d8"
+    move: "30 ft. swim 30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: drowned-cistern clawed horror
+    tags: [aberration, mid]
+    abilities:
+      - "Crushing claws then paralytic tentacles — a grabbed delver must save or hang stunned while the mouth-fronds work him over"
+    description: >-
+      A great armoured thing of claw and feeler that came up the flooded
+      stair-shafts from water the dwarfs never knew they had dug toward.
+
+  - id: red_slaad
+    name: Red Slaad
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: implant-bearing grey spawner
+    tags: [aberration, mid, slaad]
+    abilities:
+      - "Implant — a delver clawed must save or carry a seed that, in days, becomes a tadpole chewing its way out"
+    description: >-
+      A hulking red-grey toad-thing, the lowest of the kind that came up
+      through the breach, and the one that puts its young into living men.
+
+  - id: blue_slaad
+    name: Blue Slaad
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: disease-clawed transforming spawner
+    tags: [aberration, mid, slaad]
+    abilities:
+      - "Hooked claws carry a rot — a delver who dies of the fever does not stay dead, but rises as another of the red kind"
+    description: >-
+      A heavier brute marked with bone hooks down its forearms, and what it
+      does to a man is worse than killing him — it makes him into more of
+      itself.
+
+  - id: mind_flayer
+    name: Mind Flayer
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d6"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: brain-eating tentacled tyrant
+    tags: [aberration, mid]
+    abilities:
+      - "Mind-blast — every delver before it must save or stand stunned a round while the tentacles find a skull"
+      - "Brain extraction — a stunned and grabbed delver has his head opened and the brain drawn out and eaten"
+    description: >-
+      A robed thing with an octopus where its face should be, one of those
+      that were down there before the dwarfs ever sank a shaft, and were never
+      alone.
+
+  - id: cloaker
+    name: Cloaker
+    level: 7
+    hp: 32
+    armor_class: 14
+    attack_bonus: 7
+    damage: "1d8"
+    move: "30 ft. fly 30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: hanging false-banner ambusher
+    tags: [aberration, deep]
+    abilities:
+      - "Smother — it drops from the wall onto a lone delver, wrapping him in dark so the rest see only a fallen cloak"
+      - "Moan — its keening unsettles all who hear it, who must save or fight at a penalty in the swimming sound"
+    description: >-
+      What hangs on the worked stone looks like a dwarf-make cloak, or a hold
+      banner left to rot, until the lamp passes and it peels off the wall
+      after the man at the back.
+
+  - id: gray_slaad
+    name: Gray Slaad
+    level: 7
+    hp: 32
+    armor_class: 15
+    attack_bonus: 7
+    damage: "1d8"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 12
+    role: shape-stealing veteran spawner
+    tags: [aberration, deep, slaad]
+    abilities:
+      - "Wears a stolen shape — it can walk as a delver it has killed, and the party greets it before the claws come out"
+    description: >-
+      A lean grey killer of the kind that has cast off the toad and learned to
+      go on two legs in another man's face, and one day soon it will turn
+      black and call itself death.
+
+  - id: green_slaad
+    name: Green Slaad
+    level: 7
+    hp: 32
+    armor_class: 15
+    attack_bonus: 7
+    damage: "1d8"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 12
+    role: spell-casting elder spawner
+    tags: [aberration, deep, slaad]
+    abilities:
+      - "Works the kind's foul magic — fear, dark, and a flame that gutters even lamplight, called up without word or hand"
+    description: >-
+      A lean grey-green elder of the breach that no longer needs to put young
+      in men, for it has learned to twist the air itself, and in time it sheds
+      its hide and rises grey.
+
+  - id: mind_flayer_arcanist
+    name: Mind Flayer Arcanist
+    level: 7
+    hp: 32
+    armor_class: 15
+    attack_bonus: 7
+    damage: "1d6"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: spell-binding brain tyrant
+    tags: [aberration, deep]
+    abilities:
+      - "Mind-blast — all before it save or stand stunned while it chooses a skull to open"
+      - "Binds the deep's old magic — it calls dark, lifts a delver bodily, and turns his own fear against him"
+    description: >-
+      A flayer grown into the lore the dwarfs broke into, ringed in stolen
+      books and the skulls it emptied, master of a corridor no lamp has
+      crossed in two lifetimes.
+
+  - id: beholder
+    name: Beholder
+    level: 8
+    hp: 36
+    armor_class: 17
+    attack_bonus: 8
+    damage: "1d8"
+    move: "fly 20 ft. (hover)"
+    morale: 10
+    skill: 3
+    save: 11
+    role: lightless many-eyed tyrant
+    tags: [aberration, deep]
+    abilities:
+      - "Eye-ray barrage — each round it fires several stalk-rays at once: death, withering, paralysis, and a stone-curse that turns a delver to worked rock"
+      - "Central eye — its great gaze unmakes any magic in a cone, so no warding or blessing holds before it"
+    description: >-
+      A floating orb of hide and hate ringed in writhing eye-stalks, one
+      central eye open in the dark that has never needed a lamp. It was always
+      down there, below where the dwarfs stopped digging, and it counts the
+      hold's whole death as a single thing it watched happen.
+
+  - id: death_slaad
+    name: Death Slaad
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d10"
+    move: "30 ft."
+    morale: 10
+    skill: 3
+    save: 11
+    role: black-skinned lord of the breach
+    tags: [aberration, deep, slaad]
+    abilities:
+      - "Wears a stolen shape and works the kind's full magic — dark, fear, and a wound that will not close"
+      - "Regenerates — cuts seal over before your eyes, and it must be hewn down past healing or it rises again"
+    description: >-
+      The black-hided end of the ladder, the thing the others were only
+      becoming, that climbed up through the honest hole the dwarfs dug too
+      deep. It does not spawn or hunt to eat — it kills because the breach is
+      open and it can.
+
+  - id: shadow
+    name: Shadow
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "fly 30 ft. (hover)"
+    morale: 9
+    skill: 1
+    save: 15
+    role: cast-off dark of the hold-dead
+    tags: [undead, low, incorporeal]
+    abilities:
+      - "Strength-cold — a delver struck loses 1d4 Strength until the lamp is brought back to it"
+    description: >-
+      It is the shape a dwarf threw on the worked stone in the last of its
+      lamplight, peeled loose and gone hunting the warmth it no longer has.
+
+  - id: warhorse_skeleton
+    name: Warhorse Skeleton
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d8"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 15
+    role: risen mount of the dead road
+    tags: [undead, low]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Trample — runs down a fallen delver for an extra hoof strike"
+    description: >-
+      A barded charger that carried something down the dead road after the
+      hold's gold and never carried it back out, still cantering the lightless
+      galleries with no rider and no rest.
+
+  - id: specter
+    name: Specter
+    level: 2
+    hp: 9
+    armor_class: 14
+    attack_bonus: 2
+    damage: "1d8"
+    move: "fly 30 ft. (hover)"
+    morale: 10
+    skill: 1
+    save: 14
+    role: malign shade of the deep
+    tags: [undead, low, incorporeal]
+    abilities:
+      - "Passes through worked stone and any barrier the hold ever set against it"
+      - "Life-drain — a slain delver rises in a night as a specter, bound to this one"
+    description: >-
+      It died down here hating the living for being warm, and the long cold
+      has not cured the hate, only sharpened it to a point.
+
+  - id: bile_zombie
+    name: Bile Zombie
+    level: 3
+    hp: 14
+    armor_class: 12
+    attack_bonus: 3
+    damage: "1d6"
+    move: "20 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: rotted dwarfhold corpse, swollen
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Bile-burst — when it dies it splits, and a delver beside it saves or sickens from the deep's foulness"
+    description: >-
+      One of the hold's own, left where the water gathered and the cold could
+      not finish it, gone to a slow swelling rot that walks and wants only to
+      be near the breathing.
+
+  - id: ghast
+    name: Ghast
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: corpse-eater of the galleries
+    tags: [undead, mid]
+    abilities:
+      - "Grave-stench — a delver who fails a save is locked rigid, and the claws come while it stands frozen"
+    description: >-
+      It learned, somewhere in the dark, that the dead of the hold are meat,
+      and it has been eating its way down the galleries toward where the
+      living still are.
+
+  - id: minotaur_skeleton
+    name: Minotaur Skeleton
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d10"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: horned bone-thing of the lower turns
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Goring charge — crosses a gallery in a rush, a delver saves or is run onto the horns for 1d10"
+    description: >-
+      A great horned skull set on a frame of bone, pacing the same crooked
+      turns of worked stone it died lost in, and lost in still, and angry at
+      every light it finds.
+
+  - id: mummy
+    name: Mummy
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "20 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: rite-bound dwarf-lord, preserved
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Rot-curse — a delver struck saves or festers, healing nothing until it leaves the deep entirely"
+    description: >-
+      A lord of the hold dried whole in the deep cold and wrapped in the
+      rites, laid up to wait out the dark — and the dark did not end, and now
+      it answers anyone who breaks the seal on its rest.
+
+  - id: ogre_zombie
+    name: Ogre Zombie
+    level: 3
+    hp: 14
+    armor_class: 12
+    attack_bonus: 3
+    damage: "1d10"
+    move: "20 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: dead brute of the dead road
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Does not feel the killing blow — fights a full round after a hit that should drop it"
+    description: >-
+      A hulking thing that came down the dead road for the gold and got no
+      further than this, dead on its feet and too stupid to lie down, swinging
+      the same slow arm it swung when it had blood in it.
+
+  - id: poltergeist
+    name: Poltergeist
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "fly 30 ft. (hover)"
+    morale: 8
+    skill: 1
+    save: 14
+    role: unseen spite of the worked stone
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Unseen and untouchable — strikes from nowhere with flung stone and falling rope, and steel passes through where it should be"
+    description: >-
+      Something of the hold-dead too small and mean to take a shape, that
+      throws the deep's own furniture — the rope, the lamp, the loose worked
+      stone — at anything that dares carry light into its dark.
+
+  - id: tombwalker
+    name: Tombwalker
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: bound watcher of the hold-dead
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Death-knell — when it falls, the hold-dead within a gallery's reach stir and rise to the same work"
+    description: >-
+      A dwarf laid down with the rites and bound to walk the burial galleries
+      until the hold should rise again — and the hold has not risen, and it
+      walks still, and it will not let the dead be moved.
+
+  - id: will_o_wisp
+    name: Will-o'-Wisp
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6"
+    move: "fly 30 ft. (hover)"
+    morale: 8
+    skill: 1
+    save: 14
+    role: false lamplight of the lightless deep
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Drowns out true light and drifts ahead as a kindly lamp — a lost delver follows it into the deeper dark, and steel finds nothing to bite"
+    description: >-
+      A single small light in galleries that have held none for two lifetimes,
+      hanging just at the edge of sight like a lamp left burning by someone
+      ahead — and there is no one ahead.
+
+  - id: wraith_soldier
+    name: Wraith Soldier
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "fly 30 ft. (hover)"
+    morale: 11
+    skill: 1
+    save: 14
+    role: risen rank of the hold's last watch
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Cold of the grave — a delver struck loses a point of Constitution that the warmth above does not give back"
+    description: >-
+      One spear of the watch that stood the last muster, kept its post when
+      the flesh went off it, and stands the post yet, drifting the gate-
+      gallery in the shape of the cold.
+
+  - id: banshee
+    name: Banshee
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "fly 30 ft. (hover)"
+    morale: 10
+    skill: 2
+    save: 13
+    role: keening woman of the hold-dead
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Death-wail — once a fight she cries out, and every delver who hears and fails a save drops to dying"
+    description: >-
+      A daughter of the hold who outlived everyone she would have mourned and
+      had no one to mourn her, and the grief she swallowed in the last dark
+      comes out now as one long unbearable cry.
+
+  - id: bone_naga_guardian
+    name: Bone Naga (Guardian)
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d8"
+    move: "30 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: serpent-skeleton set to ward the vault
+    tags: [undead, mid, naga]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Binding word — the residual rite in its skull lays a hold on one delver, who saves or stands rooted a round"
+    description: >-
+      A long serpent of bound bone coiled across a vault door, set by the hold
+      to let no one in or out, and still keeping a faith with masters two
+      lifetimes dead and never coming to relieve it.
+
+  - id: bone_naga_spirit
+    name: Bone Naga (Spirit)
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "30 ft."
+    morale: 11
+    skill: 2
+    save: 13
+    role: serpent-skeleton soured to malice
+    tags: [undead, mid, naga, spellcaster]
+    abilities:
+      - "Withering word — the spite that outlasted its binding spends as a curse, a delver saves or takes 1d8 and weakens at its next strike"
+    description: >-
+      The same warding serpent, but its long waiting curdled into a hatred of
+      the warding, and now it strikes at whatever comes close out of pure
+      grudge against a duty no one ever lifted from it.
+
+  - id: flameskull
+    name: Flameskull
+    level: 4
+    hp: 18
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d8"
+    move: "fly 30 ft. (hover)"
+    morale: 12
+    skill: 2
+    save: 13
+    role: burning skull of a dead delver-mage
+    tags: [undead, mid, incorporeal, spellcaster]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Witch-fire — flings a gout of cold green flame down a gallery, a delver saves or takes 1d8 that the dark does not let smother"
+    description: >-
+      The skull of one who went down lit by its own learning and was burned
+      hollow by it, hanging in the black with a pale fire where its eyes were,
+      lighting nothing it does not mean to harm.
+
+  - id: ghost
+    name: Ghost
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d6"
+    move: "fly 30 ft. (hover)"
+    morale: 9
+    skill: 2
+    save: 13
+    role: unquiet remnant of the hold-dead
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Steps into the living — a delver who fails a save is worn like a coat, and walks where the dead one wills until the rite is broken"
+    description: >-
+      A dwarf who died with the work unfinished and cannot understand that it
+      is over, drifting the worked stone trying to take up a tool with hands
+      that pass through it, and reaching for a delver's instead.
+
+  - id: phantomania
+    name: Phantomania
+    level: 4
+    hp: 18
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d6"
+    move: "fly 30 ft. (hover)"
+    morale: 8
+    skill: 2
+    save: 13
+    role: madness wearing a dead face
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "False company — it shows a delver the faces of the dead they followed down, who beckon kindly, and a delver who fails a save walks off alone into the dark after them"
+    description: >-
+      Not one of the hold-dead but the deep's own lie about them, a flickering
+      crowd of faces a delver half-remembers, gathered at the rim of the
+      lamplight saying come on, it is not far now.
+
+  - id: beholder_zombie
+    name: Beholder Zombie
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8"
+    move: "fly 30 ft. (hover)"
+    morale: 12
+    skill: 2
+    save: 13
+    role: dead eye-tyrant, rays still firing
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Dead eyes still fire — each round one of its withered eyes opens at random on a delver, who saves or is struck rigid, or rotted, or flung against the worked stone"
+    description: >-
+      A great floating thing of the always-down-there, killed and not stopped,
+      drifting eyeless-blind on its stalks while the dead eyes blink and spit
+      their old ruin at anything the lamplight shows them.
+
+  - id: revenant
+    name: Revenant
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8"
+    move: "30 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: dead delver come back for one thing
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Will not lie down — dropped to nothing, it rises whole at the next turn unless the one it hunts is dead or fled the deep"
+    description: >-
+      Someone who died down here wronged and came back up out of death with
+      the one face still in its ruined head, walking the galleries on a hate
+      strong enough to carry bone, and it will not stop until the score is
+      closed.
+
+  - id: vampire_spawn
+    name: Vampire Spawn
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: blood-thrall of the deeper dark
+    tags: [undead, mid]
+    abilities:
+      - "Blood-draught — a delver bitten loses 1d6 hp that the spawn takes into itself, and rises as another such thing if it dies of it down here"
+    description: >-
+      A delver caught and drained and turned, kept like a hound by the thing
+      that made it, sent up the galleries ahead of its master to fetch back
+      warm blood from the lamplight.
+
+  - id: wraith
+    name: Wraith
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8"
+    move: "fly 30 ft. (hover)"
+    morale: 11
+    skill: 2
+    save: 13
+    role: cold made hateful and aware
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Grave-cold touch — a delver struck loses 1d4 Constitution, and a delver brought to none by it rises bound to the wraith as its cold thrall"
+    description: >-
+      A hold-dead that gave up its shape entirely and kept only the cold and
+      the wanting, a deeper dark inside the dark that drifts the galleries
+      draining the heat from the stone and from anything warmer.
+
+  - id: adult_blue_dracolich
+    name: Adult Blue Dracolich
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d6"
+    move: "30 ft. fly 60 ft."
+    morale: 12
+    skill: 3
+    save: 11
+    role: the hold's doom, dead and still vast
+    tags: [undead, deep, dragon]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Storm-breath — it rears and looses the lightning of its living throat down a whole gallery; every delver caught saves or takes 2d6, the worked stone scorching black where the bolt walks"
+    description: >-
+      The wyrm that came down the dead road for the hold's gold and won it,
+      and lay on it so long that death took the flesh but not the wanting,
+      leaving a mountain of cold bone curled in the deepest vault. It still
+      keeps the gold, and it still keeps count.
+
+  - id: death_knight
+    name: Death Knight
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "1d10"
+    move: "30 ft."
+    morale: 12
+    skill: 3
+    save: 11
+    role: oathbreaker captain risen in his plate
+    tags: [undead, deep]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Cold command — it calls the hold-dead and the risen watch of a whole gallery to its side, and they come"
+    description: >-
+      A captain who swore to hold the deep gate and broke the oath when the
+      end came, damned to keep it now without rest or relief, sealed in the
+      hold's own black plate. He musters the risen watch he failed and stands
+      the post he fled, and he will let no living thing past it.
+
+  - id: death_tyrant
+    name: Death Tyrant
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "1d10"
+    move: "fly 30 ft. (hover)"
+    morale: 12
+    skill: 3
+    save: 11
+    role: undying eye-tyrant of the lightless galleries
+    tags: [undead, deep]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Crown of dead eyes — each round it opens three withered eyes on three delvers; each saves or is rotted, rooted rigid, or struck down where it stands"
+    description: >-
+      A floating horror of the always-down-there that hated the world enough
+      to keep on after death, blind central eye gone dark while the ring of
+      lesser eyes burns colder and surer than they ever did in life.
+
+  - id: risen_deathbringer
+    name: Risen Deathbringer
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "1d10"
+    move: "30 ft."
+    morale: 12
+    skill: 3
+    save: 11
+    role: dwarf-champion the deep made into a reaper
+    tags: [undead, deep]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Reaping stroke — its blow that drops a delver carries on, and a second delver beside the first saves or takes the same 1d10"
+    description: >-
+      A champion of the hold who stood at the last and fell at the last and
+      was not allowed to rest by whatever the digging woke. It carries the
+      hold's own great blade and swings it now for the thing in the dark that
+      owns it.
+
+  - id: vampire_spellcaster
+    name: Vampire Spellcaster
+    level: 9
+    hp: 40
+    armor_class: 15
+    attack_bonus: 9
+    damage: "1d8"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: blood-lord who learned the deep's grammar
+    tags: [undead, deep, spellcaster]
+    abilities:
+      - "Blood-draught — a delver bitten loses 1d6 hp drawn into the vampire, healing it"
+      - "Dark word — once a fight it speaks a curse, and a delver who fails a save is dropped or bound to its will for the round"
+    description: >-
+      A thing that came down the dead road for the hold's gold and found
+      something better in the dark — a long study, a long thirst, and time
+      without end to indulge both. It rules a little court of the drained from
+      a worked-stone hall it has made its own.
+
+  - id: vampire_warrior
+    name: Vampire Warrior
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "1d10"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: blood-lord who keeps to the blade
+    tags: [undead, deep]
+    abilities:
+      - "Blood-draught — a delver struck loses 1d6 hp that the warrior drinks in and heals from"
+      - "Will not stay down — dropped, it sinks to mist and gathers again whole unless its rest in the deep is found and broken"
+    description: >-
+      A warrior of the dead road that the deep took and remade, faster and
+      stronger and colder than anything it killed to get here. It does not
+      study and it does not parley; it closes, and it drinks, and it walks
+      away whole.
+
+  - id: demilich
+    name: Demilich
+    level: 10
+    hp: 45
+    armor_class: 17
+    attack_bonus: 10
+    damage: "1d8"
+    move: "fly 30 ft. (hover)"
+    morale: 12
+    skill: 4
+    save: 10
+    role: what is left when a lich stops caring
+    tags: [undead, deep]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Soul-call — it speaks a delver's name into the dark, and that delver saves or its life goes out of it and into the gems set in the dead skull's teeth"
+    description: >-
+      A skull and a fistful of dust on the floor of the deepest gallery, all
+      that a great undeath troubled to keep when it had outgrown even the body
+      it raised for itself. It wakes when the warm come near, and calls them
+      by name, and takes what it wants, and is dust again.
