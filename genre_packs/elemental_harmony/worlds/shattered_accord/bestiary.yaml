@@ -1,18 +1,71 @@
-# Elemental Harmony — pack bestiary (story 90-1)
+# Shattered Accord — world bestiary (shattered_accord_bestiary)
 #
-# SRD-aligned combat stat blocks for the wwn ruleset module. Encountergen
-# samples these for the Monster Manual encounters pool (free-play reachable
-# hostiles); narrative layers (OCEAN, visual prompt) are composed at
-# generation time. Stats are faithful to the Worlds Without Number SRD 1.0
-# (Sine Nomine Publishing) generic stat lines — level == HD, hp == average
-# (4.5/HD), ascending AC, morale on the 2d12 ladder.
+# World-tier roster for the elemental_harmony pack. The pack ships NO
+# genre-level bestiary, so this file is the full populated stat-block set
+# encountergen samples for the Monster Manual encounters of the eight shards,
+# fourteen centuries after the Shattering (ADR-140: the genre is the rulebook,
+# the world owns the cast). Narrative layers (OCEAN, visual prompt) are composed
+# at generation time; image medium/style lives in visual_style.yaml, never in a
+# per-entity appearance field.
 #
-# Genre tier rules (ADR-120): names here are genre-generic — no named
-# world cultures, factions, or POIs. World-specific hostiles belong in
-# worlds/<slug>/ overrides.
+# WWN ruleset module (see ../../rules.yaml: ruleset: wwn). Generic OSR stat
+# lines: level == HD, hp == the WWN ladder table (avg 4.5/HD rounded — a TABLE,
+# not a formula), ascending AC, attack_bonus == level, morale on the 2d6 ladder
+# (12 = Fearless / auto-pass), save == 15 − floor(level/2).
 #
-# Some stat blocks reskinned from "Those Outside the Walls" (Alex Dworman), CC-BY-NC-SA 4.0.
+# ════════════════════════════════════════════════════════════════════
+#  BESTIARY-CURATION PROVENANCE  (recipe: ../../../../docs/bestiary-curation-recipe.md)
+# ════════════════════════════════════════════════════════════════════
+#  SOURCE: the SETTING ITSELF, not the D&D SRD. 25 rows of shard fauna,
+#    channeler-castes, and pan-East-Asian-myth yaoguai / restless dead
+#    (corpus/monsters.yaml) — a Chinese-myth core (jiangshi, hungry ghosts,
+#    fox-spirits, terracotta hosts, lung dragon-serpents, deathless cultivators)
+#    joined by the Iron Peaks and the southern Monsoon/Sky-Temple castes.
+#
+#  GATE 1 — world_register.yaml genre-truth, applied against corpus/monsters
+#    .yaml: kept 25, dropped 0. The corpus is wholly shard setting-true, so
+#    nothing is culled — that clean pass IS the fidelity proof. The deny lists
+#    (Western dungeon-fantasy types / tags / name_globs: SRD chromatic dragons,
+#    demons, goblins, owlbears, liches, vampires, the fairy-tale fey …) are the
+#    firewall against a future author padding the shards with the SRD menagerie,
+#    not active culls here.   [tool: bestiary_curator]
+#  GATE 2 — tone curation ("wuxia/elemental, grand, grudge-bound, lethal; never
+#    comic, never cute"): HAND pass. No GATE-1 survivor removed for tone — every
+#    row is setting-true to the shard-war register. The restless dead are folk-
+#    myth dread (the hopping corpse, the hungry ghost before a ruined kitchen,
+#    the buried clay host still holding its picket), never joke-monsters.
+#
+#  CONVERSION — WWN ladder via bestiary_curator: level assigned by CR band
+#    (L1 hopping corpses & vermin → L8 the drowned leviathan and the deathless
+#    Accord-era sorcerer; the shards top out modestly — no dragon-tier
+#    inflation); hp/save/attack_bonus VERBATIM off the ladder (hp table; save
+#    15 − level//2; attack_bonus == level). skill follows the ladder band,
+#    EXCEPT the mindless cohort — raw elemental spirits, animated clay/jade
+#    constructs, and the will-less battle-dead/hopping corpses — which take
+#    skill 0 with morale 12 / Fearless (the recipe's beneath_sunden & barsoom
+#    treatment). AC and morale are archetype-tuned by hand. Prose authored here.
+#  PRESERVATION (ADR-140): this pass RE-LADDERED the world's existing 25-entry
+#    roster onto the verbatim ladder — it did not clobber it. The prior file ran
+#    attack_bonus one-or-more high (e.g. grudge-bound officer +5 at L3, jade
+#    guardian +7 at L5, leviathan +10 at L8) and put L5 hp at 23; both are
+#    corrected here. All 25 original entries survive with their prose,
+#    abilities, damage, move, AC, and morale intact. Numbers are ladder-derived,
+#    NEVER hand-balanced (SOUL: "Bind the Ruleset, Don't Balance It").
+#
+#  DIAMONDS (ADR-014, the illustrated capstones): the Lesser Lung Dragon (the
+#    Eastern long — a dragon-serpent SPIRIT, MARQUEED in world_register so the
+#    shared Dragon-type firewall cannot bar it; typed Monstrosity, never an SRD
+#    wyrm) · the deathless Accord-era sorcerer · the greater jiangshi lord · the
+#    river-mother naga · the jade threshold-guardian.
+#
+#  SIBLING: shares its allow/deny algebra and creature philosophy with
+#    elemental_harmony/burning_peace (Edo/Japanese); each world carries its own
+#    institutional vocabulary over the shared gate.
+#  VALIDATION: load_genre_pack PASS; validate pack PASS.
+# ════════════════════════════════════════════════════════════════════
 entries:
+
+  # ── WORLD-WIDE HOSTILES — fauna, soldiery, brigands, and free spirits ──
   - id: mountain_pass_bandit
     name: Mountain Pass Bandit
     level: 1
@@ -25,7 +78,7 @@ entries:
     skill: 1
     save: 15
     role: highway robber
-    tags: [human, bandit]
+    tags: [human, bandit, low]
     description: >-
       A lean cutpurse in a straw cloak and lacquered scraps of stolen
       armor, watching the trade road from above the tree line.
@@ -34,14 +87,14 @@ entries:
     level: 1
     hp: 5
     armor_class: 13
-    attack_bonus: 2
+    attack_bonus: 1
     damage: "1d8+1"
     move: "30 ft."
     morale: 8
     skill: 1
     save: 15
     role: veteran waterway raider
-    tags: [human, pirate]
+    tags: [human, pirate, low]
     description: >-
       A sun-browned raider with a boarding hook and a fighting grin,
       poling a low skiff out of the reed shallows.
@@ -50,14 +103,14 @@ entries:
     level: 1
     hp: 5
     armor_class: 12
-    attack_bonus: 2
+    attack_bonus: 1
     damage: "1d4"
     move: "40 ft."
     morale: 7
     skill: 1
     save: 15
     role: burned-land pack-hunter
-    tags: [beast]
+    tags: [beast, low]
     abilities:
       - "Pack tactics — hunts in numbers"
     description: >-
@@ -68,14 +121,14 @@ entries:
     level: 2
     hp: 9
     armor_class: 15
-    attack_bonus: 3
+    attack_bonus: 2
     damage: "1d8+1"
     move: "30 ft."
     morale: 9
     skill: 1
     save: 14
     role: expelled student of the elemental forms
-    tags: [human, channeler]
+    tags: [human, channeler, low]
     description: >-
       A young channeler cast out of the temple schools, forms gone sloppy
       and dangerous without a master's correction.
@@ -88,10 +141,10 @@ entries:
     damage: "1d6"
     move: "30 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 14
     role: animated stone sentinel
-    tags: [construct]
+    tags: [construct, low]
     abilities:
       - "Fearless — never checks morale"
     description: >-
@@ -102,14 +155,14 @@ entries:
     level: 3
     hp: 14
     armor_class: 18
-    attack_bonus: 4
+    attack_bonus: 3
     damage: "1d8+2"
     move: "30 ft."
     morale: 10
-    skill: 2
+    skill: 1
     save: 14
     role: heavy palace infantry
-    tags: [human, elite]
+    tags: [human, elite, mid]
     description: >-
       A palace soldier in full lamellar with a banner-spear, drilled to
       hold formation through fire and flood alike.
@@ -118,14 +171,14 @@ entries:
     level: 4
     hp: 18
     armor_class: 15
-    attack_bonus: 6
+    attack_bonus: 4
     damage: "1d10"
     move: "40 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 13
     role: unquiet dead warrior
-    tags: [spirit, undead]
+    tags: [spirit, undead, mid]
     abilities:
       - "Fearless — never checks morale"
       - "Reforms at dusk unless its grievance is settled"
@@ -137,14 +190,14 @@ entries:
     level: 4
     hp: 18
     armor_class: 18
-    attack_bonus: 6
+    attack_bonus: 4
     damage: "1d8+2"
     move: "30 ft."
     morale: 10
     skill: 2
     save: 13
     role: dueling champion
-    tags: [human, champion]
+    tags: [human, champion, mid]
     description: >-
       A famous blade in ornate half-armor who fights challenge duels for a
       provincial warlord's honor and purse.
@@ -153,14 +206,14 @@ entries:
     level: 4
     hp: 18
     armor_class: 15
-    attack_bonus: 6
+    attack_bonus: 4
     damage: "1d10"
     move: "40 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 13
     role: offended air spirit
-    tags: [spirit, elemental]
+    tags: [spirit, elemental, mid]
     abilities:
       - "Flies"
       - "Fearless — never checks morale"
@@ -170,16 +223,16 @@ entries:
   - id: cave_tiger
     name: Cave Tiger
     level: 5
-    hp: 23
+    hp: 22
     armor_class: 13
-    attack_bonus: 6
+    attack_bonus: 5
     damage: "1d8"
     move: "30 ft."
     morale: 8
-    skill: 1
+    skill: 2
     save: 13
     role: solitary mountain predator
-    tags: [beast]
+    tags: [beast, mid]
     description: >-
       A pale tiger of the high karst caves, broad-pawed and silent, that
       has learned to take travelers from the cliff paths.
@@ -192,10 +245,10 @@ entries:
     damage: "1d10"
     move: "20 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 12
     role: unbound mountain spirit
-    tags: [spirit, elemental]
+    tags: [spirit, elemental, mid]
     abilities:
       - "Fearless — never checks morale"
     description: >-
@@ -206,14 +259,14 @@ entries:
     level: 6
     hp: 27
     armor_class: 18
-    attack_bonus: 8
+    attack_bonus: 6
     damage: "1d8+3"
     move: "30 ft."
     morale: 9
     skill: 2
     save: 12
     role: outlaw army commander
-    tags: [human, commander]
+    tags: [human, commander, mid]
     description: >-
       A former imperial officer turned mountain king, holding three
       valleys with stolen banners and absolute discipline.
@@ -222,19 +275,21 @@ entries:
     level: 8
     hp: 36
     armor_class: 15
-    attack_bonus: 10
+    attack_bonus: 8
     damage: "2d6+4"
-    move: "40 ft."
+    move: "40 ft. swim"
     morale: 9
-    skill: 2
+    skill: 3
     save: 11
     role: great water beast
-    tags: [beast, apex]
+    tags: [beast, apex, deep]
     abilities:
       - "Two attacks per round"
     description: >-
       A river-serpent old enough to have a name in four languages, scaled
       like flood-polished jade, owed offerings nobody pays anymore.
+
+  # ── YAOGUAI & THE RESTLESS DEAD — the Chinese-myth core of the shards ──
   - id: paper_charm_hopper
     name: Paper-Charm Jiangshi
     level: 1
@@ -247,7 +302,7 @@ entries:
     skill: 0
     save: 15
     role: lesser hopping corpse
-    tags: [undead, jiangshi]
+    tags: [undead, jiangshi, low]
     abilities:
       - "Fearless — never checks morale"
       - "A yellow talisman pasted over its face halts it where it stands"
@@ -267,7 +322,7 @@ entries:
     skill: 1
     save: 14
     role: hungry ghost
-    tags: [spirit, undead, e_gui]
+    tags: [spirit, undead, e_gui, low]
     abilities:
       - "Fearless — never checks morale"
       - "An offering of rice or wine left untouched will hold it at bay for a watch"
@@ -284,10 +339,10 @@ entries:
     damage: "1d6"
     move: "40 ft."
     morale: 9
-    skill: 2
+    skill: 1
     save: 14
     role: shapeshifting trickster
-    tags: [spirit, fey, huli_jing]
+    tags: [spirit, fey, huli_jing, low]
     abilities:
       - "Wears a borrowed human face until startled or struck"
       - "Holding gaze with it forces a mental save or stand befuddled for a round"
@@ -300,14 +355,14 @@ entries:
     level: 2
     hp: 9
     armor_class: 16
-    attack_bonus: 3
+    attack_bonus: 2
     damage: "1d8"
     move: "30 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 14
     role: buried Accord-era infantry
-    tags: [construct, undead, terracotta]
+    tags: [construct, undead, terracotta, low]
     abilities:
       - "Fearless — never checks morale"
       - "Ignores all damage from mundane non-crushing weapons"
@@ -320,14 +375,14 @@ entries:
     level: 3
     hp: 14
     armor_class: 15
-    attack_bonus: 4
+    attack_bonus: 3
     damage: "1d10"
     move: "30 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 14
     role: bound fragment of an elemental shard
-    tags: [spirit, elemental, shard]
+    tags: [spirit, elemental, shard, mid]
     abilities:
       - "Fearless — never checks morale"
       - "A creature it strikes must make a physical save or be set alight"
@@ -341,14 +396,14 @@ entries:
     level: 3
     hp: 14
     armor_class: 16
-    attack_bonus: 5
+    attack_bonus: 3
     damage: "1d8+1"
     move: "30 ft."
     morale: 12
-    skill: 2
+    skill: 1
     save: 14
     role: revenant with a single unfinished purpose
-    tags: [undead, revenant]
+    tags: [undead, revenant, mid]
     abilities:
       - "Fearless — never checks morale"
       - "Rises again at the next dusk unless the wrong that bound it is set right"
@@ -361,14 +416,14 @@ entries:
     level: 4
     hp: 18
     armor_class: 17
-    attack_bonus: 6
+    attack_bonus: 4
     damage: "1d10+1"
     move: "30 ft."
     morale: 12
-    skill: 2
+    skill: 0
     save: 13
     role: commander of a buried clay host
-    tags: [construct, undead, terracotta]
+    tags: [construct, undead, terracotta, mid]
     abilities:
       - "Fearless — never checks morale"
       - "Ignores all damage from mundane non-crushing weapons"
@@ -382,14 +437,14 @@ entries:
     level: 4
     hp: 18
     armor_class: 15
-    attack_bonus: 6
+    attack_bonus: 4
     damage: "1d10"
     move: "30 ft. swim 40 ft."
     morale: 9
     skill: 2
     save: 13
     role: tutelary water-serpent
-    tags: [spirit, serpent, naga]
+    tags: [spirit, serpent, naga, mid]
     abilities:
       - "Constricts a struck target on a failed physical save"
       - "A creature that meets her stare must make a mental save or stand transfixed"
@@ -400,16 +455,16 @@ entries:
   - id: jade_temple_guardian
     name: Jade Threshold-Guardian
     level: 5
-    hp: 23
+    hp: 22
     armor_class: 17
-    attack_bonus: 7
+    attack_bonus: 5
     damage: "2d6"
     move: "20 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 13
     role: animated jade construct
-    tags: [construct, jade]
+    tags: [construct, jade, mid]
     abilities:
       - "Fearless — never checks morale"
       - "Immune to poison, mind-altering magic, and mundane non-crushing weapons"
@@ -422,14 +477,14 @@ entries:
     level: 6
     hp: 27
     armor_class: 17
-    attack_bonus: 7
+    attack_bonus: 6
     damage: "1d10+1"
     move: "30 ft. fly 60 ft. swim 40 ft."
     morale: 10
     skill: 2
     save: 12
     role: serpentine river-dragon
-    tags: [dragon, lung, spirit]
+    tags: [dragon, lung, spirit, mid]
     abilities:
       - "Two attacks per round (claw and bite)"
       - "Breath of storm-water — 30-ft. cone, evasion save for half of 4d6, recharges"
@@ -444,14 +499,14 @@ entries:
     level: 6
     hp: 27
     armor_class: 15
-    attack_bonus: 8
+    attack_bonus: 6
     damage: "1d10+2"
     move: "30 ft."
     morale: 12
     skill: 2
     save: 12
     role: corpse-lord that drains the breath of the living
-    tags: [undead, jiangshi]
+    tags: [undead, jiangshi, mid]
     abilities:
       - "Fearless — never checks morale"
       - "On a hit the victim makes a physical save or is drained, healing the lord for the same amount"
@@ -472,7 +527,7 @@ entries:
     skill: 3
     save: 11
     role: undying mage who survived the Shattering
-    tags: [undead, sorcerer, lich]
+    tags: [undead, sorcerer, deathless, deep]
     abilities:
       - "Fearless — never checks morale"
       - "Immune to mundane damage, poison, and mind-altering magic"

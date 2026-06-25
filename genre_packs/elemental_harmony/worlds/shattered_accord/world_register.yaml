@@ -1,0 +1,71 @@
+# Shattered Accord — genre-truth gate (bestiary-curation recipe, GATE 1).
+# Applied BEFORE any stat conversion. A row denied here is removed from the
+# bestiary entirely. marquee rows are exempt from denial (Diamonds-and-Coal,
+# ADR-014).
+#
+# The source is NOT the D&D SRD. Shattered Accord's corpus IS the setting's own
+# cast (corpus/monsters.yaml): the fauna, channeler-castes, and yaoguai /
+# restless dead of the eight shards — a pan-East-Asian wuxia/elemental world.
+# This gate exists to keep the roster setting-true: it denies the Western
+# dungeon-fantasy menagerie so no future author can pad the shards with
+# owlbears, goblins, or SRD chromatic dragons. Against the all-setting corpus
+# it culls nothing — every row is admissible — which is itself the fidelity
+# proof.
+#
+# SIBLING NOTE: this gate shares its allow/deny ALGEBRA and creature philosophy
+# with elemental_harmony/burning_peace (Edo/Japanese). The two read as siblings
+# (like evropi/long_foundry). The institutional vocabulary below is pan-East-
+# Asian / shard-specific; burning_peace carries its own Ember-Isles vocabulary
+# over the same algebra. The ONE algebra difference: shattered_accord marquees
+# its Eastern long (the lung dragon) — a dragon-serpent SPIRIT, not an SRD wyrm
+# — so the shared Dragon-type firewall cannot touch it.
+register: >-
+  Fourteen centuries after the Shattering of the Accord Eternal — a
+  wuxia/elemental world of warring channeler-castes beneath eight grinding
+  shards, the spirit-world hemorrhaging through tears in the sky. Yaoguai and
+  the restless dead of East-Asian myth contest the ruins of the old order:
+  jiangshi and hungry ghosts, fox-spirits and lung dragon-serpents, buried
+  terracotta hosts and the deathless cultivators who refused to die when the
+  Accord broke. No Western dungeon-fantasy menagerie: every creature is shard
+  fauna, a yaoguai or elemental spirit, or a martial human of the sworn castes.
+  Conflict floor high, mysticism floor >= 0.7; the supernatural is grand,
+  grudge-bound, and lethal — never comic-relief, never cute.
+allow_types: [Beast, Humanoid, Giant, Monstrosity, Undead, Elemental, Fey, Construct]
+deny:
+  # Whole 5e types this world refuses — the Western cosmological menagerie.
+  # The Dragon TYPE is denied (no SRD chromatic/metallic wyrm); the Eastern
+  # lung is admitted as a Monstrosity spirit AND marqueed below, so the
+  # firewall protects the world without barring its own dragon-serpent.
+  types: [Celestial, Fiend, Dragon, Aberration, Ooze, Plant]
+  tags: [titan, angel, demon, devil, genie, metallic, chromatic, draconic, fiend, eldritch]
+  # Case-insensitive fnmatch on NAME. The Western fairy-tale / dungeon roster
+  # by name, so a future drop-in cannot smuggle it past the type gate. Note:
+  # NOT globbing "*dragon*" — the world's own Lesser Lung Dragon is setting-true
+  # (and marqueed); the Dragon-TYPE deny is what bars the SRD wyrm.
+  name_glob: ["*owlbear*", "*goblin*", "*kobold*", "*beholder*", "*mind flayer*",
+              "*illithid*", "*gnoll*", "*pixie*", "*sprite*", "*unicorn*",
+              "*pegasus*", "*griffon*", "*hippogriff*", "*manticore*",
+              "*minotaur*", "*medusa*", "*dryad*", "*satyr*", "*treant*",
+              "*werewolf*", "*vampire*", "*lich*", "*tarrasque*", "*hydra*"]
+humanoid_constraint: >-
+  Humanoid only as the channeler-castes and sworn cultivation-orders of the
+  shards — Jade Reclamation soldiery and duelling champions, Sky Temple monks,
+  Drowned Covenant cultists, Iron Peaks granite-channelers, Monsoon Pact
+  storm-dancers, frontier wall-garrisons, jianghu wanderers and sworn sects,
+  and the brigands and pirates the spirit-fog cannot reach. NEVER Western-
+  fantasy peoples (no elves, dwarves, halflings, orcs, gnomes); the spirit-folk
+  are yaoguai and the restless dead (Fey / Monstrosity / Undead / Elemental),
+  never a demihuman race.
+# Nothing to reskin FROM: the corpus is authored under the world's own and the
+# yaoguai's traditional names, so there is no SRD name to rename.
+reskin: {}
+# MARQUEE (Diamonds-and-Coal, ADR-014): the Eastern long. The lung dragon is a
+# serpentine river-dragon SPIRIT of Chinese myth — setting-true and a roster
+# capstone — so it is exempt from the Dragon-type firewall that bars the SRD
+# wyrm. (It is also typed Monstrosity in the corpus, so it would survive the
+# gate regardless; the marquee documents the intent and belt-and-suspenders
+# guarantees it.) The other Diamonds — the deathless Accord-era sorcerer, the
+# greater jiangshi lord, the river-mother naga, the jade threshold-guardian —
+# are admissible under allow_types and flagged in the bestiary banner, not
+# exempted here.
+marquee: ["Lesser Lung Dragon"]
