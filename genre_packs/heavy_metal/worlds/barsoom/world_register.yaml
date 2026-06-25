@@ -1,0 +1,48 @@
+# Barsoom — genre-truth gate (bestiary-curation recipe, GATE 1). Applied
+# BEFORE any stat conversion. A row denied here is removed from the bestiary
+# entirely. marquee rows are exempt from denial (Diamonds-and-Coal, ADR-014).
+#
+# The source is NOT the D&D SRD. Barsoom's corpus IS the setting's own fauna
+# (Edgar Rice Burroughs / John Carter of Mars, public domain in the US),
+# authored onto the SRD row shape with a plausible 5e type + CR (see
+# corpus/monsters.yaml). This gate exists to keep the roster setting-true: it
+# denies the high-fantasy menagerie so no future author can pad Barsoom with
+# owlbears, goblins, or SRD dragons. Against the all-ERB corpus it culls
+# nothing — every row is admissible — which is itself the fidelity proof.
+register: >-
+  Edgar Rice Burroughs' dying Mars — sword-and-planet, not high fantasy.
+  Ochre dead-sea bottoms under a wan sky, marble dead cities standing in the
+  ochre moss, long-swords and radium pistols, a thin-aired low-gravity world
+  of red, green, white, black and yellow Martian races. Lethal and decadent
+  (heavy_metal: pacts, decay, blood-priced magic). Weirdness floor >= 0.6.
+  No Earthly fantasy peoples, no dungeon-fantasy bestiary — every creature is
+  ERB Barsoomian fauna.
+allow_types: [Beast, Humanoid, Giant, Monstrosity, Plant, Aberration]
+deny:
+  types: [Celestial, Fiend, Fey, Dragon, Undead, Ooze, Elemental, Construct]
+  tags: [titan, angel, demon, devil, genie, metallic, chromatic, draconic, fiend]
+  name_glob: ["*dragon*", "*demon*", "*devil*", "*goblin*", "*kobold*",
+              "*owlbear*", "*beholder*", "*mind flayer*", "*illithid*",
+              "*gnoll*", "*troll*", "*ogre*", "*orc", "*orc *", "*hydra*",
+              "*unicorn*", "*pegasus*", "*griffon*", "*hippogriff*", "*roc",
+              "*mephit*", "*elemental*", "*lich*", "*vampire*", "*zombie*",
+              "*skeleton*", "*ghoul*", "*ghost*", "*wight*", "*werewolf*",
+              "*medusa*", "*minotaur*", "*dryad*", "*satyr*", "*treant*",
+              "*kraken*", "*tarrasque*"]
+humanoid_constraint: >-
+  Humanoid only as the Barsoomian fighting-races — copper-skinned red men of
+  the tower-cities, white Holy Therns of the Golden Cliffs, black First Born
+  of Omean, bearded yellow men of Okar. Never Earthly fantasy peoples (no
+  elves, dwarves, halflings, orcs, gnomes). The four-armed fifteen-foot green
+  hordes are Giant, not Humanoid.
+# No SRD-named rows to rename: Barsoom's corpus is authored under its own
+# creature names, so there is nothing to reskin FROM. The stat-chassis
+# lineage (banth / orluk / apt on the big-cat CR band, zitidar on the mammoth
+# band, green Martian on the giant band, white ape on the giant-ape band) is
+# documented in the bestiary banner, not encoded here.
+reskin: {}
+# No Diamonds-and-Coal exemptions: every ERB row is admissible under
+# allow_types, so nothing needs marquee rescue from the deny gate. The
+# illustrated "Diamonds" capstones (banth, white ape, green Martian, apt,
+# plant man) are noted in the bestiary banner, not exempted here.
+marquee: []
