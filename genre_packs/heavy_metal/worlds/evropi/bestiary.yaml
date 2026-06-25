@@ -589,3 +589,970 @@ entries:
       a horse on the dive, and is back in the wind before the bows are
       strung. The Aldkin do not hunt it; they pay it a horse and pray it
       finds that enough.
+
+  # ════════════════════════════════════════════════════════════════════
+  #  SRD UNDEAD + FIENDS → WWN EXPANSION (39 entries)  — added 2026-06-25
+  # ════════════════════════════════════════════════════════════════════
+  #  The full SRD 5.1 monster roster (corpus/monsters.yaml, 316 rows) was
+  #  gated to this world via world_register.yaml and converted to WWN/OSR
+  #  stat lines on the SAME ladder as the hand-authored roster above. Two-gate
+  #  provenance (bestiary-curation-recipe.md, story 158-22):
+  #
+  #  GATE 1 — world_register genre-truth (deterministic, tools/bestiary_curator):
+  #    allow_types = [Undead, Fiend] ONLY. KEPT 41, DROPPED 275 — every Dragon,
+  #    Beast, Monstrosity, Fey, Celestial, Elemental, Plant, Giant, Aberration,
+  #    Ooze, Construct, Humanoid, and Swarm culled by type. This is the gate's
+  #    whole job: heavy_metal is pacts + decay, so the auto-expansion is the
+  #    drowned dead and the bargained-for, never a high-fantasy menagerie.
+  #  GATE 2 — tone curation (HUMAN pass, "baroque decay, never comic, never
+  #    cute"): within Undead + Fiend there were NO tone-breakers to cull — the
+  #    type gate alone yields a baroque-pure roster — so GATE 2's work here was
+  #    reskin + prose, not culling. DEDUP hand-drops (2): SRD "Shadow" (already
+  #    live above as the hand-authored "Egzami Clinging Dark") and SRD "Ghoul"
+  #    (already live as "Barrow-Ghoul of the Dust"). 41 − 2 = 39 shipped.
+  #  RESKIN (25): demons → aspects of the hungry 999 Crimson Gods; devils → the
+  #    cold contractual Reckoners who collect on a covenant (23 fiends). The other
+  #    undead keep legible SRD names — Evrópí's SIGNATURE dead are the hand-
+  #    authored Tismenni named undead above; the SRD undead are the world's COMMON
+  #    dead, recast in `description`. TWO undead onomastic reskins (GATE-2), where
+  #    the SRD name imported a creature the gate itself refuses: "Minotaur Skeleton"
+  #    → "Ingurdios Horn-Dead" (Cretan myth → the Mistos-dug Ingurdios mines) and
+  #    "Ogre Zombie" → "Risen Steppe-Brute" (Giant-name → the Aldkin steppe brutes).
+  #  MARQUEE (Diamonds-and-Coal, ADR-014): Lich, Mummy Lord, Vampire, and the
+  #    four great bargained Crimson Gods/Reckoners — Six-Blade Crimson God
+  #    (Marilith), Throne of the Crimson Gods (Balor), Archdebt (Pit Fiend),
+  #    Silk-Faced Liar (Rakshasa).
+  #  CONVERSION: WWN ladder, level by CR-band (deep-cap L8-10: Lich CR21→L9,
+  #    Pit Fiend CR20→L9, Balor CR19→L9, Marilith CR16→L9, Mummy Lord CR15→L9,
+  #    Vampire/Rakshasa/Nalfeshnee CR13→L8); hp/save/attack_bonus ladder-exact
+  #    (never hand-balanced). AC (incorporeal-low → natural-armour-high) and
+  #    morale (mindless undead/devils 12-fearless or disciplined; demons reckless
+  #    9-10; lesser fiends cowardly 7) archetype-tuned by hand. Cunning
+  #    self-preservers (Vampire/Lich/Mummy Lord) drop to morale 11 — they retreat
+  #    to coffin / phylactery / tomb rather than break.
+  #  LEAN-TIER CONVENTION: no Z-Image plates rendered for these yet; the medium
+  #    is set once in visual_style.positive_suffix, never per-entry.
+  # ════════════════════════════════════════════════════════════════════
+
+  # ── LOW BAND (1-2) — the common risen and the lesser bargained ───────
+
+  - id: skeleton
+    name: Skeleton
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 15
+    role: common conscript-dead of the thin places
+    tags: [undead, low]
+    abilities:
+      - "Fearless — never checks morale"
+    description: >-
+      The ordinary dead the Land of Dust pushes back up wherever it thins — a
+      drowned-empire pikeman, a crown's quiet killing, a barrow-field labourer.
+      It holds the rusted iron of whatever war last killed it and keeps the post
+      it was given twelve thousand years too long.
+
+  - id: zombie
+    name: Zombie
+    level: 1
+    hp: 5
+    armor_class: 11
+    attack_bonus: 1
+    damage: "1d6"
+    move: "20 ft."
+    morale: 12
+    skill: 1
+    save: 15
+    role: slow recent-dead left unburied
+    tags: [undead, low]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Takes a killing wound and keeps walking until the head is taken"
+    description: >-
+      A fresher dead than the barrow-bones — a Daggereye victim, a Wazdia
+      disappearance, a plague-cart corpse the Land of Dust would not let lie.
+      It comes on slow and patient and does not stop for any wound that would
+      stop a living man.
+
+  - id: warhorse_skeleton
+    name: Warhorse Skeleton
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "60 ft."
+    morale: 12
+    skill: 1
+    save: 15
+    role: riderless cavalry-mount dead
+    tags: [undead, low]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Trampling charge — a galloping strike can knock a struck target prone"
+    description: >-
+      A Tismenni cavalry mount risen without its rider, galloping the sunken
+      barrow-roads of the drowned empire on bone hooves. It still wheels and
+      forms as if a troop rode beside it, and it runs down whatever crosses the
+      road it remembers.
+
+  - id: specter
+    name: Specter
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "fly 50 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: angry incorporeal dead of a lightless ruin
+    tags: [undead, low, incorporeal]
+    abilities:
+      - "Incorporeal — mundane steel passes through; only fire, silver, or witched weapons bite"
+      - "Life-chill — a touch saps the warmth and strength from the living"
+    description: >-
+      The dead of one specific betrayal, kept sharp where a vaguer grief would
+      have dissolved — a Wujasjav adept whose covenant was called in mid-working
+      and left him neither paid nor finished, a Pę bondsman drowned over an
+      unpayable tax. It keeps no office, only the grievance and the cold, and
+      torchlight only shows you where it already is.
+
+  # ── MID BAND (3-6) — the barrow-watch and the Reckoners ──────────────
+
+  - id: ghast
+    name: Ghast
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6+1"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: greater corpse-eater of the grave-fields
+    tags: [undead, mid, predator]
+    abilities:
+      - "Paralysing rake — a clawed victim saves or seizes up for several rounds"
+      - "Carrion-stench — those who fight close to it save or fight sickened"
+    description: >-
+      A stronger, viler cousin of the barrow-ghouls that crawl the drowned
+      empire's grave-shafts — the corpse-eater that ate enough to keep its wits
+      and lost the last of its restraint. Where the lesser dead feed quietly, a
+      ghast announces itself by the smell, and feeds on what its paralysing rake
+      leaves still breathing.
+
+  - id: ingurdios_horn_dead
+    name: Ingurdios Horn-Dead
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8+1"
+    move: "40 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: risen horned deep-brute of the Ingurdios mines
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Goring charge — a running gore drives the horns deep and bears a target back"
+    description: >-
+      The bones of one of the great horned haulers the Mistos worked to death in
+      the Ingurdios mines, risen where they dug past the Deep Hollows and woke
+      what should have stayed asleep. Bone the breadth of a pit-prop, the heavy
+      skull's horns yellowed and intact, it charges down the lightless drifts on
+      the last order the overseers ever gave it.
+
+  - id: mummy
+    name: Mummy
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "20 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: embalmed drowned-empire dead, woken angry
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Rot-curse — a struck victim saves or takes a wasting curse that will not close or heal"
+    description: >-
+      A Tismenni dead preserved against the Cataclysm in the old embalming
+      rites, dry as river-silt and twice as patient. It wakes when its rest is
+      broken — a Mistos excavation, a Jambiendo grave-robber — and the wound it
+      lays does not bleed and does not close, only spreads.
+
+  - id: will_o_wisp
+    name: Will-o’-Wisp
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8"
+    move: "fly 50 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: malevolent marsh-light of the Hvoru fens
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Lure-light — drifts ahead as a lantern or a rescue-lamp, leading the lost into the deep channels"
+      - "Winks out — snuffs its glow and goes near-impossible to strike, then shocks the floundering"
+    description: >-
+      Not a beast but a Wujasjav working that drowned with its caster in the
+      Hvoru fens and never went out — a covenant's loose end, burning cold over
+      the salt channels and hungry the way the unpaid are hungry. It leads the
+      trusting off the safe reed-paths into the sucking dark, snuffs its glow,
+      and waits for the drowning to tire. The enslaved Waterfolk who work the
+      fens will not follow a light that does not call a name.
+
+  - id: wight
+    name: Wight
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: barrow-lord of the drowned dead
+    tags: [undead, mid, elite]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Grave-drain — a slaying touch saps the life-force; a victim killed by it rises as a zombie under the wight's will"
+    description: >-
+      A dead of rank that kept its will past the grave — a Tismenni officer, a
+      crown noble buried with his arms, a barrow-king of a line no one living
+      remembers. It rules the lesser dead of its shaft and raises every fresh
+      corpse it kills to swell the cold company it commands.
+
+  - id: risen_steppe_brute
+    name: Risen Steppe-Brute
+    level: 3
+    hp: 14
+    armor_class: 11
+    attack_bonus: 3
+    damage: "2d6"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: massive shambling dead-brute of the steppe
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Crushing slam — a single blow of the dead fists fells a lesser man outright"
+    description: >-
+      One of the big steppe brutes the Aldkin drive off their herds, dead and
+      raised and slower for it — a head taller than a man, grey flesh split over
+      grey bone. It feels nothing and stops for nothing, and a Wujasjav adept
+      will set one at a door and walk away certain it will still be there in a
+      year.
+
+  - id: ghost
+    name: Ghost
+    level: 4
+    hp: 18
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d8"
+    move: "fly 40 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: anchored haunting of a violent death
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Incorporeal — passes through walls; mundane weapons slide through it"
+      - "Withering gaze — meeting its eyes ages a victim cruelly unless they look away in time"
+      - "Bound — cannot leave the place or thing that holds it; destroy the anchor to lay it"
+    description: >-
+      The dead of a killing too unjust to settle — a witness the Wazdia
+      silenced, a Mistos exile left for the cold, a Zkędzała succession-killing
+      dressed up as an accident. It cannot leave the room or the road or the ring
+      that holds it, and it cannot rest while the wrong that made it stands unanswered.
+
+  - id: vampire_spawn
+    name: Vampire Spawn
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8+1"
+    move: "30 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: half-made thrall of a greater undead
+    tags: [undead, mid]
+    abilities:
+      - "Knits its wounds shut between blows unless burned or struck in running water"
+      - "Bite-drain — a fastened bite draws blood and strength both"
+    description: >-
+      A debtor a crown-vampire kept instead of settling its own account with a
+      Crimson God — drained almost to death and raised half-made, so the
+      half-life is itself the unpaid covenant walking around. Bound to the blood
+      that remade it, it hunts on a leash it cannot feel, brings the warm back to
+      its master, and heals from anything that is not fire or the river.
+
+  - id: wraith
+    name: Wraith
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8+1"
+    move: "fly 60 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: greater incorporeal killer of concentrated malice
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Incorporeal — drifts through walls; mundane steel passes through it"
+      - "Fearless — never checks morale"
+      - "Life-drain — a chilling pass saps vitality; one slain by it may rise as a specter in its service"
+    description: >-
+      What a death of pure hatred leaves when even a specter is too small to
+      hold it — a coalesced darkness in the shape of a hooded absence, drifting
+      the sunken halls of a drowned-empire ruin or a crown's forgotten oubliette.
+      It does not haunt one room as a ghost does; it goes where the warm are, and
+      it leaves a colder dark behind it.
+
+  # ── DEEP BAND (8-9) — the great dead and the apex bargained ──────────
+
+  - id: vampire
+    name: Vampire
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "2d6"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: bargained immortal of a crown or a covenant
+    marquee: true
+    tags: [undead, deep, elite]
+    abilities:
+      - "Reforms — when destroyed, mists back to its coffin and rises in days unless the resting-place is found and unmade"
+      - "Charm — a held gaze bends the will of one who meets it; the charmed will not strike it"
+      - "Life-drain bite; regenerates each round it is not burning or in running water"
+    description: >-
+      A noble of one of the three crowns, or a Wujasjav adept, who paid a
+      Crimson God for an end to dying and got exactly that and no more. It keeps
+      a court of charmed thralls and spawn, holds a coffin no servant will name,
+      and treats the centuries as a long and tiresome game it cannot lose by
+      dying — only by being found.
+
+  - id: mummy_lord
+    name: Mummy Lord
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "2d6+1"
+    move: "20 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: enthroned high-dead of the drowned empire
+    marquee: true
+    tags: [undead, deep, ancient]
+    abilities:
+      - "Rises again — reknits at its tomb unless the embalmed heart sealed apart from the body is found and burned"
+      - "Rot-curse — its touch lays a wasting that no mundane care will heal"
+      - "Channels dread — once a scene, all who behold it save or flee its presence"
+    description: >-
+      A Tismenni high priest or archon embalmed to outlast the comet, throned in
+      a flooded sanctum no living tongue can name, its heart sealed in a far jar
+      so the body could be unmade and still return. It is waking now, as the
+      crowns above the drowned empire begin to fall, and it does not yet know
+      twelve thousand years have passed — only that its rites have lapsed.
+
+  - id: lich
+    name: Lich
+    level: 9
+    hp: 40
+    armor_class: 15
+    attack_bonus: 9
+    damage: "2d8"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: covenant-mage who paid away its own death
+    marquee: true
+    tags: [undead, deep, ancient]
+    abilities:
+      - "Bound to a phylactery — destroyed, it reforms beside the hidden vessel unless the vessel is first unmade"
+      - "Paralysing touch — a bare-handed strike saves or locks the body rigid"
+      - "Withering working — looses a searing or draining covenant-effect at range each round"
+    description: >-
+      A Wujasjav adept, or a Tismenni scholar-king, who made the last covenant —
+      paid its own death into a hidden vessel and went on working. It remembers
+      every bargain it ever brokered and means to outlast every party to them,
+      patient past sanity in a tower or a sunken library, guarding the one jar
+      that is the only thing in the world that can end it.
+
+  # ── FIENDS — the bargained-for: Crimson Gods + Reckoners ─────────────
+  # ── LOW BAND ─────────────────────────────────────────────────────────
+
+  - id: covenant_dreg
+    name: Covenant Dreg
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "20 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: lowest mass-summoned demon-spawn
+    tags: [fiend, low, demon]
+    abilities:
+      - "Comes in numbers — a covenant pays for a swarm, not a single dreg"
+      - "Foul vapour — its death-stench sickens those standing too close"
+    description: >-
+      The cheapest thing a Crimson God will send up the smoke of a botched
+      working — a squat, weeping demon-spawn with no name and no worth but its
+      numbers. A Wujasjav adept who runs short of coin pays in dregs, and there
+      are always more dregs.
+
+  - id: tallow_penitent
+    name: Tallow Penitent
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d4"
+    move: "15 ft."
+    morale: 9
+    skill: 1
+    save: 15
+    role: a soul rendered down to obedient wax
+    tags: [fiend, low, devil]
+    abilities:
+      - "Mindless — feels nothing, wants nothing, obeys the last command it was given"
+      - "Re-renders — slain, it sets again in the Reckoners' vats unless put to blessed fire"
+    description: >-
+      What a covenant leaves of the one who could not pay — a soul rendered down
+      to a shuffling figure of weeping tallow, all memory and will boiled off.
+      The Reckoners herd them in droves to carry, to dig, to fill a doorway with
+      slow obedient flesh. Every Penitent was once a name on a ledger.
+
+  - id: crimson_familiar
+    name: Crimson Familiar
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4+1"
+    move: "40 ft., fly 40 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: imp-sized demon bound to a covenant-mage
+    tags: [fiend, low, demon, shapechanger]
+    abilities:
+      - "Wears a beast's shape — a marsh-rat, a crow, a toad — to spy unremarked"
+      - "Coward — fights only cornered, and goes invisible to flee the moment it can"
+    description: >-
+      A small, spiteful demon a Wujasjav adept binds for the price of a year, set
+      to spy and carry and whisper. It loathes its mage and serves to the letter
+      anyway, because the alternative is going back to the Crimson God that lent
+      it — which is worse than any year.
+
+  - id: ledger_imp
+    name: Ledger-Imp
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4"
+    move: "20 ft., fly 40 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: a Reckoner's small clerk-spy
+    tags: [fiend, low, devil, shapechanger]
+    abilities:
+      - "Invisible at will — watches and tallies unseen until it chooses to be known"
+      - "Stinger — a barbed tail-stab carries a creeping poison"
+      - "Coward — flees the instant a fight turns against it"
+    description: >-
+      The small contractual fiend a Reckoner sends ahead to read a household's
+      debts — invisible in the rafters, counting the silver, learning the names.
+      It does no killing it can avoid; its work is the tally, and the tally is
+      what the greater Reckoner comes to collect.
+
+  # ── MID BAND ─────────────────────────────────────────────────────────
+
+  - id: glaive_reckoner
+    name: Glaive Reckoner
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8+1"
+    move: "30 ft."
+    morale: 10
+    skill: 1
+    save: 14
+    role: bearded line-devil of a collection party
+    tags: [fiend, mid, devil]
+    abilities:
+      - "Beard-rot — its barbed jaw infects a bite-wound so it festers and will not close"
+      - "Disciplined — holds formation and morale where a demon would break"
+    description: >-
+      A rank-and-file Reckoner, beard a writhing nest of barbs, glaive kept to a
+      parade edge. It comes in disciplined files to enforce a covenant's letter,
+      takes the wound the contract entitles it to, and leaves a festering mark
+      on anyone who reads the small print too late.
+
+  - id: crimson_hound
+    name: Crimson Hound
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6+1"
+    move: "50 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: fire-throated hunting demon of a Crimson God
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Ember-breath — looses a cone of fire that ignites cloth, oil, and reed"
+      - "Pack-hunter — runs in coupled braces and herds prey toward the fire"
+    description: >-
+      The hounds a Crimson God looses to run down whoever skipped a bargain —
+      and they run only the marked, never the bystander, coursing in braces
+      along the Waznoty road on a scent of broken oath that no distance and no
+      water washes off. A debtor learns they are loose the same way the fen-grass
+      does: by the smell of it catching, somewhere behind, and getting closer.
+
+  - id: cinder_mare
+    name: Cinder-Mare
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8"
+    move: "60 ft., fly 90 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: burning steed of a Crimson God's errand
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Flaming hooves — its stride scorches; a struck target takes burning damage"
+      - "Smoke-stride — once a scene, it steps into smoke and reappears elsewhere, rider and all"
+    description: >-
+      An Aldkin Anta horse a Crimson God took in payment and gave back wrong —
+      black still, but maned in flame and breathing grave-smoke, the mount it
+      lends a chosen courier or a summoned visage. The Aldkin know it before they
+      see the fire, by a hitch in the gait no living Anta has; they cut its
+      picket and ride, because where it lands the steppe keeps the burn of its
+      tread for a year.
+
+  - id: covenant_lover
+    name: Covenant-Lover
+    level: 4
+    hp: 18
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d6"
+    move: "30 ft., fly 40 ft."
+    morale: 8
+    skill: 2
+    save: 13
+    role: shape-stealing fiend that bargains in want
+    tags: [fiend, mid, demon, shapechanger]
+    abilities:
+      - "Wears a wanted face — takes the shape the mark most longs for"
+      - "Draining kiss — a willing touch saps years of life and bleeds away the will to resist"
+      - "Unmasked, it flees — invisible, ethereal, gone the moment its game is seen for what it is"
+    description: >-
+      A fiend that trades in longing — it comes wearing the face you most wanted
+      to see, and the covenant it offers always sounds like mercy. Each kiss
+      takes a measure of life and a larger measure of judgement. It rules nothing
+      by force; it does not need to, until the moment it is recognised, and then
+      it is simply gone.
+
+  - id: barbed_reckoner
+    name: Barbed Reckoner
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8+1"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: barb-hided enforcer-devil
+    tags: [fiend, mid, devil]
+    abilities:
+      - "Barbed hide — anyone who grapples or is grappled by it is raked for the contact"
+      - "Hurls fire — flings a gout of flame at a target out of reach"
+    description: >-
+      A Reckoner clad head to foot in its own iron barbs, sent when a covenant
+      turns to violence and the letter permits it. It would rather you came to
+      it; closing with a Barbed Reckoner costs blood for every yard, and it
+      throws fire to make sure you have to.
+
+  - id: dream_creditor
+    name: Dream-Creditor
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d6+1"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: hag-fiend that lends in nightmares and collects in souls
+    tags: [fiend, mid]
+    abilities:
+      - "Haunts sleep — rides a chosen sleeper night after night, leaving them hollow and unrested by morning"
+      - "Steps through dream — slips into the half-real to escape or to reach a sleeper miles off"
+      - "Soul-bargain — offers ease from the haunting at a price written in years"
+    description: >-
+      A crone-fiend who deals in the debts the Crimson Gods find too small to
+      bother with — a year here, a night's rest there. She haunts a sleeper she
+      has marked until they will sign anything for one whole night, and the price
+      is always the same and always more than it sounded. She and the Zkędzała-
+      Bound Hag have an arrangement; neither will say what it costs.
+
+  - id: carrion_crimson_god
+    name: Carrion Crimson God
+    level: 6
+    hp: 27
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d10"
+    move: "30 ft., fly 50 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: vulture-shaped aspect of a hungry Crimson God
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Spore-reek — releases a cloud of carrion-spores that nauseates and weakens the living near it"
+      - "Maddening screech — once a scene, a shriek that leaves those who hear it reeling and unable to act"
+    description: >-
+      A great rotted vulture-thing, one of the lesser hungers a Crimson God
+      sends when the bargain it was owed has spoiled. It screams down out of a
+      red sky over the barrow-fields, fouls the air with carrion-spores, and
+      tears at what its screech has left too stunned to run.
+
+  - id: bargainer_crimson_god
+    name: Bargainer Crimson God
+    level: 7
+    hp: 32
+    armor_class: 16
+    attack_bonus: 7
+    damage: "1d10+1"
+    move: "40 ft."
+    morale: 10
+    skill: 2
+    save: 12
+    role: dog-headed aspect that grants and collects
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Two pincers — makes two crushing claw attacks a round"
+      - "Mid-fight bargain — offers, in earnest, to grant a heart's desire in exchange for flesh, a name, or a year; it always means it, and the granting is always a trap"
+    description: >-
+      A towering dog-headed aspect with four arms, two ending in pincers that can
+      take a man in half — and yet the danger is the offer, not the claws. It
+      will pause a killing to grant your dearest wish, exactly and ruinously as
+      worded. Most of the 999 Crimson Gods began as a Bargainer's granted wish
+      that went the way these always go.
+
+  - id: rot_crimson_god
+    name: Rot Crimson God
+    level: 7
+    hp: 32
+    armor_class: 15
+    attack_bonus: 7
+    damage: "1d10"
+    move: "30 ft., swim 30 ft."
+    morale: 10
+    skill: 2
+    save: 12
+    role: toad-shaped aspect of corruption
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Two attacks — bite and raking claws each round"
+      - "Stench of rot — those who fight close to it save each round or fight sickened and slowed"
+    description: >-
+      A bloated toad-shaped aspect that reeks the moment it arrives, summoned
+      where a covenant has gone to pure decay. The stench alone empties a room;
+      what it does with its claws while you are retching is almost an
+      afterthought. The Bladtrablo say one rose once in the black water of a
+      flooded vent-forge and the forge was abandoned rather than cleansed.
+
+  - id: bone_reckoner
+    name: Bone Reckoner
+    level: 7
+    hp: 32
+    armor_class: 16
+    attack_bonus: 7
+    damage: "1d10"
+    move: "40 ft."
+    morale: 11
+    skill: 2
+    save: 12
+    role: gaunt high-devil that audits a debtor to death
+    tags: [fiend, mid, devil]
+    abilities:
+      - "Hooked sting — a tail-stab carries a poison that wracks and weakens over the fight"
+      - "Cold discipline — utterly fearless; pursues a marked debtor without haste and without stopping"
+    description: >-
+      A tall, gaunt, fleshless Reckoner sent for the debts that matter — it does
+      not hurry, does not gloat, and does not give up a name once the ledger has
+      assigned it. It hunts the debtor through every town the Wazdia ledger can
+      reach, and when it finds them the sting does the slow arithmetic of what
+      is owed.
+
+  - id: chain_reckoner
+    name: Chain Reckoner
+    level: 7
+    hp: 32
+    armor_class: 16
+    attack_bonus: 7
+    damage: "1d8+2"
+    move: "30 ft."
+    morale: 11
+    skill: 2
+    save: 12
+    role: warden-devil wreathed in living chain
+    tags: [fiend, mid, devil]
+    abilities:
+      - "Living chains — barbed lengths lash from its body to rend and to drag; makes two chain attacks a round"
+      - "Bind — a chain that hits may seize a victim fast until it is cut or the devil falls"
+    description: >-
+      A flayed shape inside a cage of its own animate chains, the gaoler the
+      Reckoners send to take a debtor alive when alive is what the covenant
+      specifies. The chains reach further than they should, drag harder than
+      iron should, and a Wujasjav adept who summons one had best be very sure
+      whose name is on the warrant.
+
+  # ── DEEP BAND ────────────────────────────────────────────────────────
+
+  - id: glutton_crimson_god
+    name: Glutton Crimson God
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "2d6"
+    move: "20 ft., fly 30 ft."
+    morale: 10
+    skill: 3
+    save: 11
+    role: vast boar-shaped aspect of appetite
+    tags: [fiend, deep, demon]
+    abilities:
+      - "Aura of dread — once a scene, all who behold its bulk save or stand witless and reeling for a round"
+      - "Gorging bite — swallows what it fells; a devoured foe is gone unless cut free fast"
+    description: >-
+      A mountain of a boar-and-ape aspect, one of the greater Crimson Gods of
+      pure appetite, summoned by a covenant that promised it a feast it has come
+      to claim. Its mere presence unmoors the mind; it eats while you stand
+      stunned, and what it eats, it eats. There is rarely a body left to bury.
+
+  - id: oath_fury
+    name: Oath-Fury
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "2d6"
+    move: "30 ft., fly 60 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: winged devil-fury loosed on a broken oath
+    tags: [fiend, deep, devil]
+    abilities:
+      - "Marked quarry — fixes on the oath-breaker it was sent for and always knows where they are"
+      - "Rope of entanglement — a flung cord binds its quarry fast at range"
+      - "Flight — strikes from the air and climbs out of reach between blows"
+    description: >-
+      A beautiful, terrible winged Reckoner loosed when a sworn oath is broken —
+      not summoned by the wronged, but by the broken oath itself, which the
+      Crimson Gods hold as a debt. It binds the oath-breaker with a flung cord
+      and does not stop for bystanders unless they make themselves the obstacle.
+      Many a crown betrayal has ended with one of these at the traitor's window.
+
+  - id: horned_reckoner
+    name: Horned Reckoner
+    level: 8
+    hp: 36
+    armor_class: 17
+    attack_bonus: 8
+    damage: "2d6+1"
+    move: "20 ft., fly 50 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: great winged enforcer-devil with a lashing tail
+    tags: [fiend, deep, devil]
+    abilities:
+      - "Fork and tail — strikes with a great fork and a flaming tail-lash each round"
+      - "Hurls fire — looses a bolt of flame at a distant target"
+      - "Flight — fights from above, descending only to finish"
+    description: >-
+      A red-scaled, bat-winged high Reckoner, the enforcer a covenant invokes
+      when the price is a city block's worth of blood. It circles a burning
+      quarter on leathery wings, hurling fire, descending with fork and lashing
+      tail only to collect the principals by name. It does not bargain; that
+      stage is over by the time it is called.
+
+  - id: silk_faced_liar
+    name: Silk-Faced Liar
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d10+2"
+    move: "40 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: borrowed-faced fiend that lives a stolen life
+    marquee: true
+    tags: [fiend, deep, shapechanger]
+    abilities:
+      - "Wears a borrowed life — takes the exact face, voice, and manner of someone it has unmade, and keeps it for years"
+      - "Witch-warded — mundane steel and lesser workings slide off; only blessed or greater-covenant force bites it"
+      - "Laying-curse — a gesture lays a wasting hex that follows a victim home"
+    description: >-
+      A fiend that does not raid but replaces — it eats a magistrate, a Mistos
+      warden, a guild-master, and then simply lives that life, drawing the wages
+      and the trust and the secrets for as long as the masquerade holds. Its true
+      face, glimpsed once, is a thing the back of the hands cannot abide. Steel
+      is wasted on it; a Wujasjav covenant or a temple's blessing is the only
+      thing it fears, and it has spent centuries learning where those are kept.
+
+  - id: frost_reckoner
+    name: Frost Reckoner
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d6+2"
+    move: "40 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: cold high-devil that collects without mercy or haste
+    tags: [fiend, deep, devil]
+    abilities:
+      - "Killing cold — radiates a chill that numbs and saps the strength of all who fight near it"
+      - "Rime-spear — a long ice-spear strikes hard and slows a struck target to a crawl"
+      - "Utterly fearless — never checks morale; finishes the contract whatever it costs"
+    description: >-
+      The Reckoner sent for the contracts the lesser ones cannot enforce — tall,
+      insectile, sheathed in killing cold, a thing of pure procedure with the
+      mercy frozen out of it. It walks into a Mistos hall or a Crimson cult's
+      sanctum, lowers the temperature of the room and the argument both, and
+      collects exactly what the covenant says, no more and never less.
+
+  - id: six_blade_crimson_god
+    name: Six-Blade Crimson God
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "2d6+2"
+    move: "40 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: serpent-bodied war-aspect of six swords
+    marquee: true
+    tags: [fiend, deep, demon]
+    abilities:
+      - "Six blades — makes a flurry of sword-strikes each round, one from each hand"
+      - "Reactive guard — turns aside the first blow aimed at it each round with an idle blade"
+      - "Tail-coils — can seize and crush a foe in its serpent's lower body while the six arms work"
+    description: >-
+      A great war-aspect of the Crimson Gods, woman from the waist up and serpent
+      below, each of six hands gripping a Tismenni war-sword it took off the
+      drowned empire's dead and never gave back. It is summoned for slaughter and
+      nothing else — a covenant paid in a battlefield's worth of blood — and
+      fights like a moving thresher, parrying what little gets near. The Mistos
+      Host has a standing order never to dig where one was last bound.
+
+  - id: throne_of_the_crimson_gods
+    name: Throne of the Crimson Gods
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d8+2"
+    move: "40 ft., fly 80 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: flame-wreathed great demon, an apex Crimson God
+    marquee: true
+    tags: [fiend, deep, demon, apex]
+    abilities:
+      - "Wreathed in fire — anything that strikes it in reach is seared; its very presence ignites the room"
+      - "Whip and blade — a flame-whip drags a distant foe close into the reach of a great burning sword; two attacks a round"
+      - "Death-flash — when finally destroyed, it detonates in a blast of fire that takes the unwary with it"
+    description: >-
+      One of the greatest of the 999, a towering demon haloed in flame, the
+      Crimson God a cult or a desperate crown calls up when nothing smaller will
+      serve and the price has stopped mattering. It drags its prey in on a whip
+      of fire and cuts them down with a sword the length of a man, and when at
+      last it falls it takes the room with it. The Tismenni knew its name; the
+      knowing did not save them.
+
+  - id: archdebt
+    name: Archdebt
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d8+2"
+    move: "30 ft., fly 60 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: the lord of the Reckoners, a covenant's final form
+    marquee: true
+    tags: [fiend, deep, devil, apex]
+    abilities:
+      - "Aura of fear — all who behold it save or are unmanned; the unbrave cannot raise a weapon against it"
+      - "Calls the lesser — summons a brace of Reckoners to enforce alongside it"
+      - "Two attacks — a great mace and a constricting, venom-tailed coil each round"
+    description: >-
+      The thing at the bottom of every ledger — vast, winged, red as a forge-
+      heart, the lord to whom every Reckoner answers and every covenant
+      ultimately defaults. It comes only for the debts a whole life was pledged
+      against, and it comes wearing the calm of something that has never once
+      been refused. It will, even now, offer a final renegotiation. The terms
+      are always worse, and there is always a worse still beneath them.

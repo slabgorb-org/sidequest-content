@@ -1,0 +1,89 @@
+# Evrópí — genre-truth gate (GATE 1, bestiary-curation-recipe §Stage 1).
+# Applied to corpus/monsters.yaml BEFORE any WWN stat conversion. A denied
+# row is removed from the curated expansion entirely. marquee rows are exempt
+# from denial (Diamonds-and-Coal, ADR-014).
+#
+# heavy_metal is a baroque fantasy of pacts, decay, and blood-priced magic.
+# The gate's whole job is to keep the SRD expansion to UNDEAD + FIENDS-AS-PACTS
+# only — the drowned-empire dead and the bargained-for things of the 999
+# Crimson Gods — and to refuse the high-fantasy menagerie wholesale. The
+# world's beasts, marsh-hunters, and steppe apexes are HAND-AUTHORED above the
+# expansion and are not governed by this gate.
+register: >-
+  Baroque decay and blood-priced pact. Twelve thousand years past the Cataclysm,
+  three authoritarian crowns press on a world whose dead do not stay drowned and
+  whose 999 Crimson Gods will sell anything to anyone who pays in flesh, years,
+  or names. Gravity >= 0.80. Never comic, never cute; the dread is bureaucratic
+  and old, and every horror was someone's bargain.
+
+# Only these two 5e types survive into the expansion. Everything else is the
+# menagerie this world refuses.
+allow_types: [Undead, Fiend]
+
+deny:
+  # The high-fantasy menagerie, refused by type. Listed explicitly (rather than
+  # left to fall through allow_types) so the "no dragons-as-such, no fey, no
+  # beast-fantasy padding" intent is loud and self-documenting in the audit.
+  types: [Dragon, Fey, Beast, Monstrosity, Celestial, Elemental,
+          Plant, Giant, Aberration, Ooze, Construct, Humanoid,
+          "Swarm Of Tiny Beasts"]
+  # No tag/name_glob vetoes: within Undead + Fiend nothing further needs
+  # culling for tone, so a tags/name_glob rule here would be dead config
+  # (No Stubbing). GATE 2 (the human tone pass) confirmed every survivor is
+  # baroque-pure — see the bestiary expansion banner.
+
+# Undead appear as the drowned-empire dead, the crown's quiet killings that
+# would not take, and the foundry-less dead of the Land of Dust — never as a
+# comic skeleton-crew. Fiends appear ONLY as the bargained-for: each is a
+# private covenant come due, never a free-roaming monster.
+humanoid_constraint: "No humanoids in the expansion — humanoid factions (Wazdia, Mistos Host, Daggereyes) are hand-authored world entries above, not corpus-curated."
+
+# Rename SRD fiend chassis under Evrópí's pact institutions where it sharpens
+# fidelity: demons become aspects of the hungry 999 Crimson Gods; devils become
+# the cold contractual Reckoners who collect on a covenant. Signature undead
+# take drowned-empire names. Generic undead (skeleton/zombie/ghoul/etc.) keep
+# their legible SRD name and carry their Evrópí recast in `description` (the
+# lean-tier convention from the beneath_sunden reference).
+reskin:
+  # ── Fiends: demons = Crimson God aspects, devils = Reckoners ──────────
+  Lemure: "Tallow Penitent"
+  Dretch: "Covenant Dreg"
+  Quasit: "Crimson Familiar"
+  Imp: "Ledger-Imp"
+  "Bearded Devil": "Glaive Reckoner"
+  "Hell Hound": "Crimson Hound"
+  Nightmare: "Cinder-Mare"
+  Succubus/Incubus: "Covenant-Lover"
+  "Barbed Devil": "Barbed Reckoner"
+  "Night Hag": "Dream-Creditor"
+  Vrock: "Carrion Crimson God"
+  "Chain Devil": "Chain Reckoner"
+  Hezrou: "Rot Crimson God"
+  "Bone Devil": "Bone Reckoner"
+  Glabrezu: "Bargainer Crimson God"
+  "Horned Devil": "Horned Reckoner"
+  Erinyes: "Oath-Fury"
+  Nalfeshnee: "Glutton Crimson God"
+  Rakshasa: "Silk-Faced Liar"
+  "Ice Devil": "Frost Reckoner"
+  Marilith: "Six-Blade Crimson God"
+  Balor: "Throne of the Crimson Gods"
+  "Pit Fiend": "Archdebt"
+  # ── One undead reskin (onomastic fix, GATE-2) ────────────────────────
+  # "Minotaur"/"Ogre" are creature-names the gate's own deny list refuses
+  # (Cretan myth / Giant); reskinned to world-anchored dead so the names stop
+  # importing a menagerie the world otherwise culls.
+  "Minotaur Skeleton": "Ingurdios Horn-Dead"   # -> the Mistos-dug Ingurdios mines
+  "Ogre Zombie": "Risen Steppe-Brute"           # -> the Aldkin steppe brutes (cf. its desc)
+  # NOTE: other undead are deliberately NOT reskinned. Evrópí's signature dead are
+  # the HAND-AUTHORED Tismenni named undead above (Dust-Echo, Grave-Chanter,
+  # Grave-Captain, Barrow-Ghoul, the drowned revenants). The SRD-expansion
+  # undead stay under legible SRD names as the world's COMMON, widespread dead
+  # — a "Tismenni X" reskin here would only clash with the named set (e.g.
+  # "Barrow-Wight" vs the existing "Barrow-Ghoul of the Dust"). Their Evrópí
+  # recast lives in `description` (the beneath_sunden lean-tier convention).
+
+# Diamonds-and-Coal flagships (ADR-014): the apex undead and the greatest
+# bargained Crimson Gods, the named horrors a table remembers. Exempt from
+# denial (all already Undead/Fiend-allowed; listed to mark the marquee plates).
+marquee: ["Lich", "Mummy Lord", "Vampire", "Balor", "Pit Fiend", "Marilith", "Rakshasa"]
