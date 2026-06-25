@@ -1,18 +1,69 @@
-# Elemental Harmony — pack bestiary (story 90-1)
+# Burning Peace — world bestiary (burning_peace_bestiary)
 #
-# SRD-aligned combat stat blocks for the wwn ruleset module. Encountergen
-# samples these for the Monster Manual encounters pool (free-play reachable
-# hostiles); narrative layers (OCEAN, visual prompt) are composed at
-# generation time. Stats are faithful to the Worlds Without Number SRD 1.0
-# (Sine Nomine Publishing) generic stat lines — level == HD, hp == average
-# (4.5/HD), ascending AC, morale on the 2d12 ladder.
+# World-tier roster for the elemental_harmony pack. The pack ships NO
+# genre-level bestiary, so this file is the full populated stat-block set
+# encountergen samples for the Monster Manual encounters of the Ember Isles
+# under the Tokigane Burning Peace (ADR-140: the genre is the rulebook, the
+# world owns the cast). Narrative layers (OCEAN, visual prompt) are composed at
+# generation time; image medium/style lives in visual_style.yaml, never in a
+# per-entity appearance field.
 #
-# Genre tier rules (ADR-120): names here are genre-generic — no named
-# world cultures, factions, or POIs. World-specific hostiles belong in
-# worlds/<slug>/ overrides.
+# WWN ruleset module (see ../../rules.yaml: ruleset: wwn). Generic OSR stat
+# lines: level == HD, hp == the WWN ladder table (avg 4.5/HD rounded — a TABLE,
+# not a formula), ascending AC, attack_bonus == level, morale on the 2d6 ladder
+# (12 = Fearless / auto-pass), save == 15 − floor(level/2).
 #
-# Some stat blocks reskinned from "Those Outside the Walls" (Alex Dworman), CC-BY-NC-SA 4.0.
+# ════════════════════════════════════════════════════════════════════
+#  BESTIARY-CURATION PROVENANCE  (recipe: ../../../../docs/bestiary-curation-recipe.md)
+# ════════════════════════════════════════════════════════════════════
+#  SOURCE: the SETTING ITSELF, not the D&D SRD. 25 rows of Ember-Isles fauna,
+#    sworn martial orders, and Japanese-myth yōkai/kami (corpus/monsters.yaml),
+#    rendered setting-true to the Edo/sengoku Burning Peace.
+#
+#  GATE 1 — world_register.yaml genre-truth, applied against corpus/monsters
+#    .yaml: kept 25, dropped 0. The corpus is wholly Burning-Peace setting-true,
+#    so nothing is culled — that clean pass IS the fidelity proof. The deny
+#    lists (Western dungeon-fantasy types / tags / name_globs: dragons, demons,
+#    goblins, owlbears, liches, vampires, the fairy-tale fey …) are the firewall
+#    against a future author padding the isles with the SRD menagerie, not
+#    active culls here.   [tool: bestiary_curator]
+#  GATE 2 — tone curation ("wuxia/elemental, mannered, mournful, lethal; never
+#    comic, never cute"): HAND pass. No GATE-1 survivor removed for tone — every
+#    row is setting-true to the Tōkaidō-at-dusk register. The yōkai are rendered
+#    as folk-myth dread (yūrei bound to a grievance, the starved battle-dead,
+#    the lantern-lure over black water), never as joke-monsters.
+#
+#  CONVERSION — WWN ladder via bestiary_curator: level assigned by CR band
+#    (L1 road-vermin & lesser lures → L8 the named river-leviathan and the
+#    mountain oni; the isles top out modestly — no dragon-tier inflation);
+#    hp/save/attack_bonus VERBATIM off the ladder (hp table; save 15 − level//2;
+#    attack_bonus == level). skill follows the ladder band, EXCEPT the mindless
+#    cohort — raw elemental kami, animated-stone constructs, and the will-less
+#    battle-dead — which take skill 0 with morale 12 / Fearless (the recipe's
+#    beneath_sunden & barsoom treatment). AC and morale are archetype-tuned by
+#    hand. Prose (description, abilities, damage, move, role) authored here.
+#  PRESERVATION (ADR-140): this pass RE-LADDERED the world's existing 25-entry
+#    roster onto the verbatim ladder — it did not clobber it. The prior file ran
+#    attack_bonus one-or-more high (e.g. battlefield ghost +6 at L4, leviathan
+#    +10 at L8) and put L5 hp at 23; both are corrected here. All 25 original
+#    entries survive with their prose, abilities, damage, move, AC, and morale
+#    intact. Numbers are ladder-derived, NEVER hand-balanced (SOUL: "Bind the
+#    Ruleset, Don't Balance It").
+#
+#  DIAMONDS (ADR-014, the illustrated capstones — flagged, not gate-exempt):
+#    oni of the Red Mountain · the named river-leviathan · the nue · the
+#    jorōgumo · the karasu-tengu swordmaster. world_register marquee is empty:
+#    every corpus row is admissible under allow_types, so nothing needs rescue
+#    from the deny gate.
+#
+#  SIBLING: shares its allow/deny algebra and creature philosophy with
+#    elemental_harmony/shattered_accord (pan-East-Asian); each world carries its
+#    own institutional vocabulary over the shared gate.
+#  VALIDATION: load_genre_pack PASS; validate pack PASS.
+# ════════════════════════════════════════════════════════════════════
 entries:
+
+  # ── LOW BAND (L1-2) — road vermin, mooks, lesser lures & lesser spirits ──
   - id: mountain_pass_bandit
     name: Mountain Pass Bandit
     level: 1
@@ -25,7 +76,7 @@ entries:
     skill: 1
     save: 15
     role: highway robber
-    tags: [human, bandit]
+    tags: [human, bandit, low]
     description: >-
       A lean cutpurse in a straw cloak and lacquered scraps of stolen
       armor, watching the trade road from above the tree line.
@@ -34,14 +85,14 @@ entries:
     level: 1
     hp: 5
     armor_class: 13
-    attack_bonus: 2
+    attack_bonus: 1
     damage: "1d8+1"
     move: "30 ft."
     morale: 8
     skill: 1
     save: 15
     role: veteran waterway raider
-    tags: [human, pirate]
+    tags: [human, pirate, low]
     description: >-
       A sun-browned raider with a boarding hook and a fighting grin,
       poling a low skiff out of the reed shallows.
@@ -50,191 +101,19 @@ entries:
     level: 1
     hp: 5
     armor_class: 12
-    attack_bonus: 2
+    attack_bonus: 1
     damage: "1d4"
     move: "40 ft."
     morale: 7
     skill: 1
     save: 15
     role: burned-land pack-hunter
-    tags: [beast]
+    tags: [beast, low]
     abilities:
       - "Pack tactics — hunts in numbers"
     description: >-
       A grey-coated jackal of the fire-scoured plains, ash still dusting
       its hackles, circling with its pack.
-  - id: renegade_initiate
-    name: Renegade Channeler Initiate
-    level: 2
-    hp: 9
-    armor_class: 15
-    attack_bonus: 3
-    damage: "1d8+1"
-    move: "30 ft."
-    morale: 9
-    skill: 1
-    save: 14
-    role: expelled student of the elemental forms
-    tags: [human, channeler]
-    description: >-
-      A young channeler cast out of the temple schools, forms gone sloppy
-      and dangerous without a master's correction.
-  - id: temple_guardian_statue
-    name: Temple Guardian Statue
-    level: 2
-    hp: 9
-    armor_class: 13
-    attack_bonus: 2
-    damage: "1d6"
-    move: "30 ft."
-    morale: 12
-    skill: 1
-    save: 14
-    role: animated stone sentinel
-    tags: [construct]
-    abilities:
-      - "Fearless — never checks morale"
-    description: >-
-      A stone temple-dog come grinding to life, moss still clinging to its
-      shoulders, bound to a threshold and an old oath.
-  - id: imperial_elite
-    name: Imperial Elite Soldier
-    level: 3
-    hp: 14
-    armor_class: 18
-    attack_bonus: 4
-    damage: "1d8+2"
-    move: "30 ft."
-    morale: 10
-    skill: 2
-    save: 14
-    role: heavy palace infantry
-    tags: [human, elite]
-    description: >-
-      A palace soldier in full lamellar with a banner-spear, drilled to
-      hold formation through fire and flood alike.
-  - id: battlefield_ghost
-    name: Restless Battlefield Ghost
-    level: 4
-    hp: 18
-    armor_class: 15
-    attack_bonus: 6
-    damage: "1d10"
-    move: "40 ft."
-    morale: 12
-    skill: 1
-    save: 13
-    role: unquiet dead warrior
-    tags: [spirit, undead]
-    abilities:
-      - "Fearless — never checks morale"
-      - "Reforms at dusk unless its grievance is settled"
-    description: >-
-      The cold after-image of a soldier who died badly, still fighting a
-      battle thirty years finished.
-  - id: warlords_champion
-    name: Warlord's Champion
-    level: 4
-    hp: 18
-    armor_class: 18
-    attack_bonus: 6
-    damage: "1d8+2"
-    move: "30 ft."
-    morale: 10
-    skill: 2
-    save: 13
-    role: dueling champion
-    tags: [human, champion]
-    description: >-
-      A famous blade in ornate half-armor who fights challenge duels for a
-      provincial warlord's honor and purse.
-  - id: lesser_storm_spirit
-    name: Lesser Storm Spirit
-    level: 4
-    hp: 18
-    armor_class: 15
-    attack_bonus: 6
-    damage: "1d10"
-    move: "40 ft."
-    morale: 12
-    skill: 1
-    save: 13
-    role: offended air spirit
-    tags: [spirit, elemental]
-    abilities:
-      - "Flies"
-      - "Fearless — never checks morale"
-    description: >-
-      A knot of wind and grievance given shape, crackling faintly, drawn
-      to broken promises and disturbed shrines.
-  - id: cave_tiger
-    name: Cave Tiger
-    level: 5
-    hp: 23
-    armor_class: 13
-    attack_bonus: 6
-    damage: "1d8"
-    move: "30 ft."
-    morale: 8
-    skill: 1
-    save: 13
-    role: solitary mountain predator
-    tags: [beast]
-    description: >-
-      A pale tiger of the high karst caves, broad-pawed and silent, that
-      has learned to take travelers from the cliff paths.
-  - id: rogue_earth_spirit
-    name: Rogue Earth Spirit
-    level: 6
-    hp: 27
-    armor_class: 15
-    attack_bonus: 6
-    damage: "1d10"
-    move: "20 ft."
-    morale: 12
-    skill: 1
-    save: 12
-    role: unbound mountain spirit
-    tags: [spirit, elemental]
-    abilities:
-      - "Fearless — never checks morale"
-    description: >-
-      A hillside that stood up: boulders for shoulders, roots for sinew,
-      furious that someone moved the boundary stones.
-  - id: bandit_warlord
-    name: Bandit Warlord
-    level: 6
-    hp: 27
-    armor_class: 18
-    attack_bonus: 8
-    damage: "1d8+3"
-    move: "30 ft."
-    morale: 9
-    skill: 2
-    save: 12
-    role: outlaw army commander
-    tags: [human, commander]
-    description: >-
-      A former imperial officer turned mountain king, holding three
-      valleys with stolen banners and absolute discipline.
-  - id: deep_current_leviathan
-    name: Leviathan of the Deep Current
-    level: 8
-    hp: 36
-    armor_class: 15
-    attack_bonus: 10
-    damage: "2d6+4"
-    move: "40 ft."
-    morale: 9
-    skill: 2
-    save: 11
-    role: great water beast
-    tags: [beast, apex]
-    abilities:
-      - "Two attacks per round"
-    description: >-
-      A river-serpent old enough to have a name in four languages, scaled
-      like flood-polished jade, owed offerings nobody pays anymore.
   - id: chochin_obake
     name: Chōchin-obake
     level: 1
@@ -247,7 +126,7 @@ entries:
     skill: 1
     save: 15
     role: lantern-spirit lure
-    tags: [spirit, tsukumogami]
+    tags: [spirit, tsukumogami, low]
     abilities:
       - "Lantern lure — a creature within 60 ft. that watches the swaying light makes a Mental save or drifts toward it"
       - "Flies"
@@ -256,19 +135,54 @@ entries:
       Tōkaidō, split now into one long lolling tongue and a single rolling
       eye. It bobs gently off the road's edge, warm and welcoming, where
       the embankment falls away into black water.
+
+  - id: renegade_initiate
+    name: Renegade Channeler Initiate
+    level: 2
+    hp: 9
+    armor_class: 15
+    attack_bonus: 2
+    damage: "1d8+1"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: expelled student of the elemental forms
+    tags: [human, channeler, low]
+    description: >-
+      A young channeler cast out of the temple schools, forms gone sloppy
+      and dangerous without a master's correction.
+  - id: temple_guardian_statue
+    name: Temple Guardian Statue
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "30 ft."
+    morale: 12
+    skill: 0
+    save: 14
+    role: animated stone sentinel
+    tags: [construct, low]
+    abilities:
+      - "Fearless — never checks morale"
+    description: >-
+      A stone temple-dog come grinding to life, moss still clinging to its
+      shoulders, bound to a threshold and an old oath.
   - id: kappa_ferryman
     name: Kappa of the Crossing
     level: 2
     hp: 9
     armor_class: 13
-    attack_bonus: 3
+    attack_bonus: 2
     damage: "1d6+1"
     move: "30 ft. swim"
     morale: 8
     skill: 1
     save: 14
     role: river-ford ambusher
-    tags: [yokai, beast]
+    tags: [yokai, beast, low]
     abilities:
       - "Drag under — a struck creature must save or be hauled into deep water and held below"
       - "Bow it down — if offered courtesy or a cucumber it must bow in return, spilling the water-dish on its crown and losing its strength for the scene"
@@ -286,10 +200,10 @@ entries:
     damage: "1d6"
     move: "20 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 14
     role: defiled wayside guardian
-    tags: [construct, spirit]
+    tags: [construct, spirit, low]
     abilities:
       - "Fearless — never checks morale"
       - "Reproachful stare — once per scene every living creature in sight must make a Mental save or spend its turn unable to raise a weapon, shamed by the stone"
@@ -308,10 +222,10 @@ entries:
     damage: "1d6"
     move: "30 ft."
     morale: 7
-    skill: 2
+    skill: 1
     save: 14
     role: shapeshifting con-artist spirit
-    tags: [yokai, shapeshifter]
+    tags: [yokai, shapeshifter, low]
     abilities:
       - "False shape — the danuki takes the seeming of a person, monk, or sum of coin; a creature that trusts the disguise makes a Mental save or is led astray for the scene"
       - "Leaf-money — its proffered gifts are real to the touch until dawn, when they turn back to dirt and dead leaves"
@@ -320,19 +234,37 @@ entries:
       itself unwatched, drumming on its own belly in the dark. It will
       sell you a fine lacquered scabbard, a night's lodging, a writ of safe
       passage — all of it leaves and river-mud by morning.
+
+  # ── MID BAND (L3-7) — soldiery, the restless dead, the mountain spirits ──
+  - id: imperial_elite
+    name: Imperial Elite Soldier
+    level: 3
+    hp: 14
+    armor_class: 18
+    attack_bonus: 3
+    damage: "1d8+2"
+    move: "30 ft."
+    morale: 10
+    skill: 1
+    save: 14
+    role: heavy palace infantry
+    tags: [human, elite, mid]
+    description: >-
+      A palace soldier in full lamellar with a banner-spear, drilled to
+      hold formation through fire and flood alike.
   - id: noppera_wraith
     name: Noppera-bō
     level: 3
     hp: 14
     armor_class: 13
-    attack_bonus: 4
+    attack_bonus: 3
     damage: "1d6"
     move: "30 ft."
     morale: 12
     skill: 1
     save: 14
     role: faceless draining spirit
-    tags: [spirit, undead]
+    tags: [spirit, undead, mid]
     abilities:
       - "Faceless dread — its touch drains the living; a struck creature that fails its save is left enfeebled, weaker until it rests"
       - "Undone by lantern-light — bright flame drives it back and pins it in place"
@@ -347,15 +279,16 @@ entries:
     level: 3
     hp: 14
     armor_class: 13
-    attack_bonus: 4
+    attack_bonus: 3
     damage: "1d6+1"
     move: "30 ft."
     morale: 12
-    skill: 1
+    skill: 0
     save: 14
     role: starved battle-dead
-    tags: [spirit, undead]
+    tags: [spirit, undead, mid]
     abilities:
+      - "Fearless — never checks morale"
       - "Grave-stench — a creature within 10 ft. must save or be stunned for a round by the reek of the unburied"
       - "Clutching bite — a creature it seizes must save or be paralyzed while it gnaws"
     description: >-
@@ -363,19 +296,73 @@ entries:
       starved on the losing side of the civil war, left where they fell. It
       clacks and gnashes along the old battlefields, an arm's-length scrap
       of the vast bone-giant the priests pray will never finish forming.
+  - id: battlefield_ghost
+    name: Restless Battlefield Ghost
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d10"
+    move: "40 ft."
+    morale: 12
+    skill: 0
+    save: 13
+    role: unquiet dead warrior
+    tags: [spirit, undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Reforms at dusk unless its grievance is settled"
+    description: >-
+      The cold after-image of a soldier who died badly, still fighting a
+      battle thirty years finished.
+  - id: warlords_champion
+    name: Warlord's Champion
+    level: 4
+    hp: 18
+    armor_class: 18
+    attack_bonus: 4
+    damage: "1d8+2"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: dueling champion
+    tags: [human, champion, mid]
+    description: >-
+      A famous blade in ornate half-armor who fights challenge duels for a
+      provincial warlord's honor and purse.
+  - id: lesser_storm_spirit
+    name: Lesser Storm Spirit
+    level: 4
+    hp: 18
+    armor_class: 15
+    attack_bonus: 4
+    damage: "1d10"
+    move: "40 ft."
+    morale: 12
+    skill: 0
+    save: 13
+    role: offended air spirit
+    tags: [spirit, elemental, mid]
+    abilities:
+      - "Flies"
+      - "Fearless — never checks morale"
+    description: >-
+      A knot of wind and grievance given shape, crackling faintly, drawn
+      to broken promises and disturbed shrines.
   - id: musha_yurei
     name: Musha-yūrei
     level: 4
     hp: 18
     armor_class: 16
-    attack_bonus: 6
+    attack_bonus: 4
     damage: "1d10"
     move: "30 ft."
     morale: 11
-    skill: 1
+    skill: 2
     save: 13
     role: fallen-samurai ghost
-    tags: [spirit, undead]
+    tags: [spirit, undead, mid]
     abilities:
       - "Immune to mundane weapons — only fire, channeled flame, or blessed steel can harm it"
       - "Walks through walls — no barrier stops its advance"
@@ -390,14 +377,14 @@ entries:
     level: 4
     hp: 18
     armor_class: 14
-    attack_bonus: 5
+    attack_bonus: 4
     damage: "1d8+1"
     move: "30 ft."
     morale: 9
     skill: 2
     save: 13
     role: spider-woman enchantress
-    tags: [yokai, shapeshifter]
+    tags: [yokai, shapeshifter, mid]
     abilities:
       - "Beguiling voice — a creature that listens makes a Mental save or is enthralled, save ends"
       - "Silk-binding — a struck creature must save or be wrapped and held fast in webbing"
@@ -407,19 +394,35 @@ entries:
       biwa so sweetly that her guests forget to leave. Those who linger
       past the last lamp find the rafters above their cushion thick with
       silk, and eight patient legs already descending.
+  - id: cave_tiger
+    name: Cave Tiger
+    level: 5
+    hp: 22
+    armor_class: 13
+    attack_bonus: 5
+    damage: "1d8"
+    move: "30 ft."
+    morale: 8
+    skill: 2
+    save: 13
+    role: solitary mountain predator
+    tags: [beast, mid]
+    description: >-
+      A pale tiger of the high karst caves, broad-pawed and silent, that
+      has learned to take travelers from the cliff paths.
   - id: karasu_tengu_swordmaster
     name: Karasu-tengu Swordmaster
     level: 5
-    hp: 23
+    hp: 22
     armor_class: 16
-    attack_bonus: 7
+    attack_bonus: 5
     damage: "1d8+2"
     move: "40 ft. fly"
     morale: 9
     skill: 2
     save: 13
     role: crow-faced mountain duelist
-    tags: [yokai, martial]
+    tags: [yokai, martial, mid]
     abilities:
       - "Flies"
       - "Wind-step — when missed by a melee attack it may dart away on the gust, ending out of reach"
@@ -429,6 +432,40 @@ entries:
       where the cedar forest climbs the flank of Mount Kasai. It taught
       swordplay to the dynasty's founders, or so it claims, and it has not
       forgiven how thoroughly they have forgotten the lesson.
+  - id: rogue_earth_spirit
+    name: Rogue Earth Spirit
+    level: 6
+    hp: 27
+    armor_class: 15
+    attack_bonus: 6
+    damage: "1d10"
+    move: "20 ft."
+    morale: 12
+    skill: 0
+    save: 12
+    role: unbound mountain spirit
+    tags: [spirit, elemental, mid]
+    abilities:
+      - "Fearless — never checks morale"
+    description: >-
+      A hillside that stood up: boulders for shoulders, roots for sinew,
+      furious that someone moved the boundary stones.
+  - id: bandit_warlord
+    name: Bandit Warlord
+    level: 6
+    hp: 27
+    armor_class: 18
+    attack_bonus: 6
+    damage: "1d8+3"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: outlaw army commander
+    tags: [human, commander, mid]
+    description: >-
+      A former imperial officer turned mountain king, holding three
+      valleys with stolen banners and absolute discipline.
   - id: onibi_of_kasai
     name: Onibi of Kasai
     level: 6
@@ -438,10 +475,10 @@ entries:
     damage: "2d8"
     move: "40 ft. fly"
     morale: 12
-    skill: 1
+    skill: 0
     save: 12
     role: volcanic corpse-fire lure
-    tags: [spirit, elemental]
+    tags: [spirit, elemental, mid]
     abilities:
       - "Flies"
       - "Pyre-lure — a creature within range that meets the floating fire makes a Mental save or is enthralled and led astray, save ends"
@@ -461,10 +498,10 @@ entries:
     damage: "1d8"
     move: "30 ft."
     morale: 9
-    skill: 1
+    skill: 2
     save: 12
     role: ill-omen chimera
-    tags: [yokai, beast]
+    tags: [yokai, beast, mid]
     abilities:
       - "Serpent-tail sting — on a hit the snake that serves as its tail strikes; the victim makes a Physical save or takes 2d12 venom damage"
       - "Black-cloud shroud — it gathers a roiling dark mist about itself, attacking from cover"
@@ -475,6 +512,26 @@ entries:
       off Mount Kasai on a black cloud and settles on the roof-ridge of a
       great house, and by morning someone inside has taken a fever that
       will not break.
+
+  # ── DEEP BAND (L8) — the named river-leviathan and the mountain oni ──
+  - id: deep_current_leviathan
+    name: Leviathan of the Deep Current
+    level: 8
+    hp: 36
+    armor_class: 15
+    attack_bonus: 8
+    damage: "2d6+4"
+    move: "40 ft. swim"
+    morale: 9
+    skill: 3
+    save: 11
+    role: great water beast
+    tags: [beast, apex, deep]
+    abilities:
+      - "Two attacks per round"
+    description: >-
+      A river-serpent old enough to have a name in four languages, scaled
+      like flood-polished jade, owed offerings nobody pays anymore.
   - id: oni_of_the_red_mountain
     name: Oni of the Red Mountain
     level: 8
@@ -484,10 +541,10 @@ entries:
     damage: "2d6+1"
     move: "40 ft."
     morale: 10
-    skill: 1
+    skill: 3
     save: 11
     role: great mountain ogre
-    tags: [oni, apex]
+    tags: [oni, apex, deep]
     abilities:
       - "Two attacks per round"
       - "Regeneration — it heals 8 damage at the start of each of its turns unless the wound was dealt by fire or channeled flame"
