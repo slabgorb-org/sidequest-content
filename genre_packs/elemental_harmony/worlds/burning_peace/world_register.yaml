@@ -1,0 +1,61 @@
+# Burning Peace — genre-truth gate (bestiary-curation recipe, GATE 1). Applied
+# BEFORE any stat conversion. A row denied here is removed from the bestiary
+# entirely. marquee rows are exempt from denial (Diamonds-and-Coal, ADR-014).
+#
+# The source is NOT the D&D SRD. Burning Peace's corpus IS the setting's own
+# cast (corpus/monsters.yaml): the fauna, sworn martial orders, and yōkai of
+# the Ember Isles under the Tokigane Burning Peace — an Edo/sengoku wuxia world.
+# This gate exists to keep the roster setting-true: it denies the Western
+# dungeon-fantasy menagerie so no future author can pad the isles with
+# owlbears, goblins, or SRD chromatic dragons. Against the all-setting corpus
+# it culls nothing — every row is admissible — which is itself the fidelity
+# proof.
+#
+# SIBLING NOTE: this gate shares its allow/deny ALGEBRA and creature philosophy
+# with elemental_harmony/shattered_accord (the two read as siblings, like
+# evropi/long_foundry). The institutional vocabulary below is Ember-Isles /
+# Japanese-specific; shattered_accord carries its own pan-East-Asian vocabulary
+# over the same algebra.
+register: >-
+  Edo-era Ember Isles under the Burning Peace — a wuxia/elemental world of
+  fire-channeler dynasts, sworn martial schools, and a spirit-world pressing
+  close. Eighty years of enforced peace over a century of civil-war dead, and
+  the boundary between worlds thinning every year. Yōkai of Japanese myth walk
+  the Tōkaidō at dusk — yūrei and gashadokuro, kappa and tengu, oni and
+  tsukumogami, the offended kami of mountain, river, and fire. No Western
+  dungeon-fantasy menagerie: every creature is Ember-Isles fauna, a yōkai or
+  kami, or a martial human of the sworn orders. Mysticism floor >= 0.6; the
+  supernatural is mannered, mournful, and lethal — never comic-relief, never
+  cute.
+allow_types: [Beast, Humanoid, Giant, Monstrosity, Undead, Elemental, Fey, Construct]
+deny:
+  # Whole 5e types this world refuses — the Western cosmological menagerie.
+  # Oni reads as Giant here (a great mountain ogre), NOT a Christian Fiend;
+  # the Eastern long dragon-serpent, where it appears in the sibling world, is
+  # a Monstrosity spirit, never an SRD Dragon — so the Dragon type is denied.
+  types: [Celestial, Fiend, Dragon, Aberration, Ooze, Plant]
+  tags: [titan, angel, demon, devil, genie, metallic, chromatic, draconic, fiend, eldritch]
+  # Case-insensitive fnmatch on NAME. The Western fairy-tale / dungeon roster
+  # by name, so a future drop-in cannot smuggle it past the type gate.
+  name_glob: ["*owlbear*", "*goblin*", "*kobold*", "*beholder*", "*mind flayer*",
+              "*illithid*", "*gnoll*", "*pixie*", "*sprite*", "*unicorn*",
+              "*pegasus*", "*griffon*", "*hippogriff*", "*manticore*",
+              "*minotaur*", "*medusa*", "*dryad*", "*satyr*", "*treant*",
+              "*werewolf*", "*vampire*", "*lich*", "*tarrasque*", "*hydra*"]
+humanoid_constraint: >-
+  Humanoid only as the martial orders and sworn factions of the Ember Isles —
+  masterless ronin and duelling champions, Tokigane fire-channeler soldiery and
+  Metsuke inspectors, outer-lord retainers, shinobi of the Iga and Kōga
+  schools, yamabushi mountain ascetics, Hidden-Way faithful, and the brigands
+  and river-pirates the peace cannot reach. NEVER Western-fantasy peoples (no
+  elves, dwarves, halflings, orcs, gnomes); the spirit-folk are yōkai and kami
+  (Fey / Monstrosity / Undead / Elemental), never a demihuman race.
+# Nothing to reskin FROM: the corpus is authored under the world's own and the
+# yōkai's traditional names, so there is no SRD name to rename.
+reskin: {}
+# No marquee rescue needed: every corpus row is admissible under allow_types,
+# so nothing brushes the deny gate. The Diamonds-and-Coal capstones (ADR-014)
+# of this world — the oni of the Red Mountain, the named river-leviathan, the
+# nue, the jorōgumo, the karasu-tengu — are flagged in the bestiary banner,
+# not exempted here.
+marquee: []
