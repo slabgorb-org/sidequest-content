@@ -501,3 +501,995 @@ entries:
       A spike-bodied engine the Astran temples send out when an account stays
       unpaid, plodding home through the high quarter hung with the recently
       lapsed, raising what it carries to shield itself.
+
+  # ════════════════════════════════════════════════════════════════════
+  #  SRD UNDEAD + FIENDS → WWN EXPANSION (40 entries)  — added 2026-06-25
+  # ════════════════════════════════════════════════════════════════════
+  #  The full SRD 5.1 monster roster (corpus/monsters.yaml, 316 rows) was gated
+  #  to this world via world_register.yaml and converted to WWN/OSR stat lines
+  #  on the SAME ladder as the hand-authored roster above. Two-gate provenance
+  #  (bestiary-curation-recipe.md, story 158-23). SIBLING world to evropi —
+  #  identical GATE-1 algebra, parallel reskin philosophy, foundry vocabulary.
+  #
+  #  GATE 1 — world_register genre-truth (deterministic, tools/bestiary_curator):
+  #    allow_types = [Undead, Fiend] ONLY. KEPT 41, DROPPED 275 — every Dragon,
+  #    Beast, Monstrosity, Fey, Celestial, Elemental, Plant, Giant, Aberration,
+  #    Ooze, Construct, Humanoid, and Swarm culled by type. The world's
+  #    constructs/horrors/humanoids stay HAND-AUTHORED above; the auto-expansion
+  #    is the city's dead and the bargained-for, never a high-fantasy menagerie.
+  #  GATE 2 — tone curation (HUMAN pass, "blood-priced, never comic, never
+  #    cute"): within Undead + Fiend there were NO tone-breakers to cull. DEDUP
+  #    hand-drop (1): SRD "Zombie" (already live above as the hand-authored
+  #    "Risen Corpse"). 41 − 1 = 40 shipped. (NB: SRD "Shadow" and "Ghoul" are
+  #    KEPT here — unlike sibling evropi, the Long Foundry has no hand-authored
+  #    equivalent of either, so the dedup set legitimately differs per world.)
+  #  RESKIN (26): demons → the SLAGHELL, what a botched Kragmoor blood-working
+  #    boils up; devils → the AUDITORS of the Astran feeding-ledgers, come to
+  #    collect a blood-tithe (23 fiends; sibling-parallel to evropi's "Crimson
+  #    God" / "Reckoner"). The world's hand-authored roster has NO native fiends,
+  #    so this expansion is the pact dimension that set most needs. Other undead
+  #    keep legible SRD names, recast for the foundry in prose. THREE undead
+  #    onomastic reskins (GATE-2), where the SRD name imported a creature the
+  #    gate refuses or that has no place in a foundry-city: "Minotaur Skeleton" →
+  #    "Stratum Horn-Brute" (→ the Refuser-stratum dig), "Ogre Zombie" → "Risen
+  #    Hauler-Brute" (Giant-name → the Thessil haulers), "Warhorse Skeleton" →
+  #    "Towpath Dray-Dead" (cavalry → the iron-river barge tow-horses).
+  #  MARQUEE (Diamonds-and-Coal, ADR-014): Lich, Mummy Lord, Vampire, and the
+  #    apex Slaghell/Auditor — Six-Blade Slaghell (Marilith), Sovereign of the
+  #    Slaghell (Balor), Archcreditor (Pit Fiend), The Lacquered Liar (Rakshasa).
+  #  CONVERSION: WWN ladder, level by CR-band (deep-cap L8-10: Lich CR21→L9,
+  #    Pit Fiend CR20→L9, Balor CR19→L9, Marilith CR16→L9, Mummy Lord CR15→L9,
+  #    Vampire/Rakshasa/Nalfeshnee CR13→L8); hp/save/attack_bonus ladder-exact
+  #    (never hand-balanced). AC + morale archetype-tuned by hand, identical to
+  #    sibling evropi for each shared SRD chassis. Cunning self-preservers
+  #    (Vampire/Lich/Mummy Lord) drop to morale 11 — they withdraw rather than break.
+  #  LEAN-TIER CONVENTION: no Z-Image plates rendered for these yet; the medium
+  #    is set once in visual_style.positive_suffix, never per-entry.
+  # ════════════════════════════════════════════════════════════════════
+
+  # ── UNDEAD — the city's common dead ──────────────────────────────────
+  # ── LOW BAND (1-2) ───────────────────────────────────────────────────
+
+  - id: skeleton
+    name: Skeleton
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 15
+    role: common risen labour of the foundry-dead
+    tags: [undead, low]
+    abilities:
+      - "Fearless — never checks morale"
+    description: >-
+      A foundry hand or a paupers'-pit corpse boiled clean and set walking by
+      stray thaumaturgic residue, still gripping the tongs or the pike it died
+      holding. Where the Kragmoor working settles thickest, the dead do not
+      always wait to be raised on purpose.
+
+  - id: shadow
+    name: Shadow
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "fly 40 ft."
+    morale: 12
+    skill: 1
+    save: 15
+    role: residue-cast shade of an unmade life
+    tags: [undead, low, incorporeal]
+    abilities:
+      - "Incorporeal — pours along walls and under doors; mundane steel finds nothing to bite"
+      - "Strength-drain — a cold touch saps the muscle from a living limb"
+      - "Flees true daylight; holds in any cellar, crypt, or shuttered hall"
+    description: >-
+      The flattened dark a person leaves when a working goes wrong over them —
+      the residue takes the warmth and the shape both, and what is left clings
+      in the under-vaults of a Perault house or the span's pier-shadows. It
+      hates the warm without remembering it was ever warm itself.
+
+  - id: towpath_dray_dead
+    name: Towpath Dray-Dead
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d6"
+    move: "60 ft."
+    morale: 12
+    skill: 1
+    save: 15
+    role: dead tow-horse of the iron-river barge-lines
+    tags: [undead, low]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Trampling charge — a galloping strike can knock a struck target prone"
+    description: >-
+      A barge tow-horse worked to death on the iron-river towpath and raised by
+      the residue that settles in the wet stable-mud, still in the verdigrised
+      brass of its harness and still leaning into a tow-line that rotted off
+      years ago. It hauls its phantom barge up the towpath every night, and it
+      tramples whatever stands between it and the wharf it remembers.
+
+  - id: ghoul
+    name: Ghoul
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: corpse-eater of the slaughter-yards and paupers' pits
+    tags: [undead, low, predator]
+    abilities:
+      - "Paralysing claws — a raked victim saves or seizes up rigid for several rounds"
+      - "Feeds before it reasons — breaks off a fight to gorge on the fallen"
+    description: >-
+      A thing that died hungry in the foundry slums and came back hungrier,
+      crawling up out of the paupers' pits and the slaughter-yard middens by
+      the river. It hunts the night-shift and the unhoused, and it eats what
+      its claws leave too stiff to crawl away.
+
+  - id: specter
+    name: Specter
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d6"
+    move: "fly 50 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: cold incorporeal dead of a residue-haunted vault
+    tags: [undead, low, incorporeal]
+    abilities:
+      - "Incorporeal — drifts through pier-stone and panelling; only fire, silver, or witched steel bites it"
+      - "Life-chill — a passing touch saps warmth and strength from the living"
+    description: >-
+      The undirected dead of someone the residue took quietly — a clerk slumped
+      over a feeding-ledger, a foundryman the slag-fumes finished. It keeps no
+      grievance and no office, only the cold, hanging in the pier-vaults under
+      the span where the day never reaches.
+
+  # ── MID BAND (3-6) ───────────────────────────────────────────────────
+
+  - id: ghast
+    name: Ghast
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d6+1"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: greater corpse-eater that leads the lesser
+    tags: [undead, mid, predator]
+    abilities:
+      - "Paralysing rake — a clawed victim saves or seizes up for several rounds"
+      - "Carrion-stench — those who fight close to it save or fight sickened"
+    description: >-
+      A ghoul that ate enough to keep a low cunning and lost the last of its
+      restraint, ruling a warren of lesser corpse-eaters beneath the slaughter-
+      yards. You smell a ghast before you see it; the stench is the warning the
+      night-shift learns to heed, and most do not heed it twice.
+
+  - id: stratum_horn_brute
+    name: Stratum Horn-Brute
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8+1"
+    move: "40 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: great horned bone-brute turned up by the dig
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Goring charge — a running gore drives the horns deep and bears a target back"
+    description: >-
+      The risen frame of one of the great horned beasts the Refuser stratum
+      kept, hauled up whole by the scholars digging east of the span and walking
+      again before the first night was out. Bone the breadth of a roof-beam, it
+      lowers its skull and charges down the dig-cuts it was unearthed from, into
+      the lamplit galleries the scholars should have left sealed.
+
+  - id: mummy
+    name: Mummy
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "20 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: embalmed Perault ancestor woken angry
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Rot-curse — a struck victim saves or takes a wasting curse that will not close or heal"
+    description: >-
+      An old Perault forebear preserved in the family rites and sealed in a high-
+      quarter crypt, dry as a closed ledger and woken by an heir's curiosity or a
+      scholar's crowbar. The wound it lays does not bleed and does not mend, only
+      spreads — the family's last economy, exacted on whoever broke the seal.
+
+  - id: will_o_wisp
+    name: Will-o’-Wisp
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8"
+    move: "fly 50 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: malevolent residue-light over the iron river
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Lure-light — drifts ahead as a lamp or a lantern, leading the lost toward the mudflats and the deep channel"
+      - "Winks out — snuffs its glow and goes near-impossible to strike, then shocks the floundering"
+    description: >-
+      Not folklore but foundry byproduct: where a day's spent Kragmoor workings
+      drain into the river-silt, the residue sometimes lights and learns to lead.
+      The guild knows it and the bargemen know it better — they chalk a tow-mark
+      on the gunwale and never answer a lamp that drifts upstream against the
+      current. It leads the unmarked off the towpath into the sucking flats, puts
+      out its glow, and waits in the dark for the drowning to tire.
+
+  - id: wight
+    name: Wight
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: barrow-lord of the dead dug up east of the span
+    tags: [undead, mid, elite]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Grave-drain — a slaying touch saps the life-force; a victim killed by it rises as a zombie under the wight's will"
+    description: >-
+      A dead of rank that kept its will — a buried lord of the Refuser stratum,
+      a Perault patriarch interred with his arms — roused by the dig and gathering
+      the lesser dead of its hill around it. Every fresh corpse it kills rises to
+      swell the cold household it remembers commanding.
+
+  - id: risen_hauler_brute
+    name: Risen Hauler-Brute
+    level: 3
+    hp: 14
+    armor_class: 11
+    attack_bonus: 3
+    damage: "2d6"
+    move: "30 ft."
+    morale: 12
+    skill: 1
+    save: 14
+    role: massive shambling dead-brute set to guard
+    tags: [undead, mid]
+    abilities:
+      - "Fearless — never checks morale"
+      - "Crushing slam — a single blow of the dead fists fells a lesser man outright"
+    description: >-
+      A Thessil drover's lost ox-handler or a foundry hauler of unusual size,
+      dead and raised and slower for it, a head taller than any man. A Kragmoor
+      apprentice will sink a working into one and chain it across a vault door,
+      certain it will still be standing its watch in a year, because it will.
+
+  - id: ghost
+    name: Ghost
+    level: 4
+    hp: 18
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d8"
+    move: "fly 40 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: anchored haunting of an unjust foundry death
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Incorporeal — passes through walls; mundane weapons slide through it"
+      - "Withering gaze — meeting its eyes ages a victim cruelly unless they look away in time"
+      - "Bound — cannot leave the place or thing that holds it; destroy the anchor to lay it"
+    description: >-
+      The dead of a death too unjust to settle — a foundryman scalded in a
+      cost-cutting, a Perault wife quietly disposed of, a debtor whose account
+      the temple closed by hand. It cannot leave the room or the lacquered chest
+      that holds it, and it cannot rest while the wrong that made it stands.
+
+  - id: vampire_spawn
+    name: Vampire Spawn
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8+1"
+    move: "30 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: half-made thrall of a greater undead
+    tags: [undead, mid]
+    abilities:
+      - "Knits its wounds shut between blows unless burned or struck in running water"
+      - "Bite-drain — a fastened bite draws blood and strength both"
+    description: >-
+      A debtor a high-quarter vampire kept on instead of letting the Astran
+      ledger close the account — drained almost to death and raised half-made, so
+      the half-life is the unpaid balance walking around. Leashed to its maker's
+      blood, it works the night lanes bringing the warm back to a Perault cellar,
+      and it heals from anything that is not fire or the iron river's current.
+
+  - id: wraith
+    name: Wraith
+    level: 5
+    hp: 22
+    armor_class: 14
+    attack_bonus: 5
+    damage: "1d8+1"
+    move: "fly 60 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: greater incorporeal killer of concentrated malice
+    tags: [undead, mid, incorporeal]
+    abilities:
+      - "Incorporeal — drifts through wall and pier-stone; mundane steel passes through it"
+      - "Fearless — never checks morale"
+      - "Life-drain — a chilling pass saps vitality; one slain by it may rise as a specter in its service"
+    description: >-
+      What a death of pure hatred leaves when a specter is too small to hold it —
+      a foreman who locked his crew in a burning works to save a contract, a
+      debtor the Astran ledger flayed by instalment, risen as a coalesced dark
+      that keeps the grudge and nothing else. It does not haunt one room; it goes
+      where the warm are, and it leaves a colder dark behind it.
+
+  # ── DEEP BAND (8-9) — the great dead ─────────────────────────────────
+
+  - id: vampire
+    name: Vampire
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "2d6"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: bargained immortal of a Perault house
+    marquee: true
+    tags: [undead, deep, elite]
+    abilities:
+      - "Reforms — when destroyed, mists back to its coffin and rises in days unless the resting-place is found and unmade"
+      - "Charm — a held gaze bends the will of one who meets it; the charmed will not strike it"
+      - "Life-drain bite; regenerates each round it is not burning or in running water"
+    description: >-
+      A patriarch of a high-quarter house who paid a Kragmoor working — or a far
+      worse creditor — for an end to dying, and got exactly that. It keeps its
+      court of charmed servants and spawn, holds a lacquered coffin no steward
+      will name, and runs the slow politics of the high quarter as a game it can
+      lose only by being found.
+
+  - id: mummy_lord
+    name: Mummy Lord
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "2d6+1"
+    move: "20 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: enthroned founder-dead of an old house or temple
+    marquee: true
+    tags: [undead, deep, ancient]
+    abilities:
+      - "Rises again — reknits at its bier unless the embalmed heart, sealed apart from the body, is found and burned"
+      - "Rot-curse — its touch lays a wasting that no mundane care will heal"
+      - "Channels dread — once a scene, all who behold it save or flee its presence"
+    description: >-
+      A founder of one of the Perault lines, or an early Astran high priest,
+      embalmed to outlast the city it built and throned in a sealed crypt with
+      its heart sealed in a far jar so the body could be unmade and still return.
+      The dig east of the span and the temples' lapsing arrangement are, between
+      them, waking such things faster than anyone wants to admit.
+
+  - id: lich
+    name: Lich
+    level: 9
+    hp: 40
+    armor_class: 15
+    attack_bonus: 9
+    damage: "2d8"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: Kragmoor master who paid away its own death
+    marquee: true
+    tags: [undead, deep, ancient]
+    abilities:
+      - "Bound to a phylactery — destroyed, it reforms beside the hidden vessel unless the vessel is first unmade"
+      - "Paralysing touch — a bare-handed strike saves or locks the body rigid"
+      - "Withering working — looses a searing or draining sorcery at range each round"
+    description: >-
+      A Kragmoor guild-master who worked the last and greatest blood-price — paid
+      its own death into a hidden vessel and kept its shifts forever. It remembers
+      every pact the guild ever brokered and means to outlast every party to them,
+      walled up in a guild sub-vault or the deep dig, guarding the one jar that is
+      the only thing in the city that can end it.
+
+  # ── FIENDS — the bargained-for: Slaghell + Auditors ──────────────────
+  # ── LOW BAND ─────────────────────────────────────────────────────────
+
+  - id: slaghell_dreg
+    name: Slaghell Dreg
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "20 ft."
+    morale: 7
+    skill: 1
+    save: 15
+    role: lowest thing a botched working boils up
+    tags: [fiend, low, demon]
+    abilities:
+      - "Comes in numbers — a spoiled working vents a crowd of dregs, not one"
+      - "Foul vapour — its death-reek sickens those standing too close"
+    description: >-
+      The cheapest, weepingest thing the Slaghell sends up the smoke of a
+      Kragmoor working gone wrong — squat, formless, worthless but for its
+      numbers. When an apprentice's blood-price runs short, dregs are what boils
+      out of the crucible, and there are always more dregs.
+
+  - id: tallow_debtor
+    name: Tallow Debtor
+    level: 1
+    hp: 5
+    armor_class: 12
+    attack_bonus: 1
+    damage: "1d4"
+    move: "15 ft."
+    morale: 9
+    skill: 1
+    save: 15
+    role: a defaulted soul rendered to obedient wax
+    tags: [fiend, low, devil]
+    abilities:
+      - "Mindless — feels nothing, wants nothing, obeys the last command it was given"
+      - "Re-renders — slain, it sets again in the Auditors' vats unless put to blessed fire"
+    description: >-
+      What the Astran feeding-ledgers leave of an account that could not be paid
+      — a soul rendered down to a shuffling figure of weeping tallow, every
+      memory boiled off. The Auditors herd them in droves to haul and to dig and
+      to fill a doorway with slow obedient flesh. Each was a name in the ledger.
+
+  - id: crucible_familiar
+    name: Crucible Familiar
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4+1"
+    move: "40 ft., fly 40 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: imp-sized demon bound to a guild sorcerer
+    tags: [fiend, low, demon, shapechanger]
+    abilities:
+      - "Wears a beast's shape — a river-rat, a soot-crow, a toad — to fetch and spy unremarked"
+      - "Coward — fights only cornered, and goes invisible to flee the moment it can"
+    description: >-
+      A small, spiteful thing of the Slaghell a Kragmoor apprentice draws out of
+      the crucible in a first binding — registered with the guild, taxed by the
+      year, listed against the sorcerer's name like any other tool. It carries,
+      spies, and whispers, despises its master, and serves to the letter anyway,
+      because the only alternative is the long fall back down to whatever lent it
+      up. When a guildsman dies owing, the guild repossesses the familiar first.
+
+  - id: tally_imp
+    name: Tally-Imp
+    level: 2
+    hp: 9
+    armor_class: 13
+    attack_bonus: 2
+    damage: "1d4"
+    move: "20 ft., fly 40 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: an Auditor's small clerk-spy
+    tags: [fiend, low, devil, shapechanger]
+    abilities:
+      - "Invisible at will — watches and tallies unseen until it chooses to be known"
+      - "Stinger — a barbed tail-stab carries a creeping poison"
+      - "Coward — flees the instant a fight turns against it"
+    description: >-
+      The small contractual fiend an Auditor sends ahead to read a household's
+      debts — invisible in the rafters, counting the plate, learning the names,
+      noting which doors the family thinks are secret. It avoids what killing it
+      can; its work is the tally, and the tally is what comes to collect.
+
+  # ── MID BAND ─────────────────────────────────────────────────────────
+
+  - id: bearded_auditor
+    name: Bearded Auditor
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8+1"
+    move: "30 ft."
+    morale: 10
+    skill: 1
+    save: 14
+    role: rank-and-file collection devil
+    tags: [fiend, mid, devil]
+    abilities:
+      - "Beard-rot — its barbed jaw infects a bite-wound so it festers and will not close"
+      - "Disciplined — holds formation and morale where a demon would break"
+    description: >-
+      A line Auditor, beard a writhing nest of barbs, glaive kept to a ledger-
+      clerk's exactness. It comes in disciplined files to enforce a feeding-
+      ledger's letter, takes precisely the blood the contract entitles it to, and
+      leaves a festering mark on anyone who skimped on the small print.
+
+  - id: forge_hound
+    name: Forge-Hound
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d6+1"
+    move: "50 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: fire-throated hunting demon of the Slaghell
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Ember-breath — looses a cone of fire that ignites cloth, pitch, and oil"
+      - "Pack-hunter — runs in coupled braces and herds prey toward the fire"
+    description: >-
+      The hounds the Slaghell looses to run down a defaulter — coal-eyed, smoke
+      pouring from the jaws, the cobbles scorched where they pass. They course in
+      braces along the towpath and the foundry lanes, and a blood-price skipped
+      does not outrun them to the bridge.
+
+  - id: clinker_mare
+    name: Clinker-Mare
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8"
+    move: "60 ft., fly 90 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: burning steed of a Slaghell's errand
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Cinder-hooves — its stride scorches; a struck target takes burning damage"
+      - "Smoke-stride — once a scene, it steps into furnace-smoke and reappears elsewhere, rider and all"
+    description: >-
+      A Thessil dray-horse the Slaghell took for a herder's unpaid working and
+      gave back burning — black still, maned in furnace-flame, breathing clinker-
+      smoke — the mount it lends a courier or a summoned thing on an errand. It
+      runs the night sky over the foundry-stacks faster than any living horse, and
+      the slate roofs it lands on keep the scorch of its tread for years.
+
+  - id: lien_lover
+    name: Lien-Lover
+    level: 4
+    hp: 18
+    armor_class: 13
+    attack_bonus: 4
+    damage: "1d6"
+    move: "30 ft., fly 40 ft."
+    morale: 8
+    skill: 2
+    save: 13
+    role: shape-stealing fiend that bargains in want
+    tags: [fiend, mid, demon, shapechanger]
+    abilities:
+      - "Wears a wanted face — takes the shape the mark most longs for"
+      - "Draining kiss — a willing touch saps years of life and bleeds away the will to resist"
+      - "Unmasked, it flees — invisible, ethereal, gone the moment its game is seen for what it is"
+    description: >-
+      A fiend that takes a lien against longing — it arrives wearing the face you
+      most wanted to see, and the bargain it offers always sounds like relief.
+      Each kiss takes a measure of life and a larger measure of judgement. It
+      rules nothing by force, and does not need to, until it is recognised — and
+      then it is simply gone, with the lien still owing.
+
+  - id: barbed_auditor
+    name: Barbed Auditor
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d8+1"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: barb-hided enforcer of a violent collection
+    tags: [fiend, mid, devil]
+    abilities:
+      - "Barbed hide — anyone who grapples or is grappled by it is raked for the contact"
+      - "Hurls fire — flings a gout of flame at a target out of reach"
+    description: >-
+      An Auditor clad head to foot in its own iron barbs, sent when a feeding-
+      ledger's collection turns to open violence and the letter permits it. It
+      would rather you came to it; closing with a Barbed Auditor costs blood for
+      every yard, and it throws fire to make sure you have to come anyway.
+
+  - id: arrears_hag
+    name: Arrears-Hag
+    level: 5
+    hp: 22
+    armor_class: 15
+    attack_bonus: 5
+    damage: "1d6+1"
+    move: "30 ft."
+    morale: 9
+    skill: 2
+    save: 13
+    role: hag-fiend that lends in nightmares, collects in years
+    tags: [fiend, mid]
+    abilities:
+      - "Haunts sleep — rides a chosen sleeper night after night, leaving them hollow and unrested by morning"
+      - "Steps through dream — slips into the half-real to escape or to reach a sleeper across the city"
+      - "Arrears-bargain — offers ease from the haunting at a price written in years"
+    description: >-
+      A crone-fiend who works the debts the Astran ledgers find too small to
+      send an Auditor for — a year here, a night's sleep there. She rides a
+      sleeper she has marked until they will sign anything for one whole night,
+      and the price is always more than it sounded. She keeps her own ledger,
+      and the temple pretends not to know whose names are in it.
+
+  - id: carrion_slaghell
+    name: Carrion Slaghell
+    level: 6
+    hp: 27
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d10"
+    move: "30 ft., fly 50 ft."
+    morale: 9
+    skill: 2
+    save: 12
+    role: vulture-shaped hunger of the Slaghell
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Spore-reek — releases a cloud of carrion-spores that nauseates and weakens the living near it"
+      - "Maddening screech — once a scene, a shriek that leaves those who hear it reeling and unable to act"
+    description: >-
+      A great rotted vulture-thing the Slaghell vents when a working has spoiled
+      past saving — it bursts from the crucible-smoke screaming, fouls the air
+      with carrion-spores, and tears at whatever its screech has left too stunned
+      to flee the workshop. A guild hall is sometimes sealed rather than cleared
+      of one.
+
+  - id: bargainer_slaghell
+    name: Bargainer Slaghell
+    level: 7
+    hp: 32
+    armor_class: 16
+    attack_bonus: 7
+    damage: "1d10+1"
+    move: "40 ft."
+    morale: 10
+    skill: 2
+    save: 12
+    role: dog-headed Slaghell that grants and collects
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Two pincers — makes two crushing claw attacks a round"
+      - "Mid-fight bargain — offers, in earnest, to grant a heart's desire for flesh, a name, or a year; it always means it, and the granting is always a trap"
+    description: >-
+      A towering four-armed Slaghell, dog-headed, two arms ending in pincers that
+      take a man in half — and yet the danger is the offer. It will pause a
+      killing to grant your dearest wish, exactly and ruinously as worded. Half
+      the Kragmoor guild's worst pacts began as a Bargainer's granted wish that
+      went the only way these ever go.
+
+  - id: rot_slaghell
+    name: Rot Slaghell
+    level: 7
+    hp: 32
+    armor_class: 15
+    attack_bonus: 7
+    damage: "1d10"
+    move: "30 ft., swim 30 ft."
+    morale: 10
+    skill: 2
+    save: 12
+    role: toad-shaped Slaghell of pure corruption
+    tags: [fiend, mid, demon]
+    abilities:
+      - "Two attacks — bite and raking claws each round"
+      - "Stench of rot — those who fight close to it save each round or fight sickened and slowed"
+    description: >-
+      A bloated toad-shaped Slaghell that reeks the instant it boils up, vented
+      where a blood-working has gone to pure decay. The stench alone empties a
+      foundry floor; what it does with its claws while the crew is retching is
+      almost beside the point. One rose once in the river-sludge under the span
+      and the span's lowest arch has been walled off ever since.
+
+  - id: bone_auditor
+    name: Bone Auditor
+    level: 7
+    hp: 32
+    armor_class: 16
+    attack_bonus: 7
+    damage: "1d10"
+    move: "40 ft."
+    morale: 11
+    skill: 2
+    save: 12
+    role: gaunt high-devil that audits a debtor to death
+    tags: [fiend, mid, devil]
+    abilities:
+      - "Hooked sting — a tail-stab carries a poison that wracks and weakens over the fight"
+      - "Cold discipline — utterly fearless; pursues a marked account without haste and without stopping"
+    description: >-
+      A tall, fleshless, unhurried Auditor sent for the accounts that matter — it
+      does not gloat and does not give up a name once the ledger has assigned it.
+      It walks the city debtor to debtor, patient as compound interest, and when
+      it finds the right door the sting does the slow arithmetic of what is owed.
+
+  - id: chain_auditor
+    name: Chain Auditor
+    level: 7
+    hp: 32
+    armor_class: 16
+    attack_bonus: 7
+    damage: "1d8+2"
+    move: "30 ft."
+    morale: 11
+    skill: 2
+    save: 12
+    role: warden-devil wreathed in living chain
+    tags: [fiend, mid, devil]
+    abilities:
+      - "Living chains — barbed lengths lash from its body to rend and to drag; makes two chain attacks a round"
+      - "Bind — a chain that hits may seize a victim fast until it is cut or the devil falls"
+    description: >-
+      A flayed shape inside a cage of its own animate chains, the gaoler the
+      Auditors send when a feeding-ledger specifies the debtor be brought in
+      alive. The chains reach further than iron should and drag harder than iron
+      can, and a Kragmoor sorcerer who summons one had best be very sure whose
+      name the warrant carries.
+
+  # ── DEEP BAND ────────────────────────────────────────────────────────
+
+  - id: glutton_slaghell
+    name: Glutton Slaghell
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "2d6"
+    move: "20 ft., fly 30 ft."
+    morale: 10
+    skill: 3
+    save: 11
+    role: vast boar-shaped Slaghell of appetite
+    tags: [fiend, deep, demon]
+    abilities:
+      - "Aura of dread — once a scene, all who behold its bulk save or stand witless and reeling for a round"
+      - "Gorging bite — swallows what it fells; a devoured foe is gone unless cut free fast"
+    description: >-
+      A mountain of a boar-and-ape Slaghell, the greatest hunger a spoiled working
+      can vent, called up by a pact that promised it a feast and has come due. Its
+      presence alone unmoors the mind; it eats while you stand stunned, and what
+      it eats is gone. There is seldom a body left for the Astran ledgers to close.
+
+  - id: foreclosure_fury
+    name: Foreclosure-Fury
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "2d6"
+    move: "30 ft., fly 60 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: winged Auditor loosed on a defaulted life
+    tags: [fiend, deep, devil]
+    abilities:
+      - "Marked account — fixes on the defaulter it was sent for and always knows where they are"
+      - "Rope of entanglement — a flung cord binds its quarry fast at range"
+      - "Flight — strikes from the air and climbs out of reach between blows"
+    description: >-
+      A beautiful, terrible winged Auditor loosed when a life pledged against a
+      debt finally defaults — not summoned by the temple, but by the foreclosure
+      itself, which the Astran ledgers hold sacred. It binds the defaulter with a
+      flung cord and steps over bystanders unless they make themselves collateral.
+      More than one Perault fall has ended with one of these at a high window.
+
+  - id: horned_auditor
+    name: Horned Auditor
+    level: 8
+    hp: 36
+    armor_class: 17
+    attack_bonus: 8
+    damage: "2d6+1"
+    move: "20 ft., fly 50 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: great winged enforcer with a lashing tail
+    tags: [fiend, deep, devil]
+    abilities:
+      - "Fork and tail — strikes with a great fork and a flaming tail-lash each round"
+      - "Hurls fire — looses a bolt of flame at a distant target"
+      - "Flight — fights from above, descending only to finish"
+    description: >-
+      A red-scaled, bat-winged high Auditor, the enforcer a feeding-ledger invokes
+      when the price is a quarter's worth of blood. It circles a burning district
+      on leathery wings, hurling fire, descending with fork and lashing tail only
+      to collect the principals by name. The bargaining is over before it is
+      called; this is the part that was always coming.
+
+  - id: the_lacquered_liar
+    name: The Lacquered Liar
+    level: 8
+    hp: 36
+    armor_class: 16
+    attack_bonus: 8
+    damage: "1d10+2"
+    move: "40 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: borrowed-faced fiend living a stolen high-quarter life
+    marquee: true
+    tags: [fiend, deep, shapechanger]
+    abilities:
+      - "Wears a borrowed life — takes the exact face, voice, and manner of someone it has unmade, and keeps it for years"
+      - "Witch-warded — mundane steel and lesser workings slide off; only blessed or greater-pact force bites it"
+      - "Laying-curse — a gesture lays a wasting hex that follows a victim home"
+    description: >-
+      A fiend that does not raid but replaces — it eats a Perault patriarch, an
+      Astran almoner, a Kragmoor guild-master, and then simply lives that life
+      behind the faded lacquer of a high-quarter door, drawing the wages and the
+      trust and the secrets for years. Its true face, glimpsed once, the hands
+      cannot abide. Steel is wasted on it; a temple's blessing or a greater pact
+      is the only thing it fears, and it has spent a long time learning where
+      those are kept.
+
+  - id: frost_auditor
+    name: Frost Auditor
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d6+2"
+    move: "40 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: cold high-devil that collects without mercy or haste
+    tags: [fiend, deep, devil]
+    abilities:
+      - "Killing cold — radiates a chill that numbs and saps the strength of all who fight near it"
+      - "Rime-spear — a long ice-spear strikes hard and slows a struck target to a crawl"
+      - "Utterly fearless — never checks morale; closes the account whatever it costs"
+    description: >-
+      The Auditor sent for the accounts the lesser ones cannot enforce — tall,
+      insectile, sheathed in killing cold, a thing of pure procedure with the
+      mercy frozen out of it. It walks into a Kragmoor sub-vault or a debtor's
+      parlour, lowers the temperature of the room and the argument both, and
+      collects exactly what the ledger says — no more, and never one drop less.
+
+  - id: six_blade_slaghell
+    name: Six-Blade Slaghell
+    level: 9
+    hp: 40
+    armor_class: 16
+    attack_bonus: 9
+    damage: "2d6+2"
+    move: "40 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: serpent-bodied war-Slaghell of six swords
+    marquee: true
+    tags: [fiend, deep, demon]
+    abilities:
+      - "Six blades — makes a flurry of sword-strikes each round, one from each hand"
+      - "Reactive guard — turns aside the first blow aimed at it each round with an idle blade"
+      - "Tail-coils — can seize and crush a foe in its serpent's lower body while the six arms work"
+    description: >-
+      A great war-Slaghell, woman from the waist up and serpent below, each of
+      six hands gripping a guild-forged blade it kept from some earlier
+      slaughter — Kragmoor steel turned against the city that made it. It is
+      vented for nothing but killing, a pact paid in a riot's worth of blood, and
+      fights like a moving thresher, parrying what little reaches it. The guild
+      keeps a standing prohibition on the working that calls one; the working is
+      on record as having been performed regardless.
+
+  - id: sovereign_of_the_slaghell
+    name: Sovereign of the Slaghell
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d8+2"
+    move: "40 ft., fly 80 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: flame-wreathed great demon, the Slaghell's deepest thing
+    marquee: true
+    tags: [fiend, deep, demon, apex]
+    abilities:
+      - "Wreathed in fire — anything that strikes it in reach is seared; its very presence ignites the room"
+      - "Whip and blade — a flame-whip drags a distant foe into the reach of a great burning sword; two attacks a round"
+      - "Death-flash — when finally destroyed, it detonates in a blast of fire that takes the unwary with it"
+    description: >-
+      The deepest thing the Slaghell holds, a towering demon haloed in furnace-
+      flame, vented only when a guild or a desperate house works a blood-price
+      that has stopped pretending to have a limit. It drags its prey in on a whip
+      of fire and cuts them down with a sword the length of a man, and when at
+      last it falls it takes the foundry floor with it. The Kragmoor charter
+      forbids the working by name. The working is performed anyway, eventually.
+
+  - id: archcreditor
+    name: Archcreditor
+    level: 9
+    hp: 40
+    armor_class: 17
+    attack_bonus: 9
+    damage: "2d8+2"
+    move: "30 ft., fly 60 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: the lord of the Auditors, a feeding-ledger's final form
+    marquee: true
+    tags: [fiend, deep, devil, apex]
+    abilities:
+      - "Aura of fear — all who behold it save or are unmanned; the unbrave cannot raise a weapon against it"
+      - "Calls the lesser — summons a brace of Auditors to enforce alongside it"
+      - "Two attacks — a great mace and a constricting, venom-tailed coil each round"
+    description: >-
+      The thing at the bottom of every feeding-ledger — vast, winged, red as a
+      tapped furnace, the lord to whom every Auditor answers and against whom every
+      Astran arrangement is ultimately drawn. It comes only for the debts a whole
+      city pledged against, and it comes wearing the calm of something that has
+      never once been refused. The arrangement that keeps the foundries lit is,
+      this year, a little overdue — and this is the shape that overdue takes.

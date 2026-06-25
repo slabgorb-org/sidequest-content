@@ -1,0 +1,87 @@
+# The Long Foundry — genre-truth gate (GATE 1, bestiary-curation-recipe §Stage 1).
+# Applied to corpus/monsters.yaml BEFORE any WWN stat conversion. A denied row
+# is removed from the curated expansion entirely. marquee rows are exempt from
+# denial (Diamonds-and-Coal, ADR-014).
+#
+# SIBLING to evropi (story 158-22/23): the ALLOW/DENY algebra is IDENTICAL —
+# both baroque heavy_metal worlds refuse the high-fantasy menagerie and admit
+# only the drowned/risen dead and the bargained-for. The reskin PHILOSOPHY is
+# shared too (demons = the hungry thing a pact draws up; devils = the cold
+# contractual collector) but the institutional VOCABULARY is the Long Foundry's
+# own: demons boil up out of a botched Kragmoor working as the Slaghell; devils
+# are the Auditors of the Astran feeding-ledgers, come to collect a blood-tithe.
+register: >-
+  Baroque decay and blood-priced thaumaturgy. A foundry-city straddling a slow
+  iron river, lit by Kragmoor guild sorcery whose residues never fully clear and
+  whose pacts always, eventually, come due. The Astran temples keep feeding-
+  ledgers; the old Perault houses keep quiet crypts; the dig east of the span
+  keeps turning up what should have stayed buried. Gravity >= 0.80. Never comic,
+  never cute; every horror here is a debt — paid, unpaid, or coming to collect.
+
+# Only these two 5e types survive into the expansion. Everything else is the
+# menagerie this world refuses. IDENTICAL to evropi/world_register.yaml.
+allow_types: [Undead, Fiend]
+
+deny:
+  # The high-fantasy menagerie, refused by type — same explicit list as evropi
+  # so the "no dragons-as-such, no fey, no beast-fantasy padding" intent is
+  # loud and self-documenting in the audit.
+  types: [Dragon, Fey, Beast, Monstrosity, Celestial, Elemental,
+          Plant, Giant, Aberration, Ooze, Construct, Humanoid,
+          "Swarm Of Tiny Beasts"]
+  # No tag/name_glob vetoes: within Undead + Fiend nothing further needs culling
+  # for tone, so a rule here would be dead config (No Stubbing). The world's
+  # constructs (foundry automata, the Collector, the Strawward) and humanoid
+  # foes are HAND-AUTHORED entries above the expansion, not corpus-curated.
+
+humanoid_constraint: "No humanoids in the expansion — the foundry-city's living factions (Kragmoor guild, Astran clergy, Perault courts) are hand-authored world entries, not corpus-curated."
+
+# Rename SRD fiend chassis under the Long Foundry's pact institutions. The world
+# is blood-priced magic with NO native fiends in its hand-authored roster, so the
+# fiends-as-pacts expansion is the dimension that set most needs. Undead keep
+# legible SRD names (the lean-tier convention) and carry their foundry recast in
+# `description`. Sibling-parallel to evropi: where evropi names demons "Crimson
+# God" and devils "Reckoner", the Long Foundry names them "Slaghell" and "Auditor".
+reskin:
+  # ── Demons → the Slaghell: what a botched blood-working boils up ──────
+  Dretch: "Slaghell Dreg"
+  Quasit: "Crucible Familiar"
+  Vrock: "Carrion Slaghell"
+  Glabrezu: "Bargainer Slaghell"
+  Hezrou: "Rot Slaghell"
+  Nalfeshnee: "Glutton Slaghell"
+  Marilith: "Six-Blade Slaghell"
+  Balor: "Sovereign of the Slaghell"
+  # ── Devils → Auditors of the Astran feeding-ledgers (blood-tithe) ─────
+  Lemure: "Tallow Debtor"
+  Imp: "Tally-Imp"
+  "Bearded Devil": "Bearded Auditor"
+  "Barbed Devil": "Barbed Auditor"
+  "Chain Devil": "Chain Auditor"
+  "Bone Devil": "Bone Auditor"
+  "Horned Devil": "Horned Auditor"
+  "Ice Devil": "Frost Auditor"
+  Erinyes: "Foreclosure-Fury"
+  "Pit Fiend": "Archcreditor"
+  # ── Untyped fiends → foundry-debt creatures ──────────────────────────
+  "Hell Hound": "Forge-Hound"
+  Nightmare: "Clinker-Mare"
+  "Night Hag": "Arrears-Hag"
+  Rakshasa: "The Lacquered Liar"
+  Succubus/Incubus: "Lien-Lover"
+  # ── One undead reskin (onomastic fix, GATE-2) ────────────────────────
+  # "Minotaur"/"Ogre"/"Warhorse" are creature-names that import a menagerie the
+  # gate refuses (Cretan myth / Giant) or that has no place in a foundry-city
+  # (cavalry). Reskinned to world-anchored dead.
+  "Minotaur Skeleton": "Stratum Horn-Brute"   # -> the Refuser-stratum dig east of the span
+  "Ogre Zombie": "Risen Hauler-Brute"          # -> the Thessil ox-haulers (cf. its desc)
+  "Warhorse Skeleton": "Towpath Dray-Dead"     # -> the iron-river tow/dray horses
+  # NOTE: other undead deliberately NOT reskinned — kept under legible SRD names as
+  # the city's common dead, recast for the foundry in `description`. The world's
+  # SIGNATURE dead are the hand-authored set above (Tithe-Warden, Risen Ledger-
+  # Clerk, Oathbound Revenant, Cinder-Pate, House Grievance).
+
+# Diamonds-and-Coal flagships (ADR-014): apex undead + the greatest Slaghell and
+# Auditor. Exempt from denial (all already Undead/Fiend-allowed; listed to mark
+# the marquee plates). Same SRD originals as evropi's marquee, sibling-consistent.
+marquee: ["Lich", "Mummy Lord", "Vampire", "Balor", "Pit Fiend", "Marilith", "Rakshasa"]
