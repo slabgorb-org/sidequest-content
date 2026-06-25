@@ -1,19 +1,66 @@
 # Barsoom — world bestiary (mars_bestiary)
 #
-# World-tier override on the heavy_metal pack bestiary. SRD-aligned combat
-# stat blocks for the wwn ruleset module; encountergen samples these (alongside
-# the genre-tier pool) for the Monster Manual encounters of the dying red
-# planet. Narrative layers (OCEAN, visual prompt) are composed at generation
-# time. Stats follow the Worlds Without Number SRD 1.0 (Sine Nomine
-# Publishing) generic stat lines — level == HD, hp == average (4.5/HD),
-# ascending AC, morale on the 2d12 ladder, physical save 15 - floor(level/2).
+# World-tier roster for the heavy_metal pack. The pack ships NO genre-level
+# bestiary, so this file is the full populated stat-block set encountergen
+# samples for the Monster Manual encounters of the dying red planet (ADR-140:
+# the genre is the rulebook, the world owns the cast). Narrative layers (OCEAN,
+# visual prompt) are composed at generation time; image medium/style lives in
+# visual_style.yaml, never in a per-entity appearance field.
 #
-# World tier (ADR-120): these hostiles are specific to Barsoom — the
-# eight-legged thoat, the ten-legged banth, the four-armed green hordes. The
-# creatures and cultures are Edgar Rice Burroughs' (Barsoom / John Carter of
-# Mars), public domain in the US. Genre-generic foes stay in the pack
-# bestiary.yaml; this file overrides only the world-flavored roster.
+# WWN ruleset module (see ../../rules.yaml: ruleset: wwn). Generic OSR stat
+# lines: level == HD, hp == the WWN ladder table (avg 4.5/HD rounded — a TABLE,
+# not a formula), ascending AC, attack_bonus == level, morale on the 2d6 ladder
+# (12 = Fearless / auto-pass), save == 15 − floor(level/2).
+#
+# ════════════════════════════════════════════════════════════════════
+#  BESTIARY-CURATION PROVENANCE  (recipe: ../../../../docs/bestiary-curation-recipe.md)
+# ════════════════════════════════════════════════════════════════════
+#  SOURCE: the SETTING ITSELF, not the D&D SRD. 21 rows of Edgar Rice
+#    Burroughs' Barsoomian fauna and fighting-races (corpus/monsters.yaml),
+#    every one from a pre-1930 PD novel (Princess 1912 · Gods 1913 · Warlord
+#    1914 · Thuvia 1916 · Chessmen 1922).
+#
+#  GATE 1 — world_register.yaml genre-truth, applied against corpus/monsters
+#    .yaml: kept 21, dropped 0. The corpus is wholly ERB Barsoomian fauna, so
+#    nothing is culled — that clean pass IS the fidelity proof. The deny lists
+#    (high-fantasy types / tags / name_globs: dragons, demons, goblins, undead,
+#    owlbears, …) are the firewall against a future author padding Barsoom with
+#    the SRD menagerie, not active culls here.   [tool: bestiary_curator]
+#  GATE 2 — tone curation ("ERB sword-and-planet, not high fantasy; lethal and
+#    decadent — heavy_metal pacts/decay/blood-priced magic"): HAND pass. No
+#    GATE-1 survivor removed for tone — every row is setting-true. The one
+#    deliberate exclusion is upstream, on RIGHTS not tone: the hormads of
+#    Morbus (Synthetic Men of Mars, 1939, still under US copyright) are left
+#    out despite fitting the decay tone, to keep the roster rights-free like
+#    the rest of the world's content.
+#
+#  CONVERSION — WWN ladder via bestiary_curator: level assigned by CR band
+#    (L1 sea-bottom vermin → L8 horde jeddak; ERB tops out modestly — no
+#    dragon-tier inflation); hp/save/attack_bonus VERBATIM off the ladder
+#    (hp table; save 15 − level//2; attack_bonus == level); AC 12-15 and
+#    morale 6-12 archetype-tuned by hand (mindless plant-man / phantom bowman
+#    = 12 Fearless). Prose (description, abilities, damage, move, role) authored
+#    here.
+#  STAT-CHASSIS LINEAGE — no reskin rows (the corpus is ERB-named, so there is
+#    nothing to rename FROM): banth/orluk/apt sit on the big-cat CR band,
+#    zitidar the mammoth band, white ape & green Martian the giant/giant-ape
+#    band, the human fighting-races the soldier band. Numbers are ladder-
+#    derived, NEVER hand-balanced (SOUL: "Bind the Ruleset, Don't Balance It").
+#
+#  DIAMONDS (ADR-014, the illustrated capstones — flagged, not gate-exempt):
+#    banth · white ape · green Martian · apt · plant-man of Dor. world_register
+#    marquee is empty: every ERB row is admissible under allow_types, so
+#    nothing needs rescue from the deny gate.
+#
+#  ROSTER — 21 entries: the original 14 ERB creatures (stat lines re-derived
+#    onto the verbatim WWN ladder — the prior file ran attack_bonus one high
+#    and put L5 hp at 23) + 7 deeper-cut ERB additions (darseen, yellow man of
+#    Okar, kaldane, malagor, lotharian bowman, silian, green Martian jeddak).
+#  VALIDATION: load_genre_pack PASS; validate pack PASS.
+# ════════════════════════════════════════════════════════════════════
 entries:
+
+  # ── LOW BAND (L1-2) — sea-bottom vermin & the rank-and-file races ─────
   - id: ulsio
     name: Ulsio
     level: 1
@@ -26,13 +73,14 @@ entries:
     skill: 1
     save: 15
     role: pit-dwelling Martian rat
-    tags: [beast, vermin]
+    tags: [beast, vermin, low]
     abilities:
       - "Swarms — fights in numbers in the dungeons and dead-city cellars"
     description: >-
       A hairless six-legged rat the size of a hound, of the lightless
       pits beneath the dead cities — cowardly in the open, murderous when
       a pack of them corners prey in the dark.
+
   - id: thern_zealot
     name: Thern Zealot
     level: 1
@@ -45,60 +93,85 @@ entries:
     skill: 1
     save: 15
     role: temple guard of the false holy race
-    tags: [human, cultist]
+    tags: [human, cultist, low]
     description: >-
       A white-skinned priest of the Golden Cliffs under a blond wig and
       jeweled harness, long-sword drawn to keep the great lie of the River
       Iss — certain the pilgrims he harvests die for a true paradise.
+
+  - id: darseen
+    name: Darseen
+    level: 1
+    hp: 5
+    armor_class: 13
+    attack_bonus: 1
+    damage: "1d4"
+    move: "30 ft."
+    morale: 6
+    skill: 1
+    save: 15
+    role: color-shifting sea-bottom lizard
+    tags: [beast, vermin, low]
+    abilities:
+      - "Color-shift — its hide takes the hue of the moss or marble it lies on; unseen until it bolts"
+    description: >-
+      A flat-bodied lizard the length of a forearm whose skin runs through
+      the colors of whatever it crouches upon — ochre moss, grey ruin-marble,
+      rust-red sand. A man crossing the sea-bottom sees none of them and
+      treads among hundreds; harmless one at a time, and never once at a time.
+
   - id: calot
     name: Calot
     level: 2
     hp: 9
     armor_class: 13
-    attack_bonus: 3
+    attack_bonus: 2
     damage: "1d6"
     move: "50 ft."
     morale: 7
     skill: 1
     save: 14
     role: ten-legged Martian watch-beast
-    tags: [beast]
+    tags: [beast, low]
     abilities:
       - "Fastest thing on Barsoom — runs down anything afoot"
     description: >-
       A squat ten-legged hound the size of a Shetland pony, frog-jawed and
       three-rowed with teeth, faster than any thoat. A tamed one guards a
       jeddak's door; a wild one runs prey to ground across the sea-bottom.
+
   - id: red_martian_panthan
     name: Red Martian Panthan
     level: 2
     hp: 9
     armor_class: 15
-    attack_bonus: 3
+    attack_bonus: 2
     damage: "1d8+1"
     move: "30 ft."
     morale: 8
     skill: 1
     save: 14
     role: masterless swordsman for hire
-    tags: [human, mercenary]
+    tags: [human, mercenary, low]
     description: >-
       A copper-skinned soldier of fortune in worn fighting-harness, owing
       allegiance to no city — radium pistol holstered, long-sword loose,
       his blade for sale to whoever met his price last.
+
+  # ── MID BAND (L3-7) — war-mounts, dead-city predators, the hordes ─────
   - id: thoat
     name: Wild Thoat
     level: 3
     hp: 14
     armor_class: 13
-    attack_bonus: 4
+    attack_bonus: 3
     damage: "1d10"
     move: "60 ft."
     morale: 7
     skill: 1
     save: 14
     role: eight-legged war-mount run feral
-    tags: [beast, mount]
+    tags: [beast, mount, mid]
     abilities:
       - "Trample — rears and strikes with the forefeet for a second attack"
     description: >-
@@ -106,36 +179,38 @@ entries:
       and tailless, vicious past breaking. The green hordes master them by
       cruelty alone; a feral one off the picket-line will savage anything
       that nears.
+
   - id: black_corsair
     name: Black Corsair of the First Born
     level: 3
     hp: 14
     armor_class: 15
-    attack_bonus: 4
+    attack_bonus: 3
     damage: "1d8+1"
     move: "30 ft."
     morale: 9
     skill: 2
     save: 14
     role: pirate raider of the buried sea
-    tags: [human, raider]
+    tags: [human, raider, mid]
     description: >-
       A black-skinned corsair of Omean in jeweled harness, beautiful and
       cruel, who serves Issus and raids the surface by night in a black
       flier — taking slaves of every Barsoomian race for the goddess's halls.
+
   - id: plant_man
     name: Plant-Man of Dor
     level: 3
     hp: 14
     armor_class: 13
-    attack_bonus: 4
+    attack_bonus: 3
     damage: "1d8"
     move: "30 ft."
     morale: 12
     skill: 0
     save: 14
     role: blood-drinking horror of the Valley Dor
-    tags: [horror]
+    tags: [plant, horror, mid]
     abilities:
       - "Mindless and fearless — never checks morale"
       - "Bounds on hands and tail; the single talon drains the blood of the fallen"
@@ -143,19 +218,64 @@ entries:
       A hairless white thing of the Valley Dor, near-sightless and all but
       mouthless, that moves in great leaps on its hands and lashing tail
       and feeds on the blood of the pilgrims the River Iss delivers to it.
+
+  - id: yellow_man_of_okar
+    name: Yellow Man of Okar
+    level: 3
+    hp: 14
+    armor_class: 14
+    attack_bonus: 3
+    damage: "1d8"
+    move: "30 ft."
+    morale: 9
+    skill: 1
+    save: 14
+    role: bearded swordsman of the hidden northern cities
+    tags: [human, warrior, mid]
+    abilities:
+      - "Snare-hook — fouls a flier or a blade-arm with the hooked line, then closes with the long-sword"
+    description: >-
+      A black-bearded warrior of Okar's glass-domed cities under the
+      northern ice, fair-skinned and furred against a cold no other Martian
+      knows. He fights as his jeddak's law commands — the hooked line cast
+      first to foul a blade-arm, then the long-sword for the kill — and
+      reckons the sun-warmed southern races soft and his by right of steel.
+
+  - id: malagor
+    name: Malagor
+    level: 3
+    hp: 14
+    armor_class: 13
+    attack_bonus: 3
+    damage: "1d8"
+    move: "10 ft. fly 60 ft."
+    morale: 7
+    skill: 1
+    save: 14
+    role: great bird-mount of the spider-kings
+    tags: [beast, flyer, mount, mid]
+    abilities:
+      - "Stoop — folds and drops out of the high air, beak and talons striking together as it pulls up"
+    description: >-
+      A great wide-winged bird near forgotten on Barsoom save where the
+      kaldanes of Bantoom keep them, broad enough across the back to bear a
+      rider over the dead sea-bottoms. Long off a master's hand, a feral one
+      is all beak and raking talon, stooping out of the thin air on anything
+      that crosses the open moss.
+
   - id: green_martian_warrior
     name: Green Martian Warrior
     level: 4
     hp: 18
     armor_class: 13
-    attack_bonus: 5
+    attack_bonus: 4
     damage: "1d10"
     move: "30 ft."
     morale: 10
     skill: 2
     save: 13
     role: four-armed horde-warrior of the dead sea bottoms
-    tags: [giant, elite]
+    tags: [giant, elite, mid]
     abilities:
       - "Four arms — makes two attacks per round"
       - "Radium rifle — deadly accuracy at long range before the swords close"
@@ -163,38 +283,88 @@ entries:
       A fifteen-foot olive-skinned giant of the Thark or Warhoon hordes,
       four-armed and tusked, twin long-swords and a radium rifle in his
       hands — bred to cruelty, valuing courage in an enemy above mercy.
+
   - id: sith
     name: Sith
     level: 4
     hp: 18
     armor_class: 14
-    attack_bonus: 5
+    attack_bonus: 4
     damage: "1d8"
     move: "fly 50 ft."
     morale: 8
-    skill: 1
+    skill: 2
     save: 13
     role: bull-sized forest hornet
-    tags: [beast, vermin]
+    tags: [beast, vermin, mid]
     abilities:
       - "Venomous sting — a struck target saves or is slain by the poison"
     description: >-
       A hairless hornet the size of a Hereford bull, of the great Kaolian
       forest — bald-faced, droning, its sting carrying a poison that kills
       a thoat as readily as a man.
+
+  - id: kaldane
+    name: Kaldane
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "30 ft."
+    morale: 10
+    skill: 2
+    save: 13
+    role: spider-head intellect astride a bred body
+    tags: [aberration, horror, mid]
+    abilities:
+      - "Rykor-ridden — fights with the long-sword of the headless bred body it rides; the body is only the kaldane's hands"
+      - "Sheds its mount — when the rykor is cut down the kaldane springs free on its own crab-legs and bites, but flees an even fight"
+    description: >-
+      A near-spherical head the size of a man's, bloodless blue, riding the
+      neck-stump of a beautiful headless body it has bred and broken to its
+      will. Six chitinous legs and a pair of grasping chelae fold beneath
+      the skull, the jaws below the lidless eyes able to shear a thoat's
+      hide. It despises all flesh that is not brain — its own kind included
+      — and prizes a captured body the way a man prizes a fresh-shod mount.
+
+  - id: lotharian_bowman
+    name: Lotharian Bowman
+    level: 4
+    hp: 18
+    armor_class: 14
+    attack_bonus: 4
+    damage: "1d8"
+    move: "30 ft."
+    morale: 12
+    skill: 2
+    save: 13
+    role: phantom archer conjured from a dead city's last minds
+    tags: [aberration, phantom, mid]
+    abilities:
+      - "Conjured volley — a rank of them looses arrows that kill as surely as real ones, so long as the Lotharian mind holds them real"
+      - "Winks out — when the conjuring Lotharian falls or wills it, bowman and shafts vanish in the same breath"
+    description: >-
+      A bronzed archer in the antique harness of Lothar, last city of the
+      dead Throxus shore, drawn out of nothing by a Lotharian who has not
+      eaten in a thousand years. He looses volley on volley of phantom
+      shafts — and a man they strike dies of them, for on Barsoom a thing
+      believed hard enough is as good as true. Cut down the dreamer behind
+      the wall and the whole archer-host is gone like a snuffed lamp.
+
   - id: white_ape
     name: White Ape
     level: 5
-    hp: 23
+    hp: 22
     armor_class: 13
-    attack_bonus: 6
+    attack_bonus: 5
     damage: "1d10"
     move: "40 ft."
     morale: 9
-    skill: 1
+    skill: 2
     save: 13
     role: four-armed terror of the dead cities
-    tags: [beast]
+    tags: [beast, mid]
     abilities:
       - "Four arms — makes two attacks per round"
       - "Rends a seized foe between its grips"
@@ -202,36 +372,39 @@ entries:
       A ten-to-fifteen-foot hairless white brute, blue-grey and four-armed,
       a bristling shock of hair on its skull — it dens in the toppled marble
       of the dead cities and hunts whatever wanders the ruins.
+
   - id: orluk
     name: Orluk
     level: 5
-    hp: 23
+    hp: 22
     armor_class: 13
-    attack_bonus: 6
+    attack_bonus: 5
     damage: "1d10"
     move: "40 ft."
     morale: 8
-    skill: 1
+    skill: 2
     save: 13
     role: striped polar predator
-    tags: [beast]
+    tags: [beast, mid]
     description: >-
       A black-and-yellow striped hunter of the northern ice, prized for its
       pelt by the yellow men's jeddak and feared by everything else that
       crosses the frozen waste — ferocity wrapped in a fortune of fur.
+
+  # ── MID BAND (L6-7) — the apex sea-bottom & polar killers ─────────────
   - id: banth
     name: Banth
     level: 6
     hp: 27
     armor_class: 14
-    attack_bonus: 7
+    attack_bonus: 6
     damage: "2d6"
     move: "50 ft."
     morale: 9
     skill: 2
     save: 12
     role: ten-legged lion of the dead sea bottoms
-    tags: [beast, apex]
+    tags: [beast, apex, mid]
     abilities:
       - "Pounce — a charge into a foe grants a second attack that round"
       - "Many-tusked maw — the bite damage is brutal"
@@ -240,19 +413,20 @@ entries:
       protruding from the sides of its head, an enormous mouth ringed with
       row upon row of gleaming tusks. Its roar across the moss is the last
       sound many a traveller hears.
+
   - id: zitidar
     name: Rogue Zitidar
     level: 6
     hp: 27
     armor_class: 14
-    attack_bonus: 7
+    attack_bonus: 6
     damage: "2d6"
     move: "30 ft."
     morale: 8
-    skill: 0
+    skill: 2
     save: 12
     role: mastodonian draft-beast gone wild
-    tags: [beast]
+    tags: [beast, mid]
     abilities:
       - "Charge — an unobstructed rush tramples for double damage and bowls riders from the saddle"
     description: >-
@@ -260,19 +434,42 @@ entries:
       them, the green hordes' living engine. A broken one loose from the
       traces is an avalanche with malice — nothing on the sea-bottom turns
       a charging zitidar.
+
+  - id: silian
+    name: Silian
+    level: 6
+    hp: 27
+    armor_class: 14
+    attack_bonus: 6
+    damage: "1d10"
+    move: "20 ft. swim 50 ft."
+    morale: 8
+    skill: 2
+    save: 12
+    role: serpent of the buried sea
+    tags: [monstrosity, aquatic, horror, mid]
+    abilities:
+      - "Drag-under — a seized swimmer is hauled below to drown before the teeth even finish"
+    description: >-
+      A great slate-slick reptile of the lightless Sea of Korus, where the
+      River Iss empties and the duped pilgrims of Dor were promised
+      paradise. All neck and jaw and slow coil, it feeds on what the sacred
+      river delivers and on the black-pirate slaves who go over the side —
+      and it knows no difference between a holy death and any other meat.
+
   - id: apt
     name: Apt
     level: 7
     hp: 32
     armor_class: 14
-    attack_bonus: 9
+    attack_bonus: 7
     damage: "2d6+1"
     move: "40 ft."
     morale: 9
     skill: 2
     save: 12
     role: six-limbed apex hunter of the north pole
-    tags: [beast, apex]
+    tags: [beast, apex, mid]
     abilities:
       - "Six limbs — two end in white grasping hands; makes two attacks per round"
       - "Thousand-faceted eyes — cannot be flanked or ambushed"
@@ -281,3 +478,29 @@ entries:
       in pallid hands, gleaming tusks below a pair of eyes each a thousand
       facets wide. The apex predator of the frozen north, it takes men and
       orluks alike.
+
+  # ── DEEP BAND (L8) — the horde war-leader of a thousand duels ─────────
+  - id: green_martian_jeddak
+    name: Green Martian Jeddak
+    level: 8
+    hp: 36
+    armor_class: 15
+    attack_bonus: 8
+    damage: "1d10"
+    move: "30 ft."
+    morale: 11
+    skill: 3
+    save: 11
+    role: horde war-leader, master of a thousand duels
+    tags: [giant, elite, warlord, deep]
+    abilities:
+      - "Four arms — strikes twice each round, a long-sword in either right hand"
+      - "Risen by murder — took the horde's metal by killing for it and yields it only the same way; will not break while he can raise a blade"
+    description: >-
+      A jeddak of the green hordes, a full fifteen feet and the tallest in
+      his horde, his harness heavy with the metal of every chieftain he has
+      cut down, tusks yellowed and broken, his olive hide gone leaden at the
+      joints with age.
+      Where the rank warrior fights for the horde, the jeddak fights to keep
+      what only killing keeps — and a thousand years of the duel stand behind
+      each of his four swords.

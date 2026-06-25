@@ -1,0 +1,197 @@
+# Barsoom — bestiary-curation SOURCE corpus (recipe Stage 0).
+#
+# The source is the SETTING ITSELF, not the D&D SRD. These are Edgar Rice
+# Burroughs' Barsoomian fauna and fighting-races (John Carter of Mars, public
+# domain in the US), authored onto the SRD row shape with a plausible 5e
+# `type` (the GATE-1 allow/deny key in world_register.yaml) and a `cr` (the
+# WWN stat-ladder key — see the bestiary-curation recipe CR->level table).
+#
+# Provenance of the CR choices: each row's CR is the band that lands the
+# creature on its setting-true WWN level (the deep, deadly green hordes and
+# the polar apt sit high; the sea-bottom vermin sit low). The numbers that
+# come OUT of the ladder (hp / save / attack_bonus / skill) are derived, never
+# hand-balanced (SOUL: "Bind the Ruleset, Don't Balance It"). Prose
+# (description / abilities / damage / move / role) is authored in bestiary.yaml.
+#
+# `source` notes the ERB novel the creature first appears in. Every row is
+# drawn from a pre-1930 Barsoom novel and is public domain in the US:
+#   A Princess of Mars (1912), The Gods of Mars (1913), The Warlord of Mars
+#   (1914), Thuvia, Maid of Mars (1916), The Chessmen of Mars (1922).
+# Creatures that debut in still-copyrighted later titles are deliberately
+# EXCLUDED — e.g. the hormads of Morbus (Synthetic Men of Mars, 1939) are
+# left out despite fitting the heavy_metal decay tone, to keep the whole
+# roster rights-free like the rest of the world's content.
+
+# ── LOW BAND (L1-2) — sea-bottom vermin & the rank-and-file fighting-races ──
+- name: Ulsio
+  size: Medium
+  type: Beast
+  tags: [vermin]
+  alignment: unaligned
+  cr: 0.25
+  xp: 50
+  source: "ERB, A Princess of Mars (1912)"
+- name: Thern Zealot
+  size: Medium
+  type: Humanoid
+  tags: [cultist]
+  alignment: lawful evil
+  cr: 0.5
+  xp: 100
+  source: "ERB, The Gods of Mars (1913)"
+- name: Darseen
+  size: Small
+  type: Beast
+  tags: [vermin]
+  alignment: unaligned
+  cr: 0.25
+  xp: 50
+  source: "ERB, The Gods of Mars (1913)"
+- name: Calot
+  size: Medium
+  type: Beast
+  tags: []
+  alignment: unaligned
+  cr: 1.0
+  xp: 200
+  source: "ERB, A Princess of Mars (1912)"
+- name: Red Martian Panthan
+  size: Medium
+  type: Humanoid
+  tags: [mercenary]
+  alignment: neutral
+  cr: 1.0
+  xp: 200
+  source: "ERB, A Princess of Mars (1912)"
+
+# ── MID BAND (L3-7) — the war-mounts, the dead-city predators, the hordes ──
+- name: Wild Thoat
+  size: Large
+  type: Beast
+  tags: [mount]
+  alignment: unaligned
+  cr: 3.0
+  xp: 700
+  source: "ERB, A Princess of Mars (1912)"
+- name: Black Corsair of the First Born
+  size: Medium
+  type: Humanoid
+  tags: [raider]
+  alignment: lawful evil
+  cr: 2.0
+  xp: 450
+  source: "ERB, The Gods of Mars (1913)"
+- name: Plant-Man of Dor
+  size: Large
+  type: Plant
+  tags: [horror]
+  alignment: unaligned
+  cr: 2.0
+  xp: 450
+  source: "ERB, The Gods of Mars (1913)"
+- name: Yellow Man of Okar
+  size: Medium
+  type: Humanoid
+  tags: [warrior]
+  alignment: neutral
+  cr: 2.0
+  xp: 450
+  source: "ERB, The Warlord of Mars (1914)"
+- name: Malagor
+  size: Large
+  type: Beast
+  tags: [flyer, mount]
+  alignment: unaligned
+  cr: 3.0
+  xp: 700
+  source: "ERB, The Chessmen of Mars (1922)"
+- name: Green Martian Warrior
+  size: Large
+  type: Giant
+  tags: [elite]
+  alignment: chaotic neutral
+  cr: 4.0
+  xp: 1100
+  source: "ERB, A Princess of Mars (1912)"
+- name: Sith
+  size: Large
+  type: Beast
+  tags: [vermin]
+  alignment: unaligned
+  cr: 4.0
+  xp: 1100
+  source: "ERB, The Warlord of Mars (1914)"
+- name: Kaldane
+  size: Medium
+  type: Aberration
+  tags: [horror]
+  alignment: lawful evil
+  cr: 4.0
+  xp: 1100
+  source: "ERB, The Chessmen of Mars (1922)"
+- name: Lotharian Bowman
+  size: Medium
+  type: Aberration
+  tags: [phantom]
+  alignment: neutral
+  cr: 4.0
+  xp: 1100
+  source: "ERB, Thuvia, Maid of Mars (1916)"
+- name: White Ape
+  size: Large
+  type: Beast
+  tags: []
+  alignment: unaligned
+  cr: 5.0
+  xp: 1800
+  source: "ERB, A Princess of Mars (1912)"
+- name: Orluk
+  size: Large
+  type: Beast
+  tags: []
+  alignment: unaligned
+  cr: 5.0
+  xp: 1800
+  source: "ERB, The Warlord of Mars (1914)"
+- name: Banth
+  size: Large
+  type: Beast
+  tags: [apex]
+  alignment: unaligned
+  cr: 6.0
+  xp: 2300
+  source: "ERB, The Gods of Mars (1913)"
+- name: Rogue Zitidar
+  size: Huge
+  type: Beast
+  tags: []
+  alignment: unaligned
+  cr: 6.0
+  xp: 2300
+  source: "ERB, A Princess of Mars (1912)"
+- name: Silian
+  size: Huge
+  type: Monstrosity
+  tags: [aquatic, horror]
+  alignment: unaligned
+  cr: 6.0
+  xp: 2300
+  source: "ERB, The Gods of Mars (1913)"
+- name: Apt
+  size: Huge
+  type: Beast
+  tags: [apex]
+  alignment: unaligned
+  cr: 8.0
+  xp: 3900
+  source: "ERB, The Warlord of Mars (1914)"
+
+# ── DEEP BAND (L8-10) — the horde war-leader who has outlived a thousand duels ──
+- name: Green Martian Jeddak
+  size: Large
+  type: Giant
+  tags: [elite, warlord]
+  alignment: chaotic neutral
+  cr: 11.0
+  xp: 7200
+  source: "ERB, A Princess of Mars (1912)"
