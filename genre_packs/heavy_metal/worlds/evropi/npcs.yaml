@@ -1,293 +1,371 @@
-world_name: Evrópí
+version: "0.1.0"
+world: evropi
 
 # ---------------------------------------------------------------------------
 # Named Living-World cast for Evrópí.
 #
 # Provenance: rebuilt from the canonical 2010 homebrew source
-# (campaign_archive/npc.org). The bestiary already carries the Daggereye
-# *templates* (daggereye_brigand, daggereye_knife_captain) and names
-# "Srárný Fyzioloniązka" inside their descriptions — but the named warlord
-# herself had no roster entry. This file restores the named cast the
-# templates point at. Creatures and mob templates stay in bestiary.yaml;
+# (campaign_archive/npc.org). Creatures and mob templates stay in bestiary.yaml;
 # this file is for individuals with goals and a clock.
+#
+# RUNTIME-WIRED: the loader reads this file into AuthoredNpc instances and
+# `preload_authored_npcs` seats them in game state from session start.
+#
+# SCHEMA: AuthoredNpc (sidequest-server/sidequest/genre/models/authored_npc.py,
+# extra="forbid"). Keys: id, name, pronouns, role, ocean, appearance, age,
+# distinguishing_features, history_seeds, initial_disposition, location_tags.
+# There is NO culture/location/disposition/goals/timeline field — each NPC's
+# people (Zkęd / Pakook`rook / Aldkin / Mistos) is carried in the role prose;
+# placement is `location_tags`; the standing Living-World drives and the figure's
+# clock live in `history_seeds`, which the narrator extracts. `initial_disposition`
+# is the ADR-020 integer (-100..100).
 # ---------------------------------------------------------------------------
 
-authored_npcs:
+npcs:
+
   - id: daggereye_warlord
     name: "Srárný Fyzioloniązka"
-    culture: zkęd
+    pronouns: "she/her"
     role: >-
-      Warlord of the Daggereyes — the contract-killer band the Wazdia
+      Zkęd warlord of the Daggereyes — the contract-killer band the Wazdia
       uses on the Waznoty road and disavows in daylight. She carries the
       Eye, a curved jade-guarded dagger, and runs her camps from the
       Deep Egzami.
-    location: egzami_deep
-    disposition: touchy-proud-dangerous
-    goals:
-      - "keep the band fed and feared on the Waznoty road — tithes from honest runs, the Wazdia's deniable kills when the drop-letters come"
-      - "be answered as a warlord, not weighed as a woman who leads men; a slight she reads as contempt for that is repaid out of all proportion, and a woman who treats her as an equal earns a hearing few men ever get"
-      - "stay the Wazdia's useful knife without ever becoming a loose end they decide to file away"
-    timeline: >-
-      Works the road and takes the secret police's contract killings on
-      her own account whether or not the party is present. A run that
-      stiffs her tithe, or a careless man's insult, brings the Daggereyes
-      down on the Waznoty; a Wazdia field agent who decides she has become
-      a liability is the one clock she cannot see coming.
+    initial_disposition: -30
+    location_tags: ["egzami_deep"]
+    history_seeds:
+      - >-
+        DRIVE: keep the band fed and feared on the Waznoty road — tithes from
+        honest runs, the Wazdia's deniable kills when the drop-letters come.
+      - >-
+        DRIVE: be answered as a warlord, not weighed as a woman who leads men; a
+        slight she reads as contempt for that is repaid out of all proportion,
+        and a woman who treats her as an equal earns a hearing few men ever get.
+      - >-
+        DRIVE: stay the Wazdia's useful knife without ever becoming a loose end
+        they decide to file away.
+      - >-
+        CLOCK: works the road and takes the secret police's contract killings on
+        her own account whether or not the party is present. A run that stiffs
+        her tithe, or a careless man's insult, brings the Daggereyes down on the
+        Waznoty; a Wazdia field agent who decides she has become a liability is
+        the one clock she cannot see coming.
 
   # ---------------------------------------------------------------------------
-  # Upre & the Egzami Frontier — the starter cast of "Hard Times in Upre"
-  # (campaign_archive/adventure01.org). This is the named population of the
-  # starting town the party actually meets first.
+  # Upre & the Egzami Frontier — the starter cast of "Hard Times in Upre".
   # ---------------------------------------------------------------------------
   - id: gabra_of_upre
     name: "Ebbe"
-    culture: zkęd
+    pronouns: "she/her"
     role: >-
       The Gabra (town-ruler) of Upre, the frontier town at the edge of
       the Egzami where players enter Evrópí. Posts the bounty on the
       Daggereyes — a gold piece for every marked right hand brought back.
-    location: egzami_frontier
-    disposition: hard-pressed-pragmatic
-    goals:
-      - "clear the Daggereyes off the Waznoty road so honest merchants will come back and Upre's prices fall"
-      - "keep her town fed and taxed without looking so weak that the Wazdia decides Upre needs a firmer hand than hers"
-      - "spend hireblades, not townsfolk — outsiders are cheaper to bury"
-    timeline: >-
-      Her bounty stands open whether or not the party takes it; every week
-      the road stays cut, prices climb and her grip on the town loosens.
-      Hireblades who deliver marked hands get paid and watched; hireblades
-      who overreach become the Wazdia's problem, and hers.
+    initial_disposition: 15
+    location_tags: ["egzami_frontier"]
+    history_seeds:
+      - >-
+        DRIVE: clear the Daggereyes off the Waznoty road so honest merchants will
+        come back and Upre's prices fall.
+      - >-
+        DRIVE: keep her town fed and taxed without looking so weak that the
+        Wazdia decides Upre needs a firmer hand than hers.
+      - "DRIVE: spend hireblades, not townsfolk — outsiders are cheaper to bury."
+      - >-
+        CLOCK: her bounty stands open whether or not the party takes it; every
+        week the road stays cut, prices climb and her grip on the town loosens.
+        Hireblades who deliver marked hands get paid and watched; hireblades who
+        overreach become the Wazdia's problem, and hers.
 
   - id: wazdia_man_of_upre
     name: "Górzymi"
-    culture: zkęd
+    pronouns: "he/him"
     role: >-
       The local representative of the Wazdia in Upre — the secret-police
       handler who quietly runs the town from under a tradesman's cover and
       routes the drop-letters the Daggereyes kill by.
-    location: egzami_frontier
-    disposition: watchful-bureaucratic
-    goals:
-      - "keep a ledger on everyone who passes through Upre and file anyone who matters before they know they've been noticed"
-      - "keep the Wazdia's working relationship with Srárný's band deniable — useful knives, no fingerprints"
-      - "make sure Gabra Ebbe's bounty-hunters solve the Wazdia's problems without ever learning whose problems they really are"
-    timeline: >-
-      Files his reports on the Wazdia's calendar regardless of the party.
-      Strangers who ask the right questions about the Daggereyes climb his
-      ledger fast; a drop-letter can turn a bounty into a disappearance.
+    initial_disposition: -20
+    location_tags: ["egzami_frontier"]
+    history_seeds:
+      - >-
+        DRIVE: keep a ledger on everyone who passes through Upre and file anyone
+        who matters before they know they've been noticed.
+      - >-
+        DRIVE: keep the Wazdia's working relationship with Srárný's band deniable
+        — useful knives, no fingerprints.
+      - >-
+        DRIVE: make sure Gabra Ebbe's bounty-hunters solve the Wazdia's problems
+        without ever learning whose problems they really are.
+      - >-
+        CLOCK: files his reports on the Wazdia's calendar regardless of the
+        party. Strangers who ask the right questions about the Daggereyes climb
+        his ledger fast; a drop-letter can turn a bounty into a disappearance.
 
   - id: green_scout_gan
     name: "Gan, son of Gan"
-    culture: zkęd
+    pronouns: "he/him"
     role: >-
       A taciturn local guide and trapper, about fifty, his face hooded
       and scarred by the Black Pox. A former Scout of the Green who broke
       his oath of celibacy and lost the woman he broke it for.
-    location: egzami_frontier
-    disposition: taciturn-wary-grieving
-    goals:
-      - "work his traplines and sell pelts in town for as little talk and as little spent coin as possible"
-      - "be left alone with the memory of his dead wife Daliann — and answer anyone who robs his hidden hut in kind"
-      - "guide, for the right and quiet price, those who don't pry into why a Scout of the Green is living rough outside a Zkęd town"
-    timeline: >-
-      Checks his traps by day and drinks mushroom wine at the inn some
-      evenings whether the party engages or not. Won slowly, he is the
-      one man who can take them safely through the Deep Egzami; pushed or
-      robbed, he is a tracker who knows the forest far better than they do.
+    initial_disposition: 0
+    location_tags: ["egzami_frontier"]
+    history_seeds:
+      - >-
+        DRIVE: work his traplines and sell pelts in town for as little talk and
+        as little spent coin as possible.
+      - >-
+        DRIVE: be left alone with the memory of his dead wife Daliann — and
+        answer anyone who robs his hidden hut in kind.
+      - >-
+        DRIVE: guide, for the right and quiet price, those who don't pry into why
+        a Scout of the Green is living rough outside a Zkęd town.
+      - >-
+        CLOCK: checks his traps by day and drinks mushroom wine at the inn some
+        evenings whether the party engages or not. Won slowly, he is the one man
+        who can take them safely through the Deep Egzami; pushed or robbed, he is
+        a tracker who knows the forest far better than they do.
 
   - id: ognei_antslayer
     name: "Ognei Antslayer"
-    culture: zkęd
+    pronouns: "he/him"
     role: >-
       A dim, pudgy local lad who does odd jobs around Upre and will tell
       anyone who'll listen how he once killed a 'gigantic ant thing'
       outside the town before curfew.
-    location: egzami_frontier
-    disposition: eager-harmless-dim
-    goals:
-      - "be believed, just once, about the ant — and earn the name Antslayer for real"
-      - "pick up odd-job coin from Fletta and anyone else in town who needs hauling or fetching done"
-    timeline: >-
-      Tells his ant story to every newcomer regardless of the party. He is
-      mostly comic — but there is a Giant Antlion in a sand-trap out past
-      the treeline, and the boy is the only one who has seen it and lived.
+    initial_disposition: 20
+    location_tags: ["egzami_frontier"]
+    history_seeds:
+      - "DRIVE: be believed, just once, about the ant — and earn the name Antslayer for real."
+      - >-
+        DRIVE: pick up odd-job coin from Fletta and anyone else in town who needs
+        hauling or fetching done.
+      - >-
+        CLOCK: tells his ant story to every newcomer regardless of the party. He
+        is mostly comic — but there is a Giant Antlion in a sand-trap out past
+        the treeline, and the boy is the only one who has seen it and lived.
 
   # ---------------------------------------------------------------------------
   # The Crown — the throne the Wazdia and the Daggereyes ultimately answer to.
   # ---------------------------------------------------------------------------
   - id: king_of_zkedzala
     name: "Isku the Eighth"
-    culture: zkęd
+    pronouns: "he/him"
     role: >-
-      Ancient ruler of the Kingdom of Zkędzała — sharp of wit and tongue
-      despite his years, father of the middle-aged sons (Ndiziały, Zisku,
-      Kisku) who manoeuvre for the throne he refuses to vacate.
-    location: wazan_capital
-    disposition: ancient-shrewd-unyielding
-    goals:
-      - "hold the throne and the secret-police state intact, and outlive every man who has begun to count the years until he doesn't"
-      - "keep his sons in line and at each other's throats in equal measure, so none grows strong enough to hurry the succession"
-      - "let the Wazdia and its deniable knives do the quiet work that keeps the kingdom afraid and obedient"
-    timeline: >-
-      Rules from Wazan on his own calendar, far from the party's reach for
-      most of a frontier campaign. The succession his sons are circling
-      advances whether or not anyone interferes; the day Isku finally dies
-      is the day the whole apparatus the party has been brushing against
-      changes hands.
+      Ancient Zkęd ruler of the Kingdom of Zkędzała — sharp of wit and
+      tongue despite his years, father of the middle-aged sons (Ndiziały,
+      Zisku, Kisku) who manoeuvre for the throne he refuses to vacate.
+    initial_disposition: -15
+    location_tags: ["wazan_capital"]
+    history_seeds:
+      - >-
+        DRIVE: hold the throne and the secret-police state intact, and outlive
+        every man who has begun to count the years until he doesn't.
+      - >-
+        DRIVE: keep his sons in line and at each other's throats in equal
+        measure, so none grows strong enough to hurry the succession.
+      - >-
+        DRIVE: let the Wazdia and its deniable knives do the quiet work that
+        keeps the kingdom afraid and obedient.
+      - >-
+        CLOCK: rules from Wazan on his own calendar, far from the party's reach
+        for most of a frontier campaign. The succession his sons are circling
+        advances whether or not anyone interferes; the day Isku finally dies is
+        the day the whole apparatus the party has been brushing against changes
+        hands.
 
   # ---------------------------------------------------------------------------
-  # The Pakook`rook — frog-folk of the deep freshwater swamps, warred against
-  # the Waterfolk and slaved to the Pę market by the Wazdia's quiet design.
-  # Names drawn from the canonical Pakook`rook name-lists in the 2010 source
-  # (campaign_archive/campaign_setting.org). The J`rook are their throat-sac
-  # bards; the same knotsong tradition the live PC Th`rook comes out of.
+  # The Pakook`rook — frog-folk of the deep freshwater swamps.
   # ---------------------------------------------------------------------------
   - id: jrook_knotsong_bard
     name: "Gribarook"
-    culture: pakook`rook
+    pronouns: "he/him"
     role: >-
       A J`rook — a Pakook`rook bard who sings by inflating his throat-sac
       and harmonises with himself, keeper of his clan's knotted-reed songs.
       He carries the whole memory of a people that mostly cannot write in a
       syllabary of tied-off reeds.
-    location: pakook_swamps
-    disposition: mournful-melodic-canny
-    goals:
-      - "keep the knotsongs whole — every clan that gets sold to Pę takes its unrecorded songs into slavery with it, and he is running out of reeds faster than he can tie them"
-      - "learn who is really setting frog against Waterfolk, because his oldest songs say the swamps were not always at war"
-      - "find the freshwater patches of reniksnad before the wrong people do, and weigh what the dream-weed costs against what it buys"
-    timeline: >-
-      Sings, mourns, and ties his reeds whether or not the party comes. Each
-      raiding season thins the clans and lengthens his song of the lost; a
-      traveller who can read what he cannot record, or who can name the hand
-      behind the war, is worth more to him than any blade.
+    initial_disposition: 10
+    location_tags: ["pakook_swamps"]
+    history_seeds:
+      - >-
+        DRIVE: keep the knotsongs whole — every clan that gets sold to Pę takes
+        its unrecorded songs into slavery with it, and he is running out of reeds
+        faster than he can tie them.
+      - >-
+        DRIVE: learn who is really setting frog against Waterfolk, because his
+        oldest songs say the swamps were not always at war.
+      - >-
+        DRIVE: find the freshwater patches of reniksnad before the wrong people
+        do, and weigh what the dream-weed costs against what it buys.
+      - >-
+        CLOCK: sings, mourns, and ties his reeds whether or not the party comes.
+        Each raiding season thins the clans and lengthens his song of the lost; a
+        traveller who can read what he cannot record, or who can name the hand
+        behind the war, is worth more to him than any blade.
 
   - id: pakook_war_mother
     name: "Jireek"
-    culture: pakook`rook
+    pronouns: "she/her"
     role: >-
-      A trident-bearing war-mother holding her swamp-clan together against
-      the Waterfolk raids — the leader the younger frogs follow when the
-      knife-reed call goes up across the channels.
-    location: pakook_swamps
-    disposition: fierce-embattled-shrewd
-    goals:
-      - "protect her clan's spawning-pools from the Waterfolk and take back the kin already dragged off toward the Pę slave-blocks"
-      - "answer raid with raid — though some cold part of her has started to wonder who keeps refilling the Waterfolk's spears"
-      - "never be the war-mother who let the clan be the one that finally got sold out entirely"
-    timeline: >-
-      Leads the raids and the defences on the swamp's own clock regardless of
-      the party. Left alone, the war grinds both peoples down into the Pę
-      market exactly as the Wazdia intends; shown whose hand is behind it,
-      she is one of the few who could call the tridents down instead of up.
+      A trident-bearing Pakook`rook war-mother holding her swamp-clan
+      together against the Waterfolk raids — the leader the younger frogs
+      follow when the knife-reed call goes up across the channels.
+    initial_disposition: 0
+    location_tags: ["pakook_swamps"]
+    history_seeds:
+      - >-
+        DRIVE: protect her clan's spawning-pools from the Waterfolk and take back
+        the kin already dragged off toward the Pę slave-blocks.
+      - >-
+        DRIVE: answer raid with raid — though some cold part of her has started
+        to wonder who keeps refilling the Waterfolk's spears.
+      - >-
+        DRIVE: never be the war-mother who let the clan be the one that finally
+        got sold out entirely.
+      - >-
+        CLOCK: leads the raids and the defences on the swamp's own clock
+        regardless of the party. Left alone, the war grinds both peoples down
+        into the Pę market exactly as the Wazdia intends; shown whose hand is
+        behind it, she is one of the few who could call the tridents down instead
+        of up.
 
   - id: frog_poacher_lassy
     name: "Lassy the Frogger"
-    culture: zkęd
+    pronouns: "he/him"
     role: >-
-      A patient, furtive poacher who has found the Breeding Grounds — the
-      secret sacred pools where the Pakook`rook spawn — and nets the
+      A patient, furtive Zkęd poacher who has found the Breeding Grounds —
+      the secret sacred pools where the Pakook`rook spawn — and nets the
       tadpoles to sell into the Zkęd slave market at Pę.
-    location: pakook_swamps
-    disposition: greedy-furtive-patient
-    goals:
-      - "net each clutch the dams lay before anyone notices, barrel the tadpoles, and run them downriver through secret channels to the Pę slave-blocks"
-      - "keep the location of the Breeding Grounds his own private secret — it is the most valuable thing he will ever own"
-      - "never be standing over the nets the day a war-mother's clan finally follows the empty water back to him"
-    timeline: >-
-      Works the spawning season whether or not the party comes; every clutch
-      he takes is a generation of Pakook`rook that reaches Pę in a barrel
-      instead of the swamp. If the frogs ever learn where he nets and who
-      buys, his quiet trade is the spark that turns their grief into a hunt.
+    initial_disposition: -25
+    location_tags: ["pakook_swamps"]
+    history_seeds:
+      - >-
+        DRIVE: net each clutch the dams lay before anyone notices, barrel the
+        tadpoles, and run them downriver through secret channels to the Pę
+        slave-blocks.
+      - >-
+        DRIVE: keep the location of the Breeding Grounds his own private secret —
+        it is the most valuable thing he will ever own.
+      - >-
+        DRIVE: never be standing over the nets the day a war-mother's clan finally
+        follows the empty water back to him.
+      - >-
+        CLOCK: works the spawning season whether or not the party comes; every
+        clutch he takes is a generation of Pakook`rook that reaches Pę in a
+        barrel instead of the swamp. If the frogs ever learn where he nets and
+        who buys, his quiet trade is the spark that turns their grief into a hunt.
 
   # ---------------------------------------------------------------------------
-  # The Aldkin — steppe horse-nomads of the Klas, armourless by custom,
-  # ancestor-bound, and close to the Green. (Obsidian Portal cast.)
+  # The Aldkin — steppe horse-nomads of the Klas, armourless by custom.
   # ---------------------------------------------------------------------------
   - id: aldkin_mannar_glang
     name: "Glang u Mäinkin empi Gaml"
-    culture: aldkin
+    pronouns: "he/him"
     role: >-
       A Mannar — an Aldkin barbarian of the Mäinkin clan — armourless by
       tribal custom, his zweihander tied across his back, his ruddy hair
       hacked into a rough mullet by his own blade. He confers with his
       horse Mjoln on every matter and nods as though answered.
-    location: klas_steppes
-    disposition: wild-blunt-horse-counselled
-    goals:
-      - "ride the Klas free with Mjoln and answer questions of honour with the zweihander, not with armour or with law"
-      - "take his mount's silent counsel seriously, and trust the man who treats Mjoln as a person over the man who treats him as a beast"
-      - "owe nothing to the crowns that count the steppe as theirs"
-    timeline: >-
-      Roams the steppe on the herd's clock regardless of the party. Met with
-      respect — and with patience for his way of conferring with Mjoln — he
-      is a blunt, deadly ally; met with contempt for either, he settles it
-      the Mannar way.
+    initial_disposition: 5
+    location_tags: ["klas_steppes"]
+    history_seeds:
+      - >-
+        DRIVE: ride the Klas free with Mjoln and answer questions of honour with
+        the zweihander, not with armour or with law.
+      - >-
+        DRIVE: take his mount's silent counsel seriously, and trust the man who
+        treats Mjoln as a person over the man who treats him as a beast.
+      - "DRIVE: owe nothing to the crowns that count the steppe as theirs."
+      - >-
+        CLOCK: roams the steppe on the herd's clock regardless of the party. Met
+        with respect — and with patience for his way of conferring with Mjoln —
+        he is a blunt, deadly ally; met with contempt for either, he settles it
+        the Mannar way.
 
   - id: green_guardian_kvi
     name: "Kvi u Törkin empa Kvi"
-    culture: aldkin
+    pronouns: "she/her"
     role: >-
-      Kvi, daughter of Kvi, of the Törkin — a Guardian of the Green. The
-      wild she rode her mare Inka to outrun took her instead: now there are
-      eight hooves and two horses across the Kvas, her dreadlocks braided
+      Kvi, daughter of Kvi, of the Törkin — an Aldkin Guardian of the Green.
+      The wild she rode her mare Inka to outrun took her instead: now there
+      are eight hooves and two horses across the Kvas, her dreadlocks braided
       with brambles and nettles in repeating patterns.
-    location: klas_steppes
-    disposition: feral-serene-untameable
-    goals:
-      - "serve the Green that claimed her and guard the wild places of the steppe against fence, plough, and slave-coffle alike"
-      - "ride the Kvas as one creature with Inka, owing nothing to clan or crown"
-      - "weigh every traveller by what they do to the living land, and answer those who wound it"
-    timeline: >-
-      Ranges the wild on the Green's seasons, not the party's. To those who
-      respect the land she is a warden and a guide through country no map
-      holds; to those who scar it she is the wild's own answer, and she does
-      not announce herself before she acts.
+    initial_disposition: 0
+    location_tags: ["klas_steppes"]
+    history_seeds:
+      - >-
+        DRIVE: serve the Green that claimed her and guard the wild places of the
+        steppe against fence, plough, and slave-coffle alike.
+      - "DRIVE: ride the Kvas as one creature with Inka, owing nothing to clan or crown."
+      - >-
+        DRIVE: weigh every traveller by what they do to the living land, and
+        answer those who wound it.
+      - >-
+        CLOCK: ranges the wild on the Green's seasons, not the party's. To those
+        who respect the land she is a warden and a guide through country no map
+        holds; to those who scar it she is the wild's own answer, and she does
+        not announce herself before she acts.
 
   # ---------------------------------------------------------------------------
-  # The Crown's hidden hand — completes the chain the Daggereyes and Górzymi
-  # answer up: band -> Wazdia -> its secret head -> the throne. (Portal cast.)
+  # The Crown's hidden hand — band -> Wazdia -> its secret head -> the throne.
   # ---------------------------------------------------------------------------
   - id: wazdia_secret_head_ndizialy
     name: "Ndiziały Zblášzed"
-    culture: zkęd
+    pronouns: "he/him"
     role: >-
       Third son of Isku the Eighth, younger brother to the twins Zisku and
       Kisku, Uwaz of Zkędzała, resident at Pę — and, behind it all, the
       secret head of the Wazdia. The informers, the field agents, and the
       Daggereyes the secret police disavows are all, at the last remove, his.
-    location: pe_port
-    disposition: urbane-patient-ruthless
-    goals:
-      - "run the secret-police state from the shadows so completely that no one — least of all his brothers — knows the Wazdia answers to the throne's third son"
-      - "let his elder twin-brothers exhaust themselves in the open succession while he holds the one instrument that decides who actually rules"
-      - "keep every deniable knife (Górzymi's ledgers, Srárný's band) useful, disposable, and ignorant of whose hand moves them"
-    timeline: >-
-      His web tightens on Zkędzała's calendar regardless of the party — the
-      lost-heir hunt for Widząn Zamzau and the contest for Isku's throne are
-      his real games. A party that pulls hard on any Daggereye or Wazdia
-      thread is, without knowing it, pulling on Ndiziały's line.
+    initial_disposition: -35
+    location_tags: ["pe_port"]
+    history_seeds:
+      - >-
+        DRIVE: run the secret-police state from the shadows so completely that no
+        one — least of all his brothers — knows the Wazdia answers to the
+        throne's third son.
+      - >-
+        DRIVE: let his elder twin-brothers exhaust themselves in the open
+        succession while he holds the one instrument that decides who actually
+        rules.
+      - >-
+        DRIVE: keep every deniable knife (Górzymi's ledgers, Srárný's band)
+        useful, disposable, and ignorant of whose hand moves them.
+      - >-
+        CLOCK: his web tightens on Zkędzała's calendar regardless of the party —
+        the lost-heir hunt for Widząn Zamzau and the contest for Isku's throne
+        are his real games. A party that pulls hard on any Daggereye or Wazdia
+        thread is, without knowing it, pulling on Ndiziały's line.
 
   # ---------------------------------------------------------------------------
-  # GM-ONLY (Obsidian Portal gm_only:true): a Mistos spy under deep cover.
-  # The party should meet "Roba Juanto"; the truth below is behind the screen.
+  # GM-shaded: a Mistos spy under deep cover. The party should meet "Roba
+  # Juanto"; the truth below is the figure behind the cover.
   # ---------------------------------------------------------------------------
   - id: mistos_spy_vrabolli
     name: "Almen Pestrosolo Vrabolli"
-    culture: mistos
+    pronouns: "he/him"
     role: >-
       A Mistos Empire spy under deep cover as a Trabulo merchant-captain
       named "Roba Juanto" — zille-berry-darkened skin, florid garb, and a
       duelling scar from left eye to lip he laughs off as a boating mishap.
       A lover of needlessly elaborate schemes who risks nothing himself.
-    location: malach_river_port
-    disposition: smiling-baroque-treacherous
-    goals:
-      - "gather anything of use to the Empire among the free peoples while keeping the Roba Juanto cover intact"
-      - "spin schemes far more elaborate than any gain requires — build a revolutionary cabal, ensnare useful outsiders in it, then denounce the whole cabal to the secret police for the credit"
-      - "stay clear of actual fighting, stay loyal to nothing, and sell out anyone the moment the price is right"
-    timeline: >-
-      Weaves his plots on his own account whether or not the party engages.
-      Adventurers who prove useful become pieces in a scheme they don't know
-      they're in; the day his Mistos masters or his old enemy Zucchos Ove
-      catch up to him, anyone standing near Roba Juanto is exposed with him.
+    initial_disposition: -30
+    location_tags: ["malach_river_port"]
+    history_seeds:
+      - >-
+        DRIVE: gather anything of use to the Empire among the free peoples while
+        keeping the Roba Juanto cover intact.
+      - >-
+        DRIVE: spin schemes far more elaborate than any gain requires — build a
+        revolutionary cabal, ensnare useful outsiders in it, then denounce the
+        whole cabal to the secret police for the credit.
+      - >-
+        DRIVE: stay clear of actual fighting, stay loyal to nothing, and sell out
+        anyone the moment the price is right.
+      - >-
+        CLOCK: weaves his plots on his own account whether or not the party
+        engages. Adventurers who prove useful become pieces in a scheme they
+        don't know they're in; the day his Mistos masters or his old enemy
+        Zucchos Ove catch up to him, anyone standing near Roba Juanto is exposed
+        with him.
