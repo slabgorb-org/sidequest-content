@@ -5,22 +5,22 @@ standard_array: [14, 12, 11, 10, 9, 7]
 magic_level: none
 
 ability_score_names:
-  - Brawn
-  - Reflex
-  - Body
-  - Tech
-  - Instinct
-  - Cool
+  - STR
+  - DEX
+  - CON
+  - INT
+  - WIS
+  - CHA
 
 ruleset: cwn
 cwn:
   attribute_map:
-    STRENGTH: Brawn
-    DEXTERITY: Reflex
-    CONSTITUTION: Body
-    INTELLIGENCE: Tech
-    WISDOM: Instinct
-    CHARISMA: Cool
+    STRENGTH: STR
+    DEXTERITY: DEX
+    CONSTITUTION: CON
+    INTELLIGENCE: INT
+    WISDOM: WIS
+    CHARISMA: CHA
   system_strain:
     max_source: CONSTITUTION
     rest_recovery_per_night: 1
@@ -136,7 +136,7 @@ confrontations:
         label: "Make Your Case"
         kind: strike
         base: 2
-        stat_check: Cool
+        stat_check: CHA
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
@@ -146,7 +146,7 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Cool
+        stat_check: CHA
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "Escalate tension. The threat should feel dangerous."
@@ -155,13 +155,13 @@ confrontations:
         label: "Concede a Point"
         kind: angle
         target_tag: "Real Goal Revealed"
-        stat_check: Cool
+        stat_check: CHA
         effect: "opponent disposition +5, reveals their real goal"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
         label: "Walk Away"
         kind: push
-        stat_check: Cool
+        stat_check: CHA
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player jacks out of the conversation. No deal."
     mood: tension
@@ -187,7 +187,7 @@ confrontations:
         kind: strike
         base: 2
         combat_skill: 1
-        stat_check: Tech
+        stat_check: INT
         deltas:
           # A failed Program check (2d6 < security DC) is the "botched call":
           # the engine resolves it as RollOutcome.Fail (there is no CritFail
@@ -204,7 +204,7 @@ confrontations:
         kind: brace
         base: 1
         combat_skill: 1
-        stat_check: Tech
+        stat_check: INT
         effect: "mask your signal or open a barrier — drop the network alert"
         narrator_hint: "Throw the trace off the scent. Buy room to breathe before the ICE closes in."
       - id: move_nodes
@@ -215,13 +215,13 @@ confrontations:
         kind: strike
         base: 2
         combat_skill: 1
-        stat_check: Tech
+        stat_check: INT
         effect: "push deeper toward extraction"
         narrator_hint: "The runner traverses the lattice, closer to the prize."
       - id: jack_out
         label: "Jack Out"
         kind: push
-        stat_check: Tech
+        stat_check: INT
         consequence: "exit the run — keep extracted data, end the confrontation"
         narrator_hint: "Yank the cable. Reality slams back. Did you get what you came for?"
     mood: tension
@@ -236,10 +236,10 @@ confrontations:
     resolution_mode: beat_selection
     win_condition: hp_depletion
     opponent_default_stats:
-      Brawn: 10
-      Reflex: 10
-      Body: 10
-      Instinct: 10
+      STR: 10
+      DEX: 10
+      CON: 10
+      WIS: 10
       # Reserved combat-seed keys (not ability scores) — seed the runtime
       # CreatureCore for hp_depletion. hp = HP pool; armor_class = ascending AC
       # the attack rolls against; dexterity = SWN 1d8+DEX initiative.
@@ -252,7 +252,7 @@ confrontations:
         label: Shoot
         kind: strike
         base: 2
-        stat_check: Reflex
+        stat_check: DEX
         attack_bonus: 1
         combat_skill: 1
         damage_channel: strike
@@ -262,7 +262,7 @@ confrontations:
         label: Blade Work
         kind: strike
         base: 2
-        stat_check: Brawn
+        stat_check: STR
         attack_bonus: 1
         combat_skill: 1
         damage_channel: strike
@@ -272,13 +272,13 @@ confrontations:
         label: Take Cover
         kind: brace
         base: 1
-        stat_check: Reflex
+        stat_check: DEX
         effect: "Reduce incoming damage behind urban debris"
         narrator_hint: Dumpster, concrete pillar, burned-out car — the city is cover.
       - id: disengage
         label: Disengage
         kind: push
-        stat_check: Cool
+        stat_check: CHA
         consequence: "Combat ends — vanish into the crowd or the net"
         narrator_hint: Drop the weapon, pull your hood up, slip between bodies.
     mood: combat
@@ -298,7 +298,7 @@ confrontations:
         label: Sprint
         kind: push
         base: 2
-        stat_check: Cool
+        stat_check: CHA
         narrator_hint: Weave through market stalls, dodge between crawling traffic.
       - id: hack_path
         label: Hack Environment
@@ -307,7 +307,7 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Tech
+        stat_check: INT
         risk: "System lockout — lose 2 separation"
         narrator_hint: Slam a door shut remotely, reroute an elevator, kill the lights.
       # crowd_blend: vanish into the press of bodies — angle, sets concealment tag
@@ -315,12 +315,12 @@ confrontations:
         label: Crowd Blend
         kind: angle
         target_tag: "Lost in the Crowd"
-        stat_check: Tech
+        stat_check: INT
         effect: "Disappear into the press of bodies"
       - id: go_dark
         label: Go Dark
         kind: push
-        stat_check: Cool
+        stat_check: CHA
         consequence: "Chase ends — off the grid"
     mood: tension
 
