@@ -5,22 +5,22 @@ standard_array: [14, 12, 11, 10, 9, 7]
 magic_level: none
 
 ability_score_names:
-  - Physique
-  - Reflex
-  - Intellect
-  - Cunning
-  - Resolve
-  - Influence
+  - STR
+  - DEX
+  - INT
+  - WIS
+  - CON
+  - CHA
 
 ruleset: swn
 swn:
   attribute_map:
-    STRENGTH: Physique
-    CONSTITUTION: Resolve
-    DEXTERITY: Reflex
-    INTELLIGENCE: Intellect
-    WISDOM: Cunning
-    CHARISMA: Influence
+    STRENGTH: STR
+    CONSTITUTION: CON
+    DEXTERITY: DEX
+    INTELLIGENCE: INT
+    WISDOM: WIS
+    CHARISMA: CHA
 
 allowed_classes:
   - Officer
@@ -163,7 +163,7 @@ confrontations:
             opponent: 2
           fail:
             opponent: 1
-        stat_check: Influence
+        stat_check: CHA
         effect: "opponent considers your argument"
         narrator_hint: "Show the NPC weighing the player's words."
       - id: threaten
@@ -181,7 +181,7 @@ confrontations:
             opponent: 3
           fail:
             opponent: 1
-        stat_check: Resolve
+        stat_check: CON
         risk: "faction reputation -1 if it fails"
         consequence: "NPC becomes hostile on critical failure"
         narrator_hint: "Escalate tension. The threat should feel dangerous."
@@ -200,7 +200,7 @@ confrontations:
             opponent: 2
           fail:
             opponent: 1
-        stat_check: Influence
+        stat_check: CHA
         effect: "opponent disposition +5, reveals their real goal"
         narrator_hint: "Strategic retreat. Player gives ground to gain information."
       - id: walk_away
@@ -216,7 +216,7 @@ confrontations:
             opponent: 2
           fail:
             opponent: 1
-        stat_check: Resolve
+        stat_check: CON
         consequence: "deal collapses, reputation intact"
         narrator_hint: "Player leaves the negotiation table. No treaty."
     mood: tension
@@ -231,10 +231,10 @@ confrontations:
     resolution_mode: beat_selection
     win_condition: hp_depletion
     opponent_default_stats:
-      Intellect: 10
-      Reflex: 10
-      Resolve: 10
-      Cunning: 10
+      INT: 10
+      DEX: 10
+      CON: 10
+      WIS: 10
       # Reserved combat-seed keys (not ability scores) — seed the enemy
       # ship's runtime CreatureCore for hp_depletion. hp = HULL pool;
       # armor_class = ship's ascending AC the attack rolls against.
@@ -250,7 +250,7 @@ confrontations:
         label: "Broadside"
         kind: strike
         base: 2
-        stat_check: Intellect
+        stat_check: INT
         attack_bonus: 1
         combat_skill: 1
         # ship_combat hull is HP under SWN hp_depletion (Task 8). Strike beats
@@ -269,14 +269,14 @@ confrontations:
         label: "Evasive Maneuver"
         kind: brace
         base: 1
-        stat_check: Reflex
+        stat_check: DEX
         effect: "reduce incoming damage, open distance"
         narrator_hint: "Hard burn on the maneuvering thrusters. The ship groans under G-forces."
       - id: close_range
         label: "Close Range"
         kind: strike
         base: 3
-        stat_check: Resolve
+        stat_check: CON
         attack_bonus: 1
         combat_skill: 1
         # Killing-blow strike: heavier dice than broadside, more risk. Same
@@ -293,13 +293,13 @@ confrontations:
         label: "Target Systems"
         kind: angle
         target_tag: "Ship Weakness Exposed"
-        stat_check: Cunning
+        stat_check: WIS
         reveals: ship_weakness
         narrator_hint: "Scan for a weakness. Engines, weapons, life support — pick your target."
       - id: disengage
         label: "Disengage"
         kind: push
-        stat_check: Reflex
+        stat_check: DEX
         # resolution beat — see combat::retreat. ship_combat is hp_depletion too,
         # so without this the only exit was hull-to-0.
         resolution: true
@@ -307,16 +307,16 @@ confrontations:
         narrator_hint: "Full power to engines. The stars blur as the ship makes its escape."
     secondary_stats:
       - name: shields
-        source_stat: Intellect
+        source_stat: INT
         spendable: false
       - name: hull
-        source_stat: Physique
+        source_stat: STR
         spendable: false
       - name: engines
-        source_stat: Reflex
+        source_stat: DEX
         spendable: false
       - name: weapons
-        source_stat: Cunning
+        source_stat: WIS
         spendable: false
     mood: combat
 
@@ -335,9 +335,9 @@ confrontations:
     win_condition: hp_depletion
     # Opponent stats calibrated to mod +0 per ADR-093 (was 12 / mod +1).
     opponent_default_stats:
-      Physique: 10
-      Reflex: 10
-      Resolve: 10
+      STR: 10
+      DEX: 10
+      CON: 10
       # Reserved combat-seed keys (not ability scores) — seed the
       # opponent's runtime CreatureCore for hp_depletion. hp = HP pool;
       # armor_class = SWN ascending AC the attack rolls against.
@@ -362,7 +362,7 @@ confrontations:
         label: Shoot
         kind: strike
         base: 2
-        stat_check: Physique
+        stat_check: STR
         damage_channel: strike
         attack_bonus: 1
         combat_skill: 1
@@ -372,7 +372,7 @@ confrontations:
         label: Take Cover
         kind: brace
         base: 1
-        stat_check: Resolve
+        stat_check: CON
         effect: "Reduce incoming damage behind cargo or hull"
         narrator_hint: Drop behind crates, return fire around the corner.
       - id: overload
@@ -396,14 +396,14 @@ confrontations:
             own: -2
           crit_fail:
             own: -2
-        stat_check: Physique
+        stat_check: STR
         risk: "Weapon jams — lose 2 momentum on any failure"
         effect: "Target takes massive damage from the dump shot"
         narrator_hint: Crank the power cell past safe limits.
       - id: retreat
         label: Fall Back
         kind: push
-        stat_check: Reflex
+        stat_check: DEX
         # resolution beat: the engine ends the confrontation when this resolves
         # (beat_kinds.apply_beat, ungated by win_condition). Without the flag the
         # prose ``consequence`` is inert and combat has no voluntary exit —
@@ -435,9 +435,9 @@ confrontations:
     # seed the opponent's runtime CreatureCore for hp_depletion; dexterity seeds
     # 1d8+DEX initiative (SWN P4 — no silent +0 fallback).
     opponent_default_stats:
-      Physique: 10
-      Reflex: 10
-      Resolve: 10
+      STR: 10
+      DEX: 10
+      CON: 10
       hp: 7
       armor_class: 12
       dexterity: 13
@@ -454,7 +454,7 @@ confrontations:
         label: Slash
         kind: strike
         base: 2
-        stat_check: Physique
+        stat_check: STR
         damage_channel: strike
         attack_bonus: 1
         combat_skill: 1
@@ -464,7 +464,7 @@ confrontations:
         label: Parry
         kind: brace
         base: 1
-        stat_check: Reflex
+        stat_check: DEX
         effect: "Turn the incoming blow aside, reduce damage taken"
         narrator_hint: Catch the strike on a forearm guard, deflect it wide.
       - id: overhand
@@ -486,14 +486,14 @@ confrontations:
             own: -2
           crit_fail:
             own: -2
-        stat_check: Physique
+        stat_check: STR
         risk: "Overcommit — lose 2 momentum on any failure"
         effect: "Target takes heavy damage from the committed swing"
         narrator_hint: Both hands on the haft, a downward blow with all your weight.
       - id: withdraw
         label: Break Away
         kind: push
-        stat_check: Reflex
+        stat_check: DEX
         # Voluntary melee exit (parity with Firefight's `retreat` resolution beat).
         # Without it an hp_depletion melee could only end on a kill — a soft-lock
         # (cf. playtest 67-10 / 59-26 "unexitable"). Distinct id from ship_combat's
@@ -521,7 +521,7 @@ confrontations:
         label: Full Burn
         kind: push
         base: 2
-        stat_check: Reflex
+        stat_check: DEX
         narrator_hint: Engines flare blue-white. The hull groans under acceleration.
       - id: asteroid_thread
         label: Thread the Field
@@ -530,19 +530,19 @@ confrontations:
         deltas:
           crit_fail:
             own: -2
-        stat_check: Cunning
+        stat_check: WIS
         risk: "Impact — take hull damage on failure"
       # ecm: deploy countermeasures that confuse sensors — sets up a leverageable misdirection
       - id: ecm
         label: ECM Decoys
         kind: angle
         target_tag: "Sensor Confusion"
-        stat_check: Cunning
+        stat_check: WIS
         effect: "Deploy countermeasures to confuse pursuit sensors"
       - id: microjump
         label: Microjump
         kind: push
-        stat_check: Reflex
+        stat_check: DEX
         # resolution beat — see combat::retreat. The chase dial could otherwise
         # only end by reaching threshold; this is the clean voluntary exit.
         resolution: true
@@ -575,11 +575,11 @@ confrontations:
     opponent_weapon: multifocal_laser
     player_weapon: multifocal_laser
     opponent_default_stats:
-      Physique: 10
-      Reflex: 10
-      Intellect: 10
-      Cunning: 10
-      Resolve: 10
+      STR: 10
+      DEX: 10
+      INT: 10
+      WIS: 10
+      CON: 10
       # Reserved combat-seed keys (not ability scores) — SWN strike-fighter frame + gunnery
       hp: 8
       armor_class: 16
