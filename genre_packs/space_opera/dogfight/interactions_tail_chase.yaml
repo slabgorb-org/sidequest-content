@@ -54,6 +54,7 @@ cells:
 
   - pair: [straight, bank]
     name: "Evader breaks, pursuer overshoots"
+    next_state: overshoot     # ADR-153 §3: Red carried too much speed past the break — hunter becomes hunted
     shape: "pursuit vs break turn — evader escapes"
     red_view:
       target_bearing: "0230"
@@ -94,6 +95,7 @@ cells:
 
   - pair: [straight, kill_rotation]
     name: "Evader reverses into pursuer's face"
+    next_state: merge         # ADR-153 §3: the reversal makes it a head-on pass again
     shape: "pursuit vs reversal — mutual gunline"
     red_view:
       target_bearing: "12"
@@ -355,6 +357,7 @@ cells:
 
   - pair: [kill_rotation, kill_rotation]
     name: "Mutual reversal — head-on knife fight"
+    next_state: merge         # ADR-153 §3: both flip — a fresh head-on merge
     shape: "snap shot vs reversal — mutual kill risk"
     red_view:
       target_bearing: "12"

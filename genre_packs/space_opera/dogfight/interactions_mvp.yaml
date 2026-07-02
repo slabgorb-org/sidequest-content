@@ -82,6 +82,7 @@ cells:
 
   - pair: [straight, bank]
     name: "Red drills through, Blue breaks"
+    next_state: beam          # ADR-153 §3: one breaks across the other — perpendicular crossing
     shape: "passive vs evasive"
     red_view:
       target_bearing: "0430"
@@ -102,6 +103,7 @@ cells:
 
   - pair: [straight, loop]
     name: "Blue reverses onto Red's six"
+    next_state: scissors      # ADR-153 §3: Red's only out is the break — the fight becomes the weave
     shape: "passive vs offense — offense scores"
     tags: [calibrated]
     red_view:
@@ -149,6 +151,7 @@ cells:
 
   - pair: [bank, straight]
     name: "Red breaks, Blue drills through"
+    next_state: beam          # ADR-153 §3: mirror of [straight, bank] — crossing geometry
     shape: "evasive vs passive"
     red_view:
       target_bearing: "1030"
@@ -169,6 +172,7 @@ cells:
 
   - pair: [bank, bank]
     name: "Mirror break"
+    next_state: scissors      # ADR-153 §3: both turn across each other — the weave begins
     shape: "evasive vs evasive"
     red_view:
       target_bearing: "09"
@@ -237,6 +241,7 @@ cells:
 
   - pair: [loop, straight]
     name: "Red reverses onto Blue's six"
+    next_state: tail_chase    # ADR-153 §3: Red converts the reversal — pursuer with the gun
     shape: "offense vs passive — offense scores"
     red_view:
       target_bearing: "12"

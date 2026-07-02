@@ -1,0 +1,410 @@
+# Dogfight Interaction Table — Beam starting state
+#
+# A 16-cell lookup keyed by (red_maneuver, blue_maneuver). Red and Blue fly
+# PERPENDICULAR to each other's flight paths — the "crossing" engagement.
+# Symmetric geometry: neither pilot owns the advantage. Both ships pass
+# through the other's gun line for one brief moment at the crossing point.
+#
+# RPS SHIFT FROM MERGE:
+#
+#   In merge the ships are nose-to-nose. In the beam cross:
+#   - straight       = CROSS AND EXTEND — keep every knot, blow through the cross
+#   - bank           = TAIL CONVERSION — turn across the other's wake onto their six
+#   - loop           = HIGH YO-YO — trade speed for altitude, convert from above
+#   - kill_rotation  = SNAP SHOT — slew the nose onto the crossing point and commit
+#
+#   The triangle:
+#   - straight beats bank: speed defeats the turn. The conversion arrives
+#     astern but out of reach — closure already opening.
+#   - bank beats kill_rotation: turning off the gun line. The snap window
+#     never opens, and the shooter is left slow at the crossing point.
+#   - loop beats straight AND bank: the vertical converts on anything that
+#     stays in the horizontal plane.
+#   - kill_rotation beats straight AND loop: predictable geometry through
+#     the gun line — the crosser and the pull-up both eat the burst.
+#
+#   No maneuver dominates: the extender escapes the turner, the turner
+#   defeats the shooter, the shooter punishes the predictable, and the
+#   vertical punishes the horizontal. Mutual kill_rotation is the mutual
+#   gunline through the cross — both pippers lit for one heartbeat.
+
+version: "0.1.0"
+starting_state: beam
+maneuvers_consumed: [straight, bank, loop, kill_rotation]
+
+cells:
+
+  # =========================================================================
+  # Row 1 — Red: straight — cross and extend
+  # =========================================================================
+
+  # No next_state: the engine's extend-and-return rule resets toward merge
+  # at runtime when both closures read opening_fast.
+  - pair: [straight, straight]
+    name: "Clean cross — both extend"
+    shape: "extend vs extend — engagement dissolves"
+    red_view:
+      target_bearing: "09"
+      target_range: medium
+      target_aspect: crossing
+      closure: opening_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "0730"
+      target_range: medium
+      target_aspect: crossing
+      closure: opening_fast
+      gun_solution: false
+    narration_hint: >-
+      Two ships flash through the crossing point, canopy to canopy for half
+      a heartbeat, and then the sky is empty. Neither pilot gives up a knot.
+      The range counter spins upward — the engagement is dissolving into
+      open starfield.
+    tags: [dull]
+
+  - pair: [straight, bank]
+    name: "Blue turns across the wake"
+    shape: "extend vs tail conversion — conversion arrives out of reach"
+    red_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Blue hauls across Red's wake, nose swinging onto the exhaust line —
+      but Red kept every knot through the cross. The tail position is real;
+      the range is a lie. Blue sits astern of a target already pulling away.
+    tags: [calibrated]
+
+  - pair: [straight, loop]
+    name: "Blue converts over the top"
+    shape: "extend vs high yo-yo — extender forced into the weave"
+    red_view:
+      target_bearing: "0430"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Red blows through the cross and runs — and Blue goes up. The yo-yo
+      trades Blue's speed for a perch above Red's escape line, then spends
+      it all in one rolling dive onto the rear quarter. Red breaks hard
+      into the threat, and the weave begins with Blue holding the angle.
+    next_state: scissors
+    tags: [lopsided]
+
+  - pair: [straight, kill_rotation]
+    name: "Blue owns the crossing point"
+    shape: "extend vs snap shot — crosser eats the burst"
+    red_view:
+      target_bearing: "03"
+      target_range: gun
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: crossing
+      closure: closing_fast
+      gun_solution: true
+    narration_hint: >-
+      Blue kicks the nose around and hangs at the crossing point, guns
+      trained on the one piece of sky Red has to fly through. Red crosses
+      the gun line at full burn and the burst is already there — tracers
+      walking across the intake and up the dorsal spine. The price of a
+      predictable cross.
+    tags: [lopsided]
+
+  # =========================================================================
+  # Row 2 — Red: bank — turn across the other's tail
+  # =========================================================================
+
+  - pair: [bank, straight]
+    name: "Red turns across the wake"
+    shape: "tail conversion vs extend — conversion arrives out of reach"
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Red rolls into the wake and drags the nose onto Blue's exhaust — a
+      textbook conversion onto the six. But Blue never slowed down. The
+      stern view is perfect and useless: the range is opening faster than
+      Red's turn can buy it back.
+    tags: [calibrated]
+
+  - pair: [bank, bank]
+    name: "Turns across each other's tails"
+    shape: "mutual tail conversion — the weave begins"
+    red_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: crossing
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: crossing
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Both pilots roll and pull across each other's wake in the same
+      instant — two turns, each built to end on the other's tail, each
+      defeating the other. The canopies cross again, closer this time,
+      angles winding tighter. This is the scissors now.
+    next_state: scissors
+    tags: [exciting]
+
+  - pair: [bank, loop]
+    name: "Blue comes over the top"
+    shape: "tail conversion vs high yo-yo — vertical beats horizontal"
+    red_view:
+      target_bearing: "0730"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Red drags the turn across the space where Blue should be — and Blue
+      isn't there. Blue went up. A shadow crosses Red's canopy as the yo-yo
+      crests over the top and drops onto the aft quarter, spending altitude
+      for an angle Red's turn can't answer.
+    tags: [lopsided]
+
+  - pair: [bank, kill_rotation]
+    name: "Blue's window never opens"
+    shape: "tail conversion vs snap shot — turner beats the gun line"
+    red_view:
+      target_bearing: "03"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "0430"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Blue commits everything to the crossing point, guns trained on where
+      Red is supposed to pass — and Red banks inside the line. The firing
+      window never opens. Blue hangs there, slow and nose-high, while Red's
+      turn carves in behind the gun line.
+    tags: [lopsided]
+
+  # =========================================================================
+  # Row 3 — Red: loop — high yo-yo conversion
+  # =========================================================================
+
+  - pair: [loop, straight]
+    name: "Red converts over the top"
+    shape: "high yo-yo vs extend — diver owns the plane"
+    red_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "0430"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Red pulls into the vertical at the cross while Blue holds the burn
+      and runs. Speed becomes altitude; altitude becomes a perch directly
+      over Blue's escape line. Red rolls out inverted, picks the dive
+      angle, and drops.
+    next_state: overhead
+    tags: [lopsided]
+
+  - pair: [loop, bank]
+    name: "Red comes over the top"
+    shape: "high yo-yo vs tail conversion — vertical beats horizontal"
+    red_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "0730"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Blue breaks across the cross, turning hard for Red's tail — but Red
+      already left the plane of the fight. The yo-yo crests above Blue's
+      turn circle and comes down inside it, angle for free. Blue's own
+      bank carries them under Red's nose.
+    tags: [lopsided]
+
+  - pair: [loop, loop]
+    name: "Mirrored verticals"
+    shape: "high yo-yo vs high yo-yo — the cross resets"
+    red_view:
+      target_bearing: "0130"
+      target_range: medium
+      target_aspect: crossing
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: medium
+      target_aspect: crossing
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Both pilots pull into the vertical over the same point in space, two
+      loops on perpendicular planes. Each catches a glimpse of the other —
+      inverted, canopy to canopy, impossibly close — through the top of
+      the arc. Then both fall back down into the same crossing they tried
+      to leave.
+    tags: [confusing]
+
+  - pair: [loop, kill_rotation]
+    name: "Blue shoots the pull-up"
+    shape: "high yo-yo vs snap shot — the pull-up eats the burst"
+    red_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: crossing
+      closure: opening
+      gun_solution: true
+    narration_hint: >-
+      Red trades speed for altitude — and for one long second at the top
+      of the pull, hangs belly-out against the stars, slow and predictable.
+      Blue's nose is already waiting. The burst rakes up Red's ventral
+      plates while the yo-yo is still climbing.
+    tags: [lopsided]
+
+  # =========================================================================
+  # Row 4 — Red: kill_rotation — committed snap shot at the cross
+  # =========================================================================
+
+  - pair: [kill_rotation, straight]
+    name: "Red owns the crossing point"
+    shape: "snap shot vs extend — crosser eats the burst"
+    red_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: crossing
+      closure: closing_fast
+      gun_solution: true
+    blue_view:
+      target_bearing: "09"
+      target_range: gun
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    narration_hint: >-
+      Red slews the nose onto the crossing point and waits — a fraction of
+      a second that feels like a career. Blue crosses the gun line at full
+      burn, broadside filling the pipper, and Red fires the whole window.
+      Tracers stitch across Blue's flank from nose to engine bell.
+    tags: [lopsided]
+
+  - pair: [kill_rotation, bank]
+    name: "Red's window never opens"
+    shape: "snap shot vs tail conversion — turner beats the gun line"
+    red_view:
+      target_bearing: "0430"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "03"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Red commits to the snap, guns locked on the crossing point — and
+      Blue turns off the line. The window Red paid for never opens; the
+      pipper tracks empty space. Blue's bank carries them around onto
+      Red's flank while Red hangs at the cross, slow and spent.
+    tags: [lopsided]
+
+  - pair: [kill_rotation, loop]
+    name: "Red shoots the pull-up"
+    shape: "snap shot vs high yo-yo — the pull-up eats the burst"
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: crossing
+      closure: opening
+      gun_solution: true
+    blue_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Blue pulls vertical to convert the cross — and stalls the geometry
+      for one fatal beat at the bottom of the pull. Red's slewed guns are
+      on the pull-up before it clears the plane. The burst catches Blue's
+      exposed belly as the loop climbs away trailing vapor.
+    tags: [lopsided]
+
+  - pair: [kill_rotation, kill_rotation]
+    name: "Mutual gunline at the cross"
+    shape: "snap shot vs snap shot — mutual gunline through the cross"
+    red_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: true
+    blue_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: true
+    narration_hint: >-
+      Both pilots kill their rotation at the same instant, two noses
+      slewing onto the same point in space. For one heartbeat the crossing
+      point is a mutual gun line — both pippers lit, both triggers down,
+      tracers passing each other in the dark. Nobody flinches. Everybody
+      bleeds.
+    tags: [exciting]
