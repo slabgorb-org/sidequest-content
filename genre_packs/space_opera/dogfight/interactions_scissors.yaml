@@ -1,0 +1,421 @@
+# Dogfight Interaction Table — Scissors starting state
+#
+# A 16-cell lookup keyed by (red_maneuver, blue_maneuver). SYMMETRIC:
+# both ships criss-cross each other's flight paths at low speed, each
+# trying to force the other out front. Neither pilot owns the state's
+# advantage — position inside the weave does. Red is the player, Blue
+# is the opponent ace, and the table treats them identically.
+#
+# RPS SHIFT FROM TAIL_CHASE:
+#
+#   In tail-chase, role decides what a maneuver means. In the weave,
+#   geometry does — the same move means the same thing for both seats:
+#   - straight      = BREAK OUT FLAT — the risky flee. Alone, you're
+#                     the only predictable ship in the fight. Together,
+#                     mutual disengage.
+#   - bank          = TIGHTEN THE WEAVE — the bread-and-butter move,
+#                     grinding for position at every crossing
+#   - loop          = ROLLING SCISSORS — take the weave vertical,
+#                     trading speed for out-of-plane angle
+#   - kill_rotation = GUN THE CROSSING — slew guns onto the crossing
+#                     point and snap at predictable geometry
+#
+# The weave's triangle: bank punishes straight (the runner eats a
+# rolling shot, or hands over their six). kill_rotation punishes bank
+# (the tightening turn is predictable geometry — snap at the cross).
+# loop spoils kill_rotation (the vertical vacates the snap line).
+# straight escapes loop — the looper loses ground on a runner — but
+# grants no guns; separation is the only prize.
+#
+# ONE DELIBERATE ASYMMETRY: [bank, straight] exits to tail_chase with
+# Red rolled out on Blue's six, because the tail_chase table seats Red
+# as pursuer by convention. The mirror cell [straight, bank] cannot be
+# expressed as a tail_chase state — Blue rolling out on top has no
+# table — so Blue collects an immediate rolling gun shot instead and
+# the fight stays a scissors. Same punishment, different currency.
+#
+# Gun moments in a scissors are FLEETING: solutions appear only at
+# genuine crossings and at the punished flee — 5 grants across 16
+# cells. Everything else is throttle discipline and waiting.
+
+version: "0.1.0"
+starting_state: scissors
+maneuvers_consumed: [straight, bank, loop, kill_rotation]
+
+cells:
+
+  # =========================================================================
+  # Row 1 — Red: straight — break out flat
+  # =========================================================================
+
+  - pair: [straight, straight]
+    name: "Mutual break — the weave unravels"
+    shape: "flee vs flee — mutual disengage"
+    tags: [dull]
+    red_view:
+      target_bearing: "0730"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "0430"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening_fast
+      gun_solution: false
+    narration_hint: >-
+      Both pilots blink at the same instant. Red rolls out flat one way,
+      Blue the other — the weave unravels into two diverging drive plumes,
+      and suddenly there is nothing but empty starfield where a knife fight
+      used to be. Somebody has to turn back, or this is over.
+
+  - pair: [straight, bank]
+    name: "Blue punishes the flat break"
+    shape: "flee vs tighten — flee punished"
+    tags: [lopsided]
+    red_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: tail_on
+      closure: closing
+      gun_solution: true
+    narration_hint: >-
+      Red breaks out of the weave flat, betting on raw speed. Blue doesn't
+      take the bet — one more tightening turn and Blue rolls off the top of
+      the scissors straight down onto Red's six. Cannon fire walks across
+      Red's canopy glass. Running flat out of a scissors is how pilots
+      get buried.
+
+  - pair: [straight, loop]
+    name: "Red outruns the vertical"
+    shape: "flee vs vertical — runner gains separation"
+    red_view:
+      target_bearing: "0730"
+      target_range: medium
+      target_aspect: crossing
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Red quits the weave and runs. Blue commits to the vertical a
+      half-second too late — the loop carries Blue up and over empty air
+      while Red's drive burns hot and flat below. By the time Blue's nose
+      comes back down, Red has bought real separation. No shot for anyone,
+      but the geometry belongs to the runner.
+
+  - pair: [straight, kill_rotation]
+    name: "Blue snaps at a vacated crossing"
+    shape: "flee vs snap — gunned crossing vacated"
+    red_view:
+      target_bearing: "06"
+      target_range: medium
+      target_aspect: head_on
+      closure: opening_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening_fast
+      gun_solution: false
+    narration_hint: >-
+      Blue slews to gun the next crossing — and the crossing never comes.
+      Red has already bolted flat, hull shrinking against the starfield
+      while Blue hangs at the pivot with guns trained on vacant space.
+      The trigger stays cold. There was nothing to shoot.
+
+  # =========================================================================
+  # Row 2 — Red: bank — tighten the weave
+  # =========================================================================
+
+  - pair: [bank, straight]
+    name: "Red rolls out onto Blue's six"
+    next_state: tail_chase    # ADR-153 §3: Red times the weave, seats as pursuer — the fight becomes a chase
+    shape: "tighten vs flee — rollout onto the six"
+    tags: [lopsided]
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: tail_on
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Blue tries to run the weave flat, and Red is waiting for exactly
+      that. One more cranking turn, timed to the crossing, and Red rolls
+      out glued to Blue's six at spitting distance. No shot yet — but the
+      scissors is over, and what comes next is a tail chase on Red's terms.
+
+  - pair: [bank, bank]
+    name: "The weave grinds tighter"
+    shape: "tighten vs tighten — the weave grinds on"
+    tags: [calibrated]
+    red_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Both pilots crank into the weave again, canopy to canopy at the
+      crossing point, close enough to count antenna masts. Wingtips carve
+      past each other and the turn ratchets tighter, slower, meaner.
+      Neither nose leads the other by enough to fire. Whoever's throttle
+      discipline cracks first dies first.
+
+  - pair: [bank, loop]
+    name: "Blue takes the weave vertical"
+    shape: "tighten vs vertical — out-of-plane edge"
+    red_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: quartering
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Red tightens the flat weave; Blue takes it vertical instead,
+      planform flashing overhead as the loop carries Blue out of Red's
+      turning plane. For one long beat Red is turning against nobody.
+      Then Blue drops down the back side of the arc with a sliver of
+      angle Red didn't have to give.
+
+  - pair: [bank, kill_rotation]
+    name: "Blue guns the crossing"
+    shape: "tighten vs snap — predictable cross punished"
+    tags: [lopsided]
+    red_view:
+      target_bearing: "0130"
+      target_range: gun
+      target_aspect: head_on
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: crossing
+      closure: stable
+      gun_solution: true
+    narration_hint: >-
+      Red cranks into the tightening weave — the predictable move, the
+      textbook move — and Blue guns it. Attitude jets fire, Blue's nose
+      parks on the crossing point, and Red carves obediently through the
+      gunline. The burst rakes Red at the cross. The weave's rhythm is a
+      promise, and Blue just collected on it.
+
+  # =========================================================================
+  # Row 3 — Red: loop — rolling scissors
+  # =========================================================================
+
+  - pair: [loop, straight]
+    name: "Blue outruns the vertical"
+    shape: "vertical vs flee — looper loses ground"
+    red_view:
+      target_bearing: "12"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "0430"
+      target_range: medium
+      target_aspect: crossing
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Red pulls up into the rolling scissors — and Blue isn't there to
+      roll with. Blue runs flat under the arc, drive plume flaring, buying
+      separation with every second Red spends in the vertical. Red comes
+      down the far side of the loop staring at a shrinking exhaust bell.
+      No shot; ground lost.
+
+  - pair: [loop, bank]
+    name: "Red takes the weave vertical"
+    shape: "vertical vs tighten — out-of-plane edge"
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: quartering
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Blue keeps grinding the flat weave; Red goes over the top instead.
+      The loop lifts Red out of Blue's turning plane and drops Red down
+      the back side with a quartering angle on Blue's spine. Not a gun
+      solution — not yet — but the vertical just bought Red the better
+      half of the scissors.
+
+  - pair: [loop, loop]
+    name: "The rolling scissors"
+    shape: "vertical vs vertical — rolling scissors"
+    tags: [exciting]
+    red_view:
+      target_bearing: "09"
+      target_range: gun
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "09"
+      target_range: gun
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Both pilots pull vertical in the same breath and the flat weave
+      becomes a rolling one — two ships corkscrewing around a common axis,
+      canopies flashing past close enough to read hull stencils. Neither
+      gains a degree. It is the most beautiful and least survivable place
+      in the galaxy to fly formation.
+
+  - pair: [loop, kill_rotation]
+    name: "Red's vertical spoils the snap"
+    shape: "vertical vs snap — snap line spoiled"
+    tags: [confusing]
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: crossing
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Blue pivots to gun the crossing, guns leveled on the line Red has
+      flown four passes in a row — but Red takes the fifth pass vertical.
+      The snap line hangs empty; the trigger stays cold. Blue is slow,
+      flat, and pointed at nothing while Red comes down the back of the
+      loop with all the position that matters.
+
+  # =========================================================================
+  # Row 4 — Red: kill_rotation — gun the crossing
+  # =========================================================================
+
+  - pair: [kill_rotation, straight]
+    name: "Red snaps at a vacated crossing"
+    shape: "snap vs flee — gunned crossing vacated"
+    red_view:
+      target_bearing: "12"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "06"
+      target_range: medium
+      target_aspect: head_on
+      closure: opening_fast
+      gun_solution: false
+    narration_hint: >-
+      Red kills rotation at the crossing point, guns trained on where Blue
+      has to be — except Blue doesn't cross. Blue runs flat, drive wide
+      open, and the kill zone Red staked out is just empty space with a
+      gun cone in it. Red holds fire and watches the range open. A snap
+      shot needs a crossing, and the crossing left.
+
+  - pair: [kill_rotation, bank]
+    name: "Red guns the crossing"
+    shape: "snap vs tighten — predictable cross punished"
+    tags: [lopsided]
+    red_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: crossing
+      closure: stable
+      gun_solution: true
+    blue_view:
+      target_bearing: "1030"
+      target_range: gun
+      target_aspect: head_on
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Blue tightens the weave one more time, faithful to the rhythm — and
+      Red breaks the rhythm. Attitude jets slew Red's guns onto the
+      crossing point a half-beat early, and Blue's own turn carries Blue
+      broadside through the burst. Cannon fire stitches across the cross.
+      In a scissors, predictability is the only fatal wound.
+
+  - pair: [kill_rotation, loop]
+    name: "Blue's vertical spoils the snap"
+    shape: "snap vs vertical — snap line spoiled"
+    tags: [confusing]
+    red_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: crossing
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Red parks the guns on the crossing line and waits for Blue's
+      silhouette to fill it. It never does — Blue went vertical off the
+      last cross, and Red's carefully gunned geometry is a room nobody
+      walked into. The trigger stays cold. Somewhere above, Blue is
+      trading the view for angle.
+
+  - pair: [kill_rotation, kill_rotation]
+    name: "Mutual snap — knife fight at the cross"
+    shape: "snap vs snap — mutual gunline at the cross"
+    tags: [exciting]
+    red_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: stable
+      gun_solution: true
+    blue_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: stable
+      gun_solution: true
+    narration_hint: >-
+      Both pilots gun the same crossing. Attitude jets flare, two noses
+      slew onto the collision of flight paths, and for one frozen instant
+      the weave becomes a point-blank gunline — canopy to canopy, muzzle
+      to muzzle, close enough to see each other's helmet visors. Both
+      triggers come down. The scissors doesn't get more honest than this.

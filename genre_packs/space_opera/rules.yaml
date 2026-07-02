@@ -610,8 +610,19 @@ confrontations:
     # hp_depletion, not a dial. The legal maneuver menu comes from the
     # interaction table's maneuvers_consumed, never a `beats:` list, so dropping
     # beats does not affect the player's options.
-    interaction_table:
-      _from: dogfight/interactions_mvp.yaml
+    # ADR-153 §3 state graph (158-40): six per-state tables, keyed by each
+    # file's starting_state. FIRST entry is the duel's entry state (merge).
+    # Cells carry geometry + gun_solution + next_state only — the firewall
+    # holds; SWN owns hull/hit/kill. The pack validator enforces graph
+    # closure, reachability, view-key firewall, and schema↔registry
+    # consistency (sidequest.cli.validate.rules).
+    interaction_tables:
+      - _from: dogfight/interactions_mvp.yaml          # merge (entry)
+      - _from: dogfight/interactions_tail_chase.yaml   # tail_chase (red pursues)
+      - _from: dogfight/interactions_beam.yaml         # beam (crossing)
+      - _from: dogfight/interactions_overhead.yaml     # overhead (red dives)
+      - _from: dogfight/interactions_scissors.yaml     # scissors (the weave)
+      - _from: dogfight/interactions_overshoot.yaml    # overshoot (red blew past)
     # ADR-153 §4 opponent brain: per-maneuver class + energy_cost so the engine
     # can gate affordability and motivate the enemy ace's pick by disposition.
     maneuvers:

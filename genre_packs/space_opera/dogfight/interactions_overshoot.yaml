@@ -1,0 +1,415 @@
+# Dogfight Interaction Table — Overshoot starting state
+#
+# A 16-cell lookup keyed by (red_maneuver, blue_maneuver). Red is the
+# OVERSHOOTER — carried too much speed, shot PAST blue, and is now out in
+# front with the wrong energy state. Blue is the CONVERTER — reversing onto
+# red's six to cash in the mistake. The hunter has become the hunted for a
+# beat. Role-fixed and asymmetric: this table is authored from red's
+# disadvantage, not from a neutral merge.
+#
+# RPS SHIFT FROM TAIL_CHASE:
+#
+#   In tail-chase the pursuer's advantage is positional. In overshoot the
+#   advantage belongs to the ship BEHIND — and that ship is blue:
+#   - straight (red)  = EXTEND — trade the fight for separation on raw speed
+#   - straight (blue) = FOLLOW THROUGH — flat pursuit, keeps energy, concedes angle
+#   - bank (red)      = BREAK BACK — turn into the reversal; the classic overshoot answer
+#   - bank (blue)     = COMPLETE THE REVERSAL — swing onto red's six; the whole point
+#   - loop (red)      = HIGH-G REVERSAL — expensive vertical re-engage
+#   - loop (blue)     = DISPLACEMENT ROLL — trade speed for position, stay behind red
+#   - kill_rotation (red)  = OVER-SHOULDER SNAP — desperate backward gunnery
+#   - kill_rotation (blue) = GUNS ON THE RUNNER — shoot the target in front
+#
+# Blue owns this state: most of the gun solutions in the grid are Blue's.
+# Red's real counters are conversions OUT of the state — break back into the
+# weave (scissors), break across a flat follow (beam), or a clean extend that
+# dissolves the fight. Red's only guns are desperate over-shoulder snaps, and
+# every one of them is a mutual exposure. Running flat is a real option, but
+# never a free one.
+
+version: "0.1.0"
+starting_state: overshoot
+maneuvers_consumed: [straight, bank, loop, kill_rotation]
+
+cells:
+
+  # =========================================================================
+  # Row 1 — Red (overshooter): straight — extend away on speed
+  # =========================================================================
+
+  - pair: [straight, straight]
+    name: "Clean extend — the fight dissolves"
+    shape: "extend vs flat follow — separation wins"
+    red_view:
+      target_bearing: "06"
+      target_range: medium
+      target_aspect: head_on
+      closure: opening_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening_fast
+      gun_solution: false
+    narration_hint: >-
+      Red firewalls the throttle and runs, spending the same excess speed
+      that caused the overshoot. Blue levels out and watches the drive flare
+      shrink — the reversal was built for a knife fight, not a stern chase,
+      and Blue declines. Separation piles up by the second.
+    tags: [dull]
+
+  - pair: [straight, bank]
+    name: "Reversal completes on the runner"
+    shape: "extend vs completing bank — blue saddles up"
+    red_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: true
+    narration_hint: >-
+      Blue's reversal completes just as Red commits to raw speed. For one
+      long breath Blue is saddled dead astern, pipper settling on Red's
+      engine bell while the range unwinds. It's a fleeting solution — but
+      it's a solution, and Red's mirrors are full of gun ports.
+    tags: [lopsided]
+
+  - pair: [straight, loop]
+    name: "Displacement roll against a runner"
+    shape: "extend vs displacement roll — angle for nothing"
+    red_view:
+      target_bearing: "06"
+      target_range: medium
+      target_aspect: quartering
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Blue barrel-rolls off Red's line, trading speed for an angle Red isn't
+      there to give. The displacement roll is the right answer to a break —
+      but Red isn't breaking, Red is leaving. Blue rolls out to find the
+      target smaller and the closure gone.
+    tags: [dull]
+
+  - pair: [straight, kill_rotation]
+    name: "Gunning the runner"
+    shape: "extend vs snap shot — the price of running flat"
+    red_view:
+      target_bearing: "06"
+      target_range: gun
+      target_aspect: head_on
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: true
+    narration_hint: >-
+      Red runs flat, betting everything on the throttle. Blue doesn't chase —
+      Blue steadies the nose and lets the range do the work while it's still
+      inside the cone. The drive flare of a fleeing ship fills the pipper,
+      and Blue fires. This is the price of running flat from a reversal.
+    tags: [lopsided]
+
+  # =========================================================================
+  # Row 2 — Red (overshooter): bank — break back into blue
+  # =========================================================================
+
+  - pair: [bank, straight]
+    name: "Break across the follow-through"
+    shape: "break back vs flat follow — perpendicular crossing"
+    red_view:
+      target_bearing: "03"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "09"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Red stands the ship on a wingtip and breaks back across the pursuit
+      line just as Blue follows through flat. Blue's speed carries the
+      reversal straight past the turn — Red flashes across Blue's canopy at
+      ninety degrees. Two ships on perpendicular lines, neither with a nose
+      to bear.
+    next_state: beam
+    tags: [calibrated]
+
+  - pair: [bank, bank]
+    name: "Break into the reversal — the weave begins"
+    shape: "break back vs completing bank — scissors entry"
+    red_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Red hauls back into the reversal instead of running from it — the
+      classic answer to an overshoot, thrown at the worst possible closure.
+      Blue's converting bank and Red's break turn cross nose-to-nose at
+      canopy distance. Neither ship can hold the other; the weave begins.
+    next_state: scissors
+    tags: [exciting]
+
+  - pair: [bank, loop]
+    name: "Displacement roll covers the break"
+    shape: "break back vs displacement roll — blue keeps the saddle"
+    red_view:
+      target_bearing: "0430"
+      target_range: close
+      target_aspect: quartering
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: true
+    narration_hint: >-
+      Red breaks back — but Blue reads it before the wings finish rolling
+      and displacement-rolls high, hanging above the turn. When Blue drops
+      back onto the line, Red's break has carried the whole planform
+      broadside across the pipper. Blue fires a clean deflection shot from
+      the perch.
+    tags: [lopsided]
+
+  - pair: [bank, kill_rotation]
+    name: "Snap shot chases a ghost"
+    shape: "break back vs snap shot — the line never settles"
+    red_view:
+      target_bearing: "0730"
+      target_range: close
+      target_aspect: quartering
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: quartering
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Blue commits to guns just as Red breaks back into the turn. The slew
+      drags the pipper onto Red's tail — where Red's tail was — and it
+      chases a ship already carving inside the line. It never settles; Blue
+      holds fire, and the geometry falls apart around both of them.
+    tags: [confusing]
+
+  # =========================================================================
+  # Row 3 — Red (overshooter): loop — high-g reversal to re-engage
+  # =========================================================================
+
+  - pair: [loop, straight]
+    name: "Reversal over the flat follow"
+    shape: "high-g reversal vs flat follow — head-on rush"
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    narration_hint: >-
+      Red trades every scrap of surplus speed for a high-g reversal, grey
+      crawling in at the edges of vision. Blue follows through flat and
+      finds the geometry inverted — a nose coming back over the top,
+      head-on, closing hard. Both ships rush at each other with too much
+      angle and no solution.
+    tags: [exciting]
+
+  - pair: [loop, bank]
+    name: "Reversal meets reversal — into the weave"
+    shape: "high-g reversal vs completing bank — scissors entry"
+    red_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Red pulls up and over — a full high-g reversal back into the fight —
+      as Blue's bank comes around to meet it. The two turns interlock: Red
+      descending out of the vertical, Blue carving in from the flat, canopy
+      to canopy. It's a scissors now, and the first pilot to out-slow the
+      other owns it.
+    next_state: scissors
+    tags: [exciting]
+
+  - pair: [loop, loop]
+    name: "Vertical stalemate"
+    shape: "high-g reversal vs displacement roll — blue holds the perch"
+    red_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: tail_on
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Both ships go vertical in the same instant — Red hauling into the
+      reversal, Blue displacement-rolling off Red's motion to hold the
+      perch. The two arcs chase each other through empty sky and cancel
+      out. Red comes off the top with Blue still glued behind: same range,
+      same angle, same problem.
+    tags: [dull]
+
+  - pair: [loop, kill_rotation]
+    name: "Belly shot at the bottom of the pull"
+    shape: "high-g reversal vs snap shot — punished in the pull"
+    red_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: true
+    narration_hint: >-
+      Red hauls into the reversal — and Blue is waiting for exactly that.
+      At the bottom of the pull Red's entire belly hangs broadside in Blue's
+      pipper for one full second. Blue fires into the exposed ventral plane
+      while Red is pinned in the turn, too deep in the g to do anything but
+      take it.
+    tags: [lopsided]
+
+  # =========================================================================
+  # Row 4 — Red (overshooter): kill_rotation — desperate over-shoulder snap
+  # =========================================================================
+
+  - pair: [kill_rotation, straight]
+    name: "Over-the-shoulder snap — mutual gunline"
+    shape: "over-shoulder snap vs flat follow — both guns hot"
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: head_on
+      closure: closing
+      gun_solution: true
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: head_on
+      closure: closing
+      gun_solution: true
+    narration_hint: >-
+      Red fires attitude jets and flips — flying backward at speed, guns
+      pointed over the shoulder straight down Blue's flat pursuit line.
+      Blue never stopped tracking. Both pilots stare at each other over hot
+      barrels at closing range. Red's shot is a tumbling, desperate thing;
+      Blue's is not.
+    tags: [exciting]
+
+  - pair: [kill_rotation, bank]
+    name: "Snap at a ghost — the reversal slides off-axis"
+    shape: "over-shoulder snap vs completing bank — tracking defeated"
+    red_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: quartering
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: quartering
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Red flips for the over-shoulder snap — but Blue's reversal is still
+      carving, and the bank drags Blue across Red's canopy faster than the
+      slew can track. The pipper never settles; Red holds a shot that does
+      not exist. Now Red is flying backward with no target, and Blue is
+      rolling out somewhere behind.
+    tags: [confusing]
+
+  - pair: [kill_rotation, loop]
+    name: "Displacement roll shrugs off the snap"
+    shape: "over-shoulder snap vs displacement roll — out of plane, out of reach"
+    red_view:
+      target_bearing: "0430"
+      target_range: close
+      target_aspect: quartering
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: head_on
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Red flips and hunts over the shoulder for a target. Blue isn't on the
+      line — Blue displacement-rolled out of plane the instant Red's jets
+      flared, and the snap has nothing to settle on. Red coasts backward
+      through empty sky while Blue re-perches above and behind, patient as
+      gravity.
+    tags: [calibrated]
+
+  - pair: [kill_rotation, kill_rotation]
+    name: "Double commit — point-blank scramble"
+    shape: "over-shoulder snap vs snap shot — mutual kill risk"
+    red_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: stable
+      gun_solution: true
+    blue_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: stable
+      gun_solution: true
+    narration_hint: >-
+      Both pilots commit to guns in the same instant — Red flipping
+      backward over the shoulder, Blue slewing onto the target in front.
+      Two committed gunlines at point-blank range, thrust vectors
+      scrambled, tracer crossing tracer. Nobody is flying the ship anymore.
+      Someone bleeds.
+    tags: [confusing]

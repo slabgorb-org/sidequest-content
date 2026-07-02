@@ -197,14 +197,73 @@ starting_states:
       narration_style: space_opera
 
   - id: beam
-    status: future
+    status: mvp
     description: >-
       Both ships perpendicular to each other's flight paths. The "crossing"
-      engagement. Both pilots pass through the gun line briefly.
+      engagement. Both pilots pass through the gun line briefly. Symmetric —
+      neither role owns the advantage; the crossing geometry does.
+    initial_descriptor:
+      target_bearing: "09"
+      target_range: close
+      target_aspect: crossing
+      closure: closing
+      viewer_energy: 60
+      target_energy: 60
+      gun_solution: false
+      environment: deep_space
+      narration_style: space_opera
 
   - id: overhead
-    status: future
+    status: mvp
     description: >-
       One ship diving vertically through the other's plane of flight.
       High-angle snap-shot opportunity for the diver, limited response for
-      the target.
+      the target. Role-fixed: Red is the diver (advantage), Blue the target
+      below — blue-advantage verticals route to symmetric states instead
+      (see interactions_overhead.yaml header).
+    initial_descriptor:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: quartering
+      closure: closing_fast
+      viewer_energy: 60
+      target_energy: 60
+      gun_solution: false
+      environment: deep_space
+      narration_style: space_opera
+
+  - id: scissors
+    status: mvp
+    description: >-
+      The mutual weave — both ships criss-crossing each other's flight paths
+      at low speed, each trying to force the other out front. The emergent
+      "he got on my tail, I broke hard, we overshot into a scissors" state.
+      Symmetric; position inside the weave carries the advantage.
+    initial_descriptor:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      viewer_energy: 60
+      target_energy: 60
+      gun_solution: false
+      environment: deep_space
+      narration_style: space_opera
+
+  - id: overshoot
+    status: mvp
+    description: >-
+      The attacker carried too much speed and shot past the defender; the
+      hunter becomes the hunted for a beat. Role-fixed: Red is the one who
+      overshot (disadvantage), Blue is converting the reversal — see
+      interactions_overshoot.yaml header for the role convention.
+    initial_descriptor:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: opening
+      viewer_energy: 60
+      target_energy: 60
+      gun_solution: false
+      environment: deep_space
+      narration_style: space_opera

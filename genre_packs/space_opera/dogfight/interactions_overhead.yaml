@@ -1,0 +1,415 @@
+# Dogfight Interaction Table — Overhead starting state
+#
+# A 16-cell lookup keyed by (red_maneuver, blue_maneuver). Red is the
+# DIVER (above, plunging vertically through Blue's plane of flight),
+# Blue is the TARGET (below, flying flat). Asymmetric geometry: the
+# diver arrives with all the energy in the fight and a high-angle
+# snap-shot window; the target has seconds to react and no altitude
+# to spend reacting.
+#
+# RPS SHIFT FROM MERGE:
+#
+#   In merge, the triangle is symmetric. In overhead:
+#   - straight (diver)  = PRESS THE DIVE — strong, converts to pursuit
+#   - straight (target) = RUN FLAT — weak, eats the dive
+#   - bank (diver)      = ROLLING PULL — curves the dive onto the six
+#   - bank (target)     = BREAK UNDER — strong, forces the overshoot
+#   - loop (diver)      = IMMELMANN — spend the dive, come back around high
+#   - loop (target)     = PULL INTO THE DIVER — brave, contests the vertical
+#   - kill_rotation (diver)  = DIVING SNAP — high-deflection committed burst
+#   - kill_rotation (target) = UPWARD SNAP — desperate shot up the dive line
+#
+# This state is lopsided BY DESIGN: the diver holds the gun advantage in
+# most cells. Blue does not win the overhead by out-shooting Red — Blue
+# wins by converting OUT of it: break under the dive (-> overshoot),
+# cancel the roll-in (-> beam), or match the vertical (-> scissors).
+# The target's kill_rotation reaches gun parity only when Red is equally
+# committed, and it's a shaky nose-high shot even then.
+#
+# Cells with both views at closure: opening_fast and no next_state are
+# blown verticals — the fight dissolves and the engine's extend-and-return
+# logic resets toward merge at runtime. Do not author that transition here.
+
+version: "0.1.0"
+starting_state: overhead
+maneuvers_consumed: [straight, bank, loop, kill_rotation]
+
+cells:
+
+  # =========================================================================
+  # Row 1 — Red (diver): straight — press the dive
+  # =========================================================================
+
+  - pair: [straight, straight]
+    name: "Diver presses onto the runner's six"
+    shape: "press vs flee — dive converts to pursuit"
+    next_state: tail_chase
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: tail_on
+      closure: closing_fast
+      gun_solution: true
+    blue_view:
+      target_bearing: "06"
+      target_range: close
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    narration_hint: >-
+      Blue holds course, flat and level, trusting raw speed to save him.
+      It won't — Red falls out of the high dark with all the energy in
+      the fight, the dive shallowing out directly onto Blue's exhaust
+      line. Red has a firing solution and the pursuit slot both. The
+      vertical attack has become a tail chase.
+
+  - pair: [straight, bank]
+    name: "Target breaks under the dive"
+    shape: "press vs break under — diver blows through"
+    next_state: overshoot
+    red_view:
+      target_bearing: "0730"
+      target_range: close
+      target_aspect: quartering
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "0430"
+      target_range: close
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Blue waits until the last possible second and breaks hard beneath
+      the dive. Red is committed — too much speed, too steep an angle —
+      and plunges straight through the empty plane where Blue used to be.
+      Now Red is below and out in front, dragging a dive he can't take
+      back, with Blue carving in behind him.
+
+  - pair: [straight, loop]
+    name: "Target climbs into the dive"
+    shape: "press vs pull-up — vertical head-on pass"
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    narration_hint: >-
+      Blue does the brave thing: hauls the nose straight up into the
+      dive. The two ships flash past canopy-to-canopy on the vertical,
+      closure too savage for either gun cone to track. Blue's climb dies
+      at the top while Red's energy carries him back around the wheel —
+      the stack re-forms with Red still on the high perch.
+
+  - pair: [straight, kill_rotation]
+    name: "Desperate snap up the dive line"
+    shape: "press vs upward snap — mutual gunline"
+    tags: [exciting]
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: true
+    blue_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: true
+    narration_hint: >-
+      Blue slams the attitude jets and pitches vertical, guns blazing
+      straight up the dive line. Red, pressing the dive, suddenly has
+      tracer rising to meet him — and Blue's silhouette square in his
+      own sights. Both pilots have a shot. Blue's is fired nose-high
+      and shuddering; Red's comes down with the whole dive behind it.
+
+  # =========================================================================
+  # Row 2 — Red (diver): bank — rolling pull toward the six
+  # =========================================================================
+
+  - pair: [bank, straight]
+    name: "Rolling pull onto a flat runner"
+    shape: "rolling pull vs flee — diver walks the pipper on"
+    red_view:
+      target_bearing: "12"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: true
+    blue_view:
+      target_bearing: "0730"
+      target_range: close
+      target_aspect: head_on
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Red rolls in the dive, bending the plunge into a long curving arc
+      that ends on Blue's rear quarter. Blue just runs — flat, straight,
+      predictable — and the pipper walks up his spine a meter at a time.
+      Red has a clean quartering shot from above and behind.
+
+  - pair: [bank, bank]
+    name: "Break meets the roll-in"
+    shape: "rolling pull vs break under — fight goes perpendicular"
+    next_state: beam
+    red_view:
+      target_bearing: "03"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "09"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Blue breaks beneath the dive at the same instant Red rolls to
+      curve it. The two arcs cancel: Red comes off the vertical to find
+      Blue crossing his nose at a full ninety degrees, broadside
+      silhouette sliding across the starfield. Nobody has an angle —
+      but the fight has a new shape now. It's a crossing duel.
+
+  - pair: [bank, loop]
+    name: "Target climbs out of the turning plane"
+    shape: "rolling pull vs pull-up — angles scrambled"
+    red_view:
+      target_bearing: "1030"
+      target_range: medium
+      target_aspect: crossing
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "0430"
+      target_range: medium
+      target_aspect: crossing
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Red commits to the rolling pull — and Blue isn't there. Blue has
+      traded everything for the vertical, climbing hard through the
+      plane Red just left. Red's arc carves through empty space while
+      Blue rises off his high shoulder, the clean geometry of the dive
+      dissolving into scrambled angles.
+
+  - pair: [bank, kill_rotation]
+    name: "Upward snap misses the roll"
+    shape: "rolling pull vs upward snap — both spent"
+    red_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: head_on
+      closure: closing
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: quartering
+      closure: closing
+      gun_solution: false
+    narration_hint: >-
+      Blue pitches up and commits the desperate snap — straight up the
+      dive line Red occupied a half-second ago. The rolling pull has
+      already carried Red a ship-length sideways, and the burst climbs
+      past into nothing. But the roll spent Red's line too. Both ships
+      hang close, nose-high and nose-low, with no shot between them.
+
+  # =========================================================================
+  # Row 3 — Red (diver): loop — Immelmann re-attack
+  # =========================================================================
+
+  - pair: [loop, straight]
+    name: "Diver resets, runner runs"
+    shape: "Immelmann vs flee — blown vertical"
+    red_view:
+      target_bearing: "06"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "06"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening_fast
+      gun_solution: false
+    narration_hint: >-
+      Red pulls out of the dive and up, trading all that beautiful speed
+      for altitude, rolling out high to set up the next pass. Blue
+      doesn't wait around — throttle firewalled, running flat while the
+      diver is busy climbing. The distance between them tears open. For
+      a long breath the fight simply isn't: two ships in empty sky,
+      each buying room.
+
+  - pair: [loop, bank]
+    name: "Both disengage the vertical"
+    shape: "Immelmann vs break under — blown vertical"
+    red_view:
+      target_bearing: "0730"
+      target_range: medium
+      target_aspect: crossing
+      closure: opening_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "0130"
+      target_range: medium
+      target_aspect: crossing
+      closure: opening_fast
+      gun_solution: false
+    narration_hint: >-
+      Red goes up; Blue breaks away flat. The two escapes compound —
+      vertical and horizontal separation opening at once, each ship a
+      shrinking glint in the other's canopy. By the time Red rolls out
+      on top of the Immelmann, there is nothing under him to attack.
+      The fight has dissolved into distance.
+
+  - pair: [loop, loop]
+    name: "Mutual vertical — the rolling scissors"
+    shape: "Immelmann vs pull-up — rolling scissors"
+    next_state: scissors
+    tags: [exciting]
+    red_view:
+      target_bearing: "0130"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: crossing
+      closure: stable
+      gun_solution: false
+    narration_hint: >-
+      Red pulls up out of the dive just as Blue pulls up into it — and
+      suddenly both ships are in the vertical together, corkscrewing
+      around each other's flight paths. Each rolls over the top of the
+      other, each trying to bleed just enough speed to fall in behind.
+      It's the rolling scissors: slow, close, and whoever misjudges
+      first ends up in front of the other's guns.
+
+  - pair: [loop, kill_rotation]
+    name: "Snap fired at empty sky"
+    shape: "Immelmann vs upward snap — diver escapes the trap"
+    red_view:
+      target_bearing: "06"
+      target_range: medium
+      target_aspect: head_on
+      closure: opening
+      gun_solution: false
+    blue_view:
+      target_bearing: "12"
+      target_range: medium
+      target_aspect: tail_on
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Blue pitches vertical and empties his guns up the dive line — but
+      Red has already left it, pulling through the Immelmann and out the
+      top. The burst climbs through the space where the dive used to be.
+      Now Blue hangs nose-high and slow, his speed spent on a shot at
+      starlight, while Red rolls out above with the perch intact.
+
+  # =========================================================================
+  # Row 4 — Red (diver): kill_rotation — diving snap
+  # =========================================================================
+
+  - pair: [kill_rotation, straight]
+    name: "Diving snap on a flat target"
+    shape: "diving snap vs flee — devastating high-angle burst"
+    tags: [lopsided]
+    red_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: crossing
+      closure: closing_fast
+      gun_solution: true
+    blue_view:
+      target_bearing: "1030"
+      target_range: gun
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    narration_hint: >-
+      Blue flies straight and level, and Red makes him pay for it.
+      Attitude jets slew the nose in the plunge, the pipper leading
+      Blue's flat planform for a full-deflection shot — and the burst
+      rakes him nose to tail across the dorsal hull. Blue never saw the
+      high threat. The hits come out of the black like judgment.
+
+  - pair: [kill_rotation, bank]
+    name: "Snap rakes the vacated sky"
+    shape: "diving snap vs break under — target dodges"
+    red_view:
+      target_bearing: "0430"
+      target_range: close
+      target_aspect: quartering
+      closure: opening_fast
+      gun_solution: false
+    blue_view:
+      target_bearing: "1030"
+      target_range: close
+      target_aspect: quartering
+      closure: opening
+      gun_solution: false
+    narration_hint: >-
+      Red commits the snap in the dive — and Blue breaks under it in
+      the same instant. The burst chews through the volume of space
+      Blue's cockpit occupied a half-second earlier. Committed slew
+      plus dive speed equals a plunge straight past the fight; by the
+      time Red's nose comes back around, Blue is carving away above him.
+
+  - pair: [kill_rotation, loop]
+    name: "Grazing burst through the climb"
+    shape: "diving snap vs pull-up — grazing hit"
+    red_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: quartering
+      closure: closing_fast
+      gun_solution: true
+    blue_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: false
+    narration_hint: >-
+      Blue pulls up into the dive — brave, but the climb holds him
+      steady in the vertical for one long half-second, and that's all
+      Red's slewed guns need. The burst rakes across Blue's topside as
+      the two ships blow past each other on the vertical. Blue's climb
+      carries him through the fire and out the other side, trailing
+      vapor but still flying.
+
+  - pair: [kill_rotation, kill_rotation]
+    name: "Vertical knife fight"
+    shape: "diving snap vs upward snap — mutual kill risk"
+    tags: [exciting]
+    red_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: true
+    blue_view:
+      target_bearing: "12"
+      target_range: gun
+      target_aspect: head_on
+      closure: closing_fast
+      gun_solution: true
+    narration_hint: >-
+      Both pilots go to the guns at the same instant — Red slewing into
+      the dive, Blue pitching flat onto his back to fire straight up.
+      For one impossible moment the two ships are nose-to-nose along
+      the vertical, tracer crossing tracer at gun range. Both have a
+      solution. Neither has anywhere to hide.
