@@ -30,24 +30,24 @@
 #   NO cookbook big_bad is dropped by the deny gate. Final set = 7.
 #
 # ── WIRING (verified against the live contract, do not change blind) ─
-#   - scripts/generate_creature_images.py::collect_creatures does
-#     genre_dir.rglob("creatures.yaml") and reads a TOP-LEVEL `creatures:`
-#     list (or a top-level list). It does NOT recurse a nested `regions:`
-#     map — caverns_sunden's region-keyed file is shape-reference only and
-#     is itself not renderer-discoverable (verified: --world caverns_sunden
-#     --dry-run → "No items found!"). This file therefore uses the FLAT
-#     {creatures: [ {name,id,description,threat_level,tags} ]} schema the
-#     renderer actually consumes. Verified discoverable:
-#       generate_creature_images.py --genre caverns_and_claudes \
-#         --world beneath_sunden --dry-run  → lists all 7.
+#   - Story 158-52 (ADR-155): scripts/generate_creature_images.py derives
+#     render items from bestiary.yaml (the runtime roster; threat_level <-
+#     level, subject <- description). This file is the OPTIONAL per-world
+#     OVERRIDE manifest — a TOP-LEVEL `creatures:` list whose entries win
+#     PER-FIELD against the derived item for the same id. Entries here are
+#     the bespoke marquee/capstone plates; everything else in the bestiary
+#     renders without an entry.
+#   - `name_is_secret: true` (top-level, below) declares this world's
+#     "nothing is named" conceit: every bestiary-DERIVED render name is
+#     replaced with the entry's non-proper `role` line, so the roster
+#     proper noun never reaches subject or CLIP.
 #   - compose_prompt() sends `description` as the subject and ALSO sends
 #     `clip = "{name}, creature illustration"` as clip_prompt on the
 #     non-catalog path (creature renderer does NOT set catalog_compose).
-#     Z-Image paints proper nouns from BOTH subject and CLIP. This world's
-#     entire conceit is that nothing is named. Therefore each `name` is a
-#     non-proper-noun descriptive phrase (it is also what slugifies to the
-#     PNG filename); the SRD linkage lives in `id` for audit only and
-#     never reaches the renderer prompt.
+#     Z-Image paints proper nouns from BOTH subject and CLIP. Therefore
+#     each bespoke `name` below is a non-proper-noun descriptive phrase
+#     (it is also what slugifies to the PNG filename); the SRD linkage
+#     lives in `id` for audit only and never reaches the renderer prompt.
 #   - render_batch writes images/creatures/<slugify(name)>.png at the
 #     GENRE level (genre_packs/caverns_and_claudes/images/creatures/).
 #     The server has no creature-image resolver yet (ADR-059 content
@@ -71,6 +71,11 @@
 #   description ends with the no-text/no-caption cleanup clause because
 #   guidance_scale=0 means negative_prompt is ignored.
 
+# The deep's whole conceit: nothing down here is named. Every render name
+# derived from bestiary.yaml uses the entry's `role` prose instead of its
+# proper noun (158-52) — the bespoke entries below override per-id.
+name_is_secret: true
+
 creatures:
 
   # ── DEEP-BAND CAPSTONES (threat 5 → full-page, imposing scale) ──────
@@ -81,7 +86,7 @@ creatures:
       A vast eel-bodied horror filling the frame, longer than three men
       and thicker than a man is tall, hanging level in black water with
       no floor and no surface shown. The hide is slick and ridged, banded
-      in heavy crosshatch, glistening where the single low light catches
+      in deep segmented folds, glistening where the single low light catches
       a wet flank. Three round lidless eyes sit stacked down the blunt
       front, each ringed and patient, fixed straight out of the plate at
       the viewer. Four long barbels trail from beneath the maw, drifting
@@ -161,7 +166,7 @@ creatures:
     description: >-
       A squat heavy three-legged horror crouched low in a flooded pit,
       filling most of the frame. The body is a bloated ovoid covered in
-      filth-matted plating and warty hide, rendered in dense crosshatch,
+      filth-matted plating and warty hide,
       slick and dark with wet. Three thick stump legs splay it wide and
       low over black standing water. Two long tendrils rise off the back,
       each ending in a rough leaf-shaped flap, lifted and turned forward
@@ -182,7 +187,7 @@ creatures:
       A huge formless mound of glistening black ooze slumped across bare
       cut stone, filling the lower two-thirds of the frame, taller than a
       crouching man at its heap and spreading wide and low. The surface
-      is wet and heavy, rendered in dense crosshatch, sheeting thick
+      is wet and heavy, sheeting thick
       runnels of itself down onto the rock and pooling. It has no eyes,
       no limbs, no face — only mass and a slow forward bulge where it is
       moving. The stone it crosses is visibly eaten away, pitted and
