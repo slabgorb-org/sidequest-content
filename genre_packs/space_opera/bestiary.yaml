@@ -1,4 +1,4 @@
-# Space Opera — pack bestiary (story 90-1)
+# Space Opera — pack bestiary (story 90-1; genre-tier home restored by 162-6)
 #
 # SRD-aligned combat stat blocks for the swn ruleset module. Encountergen
 # samples these for the Monster Manual encounters pool (free-play reachable
@@ -11,13 +11,24 @@
 # Genre tier rules (ADR-120): names here are genre-generic — no named
 # world factions, systems, or POIs. World-specific hostiles belong in
 # worlds/<slug>/ overrides.
+#
+# 162-6 de-triplication: this genre-tier roster was previously copied byte-for-
+# byte into worlds/aureate_span, worlds/perseus_cloud, and worlds/coyote_star.
+# effective_bestiary is world-over-genre REPLACE, so aureate_span and
+# perseus_cloud now ship NO world bestiary and fall through to this file;
+# coyote_star keeps its own file only because it adds a world-specific
+# generics: section (which cannot live at the genre tier without leaking into
+# every falling-through world).
 entries:
   # --- epic-157 zone-tagging: every item below carries factions: ["*"] (world-
-  #     global). This world is zoned (cartography regions declare controlled_by),
-  #     so the strict load validator (story 157-7) requires a non-empty factions
-  #     list on each pooled item. "*" = eligible in every zone, behavior-identical
-  #     to untagged. To actually zone-scope an item, swap ["*"] for the controlled_by
-  #     faction slug(s) it belongs to (see worlds/gulliver for worked examples).
+  #     global). A ZONED world that falls through to this genre roster (e.g.
+  #     perseus_cloud, which declares controlled_by regions) must, per the strict
+  #     load validator (story 157-7), see a non-empty factions list on each pooled
+  #     item — so the tags live here, not just in a world copy. "*" = eligible in
+  #     every zone, behavior-identical to untagged, and inert for an unzoned world
+  #     (aureate_span). To actually zone-scope an item in a world override, swap
+  #     ["*"] for the controlled_by faction slug(s) it belongs to (see
+  #     worlds/gulliver for worked examples).
   - id: dock_tough
     factions: ["*"]
     name: Dock Tough
