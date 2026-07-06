@@ -594,48 +594,28 @@ characters:
   # ===========================================================================
   # PLAYER-PICKER PORTRAITS
   # ---------------------------------------------------------------------------
-  # Faces a player chooses at character creation. TWO POOLS as of the 2026-07
-  # expansion (mirrors the oz world's fix for the same flagship gap: 20/20
-  # pickers were victorian_english, zero were Wonderland-native).
-  #
-  # VICTORIAN POOL (unchanged) — THIS IS A PORTAL FAIRYTALE: the players are
-  # NOT Wonderland natives. They are ORDINARY REAL ENGLISH PEOPLE of 1865 —
-  # the year Carroll published Alice's Adventures — who fall down the
-  # rabbit-hole / step through the looking-glass and find the country of
-  # nonsense strange. The model is Alice Liddell: a well-bred English child of
-  # the cathedral close meeting impossible logic with stubborn manners. They
+  # Faces a player chooses at character creation. THIS IS A PORTAL FAIRYTALE:
+  # the players are NOT Wonderland natives. They are ORDINARY REAL ENGLISH
+  # PEOPLE of 1865 — the year Carroll published Alice's Adventures — who fall
+  # down the rabbit-hole / step through the looking-glass and find the country
+  # of nonsense strange. The model is Alice Liddell: a well-bred English child
+  # of the cathedral close meeting impossible logic with stubborn manners. They
   # belong to the mid-Victorian world above (governesses, choristers, divinity
   # students, curates, footmen, milliners, clerks, schoolchildren, gardeners'
   # boys, ladies and gentlemen of the house) and are cast in the single
-  # world-level culture `victorian_english`.
-  #
-  # WONDERLAND-NATIVE POOL (2026-07 addition) — culture: card_folk | chesspieces
-  # | creature_folk (cultures/<stem>.yaml), each brought to >= 3 faces. A
-  # player may instead sit down already a piece of Wonderland's own furniture:
-  # a flat heraldic playing-card pasteboard figure (card_folk), a carved
-  # wooden chesspiece given a face and arms (chesspieces), or a waistcoated
-  # talking beast (creature_folk) — per the SOURCE FIDELITY casting rule at
-  # the top of this file. No named canon individual (the Queen/King/Knave of
-  # Hearts, the Red/White Queen, the White Knight, the March Hare, etc.) is
-  # ever a pickable face; each entry is a generic, un-storied member of that
-  # culture's population, invented within the culture file's own naming space.
-  #
-  # SHARED SCHEMA (both pools): culture=culture filename stem (StyleCatalog
-  # gate: the file STEM must match this slug EXACTLY or the render dies with
-  # CatalogMissError). Archetypes are real values from wry_whimsy/archetypes.yaml
-  # only (The Innocent / The Wit / The Surveyor / The Scrapper / The Dreamer —
-  # "The Weary Soldier" is NOT an archetype, it is a typical_class shared by
-  # The Surveyor and The Scrapper; two pre-existing victorian entries that
-  # miscast it as an archetype were corrected to their nearest real archetype
-  # in this same 2026-07 pass). Each appearance is PHYSICAL face/upper-body
-  # only stated as drawn fact (no style words — no "engraving", "Tenniel",
-  # "Victorian"; the world portrait_positive_suffix adds the medium), ending
-  # on the face/expression like the other pickers so it renders in the
-  # world's Tenniel engraving look. backdrop_poi values are real rendered
-  # POIs from r2_manifest.json / history.yaml — newcomers are placed at
-  # neutral arrival / wood / waterside POIs they could plausibly stumble
-  # into; natives are placed at POIs proper to their own country. Render is
-  # a separate operator step.
+  # world-level culture `victorian_english` (StyleCatalog gate: the culture
+  # file STEM must match this slug EXACTLY or the render dies with
+  # CatalogMissError). Archetypes REUSE the six values already present on the
+  # in-world NPC pickers (The Scrapper / The Surveyor / The Weary Soldier /
+  # The Wit / The Innocent / The Dreamer) — no new archetype names invented.
+  # Each appearance is period-accurate 1865 English dress/physique, PHYSICAL
+  # face / upper-body only stated as drawn fact (no style words — no
+  # "engraving", "Tenniel", "Victorian"; the world portrait_positive_suffix
+  # adds the medium), ending on the face/expression like the other pickers so
+  # it renders in the world's Tenniel engraving look. backdrop_poi values are
+  # real rendered POIs from r2_manifest.json — newcomers are placed at neutral
+  # arrival / wood / waterside POIs they could plausibly stumble into. Render
+  # is a separate operator step.
   # ===========================================================================
 
   # ── Picker · Victorian English (women) ──
@@ -850,7 +830,7 @@ characters:
     role: A Footman
     type: player_picker
     culture: victorian_english
-    archetype: The Scrapper
+    archetype: The Weary Soldier
     sex: male
     backdrop_poi: the_coronation_feast
     appearance: >-
@@ -896,7 +876,7 @@ characters:
     role: A Schoolmaster
     type: player_picker
     culture: victorian_english
-    archetype: The Surveyor
+    archetype: The Weary Soldier
     sex: male
     backdrop_poi: the_hall_of_justice
     appearance: >-
@@ -951,163 +931,3 @@ characters:
       loose in one hand. Wavy fair hair, a smooth unlined face, fine vague
       dreaming eyes gazing somewhere past the viewer, a soft half-open mouth,
       the head tipped back a little as if half asleep in the warm afternoon.
-
-  # ===========================================================================
-  # PLAYER PICKER PORTRAITS — WONDERLAND-NATIVE POOL — 2026-07 expansion
-  # Closes the flagship culture gap: card_folk, chesspieces, and creature_folk
-  # had zero picker faces. Each culture brought to >= 3 faces. Cast per the
-  # SOURCE FIDELITY casting rule at the top of this file — flat pasteboard
-  # cards, carved wooden chesspieces, waistcoated beasts, never realistic
-  # humans. No named canon individual is a pickable face. One person, face +
-  # upper body, backdrop_poi = real history.yaml slug, no style words.
-  # ===========================================================================
-
-  # ── Picker · Card Folk (flat heraldic pasteboard) ───────────────
-
-  - id: picker_cardfolk_gardener_nb01
-    name: picker cardfolk gardener nb01
-    role: A Card Gardener
-    type: player_picker
-    culture: card_folk
-    archetype: The Innocent
-    sex: nonbinary
-    backdrop_poi: the_queens_croquet_ground
-    appearance: >-
-      Half-length portrait of a low card rendered as a flat heraldic
-      playing-card pasteboard figure, an oblong flat body marked with small
-      black spade pips, a printed youthful face at the top. A rough
-      gardener's smock daubed over the pasteboard, one flat hand gripping a
-      paint-laden brush, red paint spattered across the front. Wide startled
-      eyes and a small open mouth stated as drawn line, the whole figure
-      flinching low as if bracing to drop flat at the first footstep.
-
-  - id: picker_cardfolk_soldier_m01
-    name: picker cardfolk soldier m01
-    role: A Card Soldier
-    type: player_picker
-    culture: card_folk
-    archetype: The Scrapper
-    sex: male
-    backdrop_poi: the_hall_of_justice
-    appearance: >-
-      Half-length portrait of a card-soldier rendered as a flat heraldic
-      playing-card pasteboard figure, an oblong flat body marked with black
-      club pips, a printed face at the top. A short pike held upright in one
-      flat hand, a plain buckled belt crossing the front. A set braced jaw
-      and a fixed forward stare stated as drawn line, shoulders squared
-      despite a fine tremor along the flat edge of the card.
-
-  - id: picker_cardfolk_courtier_f01
-    name: picker cardfolk courtier f01
-    role: A Card Courtier
-    type: player_picker
-    culture: card_folk
-    archetype: The Wit
-    sex: female
-    backdrop_poi: the_coronation_feast
-    appearance: >-
-      Half-length portrait of a court card rendered as a flat heraldic
-      playing-card pasteboard figure, an oblong flat body marked with small
-      red diamond pips, a printed face at the top, a narrow circlet resting
-      above the brow. A folded fan held out from one flat hand. A sly
-      arched-eyebrow smirk and heavy-lidded knowing eyes stated as drawn
-      line, the head tipped at a confiding angle.
-
-  # ── Picker · Chesspieces (carved wooden, Looking-Glass) ─────────
-
-  - id: picker_chesspiece_pawn_nb01
-    name: picker chesspiece pawn nb01
-    role: A Chess Pawn
-    type: player_picker
-    culture: chesspieces
-    archetype: The Surveyor
-    sex: nonbinary
-    backdrop_poi: the_chessboard_country
-    appearance: >-
-      Half-length portrait of a small carved wooden chesspiece given a face
-      and arms, the body the plain turned silhouette of a pawn, a low rounded
-      cap at the top in place of a crown. A stiff collar following the
-      turned wood grain. A round steady face with wide watchful eyes and a
-      level closed mouth stated as drawn line, the chin lifted as if
-      counting squares before the next move.
-
-  - id: picker_chesspiece_bishop_f01
-    name: picker chesspiece bishop f01
-    role: A Chess Bishop
-    type: player_picker
-    culture: chesspieces
-    archetype: The Wit
-    sex: female
-    backdrop_poi: the_looking_glass
-    appearance: >-
-      Half-length portrait of a carved wooden chesspiece given a face and
-      arms, the body the tall mitred silhouette of a bishop, a deep notch cut
-      at the crown of the head. A narrow collar following the turned wood
-      grain. A sharp thin face with a raised eyebrow and a pursed correcting
-      mouth stated as drawn line, one carved hand lifted mid-recitation of a
-      rule.
-
-  - id: picker_chesspiece_rook_m01
-    name: picker chesspiece rook m01
-    role: A Chess Rook
-    type: player_picker
-    culture: chesspieces
-    archetype: The Scrapper
-    sex: male
-    backdrop_poi: humpty_dumptys_wall
-    appearance: >-
-      Half-length portrait of a carved wooden chesspiece given a face and
-      arms, the body the squat battlemented silhouette of a rook, a ring of
-      small turrets crowning the head. A thick collar following the turned
-      wood grain. A broad flat face with a heavy set jaw and small steady
-      eyes stated as drawn line, immovable, planted square as though rooted
-      to the ground beneath it.
-
-  # ── Picker · Creature Folk (waistcoated beasts) ─────────────────
-
-  - id: picker_creaturefolk_mouse_f01
-    name: picker creaturefolk mouse f01
-    role: A Mournful Mouse
-    type: player_picker
-    culture: creature_folk
-    archetype: The Innocent
-    sex: female
-    backdrop_poi: the_pool_of_tears
-    appearance: >-
-      Half-length portrait of a small grey mouse standing upright, damp fur
-      clinging flat from a recent soaking, long whiskers drooping, round dark
-      eyes wide and brimming. Wearing a small buttoned waistcoat over the
-      narrow chest, a corner of a handkerchief clutched in one forepaw. A
-      trembling apologetic set to the small mouth, ears pressed back low.
-
-  - id: picker_creaturefolk_beetle_m01
-    name: picker creaturefolk beetle m01
-    role: A Grinning Beetle
-    type: player_picker
-    culture: creature_folk
-    archetype: The Wit
-    sex: male
-    backdrop_poi: caterpillars_mushroom
-    appearance: >-
-      Half-length portrait of a large glossy black beetle reared up on its
-      hind legs, a hard rounded shell folded at the back, long jointed
-      antennae curling forward. Wearing a small buttoned waistcoat stretched
-      across the domed front. A dry knowing set to the small mandibled
-      mouth, one antenna cocked at a wry angle, the round eyes fixed in
-      sidelong amusement.
-
-  - id: picker_creaturefolk_fawn_nb01
-    name: picker creaturefolk fawn nb01
-    role: The Sleepy Fawn
-    type: player_picker
-    culture: creature_folk
-    archetype: The Dreamer
-    sex: nonbinary
-    backdrop_poi: the_garden_of_live_flowers
-    appearance: >-
-      Half-length portrait of a young dappled fawn walking upright, slender
-      legs, a soft spotted coat, small budding horns just showing at the
-      brow. A light woven garland resting loose about the neck in place of
-      any collar. Wide dark trusting eyes and a gentle parted mouth stated as
-      drawn line, the head tilted as if listening for a name it cannot quite
-      recall.

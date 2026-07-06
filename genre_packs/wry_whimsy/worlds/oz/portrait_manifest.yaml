@@ -433,53 +433,33 @@ characters:
   # ═══════════════════════════════════════════════════════════════
   # PLAYER-PICKER FACES — character-creation portrait options.
   # ═══════════════════════════════════════════════════════════════
-  # TWO POOLS as of the 2026-07 expansion. Originally every picker
-  # here followed a PORTAL-FAIRYTALE RULE: the player is NOT an Oz
-  # native, Oz is a world you are SWEPT INTO, Dorothy-Gale style, and
-  # every face was an ORDINARY REAL PERSON FROM 1900 AMERICA. That
-  # pool is UNCHANGED and kept in full (see KANSAS POOL below). The
-  # 2026-07 expansion adds a second, native-Oz pool so a player may
-  # instead sit down already belonging to one of the four countries or
-  # the Emerald City — closing the flagship gap where all 18 faces
-  # were outsiders and zero were Ozian. Both pools are ordinary,
-  # un-storied faces; no named canon character (Boq, Nimmie Amee,
-  # Jellia Jamb, etc.) is ever a pickable face.
+  # PORTAL-FAIRYTALE RULE: the players are NOT Oz natives. Oz is a
+  # world you are SWEPT INTO, Dorothy-Gale style. Every player-picker
+  # face is an ORDINARY REAL PERSON FROM 1900 AMERICA — a homesteader,
+  # a schoolteacher, a railway brakeman, a circus roustabout — newly
+  # blown by cyclone into a colored land, still wearing the sober
+  # gingham / calico / Sunday-black / work-boots dress of the turn-of-
+  # the-century Midwest. They do NOT pick an Oz faction; they are the
+  # outsiders the four countries react to.
   #
-  # KANSAS POOL — culture: kansas_1900 (cultures/kansas_1900.yaml).
-  # A homesteader, a schoolteacher, a railway brakeman, a circus
-  # roustabout — newly blown by cyclone into a colored land, still
-  # wearing the sober gingham / calico / Sunday-black / work-boots
-  # dress of the turn-of-the-century Midwest. They do NOT pick an Oz
-  # faction; they are the outsiders the four countries react to.
-  # `appearance` is PHYSICAL ONLY: face and upper body in PERIOD-
-  # ACCURATE 1900 AMERICAN dress and physique, rendered in the Denslow
-  # plate look — NO Oz regional collar-color (these people just
-  # arrived; they are not color-coded to a quarter). Allocation: 9M /
-  # 9F across 18 faces, era-diverse occupations, every archetype
-  # represented. Naming: id `picker_kansas_<short_role>_<m|f>NN`.
-  #
-  # OZ-NATIVE POOL — culture: emerald | gillikin | munchkin | quadling
-  # | winkie (cultures/<stem>.yaml), one of the five Oz cultures, each
-  # brought to >= 3 faces with a sex mix. Ordinary folk of the four
-  # countries and the Emerald City, dressed in their region's keyed
-  # color per cultures/*.yaml and the world visual_style.yaml four-
-  # country palette (Munchkin blue, Winkie yellow, Quadling red,
-  # Gillikin purple, Emerald City green — spectacles only, the city
-  # itself stays white marble per the culture file). No cyclone/portal
-  # framing in the appearance text; these faces were always in Oz.
-  # Naming: id `picker_<culture>_<short_role>_<m|f>NN`.
-  #
-  # SHARED SCHEMA (both pools): type=player_picker, culture=culture
-  # filename stem (the StyleCatalog culture gate matches the file stem
-  # to this slug exactly), archetype=real playable Traveler coping-
-  # style (pack-tier wry_whimsy/archetypes.yaml: The Innocent / The
-  # Wit / The Surveyor / The Scrapper / The Dreamer — every archetype
-  # appears at least once across the world's pickers), sex,
-  # backdrop_poi (a real rendered Oz POI from R2 — munchkin/winkie/
-  # quadling/gillikin_country, yellow_brick_road, emerald_city(_gate),
-  # wizard_throne_room, china_country, deadly_poppy_field,
-  # deadly_desert, witch_west_castle; the renderer composes the
-  # subject into it — appearance prose carries NO background).
+  # Face options offered at character creation, one montage-safe
+  # head-and-shoulders per option. Schema: type=player_picker,
+  # culture=culture filename stem (ALWAYS `kansas_1900` for pickers —
+  # the StyleCatalog culture gate matches the file stem to this slug
+  # exactly; cultures/kansas_1900.yaml supplies it), archetype=real
+  # playable Traveler coping-style (pack-tier wry_whimsy/archetypes.yaml:
+  # The Innocent / The Wit / The Surveyor / The Scrapper / The Dreamer),
+  # sex, backdrop_poi (a real rendered Oz POI from R2 —
+  # munchkin/winkie/quadling/gillikin_country, yellow_brick_road,
+  # emerald_city(_gate), wizard_throne_room, china_country,
+  # deadly_poppy_field, deadly_desert, witch_west_castle; the renderer
+  # composes the newly-arrived traveler into it — appearance prose
+  # carries NO background). `appearance` is PHYSICAL ONLY: face and
+  # upper body in PERIOD-ACCURATE 1900 AMERICAN dress and physique,
+  # rendered in the Denslow plate look — NO Oz regional collar-color
+  # (these people just arrived; they are not color-coded to a quarter).
+  # Allocation: 9M / 9F across 18 faces, era-diverse occupations, every
+  # archetype represented. Naming: id `picker_kansas_<short_role>_<m|f>NN`.
   # ═══════════════════════════════════════════════════════════════
 
   # ── Picker · Kansas homestead folk ─────────────────────────────
@@ -819,300 +799,136 @@ characters:
       in bold storybook outlines and flat fields, soft well-fed rounded anatomy.
 
   # ═══════════════════════════════════════════════════════════════
-  # PLAYER PICKER PORTRAITS — OZ-NATIVE POOL — 2026-07 expansion
-  # Closes the flagship culture gap: the five Oz cultures (Munchkin,
-  # Winkie, Quadling, Gillikin, Emerald City) had zero picker faces.
-  # Each culture brought to >= 3 faces with a sex mix. No portal/
-  # cyclone framing — these people were always in Oz, dressed in
-  # their country's keyed color per cultures/*.yaml and the world
-  # visual_style.yaml four-country palette. One person, face + upper
-  # body, backdrop_poi = real history.yaml slug, appearance carries
-  # no background prose.
+  # PLAYER PICKER PORTRAITS — VARIETY-FILL EXPANSION (2026-07,
+  # portal doctrine confirmed — outsiders only, Keith). Every entry
+  # below stays culture: kansas_1900, no native Oz faces. Adds real
+  # 1900-Kansas demographic variety (Mennonite German-Russian
+  # homesteaders, Exoduster Black settlers, Scandinavian immigrant
+  # labor, the Orphan Train movement, Civil War veterans, the
+  # suffrage campaign) plus age/class/build spread the original 18
+  # occupations didn't reach. One person, face + upper body, real
+  # backdrop_poi, no text-bearing props.
   # ═══════════════════════════════════════════════════════════════
 
-  # ── Picker · Munchkin (East, blue) ──────────────────────────────
-
-  - id: picker_munchkin_farmwife_f01
-    name: picker munchkin farmwife f01
-    role: Munchkin Farmwife
+  - id: picker_kansas_mennonite_wife_f09
+    name: picker kansas mennonite wife f09
+    role: Mennonite Homesteader Wife
     type: player_picker
-    culture: munchkin
+    culture: kansas_1900
     archetype: The Innocent
     sex: female
     backdrop_poi: munchkin_country
     appearance: >-
-      A small, round-faced Munchkin farmwife of about forty, tidy and quick to
-      smile, still faintly startled at her own freedom from the old Witch of
-      the East. Apple-red cheeks, wide gentle brown eyes, greying flaxen hair
-      braided close under a blue peaked bonnet hung with tiny silver bells. She
-      wears a modest belted blue calico dress with a round white collar and
-      blue clogs, hands clasped at her apron in a habit of nervous gratitude.
-      Drawn in bold confident storybook outlines, flat blue and cream fields,
-      small sturdy country anatomy.
+      A plain, devout Mennonite homesteader's wife of about thirty-eight,
+      newly set down amid the blue Munchkin fields, with a broad calm face,
+      pale unlined skin, a small steady mouth, and mild grey-blue eyes that
+      take the strangeness without complaint. Dark hair parted centre and
+      hidden under a plain black head-covering, a modest high-collared dark
+      dress with no ornament at all. Hands folded at her waist in a habit of
+      quiet prayer. Drawn in bold confident storybook outlines, flat muted
+      fields, spare unadorned anatomy.
 
-  - id: picker_munchkin_richfarmer_m01
-    name: picker munchkin richfarmer m01
-    role: Prosperous Munchkin Farmer
+  - id: picker_kansas_exoduster_homesteader_m11
+    name: picker kansas exoduster homesteader m11
+    role: Exoduster Homesteader
     type: player_picker
-    culture: munchkin
-    archetype: The Surveyor
-    sex: male
-    backdrop_poi: munchkin_country
-    appearance: >-
-      A short, comfortably stout Munchkin farmer of about sixty, one of the
-      well-to-do "rich" Munchkins, taking careful measure of every stranger
-      since the falling house changed everything. A broad ruddy face, a neat
-      white fringe of beard, small shrewd grey eyes under bushy brows. He wears
-      a fine blue silk swallow-tailed coat with silver buttons, a stiff round
-      blue hat, small round spectacles pushed low on his nose. Drawn in bold
-      confident storybook outlines, flat blue and silver fields, short
-      barrel-chested anatomy.
-
-  - id: picker_munchkin_shoemender_f02
-    name: picker munchkin shoemender f02
-    role: Munchkin Shoe-Mender
-    type: player_picker
-    culture: munchkin
-    archetype: The Wit
-    sex: female
-    backdrop_poi: yellow_brick_road
-    appearance: >-
-      A quick, wiry young Munchkin shoe-mender of about twenty-five, needle and
-      awl always at hand, sharp-tongued about strangers who scuff their boots
-      on her tidy blue lane. A narrow clever face, a pointed chin, dark darting
-      eyes, hair cropped short under a small blue pointed cap ringed with
-      bells. She wears a snug blue jerkin over a striped under-blouse, a
-      leather apron studded with pins, small blue clogs. Drawn in bold
-      confident storybook outlines, flat blue and cream fields, slight
-      quick-handed anatomy.
-
-  # ── Picker · Winkie (West, yellow) ──────────────────────────────
-
-  - id: picker_winkie_tinsmith_m01
-    name: picker winkie tinsmith m01
-    role: Winkie Tinsmith
-    type: player_picker
-    culture: winkie
+    culture: kansas_1900
     archetype: The Scrapper
     sex: male
-    backdrop_poi: winkie_country
+    backdrop_poi: yellow_brick_road
     appearance: >-
-      A broad, forge-scarred Winkie tinsmith of about forty, hands calloused
-      from years of forced labor at the old Witch's foundry, now free and
-      still bracing out of long habit. A wide flat face, a heavy jaw,
-      close-cropped grizzled hair under a battered yellow cap. He wears a
-      sturdy yellow work-tunic with rolled sleeves over leather bracers, a
-      wide brass-buckled belt hung with tinker's tools. Drawn in bold
-      confident storybook outlines, flat yellow and brass fields, thick-armed
-      sturdy anatomy.
+      A sturdy Black Kansan homesteader of about forty-five, one of the
+      Exodusters who broke prairie sod after the long road up from the South,
+      walking the yellow road with a level, unhurried dignity. A broad steady
+      face, close-cropped greying hair under a wide felt hat, a calm
+      appraising gaze, a firm closed mouth. He wears a sturdy collarless work
+      shirt, canvas trousers held by a single strap, sleeves rolled over
+      strong forearms. Drawn in bold storybook outlines and flat fields,
+      solid upright anatomy, shoulders square.
 
-  - id: picker_winkie_lamplighter_f01
-    name: picker winkie lamplighter f01
-    role: Winkie Lamplighter
+  - id: picker_kansas_swedish_farmhand_m12
+    name: picker kansas swedish farmhand m12
+    role: Scandinavian Immigrant Farmhand
     type: player_picker
-    culture: winkie
+    culture: kansas_1900
+    archetype: The Dreamer
+    sex: male
+    backdrop_poi: gillikin_country
+    appearance: >-
+      A fair, rawboned young Swedish farmhand of about twenty, freshly
+      arrived from the old country and now blinking at the purple Gillikin
+      hills, with pale flaxen hair, a long sunburnt face, wide startled blue
+      eyes, and a faint open-mouthed wonder. He wears a coarse homespun shirt
+      buttoned to the throat, plain wool trousers with braces, heavy scuffed
+      boots. Drawn in bold storybook outlines and flat fields, lean
+      big-knuckled farmhand anatomy, head tipped back at the hills.
+
+  - id: picker_kansas_country_doctor_m13
+    name: picker kansas country doctor m13
+    role: Country Doctor
+    type: player_picker
+    culture: kansas_1900
+    archetype: The Surveyor
+    sex: male
+    backdrop_poi: wizard_throne_room
+    appearance: >-
+      A composed country doctor of about fifty, black bag in hand, examining
+      the false throne-room with a clinician's dry skepticism, a long grave
+      face, silver-rimmed spectacles, a neat grey moustache, a measuring
+      unhurried gaze. He wears a dark frock coat over a high-buttoned
+      waistcoat and a plain black tie, a stethoscope's rubber tubing just
+      showing at one pocket. Drawn in bold storybook outlines and flat
+      fields, spare precise anatomy, chin level and observant.
+
+  - id: picker_kansas_suffragist_f10
+    name: picker kansas suffragist f10
+    role: Kansas Suffragist
+    type: player_picker
+    culture: kansas_1900
+    archetype: The Wit
+    sex: female
+    backdrop_poi: emerald_city
+    appearance: >-
+      A sharp, quick-tongued Kansas suffragist of about thirty, sizing up the
+      green city's humbug with a campaigner's practiced eye, a narrow animated
+      face, bright dark eyes, a ready argumentative set to the mouth. She
+      wears a trim tailored shirtwaist and dark skirt, a plain purple-and-gold
+      ribbon sash worn corner to hip, wire-rimmed spectacles pushed up into
+      upswept hair, a rolled pamphlet gripped in one fist. Drawn in bold
+      storybook outlines and flat fields, brisk upright anatomy, one hand
+      half-raised mid-argument.
+
+  - id: picker_kansas_orphan_train_girl_f11
+    name: picker kansas orphan train girl f11
+    role: Orphan Train Girl
+    type: player_picker
+    culture: kansas_1900
     archetype: The Dreamer
     sex: female
-    backdrop_poi: winkie_country
+    backdrop_poi: deadly_poppy_field
     appearance: >-
-      A gentle, soft-spoken Winkie lamplighter of about thirty, given to
-      gazing at her own brass lamps as though the flame still amazes her
-      after the long dark years of bondage. A round mild face, wide amber
-      eyes, honey-blonde hair pinned beneath a tall yellow conical cap
-      trimmed with tiny bells. She wears a simple yellow smock over a full
-      skirt, a small brass lamp hooked at her belt. Drawn in bold confident
-      storybook outlines, flat buttery-yellow fields, soft rounded patient
-      anatomy.
+      A small orphan-train girl of about eight, sent west from a crowded
+      eastern asylum to a new Kansas family and now wandering the poppy field
+      half-lost in a waking dream, a round pale face, enormous solemn eyes, a
+      soft parted mouth. She wears a plain grey pinafore over a darned cotton
+      dress, a paper number-tag still knotted at one buttonhole, thin
+      stockings, worn button boots. Drawn in bold storybook outlines and flat
+      fields, small slight anatomy, arms loose at her sides as if drifting.
 
-  - id: picker_winkie_bellfounder_m02
-    name: picker winkie bellfounder m02
-    role: Winkie Bell-Founder
+  - id: picker_kansas_civil_war_veteran_m14
+    name: picker kansas civil war veteran m14
+    role: Old Civil War Veteran
     type: player_picker
-    culture: winkie
-    archetype: The Surveyor
+    culture: kansas_1900
+    archetype: The Scrapper
     sex: male
     backdrop_poi: witch_west_castle
     appearance: >-
-      An older, meticulous Winkie bell-founder of about sixty-five, examining
-      the ruined castle stones with a craftsman's careful, unhurried eye. A
-      long lined face, a neat grey goatee, small round eyes behind thick
-      brass-rimmed spectacles. He wears a stiff yellow long-coat buttoned to
-      the throat, a leather tool-satchel slung crosswise, a small tin
-      measuring-rule in one hand. Drawn in bold confident storybook outlines,
-      flat yellow and tin-grey fields, lean stooped anatomy.
-
-  # ── Picker · Quadling (South, red) ──────────────────────────────
-
-  - id: picker_quadling_orchardkeeper_f01
-    name: picker quadling orchardkeeper f01
-    role: Quadling Orchard-Keeper
-    type: player_picker
-    culture: quadling
-    archetype: The Innocent
-    sex: female
-    backdrop_poi: quadling_country
-    appearance: >-
-      A warm, open-hearted Quadling orchard-keeper of about thirty-five,
-      generous to a fault under Glinda's gentle rule. A round sun-warmed face,
-      full red cheeks, dark curling hair loose beneath a wide red sunhat
-      trimmed with poppies. She wears a full red skirt and a laced red bodice
-      over a cream blouse, a basket of ripe fruit balanced on one hip. Drawn
-      in bold confident storybook outlines, flat crimson and cream fields,
-      soft generous anatomy.
-
-  - id: picker_quadling_courtier_m01
-    name: picker quadling courtier m01
-    role: Quadling Courtier
-    type: player_picker
-    culture: quadling
-    archetype: The Wit
-    sex: male
-    backdrop_poi: quadling_country
-    appearance: >-
-      A polished young Quadling courtier of about twenty-six, quick-tongued
-      and court-trained in Glinda's ruby-and-white household. A slim handsome
-      face, a sly clever smile, dark hair oiled smooth beneath a small red
-      velvet cap with a white plume. He wears a fitted red doublet with white
-      braid trim, a thin ceremonial rapier at his hip. Drawn in bold confident
-      storybook outlines, flat red and white fields, trim upright courtly
-      anatomy.
-
-  - id: picker_quadling_hillfarmer_f02
-    name: picker quadling hillfarmer f02
-    role: Quadling Hill Farmer
-    type: player_picker
-    culture: quadling
-    archetype: The Dreamer
-    sex: female
-    backdrop_poi: china_country
-    appearance: >-
-      A young Quadling hill farmer of about twenty, raised on a farm south of
-      the Hammer-Head hills, half in wonder at the fragile porcelain folk over
-      the border. A round dreamy face, wide dark eyes, black hair in a single
-      loose braid threaded with a red ribbon. She wears a simple red
-      work-dress with a cream apron, bare feet, a sprig of poppy tucked behind
-      one ear. Drawn in bold confident storybook outlines, flat red and cream
-      fields, slight barefoot wandering anatomy.
-
-  # ── Picker · Gillikin (North, purple) ───────────────────────────
-
-  - id: picker_gillikin_hedgewitch_f01
-    name: picker gillikin hedgewitch f01
-    role: Gillikin Hedge-Witch's Apprentice
-    type: player_picker
-    culture: gillikin
-    archetype: The Dreamer
-    sex: female
-    backdrop_poi: gillikin_country
-    appearance: >-
-      A wild, whimsical young Gillikin hedge-witch's apprentice of about
-      twenty-two, half in the world of the old crooked magic and half out of
-      it. A narrow elfin face, large violet-grey eyes, dark hair grown long
-      and tangled with dried thistle and sprigs of heather. She wears a
-      patched purple shawl over a rough homespun dress, a bundle of
-      charm-cords knotted at her waist. Drawn in bold confident storybook
-      outlines, flat violet and moor-green fields, slight wiry anatomy.
-
-  - id: picker_gillikin_recruit_f02
-    name: picker gillikin recruit f02
-    role: Army-of-Revolt Recruit
-    type: player_picker
-    culture: gillikin
-    archetype: The Scrapper
-    sex: female
-    backdrop_poi: gillikin_country
-    appearance: >-
-      A bold, sharp-jawed young Gillikin recruit of about nineteen, drilling
-      with the girls of the new Army of Revolt, chin high and ready for a
-      fight that has not yet come. A square determined face, dark straight
-      brows, cropped dark hair under a small purple rosette-pinned cap. She
-      wears a fitted purple-and-grey improvised jacket, a long knitting-needle
-      worn like a blade at her belt. Drawn in bold confident storybook
-      outlines, flat purple and grey fields, wiry braced anatomy.
-
-  - id: picker_gillikin_woodsman_m01
-    name: picker gillikin woodsman m01
-    role: Gillikin Woodsman
-    type: player_picker
-    culture: gillikin
-    archetype: The Surveyor
-    sex: male
-    backdrop_poi: gillikin_country
-    appearance: >-
-      A wary, weathered Gillikin woodsman of about fifty, long used to reading
-      the wild North's crooked omens before he takes a step. A long gaunt
-      face, deep-set watchful eyes, a grizzled beard streaked violet-grey in
-      the dusk light. He wears a heavy purple hooded cloak over a leather
-      jerkin, a hand-axe and a coil of rope at his belt. Drawn in bold
-      confident storybook outlines, flat purple and bramble-brown fields, tall
-      rangy anatomy.
-
-  # ── Picker · Emerald City (center, green) ───────────────────────
-
-  - id: picker_emerald_clerk_m01
-    name: picker emerald clerk m01
-    role: Palace Clerk
-    type: player_picker
-    culture: emerald
-    archetype: The Surveyor
-    sex: male
-    backdrop_poi: emerald_city
-    appearance: >-
-      A tidy, ink-fingered Emerald City clerk of about forty, cataloguing
-      petitioners from behind a high green desk in the old Wizard's offices.
-      A narrow pale face, a thin sandy moustache, locked green spectacles
-      perched on a sharp nose. He wears a stiff green livery coat with brass
-      buttons, a starched white collar, a quill tucked behind one ear. Drawn
-      in bold confident storybook outlines, flat emerald and brass fields,
-      slight stooped desk-bound anatomy.
-
-  - id: picker_emerald_maid_f01
-    name: picker emerald maid f01
-    role: Palace Maid
-    type: player_picker
-    culture: emerald
-    archetype: The Innocent
-    sex: female
-    backdrop_poi: wizard_throne_room
-    appearance: >-
-      A bright, quick-footed Emerald City palace maid of about twenty-two,
-      dusting the great throne-room with wide-eyed reverence for the humbug
-      she still half-believes in. A round cheerful face, dark curling hair
-      pinned beneath a small green lace cap, locked green spectacles perched
-      on her nose. She wears a crisp green pinafore over a black dress, a ring
-      of small brass keys at her waist. Drawn in bold confident storybook
-      outlines, flat emerald and black fields, neat brisk anatomy.
-
-  - id: picker_emerald_guardsman_m02
-    name: picker emerald guardsman m02
-    role: Soldier with the Green Whiskers
-    type: player_picker
-    culture: emerald
-    archetype: The Scrapper
-    sex: male
-    backdrop_poi: emerald_city_gate
-    appearance: >-
-      A stout, ceremonious Emerald City guardsman of about fifty, posted at
-      the great gate with a magnificent dyed-green beard and a job that is
-      pure show. A broad florid face, small proud eyes behind locked green
-      spectacles, a green beard combed to a fine point. He wears a green
-      military coat heavy with brass frogging, a tall green shako, a
-      ceremonial halberd held upright. Drawn in bold confident storybook
-      outlines, flat emerald and brass fields, thick-set sturdy anatomy.
-
-  - id: picker_emerald_herald_f02
-    name: picker emerald herald f02
-    role: Court Herald
-    type: player_picker
-    culture: emerald
-    archetype: The Wit
-    sex: female
-    backdrop_poi: emerald_city
-    appearance: >-
-      A sharp, quick-tongued Emerald City herald of about thirty, expert at
-      reading a room of nervous petitioners before the Wizard ever appears.
-      A narrow animated face, an arch clever brow, dark hair swept into a
-      high jewelled comb, locked green spectacles glinting. She wears a
-      fitted emerald tunic with gold frogging, a herald's short cape, a
-      rolled scroll tucked at her belt. Drawn in bold confident storybook
-      outlines, flat emerald and gold fields, trim upright anatomy.
+      A grizzled old Union Army veteran of about sixty, standing his ground
+      unshaken before the witch's dark castle much as he once stood a battle
+      line, a deeply lined weathered face, a full white beard, one sleeve
+      pinned empty at the shoulder. He wears a faded blue forage cap and a
+      threadbare old army coat with a single brass button remaining, a
+      hickory cane gripped like a rifle at rest. Drawn in bold storybook
+      outlines and flat fields, spare stooped anatomy, chin lifted in old
+      unbroken resolve.
