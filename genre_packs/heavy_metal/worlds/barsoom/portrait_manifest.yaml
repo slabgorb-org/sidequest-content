@@ -247,7 +247,7 @@ characters:
       that a believed-in phantom can outlive the thought that shaped it.
 
   # ═══════════════════════════════════════════════════════════════
-  # PLAYER PICKER PORTRAITS (18)
+  # PLAYER PICKER PORTRAITS (24)
   # Pre-generated sample faces for the chargen portrait chooser
   # (spec: 2026-05-26-player-portrait-selection-design.md). Each entry
   # carries a real rendered POI slug in `backdrop_poi`; the daemon's
@@ -272,7 +272,11 @@ characters:
   #
   # `culture` = culture filename stem (cultures/<id>.yaml); `archetype`
   # = a real archetype name from worlds/barsoom/archetypes.yaml.
-  # Allocation: 18 faces across all 6 cultures, 10M / 8F.
+  # Allocation: original 18 faces across all 6 cultures, 10M / 8F;
+  # 2026-07 top-up brings first_born and lotharian up to the culture
+  # floor (both were at 2) and adds gender variety to two
+  # single-instance archetypes (Green Outcast, Thern Apostate). New
+  # total: 24 faces, 13M / 11F.
   # ═══════════════════════════════════════════════════════════════
 
   # ── Picker · Red Martian ───────────────────────────────────────
@@ -558,6 +562,118 @@ characters:
       features, long red-auburn hair, uncanny luminous eyes both courteous
       and remote. A wistful half-real smile. Archaic pale leather and
       antique gold finery of a vanished seafaring age, fully covered.
+
+  # ═══════════════════════════════════════════════════════════════
+  # PLAYER PICKER PORTRAITS — 2026-07 top-up (+6)
+  # first_born and lotharian were below the culture floor (2 faces
+  # each) -- both brought to 4. Green Outcast and Thern Apostate were
+  # single-instance archetypes (one sex only) -- each gains the
+  # missing sex for real chargen choice. No new archetypes, no new
+  # cultures, no new backdrop_poi values (Barsoom's per-culture POI
+  # coverage is already narrow; reusing a culture's existing valid
+  # slug is correct, not a shortcut).
+  # ═══════════════════════════════════════════════════════════════
+
+  # ── Picker · First Born (top-up) ────────────────────────────────
+
+  - id: picker_first_born_corsair_m02
+    name: picker first born corsair m02
+    role: First Born Corsair
+    type: player_picker
+    culture: first_born
+    archetype: First Born Corsair
+    sex: male
+    backdrop_poi: omean
+    appearance: >-
+      First Born man, barely into his dator years. Glossy jet-black skin,
+      close-cropped black hair, a sharp untested handsome face, dark eyes
+      bright with an inherited pride not yet tempered by any real defeat.
+      Ornate black-and-gold corsair-harness worn a shade too eagerly, a
+      short-sword at the hip, fully covered. Restless, unproven.
+
+  - id: picker_first_born_corsair_f02
+    name: picker first born corsair f02
+    role: First Born Corsair
+    type: player_picker
+    culture: first_born
+    archetype: First Born Corsair
+    sex: female
+    backdrop_poi: temple_of_issus
+    appearance: >-
+      First Born woman, centuries into her long unaging life, the only
+      sign of it a settled stillness in the eyes. Glossy black skin,
+      black hair coiled severe and unornamented, a broad calm merciless
+      face that has stopped needing to prove supremacy. Battle-worn black
+      corsair-harness with plain gold trim, fully covered. Patient, absolute.
+
+  # ── Picker · Lotharian (top-up) ──────────────────────────────────
+
+  - id: picker_lotharian_survivor_m02
+    name: picker lotharian survivor m02
+    role: Lotharian Survivor
+    type: player_picker
+    culture: lotharian
+    archetype: Lotharian Survivor
+    sex: male
+    backdrop_poi: lothar_ruins
+    appearance: >-
+      Lotharian man, young by his people's ancient reckoning yet still
+      centuries old. Pale ancient skin, short-cropped red-auburn hair, a
+      fine watchful face still learning to doubt his own eyes. Restless
+      uncanny eyes, a hesitant courteous mouth. Plainer archaic leather
+      harness with a single tarnished gold clasp, fully covered. Curious, uneasy.
+
+  - id: picker_lotharian_survivor_f02
+    name: picker lotharian survivor f02
+    role: Lotharian Survivor
+    type: player_picker
+    culture: lotharian
+    archetype: Lotharian Survivor
+    sex: female
+    backdrop_poi: lothar_ruins
+    appearance: >-
+      Lotharian woman, ancient and hard-eyed beneath her beauty. Pale
+      white skin, red-auburn hair cropped close and practical, a sharp
+      watchful face schooled to distrust every seeming thing. A real
+      bowstring callus visible at two fingers. Worn archaic leather
+      harness, tarnished antique gold, fully covered. Wary, unsentimental.
+
+  # ── Picker · Green Martian (top-up) ──────────────────────────────
+
+  - id: picker_green_martian_outcast_f01
+    name: picker green martian outcast f01
+    role: Green Outcast
+    type: player_picker
+    culture: green_martian
+    archetype: Green Outcast
+    sex: female
+    backdrop_poi: dead_sea_bottom_by_moonlight
+    appearance: >-
+      Green-Martian outcast, a towering olive-green giantess framed low
+      for scale. FOUR arms, the lower pair loosely open rather than
+      closed to fists. A broad hairless head, wide-set eyes on their
+      mounts holding a rare softness, worn ivory tusks, a scarred cheek.
+      Harness stripped of horde-marks, one small kept token at the strap,
+      fully covered. Gentle-eyed, exiled.
+
+  # ── Picker · Thern (top-up) ───────────────────────────────────────
+
+  - id: picker_thern_apostate_m01
+    name: picker thern apostate m01
+    role: Thern Apostate
+    type: player_picker
+    culture: thern
+    archetype: Thern Apostate
+    sex: male
+    backdrop_poi: river_iss
+    appearance: >-
+      Thern man, far older than his unlined face admits — a tell only
+      another apostate would catch. White marble-pale skin, hairless
+      beneath a golden-blond wig worn a shade askew, as if perfecting it
+      stopped mattering years ago. Restless ice-pale eyes, a mouth quick
+      to a bitter private humor where reverence should sit. A fresh
+      rope-burn scars one palm from night cliff-work. Pale-gold temple
+      vestments, fully covered. Tired of the whole performance.
 
   # ═══════════════════════════════════════════════════════════════
   # COMPANION CREATURES (5)

@@ -453,8 +453,7 @@ characters:
   # prose (the backdrop is composed from `backdrop_poi`; a second wide
   # scene in appearance triggers the Z-Image split montage). Physical
   # fact only — bone, set of jaw, dress, posture — never mood-words.
-  # `culture` = culture filename stem; `archetype` = a real name from
-  # worlds/gulliver/archetypes.yaml. Every backdrop_poi resolves to a
+  # `culture` = culture filename stem. Every backdrop_poi resolves to a
   # rendered POI in r2_manifest.json.
   #
   # PORTAL-FAIRYTALE FIX (2026-06-12): the players are NOT natives of the
@@ -463,7 +462,7 @@ characters:
   # Travels), seafarers and townsfolk who wash up on these shores exactly as
   # Lemuel Gulliver, ship's surgeon, does. The pickers were wrongly making the
   # player select an in-world people (lilliputians / brobdingnagians / laputans
-  # / houyhnhnms_and_yahoos); that was the bug. Every picker now sets
+  # / houyhnhnms_and_yahoos); that was the bug. Every picker sets
   # culture: georgian_british (file stem worlds/gulliver/cultures/
   # georgian_british.yaml — the StyleCatalog culture gate requires the file
   # stem to match the picker culture slug EXACTLY). The in-world peoples remain
@@ -473,10 +472,35 @@ characters:
   # positive_suffix carries the Morten plate look. Castaways stand on real
   # shore / harbour / landing POIs verified against r2_manifest.json.
   #
+  # 2026-07 AUDIT (this pass): re-confirmed the 2026-06-12 single-culture
+  # decision deliberately — do NOT read "only one culture has pickers" as the
+  # same flagship gap fixed in oz/wonderland. Unlike those two worlds, Gulliver
+  # documents an explicit prior REVERT of native-culture pickers as a bug, and
+  # the satire's whole thesis (the antagonist is the verdict, delivered BY each
+  # voyage-people ON the human traveler) requires the player to stay the judged
+  # outsider, never the judge. No lilliputian / brobdingnagian / laputan /
+  # houyhnhnms_and_yahoos picker faces were added. Flagged to Keith in the task
+  # report as a considered deviation from the wonderland-parallel pattern.
+  #
+  # A real archetype bug WAS found and fixed this pass: all 18 entries had
+  # `archetype:` set to a worlds/gulliver/archetypes.yaml NPC-identity name
+  # (e.g. "The Judging Sovereign" IS the King of Brobdingnag, a
+  # named_individual: true NPC template) instead of a pack-tier PLAYABLE
+  # Traveler coping-style. That is the same class of error oz/wonderland guard
+  # against explicitly ("archetype=real playable Traveler coping-style
+  # (pack-tier wry_whimsy/archetypes.yaml)"). Every entry below is remapped to
+  # its nearest real value from wry_whimsy/archetypes.yaml (The Innocent / The
+  # Wit / The Surveyor / The Scrapper / The Dreamer) by matching the
+  # PERSON described in `appearance`, not the meaning of the old mislabeled
+  # NPC archetype. worlds/gulliver/archetypes.yaml remains NPC-only, as its own
+  # header documents ("the Gulliver-particular NPCs the materialiser dresses
+  # scenes with").
+  #
   # Allocation: 18 entries, all culture: georgian_british, M/F balanced 9/9,
-  # period occupations. Archetypes are REUSED from archetypes.yaml (no new
-  # values invented); each Georgian occupation is mapped to its nearest
-  # existing archetype.
+  # period occupations, all five pack archetypes represented (Surveyor and
+  # Scrapper skew heaviest — genuinely warranted: Surveyor is explicitly "the
+  # Gulliver shape" per the pack tier, and this cast is disproportionately
+  # seafaring professionals and hardy tradesfolk).
   # ===========================================================================
 
   # ── Picker · Georgian Britons — the seafaring trades ───────────────────
@@ -486,7 +510,7 @@ characters:
     role: Ship's Surgeon
     type: player_picker
     culture: georgian_british
-    archetype: The Sane Dissenting Lord
+    archetype: The Surveyor
     sex: male
     backdrop_poi: the_lilliput_shore
     appearance: >-
@@ -502,7 +526,7 @@ characters:
     role: Naval Clerk
     type: player_picker
     culture: georgian_british
-    archetype: The One Honest Minister
+    archetype: The Surveyor
     sex: male
     backdrop_poi: the_homecoming
     appearance: >-
@@ -517,7 +541,7 @@ characters:
     role: Midshipman
     type: player_picker
     culture: georgian_british
-    archetype: The Hostile Admiral
+    archetype: The Scrapper
     sex: male
     backdrop_poi: the_open_sea
     appearance: >-
@@ -532,7 +556,7 @@ characters:
     role: Sailmaker
     type: player_picker
     culture: georgian_british
-    archetype: The Spiteful Court-Dwarf
+    archetype: The Scrapper
     sex: male
     backdrop_poi: blefuscu_strand
     appearance: >-
@@ -547,7 +571,7 @@ characters:
     role: Cooper
     type: player_picker
     culture: georgian_british
-    archetype: The Judging Sovereign
+    archetype: The Scrapper
     sex: male
     backdrop_poi: the_homecoming
     appearance: >-
@@ -564,7 +588,7 @@ characters:
     role: Coffee-House Pamphleteer
     type: player_picker
     culture: georgian_british
-    archetype: The Earnest Projector
+    archetype: The Wit
     sex: female
     backdrop_poi: the_open_sea
     appearance: >-
@@ -579,7 +603,7 @@ characters:
     role: Merchant's Factor
     type: player_picker
     culture: georgian_british
-    archetype: The Tightrope Minister
+    archetype: The Surveyor
     sex: male
     backdrop_poi: the_lilliput_shore
     appearance: >-
@@ -594,7 +618,7 @@ characters:
     role: Parson
     type: player_picker
     culture: georgian_british
-    archetype: The Decaying Immortal
+    archetype: The Innocent
     sex: male
     backdrop_poi: the_homecoming
     appearance: >-
@@ -609,7 +633,7 @@ characters:
     role: Apothecary
     type: player_picker
     culture: georgian_british
-    archetype: The Earnest Projector
+    archetype: The Dreamer
     sex: female
     backdrop_poi: blefuscu_strand
     appearance: >-
@@ -627,7 +651,7 @@ characters:
     role: Fishwife
     type: player_picker
     culture: georgian_british
-    archetype: The Judging Sovereign
+    archetype: The Scrapper
     sex: female
     backdrop_poi: the_lilliput_shore
     appearance: >-
@@ -642,7 +666,7 @@ characters:
     role: Maidservant
     type: player_picker
     culture: georgian_british
-    archetype: The Little Giant-Nurse
+    archetype: The Innocent
     sex: female
     backdrop_poi: the_homecoming
     appearance: >-
@@ -657,7 +681,7 @@ characters:
     role: Draper
     type: player_picker
     culture: georgian_british
-    archetype: The Tightrope Minister
+    archetype: The Surveyor
     sex: female
     backdrop_poi: blefuscu_strand
     appearance: >-
@@ -672,7 +696,7 @@ characters:
     role: Surgeon's Wife and Hosier
     type: player_picker
     culture: georgian_british
-    archetype: The One Honest Minister
+    archetype: The Innocent
     sex: female
     backdrop_poi: the_open_sea
     appearance: >-
@@ -687,7 +711,7 @@ characters:
     role: Parish Midwife
     type: player_picker
     culture: georgian_british
-    archetype: The Decaying Immortal
+    archetype: The Innocent
     sex: female
     backdrop_poi: the_open_sea
     appearance: >-
@@ -702,7 +726,7 @@ characters:
     role: Almshouse Goodwife
     type: player_picker
     culture: georgian_british
-    archetype: The Spiteful Court-Dwarf
+    archetype: The Surveyor
     sex: female
     backdrop_poi: the_seaside_box
     appearance: >-
@@ -719,7 +743,7 @@ characters:
     role: Sea-Captain
     type: player_picker
     culture: georgian_british
-    archetype: The Hostile Admiral
+    archetype: The Scrapper
     sex: male
     backdrop_poi: the_open_sea
     appearance: >-
@@ -734,7 +758,7 @@ characters:
     role: Merchant's Wife
     type: player_picker
     culture: georgian_british
-    archetype: The Sane Dissenting Lord
+    archetype: The Wit
     sex: female
     backdrop_poi: the_seaside_box
     appearance: >-
@@ -749,7 +773,7 @@ characters:
     role: Town Physician
     type: player_picker
     culture: georgian_british
-    archetype: The Sane Dissenting Lord
+    archetype: The Surveyor
     sex: male
     backdrop_poi: the_canoe_shore
     appearance: >-
@@ -758,6 +782,131 @@ characters:
       level. A full grey physician's wig, a sober black coat of good cloth over a
       dark waistcoat and white stock, a gold-headed cane held upright in one hand.
       The shoulders square, the bearing grounded and unhurried.
+
+  # ===========================================================================
+  # PLAYER PICKER PORTRAITS — VARIETY-FILL EXPANSION (2026-07, portal
+  # doctrine confirmed — outsiders only, Keith). Every entry below stays
+  # culture: georgian_british, no voyage-country native faces. Adds real
+  # regional/ethnic variety already present in the culture's own name
+  # space (Scots, Welsh, and Nottinghamshire — Gulliver's own home
+  # county — surnames per cultures/georgian_british.yaml) plus class and
+  # age spread the original 18 trades didn't reach. One person, face +
+  # upper body, no style words, real backdrop_poi.
+  # ===========================================================================
+
+  - id: picker_georgian_british_chandler_m02
+    name: picker georgian british chandler m02
+    role: A Scots Ship's Chandler
+    type: player_picker
+    culture: georgian_british
+    archetype: The Surveyor
+    sex: male
+    backdrop_poi: the_lilliput_shore
+    appearance: >-
+      A canny, weather-creased chandler of about fifty, a broad Lowland Scots
+      face with deep-cut lines about the eyes, a level appraising brow, a
+      plain closed mouth drawn as line, grey hair clubbed back beneath a
+      plain bonnet. A sturdy brown coat of good broadcloth over a buttoned
+      waistcoat, a tally-slate and chalk held in one hand. The stance
+      planted, the head cocked as if reckoning a figure.
+
+  - id: picker_georgian_british_weaver_f02
+    name: picker georgian british weaver f02
+    role: A Welsh Wool-Weaver
+    type: player_picker
+    culture: georgian_british
+    archetype: The Dreamer
+    sex: female
+    backdrop_poi: blefuscu_strand
+    appearance: >-
+      A slight, faraway-eyed weaver of about twenty-six from the Welsh hill
+      country, a narrow soft face with high colour at the cheek, wide
+      wondering eyes, a gentle parted mouth drawn as line, dark hair escaping
+      a plain linen cap. A homespun woollen shawl crossed over a coarse grey
+      bodice and skirt, a hank of undyed yarn looped over one wrist. The head
+      tilted, half lost already in the strangeness of the shore.
+
+  - id: picker_georgian_british_caulker_m03
+    name: picker georgian british caulker m03
+    role: A Bristol Dockyard Caulker
+    type: player_picker
+    culture: georgian_british
+    archetype: The Scrapper
+    sex: male
+    backdrop_poi: the_open_sea
+    appearance: >-
+      A thickset dockyard caulker of about thirty-eight, pitch-stained hands
+      and forearms, a broad flat-nosed face, a firm downturned mouth drawn as
+      line, close-cropped dark hair under a tarred canvas cap. A heavy
+      leather apron over a coarse open shirt, sleeves rolled to the shoulder,
+      an iron caulking-mallet gripped in one fist. The shoulders squared,
+      braced wide as if still standing a listing deck.
+
+  - id: picker_georgian_british_widow_f03
+    name: picker georgian british widow f03
+    role: A Young Naval Widow
+    type: player_picker
+    culture: georgian_british
+    archetype: The Innocent
+    sex: female
+    backdrop_poi: the_homecoming
+    appearance: >-
+      A young widow of about twenty-four, newly in mourning black for a
+      husband lost at sea, a lean composed face, dry steady eyes, a flat
+      plain-spoken set to the mouth drawn as line, fair hair drawn back
+      tight under a black crepe cap. A high-necked black bombazine gown
+      with a single jet mourning-brooch at the throat, a folded letter held
+      flat in one hand rather than clutched. The spine straight, chin level,
+      dry-eyed and unbent.
+
+  - id: picker_georgian_british_knitter_f04
+    name: picker georgian british knitter f04
+    role: A Nottinghamshire Framework-Knitter
+    type: player_picker
+    culture: georgian_british
+    archetype: The Wit
+    sex: female
+    backdrop_poi: the_seaside_box
+    appearance: >-
+      A quick, sharp-eyed stocking-knitter of about thirty-two from
+      Nottinghamshire, a lean pointed face, a knowing arch to one brow, a dry
+      half-smile drawn as line, dark hair pinned under a plain cap. A grey
+      worsted gown with a knitted shawl crossed at the front, a half-finished
+      stocking and needles held ready in both hands. The chin lifted, eyes
+      bright with a sharp, testing curiosity.
+
+  - id: picker_georgian_british_beadle_m04
+    name: picker georgian british beadle m04
+    role: An Old Parish Beadle
+    type: player_picker
+    culture: georgian_british
+    archetype: The Innocent
+    sex: male
+    backdrop_poi: the_canoe_shore
+    appearance: >-
+      A brisk elderly parish beadle of about sixty-five, a square set face,
+      small sharp eyes, a firm exacting mouth drawn as line, thinning grey
+      hair combed flat beneath a worn cocked hat. A faded blue parish coat
+      with tarnished braid buttoned correct to the last button, a tall
+      ceremonial staff of office gripped upright and precise in one hand.
+      The spine straight, chin level, a fussy unbending correctness in the
+      stance.
+
+  - id: picker_georgian_british_recruit_m05
+    name: picker georgian british recruit m05
+    role: A Highland Recruit
+    type: player_picker
+    culture: georgian_british
+    archetype: The Scrapper
+    sex: male
+    backdrop_poi: the_open_sea
+    appearance: >-
+      A raw-boned young Highland recruit of about twenty, freshly enlisted
+      and far from home, a long ruddy face, a firm set jaw, a steady
+      unflinching gaze drawn as line, cropped sandy hair under a plain
+      soldier's cap. A rough red regimental coat a size large in the
+      shoulder, a broadsword's worn hilt just showing at the hip. The spine
+      straight, the stance braced despite the strangeness underfoot.
 
   # ===========================================================================
   # COMPANION CREATURES — the player's pet at the table

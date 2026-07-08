@@ -605,9 +605,12 @@ characters:
   # boys, ladies and gentlemen of the house) and are cast in the single
   # world-level culture `victorian_english` (StyleCatalog gate: the culture
   # file STEM must match this slug EXACTLY or the render dies with
-  # CatalogMissError). Archetypes REUSE the six values already present on the
-  # in-world NPC pickers (The Scrapper / The Surveyor / The Weary Soldier /
-  # The Wit / The Innocent / The Dreamer) — no new archetype names invented.
+  # CatalogMissError). Archetypes REUSE the five real pack-tier values (The
+  # Scrapper / The Surveyor / The Wit / The Innocent / The Dreamer) — no new
+  # archetype names invented. ("The Weary Soldier" is NOT an archetype; it is
+  # a typical_class shared by The Surveyor and The Scrapper in
+  # wry_whimsy/archetypes.yaml. Two entries below miscast it as an archetype
+  # until the 2026-07 pass corrected them to their nearest real archetype.)
   # Each appearance is period-accurate 1865 English dress/physique, PHYSICAL
   # face / upper-body only stated as drawn fact (no style words — no
   # "engraving", "Tenniel", "Victorian"; the world portrait_positive_suffix
@@ -830,7 +833,7 @@ characters:
     role: A Footman
     type: player_picker
     culture: victorian_english
-    archetype: The Weary Soldier
+    archetype: The Scrapper
     sex: male
     backdrop_poi: the_coronation_feast
     appearance: >-
@@ -876,7 +879,7 @@ characters:
     role: A Schoolmaster
     type: player_picker
     culture: victorian_english
-    archetype: The Weary Soldier
+    archetype: The Surveyor
     sex: male
     backdrop_poi: the_hall_of_justice
     appearance: >-
@@ -931,3 +934,126 @@ characters:
       loose in one hand. Wavy fair hair, a smooth unlined face, fine vague
       dreaming eyes gazing somewhere past the viewer, a soft half-open mouth,
       the head tipped back a little as if half asleep in the warm afternoon.
+
+  # ===========================================================================
+  # PLAYER PICKER PORTRAITS — VARIETY-FILL EXPANSION (2026-07, portal
+  # doctrine confirmed — outsiders only, Keith). Every entry below stays
+  # culture: victorian_english, no Wonderland-native faces. Adds real
+  # 1865-England demographic/class/age variety the original 20 stations
+  # didn't reach: an ayah who travelled back from the Raj with an
+  # Anglo-Indian family, a Highland governess, a Welsh drover, working
+  # poor (chimney-sweep, bargee, workhouse boy), and an elderly sexton.
+  # One person, face + upper body, no style words, real backdrop_poi.
+  # ===========================================================================
+
+  - id: picker_victorian_ayah_f02
+    name: picker victorian ayah f02
+    role: An Ayah
+    type: player_picker
+    culture: victorian_english
+    archetype: The Innocent
+    sex: female
+    backdrop_poi: white_rabbits_house
+    appearance: >-
+      A composed Indian nursemaid of about forty, newly arrived from the
+      family's years in Calcutta, a smooth oval face with high cheekbones,
+      dark steady eyes, and a calm closed mouth stated as drawn line. A plain
+      dark English day-dress worn over a fine cotton under-sari kept from
+      home, a thin gold nose-stud, black hair parted centre and coiled low.
+      One hand resting still at her side, the practiced patience of long
+      service in her bearing.
+
+  - id: picker_victorian_chimney_sweep_m02
+    name: picker victorian chimney sweep m02
+    role: A Chimney-Sweep's Boy
+    type: player_picker
+    culture: victorian_english
+    archetype: The Scrapper
+    sex: male
+    backdrop_poi: the_hall_of_doors
+    appearance: >-
+      A thin chimney-sweep's boy of about eleven, soot blackening every
+      visible inch of a narrow face, wide pale eyes startling against the
+      black, a small determined mouth stated as drawn line. A ragged dark
+      jacket many sizes too large, a coil of brush-rope over one shoulder, a
+      flat cloth cap crushed under one arm. The chin lifted, thin shoulders
+      squared against the cold.
+
+  - id: picker_victorian_highland_governess_f03
+    name: picker victorian highland governess f03
+    role: A Highland Governess
+    type: player_picker
+    culture: victorian_english
+    archetype: The Surveyor
+    sex: female
+    backdrop_poi: the_hall_of_justice
+    appearance: >-
+      A precise Highland governess of about thirty, a long fair face with a
+      high clear brow, level pale eyes, and a firm closed mouth stated as
+      drawn line. A dark tartan sash pinned at the shoulder over a plain grey
+      Victorian gown, hair drawn back severe under a small lace cap. Both
+      hands folded before her, an unbending, correcting posture held even
+      here.
+
+  - id: picker_victorian_bargee_girl_f04
+    name: picker victorian bargee girl f04
+    role: A Canal Bargee's Daughter
+    type: player_picker
+    culture: victorian_english
+    archetype: The Wit
+    sex: female
+    backdrop_poi: the_pool_of_tears
+    appearance: >-
+      A sharp-eyed bargee's daughter of about seventeen, a broad weathered
+      face, wind-reddened cheeks, a hard humorous set to the mouth stated as
+      drawn line, dark hair scarfed back off the brow. A man's old coat
+      cinched at the waist over a plain skirt, sleeves rolled past strong
+      forearms, a boat-hook's worn haft just showing at one shoulder. The
+      chin tipped, eyes narrowed in sly appraisal.
+
+  - id: picker_victorian_village_sexton_m03
+    name: picker victorian village sexton m03
+    role: An Old Village Sexton
+    type: player_picker
+    culture: victorian_english
+    archetype: The Dreamer
+    sex: male
+    backdrop_poi: humpty_dumptys_wall
+    appearance: >-
+      A stooped village sexton of about seventy, a long creased face, a
+      fringe of white hair under a battered black hat, faded eyes fixed
+      somewhere past the middle distance, a slack half-smile stated as drawn
+      line. A worn black coat green with age, a great iron churchyard key
+      looped at the belt. The head tilted as if still listening for a bell
+      only he can hear.
+
+  - id: picker_victorian_workhouse_boy_m04
+    name: picker victorian workhouse boy m04
+    role: A Workhouse Boy
+    type: player_picker
+    culture: victorian_english
+    archetype: The Innocent
+    sex: male
+    backdrop_poi: caterpillars_mushroom
+    appearance: >-
+      A thin workhouse boy of about nine, a pale pinched face, large solemn
+      eyes, a small close mouth stated as drawn line, cropped hair shorn
+      close to the scalp. A coarse grey workhouse uniform jacket buttoned to
+      the throat, a plain blank metal disc on a cord at the neck. The
+      shoulders drawn in, standing very straight as if long taught to.
+
+  - id: picker_victorian_welsh_drover_m05
+    name: picker victorian welsh drover m05
+    role: A Welsh Drover
+    type: player_picker
+    culture: victorian_english
+    archetype: The Scrapper
+    sex: male
+    backdrop_poi: the_tweedle_wood
+    appearance: >-
+      A rangy young Welsh drover of about twenty-four, a long sun-browned
+      face, a straight nose, a quiet watchful set to the mouth stated as
+      drawn line, dark curling hair under a wide low-crowned hat. A rough
+      grey wool coat belted with a leather strap, a drover's long ash stick
+      gripped in one hand, sturdy hobnailed boots just showing below the
+      hem. The gaze steady, patient with the long miles behind him.

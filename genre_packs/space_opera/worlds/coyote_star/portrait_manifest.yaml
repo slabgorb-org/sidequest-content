@@ -195,8 +195,14 @@ characters:
   # PLAYER PICKER PORTRAITS
   # Generic culture × archetype portraits players can choose from at
   # character creation. Not bound to any named NPC. Naming convention:
-  # picker_<culture>_<archetype>_<sex><nn>. Slugs prefixed `picker_`
-  # so they sort separately from NPC portraits in images/portraits/.
+  # picker_<culture>_<role>_<sex><nn> — the middle token is a short
+  # occupation/role slug, NOT the archetype (5-14 archetypes are shared
+  # across dozens of roles). Slugs prefixed `picker_` so they sort
+  # separately from NPC portraits in images/portraits/.
+  # 2026-07 expansion: retrofitted the original 10 with id/archetype/sex
+  # (previously carried only in the name/role text) and topped up every
+  # culture to the floor (hegemonic, free_miners, voidborn, broken_drift,
+  # tsveri all ≥4) so all 14 world+pack archetypes appear at least once.
   # ═══════════════════════════════════════════════════════════════
 
   # ── Picker · Hegemonic ─────────────────────────────────────────
@@ -207,10 +213,13 @@ characters:
   # `culture_aesthetic` is omitted because CharacterCatalog ignores it
   # for catalog-composed renders — wardrobe lives in cultures/<id>.yaml.
 
-  - name: picker hegemonic officer f01
+  - id: picker_hegemonic_officer_f01
+    name: picker hegemonic officer f01
     role: Hegemonic Naval Lieutenant
     type: player_picker
     culture: hegemonic
+    archetype: Company Officer
+    sex: female
     backdrop_poi: vaskov_centrum
     appearance: >-
       Woman, early thirties. Sharp Slavic features, ash-blonde hair in
@@ -218,10 +227,13 @@ characters:
       Lean, straight-backed. Pale freckles across the nose, a thin scar
       bisecting the left eyebrow. Mouth held in the neutral academy line.
 
-  - name: picker hegemonic customs m01
+  - id: picker_hegemonic_customs_m01
+    name: picker hegemonic customs m01
     role: Hegemonic Customs Inspector
     type: player_picker
     culture: hegemonic
+    archetype: Gate Customs Officer
+    sex: male
     backdrop_poi: grand_gate_control_deck
     appearance: >-
       Man in his late forties wearing a grey customs duty jacket with
@@ -231,10 +243,13 @@ characters:
       salt-and-pepper beard. Reading glasses on a chain at his chest.
       A datapad tucked under one arm. Heavy-lidded, faintly amused.
 
-  - name: picker hegemonic bartender f01
+  - id: picker_hegemonic_bartender_f01
+    name: picker hegemonic bartender f01
     role: Station Bartender, Hegemonic Quarter
     type: player_picker
     culture: hegemonic
+    archetype: Station Bartender
+    sex: female
     backdrop_poi: vaskov_plateau_summit
     appearance: >-
       Woman, fifties. Deep black skin, silver-streaked locs in a tight
@@ -242,12 +257,29 @@ characters:
       private smile. Strong hands, thin gold ring on the right index
       finger. Third-generation colonial.
 
+  - id: picker_hegemonic_clerk_m01
+    name: picker hegemonic clerk m01
+    role: Vaskov Administrative Clerk
+    type: player_picker
+    culture: hegemonic
+    archetype: Vaskov Clerk
+    sex: male
+    backdrop_poi: vaskov_centrum
+    appearance: >-
+      Man in his sixties, thinning grey hair combed flat, round wire-frame
+      glasses low on his nose. Soft jowled face, small tired eyes, mouth
+      downturned from decades of stamping forms. Charcoal clerk's tunic
+      buttoned to the throat, ink-stained cuffs, a stamper clipped to his belt.
+
   # ── Picker · Free Miners ───────────────────────────────────────
 
-  - name: picker free miners prospector f01
+  - id: picker_free_miners_prospector_f01
+    name: picker free miners prospector f01
     role: Free Miners Prospector
     type: player_picker
     culture: free_miners
+    archetype: Belt-Runner Prospector
+    sex: female
     backdrop_poi: red_prospect_scoop_zone
     appearance: >-
       Woman, late twenties. Sun-darkened brown skin, wide Tejano-Anglo
@@ -255,10 +287,13 @@ characters:
       escaping at the temples. Turquoise stud in one nostril, pale scar
       along the jaw. Calluses ringing each knuckle.
 
-  - name: picker free miners hauler m01
+  - id: picker_free_miners_hauler_m01
+    name: picker free miners hauler m01
     role: Free Miners Ore Hauler
     type: player_picker
     culture: free_miners
+    archetype: Free Trader
+    sex: male
     backdrop_poi: mendes_post
     appearance: >-
       Man, early forties. Weathered tan skin, heavy black moustache going
@@ -266,12 +301,43 @@ characters:
       silver, cut blunt at the ears. Thick neck, big square hands, old
       burn-scars on the forearms.
 
+  - id: picker_free_miners_rig_mechanic_f01
+    name: picker free miners rig mechanic f01
+    role: Free Miners Rig Mechanic
+    type: player_picker
+    culture: free_miners
+    archetype: Grease Monkey
+    sex: female
+    backdrop_poi: the_broken_drift
+    appearance: >-
+      Woman in her thirties, sun-browned face streaked with grease, thick
+      dark brows, a smear of drill oil along one cheek. Cropped dark hair
+      under a bandana, strong jaw set in concentration. Patched coveralls
+      open at the collar, a wrench looped through her tool belt.
+
+  - id: picker_free_miners_prospector_m01
+    name: picker free miners prospector m01
+    role: Free Miners Claim Prospector
+    type: player_picker
+    culture: free_miners
+    archetype: Belt-Runner Prospector
+    sex: male
+    backdrop_poi: the_contested_claim
+    appearance: >-
+      Older man, sixties, deep sun-lines around pale eyes, grey stubbled
+      jaw. Bald above a weathered brow, sunburned scalp under a battered
+      cap. Broad heavy shoulders in an open work jacket, collar turned up,
+      alkaline dust caked into every seam.
+
   # ── Picker · Voidborn ──────────────────────────────────────────
 
-  - name: picker voidborn spacer f01
+  - id: picker_voidborn_spacer_f01
+    name: picker voidborn spacer f01
     role: Voidborn Free Trader
     type: player_picker
     culture: voidborn
+    archetype: Free Trader
+    sex: female
     backdrop_poi: turning_hub_docking
     appearance: >-
       Tall woman, late twenties, low-grav lean build. Dark brown skin,
@@ -279,10 +345,13 @@ characters:
       the other in a crown of small knots. Deep-set almond eyes,
       unblinking calm. Small wave-form tattoo at one eye.
 
-  - name: picker voidborn medic m01
+  - id: picker_voidborn_medic_m01
+    name: picker voidborn medic m01
     role: Voidborn Ship's Doctor
     type: player_picker
     culture: voidborn
+    archetype: Ship's Doctor
+    sex: male
     backdrop_poi: turning_hub_negotiation_bay
     appearance: >-
       Older man with grey-streaked black hair worn long past the
@@ -294,12 +363,44 @@ characters:
       on a cord at his throat. A thin braid behind one ear with a
       silver bead.
 
+  - id: picker_voidborn_fuel_broker_f01
+    name: picker voidborn fuel broker f01
+    role: Turning Hub Fuel Broker
+    type: player_picker
+    culture: voidborn
+    archetype: Moana-Teru Fuel Broker
+    sex: female
+    backdrop_poi: turning_hub_docking
+    appearance: >-
+      Woman in her forties, broad calm face, dark brown skin with an
+      ashen undertone, black hair braided close to the scalp in clan
+      rows. Heavy-lidded appraising eyes, faint wave-form tattoo along
+      one cheekbone. Deep-blue station-wear, navigation-star stitching
+      at the collar.
+
+  - id: picker_voidborn_dock_runner_m01
+    name: picker voidborn dock runner m01
+    role: Turning Hub Dock Runner
+    type: player_picker
+    culture: voidborn
+    archetype: Dock Rat
+    sex: male
+    backdrop_poi: turning_hub_docking
+    appearance: >-
+      Wiry man in his twenties, low-gravity build, dark brown skin,
+      quick darting eyes that map every exit before a face. Black hair
+      shaved close at the sides, uneven growth on top. Patched clan-blue
+      jacket loose at the shoulders, a smudge of dock grease on one sleeve.
+
   # ── Picker · Broken Drift ──────────────────────────────────────
 
-  - name: picker broken drift smuggler m01
+  - id: picker_broken_drift_smuggler_m01
+    name: picker broken drift smuggler m01
     role: Broken Drift Runner
     type: player_picker
     culture: broken_drift
+    archetype: Jump-Point Runner
+    sex: male
     backdrop_poi: the_broken_drift
     appearance: >-
       Man in his thirties wearing a plain dark canvas jacket over a
@@ -309,10 +410,13 @@ characters:
       three days of stubble. Thin scar from cheekbone to jaw. Single
       silver hoop in one ear.
 
-  - name: picker broken drift captain f01
+  - id: picker_broken_drift_captain_f01
+    name: picker broken drift captain f01
     role: Broken Drift Captain
     type: player_picker
     culture: broken_drift
+    archetype: Burned Operative
+    sex: female
     backdrop_poi: broken_drift_runners_meet
     appearance: >-
       Wiry woman, age-ambiguous — thirty-five or fifty. Pale spacer
@@ -320,12 +424,43 @@ characters:
       exhausted. Choppy chin-length dark hair, mismatched clip. Dark
       tattoo on the side of the neck, partially scarred over.
 
+  - id: picker_broken_drift_runner_f01
+    name: picker broken drift runner f01
+    role: Broken Drift Courier
+    type: player_picker
+    culture: broken_drift
+    archetype: Jump-Point Runner
+    sex: female
+    backdrop_poi: the_broken_drift
+    appearance: >-
+      Young woman, late twenties, pale spacer pallor, sharp narrow face,
+      quick pale-green eyes that never settle. Dark hair cropped ragged
+      at the jaw. Charcoal flight jacket with faded ghost-outlines where
+      patches once sat, collar up, a single worn thumb-band — her only mark.
+
+  - id: picker_broken_drift_fixer_nb01
+    name: picker broken drift fixer nb01
+    role: Broken Drift Fixer
+    type: player_picker
+    culture: broken_drift
+    archetype: Burned Operative
+    sex: nonbinary
+    backdrop_poi: broken_drift_runners_meet
+    appearance: >-
+      Lean adult, indeterminate age, pale spacer skin, close-cropped
+      grey-brown hair, a flat unreadable expression, watchful grey eyes.
+      Mismatched dark civilian layers with every insignia stripped clean,
+      collar high. A single chipped pin, unexplained, at the breast.
+
   # ── Picker · Tsveri ────────────────────────────────────────────
 
-  - name: picker tsveri liaison nb01
+  - id: picker_tsveri_liaison_nb01
+    name: picker tsveri liaison nb01
     role: Tsveri Outsider-Speaker
     type: player_picker
     culture: tsveri
+    archetype: Tsveri Trade-Emissary
+    sex: nonbinary
     backdrop_poi: deep_root_sacred_peaks
     appearance: >-
       A Tsveri, tall — a head above the tallest human. Silicon-laced
@@ -333,3 +468,46 @@ characters:
       amber along the throat. Smooth ridged head, deep-set solid amber
       eyes with no pupil, wide flat mouth, no visible nose.
       Four-fingered hands loose at the sides.
+
+  - id: picker_tsveri_interpreter_nb01
+    name: picker tsveri interpreter nb01
+    role: Tsveri Interpreter
+    type: player_picker
+    culture: tsveri
+    archetype: Xeno Cultural Liaison
+    sex: nonbinary
+    backdrop_poi: deep_root_sacred_peaks
+    appearance: >-
+      A younger Tsveri, slighter build than most of its kind, silicon
+      integument a cool pale slate. Smooth ridged head, wide flat face,
+      deep-set solid amber eyes. Narrow four-fingered hands held open,
+      a posture of practiced patience learned for human company.
+
+  - id: picker_tsveri_emissary_nb01
+    name: picker tsveri emissary nb01
+    role: Tsveri Trade Emissary
+    type: player_picker
+    culture: tsveri
+    archetype: Tsveri Trade-Emissary
+    sex: nonbinary
+    backdrop_poi: deep_root_lowlands
+    appearance: >-
+      A broad-built Tsveri, integument shifting warm amber across the
+      shoulders. Smooth ridged crown, wide flat face, deep-set amber
+      eyes catching the light. Four-fingered hands loose at its sides,
+      a woven mineral-fiber drape crossing one shoulder, unhurried bearing.
+
+  - id: picker_tsveri_elder_nb01
+    name: picker tsveri elder nb01
+    role: Tsveri Elder Liaison
+    type: player_picker
+    culture: tsveri
+    archetype: Xeno Cultural Liaison
+    sex: nonbinary
+    backdrop_poi: deep_root_sacred_peaks
+    appearance: >-
+      An old Tsveri, integument gone dull basalt-grey with age, deep
+      fissures across the ridged crown. Wide flat face settled into
+      geological stillness, deep-set amber eyes half-lidded. Heavy
+      four-fingered hands, a frayed mineral-fiber drape worn thin at
+      one shoulder.
