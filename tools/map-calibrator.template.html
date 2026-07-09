@@ -1,0 +1,394 @@
+<style>
+  :root {
+    --paper:#e9edf1; --surface:#f6f8fb; --surface-2:#fdfefe;
+    --ink:#1c2831; --ink-soft:#54636e; --ink-faint:#8595a1;
+    --line:#c6d1da; --line-soft:#d7e0e7;
+    --grid:rgba(46,110,142,.11); --grid-major:rgba(46,110,142,.20);
+    --accent:#2e6e8e; --accent-strong:#1e5570; --accent-wash:rgba(46,110,142,.10);
+    --amber:#b9761a; --amber-wash:rgba(185,118,26,.14);
+    --good:#3f7d5e; --guide:#c05a2e;
+    --shadow:rgba(28,40,51,.13); --canvas-bg:#f4f1e8;
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --paper:#0e1820; --surface:#14232e; --surface-2:#1a2c39;
+    --ink:#dde8ef; --ink-soft:#93a7b5; --ink-faint:#6a7f8d;
+    --line:#274150; --line-soft:#203542;
+    --grid:rgba(111,183,214,.13); --grid-major:rgba(111,183,214,.24);
+    --accent:#6fb7d6; --accent-strong:#a4d6ec; --accent-wash:rgba(111,183,214,.12);
+    --amber:#e0a54b; --amber-wash:rgba(224,165,75,.16);
+    --good:#6bbf95; --guide:#e0864f;
+    --shadow:rgba(0,0,0,.4); --canvas-bg:#12202a;
+  }}
+  :root[data-theme="light"]{
+    --paper:#e9edf1; --surface:#f6f8fb; --surface-2:#fdfefe; --ink:#1c2831; --ink-soft:#54636e; --ink-faint:#8595a1;
+    --line:#c6d1da; --line-soft:#d7e0e7; --grid:rgba(46,110,142,.11); --grid-major:rgba(46,110,142,.20);
+    --accent:#2e6e8e; --accent-strong:#1e5570; --accent-wash:rgba(46,110,142,.10); --amber:#b9761a; --amber-wash:rgba(185,118,26,.14);
+    --good:#3f7d5e; --guide:#c05a2e; --shadow:rgba(28,40,51,.13); --canvas-bg:#f4f1e8;
+  }
+  :root[data-theme="dark"]{
+    --paper:#0e1820; --surface:#14232e; --surface-2:#1a2c39; --ink:#dde8ef; --ink-soft:#93a7b5; --ink-faint:#6a7f8d;
+    --line:#274150; --line-soft:#203542; --grid:rgba(111,183,214,.13); --grid-major:rgba(111,183,214,.24);
+    --accent:#6fb7d6; --accent-strong:#a4d6ec; --accent-wash:rgba(111,183,214,.12); --amber:#e0a54b; --amber-wash:rgba(224,165,75,.16);
+    --good:#6bbf95; --guide:#e0864f; --shadow:rgba(0,0,0,.4); --canvas-bg:#12202a;
+  }
+  *{ box-sizing:border-box; } body{ margin:0; }
+  .app{ background:var(--paper); color:var(--ink); font-family:var(--font-body); line-height:1.5; min-height:100vh; padding:clamp(14px,3vw,30px); -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:1280px; margin:0 auto; }
+  .masthead{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; border-bottom:2px solid var(--ink); padding-bottom:13px; }
+  .masthead h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.4rem,3.4vw,2.15rem); margin:0; letter-spacing:.2px; text-wrap:balance; }
+  .eyebrow{ font-family:var(--font-mono); font-size:.67rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-strong); margin:0 0 6px; }
+  .lede{ color:var(--ink-soft); font-size:.9rem; max-width:64ch; margin:8px 0 0; }
+  .themebtn{ font-family:var(--font-mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; background:var(--surface); color:var(--ink-soft); border:1px solid var(--line); border-radius:7px; padding:8px 12px; cursor:pointer; white-space:nowrap; }
+  .themebtn:hover{ color:var(--ink); border-color:var(--accent); }
+  .note{ margin-top:13px; background:var(--amber-wash); border:1px solid color-mix(in srgb,var(--amber) 45%,transparent); border-radius:9px; padding:9px 14px; font-size:.83rem; }
+  .note b{ color:var(--amber); }
+
+  .picker{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:18px 0 8px; }
+  .picker select{ font-family:var(--font-body); font-size:.92rem; background:var(--surface-2); color:var(--ink); border:1px solid var(--line); border-radius:9px; padding:9px 12px; min-width:260px; }
+  .navbtn{ font-family:var(--font-mono); background:var(--surface); border:1px solid var(--line); color:var(--ink); border-radius:8px; width:34px; height:34px; cursor:pointer; font-size:1rem; }
+  .navbtn:hover{ border-color:var(--accent); color:var(--accent); }
+  .badges{ display:flex; flex-wrap:wrap; gap:6px; margin-left:auto; }
+  .badge{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.03em; padding:3px 9px; border-radius:20px; background:var(--surface); border:1px solid var(--line); color:var(--ink-soft); }
+  .badge.ras{ background:var(--accent-wash); border-color:color-mix(in srgb,var(--accent) 40%,transparent); color:var(--accent-strong); }
+  .badge.none{ background:transparent; }
+  .badge.draft{ background:var(--amber-wash); color:var(--amber); border-color:color-mix(in srgb,var(--amber) 40%,transparent); }
+
+  .work{ display:grid; grid-template-columns:minmax(0,1fr) 328px; gap:18px; align-items:start; margin-top:8px; }
+  @media (max-width:900px){ .work{ grid-template-columns:1fr; } }
+  .stage-card,.rail-card{ background:var(--surface); border:1px solid var(--line); border-radius:13px; }
+  .stage-card{ padding:12px; }
+  .stagehead{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin:2px 4px 10px; }
+  .stagehead .stitle{ font-family:var(--font-display); font-size:1.22rem; font-weight:600; }
+  .stagehead .stitle small{ font-family:var(--font-mono); font-weight:400; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-left:8px; }
+  .canvas-frame{ position:relative; width:100%; background:var(--canvas-bg); border:1px solid var(--line-soft); border-radius:8px; overflow:hidden; }
+  canvas{ display:block; width:100%; height:auto; touch-action:none; cursor:crosshair; }
+  .hud{ position:absolute; right:9px; bottom:8px; font-family:var(--font-mono); font-size:.66rem; color:var(--ink-faint); background:color-mix(in srgb,var(--surface) 80%,transparent); padding:2px 8px; border-radius:5px; pointer-events:none; text-align:right; white-space:pre; }
+  .toolbar{ display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center; margin:10px 4px 2px; font-size:.79rem; color:var(--ink-soft); }
+  .toolbar label{ display:inline-flex; align-items:center; gap:5px; cursor:pointer; user-select:none; }
+  .toolbar input[type=checkbox]{ accent-color:var(--accent); }
+  .toolbar input[type=number]{ width:52px; }
+  .linkbtn{ font-family:var(--font-body); font-size:.78rem; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:7px; padding:5px 10px; cursor:pointer; }
+  .linkbtn[aria-pressed="true"]{ background:var(--guide); color:#fff; border-color:var(--guide); }
+
+  .rail{ display:flex; flex-direction:column; gap:13px; position:sticky; top:12px; }
+  .rail-card{ padding:14px; }
+  .rail-card h3{ font-family:var(--font-mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-strong); margin:0 0 10px; display:flex; justify-content:space-between; }
+  .field{ display:flex; flex-direction:column; gap:4px; margin-bottom:10px; }
+  .field label{ font-size:.74rem; color:var(--ink-soft); }
+  .row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .btn{ font-family:var(--font-body); font-size:.82rem; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 12px; cursor:pointer; font-weight:600; }
+  .btn:hover{ background:var(--accent-strong); }
+  .btn.ghost{ background:transparent; color:var(--accent); border:1px solid var(--accent); font-weight:500; }
+  .btn.ghost:hover{ background:var(--accent-wash); }
+  .btn.small{ padding:5px 9px; font-size:.76rem; }
+  input[type=file]{ font-size:.76rem; color:var(--ink-soft); max-width:100%; }
+  input[type=number],input[type=range],input[type=text]{ font-family:var(--font-mono); }
+  input[type=number]{ width:78px; background:var(--surface-2); color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:5px 7px; font-size:.82rem; }
+  input[type=text].rename{ font-family:var(--font-body); width:100%; background:var(--surface-2); color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:6px 8px; font-size:.86rem; }
+  input[type=range]{ width:100%; accent-color:var(--accent); }
+  .sel-empty{ color:var(--ink-faint); font-size:.82rem; font-style:italic; }
+  .sel-id{ font-family:var(--font-mono); font-size:.72rem; color:var(--ink-faint); margin:2px 0 8px; word-break:break-all; }
+  .coordrow{ display:flex; align-items:center; gap:8px; margin-top:6px; }
+  .coordrow .lbl{ font-family:var(--font-mono); font-size:.8rem; color:var(--ink-soft); width:14px; }
+  .nudge{ display:inline-flex; gap:3px; margin-left:auto; }
+  .nudge button{ font-family:var(--font-mono); background:var(--surface-2); border:1px solid var(--line); color:var(--ink); border-radius:5px; width:26px; height:26px; cursor:pointer; font-size:.9rem; line-height:1; }
+  .nudge button:hover{ border-color:var(--accent); color:var(--accent); }
+  .stat{ display:flex; justify-content:space-between; font-size:.8rem; padding:3px 0; }
+  .stat .v{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
+  .pill{ display:inline-block; font-family:var(--font-mono); font-size:.7rem; padding:2px 8px; border-radius:20px; }
+  .pill.dirty{ background:var(--amber-wash); color:var(--amber); border:1px solid color-mix(in srgb,var(--amber) 40%,transparent); }
+  .pill.clean{ background:var(--accent-wash); color:var(--accent-strong); }
+  details.prov summary{ cursor:pointer; font-family:var(--font-mono); font-size:.72rem; letter-spacing:.06em; color:var(--ink-soft); margin-top:6px; }
+  .provgrid{ font-size:.78rem; margin-top:8px; display:grid; grid-template-columns:auto 1fr; gap:3px 10px; }
+  .provgrid dt{ color:var(--ink-faint); font-family:var(--font-mono); font-size:.66rem; text-transform:uppercase; }
+  .provgrid dd{ margin:0; }
+  .tabsx{ display:flex; gap:4px; margin-bottom:8px; }
+  .tabx{ font-family:var(--font-mono); font-size:.72rem; padding:5px 10px; border-radius:7px 7px 0 0; border:1px solid var(--line); border-bottom:none; background:var(--surface); color:var(--ink-soft); cursor:pointer; }
+  .tabx[aria-selected="true"]{ background:var(--surface-2); color:var(--ink); }
+  pre.out{ margin:0; background:var(--surface-2); border:1px solid var(--line); border-radius:8px; padding:12px; overflow-x:auto; font-family:var(--font-mono); font-size:.76rem; line-height:1.5; color:var(--ink); max-height:360px; }
+  pre.out .c{ color:var(--ink-faint); } pre.out .k{ color:var(--accent-strong); } pre.out .n{ color:var(--amber); }
+  .toast{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:var(--paper); padding:9px 16px; border-radius:8px; font-size:.82rem; opacity:0; pointer-events:none; transition:opacity .2s,transform .2s; z-index:9; }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  .foot{ margin-top:24px; padding-top:13px; border-top:1px solid var(--line); font-size:.75rem; color:var(--ink-faint); }
+  .foot code{ font-family:var(--font-mono); color:var(--ink-soft); }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } }
+</style>
+
+<div class="app">
+  <div class="wrap">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">SideQuest · Mapping Track A · authoring tool</p>
+        <h1>Raster Map Anchor Calibrator</h1>
+        <p class="lede">Pick a world, drop a public-domain scan under the pins, drag each region to its true pixel, and export a <code>map.yaml</code> ready to paste back into the content repo. Every world with a <code>cartography.yaml</code> is loaded; worlds without a raster map yet start from an auto-laid-out graph you calibrate.</p>
+      </div>
+      <button class="themebtn" id="themeBtn" type="button">◐ Theme</button>
+    </header>
+    <div class="note" id="worldNote"></div>
+
+    <div class="picker">
+      <button class="navbtn" id="prevW" type="button" title="Previous world">‹</button>
+      <select id="worldSel"></select>
+      <button class="navbtn" id="nextW" type="button" title="Next world">›</button>
+      <div class="badges" id="badges"></div>
+    </div>
+
+    <div class="work">
+      <section class="stage-card">
+        <div class="stagehead">
+          <div class="stitle" id="stageTitle"></div>
+          <div id="dirtyState"></div>
+        </div>
+        <div class="canvas-frame">
+          <canvas id="cv"></canvas>
+          <div class="hud" id="hud"></div>
+        </div>
+        <div class="toolbar">
+          <label><input type="checkbox" id="tGrid" checked> grid</label>
+          <label><input type="checkbox" id="tEdges" checked> adjacency</label>
+          <label><input type="checkbox" id="tLabels" checked> labels</label>
+          <label><input type="checkbox" id="tRulers" checked> rulers</label>
+          <label><input type="checkbox" id="tSnap"> snap</label>
+          <label>step <input type="number" id="snapStep" value="8" min="1" step="1"></label>
+          <label><input type="checkbox" id="tGuides" checked> align guides</label>
+          <button class="linkbtn" id="linkBtn" type="button" aria-pressed="false" title="Click two pins to toggle an adjacency edge">✎ edit adjacency</button>
+        </div>
+      </section>
+
+      <aside class="rail">
+        <div class="rail-card">
+          <h3>Background scan</h3>
+          <div class="field"><input type="file" id="imgFile" accept="image/*"></div>
+          <div class="field"><label>Opacity <span id="opVal" class="v">70%</span></label><input type="range" id="opacity" min="0" max="100" value="70"></div>
+          <div class="row"><button class="btn ghost small" id="fitBtn" type="button">Fit: contain</button><button class="btn ghost small" id="clearImg" type="button">Clear scan</button></div>
+        </div>
+        <div class="rail-card">
+          <h3>Working canvas</h3>
+          <div class="row"><div class="field" style="margin:0"><label>width px</label><input type="number" id="cw" min="1" step="1"></div><div class="field" style="margin:0"><label>height px</label><input type="number" id="ch" min="1" step="1"></div></div>
+          <div class="row" style="margin-top:9px"><button class="btn ghost small" id="matchImg" type="button">Match scan size</button></div>
+        </div>
+        <div class="rail-card">
+          <h3>Selected pin</h3>
+          <div id="selBody"><p class="sel-empty">Click a pin to select. Drag to move; arrow keys nudge (⇧ ×10). Turn on “edit adjacency”, then click two pins to toggle a link.</p></div>
+        </div>
+        <div class="rail-card">
+          <h3>Survey</h3>
+          <div class="stat"><span>Regions plotted</span><span class="v" id="statCount"></span></div>
+          <div class="stat"><span>Moved from start</span><span class="v" id="statMoved"></span></div>
+          <div class="stat"><span>Cartography edits</span><span class="v" id="statEdits"></span></div>
+          <div style="margin-top:10px"><button class="btn ghost small" id="resetBtn" type="button">Reset this world</button></div>
+          <details class="prov"><summary>Provenance</summary><dl class="provgrid" id="provGrid"></dl></details>
+        </div>
+      </aside>
+    </div>
+
+    <div class="rail-card" style="margin-top:16px; padding:14px;">
+      <div class="tabsx" role="tablist">
+        <button class="tabx" id="txMap" role="tab" aria-selected="true" type="button">map.yaml</button>
+        <button class="tabx" id="txCarto" role="tab" aria-selected="false" type="button">cartography edits</button>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-bottom:8px;">
+        <button class="btn small" id="copyBtn" type="button">Copy</button>
+        <button class="btn ghost small" id="dlBtn" type="button">Download</button>
+      </div>
+      <pre class="out" id="mapOut"></pre>
+      <pre class="out" id="cartoOut" style="display:none"></pre>
+      <p style="font-size:.74rem;color:var(--ink-faint);margin:8px 2px 0;">map.yaml → <code id="yamlPath"></code>. The header comment records the working canvas size, so the coordinate frame is self-describing. Cartography edits (renames / adjacency) are a <b>reference patch</b> — apply them to <code>cartography.yaml</code> by hand; this tool never rewrites it.</p>
+    </div>
+
+    <p class="foot" id="foot"></p>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+const DATA = __DATA__;
+const GENMETA = __GENMETA__;
+const WORLDS = Object.keys(DATA);
+const PACK_HUES = {}; // assigned below
+const HUE_CYCLE = ["#3f7d5e","#b0863f","#c05a2e","#5a6fb0","#8a5aa0","#3f8f9e","#a04f6a","#6f8a3f","#b06a3f","#4f7a8a","#9a7a3f"];
+Object.keys(DATA).reduce((i,w)=>{ const p=DATA[w].pack; if(!(p in PACK_HUES)){ PACK_HUES[p]=HUE_CYCLE[i%HUE_CYCLE.length]; return i+1;} return i; },0);
+
+let current = WORLDS[0];
+const state = {};
+for(const w of WORLDS){
+  const d=DATA[w];
+  state[w]={ cw:d.canvas?d.canvas[0]:1024, ch:d.canvas?d.canvas[1]:768, opacity:0.7, fit:"contain", img:null, sel:null,
+    nodes: d.nodes.map(n=>({ id:n.id, name:n.name, oname:n.name, adjacent:[...n.adjacent], oadj:[...n.adjacent].sort(),
+      x:n.xy[0], y:n.xy[1], ox:n.xy[0], oy:n.xy[1] })) };
+}
+const opts={ grid:true, edges:true, labels:true, rulers:true, snap:false, snapStep:8, guides:true };
+let linkMode=false, linkSource=null, hover=null, cursor=null, activeTab='map';
+
+const cv=document.getElementById('cv'); const ctx=cv.getContext('2d'); const $=id=>document.getElementById(id);
+
+// world picker
+const sel=$('worldSel');
+const byPack={};
+for(const w of WORLDS){ (byPack[DATA[w].pack]=byPack[DATA[w].pack]||[]).push(w); }
+for(const pack of Object.keys(byPack)){
+  const og=document.createElement('optgroup'); og.label=pack;
+  for(const w of byPack[pack]){ const o=document.createElement('option'); o.value=w; o.textContent=DATA[w].display+(DATA[w].hasRaster?'  ●':''); og.appendChild(o); }
+  sel.appendChild(og);
+}
+sel.addEventListener('change',()=>selectWorld(sel.value));
+$('prevW').addEventListener('click',()=>step(-1));
+$('nextW').addEventListener('click',()=>step(1));
+function step(d){ const i=WORLDS.indexOf(current); const j=(i+d+WORLDS.length)%WORLDS.length; selectWorld(WORLDS[j]); }
+
+function selectWorld(w){
+  current=w; sel.value=w; const st=state[w], d=DATA[w];
+  linkMode=false; linkSource=null; $('linkBtn').setAttribute('aria-pressed','false');
+  $('stageTitle').innerHTML=`${escapeHtml(d.display)} <small>${d.pack}</small>`;
+  $('cw').value=st.cw; $('ch').value=st.ch;
+  $('opacity').value=Math.round(st.opacity*100); $('opVal').textContent=Math.round(st.opacity*100)+'%';
+  $('fitBtn').textContent='Fit: '+st.fit; $('yamlPath').textContent=d.path;
+  // badges
+  $('badges').innerHTML =
+    `<span class="badge">${d.ruleset||'—'}</span>`+
+    `<span class="badge">${st.nodes.length} regions</span>`+
+    (d.hasRaster?`<span class="badge ras">raster map.yaml</span>`:`<span class="badge none">no map yet</span>`)+
+    (d.draft?`<span class="badge draft">draft</span>`:``);
+  $('worldNote').innerHTML = d.hasRaster
+    ? `⚠︎ <b>Placeholders.</b> Anchors are rough — load the sourced scan and drag each pin to its true pixel, then export.`
+    : `◆ <b>No raster map yet.</b> Pins were auto-laid-out from this world's adjacency graph. Load a scan (or an illustrated map) and calibrate; the export bootstraps a new <code>map.yaml</code>.`;
+  const pg=$('provGrid'); pg.innerHTML=Object.entries(d.provenance||{}).map(([k,v])=>`<dt>${k}</dt><dd>${escapeHtml(v)}</dd>`).join('');
+  renderSel(); resize(); syncStats(); syncOut();
+}
+
+// coords
+function logicalFromEvent(e){ const r=cv.getBoundingClientRect(); const st=state[current]; return { x:(e.clientX-r.left)/r.width*st.cw, y:(e.clientY-r.top)/r.height*st.ch }; }
+function pinRadius(){ const st=state[current]; return Math.max(6, Math.min(st.cw,st.ch)*0.012); }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+
+let DPR=Math.min(window.devicePixelRatio||1,2);
+function resize(){ const st=state[current]; const fw=cv.parentElement.clientWidth; const cssH=fw*(st.ch/st.cw); cv.style.height=cssH+'px'; cv.width=Math.round(fw*DPR); cv.height=Math.round(cssH*DPR); draw(); }
+function toPx(v,axis){ const st=state[current]; return axis==='x'? v/st.cw*cv.width : v/st.ch*cv.height; }
+function cssVar(v){ return getComputedStyle(document.querySelector('.app')).getPropertyValue(v).trim(); }
+function cssFont(v){ return cssVar(v)||'sans-serif'; }
+function withAlpha(hex,a){ const c=hex.replace('#',''); const n=parseInt(c.length===3?c.split('').map(x=>x+x).join(''):c,16); return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`; }
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+function roundRect(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+
+function draw(){
+  const st=state[current];
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.fillStyle=cssVar('--canvas-bg')||'#fff'; ctx.fillRect(0,0,cv.width,cv.height);
+  if(st.img){ ctx.globalAlpha=st.opacity; drawImageFitted(st.img,st.fit); ctx.globalAlpha=1; }
+  const grid=cssVar('--grid'), gridMajor=cssVar('--grid-major'), inkFaint=cssVar('--ink-faint'), accent=cssVar('--accent'), guide=cssVar('--guide'), good=cssVar('--good');
+  if(opts.grid){ const sx=st.cw/16, sy=st.ch/12; ctx.lineWidth=1;
+    for(let i=0;i<=16;i++){ ctx.strokeStyle=i%4===0?gridMajor:grid; ctx.beginPath(); const x=toPx(i*sx,'x'); ctx.moveTo(x,0); ctx.lineTo(x,cv.height); ctx.stroke(); }
+    for(let j=0;j<=12;j++){ ctx.strokeStyle=j%3===0?gridMajor:grid; ctx.beginPath(); const y=toPx(j*sy,'y'); ctx.moveTo(0,y); ctx.lineTo(cv.width,y); ctx.stroke(); } }
+  if(opts.rulers){ ctx.fillStyle=inkFaint; ctx.font=`${11*DPR}px ${cssFont('--font-mono')}`; ctx.textBaseline='top'; ctx.textAlign='left';
+    for(let i=0;i<=st.cw;i+=128){ ctx.fillText(String(i),toPx(i,'x')+3*DPR,3*DPR); }
+    ctx.textBaseline='bottom'; for(let j=128;j<=st.ch;j+=128){ ctx.fillText(String(j),3*DPR,toPx(j,'y')-2*DPR); } }
+  const byId=Object.fromEntries(st.nodes.map(n=>[n.id,n]));
+  if(opts.edges){ const seen=new Set(); ctx.lineWidth=1.4*DPR;
+    for(const n of st.nodes){ for(const a of n.adjacent){ const m=byId[a]; if(!m) continue; const key=[n.id,a].sort().join('|'); if(seen.has(key)) continue; seen.add(key);
+      ctx.strokeStyle=withAlpha(accent,0.35); ctx.beginPath(); ctx.moveTo(toPx(n.x,'x'),toPx(n.y,'y')); ctx.lineTo(toPx(m.x,'x'),toPx(m.y,'y')); ctx.stroke(); } } }
+  // alignment guides while dragging
+  if(dragging && opts.guides && alignGuides){ ctx.strokeStyle=withAlpha(guide,0.7); ctx.lineWidth=1*DPR; ctx.setLineDash([5*DPR,4*DPR]);
+    if(alignGuides.vx!=null){ const x=toPx(alignGuides.vx,'x'); ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,cv.height); ctx.stroke(); }
+    if(alignGuides.hy!=null){ const y=toPx(alignGuides.hy,'y'); ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(cv.width,y); ctx.stroke(); }
+    ctx.setLineDash([]); }
+  const R=pinRadius(), col=PACK_HUES[DATA[current].pack];
+  for(const n of st.nodes){ const x=toPx(n.x,'x'), y=toPx(n.y,'y'), r=R*DPR; const moved=(n.x!==n.ox||n.y!==n.oy);
+    if(n===linkSource){ ctx.beginPath(); ctx.arc(x,y,r+7*DPR,0,7); ctx.strokeStyle=guide; ctx.lineWidth=2.5*DPR; ctx.setLineDash([3*DPR,3*DPR]); ctx.stroke(); ctx.setLineDash([]); }
+    if(n===st.sel){ ctx.beginPath(); ctx.arc(x,y,r+5*DPR,0,7); ctx.strokeStyle=accent; ctx.lineWidth=2*DPR; ctx.stroke(); }
+    ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fillStyle=moved?col:withAlpha(col,0.5); ctx.fill();
+    ctx.lineWidth=1.5*DPR; ctx.strokeStyle=(n===st.sel)?accent:'rgba(255,255,255,.85)'; ctx.stroke();
+    ctx.beginPath(); ctx.arc(x,y,Math.max(1.5*DPR,r*0.28),0,7); ctx.fillStyle='rgba(255,255,255,.9)'; ctx.fill(); }
+  if(opts.labels){ ctx.font=`${11.5*DPR}px ${cssFont('--font-body')}`; ctx.textBaseline='middle';
+    for(const n of st.nodes){ const x=toPx(n.x,'x'), y=toPx(n.y,'y'), label=n.name; const padX=5*DPR; const tw=ctx.measureText(label).width;
+      const lx=x+R*DPR+5*DPR; const flip=lx+tw+padX*2>cv.width; const bx=flip? x-R*DPR-5*DPR-tw-padX*2 : lx;
+      ctx.fillStyle=(n===st.sel)?withAlpha(accent,0.92):'rgba(20,30,38,.8)'; roundRect(bx,y-9*DPR,tw+padX*2,18*DPR,5*DPR); ctx.fill();
+      ctx.fillStyle='#fff'; ctx.textAlign='left'; ctx.fillText(label,bx+padX,y); } }
+  // HUD
+  let hud='';
+  if(cursor) hud+=`x ${Math.round(cursor.x)}  y ${Math.round(cursor.y)}\n`;
+  if(st.sel && cursor){ const d=Math.hypot(st.sel.x-cursor.x,st.sel.y-cursor.y); hud+=`d ${Math.round(d)} px\n`; }
+  hud+=`${st.cw}×${st.ch}`;
+  $('hud').textContent=hud;
+}
+function drawImageFitted(img,fit){ const iw=img.naturalWidth, ih=img.naturalHeight; if(!iw) return; if(fit==='stretch'){ ctx.drawImage(img,0,0,cv.width,cv.height); return; } const s=Math.min(cv.width/iw,cv.height/ih); const w=iw*s,h=ih*s; ctx.drawImage(img,(cv.width-w)/2,(cv.height-h)/2,w,h); }
+
+// interaction
+let dragging=null, alignGuides=null;
+function hitTest(pt){ const st=state[current]; const R=pinRadius()*1.7; let best=null,bd=1e9; for(const n of st.nodes){ const d=Math.hypot(n.x-pt.x,n.y-pt.y); if(d<R&&d<bd){ bd=d; best=n; } } return best; }
+cv.addEventListener('pointerdown',e=>{ const pt=logicalFromEvent(e); const n=hitTest(pt); const st=state[current];
+  if(linkMode){ if(n){ if(!linkSource){ linkSource=n; } else if(linkSource!==n){ toggleEdge(linkSource,n); linkSource=null; syncOut(); syncStats(); } else { linkSource=null; } draw(); } return; }
+  if(n){ st.sel=n; dragging=n; cv.setPointerCapture(e.pointerId); renderSel(); draw(); } else { st.sel=null; renderSel(); draw(); } });
+cv.addEventListener('pointermove',e=>{ const st=state[current]; const pt=logicalFromEvent(e); cursor=pt;
+  if(dragging){ let nx=Math.round(pt.x), ny=Math.round(pt.y); alignGuides={vx:null,hy:null};
+    if(opts.snap){ const s=Math.max(1,opts.snapStep|0); nx=Math.round(nx/s)*s; ny=Math.round(ny/s)*s; }
+    if(opts.guides){ const th=Math.max(3,Math.min(st.cw,st.ch)*0.01); for(const m of st.nodes){ if(m===dragging) continue; if(Math.abs(m.x-nx)<=th){ nx=m.x; alignGuides.vx=m.x; } if(Math.abs(m.y-ny)<=th){ ny=m.y; alignGuides.hy=m.y; } } }
+    dragging.x=clamp(nx,0,st.cw); dragging.y=clamp(ny,0,st.ch); renderSel(); draw(); syncOut(); syncStats(); }
+  else { hover=hitTest(pt); draw(); } });
+cv.addEventListener('pointerup',()=>{ dragging=null; alignGuides=null; draw(); });
+cv.addEventListener('pointerleave',()=>{ dragging=null; alignGuides=null; cursor=null; draw(); });
+function toggleEdge(a,b){ const rm=(n,id)=>{ const i=n.adjacent.indexOf(id); if(i>=0) n.adjacent.splice(i,1); }; if(a.adjacent.includes(b.id)){ rm(a,b.id); rm(b,a.id); toast('unlinked'); } else { a.adjacent.push(b.id); b.adjacent.push(a.id); toast('linked'); } }
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ linkSource=null; draw(); return; } const st=state[current]; if(!st.sel) return; if(document.activeElement&&/INPUT|TEXTAREA/.test(document.activeElement.tagName)) return; let d=e.shiftKey?10:1,u=true; if(e.key==='ArrowLeft')st.sel.x=clamp(st.sel.x-d,0,st.cw); else if(e.key==='ArrowRight')st.sel.x=clamp(st.sel.x+d,0,st.cw); else if(e.key==='ArrowUp')st.sel.y=clamp(st.sel.y-d,0,st.ch); else if(e.key==='ArrowDown')st.sel.y=clamp(st.sel.y+d,0,st.ch); else u=false; if(u){ e.preventDefault(); renderSel(); draw(); syncOut(); syncStats(); } });
+
+function renderSel(){ const st=state[current], n=st.sel, body=$('selBody');
+  if(!n){ body.innerHTML='<p class="sel-empty">Click a pin to select. Drag to move; arrow keys nudge (⇧ ×10). Turn on “edit adjacency”, then click two pins to toggle a link.</p>'; return; }
+  const renamed=n.name!==n.oname;
+  body.innerHTML=`<input class="rename" id="renameInp" type="text" value="${escapeHtml(n.name)}">`+
+    `<div class="sel-id">${n.id}${renamed?` · was “${escapeHtml(n.oname)}”`:''}</div>`+
+    coordCtl('x',n.x)+coordCtl('y',n.y)+
+    `<div style="margin-top:8px">${(n.x!==n.ox||n.y!==n.oy)?`<span class="pill dirty">moved · was ${n.ox},${n.oy}</span>`:'<span class="pill clean">start position</span>'}</div>`+
+    `<div style="margin-top:8px;font-size:.75rem;color:var(--ink-soft)">links: ${n.adjacent.length? n.adjacent.map(escapeHtml).join(', '):'<i>none</i>'}</div>`;
+  const ri=$('renameInp'); ri.addEventListener('input',()=>{ n.name=ri.value; draw(); syncOut(); syncStats(); });
+  body.querySelectorAll('[data-axis]').forEach(inp=>inp.addEventListener('change',()=>{ const ax=inp.dataset.axis; n[ax]=clamp(Math.round(+inp.value||0),0,ax==='x'?st.cw:st.ch); renderSel(); draw(); syncOut(); syncStats(); }));
+  body.querySelectorAll('.nudge button').forEach(b=>b.addEventListener('click',()=>{ const ax=b.dataset.ax; n[ax]=clamp(n[ax]+ +b.dataset.dir,0,ax==='x'?st.cw:st.ch); renderSel(); draw(); syncOut(); syncStats(); }));
+}
+function coordCtl(axis,val){ return `<div class="coordrow"><span class="lbl">${axis}</span><input type="number" data-axis="${axis}" value="${val}"><span class="nudge"><button data-ax="${axis}" data-dir="-1" type="button">−</button><button data-ax="${axis}" data-dir="1" type="button">+</button></span></div>`; }
+
+function syncStats(){ const st=state[current]; $('statCount').textContent=st.nodes.length; const mv=st.nodes.filter(n=>n.x!==n.ox||n.y!==n.oy).length; $('statMoved').textContent=mv+' / '+st.nodes.length; const ed=cartoEditCount(); $('statEdits').textContent=ed; $('dirtyState').innerHTML=mv?`<span class="pill dirty">${mv} moved</span>`:`<span class="pill clean">unchanged</span>`; }
+function cartoEditCount(){ const st=state[current]; let n=0; for(const nd of st.nodes){ if(nd.name!==nd.oname) n++; if(nd.adjacent.slice().sort().join(',')!==nd.oadj.join(',')) n++; } return n; }
+
+// export
+function buildYaml(w){ const st=state[w], d=DATA[w]; const L=[...d.header]; L.push(`# Working canvas: ${st.cw}x${st.ch} px (anchors are pixels within this frame).`);
+  L.push(`treatment: raster`); L.push(`image: ${d.image}`); L.push(`provenance:`);
+  for(const [k,v] of Object.entries(d.provenance||{})) L.push(`  ${k}: "${String(v).replace(/"/g,'\\"')}"`);
+  L.push(`style_hints:`); for(const [k,v] of Object.entries(d.style_hints||{})) L.push(`  ${k}: ${v}`);
+  L.push(`node_anchors:`); for(const n of st.nodes) L.push(`  ${n.id}: [${n.x}, ${n.y}]`); return L.join('\n')+'\n'; }
+function buildCarto(w){ const st=state[w]; const L=[`# cartography.yaml reference patch for ${DATA[w].display} — apply by hand.`]; let any=false;
+  const rn=st.nodes.filter(n=>n.name!==n.oname); if(rn.length){ any=true; L.push('# renames (regions.<id>.name):'); rn.forEach(n=>L.push(`#   ${n.id}: "${n.oname}" -> "${n.name}"`)); }
+  const adj=st.nodes.filter(n=>n.adjacent.slice().sort().join(',')!==n.oadj.join(',')); if(adj.length){ any=true; L.push('# adjacency (regions.<id>.adjacent):'); adj.forEach(n=>L.push(`#   ${n.id}: [${n.adjacent.join(', ')}]`)); }
+  if(!any) L.push('# (no renames or adjacency changes yet)'); return L.join('\n')+'\n'; }
+function highlight(txt){ return txt.split('\n').map(l=>{ if(l.startsWith('#')) return `<span class="c">${escapeHtml(l)}</span>`; const m=l.match(/^(\s*)([\w]+):(.*)$/); if(m){ const rest=m[3].replace(/(\[-?\d+, -?\d+\])/,'<span class="n">$1</span>'); return `${m[1]}<span class="k">${escapeHtml(m[2])}</span>:${escapeHtml(rest).replace('&lt;span class=&quot;n&quot;&gt;','<span class="n">').replace('&lt;/span&gt;','</span>')}`; } return escapeHtml(l); }).join('\n'); }
+function syncOut(){ const y=buildYaml(current), c=buildCarto(current); $('mapOut').dataset.raw=y; $('cartoOut').dataset.raw=c;
+  $('mapOut').innerHTML=y.split('\n').map(l=>{ if(l.startsWith('#'))return `<span class="c">${escapeHtml(l)}</span>`; const m=l.match(/^(\s*)([\w]+):(.*)$/); if(m){ let rest=m[3]; const am=rest.match(/^\s*\[(-?\d+), (-?\d+)\]\s*$/); rest = am? ` <span class="n">[${am[1]}, ${am[2]}]</span>` : escapeHtml(rest); return `${m[1]}<span class="k">${escapeHtml(m[2])}</span>:${rest}`; } return escapeHtml(l); }).join('\n');
+  $('cartoOut').innerHTML=c.split('\n').map(l=>`<span class="c">${escapeHtml(l)}</span>`).join('\n'); }
+
+// tabs
+function setTab(t){ activeTab=t; $('txMap').setAttribute('aria-selected',t==='map'); $('txCarto').setAttribute('aria-selected',t==='carto'); $('mapOut').style.display=t==='map'?'':'none'; $('cartoOut').style.display=t==='carto'?'':'none'; }
+$('txMap').addEventListener('click',()=>setTab('map')); $('txCarto').addEventListener('click',()=>setTab('carto'));
+
+// controls
+$('imgFile').addEventListener('change',e=>{ const f=e.target.files[0]; if(!f) return; const img=new Image(); img.onload=()=>{ state[current].img=img; draw(); }; img.src=URL.createObjectURL(f); });
+$('clearImg').addEventListener('click',()=>{ state[current].img=null; $('imgFile').value=''; draw(); });
+$('opacity').addEventListener('input',e=>{ state[current].opacity=+e.target.value/100; $('opVal').textContent=e.target.value+'%'; draw(); });
+$('fitBtn').addEventListener('click',()=>{ const st=state[current]; st.fit=st.fit==='contain'?'stretch':'contain'; $('fitBtn').textContent='Fit: '+st.fit; draw(); });
+$('matchImg').addEventListener('click',()=>{ const st=state[current]; if(!st.img){ toast('Load a scan first'); return; } setCanvasSize(st.img.naturalWidth,st.img.naturalHeight,true); });
+function setCanvasSize(w,h,rescale){ const st=state[current]; w=Math.max(1,Math.round(w)); h=Math.max(1,Math.round(h)); if(rescale){ const sx=w/st.cw, sy=h/st.ch; st.nodes.forEach(n=>{ n.x=clamp(Math.round(n.x*sx),0,w); n.y=clamp(Math.round(n.y*sy),0,h); n.ox=Math.round(n.ox*sx); n.oy=Math.round(n.oy*sy); }); } st.cw=w; st.ch=h; $('cw').value=w; $('ch').value=h; resize(); syncOut(); syncStats(); }
+$('cw').addEventListener('change',e=>setCanvasSize(+e.target.value||1,state[current].ch,false));
+$('ch').addEventListener('change',e=>setCanvasSize(state[current].cw,+e.target.value||1,false));
+$('resetBtn').addEventListener('click',()=>{ const d=DATA[current]; state[current].cw=d.canvas?d.canvas[0]:1024; state[current].ch=d.canvas?d.canvas[1]:768; state[current].nodes.forEach((n,i)=>{ const o=d.nodes[i]; n.x=o.xy[0]; n.y=o.xy[1]; n.ox=o.xy[0]; n.oy=o.xy[1]; n.name=o.name; n.adjacent=[...o.adjacent]; }); state[current].sel=null; selectWorld(current); toast('Reset'); });
+['tGrid','tEdges','tLabels','tRulers','tGuides'].forEach(id=>{ const key={tGrid:'grid',tEdges:'edges',tLabels:'labels',tRulers:'rulers',tGuides:'guides'}[id]; $(id).addEventListener('change',e=>{ opts[key]=e.target.checked; draw(); }); });
+$('tSnap').addEventListener('change',e=>{ opts.snap=e.target.checked; });
+$('snapStep').addEventListener('change',e=>{ opts.snapStep=Math.max(1,+e.target.value||8); });
+$('linkBtn').addEventListener('click',()=>{ linkMode=!linkMode; linkSource=null; $('linkBtn').setAttribute('aria-pressed',linkMode); cv.style.cursor=linkMode?'pointer':'crosshair'; toast(linkMode?'Edit adjacency: click two pins':'Adjacency edit off'); draw(); });
+$('copyBtn').addEventListener('click',async()=>{ const raw=(activeTab==='map'?$('mapOut'):$('cartoOut')).dataset.raw; try{ await navigator.clipboard.writeText(raw); }catch{ const ta=document.createElement('textarea'); ta.value=raw; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); } toast((activeTab==='map'?'map.yaml':'cartography patch')+' copied'); });
+$('dlBtn').addEventListener('click',()=>{ const raw=(activeTab==='map'?$('mapOut'):$('cartoOut')).dataset.raw; const name=activeTab==='map'?'map.yaml':(current+'-cartography-patch.txt'); const b=new Blob([raw],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; a.click(); });
+$('themeBtn').addEventListener('click',()=>{ const r=document.documentElement; const cur=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'); r.setAttribute('data-theme',cur==='dark'?'light':'dark'); draw(); });
+window.addEventListener('resize',()=>{ DPR=Math.min(window.devicePixelRatio||1,2); resize(); });
+
+$('foot').innerHTML = `Authoring tool for Keith · generated ${escapeHtml(GENMETA.generated)} from ${GENMETA.worldCount} worlds with a <code>cartography.yaml</code> · coordinates are pixels within the working canvas · <code>node_anchors</code> must cover every region (the pack validator enforces this). Regenerate with <code>python tools/build_map_calibrator.py</code>.`;
+
+selectWorld(current);
+</script>
