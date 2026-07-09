@@ -201,3 +201,19 @@ routes:
     to_id: deep_descent
     distance: "one rope"
     danger: "total — the count on the board is the danger rating"
+
+# Track B (Story 164-3): the Deep is the first `frontier` SITE. The movement
+# engine now crosses into it via the SiteRegistry × the enter_site/exit_site
+# resolvers (dispatched by kind), not the old inlined seam ladder. `attached_to`
+# binds the site's mouth to the surface region that owns the descent
+# (`the_dropmouth`); `extent: frontier` means the interior is generated,
+# unbounded, at runtime (the existing Sünden Deep procedural engine, Plans 5-7)
+# — as opposed to a `bounded` site materialized whole in one transaction. The
+# `deep_descent` route above is kept but INERT (movement no longer reads it); a
+# follow-up retires it once the site path is proven in playtests.
+sites:
+  - site_id: frontier
+    name: "The Deep"
+    archetype: megadungeon
+    attached_to: the_dropmouth
+    extent: frontier
